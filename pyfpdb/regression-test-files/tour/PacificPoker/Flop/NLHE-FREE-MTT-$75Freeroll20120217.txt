@@ -1,0 +1,5253 @@
+#Game No : 190602877
+***** Cassava Hand History for Game 190602877 *****
+$10/$20 Blinds No Limit Holdem - *** 17 02 2012 00:11:28
+Tournament #36216773 Free - Table #296 (Real Money)
+Seat 5 is the button
+Total number of players : 9
+Seat 1: Allf74 ( $750 )
+Seat 2: Hero ( $750 )
+Seat 3: chevanche ( $750 )
+Seat 4: lukash347 ( $750 )
+Seat 5: jariber ( $750 )
+Seat 6: unable91 ( $750 )
+Seat 7: andyrh ( $750 )
+Seat 9: lucas0507 ( $750 )
+Seat 10: 17gelosu ( $750 )
+unable91 posts small blind [$10]
+andyrh posts big blind [$20]
+** Dealing down cards **
+lucas0507 calls [$20]
+17gelosu folds
+Allf74 folds
+Hero folds
+chevanche folds
+lukash347 folds
+jariber raises [$90]
+unable91 folds
+andyrh folds
+lucas0507 calls [$70]
+** Dealing flop ** [ Qs, 3c, 5h ]
+lucas0507 bets [$105]
+jariber folds
+** Summary **
+lucas0507 collected [ $210 ]
+
+
+
+#Game No : 190604327
+***** Cassava Hand History for Game 190604327 *****
+$10/$20 Blinds No Limit Holdem - *** 17 02 2012 00:11:47
+Tournament #36216773 Free - Table #296 (Real Money)
+Seat 6 is the button
+Total number of players : 9
+Seat 1: Allf74 ( $750 )
+Seat 2: Hero ( $750 )
+Seat 3: chevanche ( $750 )
+Seat 4: lukash347 ( $750 )
+Seat 5: jariber ( $660 )
+Seat 6: unable91 ( $740 )
+Seat 7: andyrh ( $730 )
+Seat 9: lucas0507 ( $870 )
+Seat 10: 17gelosu ( $750 )
+andyrh posts small blind [$10]
+lucas0507 posts big blind [$20]
+** Dealing down cards **
+Dealt to Hero [ Qd, Js ]
+17gelosu folds
+Allf74 folds
+Hero raises [$60]
+chevanche calls [$60]
+lukash347 raises [$750]
+jariber folds
+unable91 folds
+andyrh folds
+lucas0507 calls [$730]
+Hero calls [$690]
+chevanche folds
+** Dealing flop ** [ 5s, Jd, 2c ]
+** Dealing turn ** [ Qh ]
+** Dealing river ** [ 4s ]
+** Summary **
+Hero shows [ Qd, Js ]
+lukash347 shows [ Ts, Ks ]
+lucas0507 shows [ 8h, Ah ]
+Hero collected [ $2,320 ]
+
+
+
+#Game No : 190605463
+***** Cassava Hand History for Game 190605463 *****
+$10/$20 Blinds No Limit Holdem - *** 17 02 2012 00:12:36
+Tournament #36216773 Free - Table #296 (Real Money)
+Seat 7 is the button
+Total number of players : 8
+Seat 1: Allf74 ( $750 )
+Seat 2: Hero ( $2,320 )
+Seat 3: chevanche ( $690 )
+Seat 5: jariber ( $660 )
+Seat 6: unable91 ( $740 )
+Seat 7: andyrh ( $720 )
+Seat 9: lucas0507 ( $120 )
+Seat 10: 17gelosu ( $750 )
+lucas0507 posts small blind [$10]
+17gelosu posts big blind [$20]
+** Dealing down cards **
+Dealt to Hero [ Tc, 7s ]
+Allf74 calls [$20]
+Hero folds
+chevanche calls [$20]
+jariber raises [$110]
+unable91 folds
+andyrh folds
+lucas0507 raises [$110]
+17gelosu folds
+Allf74 calls [$100]
+chevanche calls [$100]
+jariber calls [$10]
+** Dealing flop ** [ Jc, 2h, Ah ]
+Allf74 bets [$250]
+chevanche folds
+jariber raises [$540]
+Allf74 calls [$290]
+** Dealing turn ** [ Ts ]
+** Dealing river ** [ 6d ]
+** Summary **
+Allf74 shows [ 9d, Ac ]
+jariber shows [ Jd, 9h ]
+lucas0507 shows [ Qh, 6s ]
+Allf74 collected [ $500 ]
+Allf74 collected [ $1,080 ]
+
+
+
+#Game No : 190606852
+***** Cassava Hand History for Game 190606852 *****
+$10/$20 Blinds No Limit Holdem - *** 17 02 2012 00:13:42
+Tournament #36216773 Free - Table #296 (Real Money)
+Seat 9 is the button
+Total number of players : 8
+Seat 1: Allf74 ( $1,670 )
+Seat 2: Hero ( $2,320 )
+Seat 3: chevanche ( $570 )
+Seat 4: lukash347 ( $2,000 )
+Seat 6: unable91 ( $740 )
+Seat 7: andyrh ( $720 )
+Seat 9: lucas0507 ( $2,000 )
+Seat 10: 17gelosu ( $730 )
+17gelosu posts small blind [$10]
+Allf74 posts big blind [$20]
+** Dealing down cards **
+Dealt to Hero [ Ac, 7h ]
+Hero folds
+chevanche folds
+lukash347 raises [$2,000]
+unable91 folds
+andyrh folds
+lucas0507 folds
+17gelosu folds
+Allf74 calls [$1,650]
+** Dealing flop ** [ Ks, 7d, Jd ]
+** Dealing turn ** [ Qd ]
+** Dealing river ** [ Qc ]
+** Summary **
+Allf74 shows [ Kh, Kd ]
+lukash347 shows [ Qs, As ]
+Allf74 collected [ $3,350 ]
+
+
+
+#Game No : 190607671
+***** Cassava Hand History for Game 190607671 *****
+$10/$20 Blinds No Limit Holdem - *** 17 02 2012 00:14:20
+Tournament #36216773 Free - Table #296 (Real Money)
+Seat 10 is the button
+Total number of players : 9
+Seat 1: Allf74 ( $3,350 )
+Seat 2: Hero ( $2,320 )
+Seat 3: chevanche ( $570 )
+Seat 4: lukash347 ( $330 )
+Seat 5: urumarcos ( $720 )
+Seat 6: unable91 ( $740 )
+Seat 7: andyrh ( $720 )
+Seat 9: lucas0507 ( $2,000 )
+Seat 10: 17gelosu ( $720 )
+Allf74 posts small blind [$10]
+Hero posts big blind [$20]
+** Dealing down cards **
+Dealt to Hero [ 5c, 6s ]
+chevanche calls [$20]
+lukash347 folds
+urumarcos folds
+unable91 raises [$740]
+andyrh folds
+lucas0507 folds
+17gelosu folds
+Allf74 folds
+Hero folds
+chevanche folds
+** Summary **
+unable91 did not show his hand
+unable91 collected [ $70 ]
+
+
+
+#Game No : 190608239
+***** Cassava Hand History for Game 190608239 *****
+$10/$20 Blinds No Limit Holdem - *** 17 02 2012 00:14:48
+Tournament #36216773 Free - Table #296 (Real Money)
+Seat 1 is the button
+Total number of players : 9
+Seat 1: Allf74 ( $3,340 )
+Seat 2: Hero ( $2,300 )
+Seat 3: chevanche ( $550 )
+Seat 4: lukash347 ( $330 )
+Seat 5: urumarcos ( $720 )
+Seat 6: unable91 ( $790 )
+Seat 7: andyrh ( $720 )
+Seat 9: lucas0507 ( $2,000 )
+Seat 10: 17gelosu ( $720 )
+Hero posts small blind [$10]
+chevanche posts big blind [$20]
+** Dealing down cards **
+Dealt to Hero [ 5c, 8d ]
+lukash347 raises [$330]
+urumarcos folds
+unable91 folds
+andyrh folds
+lucas0507 folds
+17gelosu calls [$330]
+Allf74 folds
+Hero folds
+chevanche folds
+** Dealing flop ** [ 6d, 9c, Kc ]
+** Dealing turn ** [ 3d ]
+** Dealing river ** [ 7d ]
+** Summary **
+lukash347 shows [ Ks, 9s ]
+17gelosu shows [ Ah, 7c ]
+lukash347 collected [ $690 ]
+
+
+
+#Game No : 190609024
+***** Cassava Hand History for Game 190609024 *****
+$10/$20 Blinds No Limit Holdem - *** 17 02 2012 00:15:29
+Tournament #36216773 Free - Table #296 (Real Money)
+Seat 2 is the button
+Total number of players : 9
+Seat 1: Allf74 ( $3,340 )
+Seat 2: Hero ( $2,290 )
+Seat 3: chevanche ( $530 )
+Seat 4: lukash347 ( $690 )
+Seat 5: urumarcos ( $720 )
+Seat 6: unable91 ( $790 )
+Seat 7: andyrh ( $720 )
+Seat 9: lucas0507 ( $2,000 )
+Seat 10: 17gelosu ( $390 )
+chevanche posts small blind [$10]
+lukash347 posts big blind [$20]
+** Dealing down cards **
+Dealt to Hero [ Kh, Tc ]
+urumarcos folds
+unable91 folds
+andyrh folds
+lucas0507 raises [$70]
+17gelosu calls [$70]
+Allf74 folds
+Hero folds
+chevanche calls [$60]
+lukash347 raises [$100]
+lucas0507 calls [$50]
+17gelosu calls [$50]
+chevanche calls [$50]
+** Dealing flop ** [ Qs, 2s, 6s ]
+chevanche checks
+lukash347 bets [$570]
+lucas0507 calls [$570]
+17gelosu calls [$270]
+chevanche folds
+** Dealing turn ** [ 3d ]
+** Dealing river ** [ 9s ]
+** Summary **
+lukash347 shows [ Js, 9d ]
+lucas0507 shows [ Jc, Kc ]
+17gelosu shows [ Jd, 7s ]
+lukash347 collected [ $1,290 ]
+lukash347 collected [ $600 ]
+
+
+
+#Game No : 190610272
+***** Cassava Hand History for Game 190610272 *****
+$15/$30 Blinds No Limit Holdem - *** 17 02 2012 00:16:37
+Tournament #36216773 Free - Table #296 (Real Money)
+Seat 3 is the button
+Total number of players : 8
+Seat 1: Allf74 ( $3,340 )
+Seat 2: Hero ( $2,290 )
+Seat 3: chevanche ( $410 )
+Seat 4: lukash347 ( $1,890 )
+Seat 5: urumarcos ( $720 )
+Seat 6: unable91 ( $790 )
+Seat 7: andyrh ( $720 )
+Seat 9: lucas0507 ( $1,310 )
+lukash347 posts small blind [$15]
+urumarcos posts big blind [$30]
+** Dealing down cards **
+Dealt to Hero [ 6s, 3h ]
+unable91 folds
+andyrh folds
+lucas0507 folds
+Allf74 calls [$30]
+Hero folds
+chevanche folds
+lukash347 calls [$15]
+urumarcos checks
+** Dealing flop ** [ 9c, 2c, Qs ]
+lukash347 checks
+urumarcos checks
+Allf74 bets [$30]
+lukash347 folds
+urumarcos folds
+** Summary **
+Allf74 did not show his hand
+Allf74 collected [ $90 ]
+
+
+
+#Game No : 190610820
+***** Cassava Hand History for Game 190610820 *****
+$15/$30 Blinds No Limit Holdem - *** 17 02 2012 00:17:08
+Tournament #36216773 Free - Table #296 (Real Money)
+Seat 4 is the button
+Total number of players : 9
+Seat 1: Allf74 ( $3,400 )
+Seat 2: Hero ( $2,290 )
+Seat 3: chevanche ( $410 )
+Seat 4: lukash347 ( $1,860 )
+Seat 5: urumarcos ( $690 )
+Seat 6: unable91 ( $790 )
+Seat 7: andyrh ( $720 )
+Seat 9: lucas0507 ( $1,310 )
+Seat 10: coolruud ( $6,025 )
+urumarcos posts small blind [$15]
+unable91 posts big blind [$30]
+** Dealing down cards **
+Dealt to Hero [ 5d, 7d ]
+andyrh folds
+lucas0507 folds
+coolruud calls [$30]
+Allf74 folds
+Hero folds
+chevanche folds
+lukash347 raises [$60]
+urumarcos folds
+unable91 calls [$30]
+coolruud calls [$30]
+** Dealing flop ** [ 9d, 6c, 8h ]
+unable91 bets [$730]
+coolruud calls [$730]
+lukash347 raises [$1,800]
+coolruud calls [$1,070]
+** Dealing turn ** [ Qh ]
+** Dealing river ** [ 7h ]
+** Summary **
+lukash347 shows [ Td, Kd ]
+unable91 shows [ 9c, 4c ]
+coolruud shows [ Qs, 9s ]
+lukash347 collected [ $2,385 ]
+lukash347 collected [ $2,140 ]
+
+
+
+#Game No : 190611717
+***** Cassava Hand History for Game 190611717 *****
+$15/$30 Blinds No Limit Holdem - *** 17 02 2012 00:17:59
+Tournament #36216773 Free - Table #296 (Real Money)
+Seat 5 is the button
+Total number of players : 8
+Seat 1: Allf74 ( $3,400 )
+Seat 2: Hero ( $2,290 )
+Seat 3: chevanche ( $410 )
+Seat 4: lukash347 ( $4,525 )
+Seat 5: urumarcos ( $675 )
+Seat 7: andyrh ( $720 )
+Seat 9: lucas0507 ( $1,310 )
+Seat 10: coolruud ( $4,165 )
+andyrh posts small blind [$15]
+lucas0507 posts big blind [$30]
+** Dealing down cards **
+Dealt to Hero [ Td, 2h ]
+coolruud folds
+Allf74 folds
+Hero folds
+chevanche calls [$30]
+lukash347 folds
+urumarcos folds
+andyrh calls [$15]
+lucas0507 raises [$1,280]
+chevanche calls [$380]
+andyrh folds
+** Dealing flop ** [ Jd, Kc, 6h ]
+** Dealing turn ** [ 2s ]
+** Dealing river ** [ Qc ]
+** Summary **
+chevanche shows [ 4s, 9s ]
+lucas0507 shows [ Jh, Ad ]
+lucas0507 collected [ $850 ]
+
+
+
+#Game No : 190612196
+***** Cassava Hand History for Game 190612196 *****
+$15/$30 Blinds No Limit Holdem - *** 17 02 2012 00:18:31
+Tournament #36216773 Free - Table #374 (Real Money)
+Seat 4 is the button
+Total number of players : 6
+Seat 2: BAUTI03 ( $685 )
+Seat 4: keijzerc ( $4,379 )
+Seat 5: gmartin2012 ( $690 )
+Seat 6: donmcgill96 ( $720 )
+Seat 7: playerccb ( $715 )
+Seat 10: charrakus ( $571 )
+gmartin2012 posts small blind [$15]
+donmcgill96 posts big blind [$30]
+** Dealing down cards **
+playerccb calls [$30]
+charrakus folds
+BAUTI03 folds
+keijzerc calls [$30]
+gmartin2012 folds
+donmcgill96 checks
+** Dealing flop ** [ 3s, 2h, 7d ]
+donmcgill96 checks
+playerccb checks
+keijzerc bets [$105]
+donmcgill96 folds
+playerccb folds
+** Summary **
+keijzerc collected [ $105 ]
+
+
+
+#Game No : 190612627
+***** Cassava Hand History for Game 190612627 *****
+$15/$30 Blinds No Limit Holdem - *** 17 02 2012 00:18:58
+Tournament #36216773 Free - Table #374 (Real Money)
+Seat 5 is the button
+Total number of players : 9
+Seat 1: lukash347 ( $4,525 )
+Seat 2: BAUTI03 ( $685 )
+Seat 3: AndyRH ( $690 )
+Seat 4: keijzerc ( $4,454 )
+Seat 5: gmartin2012 ( $675 )
+Seat 6: donmcgill96 ( $690 )
+Seat 7: playerccb ( $685 )
+Seat 9: Hero ( $2,290 )
+Seat 10: charrakus ( $571 )
+donmcgill96 posts small blind [$15]
+playerccb posts big blind [$30]
+** Dealing down cards **
+Dealt to Hero [ 9c, 4d ]
+Hero folds
+charrakus calls [$30]
+lukash347 raises [$60]
+BAUTI03 folds
+AndyRH folds
+keijzerc calls [$60]
+gmartin2012 folds
+donmcgill96 folds
+playerccb calls [$30]
+charrakus calls [$30]
+** Dealing flop ** [ 5d, 4h, 5c ]
+playerccb checks
+charrakus checks
+lukash347 checks
+keijzerc checks
+** Dealing turn ** [ Ac ]
+playerccb checks
+charrakus checks
+lukash347 checks
+keijzerc checks
+** Dealing river ** [ Ts ]
+playerccb checks
+charrakus checks
+lukash347 checks
+keijzerc checks
+** Summary **
+playerccb shows [ 3d, Td ]
+charrakus mucks [ 9s, 7h ]
+lukash347 mucks [ Jc, 8c ]
+keijzerc mucks [ Kd, 6c ]
+playerccb collected [ $255 ]
+
+
+
+#Game No : 190613753
+***** Cassava Hand History for Game 190613753 *****
+$15/$30 Blinds No Limit Holdem - *** 17 02 2012 00:20:10
+Tournament #36216773 Free - Table #374 (Real Money)
+Seat 6 is the button
+Total number of players : 9
+Seat 1: lukash347 ( $4,465 )
+Seat 2: BAUTI03 ( $685 )
+Seat 3: AndyRH ( $690 )
+Seat 4: keijzerc ( $4,394 )
+Seat 5: gmartin2012 ( $675 )
+Seat 6: donmcgill96 ( $675 )
+Seat 7: playerccb ( $880 )
+Seat 9: Hero ( $2,290 )
+Seat 10: charrakus ( $511 )
+playerccb posts small blind [$15]
+Hero posts big blind [$30]
+** Dealing down cards **
+Dealt to Hero [ Ac, 9s ]
+charrakus folds
+lukash347 folds
+BAUTI03 folds
+AndyRH calls [$30]
+keijzerc calls [$30]
+gmartin2012 folds
+donmcgill96 folds
+playerccb calls [$15]
+Hero raises [$150]
+AndyRH folds
+keijzerc folds
+playerccb folds
+** Summary **
+Hero did not show his hand
+Hero collected [ $120 ]
+
+
+
+#Game No : 190614444
+***** Cassava Hand History for Game 190614444 *****
+$25/$50 Blinds No Limit Holdem - *** 17 02 2012 00:20:58
+Tournament #36216773 Free - Table #374 (Real Money)
+Seat 7 is the button
+Total number of players : 9
+Seat 1: lukash347 ( $4,465 )
+Seat 2: BAUTI03 ( $685 )
+Seat 3: AndyRH ( $660 )
+Seat 4: keijzerc ( $4,364 )
+Seat 5: gmartin2012 ( $675 )
+Seat 6: donmcgill96 ( $675 )
+Seat 7: playerccb ( $850 )
+Seat 9: Hero ( $2,380 )
+Seat 10: charrakus ( $511 )
+Hero posts small blind [$25]
+charrakus posts big blind [$50]
+** Dealing down cards **
+Dealt to Hero [ 3s, 9h ]
+lukash347 raises [$131]
+BAUTI03 folds
+AndyRH raises [$660]
+keijzerc folds
+gmartin2012 folds
+donmcgill96 raises [$675]
+playerccb folds
+Hero folds
+charrakus folds
+lukash347 calls [$544]
+** Dealing flop ** [ Ac, 7h, 2d ]
+** Dealing turn ** [ Js ]
+** Dealing river ** [ Tc ]
+** Summary **
+lukash347 shows [ Ks, As ]
+AndyRH shows [ Kh, Jh ]
+donmcgill96 shows [ Jd, Th ]
+donmcgill96 collected [ $2,055 ]
+donmcgill96 collected [ $30 ]
+
+
+
+#Game No : 190614989
+***** Cassava Hand History for Game 190614989 *****
+$25/$50 Blinds No Limit Holdem - *** 17 02 2012 00:21:36
+Tournament #36216773 Free - Table #374 (Real Money)
+Seat 9 is the button
+Total number of players : 8
+Seat 1: lukash347 ( $3,790 )
+Seat 2: BAUTI03 ( $685 )
+Seat 4: keijzerc ( $4,364 )
+Seat 5: gmartin2012 ( $675 )
+Seat 6: donmcgill96 ( $2,085 )
+Seat 7: playerccb ( $850 )
+Seat 9: Hero ( $2,355 )
+Seat 10: charrakus ( $461 )
+charrakus posts small blind [$25]
+lukash347 posts big blind [$50]
+** Dealing down cards **
+Dealt to Hero [ 9h, 8h ]
+BAUTI03 folds
+keijzerc calls [$50]
+gmartin2012 folds
+donmcgill96 folds
+playerccb calls [$50]
+Hero folds
+charrakus folds
+lukash347 checks
+** Dealing flop ** [ Ts, 6h, 6s ]
+lukash347 checks
+keijzerc bets [$50]
+playerccb folds
+lukash347 folds
+** Summary **
+keijzerc collected [ $175 ]
+
+
+
+#Game No : 190615506
+***** Cassava Hand History for Game 190615506 *****
+$25/$50 Blinds No Limit Holdem - *** 17 02 2012 00:22:12
+Tournament #36216773 Free - Table #374 (Real Money)
+Seat 10 is the button
+Total number of players : 9
+Seat 1: lukash347 ( $3,740 )
+Seat 2: BAUTI03 ( $685 )
+Seat 3: AndyRH ( $2,000 )
+Seat 4: keijzerc ( $4,489 )
+Seat 5: gmartin2012 ( $675 )
+Seat 6: donmcgill96 ( $2,085 )
+Seat 7: playerccb ( $800 )
+Seat 9: Hero ( $2,355 )
+Seat 10: charrakus ( $436 )
+lukash347 posts small blind [$25]
+BAUTI03 posts big blind [$50]
+** Dealing down cards **
+Dealt to Hero [ 4c, 5h ]
+AndyRH folds
+keijzerc calls [$50]
+gmartin2012 folds
+donmcgill96 calls [$50]
+playerccb folds
+Hero raises [$175]
+charrakus folds
+lukash347 calls [$150]
+BAUTI03 folds
+keijzerc calls [$125]
+donmcgill96 calls [$125]
+** Dealing flop ** [ Tc, 2d, 6h ]
+lukash347 bets [$50]
+keijzerc calls [$50]
+donmcgill96 folds
+Hero raises [$250]
+lukash347 calls [$200]
+keijzerc calls [$200]
+** Dealing turn ** [ 5s ]
+lukash347 checks
+keijzerc checks
+Hero checks
+** Dealing river ** [ 8d ]
+lukash347 checks
+keijzerc bets [$1,125]
+Hero folds
+lukash347 folds
+** Summary **
+keijzerc did not show his hand
+keijzerc collected [ $1,500 ]
+
+
+
+#Game No : 190616738
+***** Cassava Hand History for Game 190616738 *****
+$25/$50 Blinds No Limit Holdem - *** 17 02 2012 00:23:45
+Tournament #36216773 Free - Table #374 (Real Money)
+Seat 1 is the button
+Total number of players : 9
+Seat 1: lukash347 ( $3,315 )
+Seat 2: BAUTI03 ( $635 )
+Seat 3: AndyRH ( $2,000 )
+Seat 4: keijzerc ( $5,564 )
+Seat 5: gmartin2012 ( $675 )
+Seat 6: donmcgill96 ( $1,910 )
+Seat 7: playerccb ( $800 )
+Seat 9: Hero ( $1,930 )
+Seat 10: charrakus ( $436 )
+BAUTI03 posts small blind [$25]
+AndyRH posts big blind [$50]
+** Dealing down cards **
+Dealt to Hero [ 3s, Jc ]
+keijzerc folds
+gmartin2012 folds
+donmcgill96 calls [$50]
+playerccb calls [$50]
+Hero folds
+charrakus raises [$100]
+lukash347 raises [$475]
+BAUTI03 raises [$610]
+AndyRH folds
+donmcgill96 folds
+playerccb folds
+charrakus calls [$336]
+lukash347 calls [$160]
+** Dealing flop ** [ 3h, 8d, 3c ]
+** Dealing turn ** [ 5c ]
+** Dealing river ** [ 4s ]
+** Summary **
+lukash347 shows [ 7c, 7h ]
+BAUTI03 shows [ Ac, 8s ]
+charrakus shows [ 8h, Kd ]
+BAUTI03 collected [ $1,458 ]
+BAUTI03 collected [ $398 ]
+
+
+
+#Game No : 190617496
+***** Cassava Hand History for Game 190617496 *****
+$25/$50 Blinds No Limit Holdem - *** 17 02 2012 00:24:44
+Tournament #36216773 Free - Table #374 (Real Money)
+Seat 2 is the button
+Total number of players : 8
+Seat 1: lukash347 ( $2,680 )
+Seat 2: BAUTI03 ( $1,856 )
+Seat 3: AndyRH ( $1,950 )
+Seat 4: keijzerc ( $5,564 )
+Seat 5: gmartin2012 ( $675 )
+Seat 6: donmcgill96 ( $1,860 )
+Seat 7: playerccb ( $750 )
+Seat 9: Hero ( $1,930 )
+AndyRH posts small blind [$25]
+keijzerc posts big blind [$50]
+** Dealing down cards **
+Dealt to Hero [ 9d, Qc ]
+gmartin2012 folds
+donmcgill96 folds
+playerccb folds
+Hero folds
+lukash347 folds
+BAUTI03 folds
+AndyRH calls [$25]
+keijzerc checks
+** Dealing flop ** [ As, 8h, 2h ]
+AndyRH checks
+keijzerc checks
+** Dealing turn ** [ 3d ]
+AndyRH checks
+keijzerc checks
+** Dealing river ** [ 5h ]
+AndyRH checks
+keijzerc checks
+** Summary **
+AndyRH shows [ Jh, Td ]
+keijzerc mucks [ Th, 7c ]
+AndyRH collected [ $100 ]
+
+
+
+#Game No : 190618115
+***** Cassava Hand History for Game 190618115 *****
+$25/$50 Blinds No Limit Holdem - *** 17 02 2012 00:25:31
+Tournament #36216773 Free - Table #374 (Real Money)
+Seat 3 is the button
+Total number of players : 9
+Seat 1: lukash347 ( $2,680 )
+Seat 2: BAUTI03 ( $1,856 )
+Seat 3: AndyRH ( $2,000 )
+Seat 4: keijzerc ( $5,514 )
+Seat 5: gmartin2012 ( $675 )
+Seat 6: donmcgill96 ( $1,860 )
+Seat 7: playerccb ( $750 )
+Seat 9: Hero ( $1,930 )
+Seat 10: Horribleman ( $600 )
+keijzerc posts small blind [$25]
+gmartin2012 posts big blind [$50]
+** Dealing down cards **
+Dealt to Hero [ Kc, 6s ]
+donmcgill96 calls [$50]
+playerccb raises [$100]
+Hero folds
+Horribleman folds
+lukash347 folds
+BAUTI03 folds
+AndyRH folds
+keijzerc folds
+gmartin2012 folds
+donmcgill96 calls [$50]
+** Dealing flop ** [ Jc, As, Jh ]
+donmcgill96 bets [$275]
+playerccb raises [$650]
+donmcgill96 calls [$375]
+** Dealing turn ** [ 6d ]
+** Dealing river ** [ Kd ]
+** Summary **
+donmcgill96 shows [ Ah, 4d ]
+playerccb shows [ Ks, Tc ]
+donmcgill96 collected [ $1,575 ]
+
+
+
+#Game No : 190618680
+***** Cassava Hand History for Game 190618680 *****
+$50/$100 Blinds No Limit Holdem - *** 17 02 2012 00:26:18
+Tournament #36216773 Free - Table #374 (Real Money)
+Seat 4 is the button
+Total number of players : 8
+Seat 1: lukash347 ( $2,680 )
+Seat 2: BAUTI03 ( $1,856 )
+Seat 3: AndyRH ( $2,000 )
+Seat 4: keijzerc ( $5,489 )
+Seat 5: gmartin2012 ( $625 )
+Seat 6: donmcgill96 ( $2,685 )
+Seat 9: Hero ( $1,930 )
+Seat 10: Horribleman ( $600 )
+gmartin2012 posts small blind [$50]
+donmcgill96 posts big blind [$100]
+** Dealing down cards **
+Dealt to Hero [ 4d, 8h ]
+Hero folds
+Horribleman folds
+lukash347 calls [$100]
+BAUTI03 calls [$100]
+AndyRH calls [$100]
+keijzerc calls [$100]
+gmartin2012 folds
+donmcgill96 checks
+** Dealing flop ** [ 8d, Kh, 2h ]
+donmcgill96 checks
+lukash347 checks
+BAUTI03 bets [$200]
+AndyRH folds
+keijzerc calls [$200]
+donmcgill96 folds
+lukash347 folds
+** Dealing turn ** [ Kd ]
+BAUTI03 bets [$200]
+keijzerc calls [$200]
+** Dealing river ** [ 7s ]
+BAUTI03 bets [$300]
+keijzerc calls [$300]
+** Summary **
+BAUTI03 shows [ 9d, Jd ]
+keijzerc shows [ 7h, Ad ]
+keijzerc collected [ $1,950 ]
+
+
+
+#Game No : 190619542
+***** Cassava Hand History for Game 190619542 *****
+$50/$100 Blinds No Limit Holdem - *** 17 02 2012 00:27:27
+Tournament #36216773 Free - Table #374 (Real Money)
+Seat 5 is the button
+Total number of players : 9
+Seat 1: lukash347 ( $2,580 )
+Seat 2: BAUTI03 ( $1,056 )
+Seat 3: AndyRH ( $1,900 )
+Seat 4: keijzerc ( $6,639 )
+Seat 5: gmartin2012 ( $575 )
+Seat 6: donmcgill96 ( $2,585 )
+Seat 7: mrsavim ( $615 )
+Seat 9: Hero ( $1,930 )
+Seat 10: Horribleman ( $600 )
+donmcgill96 posts small blind [$50]
+mrsavim posts big blind [$100]
+** Dealing down cards **
+Dealt to Hero [ 3c, Qh ]
+Hero folds
+Horribleman folds
+lukash347 raises [$2,580]
+BAUTI03 calls [$1,056]
+AndyRH folds
+keijzerc folds
+gmartin2012 folds
+donmcgill96 folds
+mrsavim folds
+** Dealing flop ** [ 5d, As, Ts ]
+** Dealing turn ** [ 4s ]
+** Dealing river ** [ Jh ]
+** Summary **
+lukash347 shows [ Ac, 5c ]
+BAUTI03 shows [ Kh, Jd ]
+lukash347 collected [ $2,262 ]
+
+
+
+#Game No : 190619919
+***** Cassava Hand History for Game 190619919 *****
+$50/$100 Blinds No Limit Holdem - *** 17 02 2012 00:28:00
+Tournament #36216773 Free - Table #374 (Real Money)
+Seat 6 is the button
+Total number of players : 8
+Seat 1: lukash347 ( $3,786 )
+Seat 3: AndyRH ( $1,900 )
+Seat 4: keijzerc ( $6,639 )
+Seat 5: gmartin2012 ( $575 )
+Seat 6: donmcgill96 ( $2,535 )
+Seat 7: mrsavim ( $515 )
+Seat 9: Hero ( $1,930 )
+Seat 10: Horribleman ( $600 )
+mrsavim posts small blind [$50]
+Hero posts big blind [$100]
+** Dealing down cards **
+Dealt to Hero [ Ks, Kd ]
+Horribleman folds
+lukash347 raises [$3,786]
+AndyRH folds
+keijzerc folds
+gmartin2012 folds
+donmcgill96 folds
+mrsavim folds
+Hero calls [$1,830]
+** Dealing flop ** [ 6d, Td, 9c ]
+** Dealing turn ** [ Jc ]
+** Dealing river ** [ 8d ]
+** Summary **
+lukash347 shows [ 5s, 5c ]
+Hero shows [ Ks, Kd ]
+Hero collected [ $3,910 ]
+
+
+
+#Game No : 190620341
+***** Cassava Hand History for Game 190620341 *****
+$50/$100 Blinds No Limit Holdem - *** 17 02 2012 00:28:35
+Tournament #36216773 Free - Table #374 (Real Money)
+Seat 7 is the button
+Total number of players : 9
+Seat 1: lukash347 ( $1,856 )
+Seat 2: yoshdia ( $2,175 )
+Seat 3: AndyRH ( $1,900 )
+Seat 4: keijzerc ( $6,639 )
+Seat 5: gmartin2012 ( $575 )
+Seat 6: donmcgill96 ( $2,535 )
+Seat 7: mrsavim ( $465 )
+Seat 9: Hero ( $3,910 )
+Seat 10: Horribleman ( $600 )
+Hero posts small blind [$50]
+Horribleman posts big blind [$100]
+** Dealing down cards **
+Dealt to Hero [ 7d, Jh ]
+lukash347 folds
+yoshdia folds
+AndyRH raises [$400]
+keijzerc calls [$400]
+gmartin2012 folds
+donmcgill96 folds
+mrsavim folds
+Hero folds
+Horribleman folds
+** Dealing flop ** [ Ac, 4h, 6c ]
+AndyRH bets [$950]
+keijzerc raises [$3,800]
+AndyRH calls [$550]
+** Dealing turn ** [ Jd ]
+** Dealing river ** [ Qh ]
+** Summary **
+AndyRH shows [ Kd, Ad ]
+keijzerc shows [ 9s, Ah ]
+AndyRH collected [ $3,950 ]
+
+
+
+#Game No : 190620841
+***** Cassava Hand History for Game 190620841 *****
+$50/$100 Blinds No Limit Holdem - *** 17 02 2012 00:29:20
+Tournament #36216773 Free - Table #374 (Real Money)
+Seat 9 is the button
+Total number of players : 9
+Seat 1: lukash347 ( $1,856 )
+Seat 2: yoshdia ( $2,175 )
+Seat 3: AndyRH ( $3,950 )
+Seat 4: keijzerc ( $4,739 )
+Seat 5: gmartin2012 ( $575 )
+Seat 6: donmcgill96 ( $2,535 )
+Seat 7: mrsavim ( $465 )
+Seat 9: Hero ( $3,860 )
+Seat 10: Horribleman ( $500 )
+Horribleman posts small blind [$50]
+lukash347 posts big blind [$100]
+** Dealing down cards **
+Dealt to Hero [ 6h, Tc ]
+yoshdia calls [$100]
+AndyRH folds
+keijzerc raises [$450]
+gmartin2012 folds
+donmcgill96 folds
+mrsavim folds
+Hero folds
+Horribleman folds
+lukash347 folds
+yoshdia calls [$350]
+** Dealing flop ** [ Qc, 5c, 4d ]
+yoshdia bets [$525]
+keijzerc raises [$1,050]
+yoshdia folds
+** Summary **
+keijzerc did not show his hand
+keijzerc collected [ $2,100 ]
+
+
+
+#Game No : 190621186
+***** Cassava Hand History for Game 190621186 *****
+$50/$100 Blinds No Limit Holdem - *** 17 02 2012 00:29:54
+Tournament #36216773 Free - Table #374 (Real Money)
+Seat 10 is the button
+Total number of players : 9
+Seat 1: lukash347 ( $1,756 )
+Seat 2: yoshdia ( $1,200 )
+Seat 3: AndyRH ( $3,950 )
+Seat 4: keijzerc ( $5,864 )
+Seat 5: gmartin2012 ( $575 )
+Seat 6: donmcgill96 ( $2,535 )
+Seat 7: mrsavim ( $465 )
+Seat 9: Hero ( $3,860 )
+Seat 10: Horribleman ( $450 )
+lukash347 posts small blind [$50]
+yoshdia posts big blind [$100]
+** Dealing down cards **
+Dealt to Hero [ 7d, 5s ]
+AndyRH folds
+keijzerc calls [$100]
+gmartin2012 folds
+donmcgill96 calls [$100]
+mrsavim folds
+Hero folds
+Horribleman folds
+lukash347 folds
+yoshdia checks
+** Dealing flop ** [ Tc, 4d, 2c ]
+yoshdia bets [$100]
+keijzerc raises [$200]
+donmcgill96 folds
+yoshdia calls [$100]
+** Dealing turn ** [ Kc ]
+yoshdia checks
+keijzerc bets [$750]
+yoshdia folds
+** Summary **
+keijzerc did not show his hand
+keijzerc collected [ $750 ]
+
+
+
+#Game No : 190621448
+***** Cassava Hand History for Game 190621448 *****
+$50/$100 Blinds No Limit Holdem - *** 17 02 2012 00:30:22
+Tournament #36216773 Free - Table #374 (Real Money)
+Seat 1 is the button
+Total number of players : 9
+Seat 1: lukash347 ( $1,706 )
+Seat 2: yoshdia ( $900 )
+Seat 3: AndyRH ( $3,950 )
+Seat 4: keijzerc ( $6,314 )
+Seat 5: gmartin2012 ( $575 )
+Seat 6: donmcgill96 ( $2,435 )
+Seat 7: mrsavim ( $465 )
+Seat 9: Hero ( $3,860 )
+Seat 10: Horribleman ( $450 )
+yoshdia posts small blind [$50]
+AndyRH posts big blind [$100]
+** Dealing down cards **
+Dealt to Hero [ 5d, 3h ]
+keijzerc calls [$100]
+gmartin2012 folds
+donmcgill96 folds
+mrsavim folds
+Hero folds
+Horribleman folds
+lukash347 folds
+yoshdia folds
+AndyRH checks
+** Dealing flop ** [ 8s, 6c, Ts ]
+AndyRH bets [$100]
+keijzerc raises [$200]
+AndyRH calls [$100]
+** Dealing turn ** [ 4d ]
+AndyRH bets [$650]
+keijzerc folds
+** Summary **
+AndyRH did not show his hand
+AndyRH collected [ $650 ]
+
+
+
+#Game No : 190621804
+***** Cassava Hand History for Game 190621804 *****
+$75/$150 Blinds No Limit Holdem - *** 17 02 2012 00:30:55
+Tournament #36216773 Free - Table #374 (Real Money)
+Seat 2 is the button
+Total number of players : 9
+Seat 1: lukash347 ( $1,706 )
+Seat 2: yoshdia ( $850 )
+Seat 3: AndyRH ( $4,300 )
+Seat 4: keijzerc ( $6,014 )
+Seat 5: gmartin2012 ( $575 )
+Seat 6: donmcgill96 ( $2,435 )
+Seat 7: mrsavim ( $465 )
+Seat 9: Hero ( $3,860 )
+Seat 10: Horribleman ( $450 )
+AndyRH posts small blind [$75]
+keijzerc posts big blind [$150]
+** Dealing down cards **
+Dealt to Hero [ 9s, 3d ]
+gmartin2012 folds
+donmcgill96 folds
+mrsavim folds
+Hero folds
+Horribleman folds
+lukash347 raises [$393]
+yoshdia folds
+AndyRH folds
+keijzerc raises [$5,864]
+lukash347 calls [$1,313]
+** Dealing flop ** [ 7d, Th, 6h ]
+** Dealing turn ** [ Td ]
+** Dealing river ** [ Ks ]
+** Summary **
+lukash347 shows [ Ah, 5h ]
+keijzerc shows [ Ac, Qh ]
+keijzerc collected [ $3,487 ]
+
+
+
+#Game No : 190622205
+***** Cassava Hand History for Game 190622205 *****
+$75/$150 Blinds No Limit Holdem - *** 17 02 2012 00:31:28
+Tournament #36216773 Free - Table #374 (Real Money)
+Seat 3 is the button
+Total number of players : 8
+Seat 2: yoshdia ( $850 )
+Seat 3: AndyRH ( $4,225 )
+Seat 4: keijzerc ( $7,795 )
+Seat 5: gmartin2012 ( $575 )
+Seat 6: donmcgill96 ( $2,435 )
+Seat 7: mrsavim ( $465 )
+Seat 9: Hero ( $3,860 )
+Seat 10: Horribleman ( $450 )
+keijzerc posts small blind [$75]
+gmartin2012 posts big blind [$150]
+** Dealing down cards **
+Dealt to Hero [ Kd, 7s ]
+donmcgill96 calls [$150]
+mrsavim folds
+Hero folds
+Horribleman folds
+yoshdia folds
+AndyRH calls [$150]
+keijzerc calls [$75]
+gmartin2012 checks
+** Dealing flop ** [ Ks, 7d, 8h ]
+keijzerc checks
+gmartin2012 checks
+donmcgill96 bets [$600]
+AndyRH folds
+keijzerc calls [$600]
+gmartin2012 folds
+** Dealing turn ** [ Qc ]
+keijzerc checks
+donmcgill96 checks
+** Dealing river ** [ 9c ]
+keijzerc bets [$150]
+donmcgill96 folds
+** Summary **
+keijzerc collected [ $1,800 ]
+
+
+
+#Game No : 190622540
+***** Cassava Hand History for Game 190622540 *****
+$75/$150 Blinds No Limit Holdem - *** 17 02 2012 00:32:02
+Tournament #36216773 Free - Table #374 (Real Money)
+Seat 4 is the button
+Total number of players : 9
+Seat 1: cheekyAAs ( $315 )
+Seat 2: yoshdia ( $850 )
+Seat 3: AndyRH ( $4,075 )
+Seat 4: keijzerc ( $8,845 )
+Seat 5: gmartin2012 ( $425 )
+Seat 6: donmcgill96 ( $1,685 )
+Seat 7: mrsavim ( $465 )
+Seat 9: Hero ( $3,860 )
+Seat 10: Horribleman ( $450 )
+gmartin2012 posts small blind [$75]
+donmcgill96 posts big blind [$150]
+** Dealing down cards **
+Dealt to Hero [ 8c, As ]
+mrsavim folds
+Hero folds
+Horribleman folds
+cheekyAAs folds
+yoshdia folds
+AndyRH folds
+keijzerc calls [$150]
+gmartin2012 folds
+donmcgill96 checks
+** Dealing flop ** [ Qc, Kc, 3s ]
+donmcgill96 checks
+keijzerc bets [$281]
+donmcgill96 folds
+** Summary **
+keijzerc did not show his hand
+keijzerc collected [ $375 ]
+
+
+
+#Game No : 190622828
+***** Cassava Hand History for Game 190622828 *****
+$75/$150 Blinds No Limit Holdem - *** 17 02 2012 00:32:32
+Tournament #36216773 Free - Table #374 (Real Money)
+Seat 5 is the button
+Total number of players : 9
+Seat 1: cheekyAAs ( $315 )
+Seat 2: yoshdia ( $850 )
+Seat 3: AndyRH ( $4,075 )
+Seat 4: keijzerc ( $9,070 )
+Seat 5: gmartin2012 ( $350 )
+Seat 6: donmcgill96 ( $1,535 )
+Seat 7: mrsavim ( $465 )
+Seat 9: Hero ( $3,860 )
+Seat 10: Horribleman ( $450 )
+donmcgill96 posts small blind [$75]
+mrsavim posts big blind [$150]
+** Dealing down cards **
+Dealt to Hero [ Qd, Kc ]
+Hero raises [$525]
+Horribleman folds
+cheekyAAs folds
+yoshdia folds
+AndyRH folds
+keijzerc folds
+gmartin2012 folds
+donmcgill96 folds
+mrsavim folds
+** Summary **
+Hero did not show his hand
+Hero collected [ $375 ]
+
+
+
+#Game No : 190623034
+***** Cassava Hand History for Game 190623034 *****
+$75/$150 Blinds No Limit Holdem - *** 17 02 2012 00:32:50
+Tournament #36216773 Free - Table #374 (Real Money)
+Seat 6 is the button
+Total number of players : 9
+Seat 1: cheekyAAs ( $315 )
+Seat 2: yoshdia ( $850 )
+Seat 3: AndyRH ( $4,075 )
+Seat 4: keijzerc ( $9,070 )
+Seat 5: gmartin2012 ( $350 )
+Seat 6: donmcgill96 ( $1,460 )
+Seat 7: mrsavim ( $315 )
+Seat 9: Hero ( $4,085 )
+Seat 10: Horribleman ( $450 )
+mrsavim posts small blind [$75]
+Hero posts big blind [$150]
+** Dealing down cards **
+Dealt to Hero [ Qc, 5c ]
+Horribleman folds
+cheekyAAs folds
+yoshdia calls [$150]
+AndyRH calls [$150]
+keijzerc calls [$150]
+gmartin2012 folds
+donmcgill96 folds
+mrsavim folds
+Hero checks
+** Dealing flop ** [ 4s, Kh, 6h ]
+Hero checks
+yoshdia bets [$150]
+AndyRH raises [$1,125]
+keijzerc folds
+Hero folds
+yoshdia folds
+** Summary **
+AndyRH did not show his hand
+AndyRH collected [ $975 ]
+
+
+
+#Game No : 190623625
+***** Cassava Hand History for Game 190623625 *****
+$75/$150 Blinds No Limit Holdem - *** 17 02 2012 00:33:54
+Tournament #36216773 Free - Table #374 (Real Money)
+Seat 7 is the button
+Total number of players : 9
+Seat 1: cheekyAAs ( $315 )
+Seat 2: yoshdia ( $550 )
+Seat 3: AndyRH ( $4,750 )
+Seat 4: keijzerc ( $8,920 )
+Seat 5: gmartin2012 ( $350 )
+Seat 6: donmcgill96 ( $1,460 )
+Seat 7: mrsavim ( $240 )
+Seat 9: Hero ( $3,935 )
+Seat 10: Horribleman ( $450 )
+Hero posts small blind [$75]
+Horribleman posts big blind [$150]
+** Dealing down cards **
+Dealt to Hero [ 8h, 4s ]
+cheekyAAs folds
+yoshdia folds
+AndyRH folds
+keijzerc folds
+gmartin2012 folds
+donmcgill96 calls [$150]
+mrsavim folds
+Hero folds
+Horribleman checks
+** Dealing flop ** [ Ah, Ad, Tc ]
+Horribleman checks
+donmcgill96 checks
+** Dealing turn ** [ 8s ]
+Horribleman checks
+donmcgill96 bets [$1,310]
+Horribleman folds
+** Summary **
+donmcgill96 did not show his hand
+donmcgill96 collected [ $375 ]
+
+
+
+#Game No : 190623804
+***** Cassava Hand History for Game 190623804 *****
+$75/$150 Blinds No Limit Holdem - *** 17 02 2012 00:34:18
+Tournament #36216773 Free - Table #374 (Real Money)
+Seat 9 is the button
+Total number of players : 9
+Seat 1: cheekyAAs ( $315 )
+Seat 2: yoshdia ( $550 )
+Seat 3: AndyRH ( $4,750 )
+Seat 4: keijzerc ( $8,920 )
+Seat 5: gmartin2012 ( $350 )
+Seat 6: donmcgill96 ( $1,685 )
+Seat 7: mrsavim ( $240 )
+Seat 9: Hero ( $3,860 )
+Seat 10: Horribleman ( $300 )
+Horribleman posts small blind [$75]
+cheekyAAs posts big blind [$150]
+** Dealing down cards **
+Dealt to Hero [ 8h, 2c ]
+yoshdia folds
+AndyRH raises [$300]
+keijzerc calls [$300]
+gmartin2012 folds
+donmcgill96 folds
+mrsavim folds
+Hero folds
+Horribleman folds
+cheekyAAs folds
+** Dealing flop ** [ 9d, 7h, Ac ]
+AndyRH checks
+keijzerc bets [$150]
+AndyRH calls [$150]
+** Dealing turn ** [ As ]
+AndyRH checks
+keijzerc checks
+** Dealing river ** [ Ad ]
+AndyRH bets [$150]
+keijzerc calls [$150]
+** Summary **
+AndyRH shows [ Qd, 6d ]
+keijzerc mucks [ Js, Th ]
+AndyRH collected [ $1,425 ]
+
+
+
+#Game No : 190624176
+***** Cassava Hand History for Game 190624176 *****
+$75/$150 Blinds No Limit Holdem - *** 17 02 2012 00:35:00
+Tournament #36216773 Free - Table #374 (Real Money)
+Seat 10 is the button
+Total number of players : 9
+Seat 1: cheekyAAs ( $165 )
+Seat 2: yoshdia ( $550 )
+Seat 3: AndyRH ( $5,575 )
+Seat 4: keijzerc ( $8,320 )
+Seat 5: gmartin2012 ( $350 )
+Seat 6: donmcgill96 ( $1,685 )
+Seat 7: mrsavim ( $240 )
+Seat 9: Hero ( $3,860 )
+Seat 10: Horribleman ( $225 )
+cheekyAAs posts small blind [$75]
+yoshdia posts big blind [$150]
+** Dealing down cards **
+Dealt to Hero [ 6c, 2c ]
+AndyRH calls [$150]
+keijzerc folds
+gmartin2012 folds
+donmcgill96 folds
+mrsavim folds
+Hero folds
+Horribleman folds
+cheekyAAs folds
+yoshdia raises [$400]
+AndyRH calls [$400]
+** Dealing flop ** [ Ac, 4c, 9c ]
+** Dealing turn ** [ 2d ]
+** Dealing river ** [ Ks ]
+** Summary **
+yoshdia shows [ Ah, Ts ]
+AndyRH shows [ Ad, 8h ]
+yoshdia collected [ $1,175 ]
+
+
+
+#Game No : 190624446
+***** Cassava Hand History for Game 190624446 *****
+$75/$150 Blinds No Limit Holdem - *** 17 02 2012 00:35:33
+Tournament #36216773 Free - Table #374 (Real Money)
+Seat 1 is the button
+Total number of players : 9
+Seat 1: cheekyAAs ( $90 )
+Seat 2: yoshdia ( $1,175 )
+Seat 3: AndyRH ( $5,025 )
+Seat 4: keijzerc ( $8,320 )
+Seat 5: gmartin2012 ( $350 )
+Seat 6: donmcgill96 ( $1,685 )
+Seat 7: mrsavim ( $240 )
+Seat 9: Hero ( $3,860 )
+Seat 10: Horribleman ( $225 )
+yoshdia posts small blind [$75]
+AndyRH posts big blind [$150]
+** Dealing down cards **
+Dealt to Hero [ 6s, 4c ]
+keijzerc raises [$525]
+gmartin2012 folds
+donmcgill96 folds
+mrsavim folds
+Hero folds
+Horribleman folds
+cheekyAAs folds
+yoshdia folds
+AndyRH folds
+** Summary **
+keijzerc did not show his hand
+keijzerc collected [ $375 ]
+
+
+
+#Game No : 190624562
+***** Cassava Hand History for Game 190624562 *****
+$100/$200 Blinds No Limit Holdem - *** 17 02 2012 00:35:46
+Tournament #36216773 Free - Table #374 (Real Money)
+Seat 2 is the button
+Total number of players : 9
+Seat 1: cheekyAAs ( $90 )
+Seat 2: yoshdia ( $1,100 )
+Seat 3: AndyRH ( $4,875 )
+Seat 4: keijzerc ( $8,545 )
+Seat 5: gmartin2012 ( $350 )
+Seat 6: donmcgill96 ( $1,685 )
+Seat 7: mrsavim ( $240 )
+Seat 9: Hero ( $3,860 )
+Seat 10: Horribleman ( $225 )
+keijzerc posts ante [$20]
+gmartin2012 posts ante [$20]
+donmcgill96 posts ante [$20]
+Hero posts ante [$20]
+AndyRH posts ante [$20]
+Horribleman posts ante [$20]
+mrsavim posts ante [$20]
+yoshdia posts ante [$20]
+cheekyAAs posts ante [$20]
+AndyRH posts small blind [$100]
+keijzerc posts big blind [$200]
+** Dealing down cards **
+Dealt to Hero [ 2d, 7d ]
+gmartin2012 folds
+donmcgill96 raises [$400]
+mrsavim folds
+Hero folds
+Horribleman folds
+cheekyAAs folds
+yoshdia folds
+AndyRH folds
+keijzerc folds
+** Summary **
+donmcgill96 did not show his hand
+donmcgill96 collected [ $680 ]
+
+
+
+#Game No : 190624739
+***** Cassava Hand History for Game 190624739 *****
+$100/$200 Blinds No Limit Holdem - *** 17 02 2012 00:36:06
+Tournament #36216773 Free - Table #374 (Real Money)
+Seat 3 is the button
+Total number of players : 9
+Seat 1: cheekyAAs ( $70 )
+Seat 2: yoshdia ( $1,080 )
+Seat 3: AndyRH ( $4,755 )
+Seat 4: keijzerc ( $8,325 )
+Seat 5: gmartin2012 ( $330 )
+Seat 6: donmcgill96 ( $2,145 )
+Seat 7: mrsavim ( $220 )
+Seat 9: Hero ( $3,840 )
+Seat 10: Horribleman ( $205 )
+keijzerc posts ante [$20]
+gmartin2012 posts ante [$20]
+donmcgill96 posts ante [$20]
+Hero posts ante [$20]
+AndyRH posts ante [$20]
+Horribleman posts ante [$20]
+mrsavim posts ante [$20]
+yoshdia posts ante [$20]
+cheekyAAs posts ante [$20]
+keijzerc posts small blind [$100]
+gmartin2012 posts big blind [$200]
+** Dealing down cards **
+Dealt to Hero [ 8h, Tc ]
+donmcgill96 calls [$200]
+mrsavim folds
+Hero folds
+Horribleman folds
+cheekyAAs folds
+yoshdia folds
+AndyRH folds
+keijzerc calls [$100]
+gmartin2012 checks
+** Dealing flop ** [ As, 9h, Ks ]
+keijzerc bets [$200]
+gmartin2012 folds
+donmcgill96 calls [$200]
+** Dealing turn ** [ 9s ]
+keijzerc bets [$1,180]
+donmcgill96 raises [$1,725]
+keijzerc calls [$545]
+** Dealing river ** [ 2s ]
+** Summary **
+keijzerc shows [ 2c, Js ]
+donmcgill96 shows [ Kc, 6c ]
+keijzerc collected [ $4,630 ]
+
+
+
+#Game No : 190625036
+***** Cassava Hand History for Game 190625036 *****
+$100/$200 Blinds No Limit Holdem - *** 17 02 2012 00:36:42
+Tournament #36216773 Free - Table #374 (Real Money)
+Seat 4 is the button
+Total number of players : 8
+Seat 1: cheekyAAs ( $50 )
+Seat 2: yoshdia ( $1,060 )
+Seat 3: AndyRH ( $4,735 )
+Seat 4: keijzerc ( $10,810 )
+Seat 5: gmartin2012 ( $110 )
+Seat 7: mrsavim ( $200 )
+Seat 9: Hero ( $3,820 )
+Seat 10: Horribleman ( $185 )
+keijzerc posts ante [$20]
+gmartin2012 posts ante [$20]
+Hero posts ante [$20]
+AndyRH posts ante [$20]
+Horribleman posts ante [$20]
+mrsavim posts ante [$20]
+yoshdia posts ante [$20]
+cheekyAAs posts ante [$20]
+gmartin2012 posts small blind [$90]
+mrsavim posts big blind [$180]
+** Dealing down cards **
+Dealt to Hero [ As, 6h ]
+Hero raises [$400]
+Horribleman folds
+cheekyAAs folds
+yoshdia folds
+AndyRH folds
+keijzerc folds
+** Dealing flop ** [ 2h, Jd, 7h ]
+** Dealing turn ** [ 5s ]
+** Dealing river ** [ 3h ]
+** Summary **
+gmartin2012 shows [ Qh, 9s ]
+mrsavim shows [ Jc, 2d ]
+Hero shows [ As, 6h ]
+mrsavim collected [ $430 ]
+mrsavim collected [ $180 ]
+Hero collected [ $220 ]
+
+
+
+#Game No : 190625343
+***** Cassava Hand History for Game 190625343 *****
+$100/$200 Blinds No Limit Holdem - *** 17 02 2012 00:37:19
+Tournament #36216773 Free - Table #374 (Real Money)
+Seat 5 is the button
+Total number of players : 7
+Seat 1: cheekyAAs ( $30 )
+Seat 2: yoshdia ( $1,040 )
+Seat 3: AndyRH ( $4,715 )
+Seat 4: keijzerc ( $10,790 )
+Seat 7: mrsavim ( $610 )
+Seat 9: Hero ( $3,620 )
+Seat 10: Horribleman ( $165 )
+keijzerc posts ante [$20]
+Hero posts ante [$20]
+AndyRH posts ante [$20]
+Horribleman posts ante [$20]
+mrsavim posts ante [$20]
+yoshdia posts ante [$20]
+cheekyAAs posts ante [$20]
+mrsavim posts small blind [$100]
+Hero posts big blind [$200]
+** Dealing down cards **
+Dealt to Hero [ Qs, 6h ]
+Horribleman folds
+cheekyAAs folds
+yoshdia folds
+AndyRH calls [$200]
+keijzerc calls [$200]
+mrsavim folds
+Hero checks
+** Dealing flop ** [ 2c, Ah, Js ]
+Hero checks
+AndyRH bets [$840]
+keijzerc calls [$840]
+Hero folds
+** Dealing turn ** [ Qd ]
+AndyRH checks
+keijzerc bets [$1,260]
+AndyRH raises [$2,520]
+keijzerc raises [$8,470]
+AndyRH calls [$1,135]
+** Dealing river ** [ 3s ]
+** Summary **
+AndyRH shows [ Ac, 9s ]
+keijzerc shows [ Tc, Kc ]
+keijzerc collected [ $9,830 ]
+
+
+
+#Game No : 190625798
+***** Cassava Hand History for Game 190625798 *****
+$100/$200 Blinds No Limit Holdem - *** 17 02 2012 00:38:15
+Tournament #36216773 Free - Table #374 (Real Money)
+Seat 7 is the button
+Total number of players : 8
+Seat 1: cheekyAAs ( $10 )
+Seat 2: yoshdia ( $1,020 )
+Seat 4: keijzerc ( $15,905 )
+Seat 5: ascoam ( $625 )
+Seat 6: Nrivilli ( $430 )
+Seat 7: mrsavim ( $490 )
+Seat 9: Hero ( $3,400 )
+Seat 10: Horribleman ( $145 )
+keijzerc posts ante [$20]
+Hero posts ante [$20]
+Horribleman posts ante [$20]
+mrsavim posts ante [$20]
+yoshdia posts ante [$20]
+cheekyAAs posts ante [$10]
+Nrivilli posts ante [$20]
+ascoam posts ante [$20]
+Hero posts small blind [$100]
+Horribleman posts big blind [$125]
+** Dealing down cards **
+Dealt to Hero [ 4d, 7h ]
+yoshdia folds
+keijzerc folds
+ascoam folds
+Nrivilli folds
+mrsavim folds
+Hero calls [$100]
+** Dealing flop ** [ 8c, 2d, 8d ]
+** Dealing turn ** [ 5c ]
+** Dealing river ** [ Js ]
+** Summary **
+cheekyAAs shows [ 2h, Ah ]
+Hero shows [ 4d, 7h ]
+Horribleman shows [ Td, Jc ]
+Horribleman collected [ $80 ]
+Horribleman collected [ $320 ]
+Hero collected [ $75 ]
+
+
+
+#Game No : 190626046
+***** Cassava Hand History for Game 190626046 *****
+$100/$200 Blinds No Limit Holdem - *** 17 02 2012 00:38:44
+Tournament #36216773 Free - Table #374 (Real Money)
+Seat 9 is the button
+Total number of players : 8
+Seat 2: yoshdia ( $1,000 )
+Seat 3: Hugomich09 ( $500 )
+Seat 4: keijzerc ( $15,885 )
+Seat 5: ascoam ( $605 )
+Seat 6: Nrivilli ( $410 )
+Seat 7: mrsavim ( $470 )
+Seat 9: Hero ( $3,255 )
+Seat 10: Horribleman ( $400 )
+keijzerc posts ante [$20]
+Hero posts ante [$20]
+Horribleman posts ante [$20]
+mrsavim posts ante [$20]
+yoshdia posts ante [$20]
+Nrivilli posts ante [$20]
+ascoam posts ante [$20]
+Hugomich09 posts ante [$20]
+Horribleman posts small blind [$100]
+yoshdia posts big blind [$200]
+** Dealing down cards **
+Dealt to Hero [ Qd, 8d ]
+Hugomich09 folds
+keijzerc folds
+ascoam folds
+Nrivilli folds
+mrsavim folds
+Hero raises [$400]
+Horribleman folds
+yoshdia raises [$780]
+Hero calls [$580]
+** Dealing flop ** [ Qs, 3d, 6c ]
+** Dealing turn ** [ 7h ]
+** Dealing river ** [ Ac ]
+** Summary **
+yoshdia shows [ 5s, 5d ]
+Hero shows [ Qd, 8d ]
+Hero collected [ $2,220 ]
+
+
+
+#Game No : 190626385
+***** Cassava Hand History for Game 190626385 *****
+$100/$200 Blinds No Limit Holdem - *** 17 02 2012 00:39:25
+Tournament #36216773 Free - Table #374 (Real Money)
+Seat 10 is the button
+Total number of players : 7
+Seat 3: Hugomich09 ( $480 )
+Seat 4: keijzerc ( $15,865 )
+Seat 5: ascoam ( $585 )
+Seat 6: Nrivilli ( $390 )
+Seat 7: mrsavim ( $450 )
+Seat 9: Hero ( $4,475 )
+Seat 10: Horribleman ( $280 )
+keijzerc posts ante [$20]
+Hero posts ante [$20]
+Horribleman posts ante [$20]
+mrsavim posts ante [$20]
+Nrivilli posts ante [$20]
+ascoam posts ante [$20]
+Hugomich09 posts ante [$20]
+Hugomich09 posts small blind [$100]
+keijzerc posts big blind [$200]
+** Dealing down cards **
+Dealt to Hero [ 5h, Kh ]
+ascoam folds
+Nrivilli folds
+mrsavim folds
+Hero calls [$200]
+Horribleman folds
+Hugomich09 folds
+keijzerc checks
+** Dealing flop ** [ 4h, 8c, Tc ]
+keijzerc checks
+Hero checks
+** Dealing turn ** [ 7d ]
+keijzerc checks
+Hero checks
+** Dealing river ** [ 2h ]
+keijzerc bets [$640]
+Hero folds
+** Summary **
+keijzerc collected [ $640 ]
+
+
+
+#Game No : 190626740
+***** Cassava Hand History for Game 190626740 *****
+$100/$200 Blinds No Limit Holdem - *** 17 02 2012 00:40:10
+Tournament #36216773 Free - Table #374 (Real Money)
+Seat 3 is the button
+Total number of players : 9
+Seat 1: jawavivi ( $1,070 )
+Seat 2: iwann678 ( $810 )
+Seat 3: Hugomich09 ( $360 )
+Seat 4: keijzerc ( $16,285 )
+Seat 5: ascoam ( $565 )
+Seat 6: Nrivilli ( $370 )
+Seat 7: mrsavim ( $430 )
+Seat 9: Hero ( $4,255 )
+Seat 10: Horribleman ( $260 )
+keijzerc posts ante [$20]
+Hero posts ante [$20]
+Horribleman posts ante [$20]
+mrsavim posts ante [$20]
+Nrivilli posts ante [$20]
+ascoam posts ante [$20]
+Hugomich09 posts ante [$20]
+jawavivi posts ante [$20]
+iwann678 posts ante [$20]
+keijzerc posts small blind [$100]
+ascoam posts big blind [$200]
+** Dealing down cards **
+Dealt to Hero [ 5h, 2s ]
+Nrivilli folds
+mrsavim folds
+Hero folds
+Horribleman folds
+jawavivi calls [$200]
+iwann678 folds
+Hugomich09 folds
+keijzerc calls [$100]
+ascoam checks
+** Dealing flop ** [ Qh, Qd, Kc ]
+keijzerc checks
+ascoam checks
+jawavivi bets [$850]
+keijzerc folds
+ascoam folds
+** Summary **
+jawavivi did not show his hand
+jawavivi collected [ $780 ]
+
+
+
+#Game No : 190626962
+***** Cassava Hand History for Game 190626962 *****
+$100/$200 Blinds No Limit Holdem - *** 17 02 2012 00:40:39
+Tournament #36216773 Free - Table #374 (Real Money)
+Seat 4 is the button
+Total number of players : 9
+Seat 1: jawavivi ( $1,630 )
+Seat 2: iwann678 ( $790 )
+Seat 3: Hugomich09 ( $340 )
+Seat 4: keijzerc ( $16,065 )
+Seat 5: ascoam ( $345 )
+Seat 6: Nrivilli ( $350 )
+Seat 7: mrsavim ( $410 )
+Seat 9: Hero ( $4,235 )
+Seat 10: Horribleman ( $240 )
+keijzerc posts ante [$20]
+Hero posts ante [$20]
+Horribleman posts ante [$20]
+mrsavim posts ante [$20]
+Nrivilli posts ante [$20]
+ascoam posts ante [$20]
+Hugomich09 posts ante [$20]
+jawavivi posts ante [$20]
+iwann678 posts ante [$20]
+ascoam posts small blind [$100]
+Nrivilli posts big blind [$200]
+** Dealing down cards **
+Dealt to Hero [ 9c, 3h ]
+mrsavim folds
+Hero folds
+Horribleman folds
+jawavivi calls [$200]
+iwann678 folds
+Hugomich09 folds
+keijzerc folds
+ascoam folds
+Nrivilli checks
+** Dealing flop ** [ Ah, 9s, Jh ]
+Nrivilli checks
+jawavivi checks
+** Dealing turn ** [ Qh ]
+Nrivilli checks
+jawavivi bets [$200]
+Nrivilli folds
+** Summary **
+jawavivi did not show his hand
+jawavivi collected [ $680 ]
+
+
+
+#Game No : 190627131
+***** Cassava Hand History for Game 190627131 *****
+$150/$300 Blinds No Limit Holdem - *** 17 02 2012 00:41:01
+Tournament #36216773 Free - Table #374 (Real Money)
+Seat 5 is the button
+Total number of players : 9
+Seat 1: jawavivi ( $2,090 )
+Seat 2: iwann678 ( $770 )
+Seat 3: Hugomich09 ( $320 )
+Seat 4: keijzerc ( $16,045 )
+Seat 5: ascoam ( $225 )
+Seat 6: Nrivilli ( $130 )
+Seat 7: mrsavim ( $390 )
+Seat 9: Hero ( $4,215 )
+Seat 10: Horribleman ( $220 )
+keijzerc posts ante [$30]
+Hero posts ante [$30]
+Horribleman posts ante [$30]
+mrsavim posts ante [$30]
+Nrivilli posts ante [$30]
+ascoam posts ante [$30]
+Hugomich09 posts ante [$30]
+jawavivi posts ante [$30]
+iwann678 posts ante [$30]
+Nrivilli posts small blind [$100]
+mrsavim posts big blind [$300]
+** Dealing down cards **
+Dealt to Hero [ 4d, 6s ]
+Hero folds
+Horribleman folds
+jawavivi calls [$300]
+iwann678 raises [$740]
+Hugomich09 folds
+keijzerc folds
+ascoam folds
+mrsavim folds
+jawavivi calls [$440]
+** Dealing flop ** [ Ts, Tc, 8h ]
+** Dealing turn ** [ 3d ]
+** Dealing river ** [ Kd ]
+** Summary **
+jawavivi shows [ 5d, Kc ]
+iwann678 shows [ Kh, Qs ]
+Nrivilli shows [ 3h, Qd ]
+iwann678 collected [ $670 ]
+iwann678 collected [ $1,480 ]
+
+
+
+#Game No : 190627365
+***** Cassava Hand History for Game 190627365 *****
+$150/$300 Blinds No Limit Holdem - *** 17 02 2012 00:41:36
+Tournament #36216773 Free - Table #374 (Real Money)
+Seat 6 is the button
+Total number of players : 8
+Seat 1: jawavivi ( $1,320 )
+Seat 2: iwann678 ( $2,150 )
+Seat 3: Hugomich09 ( $290 )
+Seat 4: keijzerc ( $16,015 )
+Seat 5: ascoam ( $195 )
+Seat 7: mrsavim ( $60 )
+Seat 9: Hero ( $4,185 )
+Seat 10: Horribleman ( $190 )
+keijzerc posts ante [$30]
+Hero posts ante [$30]
+Horribleman posts ante [$30]
+mrsavim posts ante [$30]
+ascoam posts ante [$30]
+Hugomich09 posts ante [$30]
+jawavivi posts ante [$30]
+iwann678 posts ante [$30]
+mrsavim posts small blind [$30]
+Hero posts big blind [$300]
+** Dealing down cards **
+Dealt to Hero [ Jc, Jd ]
+Horribleman folds
+jawavivi calls [$300]
+iwann678 folds
+Hugomich09 folds
+keijzerc calls [$300]
+ascoam folds
+Hero checks
+** Dealing flop ** [ 5h, 4d, 4c ]
+Hero checks
+jawavivi checks
+keijzerc bets [$300]
+Hero calls [$300]
+jawavivi folds
+** Dealing turn ** [ 5s ]
+Hero checks
+keijzerc checks
+** Dealing river ** [ 9d ]
+Hero bets [$3,555]
+keijzerc folds
+** Summary **
+mrsavim shows [ Js, Tc ]
+Hero shows [ Jc, Jd ]
+Hero collected [ $360 ]
+Hero collected [ $1,410 ]
+
+
+
+#Game No : 190627732
+***** Cassava Hand History for Game 190627732 *****
+$150/$300 Blinds No Limit Holdem - *** 17 02 2012 00:42:32
+Tournament #36216773 Free - Table #374 (Real Money)
+Seat 7 is the button
+Total number of players : 7
+Seat 1: jawavivi ( $990 )
+Seat 2: iwann678 ( $2,120 )
+Seat 3: Hugomich09 ( $260 )
+Seat 4: keijzerc ( $15,385 )
+Seat 5: ascoam ( $165 )
+Seat 9: Hero ( $5,325 )
+Seat 10: Horribleman ( $160 )
+keijzerc posts ante [$30]
+Hero posts ante [$30]
+Horribleman posts ante [$30]
+ascoam posts ante [$30]
+Hugomich09 posts ante [$30]
+jawavivi posts ante [$30]
+iwann678 posts ante [$30]
+Hero posts small blind [$150]
+Horribleman posts big blind [$130]
+** Dealing down cards **
+Dealt to Hero [ 4h, 7h ]
+jawavivi raises [$960]
+iwann678 folds
+Hugomich09 folds
+keijzerc folds
+ascoam folds
+Hero folds
+** Dealing flop ** [ Ac, 6d, 3s ]
+** Dealing turn ** [ 5c ]
+** Dealing river ** [ Ad ]
+** Summary **
+jawavivi shows [ 6s, 6h ]
+Horribleman shows [ Qc, Jh ]
+jawavivi collected [ $600 ]
+jawavivi collected [ $850 ]
+
+
+
+#Game No : 190627712
+***** Cassava Hand History for Game 190627712 *****
+$150/$300 Blinds No Limit Holdem - *** 17 02 2012 00:42:56
+Tournament #36216773 Free - Table #359 (Real Money)
+Seat 5 is the button
+Total number of players : 8
+Seat 1: VN91Calais ( $1,379 )
+Seat 2: gmartin2011 ( $15 )
+Seat 3: llor71 ( $3,130 )
+Seat 4: Boocaine ( $4,152 )
+Seat 6: nikoquimey ( $1,933 )
+Seat 7: alinastanciu ( $4,560 )
+Seat 9: rthill2011 ( $1,750 )
+Seat 10: miron01 ( $1,884 )
+gmartin2011 posts ante [$15]
+rthill2011 posts ante [$30]
+Boocaine posts ante [$30]
+alinastanciu posts ante [$30]
+miron01 posts ante [$30]
+nikoquimey posts ante [$30]
+VN91Calais posts ante [$30]
+llor71 posts ante [$30]
+nikoquimey posts small blind [$150]
+alinastanciu posts big blind [$300]
+** Dealing down cards **
+rthill2011 folds
+miron01 folds
+VN91Calais calls [$300]
+llor71 folds
+Boocaine folds
+nikoquimey raises [$450]
+alinastanciu calls [$300]
+VN91Calais raises [$1,049]
+nikoquimey calls [$749]
+alinastanciu folds
+** Dealing flop ** [ 4d, Qs, 7s ]
+** Dealing turn ** [ 6d ]
+** Dealing river ** [ Ts ]
+** Summary **
+VN91Calais shows [ As, 6c ]
+gmartin2011 shows [ Td, 7h ]
+nikoquimey shows [ Ad, Ac ]
+gmartin2011 collected [ $120 ]
+nikoquimey collected [ $3,403 ]
+
+
+
+#Game No : 190628090
+***** Cassava Hand History for Game 190628090 *****
+$150/$300 Blinds No Limit Holdem - *** 17 02 2012 00:43:24
+Tournament #36216773 Free - Table #359 (Real Money)
+Seat 6 is the button
+Total number of players : 8
+Seat 2: gmartin2011 ( $120 )
+Seat 3: llor71 ( $3,100 )
+Seat 4: Boocaine ( $4,122 )
+Seat 5: Hero ( $5,145 )
+Seat 6: nikoquimey ( $3,957 )
+Seat 7: alinastanciu ( $3,930 )
+Seat 9: rthill2011 ( $1,720 )
+Seat 10: miron01 ( $1,854 )
+gmartin2011 posts ante [$30]
+rthill2011 posts ante [$30]
+Boocaine posts ante [$30]
+alinastanciu posts ante [$30]
+miron01 posts ante [$30]
+nikoquimey posts ante [$30]
+llor71 posts ante [$30]
+Hero posts ante [$30]
+alinastanciu posts small blind [$150]
+rthill2011 posts big blind [$300]
+** Dealing down cards **
+Dealt to Hero [ 8d, 8s ]
+miron01 folds
+gmartin2011 folds
+llor71 folds
+Boocaine raises [$600]
+Hero raises [$5,115]
+nikoquimey folds
+alinastanciu folds
+rthill2011 folds
+Boocaine calls [$3,492]
+** Dealing flop ** [ 2c, Tc, 4c ]
+** Dealing turn ** [ 3c ]
+** Dealing river ** [ 7d ]
+** Summary **
+Boocaine shows [ Js, As ]
+Hero shows [ 8d, 8s ]
+Hero collected [ $8,874 ]
+
+
+
+#Game No : 190628396
+***** Cassava Hand History for Game 190628396 *****
+$150/$300 Blinds No Limit Holdem - *** 17 02 2012 00:44:16
+Tournament #36216773 Free - Table #54 (Real Money)
+Seat 7 is the button
+Total number of players : 8
+Seat 1: Hero ( $9,897 )
+Seat 2: rthill2011 ( $1,390 )
+Seat 3: miron01 ( $1,824 )
+Seat 4: gmartin2011 ( $90 )
+Seat 5: llor71 ( $3,070 )
+Seat 6: gazjhen ( $2,327 )
+Seat 9: nikoquimey ( $3,927 )
+Seat 10: alinastanciu ( $3,750 )
+gazjhen posts ante [$30]
+rthill2011 posts ante [$30]
+miron01 posts ante [$30]
+gmartin2011 posts ante [$30]
+llor71 posts ante [$30]
+nikoquimey posts ante [$30]
+alinastanciu posts ante [$30]
+Hero posts ante [$30]
+nikoquimey posts small blind [$150]
+alinastanciu posts big blind [$300]
+** Dealing down cards **
+Dealt to Hero [ Jc, 9c ]
+Hero folds
+rthill2011 folds
+miron01 raises [$900]
+gmartin2011 folds
+llor71 calls [$900]
+gazjhen folds
+nikoquimey folds
+alinastanciu folds
+** Dealing flop ** [ Jd, 7d, 3c ]
+miron01 bets [$894]
+llor71 calls [$894]
+** Dealing turn ** [ 5c ]
+** Dealing river ** [ 6c ]
+** Summary **
+miron01 shows [ Ac, Td ]
+llor71 shows [ Qd, 5h ]
+llor71 collected [ $4,278 ]
+
+
+
+#Game No : 190628676
+***** Cassava Hand History for Game 190628676 *****
+$150/$300 Blinds No Limit Holdem - *** 17 02 2012 00:45:08
+Tournament #36216773 Free - Table #54 (Real Money)
+Seat 9 is the button
+Total number of players : 8
+Seat 1: Hero ( $9,867 )
+Seat 2: rthill2011 ( $1,360 )
+Seat 4: gmartin2011 ( $60 )
+Seat 5: llor71 ( $5,524 )
+Seat 6: gazjhen ( $2,297 )
+Seat 7: krasss26 ( $1,420 )
+Seat 9: nikoquimey ( $3,747 )
+Seat 10: alinastanciu ( $3,420 )
+gazjhen posts ante [$30]
+rthill2011 posts ante [$30]
+gmartin2011 posts ante [$30]
+llor71 posts ante [$30]
+nikoquimey posts ante [$30]
+alinastanciu posts ante [$30]
+Hero posts ante [$30]
+krasss26 posts ante [$30]
+alinastanciu posts small blind [$150]
+Hero posts big blind [$300]
+** Dealing down cards **
+Dealt to Hero [ Kh, Kd ]
+rthill2011 folds
+gmartin2011 folds
+llor71 calls [$300]
+gazjhen folds
+krasss26 calls [$300]
+nikoquimey calls [$300]
+alinastanciu calls [$150]
+Hero raises [$1,305]
+llor71 folds
+krasss26 calls [$1,090]
+nikoquimey calls [$1,305]
+alinastanciu folds
+** Dealing flop ** [ 2c, 2d, 8c ]
+Hero bets [$8,232]
+nikoquimey calls [$2,112]
+** Dealing turn ** [ 4s ]
+** Dealing river ** [ 3c ]
+** Summary **
+Hero shows [ Kh, Kd ]
+krasss26 shows [ Qd, Qc ]
+nikoquimey shows [ Ks, 6s ]
+Hero collected [ $5,010 ]
+Hero collected [ $4,654 ]
+
+
+
+#Game No : 190629123
+***** Cassava Hand History for Game 190629123 *****
+$200/$400 Blinds No Limit Holdem - *** 17 02 2012 00:46:31
+Tournament #36216773 Free - Table #54 (Real Money)
+Seat 10 is the button
+Total number of players : 7
+Seat 1: Hero ( $15,784 )
+Seat 2: rthill2011 ( $1,330 )
+Seat 3: MARKURSO ( $2,000 )
+Seat 4: gmartin2011 ( $30 )
+Seat 5: llor71 ( $5,194 )
+Seat 6: gazjhen ( $2,267 )
+Seat 10: alinastanciu ( $3,090 )
+gazjhen posts ante [$40]
+rthill2011 posts ante [$40]
+gmartin2011 posts ante [$30]
+llor71 posts ante [$40]
+alinastanciu posts ante [$40]
+Hero posts ante [$40]
+MARKURSO posts ante [$40]
+Hero posts small blind [$200]
+rthill2011 posts big blind [$400]
+** Dealing down cards **
+Dealt to Hero [ Qc, 6d ]
+MARKURSO folds
+llor71 calls [$400]
+gazjhen folds
+alinastanciu folds
+Hero calls [$200]
+rthill2011 checks
+** Dealing flop ** [ Kd, 3d, Ts ]
+Hero checks
+rthill2011 checks
+llor71 checks
+** Dealing turn ** [ 5d ]
+Hero checks
+rthill2011 checks
+llor71 checks
+** Dealing river ** [ Jd ]
+Hero bets [$735]
+rthill2011 raises [$890]
+llor71 raises [$1,625]
+Hero calls [$890]
+** Summary **
+llor71 shows [ Ad, 4c ]
+Hero mucks [ Qc, 6d ]
+rthill2011 mucks [ 2d, 6s ]
+gmartin2011 mucks [ Jh, Qd ]
+llor71 collected [ $210 ]
+llor71 collected [ $3,930 ]
+llor71 collected [ $1,470 ]
+
+
+
+#Game No : 190629581
+***** Cassava Hand History for Game 190629581 *****
+$200/$400 Blinds No Limit Holdem - *** 17 02 2012 00:47:54
+Tournament #36216773 Free - Table #244 (Real Money)
+Seat 9 is the button
+Total number of players : 7
+Seat 1: alinastanciu ( $3,050 )
+Seat 2: Hero ( $13,719 )
+Seat 4: MARKURSO ( $3,960 )
+Seat 6: david_elho ( $2,359 )
+Seat 7: surubi88 ( $2,340 )
+Seat 9: llor71 ( $8,739 )
+Seat 10: gazjhen ( $2,227 )
+surubi88 posts ante [$40]
+llor71 posts ante [$40]
+gazjhen posts ante [$40]
+alinastanciu posts ante [$40]
+Hero posts ante [$40]
+MARKURSO posts ante [$40]
+david_elho posts ante [$40]
+gazjhen posts small blind [$200]
+alinastanciu posts big blind [$400]
+** Dealing down cards **
+Dealt to Hero [ 7s, Jd ]
+Hero folds
+MARKURSO calls [$400]
+david_elho folds
+surubi88 folds
+llor71 calls [$400]
+gazjhen folds
+alinastanciu checks
+** Dealing flop ** [ Ks, 5d, 3c ]
+alinastanciu bets [$400]
+MARKURSO folds
+llor71 calls [$400]
+** Dealing turn ** [ Jh ]
+alinastanciu checks
+llor71 checks
+** Dealing river ** [ 8c ]
+alinastanciu checks
+llor71 checks
+** Summary **
+alinastanciu shows [ Ac, 5c ]
+llor71 mucks [ 4d, Qd ]
+alinastanciu collected [ $2,480 ]
+
+
+
+#Game No : 190629880
+***** Cassava Hand History for Game 190629880 *****
+$200/$400 Blinds No Limit Holdem - *** 17 02 2012 00:48:49
+Tournament #36216773 Free - Table #244 (Real Money)
+Seat 10 is the button
+Total number of players : 9
+Seat 1: alinastanciu ( $4,690 )
+Seat 2: Hero ( $13,679 )
+Seat 3: balazsi24 ( $2,290 )
+Seat 4: MARKURSO ( $3,520 )
+Seat 5: SsuperGirL ( $1,594 )
+Seat 6: david_elho ( $2,319 )
+Seat 7: surubi88 ( $2,300 )
+Seat 9: llor71 ( $7,899 )
+Seat 10: gazjhen ( $1,987 )
+surubi88 posts ante [$40]
+llor71 posts ante [$40]
+gazjhen posts ante [$40]
+alinastanciu posts ante [$40]
+Hero posts ante [$40]
+MARKURSO posts ante [$40]
+david_elho posts ante [$40]
+balazsi24 posts ante [$40]
+SsuperGirL posts ante [$40]
+alinastanciu posts small blind [$200]
+Hero posts big blind [$400]
+** Dealing down cards **
+Dealt to Hero [ 9d, 8d ]
+balazsi24 folds
+MARKURSO raises [$2,400]
+SsuperGirL calls [$1,554]
+david_elho folds
+surubi88 folds
+llor71 calls [$2,400]
+gazjhen folds
+alinastanciu folds
+Hero folds
+** Dealing flop ** [ 3h, 8s, Kc ]
+MARKURSO bets [$1,080]
+llor71 calls [$1,080]
+** Dealing turn ** [ 7d ]
+** Dealing river ** [ 6c ]
+** Summary **
+MARKURSO shows [ 4d, 4h ]
+SsuperGirL shows [ Kd, Qs ]
+llor71 shows [ Ad, Qh ]
+SsuperGirL collected [ $5,622 ]
+MARKURSO collected [ $3,852 ]
+
+
+
+#Game No : 190630185
+***** Cassava Hand History for Game 190630185 *****
+$200/$400 Blinds No Limit Holdem - *** 17 02 2012 00:49:44
+Tournament #36216773 Free - Table #244 (Real Money)
+Seat 1 is the button
+Total number of players : 9
+Seat 1: alinastanciu ( $4,450 )
+Seat 2: Hero ( $13,239 )
+Seat 3: balazsi24 ( $2,250 )
+Seat 4: MARKURSO ( $3,852 )
+Seat 5: SsuperGirL ( $5,622 )
+Seat 6: david_elho ( $2,279 )
+Seat 7: surubi88 ( $2,260 )
+Seat 9: llor71 ( $4,379 )
+Seat 10: gazjhen ( $1,947 )
+surubi88 posts ante [$40]
+llor71 posts ante [$40]
+gazjhen posts ante [$40]
+alinastanciu posts ante [$40]
+Hero posts ante [$40]
+MARKURSO posts ante [$40]
+david_elho posts ante [$40]
+balazsi24 posts ante [$40]
+SsuperGirL posts ante [$40]
+Hero posts small blind [$200]
+balazsi24 posts big blind [$400]
+** Dealing down cards **
+Dealt to Hero [ 2s, 9h ]
+MARKURSO folds
+SsuperGirL folds
+david_elho folds
+surubi88 folds
+llor71 folds
+gazjhen raises [$1,907]
+alinastanciu folds
+Hero folds
+balazsi24 folds
+** Summary **
+gazjhen did not show his hand
+gazjhen collected [ $1,360 ]
+
+
+
+#Game No : 190630405
+***** Cassava Hand History for Game 190630405 *****
+$200/$400 Blinds No Limit Holdem - *** 17 02 2012 00:50:19
+Tournament #36216773 Free - Table #244 (Real Money)
+Seat 2 is the button
+Total number of players : 9
+Seat 1: alinastanciu ( $4,410 )
+Seat 2: Hero ( $12,999 )
+Seat 3: balazsi24 ( $1,810 )
+Seat 4: MARKURSO ( $3,812 )
+Seat 5: SsuperGirL ( $5,582 )
+Seat 6: david_elho ( $2,239 )
+Seat 7: surubi88 ( $2,220 )
+Seat 9: llor71 ( $4,339 )
+Seat 10: gazjhen ( $2,867 )
+surubi88 posts ante [$40]
+llor71 posts ante [$40]
+gazjhen posts ante [$40]
+alinastanciu posts ante [$40]
+Hero posts ante [$40]
+MARKURSO posts ante [$40]
+david_elho posts ante [$40]
+balazsi24 posts ante [$40]
+SsuperGirL posts ante [$40]
+balazsi24 posts small blind [$200]
+MARKURSO posts big blind [$400]
+** Dealing down cards **
+Dealt to Hero [ 9s, 5c ]
+SsuperGirL folds
+david_elho folds
+surubi88 folds
+llor71 folds
+gazjhen raises [$2,827]
+alinastanciu folds
+Hero folds
+balazsi24 folds
+MARKURSO folds
+** Summary **
+gazjhen did not show his hand
+gazjhen collected [ $1,360 ]
+
+
+
+#Game No : 190630719
+***** Cassava Hand History for Game 190630719 *****
+$300/$600 Blinds No Limit Holdem - *** 17 02 2012 00:51:19
+Tournament #36216773 Free - Table #244 (Real Money)
+Seat 3 is the button
+Total number of players : 9
+Seat 1: alinastanciu ( $4,370 )
+Seat 2: Hero ( $12,959 )
+Seat 3: balazsi24 ( $1,570 )
+Seat 4: MARKURSO ( $3,372 )
+Seat 5: SsuperGirL ( $5,542 )
+Seat 6: david_elho ( $2,199 )
+Seat 7: surubi88 ( $2,180 )
+Seat 9: llor71 ( $4,299 )
+Seat 10: gazjhen ( $3,787 )
+surubi88 posts ante [$60]
+llor71 posts ante [$60]
+gazjhen posts ante [$60]
+alinastanciu posts ante [$60]
+Hero posts ante [$60]
+MARKURSO posts ante [$60]
+david_elho posts ante [$60]
+balazsi24 posts ante [$60]
+SsuperGirL posts ante [$60]
+MARKURSO posts small blind [$300]
+SsuperGirL posts big blind [$600]
+** Dealing down cards **
+Dealt to Hero [ 8c, Kh ]
+david_elho calls [$600]
+surubi88 folds
+llor71 calls [$600]
+gazjhen folds
+alinastanciu folds
+Hero folds
+balazsi24 folds
+MARKURSO calls [$300]
+SsuperGirL raises [$4,882]
+david_elho calls [$1,539]
+llor71 folds
+MARKURSO folds
+** Dealing flop ** [ Jh, 3h, 5d ]
+** Dealing turn ** [ Qd ]
+** Dealing river ** [ 4d ]
+** Summary **
+SsuperGirL shows [ 6d, 6c ]
+david_elho shows [ Ac, 5c ]
+SsuperGirL collected [ $6,018 ]
+
+
+
+#Game No : 190631147
+***** Cassava Hand History for Game 190631147 *****
+$300/$600 Blinds No Limit Holdem - *** 17 02 2012 00:52:38
+Tournament #36216773 Free - Table #244 (Real Money)
+Seat 4 is the button
+Total number of players : 8
+Seat 1: alinastanciu ( $4,310 )
+Seat 2: Hero ( $12,899 )
+Seat 3: balazsi24 ( $1,510 )
+Seat 4: MARKURSO ( $2,712 )
+Seat 5: SsuperGirL ( $9,361 )
+Seat 7: surubi88 ( $2,120 )
+Seat 9: llor71 ( $3,639 )
+Seat 10: gazjhen ( $3,727 )
+surubi88 posts ante [$60]
+llor71 posts ante [$60]
+gazjhen posts ante [$60]
+alinastanciu posts ante [$60]
+Hero posts ante [$60]
+MARKURSO posts ante [$60]
+balazsi24 posts ante [$60]
+SsuperGirL posts ante [$60]
+SsuperGirL posts small blind [$300]
+surubi88 posts big blind [$600]
+** Dealing down cards **
+Dealt to Hero [ 9c, Qh ]
+llor71 folds
+gazjhen raises [$3,667]
+alinastanciu calls [$3,667]
+Hero folds
+balazsi24 folds
+MARKURSO folds
+SsuperGirL folds
+surubi88 folds
+** Dealing flop ** [ 6h, Kd, Jd ]
+** Dealing turn ** [ 4d ]
+** Dealing river ** [ 7c ]
+** Summary **
+alinastanciu shows [ Ah, Ad ]
+gazjhen shows [ Js, As ]
+alinastanciu collected [ $8,714 ]
+
+
+
+#Game No : 190631462
+***** Cassava Hand History for Game 190631462 *****
+$300/$600 Blinds No Limit Holdem - *** 17 02 2012 00:53:30
+Tournament #36216773 Free - Table #244 (Real Money)
+Seat 5 is the button
+Total number of players : 7
+Seat 1: alinastanciu ( $9,297 )
+Seat 2: Hero ( $12,839 )
+Seat 3: balazsi24 ( $1,450 )
+Seat 4: MARKURSO ( $2,652 )
+Seat 5: SsuperGirL ( $9,001 )
+Seat 7: surubi88 ( $1,460 )
+Seat 9: llor71 ( $3,579 )
+surubi88 posts ante [$60]
+llor71 posts ante [$60]
+alinastanciu posts ante [$60]
+Hero posts ante [$60]
+MARKURSO posts ante [$60]
+balazsi24 posts ante [$60]
+SsuperGirL posts ante [$60]
+surubi88 posts small blind [$300]
+llor71 posts big blind [$600]
+** Dealing down cards **
+Dealt to Hero [ Jc, 3d ]
+alinastanciu folds
+Hero folds
+balazsi24 raises [$1,390]
+MARKURSO folds
+SsuperGirL folds
+surubi88 folds
+llor71 calls [$790]
+** Dealing flop ** [ 6s, Ts, 3s ]
+** Dealing turn ** [ Qd ]
+** Dealing river ** [ Ad ]
+** Summary **
+balazsi24 shows [ 8d, Ah ]
+llor71 shows [ 4h, Kh ]
+balazsi24 collected [ $3,500 ]
+
+
+
+#Game No : 190631683
+***** Cassava Hand History for Game 190631683 *****
+$300/$600 Blinds No Limit Holdem - *** 17 02 2012 00:54:09
+Tournament #36216773 Free - Table #244 (Real Money)
+Seat 7 is the button
+Total number of players : 8
+Seat 1: alinastanciu ( $9,237 )
+Seat 2: Hero ( $12,779 )
+Seat 3: balazsi24 ( $3,500 )
+Seat 4: MARKURSO ( $2,592 )
+Seat 5: SsuperGirL ( $8,941 )
+Seat 6: Tatolanc ( $708 )
+Seat 7: surubi88 ( $1,100 )
+Seat 9: llor71 ( $2,129 )
+surubi88 posts ante [$60]
+llor71 posts ante [$60]
+alinastanciu posts ante [$60]
+Hero posts ante [$60]
+MARKURSO posts ante [$60]
+balazsi24 posts ante [$60]
+SsuperGirL posts ante [$60]
+Tatolanc posts ante [$60]
+llor71 posts small blind [$300]
+alinastanciu posts big blind [$600]
+** Dealing down cards **
+Dealt to Hero [ Js, 7d ]
+Hero folds
+balazsi24 calls [$600]
+MARKURSO raises [$2,532]
+SsuperGirL folds
+Tatolanc folds
+surubi88 folds
+llor71 folds
+alinastanciu folds
+balazsi24 calls [$1,932]
+** Dealing flop ** [ Ac, 4s, As ]
+** Dealing turn ** [ 7h ]
+** Dealing river ** [ 2c ]
+** Summary **
+balazsi24 shows [ Ad, 5s ]
+MARKURSO shows [ Td, Qh ]
+balazsi24 collected [ $6,444 ]
+
+
+
+#Game No : 190631995
+***** Cassava Hand History for Game 190631995 *****
+$300/$600 Blinds No Limit Holdem - *** 17 02 2012 00:55:05
+Tournament #36216773 Free - Table #244 (Real Money)
+Seat 9 is the button
+Total number of players : 8
+Seat 1: alinastanciu ( $8,577 )
+Seat 2: Hero ( $12,719 )
+Seat 3: balazsi24 ( $7,352 )
+Seat 4: MARKURSO ( $2,000 )
+Seat 5: SsuperGirL ( $8,881 )
+Seat 6: Tatolanc ( $648 )
+Seat 7: surubi88 ( $1,040 )
+Seat 9: llor71 ( $1,769 )
+surubi88 posts ante [$60]
+llor71 posts ante [$60]
+alinastanciu posts ante [$60]
+Hero posts ante [$60]
+MARKURSO posts ante [$60]
+balazsi24 posts ante [$60]
+SsuperGirL posts ante [$60]
+Tatolanc posts ante [$60]
+alinastanciu posts small blind [$300]
+Hero posts big blind [$600]
+** Dealing down cards **
+Dealt to Hero [ 4h, Jc ]
+balazsi24 calls [$600]
+MARKURSO calls [$600]
+SsuperGirL folds
+Tatolanc calls [$588]
+surubi88 raises [$980]
+llor71 folds
+alinastanciu folds
+Hero calls [$380]
+balazsi24 calls [$380]
+MARKURSO calls [$380]
+** Dealing flop ** [ Ts, Th, 8c ]
+Hero checks
+balazsi24 checks
+MARKURSO checks
+** Dealing turn ** [ 2s ]
+Hero checks
+balazsi24 checks
+MARKURSO checks
+** Dealing river ** [ 8s ]
+Hero bets [$600]
+balazsi24 folds
+MARKURSO calls [$600]
+** Summary **
+Hero shows [ 4h, Jc ]
+MARKURSO shows [ 7d, Kc ]
+Tatolanc shows [ Ks, 9s ]
+surubi88 mucks [ Qc, Ad ]
+Tatolanc collected [ $3,720 ]
+surubi88 collected [ $1,568 ]
+MARKURSO collected [ $1,200 ]
+
+
+
+#Game No : 190633282
+***** Cassava Hand History for Game 190633282 *****
+$300/$600 Blinds No Limit Holdem - *** 17 02 2012 01:00:21
+Tournament #36216773 Free - Table #244 (Real Money)
+Seat 1 is the button
+Total number of players : 9
+Seat 1: alinastanciu ( $8,217 )
+Seat 2: Hero ( $11,079 )
+Seat 3: balazsi24 ( $6,312 )
+Seat 4: MARKURSO ( $3,560 )
+Seat 5: SsuperGirL ( $13,821 )
+Seat 6: Tatolanc ( $3,720 )
+Seat 7: surubi88 ( $1,568 )
+Seat 9: llor71 ( $6,709 )
+Seat 10: HAWKKO ( $6,882 )
+surubi88 posts ante [$60]
+llor71 posts ante [$60]
+alinastanciu posts ante [$60]
+Hero posts ante [$60]
+MARKURSO posts ante [$60]
+balazsi24 posts ante [$60]
+SsuperGirL posts ante [$60]
+Tatolanc posts ante [$60]
+HAWKKO posts ante [$60]
+Hero posts small blind [$300]
+balazsi24 posts big blind [$600]
+** Dealing down cards **
+Dealt to Hero [ 8c, Ac ]
+MARKURSO folds
+SsuperGirL folds
+Tatolanc folds
+surubi88 folds
+llor71 folds
+HAWKKO raises [$6,822]
+alinastanciu folds
+Hero folds
+balazsi24 folds
+** Summary **
+HAWKKO did not show his hand
+HAWKKO collected [ $2,040 ]
+
+
+
+#Game No : 190633550
+***** Cassava Hand History for Game 190633550 *****
+$400/$800 Blinds No Limit Holdem - *** 17 02 2012 01:01:13
+Tournament #36216773 Free - Table #244 (Real Money)
+Seat 2 is the button
+Total number of players : 9
+Seat 1: alinastanciu ( $8,157 )
+Seat 2: Hero ( $10,719 )
+Seat 3: balazsi24 ( $5,652 )
+Seat 4: MARKURSO ( $3,500 )
+Seat 5: SsuperGirL ( $13,761 )
+Seat 6: Tatolanc ( $3,660 )
+Seat 7: surubi88 ( $1,508 )
+Seat 9: llor71 ( $6,649 )
+Seat 10: HAWKKO ( $8,262 )
+surubi88 posts ante [$80]
+llor71 posts ante [$80]
+alinastanciu posts ante [$80]
+Hero posts ante [$80]
+MARKURSO posts ante [$80]
+balazsi24 posts ante [$80]
+SsuperGirL posts ante [$80]
+Tatolanc posts ante [$80]
+HAWKKO posts ante [$80]
+balazsi24 posts small blind [$400]
+MARKURSO posts big blind [$800]
+** Dealing down cards **
+Dealt to Hero [ Ah, Kh ]
+SsuperGirL calls [$800]
+Tatolanc folds
+surubi88 raises [$1,428]
+llor71 folds
+HAWKKO folds
+alinastanciu folds
+Hero raises [$10,639]
+balazsi24 folds
+MARKURSO folds
+SsuperGirL calls [$9,839]
+** Dealing flop ** [ Ad, 4s, 5h ]
+** Dealing turn ** [ Qc ]
+** Dealing river ** [ 6s ]
+** Summary **
+Hero shows [ Ah, Kh ]
+SsuperGirL shows [ 3h, 3s ]
+surubi88 shows [ Th, Kc ]
+Hero collected [ $6,204 ]
+Hero collected [ $18,422 ]
+
+
+
+#Game No : 190633875
+***** Cassava Hand History for Game 190633875 *****
+$400/$800 Blinds No Limit Holdem - *** 17 02 2012 01:02:12
+Tournament #36216773 Free - Table #244 (Real Money)
+Seat 3 is the button
+Total number of players : 8
+Seat 1: alinastanciu ( $8,077 )
+Seat 2: Hero ( $24,626 )
+Seat 3: balazsi24 ( $5,172 )
+Seat 4: MARKURSO ( $2,620 )
+Seat 5: SsuperGirL ( $3,042 )
+Seat 6: Tatolanc ( $3,580 )
+Seat 9: llor71 ( $6,569 )
+Seat 10: HAWKKO ( $8,182 )
+llor71 posts ante [$80]
+alinastanciu posts ante [$80]
+Hero posts ante [$80]
+MARKURSO posts ante [$80]
+balazsi24 posts ante [$80]
+SsuperGirL posts ante [$80]
+Tatolanc posts ante [$80]
+HAWKKO posts ante [$80]
+MARKURSO posts small blind [$400]
+SsuperGirL posts big blind [$800]
+** Dealing down cards **
+Dealt to Hero [ 7c, 4s ]
+Tatolanc folds
+llor71 calls [$800]
+HAWKKO folds
+alinastanciu folds
+Hero folds
+balazsi24 raises [$1,600]
+MARKURSO folds
+SsuperGirL folds
+llor71 calls [$800]
+** Dealing flop ** [ 9h, Jh, 8d ]
+llor71 bets [$2,444]
+balazsi24 raises [$3,492]
+llor71 calls [$1,048]
+** Dealing turn ** [ 3c ]
+** Dealing river ** [ 7s ]
+** Summary **
+balazsi24 shows [ As, Js ]
+llor71 shows [ Ts, Qh ]
+llor71 collected [ $12,024 ]
+
+
+
+#Game No : 190634315
+***** Cassava Hand History for Game 190634315 *****
+$400/$800 Blinds No Limit Holdem - *** 17 02 2012 01:03:25
+Tournament #36216773 Free - Table #244 (Real Money)
+Seat 4 is the button
+Total number of players : 8
+Seat 1: alinastanciu ( $7,997 )
+Seat 2: Hero ( $24,546 )
+Seat 4: MARKURSO ( $2,140 )
+Seat 5: SsuperGirL ( $2,162 )
+Seat 6: Tatolanc ( $3,500 )
+Seat 7: Jomar75 ( $6,480 )
+Seat 9: llor71 ( $13,421 )
+Seat 10: HAWKKO ( $8,102 )
+llor71 posts ante [$80]
+alinastanciu posts ante [$80]
+Hero posts ante [$80]
+MARKURSO posts ante [$80]
+SsuperGirL posts ante [$80]
+Tatolanc posts ante [$80]
+HAWKKO posts ante [$80]
+Jomar75 posts ante [$80]
+SsuperGirL posts small blind [$400]
+Tatolanc posts big blind [$800]
+** Dealing down cards **
+Dealt to Hero [ 2s, 7c ]
+Jomar75 folds
+llor71 calls [$800]
+HAWKKO folds
+alinastanciu folds
+Hero folds
+MARKURSO folds
+SsuperGirL folds
+Tatolanc checks
+** Dealing flop ** [ Ts, 4h, Qd ]
+Tatolanc checks
+llor71 bets [$800]
+Tatolanc folds
+** Summary **
+llor71 collected [ $2,640 ]
+
+
+
+#Game No : 190634629
+***** Cassava Hand History for Game 190634629 *****
+$400/$800 Blinds No Limit Holdem - *** 17 02 2012 01:04:18
+Tournament #36216773 Free - Table #244 (Real Money)
+Seat 5 is the button
+Total number of players : 9
+Seat 1: alinastanciu ( $7,917 )
+Seat 2: Hero ( $24,466 )
+Seat 3: brusler1 ( $17,827 )
+Seat 4: MARKURSO ( $2,060 )
+Seat 5: SsuperGirL ( $1,682 )
+Seat 6: Tatolanc ( $2,620 )
+Seat 7: Jomar75 ( $6,400 )
+Seat 9: llor71 ( $15,181 )
+Seat 10: HAWKKO ( $8,022 )
+llor71 posts ante [$80]
+alinastanciu posts ante [$80]
+Hero posts ante [$80]
+MARKURSO posts ante [$80]
+SsuperGirL posts ante [$80]
+Tatolanc posts ante [$80]
+HAWKKO posts ante [$80]
+Jomar75 posts ante [$80]
+brusler1 posts ante [$80]
+Tatolanc posts small blind [$400]
+Jomar75 posts big blind [$800]
+** Dealing down cards **
+Dealt to Hero [ 3d, Ts ]
+llor71 raises [$3,520]
+HAWKKO folds
+alinastanciu raises [$7,837]
+Hero folds
+brusler1 folds
+MARKURSO folds
+SsuperGirL folds
+Tatolanc calls [$2,140]
+Jomar75 folds
+llor71 calls [$4,317]
+** Dealing flop ** [ 7d, 9s, 2c ]
+** Dealing turn ** [ 6h ]
+** Dealing river ** [ 4s ]
+** Summary **
+alinastanciu shows [ Qh, Qd ]
+Tatolanc shows [ As, 6d ]
+llor71 shows [ Qc, Qs ]
+llor71 collected [ $4,570 ]
+alinastanciu collected [ $4,570 ]
+llor71 collected [ $5,297 ]
+alinastanciu collected [ $5,297 ]
+
+
+
+#Game No : 190634906
+***** Cassava Hand History for Game 190634906 *****
+$400/$800 Blinds No Limit Holdem - *** 17 02 2012 01:05:09
+Tournament #36216773 Free - Table #244 (Real Money)
+Seat 5 is the button
+Total number of players : 8
+Seat 1: alinastanciu ( $9,867 )
+Seat 2: Hero ( $24,386 )
+Seat 3: brusler1 ( $17,747 )
+Seat 4: MARKURSO ( $1,980 )
+Seat 5: SsuperGirL ( $1,602 )
+Seat 7: Jomar75 ( $5,520 )
+Seat 9: llor71 ( $17,131 )
+Seat 10: HAWKKO ( $7,942 )
+llor71 posts ante [$80]
+alinastanciu posts ante [$80]
+Hero posts ante [$80]
+MARKURSO posts ante [$80]
+SsuperGirL posts ante [$80]
+HAWKKO posts ante [$80]
+Jomar75 posts ante [$80]
+brusler1 posts ante [$80]
+Jomar75 posts small blind [$400]
+llor71 posts big blind [$800]
+** Dealing down cards **
+Dealt to Hero [ Qs, 5c ]
+HAWKKO folds
+alinastanciu folds
+Hero folds
+brusler1 folds
+MARKURSO raises [$1,900]
+SsuperGirL folds
+Jomar75 folds
+llor71 calls [$1,100]
+** Dealing flop ** [ 3d, 7d, 5d ]
+** Dealing turn ** [ Qh ]
+** Dealing river ** [ 2h ]
+** Summary **
+MARKURSO shows [ Ks, 3s ]
+llor71 shows [ 4h, 7c ]
+llor71 collected [ $4,840 ]
+
+
+
+#Game No : 190635174
+***** Cassava Hand History for Game 190635174 *****
+$500/$1,000 Blinds No Limit Holdem - *** 17 02 2012 01:05:54
+Tournament #36216773 Free - Table #244 (Real Money)
+Seat 7 is the button
+Total number of players : 8
+Seat 1: alinastanciu ( $9,787 )
+Seat 2: Hero ( $24,306 )
+Seat 3: brusler1 ( $17,667 )
+Seat 5: SsuperGirL ( $1,522 )
+Seat 6: DANIELA10 ( $8,719 )
+Seat 7: Jomar75 ( $5,040 )
+Seat 9: llor71 ( $19,991 )
+Seat 10: HAWKKO ( $7,862 )
+llor71 posts ante [$100]
+alinastanciu posts ante [$100]
+Hero posts ante [$100]
+SsuperGirL posts ante [$100]
+HAWKKO posts ante [$100]
+Jomar75 posts ante [$100]
+brusler1 posts ante [$100]
+DANIELA10 posts ante [$100]
+llor71 posts small blind [$500]
+HAWKKO posts big blind [$1,000]
+** Dealing down cards **
+Dealt to Hero [ Td, Kh ]
+alinastanciu folds
+Hero folds
+brusler1 folds
+SsuperGirL folds
+DANIELA10 folds
+Jomar75 folds
+llor71 calls [$500]
+HAWKKO checks
+** Dealing flop ** [ 9d, 6c, Jd ]
+llor71 checks
+HAWKKO checks
+** Dealing turn ** [ 8s ]
+llor71 checks
+HAWKKO bets [$6,762]
+llor71 folds
+** Summary **
+HAWKKO collected [ $2,800 ]
+
+
+
+#Game No : 190635408
+***** Cassava Hand History for Game 190635408 *****
+$500/$1,000 Blinds No Limit Holdem - *** 17 02 2012 01:06:39
+Tournament #36216773 Free - Table #244 (Real Money)
+Seat 9 is the button
+Total number of players : 9
+Seat 1: alinastanciu ( $9,687 )
+Seat 2: Hero ( $24,206 )
+Seat 3: brusler1 ( $17,567 )
+Seat 4: plenty55 ( $8,220 )
+Seat 5: SsuperGirL ( $1,422 )
+Seat 6: DANIELA10 ( $8,619 )
+Seat 7: Jomar75 ( $4,940 )
+Seat 9: llor71 ( $18,891 )
+Seat 10: HAWKKO ( $9,562 )
+llor71 posts ante [$100]
+alinastanciu posts ante [$100]
+Hero posts ante [$100]
+SsuperGirL posts ante [$100]
+HAWKKO posts ante [$100]
+Jomar75 posts ante [$100]
+brusler1 posts ante [$100]
+DANIELA10 posts ante [$100]
+plenty55 posts ante [$100]
+HAWKKO posts small blind [$500]
+alinastanciu posts big blind [$1,000]
+** Dealing down cards **
+Dealt to Hero [ 8s, Th ]
+Hero folds
+brusler1 folds
+plenty55 folds
+SsuperGirL raises [$1,322]
+DANIELA10 folds
+Jomar75 folds
+llor71 calls [$1,322]
+HAWKKO folds
+alinastanciu calls [$322]
+** Dealing flop ** [ Tc, Qd, Ad ]
+alinastanciu checks
+llor71 bets [$1,000]
+alinastanciu folds
+** Dealing turn ** [ Td ]
+** Dealing river ** [ Ts ]
+** Summary **
+SsuperGirL shows [ Ks, Qs ]
+llor71 shows [ Js, 5d ]
+SsuperGirL collected [ $5,366 ]
+
+
+
+#Game No : 190635677
+***** Cassava Hand History for Game 190635677 *****
+$500/$1,000 Blinds No Limit Holdem - *** 17 02 2012 01:07:32
+Tournament #36216773 Free - Table #244 (Real Money)
+Seat 10 is the button
+Total number of players : 9
+Seat 1: alinastanciu ( $8,265 )
+Seat 2: Hero ( $24,106 )
+Seat 3: brusler1 ( $17,467 )
+Seat 4: plenty55 ( $8,120 )
+Seat 5: SsuperGirL ( $5,366 )
+Seat 6: DANIELA10 ( $8,519 )
+Seat 7: Jomar75 ( $4,840 )
+Seat 9: llor71 ( $17,469 )
+Seat 10: HAWKKO ( $8,962 )
+llor71 posts ante [$100]
+alinastanciu posts ante [$100]
+Hero posts ante [$100]
+SsuperGirL posts ante [$100]
+HAWKKO posts ante [$100]
+Jomar75 posts ante [$100]
+brusler1 posts ante [$100]
+DANIELA10 posts ante [$100]
+plenty55 posts ante [$100]
+alinastanciu posts small blind [$500]
+Hero posts big blind [$1,000]
+** Dealing down cards **
+Dealt to Hero [ 6c, Ks ]
+brusler1 folds
+plenty55 folds
+SsuperGirL folds
+DANIELA10 folds
+Jomar75 folds
+llor71 calls [$1,000]
+HAWKKO folds
+alinastanciu calls [$500]
+Hero raises [$2,000]
+llor71 folds
+alinastanciu calls [$2,000]
+** Dealing flop ** [ Jd, 7h, 9d ]
+alinastanciu bets [$1,000]
+Hero raises [$21,006]
+alinastanciu calls [$4,165]
+** Dealing turn ** [ 4h ]
+** Dealing river ** [ Td ]
+** Summary **
+alinastanciu shows [ 2h, 9h ]
+Hero shows [ 6c, Ks ]
+alinastanciu collected [ $18,230 ]
+
+
+
+#Game No : 190636143
+***** Cassava Hand History for Game 190636143 *****
+$500/$1,000 Blinds No Limit Holdem - *** 17 02 2012 01:08:52
+Tournament #36216773 Free - Table #244 (Real Money)
+Seat 1 is the button
+Total number of players : 9
+Seat 1: alinastanciu ( $18,230 )
+Seat 2: Hero ( $15,841 )
+Seat 3: brusler1 ( $17,367 )
+Seat 4: plenty55 ( $8,020 )
+Seat 5: SsuperGirL ( $5,266 )
+Seat 6: DANIELA10 ( $8,419 )
+Seat 7: Jomar75 ( $4,740 )
+Seat 9: llor71 ( $16,369 )
+Seat 10: HAWKKO ( $8,862 )
+llor71 posts ante [$100]
+alinastanciu posts ante [$100]
+Hero posts ante [$100]
+SsuperGirL posts ante [$100]
+HAWKKO posts ante [$100]
+Jomar75 posts ante [$100]
+brusler1 posts ante [$100]
+DANIELA10 posts ante [$100]
+plenty55 posts ante [$100]
+Hero posts small blind [$500]
+brusler1 posts big blind [$1,000]
+** Dealing down cards **
+Dealt to Hero [ 3s, Tc ]
+plenty55 folds
+SsuperGirL folds
+DANIELA10 folds
+Jomar75 folds
+llor71 calls [$1,000]
+HAWKKO folds
+alinastanciu folds
+Hero folds
+brusler1 checks
+** Dealing flop ** [ 2h, 7d, 9s ]
+brusler1 checks
+llor71 bets [$1,000]
+brusler1 folds
+** Summary **
+llor71 did not show his hand
+llor71 collected [ $3,400 ]
+
+
+
+#Game No : 190636398
+***** Cassava Hand History for Game 190636398 *****
+$500/$1,000 Blinds No Limit Holdem - *** 17 02 2012 01:09:43
+Tournament #36216773 Free - Table #244 (Real Money)
+Seat 2 is the button
+Total number of players : 9
+Seat 1: alinastanciu ( $18,130 )
+Seat 2: Hero ( $15,241 )
+Seat 3: brusler1 ( $16,267 )
+Seat 4: plenty55 ( $7,920 )
+Seat 5: SsuperGirL ( $5,166 )
+Seat 6: DANIELA10 ( $8,319 )
+Seat 7: Jomar75 ( $4,640 )
+Seat 9: llor71 ( $18,669 )
+Seat 10: HAWKKO ( $8,762 )
+llor71 posts ante [$100]
+alinastanciu posts ante [$100]
+Hero posts ante [$100]
+SsuperGirL posts ante [$100]
+HAWKKO posts ante [$100]
+Jomar75 posts ante [$100]
+brusler1 posts ante [$100]
+DANIELA10 posts ante [$100]
+plenty55 posts ante [$100]
+brusler1 posts small blind [$500]
+plenty55 posts big blind [$1,000]
+** Dealing down cards **
+Dealt to Hero [ Tc, 4d ]
+SsuperGirL folds
+DANIELA10 folds
+Jomar75 raises [$4,540]
+llor71 folds
+HAWKKO folds
+alinastanciu folds
+Hero folds
+brusler1 folds
+plenty55 calls [$3,540]
+** Dealing flop ** [ 4c, 5h, Js ]
+** Dealing turn ** [ 7c ]
+** Dealing river ** [ 4s ]
+** Summary **
+plenty55 shows [ 9h, 6c ]
+Jomar75 shows [ Ts, Kc ]
+Jomar75 collected [ $10,480 ]
+
+
+
+#Game No : 190636603
+***** Cassava Hand History for Game 190636603 *****
+$500/$1,000 Blinds No Limit Holdem - *** 17 02 2012 01:10:18
+Tournament #36216773 Free - Table #244 (Real Money)
+Seat 3 is the button
+Total number of players : 9
+Seat 1: alinastanciu ( $18,030 )
+Seat 2: Hero ( $15,141 )
+Seat 3: brusler1 ( $15,667 )
+Seat 4: plenty55 ( $3,280 )
+Seat 5: SsuperGirL ( $5,066 )
+Seat 6: DANIELA10 ( $8,219 )
+Seat 7: Jomar75 ( $10,480 )
+Seat 9: llor71 ( $18,569 )
+Seat 10: HAWKKO ( $8,662 )
+llor71 posts ante [$100]
+alinastanciu posts ante [$100]
+Hero posts ante [$100]
+SsuperGirL posts ante [$100]
+HAWKKO posts ante [$100]
+Jomar75 posts ante [$100]
+brusler1 posts ante [$100]
+DANIELA10 posts ante [$100]
+plenty55 posts ante [$100]
+plenty55 posts small blind [$500]
+SsuperGirL posts big blind [$1,000]
+** Dealing down cards **
+Dealt to Hero [ 6c, 2h ]
+DANIELA10 folds
+Jomar75 folds
+llor71 folds
+HAWKKO folds
+alinastanciu calls [$1,000]
+Hero folds
+brusler1 calls [$1,000]
+plenty55 calls [$500]
+SsuperGirL checks
+** Dealing flop ** [ Ah, Kc, 3d ]
+plenty55 checks
+SsuperGirL checks
+alinastanciu checks
+brusler1 bets [$1,000]
+plenty55 calls [$1,000]
+SsuperGirL folds
+alinastanciu folds
+** Dealing turn ** [ Kd ]
+plenty55 checks
+brusler1 bets [$1,000]
+plenty55 folds
+** Summary **
+brusler1 did not show his hand
+brusler1 collected [ $6,900 ]
+
+
+
+#Game No : 190636857
+***** Cassava Hand History for Game 190636857 *****
+$600/$1,200 Blinds No Limit Holdem - *** 17 02 2012 01:11:05
+Tournament #36216773 Free - Table #244 (Real Money)
+Seat 4 is the button
+Total number of players : 9
+Seat 1: alinastanciu ( $16,930 )
+Seat 2: Hero ( $15,041 )
+Seat 3: brusler1 ( $20,467 )
+Seat 4: plenty55 ( $1,180 )
+Seat 5: SsuperGirL ( $3,966 )
+Seat 6: DANIELA10 ( $8,119 )
+Seat 7: Jomar75 ( $10,380 )
+Seat 9: llor71 ( $18,469 )
+Seat 10: HAWKKO ( $8,562 )
+llor71 posts ante [$125]
+alinastanciu posts ante [$125]
+Hero posts ante [$125]
+SsuperGirL posts ante [$125]
+HAWKKO posts ante [$125]
+Jomar75 posts ante [$125]
+brusler1 posts ante [$125]
+DANIELA10 posts ante [$125]
+plenty55 posts ante [$125]
+SsuperGirL posts small blind [$600]
+DANIELA10 posts big blind [$1,200]
+** Dealing down cards **
+Dealt to Hero [ Qd, Kd ]
+Jomar75 calls [$1,200]
+llor71 folds
+HAWKKO folds
+alinastanciu folds
+Hero raises [$3,262]
+brusler1 folds
+plenty55 folds
+SsuperGirL folds
+DANIELA10 folds
+Jomar75 calls [$2,062]
+** Dealing flop ** [ 4c, 5s, 4h ]
+Jomar75 bets [$6,993]
+Hero calls [$6,993]
+** Dealing turn ** [ 7c ]
+** Dealing river ** [ As ]
+** Summary **
+Hero shows [ Qd, Kd ]
+Jomar75 shows [ Qs, Js ]
+Hero collected [ $23,435 ]
+
+
+
+#Game No : 190637166
+***** Cassava Hand History for Game 190637166 *****
+$600/$1,200 Blinds No Limit Holdem - *** 17 02 2012 01:12:06
+Tournament #36216773 Free - Table #244 (Real Money)
+Seat 5 is the button
+Total number of players : 8
+Seat 1: alinastanciu ( $16,805 )
+Seat 2: Hero ( $28,096 )
+Seat 3: brusler1 ( $20,342 )
+Seat 4: plenty55 ( $1,055 )
+Seat 5: SsuperGirL ( $3,241 )
+Seat 6: DANIELA10 ( $6,794 )
+Seat 9: llor71 ( $18,344 )
+Seat 10: HAWKKO ( $8,437 )
+llor71 posts ante [$125]
+alinastanciu posts ante [$125]
+Hero posts ante [$125]
+SsuperGirL posts ante [$125]
+HAWKKO posts ante [$125]
+brusler1 posts ante [$125]
+DANIELA10 posts ante [$125]
+plenty55 posts ante [$125]
+DANIELA10 posts small blind [$600]
+llor71 posts big blind [$1,200]
+** Dealing down cards **
+Dealt to Hero [ 5h, 4d ]
+HAWKKO raises [$8,312]
+alinastanciu folds
+Hero folds
+brusler1 folds
+plenty55 calls [$930]
+SsuperGirL calls [$3,116]
+DANIELA10 folds
+llor71 folds
+** Dealing flop ** [ Qh, 2h, 8s ]
+** Dealing turn ** [ Ac ]
+** Dealing river ** [ 9h ]
+** Summary **
+plenty55 shows [ Kh, 6d ]
+SsuperGirL shows [ 3s, 3h ]
+HAWKKO shows [ Qc, Jd ]
+HAWKKO collected [ $5,320 ]
+HAWKKO collected [ $4,642 ]
+
+
+
+#Game No : 190637379
+***** Cassava Hand History for Game 190637379 *****
+$600/$1,200 Blinds No Limit Holdem - *** 17 02 2012 01:12:51
+Tournament #36216773 Free - Table #244 (Real Money)
+Seat 6 is the button
+Total number of players : 8
+Seat 1: alinastanciu ( $16,680 )
+Seat 2: Hero ( $27,971 )
+Seat 3: brusler1 ( $20,217 )
+Seat 4: Neeli15 ( $815 )
+Seat 5: YORAKHUNT ( $20,452 )
+Seat 6: DANIELA10 ( $6,069 )
+Seat 9: llor71 ( $17,019 )
+Seat 10: HAWKKO ( $15,158 )
+llor71 posts ante [$125]
+alinastanciu posts ante [$125]
+Hero posts ante [$125]
+HAWKKO posts ante [$125]
+brusler1 posts ante [$125]
+DANIELA10 posts ante [$125]
+Neeli15 posts ante [$125]
+YORAKHUNT posts ante [$125]
+llor71 posts small blind [$600]
+HAWKKO posts big blind [$1,200]
+** Dealing down cards **
+Dealt to Hero [ 6h, As ]
+alinastanciu folds
+Hero folds
+brusler1 folds
+Neeli15 folds
+YORAKHUNT raises [$2,400]
+DANIELA10 raises [$5,944]
+llor71 folds
+HAWKKO folds
+YORAKHUNT calls [$3,544]
+** Dealing flop ** [ 9h, 9d, Js ]
+** Dealing turn ** [ 6s ]
+** Dealing river ** [ 4d ]
+** Summary **
+YORAKHUNT shows [ Jh, Jc ]
+DANIELA10 shows [ Ah, Qd ]
+YORAKHUNT collected [ $14,688 ]
+
+
+
+#Game No : 190637590
+***** Cassava Hand History for Game 190637590 *****
+$600/$1,200 Blinds No Limit Holdem - *** 17 02 2012 01:13:37
+Tournament #36216773 Free - Table #244 (Real Money)
+Seat 9 is the button
+Total number of players : 8
+Seat 1: alinastanciu ( $16,555 )
+Seat 2: Hero ( $27,846 )
+Seat 3: brusler1 ( $20,092 )
+Seat 4: Neeli15 ( $690 )
+Seat 5: YORAKHUNT ( $29,071 )
+Seat 7: constantin8 ( $38,670 )
+Seat 9: llor71 ( $16,294 )
+Seat 10: HAWKKO ( $13,833 )
+llor71 posts ante [$125]
+alinastanciu posts ante [$125]
+Hero posts ante [$125]
+HAWKKO posts ante [$125]
+brusler1 posts ante [$125]
+constantin8 posts ante [$125]
+Neeli15 posts ante [$125]
+YORAKHUNT posts ante [$125]
+HAWKKO posts small blind [$600]
+alinastanciu posts big blind [$1,200]
+** Dealing down cards **
+Dealt to Hero [ 5d, Ad ]
+Hero folds
+brusler1 folds
+Neeli15 folds
+YORAKHUNT folds
+constantin8 raises [$2,400]
+llor71 calls [$2,400]
+HAWKKO folds
+alinastanciu calls [$1,200]
+** Dealing flop ** [ Kc, 5s, Ts ]
+alinastanciu checks
+constantin8 bets [$8,800]
+llor71 calls [$8,800]
+alinastanciu calls [$8,800]
+** Dealing turn ** [ 2c ]
+alinastanciu bets [$5,230]
+constantin8 calls [$5,230]
+llor71 folds
+** Dealing river ** [ Kh ]
+** Summary **
+alinastanciu shows [ 8d, Ks ]
+constantin8 shows [ Qs, Jc ]
+alinastanciu collected [ $45,660 ]
+
+
+
+#Game No : 190637991
+***** Cassava Hand History for Game 190637991 *****
+$600/$1,200 Blinds No Limit Holdem - *** 17 02 2012 01:14:48
+Tournament #36216773 Free - Table #244 (Real Money)
+Seat 10 is the button
+Total number of players : 9
+Seat 1: alinastanciu ( $45,660 )
+Seat 2: Hero ( $27,721 )
+Seat 3: brusler1 ( $19,967 )
+Seat 4: Neeli15 ( $565 )
+Seat 5: YORAKHUNT ( $28,946 )
+Seat 6: stelth78 ( $48,216 )
+Seat 7: constantin8 ( $22,115 )
+Seat 9: llor71 ( $4,969 )
+Seat 10: HAWKKO ( $13,108 )
+llor71 posts ante [$125]
+alinastanciu posts ante [$125]
+Hero posts ante [$125]
+HAWKKO posts ante [$125]
+brusler1 posts ante [$125]
+constantin8 posts ante [$125]
+Neeli15 posts ante [$125]
+YORAKHUNT posts ante [$125]
+stelth78 posts ante [$125]
+alinastanciu posts small blind [$600]
+Hero posts big blind [$1,200]
+** Dealing down cards **
+Dealt to Hero [ 2h, 3d ]
+brusler1 folds
+Neeli15 folds
+YORAKHUNT folds
+stelth78 folds
+constantin8 calls [$1,200]
+llor71 folds
+HAWKKO folds
+alinastanciu calls [$600]
+Hero checks
+** Dealing flop ** [ Ts, 5c, 5d ]
+alinastanciu checks
+Hero checks
+constantin8 checks
+** Dealing turn ** [ 7s ]
+alinastanciu bets [$2,400]
+Hero folds
+constantin8 folds
+** Summary **
+alinastanciu did not show his hand
+alinastanciu collected [ $4,725 ]
+
+
+
+#Game No : 190638283
+***** Cassava Hand History for Game 190638283 *****
+$600/$1,200 Blinds No Limit Holdem - *** 17 02 2012 01:15:38
+Tournament #36216773 Free - Table #244 (Real Money)
+Seat 1 is the button
+Total number of players : 9
+Seat 1: alinastanciu ( $49,060 )
+Seat 2: Hero ( $26,396 )
+Seat 3: brusler1 ( $19,842 )
+Seat 4: Neeli15 ( $440 )
+Seat 5: YORAKHUNT ( $28,821 )
+Seat 6: stelth78 ( $48,091 )
+Seat 7: constantin8 ( $20,790 )
+Seat 9: llor71 ( $4,844 )
+Seat 10: HAWKKO ( $12,983 )
+llor71 posts ante [$125]
+alinastanciu posts ante [$125]
+Hero posts ante [$125]
+HAWKKO posts ante [$125]
+brusler1 posts ante [$125]
+constantin8 posts ante [$125]
+Neeli15 posts ante [$125]
+YORAKHUNT posts ante [$125]
+stelth78 posts ante [$125]
+Hero posts small blind [$600]
+brusler1 posts big blind [$1,200]
+** Dealing down cards **
+Dealt to Hero [ 6c, Qc ]
+Neeli15 folds
+YORAKHUNT folds
+stelth78 calls [$1,200]
+constantin8 folds
+llor71 raises [$4,719]
+HAWKKO folds
+alinastanciu folds
+Hero folds
+brusler1 calls [$3,519]
+stelth78 calls [$3,519]
+** Dealing flop ** [ Qs, 7s, Js ]
+brusler1 bets [$1,200]
+stelth78 raises [$2,400]
+brusler1 calls [$1,200]
+** Dealing turn ** [ 5s ]
+brusler1 checks
+stelth78 bets [$40,847]
+brusler1 folds
+** Dealing river ** [ 8d ]
+** Summary **
+stelth78 shows [ Td, Qh ]
+llor71 shows [ Ks, 9c ]
+llor71 collected [ $15,882 ]
+stelth78 collected [ $4,800 ]
+
+
+
+#Game No : 190638603
+***** Cassava Hand History for Game 190638603 *****
+$800/$1,600 Blinds No Limit Holdem - *** 17 02 2012 01:16:33
+Tournament #36216773 Free - Table #244 (Real Money)
+Seat 2 is the button
+Total number of players : 9
+Seat 1: alinastanciu ( $48,935 )
+Seat 2: Hero ( $25,671 )
+Seat 3: brusler1 ( $12,598 )
+Seat 4: Neeli15 ( $315 )
+Seat 5: YORAKHUNT ( $28,696 )
+Seat 6: stelth78 ( $45,647 )
+Seat 7: constantin8 ( $20,665 )
+Seat 9: llor71 ( $15,882 )
+Seat 10: HAWKKO ( $12,858 )
+llor71 posts ante [$150]
+alinastanciu posts ante [$150]
+Hero posts ante [$150]
+HAWKKO posts ante [$150]
+brusler1 posts ante [$150]
+constantin8 posts ante [$150]
+Neeli15 posts ante [$150]
+YORAKHUNT posts ante [$150]
+stelth78 posts ante [$150]
+brusler1 posts small blind [$800]
+Neeli15 posts big blind [$165]
+** Dealing down cards **
+Dealt to Hero [ 4s, 6s ]
+YORAKHUNT folds
+stelth78 calls [$1,600]
+constantin8 folds
+llor71 folds
+HAWKKO raises [$12,708]
+alinastanciu folds
+Hero folds
+brusler1 calls [$11,648]
+stelth78 calls [$11,108]
+** Dealing flop ** [ 5h, Qs, 8c ]
+** Dealing turn ** [ Jd ]
+** Dealing river ** [ 9h ]
+** Summary **
+brusler1 shows [ Kh, Ad ]
+Neeli15 shows [ Qh, 8h ]
+stelth78 shows [ Ks, Js ]
+HAWKKO shows [ Jh, As ]
+Neeli15 collected [ $2,010 ]
+HAWKKO collected [ $36,849 ]
+HAWKKO collected [ $520 ]
+
+
+
+#Game No : 190638844
+***** Cassava Hand History for Game 190638844 *****
+$800/$1,600 Blinds No Limit Holdem - *** 17 02 2012 01:17:14
+Tournament #36216773 Free - Table #244 (Real Money)
+Seat 2 is the button
+Total number of players : 8
+Seat 1: alinastanciu ( $48,785 )
+Seat 2: Hero ( $25,521 )
+Seat 4: Neeli15 ( $2,010 )
+Seat 5: YORAKHUNT ( $28,546 )
+Seat 6: stelth78 ( $32,789 )
+Seat 7: constantin8 ( $20,515 )
+Seat 9: llor71 ( $15,732 )
+Seat 10: HAWKKO ( $37,369 )
+llor71 posts ante [$150]
+alinastanciu posts ante [$150]
+Hero posts ante [$150]
+HAWKKO posts ante [$150]
+constantin8 posts ante [$150]
+Neeli15 posts ante [$150]
+YORAKHUNT posts ante [$150]
+stelth78 posts ante [$150]
+Neeli15 posts small blind [$800]
+YORAKHUNT posts big blind [$1,600]
+** Dealing down cards **
+Dealt to Hero [ Ac, Qc ]
+stelth78 calls [$1,600]
+constantin8 raises [$8,400]
+llor71 calls [$8,400]
+HAWKKO folds
+alinastanciu folds
+Hero folds
+Neeli15 folds
+YORAKHUNT folds
+stelth78 folds
+** Dealing flop ** [ 2c, 8d, Jc ]
+constantin8 bets [$11,965]
+llor71 calls [$7,182]
+** Dealing turn ** [ 7c ]
+** Dealing river ** [ 6d ]
+** Summary **
+constantin8 shows [ Jd, Qs ]
+llor71 shows [ As, Ks ]
+constantin8 collected [ $36,364 ]
+
+
+
+#Game No : 190639088
+***** Cassava Hand History for Game 190639088 *****
+$800/$1,600 Blinds No Limit Holdem - *** 17 02 2012 01:17:56
+Tournament #36216773 Free - Table #244 (Real Money)
+Seat 4 is the button
+Total number of players : 9
+Seat 1: alinastanciu ( $48,635 )
+Seat 2: Hero ( $25,371 )
+Seat 3: blackbetty10 ( $57,580 )
+Seat 4: Neeli15 ( $1,060 )
+Seat 5: YORAKHUNT ( $26,796 )
+Seat 6: stelth78 ( $31,039 )
+Seat 7: constantin8 ( $41,147 )
+Seat 9: Aprili16 ( $31,216 )
+Seat 10: HAWKKO ( $37,219 )
+alinastanciu posts ante [$150]
+Hero posts ante [$150]
+HAWKKO posts ante [$150]
+constantin8 posts ante [$150]
+Neeli15 posts ante [$150]
+YORAKHUNT posts ante [$150]
+stelth78 posts ante [$150]
+blackbetty10 posts ante [$150]
+Aprili16 posts ante [$150]
+YORAKHUNT posts small blind [$800]
+stelth78 posts big blind [$1,600]
+** Dealing down cards **
+Dealt to Hero [ 3d, Qc ]
+constantin8 folds
+Aprili16 calls [$1,600]
+HAWKKO folds
+alinastanciu folds
+Hero folds
+blackbetty10 folds
+Neeli15 folds
+YORAKHUNT folds
+stelth78 checks
+** Dealing flop ** [ Jd, 7h, 4h ]
+stelth78 checks
+Aprili16 checks
+** Dealing turn ** [ 4s ]
+stelth78 bets [$1,600]
+Aprili16 calls [$1,600]
+** Dealing river ** [ Kc ]
+stelth78 checks
+Aprili16 checks
+** Summary **
+stelth78 shows [ 6d, Qd ]
+Aprili16 shows [ Ad, 6h ]
+Aprili16 collected [ $8,550 ]
+
+
+
+#Game No : 190639354
+***** Cassava Hand History for Game 190639354 *****
+$800/$1,600 Blinds No Limit Holdem - *** 17 02 2012 01:18:45
+Tournament #36216773 Free - Table #244 (Real Money)
+Seat 5 is the button
+Total number of players : 9
+Seat 1: alinastanciu ( $48,485 )
+Seat 2: Hero ( $25,221 )
+Seat 3: blackbetty10 ( $57,430 )
+Seat 4: Neeli15 ( $910 )
+Seat 5: YORAKHUNT ( $25,846 )
+Seat 6: stelth78 ( $27,689 )
+Seat 7: constantin8 ( $40,997 )
+Seat 9: Aprili16 ( $36,416 )
+Seat 10: HAWKKO ( $37,069 )
+alinastanciu posts ante [$150]
+Hero posts ante [$150]
+HAWKKO posts ante [$150]
+constantin8 posts ante [$150]
+Neeli15 posts ante [$150]
+YORAKHUNT posts ante [$150]
+stelth78 posts ante [$150]
+blackbetty10 posts ante [$150]
+Aprili16 posts ante [$150]
+stelth78 posts small blind [$800]
+constantin8 posts big blind [$1,600]
+** Dealing down cards **
+Dealt to Hero [ 8d, 5c ]
+Aprili16 calls [$1,600]
+HAWKKO raises [$36,919]
+alinastanciu folds
+Hero folds
+blackbetty10 folds
+Neeli15 folds
+YORAKHUNT folds
+stelth78 calls [$26,739]
+constantin8 folds
+Aprili16 folds
+** Dealing flop ** [ 4s, 6h, 4d ]
+** Dealing turn ** [ 8s ]
+** Dealing river ** [ 4c ]
+** Summary **
+stelth78 shows [ 8h, Th ]
+HAWKKO shows [ Ad, Jh ]
+stelth78 collected [ $59,628 ]
+
+
+
+#Game No : 190639568
+***** Cassava Hand History for Game 190639568 *****
+$800/$1,600 Blinds No Limit Holdem - *** 17 02 2012 01:19:20
+Tournament #36216773 Free - Table #244 (Real Money)
+Seat 6 is the button
+Total number of players : 9
+Seat 1: alinastanciu ( $48,335 )
+Seat 2: Hero ( $25,071 )
+Seat 3: blackbetty10 ( $57,280 )
+Seat 4: Neeli15 ( $760 )
+Seat 5: YORAKHUNT ( $25,696 )
+Seat 6: stelth78 ( $59,628 )
+Seat 7: constantin8 ( $39,247 )
+Seat 9: Aprili16 ( $34,666 )
+Seat 10: HAWKKO ( $9,380 )
+alinastanciu posts ante [$150]
+Hero posts ante [$150]
+HAWKKO posts ante [$150]
+constantin8 posts ante [$150]
+Neeli15 posts ante [$150]
+YORAKHUNT posts ante [$150]
+stelth78 posts ante [$150]
+blackbetty10 posts ante [$150]
+Aprili16 posts ante [$150]
+constantin8 posts small blind [$800]
+Aprili16 posts big blind [$1,600]
+** Dealing down cards **
+Dealt to Hero [ 8c, 3c ]
+HAWKKO raises [$9,230]
+alinastanciu folds
+Hero folds
+blackbetty10 folds
+Neeli15 folds
+YORAKHUNT folds
+stelth78 calls [$9,230]
+constantin8 folds
+Aprili16 folds
+** Dealing flop ** [ Kd, 3h, 5d ]
+** Dealing turn ** [ 2s ]
+** Dealing river ** [ 9d ]
+** Summary **
+stelth78 shows [ Td, Js ]
+HAWKKO shows [ 4c, Qc ]
+HAWKKO collected [ $22,210 ]
+
+
+
+#Game No : 190639864
+***** Cassava Hand History for Game 190639864 *****
+$800/$1,600 Blinds No Limit Holdem - *** 17 02 2012 01:20:04
+Tournament #36216773 Free - Table #244 (Real Money)
+Seat 7 is the button
+Total number of players : 8
+Seat 1: alinastanciu ( $48,185 )
+Seat 2: Hero ( $24,921 )
+Seat 3: blackbetty10 ( $57,130 )
+Seat 4: Neeli15 ( $610 )
+Seat 5: YORAKHUNT ( $25,546 )
+Seat 6: stelth78 ( $50,248 )
+Seat 7: constantin8 ( $38,297 )
+Seat 10: HAWKKO ( $22,210 )
+alinastanciu posts ante [$150]
+Hero posts ante [$150]
+HAWKKO posts ante [$150]
+constantin8 posts ante [$150]
+Neeli15 posts ante [$150]
+YORAKHUNT posts ante [$150]
+stelth78 posts ante [$150]
+blackbetty10 posts ante [$150]
+HAWKKO posts big blind [$1,600]
+** Dealing down cards **
+Dealt to Hero [ Qh, As ]
+alinastanciu folds
+Hero raises [$4,800]
+blackbetty10 folds
+Neeli15 folds
+YORAKHUNT folds
+stelth78 folds
+constantin8 folds
+HAWKKO folds
+** Summary **
+Hero did not show his hand
+Hero collected [ $4,400 ]
+
+
+
+#Game No : 190640022
+***** Cassava Hand History for Game 190640022 *****
+$800/$1,600 Blinds No Limit Holdem - *** 17 02 2012 01:20:33
+Tournament #36216773 Free - Table #244 (Real Money)
+Seat 7 is the button
+Total number of players : 8
+Seat 1: alinastanciu ( $48,035 )
+Seat 2: Hero ( $27,571 )
+Seat 3: blackbetty10 ( $56,980 )
+Seat 4: Neeli15 ( $460 )
+Seat 5: YORAKHUNT ( $25,396 )
+Seat 6: stelth78 ( $50,098 )
+Seat 7: constantin8 ( $38,147 )
+Seat 10: HAWKKO ( $20,460 )
+alinastanciu posts ante [$150]
+Hero posts ante [$150]
+HAWKKO posts ante [$150]
+constantin8 posts ante [$150]
+Neeli15 posts ante [$150]
+YORAKHUNT posts ante [$150]
+stelth78 posts ante [$150]
+blackbetty10 posts ante [$150]
+HAWKKO posts small blind [$800]
+alinastanciu posts big blind [$1,600]
+** Dealing down cards **
+Dealt to Hero [ Qs, 8h ]
+Hero folds
+blackbetty10 folds
+Neeli15 folds
+YORAKHUNT folds
+stelth78 folds
+constantin8 folds
+HAWKKO folds
+** Summary **
+alinastanciu did not show his hand
+alinastanciu collected [ $3,600 ]
+
+
+
+#Game No : 190640220
+***** Cassava Hand History for Game 190640220 *****
+$1,000/$2,000 Blinds No Limit Holdem - *** 17 02 2012 01:21:03
+Tournament #36216773 Free - Table #244 (Real Money)
+Seat 10 is the button
+Total number of players : 9
+Seat 1: alinastanciu ( $49,885 )
+Seat 2: Hero ( $27,421 )
+Seat 3: blackbetty10 ( $56,830 )
+Seat 4: Neeli15 ( $310 )
+Seat 5: YORAKHUNT ( $25,246 )
+Seat 6: stelth78 ( $49,948 )
+Seat 7: constantin8 ( $37,997 )
+Seat 9: paddybhoyno1 ( $30,430 )
+Seat 10: HAWKKO ( $19,510 )
+alinastanciu posts ante [$200]
+Hero posts ante [$200]
+HAWKKO posts ante [$200]
+constantin8 posts ante [$200]
+Neeli15 posts ante [$200]
+YORAKHUNT posts ante [$200]
+stelth78 posts ante [$200]
+blackbetty10 posts ante [$200]
+paddybhoyno1 posts ante [$200]
+alinastanciu posts small blind [$1,000]
+Hero posts big blind [$2,000]
+** Dealing down cards **
+Dealt to Hero [ 4c, 2d ]
+blackbetty10 folds
+Neeli15 folds
+YORAKHUNT folds
+stelth78 folds
+constantin8 calls [$2,000]
+paddybhoyno1 folds
+HAWKKO calls [$2,000]
+alinastanciu calls [$1,000]
+Hero checks
+** Dealing flop ** [ 2c, 3d, Ad ]
+alinastanciu bets [$47,685]
+Hero folds
+constantin8 folds
+HAWKKO folds
+** Summary **
+alinastanciu did not show his hand
+alinastanciu collected [ $9,800 ]
+
+
+
+#Game No : 190640549
+***** Cassava Hand History for Game 190640549 *****
+$1,000/$2,000 Blinds No Limit Holdem - *** 17 02 2012 01:21:53
+Tournament #36216773 Free - Table #244 (Real Money)
+Seat 1 is the button
+Total number of players : 9
+Seat 1: alinastanciu ( $57,485 )
+Seat 2: Hero ( $25,221 )
+Seat 3: blackbetty10 ( $56,630 )
+Seat 4: Neeli15 ( $110 )
+Seat 5: YORAKHUNT ( $25,046 )
+Seat 6: stelth78 ( $49,748 )
+Seat 7: constantin8 ( $35,797 )
+Seat 9: paddybhoyno1 ( $30,230 )
+Seat 10: HAWKKO ( $17,310 )
+alinastanciu posts ante [$200]
+Hero posts ante [$200]
+HAWKKO posts ante [$200]
+constantin8 posts ante [$200]
+Neeli15 posts ante [$110]
+YORAKHUNT posts ante [$200]
+stelth78 posts ante [$200]
+blackbetty10 posts ante [$200]
+paddybhoyno1 posts ante [$200]
+Hero posts small blind [$1,000]
+blackbetty10 posts big blind [$2,000]
+** Dealing down cards **
+Dealt to Hero [ Kc, 8c ]
+YORAKHUNT raises [$24,846]
+stelth78 folds
+constantin8 folds
+paddybhoyno1 folds
+HAWKKO folds
+alinastanciu folds
+Hero folds
+blackbetty10 folds
+** Dealing flop ** [ 6s, Ts, 6c ]
+** Dealing turn ** [ Js ]
+** Dealing river ** [ 9d ]
+** Summary **
+Neeli15 shows [ 3d, Jh ]
+YORAKHUNT shows [ Qc, Qd ]
+YORAKHUNT collected [ $990 ]
+YORAKHUNT collected [ $5,720 ]
+
+
+
+#Game No : 190640816
+***** Cassava Hand History for Game 190640816 *****
+$1,000/$2,000 Blinds No Limit Holdem - *** 17 02 2012 01:22:32
+Tournament #36216773 Free - Table #244 (Real Money)
+Seat 2 is the button
+Total number of players : 8
+Seat 1: alinastanciu ( $57,285 )
+Seat 2: Hero ( $24,021 )
+Seat 3: blackbetty10 ( $54,430 )
+Seat 5: YORAKHUNT ( $29,556 )
+Seat 6: stelth78 ( $49,548 )
+Seat 7: constantin8 ( $35,597 )
+Seat 9: paddybhoyno1 ( $30,030 )
+Seat 10: HAWKKO ( $17,110 )
+alinastanciu posts ante [$200]
+Hero posts ante [$200]
+HAWKKO posts ante [$200]
+constantin8 posts ante [$200]
+YORAKHUNT posts ante [$200]
+stelth78 posts ante [$200]
+blackbetty10 posts ante [$200]
+paddybhoyno1 posts ante [$200]
+blackbetty10 posts small blind [$1,000]
+YORAKHUNT posts big blind [$2,000]
+** Dealing down cards **
+Dealt to Hero [ Js, 6h ]
+stelth78 calls [$2,000]
+constantin8 calls [$2,000]
+paddybhoyno1 folds
+HAWKKO folds
+alinastanciu folds
+Hero folds
+blackbetty10 folds
+YORAKHUNT checks
+** Dealing flop ** [ Jc, 2d, 7c ]
+YORAKHUNT checks
+stelth78 bets [$8,600]
+constantin8 folds
+YORAKHUNT folds
+** Summary **
+stelth78 collected [ $8,600 ]
+
+
+
+#Game No : 190641147
+***** Cassava Hand History for Game 190641147 *****
+$1,000/$2,000 Blinds No Limit Holdem - *** 17 02 2012 01:23:31
+Tournament #36216773 Free - Table #244 (Real Money)
+Seat 3 is the button
+Total number of players : 8
+Seat 1: alinastanciu ( $57,085 )
+Seat 2: Hero ( $23,821 )
+Seat 3: blackbetty10 ( $53,230 )
+Seat 5: YORAKHUNT ( $27,356 )
+Seat 6: stelth78 ( $55,948 )
+Seat 7: constantin8 ( $33,397 )
+Seat 9: paddybhoyno1 ( $29,830 )
+Seat 10: HAWKKO ( $16,910 )
+alinastanciu posts ante [$200]
+Hero posts ante [$200]
+HAWKKO posts ante [$200]
+constantin8 posts ante [$200]
+YORAKHUNT posts ante [$200]
+stelth78 posts ante [$200]
+blackbetty10 posts ante [$200]
+paddybhoyno1 posts ante [$200]
+YORAKHUNT posts small blind [$1,000]
+stelth78 posts big blind [$2,000]
+** Dealing down cards **
+Dealt to Hero [ Qd, Ah ]
+constantin8 folds
+paddybhoyno1 folds
+HAWKKO folds
+alinastanciu folds
+Hero raises [$6,000]
+blackbetty10 folds
+YORAKHUNT folds
+stelth78 folds
+** Summary **
+Hero collected [ $6,600 ]
+
+
+
+#Game No : 190641287
+***** Cassava Hand History for Game 190641287 *****
+$1,000/$2,000 Blinds No Limit Holdem - *** 17 02 2012 01:23:52
+Tournament #36216773 Free - Table #244 (Real Money)
+Seat 5 is the button
+Total number of players : 9
+Seat 1: alinastanciu ( $56,885 )
+Seat 2: Hero ( $28,221 )
+Seat 3: blackbetty10 ( $53,030 )
+Seat 4: andersonsale ( $21,511 )
+Seat 5: YORAKHUNT ( $26,156 )
+Seat 6: stelth78 ( $53,748 )
+Seat 7: constantin8 ( $33,197 )
+Seat 9: paddybhoyno1 ( $29,630 )
+Seat 10: HAWKKO ( $16,710 )
+alinastanciu posts ante [$200]
+Hero posts ante [$200]
+HAWKKO posts ante [$200]
+constantin8 posts ante [$200]
+YORAKHUNT posts ante [$200]
+stelth78 posts ante [$200]
+blackbetty10 posts ante [$200]
+paddybhoyno1 posts ante [$200]
+andersonsale posts ante [$200]
+stelth78 posts small blind [$1,000]
+constantin8 posts big blind [$2,000]
+** Dealing down cards **
+Dealt to Hero [ 9c, 2d ]
+paddybhoyno1 folds
+HAWKKO folds
+alinastanciu folds
+Hero folds
+blackbetty10 folds
+andersonsale folds
+YORAKHUNT folds
+stelth78 calls [$1,000]
+constantin8 raises [$2,000]
+stelth78 calls [$2,000]
+** Dealing flop ** [ 5d, 7c, 6d ]
+stelth78 bets [$2,000]
+constantin8 raises [$4,000]
+stelth78 calls [$2,000]
+** Dealing turn ** [ Kd ]
+stelth78 bets [$2,000]
+constantin8 raises [$24,997]
+stelth78 folds
+** Summary **
+constantin8 did not show his hand
+constantin8 collected [ $21,800 ]
+
+
+
+#Game No : 190641507
+***** Cassava Hand History for Game 190641507 *****
+$1,000/$2,000 Blinds No Limit Holdem - *** 17 02 2012 01:24:33
+Tournament #36216773 Free - Table #244 (Real Money)
+Seat 6 is the button
+Total number of players : 9
+Seat 1: alinastanciu ( $56,685 )
+Seat 2: Hero ( $28,021 )
+Seat 3: blackbetty10 ( $52,830 )
+Seat 4: andersonsale ( $21,311 )
+Seat 5: YORAKHUNT ( $25,956 )
+Seat 6: stelth78 ( $43,548 )
+Seat 7: constantin8 ( $44,797 )
+Seat 9: paddybhoyno1 ( $29,430 )
+Seat 10: HAWKKO ( $16,510 )
+alinastanciu posts ante [$200]
+Hero posts ante [$200]
+HAWKKO posts ante [$200]
+constantin8 posts ante [$200]
+YORAKHUNT posts ante [$200]
+stelth78 posts ante [$200]
+blackbetty10 posts ante [$200]
+paddybhoyno1 posts ante [$200]
+andersonsale posts ante [$200]
+constantin8 posts small blind [$1,000]
+paddybhoyno1 posts big blind [$2,000]
+** Dealing down cards **
+Dealt to Hero [ Ts, 8d ]
+HAWKKO raises [$16,310]
+alinastanciu folds
+Hero folds
+blackbetty10 folds
+andersonsale folds
+YORAKHUNT folds
+stelth78 folds
+constantin8 folds
+paddybhoyno1 folds
+** Summary **
+HAWKKO did not show his hand
+HAWKKO collected [ $6,800 ]
+
+
+
+#Game No : 190641721
+***** Cassava Hand History for Game 190641721 *****
+$1,000/$2,000 Blinds No Limit Holdem - *** 17 02 2012 01:25:10
+Tournament #36216773 Free - Table #244 (Real Money)
+Seat 7 is the button
+Total number of players : 9
+Seat 1: alinastanciu ( $56,485 )
+Seat 2: Hero ( $27,821 )
+Seat 3: blackbetty10 ( $52,630 )
+Seat 4: andersonsale ( $21,111 )
+Seat 5: YORAKHUNT ( $25,756 )
+Seat 6: stelth78 ( $43,348 )
+Seat 7: constantin8 ( $43,597 )
+Seat 9: paddybhoyno1 ( $27,230 )
+Seat 10: HAWKKO ( $21,110 )
+alinastanciu posts ante [$200]
+Hero posts ante [$200]
+HAWKKO posts ante [$200]
+constantin8 posts ante [$200]
+YORAKHUNT posts ante [$200]
+stelth78 posts ante [$200]
+blackbetty10 posts ante [$200]
+paddybhoyno1 posts ante [$200]
+andersonsale posts ante [$200]
+paddybhoyno1 posts small blind [$1,000]
+HAWKKO posts big blind [$2,000]
+** Dealing down cards **
+Dealt to Hero [ Jc, Kh ]
+alinastanciu folds
+Hero calls [$2,000]
+blackbetty10 folds
+andersonsale folds
+YORAKHUNT folds
+stelth78 calls [$2,000]
+constantin8 folds
+paddybhoyno1 calls [$1,000]
+HAWKKO checks
+** Dealing flop ** [ As, Jh, Qh ]
+paddybhoyno1 checks
+HAWKKO bets [$2,000]
+Hero calls [$2,000]
+stelth78 calls [$2,000]
+paddybhoyno1 folds
+** Dealing turn ** [ 9c ]
+HAWKKO checks
+Hero checks
+stelth78 checks
+** Dealing river ** [ Tc ]
+HAWKKO bets [$16,910]
+Hero raises [$23,621]
+stelth78 folds
+** Summary **
+Hero shows [ Jc, Kh ]
+HAWKKO shows [ Qs, 8c ]
+Hero collected [ $49,620 ]
+
+
+
+#Game No : 190642215
+***** Cassava Hand History for Game 190642215 *****
+$1,200/$2,400 Blinds No Limit Holdem - *** 17 02 2012 01:26:26
+Tournament #36216773 Free - Table #244 (Real Money)
+Seat 9 is the button
+Total number of players : 7
+Seat 1: alinastanciu ( $56,285 )
+Seat 2: Hero ( $56,331 )
+Seat 4: andersonsale ( $20,911 )
+Seat 5: YORAKHUNT ( $25,556 )
+Seat 6: stelth78 ( $39,148 )
+Seat 7: constantin8 ( $43,397 )
+Seat 9: paddybhoyno1 ( $25,030 )
+alinastanciu posts ante [$250]
+Hero posts ante [$250]
+constantin8 posts ante [$250]
+YORAKHUNT posts ante [$250]
+stelth78 posts ante [$250]
+paddybhoyno1 posts ante [$250]
+andersonsale posts ante [$250]
+alinastanciu posts small blind [$1,200]
+Hero posts big blind [$2,400]
+** Dealing down cards **
+Dealt to Hero [ Td, Ac ]
+andersonsale folds
+YORAKHUNT folds
+stelth78 raises [$4,800]
+constantin8 folds
+paddybhoyno1 calls [$4,800]
+alinastanciu folds
+Hero calls [$2,400]
+** Dealing flop ** [ Qs, Kc, 6d ]
+Hero checks
+stelth78 bets [$2,400]
+paddybhoyno1 folds
+Hero folds
+** Summary **
+stelth78 collected [ $17,350 ]
+
+
+
+#Game No : 190642491
+***** Cassava Hand History for Game 190642491 *****
+$1,200/$2,400 Blinds No Limit Holdem - *** 17 02 2012 01:27:11
+Tournament #36216773 Free - Table #244 (Real Money)
+Seat 1 is the button
+Total number of players : 9
+Seat 1: alinastanciu ( $54,835 )
+Seat 2: Hero ( $51,281 )
+Seat 3: Rokki222 ( $33,601 )
+Seat 4: andersonsale ( $20,661 )
+Seat 5: YORAKHUNT ( $25,306 )
+Seat 6: stelth78 ( $51,448 )
+Seat 7: constantin8 ( $43,147 )
+Seat 9: paddybhoyno1 ( $19,980 )
+Seat 10: ObiwanDurks ( $27,291 )
+alinastanciu posts ante [$250]
+Hero posts ante [$250]
+constantin8 posts ante [$250]
+YORAKHUNT posts ante [$250]
+stelth78 posts ante [$250]
+paddybhoyno1 posts ante [$250]
+andersonsale posts ante [$250]
+ObiwanDurks posts ante [$250]
+Rokki222 posts ante [$250]
+Hero posts small blind [$1,200]
+Rokki222 posts big blind [$2,400]
+** Dealing down cards **
+Dealt to Hero [ 7c, 6c ]
+andersonsale folds
+YORAKHUNT folds
+stelth78 calls [$2,400]
+constantin8 folds
+paddybhoyno1 folds
+ObiwanDurks folds
+alinastanciu folds
+Hero folds
+Rokki222 raises [$30,951]
+stelth78 folds
+** Summary **
+Rokki222 did not show his hand
+Rokki222 collected [ $8,250 ]
+
+
+
+#Game No : 190642843
+***** Cassava Hand History for Game 190642843 *****
+$1,200/$2,400 Blinds No Limit Holdem - *** 17 02 2012 01:28:08
+Tournament #36216773 Free - Table #244 (Real Money)
+Seat 2 is the button
+Total number of players : 9
+Seat 1: alinastanciu ( $54,585 )
+Seat 2: Hero ( $49,831 )
+Seat 3: Rokki222 ( $39,201 )
+Seat 4: andersonsale ( $20,411 )
+Seat 5: YORAKHUNT ( $25,056 )
+Seat 6: stelth78 ( $48,798 )
+Seat 7: constantin8 ( $42,897 )
+Seat 9: paddybhoyno1 ( $19,730 )
+Seat 10: ObiwanDurks ( $27,041 )
+alinastanciu posts ante [$250]
+Hero posts ante [$250]
+constantin8 posts ante [$250]
+YORAKHUNT posts ante [$250]
+stelth78 posts ante [$250]
+paddybhoyno1 posts ante [$250]
+andersonsale posts ante [$250]
+ObiwanDurks posts ante [$250]
+Rokki222 posts ante [$250]
+Rokki222 posts small blind [$1,200]
+andersonsale posts big blind [$2,400]
+** Dealing down cards **
+Dealt to Hero [ 8d, 6s ]
+YORAKHUNT folds
+stelth78 folds
+constantin8 folds
+paddybhoyno1 folds
+ObiwanDurks folds
+alinastanciu calls [$2,400]
+Hero folds
+Rokki222 calls [$1,200]
+andersonsale checks
+** Dealing flop ** [ 9d, 6d, 6h ]
+Rokki222 checks
+andersonsale bets [$2,400]
+alinastanciu folds
+Rokki222 calls [$2,400]
+** Dealing turn ** [ 3s ]
+Rokki222 checks
+andersonsale bets [$15,361]
+Rokki222 folds
+** Summary **
+andersonsale did not show his hand
+andersonsale collected [ $14,250 ]
+
+
+
+#Game No : 190643251
+***** Cassava Hand History for Game 190643251 *****
+$1,200/$2,400 Blinds No Limit Holdem - *** 17 02 2012 01:29:26
+Tournament #36216773 Free - Table #244 (Real Money)
+Seat 3 is the button
+Total number of players : 9
+Seat 1: alinastanciu ( $51,935 )
+Seat 2: Hero ( $49,581 )
+Seat 3: Rokki222 ( $34,151 )
+Seat 4: andersonsale ( $29,611 )
+Seat 5: YORAKHUNT ( $24,806 )
+Seat 6: stelth78 ( $48,548 )
+Seat 7: constantin8 ( $42,647 )
+Seat 9: paddybhoyno1 ( $19,480 )
+Seat 10: ObiwanDurks ( $26,791 )
+alinastanciu posts ante [$250]
+Hero posts ante [$250]
+constantin8 posts ante [$250]
+YORAKHUNT posts ante [$250]
+stelth78 posts ante [$250]
+paddybhoyno1 posts ante [$250]
+andersonsale posts ante [$250]
+ObiwanDurks posts ante [$250]
+Rokki222 posts ante [$250]
+andersonsale posts small blind [$1,200]
+YORAKHUNT posts big blind [$2,400]
+** Dealing down cards **
+Dealt to Hero [ 4h, Qs ]
+stelth78 folds
+constantin8 folds
+paddybhoyno1 folds
+ObiwanDurks folds
+alinastanciu folds
+Hero folds
+Rokki222 folds
+andersonsale calls [$1,200]
+YORAKHUNT checks
+** Dealing flop ** [ Qc, 5s, 3s ]
+andersonsale checks
+YORAKHUNT bets [$2,400]
+andersonsale folds
+** Summary **
+YORAKHUNT did not show his hand
+YORAKHUNT collected [ $7,050 ]
+
+
+
+#Game No : 190643628
+***** Cassava Hand History for Game 190643628 *****
+$1,200/$2,400 Blinds No Limit Holdem - *** 17 02 2012 01:30:36
+Tournament #36216773 Free - Table #244 (Real Money)
+Seat 4 is the button
+Total number of players : 9
+Seat 1: alinastanciu ( $51,685 )
+Seat 2: Hero ( $49,331 )
+Seat 3: Rokki222 ( $33,901 )
+Seat 4: andersonsale ( $26,961 )
+Seat 5: YORAKHUNT ( $29,206 )
+Seat 6: stelth78 ( $48,298 )
+Seat 7: constantin8 ( $42,397 )
+Seat 9: paddybhoyno1 ( $19,230 )
+Seat 10: ObiwanDurks ( $26,541 )
+alinastanciu posts ante [$250]
+Hero posts ante [$250]
+constantin8 posts ante [$250]
+YORAKHUNT posts ante [$250]
+stelth78 posts ante [$250]
+paddybhoyno1 posts ante [$250]
+andersonsale posts ante [$250]
+ObiwanDurks posts ante [$250]
+Rokki222 posts ante [$250]
+YORAKHUNT posts small blind [$1,200]
+stelth78 posts big blind [$2,400]
+** Dealing down cards **
+Dealt to Hero [ 4d, 7s ]
+constantin8 calls [$2,400]
+paddybhoyno1 folds
+ObiwanDurks folds
+alinastanciu calls [$2,400]
+Hero folds
+Rokki222 calls [$2,400]
+andersonsale folds
+YORAKHUNT calls [$1,200]
+stelth78 checks
+** Dealing flop ** [ 2s, 8h, 8d ]
+YORAKHUNT checks
+stelth78 bets [$3,200]
+constantin8 folds
+alinastanciu folds
+Rokki222 calls [$3,200]
+YORAKHUNT folds
+** Dealing turn ** [ 7h ]
+stelth78 bets [$3,200]
+Rokki222 calls [$3,200]
+** Dealing river ** [ Kd ]
+stelth78 checks
+Rokki222 checks
+** Summary **
+stelth78 shows [ 3s, Qh ]
+Rokki222 shows [ 2c, 3d ]
+Rokki222 collected [ $27,050 ]
+
+
+
+#Game No : 190644045
+***** Cassava Hand History for Game 190644045 *****
+$1,600/$3,200 Blinds No Limit Holdem - *** 17 02 2012 01:31:55
+Tournament #36216773 Free - Table #244 (Real Money)
+Seat 5 is the button
+Total number of players : 9
+Seat 1: alinastanciu ( $49,035 )
+Seat 2: Hero ( $49,081 )
+Seat 3: Rokki222 ( $51,901 )
+Seat 4: andersonsale ( $26,711 )
+Seat 5: YORAKHUNT ( $26,556 )
+Seat 6: stelth78 ( $39,248 )
+Seat 7: constantin8 ( $39,747 )
+Seat 9: paddybhoyno1 ( $18,980 )
+Seat 10: ObiwanDurks ( $26,291 )
+alinastanciu posts ante [$300]
+Hero posts ante [$300]
+constantin8 posts ante [$300]
+YORAKHUNT posts ante [$300]
+stelth78 posts ante [$300]
+paddybhoyno1 posts ante [$300]
+andersonsale posts ante [$300]
+ObiwanDurks posts ante [$300]
+Rokki222 posts ante [$300]
+stelth78 posts small blind [$1,600]
+constantin8 posts big blind [$3,200]
+** Dealing down cards **
+Dealt to Hero [ 5c, Qd ]
+paddybhoyno1 folds
+ObiwanDurks raises [$6,400]
+alinastanciu folds
+Hero folds
+Rokki222 folds
+andersonsale folds
+YORAKHUNT folds
+stelth78 calls [$4,800]
+constantin8 folds
+** Dealing flop ** [ 5d, Qc, 4s ]
+stelth78 bets [$32,548]
+ObiwanDurks calls [$19,591]
+** Dealing turn ** [ Ts ]
+** Dealing river ** [ 7s ]
+** Summary **
+stelth78 shows [ 3s, Kd ]
+ObiwanDurks shows [ Ah, Jd ]
+ObiwanDurks collected [ $57,882 ]
+
+
+
+#Game No : 190644427
+***** Cassava Hand History for Game 190644427 *****
+$1,600/$3,200 Blinds No Limit Holdem - *** 17 02 2012 01:33:06
+Tournament #36216773 Free - Table #244 (Real Money)
+Seat 6 is the button
+Total number of players : 9
+Seat 1: alinastanciu ( $48,735 )
+Seat 2: Hero ( $48,781 )
+Seat 3: Rokki222 ( $51,601 )
+Seat 4: andersonsale ( $26,411 )
+Seat 5: YORAKHUNT ( $26,256 )
+Seat 6: stelth78 ( $12,957 )
+Seat 7: constantin8 ( $36,247 )
+Seat 9: paddybhoyno1 ( $18,680 )
+Seat 10: ObiwanDurks ( $57,882 )
+alinastanciu posts ante [$300]
+Hero posts ante [$300]
+constantin8 posts ante [$300]
+YORAKHUNT posts ante [$300]
+stelth78 posts ante [$300]
+paddybhoyno1 posts ante [$300]
+andersonsale posts ante [$300]
+ObiwanDurks posts ante [$300]
+Rokki222 posts ante [$300]
+constantin8 posts small blind [$1,600]
+paddybhoyno1 posts big blind [$3,200]
+** Dealing down cards **
+Dealt to Hero [ Tc, 8h ]
+ObiwanDurks folds
+alinastanciu folds
+Hero folds
+Rokki222 folds
+andersonsale folds
+YORAKHUNT folds
+stelth78 folds
+constantin8 calls [$1,600]
+paddybhoyno1 checks
+** Dealing flop ** [ Ah, Ts, Js ]
+constantin8 bets [$9,100]
+paddybhoyno1 folds
+** Summary **
+constantin8 did not show his hand
+constantin8 collected [ $9,100 ]
+
+
+
+#Game No : 190644737
+***** Cassava Hand History for Game 190644737 *****
+$1,600/$3,200 Blinds No Limit Holdem - *** 17 02 2012 01:34:04
+Tournament #36216773 Free - Table #244 (Real Money)
+Seat 7 is the button
+Total number of players : 9
+Seat 1: alinastanciu ( $48,435 )
+Seat 2: Hero ( $48,481 )
+Seat 3: Rokki222 ( $51,301 )
+Seat 4: andersonsale ( $26,111 )
+Seat 5: YORAKHUNT ( $25,956 )
+Seat 6: stelth78 ( $12,657 )
+Seat 7: constantin8 ( $41,847 )
+Seat 9: paddybhoyno1 ( $15,180 )
+Seat 10: ObiwanDurks ( $57,582 )
+alinastanciu posts ante [$300]
+Hero posts ante [$300]
+constantin8 posts ante [$300]
+YORAKHUNT posts ante [$300]
+stelth78 posts ante [$300]
+paddybhoyno1 posts ante [$300]
+andersonsale posts ante [$300]
+ObiwanDurks posts ante [$300]
+Rokki222 posts ante [$300]
+paddybhoyno1 posts small blind [$1,600]
+ObiwanDurks posts big blind [$3,200]
+** Dealing down cards **
+Dealt to Hero [ 4h, 3d ]
+alinastanciu folds
+Hero folds
+Rokki222 calls [$3,200]
+andersonsale folds
+YORAKHUNT folds
+stelth78 raises [$12,357]
+constantin8 folds
+paddybhoyno1 folds
+ObiwanDurks folds
+Rokki222 calls [$9,157]
+** Dealing flop ** [ Qc, 9s, 2d ]
+** Dealing turn ** [ Ac ]
+** Dealing river ** [ As ]
+** Summary **
+Rokki222 shows [ Ad, 4c ]
+stelth78 shows [ 8s, Jh ]
+Rokki222 collected [ $32,214 ]
+
+
+
+#Game No : 190645190
+***** Cassava Hand History for Game 190645190 *****
+$1,600/$3,200 Blinds No Limit Holdem - *** 17 02 2012 01:35:26
+Tournament #36216773 Free - Table #244 (Real Money)
+Seat 9 is the button
+Total number of players : 8
+Seat 1: alinastanciu ( $48,135 )
+Seat 2: Hero ( $48,181 )
+Seat 3: Rokki222 ( $70,858 )
+Seat 4: andersonsale ( $25,811 )
+Seat 5: YORAKHUNT ( $25,656 )
+Seat 7: constantin8 ( $41,547 )
+Seat 9: paddybhoyno1 ( $13,280 )
+Seat 10: ObiwanDurks ( $54,082 )
+alinastanciu posts ante [$300]
+Hero posts ante [$300]
+constantin8 posts ante [$300]
+YORAKHUNT posts ante [$300]
+paddybhoyno1 posts ante [$300]
+andersonsale posts ante [$300]
+ObiwanDurks posts ante [$300]
+Rokki222 posts ante [$300]
+ObiwanDurks posts small blind [$1,600]
+alinastanciu posts big blind [$3,200]
+** Dealing down cards **
+Dealt to Hero [ 5s, Kd ]
+Hero folds
+Rokki222 folds
+andersonsale folds
+YORAKHUNT folds
+constantin8 folds
+paddybhoyno1 folds
+ObiwanDurks calls [$1,600]
+alinastanciu checks
+** Dealing flop ** [ Ad, 6d, Jd ]
+ObiwanDurks checks
+alinastanciu bets [$6,400]
+ObiwanDurks folds
+** Summary **
+alinastanciu collected [ $8,800 ]
+
+
+
+#Game No : 190645435
+***** Cassava Hand History for Game 190645435 *****
+$2,000/$4,000 Blinds No Limit Holdem - *** 17 02 2012 01:36:11
+Tournament #36216773 Free - Table #244 (Real Money)
+Seat 10 is the button
+Total number of players : 8
+Seat 1: alinastanciu ( $53,435 )
+Seat 2: Hero ( $47,881 )
+Seat 3: Rokki222 ( $70,558 )
+Seat 4: andersonsale ( $25,511 )
+Seat 5: YORAKHUNT ( $25,356 )
+Seat 6: zatospartak ( $4,784 )
+Seat 7: constantin8 ( $41,247 )
+Seat 10: ObiwanDurks ( $50,582 )
+alinastanciu posts ante [$400]
+Hero posts ante [$400]
+constantin8 posts ante [$400]
+YORAKHUNT posts ante [$400]
+andersonsale posts ante [$400]
+ObiwanDurks posts ante [$400]
+Rokki222 posts ante [$400]
+zatospartak posts ante [$400]
+alinastanciu posts small blind [$2,000]
+Hero posts big blind [$4,000]
+** Dealing down cards **
+Dealt to Hero [ 7d, 8s ]
+Rokki222 calls [$4,000]
+andersonsale calls [$4,000]
+YORAKHUNT folds
+zatospartak folds
+constantin8 raises [$25,200]
+ObiwanDurks folds
+alinastanciu folds
+Hero folds
+Rokki222 folds
+andersonsale folds
+** Summary **
+constantin8 did not show his hand
+constantin8 collected [ $21,200 ]
+
+
+
+#Game No : 190645606
+***** Cassava Hand History for Game 190645606 *****
+$2,000/$4,000 Blinds No Limit Holdem - *** 17 02 2012 01:36:45
+Tournament #36216773 Free - Table #244 (Real Money)
+Seat 1 is the button
+Total number of players : 8
+Seat 1: alinastanciu ( $51,035 )
+Seat 2: Hero ( $43,481 )
+Seat 3: Rokki222 ( $66,158 )
+Seat 4: andersonsale ( $21,111 )
+Seat 5: YORAKHUNT ( $24,956 )
+Seat 6: zatospartak ( $4,384 )
+Seat 7: constantin8 ( $58,047 )
+Seat 10: ObiwanDurks ( $50,182 )
+alinastanciu posts ante [$400]
+Hero posts ante [$400]
+constantin8 posts ante [$400]
+YORAKHUNT posts ante [$400]
+andersonsale posts ante [$400]
+ObiwanDurks posts ante [$400]
+Rokki222 posts ante [$400]
+zatospartak posts ante [$400]
+Hero posts small blind [$2,000]
+Rokki222 posts big blind [$4,000]
+** Dealing down cards **
+Dealt to Hero [ Qs, Jh ]
+andersonsale folds
+YORAKHUNT raises [$24,556]
+zatospartak folds
+constantin8 folds
+ObiwanDurks folds
+alinastanciu folds
+Hero folds
+Rokki222 folds
+** Summary **
+YORAKHUNT did not show his hand
+YORAKHUNT collected [ $13,200 ]
+
+
+
+#Game No : 190645796
+***** Cassava Hand History for Game 190645796 *****
+$2,000/$4,000 Blinds No Limit Holdem - *** 17 02 2012 01:37:19
+Tournament #36216773 Free - Table #244 (Real Money)
+Seat 2 is the button
+Total number of players : 8
+Seat 1: alinastanciu ( $50,635 )
+Seat 2: Hero ( $41,081 )
+Seat 3: Rokki222 ( $61,758 )
+Seat 4: andersonsale ( $20,711 )
+Seat 5: YORAKHUNT ( $33,756 )
+Seat 6: zatospartak ( $3,984 )
+Seat 7: constantin8 ( $57,647 )
+Seat 10: ObiwanDurks ( $49,782 )
+alinastanciu posts ante [$400]
+Hero posts ante [$400]
+constantin8 posts ante [$400]
+YORAKHUNT posts ante [$400]
+andersonsale posts ante [$400]
+ObiwanDurks posts ante [$400]
+Rokki222 posts ante [$400]
+zatospartak posts ante [$400]
+Rokki222 posts small blind [$2,000]
+andersonsale posts big blind [$4,000]
+** Dealing down cards **
+Dealt to Hero [ 8h, 2s ]
+YORAKHUNT raises [$33,356]
+zatospartak folds
+constantin8 folds
+ObiwanDurks folds
+alinastanciu folds
+Hero folds
+Rokki222 folds
+andersonsale folds
+** Summary **
+YORAKHUNT collected [ $13,200 ]
+
+
+
+#Game No : 190646038
+***** Cassava Hand History for Game 190646038 *****
+$2,000/$4,000 Blinds No Limit Holdem - *** 17 02 2012 01:38:05
+Tournament #36216773 Free - Table #244 (Real Money)
+Seat 3 is the button
+Total number of players : 9
+Seat 1: alinastanciu ( $50,235 )
+Seat 2: Hero ( $40,681 )
+Seat 3: Rokki222 ( $59,358 )
+Seat 4: andersonsale ( $16,311 )
+Seat 5: YORAKHUNT ( $42,556 )
+Seat 6: zatospartak ( $3,584 )
+Seat 7: constantin8 ( $57,247 )
+Seat 9: molo9oy ( $93,993 )
+Seat 10: ObiwanDurks ( $49,382 )
+alinastanciu posts ante [$400]
+Hero posts ante [$400]
+constantin8 posts ante [$400]
+YORAKHUNT posts ante [$400]
+andersonsale posts ante [$400]
+ObiwanDurks posts ante [$400]
+Rokki222 posts ante [$400]
+zatospartak posts ante [$400]
+molo9oy posts ante [$400]
+andersonsale posts small blind [$2,000]
+YORAKHUNT posts big blind [$4,000]
+** Dealing down cards **
+Dealt to Hero [ 3c, Ah ]
+zatospartak folds
+constantin8 raises [$8,000]
+molo9oy folds
+ObiwanDurks folds
+alinastanciu folds
+Hero raises [$40,281]
+Rokki222 folds
+andersonsale folds
+YORAKHUNT folds
+constantin8 calls [$32,281]
+** Dealing flop ** [ 7c, 2d, 2h ]
+** Dealing turn ** [ Kd ]
+** Dealing river ** [ Ad ]
+** Summary **
+Hero shows [ 3c, Ah ]
+constantin8 shows [ Kc, 9c ]
+Hero collected [ $90,162 ]
+
+
+
+#Game No : 190646353
+***** Cassava Hand History for Game 190646353 *****
+$2,000/$4,000 Blinds No Limit Holdem - *** 17 02 2012 01:39:00
+Tournament #36216773 Free - Table #244 (Real Money)
+Seat 4 is the button
+Total number of players : 9
+Seat 1: alinastanciu ( $49,835 )
+Seat 2: Hero ( $90,162 )
+Seat 3: Rokki222 ( $58,958 )
+Seat 4: andersonsale ( $13,911 )
+Seat 5: YORAKHUNT ( $38,156 )
+Seat 6: zatospartak ( $3,184 )
+Seat 7: constantin8 ( $16,566 )
+Seat 9: molo9oy ( $93,593 )
+Seat 10: ObiwanDurks ( $48,982 )
+alinastanciu posts ante [$400]
+Hero posts ante [$400]
+constantin8 posts ante [$400]
+YORAKHUNT posts ante [$400]
+andersonsale posts ante [$400]
+ObiwanDurks posts ante [$400]
+Rokki222 posts ante [$400]
+zatospartak posts ante [$400]
+molo9oy posts ante [$400]
+YORAKHUNT posts small blind [$2,000]
+zatospartak posts big blind [$2,784]
+** Dealing down cards **
+Dealt to Hero [ Ks, 7s ]
+constantin8 raises [$16,166]
+molo9oy raises [$93,193]
+ObiwanDurks folds
+alinastanciu folds
+Hero folds
+Rokki222 calls [$58,558]
+andersonsale folds
+YORAKHUNT calls [$35,756]
+** Dealing flop ** [ 7d, 5h, Js ]
+** Dealing turn ** [ 2h ]
+** Dealing river ** [ Ac ]
+** Summary **
+Rokki222 shows [ As, Kd ]
+YORAKHUNT shows [ Ad, Kh ]
+zatospartak shows [ 9h, 3c ]
+constantin8 shows [ 7h, Qd ]
+molo9oy shows [ Qh, Th ]
+YORAKHUNT collected [ $8,760 ]
+Rokki222 collected [ $8,760 ]
+YORAKHUNT collected [ $26,764 ]
+Rokki222 collected [ $26,764 ]
+YORAKHUNT collected [ $32,385 ]
+Rokki222 collected [ $32,385 ]
+Rokki222 collected [ $41,604 ]
+molo9oy collected [ $34,635 ]
+
+
+
+#Game No : 190646649
+***** Cassava Hand History for Game 190646649 *****
+$2,000/$4,000 Blinds No Limit Holdem - *** 17 02 2012 01:39:49
+Tournament #36216773 Free - Table #52 (Real Money)
+Seat 7 is the button
+Total number of players : 6
+Seat 1: Rokki222 ( $109,513 )
+Seat 3: ObiwanDurks ( $48,582 )
+Seat 6: Jecago ( $23,968 )
+Seat 7: molo9oy ( $34,635 )
+Seat 9: alinastanciu ( $49,435 )
+Seat 10: Hero ( $89,762 )
+Jecago posts ante [$400]
+molo9oy posts ante [$400]
+alinastanciu posts ante [$400]
+Hero posts ante [$400]
+Rokki222 posts ante [$400]
+ObiwanDurks posts ante [$400]
+alinastanciu posts small blind [$2,000]
+Hero posts big blind [$4,000]
+** Dealing down cards **
+Dealt to Hero [ 7h, 8c ]
+Rokki222 folds
+ObiwanDurks folds
+Jecago raises [$8,000]
+molo9oy raises [$34,235]
+alinastanciu folds
+Hero folds
+Jecago calls [$15,568]
+** Dealing flop ** [ 4s, Ac, Qs ]
+** Dealing turn ** [ 5h ]
+** Dealing river ** [ 8d ]
+** Summary **
+Jecago shows [ Qh, Tc ]
+molo9oy shows [ Kd, 9h ]
+Jecago collected [ $55,536 ]
+
+
+
+#Game No : 190646933
+***** Cassava Hand History for Game 190646933 *****
+$2,500/$5,000 Blinds No Limit Holdem - *** 17 02 2012 01:40:41
+Tournament #36216773 Free - Table #52 (Real Money)
+Seat 9 is the button
+Total number of players : 8
+Seat 1: Rokki222 ( $109,113 )
+Seat 2: blackbetty10 ( $88,606 )
+Seat 3: ObiwanDurks ( $48,182 )
+Seat 4: mirceone11 ( $127,438 )
+Seat 6: Jecago ( $55,536 )
+Seat 7: molo9oy ( $10,667 )
+Seat 9: alinastanciu ( $47,035 )
+Seat 10: Hero ( $85,362 )
+Jecago posts ante [$500]
+molo9oy posts ante [$500]
+alinastanciu posts ante [$500]
+Hero posts ante [$500]
+Rokki222 posts ante [$500]
+ObiwanDurks posts ante [$500]
+blackbetty10 posts ante [$500]
+mirceone11 posts ante [$500]
+Hero posts small blind [$2,500]
+Rokki222 posts big blind [$5,000]
+** Dealing down cards **
+Dealt to Hero [ 4d, 4h ]
+blackbetty10 folds
+ObiwanDurks folds
+mirceone11 folds
+Jecago folds
+molo9oy folds
+alinastanciu folds
+Hero raises [$7,500]
+Rokki222 calls [$5,000]
+** Dealing flop ** [ Ks, 9d, Qs ]
+Hero checks
+Rokki222 bets [$5,000]
+Hero folds
+** Summary **
+Rokki222 did not show his hand
+Rokki222 collected [ $24,000 ]
+
+
+
+#Game No : 190647217
+***** Cassava Hand History for Game 190647217 *****
+$2,500/$5,000 Blinds No Limit Holdem - *** 17 02 2012 01:41:36
+Tournament #36216773 Free - Table #52 (Real Money)
+Seat 10 is the button
+Total number of players : 8
+Seat 1: Rokki222 ( $122,613 )
+Seat 2: blackbetty10 ( $88,106 )
+Seat 3: ObiwanDurks ( $47,682 )
+Seat 4: mirceone11 ( $126,938 )
+Seat 6: Jecago ( $55,036 )
+Seat 7: molo9oy ( $10,167 )
+Seat 9: alinastanciu ( $46,535 )
+Seat 10: Hero ( $74,862 )
+Jecago posts ante [$500]
+molo9oy posts ante [$500]
+alinastanciu posts ante [$500]
+Hero posts ante [$500]
+Rokki222 posts ante [$500]
+ObiwanDurks posts ante [$500]
+blackbetty10 posts ante [$500]
+mirceone11 posts ante [$500]
+Rokki222 posts small blind [$2,500]
+blackbetty10 posts big blind [$5,000]
+** Dealing down cards **
+Dealt to Hero [ Kc, 2d ]
+ObiwanDurks folds
+mirceone11 folds
+Jecago folds
+molo9oy raises [$9,667]
+alinastanciu folds
+Hero folds
+Rokki222 folds
+blackbetty10 folds
+** Summary **
+molo9oy collected [ $16,500 ]
+
+
+
+#Game No : 190647425
+***** Cassava Hand History for Game 190647425 *****
+$2,500/$5,000 Blinds No Limit Holdem - *** 17 02 2012 01:42:16
+Tournament #36216773 Free - Table #52 (Real Money)
+Seat 1 is the button
+Total number of players : 9
+Seat 1: Rokki222 ( $119,613 )
+Seat 2: blackbetty10 ( $82,606 )
+Seat 3: ObiwanDurks ( $47,182 )
+Seat 4: mirceone11 ( $126,438 )
+Seat 5: pokergot1818 ( $44,997 )
+Seat 6: Jecago ( $54,536 )
+Seat 7: molo9oy ( $21,167 )
+Seat 9: alinastanciu ( $46,035 )
+Seat 10: Hero ( $74,362 )
+Jecago posts ante [$500]
+molo9oy posts ante [$500]
+alinastanciu posts ante [$500]
+Hero posts ante [$500]
+Rokki222 posts ante [$500]
+ObiwanDurks posts ante [$500]
+blackbetty10 posts ante [$500]
+mirceone11 posts ante [$500]
+pokergot1818 posts ante [$500]
+blackbetty10 posts small blind [$2,500]
+ObiwanDurks posts big blind [$5,000]
+** Dealing down cards **
+Dealt to Hero [ 7c, 5c ]
+mirceone11 calls [$5,000]
+pokergot1818 raises [$44,497]
+Jecago folds
+molo9oy calls [$20,667]
+alinastanciu folds
+Hero folds
+Rokki222 folds
+blackbetty10 folds
+ObiwanDurks calls [$39,497]
+mirceone11 folds
+** Dealing flop ** [ 3c, 3h, 2s ]
+** Dealing turn ** [ 2d ]
+** Dealing river ** [ 7d ]
+** Summary **
+ObiwanDurks shows [ Qs, Ad ]
+pokergot1818 shows [ 8s, As ]
+molo9oy shows [ 9c, 9d ]
+molo9oy collected [ $74,001 ]
+ObiwanDurks collected [ $23,830 ]
+pokergot1818 collected [ $23,830 ]
+
+
+
+#Game No : 190647643
+***** Cassava Hand History for Game 190647643 *****
+$2,500/$5,000 Blinds No Limit Holdem - *** 17 02 2012 01:43:01
+Tournament #36216773 Free - Table #52 (Real Money)
+Seat 2 is the button
+Total number of players : 9
+Seat 1: Rokki222 ( $119,113 )
+Seat 2: blackbetty10 ( $79,606 )
+Seat 3: ObiwanDurks ( $26,015 )
+Seat 4: mirceone11 ( $120,938 )
+Seat 5: pokergot1818 ( $23,830 )
+Seat 6: Jecago ( $54,036 )
+Seat 7: molo9oy ( $74,001 )
+Seat 9: alinastanciu ( $45,535 )
+Seat 10: Hero ( $73,862 )
+Jecago posts ante [$500]
+molo9oy posts ante [$500]
+alinastanciu posts ante [$500]
+Hero posts ante [$500]
+Rokki222 posts ante [$500]
+ObiwanDurks posts ante [$500]
+blackbetty10 posts ante [$500]
+mirceone11 posts ante [$500]
+pokergot1818 posts ante [$500]
+ObiwanDurks posts small blind [$2,500]
+mirceone11 posts big blind [$5,000]
+** Dealing down cards **
+Dealt to Hero [ Qd, 2c ]
+pokergot1818 folds
+Jecago folds
+molo9oy folds
+alinastanciu folds
+Hero folds
+Rokki222 folds
+blackbetty10 folds
+ObiwanDurks calls [$2,500]
+mirceone11 checks
+** Dealing flop ** [ 7d, 7h, 3h ]
+ObiwanDurks checks
+mirceone11 checks
+** Dealing turn ** [ 4h ]
+ObiwanDurks checks
+mirceone11 checks
+** Dealing river ** [ Ad ]
+ObiwanDurks checks
+mirceone11 checks
+** Summary **
+ObiwanDurks shows [ 8d, Jh ]
+mirceone11 shows [ 9d, Jd ]
+mirceone11 collected [ $14,500 ]
+
+
+
+#Game No : 190647938
+***** Cassava Hand History for Game 190647938 *****
+$2,500/$5,000 Blinds No Limit Holdem - *** 17 02 2012 01:43:54
+Tournament #36216773 Free - Table #52 (Real Money)
+Seat 3 is the button
+Total number of players : 9
+Seat 1: Rokki222 ( $118,613 )
+Seat 2: blackbetty10 ( $79,106 )
+Seat 3: ObiwanDurks ( $20,515 )
+Seat 4: mirceone11 ( $129,938 )
+Seat 5: pokergot1818 ( $23,330 )
+Seat 6: Jecago ( $53,536 )
+Seat 7: molo9oy ( $73,501 )
+Seat 9: alinastanciu ( $45,035 )
+Seat 10: Hero ( $73,362 )
+Jecago posts ante [$500]
+molo9oy posts ante [$500]
+alinastanciu posts ante [$500]
+Hero posts ante [$500]
+Rokki222 posts ante [$500]
+ObiwanDurks posts ante [$500]
+blackbetty10 posts ante [$500]
+mirceone11 posts ante [$500]
+pokergot1818 posts ante [$500]
+mirceone11 posts small blind [$2,500]
+pokergot1818 posts big blind [$5,000]
+** Dealing down cards **
+Dealt to Hero [ Ks, 8h ]
+Jecago raises [$53,036]
+molo9oy raises [$73,001]
+alinastanciu folds
+Hero folds
+Rokki222 folds
+blackbetty10 folds
+ObiwanDurks folds
+mirceone11 folds
+pokergot1818 calls [$17,830]
+** Dealing flop ** [ 4c, 3s, 6h ]
+** Dealing turn ** [ 5d ]
+** Dealing river ** [ Qh ]
+** Summary **
+pokergot1818 shows [ 5c, Kc ]
+Jecago shows [ 6c, 6d ]
+molo9oy shows [ Kh, Tc ]
+Jecago collected [ $75,490 ]
+Jecago collected [ $60,412 ]
+
+
+
+#Game No : 190648200
+***** Cassava Hand History for Game 190648200 *****
+$2,500/$5,000 Blinds No Limit Holdem - *** 17 02 2012 01:44:45
+Tournament #36216773 Free - Table #52 (Real Money)
+Seat 4 is the button
+Total number of players : 8
+Seat 1: Rokki222 ( $118,113 )
+Seat 2: blackbetty10 ( $78,606 )
+Seat 3: ObiwanDurks ( $20,015 )
+Seat 4: mirceone11 ( $126,938 )
+Seat 6: Jecago ( $135,902 )
+Seat 7: molo9oy ( $19,965 )
+Seat 9: alinastanciu ( $44,535 )
+Seat 10: Hero ( $72,862 )
+Jecago posts ante [$500]
+molo9oy posts ante [$500]
+alinastanciu posts ante [$500]
+Hero posts ante [$500]
+Rokki222 posts ante [$500]
+ObiwanDurks posts ante [$500]
+blackbetty10 posts ante [$500]
+mirceone11 posts ante [$500]
+Jecago posts big blind [$5,000]
+** Dealing down cards **
+Dealt to Hero [ Ad, 5c ]
+molo9oy folds
+alinastanciu calls [$5,000]
+Hero folds
+Rokki222 calls [$5,000]
+blackbetty10 folds
+ObiwanDurks folds
+mirceone11 folds
+Jecago checks
+** Dealing flop ** [ 2c, Tc, Kh ]
+Jecago checks
+alinastanciu bets [$5,000]
+Rokki222 calls [$5,000]
+Jecago folds
+** Dealing turn ** [ Qc ]
+alinastanciu checks
+Rokki222 bets [$14,500]
+alinastanciu calls [$14,500]
+** Dealing river ** [ Kc ]
+alinastanciu bets [$19,535]
+Rokki222 folds
+** Summary **
+alinastanciu collected [ $58,000 ]
+
+
+
+#Game No : 190648563
+***** Cassava Hand History for Game 190648563 *****
+$3,000/$6,000 Blinds No Limit Holdem - *** 17 02 2012 01:45:58
+Tournament #36216773 Free - Table #52 (Real Money)
+Seat 6 is the button
+Total number of players : 9
+Seat 1: Rokki222 ( $93,113 )
+Seat 2: blackbetty10 ( $78,106 )
+Seat 3: ObiwanDurks ( $19,515 )
+Seat 4: mirceone11 ( $126,438 )
+Seat 5: chopperD71 ( $87,855 )
+Seat 6: Jecago ( $130,402 )
+Seat 7: molo9oy ( $19,465 )
+Seat 9: alinastanciu ( $77,535 )
+Seat 10: Hero ( $72,362 )
+Jecago posts ante [$600]
+molo9oy posts ante [$600]
+alinastanciu posts ante [$600]
+Hero posts ante [$600]
+Rokki222 posts ante [$600]
+ObiwanDurks posts ante [$600]
+blackbetty10 posts ante [$600]
+mirceone11 posts ante [$600]
+chopperD71 posts ante [$600]
+molo9oy posts small blind [$3,000]
+alinastanciu posts big blind [$6,000]
+** Dealing down cards **
+Dealt to Hero [ 4s, 4d ]
+Hero folds
+Rokki222 folds
+blackbetty10 folds
+ObiwanDurks folds
+mirceone11 folds
+chopperD71 raises [$87,255]
+Jecago raises [$129,802]
+molo9oy folds
+alinastanciu folds
+** Dealing flop ** [ 5c, Qh, 2h ]
+** Dealing turn ** [ Kc ]
+** Dealing river ** [ 5s ]
+** Summary **
+chopperD71 shows [ 8s, 9s ]
+Jecago shows [ Jc, Jh ]
+Jecago collected [ $188,910 ]
+
+
+
+#Game No : 190648900
+***** Cassava Hand History for Game 190648900 *****
+$3,000/$6,000 Blinds No Limit Holdem - *** 17 02 2012 01:46:58
+Tournament #36216773 Free - Table #52 (Real Money)
+Seat 7 is the button
+Total number of players : 7
+Seat 2: blackbetty10 ( $77,506 )
+Seat 3: ObiwanDurks ( $18,915 )
+Seat 4: mirceone11 ( $125,838 )
+Seat 6: Jecago ( $231,457 )
+Seat 7: molo9oy ( $15,865 )
+Seat 9: alinastanciu ( $70,935 )
+Seat 10: Hero ( $71,762 )
+Jecago posts ante [$600]
+molo9oy posts ante [$600]
+alinastanciu posts ante [$600]
+Hero posts ante [$600]
+ObiwanDurks posts ante [$600]
+blackbetty10 posts ante [$600]
+mirceone11 posts ante [$600]
+alinastanciu posts small blind [$3,000]
+Hero posts big blind [$6,000]
+** Dealing down cards **
+Dealt to Hero [ 6d, Ah ]
+blackbetty10 calls [$6,000]
+ObiwanDurks folds
+mirceone11 calls [$6,000]
+Jecago folds
+molo9oy folds
+alinastanciu calls [$3,000]
+Hero raises [$65,162]
+blackbetty10 raises [$70,906]
+mirceone11 folds
+alinastanciu folds
+** Dealing flop ** [ Kd, 4s, Ts ]
+** Dealing turn ** [ 6h ]
+** Dealing river ** [ 4h ]
+** Summary **
+blackbetty10 shows [ Jc, Jd ]
+Hero shows [ 6d, Ah ]
+blackbetty10 collected [ $158,524 ]
+
+
+

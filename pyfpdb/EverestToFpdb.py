@@ -52,7 +52,7 @@ class Everest(HandHistoryConverter):
                                     game="(?P<GAME>hold\-em|omaha\-hi)"\s
                                     gametype="(?P<LIMIT>[-a-zA-Z ]+)"/>
                                 """ % substitutions, re.VERBOSE|re.MULTILINE)
-    re_HandInfo = re.compile(r'time="(?P<DATETIME>[0-9]+)" id="(?P<HID>[0-9]+)" index="\d+" blinds="((?P<SB>[%(NUM)s]+)\s?(?P<CURRENCY>[%(LS)s])?/(?P<BB>[%(NUM)s]+))' % substitutions, re.MULTILINE)
+    re_HandInfo = re.compile(r'time="(?P<DATETIME>[0-9]+)" id="(?P<HID>[0-9]+)" index="\d+" blinds="([%(LS)s]?(?P<SB>[%(NUM)s]+)\s?[%(LS)s]?/[%(LS)s]?(?P<BB>[%(NUM)s]+))' % substitutions, re.MULTILINE)
     re_Button = re.compile(r'<DEALER position="(?P<BUTTON>[0-9]+)"\/>')
     re_PlayerInfo = re.compile(r'<SEAT position="(?P<SEAT>[0-9]+)" name="(?P<PNAME>.+)" balance="(?P<CASH>[.0-9]+)"/>', re.MULTILINE)
     re_Board = re.compile(r'(?P<CARDS>.+)<\/COMMUNITY>', re.MULTILINE)
@@ -140,10 +140,10 @@ class Everest(HandHistoryConverter):
             self.info['type'] = 'tour'
             self.info['tourNo'] = mg['ID']
             
-        if mg['CURRENCY'] == u'\u20ac':
+        if mg['CURRENCY'] == u'$':
+            self.info['currency'] = 'USD'   
+        elif mg['CURRENCY'] == u'\u20ac':
             self.info['currency'] = 'EUR'
-        elif mg['CURRENCY'] == '\$':
-            self.info['currency'] = 'USD'
         elif not mg['CURRENCY']:
             self.info['currency'] = 'play'
             

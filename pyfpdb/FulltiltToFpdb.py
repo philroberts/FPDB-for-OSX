@@ -37,7 +37,7 @@ class Fulltilt(HandHistoryConverter):
                      'LEGAL_ISO' : "USD|EUR|GBP|CAD|FPP",       # legal ISO currency codes
                             'LS' : u"\$|\u20AC|\xe2\x82\xac|",  # legal currency symbols - Euro(cp1252, utf-8)
                            'TAB' : u"-\u2013'\s\da-zA-Z#_\.",     # legal characters for tablename
-                           'NUM' : u".,\d",                     # legal characters in number format
+                           'NUM' : u".,\dKM",                     # legal characters in number format
                     }
 
     Lim_Blinds = {  '0.04': ('0.01', '0.02'),    '0.10': ('0.02', '0.05'),     '0.20': ('0.05', '0.10'),

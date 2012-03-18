@@ -440,7 +440,9 @@ class GuiHandViewer:
         if hand.gametype['currency']=="USD":    #TODO: check if there are others ..
             currency="$"
         elif hand.gametype['currency']=="EUR":
-            currency="�"
+            currency="\xe2\x82\xac"
+        elif hand.gametype['currency']=="GBP":
+            currency="£"
         else:
             currency = hand.gametype['currency']
             
@@ -478,6 +480,10 @@ class GuiHandViewer:
             h = StudHand(config = self.config, hhc = None, sitename=res[0], gametype = gametype, handText=None, builtFrom = "DB", handid=handid)
         elif gametype['base'] == 'draw':
             h = DrawHand(config = self.config, hhc = None, sitename=res[0], gametype = gametype, handText=None, builtFrom = "DB", handid=handid)
+
+        # Set the hero for this hand using the filter for the sitename of this hand
+        h.hero = self.filters.getHeroes()[res[0]]
+
         h.select(self.db, handid)
         return h
 

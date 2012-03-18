@@ -1,0 +1,737 @@
+#Game No : 143941009
+***** Cassava Hand History for Game 143941009 *****
+10/20 Blinds No Limit Holdem - *** 21 02 2012 22:00:14
+Tournament #28352940 10 + 1 - Table #1 (Practice Play)
+Seat 9 is the button
+Total number of players : 9
+Seat 1: wideglide14 ( 1,500 )
+Seat 2: LionASS ( 1,500 )
+Seat 3: NawtyNick007 ( 1,500 )
+Seat 4: vikingdad ( 1,500 )
+Seat 5: Hero ( 1,500 )
+Seat 6: lorenzoruber ( 1,500 )
+Seat 7: javjavjav ( 1,500 )
+Seat 9: Light505 ( 1,500 )
+Seat 10: toroslocos ( 1,500 )
+toroslocos posts small blind [10]
+wideglide14 posts big blind [20]
+** Dealing down cards **
+Dealt to Hero [ 6h, 9c ]
+LionASS calls [20]
+NawtyNick007 folds
+vikingdad calls [20]
+Hero folds
+lorenzoruber calls [20]
+javjavjav calls [20]
+Light505 calls [20]
+toroslocos calls [10]
+wideglide14 checks
+** Dealing flop ** [ 7h, 4h, 2d ]
+toroslocos checks
+wideglide14 checks
+LionASS checks
+vikingdad checks
+lorenzoruber checks
+javjavjav checks
+Light505 checks
+** Dealing turn ** [ 3h ]
+toroslocos checks
+wideglide14 bets [140]
+LionASS folds
+vikingdad folds
+lorenzoruber calls [140]
+javjavjav calls [140]
+Light505 folds
+toroslocos folds
+** Dealing river ** [ Qd ]
+wideglide14 bets [280]
+lorenzoruber folds
+javjavjav folds
+** Summary **
+wideglide14 did not show his hand
+wideglide14 collected [ 560 ]
+
+
+
+#Game No : 143941205
+***** Cassava Hand History for Game 143941205 *****
+10/20 Blinds No Limit Holdem - *** 21 02 2012 22:01:54
+Tournament #28352940 10 + 1 - Table #5 (Practice Play)
+Seat 3 is the button
+Total number of players : 5
+Seat 1: FOGGY4G ( 1,480 )
+Seat 2: exentrian ( 1,345 )
+Seat 3: kidpoker61 ( 1,500 )
+Seat 4: vikingdad ( 1,480 )
+Seat 5: Hero ( 1,500 )
+vikingdad posts small blind [10]
+Hero posts big blind [20]
+** Dealing down cards **
+Dealt to Hero [ Kh, 4h ]
+FOGGY4G calls [20]
+exentrian raises [40]
+kidpoker61 folds
+vikingdad folds
+Hero raises [80]
+FOGGY4G calls [80]
+exentrian calls [60]
+** Dealing flop ** [ 9s, Jd, Tc ]
+Hero bets [232]
+FOGGY4G folds
+exentrian raises [1,245]
+Hero folds
+** Summary **
+exentrian collected [ 774 ]
+
+
+
+#Game No : 143941326
+***** Cassava Hand History for Game 143941326 *****
+10/20 Blinds No Limit Holdem - *** 21 02 2012 22:02:59
+Tournament #28352940 10 + 1 - Table #6 (Practice Play)
+Seat 5 is the button
+Total number of players : 2
+Seat 3: ZINTARI ( 1,490 )
+Seat 5: IonelBadea ( 1,510 )
+IonelBadea posts small blind [10]
+ZINTARI posts big blind [20]
+** Dealing down cards **
+IonelBadea raises [1,500]
+ZINTARI folds
+** Summary **
+IonelBadea collected [ 40 ]
+
+
+
+#Game No : 143941368
+***** Cassava Hand History for Game 143941368 *****
+10/20 Blinds No Limit Holdem - *** 21 02 2012 22:03:05
+Tournament #28352940 10 + 1 - Table #6 (Practice Play)
+Seat 6 is the button
+Total number of players : 5
+Seat 3: ZINTARI ( 1,470 )
+Seat 5: IonelBadea ( 1,530 )
+Seat 6: Hero ( 1,168 )
+Seat 7: FOGGY4G ( 1,380 )
+Seat 9: Fair_Play888 ( 1,500 )
+FOGGY4G posts small blind [10]
+Fair_Play888 posts big blind [20]
+** Dealing down cards **
+Dealt to Hero [ Qd, Qh ]
+ZINTARI calls [20]
+IonelBadea raises [40]
+Hero raises [80]
+FOGGY4G calls [70]
+Fair_Play888 raises [1,480]
+ZINTARI folds
+IonelBadea raises [1,490]
+Hero calls [1,088]
+FOGGY4G calls [1,300]
+** Dealing flop ** [ 7s, 4c, 4s ]
+** Dealing turn ** [ 7h ]
+** Dealing river ** [ 8d ]
+** Summary **
+IonelBadea shows [ 6h, 3c ]
+Hero shows [ Qd, Qh ]
+FOGGY4G shows [ Ts, Ah ]
+Fair_Play888 shows [ Ac, Qs ]
+Hero collected [ 4,692 ]
+FOGGY4G collected [ 318 ]
+Fair_Play888 collected [ 318 ]
+Fair_Play888 collected [ 240 ]
+
+
+
+#Game No : 143941495
+***** Cassava Hand History for Game 143941495 *****
+15/30 Blinds No Limit Holdem - *** 21 02 2012 22:04:07
+Tournament #28352940 10 + 1 - Table #6 (Practice Play)
+Seat 7 is the button
+Total number of players : 9
+Seat 1: lorenzoruber ( 2,740 )
+Seat 2: maunz83 ( 1,500 )
+Seat 3: ZINTARI ( 1,450 )
+Seat 4: muskario_099 ( 1,500 )
+Seat 5: IonelBadea ( 30 )
+Seat 6: Hero ( 4,692 )
+Seat 7: FOGGY4G ( 318 )
+Seat 9: Fair_Play888 ( 558 )
+Seat 10: panson3p ( 1,360 )
+Fair_Play888 posts small blind [15]
+panson3p posts big blind [30]
+** Dealing down cards **
+Dealt to Hero [ Qh, 3d ]
+lorenzoruber calls [30]
+maunz83 folds
+ZINTARI calls [30]
+muskario_099 calls [30]
+IonelBadea calls [30]
+Hero folds
+FOGGY4G calls [30]
+Fair_Play888 raises [45]
+panson3p calls [30]
+lorenzoruber calls [30]
+ZINTARI calls [30]
+muskario_099 calls [30]
+FOGGY4G calls [30]
+** Dealing flop ** [ 7s, 7h, 4s ]
+Fair_Play888 bets [498]
+panson3p calls [498]
+lorenzoruber folds
+ZINTARI folds
+muskario_099 raises [1,440]
+FOGGY4G calls [258]
+panson3p calls [802]
+** Dealing turn ** [ Kh ]
+** Dealing river ** [ 6s ]
+** Summary **
+muskario_099 shows [ 6c, 5h ]
+IonelBadea shows [ 2s, Qs ]
+FOGGY4G shows [ Jd, Ah ]
+Fair_Play888 shows [ 8h, 4h ]
+panson3p shows [ 2h, 4d ]
+IonelBadea collected [ 210 ]
+muskario_099 collected [ 1,212 ]
+muskario_099 collected [ 720 ]
+muskario_099 collected [ 1,604 ]
+
+
+
+#Game No : 143941692
+***** Cassava Hand History for Game 143941692 *****
+15/30 Blinds No Limit Holdem - *** 21 02 2012 22:05:31
+Tournament #28352940 10 + 1 - Table #6 (Practice Play)
+Seat 7 is the button
+Total number of players : 6
+Seat 1: lorenzoruber ( 2,680 )
+Seat 2: maunz83 ( 1,500 )
+Seat 3: ZINTARI ( 1,390 )
+Seat 4: muskario_099 ( 3,676 )
+Seat 5: IonelBadea ( 210 )
+Seat 6: Hero ( 4,692 )
+lorenzoruber posts big blind [30]
+** Dealing down cards **
+Dealt to Hero [ Tc, Jd ]
+maunz83 folds
+ZINTARI raises [1,390]
+muskario_099 folds
+IonelBadea calls [210]
+Hero folds
+lorenzoruber folds
+** Dealing flop ** [ Ah, Kd, 8c ]
+** Dealing turn ** [ Qc ]
+** Dealing river ** [ Js ]
+** Summary **
+ZINTARI shows [ 6c, Kh ]
+IonelBadea shows [ As, 7d ]
+IonelBadea collected [ 450 ]
+
+
+
+#Game No : 143941769
+***** Cassava Hand History for Game 143941769 *****
+15/30 Blinds No Limit Holdem - *** 21 02 2012 22:06:06
+Tournament #28352940 10 + 1 - Table #6 (Practice Play)
+Seat 1 is the button
+Total number of players : 8
+Seat 1: lorenzoruber ( 2,650 )
+Seat 3: ZINTARI ( 1,180 )
+Seat 4: muskario_099 ( 3,676 )
+Seat 5: IonelBadea ( 450 )
+Seat 6: Hero ( 4,692 )
+Seat 7: Contour11 ( 4,695 )
+Seat 9: raven007135 ( 1,435 )
+Seat 10: Xeta86 ( 1,500 )
+ZINTARI posts small blind [15]
+muskario_099 posts big blind [30]
+** Dealing down cards **
+Dealt to Hero [ Qd, Ah ]
+IonelBadea raises [450]
+Hero calls [450]
+Contour11 folds
+raven007135 folds
+Xeta86 raises [1,500]
+lorenzoruber folds
+ZINTARI folds
+muskario_099 folds
+Hero calls [1,050]
+** Dealing flop ** [ Ts, 8h, 7s ]
+** Dealing turn ** [ 2c ]
+** Dealing river ** [ 4s ]
+** Summary **
+IonelBadea shows [ 7h, Jh ]
+Hero shows [ Qd, Ah ]
+Xeta86 shows [ 8d, 9s ]
+Xeta86 collected [ 1,395 ]
+Xeta86 collected [ 2,100 ]
+
+
+
+#Game No : 143941885
+***** Cassava Hand History for Game 143941885 *****
+25/50 Blinds No Limit Holdem - *** 21 02 2012 22:06:57
+Tournament #28352940 10 + 1 - Table #6 (Practice Play)
+Seat 1 is the button
+Total number of players : 7
+Seat 1: lorenzoruber ( 2,650 )
+Seat 2: snowcat420 ( 1,500 )
+Seat 4: muskario_099 ( 3,646 )
+Seat 6: Hero ( 3,192 )
+Seat 7: Contour11 ( 4,695 )
+Seat 9: raven007135 ( 1,435 )
+Seat 10: Xeta86 ( 3,495 )
+muskario_099 posts small blind [25]
+Hero posts big blind [50]
+** Dealing down cards **
+Dealt to Hero [ 2d, Jd ]
+Contour11 calls [50]
+raven007135 calls [50]
+Xeta86 raises [200]
+lorenzoruber folds
+snowcat420 folds
+muskario_099 calls [175]
+Hero folds
+Contour11 folds
+raven007135 calls [150]
+** Dealing flop ** [ 8c, 3s, 3h ]
+muskario_099 checks
+raven007135 checks
+Xeta86 bets [200]
+muskario_099 calls [200]
+raven007135 calls [200]
+** Dealing turn ** [ 4d ]
+muskario_099 checks
+raven007135 checks
+Xeta86 checks
+** Dealing river ** [ Kh ]
+muskario_099 bets [3,246]
+raven007135 calls [1,035]
+Xeta86 folds
+** Summary **
+muskario_099 shows [ Ks, Qd ]
+raven007135 shows [ Ad, Ac ]
+raven007135 collected [ 3,370 ]
+
+
+
+#Game No : 143943353
+***** Cassava Hand History for Game 143943353 *****
+150/300 Blinds No Limit Holdem - *** 21 02 2012 22:18:49
+Tournament #28352940 10 + 1 - Table #7 (Practice Play)
+Seat 2 is the button
+Total number of players : 9
+Seat 1: pengell1 ( 1,812 )
+Seat 2: NawtyNick007 ( 270 )
+Seat 3: 39Harley ( 9,184 )
+Seat 4: guijaca ( 3,820 )
+Seat 5: Hero ( 2,817 )
+Seat 6: alcred ( 10,080 )
+Seat 7: WelshGramps ( 3,262 )
+Seat 9: franck113 ( 2,435 )
+Seat 10: snowcat420 ( 4,866 )
+39Harley posts small blind [150]
+guijaca posts big blind [300]
+** Dealing down cards **
+Dealt to Hero [ 8s, Qc ]
+Hero folds
+alcred folds
+WelshGramps folds
+franck113 folds
+snowcat420 folds
+pengell1 calls [300]
+NawtyNick007 folds
+39Harley calls [150]
+guijaca checks
+** Dealing flop ** [ 5h, Tc, 2s ]
+39Harley checks
+guijaca bets [675]
+pengell1 folds
+39Harley calls [675]
+** Dealing turn ** [ 8c ]
+39Harley checks
+guijaca bets [300]
+39Harley calls [300]
+** Dealing river ** [ 9h ]
+39Harley bets [2,850]
+guijaca folds
+** Summary **
+39Harley did not show his hand
+39Harley collected [ 2,850 ]
+
+
+
+#Game No : 143943463
+***** Cassava Hand History for Game 143943463 *****
+150/300 Blinds No Limit Holdem - *** 21 02 2012 22:19:46
+Tournament #28352940 10 + 1 - Table #7 (Practice Play)
+Seat 3 is the button
+Total number of players : 9
+Seat 1: pengell1 ( 1,512 )
+Seat 2: NawtyNick007 ( 270 )
+Seat 3: 39Harley ( 10,759 )
+Seat 4: guijaca ( 2,545 )
+Seat 5: Hero ( 2,817 )
+Seat 6: alcred ( 10,080 )
+Seat 7: WelshGramps ( 3,262 )
+Seat 9: franck113 ( 2,435 )
+Seat 10: snowcat420 ( 4,866 )
+guijaca posts small blind [150]
+Hero posts big blind [300]
+** Dealing down cards **
+Dealt to Hero [ 3h, 8h ]
+alcred calls [300]
+WelshGramps raises [675]
+franck113 folds
+snowcat420 folds
+pengell1 folds
+NawtyNick007 folds
+39Harley calls [675]
+guijaca calls [525]
+Hero folds
+alcred calls [375]
+** Dealing flop ** [ Jh, 9c, 9s ]
+guijaca bets [1,870]
+alcred folds
+WelshGramps raises [2,587]
+39Harley calls [2,587]
+** Dealing turn ** [ Ad ]
+** Dealing river ** [ As ]
+** Summary **
+39Harley shows [ Js, Tc ]
+guijaca shows [ Ts, Qd ]
+WelshGramps shows [ 9d, 9h ]
+WelshGramps collected [ 8,610 ]
+WelshGramps collected [ 1,434 ]
+
+
+
+#Game No : 143943598
+***** Cassava Hand History for Game 143943598 *****
+150/300 Blinds No Limit Holdem - *** 21 02 2012 22:20:54
+Tournament #28352940 10 + 1 - Table #7 (Practice Play)
+Seat 5 is the button
+Total number of players : 8
+Seat 1: pengell1 ( 1,512 )
+Seat 2: NawtyNick007 ( 270 )
+Seat 3: 39Harley ( 7,497 )
+Seat 4: Light505 ( 5,340 )
+Seat 5: Hero ( 2,517 )
+Seat 7: WelshGramps ( 10,044 )
+Seat 9: franck113 ( 2,435 )
+Seat 10: snowcat420 ( 4,866 )
+WelshGramps posts small blind [150]
+franck113 posts big blind [300]
+** Dealing down cards **
+Dealt to Hero [ 7s, Kd ]
+snowcat420 calls [300]
+pengell1 calls [300]
+NawtyNick007 folds
+39Harley folds
+Light505 folds
+Hero folds
+WelshGramps folds
+franck113 checks
+** Dealing flop ** [ 6s, 6d, 7c ]
+franck113 checks
+snowcat420 checks
+pengell1 checks
+** Dealing turn ** [ Kh ]
+franck113 checks
+snowcat420 bets [300]
+pengell1 folds
+franck113 folds
+** Summary **
+snowcat420 collected [ 1,050 ]
+
+
+
+#Game No : 143943723
+***** Cassava Hand History for Game 143943723 *****
+200/400 Blinds No Limit Holdem - *** 21 02 2012 22:22:00
+Tournament #28352940 10 + 1 - Table #7 (Practice Play)
+Seat 7 is the button
+Total number of players : 9
+Seat 1: pengell1 ( 1,212 )
+Seat 2: NawtyNick007 ( 270 )
+Seat 3: 39Harley ( 7,497 )
+Seat 4: Light505 ( 5,340 )
+Seat 5: Hero ( 2,517 )
+Seat 6: neto35 ( 4,350 )
+Seat 7: WelshGramps ( 9,894 )
+Seat 9: franck113 ( 2,135 )
+Seat 10: snowcat420 ( 5,616 )
+franck113 posts small blind [200]
+snowcat420 posts big blind [400]
+** Dealing down cards **
+Dealt to Hero [ Qs, 8c ]
+pengell1 calls [400]
+NawtyNick007 folds
+39Harley folds
+Light505 calls [400]
+Hero folds
+neto35 folds
+WelshGramps folds
+franck113 calls [200]
+snowcat420 checks
+** Dealing flop ** [ Kc, 6s, 4h ]
+franck113 checks
+snowcat420 checks
+pengell1 checks
+Light505 checks
+** Dealing turn ** [ 7s ]
+franck113 bets [1,735]
+snowcat420 calls [1,735]
+pengell1 folds
+Light505 calls [1,735]
+** Dealing river ** [ 8d ]
+snowcat420 checks
+Light505 checks
+** Summary **
+snowcat420 shows [ 4s, Ad ]
+Light505 mucks [ Ts, As ]
+franck113 shows [ Kd, 3h ]
+franck113 collected [ 6,805 ]
+
+
+
+#Game No : 143943864
+***** Cassava Hand History for Game 143943864 *****
+200/400 Blinds No Limit Holdem - *** 21 02 2012 22:23:16
+Tournament #28352940 10 + 1 - Table #7 (Practice Play)
+Seat 9 is the button
+Total number of players : 9
+Seat 1: pengell1 ( 812 )
+Seat 2: NawtyNick007 ( 270 )
+Seat 3: 39Harley ( 7,497 )
+Seat 4: Light505 ( 3,205 )
+Seat 5: Hero ( 2,517 )
+Seat 6: neto35 ( 4,350 )
+Seat 7: WelshGramps ( 9,894 )
+Seat 9: franck113 ( 6,805 )
+Seat 10: snowcat420 ( 3,481 )
+snowcat420 posts small blind [200]
+pengell1 posts big blind [400]
+** Dealing down cards **
+Dealt to Hero [ Td, Jd ]
+NawtyNick007 calls [270]
+39Harley calls [400]
+Light505 folds
+Hero folds
+neto35 folds
+WelshGramps calls [400]
+franck113 folds
+snowcat420 raises [3,281]
+pengell1 calls [412]
+39Harley raises [7,097]
+WelshGramps folds
+** Dealing flop ** [ Tc, Qd, As ]
+** Dealing turn ** [ 8c ]
+** Dealing river ** [ 9h ]
+** Summary **
+pengell1 shows [ 5d, 5h ]
+NawtyNick007 shows [ 6c, Jc ]
+39Harley shows [ 6s, Kh ]
+snowcat420 shows [ Kc, 7s ]
+NawtyNick007 collected [ 1,350 ]
+pengell1 collected [ 1,756 ]
+39Harley collected [ 2,669 ]
+snowcat420 collected [ 2,669 ]
+
+
+
+#Game No : 143943972
+***** Cassava Hand History for Game 143943972 *****
+250/500 Blinds No Limit Holdem - *** 21 02 2012 22:24:14
+Tournament #28352940 10 + 1 - Table #7 (Practice Play)
+Seat 10 is the button
+Total number of players : 9
+Seat 1: pengell1 ( 1,756 )
+Seat 2: NawtyNick007 ( 1,350 )
+Seat 3: 39Harley ( 6,685 )
+Seat 4: Light505 ( 3,205 )
+Seat 5: Hero ( 2,517 )
+Seat 6: neto35 ( 4,350 )
+Seat 7: WelshGramps ( 9,494 )
+Seat 9: franck113 ( 6,805 )
+Seat 10: snowcat420 ( 2,669 )
+pengell1 posts small blind [250]
+NawtyNick007 posts big blind [500]
+** Dealing down cards **
+Dealt to Hero [ Kc, 6s ]
+39Harley calls [500]
+Light505 folds
+Hero folds
+neto35 folds
+WelshGramps folds
+franck113 raises [6,805]
+snowcat420 folds
+pengell1 folds
+NawtyNick007 calls [850]
+39Harley calls [6,185]
+** Dealing flop ** [ Kd, 3h, 5d ]
+** Dealing turn ** [ 8h ]
+** Dealing river ** [ Td ]
+** Summary **
+NawtyNick007 shows [ 9h, Qs ]
+39Harley shows [ 6h, 6c ]
+franck113 shows [ Ks, Qh ]
+franck113 collected [ 4,300 ]
+franck113 collected [ 10,670 ]
+
+
+
+#Game No : 143944043
+***** Cassava Hand History for Game 143944043 *****
+250/500 Blinds No Limit Holdem - *** 21 02 2012 22:24:53
+Tournament #28352940 10 + 1 - Table #7 (Practice Play)
+Seat 1 is the button
+Total number of players : 7
+Seat 1: pengell1 ( 1,506 )
+Seat 4: Light505 ( 3,205 )
+Seat 5: Hero ( 2,517 )
+Seat 6: neto35 ( 4,350 )
+Seat 7: WelshGramps ( 9,494 )
+Seat 9: franck113 ( 15,090 )
+Seat 10: snowcat420 ( 2,669 )
+Light505 posts big blind [500]
+** Dealing down cards **
+Dealt to Hero [ 8c, 9c ]
+Hero folds
+neto35 folds
+WelshGramps raises [1,000]
+franck113 folds
+snowcat420 folds
+pengell1 folds
+Light505 calls [500]
+** Dealing flop ** [ Ah, 5d, Th ]
+Light505 checks
+WelshGramps bets [2,000]
+Light505 folds
+** Summary **
+WelshGramps collected [ 2,000 ]
+
+
+
+#Game No : 143944112
+***** Cassava Hand History for Game 143944112 *****
+250/500 Blinds No Limit Holdem - *** 21 02 2012 22:25:28
+Tournament #28352940 10 + 1 - Table #7 (Practice Play)
+Seat 1 is the button
+Total number of players : 8
+Seat 1: pengell1 ( 1,506 )
+Seat 2: kelero ( 35,866 )
+Seat 4: Light505 ( 2,205 )
+Seat 5: Hero ( 2,517 )
+Seat 6: neto35 ( 4,350 )
+Seat 7: WelshGramps ( 10,494 )
+Seat 9: franck113 ( 15,090 )
+Seat 10: snowcat420 ( 2,669 )
+Light505 posts small blind [250]
+Hero posts big blind [500]
+** Dealing down cards **
+Dealt to Hero [ Qh, 5h ]
+neto35 folds
+WelshGramps raises [1,000]
+franck113 folds
+snowcat420 raises [2,669]
+pengell1 calls [1,506]
+kelero folds
+Light505 calls [1,955]
+Hero folds
+WelshGramps calls [1,669]
+** Dealing flop ** [ 4s, Ts, Qc ]
+** Dealing turn ** [ 5c ]
+** Dealing river ** [ 8d ]
+** Summary **
+pengell1 shows [ Kc, Jc ]
+Light505 shows [ Th, Tc ]
+WelshGramps shows [ Jh, Ad ]
+snowcat420 shows [ 9s, Jd ]
+snowcat420 collected [ 6,524 ]
+snowcat420 collected [ 2,097 ]
+snowcat420 collected [ 928 ]
+
+
+
+#Game No : 143944178
+***** Cassava Hand History for Game 143944178 *****
+250/500 Blinds No Limit Holdem - *** 21 02 2012 22:26:11
+Tournament #28352940 10 + 1 - Table #7 (Practice Play)
+Seat 5 is the button
+Total number of players : 9
+Seat 1: bassfunny ( 1,905 )
+Seat 2: kelero ( 35,866 )
+Seat 3: quadzup ( 3,369 )
+Seat 4: sansniper ( 4,821 )
+Seat 5: Hero ( 2,017 )
+Seat 6: neto35 ( 4,350 )
+Seat 7: WelshGramps ( 7,825 )
+Seat 9: franck113 ( 15,090 )
+Seat 10: snowcat420 ( 9,549 )
+neto35 posts small blind [250]
+WelshGramps posts big blind [500]
+** Dealing down cards **
+Dealt to Hero [ 5h, 2d ]
+franck113 raises [15,090]
+snowcat420 calls [9,549]
+bassfunny calls [1,905]
+kelero folds
+quadzup calls [3,369]
+sansniper folds
+Hero folds
+neto35 folds
+WelshGramps folds
+** Dealing flop ** [ 3h, Jh, 7h ]
+** Dealing turn ** [ 4c ]
+** Dealing river ** [ Qd ]
+** Summary **
+bassfunny shows [ Kh, 7d ]
+quadzup shows [ Qc, Kd ]
+franck113 shows [ Qh, Kc ]
+snowcat420 shows [ Js, Qs ]
+snowcat420 collected [ 8,370 ]
+snowcat420 collected [ 4,392 ]
+snowcat420 collected [ 12,360 ]
+
+
+
+#Game No : 143944263
+***** Cassava Hand History for Game 143944263 *****
+250/500 Blinds No Limit Holdem - *** 21 02 2012 22:26:54
+Tournament #28352940 10 + 1 - Table #7 (Practice Play)
+Seat 6 is the button
+Total number of players : 7
+Seat 2: kelero ( 35,866 )
+Seat 4: sansniper ( 4,821 )
+Seat 5: Hero ( 2,017 )
+Seat 6: neto35 ( 4,100 )
+Seat 7: WelshGramps ( 7,325 )
+Seat 9: franck113 ( 5,541 )
+Seat 10: snowcat420 ( 25,122 )
+WelshGramps posts small blind [250]
+franck113 posts big blind [500]
+** Dealing down cards **
+Dealt to Hero [ Kc, Ah ]
+snowcat420 calls [500]
+kelero calls [500]
+sansniper folds
+Hero raises [1,500]
+neto35 folds
+WelshGramps folds
+franck113 folds
+snowcat420 calls [1,000]
+kelero calls [1,000]
+** Dealing flop ** [ 8c, Th, Qh ]
+snowcat420 checks
+kelero bets [3,937]
+Hero calls [517]
+snowcat420 folds
+** Dealing turn ** [ Ac ]
+** Dealing river ** [ 5c ]
+** Summary **
+kelero shows [ Qc, Jc ]
+Hero shows [ Kc, Ah ]
+kelero collected [ 6,284 ]
+
+
+

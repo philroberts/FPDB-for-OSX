@@ -464,3 +464,7 @@ class PacificPoker(HandHistoryConverter):
 
         log.info("Pacific.getTableTitleRe: returns: '%s'" % (regex))
         return regex
+
+    def readSummaryInfo(self, summaryInfoList):
+        self.status = True
+        return self.status

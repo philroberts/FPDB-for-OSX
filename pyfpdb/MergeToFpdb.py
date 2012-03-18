@@ -557,7 +557,7 @@ or None if we fail to get the info """
             if m.group('SEATS')!=None:
                 hand.maxseats = int(m.group('SEATS')) 
 
-        hand.startTime = datetime.datetime.strptime(m.group('DATETIME')[:12],'%Y%m%d%H%M')
+        hand.startTime = datetime.datetime.strptime(m.group('DATETIME')[:14],'%Y%m%d%H%M%S')
         hand.startTime = HandHistoryConverter.changeTimezone(hand.startTime, "ET", "UTC")
         # Check that the hand is complete up to the awarding of the pot; if
         # not, the hand is unparseable
