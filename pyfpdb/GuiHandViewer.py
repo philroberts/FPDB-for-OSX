@@ -35,6 +35,9 @@ import gtk
 import math
 import gobject
 
+import pyperclip
+from cStringIO import StringIO
+
 import copy
 
 import GuiReplayer
@@ -296,21 +299,21 @@ class GuiHandViewer:
             self.hands[handid] = self.importhand(handid)
         self.refreshHands()
     
-    def cb(self, view, event):
-        print "GuiHandViewer.cb(self::" + str(self) + ", view::" + str(view) + ", event::" + str(event) + ")"
-        # DONE: find the Hand data that was clicked
-        # TODO: add "Open" and "Copy" menu items
-        # TODO: call writeHand
-        # TODO: build context menu seperately
+    def copyHandToClipboard(self, view, event, hand):
+        handText = StringIO()
+        hand.writeHand(handText)
+        pyperclip.copy(handText.getvalue())
+
+    def contextMenu(self, view, event):
         if(event.button != 3):
             return False
         coords = event.get_coords()
         path = view.get_path_at_pos(int(coords[0]), int(coords[1]))
         model = view.get_model()
         hand = self.hands[int(model.get_value(model.get_iter(path[0]), self.colnum['HandId']))]
-        #hand.writeHand()
         m = gtk.Menu()
-        i = gtk.MenuItem("Hello")
+        i = gtk.MenuItem('Copy')
+        i.connect('button-press-event', self.copyHandToClipboard, hand)
         i.show()
         m.append(i)
         m.popup(None, None, None, event.button, event.time, None)
@@ -376,7 +379,7 @@ class GuiHandViewer:
         #selection = self.view.get_selection()
         #selection.set_select_function(self.select_hand, None, True)     #listen on selection (single click)
         self.view.connect('row-activated', self.row_activated)           #listen to double klick
-        self.view.connect("button_press_event", self.cb)
+        self.view.connect('button-press-event', self.contextMenu)
 
         for handid, hand in self.hands.items():
             hero = self.filters.getHeroes()[hand.sitename]
@@ -456,7 +459,6 @@ class GuiHandViewer:
 
     #def select_hand(self, selection, model, path, is_selected, userdata):    #function head for single click event
     def row_activated(self, view, path, column):
-        print "GuiHandViewer.row_activated(self::" + str(self) + ", view::" + str(view) + ", path::" + str(path) + ", column::" + str(column) + ")"
         model = view.get_model()
         hand = self.hands[int(model.get_value(model.get_iter(path), self.colnum['HandId']))]
         if hand.gametype['currency']=="USD":    #TODO: check if there are others ..
