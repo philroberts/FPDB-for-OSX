@@ -249,7 +249,7 @@ class PacificPoker(HandHistoryConverter):
                 hand.startTime = HandHistoryConverter.changeTimezone(hand.startTime, "ET", "UTC")
             if key == 'HID':
                 hand.handid = info[key]
-            if key == 'TOURNO' and mg['TOURNO'] != None:
+            if key == 'TOURNO' and info['TOURNO'] != None:
                 hand.tourNo = info[key]
                 hand.isKO = False
             if key == 'BUYIN' and info['BUYIN'] != None:
