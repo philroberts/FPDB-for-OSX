@@ -476,7 +476,7 @@ or None if we fail to get the info """
                 raise FpdbParseError
 
         self.info = {}
-        #mg = m.groupdict()
+        mg = m.groupdict()
         #print "DEBUG: mg: %s" % mg
 
         if 'LIMIT' in mg:
