@@ -32,9 +32,11 @@ class FPDBArchive:
         self.handText = hand.handText
         
 class Archive():
-    def __init__(self, config, path = None, ftype="hh"):
+    def __init__(self, config=None, path = None, ftype="hh"):
         self.config = config
-        self.archivePath = config.imp.archivePath
+        self.archivePath = None
+        if config:
+            self.archivePath = config.imp.archivePath
         self.path   = path
         self.ftype  = ftype
         self.handList = {}
