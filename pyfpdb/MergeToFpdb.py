@@ -478,7 +478,6 @@ or None if we fail to get the info """
         self.info = {}
         #mg = m.groupdict()
         #print "DEBUG: mg: %s" % mg
-        self.determineErrorType(hand, None)
 
         if 'LIMIT' in mg:
             self.info['limitType'] = self.limits[mg['LIMIT']]
@@ -523,6 +522,7 @@ or None if we fail to get the info """
 
         #mg = m.groupdict()
         #print "DEBUG: mg: %s" % mg
+        self.determineErrorType(hand, None)
 
         hand.handid = m.group('HID1') + m.group('HID2')
 
