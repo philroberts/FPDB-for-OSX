@@ -37,6 +37,17 @@ import gobject
 import Card
 import Aux_Base
 
+
+
+# Utility routine to get the number of valid cards in the card tuple
+def valid_cards(ct):
+    n = 0
+    for c in ct:
+        if c != 0:
+            n += 1
+    return n
+
+        
 class Stud_mucked(Aux_Base.Aux_Window):
     def __init__(self, hud, config, params):
 
@@ -192,7 +203,8 @@ class Stud_cards:
 
         for r in range(0, self.rows):
             for c in range(0, self.cols):
-                self.seen_cards[(c, r)] = gtk.image_new_from_pixbuf(self.card_images[(0)])
+                # Start by creating a box of nothing but card backs
+                self.seen_cards[(c, r)] = gtk.image_new_from_pixbuf(self.card_images[0].copy())
                 self.eb[(c, r)]= gtk.EventBox()
 
 #    set up the contents for the cells
@@ -243,8 +255,11 @@ class Stud_cards:
             for i in ((0, cards[0]), (1, cards[1]), (2, cards[2]), (3, cards[3]), 
                       (4, cards[4]), (5, cards[5]), (6, cards[6])):
                 if not i[1] == 0:
-                    self.seen_cards[(i[0], c - 1)]. \
-                        set_from_pixbuf(self.card_images[i[1]])
+                    # Pixmaps are stored in dict with rank+suit keys
+                    (_rank, _suit) = Card.valueSuitFromCard(i[1])
+                    _rank = Card.card_map[_rank]
+                    px = self.card_images[_suit][_rank].copy()
+                    self.seen_cards[(i[0], c - 1)].set_from_pixbuf(px)
 ##    action in tool tips for 3rd street cards
         for c in (0, 1, 2):
             for r in range(0, self.rows):
@@ -268,7 +283,8 @@ class Stud_cards:
         for r in range(0, self.rows):
             self.grid_contents[(1, r)].set_text("             ")
             for c in range(0, 7):
-                self.seen_cards[(c, r)].set_from_pixbuf(self.card_images[0])
+                # Start by creating a box of nothing but card backs
+                self.seen_cards[(c, r)].set_from_pixbuf(self.card_images[0].copy())
                 self.eb[(c, r)].set_tooltip_text('')
 
 class Flop_Mucked(Aux_Base.Aux_Seats):
@@ -277,10 +293,8 @@ class Flop_Mucked(Aux_Base.Aux_Seats):
     def __init__(self, hud, config, params):
         super(Flop_Mucked, self).__init__(hud, config, params)
                 
-        self.card_height = int(self.params['card_ht'])
-        if (self.card_height > 84): self.card_height = 84
-        if (self.card_height < 21): self.card_height = 21
-        self.card_width = int(30. * (self.card_height / 42.))
+        self.card_height = 42 #int(self.params['card_ht'])
+        self.card_width = 30
         
         self.card_images = self.get_card_images(self.card_width, self.card_height)
         self.uses_timer = True  # this Aux_seats object uses a timer to control hiding
@@ -306,31 +320,54 @@ class Flop_Mucked(Aux_Base.Aux_Seats):
         container.eb = gtk.EventBox()
         container.eb.connect("button_press_event", self.button_press_cb, i)
         container.add(container.eb)
-        container.seen_cards = gtk.image_new_from_pixbuf(self.card_images[0])
+        container.seen_cards = gtk.image_new_from_pixbuf(self.card_images[0].copy())
         container.eb.add(container.seen_cards)
 
+    # NOTE: self.hud.cards is a dictionary of:
+    # { seat_num: (card, card, [...]) }
+    #
+    # Thus the individual hands (cards for seat) are tuples
     def update_contents(self, container, i):
 
         if not self.hud.cards.has_key(i): return
         
         cards = self.hud.cards[i]
-        n_cards = self.has_cards(cards)
+        # Here we want to know how many cards the given seat showed;
+        # board is considered a seat, and has the id 'common'
+        # 'cards' on the other hand is a tuple. The format is:
+        # (card_num, card_num, ...)
+        n_cards = valid_cards(cards)
         if n_cards > 1:
-
 #    scratch is a working pixbuf, used to assemble the image
-            scratch = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, True, 8,
-                                        self.card_width * n_cards,
-                                        self.card_height)
+            scratch = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB,
+                                        has_alpha=True, bits_per_sample=8,
+                                        width=int(self.card_width)*n_cards,
+                                        height=int(self.card_height))
             x = 0 # x coord where the next card starts in scratch
             for card in cards:
 #    concatenate each card image to scratch
+                # flop game never(?) has unknown cards.
+                # FIXME: if "show one and fold" ever becomes an option,
+                # this needs to be changed
                 if card == None or card ==0:
                     break
 
-                self.card_images[card].copy_area(0, 0, 
-                                        self.card_width, self.card_height,
-                                        scratch, x, 0)
-                x = x + self.card_width
+                # This gives us the card symbol again
+                (_rank, _suit) = Card.valueSuitFromCard(card)
+                _rank = Card.card_map[_rank]
+                # We copy the image data. Technically we __could__ use
+                # the pixmap directly but it seems there are some subtle
+                # races and explicitly creating a new pixbuf seems to
+                # work around most of them.
+                #
+                # We also should not use copy_area() but it is far
+                # easier to work with than _render_to_drawable()
+                px = self.card_images[_suit][_rank].copy()
+                px.copy_area(0, 0,
+                        px.get_width(), px.get_height(),
+                        scratch, x, 0)
+                x += px.get_width()
+                
             if container is not None:
                 container.seen_cards.set_from_pixbuf(scratch)
                 container.resize(1,1)
@@ -362,13 +399,8 @@ class Flop_Mucked(Aux_Base.Aux_Seats):
     def update_gui(self, new_hand_id):
         """Prepare and show the mucked cards."""
         if self.displayed: self.hide()
-
 #   See how many players showed a hand. Skip if only 1 shows (= hero)
-        n_sd = 0
-        for (i, cards) in self.hud.cards.iteritems():
-            n_cards = self.has_cards(cards)
-            if n_cards > 0 and i != 'common':
-                n_sd = n_sd + 1
+        n_sd = self.has_cards(self.hud.cards)
         if n_sd < 2: 
             return
 

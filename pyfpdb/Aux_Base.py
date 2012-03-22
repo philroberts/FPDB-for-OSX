@@ -37,6 +37,23 @@ import gobject
 
 #   FPDB
 import Card
+import Deck
+
+# This holds all card images in a nice lookup table. One instance is
+# populated on the first run of Aux_Window.get_card_images() and all
+# subsequent uses will have the same instance available.
+deck = None
+
+# This allows for a performance gain. Loading and parsing 53 SVG cards
+# takes some time. If that is done at the first access of
+# Aux_Window.get_card_images(), it can add a delay of several seconds.
+# A pre-populated deck on the other hand grants instant access.
+def populate_deck(dtype='colour', w=30, h=42):
+    global deck
+    deck = Deck.Deck(decktype=dtype, width=w, height=h)
+
+
+populate_deck()
 
 
 class Aux_Window(object):
@@ -61,53 +78,48 @@ class Aux_Window(object):
 #    Some utility routines useful for Aux_Windows
 #
     def get_card_images(self, card_width=30, card_height=42):
+        global deck # We're modifying a variable outside class scope
+        if deck is None:
+            deck = Deck.Deck(decktype='colour',
+                        width=card_width, height=card_height)
 
-        card_images = 53 * [0]
+        card_images = dict()
         suits = ('s', 'h', 'd', 'c')
         ranks = (14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2)
-        deckimg = self.params['deck']
-        try:
-            pb = gtk.gdk.pixbuf_new_from_file(self.config.execution_path(deckimg))
-        except:
-            #FIXME: this can't be right? /usr will not exist on windows
-            stockpath = '/usr/share/python-fpdb/' + deckimg
-            pb = gtk.gdk.pixbuf_new_from_file(stockpath)
-        
-        for j in range(0, 13):
-            for i in range(0, 4):
-                card_images[Card.cardFromValueSuit(ranks[j], suits[i])] = self.cropper(pb, i, j, card_width, card_height)
-#    also pick out a card back and store in [0]
-        card_images[0] = self.cropper(pb, 2, 13, card_width, card_height)
-        return(card_images)
-#   cards are 30 wide x 42 high
 
-    def cropper(self, pb, i, j, card_width, card_height):
-        """Crop out a card image given an FTP deck and the i, j position."""
-        cropped_pb = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, pb.get_has_alpha(),
-                                    pb.get_bits_per_sample(), 30, 42)
-        pb.copy_area(30*j, 42*i, 30, 42, cropped_pb, 0, 0)
+        for suit in suits:
+            card_images[suit] = dict()
+            for rank in ranks:
+                card_images[suit][rank] = self.card(suit, rank)
 
-        if card_height == 42:
-            """ no scaling """
-            return cropped_pb
-        else:
-            """Apply scaling to the the 30w x 42h card image """
-            scaled_pb = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, pb.get_has_alpha(),
-                                        pb.get_bits_per_sample(),
-                                        card_width, card_height)
-            scaled_card = cropped_pb.scale_simple(card_width, card_height,
-                                                gtk.gdk.INTERP_BILINEAR)
+        # This is a nice trick. We put the card back image behind key 0,
+        # which allows the old code to work. A dict[0] looks like first
+        # index of an array.
+        card_images[0] = deck.back()
+        return card_images
 
-            scaled_card.copy_area(0, 0, self.card_width, self.card_height,
-                                        scaled_pb, 0, 0)
-            return scaled_pb
+    def card(self, suitkey, rank):
+        temp_pb = deck.card(suitkey, rank)
+        return temp_pb
 
+    # Returns the number of places where cards were shown. This can be N
+    # players + common cards
+    # XXX XXX: AAAAAGGGGGGHHHHHHHHHHHHHH!
+    # XXX XXX: 'cards' is a dictionary with EVERY INVOLVED SEAT included;
+    # XXX XXX: in addition, the unknown/unshown cards are marked with
+    # zeroes, not None
     def has_cards(self, cards):
-        """Returns the number of cards in the list."""
+        """Returns the number of seats with shown cards in the list."""
         n = 0
-        for c in cards:
-            if c != None and c > 0: n = n + 1
-        return n
+        for k in cards.keys():
+            seat_tuple = cards[k]
+            if seat_tuple[0] != 0:
+                n += 1
+        # Now we have the number of seats where we had valid cards.
+        if 'common' in cards:
+            return n-1
+        else:
+            return n
 
     def get_id_from_seat(self, seat):
         """Determine player id from seat number, given stat_dict."""

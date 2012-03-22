@@ -47,6 +47,7 @@ import Database
 import Hud
 import Options
 
+
 (options, argv) = Options.fpdb_options()
 
 # get config and set up logger
