@@ -1,0 +1,232 @@
+***** Hand History for Game 10315752770 *****
+NL Texas Hold'em $11 USD Buy-in Trny: 59658935 Level: 7  Blinds(300/600) - Friday, April 01, 11:44:00 CEST 2011
+Table Turbo #1646865 (Real Money)
+Seat 5 is the button
+Total number of players : 2/6 
+Seat 5: Player0 ( 4,520 )
+Seat 4: Player1 ( 7,480 )
+Trny: 59658935 Level: 7 
+Blinds(300/600)
+** Dealing down cards **
+Dealt to Player0 [  Js 2h ]
+Player0 folds
+Player1 does not show cards.
+Player1 wins 900 chips
+
+
+***** Hand History for Game 10315754293 *****
+NL Texas Hold'em $11 USD Buy-in Trny: 59658935 Level: 7  Blinds(300/600) - Friday, April 01, 11:44:54 CEST 2011
+Table Turbo #1646865 (Real Money)
+Seat 5 is the button
+Total number of players : 2/6 
+Seat 5: Player0 ( 4,520 )
+Seat 4: Player1 ( 7,480 )
+Trny: 59658935 Level: 7 
+Blinds(300/600)
+** Dealing down cards **
+Dealt to Player0 [  Jh Kh ]
+Player0 is all-In  [4,220]
+Player1 folds
+Player0 does not show cards.
+Player0 wins 5,120 chips
+
+
+***** Hand History for Game 10315742273 *****
+NL Texas Hold'em $55 USD Buy-in Trny: 59658944 Level: 4  Blinds(100/200) - Friday, April 01, 11:38:02 CEST 2011
+Table Turbo #1646883 (Real Money)
+Seat 2 is the button
+Total number of players : 3/6 
+Seat 3: Player2 ( 5,730 )
+Seat 5: Player0 ( 4,610 )
+Seat 2: Player4 ( 1,660 )
+Trny: 59658944 Level: 4 
+Blinds(100/200)
+** Dealing down cards **
+Dealt to Player0 [  9h 3h ]
+Player4 folds
+Player2 folds
+Player0 does not show cards.
+Player0 wins 300 chips
+
+
+***** Hand History for Game 10315742086 *****
+NL Texas Hold'em $55 USD Buy-in Trny: 59658923 Level: 5  Blinds(150/300) - Friday, April 01, 11:37:56 CEST 2011
+Table Turbo #1646882 (Real Money)
+Seat 4 is the button
+Total number of players : 4/6 
+Seat 3: Player0 ( 2,270 )
+Seat 4: Player7 ( 5,190 )
+Seat 5: Player4 ( 2,800 )
+Seat 1: Player8 ( 1,740 )
+Trny: 59658923 Level: 5 
+Blinds(150/300)
+** Dealing down cards **
+Dealt to Player0 [  Kc Ad ]
+Player0 is all-In  [2,270]
+Player7 did not respond in time
+Player7 folds
+Player4 folds
+Player8 folds
+Player0 does not show cards.
+Player0 wins 2,720 chips
+
+
+***** Hand History for Game 10315743974 *****
+NL Texas Hold'em $55 USD Buy-in Trny: 59658944 Level: 5  Blinds(150/300) - Friday, April 01, 11:38:59 CEST 2011
+Table Turbo #1646883 (Real Money)
+Seat 2 is the button
+Total number of players : 3/6 
+Seat 3: Player2 ( 5,630 )
+Seat 5: Player0 ( 4,610 )
+Seat 2: Player4 ( 1,760 )
+Trny: 59658944 Level: 5 
+Blinds(150/300)
+** Dealing down cards **
+Dealt to Player0 [  5h Jc ]
+Player4 folds
+Player2 folds
+Player0 does not show cards.
+Player0 wins 450 chips
+
+
+***** Hand History for Game 10315745714 *****
+NL Texas Hold'em $11 USD Buy-in Trny: 59658935 Level: 5  Blinds(150/300) - Friday, April 01, 11:39:59 CEST 2011
+Table Turbo #1646865 (Real Money)
+Seat 4 is the button
+Total number of players : 4/6 
+Seat 5: Player0 ( 2,280 )
+Seat 2: Player9 ( 1,610 )
+Seat 4: Player1 ( 6,680 )
+Seat 3: Player10 ( 1,430 )
+Trny: 59658935 Level: 5 
+Blinds(150/300)
+** Dealing down cards **
+Dealt to Player0 [  Jd 8h ]
+Player10 raises [600]
+Player1 folds
+Player0 folds
+Player9 folds
+Player10 does not show cards.
+Player10 wins 1,050 chips
+
+
+***** Hand History for Game 10315746173 *****
+NL Texas Hold'em $11 USD Buy-in Trny: 59658935 Level: 5  Blinds(150/300) - Friday, April 01, 11:40:15 CEST 2011
+Table Turbo #1646865 (Real Money)
+Seat 5 is the button
+Total number of players : 4/6 
+Seat 5: Player0 ( 2,130 )
+Seat 2: Player9 ( 1,310 )
+Seat 4: Player1 ( 6,680 )
+Seat 3: Player10 ( 1,880 )
+Trny: 59658935 Level: 5 
+Blinds(150/300)
+** Dealing down cards **
+Dealt to Player0 [  4h Ad ]
+Player1 folds
+Player0 is all-In  [2,130]
+Player9 folds
+Player10 folds
+Player0 does not show cards.
+Player0 wins 2,580 chips
+
+
+***** Hand History for Game 10315745950 *****
+NL Texas Hold'em $55 USD Buy-in Trny: 59658944 Level: 5  Blinds(150/300) - Friday, April 01, 11:40:07 CEST 2011
+Table Turbo #1646883 (Real Money)
+Seat 3 is the button
+Total number of players : 3/6 
+Seat 3: Player2 ( 5,480 )
+Seat 5: Player0 ( 5,210 )
+Seat 2: Player4 ( 1,310 )
+Trny: 59658944 Level: 5 
+Blinds(150/300)
+** Dealing down cards **
+Dealt to Player0 [  9c 7d ]
+Player2 raises [600]
+Player0 folds
+Player4 folds
+Player2 does not show cards.
+Player2 wins 1,050 chips
+
+
+***** Hand History for Game 10315747103 *****
+NL Texas Hold'em $11 USD Buy-in Trny: 59658926 Level: 5  Blinds(150/300) - Friday, April 01, 11:40:46 CEST 2011
+Table Turbo #1647059 (Real Money)
+Seat 1 is the button
+Total number of players : 3/6 
+Seat 5: Player0 ( 4,210 )
+Seat 1: Player3 ( 2,430 )
+Seat 6: Player6 ( 5,360 )
+Trny: 59658926 Level: 5 
+Blinds(150/300)
+** Dealing down cards **
+Dealt to Player0 [  3s 8h ]
+Player3 folds
+Player0 folds
+Player6 does not show cards.
+Player6 wins 450 chips
+
+
+***** Hand History for Game 10315957091 *****
+NL Texas Hold'em $55 USD Buy-in Trny: 59660668 Level: 6  Blinds(200/400) - Friday, April 01, 13:28:01 CEST 2011
+Table Turbo #1646859 (Real Money)
+Seat 4 is the button
+Total number of players : 2/6 
+Seat 4: Player0 ( 7,300 )
+Seat 5: Player5 ( 4,700 )
+Trny: 59660668 Level: 6 
+Blinds(200/400)
+** Dealing down cards **
+Dealt to Player0 [  2h 6c ]
+Player0 folds
+Player5 does not show cards.
+Player5 wins 600 chips
+Game #10315957294 starts.
+
+#Game No : 10315957294 
+
+
+***** Hand History for Game 10315747121 *****
+NL Texas Hold'em $55 USD Buy-in Trny: 59658923 Level: 6  Blinds(200/400) - Friday, April 01, 11:40:47 CEST 2011
+Table Turbo #1646882 (Real Money)
+Seat 4 is the button
+Total number of players : 4/6 
+Seat 3: Player0 ( 3,620 )
+Seat 4: Player7 ( 3,690 )
+Seat 5: Player4 ( 2,850 )
+Seat 1: Player8 ( 1,840 )
+Trny: 59658923 Level: 6 
+Blinds(200/400)
+** Dealing down cards **
+Dealt to Player0 [  Ac Kc ]
+Player0 is all-In  [3,620]
+Player7 folds
+Player4 folds
+Player8 folds
+Player0 does not show cards.
+Player0 wins 4,220 chips
+
+
+***** Hand History for Game 10315717114 *****
+NL Texas Hold'em $11 USD Buy-in Trny: 59658917 Level: 1  Blinds(20/40) - Friday, April 01, 11:22:47 CEST 2011
+Table Turbo #1646858 (Real Money)
+Seat 2 is the button
+Total number of players : 6/6 
+Seat 6: Player0 ( 2,000 )
+Seat 4: Player11 ( 2,000 )
+Seat 3: Player12 ( 2,000 )
+Seat 5: Player13 ( 2,000 )
+Seat 2: Player14 ( 2,000 )
+Seat 1: Player3 ( 2,000 )
+Trny: 59658917 Level: 1 
+Blinds(20/40)
+** Dealing down cards **
+Dealt to Player0 [  4s Qh ]
+Player13 folds
+Player0 folds
+Player3 folds
+Player14 folds
+player12 folds
+Player11 does not show cards.
+Player11 wins 60 chips

@@ -1,0 +1,28 @@
+Full Tilt Poker Game #29537846954: $7,000 KO Guarantee (229436420), Table 11 - 50K/100K Ante 10000 - No Limit Hold'em - 16:06:40 ET - 2011/04/01
+Seat 1: Hero (2,866,582)
+Seat 6: Player0 (1,693,418)
+Hero antes 10,000
+Player0 antes 10,000
+Hero posts the small blind of 50,000
+Player0 posts the big blind of 100,000
+The button is in seat #1
+*** HOLE CARDS ***
+Dealt to Hero [Tc Kh]
+Hero raises to 2,856,582, and is all in
+Player0 calls 1,583,418, and is all in
+Hero shows [Tc Kh]
+Player0 shows [6s 6c]
+Uncalled bet of 1,173,164 returned to Hero
+*** FLOP *** [Ac Th Kd]
+*** TURN *** [Ac Th Kd] [Kc]
+*** RIVER *** [Ac Th Kd Kc] [3c]
+Hero shows a full house, Kings full of Tens
+Player0 shows two pair, Kings and Sixes
+Hero wins the pot (3,386,836) with a full house, Kings full of Tens
+*** SUMMARY ***
+Total pot 3,386,836 | Rake 0
+Board: [Ac Th Kd Kc 3c]
+Seat 1: Hero (small blind) showed [Tc Kh] and won (3,386,836) with a full house, Kings full of Tens
+Seat 6: Player0 (big blind) showed [6s 6c] and lost with two pair, Kings and Sixes
+
+

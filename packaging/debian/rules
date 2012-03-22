@@ -24,9 +24,9 @@ install: build
 	#
 	python setup.py install --root=debian/$(PACKAGE) --prefix=/usr --no-compile
 	# Copy *.pyw manually in packaging tree
-	cp pyfpdb/*.pyw debian/$(PACKAGE)/usr/lib/python2.6/site-packages/fpdb/
+	cp pyfpdb/*.pyw debian/$(PACKAGE)/usr/lib/python2.7/site-packages/fpdb/
 	# Remove scripts that are only useful in win32
-	rm debian/$(PACKAGE)/usr/lib/python2.6/site-packages/fpdb/windows_make_bats.py
+	rm debian/$(PACKAGE)/usr/lib/python2.7/site-packages/fpdb/windows_make_bats.py
 
 
 binary-indep: build install

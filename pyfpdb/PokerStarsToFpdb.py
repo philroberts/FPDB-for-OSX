@@ -222,6 +222,9 @@ class PokerStars(HandHistoryConverter):
             info['type'] = 'ring'
         else:
             info['type'] = 'tour'
+            
+        if not mg['CURRENCY'] and info['type']=='ring':
+            info['currency'] = 'play'
 
         if info['limitType'] == 'fl' and info['bb'] is not None and info['type'] == 'ring':
             try:
@@ -323,10 +326,6 @@ class PokerStars(HandHistoryConverter):
                 hand.buttonpos = info[key]
             if key == 'MAX' and info[key] != None:
                 hand.maxseats = int(info[key])
-
-            if key == 'PLAY' and info['PLAY'] is not None:
-#                hand.currency = 'play' # overrides previously set value
-                hand.gametype['currency'] = 'play'
                 
         if self.re_Cancelled.search(hand.handText):
             raise FpdbHandPartial(_("Hand '%s' was cancelled.") % hand.handid)
