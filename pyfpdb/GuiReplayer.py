@@ -150,8 +150,8 @@ class GuiReplayer:
 
         if self.tableImage is None or self.playerBackdrop is None:
             try:
-                self.playerBackdrop = gtk.gdk.pixbuf_new_from_file("../gfx/playerbackdrop.png")
-                self.tableImage = gtk.gdk.pixbuf_new_from_file("../gfx/Table.png")
+                self.playerBackdrop = gtk.gdk.pixbuf_new_from_file(os.path.join(self.conf.graphics_path, u"playerbackdrop.png"))
+                self.tableImage = gtk.gdk.pixbuf_new_from_file(os.path.join(self.conf.graphics_path, u"Table.png"))
                 self.area.set_size_request(self.tableImage.get_width(), self.tableImage.get_height())
             except:
                 return

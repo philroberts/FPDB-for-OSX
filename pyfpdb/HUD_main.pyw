@@ -114,8 +114,7 @@ class HUD_main(object):
             self.vb.add(self.label)
             self.main_window.add(self.vb)
             self.main_window.set_title("HUD Main Window")
-            #FIXME - hardcoded paths need to be replaced with config. constants.
-            cards = os.path.join(os.getcwd(), '..','gfx','fpdb-cards.png')
+            cards = os.path.join(self.config.graphics_path,'fpdb-cards.png')
             if os.path.exists(cards):
                 self.main_window.set_icon_from_file(cards)
             elif os.path.exists('/usr/share/pixmaps/fpdb-cards.png'):

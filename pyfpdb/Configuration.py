@@ -57,9 +57,11 @@ import ConfigParser
 # especially important when user directory includes non-ascii chars
 #
 # INSTALL_METHOD ("source" or "exe")
-# FPDB_PROGRAM_PATH (path to the root fpdb installation dir root (normally ...../fpdb)
+# FPDB_ROOT_PATH (path to the root fpdb installation dir root (normally ...../fpdb)
 # APPDATA_PATH (root path for appdata eg /~ or appdata)
 # CONFIG_PATH (path to the directory holding logs, sqlite db's and config)
+# GRAPHICS_PATH (path to graphics assets (normally .gfx)
+# PYFPDB_PATH (path to py's)
 # OS_FAMILY (OS Family for installed system (Linux, Mac, XP, Win7)
 # POSIX (True=Linux or Mac platform, False=Windows platform)
 # PYTHON_VERSION (n.n)
@@ -70,10 +72,10 @@ else:
     INSTALL_METHOD = "source"
     
 if INSTALL_METHOD == "exe":
-    FPDB_PROGRAM_PATH = os.path.dirname( unicode(sys.executable, sys.getfilesystemencoding()) ) # should be exe path to \fpdbroot\pyfpdb
-    FPDB_PROGRAM_PATH = os.path.join(FPDB_PROGRAM_PATH, u"..")   # go up one level (to fpdbroot)
+    temp = os.path.dirname( unicode(sys.executable, sys.getfilesystemencoding()) ) # should be exe path to \fpdbroot\pyfpdb
+    FPDB_ROOT_PATH = os.path.join(temp, u"..")   # go up one level (to fpdbroot)
 else:
-    FPDB_PROGRAM_PATH = os.path.dirname( unicode(sys.path[0], sys.getfilesystemencoding()) )  # should be source path to /fpdbroot
+    FPDB_ROOT_PATH = os.path.dirname( unicode(sys.path[0], sys.getfilesystemencoding()) )  # should be source path to /fpdbroot
 
 sysPlatform = platform.system()  #Linux, Windows, Darwin
 if sysPlatform[0:5] == 'Linux':
@@ -88,6 +90,9 @@ elif sysPlatform == 'Windows':
 else:
     OS_FAMILY = False
 
+GRAPHICS_PATH = os.path.join(FPDB_ROOT_PATH, u"gfx")
+PYFPDB_PATH = os.path.join(FPDB_ROOT_PATH, u"pyfpdb")
+
 if OS_FAMILY in ['XP', 'Win7']:
     APPDATA_PATH = winpaths_appdata
     CONFIG_PATH = os.path.join(APPDATA_PATH, u"fpdb")
@@ -95,7 +100,7 @@ elif OS_FAMILY == 'Mac':
     APPDATA_PATH = os.getenv("HOME")
     CONFIG_PATH = os.path.join(APPDATA_PATH, u".fpdb")
 elif OS_FAMILY == 'Linux':
-    APPDATA_PATH = os.path.expanduser("~")
+    APPDATA_PATH = os.path.expanduser(u"~")
     CONFIG_PATH = os.path.join(APPDATA_PATH, u".fpdb")
 else:
     APPDATA_PATH = False
@@ -123,7 +128,7 @@ def get_config(file_name, fallback = True):
     config_found,example_found,example_copy = False,False,False
     config_path, example_path = None,None
 
-    config_path = os.path.join(FPDB_PROGRAM_PATH, 'pyfpdb', file_name)
+    config_path = os.path.join(FPDB_ROOT_PATH, 'pyfpdb', file_name)
     
     #print "config_path=", config_path
     if os.path.exists(config_path):    # there is a file in the cwd
@@ -171,7 +176,7 @@ def get_config(file_name, fallback = True):
             if not config_found and fallback:
                 shutil.copyfile(example_path, config_path)
                 example_copy = True
-                log.info (_("No %r found in \"%r\" or \"%r\".") % (file_name, FPDB_PROGRAM_PATH, CONFIG_PATH) \
+                log.info (_("No %r found in \"%r\" or \"%r\".") % (file_name, FPDB_ROOT_PATH, CONFIG_PATH) \
                      + " " + _("Config file has been created at %r.") % (config_path+"\n") )
 
         except:
@@ -734,9 +739,11 @@ class Config:
     def __init__(self, file = None, dbname = '', custom_log_dir='', lvl='INFO'):
         
         self.install_method = INSTALL_METHOD
-        self.fpdb_program_path = FPDB_PROGRAM_PATH
+        self.fpdb_root_path = FPDB_ROOT_PATH
         self.appdata_path = APPDATA_PATH
         self.config_path = CONFIG_PATH
+        self.pyfpdb_path = PYFPDB_PATH
+        self.graphics_path = GRAPHICS_PATH
         self.os_family = OS_FAMILY
         self.posix = POSIX
         self.python_version = PYTHON_VERSION
@@ -1649,9 +1656,11 @@ if __name__== "__main__":
 
     print "\n----------- ENVIRONMENT CONSTANTS -----------"
     print "Configuration.install_method {source,exe} =", INSTALL_METHOD
-    print "Configuration.fpdb_program_path =", FPDB_PROGRAM_PATH, type(FPDB_PROGRAM_PATH)
+    print "Configuration.fpdb_root_path =", FPDB_ROOT_PATH, type(FPDB_ROOT_PATH)
+    print "Configuration.graphics_path =", GRAPHICS_PATH, type(GRAPHICS_PATH)
     print "Configuration.appdata_path =", APPDATA_PATH, type(APPDATA_PATH)
     print "Configuration.config_path =", CONFIG_PATH, type(CONFIG_PATH)
+    print "Configuration.pyfpdb_path =", PYFPDB_PATH, type(PYFPDB_PATH)
     print "Configuration.os_family {Linux,Mac,XP,Win7} =", OS_FAMILY
     print "Configuration.posix {True/False} =", POSIX
     print "Configuration.python_version =", PYTHON_VERSION
