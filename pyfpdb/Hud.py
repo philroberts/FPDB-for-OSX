@@ -208,11 +208,11 @@ class Hud:
             if self.stat_dict[key]['screen_name'] == heroname:
                 return self.stat_dict[key]['seat']
 
-    def create(self, hand, config, stat_dict, cards):
+    def create(self, hand, config, stat_dict):
 #    update this hud, to the stats and players as of "hand"
 #    hand is the hand id of the most recent hand played at this table
 
-        self.creation_attrs = hand, config, stat_dict, cards
+        self.creation_attrs = hand, config, stat_dict
 
         #create new database connection for this table - must create a fresh one
         # here because the one used in HUD_Main is not available in this thread
@@ -222,7 +222,6 @@ class Hud:
 
         self.hand = hand            #fixme - not sure what this is doing here?
         self.stat_dict = stat_dict  #fixme - not sure what this is doing here?
-        self.cards = cards          #fixme - not sure what this is doing here?
         self.db_hud_connection.connection.rollback()
         log.info(_('Creating hud from hand ')+str(hand))
 

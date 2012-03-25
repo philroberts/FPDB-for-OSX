@@ -16,21 +16,20 @@ images and returns it as a dict of pixbufs.
 import os
 import gtk
 
-# This is used to get the path(s) to card images
-import card_path
-
 class Deck(object):
-    def __init__(self, decktype='simple', width=30, height=42):
+    def __init__(self, config, deck_type=u'simple', card_back=u'back04', width=30, height=42):
         self.__width = width
         self.__height = height
-        self.__path = card_path.deck_path()
+        self.__cardspath = os.path.join(config.graphics_path, u"cards", deck_type)
+        self.__backfile = os.path.join(config.graphics_path, u"cards", u"backs", (card_back + u".svg"))
         self.__cards = dict({ 's': None, 'h': None, 'd': None, 'c': None })
         self.__card_back = None
         self.__rank_vals = dict()
         #
         for sk in self.__cards:
-            self.__load_suit(sk, decktype)
-        self.__load_back()
+            self.__load_suit(sk)
+        #
+        self.__card_back = self.__load_svg(self.__backfile)
         #
         self.__create_rank_lookups()
 
@@ -43,32 +42,29 @@ class Deck(object):
     
     
     def __load_svg(self, path):
-        pb = gtk.gdk.pixbuf_new_from_file_at_size(path,
-            self.__width, self.__height)
+        # pixbuf_new_from_file_at_size apparently not working
+        # so load full size and scale_simple instead
+        temp_buf = gtk.gdk.pixbuf_new_from_file(path)
+        pb = temp_buf.scale_simple(self.__width, self.__height, gtk.gdk.INTERP_HYPER)
         return pb
 
-    def __load_suit(self, suit_key, decktype):
+    def __load_suit(self, suit_key):
         sd = dict()
-        _p = '%s/cards/%s' % (self.__path, decktype)
-        sd[2]   = self.__load_svg(_p + '/' + suit_key + '_' + '2' + '.svg')
-        sd[3]   = self.__load_svg(_p + '/' + suit_key + '_' + '3' + '.svg')
-        sd[4]   = self.__load_svg(_p + '/' + suit_key + '_' + '4' + '.svg')
-        sd[5]   = self.__load_svg(_p + '/' + suit_key + '_' + '5' + '.svg')
-        sd[6]   = self.__load_svg(_p + '/' + suit_key + '_' + '6' + '.svg')
-        sd[7]   = self.__load_svg(_p + '/' + suit_key + '_' + '7' + '.svg')
-        sd[8]   = self.__load_svg(_p + '/' + suit_key + '_' + '8' + '.svg')
-        sd[9]   = self.__load_svg(_p + '/' + suit_key + '_' + '9' + '.svg')
-        sd[10]  = self.__load_svg(_p + '/' + suit_key + '_' + '10' + '.svg')
-        sd[11]  = self.__load_svg(_p + '/' + suit_key + '_' + 'j' + '.svg')
-        sd[12]  = self.__load_svg(_p + '/' + suit_key + '_' + 'q' + '.svg')
-        sd[13]  = self.__load_svg(_p + '/' + suit_key + '_' + 'k' + '.svg')
-        sd[14]  = self.__load_svg(_p + '/' + suit_key + '_' + 'a' + '.svg')
+        _p = self.__cardspath
+        sd[2]   = self.__load_svg(os.path.join(_p, (suit_key + '_' + '2' + '.svg')))
+        sd[3]   = self.__load_svg(os.path.join(_p, (suit_key + '_' + '3' + '.svg')))
+        sd[4]   = self.__load_svg(os.path.join(_p, (suit_key + '_' + '4' + '.svg')))
+        sd[5]   = self.__load_svg(os.path.join(_p, (suit_key + '_' + '5' + '.svg')))
+        sd[6]   = self.__load_svg(os.path.join(_p, (suit_key + '_' + '6' + '.svg')))
+        sd[7]   = self.__load_svg(os.path.join(_p, (suit_key + '_' + '7' + '.svg')))
+        sd[8]   = self.__load_svg(os.path.join(_p, (suit_key + '_' + '8' + '.svg')))
+        sd[9]   = self.__load_svg(os.path.join(_p, (suit_key + '_' + '9' + '.svg')))
+        sd[10]   = self.__load_svg(os.path.join(_p, (suit_key + '_' + '10' + '.svg')))
+        sd[11]   = self.__load_svg(os.path.join(_p, (suit_key + '_' + 'j' + '.svg')))
+        sd[12]   = self.__load_svg(os.path.join(_p, (suit_key + '_' + 'q' + '.svg')))
+        sd[13]   = self.__load_svg(os.path.join(_p, (suit_key + '_' + 'k' + '.svg')))
+        sd[14]   = self.__load_svg(os.path.join(_p, (suit_key + '_' + 'a' + '.svg')))
         self.__cards[suit_key] = sd
-
-
-    def __load_back(self, name='back04'):
-        _path = '%s/cards/backs/%s.svg' % (self.__path, name)
-        self.__card_back = self.__load_svg(_path)
         
 
     def card(self, suit=None, rank=0):

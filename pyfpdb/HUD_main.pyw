@@ -46,7 +46,7 @@ import Configuration
 import Database
 import Hud
 import Options
-
+import Deck
 
 (options, argv) = Options.fpdb_options()
 
@@ -81,9 +81,12 @@ class HUD_main(object):
                 errorFile = open(fileName, 'w', 0)
                 sys.stderr = errorFile
                 log.info(_("HUD_main starting"))
-
+            #update and save config
             self.hud_dict = {}
             self.hud_params = self.config.get_hud_ui_parameters()
+            self.deck = Deck.Deck(self.config,
+                deck_type=self.hud_params["deck_type"], card_back=self.hud_params["card_back"],
+                width=self.hud_params['card_wd'], height=self.hud_params['card_ht'])
 
             # a thread to read stdin
             gobject.threads_init()                        # this is required
@@ -287,7 +290,7 @@ class HUD_main(object):
                 temp_key = "%s Table %s" % (tour_number, tab_number)
             else:
                 temp_key = table_name
-
+        
 #       detect maxseats changed in hud
 #       if so, kill and create new hud with specified "max"
             if temp_key in self.hud_dict:
@@ -369,9 +372,9 @@ class HUD_main(object):
                     self.hud_dict[temp_key].table.check_table_no(self.hud_dict[temp_key])
                 except KeyError:
                     pass
-
+        
         self.db_connection.connection.rollback()
-            
+
     def get_cards(self, new_hand_id):
         cards = self.db_connection.get_cards(new_hand_id)
         comm_cards = self.db_connection.get_common_cards(new_hand_id)
@@ -429,7 +432,6 @@ def idle_create(hud_main, new_hand_id, table, temp_key, max, poker_game, type, s
     gtk.gdk.threads_enter()
     try:
         if table.gdkhandle is not None:  # on windows this should already be set
-            print "here I am in HUD_main, what's going on?"
             table.gdkhandle = gtk.gdk.window_foreign_new(table.number)
         newlabel = gtk.Label("%s - %s" % (table.site, temp_key))
         hud_main.vb.add(newlabel)
@@ -438,7 +440,7 @@ def idle_create(hud_main, new_hand_id, table, temp_key, max, poker_game, type, s
 
         hud_main.hud_dict[temp_key].tablehudlabel = newlabel
         # call the hud.create method, apparently
-        hud_main.hud_dict[temp_key].create(new_hand_id, hud_main.config, stat_dict, cards)
+        hud_main.hud_dict[temp_key].create(new_hand_id, hud_main.config, stat_dict)
         for m in hud_main.hud_dict[temp_key].aux_windows:
             m.create() # create method of aux_window class (generally Mucked.aux_seats.create)
             m.update_gui(new_hand_id)

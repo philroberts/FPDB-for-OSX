@@ -37,7 +37,6 @@ import gobject
 
 #   FPDB
 import Card
-import Deck
 
 # This holds all card images in a nice lookup table. One instance is
 # populated on the first run of Aux_Window.get_card_images() and all
@@ -48,12 +47,6 @@ deck = None
 # takes some time. If that is done at the first access of
 # Aux_Window.get_card_images(), it can add a delay of several seconds.
 # A pre-populated deck on the other hand grants instant access.
-def populate_deck(dtype='colour', w=30, h=42):
-    global deck
-    deck = Deck.Deck(decktype=dtype, width=w, height=h)
-
-
-populate_deck()
 
 
 class Aux_Window(object):
@@ -77,11 +70,7 @@ class Aux_Window(object):
 ############################################################################
 #    Some utility routines useful for Aux_Windows
 #
-    def get_card_images(self, card_width=30, card_height=42):
-        global deck # We're modifying a variable outside class scope
-        if deck is None:
-            deck = Deck.Deck(decktype='colour',
-                        width=card_width, height=card_height)
+    def get_card_images(self):
 
         card_images = dict()
         suits = ('s', 'h', 'd', 'c')
@@ -95,11 +84,12 @@ class Aux_Window(object):
         # This is a nice trick. We put the card back image behind key 0,
         # which allows the old code to work. A dict[0] looks like first
         # index of an array.
-        card_images[0] = deck.back()
+        card_images[0] = self.hud.parent.deck.back()
         return card_images
 
     def card(self, suitkey, rank):
-        temp_pb = deck.card(suitkey, rank)
+
+        temp_pb = self.hud.parent.deck.card(suitkey, rank)
         return temp_pb
 
     # Returns the number of places where cards were shown. This can be N

@@ -142,6 +142,11 @@
     hero_aggregation_level_multiplier="1"
 
     label="FPDB"
+    
+    card_ht="39"
+    card_wd="28"
+    deck_type="colour"
+    card_back="back03"
    />
 
 
@@ -463,10 +468,8 @@
                 bgcolor="#000000" fgcolor="#FFFFFF" font="Sans" font_size="8" opacity="0.7"/>
 
         <!-- Mucked card aux's -->
-        <aw name="stud_mucked" module="Mucked" class="Stud_mucked"
-                cols="11" deck="Cards01.png" rows="8"/>
-        <aw name="mucked" module="Mucked" class="Flop_Mucked" 
-                card_ht="28" deck="Cards01.png" opacity="1.0" timeout="5"/>
+        <aw name="stud_mucked" module="Mucked" class="Stud_mucked" cols="11" rows="8"/>
+        <aw name="mucked" module="Mucked" class="Flop_Mucked" opacity="1.0" timeout="5"/>
 
         <!-- testing aux's -->
         <aw name="Hello" module="Hello" class="Hello"/>

@@ -138,7 +138,6 @@ def get_config(file_name, fallback = True):
         #print "config path 2=", config_path
         if os.path.exists(config_path):
             config_found = True
-    
     #TODO: clean up the example path loading to ensure it behaves the same on all OSs
     # Example configuration for debian package
     if POSIX:
@@ -564,6 +563,10 @@ class HudUI:
     def __init__(self, node):
         self.node = node
         self.label  = node.getAttribute('label')
+        self.card_ht = node.getAttribute('card_ht')
+        self.card_wd = node.getAttribute('card_wd')
+        self.deck_type = node.getAttribute('deck_type')
+        self.card_back = node.getAttribute('card_back')
         #
         self.hud_style      = node.getAttribute('stat_range')
         self.hud_days       = node.getAttribute('stat_days')
@@ -1310,6 +1313,18 @@ class Config:
         except:
             hui['label'] = default_text
 
+        try:    hui['card_ht']        = int(self.ui.card_ht)
+        except: hui['card_ht']        = 42
+
+        try:    hui['card_wd']        = int(self.ui.card_wd)
+        except: hui['card_wd']        = 30
+        
+        try:    hui['deck_type']      = unicode(self.ui.deck_type)
+        except: hui['deck_type']        = u'colour'
+        
+        try:    hui['card_back']      = unicode(self.ui.card_back)
+        except: hui['card_back']        = u'back04'
+                
         try:    hui['hud_style']        = self.ui.hud_style
         except: hui['hud_style']        = 'A'  # default is show stats for All-time, also S(session) and T(ime)
 
