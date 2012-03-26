@@ -38,6 +38,9 @@ def _buildStatsInitializer():
     # All stud street4 need this when importing holdem
     init['winnings']    = 0
     init['rake']        = 0
+    init['rakeDealt']   = 0
+    init['rakeContributed'] = 0
+    init['rakeWeighted'] = 0
     init['totalProfit'] = 0
     init['allInEV']     = 0
     init['street4Aggr'] = False
@@ -319,11 +322,19 @@ class DerivedStats():
                 collectee_stats['wonWhenSeenStreet4'] = 1.0
             if collectee_stats['sawShowdown'] == True:
                 collectee_stats['wonAtSD'] = 1.0
-
+        
+        contributed = []
         for player, money_committed in hand.pot.committed.iteritems():
             committed_player_stats = self.handsplayers[player]
-            committed_player_stats['totalProfit'] = int(committed_player_stats['winnings'] - (100 * money_committed) - (100*hand.pot.common[player]))
-            committed_player_stats['allInEV']     = committed_player_stats['totalProfit']
+            paid = (100 * money_committed) + (100*hand.pot.common[player])
+            committed_player_stats['totalProfit'] = int(committed_player_stats['winnings'] - paid)
+            committed_player_stats['allInEV'] = committed_player_stats['totalProfit']
+            committed_player_stats['rakeDealt'] = int(100* hand.rake)/len(hand.players)
+            if paid > 0: contributed.append(player)
+            committed_player_stats['rakeWeighted'] = int((100.0* hand.rake) * (paid/hand.totalpot))
+            
+        for player in contributed:
+            self.handsplayers[player]['rakeContributed'] = int(100* hand.rake)/len(contributed)
 
         self.calcCBets(hand)
         

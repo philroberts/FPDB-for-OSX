@@ -1733,6 +1733,9 @@ class Sql:
                         
                         totalProfit INT,
                         rake INT,
+                        rakeDealt INT,
+                        rakeContributed INT,
+                        rakeWeighted INT,
                         showdownWinnings INT,
                         nonShowdownWinnings INT,
                         allInEV INT,
@@ -1851,6 +1854,9 @@ class Sql:
 
                         totalProfit INT,
                         rake INT,
+                        rakeDealt INT,
+                        rakeContributed INT,
+                        rakeWeighted INT,
                         showdownWinnings INT,
                         nonShowdownWinnings INT,
                         allInEV INT,
@@ -1968,6 +1974,9 @@ class Sql:
 
                         totalProfit INT,
                         rake INT,
+                        rakeDealt INT,
+                        rakeContributed INT,
+                        rakeWeighted INT,
                         showdownWinnings INT,
                         nonShowdownWinnings INT,
                         allInEV INT,
@@ -2093,6 +2102,9 @@ class Sql:
                         
                         totalProfit INT,
                         rake INT,
+                        rakeDealt INT,
+                        rakeContributed INT,
+                        rakeWeighted INT,
                         showdownWinnings INT,
                         nonShowdownWinnings INT,
                         allInEV INT,
@@ -2212,6 +2224,9 @@ class Sql:
 
                         totalProfit INT,
                         rake INT,
+                        rakeDealt INT,
+                        rakeContributed INT,
+                        rakeWeighted INT,
                         showdownWinnings INT,
                         nonShowdownWinnings INT,
                         allInEV INT,
@@ -2330,6 +2345,9 @@ class Sql:
 
                         totalProfit INT,
                         rake INT,
+                        rakeDealt INT,
+                        rakeContributed INT,
+                        rakeWeighted INT,
                         showdownWinnings INT,
                         nonShowdownWinnings INT,
                         allInEV INT,
@@ -2530,6 +2548,9 @@ class Sql:
                         
                         totalProfit INT,
                         rake INT,
+                        rakeDealt INT,
+                        rakeContributed INT,
+                        rakeWeighted INT,
                         showdownWinnings INT,
                         nonShowdownWinnings INT,
                         allInEV INT,
@@ -2648,6 +2669,9 @@ class Sql:
 
                         totalProfit INT,
                         rake INT,
+                        rakeDealt INT,
+                        rakeContributed INT,
+                        rakeWeighted INT,
                         showdownWinnings INT,
                         nonShowdownWinnings INT,
                         allInEV INT,
@@ -2765,6 +2789,9 @@ class Sql:
 
                         totalProfit INT,
                         rake INT,
+                        rakeDealt INT,
+                        rakeContributed INT,
+                        rakeWeighted INT,
                         showdownWinnings INT,
                         nonShowdownWinnings INT,
                         allInEV INT,
@@ -2887,6 +2914,9 @@ class Sql:
                         
                         totalProfit INT,
                         rake INT,
+                        rakeDealt INT,
+                        rakeContributed INT,
+                        rakeWeighted INT,
                         showdownWinnings INT,
                         nonShowdownWinnings INT,
                         allInEV INT,
@@ -3005,6 +3035,9 @@ class Sql:
 
                         totalProfit INT,
                         rake INT,
+                        rakeDealt INT,
+                        rakeContributed INT,
+                        rakeWeighted INT,
                         showdownWinnings INT,
                         nonShowdownWinnings INT,
                         allInEV INT,
@@ -3122,6 +3155,9 @@ class Sql:
 
                         totalProfit INT,
                         rake INT,
+                        rakeDealt INT,
+                        rakeContributed INT,
+                        rakeWeighted INT,
                         showdownWinnings INT,
                         nonShowdownWinnings INT,
                         allInEV INT,
@@ -6634,6 +6670,9 @@ class Sql:
                 foldToStreet4CBDone,
                 totalProfit,
                 rake,
+                rakeDealt,
+                rakeContributed,
+                rakeWeighted,
                 showdownWinnings,
                 nonShowdownWinnings,
                 allInEV,
@@ -6681,7 +6720,7 @@ class Sql:
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
-                    %s, %s
+                    %s, %s, %s, %s, %s
                     )"""
 
         self.query['update_cardscache'] = """
@@ -6755,6 +6794,9 @@ class Sql:
                     foldToStreet4CBDone=foldToStreet4CBDone+%s,
                     totalProfit=totalProfit+%s,
                     rake=rake+%s,
+                    rakeDealt=rakeDealt+%s,
+                    rakeContributed=rakeContributed+%s,
+                    rakeWeighted=rakeWeighted+%s,
                     showdownWinnings=showdownWinnings+%s,
                     nonShowdownWinnings=nonShowdownWinnings+%s,
                     allInEV=allInEV+%s,
@@ -6884,6 +6926,9 @@ class Sql:
                 foldToStreet4CBDone,
                 totalProfit,
                 rake,
+                rakeDealt,
+                rakeContributed,
+                rakeWeighted,
                 showdownWinnings,
                 nonShowdownWinnings,
                 allInEV,
@@ -6931,7 +6976,8 @@ class Sql:
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
-                    %s, %s, %s
+                    %s, %s, %s, %s, %s,
+                    %s
                     )"""
 
         self.query['update_positionscache'] = """
@@ -7005,6 +7051,9 @@ class Sql:
                     foldToStreet4CBDone=foldToStreet4CBDone+%s,
                     totalProfit=totalProfit+%s,
                     rake=rake+%s,
+                    rakeDealt=rakeDealt+%s,
+                    rakeContributed=rakeContributed+%s,
+                    rakeWeighted=rakeWeighted+%s,
                     showdownWinnings=showdownWinnings+%s,
                     nonShowdownWinnings=nonShowdownWinnings+%s,
                     allInEV=allInEV+%s,
@@ -7198,6 +7247,9 @@ class Sql:
                     foldToStreet4CBDone,
                     totalProfit,
                     rake,
+                    rakeDealt,
+                    rakeContributed,
+                    rakeWeighted,
                     showdownWinnings,
                     nonShowdownWinnings,
                     allInEV,
@@ -7335,6 +7387,9 @@ class Sql:
                     foldToStreet4CBDone,
                     totalProfit,
                     rake,
+                    rakeDealt,
+                    rakeContributed,
+                    rakeWeighted,
                     showdownWinnings,
                     nonShowdownWinnings,
                     allInEV,
@@ -7383,7 +7438,7 @@ class Sql:
                             %s, %s, %s, %s, %s,
                             %s, %s, %s, %s, %s,
                             %s, %s, %s, %s, %s,
-                            %s)"""
+                            %s, %s, %s, %s)"""
                             
         self.query['insert_TC'] = """
                     insert into TourCache (
@@ -7461,6 +7516,9 @@ class Sql:
                     foldToStreet4CBDone,
                     totalProfit,
                     rake,
+                    rakeDealt,
+                    rakeContributed,
+                    rakeWeighted,
                     showdownWinnings,
                     nonShowdownWinnings,
                     allInEV,
@@ -7509,7 +7567,7 @@ class Sql:
                             %s, %s, %s, %s, %s,
                             %s, %s, %s, %s, %s,
                             %s, %s, %s, %s, %s,
-                            %s)"""
+                            %s, %s, %s, %s)"""
                     
         ####################################
         # update
@@ -7602,6 +7660,9 @@ class Sql:
                     foldToStreet4CBDone=foldToStreet4CBDone+%s,
                     totalProfit=totalProfit+%s,
                     rake=rake+%s,
+                    rakeDealt=rakeDealt+%s,
+                    rakeContributed=rakeContributed+%s,
+                    rakeWeighted=rakeWeighted+%s,
                     showdownWinnings=showdownWinnings+%s,
                     nonShowdownWinnings=nonShowdownWinnings+%s,
                     allInEV=allInEV+%s,
@@ -7703,6 +7764,9 @@ class Sql:
                     foldToStreet4CBDone=foldToStreet4CBDone+%s,
                     totalProfit=totalProfit+%s,
                     rake=rake+%s,
+                    rakeDealt=rakeDealt+%s,
+                    rakeContributed=rakeContributed+%s,
+                    rakeWeighted=rakeWeighted+%s,
                     showdownWinnings=showdownWinnings+%s,
                     nonShowdownWinnings=nonShowdownWinnings+%s,
                     allInEV=allInEV+%s,
