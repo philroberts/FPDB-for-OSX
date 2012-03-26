@@ -2018,8 +2018,6 @@ class Database:
         c = self.get_cursor()
         c.execute(self.sql.query['clear_WC_SC'])
         c.execute(self.sql.query['clear_MC_SC'])
-        c.execute(self.sql.query['clearWeeksCache'])
-        c.execute(self.sql.query['clearMonthsCache'])
         c.execute("SELECT id, sessionStart from SessionsCache")
         sessions = self.fetchallDict(c)
         for s in sessions:
@@ -2936,7 +2934,7 @@ class Database:
                         id, start, end = result
                         self.archive.addSessionHands('tour', tc['sid'], id, tc['ids'])
     
-    def storeCardsCache(self, hid, pids, startTime, gid, ttid, gametype, pdata, heroes, tz_name, doinsert):
+    def storeCardsCache(self, hid, pids, startTime, gid, ttid, gametype, siteId, pdata, heroes, tz_name, doinsert):
         """Update cached statistics. If update fails because no record exists, do an insert."""
         update_cardscache = self.sql.query['update_cardscache']
         update_cardscache = update_cardscache.replace('%s', self.sql.query['placeholder'])
@@ -2952,41 +2950,14 @@ class Database:
         insert_WC     = self.sql.query['insert_WC'].replace('%s', self.sql.query['placeholder'])
         insert_MC     = self.sql.query['insert_MC'].replace('%s', self.sql.query['placeholder'])
         
-        #if startTime:
-        #    if self.backend == self.SQLITE:
-        #        naive = datetime.strptime(startTime, '%Y-%m-%d %H:%M:%S')
-        #    else:
-        #        naive = startTime.replace(tzinfo=None)
-        #    monthStart = datetime(naive.year, naive.month, 1)
-        #    weekdate   = datetime(naive.year, naive.month, naive.day)
-        #    weekStart  = weekdate - timedelta(days=weekdate.weekday())
-   
-        if tz_name in pytz.common_timezones:
+        if startTime:
             if self.backend == self.SQLITE:
                 naive = datetime.strptime(startTime, '%Y-%m-%d %H:%M:%S')
             else:
                 naive = startTime.replace(tzinfo=None)
-            utc_start = pytz.utc.localize(naive)
-            tz = pytz.timezone(tz_name)
-            loc_tz = utc_start.astimezone(tz).strftime('%z')
-            offset = timedelta(hours=int(loc_tz[:-2]), minutes=int(loc_tz[0]+loc_tz[-2:]))
-            local = naive + offset
-            monthStart = datetime(local.year, local.month, 1)
-            weekdate   = datetime(local.year, local.month, local.day)
+            monthStart = datetime(naive.year, naive.month, 1)
+            weekdate   = datetime(naive.year, naive.month, naive.day)
             weekStart  = weekdate - timedelta(days=weekdate.weekday())
-        else:
-            if strftime('%Z') == 'UTC':
-                local = startTime
-                loc_tz = '0'
-            else:
-                tz_dt = datetime.today() - datetime.utcnow()
-                loc_tz = tz_dt.seconds/3600 - 24
-                offset = timedelta(hours=int(loc_tz))
-                local = startTime + offset
-                monthStart = datetime(local.year, local.month, 1)
-                weekdate   = datetime(local.year, local.month, local.day)
-                weekStart  = weekdate - timedelta(days=weekdate.weekday())
-
 
         tourneyTypeId, gametypeId = None, None
         if gametype['type']=='ring':
@@ -3026,6 +2997,10 @@ class Database:
                 else:
                     self.dcbulk[k] = {'wid' : None,
                                       'id'  : None,
+                                     'type' : gametype['type'],
+                                 'category' : gametype['category'],
+                                   'siteId' : siteId,
+                                     'line' : None,
                                       'ids' : []}
                     self.dcbulk[k]['ids'].append(hid)
                     self.dcbulk[k]['line'] = line
@@ -3054,14 +3029,14 @@ class Database:
                     dc['id'] = id
                     
                 else:
-                    inserts.append([wid, mid] + list(k[-4:]) + dc['line'])   
-                self.archive.addStartCardsHands(gametype['category'], gametype['type'], k[5], wid, dc['ids'])
+                    inserts.append([wid, mid] + list(k[-4:]) + dc['line'])
+                self.archive.addStartCardsHands(dc['category'], dc['type'], k[5], dc['siteId'], wid, dc['ids'])
                 
             if inserts:
                 c.executemany(insert_cardscache, inserts)
             self.commit()
             
-    def storePositionsCache(self, hid, pids, startTime, gid, ttid, gametype, pdata, heroes, tz_name, doinsert):
+    def storePositionsCache(self, hid, pids, startTime, gid, ttid, gametype, siteId, pdata, heroes, tz_name, doinsert):
         """Update cached statistics. If update fails because no record exists, do an insert."""
         update_positionscache = self.sql.query['update_positionscache']
         update_positionscache = update_positionscache.replace('%s', self.sql.query['placeholder'])
@@ -3079,40 +3054,14 @@ class Database:
         insert_WC     = self.sql.query['insert_WC'].replace('%s', self.sql.query['placeholder'])
         insert_MC     = self.sql.query['insert_MC'].replace('%s', self.sql.query['placeholder'])
         
-        #if startTime:
-        #    if self.backend == self.SQLITE:
-        #        naive = datetime.strptime(startTime, '%Y-%m-%d %H:%M:%S')
-        #    else:
-        #        naive = startTime.replace(tzinfo=None)
-        #    monthStart = datetime(naive.year, naive.month, 1)
-        #    weekdate   = datetime(naive.year, naive.month, naive.day)
-        #    weekStart  = weekdate - timedelta(days=weekdate.weekday())
-               
-        if tz_name in pytz.common_timezones:
+        if startTime:
             if self.backend == self.SQLITE:
                 naive = datetime.strptime(startTime, '%Y-%m-%d %H:%M:%S')
             else:
                 naive = startTime.replace(tzinfo=None)
-            utc_start = pytz.utc.localize(naive)
-            tz = pytz.timezone(tz_name)
-            loc_tz = utc_start.astimezone(tz).strftime('%z')
-            offset = timedelta(hours=int(loc_tz[:-2]), minutes=int(loc_tz[0]+loc_tz[-2:]))
-            local = naive + offset
-            monthStart = datetime(local.year, local.month, 1)
-            weekdate   = datetime(local.year, local.month, local.day)
+            monthStart = datetime(naive.year, naive.month, 1)
+            weekdate   = datetime(naive.year, naive.month, naive.day)
             weekStart  = weekdate - timedelta(days=weekdate.weekday())
-        else:
-            if strftime('%Z') == 'UTC':
-                local = startTime
-                loc_tz = '0'
-            else:
-                tz_dt = datetime.today() - datetime.utcnow()
-                loc_tz = tz_dt.seconds/3600 - 24
-                offset = timedelta(hours=int(loc_tz))
-                local = startTime + offset
-                monthStart = datetime(local.year, local.month, 1)
-                weekdate   = datetime(local.year, local.month, local.day)
-                weekStart  = weekdate - timedelta(days=weekdate.weekday())
         
         tourneyTypeId, gametypeId = None, None
         if gametype['type']=='ring':
@@ -3153,6 +3102,9 @@ class Database:
                 else:
                     self.pcbulk[k] = {'wid' : None,
                                       'id'  : None,
+                                     'type' : gametype['type'],
+                                   'siteId' : siteId,
+                                     'line' : None,
                                       'ids' : []}
                     self.pcbulk[k]['ids'].append(hid)
                     self.pcbulk[k]['line'] = line
@@ -3182,7 +3134,7 @@ class Database:
                     
                 else:
                     inserts.append([wid, mid] + list(k[-5:]) + pc['line'])
-                self.archive.addPositionsHands(gametype['type'], k[5], k[6], wid, pc['ids'])
+                self.archive.addPositionsHands(pc['type'], k[5], k[6], wid, pc['siteId'], pc['ids'])
                 
             if inserts:
                 c.executemany(insert_positionscache, inserts)

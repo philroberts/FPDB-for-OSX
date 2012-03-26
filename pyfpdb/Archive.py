@@ -69,10 +69,10 @@ class Archive():
     def addSessionHands(self, type, sid, id, hids): pass
     """Adds the handText records for a session to the sessionsArchive dictionary and sets the path"""
     
-    def addStartCardsHands(self, category, type, startCards, wid, hids): pass
+    def addStartCardsHands(self, category, type, startCards, wid, siteId, hids): pass
     """Adds the handText records for startCards to the startCardsArchive dictionary and sets the path"""
     
-    def addPositionsHands(self, type, activeSeats, position, wid, hids): pass
+    def addPositionsHands(self, type, activeSeats, position, wid, siteId, hids): pass
     """Adds the handText records for Positions to the positionsArchive dictionary and sets the path"""
     
     def getFile(self, path): pass
