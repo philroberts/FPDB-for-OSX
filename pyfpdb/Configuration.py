@@ -73,8 +73,11 @@ else:
     
 if INSTALL_METHOD == "exe":
     temp = os.path.dirname( unicode(sys.executable, sys.getfilesystemencoding()) ) # should be exe path to \fpdbroot\pyfpdb
-    FPDB_ROOT_PATH = os.path.join(temp, u"..")   # go up one level (to fpdbroot)
-else:
+    FPDB_ROOT_PATH = os.path.join(temp, os.pardir)   # go up one level (to fpdbroot)
+elif sys.path[0] == "": # we are running directly (import Configuration) from the python shell
+    temp = os.getcwdu() # should be ./pyfpdb
+    FPDB_ROOT_PATH = os.path.join(temp, os.pardir)   # go up one level (to fpdbroot)
+else: # all other cases
     FPDB_ROOT_PATH = os.path.dirname( unicode(sys.path[0], sys.getfilesystemencoding()) )  # should be source path to /fpdbroot
 
 sysPlatform = platform.system()  #Linux, Windows, Darwin
