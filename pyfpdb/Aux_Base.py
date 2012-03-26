@@ -70,28 +70,6 @@ class Aux_Window(object):
 ############################################################################
 #    Some utility routines useful for Aux_Windows
 #
-    def get_card_images(self):
-
-        card_images = dict()
-        suits = ('s', 'h', 'd', 'c')
-        ranks = (14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2)
-
-        for suit in suits:
-            card_images[suit] = dict()
-            for rank in ranks:
-                card_images[suit][rank] = self.card(suit, rank)
-
-        # This is a nice trick. We put the card back image behind key 0,
-        # which allows the old code to work. A dict[0] looks like first
-        # index of an array.
-        card_images[0] = self.hud.parent.deck.back()
-        return card_images
-
-    def card(self, suitkey, rank):
-
-        temp_pb = self.hud.parent.deck.card(suitkey, rank)
-        return temp_pb
-
     # Returns the number of places where cards were shown. This can be N
     # players + common cards
     # XXX XXX: AAAAAGGGGGGHHHHHHHHHHHHHH!

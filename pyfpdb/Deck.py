@@ -17,7 +17,7 @@ import os
 import gtk
 
 class Deck(object):
-    def __init__(self, config, deck_type=u'simple', card_back=u'back04', width=30, height=42):
+    def __init__(self, config, deck_type=u'colour', card_back=u'back04', width=30, height=42):
         self.__width = width
         self.__height = height
         self.__cardspath = os.path.join(config.graphics_path, u"cards", deck_type)
@@ -76,3 +76,20 @@ class Deck(object):
     def rank(self, token=None):
         key = token.upper()
         return self.__rank_vals[key]
+    
+    def get_all_card_images(self):
+        #returns a 53-element dictionary of every card image + index-0 = card back
+        # each element is a gtk.gdk.Pixbuf
+        card_images = dict()
+
+        for suit in ('s', 'h', 'd', 'c'):
+            card_images[suit] = dict()
+            for rank in (14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2):
+                card_images[suit][rank] = self.card(suit, rank)
+
+        # This is a nice trick. We put the card back image behind key 0,
+        # which allows the old code to work. A dict[0] looks like first
+        # index of an array.
+        card_images[0] = self.back()
+        return card_images
+    
