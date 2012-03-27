@@ -70,7 +70,7 @@ if hasattr(sys, "frozen"):
     INSTALL_METHOD = "exe"
 else:
     INSTALL_METHOD = "source"
-    
+
 if INSTALL_METHOD == "exe":
     temp = os.path.dirname(unicode(sys.executable, sys.getfilesystemencoding())) # should be exe path to \fpdbroot\pyfpdb
     FPDB_ROOT_PATH = os.path.join(temp, os.pardir)   # go up one level (to fpdbroot)
