@@ -161,7 +161,6 @@ class GuiHandViewer:
 
         self.playing = False
 
-        self.deck_image = "Cards01.png" #FIXME: read from config (requires deck to be defined somewhere appropriate
         self.tableImage = None
         self.playerBackdrop = None
         self.cardImages = None
