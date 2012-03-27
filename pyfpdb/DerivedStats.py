@@ -331,7 +331,7 @@ class DerivedStats():
             committed_player_stats['allInEV'] = committed_player_stats['totalProfit']
             committed_player_stats['rakeDealt'] = int(100* hand.rake)/len(hand.players)
             if paid > 0: contributed.append(player)
-            committed_player_stats['rakeWeighted'] = int((100.0* hand.rake) * (paid/hand.totalpot))
+            committed_player_stats['rakeWeighted'] = int((100* hand.rake) * (paid/(100*hand.totalpot)))
             
         for player in contributed:
             self.handsplayers[player]['rakeContributed'] = int(100* hand.rake)/len(contributed)

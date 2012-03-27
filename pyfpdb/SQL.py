@@ -705,6 +705,9 @@ class Sql:
                         ante INT,
                         winnings int NOT NULL,
                         rake int NOT NULL,
+                        rakeDealt int NOT NULL,
+                        rakeContributed int NOT NULL,
+                        rakeWeighted int NOT NULL,
                         totalProfit INT,
                         allInEV INT,
                         comment text,
@@ -849,6 +852,9 @@ class Sql:
                         ante INT,
                         winnings int NOT NULL,
                         rake int NOT NULL,
+                        rakeDealt int NOT NULL,
+                        rakeContributed int NOT NULL,
+                        rakeWeighted int NOT NULL,
                         totalProfit INT,
                         allInEV INT,
                         comment text,
@@ -992,6 +998,9 @@ class Sql:
                         ante INT,
                         winnings INT NOT NULL,
                         rake INT NOT NULL,
+                        rakeDealt INT NOT NULL,
+                        rakeContributed INT NOT NULL,
+                        rakeWeighted INT NOT NULL,
                         totalProfit INT,
                         allInEV INT,
                         comment TEXT,
@@ -8181,6 +8190,9 @@ class Sql:
                 card20,
                 winnings,
                 rake,
+                rakeDealt,
+                rakeContributed,
+                rakeWeighted,
                 totalProfit,
                 allInEV,
                 street0VPI,
@@ -8301,7 +8313,7 @@ class Sql:
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
-                    %s
+                    %s, %s, %s, %s
                 )"""
 
         self.query['store_hands_actions'] = """insert into HandsActions (
