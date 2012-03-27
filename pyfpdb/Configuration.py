@@ -72,13 +72,13 @@ else:
     INSTALL_METHOD = "source"
     
 if INSTALL_METHOD == "exe":
-    temp = os.path.dirname( unicode(sys.executable, sys.getfilesystemencoding()) ) # should be exe path to \fpdbroot\pyfpdb
+    temp = os.path.dirname(unicode(sys.executable, sys.getfilesystemencoding())) # should be exe path to \fpdbroot\pyfpdb
     FPDB_ROOT_PATH = os.path.join(temp, os.pardir)   # go up one level (to fpdbroot)
-elif sys.path[0] == "": # we are running directly (import Configuration) from the python shell
+elif sys.path[0] == "": # we are probably running directly (>>>import Configuration)
     temp = os.getcwdu() # should be ./pyfpdb
     FPDB_ROOT_PATH = os.path.join(temp, os.pardir)   # go up one level (to fpdbroot)
 else: # all other cases
-    FPDB_ROOT_PATH = os.path.dirname( unicode(sys.path[0], sys.getfilesystemencoding()) )  # should be source path to /fpdbroot
+    FPDB_ROOT_PATH = os.path.dirname(unicode(sys.path[0], sys.getfilesystemencoding()))  # should be source path to /fpdbroot
 
 sysPlatform = platform.system()  #Linux, Windows, Darwin
 if sysPlatform[0:5] == 'Linux':
@@ -127,6 +127,11 @@ LOGLEVEL = {'DEBUG'   : logging.DEBUG,
 
 def get_config(file_name, fallback = True):
     """Looks in cwd and in self.default_config_path for a config file."""
+    
+    #FIXME
+    # This function has become difficult to understand, plus it no-longer
+    # just looks for a config file, it actually does file copying 
+    
     # look for example file even if not used here, path is returned to caller
     config_found,example_found,example_copy = False,False,False
     config_path, example_path = None,None
