@@ -77,7 +77,7 @@ class Deck(object):
         key = token.upper()
         return self.__rank_vals[key]
     
-    def get_all_card_images_as_dict(self):
+    def get_all_card_images(self):
         #returns a 4x13-element dictionary of every card image + index-0 = card back
         # each element is a gtk.gdk.Pixbuf
         card_images = dict()
