@@ -71,6 +71,10 @@ class GuiLogView:
         # # The TreeView gets the filter as model
         # self.listview = gtk.TreeView(filter)
         self.listview = gtk.TreeView(model=self.liststore)
+        self.listview.selection = self.listview.get_selection()
+        self.listview.selection.connect('changed', self.row_selection_changed)
+        self.clipboard = gtk.Clipboard(display=gtk.gdk.display_get_default(), selection="CLIPBOARD")
+        self.listview.selection.set_mode(gtk.SELECTION_MULTIPLE)
         self.listview.set_grid_lines(gtk.TREE_VIEW_GRID_LINES_NONE)
         self.listcols = []
 
@@ -91,6 +95,12 @@ class GuiLogView:
         refreshbutton.connect("clicked", self.refresh, None)
         hb.pack_start(refreshbutton, False, False, 3)
         refreshbutton.show()
+        
+        copybutton = gtk.Button(_("Copy to Clipboard"))
+        copybutton.connect("clicked", self.copy_to_clipboard, None)
+        hb.pack_start(copybutton, False, False, 3)
+        copybutton.show()
+        
         self.vbox.pack_start(hb, False, False, 0)
 
         self.listview.show()
@@ -109,6 +119,20 @@ class GuiLogView:
 
         self.dia.connect('response', self.dialog_response_cb)
 
+    def row_selection_changed(self, selection):
+        model, self.selected_rows = selection.get_selected_rows()
+    
+    def copy_to_clipboard(self, widget, data):
+        if not self.selected_rows:
+            return
+        text = ""
+        for i in self.selected_rows:
+            text = text + (self.liststore[i][0].ljust(23) + " " +
+                    self.liststore[i][1].ljust(6) + " " +
+                    self.liststore[i][2].ljust(7) + " " +
+                    self.liststore[i][3]) + "\n"
+        self.clipboard.set_text(text, len=-1)
+            
     def __set_logfile(self, w, file):
         #print "w is", w, "file is", file, "active is", w.get_active()
         if w.get_active():
