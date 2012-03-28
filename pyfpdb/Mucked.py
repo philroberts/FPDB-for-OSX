@@ -293,8 +293,8 @@ class Flop_Mucked(Aux_Base.Aux_Seats):
     def __init__(self, hud, config, params):
         super(Flop_Mucked, self).__init__(hud, config, params)
         self.card_images = self.hud.parent.deck.get_all_card_images()
-        self.card_height = self.config.ui.card_ht
-        self.card_width = self.config.ui.card_wd
+        self.card_height = self.hud.parent.hud_params["card_ht"]
+        self.card_width = self.hud.parent.hud_params["card_wd"]
         self.uses_timer = True  # this Aux_seats object uses a timer to control hiding
 
     def create_common(self, x, y):

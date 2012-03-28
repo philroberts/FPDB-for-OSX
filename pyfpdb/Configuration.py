@@ -571,22 +571,22 @@ class HudUI:
     def __init__(self, node):
         self.node = node
         self.label  = node.getAttribute('label')
-        self.card_ht = node.getAttribute('card_ht')
-        self.card_wd = node.getAttribute('card_wd')
-        self.deck_type = node.getAttribute('deck_type')
-        self.card_back = node.getAttribute('card_back')
+        if node.hasAttribute('card_ht'): self.card_ht = node.getAttribute('card_ht')
+        if node.hasAttribute('card_wd'): self.card_wd = node.getAttribute('card_wd')
+        if node.hasAttribute('deck_type'): self.deck_type = node.getAttribute('deck_type')
+        if node.hasAttribute('card_back'): self.card_back = node.getAttribute('card_back')
         #
-        self.hud_style      = node.getAttribute('stat_range')
-        self.hud_days       = node.getAttribute('stat_days')
-        self.aggregate_ring = string_to_bool(node.getAttribute('aggregate_ring_game_stats'))
-        self.aggregate_tour = string_to_bool(node.getAttribute('aggregate_tourney_stats'))
-        self.agg_bb_mult    = node.getAttribute('aggregation_level_multiplier')
+        if node.hasAttribute('stat_range'): self.hud_style = node.getAttribute('stat_range')
+        if node.hasAttribute('stat_days'): self.hud_days = node.getAttribute('stat_days')
+        if node.hasAttribute('aggregate_ring_game_stats'): self.aggregate_ring = string_to_bool(node.getAttribute('aggregate_ring_game_stats'))
+        if node.hasAttribute('aggregate_tourney_stats'): self.aggregate_tour = string_to_bool(node.getAttribute('aggregate_tourney_stats'))
+        if node.hasAttribute('aggregation_level_multiplier'): self.agg_bb_mult = node.getAttribute('aggregation_level_multiplier')
         #
-        self.h_hud_style      = node.getAttribute('hero_stat_range')
-        self.h_hud_days       = node.getAttribute('hero_stat_days')
-        self.h_aggregate_ring = string_to_bool(node.getAttribute('aggregate_hero_ring_game_stats'))
-        self.h_aggregate_tour = string_to_bool(node.getAttribute('aggregate_hero_tourney_stats'))
-        self.h_agg_bb_mult    = node.getAttribute('hero_aggregation_level_multiplier')
+        if node.hasAttribute('hero_stat_range'): self.h_hud_style = node.getAttribute('hero_stat_range')
+        if node.hasAttribute('hero_stat_days'): self.h_hud_days = node.getAttribute('hero_stat_days')
+        if node.hasAttribute('aggregate_hero_ring_game_stats'): self.h_aggregate_ring = string_to_bool(node.getAttribute('aggregate_hero_ring_game_stats'))
+        if node.hasAttribute('aggregate_hero_tourney_stats'): self.h_aggregate_tour = string_to_bool(node.getAttribute('aggregate_hero_tourney_stats'))
+        if node.hasAttribute('hero_aggregation_level_multiplier'): self.h_agg_bb_mult = node.getAttribute('hero_aggregation_level_multiplier')
 
 
     def __str__(self):
