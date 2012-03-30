@@ -51,7 +51,6 @@ class DerivedStats():
         init['rake']        = 0
         init['totalProfit'] = 0
         init['allInEV']     = 0
-        init['street4Aggr'] = False
         init['wonWhenSeenStreet1'] = 0.0
         init['sawShowdown'] = False
         init['showed']      = False
@@ -92,6 +91,7 @@ class DerivedStats():
             init['street%dCalls' % i] = 0
             init['street%dBets' % i] = 0
             init['street%dRaises' % i] = 0
+            init['street%dAggr' % i] = 0
         for i in range(1,5):
             init['street%dCBChance' %i] = False
             init['street%dCBDone' %i] = False

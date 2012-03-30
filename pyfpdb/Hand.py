@@ -1288,10 +1288,15 @@ class DrawHand(Hand):
         self.config = config
         if gametype['base'] != 'draw':
             pass # or indeed don't pass and complain instead
-        self.streetList = ['BLINDSANTES', 'DEAL', 'DRAWONE', 'DRAWTWO', 'DRAWTHREE']
-        self.allStreets = ['BLINDSANTES', 'DEAL', 'DRAWONE', 'DRAWTWO', 'DRAWTHREE']
-        self.holeStreets = ['DEAL', 'DRAWONE', 'DRAWTWO', 'DRAWTHREE']
-        self.actionStreets =  ['BLINDSANTES', 'DEAL', 'DRAWONE', 'DRAWTWO', 'DRAWTHREE']
+        self.streetList = ['BLINDSANTES', 'DEAL', 'DRAWONE']
+        self.allStreets = ['BLINDSANTES', 'DEAL', 'DRAWONE']
+        self.holeStreets = ['DEAL', 'DRAWONE']
+        self.actionStreets = ['BLINDSANTES', 'DEAL', 'DRAWONE']
+        if gametype['category'] in ["27_3draw","badugi"]:
+            self.streetList += ['DRAWTWO', 'DRAWTHREE']
+            self.allStreets += ['DRAWTWO', 'DRAWTHREE']
+            self.holeStreets += ['DRAWTWO', 'DRAWTHREE']
+            self.actionStreets += ['DRAWTWO', 'DRAWTHREE']
         self.communityStreets = []
         Hand.__init__(self, self.config, sitename, gametype, handText)
         self.sb = gametype['sb']
@@ -1341,7 +1346,7 @@ class DrawHand(Hand):
             if mucked: self.mucked.add(player)
         else:
 # TODO: Probably better to find the last street with action and add the hole cards to that street
-            self.addHoleCards('DRAWTHREE', player, open=[], closed=cards, shown=shown, mucked=mucked, dealt=dealt)
+            self.addHoleCards(self.actionStreets[-1], player, open=[], closed=cards, shown=shown, mucked=mucked, dealt=dealt)
         if string is not None:
             self.showdownStrings[player] = string
 
