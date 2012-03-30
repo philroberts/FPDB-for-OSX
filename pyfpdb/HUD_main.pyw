@@ -334,7 +334,7 @@ class HUD_main(object):
                     self.db_connection.connection.rollback()
                     return
 
-                self.hud_dict[temp_key].cards = self.get_cards(new_hand_id)
+                self.hud_dict[temp_key].cards = self.get_cards(new_hand_id, poker_game)
                 #fixme - passing self.db_connection into another thread
                 # is probably pointless
                 [aw.update_data(new_hand_id, self.db_connection) for aw in self.hud_dict[temp_key].aux_windows]
@@ -347,7 +347,7 @@ class HUD_main(object):
                 self.db_connection.init_hud_stat_vars( self.hud_params['hud_days'], self.hud_params['h_hud_days'] )
                 stat_dict = self.db_connection.get_stats_from_hand(new_hand_id, type, self.hud_params,
                                                                    self.hero_ids[site_id], num_seats)
-                cards = self.get_cards(new_hand_id)
+                cards = self.get_cards(new_hand_id, poker_game)
                 table_kwargs = dict(table_name=table_name, tournament=tour_number, table_number=tab_number)
                 tablewindow = Tables.Table(self.config, site_name, **table_kwargs)
                 if tablewindow.number is None:
@@ -375,10 +375,10 @@ class HUD_main(object):
         
         self.db_connection.connection.rollback()
 
-    def get_cards(self, new_hand_id):
+    def get_cards(self, new_hand_id, poker_game):
         cards = self.db_connection.get_cards(new_hand_id)
-        comm_cards = self.db_connection.get_common_cards(new_hand_id)
-        if comm_cards != {}: # stud!
+        if poker_game in ['holdem','omahahi','omahahilo']:
+            comm_cards = self.db_connection.get_common_cards(new_hand_id)
             cards['common'] = comm_cards['common']
         return cards
 ######################################################################
