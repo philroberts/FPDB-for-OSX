@@ -228,11 +228,9 @@ class GuiGraphViewer (threading.Thread):
             handles = handles[-1:]+handles[:-1]
             labels = labels[-1:]+labels[:-1]
 
-            if sys.version[0:3] == '2.5':
-                self.ax.legend(handles, labels, loc='upper left', shadow=True, prop=FontProperties(size='smaller'))
-            else:
-                self.ax.legend(handles, labels, loc='upper left', fancybox=True, shadow=True, prop=FontProperties(size='smaller'))
-
+            legend = self.ax.legend(handles, labels, loc='upper left', fancybox=True, shadow=True, prop=FontProperties(size='smaller'))
+            legend.draggable(True)
+            
             self.graphBox.add(self.canvas)
             self.canvas.show()
             self.canvas.draw()
