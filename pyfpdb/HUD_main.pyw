@@ -110,7 +110,7 @@ class HUD_main(object):
             self.main_window.connect("client_resized", self.client_resized)
             self.main_window.connect("client_destroyed", self.client_destroyed)
             #self.main_window.connect("game_changed", self.game_changed)
-            #self.main_window.connect("table_changed", self.table_changed)
+            self.main_window.connect("table_changed", self.table_title_changed)
             self.main_window.connect("destroy", self.destroy)
             self.vb = gtk.VBox()
             self.label = gtk.Label(_('Closing this window will exit from the HUD.'))
@@ -146,9 +146,9 @@ class HUD_main(object):
 #    def game_changed(self, widget, hud):
 #        print "hud_main: " + _("Game changed.")
 
-#    def table_changed(self, widget, hud):
-#        print "hud_main: " + _("Table changed")
-#        self.kill_hud(None, hud.table.key)
+    def table_title_changed(self, widget, hud):
+        print "hud_main: " + _("Table title changed, killing current hud")
+        self.kill_hud(None, hud.table.key)
 
     def destroy(self, *args):             # call back for terminating the main eventloop
         log.info(_("Quitting normally"))
