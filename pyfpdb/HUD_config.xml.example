@@ -420,17 +420,17 @@
         The parameter elements for each <game> can be extended 
         without changing Configuration.Config()
         -->
-        <game game_name="holdem" aux="mucked, Classic_HUD">
+        <game game_name="holdem" aux="Classic_HUD, mucked">
             <game_stat_set game_type="tour" stat_set="holdem_tour"/>
             <game_stat_set game_type="ring" stat_set="holdem_ring"/>
         </game>
         <game game_name="razz" aux="stud_mucked, Classic_HUD">
             <game_stat_set game_type="all" stat_set="stud_default"/>
         </game>
-        <game game_name="omahahi" aux="mucked, Classic_HUD">
+        <game game_name="omahahi" aux="Classic_HUD, mucked">
             <game_stat_set game_type="all" stat_set="omaha_default"/>
         </game>
-        <game game_name="omahahilo" aux="mucked, Classic_HUD">
+        <game game_name="omahahilo" aux="Classic_HUD, mucked">
             <game_stat_set game_type="all" stat_set="omaha_default"/>
         </game>
         <game game_name="studhi" aux="stud_mucked, Classic_HUD">
@@ -439,16 +439,16 @@
         <game game_name="studhilo" aux="stud_mucked, Classic_HUD">
             <game_stat_set game_type="all" stat_set="stud_default"/>
         </game>
-        <game game_name="27_3draw" aux="mucked, Classic_HUD">
+        <game game_name="27_3draw" aux="Classic_HUD, mucked">
             <game_stat_set game_type="all" stat_set="draw_default"/>
         </game>
-        <game game_name="27_1draw" aux="mucked, Classic_HUD">
+        <game game_name="27_1draw" aux="Classic_HUD, mucked">
             <game_stat_set game_type="all" stat_set="draw_default"/>
         </game>
-        <game game_name="badugi" aux="mucked, Classic_HUD">
+        <game game_name="badugi" aux="Classic_HUD, mucked">
             <game_stat_set game_type="all" stat_set="draw_default"/>
         </game>
-            <game game_name="fivedraw" aux="mucked, Classic_HUD">
+            <game game_name="fivedraw" aux="Classic_HUD, mucked">
         <game_stat_set game_type="all" stat_set ="draw_default"/>
         </game>
     </supported_games>
