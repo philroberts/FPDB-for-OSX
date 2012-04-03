@@ -116,7 +116,7 @@ class PacificPoker(HandHistoryConverter):
                   (Free)
                 ))
               )
-              \s-\sTable\s\#(?P<TABLENO>\d+)\s
+              \s-\sTable\s\#(?P<TABLEID>\d+)\s
             )
            )
           (\(Real\sMoney\))?
