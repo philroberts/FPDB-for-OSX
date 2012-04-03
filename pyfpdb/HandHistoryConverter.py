@@ -534,6 +534,8 @@ or None if we fail to get the info """
             givenTZ = timezone('America/Argentina/Buenos_Aires')
         elif givenTimezone == 'BRT': # Brasilia Time
             givenTZ = timezone('America/Sao_Paulo')
+        elif givenTimezone == 'COT':
+            givenTZ = timezone('America/Bogota')
         elif givenTimezone == 'EET': # Eastern European Time
             givenTZ = timezone('Europe/Bucharest')
         elif (givenTimezone == 'MSK' or givenTimezone == 'MESZ'): # Moscow Standard Time
