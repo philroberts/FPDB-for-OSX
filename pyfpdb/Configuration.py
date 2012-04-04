@@ -51,6 +51,12 @@ else:
 import logging, logging.config
 import ConfigParser
 
+# config version is used to flag a warning at runtime if the users config is
+#  out of date.
+# The CONFIG_VERSION should be incremented __ONLY__ if the add_missing_elements()
+#  method cannot update existing standard configurations
+CONFIG_VERSION = 81
+
 #
 # Setup constants
 # code is centralised here to ensure uniform handling of path names
@@ -830,7 +836,12 @@ class Config:
             self.general.get_defaults()
         for gen_node in doc.getElementsByTagName("general"):
             self.general.add_elements(node=gen_node) # add/overwrite elements in self.general
-
+            
+        if int(self.general["version"]) == CONFIG_VERSION:
+            self.wrongConfigVersion = False
+        else:
+            self.wrongConfigVersion = True
+            
         if doc.getElementsByTagName("gui_cash_stats") == []:
             self.gui_cash_stats.get_defaults()
         for gcs_node in doc.getElementsByTagName("gui_cash_stats"):
@@ -1630,6 +1641,9 @@ class Config:
 if __name__== "__main__":
     set_logfile(u"fpdb-log.txt")
     c = Config()
+    
+    print "\n----------- GENERAL -----------"
+    print c.general
 
     print "\n----------- SUPPORTED SITES -----------"
     for s in c.supported_sites.keys():
