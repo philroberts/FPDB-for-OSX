@@ -1771,6 +1771,8 @@ class StudHand(Hand):
                     holecards = [u'0x', u'0x'] + holecards
                 else:
                     return holecards
+            elif len(holecards) == 7:
+                return holecards
             elif len(holecards) <= 4:
                 #Non hero folded before showdown, add first two downcards
                 holecards = [u'0x', u'0x'] + holecards
