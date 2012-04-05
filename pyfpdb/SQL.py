@@ -2704,7 +2704,7 @@ class Sql:
                        sum(hc.foldToStreet4CBChance)       AS f_cb_opp_4,
                        sum(hc.foldToStreet4CBDone)         AS f_cb_4,
                        sum(hc.totalProfit)                 AS net,
-                       sum(gt.bigblind)                    AS bigblind,
+                       sum(gt.bigblind * hc.HDs)           AS bigblind,
                        sum(hc.street1CheckCallRaiseChance) AS ccr_opp_1,
                        sum(hc.street1CheckCallRaiseDone)   AS ccr_1,
                        sum(hc.street2CheckCallRaiseChance) AS ccr_opp_2,

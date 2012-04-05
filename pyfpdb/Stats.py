@@ -356,6 +356,7 @@ def profit100(stat_dict, player):
 def bbper100(stat_dict, player):
     stat_descriptions["bbper100"] = _("Big blinds won per 100 hands") + " (bbper100)"
     stat = 0.0
+    #['bigblind'] is already containing number of hands * table's bigblind (e.g. 401 hands @ 5c BB = 2005)
     try:
         stat = 100.0 * float(stat_dict[player]['net']) / float(stat_dict[player]['bigblind'])
         return (stat,
@@ -378,6 +379,7 @@ def bbper100(stat_dict, player):
 def BBper100(stat_dict, player):
     stat_descriptions["BBper100"] = _("Big bets won per 100 hands") + " (BBper100)"
     stat = 0.0
+    #['bigblind'] is already containing number of hands * table's bigblind (e.g. 401 hands @ 5c BB = 2005)
     try:
         stat = 50 * float(stat_dict[player]['net']) / float(stat_dict[player]['bigblind'])
         return (stat,
