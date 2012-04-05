@@ -51,15 +51,23 @@ else:
 import logging, logging.config
 import ConfigParser
 
+# config version is used to flag a warning at runtime if the users config is
+#  out of date.
+# The CONFIG_VERSION should be incremented __ONLY__ if the add_missing_elements()
+#  method cannot update existing standard configurations
+CONFIG_VERSION = 81
+
 #
 # Setup constants
 # code is centralised here to ensure uniform handling of path names
 # especially important when user directory includes non-ascii chars
 #
 # INSTALL_METHOD ("source" or "exe")
-# FPDB_PROGRAM_PATH (path to the root fpdb installation dir root (normally ...../fpdb)
+# FPDB_ROOT_PATH (path to the root fpdb installation dir root (normally ...../fpdb)
 # APPDATA_PATH (root path for appdata eg /~ or appdata)
 # CONFIG_PATH (path to the directory holding logs, sqlite db's and config)
+# GRAPHICS_PATH (path to graphics assets (normally .gfx)
+# PYFPDB_PATH (path to py's)
 # OS_FAMILY (OS Family for installed system (Linux, Mac, XP, Win7)
 # POSIX (True=Linux or Mac platform, False=Windows platform)
 # PYTHON_VERSION (n.n)
@@ -68,12 +76,15 @@ if hasattr(sys, "frozen"):
     INSTALL_METHOD = "exe"
 else:
     INSTALL_METHOD = "source"
-    
+
 if INSTALL_METHOD == "exe":
-    FPDB_PROGRAM_PATH = os.path.dirname( unicode(sys.executable, sys.getfilesystemencoding()) ) # should be exe path to \fpdbroot\pyfpdb
-    FPDB_PROGRAM_PATH = os.path.join(FPDB_PROGRAM_PATH, u"..")   # go up one level (to fpdbroot)
-else:
-    FPDB_PROGRAM_PATH = os.path.dirname( unicode(sys.path[0], sys.getfilesystemencoding()) )  # should be source path to /fpdbroot
+    temp = os.path.dirname(unicode(sys.executable, sys.getfilesystemencoding())) # should be exe path to \fpdbroot\pyfpdb
+    FPDB_ROOT_PATH = os.path.join(temp, os.pardir)   # go up one level (to fpdbroot)
+elif sys.path[0] == "": # we are probably running directly (>>>import Configuration)
+    temp = os.getcwdu() # should be ./pyfpdb
+    FPDB_ROOT_PATH = os.path.join(temp, os.pardir)   # go up one level (to fpdbroot)
+else: # all other cases
+    FPDB_ROOT_PATH = os.path.dirname(unicode(sys.path[0], sys.getfilesystemencoding()))  # should be source path to /fpdbroot
 
 sysPlatform = platform.system()  #Linux, Windows, Darwin
 if sysPlatform[0:5] == 'Linux':
@@ -88,6 +99,9 @@ elif sysPlatform == 'Windows':
 else:
     OS_FAMILY = False
 
+GRAPHICS_PATH = os.path.join(FPDB_ROOT_PATH, u"gfx")
+PYFPDB_PATH = os.path.join(FPDB_ROOT_PATH, u"pyfpdb")
+
 if OS_FAMILY in ['XP', 'Win7']:
     APPDATA_PATH = winpaths_appdata
     CONFIG_PATH = os.path.join(APPDATA_PATH, u"fpdb")
@@ -95,7 +109,7 @@ elif OS_FAMILY == 'Mac':
     APPDATA_PATH = os.getenv("HOME")
     CONFIG_PATH = os.path.join(APPDATA_PATH, u".fpdb")
 elif OS_FAMILY == 'Linux':
-    APPDATA_PATH = os.path.expanduser("~")
+    APPDATA_PATH = os.path.expanduser(u"~")
     CONFIG_PATH = os.path.join(APPDATA_PATH, u".fpdb")
 else:
     APPDATA_PATH = False
@@ -119,11 +133,16 @@ LOGLEVEL = {'DEBUG'   : logging.DEBUG,
 
 def get_config(file_name, fallback = True):
     """Looks in cwd and in self.default_config_path for a config file."""
+    
+    #FIXME
+    # This function has become difficult to understand, plus it no-longer
+    # just looks for a config file, it actually does file copying 
+    
     # look for example file even if not used here, path is returned to caller
     config_found,example_found,example_copy = False,False,False
     config_path, example_path = None,None
 
-    config_path = os.path.join(FPDB_PROGRAM_PATH, 'pyfpdb', file_name)
+    config_path = os.path.join(FPDB_ROOT_PATH, 'pyfpdb', file_name)
     
     #print "config_path=", config_path
     if os.path.exists(config_path):    # there is a file in the cwd
@@ -133,7 +152,6 @@ def get_config(file_name, fallback = True):
         #print "config path 2=", config_path
         if os.path.exists(config_path):
             config_found = True
-    
     #TODO: clean up the example path loading to ensure it behaves the same on all OSs
     # Example configuration for debian package
     if POSIX:
@@ -171,7 +189,7 @@ def get_config(file_name, fallback = True):
             if not config_found and fallback:
                 shutil.copyfile(example_path, config_path)
                 example_copy = True
-                log.info (_("No %r found in \"%r\" or \"%r\".") % (file_name, FPDB_PROGRAM_PATH, CONFIG_PATH) \
+                log.info (_("No %r found in \"%r\" or \"%r\".") % (file_name, FPDB_ROOT_PATH, CONFIG_PATH) \
                      + " " + _("Config file has been created at %r.") % (config_path+"\n") )
 
         except:
@@ -559,18 +577,22 @@ class HudUI:
     def __init__(self, node):
         self.node = node
         self.label  = node.getAttribute('label')
+        if node.hasAttribute('card_ht'): self.card_ht = node.getAttribute('card_ht')
+        if node.hasAttribute('card_wd'): self.card_wd = node.getAttribute('card_wd')
+        if node.hasAttribute('deck_type'): self.deck_type = node.getAttribute('deck_type')
+        if node.hasAttribute('card_back'): self.card_back = node.getAttribute('card_back')
         #
-        self.hud_style      = node.getAttribute('stat_range')
-        self.hud_days       = node.getAttribute('stat_days')
-        self.aggregate_ring = string_to_bool(node.getAttribute('aggregate_ring_game_stats'))
-        self.aggregate_tour = string_to_bool(node.getAttribute('aggregate_tourney_stats'))
-        self.agg_bb_mult    = node.getAttribute('aggregation_level_multiplier')
+        if node.hasAttribute('stat_range'): self.hud_style = node.getAttribute('stat_range')
+        if node.hasAttribute('stat_days'): self.hud_days = node.getAttribute('stat_days')
+        if node.hasAttribute('aggregate_ring_game_stats'): self.aggregate_ring = string_to_bool(node.getAttribute('aggregate_ring_game_stats'))
+        if node.hasAttribute('aggregate_tourney_stats'): self.aggregate_tour = string_to_bool(node.getAttribute('aggregate_tourney_stats'))
+        if node.hasAttribute('aggregation_level_multiplier'): self.agg_bb_mult = node.getAttribute('aggregation_level_multiplier')
         #
-        self.h_hud_style      = node.getAttribute('hero_stat_range')
-        self.h_hud_days       = node.getAttribute('hero_stat_days')
-        self.h_aggregate_ring = string_to_bool(node.getAttribute('aggregate_hero_ring_game_stats'))
-        self.h_aggregate_tour = string_to_bool(node.getAttribute('aggregate_hero_tourney_stats'))
-        self.h_agg_bb_mult    = node.getAttribute('hero_aggregation_level_multiplier')
+        if node.hasAttribute('hero_stat_range'): self.h_hud_style = node.getAttribute('hero_stat_range')
+        if node.hasAttribute('hero_stat_days'): self.h_hud_days = node.getAttribute('hero_stat_days')
+        if node.hasAttribute('aggregate_hero_ring_game_stats'): self.h_aggregate_ring = string_to_bool(node.getAttribute('aggregate_hero_ring_game_stats'))
+        if node.hasAttribute('aggregate_hero_tourney_stats'): self.h_aggregate_tour = string_to_bool(node.getAttribute('aggregate_hero_tourney_stats'))
+        if node.hasAttribute('hero_aggregation_level_multiplier'): self.h_agg_bb_mult = node.getAttribute('hero_aggregation_level_multiplier')
 
 
     def __str__(self):
@@ -734,9 +756,11 @@ class Config:
     def __init__(self, file = None, dbname = '', custom_log_dir='', lvl='INFO'):
         
         self.install_method = INSTALL_METHOD
-        self.fpdb_program_path = FPDB_PROGRAM_PATH
+        self.fpdb_root_path = FPDB_ROOT_PATH
         self.appdata_path = APPDATA_PATH
         self.config_path = CONFIG_PATH
+        self.pyfpdb_path = PYFPDB_PATH
+        self.graphics_path = GRAPHICS_PATH
         self.os_family = OS_FAMILY
         self.posix = POSIX
         self.python_version = PYTHON_VERSION
@@ -812,7 +836,12 @@ class Config:
             self.general.get_defaults()
         for gen_node in doc.getElementsByTagName("general"):
             self.general.add_elements(node=gen_node) # add/overwrite elements in self.general
-
+            
+        if int(self.general["version"]) == CONFIG_VERSION:
+            self.wrongConfigVersion = False
+        else:
+            self.wrongConfigVersion = True
+            
         if doc.getElementsByTagName("gui_cash_stats") == []:
             self.gui_cash_stats.get_defaults()
         for gcs_node in doc.getElementsByTagName("gui_cash_stats"):
@@ -1303,6 +1332,18 @@ class Config:
         except:
             hui['label'] = default_text
 
+        try:    hui['card_ht']        = int(self.ui.card_ht)
+        except: hui['card_ht']        = 42
+
+        try:    hui['card_wd']        = int(self.ui.card_wd)
+        except: hui['card_wd']        = 30
+        
+        try:    hui['deck_type']      = unicode(self.ui.deck_type)
+        except: hui['deck_type']        = u'colour'
+        
+        try:    hui['card_back']      = unicode(self.ui.card_back)
+        except: hui['card_back']        = u'back04'
+                
         try:    hui['hud_style']        = self.ui.hud_style
         except: hui['hud_style']        = 'A'  # default is show stats for All-time, also S(session) and T(ime)
 
@@ -1600,6 +1641,9 @@ class Config:
 if __name__== "__main__":
     set_logfile(u"fpdb-log.txt")
     c = Config()
+    
+    print "\n----------- GENERAL -----------"
+    print c.general
 
     print "\n----------- SUPPORTED SITES -----------"
     for s in c.supported_sites.keys():
@@ -1649,9 +1693,11 @@ if __name__== "__main__":
 
     print "\n----------- ENVIRONMENT CONSTANTS -----------"
     print "Configuration.install_method {source,exe} =", INSTALL_METHOD
-    print "Configuration.fpdb_program_path =", FPDB_PROGRAM_PATH, type(FPDB_PROGRAM_PATH)
+    print "Configuration.fpdb_root_path =", FPDB_ROOT_PATH, type(FPDB_ROOT_PATH)
+    print "Configuration.graphics_path =", GRAPHICS_PATH, type(GRAPHICS_PATH)
     print "Configuration.appdata_path =", APPDATA_PATH, type(APPDATA_PATH)
     print "Configuration.config_path =", CONFIG_PATH, type(CONFIG_PATH)
+    print "Configuration.pyfpdb_path =", PYFPDB_PATH, type(PYFPDB_PATH)
     print "Configuration.os_family {Linux,Mac,XP,Win7} =", OS_FAMILY
     print "Configuration.posix {True/False} =", POSIX
     print "Configuration.python_version =", PYTHON_VERSION

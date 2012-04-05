@@ -534,6 +534,8 @@ or None if we fail to get the info """
             givenTZ = timezone('America/Argentina/Buenos_Aires')
         elif givenTimezone == 'BRT': # Brasilia Time
             givenTZ = timezone('America/Sao_Paulo')
+        elif givenTimezone == 'COT':
+            givenTZ = timezone('America/Bogota')
         elif givenTimezone == 'EET': # Eastern European Time
             givenTZ = timezone('Europe/Bucharest')
         elif (givenTimezone == 'MSK' or givenTimezone == 'MESZ'): # Moscow Standard Time
@@ -592,11 +594,9 @@ or None if we fail to get the info """
             return money
         money = money.replace(' ', '')
         if 'K' in money:
-            money = money.replace('K', '')
-            money += '000'
+            money = money.replace('K', '000')
         if 'M' in money:
-            money = money.replace('M', '')
-            money += '000000'
+            money = money.replace('M', '000000')
         if len(money) < 3:
             return money # No commas until 0,01 or 1,00
         if money[-3] == ',':

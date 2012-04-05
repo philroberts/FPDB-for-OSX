@@ -174,7 +174,7 @@ setup(
     # Note: only include files here which are to be put into the package pyfpdb folder or subfolders
 
     data_files = [('', glob.glob(rootdir+'*.txt'))
-                 ,('', [pydir+'HUD_config.xml.example',pydir+'Cards01.png', pydir+'logging.conf'])
+                 ,('', [pydir+'HUD_config.xml.example',pydir+'logging.conf'])
                  ] + matplotlib.get_py2exe_datafiles()
 )
 

@@ -1,3 +1,14 @@
+free-poker-tools (0.29.904-1) unstable; urgency=low
+
+  * New snapshot release
+  * Support for new PokerStars hand history format
+  * Tournament result import improved
+  * Standard deviance
+  * Rebuild indexes works on SQLite
+  * Lots of other fixes
+
+ -- Mika Bostrom <bostik@iki.fi>  Sat, 04 Feb 2012 21:23:33 +0200
+
 free-poker-tools (0.25-1) unstable; urgency=low
 
   * New release: 0.25

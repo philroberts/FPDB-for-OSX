@@ -204,11 +204,10 @@ class GuiTourneyGraphViewer (threading.Thread):
 
             #Draw plot
             self.ax.plot(green, color='green', label=_('Tournaments') + ': %d\n' % len(green) + _('Profit') + ': $%.2f' % green[-1])
-            if sys.version[0:3] == '2.5':
-                self.ax.legend(loc='upper left', shadow=True, prop=FontProperties(size='smaller'))
-            else:
-                self.ax.legend(loc='upper left', fancybox=True, shadow=True, prop=FontProperties(size='smaller'))
 
+            legend = self.ax.legend(loc='upper left', fancybox=True, shadow=True, prop=FontProperties(size='smaller'))
+            legend.draggable(True)
+            
             self.graphBox.add(self.canvas)
             self.canvas.show()
             self.canvas.draw()

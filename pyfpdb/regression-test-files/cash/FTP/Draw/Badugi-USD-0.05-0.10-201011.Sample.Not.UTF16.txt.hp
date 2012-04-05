@@ -582,7 +582,7 @@
                     'street2Seen': True,
                     'street3Aggr': False,
                     'street3Bets': 0,
-                    'street3CBChance': False,
+                    'street3CBChance': True,
                     'street3CBDone': False,
                     'street3Calls': 1,
                     'street3CheckCallRaiseChance': False,

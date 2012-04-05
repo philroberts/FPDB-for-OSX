@@ -51,7 +51,6 @@ class DerivedStats():
         init['rake']        = 0
         init['totalProfit'] = 0
         init['allInEV']     = 0
-        init['street4Aggr'] = False
         init['wonWhenSeenStreet1'] = 0.0
         init['sawShowdown'] = False
         init['showed']      = False
@@ -92,6 +91,7 @@ class DerivedStats():
             init['street%dCalls' % i] = 0
             init['street%dBets' % i] = 0
             init['street%dRaises' % i] = 0
+            init['street%dAggr' % i] = 0
         for i in range(1,5):
             init['street%dCBChance' %i] = False
             init['street%dCBDone' %i] = False
@@ -830,9 +830,9 @@ class DerivedStats():
         # came there
         #for i, street in enumerate(hand.actionStreets[2:], start=1):
         for i, street in enumerate(hand.actionStreets[2:]):
-            name = self.lastBetOrRaiser(hand.actionStreets[i+1])
+            name = self.lastBetOrRaiser(hand.actionStreets[i+1]) # previous street
             if name:
-                chance = self.noBetsBefore(hand.actionStreets[i+2], name)
+                chance = self.noBetsBefore(hand.actionStreets[i+2], name) # this street
                 if chance == True:
                     self.handsplayers[name]['street%dCBChance' % (i+1)] = True
                     self.handsplayers[name]['street%dCBDone' % (i+1)] = self.betStreet(hand.actionStreets[i+2], name)
@@ -1024,22 +1024,22 @@ class DerivedStats():
 
     def noBetsBefore(self, street, player):
         """Returns true if there were no bets before the specified players turn, false otherwise"""
-        betOrRaise = False
+        noBetsBefore = False
         for act in self.hand.actions[street]:
             #Must test for player first in case UTG
             if act[0] == player:
-                betOrRaise = True
+                noBetsBefore = True
                 break
             if act[1] in ('bets', 'raises'):
                 break
-        return betOrRaise
+        return noBetsBefore
 
 
     def betStreet(self, street, player):
         """Returns true if player bet/raised the street as their first action"""
         betOrRaise = False
         for act in self.hand.actions[street]:
-            if act[0] == player:
+            if act[0] == player and act[1] not in ('discards', 'stands pat'):
                 if act[1] in ('bets', 'raises'):
                     betOrRaise = True
                 else:

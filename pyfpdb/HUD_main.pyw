@@ -46,6 +46,7 @@ import Configuration
 import Database
 import Hud
 import Options
+import Deck
 
 (options, argv) = Options.fpdb_options()
 
@@ -80,9 +81,12 @@ class HUD_main(object):
                 errorFile = open(fileName, 'w', 0)
                 sys.stderr = errorFile
                 log.info(_("HUD_main starting"))
-
+            #update and save config
             self.hud_dict = {}
             self.hud_params = self.config.get_hud_ui_parameters()
+            self.deck = Deck.Deck(self.config,
+                deck_type=self.hud_params["deck_type"], card_back=self.hud_params["card_back"],
+                width=self.hud_params['card_wd'], height=self.hud_params['card_ht'])
 
             # a thread to read stdin
             gobject.threads_init()                        # this is required
@@ -106,15 +110,14 @@ class HUD_main(object):
             self.main_window.connect("client_resized", self.client_resized)
             self.main_window.connect("client_destroyed", self.client_destroyed)
             #self.main_window.connect("game_changed", self.game_changed)
-            #self.main_window.connect("table_changed", self.table_changed)
+            self.main_window.connect("table_changed", self.table_title_changed)
             self.main_window.connect("destroy", self.destroy)
             self.vb = gtk.VBox()
             self.label = gtk.Label(_('Closing this window will exit from the HUD.'))
             self.vb.add(self.label)
             self.main_window.add(self.vb)
             self.main_window.set_title("HUD Main Window")
-            #FIXME - hardcoded paths need to be replaced with config. constants.
-            cards = os.path.join(os.getcwd(), '..','gfx','fpdb-cards.png')
+            cards = os.path.join(self.config.graphics_path,'fpdb-cards.png')
             if os.path.exists(cards):
                 self.main_window.set_icon_from_file(cards)
             elif os.path.exists('/usr/share/pixmaps/fpdb-cards.png'):
@@ -143,9 +146,9 @@ class HUD_main(object):
 #    def game_changed(self, widget, hud):
 #        print "hud_main: " + _("Game changed.")
 
-#    def table_changed(self, widget, hud):
-#        print "hud_main: " + _("Table changed")
-#        self.kill_hud(None, hud.table.key)
+    def table_title_changed(self, widget, hud):
+        print "hud_main: " + _("Table title changed, killing current hud")
+        self.kill_hud(None, hud.table.key)
 
     def destroy(self, *args):             # call back for terminating the main eventloop
         log.info(_("Quitting normally"))
@@ -287,7 +290,7 @@ class HUD_main(object):
                 temp_key = "%s Table %s" % (tour_number, tab_number)
             else:
                 temp_key = table_name
-
+        
 #       detect maxseats changed in hud
 #       if so, kill and create new hud with specified "max"
             if temp_key in self.hud_dict:
@@ -331,7 +334,7 @@ class HUD_main(object):
                     self.db_connection.connection.rollback()
                     return
 
-                self.hud_dict[temp_key].cards = self.get_cards(new_hand_id)
+                self.hud_dict[temp_key].cards = self.get_cards(new_hand_id, poker_game)
                 #fixme - passing self.db_connection into another thread
                 # is probably pointless
                 [aw.update_data(new_hand_id, self.db_connection) for aw in self.hud_dict[temp_key].aux_windows]
@@ -344,7 +347,7 @@ class HUD_main(object):
                 self.db_connection.init_hud_stat_vars( self.hud_params['hud_days'], self.hud_params['h_hud_days'] )
                 stat_dict = self.db_connection.get_stats_from_hand(new_hand_id, type, self.hud_params,
                                                                    self.hero_ids[site_id], num_seats)
-                cards = self.get_cards(new_hand_id)
+                cards = self.get_cards(new_hand_id, poker_game)
                 table_kwargs = dict(table_name=table_name, tournament=tour_number, table_number=tab_number)
                 tablewindow = Tables.Table(self.config, site_name, **table_kwargs)
                 if tablewindow.number is None:
@@ -369,13 +372,13 @@ class HUD_main(object):
                     self.hud_dict[temp_key].table.check_table_no(self.hud_dict[temp_key])
                 except KeyError:
                     pass
-
+        
         self.db_connection.connection.rollback()
-            
-    def get_cards(self, new_hand_id):
+
+    def get_cards(self, new_hand_id, poker_game):
         cards = self.db_connection.get_cards(new_hand_id)
-        comm_cards = self.db_connection.get_common_cards(new_hand_id)
-        if comm_cards != {}: # stud!
+        if poker_game in ['holdem','omahahi','omahahilo']:
+            comm_cards = self.db_connection.get_common_cards(new_hand_id)
             cards['common'] = comm_cards['common']
         return cards
 ######################################################################
@@ -429,7 +432,6 @@ def idle_create(hud_main, new_hand_id, table, temp_key, max, poker_game, type, s
     gtk.gdk.threads_enter()
     try:
         if table.gdkhandle is not None:  # on windows this should already be set
-            print "here I am in HUD_main, what's going on?"
             table.gdkhandle = gtk.gdk.window_foreign_new(table.number)
         newlabel = gtk.Label("%s - %s" % (table.site, temp_key))
         hud_main.vb.add(newlabel)
@@ -438,7 +440,7 @@ def idle_create(hud_main, new_hand_id, table, temp_key, max, poker_game, type, s
 
         hud_main.hud_dict[temp_key].tablehudlabel = newlabel
         # call the hud.create method, apparently
-        hud_main.hud_dict[temp_key].create(new_hand_id, hud_main.config, stat_dict, cards)
+        hud_main.hud_dict[temp_key].create(new_hand_id, hud_main.config, stat_dict)
         for m in hud_main.hud_dict[temp_key].aux_windows:
             m.create() # create method of aux_window class (generally Mucked.aux_seats.create)
             m.update_gui(new_hand_id)

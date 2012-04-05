@@ -87,7 +87,7 @@ try:
     VERSION = subprocess.Popen(["git", "describe", "--tags", "--dirty"], stdout=subprocess.PIPE).communicate()[0]
     VERSION = VERSION[:-1]
 except:
-    VERSION = "0.29.905 + git"
+    VERSION = "0.29.906"
 
 class fpdb:
     def tab_clicked(self, widget, tab_name):
@@ -736,7 +736,8 @@ class fpdb:
             # only main tab open, reload profile
             self.load_profile()
             if dia: dia.destroy() # destroy prefs before raising warning, otherwise parent is dia rather than self.window
-            self.warning_box(_("If you had previously opened any tabs they cannot use the new settings without restart.")+" "+_("Re-start fpdb to load them."))
+            self.warning_box(_("Configuration settings have been updated, Fpdb needs to be restarted now")+"\n\n"+_("Click OK to close Fpdb"))
+            sys.exit()
         else:
             if dia: dia.destroy() # destroy prefs before raising warning, otherwise parent is dia rather than self.window
             self.warning_box(_("Updated preferences have not been loaded because windows are open.")+" "+_("Re-start fpdb to load them."))
@@ -918,6 +919,38 @@ class fpdb:
                           _("Config file has been created at %s.") % self.config.file + " "
                            + _("Enter your screen_name and hand history path in the Site Preferences window (Main menu) before trying to import hands."))
             self.display_config_created_dialogue = False
+        elif self.config.wrongConfigVersion:
+            diaConfigVersionWarning = gtk.Dialog(title=_("Strong Warning - Local configuration out of date"),
+                                             parent=None, flags=0, buttons=(gtk.STOCK_OK, gtk.RESPONSE_OK))
+
+            label = gtk.Label("\n"+_("Your local configuration file needs to be updated."))
+            diaConfigVersionWarning.vbox.add(label)
+            label.show()
+
+            label = gtk.Label(_("This error is not necessarily fatal but it is strongly recommended that you update the configuration.")+"\n")
+            diaConfigVersionWarning.vbox.add(label)
+            label.show()
+
+            label = gtk.Label(_("To create a new configuration, see fpdb.sourceforge.net/apps/mediawiki/fpdb/index.php?title=Reset_Configuration"))
+            label.set_selectable(True)
+            diaConfigVersionWarning.vbox.add(label)
+            label.show()
+            label = gtk.Label(_("A new configuration will destroy all personal settings (hud layout, site folders, screennames, favourite seats)")+"\n")
+            diaConfigVersionWarning.vbox.add(label)
+            label.show()
+
+            label = gtk.Label(_("To keep existing personal settings, you must edit the local file."))
+            diaConfigVersionWarning.vbox.add(label)
+            label.show()
+
+            label = gtk.Label(_("See the release note for information about the edits needed"))
+            diaConfigVersionWarning.vbox.add(label)
+            label.show()
+
+            response = diaConfigVersionWarning.run()
+            diaConfigVersionWarning.destroy()
+            self.config.wrongConfigVersion = False
+            
         self.settings = {}
         self.settings['global_lock'] = self.lock
         if (os.sep == "/"):
@@ -1236,7 +1269,7 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
 
         # set up tray-icon and menu
         self.statusIcon = gtk.StatusIcon()
-        cards = os.path.join(self.config.fpdb_program_path, u'gfx', u'fpdb-cards.png')
+        cards = os.path.join(self.config.graphics_path, u'fpdb-cards.png')
         if os.path.exists(cards):
             self.statusIcon.set_from_file(cards)
             self.window.set_icon_from_file(cards)
