@@ -101,7 +101,7 @@ def do_stat(stat_dict, player = 24, stat = 'vpip', hand_instance = None):
     if match:   # override if necessary
         statname = stat[0:-2]
     
-    if stat in ['starthands','m_ratio','bbstack']:
+    if stat in ['starthands','m_ratio','bbstack', 'game_abbr']:
         if hand_instance:
             result = eval("%(stat)s(stat_dict, %(player)d, hand_instance)" %
                 {'stat': statname, 'player': player})
@@ -1161,6 +1161,47 @@ def f_cb4(stat_dict, player):
                 'f_cb_4=NA',
                 '(0/0)',
                 _('% fold to continuation bet 7th street'))
+
+
+def game_abbr(stat_dict, player, hand_instance):
+    stat_descriptions["game_abbr"] = _("Game abbreviation") + " (game_abbr)"
+    stat = ''
+    uniq = hand_instance.gametype['category'] + '.' + hand_instance.gametype['limitType']
+    try:
+        stat = {
+                # ftp's 10-game with official abbreviations
+                'holdem.fl': 'H',
+                'studhilo.fl': 'E',
+                'omahahi.pl': 'P',
+                '27_3draw.fl': 'T',
+                'razz.fl': 'R',
+                'holdem.nl': 'N',
+                'omahahilo.fl': 'O',
+                'studhi.fl': 'S',
+                '27_1draw.nl': 'K',
+                'badugi.fl': 'B',
+                # other common games with dubious abbreviations
+                'fivedraw.fl': 'F',
+                'fivedraw.pl': 'Fp',
+                'fivedraw.nl': 'Fn',
+                '27_3draw.pl': 'Tp',
+                '27_3draw.nl': 'Tn',
+                'badugi.pl': 'Bp',
+                'badugi.hp': 'Bh',
+                'omahahilo.pl': 'Op',
+                'omahahilo.nl': 'On',
+                'holdem.pl': 'Hp',
+                'studhi.nl': 'Sn',
+                }[uniq]
+    except:
+        # this shouldn't really happen
+        stat = '?'
+    return (stat,
+            '%s' % stat,
+            'game=%s' % stat,
+            'game_abbr=%s' % stat,
+            '(%s)' % stat,
+            _('Game abbreviation'))
 
 def blank(stat_dict, player):
     # blank space on the grid
