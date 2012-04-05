@@ -1505,6 +1505,7 @@
             <pu_stat pu_stat_name="ffreq2"/>
             <pu_stat pu_stat_name="ffreq3"/>
             <pu_stat pu_stat_name="ffreq4"/>
+            <pu_stat pu_stat_name="game_abbr"/>
         </pu>
         
         <pu pu_name="pophands" pu_class="default">
