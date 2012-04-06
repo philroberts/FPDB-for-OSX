@@ -1219,6 +1219,8 @@ if __name__== "__main__":
     db_connection = Database.Database(c)
     h = db_connection.get_last_hand()
     stat_dict = db_connection.get_stats_from_hand(h, "ring")
+    print stat_dict
+    hand_instance = Hand.hand_factory(h, c, db_connection)
     
     for player in stat_dict.keys():
         print (_("Example stats. Player = %s, Hand = %s:") % (player, h))
