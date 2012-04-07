@@ -93,12 +93,14 @@ class PacificPokerSummary(TourneySummary):
         else:
             self.gametype['limitType'] = 'fl'
         if 'GAME'      in mg1: self.gametype['category']  = self.games[mg1['GAME']][1]
-        if 'BUYIN' in mg or mg['BUYIN'] == 'Free':
+        
+        if 'BUYIN' in mg and mg['BUYIN'] == 'Free':
           self.buyin = 0
           self.fee = 0
         else:
           self.buyin = int(100*convert_to_decimal(mg['BUYIN']))
           self.fee   = int(100*convert_to_decimal(mg['FEE']))
+         
         self.entries   = mg['ENTRIES']
         self.prizepool = self.buyin * int(self.entries)
         if 'REBUYAMT' in mg and mg['REBUYAMT'] != None:
