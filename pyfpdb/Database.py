@@ -2909,7 +2909,12 @@ class Database:
         
         if result != None:
             columnNames=[desc[0] for desc in cursor.description]
-            expectedValues = (('buyin', 'buyin'), ('fee', 'fee'), ('buyinCurrency', 'currency'),('isSng', 'sng'), ('maxseats', 'maxSeats')
+            if self.backend == self.PGSQL:
+                expectedValues = (('buyin', 'buyin'), ('fee', 'fee'), ('buyinCurrency', 'currency'),('isSng', 'sng'), ('maxseats', 'maxseats')
+                             , ('isKO', 'knockout'), ('koBounty', 'kobounty'), ('isRebuy', 'rebuy'), ('rebuyCost', 'rebuycost')
+                             , ('isAddOn', 'addon'), ('addOnCost','addoncost'), ('speed', 'speed'), ('isShootout', 'shootout'), ('isMatrix', 'matrix'))
+            else:
+                expectedValues = (('buyin', 'buyin'), ('fee', 'fee'), ('buyinCurrency', 'currency'),('isSng', 'sng'), ('maxseats', 'maxSeats')
                              , ('isKO', 'knockout'), ('koBounty', 'koBounty'), ('isRebuy', 'rebuy'), ('rebuyCost', 'rebuyCost')
                              , ('isAddOn', 'addOn'), ('addOnCost','addOnCost'), ('speed', 'speed'), ('isShootout', 'shootout'), ('isMatrix', 'matrix'))
             resultDict = dict(zip(columnNames, result))
@@ -3005,16 +3010,24 @@ class Database:
         result=cursor.fetchone()
 
         if result != None:
-            expectedValues = ('comment', 'tourneyName', 'matrixIdProcessed', 'totalRebuyCount', 'totalAddOnCount',
-                              'prizepool', 'startTime', 'entries', 'commentTs', 'endTime')
+            if self.backend == self.PGSQL:
+                expectedValues = (('comment','comment'), ('tourneyName','tourneyname'), ('matrixIdProcessed','matrixidprocessed')
+                        ,('totalRebuyCount','totalrebuycount'), ('totalAddOnCount','totaladdoncount')
+                        ,('prizepool','prizepool'), ('startTime','starttime'), ('entries','entries')
+                        ,('commentTs','commentts'), ('endTime','endtime'))
+            else:
+                expectedValues = (('comment','comment'), ('tourneyName','tourneyName'), ('matrixIdProcessed','matrixIdProcessed')
+                        ,('totalRebuyCount','totalRebuyCount'), ('totalAddOnCount','totalAddOnCount')
+                        ,('prizepool','prizepool'), ('startTime','startTime'), ('entries','entries')
+                        ,('commentTs','commentTs'), ('endTime','endTime'))
             updateDb=False
             resultDict = dict(zip(columnNames, result))
 
             tourneyId = resultDict["id"]
             for ev in expectedValues :
-                if getattr(summary, ev)==None and resultDict[ev]!=None:#DB has this value but object doesnt, so update object
-                    setattr(summary, ev, resultDict[ev])
-                elif getattr(summary, ev)!=None and not resultDict[ev]:#object has this value but DB doesnt, so update DB
+                if getattr(summary, ev[0])==None and resultDict[ev[1]]!=None:#DB has this value but object doesnt, so update object
+                    setattr(summary, ev[0], resultDict[ev][1])
+                elif getattr(summary, ev[0])!=None and not resultDict[ev[1]]:#object has this value but DB doesnt, so update DB
                     updateDb=True
                 #elif ev=="startTime":
                 #    if (resultDict[ev] < summary.startTime):
@@ -3099,18 +3112,25 @@ class Database:
                                 (summary.tourneyId, playerId))
                 columnNames=[desc[0] for desc in cursor.description]
                 result=cursor.fetchone()
-                expectedValues = ('rank', 'winnings', 'winningsCurrency', 'rebuyCount', 'addOnCount', 'koCount')
+                if self.backend == self.PGSQL:
+                    expectedValues = (('rank','rank'), ('winnings', 'winnings')
+                            ,('winningsCurrency','winningscurrency'), ('rebuyCount','rebuycount')
+                            ,('addOnCount','addoncount'), ('koCount','kocount'))
+                else:
+                    expectedValues = (('rank','rank'), ('winnings', 'winnings')
+                            ,('winningsCurrency','winningsCurrency'), ('rebuyCount','rebuyCount')
+                            ,('addOnCount','addOnCount'), ('koCount','koCount'))
                 updateDb=False
                 resultDict = dict(zip(columnNames, result))
                 tourneysPlayersIds[player[1]]=result[0]
                 for ev in expectedValues :
-                    summaryAttribute=ev
-                    if ev!="winnings" and ev!="winningsCurrency":
+                    summaryAttribute=ev[0]
+                    if ev[0]!="winnings" and ev[0]!="winningsCurrency":
                         summaryAttribute+="s"
 
-                    if getattr(summary, summaryAttribute)[player]==None and resultDict[ev]!=None:#DB has this value but object doesnt, so update object
-                        setattr(summary, summaryAttribute, resultDict[ev][player])
-                    elif getattr(summary, summaryAttribute)[player]!=None and resultDict[ev]==None:#object has this value but DB doesnt, so update DB
+                    if getattr(summary, summaryAttribute)[player]==None and resultDict[ev[1]]!=None:#DB has this value but object doesnt, so update object
+                        setattr(summary, summaryAttribute, resultDict[ev[1]][player])
+                    elif getattr(summary, summaryAttribute)[player]!=None and resultDict[ev[1]]==None:#object has this value but DB doesnt, so update DB
                         updateDb=True
                 if updateDb:
                     q = self.sql.query['updateTourneysPlayer'].replace('%s', self.sql.query['placeholder'])
