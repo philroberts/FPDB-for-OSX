@@ -2682,15 +2682,15 @@ class Sql:
                        sum(hc.wonWhenSeenStreet1)          AS w_w_s_1,
                        sum(hc.wonAtSD)                     AS wmsd,
                        sum(case
-                        when hc.position = "S" then hc.raiseFirstInChance
-                        when hc.position = "D" then hc.raiseFirstInChance
-                        when hc.position = "C" then hc.raiseFirstInChance
+                        when hc.position = 'S' then hc.raiseFirstInChance
+                        when hc.position = 'D' then hc.raiseFirstInChance
+                        when hc.position = 'C' then hc.raiseFirstInChance
                         else 0
                         end)                               AS steal_opp,
                        sum(case
-                        when hc.position = "S" then hc.raisedFirstIn
-                        when hc.position = "D" then hc.raisedFirstIn
-                        when hc.position = "C" then hc.raisedFirstIn
+                        when hc.position = 'S' then hc.raisedFirstIn
+                        when hc.position = 'D' then hc.raisedFirstIn
+                        when hc.position = 'C' then hc.raisedFirstIn
                         else 0
                         end)                               AS steal,
                        sum(hc.foldSbToStealChance)         AS SBstolen,
@@ -2835,15 +2835,15 @@ class Sql:
                            cast(hp2.wonWhenSeenStreet1 as <signed>integer)          AS w_w_s_1,
                            cast(hp2.wonAtSD as <signed>integer)                     AS wmsd,
                            case
-                                when hp2.position = "S" then cast(hp2.raiseFirstInChance as <signed>integer)
-                                when hp2.position = "0" then cast(hp2.raiseFirstInChance as <signed>integer)
-                                when hp2.position = "1" then cast(hp2.raiseFirstInChance as <signed>integer)
+                                when hp2.position = 'S' then cast(hp2.raiseFirstInChance as <signed>integer)
+                                when hp2.position = '0' then cast(hp2.raiseFirstInChance as <signed>integer)
+                                when hp2.position = '1' then cast(hp2.raiseFirstInChance as <signed>integer)
                                 else 0
                            end                                                      AS steal_opp,
                            case
-                                when hp2.position = "S" then cast(hp2.raisedFirstIn as <signed>integer)
-                                when hp2.position = "0" then cast(hp2.raisedFirstIn as <signed>integer)
-                                when hp2.position = "1" then cast(hp2.raisedFirstIn as <signed>integer)
+                                when hp2.position = 'S' then cast(hp2.raisedFirstIn as <signed>integer)
+                                when hp2.position = '0' then cast(hp2.raisedFirstIn as <signed>integer)
+                                when hp2.position = '1' then cast(hp2.raisedFirstIn as <signed>integer)
                                 else 0
                            end                                                      AS steal,
                            cast(hp2.foldSbToStealChance as <signed>integer)         AS SBstolen,
@@ -2964,15 +2964,15 @@ class Sql:
                            cast(hp2.wonWhenSeenStreet1 as <signed>integer)          AS w_w_s_1,
                            cast(hp2.wonAtSD as <signed>integer)                     AS wmsd,
                            case
-                                when hp2.position = "S" then cast(hp2.raiseFirstInChance as <signed>integer)
-                                when hp2.position = "0" then cast(hp2.raiseFirstInChance as <signed>integer)
-                                when hp2.position = "1" then cast(hp2.raiseFirstInChance as <signed>integer)
+                                when hp2.position = 'S' then cast(hp2.raiseFirstInChance as <signed>integer)
+                                when hp2.position = '0' then cast(hp2.raiseFirstInChance as <signed>integer)
+                                when hp2.position = '1' then cast(hp2.raiseFirstInChance as <signed>integer)
                                 else 0
                            end                                                      AS steal_opp,
                           case
-                                when hp2.position = "S" then cast(hp2.raisedFirstIn as <signed>integer)
-                                when hp2.position = "0" then cast(hp2.raisedFirstIn as <signed>integer)
-                                when hp2.position = "1" then cast(hp2.raisedFirstIn as <signed>integer)
+                                when hp2.position = 'S' then cast(hp2.raisedFirstIn as <signed>integer)
+                                when hp2.position = '0' then cast(hp2.raisedFirstIn as <signed>integer)
+                                when hp2.position = '1' then cast(hp2.raisedFirstIn as <signed>integer)
                                 else 0
                            end                                                      AS steal,
                            cast(hp2.foldSbToStealChance as <signed>integer)         AS SBstolen,
@@ -3834,7 +3834,7 @@ class Sql:
                             ,p.name                                                                 AS playerName
                             ,COUNT(1)                                                               AS tourneyCount
                             ,SUM(CASE WHEN tp.rank > 0 THEN 0 ELSE 1 END)                           AS unknownRank
-                            ,(CAST(SUM(CASE WHEN winnings > 0 THEN 1 ELSE 0 END) AS REAL)/CAST(COUNT(1) AS REAL))*100                 AS itm
+                            ,(CAST(SUM(CASE WHEN winnings > 0 THEN 1 ELSE 0 END) AS SIGNED)/CAST(COUNT(1) AS SIGNED))*100                 AS itm
                             ,SUM(CASE WHEN rank = 1 THEN 1 ELSE 0 END)                              AS _1st
                             ,SUM(CASE WHEN rank = 2 THEN 1 ELSE 0 END)                              AS _2nd
                             ,SUM(CASE WHEN rank = 3 THEN 1 ELSE 0 END)                              AS _3rd
@@ -3844,8 +3844,8 @@ class Sql:
                                    ELSE (tt.buyIn+tt.fee)/100.0
                                  END)                                                               AS spent
                             ,ROUND(
-                                (CAST(SUM(tp.winnings - tt.buyin - tt.fee) AS REAL)/
-                                CAST(SUM(tt.buyin+tt.fee) AS REAL))* 100.0
+                                (CAST(SUM(tp.winnings - tt.buyin - tt.fee) AS SIGNED)/
+                                CAST(SUM(tt.buyin+tt.fee) AS SIGNED))* 100.0
                              ,2)                                                                    AS roi
                             ,SUM(tp.winnings-(tt.buyin+tt.fee))/100.0/(COUNT(1)-SUM(CASE WHEN tp.rank > 0 THEN 0 ELSE 1 END)) AS profitPerTourney
                       from TourneysPlayers tp
@@ -3887,8 +3887,8 @@ class Sql:
                                    ELSE (tt.buyIn+tt.fee)/100.0
                                  END)                                                               AS "spent"
                             ,ROUND(
-                                (CAST(SUM(tp.winnings - tt.buyin - tt.fee) AS REAL)/
-                                CAST(SUM(tt.buyin+tt.fee) AS REAL))* 100.0
+                                (CAST(SUM(tp.winnings - tt.buyin - tt.fee) AS INTEGER)/
+                                CAST(SUM(tt.buyin+tt.fee) AS INTEGER))* 100.0
                              ,2)                                                                    AS "roi"
                             ,SUM(tp.winnings-(tt.buyin+tt.fee))/100.0
                              /(COUNT(1)-SUM(CASE WHEN tp.rank > 0 THEN 0 ELSE 0 END))               AS "profitPerTourney"
@@ -4810,7 +4810,7 @@ class Sql:
             GROUP BY t.startTime, tp.tourneyId, tp.winningsCurrency,
                      tp.winnings, tp.koCount,
                      tp.rebuyCount, tp.addOnCount,
-                     tt.buyIn, tt.fee
+                     tt.buyIn, tt.fee, t.siteTourneyNo
             ORDER BY t.startTime"""
 
             #AND   gt.type = 'ring'
@@ -6610,7 +6610,7 @@ class Sql:
         
         self.query['fetchNewTourneyTypeIds'] = """SELECT TT.id
                                             FROM TourneyTypes TT
-                                            LEFT OUTER JOIN `HudCache` HC ON (TT.id = HC.tourneyTypeId)
+                                            LEFT OUTER JOIN HudCache HC ON (TT.id = HC.tourneyTypeId)
                                             WHERE HC.tourneyTypeId is NULL
         """
 

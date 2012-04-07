@@ -91,7 +91,7 @@ class DerivedStats():
             init['street%dCalls' % i] = 0
             init['street%dBets' % i] = 0
             init['street%dRaises' % i] = 0
-            init['street%dAggr' % i] = 0
+            init['street%dAggr' % i] = False
         for i in range(1,5):
             init['street%dCBChance' %i] = False
             init['street%dCBDone' %i] = False
