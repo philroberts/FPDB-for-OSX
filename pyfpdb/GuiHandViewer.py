@@ -35,7 +35,6 @@ import gtk
 import math
 import gobject
 
-import pyperclip
 from cStringIO import StringIO
 
 import copy
@@ -302,7 +301,8 @@ class GuiHandViewer:
     def copyHandToClipboard(self, view, event, hand):
         handText = StringIO()
         hand.writeHand(handText)
-        pyperclip.copy(handText.getvalue())
+        clipboard = gtk.Clipboard(display=gtk.gdk.display_get_default(), selection="CLIPBOARD")
+        clipboard.set_text(handText.getvalue(), len=-1)
 
     def contextMenu(self, view, event):
         if(event.button != 3):
