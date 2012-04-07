@@ -2682,15 +2682,15 @@ class Sql:
                        sum(hc.wonWhenSeenStreet1)          AS w_w_s_1,
                        sum(hc.wonAtSD)                     AS wmsd,
                        sum(case
-                        when hc.position = "S" then hc.raiseFirstInChance
-                        when hc.position = "D" then hc.raiseFirstInChance
-                        when hc.position = "C" then hc.raiseFirstInChance
+                        when hc.position = 'S' then hc.raiseFirstInChance
+                        when hc.position = 'D' then hc.raiseFirstInChance
+                        when hc.position = 'C' then hc.raiseFirstInChance
                         else 0
                         end)                               AS steal_opp,
                        sum(case
-                        when hc.position = "S" then hc.raisedFirstIn
-                        when hc.position = "D" then hc.raisedFirstIn
-                        when hc.position = "C" then hc.raisedFirstIn
+                        when hc.position = 'S' then hc.raisedFirstIn
+                        when hc.position = 'D' then hc.raisedFirstIn
+                        when hc.position = 'C' then hc.raisedFirstIn
                         else 0
                         end)                               AS steal,
                        sum(hc.foldSbToStealChance)         AS SBstolen,
@@ -2835,15 +2835,15 @@ class Sql:
                            cast(hp2.wonWhenSeenStreet1 as <signed>integer)          AS w_w_s_1,
                            cast(hp2.wonAtSD as <signed>integer)                     AS wmsd,
                            case
-                                when hp2.position = "S" then cast(hp2.raiseFirstInChance as <signed>integer)
-                                when hp2.position = "0" then cast(hp2.raiseFirstInChance as <signed>integer)
-                                when hp2.position = "1" then cast(hp2.raiseFirstInChance as <signed>integer)
+                                when hp2.position = 'S' then cast(hp2.raiseFirstInChance as <signed>integer)
+                                when hp2.position = '0' then cast(hp2.raiseFirstInChance as <signed>integer)
+                                when hp2.position = '1' then cast(hp2.raiseFirstInChance as <signed>integer)
                                 else 0
                            end                                                      AS steal_opp,
                            case
-                                when hp2.position = "S" then cast(hp2.raisedFirstIn as <signed>integer)
-                                when hp2.position = "0" then cast(hp2.raisedFirstIn as <signed>integer)
-                                when hp2.position = "1" then cast(hp2.raisedFirstIn as <signed>integer)
+                                when hp2.position = 'S' then cast(hp2.raisedFirstIn as <signed>integer)
+                                when hp2.position = '0' then cast(hp2.raisedFirstIn as <signed>integer)
+                                when hp2.position = '1' then cast(hp2.raisedFirstIn as <signed>integer)
                                 else 0
                            end                                                      AS steal,
                            cast(hp2.foldSbToStealChance as <signed>integer)         AS SBstolen,
@@ -2964,15 +2964,15 @@ class Sql:
                            cast(hp2.wonWhenSeenStreet1 as <signed>integer)          AS w_w_s_1,
                            cast(hp2.wonAtSD as <signed>integer)                     AS wmsd,
                            case
-                                when hp2.position = "S" then cast(hp2.raiseFirstInChance as <signed>integer)
-                                when hp2.position = "0" then cast(hp2.raiseFirstInChance as <signed>integer)
-                                when hp2.position = "1" then cast(hp2.raiseFirstInChance as <signed>integer)
+                                when hp2.position = 'S' then cast(hp2.raiseFirstInChance as <signed>integer)
+                                when hp2.position = '0' then cast(hp2.raiseFirstInChance as <signed>integer)
+                                when hp2.position = '1' then cast(hp2.raiseFirstInChance as <signed>integer)
                                 else 0
                            end                                                      AS steal_opp,
                           case
-                                when hp2.position = "S" then cast(hp2.raisedFirstIn as <signed>integer)
-                                when hp2.position = "0" then cast(hp2.raisedFirstIn as <signed>integer)
-                                when hp2.position = "1" then cast(hp2.raisedFirstIn as <signed>integer)
+                                when hp2.position = 'S' then cast(hp2.raisedFirstIn as <signed>integer)
+                                when hp2.position = '0' then cast(hp2.raisedFirstIn as <signed>integer)
+                                when hp2.position = '1' then cast(hp2.raisedFirstIn as <signed>integer)
                                 else 0
                            end                                                      AS steal,
                            cast(hp2.foldSbToStealChance as <signed>integer)         AS SBstolen,
