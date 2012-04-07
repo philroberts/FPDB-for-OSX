@@ -312,7 +312,7 @@ class GuiHandViewer:
         model = view.get_model()
         hand = self.hands[int(model.get_value(model.get_iter(path[0]), self.colnum['HandId']))]
         m = gtk.Menu()
-        i = gtk.MenuItem('Copy')
+        i = gtk.MenuItem('Copy to clipboard')
         i.connect('button-press-event', self.copyHandToClipboard, hand)
         i.show()
         m.append(i)
