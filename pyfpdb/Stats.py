@@ -1204,9 +1204,10 @@ if __name__== "__main__":
     #TODO: fix
     statlist = dir()
     misslist = [ "Configuration", "Database", "Charset", "codecs", "encoder"
-                 , "do_stat", "do_tip", "GInitiallyUnowned", "gtk", "pygtk", "Card"
-                 , "L10n", "_", "__stat_override", "build_stat_descriptions", "log"
-                 , "logging", "stat_descriptions"
+                 , "do_stat", "do_tip", 'GFileDescriptorBased', 'GPollableInputStream'
+                 , 'GPollableOutputStream', "GInitiallyUnowned", "gtk"
+                 , "pygtk", "Card", "L10n", "_", "__stat_override"
+                 , "build_stat_descriptions", "log", "logging", "stat_descriptions"
                  , "re", "re_Places"
                ]
     statlist = [ x for x in statlist if x not in dir(sys) ]
