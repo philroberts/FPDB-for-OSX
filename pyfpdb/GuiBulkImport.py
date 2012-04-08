@@ -160,6 +160,7 @@ class GuiBulkImport():
         self.chooser = gtk.FileChooserWidget()
         self.chooser.set_filename(self.settings['bulkImport-defaultPath'])
         self.chooser.set_select_multiple(True)
+        self.chooser.set_show_hidden(True)
         self.vbox.add(self.chooser)
         self.chooser.show()
 
