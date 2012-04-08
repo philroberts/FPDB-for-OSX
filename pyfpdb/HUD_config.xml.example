@@ -1505,7 +1505,6 @@
             <pu_stat pu_stat_name="ffreq2"/>
             <pu_stat pu_stat_name="ffreq3"/>
             <pu_stat pu_stat_name="ffreq4"/>
-            <pu_stat pu_stat_name="game_abbr"/>
         </pu>
         
         <pu pu_name="pophands" pu_class="default">
@@ -1585,9 +1584,11 @@
 
 
     <supported_databases>
-        <!-- <database db_name="fpdb" db_server="mysql" db_ip="localhost" db_user="fpdb" db_pass="YOUR MYSQL PASSWORD"></database> -->
-        <database db_ip="localhost" db_server="sqlite" db_name="fpdb.db3" db_user="fpdb" db_pass="fpdb"/>
+        <!-- <database db_server="mysql" db_user="fpdbuser" db_pass="YOUR MYSQL PASSWORD" db_name="fpdb" db_ip="localhost"></database> -->
+             <database db_server="sqlite" db_name="fpdb.db3" db_ip="localhost" db_user="fpdb" db_pass="fpdb"/>
+        <!-- <database db_server="postgresql" db_user="fpdb" db_pass="YOUR POSTGRES PASSWORD" db_name="fpdb" db_ip="localhost" ></database> -->
     </supported_databases>
 </FreePokerToolsConfig>
+
 <!-- IMPORTANT: Please note that fpdb stores your email password in clear text.
 So do not post a config containing a password on the Internet or anywhere else without removing the password! -->
