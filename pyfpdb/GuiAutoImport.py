@@ -168,6 +168,7 @@ class GuiAutoImport (threading.Thread):
         #dia_chooser.set_current_folder(pathname)
         dia_chooser.set_filename(current_path)
         #dia_chooser.set_select_multiple(select_multiple) #not in tv, but want this in bulk import
+        dia_chooser.set_show_hidden(True)
         dia_chooser.set_destroy_with_parent(True)
         dia_chooser.set_transient_for(self.parent)
 
