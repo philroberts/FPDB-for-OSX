@@ -843,9 +843,9 @@ class Database:
         else:
             h_seats_min, h_seats_max = 0, 10
             print "bad h_seats_style value:", h_seats_style
-        log.info("opp seats style %s %d %d hero seats style %s %d %d"
-                 % (seats_style, seats_min, seats_max
-                   ,h_seats_style, h_seats_min, h_seats_max) )
+        #log.info("opp seats style %s %d %d hero seats style %s %d %d"
+        #         % (seats_style, seats_min, seats_max
+        #           ,h_seats_style, h_seats_min, h_seats_max) )
 
         if hud_style == 'S' or h_hud_style == 'S':
             self.get_stats_from_hand_session(hand, stat_dict, hero_id
@@ -887,10 +887,13 @@ class Database:
                ,hero_id, h_stylekey, h_agg_bb_mult, h_agg_bb_mult, h_seats_min, h_seats_max)    # villain params
 
         #print "get stats: hud style =", hud_style, "query =", query, "subs =", subs
+        stime = time()
         c = self.connection.cursor()
 
         # Now get the stats
         c.execute(self.sql.query[query], subs)
+        ptime = time() - stime
+        log.info("HudCache query get_stats_from_hand_aggregated took %.3f seconds" % ptime)
         colnames = [desc[0] for desc in c.description]
         for row in c.fetchall():
             playerid = row[0]
@@ -1567,72 +1570,66 @@ class Database:
 
     def rebuild_hudcache(self, h_start=None, v_start=None, ttid = None):
         """clears hudcache and rebuilds from the individual handsplayers records"""
+        stime = time()
+        # derive list of program owner's player ids
+        self.hero = {}                               # name of program owner indexed by site id
+        self.hero_ids = {'dummy':-53, 'dummy2':-52}  # playerid of owner indexed by site id
+                                                     # make sure at least two values in list
+                                                     # so that tuple generation creates doesn't use
+                                                     # () or (1,) style
+        for site in self.config.get_supported_sites():
+            result = self.get_site_id(site)
+            if result:
+                site_id = result[0][0]
+                self.hero[site_id] = self.config.supported_sites[site].screen_name
+                p_id = self.get_player_id(self.config, site, self.hero[site_id])
+                if p_id:
+                    self.hero_ids[site_id] = int(p_id)
 
-        try:
-            stime = time()
-            # derive list of program owner's player ids
-            self.hero = {}                               # name of program owner indexed by site id
-            self.hero_ids = {'dummy':-53, 'dummy2':-52}  # playerid of owner indexed by site id
-                                                         # make sure at least two values in list
-                                                         # so that tuple generation creates doesn't use
-                                                         # () or (1,) style
-            for site in self.config.get_supported_sites():
-                result = self.get_site_id(site)
-                if result:
-                    site_id = result[0][0]
-                    self.hero[site_id] = self.config.supported_sites[site].screen_name
-                    p_id = self.get_player_id(self.config, site, self.hero[site_id])
-                    if p_id:
-                        self.hero_ids[site_id] = int(p_id)
+        if h_start is None:
+            h_start = self.hero_hudstart_def
+        if v_start is None:
+            v_start = self.villain_hudstart_def
 
-            if h_start is None:
-                h_start = self.hero_hudstart_def
-            if v_start is None:
-                v_start = self.villain_hudstart_def
+        if self.hero_ids == {}:
+            where = "WHERE hp.tourneysPlayersId IS NULL"
+        else:
+            where =   "where (((    hp.playerId not in " + str(tuple(self.hero_ids.values())) \
+                    + "       and h.startTime > '" + v_start + "')" \
+                    + "   or (    hp.playerId in " + str(tuple(self.hero_ids.values())) \
+                    + "       and h.startTime > '" + h_start + "'))" \
+                    + "   AND hp.tourneysPlayersId IS NULL)"
+        rebuild_sql_cash = self.sql.query['rebuildHudCache'].replace('<tourney_insert_clause>', "")
+        rebuild_sql_cash = rebuild_sql_cash.replace('<tourney_select_clause>', "")
+        rebuild_sql_cash = rebuild_sql_cash.replace('<tourney_join_clause>', "")
+        rebuild_sql_cash = rebuild_sql_cash.replace('<tourney_group_clause>', "")
+        rebuild_sql_cash = rebuild_sql_cash.replace('<where_clause>', where)
+        rebuild_sql_cash = self.replace_statscache(rebuild_sql_cash)
+        if not ttid:
+            self.get_cursor().execute(self.sql.query['clearHudCache'])
+            self.get_cursor().execute(rebuild_sql_cash)
+            #print _("Rebuild hudcache(cash) took %.1f seconds") % (time() - stime,)
 
-            if self.hero_ids == {}:
-                where = "WHERE hp.tourneysPlayersId IS NULL"
-            else:
-                where =   "where (((    hp.playerId not in " + str(tuple(self.hero_ids.values())) \
-                        + "       and h.startTime > '" + v_start + "')" \
-                        + "   or (    hp.playerId in " + str(tuple(self.hero_ids.values())) \
-                        + "       and h.startTime > '" + h_start + "'))" \
-                        + "   AND hp.tourneysPlayersId IS NULL)"
-            rebuild_sql_cash = self.sql.query['rebuildHudCache'].replace('<tourney_insert_clause>', "")
-            rebuild_sql_cash = rebuild_sql_cash.replace('<tourney_select_clause>', "")
-            rebuild_sql_cash = rebuild_sql_cash.replace('<tourney_join_clause>', "")
-            rebuild_sql_cash = rebuild_sql_cash.replace('<tourney_group_clause>', "")
-            rebuild_sql_cash = rebuild_sql_cash.replace('<where_clause>', where)
-            rebuild_sql_cash = self.replace_statscache(rebuild_sql_cash)
-            if not ttid:
-                self.get_cursor().execute(self.sql.query['clearHudCache'])
-                self.get_cursor().execute(rebuild_sql_cash)
-                #print _("Rebuild hudcache(cash) took %.1f seconds") % (time() - stime,)
-
-            if self.hero_ids == {}:
-                where = "WHERE hp.tourneysPlayersId >= 0"
-            elif ttid:
-                where = "WHERE t.tourneyTypeId = %s" % ttid
-            else:
-                where =   "where (((    hp.playerId not in " + str(tuple(self.hero_ids.values())) \
-                        + "       and h.startTime > '" + v_start + "')" \
-                        + "   or (    hp.playerId in " + str(tuple(self.hero_ids.values())) \
-                        + "       and h.startTime > '" + h_start + "'))" \
-                        + "   AND hp.tourneysPlayersId >= 0)"
-            rebuild_sql_tourney = self.sql.query['rebuildHudCache'].replace('<tourney_insert_clause>', ",tourneyTypeId")
-            rebuild_sql_tourney = rebuild_sql_tourney.replace('<tourney_select_clause>', ",t.tourneyTypeId")
-            rebuild_sql_tourney = rebuild_sql_tourney.replace('<tourney_join_clause>', """INNER JOIN TourneysPlayers tp ON (tp.id = hp.tourneysPlayersId)
-                INNER JOIN Tourneys t ON (t.id = tp.tourneyId)""")
-            rebuild_sql_tourney = rebuild_sql_tourney.replace('<tourney_group_clause>', ",t.tourneyTypeId")
-            rebuild_sql_tourney = rebuild_sql_tourney.replace('<where_clause>', where)
-            rebuild_sql_tourney = self.replace_statscache(rebuild_sql_tourney)
-            self.get_cursor().execute(rebuild_sql_tourney)
-            self.commit()
-            #print _("Rebuild hudcache took %.1f seconds") % (time() - stime,)
-        except:
-            err = traceback.extract_tb(sys.exc_info()[2])[-1]
-            print _("Error rebuilding hudcache:"), str(sys.exc_value)
-            print err
+        if self.hero_ids == {}:
+            where = "WHERE hp.tourneysPlayersId >= 0"
+        elif ttid:
+            where = "WHERE t.tourneyTypeId = %s" % ttid
+        else:
+            where =   "where (((    hp.playerId not in " + str(tuple(self.hero_ids.values())) \
+                    + "       and h.startTime > '" + v_start + "')" \
+                    + "   or (    hp.playerId in " + str(tuple(self.hero_ids.values())) \
+                    + "       and h.startTime > '" + h_start + "'))" \
+                    + "   AND hp.tourneysPlayersId >= 0)"
+        rebuild_sql_tourney = self.sql.query['rebuildHudCache'].replace('<tourney_insert_clause>', ",tourneyTypeId")
+        rebuild_sql_tourney = rebuild_sql_tourney.replace('<tourney_select_clause>', ",t.tourneyTypeId")
+        rebuild_sql_tourney = rebuild_sql_tourney.replace('<tourney_join_clause>', """INNER JOIN TourneysPlayers tp ON (tp.id = hp.tourneysPlayersId)
+            INNER JOIN Tourneys t ON (t.id = tp.tourneyId)""")
+        rebuild_sql_tourney = rebuild_sql_tourney.replace('<tourney_group_clause>', ",t.tourneyTypeId")
+        rebuild_sql_tourney = rebuild_sql_tourney.replace('<where_clause>', where)
+        rebuild_sql_tourney = self.replace_statscache(rebuild_sql_tourney)
+        self.get_cursor().execute(rebuild_sql_tourney)
+        self.commit()
+        #print _("Rebuild hudcache took %.1f seconds") % (time() - stime,)
     #end def rebuild_hudcache
     
     def rebuild_sessionscache(self, tz_name = None):

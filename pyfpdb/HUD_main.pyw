@@ -260,7 +260,7 @@ class HUD_main(object):
                 (table_name, max, poker_game, type, site_id, site_name, num_seats, tour_number, tab_number) = \
                                 self.db_connection.get_table_info(new_hand_id)
             except Exception:
-                log.exception(_("database error: skipping %s") % new_hand_id)
+                log.error(_("database error: skipping %s") % new_hand_id)
                 continue
             
             # Do nothing if this site is on the ignore list

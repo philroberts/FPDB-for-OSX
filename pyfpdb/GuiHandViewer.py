@@ -37,6 +37,8 @@ import gtk
 import math
 import gobject
 
+from cStringIO import StringIO
+
 import copy
 
 import GuiReplayer
@@ -298,6 +300,27 @@ class GuiHandViewer:
             self.hands[handid] = self.importhand(handid)
         self.refreshHands()
     
+    def copyHandToClipboard(self, view, event, hand):
+        handText = StringIO()
+        hand.writeHand(handText)
+        clipboard = gtk.Clipboard(display=gtk.gdk.display_get_default(), selection="CLIPBOARD")
+        clipboard.set_text(handText.getvalue(), len=-1)
+
+    def contextMenu(self, view, event):
+        if(event.button != 3):
+            return False
+        coords = event.get_coords()
+        path = view.get_path_at_pos(int(coords[0]), int(coords[1]))
+        model = view.get_model()
+        hand = self.hands[int(model.get_value(model.get_iter(path[0]), self.colnum['HandId']))]
+        m = gtk.Menu()
+        i = gtk.MenuItem('Copy to clipboard')
+        i.connect('button-press-event', self.copyHandToClipboard, hand)
+        i.show()
+        m.append(i)
+        m.popup(None, None, None, event.button, event.time, None)
+        return False
+
     def refreshHands(self):
         try:
             self.handsWindow.destroy()
@@ -358,6 +381,7 @@ class GuiHandViewer:
         #selection = self.view.get_selection()
         #selection.set_select_function(self.select_hand, None, True)     #listen on selection (single click)
         self.view.connect('row-activated', self.row_activated)           #listen to double klick
+        self.view.connect('button-press-event', self.contextMenu)
 
         for handid, hand in self.hands.items():
             hero = self.filters.getHeroes()[hand.sitename]
