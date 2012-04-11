@@ -231,12 +231,12 @@ class HUD_main(object):
 
 #        get basic info about the new hand from the db
 #        if there is a db error, complain, skip hand, and proceed
-            log.info("HUD_main.read_stdin: " + _("Hand processing starting."))
+            #log.info("HUD_main.read_stdin: " + _("Hand processing starting."))
             try:
                 (table_name, max, poker_game, type, site_id, site_name, num_seats, tour_number, tab_number) = \
                                 self.db_connection.get_table_info(new_hand_id)
             except Exception:
-                log.exception(_("database error: skipping %s") % new_hand_id)
+                log.error(_("database error: skipping %s") % new_hand_id)
                 continue
 
             if type == "tour":   # hand is from a tournament
