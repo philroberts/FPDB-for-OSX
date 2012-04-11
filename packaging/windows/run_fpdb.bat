@@ -2,7 +2,7 @@
 
 rem  .bat script to run fpdb
 
-rem    Copyright 2007-2011, Gerko de Roo
+rem    Copyright 2007-2012, Gerko de Roo
 
 rem   This program is free software: you can redistribute it and/or modify
 rem   it under the terms of the GNU Affero General Public License as published by
