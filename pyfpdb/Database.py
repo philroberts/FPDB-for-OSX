@@ -2032,9 +2032,9 @@ class Database:
             loc_tz = utc_start.astimezone(tz).strftime('%z')
             offset = timedelta(hours=int(loc_tz[:-2]), minutes=int(loc_tz[0]+loc_tz[-2:]))
             local = s['sessionStart'] + offset
-            monthStart = datetime(local.year, local.month, 1) - offset
+            monthStart = datetime(local.year, local.month, 1)
             weekdate   = datetime(local.year, local.month, local.day) 
-            weekStart  = weekdate - timedelta(days=weekdate.weekday()) - offset
+            weekStart  = weekdate - timedelta(days=weekdate.weekday())
             wid = self.insertOrUpdate('weeks', c, weekStart, select_WC, insert_WC)
             mid = self.insertOrUpdate('months', c, monthStart, select_MC, insert_MC)
             row = [wid, mid, s['id']]
@@ -3036,7 +3036,7 @@ class Database:
                     
                 else:
                     inserts.append([wid, mid] + list(k[-4:]) + dc['line'])
-                self.archive.addStartCardsHands(dc['category'], dc['type'], k[5], dc['siteId'], wid, dc['ids'])
+                self.archive.addStartCardsHands(dc['category'], dc['type'], k[5], wid, dc['siteId'], dc['ids'])
                 
             if inserts:
                 c.executemany(insert_cardscache, inserts)
