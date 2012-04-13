@@ -193,7 +193,7 @@ class Absolute(HandHistoryConverter):
                     info['bb'] = self.Lim_Blinds[info['bb']][1]
                 except KeyError:
                     tmp = handText[0:200]
-                    log.error(_("PokerStarsToFpdb.determineGameType: Lim_Blinds has no lookup for '%s' - '%s'") % (info['bb'], tmp))
+                    log.error(_("AbsoluteToFpdb.determineGameType: Lim_Blinds has no lookup for '%s' - '%s'") % (info['bb'], tmp))
                     raise FpdbParseError
         return info
 
