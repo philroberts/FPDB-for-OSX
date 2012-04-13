@@ -59,7 +59,7 @@ class iPoker(HandHistoryConverter):
 
     substitutions = {
                      'LS'  : u"\$|\xe2\x82\xac|\xe2\u201a\xac|\u20ac|\xc2\xa3|\£|",
-                     'PLYR': r'(?P<PNAME>[a-zA-Z0-9]+)',
+                     'PLYR': r'(?P<PNAME>[ a-zA-Z0-9]+)',
                      'NUM' : r'.,\d',
                     }
     
@@ -95,6 +95,7 @@ class iPoker(HandHistoryConverter):
     re_GameInfo = re.compile(r"""(?P<HEAD>
             <gametype>(?P<GAME>(5|7)\sCard\sStud\sL|Holdem\s(NL|SL|L)|Omaha\sPL|Omaha\sL|Omaha\sHi\-Lo\sPL)(\s(%(LS)s)?(?P<SB>[%(NUM)s]+)/(%(LS)s)?(?P<BB>[%(NUM)s]+))?</gametype>\s+?
             <tablename>(?P<TABLE>.+)?</tablename>\s+?
+            (<tablecurrency>.+</tablecurrency>\s+?)?
             <duration>.+</duration>\s+?
             <gamecount>.+</gamecount>\s+?
             <startdate>.+</startdate>\s+?
