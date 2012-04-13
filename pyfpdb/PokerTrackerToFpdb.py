@@ -224,15 +224,20 @@ class PokerTracker(HandHistoryConverter):
             info['type'] = 'tour'
             info['currency'] = 'T$'
 
-        if info['limitType'] == 'fl' and info['bb'] is not None and info['type'] == 'ring':
-            try:
-                bb = self.clearMoneyString(mg['BB'])
-                info['sb'] = self.Lim_Blinds[bb][0]
-                info['bb'] = self.Lim_Blinds[bb][1]
-            except KeyError:
-                tmp = handText[0:200]
-                log.error(_("PokerTrackerToFpdb.determineGameType: Lim_Blinds has no lookup for '%s' - '%s'") % (mg['BB'], tmp))
-                raise FpdbParseError
+        if info['limitType'] == 'fl' and info['bb'] is not None:
+            if info['type'] == 'ring':
+                try:
+                    bb = self.clearMoneyString(mg['BB'])
+                    info['sb'] = self.Lim_Blinds[bb][0]
+                    info['bb'] = self.Lim_Blinds[bb][1]
+                except KeyError:
+                    tmp = handText[0:200]
+                    log.error(_("PokerTrackerToFpdb.determineGameType: Lim_Blinds has no lookup for '%s' - '%s'") % (mg['BB'], tmp))
+                    raise FpdbParseError
+            else:
+                sb = self.clearMoneyString(mg['SB'])
+                info['sb'] = str((Decimal(sb)/2).quantize(Decimal("0.01")))
+                info['bb'] = str(Decimal(sb).quantize(Decimal("0.01")))
 
         return info
 

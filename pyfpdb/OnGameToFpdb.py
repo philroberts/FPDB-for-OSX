@@ -45,6 +45,13 @@ class OnGame(HandHistoryConverter):
                             'CUR': u"(\$|\xe2\x82\xac|\u20ac||\£|)",
                            'NUM' : u".,\d",
                     }
+    
+    Lim_Blinds = {      '0.04': ('0.01', '0.02'),    '0.10': ('0.02', '0.05'),      
+                        '0.20': ('0.05', '0.10'),    '0.50': ('0.12', '0.25'),
+                        '1.00': ('0.25', '0.50'),       '1': ('0.25', '0.50'),
+                        '2.00': ('0.50', '1.00'),       '2': ('0.50', '1.00'),
+                  }    
+    
     currencies = { u'\u20ac':'EUR', u'\xe2\x82\xac':'EUR', '$':'USD', '':'T$' }
 
     limits = { 'NO_LIMIT':'nl', 'POT_LIMIT':'pl', 'LIMIT':'fl'}
@@ -193,7 +200,20 @@ class OnGame(HandHistoryConverter):
         if 'BB' in mg:
             info['bb'] = self.clearMoneyString(mg['BB'].replace(',', ''))
 
-        #log.debug("determinegametype: returning "+str(info))
+        if info['limitType'] == 'fl' and info['bb'] is not None:
+            if info['type'] == 'ring':
+                try:
+                    bb = self.clearMoneyString(mg['BB'].replace(',', ''))
+                    info['sb'] = self.Lim_Blinds[bb][0]
+                    info['bb'] = self.Lim_Blinds[bb][1]
+                except KeyError:
+                    tmp = handText[0:200]
+                    log.error(_("OnGameToFpdb.determineGameType: Lim_Blinds has no lookup for '%s' - '%s'") % (bb, tmp))
+                    raise FpdbParseError
+            else:
+                sb = self.clearMoneyString(mg['SB'].replace(',', ''))
+                info['sb'] = str((Decimal(sb)/2).quantize(Decimal("0.01")))
+                info['bb'] = str(Decimal(sb).quantize(Decimal("0.01")))    
         return info
 
     def readHandInfo(self, hand):

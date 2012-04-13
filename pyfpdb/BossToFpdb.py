@@ -33,6 +33,9 @@ class Boss(HandHistoryConverter):
     filetype = "text"
     codepage = "utf-8"
     siteId   = 4
+    
+    Lim_Blinds = {      '4.00': ('1.00', '2.00'),       '4': ('1.00', '2.00'),
+                  }
 
     # Static regexes
     re_GameInfo     = re.compile("""<HISTORY\sID="(?P<HID>[0-9]+)"\s
@@ -125,6 +128,18 @@ class Boss(HandHistoryConverter):
         if 'CURRENCY' in mg:
             info['currency'] = mg['CURRENCY']
         # NB: SB, BB must be interpreted as blinds or bets depending on limit type.
+        if info['limitType'] == 'fl' and info['bb'] is not None:
+            if info['type'] == 'ring':
+                try:
+                    info['sb'] = self.Lim_Blinds[mg['BB']][0]
+                    info['bb'] = self.Lim_Blinds[mg['BB']][1]
+                except KeyError:
+                    tmp = handText[0:200]
+                    log.error(_("PokerStarsToFpdb.determineGameType: Lim_Blinds has no lookup for '%s' - '%s'") % (mg['BB'], tmp))
+                    raise FpdbParseError
+            else:
+                info['sb'] = str((Decimal(mg['SB'])/2).quantize(Decimal("0.01")))
+                info['bb'] = str(Decimal(mg['SB']).quantize(Decimal("0.01")))
         return info
 
 

@@ -141,7 +141,7 @@ class Winamax(HandHistoryConverter):
 
     def readSupportedGames(self):
         return [
-                ["ring", "hold", "fl"],
+                #["ring", "hold", "fl"], need Lim_Blinds
                 ["ring", "hold", "nl"],
                 ["ring", "hold", "pl"],
                 ["tour", "hold", "fl"],
@@ -182,6 +182,13 @@ class Winamax(HandHistoryConverter):
             info['sb'] = mg['SB']
         if 'BB' in mg:
             info['bb'] = mg['BB']
+            
+        if info['limitType'] == 'fl' and info['bb'] is not None:
+            if info['type'] == 'ring':
+                pass
+            else:
+                info['sb'] = str((Decimal(mg['SB'])/2).quantize(Decimal("0.01")))
+                info['bb'] = str(Decimal(mg['SB']).quantize(Decimal("0.01")))
 
         return info
 

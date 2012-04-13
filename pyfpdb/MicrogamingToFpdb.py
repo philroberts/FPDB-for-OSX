@@ -88,13 +88,13 @@ class Microgaming(HandHistoryConverter):
     def readSupportedGames(self):
         return [["ring", "hold", "nl"],
                 ["ring", "hold", "pl"],
-                ["ring", "hold", "fl"],
+                #["ring", "hold", "fl"], need Lim_Blinds
                 #["ring", "stud", "fl"],
                 #["ring", "draw", "fl"],
                 #["tour", "hold", "fl"],
                 #["tour", "hold", "pl"],
                 #["tour", "hold", "nl"],
-               ]
+               ]    
 
     def determineGameType(self, handText):
         info = {}

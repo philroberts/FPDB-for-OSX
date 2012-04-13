@@ -122,7 +122,7 @@ class Entraction(HandHistoryConverter):
     def readSupportedGames(self):
         return [["ring", "hold", "nl"],
                 ["ring", "hold", "pl"],
-                ["ring", "hold", "fl"],
+                #["ring", "hold", "fl"], need Lim_Blinds
 
                 ]
 

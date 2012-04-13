@@ -40,6 +40,11 @@ class Everleaf(HandHistoryConverter):
                            'NUM' : u".,\d",                     # legal characters in number format
                     }
     
+    Lim_Blinds = {      '0.04': ('0.01', '0.02'),    '0.10': ('0.02', '0.05'),
+                        '0.20': ('0.05', '0.10'),    '0.50': ('0.12', '0.25'),
+                        '1.00': ('0.25', '0.50'),       '1': ('0.25', '0.50'),
+                  }    
+    
     # Static regexes
     re_SplitHands  = re.compile(r"\n\n\n+")
     re_TailSplitHands  = re.compile(r"(\n\n\n+)")
@@ -83,8 +88,6 @@ class Everleaf(HandHistoryConverter):
                 ["ring", "hold", "pl"],
                 ["ring", "hold", "fl"],
                 ["ring", "stud", "fl"],
-                #["ring", "omahahi", "pl"],
-                #["ring", "omahahilo", "pl"],
                 ["tour", "hold", "nl"],
                 ["tour", "hold", "fl"],
                 ["tour", "hold", "pl"]
@@ -145,7 +148,20 @@ or None if we fail to get the info """
             if info['currency'] == 'T$':
                 info['type'] = 'tour'
         # NB: SB, BB must be interpreted as blinds or bets depending on limit type.
-
+        if info['limitType'] == 'fl' and info['bb'] is not None:
+            if info['type'] == 'ring':
+                try:
+                    bb = self.clearMoneyString(mg['BB'].replace(',', ''))
+                    info['sb'] = self.Lim_Blinds[bb][0]
+                    info['bb'] = self.Lim_Blinds[bb][1]
+                except KeyError:
+                    tmp = handText[0:200]
+                    log.error(_("EverleafToFpdb.determineGameType: Lim_Blinds has no lookup for '%s' - '%s'") % (mg['BB'], tmp))
+                    raise FpdbParseError
+            else:
+                sb = self.clearMoneyString(mg['SB'].replace(',', ''))
+                info['sb'] = str((Decimal(sb)/2).quantize(Decimal("0.01")))
+                info['bb'] = str(Decimal(sb).quantize(Decimal("0.01")))
         return info
 
 

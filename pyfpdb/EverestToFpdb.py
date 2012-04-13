@@ -83,7 +83,7 @@ class Everest(HandHistoryConverter):
     def readSupportedGames(self):
         return [
                 ["ring", "hold", "nl"],
-                ["ring", "hold", "fl"],
+                #["ring", "hold", "fl"], need Lim_Blinds
                 ["ring", "hold", "pl"],
                 
                 ["tour", "hold", "nl"],
@@ -153,6 +153,12 @@ class Everest(HandHistoryConverter):
         self.info['TABLENAME'] = mg['TABLE']
 
         #print "DEBUG: self.info: %s" % self.info
+        if self.info['limitType'] == 'fl' and self.info['bb'] is not None:
+            if self.info['type'] == 'ring':
+                pass
+            else:
+                self.info['sb'] = str((Decimal(mg['SB'].replace(',','.'))/2).quantize(Decimal("0.01")))
+                self.info['bb'] = str(Decimal(mg['SB'].replace(',','.')).quantize(Decimal("0.01")))
 
         return self.info
 

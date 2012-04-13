@@ -37,6 +37,9 @@ class Absolute(HandHistoryConverter):
     codepage = "cp1252"
     siteid   = 8
     HORSEHand = False
+    
+    Lim_Blinds = {  '0.04': ('0.01', '0.02'),
+                 }
 
     # Static regexes
     re_SplitHands  = re.compile(r"\n\n+")
@@ -111,8 +114,7 @@ class Absolute(HandHistoryConverter):
         return [["ring", "hold", "nl"],
                 ["ring", "hold", "pl"],
                 ["ring", "hold", "fl"],
-                ["ring", "studhi", "fl"],
-                ["ring", "omahahi", "pl"],
+                ["ring", "stud", "fl"],
                 ["tour", "hold", "nl"],
                ]
 
@@ -184,6 +186,15 @@ class Absolute(HandHistoryConverter):
             info['bb'] = mg['SB']
             info['sb'] = str(float(mg['SB']) * 0.5) # TODO: AP does provide Small BET for Limit .. I think? at least 1-on-1 limit they do.. sigh
 
+        if info['limitType'] == 'fl' and info['bb'] is not None:
+            if info['type'] == 'ring':
+                try:
+                    info['sb'] = self.Lim_Blinds[info['bb']][0]
+                    info['bb'] = self.Lim_Blinds[info['bb']][1]
+                except KeyError:
+                    tmp = handText[0:200]
+                    log.error(_("PokerStarsToFpdb.determineGameType: Lim_Blinds has no lookup for '%s' - '%s'") % (info['bb'], tmp))
+                    raise FpdbParseError
         return info
 
 
