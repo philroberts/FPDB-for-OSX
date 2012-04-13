@@ -359,7 +359,9 @@ class iPoker(HandHistoryConverter):
                 hand.addBlind(a.group('PNAME'), 'big blind', self.clearMoneyString(a.group('SBBB')))
             else:
                 hand.addBlind(a.group('PNAME'), 'both', self.clearMoneyString(a.group('SBBB')))
-
+        self.fixTourBlinds(hand)
+                
+    def fixTourBlinds(self, hand):
         # FIXME
         # The following should only trigger when a small blind is missing in a tournament, or the sb/bb is ALL_IN
         # see http://sourceforge.net/apps/mantisbt/fpdb/view.php?id=115

@@ -668,21 +668,29 @@ or None if we fail to get the info """
             hand.gametype['bb'] = "2"
 
     def readBlinds(self, hand):
-        for a in self.re_PostSB.finditer(hand.handText):
+        if hand.gametype['base'] == 'hold':
+            street = 'PREFLOP'
+        elif hand.gametype['base'] == 'draw':
+            street = 'DEAL'
+        blindsantes = hand.handText.split(street)[0]
+        bb, sb = None, None
+        for a in self.re_PostSB.finditer(blindsantes):
             #print "DEBUG: found sb: '%s' '%s'" %(self.playerNameFromSeatNo(a.group('PSEAT'), hand), a.group('SB'))
+            sb = a.group('SB')
             player = self.playerNameFromSeatNo(a.group('PSEAT'), hand)
-            self.adjustMergeTourneyStack(hand, player, a.group('SB'))
-            hand.addBlind(player,'small blind', a.group('SB'))
+            self.adjustMergeTourneyStack(hand, player, sb)
+            hand.addBlind(player,'small blind', sb)
             if not hand.gametype['sb'] or hand.gametype['secondGame']:
-                hand.gametype['sb'] = a.group('SB')
-        for a in self.re_PostBB.finditer(hand.handText):
+                hand.gametype['sb'] = sb
+        for a in self.re_PostBB.finditer(blindsantes):
             #print "DEBUG: found bb: '%s' '%s'" %(self.playerNameFromSeatNo(a.group('PSEAT'), hand), a.group('BB'))
+            bb = a.group('BB')
             player = self.playerNameFromSeatNo(a.group('PSEAT'), hand)
-            self.adjustMergeTourneyStack(hand, player, a.group('BB'))
-            hand.addBlind(player, 'big blind', a.group('BB'))
+            self.adjustMergeTourneyStack(hand, player, bb)
+            hand.addBlind(player, 'big blind', bb)
             if not hand.gametype['bb'] or hand.gametype['secondGame']:
-                hand.gametype['bb'] = a.group('BB')
-        for a in self.re_PostBoth.finditer(hand.handText):
+                hand.gametype['bb'] = bb
+        for a in self.re_PostBoth.finditer(blindsantes):
             bb = Decimal(self.info['bb'])
             amount = Decimal(a.group('SBBB'))
             player = self.playerNameFromSeatNo(a.group('PSEAT'), hand)
@@ -693,7 +701,28 @@ or None if we fail to get the info """
                 hand.addBlind(player, 'big blind', a.group('SBBB'))
             else:
                 hand.addBlind(player, 'both', a.group('SBBB'))
+        if sb is None or bb is None:
+            m = self.re_Action.finditer(blindsantes)
+            for action in m:
+                player = self.playerNameFromSeatNo(action.group('PSEAT'), hand)
+                #print "DEBUG: found: '%s' '%s'" %(self.playerNameFromSeatNo(action.group('PSEAT'), hand), action.group('BET'))
+                if sb is None:
+                    if action.group('BET'):
+                        sb = action.group('BET')
+                        self.adjustMergeTourneyStack(hand, player, sb)
+                        hand.addBlind(player, 'small blind', sb)
+                        if not hand.gametype['sb'] or hand.gametype['secondGame']:
+                            hand.gametype['sb'] = sb
+                elif sb and bb is None:
+                    if action.group('BET'):
+                        bb = action.group('BET')
+                        self.adjustMergeTourneyStack(hand, player, bb)
+                        hand.addBlind(player, 'big blind', bb)
+                        if not hand.gametype['bb'] or hand.gametype['secondGame']:
+                            hand.gametype['bb'] = bb            
+        self.fixTourBlinds(hand)
 
+    def fixTourBlinds(self, hand):
         # FIXME
         # The following should only trigger when a small blind is missing in a tournament, or the sb/bb is ALL_IN
         # see http://sourceforge.net/apps/mantisbt/fpdb/view.php?id=115
@@ -710,6 +739,8 @@ or None if we fail to get the info """
                     hand.gametype['bb'] = str(int(Decimal(hand.gametype['sb']))*2)
                 else:
                     hand.gametype['sb'] = str(int(Decimal(hand.gametype['bb']))/2)
+            hand.sb = hand.gametype['sb']
+            hand.bb = hand.gametype['bb']
                     
     def mergeMultigametypes(self, handText):
         m2 = self.re_HandInfo.search(handText)

@@ -242,6 +242,7 @@ class Cake(HandHistoryConverter):
                 hand.addBlind(a.group('PNAME'), 'secondsb', a.group('SB'))
         for a in self.re_PostBB.finditer(hand.handText):
             hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
+            hand.setUncalledBets(Decimal(a.group('BB')))
         for a in self.re_PostBoth.finditer(hand.handText):
             sb = Decimal(a.group('SB'))
             bb = Decimal(a.group('BB'))
@@ -270,16 +271,19 @@ class Cake(HandHistoryConverter):
             elif actionType == ' checks':
                 hand.addCheck( street, action.group('PNAME'))
             elif actionType == ' calls':
+                hand.setUncalledBets(None)
                 hand.addCall( street, action.group('PNAME'), action.group('BET') )
             elif actionType == ' raises':
+                hand.setUncalledBets(None)
                 hand.addRaiseTo( street, action.group('PNAME'), action.group('BETTO') )
             elif actionType == ' bets':
+                hand.setUncalledBets(None)
                 hand.addBet( street, action.group('PNAME'), action.group('BET') )
             elif actionType == ' is all in':
+                hand.setUncalledBets(None)
                 hand.addAllIn(street, action.group('PNAME'), action.group('BET'))
             else:
                 print (_("DEBUG:") + " " + _("Unimplemented %s: '%s' '%s'") % ("readAction", action.group('PNAME'), action.group('ATYPE')))
-
 
     def readShowdownActions(self, hand):
         for shows in self.re_ShowdownAction.finditer(hand.handText):            

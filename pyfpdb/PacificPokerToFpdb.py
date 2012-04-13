@@ -359,6 +359,7 @@ class PacificPoker(HandHistoryConverter):
         for a in self.re_PostBB.finditer(hand.handText):
             if a.group('PNAME') in hand.stacks:
                 hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
+                hand.setUncalledBets(Decimal(a.group('BB')))
             else:
                 raise FpdbHandPartial("Partial hand history: %s" % hand.handid)
         for a in self.re_PostBoth.finditer(hand.handText):
@@ -414,10 +415,13 @@ class PacificPoker(HandHistoryConverter):
                 elif action.group('ATYPE') == ' checks':
                     hand.addCheck( street, action.group('PNAME'))
                 elif action.group('ATYPE') == ' calls':
+                    hand.setUncalledBets(None)
                     hand.addCall( street, action.group('PNAME'), action.group('BET').replace(',','') )
                 elif action.group('ATYPE') == ' raises':
+                    hand.setUncalledBets(None)
                     hand.addCallandRaise( street, action.group('PNAME'), action.group('BET').replace(',','') )
                 elif action.group('ATYPE') == ' bets':
+                    hand.setUncalledBets(None)
                     hand.addBet( street, action.group('PNAME'), action.group('BET').replace(',','') )
                 elif action.group('ATYPE') == ' discards':
                     hand.addDiscard(street, action.group('PNAME'), action.group('BET').replace(',',''), action.group('DISCARDED'))

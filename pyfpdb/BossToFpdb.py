@@ -66,6 +66,8 @@ class Boss(HandHistoryConverter):
     re_PostBB           = re.compile(r'^<ACTION TYPE="HAND_BLINDS" PLAYER="%s" KIND="HAND_BB" VALUE="(?P<BB>[.0-9]+)"></ACTION>' %  player_re, re.MULTILINE)
     re_Antes            = re.compile(r"^%s: posts the ante \$?(?P<ANTE>[.0-9]+)" % player_re, re.MULTILINE)
     re_BringIn          = re.compile(r"^%s: brings[- ]in( low|) for \$?(?P<BRINGIN>[.0-9]+)" % player_re, re.MULTILINE)
+    re_FlopPot          = re.compile(r'^<ACTION TYPE="HAND_BOARD" VALUE="BOARD_FLOP" POT="(?P<POT>[.0-9]+)">', re.MULTILINE)
+    re_ShowDownPot      = re.compile(r'^<SHOWDOWN NAME="HAND_SHOWDOWN" POT="(?P<POT>[.0-9]+)"', re.MULTILINE)
     re_PostBoth         = re.compile(r'^<ACTION TYPE="HAND_BLINDS" PLAYER="%s" KIND="HAND_AB" VALUE="(?P<SBBB>[.0-9]+)"></ACTION>' %  player_re, re.MULTILINE)
     
     re_HeroCards        = re.compile(r'PLAYER="%s">(?P<CARDS>(\s+<CARD LINK="[0-9]+"></CARD>){2,5})</ACTION>' % player_re, re.MULTILINE)
@@ -357,9 +359,17 @@ class Boss(HandHistoryConverter):
             elif action.group('ATYPE') == 'ACTION_CHECK':
                 hand.addCheck( street, action.group('PNAME'))
             elif action.group('ATYPE') == 'ACTION_CALL':
-                hand.addCall( street, action.group('PNAME'), action.group('BET') )
+                bet = action.group('BET')
+                if street in ('PREFLOP', 'DEAL'):
+                    blind = hand.bets['BLINDSANTES'].get(action.group('PNAME'))
+                    if blind: bet = str(Decimal(action.group('BET')) - blind)
+                hand.addCallTo(street, action.group('PNAME'), bet )
             elif action.group('ATYPE') == 'ACTION_RAISE':
-                hand.addRaiseBy( street, action.group('PNAME'), action.group('BET') )
+                bet = action.group('BET')
+                if street in ('PREFLOP', 'DEAL'):
+                    blind = hand.bets['BLINDSANTES'].get(action.group('PNAME'))
+                    if blind: bet = str(Decimal(action.group('BET')) - blind)
+                hand.addRaiseTo( street, action.group('PNAME'), action.group('BET') )
             elif action.group('ATYPE') == 'ACTION_BET':
                 hand.addBet( street, action.group('PNAME'), action.group('BET') )
             elif action.group('ATYPE') == 'ACTION_DISCARD':
@@ -367,10 +377,35 @@ class Boss(HandHistoryConverter):
             elif action.group('ATYPE') == 'ACTION_STAND':
                 hand.addStandsPat( street, action.group('PNAME'))
             elif action.group('ATYPE') == 'ACTION_ALLIN':
-                hand.addRaiseBy( street, action.group('PNAME'), action.group('BET') )
+                bet = action.group('BET')
+                if street in ('PREFLOP', 'DEAL'):
+                    blind = hand.bets['BLINDSANTES'].get(action.group('PNAME'))
+                    if blind: bet = str(Decimal(action.group('BET')) - blind)
+                hand.addRaiseTo( street, action.group('PNAME'), action.group('BET') )
             else:
                 print (_("DEBUG:") + _("Unimplemented %s: '%s' '%s'") % ("readAction", action.group('PNAME'), action.group('ATYPE')))
-
+        self.calculateAntes(street, hand)
+                
+    def calculateAntes(self, street, hand):
+        if street in ('PREFLOP', 'DEAL', 'THIRD'):
+            contributed = sum(hand.pot.committed.values()) + sum(hand.pot.common.values())
+            committed = sorted([ (v,k) for (k,v) in hand.pot.committed.items()])
+            try:
+                lastbet = committed[-1][0] - committed[-2][0]
+                if lastbet > 0: # uncalled
+                    contributed -= lastbet
+            except IndexError, e:
+                log.error(_("BossToFpdb.calculateAntes(): '%s': Major failure while calculating pot: '%s'") % (self.handid, e))
+                raise FpdbParseError
+            m = self.re_FlopPot.search(hand.handText)
+            if not m:
+                m = self.re_ShowDownPot.search(hand.handText)
+            if m:
+                pot = Decimal(m.groupdict()['POT'])
+                ante = (pot-contributed)/len(hand.players)
+                for player in hand.players:
+                    if ante>0:
+                        hand.addAnte(player[1], str(ante))
 
     def readShowdownActions(self, hand):
         for shows in self.re_ShowdownAction.finditer(hand.handText):

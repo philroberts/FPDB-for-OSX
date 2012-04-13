@@ -36,6 +36,7 @@ class Everleaf(HandHistoryConverter):
     substitutions = {
                      'LEGAL_ISO' : "USD|EUR|GBP|CAD|FPP",       # legal ISO currency codes
                             'LS' : u"\$|\u20AC|\xe2\x82\xac|\x80|",  # legal currency symbols - Euro(cp1252, utf-8) #TODO change \x80 to \x20\x80, update all regexes accordingly
+                           'PLYR': r'(?P<PNAME>.+?)',
                            'TAB' : u"-\u2013'\s\da-zA-Z#_()",     # legal characters for tablename
                            'NUM' : u".,\d",                     # legal characters in number format
                     }
@@ -66,15 +67,13 @@ class Everleaf(HandHistoryConverter):
         if not players <= self.compiledPlayers: # x <= y means 'x is subset of y'
             # we need to recompile the player regexs.
             self.compiledPlayers = players
-            player_re = "(?P<PNAME>" + "|".join(map(re.escape, players)) + ")"
-            log.debug("player_re: "+ player_re)
-            self.substitutions['PLAYERS'] = player_re
             
-            self.re_PostSB          = re.compile(ur"^%(PLAYERS)s: posts small blind \[ ?[%(LS)s]? (?P<SB>[%(NUM)s]+)\s.*\]$" % self.substitutions, re.MULTILINE)
-            self.re_PostBB          = re.compile(ur"^%(PLAYERS)s: posts big blind \[ ?[%(LS)s]? (?P<BB>[%(NUM)s]+)\s.*\]$" % self.substitutions, re.MULTILINE)
+            self.re_PostSB          = re.compile(ur"^%(PLAYERS)s: posts small blind \[ ?[%(LS)s]? (?P<SB>[%(NUM)s]+)\s?.*\]$" % self.substitutions, re.MULTILINE)
+            self.re_PostBB          = re.compile(ur"^%(PLAYERS)s: posts big blind \[ ?[%(LS)s]? (?P<BB>[%(NUM)s]+)\s?.*\]$" % self.substitutions, re.MULTILINE)
             self.re_PostBoth        = re.compile(ur"^%(PLAYERS)s: posts both blinds \[ ?[%(LS)s]? (?P<SBBB>[%(NUM)s]+)\s.*\]$" % self.substitutions, re.MULTILINE)
             self.re_Antes           = re.compile(ur"^%(PLAYERS)s: posts ante \[ ?[%(LS)s]? (?P<ANTE>[%(NUM)s]+)\s.*\]$" % self.substitutions, re.MULTILINE)
-            self.re_BringIn         = re.compile(ur"^%(PLAYERS)s posts bring-in  ?[%(LS)s]? (?P<BRINGIN>[%(NUM)s]+)\." % self.substitutions, re.MULTILINE)
+            self.re_BringIn         = re.compile(ur"^%(PLAYERS)s posts bring-in  ?[%(LS)s]?\s?(?P<BRINGIN>[%(NUM)s]+)\." % self.substitutions, re.MULTILINE)
+            self.re_Completes       = re.compile(ur"^%(PLAYERS)s completes to  ?[%(LS)s]?\s?(?P<BET>[%(NUM)s]+)\." % self.substitutions, re.MULTILINE)
             self.re_HeroCards       = re.compile(ur"^Dealt to %s \[ (?P<CARDS>.*) \]$" % player_re, re.MULTILINE)
             # ^%s(?P<ATYPE>: bets| checks| raises| calls| folds)(\s\[(?:\$| €|) (?P<BET>[.,\d]+) (USD|EURO|EUR|Chips)\])?
             self.re_Action          = re.compile(ur"^%(PLAYERS)s(?P<ATYPE>: bets| checks| raises| calls| folds)(\s\[(?: ?[%(LS)s]?) (?P<BET>[%(NUM)s]+)\s?(USD|EURO|EUR|Chips|)\])?" % self.substitutions, re.MULTILINE)
@@ -288,6 +287,10 @@ or None if we fail to get the info """
 
     def readAction(self, hand, street):
         log.debug("readAction (%s)" % street)
+        if street=='THIRD':
+            m = self.re_Completes.finditer(hand.streets[street])
+            for action in m:
+                hand.addComplete( street, action.group('PNAME'), action.group('BET'))
         m = self.re_Action.finditer(hand.streets[street])
         for action in m:
             log.debug("%s %s" % (action.group('ATYPE'), action.groupdict()))
@@ -305,7 +308,6 @@ or None if we fail to get the info """
                 hand.addComplete( street, action.group('PNAME'), action.group('BET'))
             else:
                 log.debug(_("Unimplemented %s: '%s' '%s'") % ("readAction", action.group('PNAME'), action.group('ATYPE')))
-
 
     def readShowdownActions(self, hand):
         """Reads lines where holecards are reported in a showdown"""
