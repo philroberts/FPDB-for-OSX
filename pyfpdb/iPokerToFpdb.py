@@ -109,6 +109,7 @@ class iPoker(HandHistoryConverter):
                 <ipoints>.+?</ipoints>\s+?
                 <win>(%(LS)s)?(?P<WIN>([%(NUM)s]+)|.+?)</win>\s+?)
             """ % substitutions, re.MULTILINE|re.VERBOSE)
+    re_Buyin = re.compile(r"""(?P<BUYIN>[%(NUM)s]+)""" % substitutions, re.MULTILINE|re.VERBOSE)
     re_TotalBuyin  = re.compile(r"""(?P<BUYIN>(?P<BIAMT>[%(LS)s%(NUM)s]+)\s\+\s?(?P<BIRAKE>[%(LS)s%(NUM)s]+)?)""" % substitutions, re.MULTILINE|re.VERBOSE)
     re_HandInfo = re.compile(r'code="(?P<HID>[0-9]+)">\s+<general>\s+<startdate>(?P<DATETIME>[-/: 0-9]+)</startdate>', re.MULTILINE)
     re_PlayerInfo = re.compile(r'<player seat="(?P<SEAT>[0-9]+)" name="(?P<PNAME>[^"]+)" chips="(%(LS)s)(?P<CASH>[%(NUM)s]+)" dealer="(?P<BUTTONPOS>(0|1))" win="(%(LS)s)(?P<WIN>[%(NUM)s]+)" (bet="(%(LS)s)(?P<BET>[^"]+))?' % substitutions, re.MULTILINE)
@@ -225,14 +226,11 @@ class iPoker(HandHistoryConverter):
                     elif mg['BIAMT']: mg['BIRAKE'] = '0'
                 if mg['BIRAKE']:
                     #FIXME: tournament no looks liek it is in the table name
-                    mg['BIAMT']  = mg['BIAMT'].strip(u'$€£')
-                    mg['BIRAKE'] = mg['BIRAKE'].strip(u'$€£')
-                    self.tinfo['buyin'] = int(100*Decimal(self.clearMoneyString(mg['BIAMT'])))
-                    if mg['BIRAKE'] == None:
-                        self.tinfo['fee'] = 0
-                    else:
-                        mg['BIRAKE'] = mg['BIRAKE'].strip(u'$€£')
+                    mg['BIRAKE'] = self.clearMoneyString(mg['BIRAKE'].strip(u'$€£'))
+                    mg['BIAMT']  = self.clearMoneyString(mg['BIAMT'].strip(u'$€£'))       
+                    if self.re_Buyin.search(mg['BIAMT']):
                         self.tinfo['fee']   = int(100*Decimal(self.clearMoneyString(mg['BIRAKE'])))
+                        self.tinfo['buyin'] = int(100*Decimal(self.clearMoneyString(mg['BIAMT'])))
                     # FIXME: <place> and <win> not parsed at the moment.
                     #  NOTE: Both place and win can have the value N/A
             if self.tinfo['buyin'] == 0:

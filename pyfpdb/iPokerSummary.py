@@ -61,6 +61,7 @@ class iPokerSummary(TourneySummary):
                 <ipoints>.+?</ipoints>\s+?
                 <win>(?P<CURRENCY>%(LS)s)?(?P<WIN>([%(NUM)s]+)|.+?)</win>
             """ % substitutions, re.MULTILINE|re.VERBOSE)
+    re_Buyin = re.compile(r"""(?P<BUYIN>[%(NUM)s]+)""" % substitutions, re.MULTILINE|re.VERBOSE)
     re_TotalBuyin = re.compile(r"""(?P<BUYIN>(?P<BIAMT>[%(LS)s%(NUM)s]+)\s\+\s?(?P<BIRAKE>[%(LS)s%(NUM)s]+)?)""" % substitutions, re.MULTILINE|re.VERBOSE)
     re_DateTime = re.compile("""(?P<D>[0-9]{2})\/(?P<M>[0-9]{2})\/(?P<Y>[0-9]{4})\s+(?P<H>[0-9]+):(?P<MIN>[0-9]+)(:(?P<S>[0-9]+))?""", re.MULTILINE)
 
@@ -131,7 +132,7 @@ class iPokerSummary(TourneySummary):
                     rank = None
                     winnings = None
                 else:
-                    winnings = int(100*convert_to_decimal(mg2['WIN']))
+                    winnings = int(100*self.convert_to_decimal(mg2['WIN']))
                     
                 self.tourneyName = mg2['NAME'][:40]
                 
@@ -141,8 +142,8 @@ class iPokerSummary(TourneySummary):
                         mg2 = m3.groupdict()
                     elif mg2['BIAMT']: mg2['BIRAKE'] = '0'
                 if mg2['BIAMT'] and mg2['BIRAKE']:
-                    self.buyin =  int(100*convert_to_decimal(mg2['BIAMT']))
-                    self.fee   =  int(100*convert_to_decimal(mg2['BIRAKE']))
+                    self.buyin =  int(100*self.convert_to_decimal(mg2['BIAMT']))
+                    self.fee   =  int(100*self.convert_to_decimal(mg2['BIRAKE']))
                 else:
                     self.buyin = 0
                     self.fee   = 0
@@ -158,12 +159,13 @@ class iPokerSummary(TourneySummary):
             raise FpdbParseError
 
 
-def convert_to_decimal(string):
-    dec = string.strip(u'$£€&euro;\u20ac')
-    dec = dec.replace(u',','.')
-    dec = dec.replace(u' ','')
-    if dec in ('N/A', 'N/D'):
-        dec = 0
-    dec = Decimal(dec)
-    return dec
+    def convert_to_decimal(self, string):
+        dec = string.strip(u'$£€&euro;\u20ac')
+        dec = dec.replace(u',','.')
+        dec = dec.replace(u' ','')
+        if self.re_Buyin.search(dec):
+            dec = Decimal(dec)
+        else:
+            dec = 0
+        return dec
 
