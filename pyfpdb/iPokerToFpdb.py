@@ -116,7 +116,6 @@ class iPoker(HandHistoryConverter):
     re_EndOfHand = re.compile(r'<round id="END_OF_GAME"', re.MULTILINE)
     re_PostSB = re.compile(r'<action no="[0-9]+" player="%(PLYR)s" type="1" sum="(%(LS)s)(?P<SB>[%(NUM)s]+)"' % substitutions, re.MULTILINE)
     re_PostBB = re.compile(r'<action no="[0-9]+" player="%(PLYR)s" type="2" sum="(%(LS)s)(?P<BB>[%(NUM)s]+)"' % substitutions, re.MULTILINE)
-    re_PostBoth = re.compile(r'<event sequence="[0-9]+" type="(RETURN_BLIND)" player="(?P<PSEAT>[0-9])" amount="(?P<SBBB>[%(NUM)s]+)"/>' % substitutions, re.MULTILINE)
     re_Hero = re.compile(r'<nickname>(?P<HERO>.+)</nickname>', re.MULTILINE)
     re_HeroCards = re.compile(r'<cards type="(Pocket|Third\sStreet|Fourth\sStreet|Fifth\sStreet|Sixth\sStreet|River)" player="(?P<PNAME>[^"]+)">(?P<CARDS>.+?)</cards>', re.MULTILINE)
     re_Action = re.compile(r'<action no="(?P<ACT>[0-9]+)" player="(?P<PNAME>[^"]+)" type="(?P<ATYPE>\d+)" sum="(%(LS)s)(?P<BET>[%(NUM)s]+)"' % substitutions, re.MULTILINE)
@@ -348,18 +347,15 @@ class iPoker(HandHistoryConverter):
             if not hand.gametype['sb']:
                 hand.gametype['sb'] = self.clearMoneyString(a.group('SB'))
         for a in self.re_PostBB.finditer(hand.streets['PREFLOP']):
+            type = 'big blind'
             if not hand.gametype['bb']:
                 hand.gametype['bb'] = self.clearMoneyString(a.group('BB'))
-            hand.addBlind(a.group('PNAME'), 'big blind', self.clearMoneyString(a.group('BB')))
-        for a in self.re_PostBoth.finditer(hand.streets['PREFLOP']):
-            bb = Decimal(self.info['bb'])
-            amount = Decimal(self.clearMoneyString(a.group('SBBB')))
-            if amount < bb:
-                hand.addBlind(a.group('PNAME'), 'small blind', self.clearMoneyString(a.group('SBBB')))
-            elif amount == bb:
-                hand.addBlind(a.group('PNAME'), 'big blind', self.clearMoneyString(a.group('SBBB')))
-            else:
-                hand.addBlind(a.group('PNAME'), 'both', self.clearMoneyString(a.group('SBBB')))
+            elif hand.gametype['sb']:
+                bb = Decimal(hand.gametype['bb'])
+                amount = Decimal(self.clearMoneyString(a.group('BB')))
+                if amount > bb:
+                    type = 'both'
+            hand.addBlind(a.group('PNAME'), type, self.clearMoneyString(a.group('BB')))
         self.fixTourBlinds(hand)
                 
     def fixTourBlinds(self, hand):
