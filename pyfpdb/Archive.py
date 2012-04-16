@@ -48,7 +48,7 @@ class Archive():
     def getSiteSplit(self): pass
     """Returns split string for each site so it can be added back into the handText when writing to archive"""
     
-    def fileInfo(self, site, filter, filter_name, obj=None, summary=None): pass
+    def fileInfo(self, path, site, filter, filter_name, obj=None, summary=None): pass
     """Sets file site and header info if applicable"""
         
     def addHand(self, hand, write=False): pass
