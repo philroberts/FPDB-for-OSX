@@ -173,7 +173,7 @@ class PartyPoker(HandHistoryConverter):
                 u"%(PLYR)s posts big blind [%(BRAX)s]?%(CUR_SYM)s(?P<BB>[.,0-9]+) ?%(CUR)s[%(BRAX)s]?\."
                 %  subst, re.MULTILINE)
             self.re_PostDead = re.compile(
-                r"^%(PLYR)s posts big blind + dead [%(BRAX)s]?(?P<BBNDEAD>[.,0-9]+) ?%(CUR_SYM)s[%(BRAX)s]?\." %  subst,
+                r"^%(PLYR)s posts big blind \+ dead [%(BRAX)s]?%(CUR_SYM)s(?P<BBNDEAD>[.,0-9]+)[%(BRAX)s]?\." %  subst,
                 re.MULTILINE)
             self.re_Antes = re.compile(
                 r"^%(PLYR)s posts ante [%(BRAX)s]?%(CUR_SYM)s(?P<ANTE>[.,0-9]+) ?%(CUR)s[%(BRAX)s]?" %  subst,
