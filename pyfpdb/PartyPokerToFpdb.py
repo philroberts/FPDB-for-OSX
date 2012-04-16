@@ -506,7 +506,10 @@ class PartyPoker(HandHistoryConverter):
                 hand.addBlind(None, None, None)
                 smallBlindSeat = int(hand.buttonpos)
             else:
-                smallBlindSeat = findFirstNonEmptySeat(int(hand.buttonpos) + 1)
+                if len(hand.players)==2:
+                    smallBlindSeat = int(hand.buttonpos)
+                else:
+                    smallBlindSeat = findFirstNonEmptySeat(int(hand.buttonpos) + 1)
                 blind = smartMin(hand.sb, playersMap[smallBlindSeat][1])
                 hand.addBlind(playersMap[smallBlindSeat][0], 'small blind', blind)
 
