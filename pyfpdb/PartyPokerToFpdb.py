@@ -136,7 +136,7 @@ class PartyPoker(HandHistoryConverter):
           \(\s*[%(LS)s]?(?P<CASH>[%(NUM)s]+)\s*(?:%(LEGAL_ISO)s|)\s*\)
           """ % substitutions, re.VERBOSE| re.UNICODE)
 
-    re_NewLevel = re.compile(u"^Blinds\((?P<SB>[%(NUM)s]+)/(?P<BB>[%(NUM)s]+)\)" % substitutions, re.VERBOSE|re.MULTILINE|re.DOTALL)
+    re_NewLevel = re.compile(u"^Blinds(-Antes)?\((?P<SB>[%(NUM)s]+)/(?P<BB>[%(NUM)s]+)(?:\s*-\s*(?P<ANTE>[%(NUM)s]+))?\)" % substitutions, re.VERBOSE|re.MULTILINE|re.DOTALL)
     re_CountedSeats = re.compile("^Total\s+number\s+of\s+players\s*:\s*(?P<COUNTED_SEATS>\d+)", re.MULTILINE)
     re_SplitHands   = re.compile('\n\n+')
     re_TailSplitHands   = re.compile('(\x00+)')
