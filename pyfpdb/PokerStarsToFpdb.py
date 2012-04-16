@@ -70,11 +70,14 @@ class PokerStars(HandHistoryConverter):
                      '2000.00': ('500.00', '1000.00'), '2000': ('500.00', '1000.00'),
                   }
 
-    limits = { 'No Limit':'nl', 'Pot Limit':'pl', 'Limit':'fl', 'LIMIT':'fl' }
+    limits = { 'No Limit':'nl', 'NO LIMIT':'nl', 'Pot Limit':'pl', 'POT LIMIT':'pl', 'Limit':'fl', 'LIMIT':'fl' }
     games = {                          # base, category
-                              "Hold'em" : ('hold','holdem'), 
+                              "Hold'em" : ('hold','holdem'),
+                              "HOLD'EM" : ('hold','holdem'), 
                                 'Omaha' : ('hold','omahahi'),
+                                'OMAHA' : ('hold','omahahi'),
                           'Omaha Hi/Lo' : ('hold','omahahilo'),
+                          'OMAHA HI/LO' : ('hold','omahahilo'),
                                  'Razz' : ('stud','razz'), 
                                  'RAZZ' : ('stud','razz'),
                           '7 Card Stud' : ('stud','studhi'),
@@ -100,15 +103,15 @@ class PokerStars(HandHistoryConverter):
 
     # Static regexes
     re_GameInfo     = re.compile(u"""
-          PokerStars(\sGame|\sHand|\sHome\sGame|\sHome\sGame\sHand|Game|\sZoom\sHand)\s\#(?P<HID>[0-9]+):\s+
+          (PokerStars|POKERSTARS)(?P<TITLE>\sGame|\sHand|\sHome\sGame|\sHome\sGame\sHand|Game|\sZoom\sHand|\sGAME)\s\#(?P<HID>[0-9]+):\s+
           (\{.*\}\s+)?(Tournament\s\#                # open paren of tournament info
           (?P<TOURNO>\d+),\s
           # here's how I plan to use LS
           (?P<BUYIN>(?P<BIAMT>[%(LS)s\d\.]+)?\+?(?P<BIRAKE>[%(LS)s\d\.]+)?\+?(?P<BOUNTY>[%(LS)s\d\.]+)?\s?(?P<TOUR_ISO>%(LEGAL_ISO)s)?|Freeroll)\s+)?
           # close paren of tournament info
           (?P<MIXED>HORSE|8\-Game|8\-GAME|HOSE|Mixed\sOmaha\sH/L|Mixed\sHold\'em|Mixed\sPLH/PLO|Triple\sStud)?\s?\(?
-          (?P<GAME>Hold\'em|Razz|RAZZ|7\sCard\sStud|7\sCARD\sSTUD|7\sCARD\sSTUD\sHI/LO|7\sCard\sStud\sHi/Lo|Omaha|Omaha\sHi/Lo|Badugi|Triple\sDraw\s2\-7\sLowball|Single\sDraw\s2\-7\sLowball|5\sCard\sDraw)\s
-          (?P<LIMIT>No\sLimit|Limit|LIMIT|Pot\sLimit)\)?,?\s
+          (?P<GAME>Hold\'em|HOLD\'EM|Razz|RAZZ|7\sCard\sStud|7\sCARD\sSTUD|7\sCard\sStud\sHi/Lo|7\sCARD\sSTUD\sHI/LO|Omaha|OMAHA|Omaha\sHi/Lo|OMAHA\sHI/LO|Badugi|Triple\sDraw\s2\-7\sLowball|Single\sDraw\s2\-7\sLowball|5\sCard\sDraw)\s
+          (?P<LIMIT>No\sLimit|NO\sLIMIT|Limit|LIMIT|Pot\sLimit|POT\sLIMIT)\)?,?\s
           (-\s)?
           (Match.*)?                  #TODO: waiting for reply from user as to what this means
           (Level\s(?P<LEVEL>[IVXLC]+)\s)?
@@ -116,7 +119,7 @@ class PokerStars(HandHistoryConverter):
           (?P<CURRENCY>%(LS)s|)?
           (?P<SB>[.0-9]+)/(%(LS)s)?
           (?P<BB>[.0-9]+)
-          (?P<BLAH>\s-\s[%(LS)s\d\.]+\sCap\s-\s)?        # Optional Cap part
+          (?P<CAP>\s-\s[%(LS)s\d\.]+\sCap\s-\s)?        # Optional Cap part
           \s?(?P<ISO>%(LEGAL_ISO)s)?
           \)                        # close paren of the stakes
           (?P<BLAH2>\s\[AAMS\sID:\s[A-Z0-9]+\])?         # AAMS ID: in .it HH's

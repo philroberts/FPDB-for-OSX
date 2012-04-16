@@ -1,0 +1,38 @@
+POKERSTARS GAME #13177128246:  HOLD'EM NO LIMIT ($2/$4) - 2007/11/11 - 13:27:23 (ET)
+Table 'Verbiest II' 6-max Seat #1 is the button
+Seat 1: PHoReaLZ ($266.80 in chips) 
+Seat 2: djmac30 ($115.40 in chips) 
+Seat 3: CripsTruces ($250.05 in chips) 
+Seat 4: janetlee123 ($587.30 in chips) 
+Seat 5: Feline ($240.25 in chips) 
+Seat 6: anthonyb7b ($381.60 in chips) 
+djmac30: posts small blind $2
+CripsTruces: posts big blind $4
+*** HOLE CARDS ***
+Dealt to CripsTruces [Td 2h]
+janetlee123: folds 
+Feline: calls $4
+anthonyb7b: folds 
+PHoReaLZ: calls $4
+djmac30: raises $4 to $8
+CripsTruces: calls $4
+Feline: calls $4
+PHoReaLZ: calls $4
+*** FLOP *** [9h 3h 7d]
+djmac30: checks 
+CripsTruces: checks 
+Feline: bets $24
+PHoReaLZ: folds 
+djmac30: folds 
+CripsTruces: folds 
+Feline collected $30.40 from pot
+Feline: doesn't show hand 
+*** SUMMARY ***
+Total pot $32 | Rake $1.60 
+Board [9h 3h 7d]
+Seat 1: PHoReaLZ (button) folded on the Flop
+Seat 2: djmac30 (small blind) folded on the Flop
+Seat 3: CripsTruces (big blind) folded on the Flop
+Seat 4: janetlee123 folded before Flop (didn't bet)
+Seat 5: Feline collected ($30.40)
+Seat 6: anthonyb7b folded before Flop (didn't bet)
