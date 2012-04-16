@@ -707,19 +707,25 @@ or None if we fail to get the info """
                 player = self.playerNameFromSeatNo(action.group('PSEAT'), hand)
                 #print "DEBUG: found: '%s' '%s'" %(self.playerNameFromSeatNo(action.group('PSEAT'), hand), action.group('BET'))
                 if sb is None:
-                    if action.group('BET'):
-                        sb = action.group('BET')
+                    if action.group('BET') and action.group('BET')!= '0.00':
+                        sb = action.group('BET')  
                         self.adjustMergeTourneyStack(hand, player, sb)
                         hand.addBlind(player, 'small blind', sb)
                         if not hand.gametype['sb'] or hand.gametype['secondGame']:
                             hand.gametype['sb'] = sb
+                    elif action.group('BET') == '0.00':
+                        log.error(_(_("MergeToFpdb.readBlinds: Cannot calcualte tourney all-in blind for hand '%s'")) % hand.handid)
+                        raise FpdbParseError
                 elif sb and bb is None:
-                    if action.group('BET'):
+                    if action.group('BET') and action.group('BET')!= '0.00':
                         bb = action.group('BET')
                         self.adjustMergeTourneyStack(hand, player, bb)
                         hand.addBlind(player, 'big blind', bb)
                         if not hand.gametype['bb'] or hand.gametype['secondGame']:
-                            hand.gametype['bb'] = bb            
+                            hand.gametype['bb'] = bb
+                    elif action.group('BET') == '0.00':
+                        log.error(_(_("MergeToFpdb.readBlinds: Cannot calcualte tourney all-in blind for hand '%s'")) % hand.handid)
+                        raise FpdbParseError
         self.fixTourBlinds(hand)
 
     def fixTourBlinds(self, hand):
