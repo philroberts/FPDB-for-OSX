@@ -50,7 +50,8 @@ class OnGame(HandHistoryConverter):
                         '0.20': ('0.05', '0.10'),    '0.50': ('0.12', '0.25'),
                         '1.00': ('0.25', '0.50'),       '1': ('0.25', '0.50'),
                         '2.00': ('0.50', '1.00'),       '2': ('0.50', '1.00'),
-                  }    
+                        '4.00': ('1.00', '2.00'),       '4': ('1.00', '2.00'),
+                  }   
     
     currencies = { u'\u20ac':'EUR', u'\xe2\x82\xac':'EUR', '$':'USD', '':'T$' }
 
@@ -315,8 +316,8 @@ class OnGame(HandHistoryConverter):
                 for i in discard_split:
                     hand.handText += i
             m =  re.search(r"(?P<PREDEAL>.+(?=Dealing pocket cards)|.+)"
-                           r"(Dealing pocket cards(?P<DEAL>.+?(?=\*\*\* DRAW \*\*\*)|.+))?"
-                           r"(\*\*\* DRAW \*\*\*(?P<DRAWONE>.+?))?", hand.handText,re.DOTALL)
+                           r"(Dealing pocket cards(?P<DEAL>.+(?=\*\*\* DRAW \*\*\*)|.+))?"
+                           r"(\*\*\* DRAW \*\*\*(?P<DRAWONE>.+))?", hand.handText,re.DOTALL)
         #import pprint
         #pprint.pprint(m.groupdict())
 
