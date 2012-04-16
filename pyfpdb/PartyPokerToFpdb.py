@@ -136,7 +136,7 @@ class PartyPoker(HandHistoryConverter):
           \(\s*[%(LS)s]?(?P<CASH>[%(NUM)s]+)\s*(?:%(LEGAL_ISO)s|)\s*\)
           """ % substitutions, re.VERBOSE| re.UNICODE)
 
-
+    re_NewLevel = re.compile(u"^Blinds\((?P<SB>[%(NUM)s]+)/(?P<BB>[%(NUM)s]+)\)" % substitutions, re.VERBOSE|re.MULTILINE|re.DOTALL)
     re_CountedSeats = re.compile("^Total\s+number\s+of\s+players\s*:\s*(?P<COUNTED_SEATS>\d+)", re.MULTILINE)
     re_SplitHands   = re.compile('\n\n+')
     re_TailSplitHands   = re.compile('(\x00+)')
@@ -250,6 +250,10 @@ class PartyPoker(HandHistoryConverter):
                 info['sb'] = sb
                 info['bb'] = bb
         else:
+            m = self.re_NewLevel.search(handText)
+            if m:
+                mg['SB'] = m.group('SB')
+                mg['BB'] = m.group('BB')
             mg['SB'] = self.clearMoneyString(mg['SB'])
             mg['BB'] = self.clearMoneyString(mg['BB'])
             if 'SB' in mg:

@@ -1,0 +1,38 @@
+Game #8503894896 starts.
+
+#Game No : 8503894896 
+
+
+***** Hand History for Game 8504122543 *****
+NL Texas Hold'em $215 USD Buy-in Trny: 47928230 Level: 3  Blinds(50/100) - Sunday, October 11, 13:50:04 EDT 2009
+Table $300K Guaranteed Sunday (1766475) Table #113 (Real Money)
+Seat 2 is the button
+Total number of players : 10 
+Seat 1: Player5 ( 5,250 )
+Seat 5: Player0 ( 4,790 )
+Seat 4: Player8 ( 6,040 )
+Seat 7: Player3 ( 5,630 )
+Seat 6: Player6 ( 7,155 )
+Seat 10: Player7 ( 8,905 )
+Seat 9: Player1 ( 4,750 )
+Seat 8: Player4 ( 4,390 )
+Seat 3: Player9 ( 3,130 )
+Seat 2: Player2 ( 5,735 )
+Trny: 47928230 Level: 4 
+Blinds(100/200)
+** Dealing down cards **
+Dealt to Player2 [  7s Ah ]
+Player0 folds
+Player6 folds
+Player3 did not respond in time
+Player3 folds
+Player4 folds
+Player1 did not respond in time
+Player1 folds
+Player7 folds
+Player5 folds
+Player2 raises [500]
+Player9 folds
+Player8 folds
+Player2 does not show cards.
+Player2 wins 800 chips
