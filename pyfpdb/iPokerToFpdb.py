@@ -168,7 +168,7 @@ class iPoker(HandHistoryConverter):
         #print "DEBUG: m.groupdict(): %s" % mg
 
         games = {              # base, category
-                    '7 Card Stud L' : ('stud','studhilo'),
+                    '7 Card Stud L' : ('stud','studhi'),
                     '5 Card Stud L' : ('stud','5studhi'),
                         'Holdem NL' : ('hold','holdem'),
                         'Holdem SL' : ('hold','holdem'), #Spanish NL
@@ -340,7 +340,9 @@ class iPoker(HandHistoryConverter):
             hand.addAnte(a.group('PNAME'), a.group('BET'))
 
     def readBringIn(self, hand):
-        pass
+        if hand.gametype['sb'] == None and hand.gametype['bb'] == None:
+            hand.gametype['sb'] = "1"
+            hand.gametype['bb'] = "2"
 
     def readBlinds(self, hand):
         for a in self.re_PostSB.finditer(hand.streets['PREFLOP']):
