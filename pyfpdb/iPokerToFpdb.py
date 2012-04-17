@@ -144,6 +144,7 @@ class iPoker(HandHistoryConverter):
                 ["tour", "hold", "nl"],
                 ["tour", "hold", "pl"],
                 ["tour", "hold", "fl"],
+                ["tour", "stud", "fl"],
                 ]
 
     def determineGameType(self, handText):
@@ -227,8 +228,10 @@ class iPoker(HandHistoryConverter):
                 if mg['BIRAKE']:
                     #FIXME: tournament no looks liek it is in the table name
                     mg['BIRAKE'] = self.clearMoneyString(mg['BIRAKE'].strip(u'$€£'))
-                    mg['BIAMT']  = self.clearMoneyString(mg['BIAMT'].strip(u'$€£'))       
-                    if self.re_Buyin.search(mg['BIAMT']):
+                    mg['BIAMT']  = self.clearMoneyString(mg['BIAMT'].strip(u'$€£'))
+                    m4 = self.re_Buyin.search(mg['BIAMT'])
+                    if m4:
+                        mg['BIAMT'] = m4.group('BUYIN')
                         self.tinfo['fee']   = int(100*Decimal(self.clearMoneyString(mg['BIRAKE'])))
                         self.tinfo['buyin'] = int(100*Decimal(self.clearMoneyString(mg['BIAMT'])))
                     # FIXME: <place> and <win> not parsed at the moment.

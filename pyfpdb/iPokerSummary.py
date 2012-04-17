@@ -163,8 +163,9 @@ class iPokerSummary(TourneySummary):
         dec = string.strip(u'$£€&euro;\u20ac')
         dec = dec.replace(u',','.')
         dec = dec.replace(u' ','')
-        if self.re_Buyin.search(dec):
-            dec = Decimal(dec)
+        m = self.re_Buyin.search(dec)
+        if m:
+            dec = Decimal(m.group('BUYIN'))
         else:
             dec = 0
         return dec
