@@ -39,6 +39,7 @@ class Cake(HandHistoryConverter):
                             'LS' : u"\$|\xe2\x82\xac|\u20ac|", # legal currency symbols - Euro(cp1252, utf-8)
                            'PLYR': r'(?P<PNAME>.+?)',
                             'CUR': u"(\$|\xe2\x82\xac|\u20ac|)",
+                            'NUM' :u".,\d",
                     }
                     
     # translations from captured groups to fpdb info strings
@@ -73,21 +74,24 @@ class Cake(HandHistoryConverter):
 
     # Static regexes
     re_GameInfo     = re.compile(u"""
-          Hand\#(?P<HID>[0-9]+)\s+-\s+
-          (?P<TABLE>[-\ \#a-zA-Z\d\']+)\s
-          (\((Turbo\s)?(?P<MAX>\d+)-max\)\s\d+\s)?\--\s
+          Hand\#(?P<HID>[0-9]+)\s+\-\s+
+          (?P<TABLE>[\-\ \#a-zA-Z\d\']+?)(\s\-)?\s
+          (\((Turbo\s)?(?P<MAX>\d+)\-max\)\s)?
+          (Turbo\s\((?P<TMAX>\d)\sChips\)\s)?
+          (?P<TOURNO>T\d+)?(\d+)?\s(\-\-\sTable\s\d\s)?\-\-\s
           (?P<CURRENCY>%(LS)s|)?
-          (?P<SB>[.0-9]+)/(%(LS)s)?
-          (?P<BB>[.0-9]+)\s
+          (?P<ANTESB>[%(NUM)s]+)/(%(LS)s)?
+          (?P<SBBB>[%(NUM)s]+)
+          (/(%(LS)s)?(?P<BB>[%(NUM)s]+))?\s
           (?P<LIMIT>NL|FL||PL)\s
           (?P<GAME>Hold\'em|Omaha|Omaha\sHi/Lo)\s--\s
           (?P<DATETIME>.*$)
-        """ % substitutions, re.MULTILINE|re.VERBOSE)
+          """ % substitutions, re.MULTILINE|re.VERBOSE)
 
     re_PlayerInfo   = re.compile(u"""
           ^Seat\s(?P<SEAT>[0-9]+):\s
           (?P<PNAME>.*)\s
-          \((%(LS)s)?(?P<CASH>[.0-9]+)\sin\schips\)""" % substitutions, 
+          \((%(LS)s)?(?P<CASH>[%(NUM)s]+)\sin\schips\)""" % substitutions, 
           re.MULTILINE|re.VERBOSE)
 
     re_SplitHands   = re.compile('\n\n+')
@@ -95,23 +99,23 @@ class Cake(HandHistoryConverter):
     re_Board        = re.compile(r"\[(?P<CARDS>.+)\]")
 
     re_DateTime     = re.compile("""(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)""", re.MULTILINE)
-    re_PostSB       = re.compile(r"^%(PLYR)s: posts small blind %(CUR)s(?P<SB>[.0-9]+)$" %  substitutions, re.MULTILINE)
-    re_PostBB       = re.compile(r"^%(PLYR)s: posts big blind %(CUR)s(?P<BB>[.0-9]+)$" %  substitutions, re.MULTILINE)
-    re_Antes        = re.compile(r"^%(PLYR)s: posts the ante %(CUR)s(?P<ANTE>[.0-9]+)" % substitutions, re.MULTILINE)
-    re_BringIn      = re.compile(r"^%(PLYR)s: brings[- ]in( low|) for %(CUR)s(?P<BRINGIN>[.0-9]+)" % substitutions, re.MULTILINE)
-    re_PostBoth     = re.compile(r"^%(PLYR)s:posts dead blind %(CUR)s(?P<SB>[.0-9]+) and big blind %(CUR)s(?P<BB>[.0-9]+)" %  substitutions, re.MULTILINE)
+    re_PostSB       = re.compile(r"^%(PLYR)s: posts small blind %(CUR)s(?P<SB>[%(NUM)s]+)$" %  substitutions, re.MULTILINE)
+    re_PostBB       = re.compile(r"^%(PLYR)s: posts big blind %(CUR)s(?P<BB>[%(NUM)s]+)$" %  substitutions, re.MULTILINE)
+    re_Antes        = re.compile(r"^%(PLYR)s: posts ante of %(CUR)s(?P<ANTE>[%(NUM)s]+)" % substitutions, re.MULTILINE)
+    re_BringIn      = re.compile(r"^%(PLYR)s: brings[- ]in( low|) for %(CUR)s(?P<BRINGIN>[%(NUM)s]+)" % substitutions, re.MULTILINE)
+    re_PostBoth     = re.compile(r"^%(PLYR)s:posts dead blind %(CUR)s(?P<SB>[%(NUM)s]+) and big blind %(CUR)s(?P<BB>[%(NUM)s]+)" %  substitutions, re.MULTILINE)
     re_HeroCards    = re.compile(r"^Dealt to %(PLYR)s(?: \[(?P<OLDCARDS>.+?)\])?( \[(?P<NEWCARDS>.+?)\])" % substitutions, re.MULTILINE)
     re_Action       = re.compile(r"""
                         ^%(PLYR)s:(?P<ATYPE>\sbets|\schecks|\sraises|\scalls|\sfolds|\sis\sall\sin)
-                        (\s(%(CUR)s)?(?P<BET>[.\d]+))?(\sto\s%(CUR)s(?P<BETTO>[.\d]+))?$
+                        (\s(%(CUR)s)?(?P<BET>[%(NUM)s]+))?(\sto\s%(CUR)s(?P<BETTO>[%(NUM)s]+))?$
                         """
                          %  substitutions, re.MULTILINE|re.VERBOSE)
     re_ShowdownAction   = re.compile(r"^%s: shows \[(?P<CARDS>.*)\]" % substitutions['PLYR'], re.MULTILINE)
     re_sitsOut          = re.compile("^%s sits out" %  substitutions['PLYR'], re.MULTILINE)
     re_ShownCards       = re.compile("^Seat (?P<SEAT>[0-9]+): %s (\(.*\) )?(?P<SHOWED>showed|mucked) \[(?P<CARDS>.*)\]( and won \([.\d]+\) with (?P<STRING>.*))?" %  substitutions['PLYR'], re.MULTILINE)
-    re_CollectPot       = re.compile(r"%(PLYR)s wins %(CUR)s(?P<POT>[.\d]+)" %  substitutions, re.MULTILINE)
-    re_WinningRankOne   = re.compile(u"^%(PLYR)s wins the tournament and receives %(CUR)s(?P<AMT>[\.0-9]+) - congratulations!$" %  substitutions, re.MULTILINE)
-    re_WinningRankOther = re.compile(u"^%(PLYR)s finished the tournament in (?P<RANK>[0-9]+)(st|nd|rd|th) place and received %(CUR)s(?P<AMT>[.0-9]+)\.$" %  substitutions, re.MULTILINE)
+    re_CollectPot       = re.compile(r"%(PLYR)s wins %(CUR)s(?P<POT>[%(NUM)s]+)" %  substitutions, re.MULTILINE)
+    re_WinningRankOne   = re.compile(u"^%(PLYR)s wins the tournament and receives %(CUR)s(?P<AMT>[%(NUM)s]+) - congratulations!$" %  substitutions, re.MULTILINE)
+    re_WinningRankOther = re.compile(u"^%(PLYR)s finished the tournament in (?P<RANK>[0-9]+)(st|nd|rd|th) place and received %(CUR)s(?P<AMT>[%(NUM)s]+)\.$" %  substitutions, re.MULTILINE)
     re_RankOther        = re.compile(u"^%(PLYR)s finished the tournament in (?P<RANK>[0-9]+)(st|nd|rd|th) place$" %  substitutions, re.MULTILINE)
 
     def compilePlayerRegexs(self,  hand):
@@ -121,7 +125,9 @@ class Cake(HandHistoryConverter):
         return [["ring", "hold", "nl"],
                 ["ring", "hold", "pl"],
                 ["ring", "hold", "fl"],
-
+                ["tour", "hold", "nl"],
+                ["tour", "hold", "pl"],
+                ["tour", "hold", "fl"],
                ]
 
     def determineGameType(self, handText):
@@ -138,26 +144,38 @@ class Cake(HandHistoryConverter):
             info['limitType'] = self.limits[mg['LIMIT']]
         if 'GAME' in mg:
             (info['base'], info['category']) = self.games[mg['GAME']]
-        if 'SB' in mg:
-            info['sb'] = mg['SB']
         if 'BB' in mg:
-            info['bb'] = mg['BB']
+            if not mg['BB']:
+                info['bb'] = mg['SBBB']
+            else:
+                info['bb'] = mg['BB']
+        if 'SBBB' in mg:
+            if not mg['BB']:
+                info['sb'] = mg['ANTESB']
+            else:
+                info['sb'] = mg['SBBB']
         if 'CURRENCY' in mg:
             info['currency'] = self.currencies[mg['CURRENCY']]
         if 'MIXED' in mg:
             if mg['MIXED'] is not None: info['mix'] = self.mixes[mg['MIXED']]
-                
-        info['type'] = 'ring'
+            
+        if info['currency']=='T$':
+            info['type'] = 'tour'
+        else:
+            info['type'] = 'ring'
 
         if info['limitType'] == 'fl' and info['bb'] is not None:
             if info['type'] == 'ring':
                 try:
-                    info['sb'] = self.Lim_Blinds[mg['BB']][0]
-                    info['bb'] = self.Lim_Blinds[mg['BB']][1]
+                    info['sb'] = self.Lim_Blinds[info['bb']][0]
+                    info['bb'] = self.Lim_Blinds[info['bb']][1]
                 except KeyError:
                     tmp = handText[0:200]
                     log.error(_("CakeToFpdb.determineGameType: Lim_Blinds has no lookup for '%s' - '%s'") % (mg['BB'], tmp))
                     raise FpdbParseError
+            else:
+                info['sb'] = str((Decimal(info['sb'])/2).quantize(Decimal("0.01")))
+                info['bb'] = str(Decimal(info['sb']).quantize(Decimal("0.01")))
 
         return info
 
@@ -186,8 +204,17 @@ class Cake(HandHistoryConverter):
                 hand.tablename = info[key]
             if key == 'BUTTON':
                 hand.buttonpos = info[key]
-            if key == 'MAX' and info[key] != None:
+            if key == 'MAX' and info[key]:
                 hand.maxseats = int(info[key])
+            if key == 'TOURNO' and info[key]:
+                hand.tourNo = info[key].replace('T', '')
+            if key == 'TMAX':
+                hand.maxseats = int(info[key])
+                
+        if hand.gametype['type'] == 'tour':
+            hand.buyin = 0
+            hand.fee = 0
+            hand.buyinCurrency="NA"
 
     def readButton(self, hand):
         m = self.re_Button.search(hand.handText)
@@ -216,7 +243,7 @@ class Cake(HandHistoryConverter):
         if street in ('FLOP','TURN','RIVER'):
             #print "DEBUG readCommunityCards:", street, hand.streets.group(street)
             m = self.re_Board.search(hand.streets[street])
-            hand.setCommunityCards(street, m.group('CARDS').split(' '))
+            hand.setCommunityCards(street, m.group('CARDS').split(','))
 
     def readAntes(self, hand):
         log.debug(_("reading antes"))
@@ -292,7 +319,7 @@ class Cake(HandHistoryConverter):
 
     def readCollectPot(self,hand):
         for m in self.re_CollectPot.finditer(hand.handText):
-            hand.addCollectPot(player=m.group('PNAME'),pot=m.group('POT'))
+            hand.addCollectPot(player=m.group('PNAME'),pot=re.sub(u',',u'',m.group('POT')))
 
     def readShownCards(self,hand):
         for m in self.re_ShownCards.finditer(hand.handText):
