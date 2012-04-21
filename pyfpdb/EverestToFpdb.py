@@ -48,7 +48,7 @@ class Everest(HandHistoryConverter):
                                     id="(?P<ID>[\d\.]+)"\s
                                     type="(?P<TYPE>[a-zA-Z ]+)"\s
                                     money="(?P<CURRENCY>[%(LS)s])?"\s
-                                    screenName="[a-zA-Z]+"\s
+                                    screenName=".+"\s
                                     game="(?P<GAME>hold\-em|omaha\-hi)"\s
                                     gametype="(?P<LIMIT>[-a-zA-Z ]+)"/>
                                 """ % substitutions, re.VERBOSE|re.MULTILINE)
