@@ -36,15 +36,21 @@ class iPokerSummary(TourneySummary):
 
     limits = { 'No Limit':'nl', 'Pot Limit':'pl', 'Limit':'fl', 'LIMIT':'fl' }
     
-    games = {
-                    '7 Card Stud L' : ('stud','studhilo'),
-                        'Holdem NL' : ('hold','holdem'),
-                         'Holdem L' : ('hold','holdem'),
-                         'Omaha PL' : ('hold','omahahi'),
+    games = {              # base, category
+                '7 Card Stud L' : ('stud','studhi'),
+                '5 Card Stud L' : ('stud','5studhi'),
+                    'Holdem NL' : ('hold','holdem'),
+                    'Holdem SL' : ('hold','holdem'), #Spanish NL
+                     'Holdem L' : ('hold','holdem'),
+                     'Omaha PL' : ('hold','omahahi'),
+               'Omaha Hi-Lo PL' : ('hold','omahahilo'),
+                     'Omaha LP' : ('hold','omahahi'), #Italian PL
+               'Omaha Hi-Lo LP' : ('hold','omahahilo'), #Italian PL
+                     
             }
 
     re_GameType = re.compile(r"""
-            <gametype>(?P<GAME>7\sCard\sStud\sL|Holdem\sNL|Holdem\sL|Omaha\sPL|Omaha\sL)(\s(%(LS)s)(?P<SB>[.0-9]+)/(%(LS)s)(?P<BB>[.0-9]+))?</gametype>\s+?
+            <gametype>(?P<GAME>7\sCard\sStud\sL|Holdem\sNL|Holdem\sL|Omaha\s(PL|LP)|Omaha\sL|Omaha\sHi\-Lo\s(PL|LP))(\s(%(LS)s)(?P<SB>[.0-9]+)/(%(LS)s)(?P<BB>[.0-9]+))?</gametype>\s+?
             <tablename>(?P<TABLE>.+)?</tablename>\s+?
             (<tablecurrency>.+</tablecurrency>\s+?)?
             <duration>.+</duration>\s+?
@@ -93,12 +99,15 @@ class iPokerSummary(TourneySummary):
         if 'GAME' in mg:
             self.gametype['category'] = self.games[mg['GAME']][1]
 
-        if mg['GAME'][-2:] == 'NL':
-            self.gametype['limitType'] = 'nl'
-        elif mg['GAME'][-2:] == 'PL':
-            self.gametype['limitType'] = 'pl'
-        else:
-            self.gametype['limitType'] = 'fl'
+        if self.games[mg['GAME']][0] == 'stud':
+            self.gametype['limitType']  = 'fl'
+        if self.games[mg['GAME']][0] == 'hold':
+            if mg['GAME'][-2:] == 'NL' or mg['GAME'][-2:] == 'SL':
+                self.gametype['limitType']  = 'nl'
+            elif mg['GAME'][-2:] == 'PL' or mg['GAME'][-2:] == 'LP':
+                self.gametype['limitType'] = 'pl'
+            else:
+                self.gametype['limitType'] = 'fl'
 
         try:
             self.startTime = datetime.datetime.strptime(mg['DATETIME'], '%Y-%m-%d %H:%M:%S')

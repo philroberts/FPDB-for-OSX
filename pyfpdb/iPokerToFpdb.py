@@ -63,6 +63,19 @@ class iPoker(HandHistoryConverter):
                      'NUM' : r'.,\d',
                     }
     
+    games = {              # base, category
+                '7 Card Stud L' : ('stud','studhi'),
+                '5 Card Stud L' : ('stud','5studhi'),
+                    'Holdem NL' : ('hold','holdem'),
+                    'Holdem SL' : ('hold','holdem'), #Spanish NL
+                     'Holdem L' : ('hold','holdem'),
+                     'Omaha PL' : ('hold','omahahi'),
+               'Omaha Hi-Lo PL' : ('hold','omahahilo'),
+                     'Omaha LP' : ('hold','omahahi'),
+               'Omaha Hi-Lo LP' : ('hold','omahahilo'),
+                     
+            }
+    
     currencies = { u'€':'EUR', '$':'USD', '':'T$', u'£':'GBP' }
     
     # translations from captured groups to fpdb info strings
@@ -93,7 +106,7 @@ class iPoker(HandHistoryConverter):
     re_SplitHands = re.compile(r'</game>')
     re_TailSplitHands = re.compile(r'(</game>)')
     re_GameInfo = re.compile(r"""(?P<HEAD>
-            <gametype>(?P<GAME>(5|7)\sCard\sStud\sL|Holdem\s(NL|SL|L)|Omaha\sPL|Omaha\sL|Omaha\sHi\-Lo\sPL)(\s(%(LS)s)?(?P<SB>[%(NUM)s]+)/(%(LS)s)?(?P<BB>[%(NUM)s]+))?</gametype>\s+?
+            <gametype>(?P<GAME>(5|7)\sCard\sStud\sL|Holdem\s(NL|SL|L)|Omaha\s(PL|LP)|Omaha\sL|Omaha\sHi\-Lo\s(PL|LP))(\s(%(LS)s)?(?P<SB>[%(NUM)s]+)/(%(LS)s)?(?P<BB>[%(NUM)s]+))?</gametype>\s+?
             <tablename>(?P<TABLE>.+)?</tablename>\s+?
             (<tablecurrency>.+</tablecurrency>\s+?)?
             <duration>.+</duration>\s+?
@@ -166,20 +179,8 @@ class iPoker(HandHistoryConverter):
         self.info = {}
         mg = m.groupdict()
         #print "DEBUG: m.groupdict(): %s" % mg
-
-        games = {              # base, category
-                    '7 Card Stud L' : ('stud','studhi'),
-                    '5 Card Stud L' : ('stud','5studhi'),
-                        'Holdem NL' : ('hold','holdem'),
-                        'Holdem SL' : ('hold','holdem'), #Spanish NL
-                         'Holdem L' : ('hold','holdem'),
-                         'Omaha PL' : ('hold','omahahi'),
-                   'Omaha Hi-Lo PL' : ('hold','omahahilo'),
-                         
-                }
-
         if 'GAME' in mg:
-            (self.info['base'], self.info['category']) = games[mg['GAME']]
+            (self.info['base'], self.info['category']) = self.games[mg['GAME']]
             #m = self.re_Hero.search(handText)
             #if m:
             #    self.hero = m.group('HERO')
@@ -190,7 +191,7 @@ class iPoker(HandHistoryConverter):
         if self.info['base'] == 'hold':
             if mg['GAME'][-2:] == 'NL' or mg['GAME'][-2:] == 'SL':
                 self.info['limitType'] = 'nl'
-            elif mg['GAME'][-2:] == 'PL':
+            elif mg['GAME'][-2:] == 'PL' or mg['GAME'][-2:] == 'LP':
                 self.info['limitType'] = 'pl'
             else:
                 self.info['limitType'] = 'fl'
@@ -336,8 +337,7 @@ class iPoker(HandHistoryConverter):
     def readAntes(self, hand):
         m = self.re_Ante.finditer(hand.handText)
         for a in m:
-            #print "DEBUG: addAnte(%s, %s)" %(a.group('PNAME'),  a.group('BET'))
-            hand.addAnte(a.group('PNAME'), a.group('BET'))
+            hand.addAnte(a.group('PNAME'), self.clearMoneyString(a.group('BET')))
 
     def readBringIn(self, hand):
         if hand.gametype['sb'] == None and hand.gametype['bb'] == None:
@@ -463,7 +463,7 @@ class iPoker(HandHistoryConverter):
     def readCollectPot(self, hand):
         hand.setUncalledBets(True)
         for pname, pot in self.playerWinnings.iteritems():
-            hand.addCollectPot(player=pname, pot=pot)
+            hand.addCollectPot(player=pname, pot=self.clearMoneyString(pot))
 
     def readShownCards(self, hand):
         # Cards lines contain cards
