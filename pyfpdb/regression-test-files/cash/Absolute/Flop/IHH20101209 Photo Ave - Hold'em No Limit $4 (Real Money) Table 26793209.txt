@@ -1,0 +1,25 @@
+Stage #C284520999: Holdem No Limit $4  - 2010-12-09 22:49:17 (ET)
+Table: Photo Ave (Real Money) Seat #1 is the dealer
+Seat 1 - MIDLETOK ($404 in chips)
+Seat 2 - INVERTIBLE ($392 in chips)
+Seat 3 - BELIEVER777 ($400 in chips)
+Seat 5 - HEADSUPPLEASE ($454.50 in chips)
+Seat 6 - 12BRACCKII12 ($404 in chips)
+INVERTIBLE - Posts small blind $2
+BELIEVER777 - Posts big blind $4
+*** POCKET CARDS ***
+Dealt to INVERTIBLE [5s 7c]
+HEADSUPPLEASE - Folds
+12BRACCKII12 - Folds
+MIDLETOK - Folds
+INVERTIBLE - Folds
+*** SHOW DOWN ***
+BELIEVER777 - Does not show
+BELIEVER777 Collects $6 from main pot
+*** SUMMARY ***
+Total Pot($6)
+Seat 1: MIDLETOK (dealer) Folded on the POCKET CARDS
+Seat 2: INVERTIBLE (small blind) Folded on the POCKET CARDS
+Seat 3: BELIEVER777 (big blind) collected Total ($6) 
+Seat 5: HEADSUPPLEASE Folded on the POCKET CARDS
+Seat 6: 12BRACCKII12 Folded on the POCKET CARDS

@@ -307,6 +307,7 @@ class Absolute(HandHistoryConverter):
             hand.addBlind(None, None, None)
         for a in self.re_PostBB.finditer(hand.handText):
             hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
+            hand.setUncalledBets(Decimal(a.group('BB')))
         for a in self.re_PostBoth.finditer(hand.handText):
             hand.addBlind(a.group('PNAME'), 'both', a.group('SBBB'))
         for a in self.re_Post.finditer(hand.handText):
@@ -344,15 +345,19 @@ class Absolute(HandHistoryConverter):
                 hand.addCheck( street, action.group('PNAME'))
             elif action.group('ATYPE') == 'Calls ':
                 bet = action.group('BET').replace(',', '')
+                hand.setUncalledBets(None)
                 hand.addCall( street, action.group('PNAME'), bet)
             elif action.group('ATYPE') == 'Bets ' or action.group('ATYPE') == 'All-In ':
                 bet = action.group('BET').replace(',', '')
+                hand.setUncalledBets(None)
                 hand.addBet( street, action.group('PNAME'), bet)
             elif action.group('ATYPE') == 'Raises ' or action.group('ATYPE') == 'All-In(Raise) ':
                 bet = action.group('BET').replace(',', '')
+                hand.setUncalledBets(None)
                 hand.addCallandRaise( street, action.group('PNAME'), bet)
             elif action.group('ATYPE') == ' complete to': # TODO: not supported yet ?
                 bet = action.group('BET').replace(',', '')
+                hand.setUncalledBets(None)
                 hand.addComplete( street, action.group('PNAME'), bet)
             else:
                 log.debug(_("Unimplemented %s: '%s' '%s'") % ("readAction", action.group('PNAME'), action.group('ATYPE')))
