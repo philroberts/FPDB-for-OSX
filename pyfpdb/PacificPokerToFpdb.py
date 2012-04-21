@@ -135,7 +135,7 @@ class PacificPoker(HandHistoryConverter):
     short_subst = {'PLYR': r'(?P<PNAME>.+?)', 'CUR': '\$?'}
     re_PostSB           = re.compile(r"^%(PLYR)s posts small blind \[%(CUR)s(?P<SB>[.,0-9]+)\]" %  short_subst, re.MULTILINE)
     re_PostBB           = re.compile(r"^%(PLYR)s posts big blind \[%(CUR)s(?P<BB>[.,0-9]+)\]" %  short_subst, re.MULTILINE)
-    re_Antes            = re.compile(r"^%(PLYR)s posts the ante \[%(CUR)s(?P<ANTE>[.,0-9]+)\]" % short_subst, re.MULTILINE)
+    re_Antes            = re.compile(r"^%(PLYR)s posts (the\s)?ante \[%(CUR)s(?P<ANTE>[.,0-9]+)\]" % short_subst, re.MULTILINE)
     # TODO: unknown in available hand histories for pacificpoker:
     re_BringIn          = re.compile(r"^%(PLYR)s: brings[- ]in( low|) for %(CUR)s(?P<BRINGIN>[.,0-9]+)" % short_subst, re.MULTILINE)
     re_PostBoth         = re.compile(r"^%(PLYR)s posts dead blind \[%(CUR)s(?P<SBBB>[.,0-9]+)\s\+\s%(CUR)s[.,0-9]+\]" %  short_subst, re.MULTILINE)
@@ -346,6 +346,7 @@ class PacificPoker(HandHistoryConverter):
         
     def readBlinds(self, hand):
         liveBlind = True
+        hand.allInBlind = False
         for a in self.re_PostSB.finditer(hand.handText):
             if a.group('PNAME') in hand.stacks:
                 if liveBlind:
@@ -354,12 +355,16 @@ class PacificPoker(HandHistoryConverter):
                 else:
                     # Post dead blinds as ante
                     hand.addBlind(a.group('PNAME'), 'secondsb', a.group('SB'))
+                if Decimal(self.clearMoneyString(a.group('SB'))) < Decimal(hand.gametype['sb']):
+                    hand.allInBlind = True
             else:
                 raise FpdbHandPartial("Partial hand history: %s" % hand.handid)
         for a in self.re_PostBB.finditer(hand.handText):
             if a.group('PNAME') in hand.stacks:
                 hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
-                hand.setUncalledBets(Decimal(a.group('BB')))
+                hand.setUncalledBets(True)
+                if Decimal(self.clearMoneyString(a.group('BB'))) < Decimal(hand.gametype['bb']):
+                    hand.allInBlind = True
             else:
                 raise FpdbHandPartial("Partial hand history: %s" % hand.handid)
         for a in self.re_PostBoth.finditer(hand.handText):
@@ -415,13 +420,13 @@ class PacificPoker(HandHistoryConverter):
                 elif action.group('ATYPE') == ' checks':
                     hand.addCheck( street, action.group('PNAME'))
                 elif action.group('ATYPE') == ' calls':
-                    hand.setUncalledBets(None)
+                    hand.setUncalledBets(hand.allInBlind)
                     hand.addCall( street, action.group('PNAME'), action.group('BET').replace(',','') )
                 elif action.group('ATYPE') == ' raises':
-                    hand.setUncalledBets(None)
+                    hand.setUncalledBets(hand.allInBlind)
                     hand.addCallandRaise( street, action.group('PNAME'), action.group('BET').replace(',','') )
                 elif action.group('ATYPE') == ' bets':
-                    hand.setUncalledBets(None)
+                    hand.setUncalledBets(hand.allInBlind)
                     hand.addBet( street, action.group('PNAME'), action.group('BET').replace(',','') )
                 elif action.group('ATYPE') == ' discards':
                     hand.addDiscard(street, action.group('PNAME'), action.group('BET').replace(',',''), action.group('DISCARDED'))
