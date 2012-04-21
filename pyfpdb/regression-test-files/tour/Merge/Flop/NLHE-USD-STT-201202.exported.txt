@@ -1,8 +1,8 @@
 <description type="Holdem Tournament" stakes="No Limit"/>
 <game id="50104125-26" starttime="20120228010347" numholecards="2" gametype="23" seats="2" realmoney="true" data="20120228|Hairy Frog Room  - Super Turbo HU|50102278-1|50104125-26|true">
 	<players dealer="0">
-		<player seat="0" nickname="AnnaKarina" balance="$1725.00" dealtin="true" />
-		<player seat="1" nickname="PolishPride9" balance="$1125.00" dealtin="true" />
+		<player seat="0" nickname="Player2" balance="$1725.00" dealtin="true" />
+		<player seat="1" nickname="Player3" balance="$1125.00" dealtin="true" />
 	</players>
 	<round id="BLINDS" sequence="1">
 		<event sequence="1" type="SMALL_BLIND" timestamp="1330409029203" player="0" amount="50.00"/>
@@ -37,8 +37,8 @@
 <description type="Holdem Tournament" stakes="No Limit"/>
 <game id="50104630-1" starttime="20120228010858" numholecards="2" gametype="23" seats="2" realmoney="true" data="20120228|Wolf Spider Room  - Super Turbo HU|50104118-1|50104630-1|true">
 	<players dealer="0">
-		<player seat="0" nickname="AnnaKarina" balance="$1475.00" dealtin="true" />
-		<player seat="1" nickname="WorldPower78" balance="$1450.00" dealtin="true" />
+		<player seat="0" nickname="Player2" balance="$1475.00" dealtin="true" />
+		<player seat="1" nickname="Player9" balance="$1450.00" dealtin="true" />
 	</players>
 	<round id="BLINDS" sequence="1">
 		<event sequence="1" type="SMALL_BLIND" timestamp="1330409339375" player="0" amount="25.00"/>
@@ -73,8 +73,8 @@
 <description type="Holdem Tournament" stakes="No Limit"/>
 <game id="50104914-30" starttime="20120228011933" numholecards="2" gametype="23" seats="2" realmoney="true" data="20120228|Hairy Frog Room  - Super Turbo HU|50104207-1|50104914-30|true">
 	<players dealer="1">
-		<player seat="0" nickname="AnnaKarina" balance="$634.00" dealtin="true" />
-		<player seat="1" nickname="youngmoney66" balance="$2066.00" dealtin="true" />
+		<player seat="0" nickname="Player2" balance="$634.00" dealtin="true" />
+		<player seat="1" nickname="Player6" balance="$2066.00" dealtin="true" />
 	</players>
 	<round id="BLINDS" sequence="1">
 		<event sequence="1" type="SMALL_BLIND" timestamp="1330409974906" player="1" amount="100.00"/>
@@ -113,8 +113,8 @@
 <description type="Holdem Tournament" stakes="No Limit"/>
 <game id="50148619-3" starttime="20120228183035" numholecards="2" gametype="23" seats="2" realmoney="true" data="20120228|Wolf Spider Room  - Super Turbo HU|50147558-1|50148619-3|true">
 	<players dealer="0">
-		<player seat="0" nickname="AnnaKarina" balance="$1375.00" dealtin="true" />
-		<player seat="1" nickname="BC7Falcon7" balance="$1550.00" dealtin="true" />
+		<player seat="0" nickname="Player2" balance="$1375.00" dealtin="true" />
+		<player seat="1" nickname="Player5" balance="$1550.00" dealtin="true" />
 	</players>
 	<round id="BLINDS" sequence="1">
 		<event sequence="1" type="SMALL_BLIND" timestamp="1330471836937" player="0" amount="25.00"/>
@@ -156,8 +156,8 @@
 <description type="Holdem Tournament" stakes="No Limit"/>
 <game id="50148619-4" starttime="20120228183107" numholecards="2" gametype="23" seats="2" realmoney="true" data="20120228|Wolf Spider Room  - Super Turbo HU|50147558-1|50148619-4|true">
 	<players dealer="1">
-		<player seat="0" nickname="AnnaKarina" balance="$950.00" dealtin="true" />
-		<player seat="1" nickname="BC7Falcon7" balance="$1975.00" dealtin="true" />
+		<player seat="0" nickname="Player2" balance="$950.00" dealtin="true" />
+		<player seat="1" nickname="Player5" balance="$1975.00" dealtin="true" />
 	</players>
 	<round id="BLINDS" sequence="1">
 		<event sequence="1" type="SMALL_BLIND" timestamp="1330471868750" player="1" amount="25.00"/>
@@ -199,8 +199,8 @@
 <description type="Holdem Tournament" stakes="No Limit"/>
 <game id="50149869-3" starttime="20120228185121" numholecards="2" gametype="23" seats="2" realmoney="true" data="20120228|Wolf Spider Room  - Super Turbo HU|50149473-1|50149869-3|true">
 	<players dealer="0">
-		<player seat="0" nickname="AnnaKarina" balance="$1600.00" dealtin="true" />
-		<player seat="1" nickname="thasuit" balance="$1325.00" dealtin="true" />
+		<player seat="0" nickname="Player2" balance="$1600.00" dealtin="true" />
+		<player seat="1" nickname="Player7" balance="$1325.00" dealtin="true" />
 	</players>
 	<round id="BLINDS" sequence="1">
 		<event sequence="1" type="SMALL_BLIND" timestamp="1330473082687" player="0" amount="25.00"/>
@@ -239,8 +239,8 @@
 <description type="Holdem Tournament" stakes="No Limit"/>
 <game id="50150002-1" starttime="20120228185250" numholecards="2" gametype="23" seats="2" realmoney="true" data="20120228|Hairy Frog Room  - Super Turbo HU|50147647-1|50150002-1|true">
 	<players dealer="1">
-		<player seat="0" nickname="AnnaKarina" balance="$1450.00" dealtin="true" />
-		<player seat="1" nickname="daddyAng106" balance="$1475.00" dealtin="true" />
+		<player seat="0" nickname="Player2" balance="$1450.00" dealtin="true" />
+		<player seat="1" nickname="Player10" balance="$1475.00" dealtin="true" />
 	</players>
 	<round id="BLINDS" sequence="1">
 		<event sequence="1" type="SMALL_BLIND" timestamp="1330473171859" player="1" amount="25.00"/>
@@ -278,8 +278,8 @@
 <description type="Holdem Tournament" stakes="No Limit"/>
 <game id="50150678-4" starttime="20120228190324" numholecards="2" gametype="23" seats="2" realmoney="true" data="20120228|Wolf Spider Room  - Super Turbo HU|50149809-1|50150678-4|true">
 	<players dealer="1">
-		<player seat="0" nickname="aclakers21" balance="$1625.00" dealtin="true" />
-		<player seat="1" nickname="AnnaKarina" balance="$1300.00" dealtin="true" />
+		<player seat="0" nickname="Player4" balance="$1625.00" dealtin="true" />
+		<player seat="1" nickname="Player2" balance="$1300.00" dealtin="true" />
 	</players>
 	<round id="BLINDS" sequence="1">
 		<event sequence="1" type="SMALL_BLIND" timestamp="1330473806062" player="1" amount="25.00"/>
@@ -315,8 +315,8 @@
 <description type="Holdem Tournament" stakes="No Limit"/>
 <game id="50150829-6" starttime="20120228190641" numholecards="2" gametype="23" seats="2" realmoney="true" data="20120228|Hairy Frog Room  - Super Turbo HU|50150822-1|50150829-6|true">
 	<players dealer="1">
-		<player seat="0" nickname="daddyAng106" balance="$684.00" dealtin="true" />
-		<player seat="1" nickname="AnnaKarina" balance="$2241.00" dealtin="true" />
+		<player seat="0" nickname="Player10" balance="$684.00" dealtin="true" />
+		<player seat="1" nickname="Player2" balance="$2241.00" dealtin="true" />
 	</players>
 	<round id="BLINDS" sequence="1">
 		<event sequence="1" type="SMALL_BLIND" timestamp="1330474002718" player="1" amount="25.00"/>
@@ -355,8 +355,8 @@
 <description type="Holdem Tournament" stakes="No Limit"/>
 <game id="50150678-15" starttime="20120228190653" numholecards="2" gametype="23" seats="2" realmoney="true" data="20120228|Wolf Spider Room  - Super Turbo HU|50149809-1|50150678-15|true">
 	<players dealer="0">
-		<player seat="0" nickname="aclakers21" balance="$1478.00" dealtin="true" />
-		<player seat="1" nickname="AnnaKarina" balance="$1372.00" dealtin="true" />
+		<player seat="0" nickname="Player4" balance="$1478.00" dealtin="true" />
+		<player seat="1" nickname="Player2" balance="$1372.00" dealtin="true" />
 	</players>
 	<round id="BLINDS" sequence="1">
 		<event sequence="1" type="SMALL_BLIND" timestamp="1330474014125" player="0" amount="50.00"/>
@@ -394,8 +394,8 @@
 <description type="Holdem Tournament" stakes="No Limit"/>
 <game id="50104125-5" starttime="20120228010048" numholecards="2" gametype="23" seats="2" realmoney="true" data="20120228|Hairy Frog Room  - Super Turbo HU|50102278-1|50104125-5|true">
 	<players dealer="1">
-		<player seat="0" nickname="AnnaKarina" balance="$1375.00" dealtin="true" />
-		<player seat="1" nickname="PolishPride9" balance="$1550.00" dealtin="true" />
+		<player seat="0" nickname="Player2" balance="$1375.00" dealtin="true" />
+		<player seat="1" nickname="Player3" balance="$1550.00" dealtin="true" />
 	</players>
 	<round id="BLINDS" sequence="1">
 		<event sequence="1" type="SMALL_BLIND" timestamp="1330408849796" player="1" amount="25.00"/>
@@ -418,8 +418,8 @@
 <description type="Holdem Tournament" stakes="No Limit"/>
 <game id="50104108-1" starttime="20120228005954" numholecards="2" gametype="23" seats="2" realmoney="true" data="20120228|Wolf Spider Room  - Super Turbo HU|50102937-1|50104108-1|true">
 	<players dealer="1">
-		<player seat="0" nickname="AnnaKarina" balance="$1450.00" dealtin="true" />
-		<player seat="1" nickname="h1var1ance3" balance="$1475.00" dealtin="true" />
+		<player seat="0" nickname="Player2" balance="$1450.00" dealtin="true" />
+		<player seat="1" nickname="Player8" balance="$1475.00" dealtin="true" />
 	</players>
 	<round id="BLINDS" sequence="1">
 		<event sequence="1" type="SMALL_BLIND" timestamp="1330408794875" player="1" amount="25.00"/>
@@ -441,8 +441,8 @@
 <description type="Holdem Tournament" stakes="No Limit"/>
 <game id="50104125-6" starttime="20120228010054" numholecards="2" gametype="23" seats="2" realmoney="true" data="20120228|Hairy Frog Room  - Super Turbo HU|50102278-1|50104125-6|true">
 	<players dealer="0">
-		<player seat="0" nickname="AnnaKarina" balance="$1350.00" dealtin="true" />
-		<player seat="1" nickname="PolishPride9" balance="$1575.00" dealtin="true" />
+		<player seat="0" nickname="Player2" balance="$1350.00" dealtin="true" />
+		<player seat="1" nickname="Player3" balance="$1575.00" dealtin="true" />
 	</players>
 	<round id="BLINDS" sequence="1">
 		<event sequence="1" type="SMALL_BLIND" timestamp="1330408855078" player="0" amount="25.00"/>
@@ -465,8 +465,8 @@
 <description type="Holdem Tournament" stakes="No Limit"/>
 <game id="50104108-2" starttime="20120228005959" numholecards="2" gametype="23" seats="2" realmoney="true" data="20120228|Wolf Spider Room  - Super Turbo HU|50102937-1|50104108-2|true">
 	<players dealer="0">
-		<player seat="0" nickname="AnnaKarina" balance="$1500.00" dealtin="true" />
-		<player seat="1" nickname="h1var1ance3" balance="$1425.00" dealtin="true" />
+		<player seat="0" nickname="Player2" balance="$1500.00" dealtin="true" />
+		<player seat="1" nickname="Player8" balance="$1425.00" dealtin="true" />
 	</players>
 	<round id="BLINDS" sequence="1">
 		<event sequence="1" type="SMALL_BLIND" timestamp="1330408800406" player="0" amount="25.00"/>
@@ -495,8 +495,8 @@
 <description type="Holdem Tournament" stakes="No Limit"/>
 <game id="50104125-1" starttime="20120228010024" numholecards="2" gametype="23" seats="2" realmoney="true" data="20120228|Hairy Frog Room  - Super Turbo HU|50102278-1|50104125-1|true">
 	<players dealer="1">
-		<player seat="0" nickname="AnnaKarina" balance="$1450.00" dealtin="true" />
-		<player seat="1" nickname="PolishPride9" balance="$1475.00" dealtin="true" />
+		<player seat="0" nickname="Player2" balance="$1450.00" dealtin="true" />
+		<player seat="1" nickname="Player3" balance="$1475.00" dealtin="true" />
 	</players>
 	<round id="BLINDS" sequence="1">
 		<event sequence="1" type="SMALL_BLIND" timestamp="1330408824875" player="1" amount="25.00"/>
@@ -518,8 +518,8 @@
 <description type="Holdem Tournament" stakes="No Limit"/>
 <game id="50104108-3" starttime="20120228010018" numholecards="2" gametype="23" seats="2" realmoney="true" data="20120228|Wolf Spider Room  - Super Turbo HU|50102937-1|50104108-3|true">
 	<players dealer="1">
-		<player seat="0" nickname="AnnaKarina" balance="$1575.00" dealtin="true" />
-		<player seat="1" nickname="h1var1ance3" balance="$1350.00" dealtin="true" />
+		<player seat="0" nickname="Player2" balance="$1575.00" dealtin="true" />
+		<player seat="1" nickname="Player8" balance="$1350.00" dealtin="true" />
 	</players>
 	<round id="BLINDS" sequence="1">
 		<event sequence="1" type="SMALL_BLIND" timestamp="1330408819796" player="1" amount="25.00"/>
@@ -542,8 +542,8 @@
 <description type="Holdem Tournament" stakes="No Limit"/>
 <game id="50104125-2" starttime="20120228010027" numholecards="2" gametype="23" seats="2" realmoney="true" data="20120228|Hairy Frog Room  - Super Turbo HU|50102278-1|50104125-2|true">
 	<players dealer="0">
-		<player seat="0" nickname="AnnaKarina" balance="$1500.00" dealtin="true" />
-		<player seat="1" nickname="PolishPride9" balance="$1425.00" dealtin="true" />
+		<player seat="0" nickname="Player2" balance="$1500.00" dealtin="true" />
+		<player seat="1" nickname="Player3" balance="$1425.00" dealtin="true" />
 	</players>
 	<round id="BLINDS" sequence="1">
 		<event sequence="1" type="SMALL_BLIND" timestamp="1330408828812" player="0" amount="25.00"/>
@@ -567,8 +567,8 @@
 <description type="Holdem Tournament" stakes="No Limit"/>
 <game id="50104125-3" starttime="20120228010037" numholecards="2" gametype="23" seats="2" realmoney="true" data="20120228|Hairy Frog Room  - Super Turbo HU|50102278-1|50104125-3|true">
 	<players dealer="1">
-		<player seat="0" nickname="AnnaKarina" balance="$1375.00" dealtin="true" />
-		<player seat="1" nickname="PolishPride9" balance="$1550.00" dealtin="true" />
+		<player seat="0" nickname="Player2" balance="$1375.00" dealtin="true" />
+		<player seat="1" nickname="Player3" balance="$1550.00" dealtin="true" />
 	</players>
 	<round id="BLINDS" sequence="1">
 		<event sequence="1" type="SMALL_BLIND" timestamp="1330408838781" player="1" amount="25.00"/>
@@ -590,8 +590,8 @@
 <description type="Holdem Tournament" stakes="No Limit"/>
 <game id="50104125-4" starttime="20120228010041" numholecards="2" gametype="23" seats="2" realmoney="true" data="20120228|Hairy Frog Room  - Super Turbo HU|50102278-1|50104125-4|true">
 	<players dealer="0">
-		<player seat="0" nickname="AnnaKarina" balance="$1425.00" dealtin="true" />
-		<player seat="1" nickname="PolishPride9" balance="$1500.00" dealtin="true" />
+		<player seat="0" nickname="Player2" balance="$1425.00" dealtin="true" />
+		<player seat="1" nickname="Player3" balance="$1500.00" dealtin="true" />
 	</players>
 	<round id="BLINDS" sequence="1">
 		<event sequence="1" type="SMALL_BLIND" timestamp="1330408842421" player="0" amount="25.00"/>
@@ -613,8 +613,8 @@
 <description type="Holdem Tournament" stakes="No Limit"/>
 <game id="50104108-4" starttime="20120228010033" numholecards="2" gametype="23" seats="2" realmoney="true" data="20120228|Wolf Spider Room  - Super Turbo HU|50102937-1|50104108-4|true">
 	<players dealer="0">
-		<player seat="0" nickname="AnnaKarina" balance="$1550.00" dealtin="true" />
-		<player seat="1" nickname="h1var1ance3" balance="$1375.00" dealtin="true" />
+		<player seat="0" nickname="Player2" balance="$1550.00" dealtin="true" />
+		<player seat="1" nickname="Player8" balance="$1375.00" dealtin="true" />
 	</players>
 	<round id="BLINDS" sequence="1">
 		<event sequence="1" type="SMALL_BLIND" timestamp="1330408834500" player="0" amount="25.00"/>
@@ -643,8 +643,8 @@
 <description type="Holdem" stakes="No Limit ($0.25/$0.50)"/>
 <game id="48132119-34" starttime="20120130192923" numholecards="2" gametype="2" seats="2" realmoney="true" data="20120130|New York (Heads Up) (48132119)|48132119|48132119-34|false">
 	<players dealer="1">
-		<player seat="0" nickname="Player0" balance="$15.00" dealtin="true" />
-		<player seat="1" nickname="Player1" balance="$50.00" dealtin="true" />
+		<player seat="0" nickname="Player4" balance="$15.00" dealtin="true" />
+		<player seat="1" nickname="Player5" balance="$50.00" dealtin="true" />
 	</players>
 	<round id="BLINDS" sequence="1">
 		<event sequence="1" type="SMALL_BLIND" timestamp="1327969760218" player="1" amount="0.25"/>
