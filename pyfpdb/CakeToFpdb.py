@@ -208,7 +208,7 @@ class Cake(HandHistoryConverter):
                 hand.maxseats = int(info[key])
             if key == 'TOURNO' and info[key]:
                 hand.tourNo = info[key].replace('T', '')
-            if key == 'TMAX':
+            if key == 'TMAX' and info[key]:
                 hand.maxseats = int(info[key])
                 
         if hand.gametype['type'] == 'tour':
