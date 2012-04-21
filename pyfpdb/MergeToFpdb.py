@@ -377,7 +377,7 @@ class Merge(HandHistoryConverter):
                      }
 
     # Static regexes
-    re_SplitHands = re.compile(r'</game>\n+(?=<game)')
+    re_SplitHands = re.compile(r'</game>\n+(?=<)')
     re_TailSplitHands = re.compile(r'(</game>)')
     re_GameInfo = re.compile(r'<description type="(?P<GAME>Holdem|Omaha|Omaha|Omaha\sH/L8|2\-7\sLowball|A\-5\sLowball|Badugi|5\-Draw\sw/Joker|5\-Draw|7\-Stud|7\-Stud\sH/L8|5\-Stud|Razz|HORSE|RASH|HA|HO|SHOE|HOSE|HAR)(?P<TYPE>\sTournament)?" stakes="(?P<LIMIT>[a-zA-Z ]+)(\s\(?\$?(?P<SB>[.0-9]+)?/?\$?(?P<BB>[.0-9]+)?(?P<blah>.*)\)?)?"/>?', re.MULTILINE)
     # <game id="46154255-645" starttime="20111230232051" numholecards="2" gametype="1" seats="9" realmoney="false" data="20111230|Play Money (46154255)|46154255|46154255-645|false">
@@ -520,18 +520,17 @@ or None if we fail to get the info """
             log.error(_("MergeToFpdb.readHandInfo: '%s'") % tmp)
             raise FpdbParseError
 
-        #mg = m.groupdict()
-        #print "DEBUG: mg: %s" % mg
+        #print "DEBUG: mg: %s" % m.groupdict()
         self.determineErrorType(hand, None)
 
         hand.handid = m.group('HID1') + m.group('HID2')
 
         if hand.gametype['type'] == 'tour':
-            tid, table = re.split('-', m.group('TDATA'))
-            self.info['tablename'] = m.group('TABLENAME').replace('  - ', ' - ').strip()
-            self.info['tourNo'] = tid
+            tid = m.group('TDATA').split('-')[0]
             hand.tourNo = tid
-            hand.tablename = table
+            hand.tablename = m.group('TABLENAME').replace('  - ', ' - ').strip()
+            self.info['tablename'] = hand.tablename
+            self.info['tourNo'] = hand.tourNo
             if self.info['tablename'] in self.SnG_Structures:
                 hand.buyin = int(100*self.SnG_Structures[self.info['tablename']]['buyIn'])
                 hand.fee   = int(100*self.SnG_Structures[self.info['tablename']]['fee'])
@@ -539,10 +538,6 @@ or None if we fail to get the info """
                 hand.maxseats = self.SnG_Structures[self.info['tablename']]['seats']
                 hand.isSng = True
                 self.summaryInFile = True
-            #elif self.info['tablename'] in self.MTT_Structures:
-            #    hand.buyin = int(100*self.MTT_Structures[self.info['tablename']]['buyIn'])
-            #    hand.fee   = int(100*self.MTT_Structures[self.info['tablename']]['fee'])
-            #    hand.buyinCurrency=self.MTT_Structures[self.info['tablename']]['currency']
             else:
                 #print 'DEBUG', 'no match for tourney %s tourNo %s' % (self.info['tablename'], tid)
                 hand.buyin = 0
