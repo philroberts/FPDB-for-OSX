@@ -1,0 +1,44 @@
+<Game id="4160087729" date="2011-11-08 00:19:50" unicodetablename="VAB1AHIAYgBvADoAIABEAGUAYQBsACAAMwA2ACAALQAgAKwgMQAwACAATQBhAHgA" tablename="Turbo: Deal 36 - €10 Max" stakes="0.05|0.10" betlimit="NL" tabletype="Cash Game" gametypeid="1" gametype="Hold&apos;em" realmoney="true" currencysymbol="rCA=" playerseat="4" betamount="5" istournament="0" rake="1">
+   <Seats>
+      <Seat num="1" alias="player1" unicodealias="XwBrAGoAbQByAGMAXwA=" balance="10.00" endbalance="9.85"/>
+      <Seat num="2" alias="player2" unicodealias="bQBhAGMAYQBrAF8AcwBpAGwAagBvAA==" balance="10.00" endbalance="10.00"/>
+      <Seat num="3" alias="player3" unicodealias="cwBvAGsAdQA4ADQA" balance="4.71" endbalance="4.71" dealer="true"/>
+      <Seat num="4" alias="hero" unicodealias="cwB0AGEAcgB2AGkAbgBnAA==" balance="15.44" endbalance="15.39"/>
+      <Seat num="5" alias="player4" unicodealias="ZQBsAGoAaQBtAGIAbwA=" balance="21.10" endbalance="21.29"/>
+      <Seat num="6" alias="player5" unicodealias="bgBvAHIAYgB5AGgAZQBuAGsAYQBuAA==" balance="11.85" endbalance="11.85"/>
+   </Seats>
+   <Gameplay>
+      <Action seq="1" type="SmallBlind" seat="4" value="0.05"/>
+      <Action seq="2" type="BigBlind" seat="5" value="0.10"/>
+      <Action seq="3" type="PostedToPlay" seat="1" value="0.10"/>
+      <Action seq="4" type="DealCards" seat="4">
+         <Card value="4" suit="s" id="3"/>
+         <Card value="9" suit="c" id="21"/>
+      </Action>
+      <Action seq="5" type="Fold" seat="6"/>
+      <Action seq="6" type="Check" seat="1"/>
+      <Action seq="7" type="Fold" seat="3"/>
+      <Action seq="8" type="Fold" seat="4"/>
+      <Action seq="9" type="Check" seat="5"/>
+      <Action seq="10" type="DealFlop">
+         <Card value="Q" suit="h" id="50"/>
+         <Card value="8" suit="c" id="20"/>
+         <Card value="6" suit="h" id="44"/>
+      </Action>
+      <Action seq="11" type="Check" seat="5"/>
+      <Action seq="12" type="Check" seat="1"/>
+      <Action seq="13" type="DealTurn">
+         <Card value="3" suit="c" id="15"/>
+      </Action>
+      <Action seq="14" type="Bet" seat="5" value="0.10"/>
+      <Action seq="15" type="Fold" seat="1"/>
+      <Action seq="16" type="MuckCards" seat="5"/>
+      <Action type="Win">
+         <Seat num="5" amount="0.39" pot="0" type="" lowhandwin="0"/>
+      </Action>
+   </Gameplay>
+</Game>
+
+ExtendedTableName: Turbo: Deal 36 - €10 Max [199492]
+
+
