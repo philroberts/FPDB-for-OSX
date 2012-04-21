@@ -1,0 +1,78 @@
+<SESSION time="1319444349" tableName="49482257-0" id="49482257" type="tournament" money="" screenName="Player7" game="hold-em" gametype="fixed-limit"/>
+<HAND time="1319444797" id="7144066651" index="4" blinds="5/10" stakes="10/20">
+  <SEAT position="0" name="Player2" balance="138000"/>
+  <SEAT position="1" name="Player4" balance="182000"/>
+  <SEAT position="2" name="Player3" balance="190000"/>
+  <SEAT position="3" name="Player8" balance="124000"/>
+  <SEAT position="4" name="Player9" balance="117000"/>
+  <SEAT position="5" name="Player7" balance="144000"/>
+  <SEAT position="6" name="Player0" balance="144000"/>
+  <SEAT position="7" name="Player5" balance="140000"/>
+  <SEAT position="8" name="Player6" balance="150000"/>
+  <SEAT position="9" name="Player1" balance="171000"/>
+  <DEALER position="4"/>
+  <BLIND position="5" amount="1000" penalty="0"/>
+  <BLIND position="6" amount="2000" penalty="0"/>
+  <HOLE position="5">6s</HOLE>
+  <HOLE position="6">--</HOLE>
+  <HOLE position="7">--</HOLE>
+  <HOLE position="8">--</HOLE>
+  <HOLE position="9">--</HOLE>
+  <HOLE position="0">--</HOLE>
+  <HOLE position="1">--</HOLE>
+  <HOLE position="2">--</HOLE>
+  <HOLE position="3">--</HOLE>
+  <HOLE position="4">--</HOLE>
+  <HOLE position="5">10d</HOLE>
+  <HOLE position="6">--</HOLE>
+  <HOLE position="7">--</HOLE>
+  <HOLE position="8">--</HOLE>
+  <HOLE position="9">--</HOLE>
+  <HOLE position="0">--</HOLE>
+  <HOLE position="1">--</HOLE>
+  <HOLE position="2">--</HOLE>
+  <HOLE position="3">--</HOLE>
+  <HOLE position="4">--</HOLE>
+  <BET position="7" amount="2000"/>
+  <FOLD position="8"/>
+  <BET position="9" amount="4000"/>
+  <FOLD position="0"/>
+  <BET position="1" amount="4000"/>
+  <FOLD position="2"/>
+  <BET position="3" amount="4000"/>
+  <BET position="4" amount="4000"/>
+  <FOLD position="5"/>
+  <BET position="6" amount="2000"/>
+  <BET position="7" amount="2000"/>
+  <SWEEP rake="0" tax="0">25000</SWEEP>
+  <COMMUNITY>10c, 2d, 2s</COMMUNITY>
+  <BET position="6" amount="0"/>
+  <BET position="7" amount="0"/>
+  <BET position="9" amount="2000"/>
+  <BET position="1" amount="2000"/>
+  <BET position="3" amount="2000"/>
+  <BET position="4" amount="2000"/>
+  <FOLD position="6"/>
+  <BET position="7" amount="2000"/>
+  <SWEEP rake="0" tax="0">35000</SWEEP>
+  <COMMUNITY>Qh</COMMUNITY>
+  <BET position="7" amount="0"/>
+  <BET position="9" amount="0"/>
+  <BET position="1" amount="0"/>
+  <BET position="3" amount="0"/>
+  <BET position="4" amount="0"/>
+  <SWEEP rake="0" tax="0">35000</SWEEP>
+  <COMMUNITY>7h</COMMUNITY>
+  <FOLD position="7"/>
+  <BET position="9" amount="0"/>
+  <BET position="1" amount="0"/>
+  <BET position="3" amount="0"/>
+  <BET position="4" amount="0"/>
+  <SWEEP rake="0" tax="0">35000</SWEEP>
+  <SHOW position="9">5h, 5d</SHOW>
+  <SHOW position="1">Jd, Kd</SHOW>
+  <SHOW position="3">Kc, 10h</SHOW>
+  <SHOW position="4">Kh, 6h</SHOW>
+  <WIN position="3" amount="35000" pot="0" potAmount="35000"/>
+</HAND>
+

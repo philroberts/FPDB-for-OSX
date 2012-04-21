@@ -230,13 +230,20 @@ class Everest(HandHistoryConverter):
         pass # ???
 
     def readBlinds(self, hand):
+        i = 0
         for a in self.re_PostXB.finditer(hand.handText):
             amount = "%.2f" % float(float(a.group('XB'))/100)
-            #print "DEBUG: handid %s readBlinds amount: %s sb: %s bb: %s" % (hand.handid, amount, str(Decimal(self.info['sb'])), str(Decimal(self.info['bb'])))
-            if Decimal(a.group('XB'))/100 == Decimal(self.info['sb']):
+            both = "%.2f" % (float(float(a.group('PENALTY'))/100) + float(float(a.group('XB'))/100))
+            if i==0 and Decimal(a.group('XB'))/100 == Decimal(hand.gametype['sb'])*2:
+                hand.gametype['sb'] = str(Decimal(a.group('XB'))/100)
+                hand.gametype['bb'] = str(Decimal(a.group('XB'))/50)
+                i += 1            
+            if Decimal(a.group('XB'))/100 == Decimal(hand.gametype['sb']):
                 hand.addBlind(self.playerNameFromSeatNo(a.group('PSEAT'), hand),'small blind', amount)
-            elif Decimal(a.group('XB'))/100 == Decimal(self.info['bb']):
+            elif Decimal(a.group('XB'))/100 == Decimal(hand.gametype['bb']) and a.group('PENALTY')=='0':
                 hand.addBlind(self.playerNameFromSeatNo(a.group('PSEAT'), hand),'big blind', amount)
+            elif Decimal(a.group('XB'))/100 == Decimal(hand.gametype['bb']) and a.group('PENALTY')!='0':
+                hand.addBlind(self.playerNameFromSeatNo(a.group('PSEAT'), hand),'both', both)
 
     def readButton(self, hand):
         hand.buttonpos = int(self.re_Button.search(hand.handText).group('BUTTON'))
