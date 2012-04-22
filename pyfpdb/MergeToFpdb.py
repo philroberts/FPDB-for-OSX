@@ -669,6 +669,7 @@ or None if we fail to get the info """
             street = 'PREFLOP'
         elif hand.gametype['base'] == 'draw':
             street = 'DEAL'
+        allinBlinds = {}
         blindsantes = hand.handText.split(street)[0]
         bb, sb = None, None
         for a in self.re_PostSB.finditer(blindsantes):
@@ -711,8 +712,9 @@ or None if we fail to get the info """
                         if not hand.gametype['sb'] or hand.gametype['secondGame']:
                             hand.gametype['sb'] = sb
                     elif action.group('BET') == '0.00':
-                        log.error(_(_("MergeToFpdb.readBlinds: Cannot calcualte tourney all-in blind for hand '%s'")) % hand.handid)
-                        raise FpdbParseError
+                        allinBlinds[player] = 'small blind'
+                        #log.error(_(_("MergeToFpdb.readBlinds: Cannot calcualte tourney all-in blind for hand '%s'")) % hand.handid)
+                        #raise FpdbParseError
                 elif sb and bb is None:
                     if action.group('BET') and action.group('BET')!= '0.00':
                         bb = action.group('BET')
@@ -721,11 +723,12 @@ or None if we fail to get the info """
                         if not hand.gametype['bb'] or hand.gametype['secondGame']:
                             hand.gametype['bb'] = bb
                     elif action.group('BET') == '0.00':
-                        log.error(_(_("MergeToFpdb.readBlinds: Cannot calcualte tourney all-in blind for hand '%s'")) % hand.handid)
-                        raise FpdbParseError
-        self.fixTourBlinds(hand)
+                        allinBlinds[player] = 'big blind'
+                        #log.error(_(_("MergeToFpdb.readBlinds: Cannot calcualte tourney all-in blind for hand '%s'")) % hand.handid)
+                        #raise FpdbParseError
+        self.fixTourBlinds(hand, allinBlinds)
 
-    def fixTourBlinds(self, hand):
+    def fixTourBlinds(self, hand, allinBlinds):
         # FIXME
         # The following should only trigger when a small blind is missing in a tournament, or the sb/bb is ALL_IN
         # see http://sourceforge.net/apps/mantisbt/fpdb/view.php?id=115
@@ -744,6 +747,13 @@ or None if we fail to get the info """
                     hand.gametype['sb'] = str(int(Decimal(hand.gametype['bb']))/2)
             hand.sb = hand.gametype['sb']
             hand.bb = hand.gametype['bb']
+            for player, blindtype in allinBlinds.iteritems():
+                if blindtype=='big blind':
+                    self.adjustMergeTourneyStack(hand, player, hand.bb)
+                    hand.addBlind(player, 'big blind', hand.bb)
+                else:
+                    self.adjustMergeTourneyStack(hand, player, hand.sb)
+                    hand.addBlind(player, 'small blind', hand.sb)
                     
     def mergeMultigametypes(self, handText):
         m2 = self.re_HandInfo.search(handText)
