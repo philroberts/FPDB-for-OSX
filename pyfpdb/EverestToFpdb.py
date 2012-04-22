@@ -243,13 +243,13 @@ class Everest(HandHistoryConverter):
             if i==0 and Decimal(a.group('XB'))/100 == Decimal(hand.gametype['sb'])*2:
                 hand.gametype['sb'] = str(Decimal(a.group('XB'))/100)
                 hand.gametype['bb'] = str(Decimal(a.group('XB'))/50)
-                i += 1            
-            if Decimal(a.group('XB'))/100 == Decimal(hand.gametype['sb']):
+            if i==0:
                 hand.addBlind(self.playerNameFromSeatNo(a.group('PSEAT'), hand),'small blind', amount)
-            elif Decimal(a.group('XB'))/100 == Decimal(hand.gametype['bb']) and a.group('PENALTY')=='0':
+            elif i>0 and a.group('PENALTY')=='0':
                 hand.addBlind(self.playerNameFromSeatNo(a.group('PSEAT'), hand),'big blind', amount)
-            elif Decimal(a.group('XB'))/100 == Decimal(hand.gametype['bb']) and a.group('PENALTY')!='0':
+            elif i>0 and a.group('PENALTY')!='0':
                 hand.addBlind(self.playerNameFromSeatNo(a.group('PSEAT'), hand),'both', both)
+            i += 1
 
     def readButton(self, hand):
         hand.buttonpos = int(self.re_Button.search(hand.handText).group('BUTTON'))
