@@ -411,9 +411,9 @@ class PokerTracker(HandHistoryConverter):
             else:
                 both = Decimal(hand.gametype['bb']) + Decimal(hand.gametype['bb'])/2
                 if both == Decimal(a.group('BB')):
-                    hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
-                else:
                     hand.addBlind(a.group('PNAME'), 'both', a.group('BB'))
+                else:
+                    hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
         for a in self.re_PostBoth.finditer(hand.handText):
             self.adjustMergeTourneyStack(hand, a.group('PNAME'), a.group('SBBB'))
             hand.addBlind(a.group('PNAME'), 'both', a.group('SBBB'))
