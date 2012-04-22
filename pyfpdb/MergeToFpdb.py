@@ -555,6 +555,8 @@ or None if we fail to get the info """
 
         hand.startTime = datetime.datetime.strptime(m.group('DATETIME')[:14],'%Y%m%d%H%M%S')
         hand.startTime = HandHistoryConverter.changeTimezone(hand.startTime, "ET", "UTC")
+        hand.newFormat = datetime.datetime.strptime('20100908000000','%Y%m%d%H%M%S')
+        hand.newFormat = HandHistoryConverter.changeTimezone(hand.newFormat, "ET", "UTC")
         # Check that the hand is complete up to the awarding of the pot; if
         # not, the hand is unparseable
         if self.re_EndOfHand.search(hand.handText) is None:
@@ -838,7 +840,10 @@ or None if we fail to get the info """
                 elif action.group('ATYPE') == 'CALL':
                     hand.addCall(street, player, action.group('BET'))
                 elif action.group('ATYPE') == 'RAISE':
-                    hand.addRaiseTo(street, player, action.group('BET'))
+                    if hand.startTime < hand.newFormat:
+                        hand.addCallandRaise(street, player, action.group('BET'))
+                    else:
+                        hand.addRaiseTo(street, player, action.group('BET'))
                 elif action.group('ATYPE') == 'BET':
                     hand.addBet(street, player, action.group('BET'))
                 elif action.group('ATYPE') == 'ALL_IN':

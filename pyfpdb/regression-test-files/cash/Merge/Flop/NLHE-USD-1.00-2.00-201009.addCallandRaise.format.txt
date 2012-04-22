@@ -1,0 +1,23 @@
+<description type="Holdem" stakes="No Limit ($1/$2)"/>
+<game id="27626183-2" starttime="20100907170630" numholecards="2" gametype="2" realmoney="true" data="20100907:Statue of Liberty (27626183):27626183:27626183-2:false">
+	<players dealer="3">
+		<player seat="0" nickname="Player1" balance="$198.00" dealtin="true" />
+		<player seat="3" nickname="Player0" balance="$201.00" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1283897191968" player="3" amount="1.00"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1283897193136" player="0" amount="2.00"/>
+	</round>
+	<round id="PREFLOP" sequence="2">
+		<event sequence="3" type="RAISE" timestamp="1283897199731" player="3" amount="5.00"/>
+		<event sequence="4" type="FOLD" timestamp="1283897206533" player="0"/>
+		<cards type="HOLE" cards="Jh,6c" player="3" hand="Jack High"/>
+	</round>
+	<round id="END_OF_FOLDED_GAME" sequence="3">
+		<event sequence="5" type="MUCK" timestamp="1283897207009" player="3"/>
+		<winner amount="8.00" uncalled="false" potnumber="1" player="3" pottype="n"/>
+	</round>
+	<round id="END_OF_GAME" sequence="4">
+	</round>
+</game>
+
