@@ -1,0 +1,33 @@
+<SESSION time="1321517025" tableName="49866114-0" id="49866114" type="tournament" money="" screenName="Hero" game="hold-em" gametype="fixed-limit"/>
+<HAND time="1321520555" id="7197400395" index="38" blinds="150/300" stakes="300/600">
+  <SEAT position="0" name="Player1" balance="189000"/>
+  <SEAT position="3" name="Player2" balance="14500"/>
+  <SEAT position="6" name="Player3" balance="220000"/>
+  <SEAT position="7" name="Hero" balance="936000"/>
+  <ANTE position="0" amount="3000"/>
+  <ANTE position="3" amount="3000"/>
+  <ANTE position="6" amount="3000"/>
+  <ANTE position="7" amount="3000"/>
+  <SWEEP rake="0" tax="0">12000</SWEEP>
+  <DEALER position="7"/>
+  <BLIND position="0" amount="15000" penalty="0"/>
+  <BLIND position="3" amount="11500" penalty="0"/>
+  <HOLE position="0">--</HOLE>
+  <HOLE position="3">--</HOLE>
+  <HOLE position="6">--</HOLE>
+  <HOLE position="7">9h</HOLE>
+  <HOLE position="0">--</HOLE>
+  <HOLE position="3">--</HOLE>
+  <HOLE position="6">--</HOLE>
+  <HOLE position="7">8c</HOLE>
+  <FOLD position="6"/>
+  <FOLD position="7"/>
+  <PUSH position="0" amount="3500"/>
+  <SWEEP rake="0" tax="0">35000</SWEEP>
+  <SHOW position="0">5d, 6s</SHOW>
+  <SHOW position="3">8d, 9d</SHOW>
+  <COMMUNITY>8s, 9c, Jh, 6c, 3s</COMMUNITY>
+  <SHOW position="0">5d, 6s</SHOW>
+  <SHOW position="3">8d, 9d</SHOW>
+  <WIN position="3" amount="35000" pot="0" potAmount="35000"/>
+</HAND>
