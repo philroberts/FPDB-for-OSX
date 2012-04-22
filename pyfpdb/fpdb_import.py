@@ -479,7 +479,7 @@ class Importer:
                 handlist = hhc.getProcessedHands()
                 self.pos_in_file[file] = hhc.getLastCharacterRead()
                 (phands, ihands, to_hud) = ([], [], [])
-                self.database.resetBulkCache()
+                self.database.resetBulkCache(True)
                 
                 ####Lock Placeholder####
                 for hand in handlist:
