@@ -526,11 +526,16 @@ or None if we fail to get the info """
         hand.handid = m.group('HID1') + m.group('HID2')
 
         if hand.gametype['type'] == 'tour':
-            tid = m.group('TDATA').split('-')[0]
-            hand.tourNo = tid
-            hand.tablename = m.group('TABLENAME').replace('  - ', ' - ').strip()
-            self.info['tablename'] = hand.tablename
+            tid_table = m.group('TDATA').split('-')
+            tid = tid_table[0]
+            if len(tid_table)>1:
+                table = tid_table[1]
+            else:
+                table = '0'
+            self.info['tablename'] = m.group('TABLENAME').replace('  - ', ' - ').strip()
             self.info['tourNo'] = hand.tourNo
+            hand.tourNo = tid
+            hand.tablename = table
             if self.info['tablename'] in self.SnG_Structures:
                 hand.buyin = int(100*self.SnG_Structures[self.info['tablename']]['buyIn'])
                 hand.fee   = int(100*self.SnG_Structures[self.info['tablename']]['fee'])
