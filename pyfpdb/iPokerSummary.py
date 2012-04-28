@@ -52,7 +52,7 @@ class iPokerSummary(TourneySummary):
     re_GameType = re.compile(r"""
             <gametype>(?P<GAME>7\sCard\sStud\sL|Holdem\sNL|Holdem\sL|Omaha\s(PL|LP)|Omaha\sL|Omaha\sHi\-Lo\s(PL|LP))(\s(%(LS)s)(?P<SB>[.0-9]+)/(%(LS)s)(?P<BB>[.0-9]+))?</gametype>\s+?
             <tablename>(?P<TABLE>.+)?</tablename>\s+?
-            (<tablecurrency>.+</tablecurrency>\s+?)?
+            (<(tablecurrency|tournamentcurrency)>.+</(tablecurrency|tournamentcurrency)>\s+?)?
             <duration>.+</duration>\s+?
             <gamecount>.+</gamecount>\s+?
             <startdate>(?P<DATETIME>.+)</startdate>\s+?

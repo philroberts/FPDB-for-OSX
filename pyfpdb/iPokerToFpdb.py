@@ -108,7 +108,7 @@ class iPoker(HandHistoryConverter):
     re_GameInfo = re.compile(r"""(?P<HEAD>
             <gametype>(?P<GAME>(5|7)\sCard\sStud\sL|Holdem\s(NL|SL|L)|Omaha\s(PL|LP)|Omaha\sL|Omaha\sHi\-Lo\s(PL|LP))(\s(%(LS)s)?(?P<SB>[%(NUM)s]+)/(%(LS)s)?(?P<BB>[%(NUM)s]+))?</gametype>\s+?
             <tablename>(?P<TABLE>.+)?</tablename>\s+?
-            (<tablecurrency>.+</tablecurrency>\s+?)?
+            (<(tablecurrency|tournamentcurrency)>.+</(tablecurrency|tournamentcurrency)>\s+?)?
             <duration>.+</duration>\s+?
             <gamecount>.+</gamecount>\s+?
             <startdate>.+</startdate>\s+?
