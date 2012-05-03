@@ -35,6 +35,7 @@ class Boss(HandHistoryConverter):
     siteId   = 4
     
     Lim_Blinds = {      '4.00': ('1.00', '2.00'),       '4': ('1.00', '2.00'),
+                       '20.00': ('5.00', '10.00'),     '20': ('5.00', '10.00'),
                   }
 
     # Static regexes
