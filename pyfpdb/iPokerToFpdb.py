@@ -124,7 +124,7 @@ class iPoker(HandHistoryConverter):
             """ % substitutions, re.MULTILINE|re.VERBOSE)
     re_Buyin = re.compile(r"""(?P<BUYIN>[%(NUM)s]+)""" % substitutions, re.MULTILINE|re.VERBOSE)
     re_TotalBuyin  = re.compile(r"""(?P<BUYIN>(?P<BIAMT>[%(LS)s%(NUM)s]+)\s\+\s?(?P<BIRAKE>[%(LS)s%(NUM)s]+)?)""" % substitutions, re.MULTILINE|re.VERBOSE)
-    re_HandInfo = re.compile(r'code="(?P<HID>[0-9]+)">\s+<general>\s+<startdate>(?P<DATETIME>[-/: 0-9]+)</startdate>', re.MULTILINE)
+    re_HandInfo = re.compile(r'code="(?P<HID>[0-9]+)">\s+<general>\s+<startdate>(?P<DATETIME>[a-zA-Z-/: 0-9]+)</startdate>', re.MULTILINE)
     re_PlayerInfo = re.compile(r'<player seat="(?P<SEAT>[0-9]+)" name="(?P<PNAME>[^"]+)" chips="(%(LS)s)(?P<CASH>[%(NUM)s]+)" dealer="(?P<BUTTONPOS>(0|1))" win="(%(LS)s)(?P<WIN>[%(NUM)s]+)" (bet="(%(LS)s)(?P<BET>[^"]+))?' % substitutions, re.MULTILINE)
     re_Board = re.compile(r'<cards type="(?P<STREET>Flop|Turn|River)" player="">(?P<CARDS>.+?)</cards>', re.MULTILINE)
     re_EndOfHand = re.compile(r'<round id="END_OF_GAME"', re.MULTILINE)
@@ -135,7 +135,8 @@ class iPoker(HandHistoryConverter):
     re_Action = re.compile(r'<action no="(?P<ACT>[0-9]+)" player="(?P<PNAME>[^"]+)" type="(?P<ATYPE>\d+)" sum="(%(LS)s)(?P<BET>[%(NUM)s]+)"' % substitutions, re.MULTILINE)
     re_Ante   = re.compile(r'<action no="[0-9]+" player="(?P<PNAME>[^"]+)" type="(?P<ATYPE>15)" sum="(%(LS)s)(?P<BET>[%(NUM)s]+)" cards="' % substitutions, re.MULTILINE)
     re_SitsOut = re.compile(r'<event sequence="[0-9]+" type="SIT_OUT" player="(?P<PSEAT>[0-9])"/>', re.MULTILINE)
-    re_DateTime = re.compile("""(?P<D>[0-9]{2})\/(?P<M>[0-9]{2})\/(?P<Y>[0-9]{4})\s+(?P<H>[0-9]+):(?P<MIN>[0-9]+)(:(?P<S>[0-9]+))?""", re.MULTILINE)
+    re_DateTime1 = re.compile("""(?P<D>[0-9]{2})\-(?P<M>[a-zA-Z]{3})\-(?P<Y>[0-9]{4})\s+(?P<H>[0-9]+):(?P<MIN>[0-9]+)(:(?P<S>[0-9]+))?""", re.MULTILINE)
+    re_DateTime2 = re.compile("""(?P<D>[0-9]{2})\/(?P<M>[0-9]{2})\/(?P<Y>[0-9]{4})\s+(?P<H>[0-9]+):(?P<MIN>[0-9]+)(:(?P<S>[0-9]+))?""", re.MULTILINE)
     re_MaxSeats = re.compile(r'(?P<SEATS>[0-9]+) Max', re.MULTILINE)
     
     def compilePlayerRegexs(self, hand):
@@ -268,26 +269,35 @@ class iPoker(HandHistoryConverter):
         mg = m.groupdict()
         #print "DEBUG: m.groupdict(): %s" % mg
         hand.tablename = self.tablename
-        m3 = self.re_MaxSeats.search(self.tablename)
-        if m3: 
-            seats = int(m3.group('SEATS'))
+        m1 = self.re_MaxSeats.search(self.tablename)
+        if m1: 
+            seats = int(m1.group('SEATS'))
             if seats > 1 and seats < 11:
                 hand.maxseats = seats
         hand.handid = m.group('HID')
-        try:
-            hand.startTime = datetime.datetime.strptime(m.group('DATETIME'), '%Y-%m-%d %H:%M:%S')
-        except ValueError:
-            datestr = '%d/%m/%Y %H:%M:%S'
-            date_match = self.re_DateTime.search(m.group('DATETIME'))
-            if date_match.group('S') == None:
-                datestr = '%d/%m/%Y %H:%M'
-            hand.startTime = datetime.datetime.strptime(m.group('DATETIME'), datestr)
-
-        if self.info['type'] == 'tour':
-            hand.tourNo = self.tinfo['tourNo']
-            hand.buyinCurrency = self.tinfo['buyinCurrency']
-            hand.buyin = self.tinfo['buyin']
-            hand.fee = self.tinfo['fee']
+        m2 = self.re_DateTime1.search(m.group('DATETIME'))
+        if m2:
+            month = self.months[m2.group('M')]
+            sec = m2.group('S')
+            if m2.group('S') == None:
+                sec = '00'
+            datetimestr = "%s/%s/%s %s:%s:%s" % (m2.group('Y'), month,m2.group('D'),m2.group('H'),m2.group('MIN'),sec)
+            hand.startTime = datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S")
+        else:
+            try:
+                hand.startTime = datetime.datetime.strptime(m.group('DATETIME'), '%Y-%m-%d %H:%M:%S')
+            except ValueError:
+                datestr = '%d/%m/%Y %H:%M:%S'
+                date_match = self.re_DateTime2.search(m.group('DATETIME'))
+                if date_match.group('S') == None:
+                    datestr = '%d/%m/%Y %H:%M'
+                hand.startTime = datetime.datetime.strptime(m.group('DATETIME'), datestr)
+    
+            if self.info['type'] == 'tour':
+                hand.tourNo = self.tinfo['tourNo']
+                hand.buyinCurrency = self.tinfo['buyinCurrency']
+                hand.buyin = self.tinfo['buyin']
+                hand.fee = self.tinfo['fee']
 
     def readPlayerStacks(self, hand):
         self.playerWinnings = {}

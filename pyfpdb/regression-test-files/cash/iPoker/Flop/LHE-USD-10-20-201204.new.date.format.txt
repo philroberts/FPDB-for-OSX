@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+	<session sessioncode="3758683751">  
+			<general>  
+	    	<mode>real</mode>
+	      		<gametype>Holdem L $10/$20</gametype>  
+	          <tablename>Lauterbach, 669831861</tablename>  
+	          <duration>01:34</duration>  
+	          <gamecount>47</gamecount>  
+	          <startdate>20-Apr-2012 20:42:31</startdate>  
+	          <currency>USD</currency>  
+	          <nickname>Player0</nickname>  
+	          <bets>$1,855</bets>  
+	          <wins>$2,504.66</wins>  
+	          <chipsin>$341</chipsin>
+			  		<chipsout>$990.66</chipsout>
+			  		<ipoints>701.80</ipoints>
+        		<statuspoints>501.26</statuspoints>
+			  		<awardpoints>701.80</awardpoints>
+	            
+	    </general>  
+	    <game gamecode="3256372946">
+		 <general>
+		  <startdate>20-Apr-2012 20:42:31</startdate>		  
+		  <players>
+		   <player seat="4" name="Player1" chips="$200" dealer="0" win="$0" bet="$70" rebuy="0" addon="0"/><player seat="7" name="Player0" chips="$100" dealer="1" win="$139" bet="$70" rebuy="0" addon="0"/>
+		  </players>
+		 </general>
+		 <round no="0">
+	 <action no="2" player="Player1" type="2" sum="$10" cards="[cards]"/><action no="1" player="Player0" type="1" sum="$5" cards="[cards]"/>
+	</round>
+	<round no="1">
+	 <cards type="Pocket" player="Player1">H8 SA</cards><action no="4" player="Player1" type="3" sum="$10" cards=""/><cards type="Pocket" player="Player0">H3 S4</cards><action no="3" player="Player0" type="23" sum="$20" cards=""/>
+	</round>
+	<round no="2">
+	 <cards type="Flop" player="">H5 C4 D10</cards><action no="5" player="Player1" type="4" sum="$0" cards=""/><action no="7" player="Player1" type="3" sum="$10" cards=""/><action no="6" player="Player0" type="5" sum="$10" cards=""/>
+	</round>
+	<round no="3">
+	 <cards type="Turn" player="">C5</cards><action no="8" player="Player1" type="4" sum="$0" cards=""/><action no="10" player="Player1" type="3" sum="$20" cards=""/><action no="9" player="Player0" type="5" sum="$20" cards=""/>
+	</round>
+	<round no="4">
+	 <cards type="River" player="">D4</cards><action no="11" player="Player1" type="4" sum="$0" cards=""/><action no="13" player="Player1" type="3" sum="$20" cards=""/><action no="12" player="Player0" type="5" sum="$20" cards=""/>
+	</round>
