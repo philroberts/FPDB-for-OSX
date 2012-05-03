@@ -101,6 +101,8 @@ class iPoker(HandHistoryConverter):
                      '1000.00': ('250.00', '500.00'),  '1000': ('250.00', '500.00'),
                      '2000.00': ('500.00', '1000.00'), '2000': ('500.00', '1000.00'),
                   }
+    
+    months = { 'Jan':1, 'Feb':2, 'Mar':3, 'Apr':4, 'May':5, 'Jun':6, 'Jul':7, 'Aug':8, 'Sep':9, 'Oct':10, 'Nov':11, 'Dec':12}
 
     # Static regexes
     re_SplitHands = re.compile(r'</game>')
