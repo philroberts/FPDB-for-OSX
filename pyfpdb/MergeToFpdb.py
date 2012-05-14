@@ -767,12 +767,13 @@ or None if we fail to get the info """
             tmp = handText[0:200]
             log.error(_("MergeToFpdb.readHandInfo: '%s'") % tmp)
             raise FpdbParseError
-        try:
-            (self.info['base'], self.info['category']) = self.Multigametypes[m2.group('MULTIGAMETYPE')]
-        except KeyError:
-            tmp = handText[0:200]
-            log.error(_("MergeToFpdb.determineGameType: Multigametypes has no lookup for '%s'") % m2.group('MULTIGAMETYPE'))
-            raise FpdbParseError
+        if m2.group('MULTIGAMETYPE'):
+            try:
+                (self.info['base'], self.info['category']) = self.Multigametypes[m2.group('MULTIGAMETYPE')]
+            except KeyError:
+                tmp = handText[0:200]
+                log.error(_("MergeToFpdb.determineGameType: Multigametypes has no lookup for '%s'") % m2.group('MULTIGAMETYPE'))
+                raise FpdbParseError
                     
     def adjustMergeTourneyStack(self, hand, player, amount):
         amount = Decimal(amount)
