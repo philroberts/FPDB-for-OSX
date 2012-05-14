@@ -36,6 +36,8 @@ class iPokerSummary(TourneySummary):
 
     limits = { 'No Limit':'nl', 'Pot Limit':'pl', 'Limit':'fl', 'LIMIT':'fl' }
     
+    months = { 'Jan':1, 'Feb':2, 'Mar':3, 'Apr':4, 'May':5, 'Jun':6, 'Jul':7, 'Aug':8, 'Sep':9, 'Oct':10, 'Nov':11, 'Dec':12}
+    
     games = {              # base, category
                 '7 Card Stud L' : ('stud','studhi'),
                 '5 Card Stud L' : ('stud','5studhi'),
@@ -109,14 +111,23 @@ class iPokerSummary(TourneySummary):
             else:
                 self.gametype['limitType'] = 'fl'
 
-        try:
-            self.startTime = datetime.datetime.strptime(mg['DATETIME'], '%Y-%m-%d %H:%M:%S')
-        except ValueError:
-            datestr = '%d/%m/%Y %H:%M:%S'
-            date_match = self.re_DateTime.search(m.group('DATETIME'))
-            if date_match.group('S') == None:
-                datestr = '%d/%m/%Y %H:%M'
-            self.startTime = datetime.datetime.strptime(m.group('DATETIME'), datestr)
+        m2 = self.re_DateTime1.search(mg['DATETIME'])
+        if m2:
+            month = self.months[m2.group('M')]
+            sec = m2.group('S')
+            if m2.group('S') == None:
+                sec = '00'
+            datetimestr = "%s/%s/%s %s:%s:%s" % (m2.group('Y'), month,m2.group('D'),m2.group('H'),m2.group('MIN'),sec)
+            self.startTime = datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S")
+        else:
+            try:
+                hand.startTime = datetime.datetime.strptime(mg['DATETIME'], '%Y-%m-%d %H:%M:%S')
+            except ValueError:
+                datestr = '%d/%m/%Y %H:%M:%S'
+                date_match = self.re_DateTime2.search(mg['DATETIME'])
+                if date_match.group('S') == None:
+                    datestr = '%d/%m/%Y %H:%M'
+                self.startTime = datetime.datetime.strptime(mg['DATETIME'], datestr)
 
         if not mg['CURRENCY'] or mg['CURRENCY']=='fun':
             self.buyinCurrency = 'play'
