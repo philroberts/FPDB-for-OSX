@@ -172,7 +172,6 @@ class iPoker(HandHistoryConverter):
             # and subsequent hands. In these cases we use the value previously
             # stored.
             try:
-                self.info
                 return self.info
             except AttributeError:
                 tmp = handText[0:200]
