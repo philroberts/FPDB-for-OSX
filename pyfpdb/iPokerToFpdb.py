@@ -295,11 +295,11 @@ class iPoker(HandHistoryConverter):
                     datestr = '%d/%m/%Y %H:%M'
                 hand.startTime = datetime.datetime.strptime(m.group('DATETIME'), datestr)
     
-            if self.info['type'] == 'tour':
-                hand.tourNo = self.tinfo['tourNo']
-                hand.buyinCurrency = self.tinfo['buyinCurrency']
-                hand.buyin = self.tinfo['buyin']
-                hand.fee = self.tinfo['fee']
+        if self.info['type'] == 'tour':
+            hand.tourNo = self.tinfo['tourNo']
+            hand.buyinCurrency = self.tinfo['buyinCurrency']
+            hand.buyin = self.tinfo['buyin']
+            hand.fee = self.tinfo['fee']
 
     def readPlayerStacks(self, hand):
         self.playerWinnings = {}
