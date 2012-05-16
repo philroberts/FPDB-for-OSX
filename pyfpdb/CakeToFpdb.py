@@ -76,7 +76,7 @@ class Cake(HandHistoryConverter):
     re_GameInfo     = re.compile(u"""
           Hand\#(?P<HID>[0-9]+)\s+\-\s+
           (?P<TABLE>[\-\ \#a-zA-Z\d\']+?)(\s\-)?\s
-          (\((Turbo\s)?(?P<MAX>\d+)\-max\)\s)?
+          (\((Turbo\s)?(?P<MAX>\d+)\-[Mm]ax\)\s)?
           (Turbo\s\((?P<TMAX>\d)\sChips\)\s)?
           (?P<TOURNO>T\d+)?(\d+)?\s(\-\-\sTable\s\d\s)?\-\-\s
           (?P<CURRENCY>%(LS)s|)?
