@@ -105,10 +105,8 @@ class PartyPoker(HandHistoryConverter):
             """ % substitutions, re.VERBOSE | re.UNICODE)
 
     re_HandInfo     = re.compile("""
-            ^Table\s+(?P<TTYPE>.+?)?\s+
-            (?: \#|\(|)(?P<TABLE>\d+)\)?\s+
-            (?:[a-zA-Z0-9 ]+\s+\#(?P<MTTTABLE>\d+).+)?
-            (\(No\sDP\)\s)?
+            ^Table\s+(?P<TABLE>.+?)?\s+
+            (\(No\sDP\)\s+)?
             \((?P<PLAY>Real|Play)\s+Money\)\s+(--\s*)? # FIXME: check if play money is correct
             Seat\s+(?P<BUTTON>\d+)\sis\sthe\sbutton
             \s+Total\s+number\s+of\s+players\s+\:\s+(?P<PLYRS>\d+)/?(?P<MAX>\d+)?
@@ -332,10 +330,6 @@ class PartyPoker(HandHistoryConverter):
                 hand.handid = info[key]
             if key == 'TABLE':
                 hand.tablename = info[key]
-            if key == 'MTTTABLE':
-                if info[key] != None:
-                    hand.tablename = info[key]
-                    hand.tourNo = info['TABLE']
             if key == 'BUTTON':
                 hand.buttonpos = info[key]
             if key == 'TOURNO':
