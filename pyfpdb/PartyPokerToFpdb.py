@@ -105,8 +105,9 @@ class PartyPoker(HandHistoryConverter):
             """ % substitutions, re.VERBOSE | re.UNICODE)
 
     re_HandInfo     = re.compile("""
-            ^Table\s+(?P<TABLE>.+?)?\s+
-            (\(No\sDP\)\s+)?
+            ^Table\s(?P<TABLE>.+?)?\s+
+            ((?: \#|\(|)(?P<TABLENO>\d+)\)?\s+)?
+            (\(No\sDP\)\s)?
             \((?P<PLAY>Real|Play)\s+Money\)\s+(--\s*)? # FIXME: check if play money is correct
             Seat\s+(?P<BUTTON>\d+)\sis\sthe\sbutton
             \s+Total\s+number\s+of\s+players\s+\:\s+(?P<PLYRS>\d+)/?(?P<MAX>\d+)?
@@ -329,7 +330,13 @@ class PartyPoker(HandHistoryConverter):
             if key == 'HID':
                 hand.handid = info[key]
             if key == 'TABLE':
-                hand.tablename = info[key]
+                if 'TOURNO' in info and info['TOURNO'] is None:
+                    if info['TABLENO'] is not None:
+                         hand.tablename = info[key] + ' ' + info['TABLENO']
+                    else:
+                        hand.tablename = info[key]
+                else:
+                    hand.tablename = info['TABLENO']
             if key == 'BUTTON':
                 hand.buttonpos = info[key]
             if key == 'TOURNO':
