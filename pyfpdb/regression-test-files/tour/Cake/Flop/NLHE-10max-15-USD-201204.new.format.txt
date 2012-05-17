@@ -1,0 +1,45 @@
+﻿ï»¿Hand#2930A7507F000252 - $2,500 Guaranteed - R&A T10965119 -- CASH -- $15 + $1.5 -- 10 Max -- Table 5 -- 0/75/150 NL Hold'em -- 2012/04/12 - 22:32:06
+Dealer: Seat 8
+Seat 1: Player9 (2,820 in chips) 
+Seat 2: Player1 (4,160 in chips) 
+Seat 3: Player4 (2,550 in chips) 
+Seat 4: Player8 (950 in chips) 
+Seat 5: Player3 (5,749 in chips) 
+Seat 6: Hero (3,000 in chips) 
+Seat 7: Player0 (3,231 in chips) 
+Seat 8: Player7 (4,800 in chips) 
+Seat 9: Player2 (6,330 in chips) 
+Seat 10: Player5 (2,675 in chips) 
+Player2: posts small blind 75
+Player5: posts big blind 150
+Dealt to Hero [3d,Qd]
+Player9: folds
+Player1: folds
+Player4: raises to 300
+Player8: folds
+Player3: folds
+Hero: folds
+Player0: folds
+Player7: folds
+Player2: calls 225
+Player5: calls 150
+*** FLOP *** [Ac,9d,Ks]
+Player2: checks
+Player5: checks
+Player4: bets 450
+Player2: calls 450
+Player5: is all in 2,375
+Player4: is all in 1,800
+Player2: calls 1,925
+Player4: shows [9h 7h]
+Player2: shows [As Qc]
+Player5: shows [8h Ad]
+*** TURN *** [8s]
+*** RIVER *** [6h]
+***SHOW DOWN***
+Player5 wins 250 with Two Pairs Aces and Eights   
+***SHOW DOWN***
+Player5 wins 7,650 with Two Pairs Aces and Eights   
+Player4 rebuys 3000 chips
+
+

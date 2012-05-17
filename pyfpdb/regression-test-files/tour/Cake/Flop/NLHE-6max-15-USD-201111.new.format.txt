@@ -1,0 +1,22 @@
+﻿Hand#27719D48CA000003 - $15 NLH 6 max Double-up T10307786 -- Table 1 -- 0/10/20 NL Hold'em -- 2011/11/06 - 13:28:31
+Seat 1: Hero (1,500 in chips) 
+Seat 2: Player1 (1,220 in chips) 
+Seat 3: Player4 (1,500 in chips) DEALER
+Seat 8: Player2 (1,480 in chips) 
+Seat 9: Player0 (1,500 in chips) 
+Seat 10: Player3 (1,800 in chips) 
+Player2: posts small blind 10
+Player0: posts big blind 20
+Dealt to Hero [3h,Tc]
+Player3: folds
+Hero: folds
+Player1: folds
+Player4: folds
+Player2: raises to 60
+Player0: folds
+Player2: returns uncalled bet 40
+***SHOW DOWN***
+Player2: mucks
+Player2 wins 40 
+
+

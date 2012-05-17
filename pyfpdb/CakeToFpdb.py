@@ -74,11 +74,10 @@ class Cake(HandHistoryConverter):
 
     # Static regexes
     re_GameInfo     = re.compile(u"""
-          Hand\#(?P<HID>[0-9]+)\s+\-\s+
-          (?P<TABLE>[\-\ \#a-zA-Z\d\']+?)(\s\-)?\s
-          (\((Turbo\s)?(?P<MAX>\d+)\-[Mm]ax\)\s)?
-          (Turbo\s\((?P<TMAX>\d)\sChips\)\s)?
-          (?P<TOURNO>T\d+)?(\d+)?\s(\-\-\sTable\s\d\s)?\-\-\s
+          Hand\#(?P<HID>[A-Z0-9]+)\s+\-\s+
+          (?P<TABLE>(?P<BUYIN1>(?P<BIAMT1>(%(LS)s)[%(NUM)s]+)\sNLH\s(?P<MAX1>\d+)\smax)?.+?)\s(\((?P<MAX>\d+)\-[Mm]ax\)\s)?((?P<TOURNO>T\d+)|\d+)\s
+          (\-\-\s(TICKET)?CASH\s\-\-\s(?P<BUYIN>(?P<BIAMT>(%(LS)s)[%(NUM)s]+)\s\+\s(?P<BIRAKE>(%(LS)s)[%(NUM)s]+))\s\-\-\s(?P<TMAX>\d+)\sMax\s)?
+          (\-\-\sTable\s\d+\s)?\-\-\s
           (?P<CURRENCY>%(LS)s|)?
           (?P<ANTESB>[%(NUM)s]+)/(%(LS)s)?
           (?P<SBBB>[%(NUM)s]+)
@@ -199,7 +198,7 @@ class Cake(HandHistoryConverter):
                 hand.startTime = datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S")
                 hand.startTime = HandHistoryConverter.changeTimezone(hand.startTime, "ET", "UTC")
             if key == 'HID':
-                hand.handid = info[key]
+                hand.handid = re.sub('[A-Z]+', '', info[key])
             if key == 'TABLE':
                 hand.tablename = info[key]
             if key == 'BUTTON':
@@ -210,8 +209,34 @@ class Cake(HandHistoryConverter):
                 hand.tourNo = info[key].replace('T', '')
             if key == 'TMAX' and info[key]:
                 hand.maxseats = int(info[key])
+            if key == 'TMAX1' and info[key]:
+                hand.maxseats = int(info[key])
+            if (key == 'BUYIN' or key == 'BUYIN1') and info[key]:
+                if hand.tourNo!=None:
+                    if info[key].find("$")!=-1:
+                        hand.buyinCurrency="USD"
+                    elif info[key].find(u"£")!=-1:
+                        hand.buyinCurrency="GBP"
+                    elif info[key].find(u"€")!=-1:
+                        hand.buyinCurrency="EUR"
+                    elif re.match("^[0-9+]*$", info[key]):
+                        hand.buyinCurrency="play"
+                    else:
+                        #FIXME: handle other currencies, play money
+                        log.error(_("CakeToFpdb.readHandInfo: Failed to detect currency.") + " Hand ID: %s: '%s'" % (hand.handid, info[key]))
+                        raise FpdbParseError
+                    
+                    if key == 'BUYIN1':
+                        info['BIAMT1']  = info['BIAMT1'].strip(u'$€£')
+                        hand.buyin = int(100*Decimal(info['BIAMT1']))
+                        hand.fee = 0
+                    else:
+                        info['BIAMT']  = info['BIAMT'].strip(u'$€£')
+                        info['BIRAKE'] = info['BIRAKE'].strip(u'$€£')
+                        hand.buyin = int(100*Decimal(info['BIAMT']))
+                        hand.fee = int(100*Decimal(info['BIRAKE']))
                 
-        if hand.gametype['type'] == 'tour':
+        if hand.gametype['type'] == 'tour' and not hand.buyin:
             hand.buyin = 0
             hand.fee = 0
             hand.buyinCurrency="NA"
