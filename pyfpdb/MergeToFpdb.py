@@ -447,6 +447,19 @@ class Merge(HandHistoryConverter):
                 ["tour", "draw", "nl"],
                 ]
 
+    def parseHeader(self, handText, whole_file):
+        gametype = self.determineGameType(handText)
+        if gametype is None:
+            gametype = self.determineGameType(whole_file)
+            if gametype is None:
+                tmp = handText[0:200]
+                log.error(_("MergeToFpdb.determineGameType: '%s'") % tmp)
+                raise FpdbParseError
+            else:
+                if 'mix' in gametype and gametype['mix']!=None:
+                    self.mergeMultigametypes(handText)
+        return gametype        
+
     def determineGameType(self, handText):
         """return dict with keys/values:
     'type'       in ('ring', 'tour')
@@ -462,19 +475,7 @@ class Merge(HandHistoryConverter):
 or None if we fail to get the info """
 
         m = self.re_GameInfo.search(handText)
-        if not m:
-            # Information about the game type appears only at the beginning of
-            # a hand history file; hence it is not supplied with the second
-            # and subsequent hands. In these cases we use the value previously
-            # stored.
-            try:
-                if self.info['mix']!=None:
-                    self.mergeMultigametypes(handText)
-                return self.info
-            except AttributeError:
-                tmp = handText[0:200]
-                log.error(_("MergeToFpdb.determineGameType: '%s'") % tmp)
-                raise FpdbParseError
+        if not m: return None
 
         self.info = {}
         mg = m.groupdict()

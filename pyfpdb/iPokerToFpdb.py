@@ -163,23 +163,24 @@ class iPoker(HandHistoryConverter):
                 ["tour", "stud", "fl"],
                 ]
 
-    def determineGameType(self, handText):
-        tourney = False
-        m = self.re_GameInfo.search(handText)
-        if not m:
-            # Information about the game type appears only at the beginning of
-            # a hand history file; hence it is not supplied with the second
-            # and subsequent hands. In these cases we use the value previously
-            # stored.
-            try:
-                return self.info
-            except AttributeError:
+    def parseHeader(self, handText, whole_file):
+        gametype = self.determineGameType(handText)
+        if gametype is None:
+            gametype = self.determineGameType(whole_file)
+            if gametype is None:
                 tmp = handText[0:200]
                 log.error(_("iPokerToFpdb.determineGameType: '%s'") % tmp)
                 raise FpdbParseError
+        return gametype
+
+    def determineGameType(self, handText):
+        
+        m = self.re_GameInfo.search(handText)
+        if not m: return None
 
         self.info = {}
         mg = m.groupdict()
+        tourney = False
         #print "DEBUG: m.groupdict(): %s" % mg
         if 'GAME' in mg:
             (self.info['base'], self.info['category']) = self.games[mg['GAME']]

@@ -91,26 +91,21 @@ class Everest(HandHistoryConverter):
                 ["tour", "hold", "pl"]
                ]
 
-    def determineGameType(self, handText):
-        m = self.re_GameInfo.search(handText)
-        m2 = self.re_HandInfo.search(handText)
-        if not m:
-            # Information about the game type appears only at the beginning of
-            # a hand history file; hence it is not supplied with the second
-            # and subsequent hands. In these cases we use the value previously
-            # stored.
-            try:
-                self.info
-                return self.info
-            except AttributeError:
+    def parseHeader(self, handText, whole_file):
+        gametype = self.determineGameType(handText)
+        if gametype is None:
+            gametype = self.determineGameType(whole_file)
+            if gametype is None:
                 tmp = handText[0:200]
                 log.error(_("EverestToFpdb.determineGameType: Unable to recognise gametype from: '%s'") % tmp)
                 raise FpdbParseError
+        return gametype
 
-        if not m2:
-            tmp = handText[0:200]
-            log.error(_("EverestToFpdb.determineGameType: Unable to recognise hand info from: '%s'") % tmp)
-            raise FpdbParseError
+    def determineGameType(self, handText):
+        
+        m = self.re_GameInfo.search(handText)
+        m2 = self.re_HandInfo.search(handText)
+        if not m or not m2: return None
 
         self.info = {}
         mg = m.groupdict()
