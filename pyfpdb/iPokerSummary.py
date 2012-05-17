@@ -122,7 +122,7 @@ class iPokerSummary(TourneySummary):
             self.startTime = datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S")
         else:
             try:
-                hand.startTime = datetime.datetime.strptime(mg['DATETIME'], '%Y-%m-%d %H:%M:%S')
+                self.startTime = datetime.datetime.strptime(mg['DATETIME'], '%Y-%m-%d %H:%M:%S')
             except ValueError:
                 datestr = '%d/%m/%Y %H:%M:%S'
                 date_match = self.re_DateTime2.search(mg['DATETIME'])
