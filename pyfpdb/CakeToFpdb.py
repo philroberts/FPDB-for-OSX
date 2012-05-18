@@ -144,14 +144,14 @@ class Cake(HandHistoryConverter):
             (info['base'], info['category']) = self.games[mg['GAME']]
         if 'BB' in mg:
             if not mg['BB']:
-                info['bb'] = mg['SBBB']
+                info['bb'] = self.clearMoneyString(mg['SBBB'])
             else:
-                info['bb'] = mg['BB']
+                info['bb'] = self.clearMoneyString(mg['BB'])
         if 'SBBB' in mg:
             if not mg['BB']:
-                info['sb'] = mg['ANTESB']
+                info['sb'] = self.clearMoneyString(mg['ANTESB'])
             else:
-                info['sb'] = mg['SBBB']
+                info['sb'] = self.clearMoneyString(mg['SBBB'])
         if 'CURRENCY' in mg:
             info['currency'] = self.currencies[mg['CURRENCY']]
         if 'MIXED' in mg:
@@ -226,12 +226,12 @@ class Cake(HandHistoryConverter):
                         raise FpdbParseError
                     
                     if key == 'BUYIN1':
-                        info['BIAMT1']  = info['BIAMT1'].strip(u'$€£')
+                        info['BIAMT1']  = self.clearMoneyString(info['BIAMT1'].strip(u'$€£'))
                         hand.buyin = int(100*Decimal(info['BIAMT1']))
                         hand.fee = 0
                     else:
-                        info['BIAMT']  = info['BIAMT'].strip(u'$€£')
-                        info['BIRAKE'] = info['BIRAKE'].strip(u'$€£')
+                        info['BIAMT']  = self.clearMoneyString(info['BIAMT'].strip(u'$€£'))
+                        info['BIRAKE'] = self.clearMoneyString(info['BIRAKE'].strip(u'$€£'))
                         hand.buyin = int(100*Decimal(info['BIAMT']))
                         hand.fee = int(100*Decimal(info['BIRAKE']))
                 
@@ -293,10 +293,10 @@ class Cake(HandHistoryConverter):
                 hand.addBlind(a.group('PNAME'), 'secondsb', a.group('SB'))
         for a in self.re_PostBB.finditer(hand.handText):
             hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
-            hand.setUncalledBets(Decimal(a.group('BB')))
+            hand.setUncalledBets(True)
         for a in self.re_PostBoth.finditer(hand.handText):
-            sb = Decimal(a.group('SB'))
-            bb = Decimal(a.group('BB'))
+            sb = Decimal(self.clearMoneyString(a.group('SB')))
+            bb = Decimal(self.clearMoneyString(a.group('BB')))
             sbbb = sb + bb
             hand.addBlind(a.group('PNAME'), 'both', str(sbbb))
 
