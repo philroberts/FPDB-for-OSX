@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#    Copyright 2008-2011, Carl Gherardi
+#    Copyright 2008-2012, Carl Gherardi
 #    
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -39,38 +39,35 @@ class Entraction(HandHistoryConverter):
                             'NUM': u".,\d",
                     }
                     
-#    Lim_Blinds = {  '0.04': ('0.01', '0.02'),        '0.08': ('0.02', '0.04'),
-#                        '0.10': ('0.02', '0.05'),    '0.20': ('0.05', '0.10'),
-#                        '0.40': ('0.10', '0.20'),    '0.50': ('0.10', '0.25'),
-#                        '1.00': ('0.25', '0.50'),       '1': ('0.25', '0.50'),
-#                        '2.00': ('0.50', '1.00'),       '2': ('0.50', '1.00'),
-#                        '4.00': ('1.00', '2.00'),       '4': ('1.00', '2.00'),
-#                        '6.00': ('1.00', '3.00'),       '6': ('1.00', '3.00'),
-#                        '8.00': ('2.00', '4.00'),       '8': ('2.00', '4.00'),
-#                       '10.00': ('2.00', '5.00'),      '10': ('2.00', '5.00'),
-#                       '20.00': ('5.00', '10.00'),     '20': ('5.00', '10.00'),
-#                       '30.00': ('10.00', '15.00'),    '30': ('10.00', '15.00'),
-#                       '40.00': ('10.00', '20.00'),    '40': ('10.00', '20.00'),
-#                       '60.00': ('15.00', '30.00'),    '60': ('15.00', '30.00'),
-#                       '80.00': ('20.00', '40.00'),    '80': ('20.00', '40.00'),
-#                      '100.00': ('25.00', '50.00'),   '100': ('25.00', '50.00'),
-#                      '200.00': ('50.00', '100.00'),  '200': ('50.00', '100.00'),
-#                      '400.00': ('100.00', '200.00'), '400': ('100.00', '200.00'),
-#                      '800.00': ('200.00', '400.00'), '800': ('200.00', '400.00'),
-#                     '1000.00': ('250.00', '500.00'),'1000': ('250.00', '500.00')
-#                  }
+    Lim_Blinds = {      '0.04': ('0.01', '0.02'),    '0.08': ('0.02', '0.04'),
+                        '0.20': ('0.05', '0.10'),    '0.40': ('0.10', '0.20'),
+                        '1.00': ('0.25', '0.50'),       '1': ('0.25', '0.50'),
+                        '2.00': ('0.50', '1.00'),       '2': ('0.50', '1.00'),
+                        '4.00': ('1.00', '2.00'),       '4': ('1.00', '2.00'),
+                        '8.00': ('2.00', '4.00'),       '8': ('2.00', '4.00'),
+                       '20.00': ('5.00', '10.00'),     '20': ('5.00', '10.00'),
+                       '30.00': ('7.50', '15.00'),     '30': ('7.50', '15.00'),
+                       '40.00': ('10.00', '20.00'),    '40': ('10.00', '20.00'),
+                       '60.00': ('15.00', '30.00'),    '60': ('15.00', '30.00'),
+                       '80.00': ('20.00', '40.00'),    '80': ('20.00', '40.00'),
+                      '100.00': ('25.00', '50.00'),   '100': ('25.00', '50.00'),
+                      '200.00': ('50.00', '100.00'),  '200': ('50.00', '100.00'),
+                      '400.00': ('100.00', '200.00'), '400': ('100.00', '200.00'),
+                      '800.00': ('200.00', '400.00'), '800': ('200.00', '400.00'),
+                     '1000.00': ('250.00', '500.00'),'1000': ('250.00', '500.00')
+                  }
 
-    limits = { 'No Limit':'nl', 'Pot Limit':'pl', 'Limit':'fl', 'LIMIT':'fl' }
+    limits = { 'No Limit':'nl', 'Pot Limit':'pl', 'Fixed Limit': 'fl'}
     games = {                          # base, category
-                              "Hold'em" : ('hold','holdem'), 
                            'Omaha High' : ('hold','omahahi'),
+                        "Texas Hold'em" : ('hold','holdem'), 
                }
 
     # Static regexes
     re_GameInfo     = re.compile(u"""
           \s(?P<HID>[0-9]+)\s-\s
-          (?P<GAME>Omaha\sHigh|Holdem)\s
-          (?P<LIMIT>No\sLimit|Limit|LIMIT|Pot\sLimit)\s
+          (?P<GAME>Texas\sHold\'em|Omaha\sHigh)\s
+          (?P<LIMIT>No\sLimit|Pot\sLimit|Fixed\sLimit)\s
           (?P<CURRENCY>%(LEGAL_ISO)s|)?\s
           (?P<SB>[%(NUM)s]+)/
           (?P<BB>[%(NUM)s]+)
@@ -83,19 +80,15 @@ class Entraction(HandHistoryConverter):
             % substitutions, re.MULTILINE|re.VERBOSE)
 
     re_HandInfo     = re.compile("""
-          \s(?P<HID>[0-9]+)\s-\s
-          (?P<GAME>Omaha\sHigh|Holdem)\s
-          (?P<LIMIT>No\sLimit|Limit|LIMIT|Pot\sLimit)\s
-          (?P<CURRENCY>%(LEGAL_ISO)s|)?\s
-          (?P<SB>[%(NUM)s]+)/
-          (?P<BB>[%(NUM)s]+)(?P<BLAH>.*)
+          \s(?P<HID>[0-9]+)\s-\s.+?
           Table\s(?P<TABLE>.+)
         """ % substitutions, re.MULTILINE|re.VERBOSE)
 
-    re_SplitHands   = re.compile(r"\n\n(?=Game #)")
-    re_Button       = re.compile('^Dealer:\s+(?P<PNAME>.*)$', re.MULTILINE)
-    re_Board        = re.compile(r"(?P<CARDS>.+)$")
+    re_SplitHands   = re.compile(r"\n\nGame #")
+    re_Button       = re.compile(r'^Dealer:\s+(?P<PNAME>.*)$', re.MULTILINE)
+    re_Board        = re.compile(r"^(?P<CARDS>.+)$", re.MULTILINE)
     re_GameEnds     = re.compile(r"Game\sended\s(?P<Y>[0-9]{4})-(?P<M>[0-9]{2})-(?P<D>[0-9]{2})\s(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)", re.MULTILINE)
+    re_Max          = re.compile(r"Players\(max\s(?P<MAX>\d+)\):")
 
     re_DateTime     = re.compile("""(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)""", re.MULTILINE)
     re_PostSB       = re.compile(r"^Small Blind: {16}(?P<PNAME>.*)\s+\((?P<SB>[%(NUM)s]+)\)" % substitutions, re.MULTILINE)
@@ -104,25 +97,22 @@ class Entraction(HandHistoryConverter):
     re_PostSecondSB = re.compile(r"^Blind out of turn: {10}(?P<PNAME>.*)\s+\((?P<SB>[%(NUM)s]+)\)" % substitutions, re.MULTILINE)
     re_Antes        = re.compile(r"^%(PLYR)s: posts the ante %(CUR)s(?P<ANTE>[%(NUM)s]+)" % substitutions, re.MULTILINE)
     re_BringIn      = re.compile(r"^%(PLYR)s: brings[- ]in( low|) for %(CUR)s(?P<BRINGIN>[%(NUM)s]+)" % substitutions, re.MULTILINE)
-    re_HeroCards    = re.compile(r"^Dealt to %(PLYR)s(?: \[(?P<OLDCARDS>.+?)\])?( \[(?P<NEWCARDS>.+?)\])" % substitutions, re.MULTILINE)
-    re_Action           = re.compile(r"""
-                        ^%(PLYR)s\s+(?P<ATYPE>Fold|Check|Call|Bet|Raise|All-In)
-                        (\s+\((?P<BET>[.\d]+)\))?$"""
+    re_HeroCards    = re.compile(r"^%(PLYR)s was dealt:\s+(?P<CARDS>.+)" % substitutions, re.MULTILINE)
+    re_Action       = re.compile(r"""
+                        ^%(PLYR)s\s+(?P<ATYPE>Fold|Check|Call|Bet|Raise|All\-In)\s+?
+                        (\((?P<BET>[.\d]+)\))?$"""
                          %  substitutions, re.MULTILINE|re.VERBOSE)
-    re_ShowdownAction   = re.compile(r"^%s: shows \[(?P<CARDS>.*)\]" % substitutions['PLYR'], re.MULTILINE)
-    re_ShownCards       = re.compile("^Seat (?P<SEAT>[0-9]+): %(PLYR)s (\(.*\) )?(?P<SHOWED>showed|mucked) \[(?P<CARDS>.*)\]( and won \([%(NUM)s]+\) with (?P<STRING>.*))?" % substitutions, re.MULTILINE)
-    re_CollectPot       = re.compile(r"%(PLYR)s\swins:\s+(%(LEGAL_ISO)s)\s(?P<POT>[%(NUM)s]+)" %  substitutions, re.MULTILINE)
-    re_WinningRankOne   = re.compile(u"^%(PLYR)s wins the tournament and receives %(CUR)s(?P<AMT>[%(NUM)s]+) - congratulations!$" %  substitutions, re.MULTILINE)
-    re_WinningRankOther = re.compile(u"^%(PLYR)s finished the tournament in (?P<RANK>[0-9]+)(st|nd|rd|th) place and received %(CUR)s(?P<AMT>[%(NUM)s]+)\.$" %  substitutions, re.MULTILINE)
-    re_RankOther        = re.compile(u"^%(PLYR)s finished the tournament in (?P<RANK>[0-9]+)(st|nd|rd|th) place$" %  substitutions, re.MULTILINE)
-
+    re_ShowdownAction = re.compile(r"^%(PLYR)s\sdidn\'t\sshow\shand\s\((?P<CARDS>.+)\)" % substitutions, re.MULTILINE)
+    re_ShownCards     = re.compile(r"^%(PLYR)s\sshows:\s+(?P<CARDS>.+)\s\((?P<STRING>.+?)\)" % substitutions, re.MULTILINE)
+    re_CollectPot     = re.compile(r"^%(PLYR)s\swins:\s+(%(LEGAL_ISO)s)\s(?P<POT>[%(NUM)s]+)" %  substitutions, re.MULTILINE)
+    
     def compilePlayerRegexs(self,  hand):
         pass
 
     def readSupportedGames(self):
         return [["ring", "hold", "nl"],
                 ["ring", "hold", "pl"],
-                #["ring", "hold", "fl"], need Lim_Blinds
+                ["ring", "hold", "fl"],
 
                 ]
 
@@ -148,21 +138,21 @@ class Entraction(HandHistoryConverter):
             info['currency'] = mg['CURRENCY']
 
         info['type'] = 'ring'
-#
-#        if info['limitType'] == 'fl' and info['bb'] is not None and info['type'] == 'ring':
-#            try:
-#                info['sb'] = self.Lim_Blinds[mg['BB']][0]
-#                info['bb'] = self.Lim_Blinds[mg['BB']][1]
-#            except KeyError:
-#                log.error(_("Lim_Blinds has no lookup for '%s'") % mg['BB'])
-#                log.error("determineGameType: " + _("Raising FpdbParseError"))
-#                raise FpdbParseError(_("Lim_Blinds has no lookup for '%s'") % mg['BB'])
+
+        if info['limitType'] == 'fl' and info['bb'] is not None and info['type'] == 'ring':
+            try:
+                info['sb'] = self.Lim_Blinds[mg['BB']][0]
+                info['bb'] = self.Lim_Blinds[mg['BB']][1]
+            except KeyError:
+                log.error(_("Lim_Blinds has no lookup for '%s'") % mg['BB'])
+                log.error("determineGameType: " + _("Raising FpdbParseError"))
+                raise FpdbParseError(_("Lim_Blinds has no lookup for '%s'") % mg['BB'])
 #
         return info
 
     def readHandInfo(self, hand):
         info = {}
-        m2 = self.re_GameInfo.search(hand.handText)
+        m2 = self.re_Max.search(hand.handText)
         m3 = self.re_GameEnds.search(hand.handText)
         m  = self.re_HandInfo.search(hand.handText)
         if m is None or m2 is None or m3 is None:
@@ -190,14 +180,13 @@ class Entraction(HandHistoryConverter):
     def readButton(self, hand):
         m = self.re_Button.search(hand.handText)
         if m:
-            # FIXME: Button is a player name, not position. Needs translation
-            #hand.buttonpos = int(m.group('BUTTON'))
-            pass
+            for p in hand.players:
+                if p[1]==m.group('PNAME'):
+                    hand.buttonpos = p[0]
         else:
             log.info('readButton: ' + _('not found'))
 
     def readPlayerStacks(self, hand):
-        log.debug("readPlayerStacks")
         m = self.re_PlayerInfo.finditer(hand.handText)
         for a in m:
             name = a.group('PNAME').strip()
@@ -212,12 +201,11 @@ class Entraction(HandHistoryConverter):
         hand.addStreets(m)
 
     def readCommunityCards(self, hand, street):
-        pass
         #print "DEBUG: readCommunityCards"
-        #if street in ('FLOP','TURN','RIVER'):
-        #    print "DEBUG readCommunityCards: %s %s" %(street, hand.streets[street])
-        #    m = self.re_Board.search(hand.streets[street])
-        #    hand.setCommunityCards(street, m.group('CARDS').split(' '))
+        if street in ('FLOP','TURN','RIVER'):
+            #print "DEBUG readCommunityCards: %s %s" %(street, hand.streets[street])
+            m = self.re_Board.search(hand.streets[street])
+            hand.setCommunityCards(street, m.group('CARDS').split(' - '))
 
     def readAntes(self, hand):
         pass
@@ -252,40 +240,15 @@ class Entraction(HandHistoryConverter):
             hand.addBlind(name, 'big blind', blind)
 
     def readHeroCards(self, hand):
-        pass
 #    streets PREFLOP, PREDRAW, and THIRD are special cases beacause
 #    we need to grab hero's cards
-#        for street in ('PREFLOP', 'DEAL'):
-#            if street in hand.streets.keys():
-#                m = self.re_HeroCards.finditer(hand.streets[street])
-#                for found in m:
-#                    if m == None:
-#                        hand.involved = False
-#                    else:
-#                    hand.hero = found.group('PNAME')
-#                    newcards = found.group('NEWCARDS').split(' ')
-#                    hand.addHoleCards(street, hand.hero, closed=newcards, shown=False, mucked=False, dealt=True)
-#
-#        for street, text in hand.streets.iteritems():
-#            if not text or street in ('PREFLOP', 'DEAL'): continue  # already done these
-#            m = self.re_HeroCards.finditer(hand.streets[street])
-#            for found in m:
-#                player = found.group('PNAME')
-#                if found.group('NEWCARDS') is None:
-#                    newcards = []
-#                else:
-#                    newcards = found.group('NEWCARDS').split(' ')
-#                if found.group('OLDCARDS') is None:
-#                    oldcards = []
-#                else:
-#                    oldcards = found.group('OLDCARDS').split(' ')
-#
-#                if street == 'THIRD' and len(newcards) == 3: # hero in stud game
-#                    hand.hero = player
-#                    hand.dealt.add(player) # need this for stud??
-#                    hand.addHoleCards(street, player, closed=newcards[0:2], open=[newcards[2]], shown=False, mucked=False, dealt=False)
-#                else:
-#                    hand.addHoleCards(street, player, open=newcards, closed=oldcards, shown=False, mucked=False, dealt=False)
+        for street in ('PREFLOP', 'DEAL'):
+            if street in hand.streets.keys():
+                m = self.re_HeroCards.finditer(hand.streets[street])
+                for found in m:
+                    hand.hero = found.group('PNAME')
+                    newcards = found.group('CARDS').split(' - ')
+                    hand.addHoleCards(street, hand.hero, closed=newcards, shown=False, mucked=False, dealt=True)
 
 
     def readAction(self, hand, street):
@@ -293,7 +256,7 @@ class Entraction(HandHistoryConverter):
         for action in m:
             acts = action.groupdict()
             #print "DEBUG: acts: %s" %acts
-            if action.group('ATYPE') == 'Folds':
+            if action.group('ATYPE') == 'Fold':
                 hand.addFold( street, action.group('PNAME'))
             elif action.group('ATYPE') == 'Check':
                 hand.addCheck( street, action.group('PNAME'))
@@ -310,35 +273,24 @@ class Entraction(HandHistoryConverter):
 
 
     def readShowdownActions(self, hand):
-        pass
-#        for shows in self.re_ShowdownAction.finditer(hand.handText):            
-#            cards = shows.group('CARDS').split(' ')
-#            hand.addShownCards(cards, shows.group('PNAME'))
-#
-#        for winningrankone in self.re_WinningRankOne.finditer(hand.handText):
-#            hand.addPlayerRank (winningrankone.group('PNAME'),int(100*Decimal(winningrankone.group('AMT'))),1)
-#
-#        for winningrankothers in self.re_WinningRankOther.finditer(hand.handText):
-#            hand.addPlayerRank (winningrankothers.group('PNAME'),int(100*Decimal(winningrankothers.group('AMT'))),winningrankothers.group('RANK'))
-#
-#        for rankothers in self.re_RankOther.finditer(hand.handText):
-#            hand.addPlayerRank (rankothers.group('PNAME'),0,rankothers.group('RANK'))
+# TODO: pick up mucks also??
+        for shows in self.re_ShowdownAction.finditer(hand.handText):            
+            cards = shows.group('CARDS').split(' - ')
+            hand.addShownCards(cards, shows.group('PNAME'), shown=False, mucked=True)
 
     def readCollectPot(self,hand):
         for m in self.re_CollectPot.finditer(hand.handText):
             hand.addCollectPot(player=m.group('PNAME'),pot=self.clearMoneyString(m.group('POT')))
 
     def readShownCards(self,hand):
-        pass
-#        for m in self.re_ShownCards.finditer(hand.handText):
-#            if m.group('CARDS') is not None:
-#                cards = m.group('CARDS')
-#                cards = cards.split(' ') # needs to be a list, not a set--stud needs the order
-#                string = m.group('STRING')
-#
-#                (shown, mucked) = (False, False)
-#                if m.group('SHOWED') == "showed": shown = True
-#                elif m.group('SHOWED') == "mucked": mucked = True
-#
-#                #print "DEBUG: hand.addShownCards(%s, %s, %s, %s)" %(cards, m.group('PNAME'), shown, mucked)
-#                hand.addShownCards(cards=cards, player=m.group('PNAME'), shown=shown, mucked=mucked, string=string)
+        for m in self.re_ShownCards.finditer(hand.handText):
+            if m.group('CARDS') is not None:
+                cards = m.group('CARDS')
+                cards = cards.split(' - ') # needs to be a list, not a set--stud needs the order
+                string = m.group('STRING')
+
+                (shown, mucked) = (True, False)
+
+                #print "DEBUG: hand.addShownCards(%s, %s, %s, %s)" %(cards, m.group('PNAME'), shown, mucked)
+                hand.addShownCards(cards=cards, player=m.group('PNAME'), shown=shown, mucked=mucked, string=string)
+                

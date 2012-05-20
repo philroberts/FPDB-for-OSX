@@ -1,0 +1,56 @@
+Game # 2137921772 - Omaha High Pot Limit EUR 0.02/0.04 - Table "Abashiri"
+
+Players(max 6):
+Player0                     (EUR 3.92 in seat 1)
+Player1                     (EUR 3.53 in seat 2)
+Hero                        (EUR 4.00 in seat 3)
+Player2                     (EUR 4.32 in seat 4)
+Player3                     (EUR 1.38 in seat 5)
+Player4                     (EUR 4.57 in seat 6)
+
+Dealer:                     Player4
+Small Blind:                Player0     (0.02)
+Big Blind:                  Player1     (0.04)
+
+Hero was dealt:         5d - 9h - 4d - Kh
+
+Hero                        Fold        
+Player2                     Raise       (0.11)
+Player3                     Call        (0.11)
+Player4                     Fold        
+Player0                     Call        (0.09)
+Player1                     Call        (0.07)
+
+Flop                        3d - Ah - 8h
+
+Player0                     Check       
+Player1                     Check       
+Player2                     Check       
+Player3                     Check       
+
+Turn                        3d - Ah - 8h - Jd
+
+Player0                     Check       
+Player1                     Check       
+Player2                     Check       
+Player3                     Check       
+
+River                       3d - Ah - 8h - Jd - 6s
+
+Player0                     Check       
+Player1                     Check       
+Player2                     Check       
+Player3                     Check       
+
+Player0 shows:              Qc - Qs - 4h - 7d (a pair of Queens)
+
+Player1 didn't show hand (2c - 8c - 2d - 5c)
+Player2 didn't show hand (4s - Ts - Jh - Tc)
+
+Player3 shows:              6c - Qh - 3h - 5h (two pairs, Sixes and Threes)
+
+Player3 wins:               EUR 0.42 (with two pairs, Sixes and Threes)
+Rake:                       EUR 0.02
+
+Game ended 2011-03-21 17:10:04 GMT
+

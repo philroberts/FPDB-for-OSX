@@ -1,0 +1,29 @@
+Game # 2145163746 - Texas Hold'em Fixed Limit EUR 10/20 - Table "Lorient"
+
+Players(max 6):
+Hero                        (EUR 468.50 in seat 4)
+Player0                     (EUR 528.50 in seat 5)
+
+Dealer:                     Player0
+Small Blind:                Hero        (5.00)
+Big Blind:                  Player0     (10.00)
+
+Hero was dealt:             9c - 7d
+
+Hero                        Raise       (15.00)
+Player0                     Raise       (20.00)
+Hero                        Call        (10.00)
+
+Flop                        2c - Ad - 4h
+
+Hero                        Check       
+Player0                     Bet         (10.00)
+Hero                        Fold        
+Player0                     Payback     (10.00)
+
+Player0 didn't show hand
+
+Player0 wins:               EUR 59.25
+Rake:                       EUR 0.75
+
+Game ended 2011-03-26 13:19:18 GMT

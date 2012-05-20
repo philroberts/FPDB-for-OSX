@@ -60,12 +60,14 @@ class Site:
         self.copyGameHeader = obj.copyGameHeader
         self.line_delimiter = None
         self.line_addendum  = ''
-        if self.re_SplitHands.match('\n\n\n') or self.re_SplitHands.match('\n\n'):
-            if self.filter_name == 'PokerStars':
-                self.line_delimiter = '\n\n'
-            elif self.filter_name == 'Fulltilt':
-                self.line_delimiter = '\n\n\n'
-            else: self.line_delimiter = '\n\n'
+        if self.filter_name == 'PokerStars':
+            self.line_delimiter = '\n\n'
+        elif self.filter_name == 'Fulltilt':
+            self.line_delimiter = '\n\n\n'
+        elif self.re_SplitHands.match('\n\n') and self.filter_name != 'Entraction':
+             self.line_delimiter = '\n\n'
+        elif self.re_SplitHands.match('\n\n\n'):
+            self.line_delimiter = '\n\n\n'
         if self.filter_name == 'OnGame':
             self.line_addendum = '*'
         elif self.filter_name == 'Merge':
