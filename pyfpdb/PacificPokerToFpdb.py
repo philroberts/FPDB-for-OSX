@@ -355,7 +355,7 @@ class PacificPoker(HandHistoryConverter):
                 else:
                     # Post dead blinds as ante
                     hand.addBlind(a.group('PNAME'), 'secondsb', a.group('SB'))
-                if Decimal(self.clearMoneyString(a.group('SB'))) < Decimal(hand.gametype['sb']):
+                if hand.stacks[a.group('PNAME')]==0:
                     hand.allInBlind = True
             else:
                 raise FpdbHandPartial("Partial hand history: %s" % hand.handid)
@@ -363,7 +363,7 @@ class PacificPoker(HandHistoryConverter):
             if a.group('PNAME') in hand.stacks:
                 hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
                 hand.setUncalledBets(True)
-                if Decimal(self.clearMoneyString(a.group('BB'))) < Decimal(hand.gametype['bb']):
+                if hand.stacks[a.group('PNAME')]==0:
                     hand.allInBlind = True
             else:
                 raise FpdbHandPartial("Partial hand history: %s" % hand.handid)
@@ -456,8 +456,8 @@ class PacificPoker(HandHistoryConverter):
                 cards = cards.split(', ') # needs to be a list, not a set--stud needs the order
 
                 (shown, mucked) = (False, False)
-                if m.group('SHOWED') == "showed": shown = True
-                elif m.group('SHOWED') == "mucked": mucked = True
+                if m.group('SHOWED') == "shows": shown = True
+                elif m.group('SHOWED') == "mucks": mucked = True
 
                 #print "DEBUG: hand.addShownCards(%s, %s, %s, %s)" %(cards, m.group('PNAME'), shown, mucked)
                 hand.addShownCards(cards=cards, player=m.group('PNAME'), shown=shown, mucked=mucked)
