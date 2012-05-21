@@ -1,0 +1,38 @@
+Game #10398176832 starts.
+
+#Game No : 10398176832 
+***** Hand History for Game 10398176832 *****
+$15/$30 USD Texas Hold'em - Monday, April 25, 09:42:13 BST 2011
+Table Table  125413 (Real Money)
+Seat 3 is the button
+Total number of players : 4/6 
+Seat 3: Player0 ( $964 USD )
+Seat 5: Hero ( $905 USD )
+Seat 6: Player1 ( $150 USD )
+Seat 4: Player2 ( $638.50 USD )
+Player2 posts small blind [$10 USD].
+Hero posts big blind [$15 USD].
+Player1 posts small blind [$10 USD].
+** Dealing down cards **
+Dealt to Hero [  9c Ad ]
+Player1 calls [$5 USD]
+Player0 folds
+Player2 folds
+Hero raises [$15 USD]
+Player1 calls [$15 USD]
+** Dealing Flop ** [ Ah, 2h, Kh ]
+Hero bets [$15 USD]
+Player1 raises [$30 USD]
+Hero raises [$30 USD]
+Player1 calls [$15 USD]
+** Dealing Turn ** [ 5h ]
+Hero checks
+Player1 bets [$30 USD]
+Hero calls [$30 USD]
+** Dealing River ** [ 7c ]
+Hero checks
+Player1 bets [$30 USD]
+Hero calls [$30 USD]
+Player1 shows [ Th, 5c ]a flush, Ace high.
+Hero doesn't show [ 9c, Ad ]a pair of Aces.
+Player1 wins $278 USD from the main pot with a flush, Ace high.
