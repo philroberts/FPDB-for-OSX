@@ -370,13 +370,13 @@ class Boss(HandHistoryConverter):
                 bet = action.group('BET')
                 if street in ('PREFLOP', 'DEAL'):
                     blind = hand.bets['BLINDSANTES'].get(action.group('PNAME'))
-                    if blind: bet = str(Decimal(action.group('BET')) - blind[0])
+                    if blind: bet = str(Decimal(action.group('BET')) - blind[-1])
                 hand.addCallTo(street, action.group('PNAME'), bet )
             elif action.group('ATYPE') == 'ACTION_RAISE':
                 bet = action.group('BET')
                 if street in ('PREFLOP', 'DEAL'):
                     blind = hand.bets['BLINDSANTES'].get(action.group('PNAME'))
-                    if blind: bet = str(Decimal(action.group('BET')) - blind[0])
+                    if blind: bet = str(Decimal(action.group('BET')) - blind[-1])
                 hand.addRaiseTo( street, action.group('PNAME'), action.group('BET') )
             elif action.group('ATYPE') == 'ACTION_BET':
                 hand.addBet( street, action.group('PNAME'), action.group('BET') )
