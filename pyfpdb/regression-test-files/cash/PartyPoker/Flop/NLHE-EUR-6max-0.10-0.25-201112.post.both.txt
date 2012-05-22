@@ -1,0 +1,30 @@
+Game #11253035050 starts.
+
+#Game No : 11253035050 
+***** Hand History for Game 11253035050 *****
+€25 EUR NL Texas Hold'em - Friday, December 30, 20:52:00 CET 2011
+Table Table  187339 (Real Money)
+Seat 6 is the button
+Total number of players : 6/6 
+Seat 4: Player2 ( €33.43 EUR )
+Seat 5: Player5 ( €20 EUR )
+Seat 2: Player4 ( €25.35 EUR )
+Seat 1: Player0 ( €25.28 EUR )
+Seat 6: Player1 ( €30.38 EUR )
+Seat 3: Player3 ( €72.87 EUR )
+Player0 posts small blind [€0.10 EUR].
+Player3 posts big blind [€0.25 EUR].
+Player5 posts big blind + dead [0,35 €].
+** Dealing down cards **
+Dealt to Player0 [  Jh 9c ]
+Player2 folds
+Player5 raises [€0.75 EUR]
+Player1 folds
+Player0 folds
+Player3 calls [€0.75 EUR]
+** Dealing Flop ** [ 5s, Jc, 7c ]
+Player3 checks
+Player5 bets [€2.06 EUR]
+Player3 folds
+Player5 does not show cards.
+Player5 wins €4.12 EUR

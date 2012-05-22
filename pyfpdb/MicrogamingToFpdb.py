@@ -322,7 +322,8 @@ class Microgaming(HandHistoryConverter):
             elif action.group('ATYPE') == 'AllIn':
                 hand.addAllIn(street, pname, action.group('BET'))
             elif action.group('ATYPE') == 'PostedToPlay':
-                hand.addBlind(pname, 'big blind', action.group('BET'))
+                amount = str(Decimal(action.group('BET')) + Decimal(action.group('BET'))/2)
+                hand.addBlind(pname, 'both', amount)
             elif action.group('ATYPE') == 'Disconnect':
                 pass # Deal with elsewhere
             elif action.group('ATYPE') == 'Reconnect':

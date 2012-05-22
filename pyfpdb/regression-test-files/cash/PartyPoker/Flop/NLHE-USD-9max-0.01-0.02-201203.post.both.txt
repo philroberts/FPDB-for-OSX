@@ -1,0 +1,42 @@
+Game #11491869882 starts.
+
+#Game No : 11491869882 
+***** Hand History for Game 11491869882 *****
+$2 USD NL Texas Hold'em - Thursday, March 01, 05:18:55 EST 2012
+Table Speed #2409913 (No DP) (Real Money)
+Seat 8 is the button
+Total number of players : 7/9 
+Seat 2: Player0 ( $1.76 USD )
+Seat 1: Player4 ( $2.15 USD )
+Seat 9: Player6 ( $1.98 USD )
+Seat 3: Player1 ( $2.33 USD )
+Seat 7: Player2 ( $3.32 USD )
+Seat 6: Player5 ( $2.13 USD )
+Seat 8: Player3 ( $1 USD )
+Player6 posts small blind [$0.01 USD].
+Player4 posts big blind [$0.02 USD].
+Player0 posts big blind + dead [$0.03].
+** Dealing down cards **
+Dealt to Player3 [  Ah 3c ]
+Player0 checks
+Player1 calls [$0.02 USD]
+Player5 folds
+Player2 calls [$0.02 USD]
+Player3 folds
+Player6 folds
+Player4 checks
+** Dealing Flop ** [ 3h, 8d, Kd ]
+Player4 checks
+Player0 bets [$0.02 USD]
+Player1 calls [$0.02 USD]
+Player2 folds
+Player4 folds
+** Dealing Turn ** [ Th ]
+Player0 bets [$0.02 USD]
+Player1 calls [$0.02 USD]
+** Dealing River ** [ 8h ]
+Player0 bets [$0.06 USD]
+Player1 folds
+Player0 does not show cards.
+Player0 wins $0.24 USD
+Player2 has left the table.

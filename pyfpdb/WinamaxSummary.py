@@ -184,6 +184,7 @@ class WinamaxSummary(TourneySummary):
             log.warning(_("WinamaxSummary.parseSummary: Gametype unknown defaulting to NLHE"))
             self.gametype['limitType'] = 'nl'
             self.gametype['category'] = 'holdem'
+            self.tourneyName = mg['GAME']
         if 'ENTRIES' in mg:
             self.entries   = mg['ENTRIES']
         if 'PRIZEPOOL' in mg:

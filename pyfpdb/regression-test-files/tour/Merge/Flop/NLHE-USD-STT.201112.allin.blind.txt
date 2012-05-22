@@ -1,0 +1,56 @@
+<description type="Holdem Tournament" stakes="No Limit"/>
+<game id="45133716-41" starttime="20111212155819" numholecards="2" gametype="23" seats="10" realmoney="true" data="20111212|Fast Fifty SnG|45132298-1|45133716-41|true">
+	<players dealer="1">
+		<player seat="0" nickname="Player0" balance="$3290.00" dealtin="true" />
+		<player seat="1" nickname="Player2" balance="$2785.00" dealtin="true" />
+		<player seat="3" nickname="Player4" balance="$0.00" dealtin="true" />
+		<player seat="5" nickname="Player1" balance="$2315.00" dealtin="true" />
+		<player seat="9" nickname="Player3" balance="$6075.00" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="ANTE" timestamp="1323723499610" player="0" amount="25.00"/>
+		<event sequence="2" type="ANTE" timestamp="1323723499610" player="1" amount="25.00"/>
+		<event sequence="3" type="ANTE" timestamp="1323723499610" player="3" amount="25.00"/>
+		<event sequence="4" type="ANTE" timestamp="1323723499610" player="5" amount="25.00"/>
+		<event sequence="5" type="ANTE" timestamp="1323723499610" player="9" amount="25.00"/>
+		<event sequence="6" type="ALL_IN" timestamp="1323723499680" player="3" amount="0.00"/>
+		<event sequence="7" type="BIG_BLIND" timestamp="1323723499680" player="5" amount="300.00"/>
+	</round>
+	<round id="PREFLOP" sequence="2">
+		<event sequence="8" type="CALL" timestamp="1323723502694" player="9" amount="300.00"/>
+		<event sequence="9" type="FOLD" timestamp="1323723504536" player="0"/>
+		<event sequence="10" type="CALL" timestamp="1323723511387" player="1" amount="300.00"/>
+		<event sequence="11" type="CHECK" timestamp="1323723513322" player="5"/>
+		<cards type="HOLE" cards="Ah,Jc" player="0" hand="Ace High"/>
+	</round>
+	<round id="POSTFLOP" sequence="3">
+		<event sequence="12" type="CHECK" timestamp="1323723514605" player="5"/>
+		<event sequence="13" type="BET" timestamp="1323723517629" player="9" amount="300.00"/>
+		<event sequence="14" type="CALL" timestamp="1323723520170" player="1" amount="300.00"/>
+		<event sequence="15" type="FOLD" timestamp="1323723520529" player="5"/>
+		<cards type="COMMUNITY" cards="8d,Qs,3s" hand="Ace High"/>
+	</round>
+	<round id="POSTTURN" sequence="4">
+		<event sequence="16" type="BET" timestamp="1323723524809" player="9" amount="300.00"/>
+		<event sequence="17" type="CALL" timestamp="1323723531461" player="1" amount="300.00"/>
+		<cards type="COMMUNITY" cards="8d,Qs,3s,Kd" hand="Ace High"/>
+	</round>
+	<round id="POSTRIVER" sequence="5">
+		<event sequence="18" type="CHECK" timestamp="1323723534471" player="9"/>
+		<event sequence="19" type="CHECK" timestamp="1323723536001" player="1"/>
+		<cards type="COMMUNITY" cards="8d,Qs,3s,Kd,Qd" hand="Pair of Queens"/>
+	</round>
+	<round id="SHOWDOWN" sequence="6">
+		<event sequence="20" type="SHOW" timestamp="1323723536471" player="9"/>
+		<event sequence="21" type="SHOW" timestamp="1323723536791" player="1"/>
+		<event sequence="22" type="SHOW" timestamp="1323723537180" player="3"/>
+		<cards type="SHOWN" cards="Jh,Tc" player="9"/>
+		<cards type="SHOWN" cards="8c,7c" player="1"/>
+		<cards type="SHOWN" cards="2s,6h" player="3"/>
+	</round>
+	<round id="END_OF_GAME" sequence="7">
+		<event sequence="23" type="PLAYER_OUT" timestamp="1323723537283" player="3"/>
+		<winner amount="565.00" uncalled="false" potnumber="1" player="1" hand="Two Pair Queens and Eights" pottype="n"/>
+		<winner amount="1770.00" uncalled="false" potnumber="2" player="1" hand="Two Pair Queens and Eights" pottype="n"/>
+	</round>
+</game>
