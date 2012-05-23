@@ -605,7 +605,9 @@ class Database:
     def is_connected(self):
         return self.__connected
 
-    def get_cursor(self):
+    def get_cursor(self, connect=False):
+        if connect and self.backend == Database.MYSQL_INNODB and os.name == 'nt':
+            self.do_connect(self.config)
         return self.connection.cursor()
 
     def close_connection(self):
@@ -1844,22 +1846,28 @@ class Database:
             print _("Error during lock_for_insert:"), str(sys.exc_value)
     #end def lock_for_insert
     
-    def resetBulkCache(self, reset=True):
+    def resetBulkCache(self, reconnect=False):
         self.siteHandNos = []         # cache of siteHandNo
         self.hbulk       = []         # Hands bulk inserts
         self.bbulk       = []         # Boards bulk inserts
         self.hpbulk      = []         # HandsPlayers bulk inserts
         self.habulk      = []         # HandsActions bulk inserts
         self.hcbulk      = {}         # HudCache bulk inserts
-        if reset:
-            self.dcbulk  = {}
-            self.pcbulk  = {}
+        self.dcbulk      = {}
+        self.pcbulk      = {}
         self.hsbulk      = []         # HandsStove bulk inserts
         self.tbulk       = {}         # Tourneys bulk updates
         self.tpbulk      = []         # TourneysPlayers bulk updates
         self.sc          = {'bk': []} # SessionsCache bulk updates
         self.gc          = {'bk': []} # GamesCache bulk updates
         self.tc          = {}         # TourneysPlayers bulk updates
+        if reconnect: self.do_connect(self.config)
+        
+    def executemany(self, c, q, values):
+        batch_size=20000 #experiment to find optimal batch_size for your data
+        while values: # repeat until all records in values have been inserted ''
+            batch, values = values[:batch_size], values[batch_size:] #split values into the current batch and the remaining records
+            c.executemany(q, batch ) #insert current batch ''
 
     def storeHand(self, hdata, doinsert = False, printdata = False):
         if printdata:
@@ -1915,7 +1923,7 @@ class Database:
             q = self.sql.query['store_hand']
             q = q.replace('%s', self.sql.query['placeholder'])
             c = self.get_cursor()
-            c.executemany(q, self.hbulk)
+            self.executemany(c, q, self.hbulk) #c.executemany(q, self.hbulk)
             self.commit()
     
     def storeBoards(self, id, boards, doinsert):
@@ -1926,7 +1934,7 @@ class Database:
             q = self.sql.query['store_boards']
             q = q.replace('%s', self.sql.query['placeholder'])
             c = self.get_cursor()
-            c.executemany(q, self.bbulk)
+            self.executemany(c, q, self.bbulk) #c.executemany(q, self.bbulk)
     
     def updateTourneysSessions(self):
         if self.tbulk:
@@ -2115,8 +2123,8 @@ class Database:
         if doinsert:
             q = self.sql.query['store_hands_players']
             q = q.replace('%s', self.sql.query['placeholder'])
-            c = self.get_cursor()
-            c.executemany(q, self.hpbulk)
+            c = self.get_cursor(True)
+            self.executemany(c, q, self.hpbulk) #c.executemany(q, self.hpbulk)
 
     def storeHandsActions(self, hid, pids, adata, doinsert = False, printdata = False):
         #print "DEBUG: %s %s %s" %(hid, pids, adata)
@@ -2146,7 +2154,7 @@ class Database:
             q = self.sql.query['store_hands_actions']
             q = q.replace('%s', self.sql.query['placeholder'])
             c = self.get_cursor()
-            c.executemany(q, self.habulk)
+            self.executemany(c, q, self.habulk) #c.executemany(q, self.habulk)
     
     def storeHandsStove(self, sdata, doinsert):
         #print sdata
@@ -2155,7 +2163,7 @@ class Database:
             q = self.sql.query['store_hands_stove']
             q = q.replace('%s', self.sql.query['placeholder'])
             c = self.get_cursor()
-            c.executemany(q, self.hsbulk)
+            self.executemany(c, q, self.hsbulk) #c.executemany(q, self.hsbulk)
             
     def appendStats(self, pdata, p):
         #NOTE: Insert new stats at right place because SQL needs strict order
@@ -2314,7 +2322,7 @@ class Database:
                     #print "DEBUG: Successfully updated HudCacho using UPDATE"
                     pass
             if inserts:
-                c.executemany(insert_hudcache, inserts)
+                self.executemany(c, insert_hudcache, inserts) #c.executemany(insert_hudcache, inserts)
             self.commit()
             
     def storeCardsCache(self, gametype, pids, heroes, pdata, doinsert):
@@ -2760,7 +2768,7 @@ class Database:
         return results
     
     def nextHandId(self):
-        c = self.get_cursor()
+        c = self.get_cursor(True)
         c.execute("SELECT max(id) FROM Hands")
         id = c.fetchone()[0]
         if not id: id = 0

@@ -105,9 +105,8 @@ class PartyPoker(HandHistoryConverter):
             """ % substitutions, re.VERBOSE | re.UNICODE)
 
     re_HandInfo     = re.compile("""
-            ^Table\s+(?P<TTYPE>.+?)?\s+
-            (?: \#|\(|)(?P<TABLE>\d+)\)?\s+
-            (?:[a-zA-Z0-9 ]+\s+\#(?P<MTTTABLE>\d+).+)?
+            ^Table\s(?P<TABLE>.+?)?\s+
+            ((?: \#|\(|)(?P<TABLENO>\d+)\)?\s+)?
             (\(No\sDP\)\s)?
             \((?P<PLAY>Real|Play)\s+Money\)\s+(--\s*)? # FIXME: check if play money is correct
             Seat\s+(?P<BUTTON>\d+)\sis\sthe\sbutton
@@ -173,7 +172,7 @@ class PartyPoker(HandHistoryConverter):
                 u"%(PLYR)s posts big blind [%(BRAX)s]?%(CUR_SYM)s(?P<BB>[.,0-9]+) ?%(CUR)s[%(BRAX)s]?\."
                 %  subst, re.MULTILINE)
             self.re_PostDead = re.compile(
-                r"^%(PLYR)s posts big blind + dead [%(BRAX)s]?(?P<BBNDEAD>[.,0-9]+) ?%(CUR_SYM)s[%(BRAX)s]?\." %  subst,
+                r"^%(PLYR)s posts big blind \+ dead [%(BRAX)s]?%(CUR_SYM)s?(?P<BBNDEAD>[.,0-9]+) ?%(CUR_SYM)s?[%(BRAX)s]?\." %  subst,
                 re.MULTILINE)
             self.re_Antes = re.compile(
                 r"^%(PLYR)s posts ante [%(BRAX)s]?%(CUR_SYM)s(?P<ANTE>[.,0-9]+) ?%(CUR)s[%(BRAX)s]?" %  subst,
@@ -323,11 +322,13 @@ class PartyPoker(HandHistoryConverter):
             if key == 'HID':
                 hand.handid = info[key]
             if key == 'TABLE':
-                hand.tablename = info[key]
-            if key == 'MTTTABLE':
-                if info[key] != None:
-                    hand.tablename = info[key]
-                    hand.tourNo = info['TABLE']
+                if 'TOURNO' in info and info['TOURNO'] is None:
+                    if info['TABLENO'] is not None:
+                         hand.tablename = info[key] + ' ' + info['TABLENO']
+                    else:
+                        hand.tablename = info[key]
+                else:
+                    hand.tablename = info['TABLENO']
             if key == 'BUTTON':
                 hand.buttonpos = info[key]
             if key == 'TOURNO':

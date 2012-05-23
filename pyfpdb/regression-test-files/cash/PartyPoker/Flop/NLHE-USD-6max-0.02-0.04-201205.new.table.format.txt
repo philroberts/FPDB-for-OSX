@@ -1,0 +1,33 @@
+Game #11751360548 starts.
+
+#Game No : 11751360548
+***** Hand History for Game 11751360548 *****
+$4 USD NL Texas Hold'em - Thursday, May 17, 00:33:30 EEST 2012
+Table Masima (Real Money)
+Seat 3 is the button
+Total number of players : 6/6
+Seat 1: Player0 ( $3.47 USD )
+Seat 5: Player1 ( $4 USD )
+Seat 4: Player2 ( $3.77 USD )
+Seat 6: Player3 ( $6.64 USD )
+Seat 2: Hero ( $4.25 USD )
+Seat 3: Player5 ( $4.65 USD )
+Player2 posts small blind [$0.02 USD].
+Player1 posts big blind [$0.04 USD].
+** Dealing down cards **
+Dealt to Hero [  6c 6s ]
+Player3 calls [$0.04 USD]
+Player0 folds
+Hero raises [$0.16 USD]
+Player5 folds
+Player2 calls [$0.14 USD]
+Player1 folds
+Player3 calls [$0.12 USD]
+** Dealing Flop ** [ 7h, 2s, Qc ]
+Player2 checks
+Player3 checks
+Hero bets [$0.40 USD]
+Player2 folds
+Player3 folds
+Hero does not show cards.
+Hero wins $0.90 USD
