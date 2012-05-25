@@ -89,7 +89,7 @@ class PokerTracker(HandHistoryConverter):
     re_Site = re.compile(u'(?P<SITE>EverestPoker\sGame\s\#|GAME\s\#|MERGE_GAME\s\#|\*{2}\sGame\sID\s)\d+')
     # Static regexes
     re_GameInfo1     = re.compile(u"""
-          (?P<SITE>GAME\s\#|MERGE_GAME\s\#)(?P<HID>[0-9]+):\s+
+          (?P<SITE>GAME\s\#|MERGE_GAME\s\#)(?P<HID>[0-9\-]+):\s+
           (?P<GAME>Holdem|Texas\sHold\'em|Omaha|Omaha\sHi/Lo)\s\s?
           (?P<LIMIT>NL|No\sLimit|Limit|LIMIT|Pot\sLimit)\s\s?
           (?P<TOUR>Tournament)?
@@ -278,7 +278,7 @@ class PokerTracker(HandHistoryConverter):
                 hand.startTime = HandHistoryConverter.changeTimezone(hand.startTime, "ET", "UTC")
             if key == 'HID':
                 if self.sitename == 'Merge':
-                    hand.handid = info[key][:8] + str(int(info[key][8:]))
+                    hand.handid = info[key][:8] + info[key][9:]
                 else:
                     hand.handid = info[key]
             if key == 'TOURNO':
