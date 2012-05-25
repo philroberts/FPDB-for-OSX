@@ -490,7 +490,7 @@ class PartyPoker(HandHistoryConverter):
                 self.readButton(hand)
             # NOTE: code below depends on Hand's implementation
             # playersMap - dict {seat: (pname,stack)}
-            playersMap = dict([(f[0], f[1:3]) for f in hand.players])
+            playersMap = dict([(f[0], f[1:3]) for f in hand.players if f[1] in hand.streets[hand.allStreets[1]]])
             maxSeat = max(playersMap)
 
             def findFirstNonEmptySeat(startSeat):

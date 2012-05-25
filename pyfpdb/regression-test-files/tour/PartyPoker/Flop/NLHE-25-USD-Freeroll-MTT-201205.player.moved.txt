@@ -1,0 +1,45 @@
+Game #11749829747 starts.
+
+#Game No : 11749829747 
+***** Hand History for Game 11749829747 *****
+NL Texas Hold'em  Trny: 69421386 Level: 3  Blinds(30/60) - Wednesday, May 16, 17:59:37 MSKS 2012
+Table BankrollMob April $25 Freeroll (2598928) Table #15 (Real Money)
+Seat 3 is the button
+Total number of players : 8/10 
+Seat 3: Player2 ( 14,330 )
+Seat 10: Player0 ( 2,850 )
+Seat 7: Player3 ( 6,665 )
+Seat 4: Player7 ( 3,000 )
+Seat 1: Player4 ( 9,495 )
+Seat 2: Player6 ( 7,010 )
+Seat 9: Player1 ( 10,185 )
+Seat 6: Player5 ( 2,010 )
+Trny: 69421386 Level: 3 
+Blinds(30/60)
+** Dealing down cards **
+Dealt to Player2 [  Ac 2h ]
+Player1 calls [60]
+Player0 folds
+Player4 folds
+Player6 folds
+Player2 folds
+Player5 calls [30]
+Player3 checks
+** Dealing Flop ** [ 7d, 4s, 9c ]
+Player5 checks
+Player3 bets [180]
+Player1 folds
+Player5 calls [180]
+** Dealing Turn ** [ 8c ]
+Player5 checks
+Player3 bets [540]
+Player5 raises [1,080]
+Player3 calls [540]
+** Dealing River ** [ 3c ]
+Player5 is all-In  [690]
+Player3 calls [690]
+Player5 shows [ Qh, 4c ]a pair of Fours.
+Player3 shows [ 6h, 8h ]a pair of Eights.
+Player3 wins 4,080 chips from the main pot with a pair of Eights.
+Player Player5 finished in 274.
+
