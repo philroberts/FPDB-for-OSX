@@ -131,7 +131,7 @@ class PokerTracker(HandHistoryConverter):
           (,\sSeats\s(?P<MAX>\d+))?""" % substitutions
           , re.MULTILINE|re.VERBOSE)
 
-    re_SplitHands   = re.compile('(?:\s?\n){2,}')
+    re_SplitHands   = re.compile('\n\n\n+?')
     re_TailSplitHands   = re.compile('(\n\n\n+)')
     re_Button       = re.compile('The button is in seat #(?P<BUTTON>\d+)', re.MULTILINE)
     re_Board        = re.compile(r"\[(?P<CARDS>.+)\]")
