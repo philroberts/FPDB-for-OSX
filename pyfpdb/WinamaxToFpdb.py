@@ -212,7 +212,6 @@ class Winamax(HandHistoryConverter):
                     log.error("readHandInfo: " + _("DATETIME not matched: '%s'") % info[key])
                     #print "DEBUG: readHandInfo: DATETIME not matched: '%s'" % info[key]
                 hand.startTime = datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S")
-                hand.startTime = HandHistoryConverter.changeTimezone(hand.startTime, "CET", "UTC")
             if key == 'HID1':
                 # Need to remove non-alphanumerics for MySQL
 #                hand.handid = "1%.9d%s%s"%(int(info['HID2']),info['HID1'],info['HID3'])
