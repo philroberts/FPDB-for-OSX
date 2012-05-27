@@ -45,6 +45,20 @@ class OnGame(HandHistoryConverter):
                             'CUR': u"(\$|\xe2\x82\xac|\u20ac||\£|)",
                            'NUM' : u".,\d",
                     }
+    
+    Lim_Blinds = {      '0.04': ('0.01', '0.02'),    '0.10': ('0.02', '0.05'),      
+                        '0.20': ('0.05', '0.10'),    '0.30': ('0.07', '0.15'),
+                        '0.50': ('0.12', '0.25'),
+                        '1.00': ('0.25', '0.50'),       '1': ('0.25', '0.50'),
+                        '2.00': ('0.50', '1.00'),       '2': ('0.50', '1.00'),
+                        '4.00': ('1.00', '2.00'),       '4': ('1.00', '2.00'),
+                        '6.00': ('1.50', '3.00'),       '6': ('1.50', '3.00'),
+                       '10.00': ('2.50', '5.00'),      '10': ('2.50', '5.00'),
+                       '20.00': ('5.00', '10.00'),     '20': ('5.00', '10.00'),
+                       '30.00': ('7.50', '15.00'),     '30': ('7.50', '15.00'),
+                       '50.00': ('12.50', '25.00'),    '50': ('12.50', '25.00'),
+                  }
+    
     currencies = { u'\u20ac':'EUR', u'\xe2\x82\xac':'EUR', '$':'USD', '':'T$' }
 
     limits = { 'NO_LIMIT':'nl', 'POT_LIMIT':'pl', 'LIMIT':'fl'}
@@ -193,7 +207,20 @@ class OnGame(HandHistoryConverter):
         if 'BB' in mg:
             info['bb'] = self.clearMoneyString(mg['BB'].replace(',', ''))
 
-        #log.debug("determinegametype: returning "+str(info))
+        if info['limitType'] == 'fl' and info['bb'] is not None:
+            if info['type'] == 'ring':
+                try:
+                    bb = self.clearMoneyString(mg['BB'].replace(',', ''))
+                    info['sb'] = self.Lim_Blinds[bb][0]
+                    info['bb'] = self.Lim_Blinds[bb][1]
+                except KeyError:
+                    tmp = handText[0:200]
+                    log.error(_("OnGameToFpdb.determineGameType: Lim_Blinds has no lookup for '%s' - '%s'") % (bb, tmp))
+                    raise FpdbParseError
+            else:
+                sb = self.clearMoneyString(mg['SB'].replace(',', ''))
+                info['sb'] = str((Decimal(sb)/2).quantize(Decimal("0.01")))
+                info['bb'] = str(Decimal(sb).quantize(Decimal("0.01")))    
         return info
 
     def readHandInfo(self, hand):
@@ -271,16 +298,16 @@ class OnGame(HandHistoryConverter):
 
     def markStreets(self, hand):
         if hand.gametype['base'] in ("hold"):
-            m =  re.search(r"pocket cards(?P<PREFLOP>.+(?= Dealing flop )|.+(?=Summary))"
-                       r"( Dealing flop (?P<FLOP>\[\S\S, \S\S, \S\S\].+(?= Dealing turn)|.+(?=Summary)))?"
-                       r"( Dealing turn (?P<TURN>\[\S\S\].+(?= Dealing river)|.+(?=Summary)))?"
-                       r"( Dealing river (?P<RIVER>\[\S\S\].+(?=Summary)))?", hand.handText, re.DOTALL)
+            m =  re.search(r"pocket cards(?P<PREFLOP>.+?(?= Dealing flop )|.+(?=Summary))"
+                       r"( Dealing flop (?P<FLOP>\[\S\S, \S\S, \S\S\].+?(?= Dealing turn)|.+(?=Summary)))?"
+                       r"( Dealing turn (?P<TURN>\[\S\S\].+?(?= Dealing river)|.+(?=Summary)))?"
+                       r"( Dealing river (?P<RIVER>\[\S\S\].+?(?=Summary)))?", hand.handText, re.DOTALL)
         elif hand.gametype['base'] in ("stud"):
             m =  re.search(r"(?P<ANTES>.+(?=Dealing pocket cards)|.+)"
-                           r"(Dealing pocket cards(?P<THIRD>.+(?=Dealing 4th street)|.+))?"
-                           r"(Dealing 4th street(?P<FOURTH>.+(?=Dealing 5th street)|.+))?"
-                           r"(Dealing 5th street(?P<FIFTH>.+(?=Dealing 6th street)|.+))?"
-                           r"(Dealing 6th street(?P<SIXTH>.+(?=Dealing river)|.+))?"
+                           r"(Dealing pocket cards(?P<THIRD>.+?(?=Dealing 4th street)|.+))?"
+                           r"(Dealing 4th street(?P<FOURTH>.+?(?=Dealing 5th street)|.+))?"
+                           r"(Dealing 5th street(?P<FIFTH>.+?(?=Dealing 6th street)|.+))?"
+                           r"(Dealing 6th street(?P<SIXTH>.+?(?=Dealing river)|.+))?"
                            r"(Dealing river(?P<SEVENTH>.+))?", hand.handText,re.DOTALL)
         elif hand.gametype['base'] in ("draw"):
             # isolate the first discard/stand pat line
@@ -295,7 +322,7 @@ class OnGame(HandHistoryConverter):
                 for i in discard_split:
                     hand.handText += i
             m =  re.search(r"(?P<PREDEAL>.+(?=Dealing pocket cards)|.+)"
-                           r"(Dealing pocket cards(?P<DEAL>.*(?=\*\*\* DRAW \*\*\*)|.+))?"
+                           r"(Dealing pocket cards(?P<DEAL>.+(?=\*\*\* DRAW \*\*\*)|.+))?"
                            r"(\*\*\* DRAW \*\*\*(?P<DRAWONE>.+))?", hand.handText,re.DOTALL)
         #import pprint
         #pprint.pprint(m.groupdict())
@@ -327,8 +354,8 @@ class OnGame(HandHistoryConverter):
 
     def readBlinds(self, hand):
         try:
-            m = self.re_PostSB.search(hand.handText)
-            hand.addBlind(m.group('PNAME'), 'small blind', self.clearMoneyString(m.group('SB')))
+            for a in self.re_PostSB.finditer(hand.handText):
+                hand.addBlind(a.group('PNAME'), 'small blind', self.clearMoneyString(a.group('SB')))
         except exceptions.AttributeError: # no small blind
             log.debug( _("No small blinds found.")+str(sys.exc_info()) )
             #hand.addBlind(None, None, None)

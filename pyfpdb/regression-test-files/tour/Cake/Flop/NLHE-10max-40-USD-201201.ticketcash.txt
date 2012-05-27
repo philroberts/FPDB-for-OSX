@@ -1,0 +1,35 @@
+﻿ï»¿Hand#2850A21DA0000024 - $3,000 Guaranteed Turbo T10624416 -- TICKETCASH -- $40 + $4 -- 10 Max -- Table 1 -- 0/10/20 NL Hold'em -- 2012/01/23 - 23:36:07
+Dealer: Seat 5
+Seat 1: Player2 (1,667 in chips) 
+Seat 3: Player6 (3,970 in chips) 
+Seat 5: Player4 (8,239 in chips) 
+Seat 6: Player7 (3,940 in chips) 
+Seat 7: Player3 (3,850 in chips) 
+Seat 8: Hero (4,000 in chips) 
+Seat 9: Player0 (3,850 in chips) 
+Seat 10: Player5 (3,760 in chips) 
+Player7: posts small blind 10
+Player3: posts big blind 20
+Dealt to Hero [Ks,6s]
+Hero: folds
+Player0: folds
+Player5: folds
+Player2: raises to 45
+Player6: folds
+Player4: folds
+Player7: calls 35
+Player3: folds
+*** FLOP *** [Jc,4d,Qd]
+Player7: checks
+Player2: checks
+*** TURN *** [6c]
+Player7: bets 55
+Player2: calls 55
+*** RIVER *** [3h]
+Player7: bets 147
+Player2: calls 147
+***SHOW DOWN***
+Player7: shows [8h 7h] (High card Queen  )
+Player2: shows [Td Tc] (Pair of Tens  )
+Player2 wins 514 with Pair of Tens   
+

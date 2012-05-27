@@ -191,9 +191,7 @@ HandHistoryConverter: '%(sitename)s'
 
     def processHand(self, handText):
         if self.copyGameHeader:
-            gametype = self.determineGameType(self.whole_file)
-            if 'mix' in gametype:
-                gametype = self.determineGameType(handText)
+            gametype = self.parseHeader(handText, self.whole_file)
         else:
             gametype = self.determineGameType(handText)
         hand = None
@@ -375,7 +373,9 @@ or None if we fail to get the info """
     # an inheriting class can calculate it for the specific site if need be.
     def getRake(self, hand):
         hand.rake = hand.totalpot - hand.totalcollected #  * Decimal('0.05') # probably not quite right
-
+        if hand.rake < 0:
+            log.error(_("hhc.getRake(): '%s': Amount collected (%s) is greater than the pot (%s)") % (hand.handid,str(hand.totalcollected), str(hand.totalpot)))
+            raise FpdbParseError
 
     def sanityCheck(self):
         """Check we aren't going to do some stupid things"""

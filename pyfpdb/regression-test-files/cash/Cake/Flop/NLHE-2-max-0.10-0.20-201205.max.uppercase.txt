@@ -1,0 +1,13 @@
+Hand#2956013141000985 - Calgary (2-Max) 13141 -- $0.10/$0.20 NL Hold'em -- 2012/05/09 - 18:13:48
+Dealer: Seat 3
+Seat 3: Hero ($21.27 in chips) 
+Seat 8: Player0 ($15.10 in chips) 
+Hero: posts small blind $0.10
+Player0: posts big blind $0.20
+Dealt to Hero [6d,Ks]
+Hero: raises to $0.47
+Player0: folds
+Hero: returns uncalled bet $0.27
+***SHOW DOWN***
+Hero: mucks
+Hero wins $0.40 

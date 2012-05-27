@@ -150,7 +150,7 @@ class PokerTracker(HandHistoryConverter):
     re_HeroCards        = re.compile(r"^Dealt to %(PLYR)s(?: \[(?P<OLDCARDS>.+?)\])?( \[(?P<NEWCARDS>.+?)\])" % substitutions, re.MULTILINE)
     re_Action           = re.compile(r"""
                         ^%(PLYR)s:?(?P<ATYPE>\sbets|\schecks|\sraises|\scalls|\sfolds|\sBet|\sCheck|\sRaise|\sCall|\sFold|\sAllin)
-                        (\s\(NF\))?
+                        (?P<RAISETO>\s\(NF\))?
                         (\sto)?(\s%(CUR)s(?P<BET>[%(NUM)s]+))?  # the number discarded goes in <BET>
                         \s*(and\sis\sall.in)?
                         (and\shas\sreached\sthe\s[%(CUR)s\d\.,]+\scap)?
@@ -224,15 +224,20 @@ class PokerTracker(HandHistoryConverter):
             info['type'] = 'tour'
             info['currency'] = 'T$'
 
-        if info['limitType'] == 'fl' and info['bb'] is not None and info['type'] == 'ring':
-            try:
-                bb = self.clearMoneyString(mg['BB'])
-                info['sb'] = self.Lim_Blinds[bb][0]
-                info['bb'] = self.Lim_Blinds[bb][1]
-            except KeyError:
-                tmp = handText[0:200]
-                log.error(_("PokerTrackerToFpdb.determineGameType: Lim_Blinds has no lookup for '%s' - '%s'") % (mg['BB'], tmp))
-                raise FpdbParseError
+        if info['limitType'] == 'fl' and info['bb'] is not None:
+            if info['type'] == 'ring':
+                try:
+                    bb = self.clearMoneyString(mg['BB'])
+                    info['sb'] = self.Lim_Blinds[bb][0]
+                    info['bb'] = self.Lim_Blinds[bb][1]
+                except KeyError:
+                    tmp = handText[0:200]
+                    log.error(_("PokerTrackerToFpdb.determineGameType: Lim_Blinds has no lookup for '%s' - '%s'") % (mg['BB'], tmp))
+                    raise FpdbParseError
+            else:
+                sb = self.clearMoneyString(mg['SB'])
+                info['sb'] = str((Decimal(sb)/2).quantize(Decimal("0.01")))
+                info['bb'] = str(Decimal(sb).quantize(Decimal("0.01")))
 
         return info
 
@@ -400,9 +405,15 @@ class PokerTracker(HandHistoryConverter):
                 hand.addBlind(a.group('PNAME'), 'secondsb', a.group('SB'))
         for a in self.re_PostBB.finditer(hand.handText):
             self.adjustMergeTourneyStack(hand, a.group('PNAME'), a.group('BB'))
-            hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
             if not hand.gametype['bb']:
                 hand.gametype['bb'] = self.clearMoneyString(a.group('BB'))
+                hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
+            else:
+                both = Decimal(hand.gametype['bb']) + Decimal(hand.gametype['bb'])/2
+                if both == Decimal(a.group('BB')):
+                    hand.addBlind(a.group('PNAME'), 'both', a.group('BB'))
+                else:
+                    hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
         for a in self.re_PostBoth.finditer(hand.handText):
             self.adjustMergeTourneyStack(hand, a.group('PNAME'), a.group('SBBB'))
             hand.addBlind(a.group('PNAME'), 'both', a.group('SBBB'))
@@ -466,6 +477,7 @@ class PokerTracker(HandHistoryConverter):
 
     def readAction(self, hand, street):
         m = self.re_Action.finditer(hand.streets[street])
+        curr_pot = Decimal('0')
         for action in m:
             acts = action.groupdict()
             #print "DEBUG: acts: %s" %acts
@@ -476,7 +488,14 @@ class PokerTracker(HandHistoryConverter):
             elif action.group('ATYPE') in (' calls', ' Call'):
                 hand.addCall( street, action.group('PNAME'), action.group('BET') )
             elif action.group('ATYPE') in (' raises', ' Raise'):
-                hand.addRaiseTo( street, action.group('PNAME'), action.group('BET') )
+                amount = Decimal(self.clearMoneyString(action.group('BET')))
+                if curr_pot > amount:
+                    hand.addCall( street, action.group('PNAME'), action.group('BET') )
+                elif not action.group('RAISETO') and action.group('ATYPE')==' Raise':
+                    hand.addRaiseBy( street, action.group('PNAME'), action.group('BET') )
+                else:
+                    hand.addRaiseTo( street, action.group('PNAME'), action.group('BET') )
+                curr_pot = amount
             elif action.group('ATYPE') in (' bets', ' Bet'):
                 hand.addBet( street, action.group('PNAME'), action.group('BET') )
             elif action.group('ATYPE') == ' Allin':

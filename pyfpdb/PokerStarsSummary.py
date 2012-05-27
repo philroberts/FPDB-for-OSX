@@ -46,6 +46,11 @@ class PokerStarsSummary(TourneySummary):
                                  'HOSE' : ('mixed','hose'),
                           'Triple Stud' : ('mixed','3stud'),
                                '8-Game' : ('mixed','8game'),
+                        'Mixed PLH/PLO' : ('mixed','plh_plo'),
+                        'Mixed NLH/PLO' : ('mixed','nlh_plo'),
+                      'Mixed Omaha H/L' : ('mixed','plo_lo'),
+                       'Mixed Hold\'em' : ('mixed','mholdem'),
+                          'Triple Stud' : ('mixed','3stud'),
                }
 
     substitutions = {
@@ -59,7 +64,7 @@ class PokerStarsSummary(TourneySummary):
     re_TourneyInfo = re.compile(u"""
                         \#(?P<TOURNO>[0-9]+),\s
                         ((?P<LIMIT>No\sLimit|Limit|LIMIT|Pot\sLimit)\s)?
-                        (?P<GAME>Hold\'em|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Omaha|Omaha\sHi/Lo|Badugi|Triple\sDraw\s2\-7\sLowball|5\sCard\sDraw|HORSE|8-Game|Triple\sStud|HOSE)\s+
+                        (?P<GAME>Hold\'em|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Omaha|Omaha\sHi/Lo|Badugi|Triple\sDraw\s2\-7\sLowball|5\sCard\sDraw|HORSE|8\-Game|HOSE|Mixed\sOmaha\sH/L|Mixed\sHold\'em|Mixed\sPLH/PLO|Mixed\sNLH/PLO|Triple\sStud)\s+
                         (?P<DESC>[ a-zA-Z]+\s+)?
                         (Buy-In:\s(?P<CURRENCY>[%(LS)s]?)(?P<BUYIN>[,.0-9]+)(\/[%(LS)s]?(?P<FEE>[,.0-9]+))?(?P<CUR>\s(%(LEGAL_ISO)s))?\s+)?
                         (?P<ENTRIES>[0-9]+)\splayers\s+

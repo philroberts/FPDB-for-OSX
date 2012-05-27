@@ -1,0 +1,25 @@
+#Game No : 418361264
+***** Cassava Hand History for Game 418361264 *****
+$5/$10 Blinds Fix Limit Holdem - *** 04 03 2012 15:32:21
+Table Hokkaido (Real Money)
+Seat 6 is the button
+Total number of players : 4
+Seat 2: Player0 ( $10 )
+Seat 4: Player1 ( $1,728.25 )
+Seat 6: Hero ( $527 )
+Seat 9: Player2 ( $615 )
+Player2 posts small blind [$5]
+Player0 posts big blind [$10]
+** Dealing down cards **
+Dealt to Hero [ Td, Qd ]
+Player1 folds
+Hero raises [$20]
+Player2 folds
+** Dealing flop ** [ 8s, As, 2d ]
+** Dealing turn ** [ 6h ]
+** Dealing river ** [ 5d ]
+** Summary **
+Player0 shows [ 2c, Ts ]
+Hero shows [ Td, Qd ]
+Player0 collected [ $23.75 ]
+Hero collected [ $10 ]

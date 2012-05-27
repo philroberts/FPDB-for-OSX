@@ -1,0 +1,13 @@
+﻿ï»¿Hand#2856A285C2000001 - $15 Heads-up NL Hold'em Hyper Turbo T10651074 -- CASH -- $14.7 + $0.3 -- 2 Max -- Table 1 -- 0/10/20 NL Hold'em -- 2012/01/29 - 20:01:54
+Dealer: Seat 3
+Seat 3: Hero (500 in chips) 
+Seat 8: Player0 (500 in chips) 
+Hero: posts small blind 10
+Player0: posts big blind 20
+Dealt to Hero [8h,Qd]
+Hero: folds
+Player0: returns uncalled bet 10
+***SHOW DOWN***
+Player0: mucks
+Player0 wins 20 
+

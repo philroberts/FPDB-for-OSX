@@ -4,37 +4,37 @@ Seat 2: Play***2 ($0.95 in chips)
 Seat 3: Vill***1 ($0.29 in chips) 
 Seat 8: Hero ($1.97 in chips) DEALER
 Seat 9: Play***3 ($1.35 in chips) 
-Seat 10: Play***2 ($4.54 in chips) 
+Seat 10: Play***4 ($4.54 in chips) 
 Play***3: posts small blind $0.01
-Play***2: posts big blind $0.02
+Play***4: posts big blind $0.02
 Dealt to Hero [5s,Kd]
 Play***1: folds
 Play***2: raises to $0.04
 Vill***1: folds
 Hero: folds
 Play***3: calls $0.03
-Play***2: calls $0.02
+Play***4: calls $0.02
 *** FLOP *** [7h,6c,9s]
 Play***3: bets $0.02
-Play***2: raises to $0.04
+Play***4: raises to $0.04
 Play***2: calls $0.04
 Play***3: raises to $0.06
-Play***2: calls $0.02
+Play***4: calls $0.02
 Play***2: calls $0.02
 *** TURN *** [7s]
 Play***3: bets $0.04
-Play***2: raises to $0.08
+Play***4: raises to $0.08
 Play***2: calls $0.08
 Play***3: calls $0.04
 *** RIVER *** [3c]
 Play***3: bets $0.04
-Play***2: raises to $0.08
+Play***4: raises to $0.08
 Play***2: folds
 Play***3: calls $0.04
 ***SHOW DOWN***
-Play***2: shows [7d Qh] (Three of a Kind Sevens  )
+Play***4: shows [7d Qh] (Three of a Kind Sevens  )
 Play***3: mucks
-Play***2 wins $0.66 with Three of a Kind Sevens   
+Play***4 wins $0.66 with Three of a Kind Sevens   
 Play***3: mucks [9h,As] (TwoPair) .
 
 

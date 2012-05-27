@@ -1,0 +1,39 @@
+GAME #2607739781: Texas Hold'em NL $0.50/$1 2011/01/23 20:02:35
+Table HandHQ
+Seat 10: Player7 ($100,000.00 in chips)
+Seat 9: Player4 ($100,000.00 in chips)
+Seat 8: Player0 ($100,000.00 in chips)
+Seat 7: Player2 ($100,000.00 in chips)
+Seat 6: Player1 ($100,000.00 in chips)
+Seat 5: Player3 ($100,000.00 in chips)
+Seat 4: Player8 ($100,000.00 in chips)
+Seat 3: Player6 ($100,000.00 in chips)
+Seat 2: Player5 ($100,000.00 in chips)
+Seat 1: Player9 ($100,000.00 in chips) DEALER
+Player5: Post SB $0.50
+Player6: Post BB $1.00
+*** HOLE CARDS ***
+Player8: Fold
+Player3: Fold
+Player1: Raise (NF) $3.00
+Player2: Fold
+Player0: Fold
+Player4: Fold
+Player7: Call $3.00
+Player9: Fold
+Player5: Fold
+Player6: Fold
+*** FLOP *** [dJ s7 h6]
+Player1: Bet $5.62
+Player7: Call $5.62
+*** TURN *** [cA]
+Player1: Bet $14.05
+Player7: Raise $23.38
+Player1: Call $9.33
+*** RIVER *** [hJ]
+*** SUMMARY ***
+Total pot $62.50 Rake $3.00
+Player1: Shows [sA cQ]
+Player7: Shows [d6 c6]
+Player7: wins $62.50
+

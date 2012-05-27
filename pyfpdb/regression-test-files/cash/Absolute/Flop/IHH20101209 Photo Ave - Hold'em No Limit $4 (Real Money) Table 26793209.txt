@@ -1,0 +1,25 @@
+Stage #C284520999: Holdem No Limit $4  - 2010-12-09 22:49:17 (ET)
+Table: Photo Ave (Real Money) Seat #1 is the dealer
+Seat 1 - PLAYER1 ($404 in chips)
+Seat 2 - HERO ($392 in chips)
+Seat 3 - PLAYER2 ($400 in chips)
+Seat 5 - PLAYER3 ($454.50 in chips)
+Seat 6 - PLAYER4 ($404 in chips)
+HERO - Posts small blind $2
+PLAYER2 - Posts big blind $4
+*** POCKET CARDS ***
+Dealt to HERO [5s 7c]
+PLAYER3 - Folds
+PLAYER4 - Folds
+PLAYER1 - Folds
+HERO - Folds
+*** SHOW DOWN ***
+PLAYER2 - Does not show
+PLAYER2 Collects $6 from main pot
+*** SUMMARY ***
+Total Pot($6)
+Seat 1: PLAYER1 (dealer) Folded on the POCKET CARDS
+Seat 2: HERO (small blind) Folded on the POCKET CARDS
+Seat 3: PLAYER2 (big blind) collected Total ($6) 
+Seat 5: PLAYER3 Folded on the POCKET CARDS
+Seat 6: PLAYER4 Folded on the POCKET CARDS

@@ -617,6 +617,9 @@ class Hand(object):
                 sb = Decimal(str(self.sb))
                 self.bets['BLINDSANTES'][player].append(sb)
                 self.pot.addCommonMoney(player, sb)
+                
+            self.bets['BLINDSANTES'][player].append(amount)
+            self.pot.addMoney(player, amount)
 
             street = 'BLAH'
 
@@ -624,16 +627,14 @@ class Hand(object):
                 street = 'PREFLOP'
             elif self.gametype['base'] == 'draw':
                 street = 'DEAL'
-
-            self.bets[street][player].append(amount)
-            self.pot.addMoney(player, amount)
-            self.lastBet[street] = amount
+            
+            if amount>self.lastBet.get(street):
+                self.lastBet[street] = amount
             self.posted = self.posted + [[player,blindtype]]
 
 
-
     def addCall(self, street, player=None, amount=None):
-        if amount:
+        if amount is not None:
             amount = amount.replace(u',', u'') #some sites have commas
         log.debug(_("%s %s calls %s") %(street, player, amount))
         # Potentially calculate the amount of the call if not supplied
@@ -642,7 +643,8 @@ class Hand(object):
             self.checkPlayerExists(player, 'addCall')
             amount = Decimal(amount)
             self.bets[street][player].append(amount)
-            #self.lastBet[street] = amount
+            if street in ('PREFLOP', 'DEAL', 'THIRD') and self.lastBet.get(street)<amount:
+                self.lastBet[street] = amount
             self.stacks[player] -= amount
             #print "DEBUG %s calls %s, stack %s" % (player, amount, self.stacks[player])
             act = (player, 'calls', amount, self.stacks[player] == 0)
@@ -1292,7 +1294,7 @@ class DrawHand(Hand):
         self.allStreets = ['BLINDSANTES', 'DEAL', 'DRAWONE']
         self.holeStreets = ['DEAL', 'DRAWONE']
         self.actionStreets = ['BLINDSANTES', 'DEAL', 'DRAWONE']
-        if gametype['category'] in ["27_3draw","badugi"]:
+        if gametype['category'] in ["27_3draw","badugi", "a5_3draw"]:
             self.streetList += ['DRAWTWO', 'DRAWTHREE']
             self.allStreets += ['DRAWTWO', 'DRAWTHREE']
             self.holeStreets += ['DRAWTWO', 'DRAWTHREE']

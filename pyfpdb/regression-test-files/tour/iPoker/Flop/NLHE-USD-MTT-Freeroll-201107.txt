@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?><session sessioncode="4842854461">  
+	     <general>  
+	     <mode>real</mode>
+	          <gametype>Holdem NL</gametype>  
+	          <tablename>SPF $100 Daily Tournament, 611669111</tablename>  
+	          <duration>N/V</duration>  
+	          <gamecount>9</gamecount>  
+	          <startdate>2011-07-31 20:00:42</startdate>  
+	          <currency>USD</currency>  
+	          <nickname>Player6</nickname>  
+	          <bets>1,500</bets>  
+	          <wins>0</wins>  
+	          <chipsin>0</chipsin>
+			  <chipsout>0</chipsout>
+			  <ipoints>0</ipoints>
+	          <tournamentname>SPF $100 Daily Tournament</tournamentname><place>1015</place><buyin>Einladung</buyin> <totalbuyin>$0</totalbuyin> <ipoints>0</ipoints> <win>$0</win>  
+	     </general>  
+	     <game gamecode="3681845627">
+	 <general>
+	  <startdate>2011-07-31 20:00:42</startdate>
+	  <players>
+	   <player seat="1" name="Player7" chips="1,500" dealer="1" win="0" bet="100" /><player seat="2" name="Player1" chips="1,500" dealer="0" win="0" bet="340" /><player seat="3" name="Player2" chips="1,500" dealer="0" win="800" bet="340" /><player seat="4" name="Player9" chips="1,500" dealer="0" win="0" bet="0" /><player seat="5" name="Player3" chips="1,500" dealer="0" win="0" bet="0" /><player seat="6" name="Player4" chips="1,500" dealer="0" win="0" bet="0" /><player seat="7" name="Player0" chips="1,500" dealer="0" win="0" bet="0" /><player seat="8" name="Player5" chips="1,500" dealer="0" win="0" bet="20" /><player seat="9" name="Player8" chips="1,500" dealer="0" win="0" bet="0" /><player seat="10" name="Player6" chips="1,500" dealer="0" win="0" bet="0" />
+	  </players>
+	 </general>
+	 <round no="0">
+	 <action no="1" player="Player1" type="1" sum="10" cards="[cards]"/><action no="2" player="Player2" type="2" sum="20" cards="[cards]"/>
+	</round>
+	<round no="1">
+	 <cards type="Pocket" player="Player7">X X</cards><action no="10" player="Player7" type="3" sum="20" cards=""/><cards type="Pocket" player="Player1">HQ C10</cards><action no="11" player="Player1" type="3" sum="10" cards=""/><cards type="Pocket" player="Player2">DJ S9</cards><action no="12" player="Player2" type="4" sum="0" cards=""/><cards type="Pocket" player="Player9">X X</cards><action no="3" player="Player9" type="0" sum="0" cards=""/><cards type="Pocket" player="Player3">X X</cards><action no="4" player="Player3" type="0" sum="0" cards=""/><cards type="Pocket" player="Player4">X X</cards><action no="5" player="Player4" type="0" sum="0" cards=""/><cards type="Pocket" player="Player0">X X</cards><action no="6" player="Player0" type="0" sum="0" cards=""/><cards type="Pocket" player="Player5">X X</cards><action no="7" player="Player5" type="3" sum="20" cards=""/><cards type="Pocket" player="Player8">X X</cards><action no="8" player="Player8" type="0" sum="0" cards=""/><cards type="Pocket" player="Player6">S6 C4</cards><action no="9" player="Player6" type="0" sum="0" cards=""/>
+	</round>
+	<round no="2">
+	 <cards type="Flop" player="">D9 H7 S3</cards><action no="16" player="Player7" type="3" sum="80" cards=""/><action no="13" player="Player1" type="4" sum="0" cards=""/><action no="17" player="Player1" type="3" sum="80" cards=""/><action no="14" player="Player2" type="5" sum="80" cards=""/><action no="15" player="Player5" type="0" sum="0" cards=""/>
+	</round>
+	<round no="3">
+	 <cards type="Turn" player="">S8</cards><action no="20" player="Player7" type="0" sum="0" cards=""/><action no="18" player="Player1" type="4" sum="0" cards=""/><action no="21" player="Player1" type="3" sum="240" cards=""/><action no="19" player="Player2" type="5" sum="240" cards=""/>
+	</round>
+	<round no="4">
+	 <cards type="River" player="">D2</cards><action no="22" player="Player1" type="4" sum="0" cards=""/><action no="23" player="Player2" type="4" sum="0" cards=""/>
+	</round>
+	
+	</game><game gamecode="3681845824">
+	 <general>
+	  <startdate>2011-07-31 20:02:23</startdate>
+	  <players>
+	   <player seat="1" name="Player7" chips="1,400" dealer="0" win="0" bet="210" /><player seat="2" name="Player1" chips="1,160" dealer="1" win="1,020" bet="720" /><player seat="3" name="Player2" chips="1,960" dealer="0" win="0" bet="10" /><player seat="4" name="Player9" chips="1,500" dealer="0" win="0" bet="40" /><player seat="5" name="Player3" chips="1,500" dealer="0" win="0" bet="0" /><player seat="6" name="Player4" chips="1,500" dealer="0" win="0" bet="0" /><player seat="7" name="Player0" chips="1,500" dealer="0" win="0" bet="0" /><player seat="8" name="Player5" chips="1,480" dealer="0" win="0" bet="40" /><player seat="9" name="Player8" chips="1,500" dealer="0" win="0" bet="0" /><player seat="10" name="Player6" chips="1,500" dealer="0" win="0" bet="0" />
+	  </players>
+	 </general>
+	 <round no="0">
+	 <action no="1" player="Player2" type="1" sum="10" cards="[cards]"/><action no="2" player="Player9" type="2" sum="20" cards="[cards]"/>
+	</round>
+	<round no="1">
+	 <cards type="Pocket" player="Player7">X X</cards><action no="9" player="Player7" type="23" sum="40" cards=""/><cards type="Pocket" player="Player1">X X</cards><action no="10" player="Player1" type="3" sum="40" cards=""/><cards type="Pocket" player="Player2">X X</cards><action no="11" player="Player2" type="0" sum="0" cards=""/><cards type="Pocket" player="Player9">X X</cards><action no="12" player="Player9" type="3" sum="20" cards=""/><cards type="Pocket" player="Player3">X X</cards><action no="3" player="Player3" type="0" sum="0" cards=""/><cards type="Pocket" player="Player4">X X</cards><action no="4" player="Player4" type="0" sum="0" cards=""/><cards type="Pocket" player="Player0">X X</cards><action no="5" player="Player0" type="0" sum="0" cards=""/><cards type="Pocket" player="Player5">X X</cards><action no="6" player="Player5" type="3" sum="20" cards=""/><action no="13" player="Player5" type="3" sum="20" cards=""/><cards type="Pocket" player="Player8">X X</cards><action no="7" player="Player8" type="0" sum="0" cards=""/><cards type="Pocket" player="Player6">CK S7</cards><action no="8" player="Player6" type="0" sum="0" cards=""/>
+	</round>
+	<round no="2">
+	 <cards type="Flop" player="">H6 SK DQ</cards><action no="16" player="Player7" type="4" sum="0" cards=""/><action no="20" player="Player7" type="3" sum="170" cards=""/><action no="17" player="Player1" type="5" sum="170" cards=""/><action no="14" player="Player9" type="4" sum="0" cards=""/><action no="18" player="Player9" type="0" sum="0" cards=""/><action no="15" player="Player5" type="4" sum="0" cards=""/><action no="19" player="Player5" type="0" sum="0" cards=""/>
+	</round>
+	<round no="3">
+	 <cards type="Turn" player="">S4</cards><action no="21" player="Player7" type="4" sum="0" cards=""/><action no="23" player="Player7" type="0" sum="0" cards=""/><action no="22" player="Player1" type="5" sum="510" cards=""/>
+	</round>
+	
+	</game><game gamecode="3681863780">
+	 <general>
+	  <startdate>2011-07-31 20:03:21</startdate>
+	  <players>
+	   <player seat="1" name="Player7" chips="1,190" dealer="0" win="0" bet="80" /><player seat="2" name="Player1" chips="1,460" dealer="0" win="0" bet="0" /><player seat="3" name="Player2" chips="1,950" dealer="1" win="0" bet="0" /><player seat="4" name="Player9" chips="1,460" dealer="0" win="0" bet="80" /><player seat="5" name="Player3" chips="1,500" dealer="0" win="0" bet="20" /><player seat="6" name="Player4" chips="1,500" dealer="0" win="0" bet="0" /><player seat="7" name="Player0" chips="1,500" dealer="0" win="0" bet="0" /><player seat="8" name="Player5" chips="1,440" dealer="0" win="0" bet="0" /><player seat="9" name="Player8" chips="1,500" dealer="0" win="520" bet="340" /><player seat="10" name="Player6" chips="1,500" dealer="0" win="0" bet="0" />
+	  </players>
+	 </general>
+	 <round no="0">
+	 <action no="1" player="Player9" type="1" sum="10" cards="[cards]"/><action no="2" player="Player3" type="2" sum="20" cards="[cards]"/>
+	</round>
+	<round no="1">
+	 <cards type="Pocket" player="Player7">X X</cards><action no="8" player="Player7" type="23" sum="40" cards=""/><cards type="Pocket" player="Player1">X X</cards><action no="9" player="Player1" type="0" sum="0" cards=""/><cards type="Pocket" player="Player2">X X</cards><action no="10" player="Player2" type="0" sum="0" cards=""/><cards type="Pocket" player="Player9">X X</cards><action no="11" player="Player9" type="3" sum="30" cards=""/><cards type="Pocket" player="Player3">X X</cards><action no="12" player="Player3" type="0" sum="0" cards=""/><cards type="Pocket" player="Player4">X X</cards><action no="3" player="Player4" type="0" sum="0" cards=""/><cards type="Pocket" player="Player0">X X</cards><action no="4" player="Player0" type="0" sum="0" cards=""/><cards type="Pocket" player="Player5">X X</cards><action no="5" player="Player5" type="0" sum="0" cards=""/><cards type="Pocket" player="Player8">X X</cards><action no="6" player="Player8" type="3" sum="20" cards=""/><action no="13" player="Player8" type="3" sum="20" cards=""/><cards type="Pocket" player="Player6">HA C5</cards><action no="7" player="Player6" type="0" sum="0" cards=""/>
+	</round>
+	<round no="2">
+	 <cards type="Flop" player="">SJ SK C7</cards><action no="16" player="Player7" type="3" sum="20" cards=""/><action no="14" player="Player9" type="4" sum="0" cards=""/><action no="17" player="Player9" type="3" sum="20" cards=""/><action no="15" player="Player8" type="5" sum="20" cards=""/>
+	</round>
+	<round no="3">
+	 <cards type="Turn" player="">D2</cards><action no="20" player="Player7" type="3" sum="20" cards=""/><action no="18" player="Player9" type="4" sum="0" cards=""/><action no="21" player="Player9" type="3" sum="20" cards=""/><action no="19" player="Player8" type="5" sum="20" cards=""/>
+	</round>
+	<round no="4">
+	 <cards type="River" player="">CK</cards><action no="24" player="Player7" type="0" sum="0" cards=""/><action no="22" player="Player9" type="4" sum="0" cards=""/><action no="25" player="Player9" type="0" sum="0" cards=""/><action no="23" player="Player8" type="5" sum="260" cards=""/>
+	</round>
+	
+	</game><game gamecode="3681864243">
+	 <general>
+	  <startdate>2011-07-31 20:04:37</startdate>
+	  <players>
+	   <player seat="1" name="Player7" chips="1,110" dealer="0" win="0" bet="0" /><player seat="2" name="Player1" chips="1,460" dealer="0" win="0" bet="0" /><player seat="3" name="Player2" chips="1,950" dealer="0" win="0" bet="0" /><player seat="4" name="Player9" chips="1,380" dealer="1" win="0" bet="0" /><player seat="5" name="Player3" chips="1,480" dealer="0" win="0" bet="100" /><player seat="6" name="Player4" chips="1,500" dealer="0" win="0" bet="20" /><player seat="7" name="Player0" chips="1,500" dealer="0" win="0" bet="0" /><player seat="8" name="Player5" chips="1,440" dealer="0" win="240" bet="100" /><player seat="9" name="Player8" chips="1,680" dealer="0" win="0" bet="20" /><player seat="10" name="Player6" chips="1,500" dealer="0" win="0" bet="0" />
+	  </players>
+	 </general>
+	 <round no="0">
+	 <action no="1" player="Player3" type="1" sum="10" cards="[cards]"/><action no="2" player="Player4" type="2" sum="20" cards="[cards]"/>
+	</round>
+	<round no="1">
+	 <cards type="Pocket" player="Player7">X X</cards><action no="7" player="Player7" type="0" sum="0" cards=""/><cards type="Pocket" player="Player1">X X</cards><action no="8" player="Player1" type="0" sum="0" cards=""/><cards type="Pocket" player="Player2">X X</cards><action no="9" player="Player2" type="0" sum="0" cards=""/><cards type="Pocket" player="Player9">X X</cards><action no="10" player="Player9" type="0" sum="0" cards=""/><cards type="Pocket" player="Player3">H8 H7</cards><action no="11" player="Player3" type="3" sum="10" cards=""/><cards type="Pocket" player="Player4">X X</cards><action no="12" player="Player4" type="4" sum="0" cards=""/><cards type="Pocket" player="Player0">X X</cards><action no="3" player="Player0" type="0" sum="0" cards=""/><cards type="Pocket" player="Player5">S9 S10</cards><action no="4" player="Player5" type="3" sum="20" cards=""/><cards type="Pocket" player="Player8">X X</cards><action no="5" player="Player8" type="3" sum="20" cards=""/><cards type="Pocket" player="Player6">HQ C8</cards><action no="6" player="Player6" type="0" sum="0" cards=""/>
+	</round>
+	<round no="2">
+	 <cards type="Flop" player="">CK C5 D6</cards><action no="13" player="Player3" type="4" sum="0" cards=""/><action no="17" player="Player3" type="3" sum="40" cards=""/><action no="14" player="Player4" type="4" sum="0" cards=""/><action no="18" player="Player4" type="0" sum="0" cards=""/><action no="15" player="Player5" type="5" sum="40" cards=""/><action no="16" player="Player8" type="0" sum="0" cards=""/>
+	</round>
+	<round no="3">
+	 <cards type="Turn" player="">C3</cards><action no="19" player="Player3" type="4" sum="0" cards=""/><action no="21" player="Player3" type="3" sum="40" cards=""/><action no="20" player="Player5" type="5" sum="40" cards=""/>
+	</round>
+	<round no="4">
+	 <cards type="River" player="">C10</cards><action no="22" player="Player3" type="4" sum="0" cards=""/><action no="23" player="Player5" type="4" sum="0" cards=""/>
+	</round>
+	
+	</game><game gamecode="3681864554">
+	 <general>
+	  <startdate>2011-07-31 20:05:21</startdate>
+	  <players>
+	   <player seat="1" name="Player7" chips="1,110" dealer="0" win="140" bet="55" /><player seat="2" name="Player1" chips="1,460" dealer="0" win="0" bet="0" /><player seat="3" name="Player2" chips="1,950" dealer="0" win="0" bet="0" /><player seat="4" name="Player9" chips="1,380" dealer="0" win="0" bet="0" /><player seat="5" name="Player3" chips="1,380" dealer="1" win="0" bet="0" /><player seat="6" name="Player4" chips="1,480" dealer="0" win="0" bet="10" /><player seat="7" name="Player0" chips="1,500" dealer="0" win="0" bet="20" /><player seat="8" name="Player5" chips="1,580" dealer="0" win="0" bet="0" /><player seat="9" name="Player8" chips="1,660" dealer="0" win="0" bet="55" /><player seat="10" name="Player6" chips="1,500" dealer="0" win="0" bet="0" />
+	  </players>
+	 </general>
+	 <round no="0">
+	 <action no="1" player="Player4" type="1" sum="10" cards="[cards]"/><action no="2" player="Player0" type="2" sum="20" cards="[cards]"/>
+	</round>
+	<round no="1">
+	 <cards type="Pocket" player="Player7">S7 C7</cards><action no="6" player="Player7" type="3" sum="20" cards=""/><cards type="Pocket" player="Player1">X X</cards><action no="7" player="Player1" type="0" sum="0" cards=""/><cards type="Pocket" player="Player2">X X</cards><action no="8" player="Player2" type="0" sum="0" cards=""/><cards type="Pocket" player="Player9">X X</cards><action no="9" player="Player9" type="0" sum="0" cards=""/><cards type="Pocket" player="Player3">X X</cards><action no="10" player="Player3" type="0" sum="0" cards=""/><cards type="Pocket" player="Player4">X X</cards><action no="11" player="Player4" type="0" sum="0" cards=""/><cards type="Pocket" player="Player0">X X</cards><action no="12" player="Player0" type="4" sum="0" cards=""/><cards type="Pocket" player="Player5">X X</cards><action no="3" player="Player5" type="0" sum="0" cards=""/><cards type="Pocket" player="Player8">C3 H3</cards><action no="4" player="Player8" type="3" sum="20" cards=""/><cards type="Pocket" player="Player6">H7 DK</cards><action no="5" player="Player6" type="0" sum="0" cards=""/>
+	</round>
+	<round no="2">
+	 <cards type="Flop" player="">D9 D8 C2</cards><action no="15" player="Player7" type="5" sum="35" cards=""/><action no="13" player="Player0" type="4" sum="0" cards=""/><action no="16" player="Player0" type="0" sum="0" cards=""/><action no="14" player="Player8" type="4" sum="0" cards=""/><action no="17" player="Player8" type="3" sum="35" cards=""/>
+	</round>
+	<round no="3">
+	 <cards type="Turn" player="">D10</cards><action no="19" player="Player7" type="4" sum="0" cards=""/><action no="18" player="Player8" type="4" sum="0" cards=""/>
+	</round>
+	<round no="4">
+	 <cards type="River" player="">DA</cards><action no="21" player="Player7" type="4" sum="0" cards=""/><action no="20" player="Player8" type="4" sum="0" cards=""/>
+	</round>
+	
+	</game><game gamecode="3681864991">
+	 <general>
+	  <startdate>2011-07-31 20:06:06</startdate>
+	  <players>
+	   <player seat="1" name="Player7" chips="1,195" dealer="0" win="0" bet="0" /><player seat="2" name="Player1" chips="1,460" dealer="0" win="1,170" bet="840" /><player seat="3" name="Player2" chips="1,950" dealer="0" win="0" bet="0" /><player seat="4" name="Player9" chips="1,380" dealer="0" win="0" bet="255" /><player seat="5" name="Player3" chips="1,380" dealer="0" win="0" bet="0" /><player seat="6" name="Player4" chips="1,470" dealer="1" win="0" bet="0" /><player seat="7" name="Player0" chips="1,480" dealer="0" win="0" bet="15" /><player seat="8" name="Player5" chips="1,580" dealer="0" win="0" bet="60" /><player seat="9" name="Player8" chips="1,605" dealer="0" win="0" bet="0" /><player seat="10" name="Player6" chips="1,500" dealer="0" win="0" bet="0" />
+	  </players>
+	 </general>
+	 <round no="0">
+	 <action no="1" player="Player0" type="1" sum="15" cards="[cards]"/><action no="2" player="Player5" type="2" sum="30" cards="[cards]"/>
+	</round>
+	<round no="1">
+	 <cards type="Pocket" player="Player7">X X</cards><action no="5" player="Player7" type="0" sum="0" cards=""/><cards type="Pocket" player="Player1">X X</cards><action no="6" player="Player1" type="23" sum="60" cards=""/><cards type="Pocket" player="Player2">X X</cards><action no="7" player="Player2" type="0" sum="0" cards=""/><cards type="Pocket" player="Player9">X X</cards><action no="8" player="Player9" type="3" sum="60" cards=""/><cards type="Pocket" player="Player3">X X</cards><action no="9" player="Player3" type="0" sum="0" cards=""/><cards type="Pocket" player="Player4">X X</cards><action no="10" player="Player4" type="0" sum="0" cards=""/><cards type="Pocket" player="Player0">X X</cards><action no="11" player="Player0" type="0" sum="0" cards=""/><cards type="Pocket" player="Player5">X X</cards><action no="12" player="Player5" type="3" sum="30" cards=""/><cards type="Pocket" player="Player8">X X</cards><action no="3" player="Player8" type="0" sum="0" cards=""/><cards type="Pocket" player="Player6">C2 C5</cards><action no="4" player="Player6" type="0" sum="0" cards=""/>
+	</round>
+	<round no="2">
+	 <cards type="Flop" player="">D4 S2 C6</cards><action no="14" player="Player1" type="5" sum="195" cards=""/><action no="15" player="Player9" type="3" sum="195" cards=""/><action no="13" player="Player5" type="4" sum="0" cards=""/><action no="16" player="Player5" type="0" sum="0" cards=""/>
+	</round>
+	<round no="3">
+	 <cards type="Turn" player="">SQ</cards><action no="17" player="Player1" type="5" sum="585" cards=""/><action no="18" player="Player9" type="0" sum="0" cards=""/>
+	</round>
+	
+	</game><game gamecode="3681865663">
+	 <general>
+	  <startdate>2011-07-31 20:07:14</startdate>
+	  <players>
+	   <player seat="1" name="Player7" chips="1,195" dealer="0" win="0" bet="0" /><player seat="2" name="Player1" chips="1,790" dealer="0" win="0" bet="0" /><player seat="3" name="Player2" chips="1,950" dealer="0" win="0" bet="0" /><player seat="4" name="Player9" chips="1,125" dealer="0" win="3,390" bet="1,125" /><player seat="5" name="Player3" chips="1,380" dealer="0" win="510" bet="1,380" /><player seat="6" name="Player4" chips="1,470" dealer="0" win="0" bet="0" /><player seat="7" name="Player0" chips="1,465" dealer="1" win="0" bet="0" /><player seat="8" name="Player5" chips="1,520" dealer="0" win="0" bet="15" /><player seat="9" name="Player8" chips="1,605" dealer="0" win="0" bet="1,380" /><player seat="10" name="Player6" chips="1,500" dealer="0" win="0" bet="0" />
+	  </players>
+	 </general>
+	 <round no="0">
+	 <action no="1" player="Player5" type="1" sum="15" cards="[cards]"/><action no="2" player="Player8" type="2" sum="30" cards="[cards]"/>
+	</round>
+	<round no="1">
+	 <cards type="Pocket" player="Player7">X X</cards><action no="4" player="Player7" type="0" sum="0" cards=""/><cards type="Pocket" player="Player1">X X</cards><action no="5" player="Player1" type="0" sum="0" cards=""/><cards type="Pocket" player="Player2">X X</cards><action no="6" player="Player2" type="0" sum="0" cards=""/><cards type="Pocket" player="Player9">HQ CK</cards><action no="7" player="Player9" type="23" sum="90" cards=""/><action no="13" player="Player9" type="7" sum="1,035" cards=""/><cards type="Pocket" player="Player3">HJ DJ</cards><action no="8" player="Player3" type="23" sum="1,380" cards=""/><cards type="Pocket" player="Player4">X X</cards><action no="9" player="Player4" type="0" sum="0" cards=""/><cards type="Pocket" player="Player0">X X</cards><action no="10" player="Player0" type="0" sum="0" cards=""/><cards type="Pocket" player="Player5">X X</cards><action no="11" player="Player5" type="0" sum="0" cards=""/><cards type="Pocket" player="Player8">D10 DA</cards><action no="12" player="Player8" type="3" sum="1,350" cards=""/><cards type="Pocket" player="Player6">H8 HK</cards><action no="3" player="Player6" type="0" sum="0" cards=""/>
+	</round>
+	<round no="2">
+	 <cards type="Flop" player="">S9 C9 DQ</cards>
+	</round>
+	<round no="3">
+	 <cards type="Turn" player="">S8</cards>
+	</round>
+	<round no="4">
+	 <cards type="River" player="">D5</cards>
+	</round>
+	
+	</game><game gamecode="3681866037">
+	 <general>
+	  <startdate>2011-07-31 20:07:56</startdate>
+	  <players>
+	   <player seat="1" name="Player7" chips="1,195" dealer="0" win="0" bet="0" /><player seat="2" name="Player1" chips="1,790" dealer="0" win="0" bet="0" /><player seat="3" name="Player2" chips="1,950" dealer="0" win="0" bet="0" /><player seat="4" name="Player9" chips="3,390" dealer="0" win="0" bet="30" /><player seat="5" name="Player3" chips="510" dealer="0" win="795" bet="510" /><player seat="6" name="Player4" chips="1,470" dealer="0" win="0" bet="0" /><player seat="7" name="Player0" chips="1,465" dealer="0" win="0" bet="0" /><player seat="8" name="Player5" chips="1,505" dealer="1" win="0" bet="0" /><player seat="9" name="Player8" chips="225" dealer="0" win="0" bet="225" /><player seat="10" name="Player6" chips="1,500" dealer="0" win="0" bet="30" />
+	  </players>
+	 </general>
+	 <round no="0">
+	 <action no="1" player="Player8" type="1" sum="15" cards="[cards]"/><action no="2" player="Player6" type="2" sum="30" cards="[cards]"/>
+	</round>
+	<round no="1">
+	 <cards type="Pocket" player="Player7">X X</cards><action no="3" player="Player7" type="0" sum="0" cards=""/><cards type="Pocket" player="Player1">X X</cards><action no="4" player="Player1" type="0" sum="0" cards=""/><cards type="Pocket" player="Player2">X X</cards><action no="5" player="Player2" type="0" sum="0" cards=""/><cards type="Pocket" player="Player9">X X</cards><action no="6" player="Player9" type="3" sum="30" cards=""/><action no="13" player="Player9" type="0" sum="0" cards=""/><cards type="Pocket" player="Player3">H8 H10</cards><action no="7" player="Player3" type="23" sum="510" cards=""/><cards type="Pocket" player="Player4">X X</cards><action no="8" player="Player4" type="0" sum="0" cards=""/><cards type="Pocket" player="Player0">X X</cards><action no="9" player="Player0" type="0" sum="0" cards=""/><cards type="Pocket" player="Player5">X X</cards><action no="10" player="Player5" type="0" sum="0" cards=""/><cards type="Pocket" player="Player8">D7 SJ</cards><action no="11" player="Player8" type="7" sum="210" cards=""/><cards type="Pocket" player="Player6">SK H9</cards><action no="12" player="Player6" type="0" sum="0" cards=""/>
+	</round>
+	<round no="2">
+	 <cards type="Flop" player="">CK DQ SQ</cards>
+	</round>
+	<round no="3">
+	 <cards type="Turn" player="">S8</cards>
+	</round>
+	<round no="4">
+	 <cards type="River" player="">CQ</cards>
+	</round>
+	
+	</game><game gamecode="3681866566">
+	 <general>
+	  <startdate>2011-07-31 20:08:39</startdate>
+	  <players>
+	   <player seat="1" name="Player7" chips="1,195" dealer="0" win="0" bet="30" /><player seat="2" name="Player1" chips="1,790" dealer="0" win="0" bet="0" /><player seat="3" name="Player2" chips="1,950" dealer="0" win="0" bet="510" /><player seat="4" name="Player9" chips="3,360" dealer="0" win="0" bet="0" /><player seat="5" name="Player3" chips="795" dealer="0" win="0" bet="0" /><player seat="6" name="Player4" chips="1,470" dealer="0" win="0" bet="0" /><player seat="7" name="Player0" chips="1,465" dealer="0" win="0" bet="0" /><player seat="8" name="Player5" chips="1,505" dealer="0" win="3,480" bet="1,470" /><player seat="9" name="" chips="0" dealer="1" win="0" bet="0" /><player seat="10" name="Player6" chips="1,470" dealer="0" win="0" bet="1,470" />
+	  </players>
+	 </general>
+	 <round no="0">
+	 <action no="2" player="Player7" type="2" sum="30" cards="[cards]"/><action no="1" player="Player6" type="1" sum="15" cards="[cards]"/>
+	</round>
+	<round no="1">
+	 <cards type="Pocket" player="Player7">X X</cards><action no="11" player="Player7" type="0" sum="0" cards=""/><cards type="Pocket" player="Player1">X X</cards><action no="3" player="Player1" type="0" sum="0" cards=""/><cards type="Pocket" player="Player2">X X</cards><action no="4" player="Player2" type="3" sum="30" cards=""/><action no="12" player="Player2" type="3" sum="120" cards=""/><cards type="Pocket" player="Player9">X X</cards><action no="5" player="Player9" type="0" sum="0" cards=""/><cards type="Pocket" player="Player3">X X</cards><action no="6" player="Player3" type="0" sum="0" cards=""/><cards type="Pocket" player="Player4">X X</cards><action no="7" player="Player4" type="0" sum="0" cards=""/><cards type="Pocket" player="Player0">X X</cards><action no="8" player="Player0" type="0" sum="0" cards=""/><cards type="Pocket" player="Player5">SJ S4</cards><action no="9" player="Player5" type="3" sum="30" cards=""/><action no="13" player="Player5" type="3" sum="120" cards=""/><cards type="Pocket" player="Player6">SA C10</cards><action no="10" player="Player6" type="23" sum="150" cards=""/>
+	</round>
+	<round no="2">
+	 <cards type="Flop" player="">D5 D7 CJ</cards><action no="15" player="Player2" type="3" sum="360" cards=""/><action no="16" player="Player5" type="3" sum="360" cards=""/><action no="14" player="Player6" type="5" sum="360" cards=""/>
+	</round>
+	<round no="3">
+	 <cards type="Turn" player="">S8</cards><action no="18" player="Player2" type="0" sum="0" cards=""/><action no="19" player="Player5" type="3" sum="960" cards=""/><action no="17" player="Player6" type="5" sum="960" cards=""/>
+	</round>
+	<round no="4">
+	 <cards type="River" player="">S3</cards>
+	</round>
+	
+	</game>  
+	</session>

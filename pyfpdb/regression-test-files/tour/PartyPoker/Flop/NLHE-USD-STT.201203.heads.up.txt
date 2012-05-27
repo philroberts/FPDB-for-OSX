@@ -1,0 +1,22 @@
+***** Hand History for Game 11492045316 *****
+NL Texas Hold'em $1 USD Buy-in Trny:67521159 Level:7  Blinds-Antes(400/800 -25) - Thursday, March 01, 06:39:22 EST 2012
+Table Turbo #2532783 (Real Money)
+Seat 5 is the button
+Total number of players : 2/6 
+Seat 5: Player0 ( 9,495 )
+Seat 6: Player1 ( 2,505 )
+Trny:67521159 Level:7 
+Blinds-Antes(400/800 -25)
+Player0 posts ante [25]
+Player1 posts ante [25]
+** Dealing down cards **
+Dealt to Player1 [  8c Tc ]
+Player0 raises [2,000]
+Player1 is all-In  [1,680]
+Player0 calls [80]
+** Dealing Flop ** [ 9c, Ks, 5c ]
+** Dealing Turn ** [ 6c ]
+** Dealing River ** [ 5s ]
+Player0 shows [ Qh, 6d ]two pairs, Sixes and Fives.
+Player1 shows [ 8c, Tc ]a flush, Ten high.
+Player1 wins 5,010 chips from the main pot with a flush, Ten high.

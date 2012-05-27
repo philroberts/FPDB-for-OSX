@@ -1,0 +1,42 @@
+﻿ï»¿Hand#2865A31455000004 - $1,200 Guaranteed T10687573 -- CASH -- $9 + $0.9 -- 10 Max -- Table 1 -- 0/10/20 NL Hold'em -- 2012/02/07 - 23:01:32
+Dealer: Seat 1
+Seat 1: Player1 (4,000 in chips) 
+Seat 2: Player6 (4,000 in chips) 
+Seat 3: Hero (4,000 in chips) 
+Seat 4: Player8 (4,000 in chips) 
+Seat 5: Player2 (4,000 in chips) 
+Seat 6: Player4 (4,000 in chips) 
+Seat 8: Player7 (4,000 in chips) 
+Seat 9: Player0 (4,000 in chips) 
+Seat 10: Player3 (4,000 in chips) 
+Player6: posts small blind 10
+Hero: posts big blind 20
+Dealt to Hero [Kh,2s]
+Player8: folds
+Player2: folds
+Player4: raises to 45
+Player7: folds
+Player0: folds
+Player3: folds
+Player1: folds
+Player6: calls 35
+Hero: folds
+*** FLOP *** [Jd,8h,Jc]
+Player6: checks
+Player4: bets 74
+Player6: calls 74
+*** TURN *** [8c]
+Player6: checks
+Player4: bets 172
+Player6: raises to 473
+Player4: calls 301
+*** RIVER *** [9s]
+Player6: bets 1,220
+Player4: calls 1,220
+***SHOW DOWN***
+Player6: shows [4h Jh] (Full House Jacks full of Eights)
+Player4: mucks
+Player6 wins 3,644 with Full House Jacks full of Eights 
+Player4: mucks [8s,9h] (FullHouse) .
+
+

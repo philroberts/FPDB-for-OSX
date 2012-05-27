@@ -135,7 +135,7 @@ class PartyPoker(HandHistoryConverter):
           \(\s*[%(LS)s]?(?P<CASH>[%(NUM)s]+)\s*(?:%(LEGAL_ISO)s|)\s*\)
           """ % substitutions, re.VERBOSE| re.UNICODE)
 
-
+    re_NewLevel = re.compile(u"^Blinds(-Antes)?\((?P<SB>[%(NUM)s]+)/(?P<BB>[%(NUM)s]+)(?:\s*-\s*(?P<ANTE>[%(NUM)s]+))?\)" % substitutions, re.VERBOSE|re.MULTILINE|re.DOTALL)
     re_CountedSeats = re.compile("^Total\s+number\s+of\s+players\s*:\s*(?P<COUNTED_SEATS>\d+)", re.MULTILINE)
     re_SplitHands   = re.compile('\n\n+')
     re_TailSplitHands   = re.compile('(\x00+)')
@@ -249,6 +249,10 @@ class PartyPoker(HandHistoryConverter):
                 info['sb'] = sb
                 info['bb'] = bb
         else:
+            m = self.re_NewLevel.search(handText)
+            if m:
+                mg['SB'] = m.group('SB')
+                mg['BB'] = m.group('BB')
             mg['SB'] = self.clearMoneyString(mg['SB'])
             mg['BB'] = self.clearMoneyString(mg['BB'])
             if 'SB' in mg:
@@ -269,14 +273,18 @@ class PartyPoker(HandHistoryConverter):
             info['type'] = 'tour'
             info['currency'] = "T$"
 
-        if info['limitType'] == 'fl' and info['bb'] is not None and info['type'] == 'ring':
-            try:
-                info['sb'] = self.Lim_Blinds[mg['BB']][0]
-                info['bb'] = self.Lim_Blinds[mg['BB']][1]
-            except KeyError:
-                tmp = handText[0:200]
-                log.error(_("PartyPokerToFpdb.determineGameType: Lim_Blinds has no lookup for '%s' - '%s'") % (mg['BB'], tmp))
-                raise FpdbParseError
+        if info['limitType'] == 'fl' and info['bb'] is not None:
+            if info['type'] == 'ring':
+                try:
+                    info['sb'] = self.Lim_Blinds[mg['BB']][0]
+                    info['bb'] = self.Lim_Blinds[mg['BB']][1]
+                except KeyError:
+                    tmp = handText[0:200]
+                    log.error(_("PartyPokerToFpdb.determineGameType: Lim_Blinds has no lookup for '%s' - '%s'") % (mg['BB'], tmp))
+                    raise FpdbParseError
+            else:
+                info['sb'] = str((Decimal(mg['SB'])/2).quantize(Decimal("0.01")))
+                info['bb'] = str(Decimal(mg['SB']).quantize(Decimal("0.01")))
         #print "DEUBG: DGT.info: %s" % info
         return info
 
@@ -464,14 +472,8 @@ class PartyPoker(HandHistoryConverter):
         if hand.gametype['type'] == 'ring':
             try:
                 assert noSmallBlind==False
-                liveBlind = True
                 for m in self.re_PostSB.finditer(hand.handText):
-                    if liveBlind:
-                        hand.addBlind(m.group('PNAME'), 'small blind', m.group('SB'))
-                        liveBlind = False
-                    else:
-                        # Post dead blinds as ante
-                        hand.addBlind(m.group('PNAME'), 'secondsb', m.group('SB'))
+                    hand.addBlind(m.group('PNAME'), 'small blind', m.group('SB'))
             except: # no small blind
                 hand.addBlind(None, None, None)
 
@@ -503,7 +505,10 @@ class PartyPoker(HandHistoryConverter):
                 hand.addBlind(None, None, None)
                 smallBlindSeat = int(hand.buttonpos)
             else:
-                smallBlindSeat = findFirstNonEmptySeat(int(hand.buttonpos) + 1)
+                if len(hand.players)==2:
+                    smallBlindSeat = int(hand.buttonpos)
+                else:
+                    smallBlindSeat = findFirstNonEmptySeat(int(hand.buttonpos) + 1)
                 blind = smartMin(hand.sb, playersMap[smallBlindSeat][1])
                 hand.addBlind(playersMap[smallBlindSeat][0], 'small blind', blind)
 

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<session sessioncode="3077944141">
+<general>
+<mode>real</mode>
+<gametype>LH 20/40 x2 Limit $10.00/$20.00</gametype>
+<tablename>Papamoa (Heads Up), 482578151</tablename>
+<tablecurrency>USD</tablecurrency>
+<duration>00:14</duration>
+<gamecount>29</gamecount>
+<startdate>2011-03-20 20:13:01</startdate>
+<currency>USD</currency>
+<nickname>Hero</nickname>
+<bets>$2,473.97</bets>
+<wins>$3,469.94</wins>
+<chipsin>400</chipsin>
+<chipsout>1395.97</chipsout>
+<ipoints>149.5</ipoints>
+<statuspoints>149.5</statuspoints>
+<awardpoints>149.5</awardpoints>
+<is_asian>0</is_asian>
+</general>
+<game gamecode="2686565878"><general><startdate>2011-03-20 20:02:47</startdate>
+<servername>poker14.ipoker.com</servername>
+<players><player seat="3" name="Player0" chips="$553.97" dealer="0" win="$0.00" bet="$40.00" />
+<player seat="8" name="Hero" chips="$400.00" dealer="1" win="$99.00" bet="$60.00" />
+</players>
+</general>
+<round no="0"><action no="1" player="Hero" actiontxt="SB" turntime="20:02:54" type="1" sum="$10.00" />
+<action no="2" player="Player0" actiontxt="BB" turntime="20:02:54" type="2" sum="$20.00" />
+</round>
+<round no="1"><cards type="Pocket" player="Player0">x x</cards>
+<cards type="Pocket" player="Hero">SK HJ</cards>
+<action no="3" player="Hero" actiontxt="Raise" turntime="20:02:58" type="6" sum="$30.00" />
+<action no="4" player="Player0" actiontxt="Call" turntime="20:02:59" type="3" sum="$20.00" />
+</round>
+<round no="2"><cards type="Flop">DQ C7 S6</cards>
+<action no="5" player="Player0" actiontxt="Check" turntime="20:03:01" type="4" sum="$0.00" />
+<action no="6" player="Hero" actiontxt="Bet" turntime="20:03:04" type="5" sum="$20.00" />
+<action no="7" player="Player0" actiontxt="Fold" turntime="20:03:06" type="0" sum="$0.00" />
+</round>
+</game>

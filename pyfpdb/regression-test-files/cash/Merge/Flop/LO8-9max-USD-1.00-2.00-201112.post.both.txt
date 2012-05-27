@@ -1,0 +1,31 @@
+<description type="Omaha H/L8" stakes="Limit $1/$2"/>
+<game id="45547825-416" starttime="20111220050117" numholecards="4" gametype="35" seats="9" realmoney="true" data="20111220|Bohai (45547825)|45547825|45547825-416|false">
+	<players dealer="6">
+		<player seat="0" nickname="Player2" balance="$103.43" dealtin="true" />
+		<player seat="1" nickname="Player1" balance="$27.55" dealtin="true" />
+		<player seat="7" nickname="Player0" balance="$42.71" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1324375277698" player="7" amount="0.50"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1324375277995" player="0" amount="1.00"/>
+		<event sequence="3" type="RETURN_BLIND" timestamp="1324375285810" player="1" amount="1.50"/>
+	</round>
+	<round id="PREFLOP" sequence="2">
+		<event sequence="4" type="RAISE" timestamp="1324375289671" player="1" amount="2.00"/>
+		<event sequence="5" type="FOLD" timestamp="1324375291470" player="7"/>
+		<event sequence="6" type="CALL" timestamp="1324375292720" player="0" amount="1.00"/>
+		<cards type="HOLE" cards="3c,Qc,Kc,Ks" player="1" hand="Pair of Kings"/>
+	</round>
+	<round id="POSTFLOP" sequence="3">
+		<event sequence="7" type="CHECK" timestamp="1324375294013" player="0"/>
+		<event sequence="8" type="BET" timestamp="1324375296064" player="1" amount="1.00"/>
+		<event sequence="9" type="FOLD" timestamp="1324375298963" player="0"/>
+		<cards type="COMMUNITY" cards="2d,3h,Jd" hand="Pair of Kings"/>
+	</round>
+	<round id="END_OF_FOLDED_GAME" sequence="4">
+		<event sequence="10" type="MUCK" timestamp="1324375300950" player="1"/>
+		<winner amount="5.75" uncalled="false" potnumber="1" player="1" pottype="n"/>
+	</round>
+	<round id="END_OF_GAME" sequence="5">
+	</round>
+</game>

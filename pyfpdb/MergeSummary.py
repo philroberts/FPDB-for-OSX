@@ -114,71 +114,157 @@ class MergeSummary(TourneySummary):
         else:
             self.parseSummaryFile()
 
-    def parseSummaryFromHH(self, mg):
-        if 'LIMIT' in mg:
-            self.gametype['limitType'] = self.limits[mg['LIMIT']]
-        if 'GAME' in mg:
-            if mg['GAME'] == "HORSE":
-                log.error(_("MergeSummary.determineGameType: HORSE found, unsupported"))
-                raise FpdbParseError
-                #(self.info['base'], self.info['category']) = self.Multigametypes[m2.group('MULTIGAMETYPE')]
-            else:
-                self.gametype['category'] = self.games[mg['GAME']][1]
-        m = self.re_HandInfoHH.search(self.summaryText)
-        if m is None:
-            tmp = self.summaryText[0:200]
-            log.error(_("MergeSummary.readHandInfo: '%s'") % tmp)
-            raise FpdbParseError
-            
-        tourneyNameFull = m.group('TABLENAME').replace('  - ', ' - ').strip()
-        self.tourneyName = m.group('TABLENAME')[:40]
-        self.tourNo = re.split('-', m.group('TDATA'))[0]
-        self.startTime = datetime.datetime.strptime(m.group('DATETIME')[:14],'%Y%m%d%H%M%S')
-        self.startTime = HandHistoryConverter.changeTimezone(self.startTime, "ET", "UTC")
+    def parseSummaryFromHH(self, mg):           
         obj = getattr(MergeToFpdb, "Merge", None)
         hhc = obj(self.config, in_path = self.in_path, sitename = None, autostart = False)
-        
-        if tourneyNameFull not in hhc.SnG_Structures:
-            log.error(_("MergeSummary.determineGameType: No match in SnG_Structures"))
-            raise FpdbParseError
-        
-        self.buyin     = int(100*hhc.SnG_Structures[tourneyNameFull]['buyIn'])
-        self.fee       = int(100*hhc.SnG_Structures[tourneyNameFull]['fee'])
-        self.entries   = hhc.SnG_Structures[tourneyNameFull]['seats']
-        self.buyinCurrency = hhc.SnG_Structures[tourneyNameFull]['currency']
-        self.currency  = hhc.SnG_Structures[tourneyNameFull]['payoutCurrency']
-        self.maxseats  = hhc.SnG_Structures[tourneyNameFull]['seats']
-        self.prizepool = sum(hhc.SnG_Structures[tourneyNameFull]['payouts'])
-        payouts = len(hhc.SnG_Structures[tourneyNameFull]['payouts'])
-        self.isSng     = True
-        
-        if hhc.SnG_Structures[tourneyNameFull]['multi']:
-            log.error(_("MergeSummary.determineGameType: Muli-table SnG found, unsupported"))
-            raise FpdbParseError
-        
+        update = False
         handsList = hhc.allHandsAsList()
+        handsDict = {}
         for handText in handsList:
-            players, out, won = {}, [], []
-            for m in hhc.re_PlayerOut.finditer(handText):
-                out.append(m.group('PSEAT'))
-            if out:
-                for m in hhc.re_PlayerInfo.finditer(handText):
-                    players[m.group('SEAT')] = m.group('PNAME')
-                if not players: continue
-                for m in hhc.re_CollectPot.finditer(handText):
-                    won.append(m.group('PSEAT'))
-                i = 0
-                for n in out:
-                    winnings = 0
-                    if n in won:
-                        rank = 1
-                        winnings = int(100*hhc.SnG_Structures[tourneyNameFull]['payouts'][0])
-                    else:
-                        rank = len(players) - i
-                        if rank <= payouts:
-                            winnings = int(100*hhc.SnG_Structures[tourneyNameFull]['payouts'][rank-1])
-                        i += 1
-                    self.addPlayer(rank, players[n], winnings, self.currency, 0, 0, 0)
+            m = self.re_HandInfoHH.search(handText)
+            if m is None:
+                tmp = self.summaryText[0:200]
+                log.error(_("MergeSummary.readHandInfo: '%s'") % tmp)
+                continue
+            tourNo = re.split('-', m.group('TDATA'))[0]
+            hands = handsDict.get(tourNo)
+            if hands is None:
+                handsDict[tourNo] = [handText]
+            else:
+                hands.append(handText)
+        for tourNo, hands in handsDict.iteritems():
+            self.resetInfo()
+            self.db.resetBulkCache()
+            m = self.re_GameTypeHH.search(hands[0])
+            if m:
+                mg = m.groupdict()
+
+            if 'LIMIT' in mg:
+                self.gametype['limitType'] = self.limits[mg['LIMIT']]
+            if 'GAME' in mg:
+                if mg['GAME'] == "HORSE":
+                    log.error(_("MergeSummary.determineGameType: HORSE found, unsupported"))
+                    raise FpdbParseError
+                    #(self.info['base'], self.info['category']) = self.Multigametypes[m2.group('MULTIGAMETYPE')]
+                else:
+                    self.gametype['category'] = self.games[mg['GAME']][1]
+                    
+            for handText in hands:
+                m = self.re_HandInfoHH.search(handText)
+                if m is None:
+                    tmp = self.summaryText[0:200]
+                    log.error(_("MergeSummary.readHandInfo: '%s'") % tmp)
+                    continue
+                    #raise FpdbParseError
+                #print 'DEBUG:', m.groupdict()
+                
+                tourneyNameFull = m.group('TABLENAME').replace('  - ', ' - ').strip()
+                self.tourneyName = m.group('TABLENAME')[:40]
+                self.tourNo = tourNo
+                self.startTime = datetime.datetime.strptime(m.group('DATETIME')[:14],'%Y%m%d%H%M%S')
+                self.startTime = HandHistoryConverter.changeTimezone(self.startTime, "ET", "UTC")
+                
+                if tourneyNameFull not in hhc.SnG_Structures:
+                    log.error(_("MergeSummary.determineGameType: No match in SnG_Structures"))
+                    continue
+                    #raise FpdbParseError
+                
+                self.buyin     = int(100*hhc.SnG_Structures[tourneyNameFull]['buyIn'])
+                self.fee       = int(100*hhc.SnG_Structures[tourneyNameFull]['fee'])
+                self.entries   = hhc.SnG_Structures[tourneyNameFull]['seats']
+                self.buyinCurrency = hhc.SnG_Structures[tourneyNameFull]['currency']
+                self.currency  = hhc.SnG_Structures[tourneyNameFull]['payoutCurrency']
+                self.maxseats  = hhc.SnG_Structures[tourneyNameFull]['seats']
+                self.prizepool = sum(hhc.SnG_Structures[tourneyNameFull]['payouts'])
+                payouts = len(hhc.SnG_Structures[tourneyNameFull]['payouts'])
+                self.isSng     = True
+                
+                if hhc.SnG_Structures[tourneyNameFull]['multi']:
+                    log.error(_("MergeSummary.determineGameType: Muli-table SnG found, unsupported"))
+                    raise FpdbParseError            
+                
+                players, out, won = {}, [], []
+                for m in hhc.re_PlayerOut.finditer(handText):
+                    out.append(m.group('PSEAT'))
+                if out:
+                    for m in hhc.re_PlayerInfo.finditer(handText):
+                        players[m.group('SEAT')] = m.group('PNAME')
+                    if not players: continue
+                    for m in hhc.re_CollectPot.finditer(handText):
+                        won.append(m.group('PSEAT'))
+                    i = 0
+                    for n in out:
+                        winnings = 0
+                        if n in won:
+                            rank = 1
+                            winnings = int(100*hhc.SnG_Structures[tourneyNameFull]['payouts'][0])
+                        else:
+                            rank = len(players) - i
+                            if rank <= payouts:
+                                winnings = int(100*hhc.SnG_Structures[tourneyNameFull]['payouts'][rank-1])
+                            i += 1
+                        self.addPlayer(rank, players[n], winnings, self.currency, 0, 0, 0)
+            self.insertOrUpdate()
+                
+    def resetInfo(self):
+        self.tourneyName        = None
+        self.tourneyTypeId      = None
+        self.tourneyId          = None
+        self.startTime          = None
+        self.endTime            = None
+        self.tourNo             = None
+        self.currency           = None
+        self.buyinCurrency      = None
+        self.buyin              = 0
+        self.fee                = 0
+        self.hero               = None
+        self.maxseats           = 0
+        self.entries            = 0
+        self.speed              = "Normal"
+        self.prizepool          = 0  # Make it a dict in order to deal (eventually later) with non-money winnings : {'MONEY' : amount, 'OTHER' : Value ??}
+        self.buyInChips         = 0
+        self.mixed              = None
+        self.isRebuy            = False
+        self.isAddOn            = False
+        self.isKO               = False
+        self.isMatrix           = False
+        self.isShootout         = False
+        self.isZoom             = False
+        self.matrixMatchId      = None  # For Matrix tourneys : 1-4 => match tables (traditionnal), 0 => Positional winnings info
+        self.matrixIdProcessed  = None
+        self.subTourneyBuyin    = None
+        self.subTourneyFee      = None
+        self.rebuyChips         = None
+        self.addOnChips         = None
+        self.rebuyCost          = 0
+        self.addOnCost          = 0
+        self.totalRebuyCount    = None
+        self.totalAddOnCount    = None
+        self.koBounty           = 0
+        self.tourneyComment     = None
+        self.players            = []
+        self.isSng              = False
+        self.isSatellite        = False
+        self.isDoubleOrNothing  = False
+        self.guarantee          = None
+        self.added              = None
+        self.addedCurrency      = None
+        self.gametype           = {'category':None, 'limitType':None, 'mix':'none'}
+        self.comment            = None
+        self.commentTs          = None
+
+        # Collections indexed by player names
+        self.playerIds          = {}
+        self.tourneysPlayersIds = {}
+        self.ranks              = {}
+        self.winnings           = {}
+        self.winningsCurrency   = {}
+        self.rebuyCounts        = {}
+        self.addOnCounts        = {}
+        self.koCounts           = {}
+
+        # currency symbol for this summary
+        self.sym = None
 
     def parseSummaryFile(self):
         self.buyinCurrency = "USD"

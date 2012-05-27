@@ -1,0 +1,24 @@
+PokerStars Hand #78916422016:  Mixed NLH/PLO (Hold'em No Limit, $0.10/$0.25 USD) - 2012/04/15 21:33:56 EET [2012/04/15 14:33:56 ET]
+Table 'Machado VIII' 6-max Seat #4 is the button
+Seat 4: Player1 ($20 in chips) 
+Seat 5: Player0 ($25 in chips) 
+Player1: posts small blind $0.10
+Player0: posts big blind $0.25
+*** HOLE CARDS ***
+Dealt to Player0 [Th Kc]
+Player1: raises $0.25 to $0.50
+Player0: raises $1.30 to $1.80
+Player1: calls $1.30
+*** FLOP *** [2c 6s 7c]
+Player0: bets $2.50
+Player1: folds 
+Uncalled bet ($2.50) returned to Player0
+Player0 collected $3.44 from pot
+Player0: doesn't show hand 
+*** SUMMARY ***
+Total pot $3.60 | Rake $0.16 
+Board [2c 6s 7c]
+Seat 4: Player1 (button) (small blind) folded on the Flop
+Seat 5: Player0 (big blind) collected ($3.44)
+
+

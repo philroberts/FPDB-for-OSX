@@ -88,21 +88,28 @@ class Microgaming(HandHistoryConverter):
     def readSupportedGames(self):
         return [["ring", "hold", "nl"],
                 ["ring", "hold", "pl"],
-                ["ring", "hold", "fl"],
+                #["ring", "hold", "fl"], need Lim_Blinds
                 #["ring", "stud", "fl"],
                 #["ring", "draw", "fl"],
                 #["tour", "hold", "fl"],
                 #["tour", "hold", "pl"],
                 #["tour", "hold", "nl"],
-               ]
+               ]    
+
+    def parseHeader(self, handText, whole_file):
+        gametype = self.determineGameType(handText)
+        if gametype is None:
+            gametype = self.determineGameType(whole_file)
+            if gametype is None:
+                tmp = handText[0:200]
+                log.error(_("MicrogamingToFpdb.determineGameType: '%s'") % tmp)
+                raise FpdbParseError
+        return gametype
 
     def determineGameType(self, handText):
         info = {}
         m = self.re_GameInfo.search(handText)
-        if not m:
-            tmp = handText[0:200]
-            log.error(_("MicrogamingToFpdb.determineGameType: '%s'") % tmp)
-            raise FpdbParseError
+        if not m: return None
 
         mg = m.groupdict()
         #print "DEBUG: mg: %s" % mg

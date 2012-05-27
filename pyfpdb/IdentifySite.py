@@ -60,16 +60,18 @@ class Site:
         self.copyGameHeader = obj.copyGameHeader
         self.line_delimiter = None
         self.line_addendum  = ''
-        if self.re_SplitHands.match('\n\n\n') or self.re_SplitHands.match('\n\n'):
-            if self.filter_name == 'PokerStars':
-                self.line_delimiter = '\n\n'
-            elif self.filter_name == 'Fulltilt':
-                self.line_delimiter = '\n\n\n'
-            else: self.line_delimiter = '\n\n'
+        if self.filter_name == 'PokerStars':
+            self.line_delimiter = '\n\n'
+        elif self.filter_name == 'Fulltilt':
+            self.line_delimiter = '\n\n\n'
+        elif self.re_SplitHands.match('\n\n') and self.filter_name != 'Entraction':
+             self.line_delimiter = '\n\n'
+        elif self.re_SplitHands.match('\n\n\n'):
+            self.line_delimiter = '\n\n\n'
         if self.filter_name == 'OnGame':
             self.line_addendum = '*'
         elif self.filter_name == 'Merge':
-            self.line_addendum = '<game'
+            self.line_addendum = '<'
 
 class IdentifySite:
     def __init__(self, config, hhcs = None):
@@ -103,7 +105,7 @@ class IdentifySite:
     def getSiteRegex(self):
         re_identify = {}
         re_identify['Fulltilt']     = re.compile(u'FullTiltPoker|Full\sTilt\sPoker\sGame\s#\d+:')
-        re_identify['PokerStars']   = re.compile(u'PokerStars(\sGame|\sHand|\sHome\sGame|\sHome\sGame\sHand|Game|\sZoom\sHand)\s\#\d+:')
+        re_identify['PokerStars']   = re.compile(u'(PokerStars|POKERSTARS)(\sGame|\sHand|\sHome\sGame|\sHome\sGame\sHand|Game|\sZoom\sHand|\sGAME)\s\#\d+:')
         re_identify['Everleaf']     = re.compile(u'\*{5}\sHand\shistory\sfor\sgame\s#\d+\s|Partouche\sPoker\s')
         re_identify['Boss']         = re.compile(u'<HISTORY\sID="\d+"\sSESSION=')
         re_identify['OnGame']       = re.compile(u'\*{5}\sHistory\sfor\shand\s[A-Z0-9\-]+\s')
@@ -116,7 +118,7 @@ class IdentifySite:
         re_identify['iPoker']       = re.compile(u'<session\ssessioncode="\d+">')
         re_identify['Winamax']      = re.compile(u'Winamax\sPoker\s\-\s(CashGame|Tournament\s")')
         re_identify['Everest']      = re.compile(u'<SESSION\stime="\d+"\stableName=".+"\sid=')
-        re_identify['Cake']         = re.compile(u'Hand\#\d+\s\-\s')
+        re_identify['Cake']         = re.compile(u'Hand\#[A-Z0-9]+\s\-\s')
         re_identify['Entraction']   = re.compile(u'Game\s\#\s\d+\s\-\s')
         re_identify['BetOnline']    = re.compile(u'BetOnline\sPoker\sGame\s\#\d+')
         re_identify['PokerTracker'] = re.compile(u'(EverestPoker\sGame\s\#|GAME\s\#|MERGE_GAME\s\#)\d+') #Microgaming: \*{2}\sGame\sID\s

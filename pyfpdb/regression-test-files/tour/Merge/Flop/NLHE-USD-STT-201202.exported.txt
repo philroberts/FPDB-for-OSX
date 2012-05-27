@@ -1,0 +1,671 @@
+<description type="Holdem Tournament" stakes="No Limit"/>
+<game id="50104125-26" starttime="20120228010347" numholecards="2" gametype="23" seats="2" realmoney="true" data="20120228|Hairy Frog Room  - Super Turbo HU|50102278-1|50104125-26|true">
+	<players dealer="0">
+		<player seat="0" nickname="Player2" balance="$1725.00" dealtin="true" />
+		<player seat="1" nickname="Player3" balance="$1125.00" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1330409029203" player="0" amount="50.00"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1330409029203" player="1" amount="100.00"/>
+	</round>
+	<round id="PREFLOP" sequence="2">
+		<event sequence="3" type="RAISE" timestamp="1330409032468" player="0" amount="200.00"/>
+		<event sequence="4" type="ALL_IN" timestamp="1330409033265" player="1" amount="1125.00"/>
+		<event sequence="5" type="CALL" timestamp="1330409034593" player="0" amount="1025.00"/>
+		<event sequence="6" type="SHOW" timestamp="1330409034609" player="0"/>
+		<event sequence="7" type="SHOW" timestamp="1330409034625" player="1"/>
+		<cards type="HOLE" cards="Ks,7s" player="0" hand="King High"/>
+		<cards type="SHOWN" cards="Ks,7s" player="0"/>
+		<cards type="SHOWN" cards="Kd,9s" player="1"/>
+	</round>
+	<round id="POSTFLOP" sequence="3">
+		<cards type="COMMUNITY" cards="Ac,4c,8h" hand="Ace High"/>
+	</round>
+	<round id="POSTTURN" sequence="4">
+		<cards type="COMMUNITY" cards="Ac,4c,8h,8c" hand="Pair of Eights"/>
+	</round>
+	<round id="POSTRIVER" sequence="5">
+		<cards type="COMMUNITY" cards="Ac,4c,8h,8c,Ah" hand="Two Pair Aces and Eights"/>
+	</round>
+	<round id="END_OF_GAME" sequence="6">
+		<winner amount="1225.00" uncalled="false" potnumber="1" player="1" hand="Two Pair Aces and Eights" pottype="n"/>
+		<winner amount="1225.00" uncalled="false" potnumber="1" player="0" hand="Two Pair Aces and Eights" pottype="n"/>
+	</round>
+</game>
+
+
+<description type="Holdem Tournament" stakes="No Limit"/>
+<game id="50104630-1" starttime="20120228010858" numholecards="2" gametype="23" seats="2" realmoney="true" data="20120228|Wolf Spider Room  - Super Turbo HU|50104118-1|50104630-1|true">
+	<players dealer="0">
+		<player seat="0" nickname="Player2" balance="$1475.00" dealtin="true" />
+		<player seat="1" nickname="Player9" balance="$1450.00" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1330409339375" player="0" amount="25.00"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1330409339375" player="1" amount="50.00"/>
+	</round>
+	<round id="PREFLOP" sequence="2">
+		<event sequence="3" type="RAISE" timestamp="1330409347078" player="0" amount="100.00"/>
+		<event sequence="4" type="RAISE" timestamp="1330409348781" player="1" amount="150.00"/>
+		<event sequence="5" type="CALL" timestamp="1330409352328" player="0" amount="50.00"/>
+		<cards type="HOLE" cards="3c,Ac" player="0" hand="Ace High"/>
+	</round>
+	<round id="POSTFLOP" sequence="3">
+		<event sequence="6" type="BET" timestamp="1330409356328" player="1" amount="200.00"/>
+		<event sequence="7" type="CALL" timestamp="1330409362906" player="0" amount="200.00"/>
+		<cards type="COMMUNITY" cards="Jc,4s,2d" hand="Ace High"/>
+	</round>
+	<round id="POSTTURN" sequence="4">
+		<event sequence="8" type="BET" timestamp="1330409365562" player="1" amount="350.00"/>
+		<event sequence="9" type="ALL_IN" timestamp="1330409368687" player="0" amount="1150.00"/>
+		<event sequence="10" type="FOLD" timestamp="1330409370625" player="1"/>
+		<cards type="COMMUNITY" cards="Jc,4s,2d,6h" hand="Ace High"/>
+	</round>
+	<round id="END_OF_FOLDED_GAME" sequence="5">
+		<event sequence="11" type="MUCK" timestamp="1330409371093" player="0"/>
+		<winner amount="2200.00" uncalled="false" potnumber="1" player="0" pottype="n"/>
+	</round>
+	<round id="END_OF_GAME" sequence="6">
+	</round>
+</game>
+
+
+<description type="Holdem Tournament" stakes="No Limit"/>
+<game id="50104914-30" starttime="20120228011933" numholecards="2" gametype="23" seats="2" realmoney="true" data="20120228|Hairy Frog Room  - Super Turbo HU|50104207-1|50104914-30|true">
+	<players dealer="1">
+		<player seat="0" nickname="Player2" balance="$634.00" dealtin="true" />
+		<player seat="1" nickname="Player6" balance="$2066.00" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1330409974906" player="1" amount="100.00"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1330409974906" player="0" amount="200.00"/>
+	</round>
+	<round id="PREFLOP" sequence="2">
+		<event sequence="3" type="CALL" timestamp="1330409981187" player="1" amount="100.00"/>
+		<event sequence="4" type="CHECK" timestamp="1330409987671" player="0"/>
+		<cards type="HOLE" cards="7d,5s" player="0" hand="Seven High"/>
+	</round>
+	<round id="POSTFLOP" sequence="3">
+		<event sequence="5" type="CHECK" timestamp="1330409991156" player="0"/>
+		<event sequence="6" type="ALL_IN" timestamp="1330410002984" player="1" amount="1966.00"/>
+		<event sequence="7" type="ALL_IN" timestamp="1330410004546" player="0" amount="634.00"/>
+		<event sequence="8" type="SHOW" timestamp="1330410004609" player="0"/>
+		<event sequence="9" type="SHOW" timestamp="1330410004625" player="1"/>
+		<cards type="COMMUNITY" cards="9h,7h,9c" hand="Two Pair Nines and Sevens"/>
+		<cards type="SHOWN" cards="7d,5s" player="0"/>
+		<cards type="SHOWN" cards="7c,Qc" player="1"/>
+	</round>
+	<round id="POSTTURN" sequence="4">
+		<cards type="COMMUNITY" cards="9h,7h,9c,5h" hand="Two Pair Nines and Sevens"/>
+	</round>
+	<round id="POSTRIVER" sequence="5">
+		<cards type="COMMUNITY" cards="9h,7h,9c,5h,3h" hand="Two Pair Nines and Sevens"/>
+	</round>
+	<round id="END_OF_GAME" sequence="6">
+		<event sequence="10" type="PLAYER_OUT" timestamp="1330410010734" player="0"/>
+		<event sequence="11" type="PLAYER_OUT" timestamp="1330410010734" player="1"/>
+		<winner amount="1332.00" uncalled="true" potnumber="2" player="1" hand="Two Pair Nines and Sevens" pottype="n"/>
+		<winner amount="1668.00" uncalled="false" potnumber="1" player="1" hand="Two Pair Nines and Sevens" pottype="n"/>
+	</round>
+</game>
+
+
+<description type="Holdem Tournament" stakes="No Limit"/>
+<game id="50148619-3" starttime="20120228183035" numholecards="2" gametype="23" seats="2" realmoney="true" data="20120228|Wolf Spider Room  - Super Turbo HU|50147558-1|50148619-3|true">
+	<players dealer="0">
+		<player seat="0" nickname="Player2" balance="$1375.00" dealtin="true" />
+		<player seat="1" nickname="Player5" balance="$1550.00" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1330471836937" player="0" amount="25.00"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1330471836937" player="1" amount="50.00"/>
+	</round>
+	<round id="PREFLOP" sequence="2">
+		<event sequence="3" type="RAISE" timestamp="1330471838093" player="0" amount="100.00"/>
+		<event sequence="4" type="CALL" timestamp="1330471839953" player="1" amount="50.00"/>
+		<cards type="HOLE" cards="7s,Jc" player="0" hand="Jack High"/>
+	</round>
+	<round id="POSTFLOP" sequence="3">
+		<event sequence="5" type="CHECK" timestamp="1330471843390" player="1"/>
+		<event sequence="6" type="BET" timestamp="1330471845515" player="0" amount="100.00"/>
+		<event sequence="7" type="CALL" timestamp="1330471848968" player="1" amount="100.00"/>
+		<cards type="COMMUNITY" cards="9h,9c,Js" hand="Two Pair Jacks and Nines"/>
+	</round>
+	<round id="POSTTURN" sequence="4">
+		<event sequence="8" type="CHECK" timestamp="1330471852203" player="1"/>
+		<event sequence="9" type="CHECK" timestamp="1330471860187" player="0"/>
+		<cards type="COMMUNITY" cards="9h,9c,Js,4d" hand="Two Pair Jacks and Nines"/>
+	</round>
+	<round id="POSTRIVER" sequence="5">
+		<event sequence="10" type="BET" timestamp="1330471864390" player="1" amount="200.00"/>
+		<event sequence="11" type="CALL" timestamp="1330471866000" player="0" amount="200.00"/>
+		<cards type="COMMUNITY" cards="9h,9c,Js,4d,5s" hand="Two Pair Jacks and Nines"/>
+	</round>
+	<round id="SHOWDOWN" sequence="6">
+		<event sequence="12" type="SHOW" timestamp="1330471866421" player="1"/>
+		<event sequence="13" type="MUCK" timestamp="1330471866734" player="0"/>
+		<cards type="SHOWN" cards="9d,6h" player="1"/>
+		<cards type="MUCKED" cards="7s,Jc" player="0"/>
+	</round>
+	<round id="END_OF_GAME" sequence="7">
+		<winner amount="800.00" uncalled="false" potnumber="1" player="1" hand="Three of a Kind Nines" pottype="n"/>
+	</round>
+</game>
+
+
+<description type="Holdem Tournament" stakes="No Limit"/>
+<game id="50148619-4" starttime="20120228183107" numholecards="2" gametype="23" seats="2" realmoney="true" data="20120228|Wolf Spider Room  - Super Turbo HU|50147558-1|50148619-4|true">
+	<players dealer="1">
+		<player seat="0" nickname="Player2" balance="$950.00" dealtin="true" />
+		<player seat="1" nickname="Player5" balance="$1975.00" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1330471868750" player="1" amount="25.00"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1330471868750" player="0" amount="50.00"/>
+	</round>
+	<round id="PREFLOP" sequence="2">
+		<event sequence="3" type="CALL" timestamp="1330471870687" player="1" amount="25.00"/>
+		<event sequence="4" type="CHECK" timestamp="1330471872531" player="0"/>
+		<cards type="HOLE" cards="8c,3h" player="0" hand="Eight High"/>
+	</round>
+	<round id="POSTFLOP" sequence="3">
+		<event sequence="5" type="CHECK" timestamp="1330471874359" player="0"/>
+		<event sequence="6" type="BET" timestamp="1330471876359" player="1" amount="50.00"/>
+		<event sequence="7" type="CALL" timestamp="1330471878390" player="0" amount="50.00"/>
+		<cards type="COMMUNITY" cards="8h,9h,2h" hand="Pair of Eights"/>
+	</round>
+	<round id="POSTTURN" sequence="4">
+		<event sequence="8" type="CHECK" timestamp="1330471881437" player="0"/>
+		<event sequence="9" type="CHECK" timestamp="1330471882875" player="1"/>
+		<cards type="COMMUNITY" cards="8h,9h,2h,7d" hand="Pair of Eights"/>
+	</round>
+	<round id="POSTRIVER" sequence="5">
+		<event sequence="10" type="CHECK" timestamp="1330471885390" player="0"/>
+		<event sequence="11" type="CHECK" timestamp="1330471890609" player="1"/>
+		<cards type="COMMUNITY" cards="8h,9h,2h,7d,4c" hand="Pair of Eights"/>
+	</round>
+	<round id="SHOWDOWN" sequence="6">
+		<event sequence="12" type="SHOW" timestamp="1330471890890" player="0"/>
+		<event sequence="13" type="MUCK" timestamp="1330471891359" player="1"/>
+		<cards type="SHOWN" cards="8c,3h" player="0"/>
+		<cards type="MUCKED" cards="Td,3c" player="1"/>
+	</round>
+	<round id="END_OF_GAME" sequence="7">
+		<winner amount="200.00" uncalled="false" potnumber="1" player="0" hand="Pair of Eights" pottype="n"/>
+	</round>
+</game>
+
+
+<description type="Holdem Tournament" stakes="No Limit"/>
+<game id="50149869-3" starttime="20120228185121" numholecards="2" gametype="23" seats="2" realmoney="true" data="20120228|Wolf Spider Room  - Super Turbo HU|50149473-1|50149869-3|true">
+	<players dealer="0">
+		<player seat="0" nickname="Player2" balance="$1600.00" dealtin="true" />
+		<player seat="1" nickname="Player7" balance="$1325.00" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1330473082687" player="0" amount="25.00"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1330473082687" player="1" amount="50.00"/>
+	</round>
+	<round id="PREFLOP" sequence="2">
+		<event sequence="3" type="RAISE" timestamp="1330473084953" player="0" amount="100.00"/>
+		<event sequence="4" type="CALL" timestamp="1330473086250" player="1" amount="50.00"/>
+		<cards type="HOLE" cards="Kh,As" player="0" hand="Ace High"/>
+	</round>
+	<round id="POSTFLOP" sequence="3">
+		<event sequence="5" type="BET" timestamp="1330473089578" player="1" amount="200.00"/>
+		<event sequence="6" type="CALL" timestamp="1330473092421" player="0" amount="200.00"/>
+		<cards type="COMMUNITY" cards="Qc,Qs,2c" hand="Pair of Queens"/>
+	</round>
+	<round id="POSTTURN" sequence="4">
+		<event sequence="7" type="ALL_IN" timestamp="1330473094046" player="1" amount="1075.00"/>
+		<event sequence="8" type="CALL" timestamp="1330473097312" player="0" amount="1075.00"/>
+		<event sequence="9" type="SHOW" timestamp="1330473097359" player="0"/>
+		<event sequence="10" type="SHOW" timestamp="1330473097375" player="1"/>
+		<cards type="COMMUNITY" cards="Qc,Qs,2c,3h" hand="Pair of Queens"/>
+		<cards type="SHOWN" cards="Kh,As" player="0"/>
+		<cards type="SHOWN" cards="Th,Ks" player="1"/>
+	</round>
+	<round id="POSTRIVER" sequence="5">
+		<cards type="COMMUNITY" cards="Qc,Qs,2c,3h,7d" hand="Pair of Queens"/>
+	</round>
+	<round id="END_OF_GAME" sequence="6">
+		<event sequence="11" type="PLAYER_OUT" timestamp="1330473101578" player="0"/>
+		<event sequence="12" type="PLAYER_OUT" timestamp="1330473101578" player="1"/>
+		<winner amount="2750.00" uncalled="false" potnumber="1" player="0" hand="Pair of Queens" pottype="n"/>
+	</round>
+</game>
+
+
+<description type="Holdem Tournament" stakes="No Limit"/>
+<game id="50150002-1" starttime="20120228185250" numholecards="2" gametype="23" seats="2" realmoney="true" data="20120228|Hairy Frog Room  - Super Turbo HU|50147647-1|50150002-1|true">
+	<players dealer="1">
+		<player seat="0" nickname="Player2" balance="$1450.00" dealtin="true" />
+		<player seat="1" nickname="Player10" balance="$1475.00" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1330473171859" player="1" amount="25.00"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1330473171859" player="0" amount="50.00"/>
+	</round>
+	<round id="PREFLOP" sequence="2">
+		<event sequence="3" type="RAISE" timestamp="1330473174140" player="1" amount="100.00"/>
+		<event sequence="4" type="CALL" timestamp="1330473178609" player="0" amount="50.00"/>
+		<cards type="HOLE" cards="Qc,7s" player="0" hand="Queen High"/>
+	</round>
+	<round id="POSTFLOP" sequence="3">
+		<event sequence="5" type="CHECK" timestamp="1330473180093" player="0"/>
+		<event sequence="6" type="CHECK" timestamp="1330473182031" player="1"/>
+		<cards type="COMMUNITY" cards="Jc,Ks,Qd" hand="Pair of Queens"/>
+	</round>
+	<round id="POSTTURN" sequence="4">
+		<event sequence="7" type="CHECK" timestamp="1330473185234" player="0"/>
+		<event sequence="8" type="CHECK" timestamp="1330473186437" player="1"/>
+		<cards type="COMMUNITY" cards="Jc,Ks,Qd,9d" hand="Pair of Queens"/>
+	</round>
+	<round id="POSTRIVER" sequence="5">
+		<event sequence="9" type="BET" timestamp="1330473192984" player="0" amount="500.00"/>
+		<event sequence="10" type="FOLD" timestamp="1330473196984" player="1"/>
+		<cards type="COMMUNITY" cards="Jc,Ks,Qd,9d,Td" hand="King High Straight"/>
+	</round>
+	<round id="END_OF_FOLDED_GAME" sequence="6">
+		<event sequence="11" type="MUCK" timestamp="1330473197703" player="0"/>
+		<winner amount="700.00" uncalled="false" potnumber="1" player="0" pottype="n"/>
+	</round>
+	<round id="END_OF_GAME" sequence="7">
+	</round>
+</game>
+
+
+<description type="Holdem Tournament" stakes="No Limit"/>
+<game id="50150678-4" starttime="20120228190324" numholecards="2" gametype="23" seats="2" realmoney="true" data="20120228|Wolf Spider Room  - Super Turbo HU|50149809-1|50150678-4|true">
+	<players dealer="1">
+		<player seat="0" nickname="Player4" balance="$1625.00" dealtin="true" />
+		<player seat="1" nickname="Player2" balance="$1300.00" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1330473806062" player="1" amount="25.00"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1330473806062" player="0" amount="50.00"/>
+	</round>
+	<round id="PREFLOP" sequence="2">
+		<event sequence="3" type="RAISE" timestamp="1330473817984" player="1" amount="100.00"/>
+		<event sequence="4" type="CALL" timestamp="1330473820156" player="0" amount="50.00"/>
+		<cards type="HOLE" cards="6c,6d" player="1" hand="Pair of Sixes"/>
+	</round>
+	<round id="POSTFLOP" sequence="3">
+		<event sequence="5" type="CHECK" timestamp="1330473822593" player="0"/>
+		<event sequence="6" type="BET" timestamp="1330473825406" player="1" amount="133.00"/>
+		<event sequence="7" type="CALL" timestamp="1330473826828" player="0" amount="133.00"/>
+		<cards type="COMMUNITY" cards="3d,3h,8d" hand="Two Pair Sixes and Threes"/>
+	</round>
+	<round id="POSTTURN" sequence="4">
+		<event sequence="8" type="CHECK" timestamp="1330473829640" player="0"/>
+		<event sequence="9" type="BET" timestamp="1330473837781" player="1" amount="233.00"/>
+		<event sequence="10" type="ALL_IN" timestamp="1330473840187" player="0" amount="1442.00"/>
+		<event sequence="11" type="FOLD" timestamp="1330473841656" player="1"/>
+		<cards type="COMMUNITY" cards="3d,3h,8d,Jh" hand="Two Pair Sixes and Threes"/>
+	</round>
+	<round id="END_OF_FOLDED_GAME" sequence="5">
+		<event sequence="12" type="MUCK" timestamp="1330473843328" player="0"/>
+		<winner amount="2141.00" uncalled="false" potnumber="1" player="0" pottype="n"/>
+	</round>
+	<round id="END_OF_GAME" sequence="6">
+	</round>
+</game>
+
+
+<description type="Holdem Tournament" stakes="No Limit"/>
+<game id="50150829-6" starttime="20120228190641" numholecards="2" gametype="23" seats="2" realmoney="true" data="20120228|Hairy Frog Room  - Super Turbo HU|50150822-1|50150829-6|true">
+	<players dealer="1">
+		<player seat="0" nickname="Player10" balance="$684.00" dealtin="true" />
+		<player seat="1" nickname="Player2" balance="$2241.00" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1330474002718" player="1" amount="25.00"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1330474002718" player="0" amount="50.00"/>
+	</round>
+	<round id="PREFLOP" sequence="2">
+		<event sequence="3" type="RAISE" timestamp="1330474004781" player="1" amount="100.00"/>
+		<event sequence="4" type="CALL" timestamp="1330474008187" player="0" amount="50.00"/>
+		<cards type="HOLE" cards="7c,Jh" player="1" hand="Jack High"/>
+	</round>
+	<round id="POSTFLOP" sequence="3">
+		<event sequence="5" type="CHECK" timestamp="1330474009843" player="0"/>
+		<event sequence="6" type="BET" timestamp="1330474015187" player="1" amount="100.00"/>
+		<event sequence="7" type="CALL" timestamp="1330474017515" player="0" amount="100.00"/>
+		<cards type="COMMUNITY" cards="6c,9d,5c" hand="Jack High"/>
+	</round>
+	<round id="POSTTURN" sequence="4">
+		<event sequence="8" type="CHECK" timestamp="1330474019140" player="0"/>
+		<event sequence="9" type="CHECK" timestamp="1330474025171" player="1"/>
+		<cards type="COMMUNITY" cards="6c,9d,5c,5h" hand="Pair of Fives"/>
+	</round>
+	<round id="POSTRIVER" sequence="5">
+		<event sequence="10" type="BET" timestamp="1330474027875" player="0" amount="200.00"/>
+		<event sequence="11" type="FOLD" timestamp="1330474030953" player="1"/>
+		<cards type="COMMUNITY" cards="6c,9d,5c,5h,Qd" hand="Pair of Fives"/>
+	</round>
+	<round id="END_OF_FOLDED_GAME" sequence="6">
+		<event sequence="12" type="MUCK" timestamp="1330474032484" player="0"/>
+		<winner amount="600.00" uncalled="false" potnumber="1" player="0" pottype="n"/>
+	</round>
+	<round id="END_OF_GAME" sequence="7">
+	</round>
+</game>
+
+
+<description type="Holdem Tournament" stakes="No Limit"/>
+<game id="50150678-15" starttime="20120228190653" numholecards="2" gametype="23" seats="2" realmoney="true" data="20120228|Wolf Spider Room  - Super Turbo HU|50149809-1|50150678-15|true">
+	<players dealer="0">
+		<player seat="0" nickname="Player4" balance="$1478.00" dealtin="true" />
+		<player seat="1" nickname="Player2" balance="$1372.00" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1330474014125" player="0" amount="50.00"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1330474014125" player="1" amount="100.00"/>
+	</round>
+	<round id="PREFLOP" sequence="2">
+		<event sequence="3" type="CALL" timestamp="1330474016468" player="0" amount="50.00"/>
+		<event sequence="4" type="CHECK" timestamp="1330474018859" player="1"/>
+		<cards type="HOLE" cards="7s,6c" player="1" hand="Seven High"/>
+	</round>
+	<round id="POSTFLOP" sequence="3">
+		<event sequence="5" type="CHECK" timestamp="1330474023000" player="1"/>
+		<event sequence="6" type="CHECK" timestamp="1330474024546" player="0"/>
+		<cards type="COMMUNITY" cards="Ac,5h,Ad" hand="Pair of Aces"/>
+	</round>
+	<round id="POSTTURN" sequence="4">
+		<event sequence="7" type="CHECK" timestamp="1330474026312" player="1"/>
+		<event sequence="8" type="CHECK" timestamp="1330474028078" player="0"/>
+		<cards type="COMMUNITY" cards="Ac,5h,Ad,Ts" hand="Pair of Aces"/>
+	</round>
+	<round id="POSTRIVER" sequence="5">
+		<event sequence="9" type="BET" timestamp="1330474034937" player="1" amount="200.00"/>
+		<event sequence="10" type="FOLD" timestamp="1330474036875" player="0"/>
+		<cards type="COMMUNITY" cards="Ac,5h,Ad,Ts,5d" hand="Two Pair Aces and Fives"/>
+	</round>
+	<round id="END_OF_FOLDED_GAME" sequence="6">
+		<event sequence="11" type="MUCK" timestamp="1330474037484" player="1"/>
+		<winner amount="400.00" uncalled="false" potnumber="1" player="1" pottype="n"/>
+	</round>
+	<round id="END_OF_GAME" sequence="7">
+	</round>
+</game>
+
+
+<description type="Holdem Tournament" stakes="No Limit"/>
+<game id="50104125-5" starttime="20120228010048" numholecards="2" gametype="23" seats="2" realmoney="true" data="20120228|Hairy Frog Room  - Super Turbo HU|50102278-1|50104125-5|true">
+	<players dealer="1">
+		<player seat="0" nickname="Player2" balance="$1375.00" dealtin="true" />
+		<player seat="1" nickname="Player3" balance="$1550.00" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1330408849796" player="1" amount="25.00"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1330408849796" player="0" amount="50.00"/>
+	</round>
+	<round id="PREFLOP" sequence="2">
+		<event sequence="3" type="RAISE" timestamp="1330408850906" player="1" amount="100.00"/>
+		<event sequence="4" type="FOLD" timestamp="1330408852484" player="0"/>
+		<cards type="HOLE" cards="7s,6s" player="0" hand="Seven High"/>
+	</round>
+	<round id="END_OF_FOLDED_GAME" sequence="3">
+		<event sequence="5" type="MUCK" timestamp="1330408852968" player="1"/>
+		<winner amount="150.00" uncalled="false" potnumber="1" player="1" pottype="n"/>
+	</round>
+	<round id="END_OF_GAME" sequence="4">
+	</round>
+</game>
+
+
+<description type="Holdem Tournament" stakes="No Limit"/>
+<game id="50104108-1" starttime="20120228005954" numholecards="2" gametype="23" seats="2" realmoney="true" data="20120228|Wolf Spider Room  - Super Turbo HU|50102937-1|50104108-1|true">
+	<players dealer="1">
+		<player seat="0" nickname="Player2" balance="$1450.00" dealtin="true" />
+		<player seat="1" nickname="Player8" balance="$1475.00" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1330408794875" player="1" amount="25.00"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1330408794875" player="0" amount="50.00"/>
+	</round>
+	<round id="PREFLOP" sequence="2">
+		<event sequence="3" type="FOLD" timestamp="1330408797718" player="1"/>
+		<cards type="HOLE" cards="Qs,Ah" player="0" hand="Ace High"/>
+	</round>
+	<round id="END_OF_FOLDED_GAME" sequence="3">
+		<event sequence="4" type="MUCK" timestamp="1330408798218" player="0"/>
+		<winner amount="75.00" uncalled="false" potnumber="1" player="0" pottype="n"/>
+	</round>
+	<round id="END_OF_GAME" sequence="4">
+	</round>
+</game>
+
+
+<description type="Holdem Tournament" stakes="No Limit"/>
+<game id="50104125-6" starttime="20120228010054" numholecards="2" gametype="23" seats="2" realmoney="true" data="20120228|Hairy Frog Room  - Super Turbo HU|50102278-1|50104125-6|true">
+	<players dealer="0">
+		<player seat="0" nickname="Player2" balance="$1350.00" dealtin="true" />
+		<player seat="1" nickname="Player3" balance="$1575.00" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1330408855078" player="0" amount="25.00"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1330408855078" player="1" amount="50.00"/>
+	</round>
+	<round id="PREFLOP" sequence="2">
+		<event sequence="3" type="RAISE" timestamp="1330408857203" player="0" amount="100.00"/>
+		<event sequence="4" type="FOLD" timestamp="1330408857390" player="1"/>
+		<cards type="HOLE" cards="Ac,5h" player="0" hand="Ace High"/>
+	</round>
+	<round id="END_OF_FOLDED_GAME" sequence="3">
+		<event sequence="5" type="MUCK" timestamp="1330408857843" player="0"/>
+		<winner amount="150.00" uncalled="false" potnumber="1" player="0" pottype="n"/>
+	</round>
+	<round id="END_OF_GAME" sequence="4">
+	</round>
+</game>
+
+
+<description type="Holdem Tournament" stakes="No Limit"/>
+<game id="50104108-2" starttime="20120228005959" numholecards="2" gametype="23" seats="2" realmoney="true" data="20120228|Wolf Spider Room  - Super Turbo HU|50102937-1|50104108-2|true">
+	<players dealer="0">
+		<player seat="0" nickname="Player2" balance="$1500.00" dealtin="true" />
+		<player seat="1" nickname="Player8" balance="$1425.00" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1330408800406" player="0" amount="25.00"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1330408800406" player="1" amount="50.00"/>
+	</round>
+	<round id="PREFLOP" sequence="2">
+		<event sequence="3" type="RAISE" timestamp="1330408802234" player="0" amount="100.00"/>
+		<event sequence="4" type="CALL" timestamp="1330408804062" player="1" amount="50.00"/>
+		<cards type="HOLE" cards="3s,7c" player="0" hand="Seven High"/>
+	</round>
+	<round id="POSTFLOP" sequence="3">
+		<event sequence="5" type="CHECK" timestamp="1330408806515" player="1"/>
+		<event sequence="6" type="BET" timestamp="1330408814265" player="0" amount="100.00"/>
+		<event sequence="7" type="FOLD" timestamp="1330408817296" player="1"/>
+		<cards type="COMMUNITY" cards="5c,Kc,8h" hand="King High"/>
+	</round>
+	<round id="END_OF_FOLDED_GAME" sequence="4">
+		<event sequence="8" type="MUCK" timestamp="1330408817812" player="0"/>
+		<winner amount="300.00" uncalled="false" potnumber="1" player="0" pottype="n"/>
+	</round>
+	<round id="END_OF_GAME" sequence="5">
+	</round>
+</game>
+
+
+<description type="Holdem Tournament" stakes="No Limit"/>
+<game id="50104125-1" starttime="20120228010024" numholecards="2" gametype="23" seats="2" realmoney="true" data="20120228|Hairy Frog Room  - Super Turbo HU|50102278-1|50104125-1|true">
+	<players dealer="1">
+		<player seat="0" nickname="Player2" balance="$1450.00" dealtin="true" />
+		<player seat="1" nickname="Player3" balance="$1475.00" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1330408824875" player="1" amount="25.00"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1330408824875" player="0" amount="50.00"/>
+	</round>
+	<round id="PREFLOP" sequence="2">
+		<event sequence="3" type="FOLD" timestamp="1330408826328" player="1"/>
+		<cards type="HOLE" cards="6s,3d" player="0" hand="Six High"/>
+	</round>
+	<round id="END_OF_FOLDED_GAME" sequence="3">
+		<event sequence="4" type="MUCK" timestamp="1330408826796" player="0"/>
+		<winner amount="75.00" uncalled="false" potnumber="1" player="0" pottype="n"/>
+	</round>
+	<round id="END_OF_GAME" sequence="4">
+	</round>
+</game>
+
+
+<description type="Holdem Tournament" stakes="No Limit"/>
+<game id="50104108-3" starttime="20120228010018" numholecards="2" gametype="23" seats="2" realmoney="true" data="20120228|Wolf Spider Room  - Super Turbo HU|50102937-1|50104108-3|true">
+	<players dealer="1">
+		<player seat="0" nickname="Player2" balance="$1575.00" dealtin="true" />
+		<player seat="1" nickname="Player8" balance="$1350.00" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1330408819796" player="1" amount="25.00"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1330408819796" player="0" amount="50.00"/>
+	</round>
+	<round id="PREFLOP" sequence="2">
+		<event sequence="3" type="RAISE" timestamp="1330408821640" player="1" amount="100.00"/>
+		<event sequence="4" type="FOLD" timestamp="1330408827609" player="0"/>
+		<cards type="HOLE" cards="8h,2c" player="0" hand="Eight High"/>
+	</round>
+	<round id="END_OF_FOLDED_GAME" sequence="3">
+		<event sequence="5" type="MUCK" timestamp="1330408832359" player="1"/>
+		<winner amount="150.00" uncalled="false" potnumber="1" player="1" pottype="n"/>
+	</round>
+	<round id="END_OF_GAME" sequence="4">
+	</round>
+</game>
+
+
+<description type="Holdem Tournament" stakes="No Limit"/>
+<game id="50104125-2" starttime="20120228010027" numholecards="2" gametype="23" seats="2" realmoney="true" data="20120228|Hairy Frog Room  - Super Turbo HU|50102278-1|50104125-2|true">
+	<players dealer="0">
+		<player seat="0" nickname="Player2" balance="$1500.00" dealtin="true" />
+		<player seat="1" nickname="Player3" balance="$1425.00" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1330408828812" player="0" amount="25.00"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1330408828812" player="1" amount="50.00"/>
+	</round>
+	<round id="PREFLOP" sequence="2">
+		<event sequence="3" type="RAISE" timestamp="1330408832953" player="0" amount="100.00"/>
+		<event sequence="4" type="ALL_IN" timestamp="1330408834703" player="1" amount="1425.00"/>
+		<event sequence="5" type="FOLD" timestamp="1330408836265" player="0"/>
+		<cards type="HOLE" cards="Ad,6d" player="0" hand="Ace High"/>
+	</round>
+	<round id="END_OF_FOLDED_GAME" sequence="3">
+		<event sequence="6" type="MUCK" timestamp="1330408836968" player="1"/>
+		<winner amount="1575.00" uncalled="false" potnumber="1" player="1" pottype="n"/>
+	</round>
+	<round id="END_OF_GAME" sequence="4">
+	</round>
+</game>
+
+
+<description type="Holdem Tournament" stakes="No Limit"/>
+<game id="50104125-3" starttime="20120228010037" numholecards="2" gametype="23" seats="2" realmoney="true" data="20120228|Hairy Frog Room  - Super Turbo HU|50102278-1|50104125-3|true">
+	<players dealer="1">
+		<player seat="0" nickname="Player2" balance="$1375.00" dealtin="true" />
+		<player seat="1" nickname="Player3" balance="$1550.00" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1330408838781" player="1" amount="25.00"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1330408838781" player="0" amount="50.00"/>
+	</round>
+	<round id="PREFLOP" sequence="2">
+		<event sequence="3" type="FOLD" timestamp="1330408839906" player="1"/>
+		<cards type="HOLE" cards="5d,Qs" player="0" hand="Queen High"/>
+	</round>
+	<round id="END_OF_FOLDED_GAME" sequence="3">
+		<event sequence="4" type="MUCK" timestamp="1330408840406" player="0"/>
+		<winner amount="75.00" uncalled="false" potnumber="1" player="0" pottype="n"/>
+	</round>
+	<round id="END_OF_GAME" sequence="4">
+	</round>
+</game>
+
+
+<description type="Holdem Tournament" stakes="No Limit"/>
+<game id="50104125-4" starttime="20120228010041" numholecards="2" gametype="23" seats="2" realmoney="true" data="20120228|Hairy Frog Room  - Super Turbo HU|50102278-1|50104125-4|true">
+	<players dealer="0">
+		<player seat="0" nickname="Player2" balance="$1425.00" dealtin="true" />
+		<player seat="1" nickname="Player3" balance="$1500.00" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1330408842421" player="0" amount="25.00"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1330408842421" player="1" amount="50.00"/>
+	</round>
+	<round id="PREFLOP" sequence="2">
+		<event sequence="3" type="FOLD" timestamp="1330408847343" player="0"/>
+		<cards type="HOLE" cards="4s,5c" player="0" hand="Five High"/>
+	</round>
+	<round id="END_OF_FOLDED_GAME" sequence="3">
+		<event sequence="4" type="MUCK" timestamp="1330408847984" player="1"/>
+		<winner amount="75.00" uncalled="false" potnumber="1" player="1" pottype="n"/>
+	</round>
+	<round id="END_OF_GAME" sequence="4">
+	</round>
+</game>
+
+
+<description type="Holdem Tournament" stakes="No Limit"/>
+<game id="50104108-4" starttime="20120228010033" numholecards="2" gametype="23" seats="2" realmoney="true" data="20120228|Wolf Spider Room  - Super Turbo HU|50102937-1|50104108-4|true">
+	<players dealer="0">
+		<player seat="0" nickname="Player2" balance="$1550.00" dealtin="true" />
+		<player seat="1" nickname="Player8" balance="$1375.00" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1330408834500" player="0" amount="25.00"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1330408834500" player="1" amount="50.00"/>
+	</round>
+	<round id="PREFLOP" sequence="2">
+		<event sequence="3" type="RAISE" timestamp="1330408837218" player="0" amount="100.00"/>
+		<event sequence="4" type="RAISE" timestamp="1330408842187" player="1" amount="250.00"/>
+		<event sequence="5" type="CALL" timestamp="1330408849265" player="0" amount="150.00"/>
+		<cards type="HOLE" cards="Ts,9s" player="0" hand="Ten High"/>
+	</round>
+	<round id="POSTFLOP" sequence="3">
+		<event sequence="6" type="BET" timestamp="1330408856328" player="1" amount="250.00"/>
+		<event sequence="7" type="FOLD" timestamp="1330408865546" player="0"/>
+		<cards type="COMMUNITY" cards="6s,2d,6h" hand="Pair of Sixes"/>
+	</round>
+	<round id="END_OF_FOLDED_GAME" sequence="4">
+		<event sequence="8" type="MUCK" timestamp="1330408866296" player="1"/>
+		<winner amount="750.00" uncalled="false" potnumber="1" player="1" pottype="n"/>
+	</round>
+	<round id="END_OF_GAME" sequence="5">
+	</round>
+</game>
+
+
+<description type="Holdem" stakes="No Limit ($0.25/$0.50)"/>
+<game id="48132119-34" starttime="20120130192923" numholecards="2" gametype="2" seats="2" realmoney="true" data="20120130|New York (Heads Up) (48132119)|48132119|48132119-34|false">
+	<players dealer="1">
+		<player seat="0" nickname="Player4" balance="$15.00" dealtin="true" />
+		<player seat="1" nickname="Player5" balance="$50.00" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1327969760218" player="1" amount="0.25"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1327969760578" player="0" amount="0.50"/>
+	</round>
+	<round id="PREFLOP" sequence="2">
+		<event sequence="3" type="RAISE" timestamp="1327969763390" player="1" amount="1.00"/>
+		<event sequence="4" type="CALL" timestamp="1327969765453" player="0" amount="0.50"/>
+		<cards type="HOLE" cards="2d,Js" player="1" hand="Jack High"/>
+	</round>
+	<round id="POSTFLOP" sequence="3">
+		<event sequence="5" type="CHECK" timestamp="1327969768031" player="0"/>
+		<event sequence="6" type="BET" timestamp="1327969774031" player="1" amount="1.00"/>
+		<event sequence="7" type="FOLD" timestamp="1327969775562" player="0"/>
+		<cards type="COMMUNITY" cards="4s,Ah,6h" hand="Ace High"/>
+	</round>
+	<round id="END_OF_FOLDED_GAME" sequence="4">
+		<event sequence="8" type="MUCK" timestamp="1327969776296" player="1"/>
+		<winner amount="2.90" uncalled="false" potnumber="1" player="1" pottype="n"/>
+	</round>
+	<round id="END_OF_GAME" sequence="5">
+	</round>
+</game>
+

@@ -36,17 +36,25 @@ class iPokerSummary(TourneySummary):
 
     limits = { 'No Limit':'nl', 'Pot Limit':'pl', 'Limit':'fl', 'LIMIT':'fl' }
     
-    games = {
-                    '7 Card Stud L' : ('stud','studhilo'),
-                        'Holdem NL' : ('hold','holdem'),
-                         'Holdem L' : ('hold','holdem'),
-                         'Omaha PL' : ('hold','omahahi'),
+    months = { 'Jan':1, 'Feb':2, 'Mar':3, 'Apr':4, 'May':5, 'Jun':6, 'Jul':7, 'Aug':8, 'Sep':9, 'Oct':10, 'Nov':11, 'Dec':12}
+    
+    games = {              # base, category
+                '7 Card Stud L' : ('stud','studhi'),
+                '5 Card Stud L' : ('stud','5studhi'),
+                    'Holdem NL' : ('hold','holdem'),
+                    'Holdem SL' : ('hold','holdem'), #Spanish NL
+                     'Holdem L' : ('hold','holdem'),
+                     'Omaha PL' : ('hold','omahahi'),
+               'Omaha Hi-Lo PL' : ('hold','omahahilo'),
+                     'Omaha LP' : ('hold','omahahi'), #Italian PL
+               'Omaha Hi-Lo LP' : ('hold','omahahilo'), #Italian PL
+                     
             }
 
     re_GameType = re.compile(r"""
-            <gametype>(?P<GAME>7\sCard\sStud\sL|Holdem\sNL|Holdem\sL|Omaha\sPL|Omaha\sL)(\s(%(LS)s)(?P<SB>[.0-9]+)/(%(LS)s)(?P<BB>[.0-9]+))?</gametype>\s+?
+            <gametype>(?P<GAME>7\sCard\sStud\sL|Holdem\sNL|Holdem\sL|Omaha\s(PL|LP)|Omaha\sL|Omaha\sHi\-Lo\s(PL|LP))(\s(%(LS)s)(?P<SB>[.0-9]+)/(%(LS)s)(?P<BB>[.0-9]+))?</gametype>\s+?
             <tablename>(?P<TABLE>.+)?</tablename>\s+?
-            (<tablecurrency>.+</tablecurrency>\s+?)?
+            (<(tablecurrency|tournamentcurrency)>.+</(tablecurrency|tournamentcurrency)>\s+?)?
             <duration>.+</duration>\s+?
             <gamecount>.+</gamecount>\s+?
             <startdate>(?P<DATETIME>.+)</startdate>\s+?
@@ -61,8 +69,10 @@ class iPokerSummary(TourneySummary):
                 <ipoints>.+?</ipoints>\s+?
                 <win>(?P<CURRENCY>%(LS)s)?(?P<WIN>([%(NUM)s]+)|.+?)</win>
             """ % substitutions, re.MULTILINE|re.VERBOSE)
+    re_Buyin = re.compile(r"""(?P<BUYIN>[%(NUM)s]+)""" % substitutions, re.MULTILINE|re.VERBOSE)
     re_TotalBuyin = re.compile(r"""(?P<BUYIN>(?P<BIAMT>[%(LS)s%(NUM)s]+)\s\+\s?(?P<BIRAKE>[%(LS)s%(NUM)s]+)?)""" % substitutions, re.MULTILINE|re.VERBOSE)
-    re_DateTime = re.compile("""(?P<D>[0-9]{2})\/(?P<M>[0-9]{2})\/(?P<Y>[0-9]{4})\s+(?P<H>[0-9]+):(?P<MIN>[0-9]+)(:(?P<S>[0-9]+))?""", re.MULTILINE)
+    re_DateTime1 = re.compile("""(?P<D>[0-9]{2})\-(?P<M>[a-zA-Z]{3})\-(?P<Y>[0-9]{4})\s+(?P<H>[0-9]+):(?P<MIN>[0-9]+)(:(?P<S>[0-9]+))?""", re.MULTILINE)
+    re_DateTime2 = re.compile("""(?P<D>[0-9]{2})\/(?P<M>[0-9]{2})\/(?P<Y>[0-9]{4})\s+(?P<H>[0-9]+):(?P<MIN>[0-9]+)(:(?P<S>[0-9]+))?""", re.MULTILINE)
 
     codepage = ["utf-8"]
 
@@ -92,21 +102,33 @@ class iPokerSummary(TourneySummary):
         if 'GAME' in mg:
             self.gametype['category'] = self.games[mg['GAME']][1]
 
-        if mg['GAME'][-2:] == 'NL':
-            self.gametype['limitType'] = 'nl'
-        elif mg['GAME'][-2:] == 'PL':
-            self.gametype['limitType'] = 'pl'
-        else:
-            self.gametype['limitType'] = 'fl'
+        if self.games[mg['GAME']][0] == 'stud':
+            self.gametype['limitType']  = 'fl'
+        if self.games[mg['GAME']][0] == 'hold':
+            if mg['GAME'][-2:] == 'NL' or mg['GAME'][-2:] == 'SL':
+                self.gametype['limitType']  = 'nl'
+            elif mg['GAME'][-2:] == 'PL' or mg['GAME'][-2:] == 'LP':
+                self.gametype['limitType'] = 'pl'
+            else:
+                self.gametype['limitType'] = 'fl'
 
-        try:
-            self.startTime = datetime.datetime.strptime(mg['DATETIME'], '%Y-%m-%d %H:%M:%S')
-        except ValueError:
-            datestr = '%d/%m/%Y %H:%M:%S'
-            date_match = self.re_DateTime.search(m.group('DATETIME'))
-            if date_match.group('S') == None:
-                datestr = '%d/%m/%Y %H:%M'
-            self.startTime = datetime.datetime.strptime(m.group('DATETIME'), datestr)
+        m2 = self.re_DateTime1.search(mg['DATETIME'])
+        if m2:
+            month = self.months[m2.group('M')]
+            sec = m2.group('S')
+            if m2.group('S') == None:
+                sec = '00'
+            datetimestr = "%s/%s/%s %s:%s:%s" % (m2.group('Y'), month,m2.group('D'),m2.group('H'),m2.group('MIN'),sec)
+            self.startTime = datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S")
+        else:
+            try:
+                self.startTime = datetime.datetime.strptime(mg['DATETIME'], '%Y-%m-%d %H:%M:%S')
+            except ValueError:
+                datestr = '%d/%m/%Y %H:%M:%S'
+                date_match = self.re_DateTime2.search(mg['DATETIME'])
+                if date_match.group('S') == None:
+                    datestr = '%d/%m/%Y %H:%M'
+                self.startTime = datetime.datetime.strptime(mg['DATETIME'], datestr)
 
         if not mg['CURRENCY'] or mg['CURRENCY']=='fun':
             self.buyinCurrency = 'play'
@@ -131,7 +153,7 @@ class iPokerSummary(TourneySummary):
                     rank = None
                     winnings = None
                 else:
-                    winnings = int(100*convert_to_decimal(mg2['WIN']))
+                    winnings = int(100*self.convert_to_decimal(mg2['WIN']))
                     
                 self.tourneyName = mg2['NAME'][:40]
                 
@@ -141,8 +163,8 @@ class iPokerSummary(TourneySummary):
                         mg2 = m3.groupdict()
                     elif mg2['BIAMT']: mg2['BIRAKE'] = '0'
                 if mg2['BIAMT'] and mg2['BIRAKE']:
-                    self.buyin =  int(100*convert_to_decimal(mg2['BIAMT']))
-                    self.fee   =  int(100*convert_to_decimal(mg2['BIRAKE']))
+                    self.buyin =  int(100*self.convert_to_decimal(mg2['BIAMT']))
+                    self.fee   =  int(100*self.convert_to_decimal(mg2['BIRAKE']))
                 else:
                     self.buyin = 0
                     self.fee   = 0
@@ -158,12 +180,14 @@ class iPokerSummary(TourneySummary):
             raise FpdbParseError
 
 
-def convert_to_decimal(string):
-    dec = string.strip(u'$£€&euro;\u20ac')
-    dec = dec.replace(u',','.')
-    dec = dec.replace(u' ','')
-    if dec in ('N/A', 'N/D'):
-        dec = 0
-    dec = Decimal(dec)
-    return dec
+    def convert_to_decimal(self, string):
+        dec = string.strip(u'$£€&euro;\u20ac')
+        dec = dec.replace(u',','.')
+        dec = dec.replace(u' ','')
+        m = self.re_Buyin.search(dec)
+        if m:
+            dec = Decimal(m.group('BUYIN'))
+        else:
+            dec = 0
+        return dec
 
