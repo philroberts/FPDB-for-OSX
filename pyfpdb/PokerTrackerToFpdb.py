@@ -403,6 +403,11 @@ class PokerTracker(HandHistoryConverter):
                 if not hand.gametype['sb']:
                     hand.gametype['sb'] = sb
                 liveBlind = False
+            elif hand.gametype['type'] == 'tour':
+                self.adjustMergeTourneyStack(hand, a.group('PNAME'), a.group('SB'))
+                if not hand.gametype['bb']:
+                    hand.gametype['bb'] = sb
+                    hand.addBlind(a.group('PNAME'), 'big blind', sb)
             else:
                 # Post dead blinds as ante
                 self.adjustMergeTourneyStack(hand, a.group('PNAME'), a.group('SB'))

@@ -1,0 +1,19 @@
+MERGE_GAME #4927169400080: Omaha PL Tournament 02/16/2012 04:27:31
+Table $5 Free PLO Hero Arena - Country Restricted , 49271005 (Tournament: $5 Free PLO Hero Arena - Country Restricted , 49271005 Buy-In: $5+$0.50)
+Seat 4: JustJay4Reals ($23,120.00 in chips) DEALER
+Seat 5: Dispicable ($0.00 in chips)
+Seat 6: LegendofFuglyNutz ($6,295.00 in chips)
+JustJay4Reals: Post SB $100.00
+Dispicable: Post SB $135.00
+*** HOLE CARDS ***
+Dealt to JustJay4Reals [Kh 5s 4d 3c]
+LegendofFuglyNutz: Fold
+JustJay4Reals: Call $100.00
+*** FLOP *** [6c 3h 4s]
+*** TURN *** [4h]
+*** RIVER *** [7h]
+*** SUMMARY ***
+JustJay4Reals: Shows [Kh 5s 4d 3c]
+Dispicable: Shows [Kc 6s As Qd]
+JustJay4Reals: wins $270.00
+JustJay4Reals: wins $65.00
