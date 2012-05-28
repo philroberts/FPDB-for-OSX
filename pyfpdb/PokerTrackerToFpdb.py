@@ -69,7 +69,7 @@ class PokerTracker(HandHistoryConverter):
                      '2000.00': ('500.00', '1000.00'), '2000': ('500.00', '1000.00'),
                   }
 
-    limits = { 'NL':'nl', 'No Limit':'nl', 'Pot Limit':'pl', 'Limit':'fl', 'LIMIT':'fl' }
+    limits = { 'NL':'nl', 'No Limit':'nl', 'Pot Limit':'pl', 'PL': 'pl', 'FL': 'fl', 'Limit':'fl', 'LIMIT':'fl' }
     games = {                          # base, category
                               "Hold'em" : ('hold','holdem'), 
                         "Texas Hold'em" : ('hold','holdem'),
@@ -91,7 +91,7 @@ class PokerTracker(HandHistoryConverter):
     re_GameInfo1     = re.compile(u"""
           (?P<SITE>GAME\s\#|MERGE_GAME\s\#)(?P<HID>[0-9\-]+):\s+
           (?P<GAME>Holdem|Texas\sHold\'em|Omaha|Omaha\sHi/Lo)\s\s?
-          (?P<LIMIT>NL|No\sLimit|Limit|LIMIT|Pot\sLimit)\s\s?
+          (?P<LIMIT>PL|NL|FL|No\sLimit|Limit|LIMIT|Pot\sLimit)\s\s?
           (?P<TOUR>Tournament)?
           (                            # open paren of the stakes
           (?P<CURRENCY>%(LS)s|)?
@@ -505,7 +505,7 @@ class PokerTracker(HandHistoryConverter):
 
     def adjustMergeTourneyStack(self, hand, player, amount):
         if self.sitename == 'Merge':
-            amount = Decimal(amount)
+            amount = Decimal(self.clearMoneyString(amount))
             if hand.gametype['type'] == 'tour':
                 for p in hand.players:
                     if p[1]==player:
