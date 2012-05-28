@@ -332,8 +332,11 @@ class PokerTracker(HandHistoryConverter):
                             hand.buyin = int(Decimal(info['BIAMT']))
                             hand.fee = 0
             if key == 'TABLE':
-                hand.tablename = re.split(",", info[key])[0]
-                hand.tablename = hand.tablename.strip()
+                if hand.gametype['type'] == 'tour' and self.sitename == 'Merge':
+                    hand.tablename = '0'
+                else:
+                    hand.tablename = re.split(",", info[key])[0]
+                    hand.tablename = hand.tablename.strip()
             if key == 'BUTTON':
                 hand.buttonpos = info[key]
             if key == 'MAX' and info[key] != None:
@@ -393,30 +396,32 @@ class PokerTracker(HandHistoryConverter):
     def readBlinds(self, hand):
         liveBlind = True
         for a in self.re_PostSB.finditer(hand.handText):
+            sb = self.clearMoneyString(a.group('SB'))
             if liveBlind:
                 self.adjustMergeTourneyStack(hand, a.group('PNAME'), a.group('SB'))
-                hand.addBlind(a.group('PNAME'), 'small blind', a.group('SB'))
+                hand.addBlind(a.group('PNAME'), 'small blind', sb)
                 if not hand.gametype['sb']:
-                    hand.gametype['sb'] = self.clearMoneyString(a.group('SB'))
+                    hand.gametype['sb'] = sb
                 liveBlind = False
             else:
                 # Post dead blinds as ante
                 self.adjustMergeTourneyStack(hand, a.group('PNAME'), a.group('SB'))
-                hand.addBlind(a.group('PNAME'), 'secondsb', a.group('SB'))
+                hand.addBlind(a.group('PNAME'), 'secondsb', sb)
         for a in self.re_PostBB.finditer(hand.handText):
+            bb = self.clearMoneyString(a.group('BB'))
             self.adjustMergeTourneyStack(hand, a.group('PNAME'), a.group('BB'))
             if not hand.gametype['bb']:
-                hand.gametype['bb'] = self.clearMoneyString(a.group('BB'))
-                hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
+                hand.gametype['bb'] = bb
+                hand.addBlind(a.group('PNAME'), 'big blind', bb)
             else:
                 both = Decimal(hand.gametype['bb']) + Decimal(hand.gametype['bb'])/2
                 if both == Decimal(a.group('BB')):
-                    hand.addBlind(a.group('PNAME'), 'both', a.group('BB'))
+                    hand.addBlind(a.group('PNAME'), 'both', bb)
                 else:
-                    hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
+                    hand.addBlind(a.group('PNAME'), 'big blind', bb)
         for a in self.re_PostBoth.finditer(hand.handText):
             self.adjustMergeTourneyStack(hand, a.group('PNAME'), a.group('SBBB'))
-            hand.addBlind(a.group('PNAME'), 'both', a.group('SBBB'))
+            hand.addBlind(a.group('PNAME'), 'both', self.clearMoneyString(a.group('SBBB')))
             
         # FIXME
         # The following should only trigger when a small blind is missing in a tournament, or the sb/bb is ALL_IN
