@@ -1,0 +1,18 @@
+MERGE_GAME #53094604-134: Holdem NL $0.10/$0.25 04/11/2012 19:28:19
+Table Kentucky (53094604), Seats 2
+Seat 1: Player0 ($61.87 in chips)
+Seat 2: Hero ($25.65 in chips) DEALER
+Hero: Post SB $0.10
+Player0: Post BB $0.25
+*** HOLE CARDS ***
+Dealt to Hero [Th 2c]
+Hero: Raise $0.50
+Player0: Call $0.25
+*** FLOP *** [9c 5s 9s]
+Player0: Check
+Hero: Check
+*** TURN *** [9h]
+Player0: Bet $0.50
+Hero: Fold
+*** SUMMARY ***
+Player0: wins $1.45

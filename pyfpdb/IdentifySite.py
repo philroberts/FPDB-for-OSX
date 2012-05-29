@@ -48,6 +48,7 @@ class FPDBFile:
         self.path = path
 
 class Site:
+    
     def __init__(self, name, hhc_fname, filter_name, summary, obj):
         self.name = name
         # FIXME: rename filter to hhc_fname
@@ -58,20 +59,30 @@ class Site:
         self.re_SplitHands  = obj.re_SplitHands
         self.codepage       = obj.codepage
         self.copyGameHeader = obj.copyGameHeader
-        self.line_delimiter = None
-        self.line_addendum  = ''
-        if self.filter_name == 'PokerStars':
-            self.line_delimiter = '\n\n'
-        elif self.filter_name == 'Fulltilt':
-            self.line_delimiter = '\n\n\n'
-        elif self.re_SplitHands.match('\n\n') and self.filter_name != 'Entraction':
-             self.line_delimiter = '\n\n'
-        elif self.re_SplitHands.match('\n\n\n'):
-            self.line_delimiter = '\n\n\n'
-        if self.filter_name == 'OnGame':
-            self.line_addendum = '*'
-        elif self.filter_name == 'Merge':
-            self.line_addendum = '<'
+        self.line_delimiter = self.getDelimiter(filter_name)
+        self.line_addendum  = self.getAddendum(filter_name)
+        
+    def getDelimiter(self, filter_name):
+        line_delimiter =  None
+        if filter_name == 'PokerStars':
+            line_delimiter = '\n\n'
+        elif filter_name == 'Fulltilt':
+            line_delimiter = '\n\n\n'
+        elif self.re_SplitHands.match('\n\n') and filter_name not in ('Entraction', 'PokerTracker'):
+             line_delimiter = '\n\n'
+        elif self.re_SplitHands.match('\n\n\n') and filter_name != 'PokerTracker':
+            line_delimiter = '\n\n\n'
+            
+        return line_delimiter
+            
+    def getAddendum(self, filter_name):
+        line_addendum = ''
+        if filter_name == 'OnGame':
+            line_addendum = '*'
+        elif filter_name == 'Merge':
+            line_addendum = '<'
+            
+        return line_addendum
 
 class IdentifySite:
     def __init__(self, config, hhcs = None):
@@ -121,7 +132,7 @@ class IdentifySite:
         re_identify['Cake']         = re.compile(u'Hand\#[A-Z0-9]+\s\-\s')
         re_identify['Entraction']   = re.compile(u'Game\s\#\s\d+\s\-\s')
         re_identify['BetOnline']    = re.compile(u'BetOnline\sPoker\sGame\s\#\d+')
-        re_identify['PokerTracker'] = re.compile(u'(EverestPoker\sGame\s\#|GAME\s\#|MERGE_GAME\s\#)\d+') #Microgaming: \*{2}\sGame\sID\s
+        re_identify['PokerTracker'] = re.compile(u'(EverestPoker\sGame\s\#|GAME\s\#|MERGE_GAME\s\#|\*{2}\sGame\sID\s)\d+')
         re_identify['Microgaming']  = re.compile(u'<Game\sid=\"\d+\"\sdate=\"[\d\-\s:]+\"\sunicodetablename')
         re_identify['FullTiltPokerSummary'] = re.compile(u'Full\sTilt\sPoker\.fr\sTournament|Full\sTilt\sPoker\sTournament\sSummary')
         re_identify['PokerStarsSummary']    = re.compile(u'PokerStars\sTournament\s\#\d+')

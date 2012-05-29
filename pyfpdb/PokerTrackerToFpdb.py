@@ -69,7 +69,7 @@ class PokerTracker(HandHistoryConverter):
                      '2000.00': ('500.00', '1000.00'), '2000': ('500.00', '1000.00'),
                   }
 
-    limits = { 'NL':'nl', 'No Limit':'nl', 'Pot Limit':'pl', 'Limit':'fl', 'LIMIT':'fl' }
+    limits = { 'NL':'nl', 'No Limit':'nl', 'Pot Limit':'pl', 'PL': 'pl', 'FL': 'fl', 'Limit':'fl', 'LIMIT':'fl' }
     games = {                          # base, category
                               "Hold'em" : ('hold','holdem'), 
                         "Texas Hold'em" : ('hold','holdem'),
@@ -89,9 +89,9 @@ class PokerTracker(HandHistoryConverter):
     re_Site = re.compile(u'(?P<SITE>EverestPoker\sGame\s\#|GAME\s\#|MERGE_GAME\s\#|\*{2}\sGame\sID\s)\d+')
     # Static regexes
     re_GameInfo1     = re.compile(u"""
-          (?P<SITE>GAME\s\#|MERGE_GAME\s\#)(?P<HID>[0-9]+):\s+
+          (?P<SITE>GAME\s\#|MERGE_GAME\s\#)(?P<HID>[0-9\-]+):\s+
           (?P<GAME>Holdem|Texas\sHold\'em|Omaha|Omaha\sHi/Lo)\s\s?
-          (?P<LIMIT>NL|No\sLimit|Limit|LIMIT|Pot\sLimit)\s\s?
+          (?P<LIMIT>PL|NL|FL|No\sLimit|Limit|LIMIT|Pot\sLimit)\s\s?
           (?P<TOUR>Tournament)?
           (                            # open paren of the stakes
           (?P<CURRENCY>%(LS)s|)?
@@ -131,7 +131,7 @@ class PokerTracker(HandHistoryConverter):
           (,\sSeats\s(?P<MAX>\d+))?""" % substitutions
           , re.MULTILINE|re.VERBOSE)
 
-    re_SplitHands   = re.compile('(?:\s?\n){2,}')
+    re_SplitHands   = re.compile('\n\n\n+?')
     re_TailSplitHands   = re.compile('(\n\n\n+)')
     re_Button       = re.compile('The button is in seat #(?P<BUTTON>\d+)', re.MULTILINE)
     re_Board        = re.compile(r"\[(?P<CARDS>.+)\]")
@@ -278,7 +278,7 @@ class PokerTracker(HandHistoryConverter):
                 hand.startTime = HandHistoryConverter.changeTimezone(hand.startTime, "ET", "UTC")
             if key == 'HID':
                 if self.sitename == 'Merge':
-                    hand.handid = info[key][:8] + str(int(info[key][8:]))
+                    hand.handid = info[key][:8] + info[key][9:]
                 else:
                     hand.handid = info[key]
             if key == 'TOURNO':
@@ -332,8 +332,11 @@ class PokerTracker(HandHistoryConverter):
                             hand.buyin = int(Decimal(info['BIAMT']))
                             hand.fee = 0
             if key == 'TABLE':
-                hand.tablename = re.split(",", info[key])[0]
-                hand.tablename = hand.tablename.strip()
+                if hand.gametype['type'] == 'tour' and self.sitename == 'Merge':
+                    hand.tablename = '0'
+                else:
+                    hand.tablename = re.split(",", info[key])[0]
+                    hand.tablename = hand.tablename.strip()
             if key == 'BUTTON':
                 hand.buttonpos = info[key]
             if key == 'MAX' and info[key] != None:
@@ -393,30 +396,32 @@ class PokerTracker(HandHistoryConverter):
     def readBlinds(self, hand):
         liveBlind = True
         for a in self.re_PostSB.finditer(hand.handText):
+            sb = self.clearMoneyString(a.group('SB'))
             if liveBlind:
                 self.adjustMergeTourneyStack(hand, a.group('PNAME'), a.group('SB'))
-                hand.addBlind(a.group('PNAME'), 'small blind', a.group('SB'))
+                hand.addBlind(a.group('PNAME'), 'small blind', sb)
                 if not hand.gametype['sb']:
-                    hand.gametype['sb'] = self.clearMoneyString(a.group('SB'))
+                    hand.gametype['sb'] = sb
                 liveBlind = False
             else:
                 # Post dead blinds as ante
                 self.adjustMergeTourneyStack(hand, a.group('PNAME'), a.group('SB'))
-                hand.addBlind(a.group('PNAME'), 'secondsb', a.group('SB'))
+                hand.addBlind(a.group('PNAME'), 'secondsb', sb)
         for a in self.re_PostBB.finditer(hand.handText):
+            bb = self.clearMoneyString(a.group('BB'))
             self.adjustMergeTourneyStack(hand, a.group('PNAME'), a.group('BB'))
             if not hand.gametype['bb']:
-                hand.gametype['bb'] = self.clearMoneyString(a.group('BB'))
-                hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
+                hand.gametype['bb'] = bb
+                hand.addBlind(a.group('PNAME'), 'big blind', bb)
             else:
                 both = Decimal(hand.gametype['bb']) + Decimal(hand.gametype['bb'])/2
                 if both == Decimal(a.group('BB')):
-                    hand.addBlind(a.group('PNAME'), 'both', a.group('BB'))
+                    hand.addBlind(a.group('PNAME'), 'both', bb)
                 else:
-                    hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
+                    hand.addBlind(a.group('PNAME'), 'big blind', bb)
         for a in self.re_PostBoth.finditer(hand.handText):
             self.adjustMergeTourneyStack(hand, a.group('PNAME'), a.group('SBBB'))
-            hand.addBlind(a.group('PNAME'), 'both', a.group('SBBB'))
+            hand.addBlind(a.group('PNAME'), 'both', self.clearMoneyString(a.group('SBBB')))
             
         # FIXME
         # The following should only trigger when a small blind is missing in a tournament, or the sb/bb is ALL_IN
@@ -505,7 +510,7 @@ class PokerTracker(HandHistoryConverter):
 
     def adjustMergeTourneyStack(self, hand, player, amount):
         if self.sitename == 'Merge':
-            amount = Decimal(amount)
+            amount = Decimal(self.clearMoneyString(amount))
             if hand.gametype['type'] == 'tour':
                 for p in hand.players:
                     if p[1]==player:
