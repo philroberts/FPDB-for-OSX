@@ -499,12 +499,15 @@ class PokerTracker(HandHistoryConverter):
                 hand.addCall( street, action.group('PNAME'), action.group('BET') )
             elif action.group('ATYPE') in (' raises', ' Raise'):
                 amount = Decimal(self.clearMoneyString(action.group('BET')))
-                if curr_pot > amount:
-                    hand.addCall( street, action.group('PNAME'), action.group('BET') )
-                elif not action.group('RAISETO') and action.group('ATYPE')==' Raise':
-                    hand.addRaiseBy( street, action.group('PNAME'), action.group('BET') )
-                else:
+                if self.sitename == 'Merge':
                     hand.addRaiseTo( street, action.group('PNAME'), action.group('BET') )
+                else:
+                    if curr_pot > amount:
+                        hand.addCall( street, action.group('PNAME'), action.group('BET') )
+                    elif not action.group('RAISETO') and action.group('ATYPE')==' Raise':
+                        hand.addRaiseBy( street, action.group('PNAME'), action.group('BET') )
+                    else:
+                        hand.addRaiseTo( street, action.group('PNAME'), action.group('BET') )
                 curr_pot = amount
             elif action.group('ATYPE') in (' bets', ' Bet'):
                 hand.addBet( street, action.group('PNAME'), action.group('BET') )
