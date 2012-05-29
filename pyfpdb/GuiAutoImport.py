@@ -257,7 +257,7 @@ class GuiAutoImport (threading.Thread):
                     gtk.main_iteration(False)
                 if self.pipe_to_hud is None:
                     if self.config.install_method == "exe":    # if py2exe, run hud_main.exe
-                        path = os.path.join(self.config.fpdb_program_path, u'pyfpdb')
+                        path = self.config.pyfpdb_path
                         command = "HUD_main.exe"
                         bs = 0
                     elif os.name == 'nt':

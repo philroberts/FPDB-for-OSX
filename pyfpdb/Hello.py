@@ -4,7 +4,7 @@
 
 Hello World demostration for Aux_Window.
 """
-#    Copyright 2009-2011, Ray E. Barker
+#    Copyright 2009-2012, Ray E. Barker
 #    
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -38,9 +38,9 @@ import L10n
 _ = L10n.get_translation()
 
 #    FreePokerTools modules
-from Mucked import Aux_Window
-from Mucked import Seat_Window
-from Mucked import Aux_Seats
+from Aux_Base import Aux_Window
+from Aux_Base import Seat_Window
+from Aux_Base import Aux_Seats
 
 class Hello(Aux_Window):
     """A 'Hello World' Aux_Window demo."""

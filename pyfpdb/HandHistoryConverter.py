@@ -622,7 +622,7 @@ def getTableNoRe(config, sitename, *args, **kwargs):
 
 def getSiteHhc(config, sitename):
     "Returns HHC class for current site"
-    hhcName = config.supported_sites[sitename].converter
+    hhcName = config.hhcs[sitename].converter
     hhcModule = __import__(hhcName)
     return getattr(hhcModule, hhcName[:-6])
 
