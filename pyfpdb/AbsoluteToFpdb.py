@@ -213,7 +213,7 @@ class Absolute(HandHistoryConverter):
                 tmp = hand.handText[0:200]
                 log.error(_("AbsoluteToFpdb.readHandInfo: '%s'") % tmp)
                 raise FpdbParseError
-            elif fname_info is None:
+            elif fname_info is None and is_trny:
                 log.error(_("AbsoluteToFpdb.readHandInfo: File name didn't match re_*InfoFromFilename"))
                 raise FpdbParseError
 
@@ -221,8 +221,10 @@ class Absolute(HandHistoryConverter):
         hand.handid =  m.group('HID')
         if m.group('TABLE'):
             hand.tablename = m.group('TABLE')
-        else:
+        elif fname_info:
             hand.tablename = fname_info.group('TABLE')
+        else:
+            hand.tablename = 'TABLE'
 
         hand.startTime = datetime.datetime.strptime(m.group('DATETIME'), "%Y-%m-%d %H:%M:%S")
 
