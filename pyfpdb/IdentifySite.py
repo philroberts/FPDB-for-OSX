@@ -66,11 +66,11 @@ class Site:
         line_delimiter =  None
         if filter_name == 'PokerStars':
             line_delimiter = '\n\n'
-        elif filter_name == 'Fulltilt':
+        elif filter_name == 'Fulltilt' or filter_name == 'PokerTracker':
             line_delimiter = '\n\n\n'
-        elif self.re_SplitHands.match('\n\n') and filter_name not in ('Entraction', 'PokerTracker'):
+        elif self.re_SplitHands.match('\n\n') and filter_name not in ('Entraction'):
              line_delimiter = '\n\n'
-        elif self.re_SplitHands.match('\n\n\n') and filter_name != 'PokerTracker':
+        elif self.re_SplitHands.match('\n\n\n'):
             line_delimiter = '\n\n\n'
             
         return line_delimiter
