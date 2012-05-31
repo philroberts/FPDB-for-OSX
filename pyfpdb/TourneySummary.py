@@ -59,7 +59,9 @@ class TourneySummary(object):
         self.db                 = db
         self.config             = config
         self.siteName           = siteName
-        self.siteId             = self.SITEIDS[siteName]
+        self.siteId             = None
+        if siteName in self.SITEIDS:
+            self.siteId = self.SITEIDS[siteName]
         self.in_path            = in_path
         
         self.summaryText        = summaryText

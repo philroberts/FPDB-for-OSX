@@ -139,6 +139,7 @@ class IdentifySite:
         re_identify['PacificPokerSummary']  = re.compile(u'\*{5}\sCassava Tournament Summary\s\*{5}')
         re_identify['MergeSummary']         = re.compile(u"<meta\sname='Creator'\scontent='support@carbonpoker.ag'\s/>")
         re_identify['WinamaxSummary']       = re.compile(u"Winamax\sPoker\s\-\sTournament\ssummary")
+        re_identify['PokerTrackerSummary']  = re.compile(u"PokerTracker")
         return re_identify
 
     def generateSiteList(self, hhcs):
@@ -151,12 +152,8 @@ class IdentifySite:
             summary = hhc.summaryImporter
             result = self.db.get_site_id(site)
             if len(result) == 1:
-                smod, sobj = None, None
                 mod = __import__(filter)
                 obj = getattr(mod, filter_name, None)
-                if summary:
-                    smod = __import__(summary)
-                    sobj = getattr(smod, summary, None)
                 self.sitelist[result[0][0]] = Site(site, filter, filter_name, summary, obj)
 
     def walkDirectory(self, dir, sitelist):
@@ -222,17 +219,22 @@ class IdentifySite:
                     return f
                 
         m1 = self.re_identify['PokerTracker'].search(whole_file)
-        if m1:
+        m2 = self.re_identify['PokerTrackerSummary'].search(whole_file[:100])
+        if m1 or m2:
             filter = 'PokerTrackerToFpdb'
             filter_name = 'PokerTracker'
             mod = __import__(filter)
             obj = getattr(mod, filter_name, None)
+            summary = 'PokerTrackerSummary'
             f.site = Site('PokerTracker', filter, filter_name, summary, obj)
-            f.ftype = "hh"
-            re_SplitHands = re.compile(u'\*{2}\sGame\sID\s')
-            if re_SplitHands.search( m1.group()):
-                f.site.line_delimiter = None
-                f.site.re_SplitHands = re.compile(u'\n\n\n\*{2}\sGame\sID\s')
+            if m1:
+                f.ftype = "hh"
+                re_SplitHands = re.compile(u'\*{2}\sGame\sID\s')
+                if re_SplitHands.search( m1.group()):
+                    f.site.line_delimiter = None
+                    f.site.re_SplitHands = re.compile(u'\n\n\n\*{2}\sGame\sID\s')
+            else:
+                f.ftype = "summary"
             return f
         
         return False
