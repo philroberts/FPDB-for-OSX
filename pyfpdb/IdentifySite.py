@@ -221,14 +221,18 @@ class IdentifySite:
                     f.ftype = "summary"
                     return f
                 
-        m = self.re_identify['PokerTracker'].search(whole_file)
-        if m:
+        m1 = self.re_identify['PokerTracker'].search(whole_file)
+        if m1:
             filter = 'PokerTrackerToFpdb'
             filter_name = 'PokerTracker'
             mod = __import__(filter)
             obj = getattr(mod, filter_name, None)
-            f.site = Site('PokerTracker', filter, filter_name, None, obj)
+            f.site = Site('PokerTracker', filter, filter_name, summary, obj)
             f.ftype = "hh"
+            re_SplitHands = re.compile(u'\*{2}\sGame\sID\s')
+            if re_SplitHands.search( m1.group()):
+                f.site.line_delimiter = None
+                f.site.re_SplitHands = re.compile(u'\n\n\n\*{2}\sGame\sID\s')
             return f
         
         return False

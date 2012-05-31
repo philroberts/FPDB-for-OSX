@@ -1,0 +1,32 @@
+MERGE_GAME #46893440-366: Holdem NL $0.10/$0.25 01/11/2012 20:43:26
+Table Tijuana (46893440), Seats 6
+Seat 1: IEatYourBabies ($26.50 in chips) DEALER
+Seat 2: AJofParsley ($48.19 in chips)
+Seat 3: yurk23 ($29.16 in chips)
+Seat 4: BadBeatBG ($29.88 in chips)
+Seat 5: onebadbmw1 ($12.90 in chips)
+Seat 6: DontTapTheGlass0 ($25.00 in chips)
+AJofParsley: Post SB $0.10
+yurk23: Post BB $0.25
+DontTapTheGlass0: Post DB $0.35
+*** HOLE CARDS ***
+Dealt to yurk23 [Ah 8s]
+BadBeatBG: Fold
+onebadbmw1: Fold
+DontTapTheGlass0: Check
+IEatYourBabies: Fold
+AJofParsley: Fold
+yurk23: Check
+*** FLOP *** [Ks Td 4c]
+yurk23: Check
+DontTapTheGlass0: Check
+*** TURN *** [3c]
+yurk23: Check
+DontTapTheGlass0: Check
+*** RIVER *** [8d]
+yurk23: Check
+DontTapTheGlass0: Check
+*** SUMMARY ***
+yurk23: Shows [Ah 8s]
+DontTapTheGlass0: Shows [Ac 7h]
+yurk23: wins $0.67
