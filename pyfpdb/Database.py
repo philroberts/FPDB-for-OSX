@@ -3134,7 +3134,7 @@ class Database:
                         summaryAttribute+="s"
 
                     if getattr(summary, summaryAttribute)[player]==None and resultDict[ev[1]]!=None:#DB has this value but object doesnt, so update object
-                        setattr(summary, summaryAttribute, resultDict[ev[1]][player])
+                        setattr(summary, summaryAttribute, resultDict[ev[1]])
                     elif getattr(summary, summaryAttribute)[player]!=None and resultDict[ev[1]]==None:#object has this value but DB doesnt, so update DB
                         updateDb=True
                 if updateDb:
