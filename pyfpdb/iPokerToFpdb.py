@@ -59,7 +59,7 @@ class iPoker(HandHistoryConverter):
 
     substitutions = {
                      'LS'  : u"\$|\xe2\x82\xac|\xe2\u201a\xac|\u20ac|\xc2\xa3|\£|",
-                     'PLYR': r'(?P<PNAME>[ a-zA-Z0-9]+)',
+                     'PLYR': r'(?P<PNAME>[ a-zA-Z0-9_]+)',
                      'NUM' : r'.,\d',
                     }
     
@@ -73,6 +73,7 @@ class iPoker(HandHistoryConverter):
                'Omaha Hi-Lo PL' : ('hold','omahahilo'),
                      'Omaha LP' : ('hold','omahahi'),
                'Omaha Hi-Lo LP' : ('hold','omahahilo'),
+                'Omaha Hi-Lo L' : ('hold','omahahilo'),
                      
             }
     
@@ -108,9 +109,9 @@ class iPoker(HandHistoryConverter):
     re_SplitHands = re.compile(r'</game>')
     re_TailSplitHands = re.compile(r'(</game>)')
     re_GameInfo = re.compile(r"""(?P<HEAD>
-            <gametype>(?P<GAME>(5|7)\sCard\sStud\sL|Holdem\s(NL|SL|L)|Omaha\s(PL|LP)|Omaha\sL|Omaha\sHi\-Lo\s(PL|LP)|LH\s(?P<LSB>[%(NUM)s]+)/(?P<LBB>[%(NUM)s]+).+?)(\s(%(LS)s)?(?P<SB>[%(NUM)s]+)/(%(LS)s)?(?P<BB>[%(NUM)s]+))?</gametype>\s+?
+            <gametype>(?P<GAME>(5|7)\sCard\sStud\sL|Holdem\s(NL|SL|L|LZ|PL)|Omaha\s(PL|LP)|Omaha\sL|Omaha\sHi\-Lo\s(L|PL|LP)|LH\s(?P<LSB>[%(NUM)s]+)/(?P<LBB>[%(NUM)s]+).+?)(\s(%(LS)s)?(?P<SB>[%(NUM)s]+)/(%(LS)s)?(?P<BB>[%(NUM)s]+))?</gametype>\s+?
             <tablename>(?P<TABLE>.+)?</tablename>\s+?
-            (<(tablecurrency|tournamentcurrency)>.+</(tablecurrency|tournamentcurrency)>\s+?)?
+            (<(tablecurrency|tournamentcurrency)>.*</(tablecurrency|tournamentcurrency)>\s+?)?
             <duration>.+</duration>\s+?
             <gamecount>.+</gamecount>\s+?
             <startdate>.+</startdate>\s+?
