@@ -90,7 +90,8 @@ class OnGame(HandHistoryConverter):
             (
             (?P<LIMIT>NO_LIMIT|Limit|LIMIT|Pot\sLimit|POT_LIMIT)\s
             (?P<GAME>TEXAS_HOLDEM|OMAHA_HI|SEVEN_CARD_STUD|SEVEN_CARD_STUD_HI_LO|RAZZ|FIVE_CARD_DRAW)\s
-            (?P<CURRENCY>%(LS)s|)?(?P<SB>[%(NUM)s]+)/(%(LS)s)?(?P<BB>[%(NUM)s]+)
+            (?P<CURRENCY>%(LS)s|)?(?P<SB>[%(NUM)s]+)/(%(LS)s)?(?P<BB>[%(NUM)s]+),\s
+            (?P<MONEY>Play\smoney|Real\smoney)?\)
             )?
             """ % substitutions, re.MULTILINE|re.DOTALL|re.VERBOSE)
 
@@ -191,7 +192,10 @@ class OnGame(HandHistoryConverter):
             info['type'] = 'tour'
 
         if 'CURRENCY' in mg:
-            info['currency'] = self.currencies[mg['CURRENCY']]
+            if 'MONEY' in mg and mg['MONEY']=='Play money':
+                info['currency'] = 'play'
+            else:
+                info['currency'] = self.currencies[mg['CURRENCY']]
 
         if 'LIMIT' in mg:
             if mg['LIMIT'] in self.limits:
