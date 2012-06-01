@@ -87,16 +87,21 @@ class Merge(HandHistoryConverter):
                       '100.00': ('25.00', '50.00'),   '100': ('25.00', '50.00'),
                   }
 
-    Multigametypes = {  '2': ('hold','holdem'),
+    Multigametypes = {  '1': ('hold','holdem'),
+                        '2': ('hold','holdem'),
                         '4': ('hold','omahahi'),
                         '9': ('hold', 'holdem'),
                         '23': ('hold', 'holdem'),
+                        '34': ('hold','omahahilo'),
                         '35': ('hold','omahahilo'),
                         '37': ('hold','omahahilo'),
+                        '38': ('stud','studhi'),
                         '39': ('stud','studhi'),
                         '41': ('stud','studhi'),
+                        '42': ('stud','studhi'),
                         '43': ('stud','studhilo'),
                         '45': ('stud','studhilo'),
+                        '46': ('stud','razz'),
                         '47': ('stud','razz'),
                         '49': ('stud','razz')
                   }    
@@ -429,6 +434,7 @@ class Merge(HandHistoryConverter):
 
                 ["ring", "stud", "fl"],
                 ["ring", "stud", "pl"],
+                ["ring", "stud", "nl"],
 
                 ["ring", "draw", "fl"],
                 ["ring", "draw", "pl"],
@@ -441,6 +447,7 @@ class Merge(HandHistoryConverter):
 
                 ["tour", "stud", "fl"],
                 ["tour", "stud", "pl"],
+                ["tour", "stud", "nl"],
                 
                 ["tour", "draw", "fl"],
                 ["tour", "draw", "pl"],
