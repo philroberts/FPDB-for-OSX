@@ -334,7 +334,7 @@ class PokerTracker(HandHistoryConverter):
                             hand.buyinCurrency="NA"
                             hand.maxseats = None
                     if self.sitename != 'Merge' or hand.buyin==0:
-                        if info[key] == 'Freeroll':
+                        if info[key] == 'Freeroll' or 'Free' in tourneyname:
                             hand.buyin = 0
                             hand.fee = 0
                             hand.buyinCurrency = "FREE"
@@ -366,7 +366,9 @@ class PokerTracker(HandHistoryConverter):
             if key == 'BUTTON':
                 hand.buttonpos = info[key]
             if key == 'MAX' and info[key] != None:
-                hand.maxseats = int(info[key])
+                seats = int(info[key])
+                if seats <=10:
+                    hand.maxseats = int(info[key])
 
             if key == 'PLAY' and info['PLAY'] is not None:
 #                hand.currency = 'play' # overrides previously set value
