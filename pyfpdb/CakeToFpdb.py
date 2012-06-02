@@ -144,14 +144,14 @@ class Cake(HandHistoryConverter):
             (info['base'], info['category']) = self.games[mg['GAME']]
         if 'BB' in mg:
             if not mg['BB']:
-                info['bb'] = self.cakeClearMoneyString(mg['SBBB'])
+                info['bb'] = self.clearMoneyString(mg['SBBB'])
             else:
-                info['bb'] = self.cakeClearMoneyString(mg['BB'])
+                info['bb'] = self.clearMoneyString(mg['BB'])
         if 'SBBB' in mg:
             if not mg['BB']:
-                info['sb'] = self.cakeClearMoneyString(mg['ANTESB'])
+                info['sb'] = self.clearMoneyString(mg['ANTESB'])
             else:
-                info['sb'] = self.cakeClearMoneyString(mg['SBBB'])
+                info['sb'] = self.clearMoneyString(mg['SBBB'])
         if 'CURRENCY' in mg:
             info['currency'] = self.currencies[mg['CURRENCY']]
         if 'MIXED' in mg:
@@ -228,12 +228,12 @@ class Cake(HandHistoryConverter):
                         raise FpdbParseError
                     
                     if key == 'BUYIN1':
-                        info['BIAMT1']  = self.cakeClearMoneyString(info['BIAMT1'].strip(u'$€£'))
+                        info['BIAMT1']  = self.clearMoneyString(info['BIAMT1'].strip(u'$€£'))
                         hand.buyin = int(100*Decimal(info['BIAMT1']))
                         hand.fee = 0
                     else:
-                        info['BIAMT']  = self.cakeClearMoneyString(info['BIAMT'].strip(u'$€£'))
-                        info['BIRAKE'] = self.cakeClearMoneyString(info['BIRAKE'].strip(u'$€£'))
+                        info['BIAMT']  = self.clearMoneyString(info['BIAMT'].strip(u'$€£'))
+                        info['BIRAKE'] = self.clearMoneyString(info['BIRAKE'].strip(u'$€£'))
                         hand.buyin = int(100*Decimal(info['BIAMT']))
                         hand.fee = int(100*Decimal(info['BIRAKE']))
                 
@@ -252,7 +252,7 @@ class Cake(HandHistoryConverter):
     def readPlayerStacks(self, hand):
         m = self.re_PlayerInfo.finditer(hand.handText)
         for a in m:
-            hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), self.cakeClearMoneyString(a.group('CASH')))
+            hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), self.clearMoneyString(a.group('CASH')))
 
     def markStreets(self, hand):
         # PREFLOP = ** Dealing down cards **
@@ -296,8 +296,8 @@ class Cake(HandHistoryConverter):
             hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
             hand.setUncalledBets(True)
         for a in self.re_PostBoth.finditer(hand.handText):
-            sb = Decimal(self.cakeClearMoneyString(a.group('SB')))
-            bb = Decimal(self.cakeClearMoneyString(a.group('BB')))
+            sb = Decimal(self.clearMoneyString(a.group('SB')))
+            bb = Decimal(self.clearMoneyString(a.group('BB')))
             sbbb = sb + bb
             hand.addBlind(a.group('PNAME'), 'both', str(sbbb))
 
@@ -315,8 +315,8 @@ class Cake(HandHistoryConverter):
         for action in m:
             acts = action.groupdict()
             #print "DEBUG: acts: %s" %acts
-            bet = self.cakeClearMoneyString(action.group('BET')) if action.group('BET') else None
-            betto = self.cakeClearMoneyString(action.group('BETTO')) if action.group('BETTO') else None
+            bet = self.clearMoneyString(action.group('BET')) if action.group('BET') else None
+            betto = self.clearMoneyString(action.group('BETTO')) if action.group('BETTO') else None
             actionType = action.group('ATYPE')
 
             if actionType == ' folds':
@@ -343,7 +343,7 @@ class Cake(HandHistoryConverter):
 
     def readCollectPot(self,hand):
         for m in self.re_CollectPot.finditer(hand.handText):
-            hand.addCollectPot(player=m.group('PNAME'),pot=self.cakeClearMoneyString(m.group('POT')))
+            hand.addCollectPot(player=m.group('PNAME'),pot=self.clearMoneyString(m.group('POT')))
 
     def readShownCards(self,hand):
         for m in self.re_ShownCards.finditer(hand.handText):
@@ -362,11 +362,4 @@ class Cake(HandHistoryConverter):
 
                 #print "DEBUG: hand.addShownCards(%s, %s, %s, %s)" %(cards, m.group('PNAME'), shown, mucked)
                 hand.addShownCards(cards=cards, player=m.group('PNAME'), shown=shown, mucked=mucked, string=string)
-                
-    def cakeClearMoneyString(self, money):
-        if not money:
-            return money
-        money = money.replace(u'\xa0', u'')
-        money = self.clearMoneyString(money)
-        return money
     
