@@ -1,0 +1,31 @@
+#Game No : 103581731
+***** Cassava Hand History for Game 103581731 *****
+0,02$/0,04$ Blinds No Limit Holdem - *** 03 07 2011 00:50:21
+Table Buenavista (Real Money)
+Seat 1 is the button
+Total number of players : 5
+Seat 1: Player0 ( 7,17$ )
+Seat 2: Hero ( 4,08$ )
+Seat 4: Player1 ( 0,64$ )
+Seat 6: Player2 ( 5,26$ )
+Seat 9: Player3 ( 4,22$ )
+Hero posts small blind [0,02$]
+Player1 posts big blind [0,04$]
+** Dealing down cards **
+Dealt to Hero [ 7h, 8s ]
+Player2 folds
+Player3 folds
+Player0 calls [0,04$]
+Hero calls [0,02$]
+Player1 raises [0,16$]
+Player0 calls [0,16$]
+Hero folds
+** Dealing flop ** [ 9s, Âh, 2s ]
+Player1 bets [0,44$]
+Player0 calls [0,44$]
+** Dealing turn ** [ 5h ]
+** Dealing river ** [ Äc ]
+** Summary **
+Player0 shows [ 2d, Òd ]
+Player1 shows [ 8c, Òc ]
+Player0 collected [ 1,26$ ]

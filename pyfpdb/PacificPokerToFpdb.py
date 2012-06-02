@@ -40,7 +40,8 @@ class PacificPoker(HandHistoryConverter):
     sym = {'USD': "\$", 'CAD': "\$", 'T$': "", "EUR": "\xe2\x82\xac", "GBP": "\xa3", "play": ""}         # ADD Euro, Sterling, etc HERE
     substitutions = {
                      'LEGAL_ISO' : "USD|EUR|GBP|CAD|FPP",     # legal ISO currency codes
-                            'LS' : u"\$|\xe2\x82\xac|\u20ac|" # legal currency symbols - Euro(cp1252, utf-8)
+                            'LS' : u"\$|\xe2\x82\xac|\u20ac|", # legal currency symbols - Euro(cp1252, utf-8)
+                           'NUM' : u".,\d\xa0",
                     }
                     
     # translations from captured groups to fpdb info strings
@@ -90,7 +91,7 @@ class PacificPoker(HandHistoryConverter):
     re_GameInfo     = re.compile(u"""
           (\#Game\sNo\s:\s[0-9]+\\n)?
           \*\*\*\*\*\sCassava\sHand\sHistory\sfor\sGame\s(?P<HID>[0-9]+)\s\*\*\*\*\*\\n
-          (?P<CURRENCY>%(LS)s)?(?P<SB>[.,0-9]+)/(%(LS)s)?(?P<BB>[.,0-9]+)\sBlinds\s
+          (?P<CURRENCY1>%(LS)s)?(?P<SB>[%(NUM)s]+)(?P<CURRENCY2>%(LS)s)?/(%(LS)s)?(?P<BB>[%(NUM)s]+)(%(LS)s)?\sBlinds\s
           (?P<LIMIT>No\sLimit|Fix\sLimit|Pot\sLimit)\s
           (?P<GAME>Holdem|Omaha|OmahaHL|Hold\'em|Omaha\sHi/Lo|OmahaHL|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Badugi|Triple\sDraw\s2\-7\sLowball|Single\sDraw\s2\-7\sLowball|5\sCard\sDraw)
           \s-\s\*\*\*\s
@@ -101,7 +102,7 @@ class PacificPoker(HandHistoryConverter):
     re_PlayerInfo   = re.compile(u"""
           ^Seat\s(?P<SEAT>[0-9]+):\s
           (?P<PNAME>.*)\s
-          \(\s(%(LS)s)?(?P<CASH>[.,0-9]+)\s\)""" % substitutions, 
+          \(\s(%(LS)s)?(?P<CASH>[%(NUM)s]+)(%(LS)s)?\s\)""" % substitutions, 
           re.MULTILINE|re.VERBOSE)
 
     re_HandInfo     = re.compile("""
@@ -111,9 +112,11 @@ class PacificPoker(HandHistoryConverter):
             (Tournament\s\#(?P<TOURNO>\d+)\s
               (
                 (?P<BUYIN>(
-                  ((?P<BIAMT>[%(LS)s\d\.]+)?\s\+\s?(?P<BIRAKE>[%(LS)s\d\.]+))
+                  ((?P<BIAMT>(%(LS)s)?[%(NUM)s]+(%(LS)s)?)?\s\+\s?(?P<BIRAKE>(%(LS)s)?[%(NUM)s]+(%(LS)s)?))
                   |
                   (Free)
+                  |
+                  (.+?)
                 ))
               )
               \s-\sTable\s\#(?P<TABLEID>\d+)\s
@@ -128,21 +131,21 @@ class PacificPoker(HandHistoryConverter):
     re_SplitHands   = re.compile('\n\n+')
     re_TailSplitHands   = re.compile('(\n\n\n+)')
     re_Button       = re.compile('Seat (?P<BUTTON>\d+) is the button', re.MULTILINE)
-    re_Board        = re.compile(r"\[\s(?P<CARDS>.+)\s\]")
+    re_Board        = re.compile(u"\[\s(?P<CARDS>.+)\s\]")
 
     re_DateTime     = re.compile("""(?P<D>[0-9]{2})\s(?P<M>[0-9]{2})\s(?P<Y>[0-9]{4})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)""", re.MULTILINE)
 
-    short_subst = {'PLYR': r'(?P<PNAME>.+?)', 'CUR': '\$?'}
-    re_PostSB           = re.compile(r"^%(PLYR)s posts small blind \[%(CUR)s(?P<SB>[.,0-9]+)\]" %  short_subst, re.MULTILINE)
-    re_PostBB           = re.compile(r"^%(PLYR)s posts big blind \[%(CUR)s(?P<BB>[.,0-9]+)\]" %  short_subst, re.MULTILINE)
-    re_Antes            = re.compile(r"^%(PLYR)s posts (the\s)?ante \[%(CUR)s(?P<ANTE>[.,0-9]+)\]" % short_subst, re.MULTILINE)
+    short_subst = {'PLYR': r'(?P<PNAME>.+?)', 'CUR': '\$?', 'NUM' : u".,\d\xa0"}
+    re_PostSB           = re.compile(r"^%(PLYR)s posts small blind \[(%(CUR)s)?(?P<SB>[%(NUM)s]+)(%(CUR)s)?\]" %  short_subst, re.MULTILINE)
+    re_PostBB           = re.compile(r"^%(PLYR)s posts big blind \[(%(CUR)s)?(?P<BB>[%(NUM)s]+)(%(CUR)s)?\]" %  short_subst, re.MULTILINE)
+    re_Antes            = re.compile(r"^%(PLYR)s posts (the\s)?ante \[(%(CUR)s)?(?P<ANTE>[%(NUM)s]+)(%(CUR)s)?\]" % short_subst, re.MULTILINE)
     # TODO: unknown in available hand histories for pacificpoker:
-    re_BringIn          = re.compile(r"^%(PLYR)s: brings[- ]in( low|) for %(CUR)s(?P<BRINGIN>[.,0-9]+)" % short_subst, re.MULTILINE)
-    re_PostBoth         = re.compile(r"^%(PLYR)s posts dead blind \[%(CUR)s(?P<SBBB>[.,0-9]+)\s\+\s%(CUR)s[.,0-9]+\]" %  short_subst, re.MULTILINE)
+    re_BringIn          = re.compile(r"^%(PLYR)s: brings[- ]in( low|) for (%(CUR)s)?(?P<BRINGIN>[%(NUM)s]+)(%(CUR)s)?" % short_subst, re.MULTILINE)
+    re_PostBoth         = re.compile(r"^%(PLYR)s posts dead blind \[(%(CUR)s)?(?P<SBBB>[%(NUM)s]+)(%(CUR)s)?\s\+\s(%(CUR)s)?[%(NUM)s]+(%(CUR)s)?\]" %  short_subst, re.MULTILINE)
     re_HeroCards        = re.compile(r"^Dealt to %(PLYR)s( \[\s(?P<NEWCARDS>.+?)\s\])" % short_subst, re.MULTILINE)
     re_Action           = re.compile(r"""
                         ^%(PLYR)s(?P<ATYPE>\sbets|\schecks|\sraises|\scalls|\sfolds|\sdiscards|\sstands\spat)
-                        (\s\[(%(CUR)s)?(?P<BET>[.,0-9]+)\])?
+                        (\s\[(%(CUR)s)?(?P<BET>[%(NUM)s]+)(%(CUR)s)?\])?
                         (\s*and\sis\sall.in)?
                         (\s*and\shas\sreached\sthe\s[%(CUR)s\d\.]+\scap)?
                         (\s*cards?(\s\[(?P<DISCARDED>.+?)\])?)?\s*$"""
@@ -150,7 +153,7 @@ class PacificPoker(HandHistoryConverter):
     re_ShowdownAction   = re.compile(r"^%s shows \[(?P<CARDS>.*)\]" % short_subst['PLYR'], re.MULTILINE)
     re_sitsOut          = re.compile("^%s sits out" %  short_subst['PLYR'], re.MULTILINE)
     re_ShownCards       = re.compile("^%s ?(?P<SHOWED>shows|mucks) \[ (?P<CARDS>.*) \]$" %  short_subst['PLYR'], re.MULTILINE)
-    re_CollectPot       = re.compile(r"^%(PLYR)s collected \[ %(CUR)s(?P<POT>[.,0-9]+) \]$" %  short_subst, re.MULTILINE)
+    re_CollectPot       = re.compile(r"^%(PLYR)s collected \[ (%(CUR)s)?(?P<POT>[%(NUM)s]+)(%(CUR)s)? \]$" %  short_subst, re.MULTILINE)
 
     def compilePlayerRegexs(self,  hand):
         pass
@@ -199,12 +202,17 @@ class PacificPoker(HandHistoryConverter):
         if 'BB' in mg:
             #print "DEBUG: re_GameInfo[BB] \'", mg['BB'], "\'"
             info['bb'] = self.clearMoneyString(mg['BB'])
-        if 'CURRENCY' in mg:
+        if 'CURRENCY1' in mg:
             #print "DEBUG: re_GameInfo[CURRENCY] \'", mg['CURRENCY'], "\'"
-            info['currency'] = self.currencies[mg['CURRENCY']]
+            info['currency'] = self.currencies[mg['CURRENCY1']]
+        if 'CURRENCY2' in mg:
+            #print "DEBUG: re_GameInfo[CURRENCY] \'", mg['CURRENCY'], "\'"
+            info['currency'] = self.currencies[mg['CURRENCY2']]
+        
 
         if 'TOURNO' in mg and mg['TOURNO'] is not None:
             info['type'] = 'tour'
+            info['currency'] = 'T$'
         else:
             info['type'] = 'ring'
 
@@ -237,7 +245,6 @@ class PacificPoker(HandHistoryConverter):
         info.update(m2.groupdict())
 
         #log.debug("readHandInfo: %s" % info)
-
         for key in info:
             if key == 'DATETIME':
                 # 28 11 2011 19:05:11
@@ -253,25 +260,22 @@ class PacificPoker(HandHistoryConverter):
                 hand.tourNo = info[key]
                 hand.isKO = False
             if key == 'BUYIN' and info['BUYIN'] != None:
-                if info[key] == 'Free':
+                if info[key] == 'Free' or info['BIAMT'] is None:
                     hand.buyin = 0
                     hand.fee = 0
-                    if 'CURRENCY' in info and info['CURRENCY'] == "$":
-                        hand.buyinCurrency = "USD"
-                    else:
-                        hand.buyinCurrency = "FREE"
+                    hand.buyinCurrency = "FREE"
                 else:
-                    if info[key].find("$")!=-1:
+                    if info['BIAMT'].find("$")!=-1:
                         hand.buyinCurrency="USD"
-                    if 'PLAY' in info and info['PLAY'] != "Practice Play":
+                    elif 'PLAY' in info and info['PLAY'] != "Practice Play":
                         hand.buyinCurrency="FREE"
                     else:
                         #FIXME: handle other currencies, FPP, play money
                         log.error(_("PacificPokerToFpdb.readHandInfo: Failed to detect currency.") + " Hand ID: %s: '%s'" % (hand.handid, info[key]))
                         raise FpdbParseError
 
-                    info['BIAMT'] = info['BIAMT'].strip(u'$€')
-                    info['BIRAKE'] = info['BIRAKE'].strip(u'$€')
+                    info['BIAMT'] = self.clearMoneyString(info['BIAMT'].strip(u'$€'))
+                    info['BIRAKE'] = self.clearMoneyString(info['BIRAKE'].strip(u'$€'))
 
                     hand.buyin = int(100*Decimal(info['BIAMT']))
                     hand.fee = int(100*Decimal(info['BIRAKE']))
@@ -298,7 +302,7 @@ class PacificPoker(HandHistoryConverter):
         m = self.re_PlayerInfo.finditer(hand.handText)
         for a in m:
             #print "DEBUG: Seat[", a.group('SEAT'), "]; PNAME[", a.group('PNAME'), "]; CASH[", a.group('CASH'), "]"
-            hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), a.group('CASH'))
+            hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), self.clearMoneyString(a.group('CASH')))
 
     def markStreets(self, hand):
         # PREFLOP = ** Dealing down cards **
@@ -330,13 +334,15 @@ class PacificPoker(HandHistoryConverter):
         if street in ('FLOP','TURN','RIVER'):   # a list of streets which get dealt community cards (i.e. all but PREFLOP)
             #print "DEBUG readCommunityCards:", street, hand.streets.group(street)
             m = self.re_Board.search(hand.streets[street])
-            hand.setCommunityCards(street, m.group('CARDS').split(', '))
+            cards = self.splitCards(m.group('CARDS'))
+            hand.setCommunityCards(street, cards)
 
     def readAntes(self, hand):
         m = self.re_Antes.finditer(hand.handText)
         for player in m:
             #~ logging.debug("hand.addAnte(%s,%s)" %(player.group('PNAME'), player.group('ANTE')))
-            hand.addAnte(player.group('PNAME'), player.group('ANTE'))
+            hand.addAnte(player.group('PNAME'), self.clearMoneyString(player.group('ANTE')))
+            self.allInBlind(hand, 'PREFLOP', player, 'ante')
     
     def readBringIn(self, hand):
         m = self.re_BringIn.search(hand.handText,re.DOTALL)
@@ -345,31 +351,29 @@ class PacificPoker(HandHistoryConverter):
             hand.addBringIn(m.group('PNAME'),  m.group('BRINGIN'))
         
     def readBlinds(self, hand):
-        liveBlind = True
-        hand.allInBlind = False
+        hand.setUncalledBets(True)
+        liveBlind, hand.allInBlind = True, False
         for a in self.re_PostSB.finditer(hand.handText):
             if a.group('PNAME') in hand.stacks:
                 if liveBlind:
-                    hand.addBlind(a.group('PNAME'), 'small blind', a.group('SB'))
+                    hand.addBlind(a.group('PNAME'), 'small blind', self.clearMoneyString(a.group('SB')))
                     liveBlind = False
                 else:
                     # Post dead blinds as ante
-                    hand.addBlind(a.group('PNAME'), 'secondsb', a.group('SB'))
-                if hand.stacks[a.group('PNAME')]==0:
-                    hand.allInBlind = True
+                    hand.addBlind(a.group('PNAME'), 'secondsb', self.clearMoneyString(a.group('SB')))
+                self.allInBlind(hand, 'PREFLOP', a, 'secondsb')
             else:
                 raise FpdbHandPartial("Partial hand history: %s" % hand.handid)
         for a in self.re_PostBB.finditer(hand.handText):
             if a.group('PNAME') in hand.stacks:
-                hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
-                hand.setUncalledBets(True)
-                if hand.stacks[a.group('PNAME')]==0:
-                    hand.allInBlind = True
+                hand.addBlind(a.group('PNAME'), 'big blind', self.clearMoneyString(a.group('BB')))
+                self.allInBlind(hand, 'PREFLOP', a, 'big blind')
             else:
                 raise FpdbHandPartial("Partial hand history: %s" % hand.handid)
         for a in self.re_PostBoth.finditer(hand.handText):
             if a.group('PNAME') in hand.stacks:
-                hand.addBlind(a.group('PNAME'), 'both', a.group('SBBB'))
+                hand.addBlind(a.group('PNAME'), 'both', self.clearMoneyString(a.group('SBBB')))
+                self.allInBlind(hand, 'PREFLOP', a, 'both')
             else:
                 raise FpdbHandPartial("Partial hand history: %s" % hand.handid)
 
@@ -384,7 +388,7 @@ class PacificPoker(HandHistoryConverter):
 #                        hand.involved = False
 #                    else:
                     hand.hero = found.group('PNAME')
-                    newcards = found.group('NEWCARDS').split(', ')
+                    newcards = self.splitCards(found.group('NEWCARDS'))
                     hand.addHoleCards(street, hand.hero, closed=newcards, shown=False, mucked=False, dealt=True)
 
         for street, text in hand.streets.iteritems():
@@ -395,11 +399,11 @@ class PacificPoker(HandHistoryConverter):
                 if found.group('NEWCARDS') is None:
                     newcards = []
                 else:
-                    newcards = found.group('NEWCARDS').split(', ')
+                    newcards = self.splitCards(found.group('NEWCARDS'))
                 if found.group('OLDCARDS') is None:
                     oldcards = []
                 else:
-                    oldcards = found.group('OLDCARDS').split(', ')
+                    oldcards = self.splitCards(found.group('OLDCARDS'))
 
                 if street == 'THIRD' and len(newcards) == 3: # hero in stud game
                     hand.hero = player
@@ -413,23 +417,25 @@ class PacificPoker(HandHistoryConverter):
         m = self.re_Action.finditer(hand.streets[street])
         for action in m:
             acts = action.groupdict()
+            if street not in ('PREFLOP', 'DEAL'):
+                hand.setUncalledBets(False)
             #print "DEBUG: acts: %s" %acts
+            bet = self.clearMoneyString(action.group('BET')) if action.group('BET') else None
             if action.group('PNAME') in hand.stacks:
                 if action.group('ATYPE') == ' folds':
                     hand.addFold( street, action.group('PNAME'))
                 elif action.group('ATYPE') == ' checks':
                     hand.addCheck( street, action.group('PNAME'))
                 elif action.group('ATYPE') == ' calls':
-                    hand.setUncalledBets(hand.allInBlind)
-                    hand.addCall( street, action.group('PNAME'), action.group('BET').replace(',','') )
+                    hand.addCall( street, action.group('PNAME'), bet)
+                    self.allInBlind(hand, street, action, action.group('ATYPE'))
                 elif action.group('ATYPE') == ' raises':
-                    hand.setUncalledBets(hand.allInBlind)
-                    hand.addCallandRaise( street, action.group('PNAME'), action.group('BET').replace(',','') )
+                    hand.addCallandRaise( street, action.group('PNAME'), bet)
+                    self.allInBlind(hand, street, action, action.group('ATYPE'))
                 elif action.group('ATYPE') == ' bets':
-                    hand.setUncalledBets(hand.allInBlind)
-                    hand.addBet( street, action.group('PNAME'), action.group('BET').replace(',','') )
+                    hand.addBet( street, action.group('PNAME'), bet )
                 elif action.group('ATYPE') == ' discards':
-                    hand.addDiscard(street, action.group('PNAME'), action.group('BET').replace(',',''), action.group('DISCARDED'))
+                    hand.addDiscard(street, action.group('PNAME'), bet, action.group('DISCARDED'))
                 elif action.group('ATYPE') == ' stands pat':
                     hand.addStandsPat( street, action.group('PNAME'))
                 else:
@@ -437,6 +443,14 @@ class PacificPoker(HandHistoryConverter):
             else:
                 raise FpdbHandPartial("Partial hand history: '%s', '%s' not in hand.stacks" % (hand.handid, action.group('PNAME')))
             
+    def allInBlind(self, hand, street, action, actiontype):
+        if street in ('PREFLOP', 'DEAL'):
+            if not hand.allInBlind and actiontype in (' raises', ' calls'):
+                hand.setUncalledBets(False)
+            for p, type in hand.posted:
+                if p==action.group('PNAME') and hand.stacks[action.group('PNAME')]==0:
+                    hand.setUncalledBets(True)
+                    hand.allInBlind = True
 
     def readShowdownActions(self, hand):
         # TODO: pick up mucks also??
@@ -447,13 +461,13 @@ class PacificPoker(HandHistoryConverter):
     def readCollectPot(self,hand):
         for m in self.re_CollectPot.finditer(hand.handText):
             #print "DEBUG: hand.addCollectPot(player=", m.group('PNAME'), ", pot=", m.group('POT'), ")"
-            hand.addCollectPot(player=m.group('PNAME'),pot=m.group('POT').replace(',',''))
+            hand.addCollectPot(player=m.group('PNAME'),pot=self.clearMoneyString(m.group('POT')))
 
     def readShownCards(self,hand):
         for m in self.re_ShownCards.finditer(hand.handText):
             if m.group('CARDS') is not None:
                 cards = m.group('CARDS')
-                cards = cards.split(', ') # needs to be a list, not a set--stud needs the order
+                cards = self.splitCards(cards)
 
                 (shown, mucked) = (False, False)
                 if m.group('SHOWED') == "shows": shown = True
@@ -461,6 +475,13 @@ class PacificPoker(HandHistoryConverter):
 
                 #print "DEBUG: hand.addShownCards(%s, %s, %s, %s)" %(cards, m.group('PNAME'), shown, mucked)
                 hand.addShownCards(cards=cards, player=m.group('PNAME'), shown=shown, mucked=mucked)
+                
+    def splitCards(self, cards):
+        cards = cards.replace(u'\xd2', 'Q')
+        cards = cards.replace(u'\xc2', 'A')
+        cards = cards.replace(u'\xc4', 'J')
+        cards = cards.split(', ')
+        return cards
 
     @staticmethod
     def getTableTitleRe(type, table_name=None, tournament = None, table_number=None):

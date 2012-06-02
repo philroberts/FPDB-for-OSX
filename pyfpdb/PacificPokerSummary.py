@@ -49,17 +49,17 @@ class PacificPokerSummary(TourneySummary):
     substitutions = {
                      'LEGAL_ISO' : "USD|EUR|GBP|CAD|FPP",      # legal ISO currency codes
                             'LS' : u"\$|\xe2\x82\xac|\u20AC|", # legal currency symbols
-                           'NUM' : u".,\d"                     # legal characters in number format
+                           'NUM' : u".,\d\xa0"                     # legal characters in number format
                     }
     
     re_TourneyInfo = re.compile(u"""
                         Tournament\sID:\s(?P<TOURNO>[0-9]+)\s+
-                        (Buy-In:\s(?P<CURRENCY>%(LS)s|)?(?P<BUYIN>(Free)|([,.0-9]+))(\s\+\s[%(LS)s]?(?P<FEE>[,.0-9]+))?\s+)?
-                        (Rebuy:\s[%(LS)s](?P<REBUYAMT>[,.0-9]+)\s+)?
-                        (Add-On:\s[%(LS)s](?P<ADDON>[,.0-9]+)\s+)?
+                        Buy-In:\s(?P<BUYIN>(((?P<BIAMT>(?P<CURRENCY1>%(LS)s)?[%(NUM)s]+(?P<CURRENCY2>%(LS)s)?)?\s\+\s?(?P<BIRAKE>(%(LS)s)?[%(NUM)s]+(%(LS)s)?))|(Free)|(.+?)))\s+
+                        (Rebuy:\s[%(LS)s](?P<REBUYAMT>[%(NUM)s]+)\s+)?
+                        (Add-On:\s[%(LS)s](?P<ADDON>[%(NUM)s]+)\s+)?
                         ((?P<P1NAME>.*?)\sperformed\s(?P<PREBUYS>\d+)\srebuys?\s+)?
                         ((?P<P2NAME>.*?)\sperformed\s(?P<PADDONS>\d+)\sadd-ons?\s+)?
-                        (?P<PNAME>.*)\sfinished\s(?P<RANK>[0-9]+)\/(?P<ENTRIES>[0-9]+)(\sand\swon\s(?P<WCURRENCY>[%(LS)s])?(?P<WINNINGS>[,.0-9]+))?
+                        (?P<PNAME>.*)\sfinished\s(?P<RANK>[0-9]+)\/(?P<ENTRIES>[0-9]+)(\sand\swon\s(?P<WCURRENCY>[%(LS)s])?(?P<WINNINGS>[%(NUM)s]+))?
                                """ % substitutions ,re.VERBOSE|re.MULTILINE|re.DOTALL)
     
     re_Category = re.compile(u"""
@@ -67,7 +67,7 @@ class PacificPokerSummary(TourneySummary):
           (?P<GAME>Holdem|Omaha|OmahaHL|Hold\'em|Omaha\sHi/Lo|OmahaHL|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Badugi|Triple\sDraw\s2\-7\sLowball|Single\sDraw\s2\-7\sLowball|5\sCard\sDraw)
                                """ % substitutions ,re.VERBOSE|re.MULTILINE|re.DOTALL)
 
-    codepage = ["utf-8"]
+    codepage = ("utf8", "cp1252")
 
     @staticmethod
     def getSplitRe(self, head):
@@ -76,30 +76,36 @@ class PacificPokerSummary(TourneySummary):
 
     def parseSummary(self):
         m  = self.re_TourneyInfo.search(self.summaryText)
-        m1 = self.re_Category.search(self.in_path)
-        if m == None or m1 == None:
+        if m == None:
             tmp = self.summaryText[0:200]
             log.error(_("PacificPokerSummary.parseSummary: '%s'") % tmp)
             raise FpdbParseError
 
         mg  = m.groupdict()
-        mg1 = m1.groupdict()
         #print "DEBUG: m.groupdict(): %s" % mg
         #print "DEBUG: m1.groupdict(): %s" % mg1
 
         self.tourNo = mg['TOURNO']
-        if 'LIMIT'     in mg1 and mg1['LIMIT'] is not None:
-            self.gametype['limitType'] = self.limits[mg1['LIMIT']]
-        else:
-            self.gametype['limitType'] = 'fl'
-        if 'GAME'      in mg1: self.gametype['category']  = self.games[mg1['GAME']][1]
         
-        if 'BUYIN' in mg and mg['BUYIN'] == 'Free':
-          self.buyin = 0
-          self.fee = 0
+        m1 = self.re_Category.search(self.in_path)
+        if m1:
+            mg1 = m1.groupdict()
+            if 'LIMIT'     in mg1 and mg1['LIMIT'] is not None:
+                self.gametype['limitType'] = self.limits[mg1['LIMIT']]
+            else:
+                self.gametype['limitType'] = 'fl'
+            if 'GAME'      in mg1: self.gametype['category']  = self.games[mg1['GAME']][1]
         else:
-          self.buyin = int(100*convert_to_decimal(mg['BUYIN']))
-          self.fee   = int(100*convert_to_decimal(mg['FEE']))
+            self.gametype['limitType'] = 'nl'
+            self.gametype['category']  = 'holdem'
+        
+        if 'BUYIN' in mg and mg['BUYIN'] is not None:
+            if mg['BUYIN'] == 'Free' or mg['BIAMT'] is None:
+                self.buyin = 0
+                self.fee = 0
+            else:
+              self.buyin = int(100*convert_to_decimal(mg['BIAMT']))
+              self.fee   = int(100*convert_to_decimal(mg['BIRAKE']))
          
         self.entries   = mg['ENTRIES']
         self.prizepool = self.buyin * int(self.entries)
@@ -110,9 +116,21 @@ class PacificPokerSummary(TourneySummary):
             self.isAddOn = True
             self.addOnCost = int(100*convert_to_decimal(mg['ADDON']))
         #self.startTime = datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S")
-        if mg['CURRENCY'] == "$":     self.buyinCurrency="USD"
-        elif mg['CURRENCY'] == u"€":  self.buyinCurrency="EUR"
-        if self.buyin == 0:           self.buyinCurrency="FREE"
+        
+        if 'CURRENCY1' in mg and mg['CURRENCY1']:
+            currency = mg['CURRENCY1']
+        elif 'CURRENCY2' in mg and mg['CURRENCY2']:
+            currency = mg['CURRENCY2']
+        else:
+            currency = None
+            
+        if currency:
+            if currency == "$":     self.buyinCurrency="USD"
+            elif currency == u"€":  self.buyinCurrency="EUR"
+        elif self.buyin == 0:
+            self.buyinCurrency="FREE"
+        else:
+            self.buyinCurrency="play"
         self.currency = self.buyinCurrency
 
         player = mg['PNAME']
@@ -126,9 +144,6 @@ class PacificPokerSummary(TourneySummary):
             winnings = int(100*convert_to_decimal(mg['WINNINGS']))
             if mg['WCURRENCY'] == "$":     self.currency="USD"
             elif mg['WCURRENCY'] == u"€":  self.currency="EUR"
-        if self.currency != "" and self.buyinCurrency == "FREE":
-            # "Setting buyinCurrency to currency:"
-            self.buyinCurrency = self.currency
         if 'PREBUYS' in mg and mg['PREBUYS'] != None:
             rebuyCount = int(mg['PREBUYS'])
         if 'PADDONS' in mg and mg['PADDONS'] != None:
