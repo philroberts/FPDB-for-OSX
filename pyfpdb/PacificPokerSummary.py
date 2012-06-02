@@ -104,11 +104,16 @@ class PacificPokerSummary(TourneySummary):
                 self.buyin = 0
                 self.fee = 0
             else:
+<<<<<<< HEAD
                 self.buyin = int(100*convert_to_decimal(mg['BIAMT']))
                 if mg['BIRAKE'] is None:
                     self.fee = 0
                 else:
                     self.fee = int(100*convert_to_decimal(mg['BIRAKE']))
+=======
+              self.buyin = int(100*convert_to_decimal(mg['BIAMT']))
+              self.fee   = int(100*convert_to_decimal(mg['BIRAKE']))
+>>>>>>> 20b6340... Improved 888/Pacific support for a number of situations, idiosyncrasies. Easy stuff first - added support for Russian freerolls, Russian card characters, and euro style currency placement (i.e. after the nums). Added real money summaries to the regressions, including a cash, a non-cash, and a rebuy/addon tournament. The big update is the patched support for 888/Pacific's occasional, and inconsistant inclusion of the uncalledbet in the collection lines for pre-flop all-ins from the blinds. Sometimes, as in 'NLHE-USD-MTT-0.90-201205.uncalledbets.correct.txt' the uncalled bet is included, other times as in 'NLHE-USD-MTT-0.90-201205.uncalledbets.false.positive.txt', it is not. This has been observed in several files across space and time. To deal with this issue, we've added a bit to totalPot in Hand.py which discards the subtraction of uncalled bets if it results in negative amount collected for any player. Seemed to be the least-bad solution until we can determine the method by which uncalledbets are included/subtracted.
          
         self.entries   = mg['ENTRIES']
         self.prizepool = self.buyin * int(self.entries)
@@ -145,12 +150,17 @@ class PacificPokerSummary(TourneySummary):
         
         if 'WINNINGS' in mg and mg['WINNINGS'] != None:
             winnings = int(100*convert_to_decimal(mg['WINNINGS']))
+<<<<<<< HEAD
             if mg.get('WCURRENCY'):
                 if mg['WCURRENCY'] == "$":     self.currency="USD"
                 elif mg['WCURRENCY'] == u"€":  self.currency="EUR"
             elif mg.get('WCURRENCY2'):
                 if mg['WCURRENCY2'] == "$":     self.currency="USD"
                 elif mg['WCURRENCY2'] == u"€":  self.currency="EUR"
+=======
+            if mg['WCURRENCY'] == "$":     self.currency="USD"
+            elif mg['WCURRENCY'] == u"€":  self.currency="EUR"
+>>>>>>> 20b6340... Improved 888/Pacific support for a number of situations, idiosyncrasies. Easy stuff first - added support for Russian freerolls, Russian card characters, and euro style currency placement (i.e. after the nums). Added real money summaries to the regressions, including a cash, a non-cash, and a rebuy/addon tournament. The big update is the patched support for 888/Pacific's occasional, and inconsistant inclusion of the uncalledbet in the collection lines for pre-flop all-ins from the blinds. Sometimes, as in 'NLHE-USD-MTT-0.90-201205.uncalledbets.correct.txt' the uncalled bet is included, other times as in 'NLHE-USD-MTT-0.90-201205.uncalledbets.false.positive.txt', it is not. This has been observed in several files across space and time. To deal with this issue, we've added a bit to totalPot in Hand.py which discards the subtraction of uncalled bets if it results in negative amount collected for any player. Seemed to be the least-bad solution until we can determine the method by which uncalledbets are included/subtracted.
         if 'PREBUYS' in mg and mg['PREBUYS'] != None:
             rebuyCount = int(mg['PREBUYS'])
         if 'PADDONS' in mg and mg['PADDONS'] != None:
