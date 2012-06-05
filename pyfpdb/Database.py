@@ -690,7 +690,7 @@ class Database:
         c.execute (q, (hand_id, ))
         row = c.fetchone()
         gameinfo = {'sitename':row[0],'category':row[1],'base':row[2],'type':row[3],'limitType':row[4],
-                'hilo':row[5],'sb':row[6],'bb':row[7], 'sbet':row[8],'bbet':row[9], 'currency':row[10]}
+                'hilo':row[5],'sb':row[6],'bb':row[7], 'sbet':row[8],'bbet':row[9], 'currency':row[10], 'gametypeId':row[11]}
         return gameinfo
         
 #   Query 'get_hand_info' does not exist, so it seems
@@ -806,6 +806,11 @@ class Database:
         self.h_date_ndays_ago = "d%02d%02d%02d" % (now.year - 2000, now.month, now.day)
 
     # is get_stats_from_hand slow?
+    # Gimick - yes  - reason being that the gametypeid join on hands
+    # increases exec time on SQLite and postgres by a factor of 6 to 10
+    # method below changed to lookup hand.gametypeid and pass that as
+    # a constant to the underlying query.
+    
     def get_stats_from_hand( self, hand, type   # type is "ring" or "tour"
                            , hud_params = {'hud_style':'A', 'agg_bb_mult':1000
                                           ,'seats_style':'A', 'seats_cust_nums':['n/a', 'n/a', (2,2), (3,4), (3,5), (4,6), (5,7), (6,8), (7,9), (8,10), (8,10)]
@@ -883,10 +888,14 @@ class Database:
         #elif h_hud_style == 'H':
         #    h_stylekey = date_nhands_ago  needs array by player here ...
 
+        # lookup gametypeId from hand
+        handinfo = self.get_gameinfo_from_hid(hand)
+        gametypeId = handinfo["gametypeId"]
+
         query = 'get_stats_from_hand_aggregated'
         subs = (hand
-               ,hero_id, stylekey, agg_bb_mult, agg_bb_mult, seats_min, seats_max  # hero params
-               ,hero_id, h_stylekey, h_agg_bb_mult, h_agg_bb_mult, h_seats_min, h_seats_max)    # villain params
+               ,hero_id, stylekey, agg_bb_mult, agg_bb_mult, gametypeId, seats_min, seats_max  # hero params
+               ,hero_id, h_stylekey, h_agg_bb_mult, h_agg_bb_mult, gametypeId, h_seats_min, h_seats_max)    # villain params
 
         #print "get stats: hud style =", hud_style, "query =", query, "subs =", subs
         stime = time()

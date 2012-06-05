@@ -2495,7 +2495,8 @@ class Sql:
                         round(g.bigBlind / 100.0,2),
                         round(g.smallBet / 100.0,2),
                         round(g.bigBet / 100.0,2),
-                        g.currency
+                        g.currency,
+                        h.gametypeId
                     FROM
                         Hands as h,
                         Sites as s,
@@ -2504,10 +2505,10 @@ class Sql:
                         Players as p
                     WHERE
                         h.id = %s
-                    and g.id = h.gametypeid
-                    and hp.handid = h.id
-                    and p.id = hp.playerid
-                    and s.id = p.siteid
+                    and g.id = h.gametypeId
+                    and hp.handId = h.id
+                    and p.id = hp.playerId
+                    and s.id = p.siteId
                     limit 1
             """
 
@@ -2755,7 +2756,7 @@ class Sql:
                                   AND    gt1.limittype = gt2.limittype     /* fl/nl */
                                   AND    gt1.bigblind <= gt2.bigblind * %s  /* bigblind similar size */
                                   AND    gt1.bigblind >= gt2.bigblind / %s
-                                  AND    gt2.id = h.gametypeId)
+                                  AND    gt2.id = %s)
                            AND hc.activeSeats between %s and %s
                           )
                        OR
@@ -2769,7 +2770,7 @@ class Sql:
                                   AND    gt1.limittype = gt2.limittype     /* fl/nl */
                                   AND    gt1.bigblind <= gt2.bigblind * %s  /* bigblind similar size */
                                   AND    gt1.bigblind >= gt2.bigblind / %s
-                                  AND    gt2.id = h.gametypeId)
+                                  AND    gt2.id = %s)
                            AND hc.activeSeats between %s and %s
                           )
                       )
