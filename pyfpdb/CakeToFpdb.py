@@ -69,6 +69,7 @@ class Cake(HandHistoryConverter):
                               "Hold'em" : ('hold','holdem'), 
                                 'Omaha' : ('hold','omahahi'),
                           'Omaha Hi/Lo' : ('hold','omahahilo'),
+                            'OmahaHiLo' : ('hold','omahahilo'),
                }
     currencies = { u'€':'EUR', '$':'USD', '':'T$' }
 
@@ -77,13 +78,13 @@ class Cake(HandHistoryConverter):
           Hand\#(?P<HID>[A-Z0-9]+)\s+\-\s+
           (?P<TABLE>(?P<BUYIN1>(?P<BIAMT1>(%(LS)s)[%(NUM)s]+)\sNLH\s(?P<MAX1>\d+)\smax)?.+?)\s(\((?P<MAX>\d+)\-[Mm]ax\)\s)?((?P<TOURNO>T\d+)|\d+)\s
           (\-\-\s(TICKET|CASH|TICKETCASH)\s\-\-\s(?P<BUYIN>(?P<BIAMT>(%(LS)s)[%(NUM)s]+)\s\+\s(?P<BIRAKE>(%(LS)s)[%(NUM)s]+))\s\-\-\s(?P<TMAX>\d+)\sMax\s)?
-          (\-\-\sTable\s\d+\s)?\-\-\s
+          (\-\-\sTable\s(?P<TABLENO>\d+)\s)?\-\-\s
           (?P<CURRENCY>%(LS)s|)?
           (?P<ANTESB>[%(NUM)s]+)/(%(LS)s)?
           (?P<SBBB>[%(NUM)s]+)
           (/(%(LS)s)?(?P<BB>[%(NUM)s]+))?\s
           (?P<LIMIT>NL|FL||PL)\s
-          (?P<GAME>Hold\'em|Omaha|Omaha\sHi/Lo)\s--\s
+          (?P<GAME>Hold\'em|Omaha|Omaha\sHi/Lo|OmahaHiLo)\s--\s
           (?P<DATETIME>.*$)
           """ % substitutions, re.MULTILINE|re.VERBOSE)
 
@@ -102,7 +103,7 @@ class Cake(HandHistoryConverter):
     re_PostBB       = re.compile(r"^%(PLYR)s: posts big blind %(CUR)s(?P<BB>[%(NUM)s]+)$" %  substitutions, re.MULTILINE)
     re_Antes        = re.compile(r"^%(PLYR)s: posts ante of %(CUR)s(?P<ANTE>[%(NUM)s]+)" % substitutions, re.MULTILINE)
     re_BringIn      = re.compile(r"^%(PLYR)s: brings[- ]in( low|) for %(CUR)s(?P<BRINGIN>[%(NUM)s]+)" % substitutions, re.MULTILINE)
-    re_PostBoth     = re.compile(r"^%(PLYR)s:posts dead blind %(CUR)s(?P<SB>[%(NUM)s]+) and big blind %(CUR)s(?P<BB>[%(NUM)s]+)" %  substitutions, re.MULTILINE)
+    re_PostBoth     = re.compile(r"^%(PLYR)s:posts dead blind %(CUR)s(\-)?(?P<SB>[%(NUM)s]+) and big blind %(CUR)s(?P<BB>[%(NUM)s]+)" %  substitutions, re.MULTILINE)
     re_HeroCards    = re.compile(r"^Dealt to %(PLYR)s(?: \[(?P<OLDCARDS>.+?)\])?( \[(?P<NEWCARDS>.+?)\])" % substitutions, re.MULTILINE)
     re_Action       = re.compile(r"""
                         ^%(PLYR)s:(?P<ATYPE>\sbets|\schecks|\sraises|\scalls|\sfolds|\sis\sall\sin)
@@ -200,7 +201,9 @@ class Cake(HandHistoryConverter):
                 hand.startTime = HandHistoryConverter.changeTimezone(hand.startTime, "ET", "UTC")
             if key == 'HID':
                 hand.handid = re.sub('[A-Z]+', '', info[key])
-            if key == 'TABLE':
+            if key == 'TABLE' and hand.gametype['type'] == 'ring':
+                hand.tablename = info[key]
+            if key == 'TABLENO' and hand.gametype['type'] == 'tour':
                 hand.tablename = info[key]
             if key == 'BUTTON':
                 hand.buttonpos = info[key]
@@ -275,25 +278,25 @@ class Cake(HandHistoryConverter):
         m = self.re_Antes.finditer(hand.handText)
         for player in m:
             #~ logging.debug("hand.addAnte(%s,%s)" %(player.group('PNAME'), player.group('ANTE')))
-            hand.addAnte(player.group('PNAME'), player.group('ANTE'))
+            hand.addAnte(player.group('PNAME'), self.clearMoneyString(player.group('ANTE')))
     
     def readBringIn(self, hand):
         m = self.re_BringIn.search(hand.handText,re.DOTALL)
         if m:
             #~ logging.debug("readBringIn: %s for %s" %(m.group('PNAME'),  m.group('BRINGIN')))
-            hand.addBringIn(m.group('PNAME'),  m.group('BRINGIN'))
+            hand.addBringIn(m.group('PNAME'),  self.clearMoneyString(m.group('BRINGIN')))
         
     def readBlinds(self, hand):
         liveBlind = True
         for a in self.re_PostSB.finditer(hand.handText):
             if liveBlind:
-                hand.addBlind(a.group('PNAME'), 'small blind', a.group('SB'))
+                hand.addBlind(a.group('PNAME'), 'small blind', self.clearMoneyString(a.group('SB')))
                 liveBlind = False
             else:
                 # Post dead blinds as ante
-                hand.addBlind(a.group('PNAME'), 'secondsb', a.group('SB'))
+                hand.addBlind(a.group('PNAME'), 'secondsb', self.clearMoneyString(a.group('SB')))
         for a in self.re_PostBB.finditer(hand.handText):
-            hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
+            hand.addBlind(a.group('PNAME'), 'big blind', self.clearMoneyString(a.group('BB')))
             hand.setUncalledBets(True)
         for a in self.re_PostBoth.finditer(hand.handText):
             sb = Decimal(self.clearMoneyString(a.group('SB')))
