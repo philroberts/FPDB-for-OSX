@@ -177,8 +177,10 @@ or None if we fail to get the info """
         
         currencies = { u'ˆ':'EUR', u'€':'EUR', '$':'USD', '':'T$'}
         mg = m.groupdict()
-        hand.gametype['currency'] = currencies[mg['CURRENCY']]
-
+        if mg['CURRENCY'] is not None:
+            hand.gametype['currency'] = currencies[mg['CURRENCY']]
+        else:
+            hand.gametype['currency'] = 'T$'
 
         t = self.re_TourneyInfoFromFilename.search(self.in_path)
         if t:

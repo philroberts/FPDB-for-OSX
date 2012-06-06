@@ -314,6 +314,7 @@ class PokerTracker(HandHistoryConverter):
                 hand.tourNo = info[key]
             if key == 'BUYIN':
                 if hand.tourNo!=None:
+                    tourneyname = ''
                     if self.sitename == 'Merge':
                         if self.SnG_Structures is None:
                             obj = getattr(MergeToFpdb, "Merge", None)

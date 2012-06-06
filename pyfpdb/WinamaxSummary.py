@@ -39,11 +39,12 @@ class WinamaxSummary(TourneySummary):
                      'LEGAL_ISO' : "USD|EUR|GBP|CAD|FPP",     # legal ISO currency codes
                             'LS' : u"\$|\xe2\x82\xac|\u20ac|" # legal currency symbols
                     }
+    
     re_SummaryTourneyInfo = re.compile(u"""Winamax\sPoker\s-\sTournament\ssummary\s:\s
                                            ((?P<LIMIT>No\sLimit|Limit|LIMIT|Pot\sLimit)\s)?
                                            (?P<GAME>.+)?
                                            \((?P<TOURNO>[0-9]+)\)(\s-\sLate\sregistration)?\s+
-                                           Player\s:\s(?P<PNAME>.*)\s+
+                                           (Player\s:\s(?P<PNAME>.*)\s+)?
                                            Buy-In\s:\s(?P<BUYIN>(?P<BIAMT>.+)\s\+\s(?P<BIRAKE>.+))\s+
                                            Registered\splayers\s:\s(?P<ENTRIES>[0-9]+)\s+
                                            Prizepool\s:\s(?P<PRIZEPOOL>[.0-9%(LS)s]+)\s+
@@ -218,7 +219,7 @@ class WinamaxSummary(TourneySummary):
         #self.maxseats  =
         if int(self.entries) <= 10: #FIXME: obv not a great metric
             self.isSng     = True
-        if 'PNAME' in mg:
+        if 'PNAME' in mg and mg['PNAME'] is not None:
             name = mg['PNAME'].strip('\r')
             rank = int(mg['RANK'])
             winnings = 0

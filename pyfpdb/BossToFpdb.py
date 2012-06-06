@@ -31,7 +31,7 @@ class Boss(HandHistoryConverter):
 
     sitename = "Boss"
     filetype = "text"
-    codepage = "utf-8"
+    codepage = ("utf8", "cp1252")
     siteId   = 4
     
     Lim_Blinds = {      '0.20': ('0.05','0.10'),     '0.50': ('0.13', '0.25'),
@@ -254,11 +254,8 @@ class Boss(HandHistoryConverter):
             hand.addBringIn(m.group('PNAME'),  m.group('BRINGIN'))
         
     def readBlinds(self, hand):
-        try:
-            m = self.re_PostSB.search(hand.handText)
-            hand.addBlind(m.group('PNAME'), 'small blind', m.group('SB'))
-        except: # no small blind
-            hand.addBlind(None, None, None)
+        for a in self.re_PostSB.finditer(hand.handText):
+            hand.addBlind(a.group('PNAME'), 'small blind', a.group('SB'))
         for a in self.re_PostBB.finditer(hand.handText):
             hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
         for a in self.re_PostBoth.finditer(hand.handText):
@@ -357,17 +354,6 @@ class Boss(HandHistoryConverter):
                 # hero: [xxoooo] [x]
                 # others: not reported.
                 hand.addPlayerCards(player = player.group('PNAME'), street = street, closed = newcards)
-                
-    def getBossBet(self, hand, street, action):
-        bet = action.group('BET')
-        if street in ('PREFLOP', 'DEAL'):
-            for p, b in hand.posted:
-                if p==action.group('PNAME'):
-                    if b in ('small blind', 'secondsb'):
-                        bet = str(Decimal(action.group('BET')) - Decimal(hand.sb))
-                    else:
-                        bet = str(Decimal(action.group('BET')) - Decimal(hand.bb))
-        return bet
                     
     def readAction(self, hand, street):
         m = self.re_Action.finditer(hand.streets[street])
@@ -377,10 +363,10 @@ class Boss(HandHistoryConverter):
             elif action.group('ATYPE') == 'ACTION_CHECK':
                 hand.addCheck( street, action.group('PNAME'))
             elif action.group('ATYPE') == 'ACTION_CALL':
-                bet = self.getBossBet(hand, street, action)
+                bet = action.group('BET') 
                 hand.addCallTo(street, action.group('PNAME'), bet )
             elif action.group('ATYPE') == 'ACTION_RAISE':
-                bet = self.getBossBet(hand, street, action)
+                bet = action.group('BET') 
                 hand.addRaiseTo( street, action.group('PNAME'), bet)
             elif action.group('ATYPE') == 'ACTION_BET':
                 hand.addBet( street, action.group('PNAME'), action.group('BET') )
@@ -389,7 +375,7 @@ class Boss(HandHistoryConverter):
             elif action.group('ATYPE') == 'ACTION_STAND':
                 hand.addStandsPat( street, action.group('PNAME'))
             elif action.group('ATYPE') == 'ACTION_ALLIN':
-                bet = self.getBossBet(hand, street, action)
+                bet = action.group('BET') 
                 hand.addRaiseTo( street, action.group('PNAME'), bet )
             else:
                 print (_("DEBUG:") + _("Unimplemented %s: '%s' '%s'") % ("readAction", action.group('PNAME'), action.group('ATYPE')))
