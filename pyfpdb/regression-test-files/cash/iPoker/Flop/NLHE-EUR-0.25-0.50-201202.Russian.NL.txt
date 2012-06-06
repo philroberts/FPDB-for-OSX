@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+	<session sessioncode="3658627441">  
+			<general>  
+	    	<mode>real</mode>
+	      		<gametype>Holdem БЛ €0.25/€0.50</gametype>  
+	          <tablename>Miralis, 414738731</tablename>  
+	          <duration>00:08</duration>  
+	          <gamecount>29</gamecount>  
+	          <startdate>2012-02-23 17:54:57</startdate>  
+	          <currency>EUR</currency>  
+	          <nickname>Hero</nickname>  
+	          <bets>€34.50</bets>  
+	          <wins>€30.95</wins>  
+	          <chipsin>€50</chipsin>
+			  		<chipsout>€46.45</chipsout>
+			  		<ipoints>11.05</ipoints>
+        		<statuspoints>11.05</statuspoints>
+			  		<awardpoints>11.05</awardpoints>
+	            
+	    </general>  
+	    <game gamecode="3175501689">
+		 <general>
+		  <startdate>2012-02-23 17:54:57</startdate>		  
+		  <players>
+		   <player seat="3" name="Player0" chips="€50" dealer="1" win="€0" bet="€0.25" rebuy="0" addon="0"/><player seat="8" name="Hero" chips="€50" dealer="0" win="€0.75" bet="€0.50" rebuy="0" addon="0"/>
+		  </players>
+		 </general>
+		 <round no="0">
+	 <action no="1" player="Player0" type="1" sum="€0.25" cards="[cards]"/><action no="2" player="Hero" type="2" sum="€0.50" cards="[cards]"/>
+	</round>
+	<round no="1">
+	 <cards type="Pocket" player="Player0">X X</cards><action no="3" player="Player0" type="0" sum="€0" cards=""/><cards type="Pocket" player="Hero">D10 D4</cards>
+	</round>
+	
+		</game>

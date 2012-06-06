@@ -67,6 +67,7 @@ class iPoker(HandHistoryConverter):
                 '7 Card Stud L' : ('stud','studhi'),
                 '5 Card Stud L' : ('stud','5studhi'),
                     'Holdem NL' : ('hold','holdem'),
+                   u'Holdem БЛ' : ('hold','holdem'),
                     'Holdem SL' : ('hold','holdem'), #Spanish NL
                      'Holdem L' : ('hold','holdem'),
                      'Omaha PL' : ('hold','omahahi'),
@@ -108,8 +109,8 @@ class iPoker(HandHistoryConverter):
     # Static regexes
     re_SplitHands = re.compile(r'</game>')
     re_TailSplitHands = re.compile(r'(</game>)')
-    re_GameInfo = re.compile(r"""(?P<HEAD>
-            <gametype>(?P<GAME>(5|7)\sCard\sStud\sL|Holdem\s(NL|SL|L|LZ|PL)|Omaha\s(PL|LP)|Omaha\sL|Omaha\sHi\-Lo\s(L|PL|LP)|LH\s(?P<LSB>[%(NUM)s]+)/(?P<LBB>[%(NUM)s]+).+?)(\s(%(LS)s)?(?P<SB>[%(NUM)s]+)/(%(LS)s)?(?P<BB>[%(NUM)s]+))?</gametype>\s+?
+    re_GameInfo = re.compile(ur"""(?P<HEAD>
+            <gametype>(?P<GAME>(5|7)\sCard\sStud\sL|Holdem\s(NL|SL|L|LZ|PL|БЛ)|Omaha\s(PL|LP)|Omaha\sL|Omaha\sHi\-Lo\s(L|PL|LP)|LH\s(?P<LSB>[%(NUM)s]+)/(?P<LBB>[%(NUM)s]+).+?)(\s(%(LS)s)?(?P<SB>[%(NUM)s]+)/(%(LS)s)?(?P<BB>[%(NUM)s]+))?</gametype>\s+?
             <tablename>(?P<TABLE>.+)?</tablename>\s+?
             (<(tablecurrency|tournamentcurrency)>.*</(tablecurrency|tournamentcurrency)>\s+?)?
             <duration>.+</duration>\s+?
@@ -196,7 +197,7 @@ class iPoker(HandHistoryConverter):
         if self.info['base'] == 'stud':
             self.info['limitType'] = 'fl'
         if self.info['base'] == 'hold':
-            if mg['GAME'][-2:] == 'NL' or mg['GAME'][-2:] == 'SL':
+            if mg['GAME'][-2:] == 'NL' or mg['GAME'][-2:] == 'SL' or mg['GAME'][-2:] == u'БЛ':
                 self.info['limitType'] = 'nl'
             elif mg['GAME'][-2:] == 'PL' or mg['GAME'][-2:] == 'LP':
                 self.info['limitType'] = 'pl'
