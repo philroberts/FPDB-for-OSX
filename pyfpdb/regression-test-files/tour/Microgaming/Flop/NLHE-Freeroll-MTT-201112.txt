@@ -1,0 +1,58 @@
+----PRIMA.DAT----
+
+<Game id="4214232887" date="2011-12-15 21:17:31" unicodetablename="VgBJAFAAIACsIDEAMAAsADAAMAAwACAAUQB1AGEAcgB0AGUAcgBsAHkAIABGAHIAZQBlAHIAbwBsAGwAIABbADQANgA4ADUAOQAyADEAXQA6AFQAYQBiAGwAZQAgADEA" tablename="VIP €10,000 Quarterly Freeroll [4685921]:Table 1" stakes="50|100" betlimit="NL" tabletype="MTT" gametypeid="1" gametype="Multi Table Hold&apos;em" realmoney="true" currencysymbol="" playerseat="3" betamount="0" istournament="1">
+   <Seats>
+      <Seat num="1" alias="Player0" unicodealias="cwBjAHUAZAAyADIA" balance="2265.00" endbalance="2265.00"/>
+      <Seat num="3" alias="Hero" unicodealias="LQBUAHIAaQBuAG4AaQAtAA==" balance="4860.00" endbalance="4860.00" sittingout="true"/>
+      <Seat num="4" alias="Player1" unicodealias="YwBnAG4AZQB3AG0AYQBuADgAOAA=" balance="4305.00" endbalance="4205.00"/>
+      <Seat num="5" alias="Player2" unicodealias="dABpAG0AbQB5ADEAMgAzADQA" balance="5825.00" endbalance="8780.00"/>
+      <Seat num="6" alias="Player3" unicodealias="YQByAGEAawBuAGEAZgBvAGIAaQA=" balance="7960.00" endbalance="7960.00"/>
+      <Seat num="7" alias="Player4" unicodealias="UgBlAGsAcgBhAHAAbQBhAHMA" balance="6876.00" endbalance="6876.00" dealer="true"/>
+      <Seat num="8" alias="Player5" unicodealias="SQBuAGQAaABvAGwAZABfADEAMABjAGwA" balance="2755.00" endbalance="0.00"/>
+      <Seat num="9" alias="Player6" unicodealias="RQBuAHYAZQBsAG8AcABlAA==" balance="4855.00" endbalance="4755.00"/>
+      <Seat num="10" alias="Player7" unicodealias="UQB1AG0AYQBuAEwAQQBEAA==" balance="5805.00" endbalance="5805.00"/>
+   </Seats>
+   <Gameplay>
+      <Action seq="1" type="SmallBlind" seat="8" value="50.00"/>
+      <Action seq="2" type="BigBlind" seat="9" value="100.00"/>
+      <Action seq="3" type="DealCards" seat="3">
+         <Card value="Q" suit="c" id="24"/>
+         <Card value="4" suit="c" id="16"/>
+      </Action>
+      <Action seq="4" type="Fold" seat="10"/>
+      <Action seq="5" type="Fold" seat="1"/>
+      <Action seq="6" type="Fold" seat="3"/>
+      <Action seq="7" type="Call" seat="4" value="100.00"/>
+      <Action seq="8" type="AllIn" seat="5" value="5825.00"/>
+      <Action seq="9" type="Fold" seat="6"/>
+      <Action seq="10" type="Fold" seat="7"/>
+      <Action seq="11" type="AllIn" seat="8" value="2705.00"/>
+      <Action seq="12" type="Fold" seat="9"/>
+      <Action seq="13" type="Fold" seat="4"/>
+      <Action seq="14" type="ShowCards" seat="5">
+         <Card value="J" suit="h" id="49"/>
+         <Card value="J" suit="c" id="23"/>
+      </Action>
+      <Action seq="15" type="ShowCards" seat="8">
+         <Card value="A" suit="h" id="39"/>
+         <Card value="K" suit="h" id="51"/>
+      </Action>
+      <Action seq="16" type="DealFlop">
+         <Card value="3" suit="h" id="41"/>
+         <Card value="Q" suit="s" id="11"/>
+         <Card value="3" suit="d" id="28"/>
+      </Action>
+      <Action seq="17" type="DealTurn">
+         <Card value="4" suit="h" id="42"/>
+      </Action>
+      <Action seq="18" type="DealRiver">
+         <Card value="10" suit="c" id="22"/>
+      </Action>
+      <Action type="Win">
+         <Seat num="5" amount="5710.00" pot="0" type="" lowhandwin="0"/>
+      </Action>
+   </Gameplay>
+</Game>
+
+ExtendedTableName: VIP €10,000 Quarterly Freeroll [4685921]:Table 1 [4685921]
+

@@ -41,31 +41,36 @@ class Microgaming(HandHistoryConverter):
                                     tablename="(?P<TABLE>.+)"\s
                                     stakes="(?P<SB>[.0-9]+)\|(?P<BB>[.0-9]+)"\s
                                     betlimit="(?P<LIMIT>NL|PL|FL)"\s
-                                    tabletype="Cash\sGame"\s
-                                    gametypeid="1"\sgametype="(?P<GAME>[a-zA-Z\&;]+)"\s
-                                    realmoney="true"\scurrencysymbol="(?P<CURRENCY>[A-Za-z=]+)"\s
-                                    playerseat="\d+"\sbetamount="\d+"\sistournament="\d+"\srake="\d+">
+                                    tabletype="(Cash\sGame|MTT)"\s
+                                    gametypeid="1"\s
+                                    gametype="(?P<GAME>[a-zA-Z\&; ]+)"\s
+                                    realmoney="true"\s
+                                    currencysymbol="(?P<CURRENCY>.+|)"\s
+                                    playerseat="\d+"\s
+                                    betamount="\d+"\s
+                                    istournament="(?P<TOUR>\d)"
                                     """, re.MULTILINE| re.VERBOSE)
     re_SplitHands   = re.compile('\n*----.+.DAT----\n*')
-    re_Button       = re.compile('<ACTION TYPE="HAND_DEAL" PLAYER="(?P<BUTTON>[^"]+)">\n<CARD LINK="[0-9b]+"></CARD>\n<CARD LINK="[0-9b]+"></CARD></ACTION>\n<ACTION TYPE="ACTION_', re.MULTILINE)
-    re_PlayerInfo   = re.compile('<Seat num="(?P<SEAT>[0-9]+)" alias="(?P<PNAME>.*)" unicodealias=".+" balance="(?P<CASH>[.0-9]+)"', re.MULTILINE)
-    re_Card        = re.compile('<Card value="[0-9JQKA]+" suit="[csdh]" id="(?P<CARD>\d+)"/>', re.MULTILINE)
-    re_BoardLast    = re.compile('^<CARD LINK="(?P<CARD>[0-9]+)"></CARD></ACTION>', re.MULTILINE)
+    #re_Button       = re.compile('<ACTION TYPE="HAND_DEAL" PLAYER="(?P<BUTTON>[^"]+)">\n<CARD LINK="[0-9b]+"></CARD>\n<CARD LINK="[0-9b]+"></CARD></ACTION>\n<ACTION TYPE="ACTION_', re.MULTILINE)
+    re_PlayerInfo   = re.compile('<Seat num="(?P<SEAT>[0-9]+)" alias="(?P<PNAME>.*)" unicodealias=".+" balance="(?P<CASH>[.0-9]+)" endbalance="[.0-9]+"(?P<BUTTON>\sdealer="true")?', re.MULTILINE)
+    re_Card         = re.compile('<Card value="[0-9JQKA]+" suit="[csdh]" id="(?P<CARD>\d+)"/>', re.MULTILINE)
+    #re_BoardLast    = re.compile('^<CARD LINK="(?P<CARD>[0-9]+)"></CARD></ACTION>', re.MULTILINE)
+    re_Table        = re.compile('\[(?P<TOURNO>[0-9]+)\]:Table (?P<TABLENO>\d+)', re.MULTILINE)
     
 
-    re_PostSB           = re.compile(r'^<ACTION TYPE="HAND_BLINDS" PLAYER="(?P<SEAT>\d+)" KIND="HAND_SB" VALUE="(?P<SB>[.0-9]+)"></ACTION>', re.MULTILINE)
-    re_PostBB           = re.compile(r'^<ACTION TYPE="HAND_BLINDS" PLAYER="(?P<SEAT>\d+)" KIND="HAND_BB" VALUE="(?P<BB>[.0-9]+)"></ACTION>', re.MULTILINE)
+    #re_PostSB           = re.compile(r'^<ACTION TYPE="HAND_BLINDS" PLAYER="(?P<SEAT>\d+)" KIND="HAND_SB" VALUE="(?P<SB>[.0-9]+)"></ACTION>', re.MULTILINE)
+    #re_PostBB           = re.compile(r'^<ACTION TYPE="HAND_BLINDS" PLAYER="(?P<SEAT>\d+)" KIND="HAND_BB" VALUE="(?P<BB>[.0-9]+)"></ACTION>', re.MULTILINE)
     re_Antes            = re.compile(r"^(?P<SEAT>\d+): posts the ante \$?(?P<ANTE>[.0-9]+)", re.MULTILINE)
     re_BringIn          = re.compile(r"^(?P<SEAT>\d+): brings[- ]in( low|) for \$?(?P<BRINGIN>[.0-9]+)", re.MULTILINE)
-    re_PostBoth         = re.compile(r'^<ACTION TYPE="HAND_BLINDS" PLAYER="(?P<SEAT>\d+)" KIND="HAND_AB" VALUE="(?P<SBBB>[.0-9]+)"></ACTION>', re.MULTILINE)
+    #re_PostBoth         = re.compile(r'^<ACTION TYPE="HAND_BLINDS" PLAYER="(?P<SEAT>\d+)" KIND="HAND_AB" VALUE="(?P<SBBB>[.0-9]+)"></ACTION>', re.MULTILINE)
     
     re_HeroCards        = re.compile(r'<Action seq="\d+" type="DealCards" seat="(?P<SEAT>\d+)">\s+?(?P<CARDS>(<Card value="[0-9TJQKA]+" suit="[csdh]" id="(?P<CARD>\d+)"/>\s+)+)', re.MULTILINE)
 
     re_Action           = re.compile(r'<Action seq="\d+" type="(?P<ATYPE>[a-zA-Z]+)" seat="(?P<SEAT>\d+)"( value="(?P<BET>[.0-9]+)")?/>', re.MULTILINE)
 
-    re_ShowdownAction   = re.compile(r'<RESULT PLAYER="(?P<SEAT>\d+)" WIN="[.0-9]+" HAND="(?P<HAND>\(\$STR_G_FOLD\)|[\$\(\)_ A-Z]+)">\n(?P<CARDS><CARD LINK="[0-9]+"></CARD>\n<CARD LINK="[0-9]+"></CARD>)</RESULT>', re.MULTILINE)
+    #re_ShowdownAction   = re.compile(r'<RESULT PLAYER="(?P<SEAT>\d+)" WIN="[.0-9]+" HAND="(?P<HAND>\(\$STR_G_FOLD\)|[\$\(\)_ A-Z]+)">\n(?P<CARDS><CARD LINK="[0-9]+"></CARD>\n<CARD LINK="[0-9]+"></CARD>)</RESULT>', re.MULTILINE)
     re_CollectPot       = re.compile(r'<Seat num="(?P<SEAT>\d+)" amount="(?P<POT>[.\d]+)" pot=".+" type=".*" lowhandwin="\d+"/>', re.MULTILINE)
-    re_sitsOut          = re.compile("^(?P<SEAT>\d+) sits out", re.MULTILINE)
+    #re_sitsOut          = re.compile("^(?P<SEAT>\d+) sits out", re.MULTILINE)
     re_ShownCards       = re.compile(r'<Action seq="\d+" type="(?P<SHOWED>ShowCards|MuckCards)" seat="(?P<SEAT>\d+)">\s+?(?P<CARDS>(<Card value="[0-9TJQKA]+" suit="[csdh]" id="(?P<CARD>\d+)"/>\s+)+)', re.MULTILINE)
 
     cid_toval = {
@@ -92,38 +97,28 @@ class Microgaming(HandHistoryConverter):
                 #["ring", "stud", "fl"],
                 #["ring", "draw", "fl"],
                 #["tour", "hold", "fl"],
-                #["tour", "hold", "pl"],
-                #["tour", "hold", "nl"],
-               ]    
-
-    def parseHeader(self, handText, whole_file):
-        gametype = self.determineGameType(handText)
-        if gametype is None:
-            gametype = self.determineGameType(whole_file)
-            if gametype is None:
-                tmp = handText[0:200]
-                log.error(_("MicrogamingToFpdb.determineGameType: '%s'") % tmp)
-                raise FpdbParseError
-        return gametype
+                ["tour", "hold", "pl"],
+                ["tour", "hold", "nl"],
+               ]
 
     def determineGameType(self, handText):
         info = {}
         m = self.re_GameInfo.search(handText)
-        if not m: return None
+        if not m: 
+            tmp = handText[0:200]
+            log.error(_("MicrogamingToFpdb.determineGameType: '%s'") % tmp)
+            raise FpdbParseError
 
         mg = m.groupdict()
         #print "DEBUG: mg: %s" % mg
-        
+        currencies = { 'rCA=':'EUR', '$':'USD', '':'T$'}
         limits = { 'NL':'nl', 'PL':'pl', 'FL':'fl'}
         games = {              # base, category
                   "Hold&apos;em" : ('hold','holdem'), 
-                  #"GAME_OMA" : ('hold','omahahi'),
+      "Multi Table Hold&apos;em" : ('hold','holdem'),
                   #"GAME_FCD" : ('draw','fivedraw'),
                 }
-        info['type'] = 'ring'
-        #if 'GAMEKIND' in mg:
-        #    if mg['GAMEKIND'] == 'GAMEKIND_TOURNAMENT':
-        #        info['type'] = 'tour'
+        
         if 'LIMIT' in mg:
             info['limitType'] = limits[mg['LIMIT']]
         if 'GAME' in mg:
@@ -133,9 +128,12 @@ class Microgaming(HandHistoryConverter):
         if 'BB' in mg:
             info['bb'] = mg['BB']
         if 'CURRENCY' in mg:
-            if mg['CURRENCY'] == 'rCA=':
-                info['currency'] = 'EUR'
+            info['currency'] = currencies[mg['CURRENCY']]
+        if 'TOUR' in mg:
+            if mg['TOUR'] is None or int(mg['TOUR'])==0:
+                info['type'] = 'ring'
             else:
+                info['type'] = 'tour'
                 info['currency'] = 'USD'
         # NB: SB, BB must be interpreted as blinds or bets depending on limit type.
         return info
@@ -151,8 +149,8 @@ class Microgaming(HandHistoryConverter):
             raise FpdbParseError
 
         info.update(m.groupdict())
-        m = self.re_Button.search(hand.handText)
-        if m: info.update(m.groupdict())
+        #m = self.re_Button.search(hand.handText)
+        #if m: info.update(m.groupdict())
 
         for key in info:
             if key == 'DATETIME':
@@ -166,31 +164,37 @@ class Microgaming(HandHistoryConverter):
             if key == 'LEVEL':
                 hand.level = info[key]
             if hand.gametype['type'] == 'tour':
-                if key == 'SESSIONID':
-                    hand.tourNo = info[key]
+                if key == 'TABLE':
+                    m1 = self.re_Table.search(info[key])
+                    mg1 = m1.groupdict()
+                    hand.tourNo = mg1['TOURNO']
+                    hand.tablename = mg1['TABLENO']
                 if key == 'CURRENCY':
-                    hand.buyinCurrency = info[key]
-                # Hmm. Other useful tourney info doesn't appear to be readily available.
-                hand.buyin = 100
-                hand.fee = 10
-                hand.isKO = False
+                    # Hmm. Other useful tourney info doesn't appear to be readily available.
+                    hand.buyin = 0
+                    hand.fee = 0
+                    hand.buyinCurrency = 'NA'
+                    hand.isKO = False
         hand.maxseats = None
         
     def readButton(self, hand):
-        m = self.re_Button.search(hand.handText)
-        if m:
-            for player in hand.players:
-                if player[1] == m.group('BUTTON'):
-                    hand.buttonpos = player[0]
-                    break
-        else:
-            log.info('readButton: ' + _('not found'))
+        pass
+        #m = self.re_Button.search(hand.handText)
+        #if m:
+        #    for player in hand.players:
+        #        if player[1] == m.group('BUTTON'):
+        #            hand.buttonpos = player[0]
+        #            break
+        #else:
+        #    log.info('readButton: ' + _('not found'))
 
     def readPlayerStacks(self, hand):
         logging.debug("readPlayerStacks")
         m = self.re_PlayerInfo.finditer(hand.handText)
         for a in m:
             seatno = int(a.group('SEAT'))
+            if a.group('BUTTON') is not None:
+                hand.buttonpos = seatno
             hand.addPlayer(seatno, a.group('PNAME'), a.group('CASH'))
 
     def markStreets(self, hand):
