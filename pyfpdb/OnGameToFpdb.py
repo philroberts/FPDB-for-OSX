@@ -53,9 +53,12 @@ class OnGame(HandHistoryConverter):
                         '2.00': ('0.50', '1.00'),       '2': ('0.50', '1.00'),
                         '4.00': ('1.00', '2.00'),       '4': ('1.00', '2.00'),
                         '6.00': ('1.50', '3.00'),       '6': ('1.50', '3.00'),
+                        '8.00': ('2.00', '4.00'),       '8': ('2.00', '4.00'),
                        '10.00': ('2.50', '5.00'),      '10': ('2.50', '5.00'),
+                       '12.00': ('3.00', '6.00'),      '12': ('3.00', '6.00'),
                        '20.00': ('5.00', '10.00'),     '20': ('5.00', '10.00'),
                        '30.00': ('7.50', '15.00'),     '30': ('7.50', '15.00'),
+                       '40.00': ('10.00', '20.00'),    '40': ('10.00', '20.00'),
                        '50.00': ('12.50', '25.00'),    '50': ('12.50', '25.00'),
                   }
     
@@ -66,9 +69,8 @@ class OnGame(HandHistoryConverter):
     games = {                          # base, category
                           "TEXAS_HOLDEM" : ('hold','holdem'),
                               'OMAHA_HI' : ('hold','omahahi'),
-             #             'Omaha Hi/Lo' : ('hold','omahahilo'),
-             #                    'Razz' : ('stud','razz'),
-             #                    'RAZZ' : ('stud','razz'),
+                           'OMAHA_HI_LO' : ('hold','omahahilo'),
+                                  'RAZZ' : ('stud','razz'),
                        'SEVEN_CARD_STUD' : ('stud','studhi'),
                  'SEVEN_CARD_STUD_HI_LO' : ('stud','studhilo'),
              #                  'Badugi' : ('draw','badugi'),
@@ -89,10 +91,10 @@ class OnGame(HandHistoryConverter):
             Table:\s(\[SPEED\]\s)?(?P<TABLE>.+?)\s\[\d+\]\s\( 
             (
             (?P<LIMIT>NO_LIMIT|Limit|LIMIT|Pot\sLimit|POT_LIMIT)\s
-            (?P<GAME>TEXAS_HOLDEM|OMAHA_HI|SEVEN_CARD_STUD|SEVEN_CARD_STUD_HI_LO|RAZZ|FIVE_CARD_DRAW)\s
-            (?P<CURRENCY>%(LS)s|)?(?P<SB>[%(NUM)s]+)/(%(LS)s)?(?P<BB>[%(NUM)s]+),\s
-            (?P<MONEY>Play\smoney|Real\smoney)?\)
-            )?
+            (?P<GAME>TEXAS_HOLDEM|OMAHA_HI|OMAHA_HI_LO|SEVEN_CARD_STUD|SEVEN_CARD_STUD_HI_LO|RAZZ|FIVE_CARD_DRAW)\s
+            (?P<CURRENCY>%(LS)s|)?(?P<SB>[%(NUM)s]+)/(%(LS)s)?(?P<BB>[%(NUM)s]+),\s(ante:\s(%(LS)s)?[%(NUM)s]+,\s)?
+            (?P<MONEY>Play\smoney|Real\smoney|TC|Chips)?\)
+            )
             """ % substitutions, re.MULTILINE|re.DOTALL|re.VERBOSE)
 
     re_TailSplitHands = re.compile(u'(\*\*\*\*\*\sEnd\sof\shand\s[-A-Z\d]+.*\n)(?=\*)')
@@ -131,7 +133,7 @@ class OnGame(HandHistoryConverter):
             self.re_PostSB    = re.compile('%(PLYR)s posts small blind \((%(CUR)s)?(?P<SB>[\.0-9]+)\)' % self.substitutions, re.MULTILINE)
             self.re_PostBB    = re.compile('%(PLYR)s posts big blind \((%(CUR)s)?(?P<BB>[\.0-9]+)\)' % self.substitutions, re.MULTILINE)
             self.re_Antes     = re.compile(r"^%(PLYR)s posts ante (%(CUR)s)?(?P<ANTE>[\.0-9]+)" % self.substitutions, re.MULTILINE)
-            self.re_BringIn   = re.compile(r"^%(PLYR)s brings[- ]in( low|) for (%(CUR)s)?(?P<BRINGIN>[\.0-9]+)" % self.substitutions, re.MULTILINE)
+            self.re_BringIn   = re.compile(r"^%(PLYR)s small bring in (%(CUR)s)?(?P<BRINGIN>[\.0-9]+)" % self.substitutions, re.MULTILINE)
             self.re_PostBoth  = re.compile('%(PLYR)s posts small \& big blind \( (%(CUR)s)?(?P<SBBB>[\.0-9]+)\)' % self.substitutions)
             self.re_PostDead  = re.compile('%(PLYR)s posts dead blind \((%(CUR)s)?(?P<DEAD>[\.0-9]+)\)' % self.substitutions, re.MULTILINE)
             self.re_HeroCards = re.compile('(New\shand\sfor|Dealing\sto)\s%(PLYR)s:\s\[(?P<CARDS>.*)\]' % self.substitutions)
@@ -177,7 +179,6 @@ class OnGame(HandHistoryConverter):
         # Inspect the handText and return the gametype dict
         # gametype dict is: {'limitType': xxx, 'base': xxx, 'category': xxx}
         info = {}
-
         m = self.re_HandInfo.search(handText)
         if not m:
             tmp = handText[0:200]
@@ -191,7 +192,7 @@ class OnGame(HandHistoryConverter):
         if mg['TID'] != None:
             info['type'] = 'tour'
 
-        if 'CURRENCY' in mg:
+        if 'CURRENCY' in mg and mg['CURRENCY'] != None:
             if 'MONEY' in mg and mg['MONEY']=='Play money':
                 info['currency'] = 'play'
             else:

@@ -1,0 +1,63 @@
+***** History for hand R5-174523451-25 *****
+Start hand: Sun Sep 11 17:58:25 EEST 2011
+Table: Setif [174523451] (POT_LIMIT OMAHA_HI_LO $0.50/$0.50, Real money)
+User: Hero
+Button: seat 8
+Players in round: 4
+Seat 1: Player2 ($64.95)
+Seat 2: Hero ($50)
+Seat 7: Player1 ($20.36)
+Seat 8: Player3 ($29.35)
+Player2 posts big blind ($0.50)
+Hero posts big blind ($0.50)
+---
+Dealing pocket cards
+Dealing to Hero: [6h, 3s, 8s, 4s]
+Player1 calls $0.50
+Player3 raises $2.50 to $2.50
+Player2 folds
+Hero folds
+Player1 calls $2
+--- Dealing flop [Ts, Th, 3h]
+Player1 bets $3
+Player3 folds
+---
+Summary:
+Main pot: $6 won by Player1 ($5.70)
+Rake taken: $0.30
+Seat 1: Player2 ($64.45), net: -$0.50
+Seat 2: Hero ($49.50), net: -$0.50
+Seat 7: Player1 ($23.56), net: +$3.20
+Seat 8: Player3 ($26.85), net: -$2.50
+***** End of hand R5-174523451-25 *****
+***** History for hand R5-174523451-26 *****
+Start hand: Sun Sep 11 17:59:08 EEST 2011
+Table: Setif [174523451] (POT_LIMIT OMAHA_HI_LO $0.50/$0.50, Real money)
+User: Hero
+Button: seat 1
+Players in round: 4
+Seat 1: Player2 ($64.45)
+Seat 2: Hero ($49.50)
+Seat 7: Player1 ($23.56)
+Seat 8: Player3 ($26.85)
+Hero posts big blind ($0.50)
+Player1 posts big blind ($0.50)
+---
+Dealing pocket cards
+Dealing to Hero: [Qc, 9s, 7h, Ac]
+Player3 raises $2 to $2
+Player2 calls $2
+Hero folds
+Player1 folds
+--- Dealing flop [5h, As, 4h]
+Player3 bets $5
+Player2 folds
+---
+Summary:
+Main pot: $5 won by Player3 ($4.75)
+Rake taken: $0.25
+Seat 1: Player2 ($62.45), net: -$2
+Seat 2: Hero ($49), net: -$0.50
+Seat 7: Player1 ($23.06), net: -$0.50
+Seat 8: Player3 ($29.60), net: +$2.75
+***** End of hand R5-174523451-26 *****
