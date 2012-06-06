@@ -417,7 +417,7 @@ class PacificPoker(HandHistoryConverter):
         m = self.re_Action.finditer(hand.streets[street])
         for action in m:
             acts = action.groupdict()
-            if street not in ('PREFLOP', 'DEAL'):
+            if street not in ('PREFLOP', 'DEAL') and not hand.allInBlind:
                 hand.setUncalledBets(False)
             #print "DEBUG: acts: %s" %acts
             bet = self.clearMoneyString(action.group('BET')) if action.group('BET') else None
@@ -447,10 +447,9 @@ class PacificPoker(HandHistoryConverter):
         if street in ('PREFLOP', 'DEAL'):
             if not hand.allInBlind and actiontype in (' raises', ' calls'):
                 hand.setUncalledBets(False)
-            for p, type in hand.posted:
-                if p==action.group('PNAME') and hand.stacks[action.group('PNAME')]==0:
-                    hand.setUncalledBets(True)
-                    hand.allInBlind = True
+            if hand.stacks[action.group('PNAME')]==0:
+                hand.setUncalledBets(True)
+                hand.allInBlind = True
 
     def readShowdownActions(self, hand):
         # TODO: pick up mucks also??
