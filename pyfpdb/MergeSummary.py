@@ -79,7 +79,8 @@ class MergeSummary(TourneySummary):
                             'LS' : u"\$|\xe2\x82\xac|\u20ac|" # legal currency symbols
                     }
     re_GameTypeHH = re.compile(r'<description type="(?P<GAME>Holdem|Omaha|Omaha|Omaha\sH/L8|2\-7\sLowball|A\-5\sLowball|Badugi|5\-Draw\sw/Joker|5\-Draw|7\-Stud|7\-Stud\sH/L8|5\-Stud|Razz|HORSE)(?P<TYPE>\sTournament)?" stakes="(?P<LIMIT>[a-zA-Z ]+)(\s\(?\$?(?P<SB>[.0-9]+)?/?\$?(?P<BB>[.0-9]+)?(?P<blah>.*)\)?)?"/>', re.MULTILINE)
-    re_HandInfoHH = re.compile(r'<game id="(?P<HID1>[0-9]+)-(?P<HID2>[0-9]+)" starttime="(?P<DATETIME>[0-9]+)" numholecards="[0-9]+" gametype="[0-9]+" (multigametype="(?P<MULTIGAMETYPE>\d+)" )?(seats="(?P<SEATS>[0-9]+)" )?realmoney="(?P<REALMONEY>(true|false))" data="[0-9]+\|(?P<TABLENAME>[^|]+)\|(?P<TDATA>[^|]+)\|?.*>', re.MULTILINE)
+    re_HandInfoHH = re.compile(r'<game id="(?P<HID1>[0-9]+)-(?P<HID2>[0-9]+)" starttime="(?P<DATETIME>.+?)" numholecards="[0-9]+" gametype="[0-9]+" (multigametype="(?P<MULTIGAMETYPE>\d+)" )?(seats="(?P<SEATS>[0-9]+)" )?realmoney="(?P<REALMONEY>(true|false))" data="[0-9]+[|:](?P<TABLENAME>[^|:]+)[|:](?P<TDATA>[^|:]+)[|:]?.*>', re.MULTILINE)
+    re_DateTimeHH = re.compile(r'(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)', re.MULTILINE)
     
     re_HTMLName = re.compile("Name</th><td>(?P<NAME>.+?)</td>")
     re_HTMLGameType = re.compile("""Game Type</th><td>(?P<LIMIT>Fixed Limit|No Limit|Pot Limit) (?P<GAME>Texas\sHoldem|Omaha|Omaha\sHiLo|2\-7\sLow\sTriple\sDraw|Badugi|Seven\sCard\sStud|Seven\sCard\sStud\sHiLo|Five\sCard\sStud|Razz|HORSE|HA|HO)</td>""")
@@ -161,7 +162,14 @@ class MergeSummary(TourneySummary):
                 tourneyNameFull = m.group('TABLENAME').replace('  - ', ' - ').strip()
                 self.tourneyName = m.group('TABLENAME')[:40]
                 self.tourNo = tourNo
-                self.startTime = datetime.datetime.strptime(m.group('DATETIME')[:14],'%Y%m%d%H%M%S')
+                m1 = self.re_DateTimeHH.search(m.group('DATETIME'))
+                if m1:
+                    mg = m1.groupdict()
+                    datetimestr = "%s/%s/%s %s:%s:%s" % (mg['Y'], mg['M'],mg['D'],mg['H'],mg['MIN'],mg['S'])
+                    #tz = a.group('TZ')  # just assume ET??
+                    self.startTime = datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S") # also timezone at end, e.g. " ET"
+                else:
+                    self.startTime = datetime.datetime.strptime(m.group('DATETIME')[:14],'%Y%m%d%H%M%S')
                 self.startTime = HandHistoryConverter.changeTimezone(self.startTime, "ET", "UTC")
                 
                 if tourneyNameFull not in hhc.SnG_Structures:
