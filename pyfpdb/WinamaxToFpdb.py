@@ -220,7 +220,8 @@ class Winamax(HandHistoryConverter):
             if key == 'HID1':
                 # Need to remove non-alphanumerics for MySQL
                 # Concatenating all three or just HID2 + HID3 can produce out of range values
-                hand.handid = "%s%s" % (int(info['HID1']), int(info['HID2']))
+                # HID should not be greater than 14 characters to ensure this
+                hand.handid = "%s%s" % (int(info['HID1'][:14]), int(info['HID2']))
                     
 #            if key == 'HID3':
 #                hand.handid = int(info['HID3'])   # correct hand no (REB)
