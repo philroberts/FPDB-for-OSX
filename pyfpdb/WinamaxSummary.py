@@ -29,6 +29,7 @@ from TourneySummary import *
 
 
 class WinamaxSummary(TourneySummary):
+    
     limits = { 'No Limit':'nl', 'Pot Limit':'pl', 'Limit':'fl', 'LIMIT':'fl' }
     games = {                          # base, category
                               "Hold'em" : ('hold','holdem'), 
@@ -46,7 +47,13 @@ class WinamaxSummary(TourneySummary):
                                            \((?P<TOURNO>[0-9]+)\)(\s-\sLate\sregistration)?\s+
                                            (Player\s:\s(?P<PNAME>.*)\s+)?
                                            Buy-In\s:\s(?P<BUYIN>(?P<BIAMT>.+)\s\+\s(?P<BIRAKE>.+))\s+
+                                           (Rebuy\scost\s:\s(?P<REBUY>(?P<REBUYAMT>.+)\s\+\s(?P<REBUYRAKE>.+))\s+)?
+                                           (Addon\scost\s:\s(?P<ADDON>(?P<ADDONAMT>.+)\s\+\s(?P<ADDONRAKE>.+))\s+)?
+                                           (Your\srebuys\s:\s(?P<PREBUYS>\d+)\s+)?
+                                           (Your\saddons\s:\s(?P<PADDONS>\d+)\s+)?
                                            Registered\splayers\s:\s(?P<ENTRIES>[0-9]+)\s+
+                                           (Total\srebuys\s:\s\d+\s+)?
+                                           (Total\saddons\s:\s\d+\s+)?
                                            Prizepool\s:\s(?P<PRIZEPOOL>[.0-9%(LS)s]+)\s+
                                            Tournament\sstarted\s(?P<DATETIME>\d{4}/\d{2}/\d{2}\s\d{2}:\d{2}:\d{2}\sUTC)\s+
                                            (?P<BLAH>You\splayed\s.+)\s+
@@ -66,7 +73,7 @@ class WinamaxSummary(TourneySummary):
     re_DateTime = re.compile("\[(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)")
     re_Ticket = re.compile(u""" / (?P<TTYPE>Ticket (?P<VALUE>[0-9.]+)&euro;|Tremplin Winamax Poker Tour|Starting Block Winamax Poker Tour|Finale Freeroll Mobile 2012|SNG Freeroll Mobile 2012)""")
 
-    codepage = ["utf-8"]
+    codepage = ("utf8", "cp1252")
 
     @staticmethod
     def getSplitRe(self, head):
@@ -213,6 +220,19 @@ class WinamaxSummary(TourneySummary):
 
             if self.buyin == 0 and self.fee == 0:
                 self.buyinCurrency = "FREE"
+                
+        if 'REBUY' in mg and mg['REBUY'] != None:
+            self.isRebuy   = True
+            rebuyrake = mg['REBUYRAKE'].strip('\r')
+            rebuyamt = int(100*convert_to_decimal(mg['REBUYAMT']))
+            rebuyfee   = int(100*convert_to_decimal(rebuyrake))
+            self.rebuyCost = rebuyamt + rebuyfee
+        if 'ADDON' in mg and mg['ADDON'] != None:
+            self.isAddOn = True
+            addonrake = mg['ADDONRAKE'].strip('\r')
+            addonamt = int(100*convert_to_decimal(mg['ADDONAMT']))
+            addonfee   = int(100*convert_to_decimal(addonrake))
+            self.addOnCost = addonamt + addonfee
 
         if 'TOURNO' in mg:
             self.tourNo = mg['TOURNO']
@@ -237,6 +257,10 @@ class WinamaxSummary(TourneySummary):
                 else:
                     self.currency="play"
                 winnings = int(100*convert_to_decimal(mg['WINNINGS']))
+            if 'PREBUYS' in mg and mg['PREBUYS'] != None:
+                rebuyCount = int(mg['PREBUYS'])
+            if 'PADDONS' in mg and mg['PADDONS'] != None:
+                addOnCount = int(mg['PADDONS'])
 
             #print "DEBUG: addPlayer(%s, %s, %s, %s, %s, %s, %s)" %(rank, name, winnings, self.currency, rebuyCount, addOnCount, koCount)
             self.addPlayer(rank, name, winnings, self.currency, rebuyCount, addOnCount, koCount)
