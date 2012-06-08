@@ -373,7 +373,8 @@ or None if we fail to get the info """
     # an inheriting class can calculate it for the specific site if need be.
     def getRake(self, hand):
         hand.rake = hand.totalpot - hand.totalcollected #  * Decimal('0.05') # probably not quite right
-        if hand.rake < 0 and (not hand.roundPenny or hand.rake < 0.01):
+        if ((hand.gametype['type']=='ring' and hand.rake < 0) or 
+            (hand.gametype['type']=='tour' and hand.rake <= -1)): #Some sites like Winamax round up returned bets in tournaments
             log.error(_("hhc.getRake(): '%s': Amount collected (%s) is greater than the pot (%s)") % (hand.handid,str(hand.totalcollected), str(hand.totalpot)))
             raise FpdbParseError
         elif hand.totalpot > 0 and Decimal(hand.totalpot/4) < hand.rake:
