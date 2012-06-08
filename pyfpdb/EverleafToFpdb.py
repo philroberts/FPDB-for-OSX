@@ -35,7 +35,7 @@ class Everleaf(HandHistoryConverter):
     
     substitutions = {
                      'LEGAL_ISO' : "USD|EUR|GBP|CAD|FPP",       # legal ISO currency codes
-                            'LS' : u"\$|\u20AC|\xe2\x82\xac|\x80|",  # legal currency symbols - Euro(cp1252, utf-8) #TODO change \x80 to \x20\x80, update all regexes accordingly
+                            'LS' : u"\$|\u20AC|\xe2\x82\xac|\x80|\u02c6|",  # legal currency symbols - Euro(cp1252, utf-8) #TODO change \x80 to \x20\x80, update all regexes accordingly
                         'PLAYERS': r'(?P<PNAME>.+?)',
                            'TAB' : u"-\u2013'\s\da-zA-Z#_()",     # legal characters for tablename
                            'NUM' : u".,\d",                     # legal characters in number format
@@ -116,7 +116,6 @@ or None if we fail to get the info """
         # Table 2
         info = {'type':'ring'}
         
-        
         m = self.re_GameInfo.search(handText)
         if not m:
             tmp = handText[0:200]
@@ -133,7 +132,7 @@ or None if we fail to get the info """
                      'Razz' : ('stud','razz'),
               '7 Card Stud' : ('stud','studhi')
                }
-        currencies = { u'€':'EUR', '$':'USD', '':'T$'}
+        currencies = { u'ˆ':'EUR', u'€':'EUR', '$':'USD', '':'T$'}
         if 'LIMIT' in mg:
             info['limitType'] = limits[mg['LIMIT']]
         if 'GAME' in mg:
@@ -176,10 +175,12 @@ or None if we fail to get the info """
         hand.tablename = m.group('TABLE')
         hand.maxseats = 4     # assume 4-max unless we have proof it's a larger/smaller game, since everleaf doesn't give seat max info
         
-        currencies = { u'€':'EUR', '$':'USD', '':'T$', None:'T$' }
+        currencies = { u'ˆ':'EUR', u'€':'EUR', '$':'USD', '':'T$'}
         mg = m.groupdict()
-        hand.gametype['currency'] = currencies[mg['CURRENCY']]
-
+        if mg['CURRENCY'] is not None:
+            hand.gametype['currency'] = currencies[mg['CURRENCY']]
+        else:
+            hand.gametype['currency'] = 'T$'
 
         t = self.re_TourneyInfoFromFilename.search(self.in_path)
         if t:

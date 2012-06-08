@@ -1,0 +1,21 @@
+PokerTracker 4 Tournament Summary
+Site: Merge
+Game: Holdem
+Tournament #: 50466128
+Started: 2012/03/04 09:22:46
+Finished: 2012/03/04 10:01:58
+Buyin: $0.50
+Fee: $0.10
+Table Type: STT Turbo SNG
+Tourney Type: No Limit
+Players: 9
+
+Place: 1, Player: JustJay4Reals, Won: $2.25,
+Place: 2, Player: gothamgeek, Won: $1.50,
+Place: 3, Player: thecasio, Won: $1.00,
+Place: 4, Player: iLLuSi0nZz, Won: $0.00,
+Place: 5, Player: Jokerx69, Won: $0.00,
+Place: 6, Player: bigfishinthesea, Won: $0.00,
+Place: 7, Player: BillyBro, Won: $0.00,
+Place: 8, Player: ScubaSteveMPLS, Won: $0.00,
+Place: 9, Player: squiggleman08, Won: $0.00,

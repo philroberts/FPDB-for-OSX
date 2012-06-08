@@ -1,0 +1,32 @@
+** Game ID 4416401541 starting - 2012-05-11 22:10:55
+** Deal 254 (Deep) - €5 Min [Hold'em] (0.05|0.10 NL - € Cash Game) Real Money
+
+- Player0 sitting in seat 1 with €10.00 at end €9.95
+- Player1 sitting in seat 2 with €10.88 at end €11.12
+- Player2 sitting in seat 3 with €10.56 at end €10.56
+- Player3 sitting in seat 4 with €11.73 at end €11.73 [Dealer]
+- Player4 sitting in seat 5 with €10.00 at end €9.90
+- Hero sitting in seat 6 with €10.00 at end €9.90
+
+Player4 posted the small blind - €0.05
+Hero posted the big blind - €0.10
+Player0 posted to play - €0.05
+** Dealing card to Hero: K of s, 6 of d
+Player0 folded
+Player1 called - €0.10
+Player2 folded
+Player3 folded
+Player4 called - €0.05
+Hero checked
+** Dealing the flop: 2 of d, 7 of d, 4 of c
+Player4 checked
+Hero checked
+Player1 bet - €0.10
+Player4 folded
+Hero folded
+Player1 mucks:
+Player1 wins €0.44 from the main pot
+
+End of game 4416401541
+
+

@@ -106,9 +106,9 @@ class Absolute(HandHistoryConverter):
             self.re_Action          = re.compile(ur"^%s - (?P<ATYPE>Bets |Raises |All-In |All-In\(Raise\) |Calls |Folds|Checks)?\$?(?P<BET>[,.0-9]+)?" % player_re, re.MULTILINE)
             self.re_ShowdownAction  = re.compile(ur"^%s - Shows \[(?P<CARDS>.*)\]" % player_re, re.MULTILINE)
             self.re_CollectPot      = re.compile(ur"^Seat [0-9]: %s(?: \(dealer\)|)(?: \(big blind\)| \(small blind\)|) (?:won|collected) Total \((?:\$| €|)(?P<POT>[,.0-9]+)\)" % player_re, re.MULTILINE)
-            self.re_Antes           = re.compile(ur"^%s - Ante \[(?:\$| €|)(?P<ANTE>[,.0-9]+)" % player_re, re.MULTILINE)
-            #self.re_BringIn         = re.compile(ur"^%s posts bring-in (?:\$| €|)(?P<BRINGIN>[.0-9]+)\." % player_re, re.MULTILINE)
-            self.re_HeroCards       = re.compile(ur"^Dealt to %s \[(?P<CARDS>.*)\]" % player_re, re.MULTILINE)
+            self.re_Antes           = re.compile(ur"^%s - Ante (?:\$| €|)(?P<ANTE>[,.0-9]+)" % player_re, re.MULTILINE)
+            self.re_BringIn         = re.compile(ur"^%s - Bring-In (?:\$| €|)(?P<BRINGIN>[.0-9]+)\." % player_re, re.MULTILINE)
+            self.re_HeroCards       = re.compile(ur"^(Dealt to )?%s - Pocket \[(?P<CARDS>.*)\]" % player_re, re.MULTILINE)
 
     def readSupportedGames(self):
         return [["ring", "hold", "nl"],
@@ -213,7 +213,7 @@ class Absolute(HandHistoryConverter):
                 tmp = hand.handText[0:200]
                 log.error(_("AbsoluteToFpdb.readHandInfo: '%s'") % tmp)
                 raise FpdbParseError
-            elif fname_info is None:
+            elif fname_info is None and is_trny:
                 log.error(_("AbsoluteToFpdb.readHandInfo: File name didn't match re_*InfoFromFilename"))
                 raise FpdbParseError
 
@@ -221,8 +221,10 @@ class Absolute(HandHistoryConverter):
         hand.handid =  m.group('HID')
         if m.group('TABLE'):
             hand.tablename = m.group('TABLE')
-        else:
+        elif fname_info:
             hand.tablename = fname_info.group('TABLE')
+        else:
+            hand.tablename = 'TABLE'
 
         hand.startTime = datetime.datetime.strptime(m.group('DATETIME'), "%Y-%m-%d %H:%M:%S")
 
@@ -263,12 +265,12 @@ class Absolute(HandHistoryConverter):
                     r"(\*\*\* RIVER \*\*\*(?P<RIVER>.+))?", hand.handText, re.DOTALL)
 
         elif hand.gametype['base'] == 'stud': # TODO: Not implemented yet
-            m =     re.search(r"(?P<ANTES>.+(?=\*\* Dealing down cards \*\*)|.+)"
-                           r"(\*\* Dealing down cards \*\*(?P<THIRD>.+(?=\*\*\*\* dealing 4th street \*\*\*\*)|.+))?"
-                           r"(\*\*\*\* dealing 4th street \*\*\*\*(?P<FOURTH>.+(?=\*\*\*\* dealing 5th street \*\*\*\*)|.+))?"
-                           r"(\*\*\*\* dealing 5th street \*\*\*\*(?P<FIFTH>.+(?=\*\*\*\* dealing 6th street \*\*\*\*)|.+))?"
-                           r"(\*\*\*\* dealing 6th street \*\*\*\*(?P<SIXTH>.+(?=\*\*\*\* dealing river \*\*\*\*)|.+))?"
-                           r"(\*\*\*\* dealing river \*\*\*\*(?P<SEVENTH>.+))?", hand.handText,re.DOTALL)
+            m =     re.search(r"(?P<ANTES>.+(?=\*\* 3rd STREET \*\*)|.+)"
+                           r"(\*\* 3rd STREET \*\*(?P<THIRD>.+(?=\*\*\*\* 4TH STREET \*\*\*\*)|.+))?"
+                           r"(\*\*\*\* 4TH STREET \*\*\*\*(?P<FOURTH>.+(?=\*\*\*\* 5TH STREET \*\*\*\*)|.+))?"
+                           r"(\*\*\*\* 5TH STREET \*\*\*\*(?P<FIFTH>.+(?=\*\*\*\* 6TH STREET \*\*\*\*)|.+))?"
+                           r"(\*\*\*\* 6TH STREET \*\*\*\*(?P<SIXTH>.+(?=\*\*\*\* RIVER \*\*\*\*)|.+))?"
+                           r"(\*\*\*\* RIVER \*\*\*\*(?P<SEVENTH>.+))?", hand.handText,re.DOTALL)
         hand.addStreets(m)
 
     def readCommunityCards(self, hand, street):
@@ -315,30 +317,46 @@ class Absolute(HandHistoryConverter):
 
     def readButton(self, hand):
         hand.buttonpos = int(self.re_Button.search(hand.handText).group('BUTTON'))
-
+            
     def readHeroCards(self, hand):
-        m = self.re_HeroCards.search(hand.handText)
-        if m:
-            hand.hero = m.group('PNAME')
-            # "2c, qh" -> ["2c","qc"]
-            # Also works with Omaha hands.
-            cards = m.group('CARDS')
-            cards = [validCard(card) for card in cards.split(' ')]
-#            hand.addHoleCards(cards, m.group('PNAME'))
-            hand.addHoleCards('PREFLOP', hand.hero, closed=cards, shown=False, mucked=False, dealt=True)
+#    streets PREFLOP, PREDRAW, and THIRD are special cases beacause
+#    we need to grab hero's cards
+        for street in ('PREFLOP', 'DEAL'):
+            if street in hand.streets.keys():
+                m = self.re_HeroCards.finditer(hand.streets[street])
+                for found in m:
+#                    if m == None:
+#                        hand.involved = False
+#                    else:
+                    hand.hero = found.group('PNAME')
+                    newcards = [validCard(card) for card in found.group('CARDS').split(' ') if card != 'H']
+                    hand.addHoleCards(street, hand.hero, closed=newcards, shown=False, mucked=False, dealt=True)
 
-        else:
-            #Not involved in hand
-            hand.involved = False
+        for street, text in hand.streets.iteritems():
+            if not text or street in ('PREFLOP', 'DEAL'): continue  # already done these
+            m = self.re_HeroCards.finditer(hand.streets[street])
+            for found in m:
+                player = found.group('PNAME')
+                if found.group('CARDS') is None:
+                    newcards = []
+                else:
+                    newcards = [validCard(card) for card in found.group('CARDS').split(' ') if card != 'H']
+                    oldcards = []
+                
+                if street == 'THIRD' and len(newcards) == 3: # hero in stud game
+                    hand.hero = player
+                    hand.dealt.add(player) # need this for stud??
+                    hand.addHoleCards(street, player, closed=newcards[0:2], open=[newcards[2]], shown=False, mucked=False, dealt=False)
+                else:
+                    hand.addHoleCards(street, player, open=newcards, closed=oldcards, shown=False, mucked=False, dealt=False)
 
     def readStudPlayerCards(self, hand, street):
         log.warning(_("%s cannot read all stud/razz hands yet.") % hand.sitename)
 
     def readAction(self, hand, street):
-        log.debug("readAction (%s)" % street)
         m = self.re_Action.finditer(hand.streets[street])
         for action in m:
-            log.debug("%s %s" % (action.group('ATYPE'), action.groupdict()))
+            #print "%s %s" % (action.group('ATYPE'), action.groupdict())
             if action.group('ATYPE') == 'Folds':
                 hand.addFold( street, action.group('PNAME'))
             elif action.group('ATYPE') == 'Checks':
@@ -368,7 +386,7 @@ class Absolute(HandHistoryConverter):
         log.debug("readShowdownActions")
         for shows in self.re_ShowdownAction.finditer(hand.handText):
             cards = shows.group('CARDS')
-            cards = [validCard(card) for card in cards.split(' ')]
+            cards = [validCard(card) for card in cards.split(' ') if card != 'H']
             log.debug("readShowdownActions %s %s" %(cards, shows.group('PNAME')))
             hand.addShownCards(cards, shows.group('PNAME'))
 
@@ -384,9 +402,10 @@ class Absolute(HandHistoryConverter):
             try:
                 if m.group('CARDS') is not None:
                     cards = m.group('CARDS')
-                    cards = [validCard(card) for card in cards.split(' ')]
+                    cards = [validCard(card) for card in cards.split(' ')  if card != 'H']
                     player = m.group('PNAME')
                     log.debug("readShownCards %s cards=%s" % (player, cards))
+                    print cards
     #                hand.addShownCards(cards=None, player=m.group('PNAME'), holeandboard=cards)
                     hand.addShownCards(cards=cards, player=m.group('PNAME'))
             except IndexError:

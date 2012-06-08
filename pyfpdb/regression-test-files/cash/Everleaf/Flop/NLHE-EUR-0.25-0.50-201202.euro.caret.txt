@@ -1,0 +1,22 @@
+Everleaf Gaming Game #355196915
+***** Hand history for game #355196915 *****
+Blinds ˆ0.25/ˆ0.50 NL Hold'em - 2012/02/09 - 22:09:43
+Table Budapest
+Seat 1 is the button
+Total number of players: 2
+Seat 1: Hero (  ˆ 50 EURO )
+Seat 2: Player0 (  ˆ 50 EURO )
+Hero: posts small blind [ˆ 0.25 EURO]
+Player0: posts big blind [ˆ 0.50 EURO]
+** Dealing down cards **
+Dealt to Hero [ Qd, 7c ]
+Hero raises [ˆ 1.25 EURO]
+Player0 calls [ˆ 1 EURO]
+** Dealing Flop ** [ 8s, 9h, 3s ]
+Player0 checks
+Hero checks
+** Dealing Turn ** [ 6h ]
+Player0: bets [ˆ 3 EURO]
+Hero folds
+Player0 does not show cards
+Player0 wins ˆ 2.82 EURO from main pot

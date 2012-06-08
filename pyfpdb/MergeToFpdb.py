@@ -87,16 +87,21 @@ class Merge(HandHistoryConverter):
                       '100.00': ('25.00', '50.00'),   '100': ('25.00', '50.00'),
                   }
 
-    Multigametypes = {  '2': ('hold','holdem'),
+    Multigametypes = {  '1': ('hold','holdem'),
+                        '2': ('hold','holdem'),
                         '4': ('hold','omahahi'),
                         '9': ('hold', 'holdem'),
                         '23': ('hold', 'holdem'),
+                        '34': ('hold','omahahilo'),
                         '35': ('hold','omahahilo'),
                         '37': ('hold','omahahilo'),
+                        '38': ('stud','studhi'),
                         '39': ('stud','studhi'),
                         '41': ('stud','studhi'),
+                        '42': ('stud','studhi'),
                         '43': ('stud','studhilo'),
                         '45': ('stud','studhilo'),
+                        '46': ('stud','razz'),
                         '47': ('stud','razz'),
                         '49': ('stud','razz')
                   }    
@@ -384,7 +389,7 @@ class Merge(HandHistoryConverter):
     # <game id="46154255-645" starttime="20111230232051" numholecards="2" gametype="1" seats="9" realmoney="false" data="20111230|Play Money (46154255)|46154255|46154255-645|false">
     # <game id="46165919-1" starttime="20111230161824" numholecards="2" gametype="23" seats="10" realmoney="true" data="20111230|Fun Step 1|46165833-1|46165919-1|true">
     # <game id="46289039-1" starttime="20120101200100" numholecards="2" gametype="23" seats="9" realmoney="true" data="20120101|$200 Freeroll - NL Holdem - 20%3A00|46245544-1|46289039-1|true">
-    re_HandInfo = re.compile(r'<game id="(?P<HID1>[0-9]+)-(?P<HID2>[0-9]+)" starttime="(?P<DATETIME>[0-9]+)" numholecards="[0-9]+" gametype="[0-9]+" (multigametype="(?P<MULTIGAMETYPE>\d+)" )?(seats="(?P<SEATS>[0-9]+)" )?realmoney="(?P<REALMONEY>(true|false))" data="[0-9]+[|:](?P<TABLENAME>[^|:]+)[|:](?P<TDATA>[^|:]+)[|:]?.*>', re.MULTILINE)
+    re_HandInfo = re.compile(r'<game id="(?P<HID1>[0-9]+)-(?P<HID2>[0-9]+)" starttime="(?P<DATETIME>.+?)" numholecards="[0-9]+" gametype="[0-9]+" (multigametype="(?P<MULTIGAMETYPE>\d+)" )?(seats="(?P<SEATS>[0-9]+)" )?realmoney="(?P<REALMONEY>(true|false))" data="[0-9]+[|:](?P<TABLENAME>[^|:]+)[|:](?P<TDATA>[^|:]+)[|:]?.*>', re.MULTILINE)
     re_Button = re.compile(r'<players dealer="(?P<BUTTON>[0-9]+)">')
     re_PlayerInfo = re.compile(r'<player seat="(?P<SEAT>[0-9]+)" nickname="(?P<PNAME>.+)" balance="\$(?P<CASH>[.0-9]+)" dealtin="(?P<DEALTIN>(true|false))" />', re.MULTILINE)
     re_Board = re.compile(r'<cards type="COMMUNITY" cards="(?P<CARDS>[^"]+)"', re.MULTILINE)
@@ -410,6 +415,7 @@ class Merge(HandHistoryConverter):
     re_LeaveTable  = re.compile(r'<event sequence="\d+" type="LEAVE" timestamp="\d+" player="\d"/>', re.MULTILINE)
     re_PlayerOut   = re.compile(r'<event sequence="\d+" type="PLAYER_OUT" timestamp="\d+" player="(?P<PSEAT>[0-9])"/>', re.MULTILINE)
     re_EndOfHand   = re.compile(r'<round id="END_OF_GAME"', re.MULTILINE)
+    re_DateTime    = re.compile(r'(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)', re.MULTILINE)
 
     def compilePlayerRegexs(self, hand):
         pass
@@ -429,6 +435,7 @@ class Merge(HandHistoryConverter):
 
                 ["ring", "stud", "fl"],
                 ["ring", "stud", "pl"],
+                ["ring", "stud", "nl"],
 
                 ["ring", "draw", "fl"],
                 ["ring", "draw", "pl"],
@@ -441,6 +448,7 @@ class Merge(HandHistoryConverter):
 
                 ["tour", "stud", "fl"],
                 ["tour", "stud", "pl"],
+                ["tour", "stud", "nl"],
                 
                 ["tour", "draw", "fl"],
                 ["tour", "draw", "pl"],
@@ -559,8 +567,16 @@ or None if we fail to get the info """
             hand.maxseats = None
             if m.group('SEATS')!=None:
                 hand.maxseats = int(m.group('SEATS')) 
-
-        hand.startTime = datetime.datetime.strptime(m.group('DATETIME')[:14],'%Y%m%d%H%M%S')
+                
+        m1 = self.re_DateTime.search(m.group('DATETIME'))
+        if m1:
+            mg = m1.groupdict()
+            datetimestr = "%s/%s/%s %s:%s:%s" % (mg['Y'], mg['M'],mg['D'],mg['H'],mg['MIN'],mg['S'])
+            #tz = a.group('TZ')  # just assume ET??
+            hand.startTime = datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S") # also timezone at end, e.g. " ET"
+        else:
+            hand.startTime = datetime.datetime.strptime(m.group('DATETIME')[:14],'%Y%m%d%H%M%S')
+            
         hand.startTime = HandHistoryConverter.changeTimezone(hand.startTime, "ET", "UTC")
         hand.newFormat = datetime.datetime.strptime('20100908000000','%Y%m%d%H%M%S')
         hand.newFormat = HandHistoryConverter.changeTimezone(hand.newFormat, "ET", "UTC")

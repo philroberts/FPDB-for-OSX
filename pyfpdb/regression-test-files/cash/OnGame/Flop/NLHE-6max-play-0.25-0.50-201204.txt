@@ -1,0 +1,37 @@
+***** History for hand R5-232794641-2 *****
+Start hand: Fri Apr 13 15:12:34 CEST 2012
+Table: Casablanca [232794641] (NO_LIMIT TEXAS_HOLDEM $0.25/$0.50, Play money)
+User: Hero
+Button: seat 8
+Players in round: 4 (6)
+Seat 4: Player0 ($41)
+Seat 6: Hero ($50)
+Seat 7: Player1 ($50)
+Seat 8: Player2 ($58.10)
+Player0 posts small blind ($0.25)
+Hero posts big blind ($0.50)
+---
+Dealing pocket cards
+Dealing to Hero: [8d, Th]
+Player1 folds
+Player2 raises $1 to $1
+Player0 calls $0.75
+Hero raises $1 to $1.50
+Player2 raises $1 to $2
+Player0 calls $1
+Hero calls $0.50
+--- Dealing flop [6h, 5c, 5d]
+Player0 checks
+Hero checks
+Player2 bets $56.10 [all in]
+Player0 folds
+Hero folds
+---
+Summary:
+Main pot: $6 won by Player2 ($5.70)
+Rake taken: $0.30
+Seat 4: Player0 ($39), net: -$2
+Seat 6: Hero ($48), net: -$2
+Seat 7: Player1 ($50)
+Seat 8: Player2 ($61.80), net: +$3.70
+***** End of hand R5-232794641-2 *****

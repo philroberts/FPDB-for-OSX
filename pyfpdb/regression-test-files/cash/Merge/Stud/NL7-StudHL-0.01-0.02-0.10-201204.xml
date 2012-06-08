@@ -1,0 +1,50 @@
+<description type="7-Stud H/L8" stakes="No Limit ($0.01/$0.02/$0.10)"/>
+<game id="53828643-2" starttime="20120422233118" numholecards="7" gametype="43" seats="2" realmoney="true" data="20120422|NL 7Stud HL|53828643|53828643-2|false">
+	<players dealer="1">
+		<player seat="0" nickname="Player0" balance="$10.00" dealtin="true" />
+		<player seat="1" nickname="Hero" balance="$7.00" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="ANTE" timestamp="1335155477184" player="1" amount="0.01"/>
+		<event sequence="2" type="ANTE" timestamp="1335155483069" player="0" amount="0.01"/>
+	</round>
+	<round id="BRING_IN" sequence="2">
+		<event sequence="3" type="BRING_IN" timestamp="1335155485092" player="1" amount="0.02"/>
+		<cards type="DRAW_DRAWN_CARDS" cards="null,null,Kc" player="0"/>
+		<cards type="HOLE" cards="3s,9d,Qd" player="1" hand="Queen High"/>
+	</round>
+	<round id="THIRD_STREET" sequence="3">
+		<event sequence="4" type="CALL" timestamp="1335155489475" player="0" amount="0.02"/>
+	</round>
+	<round id="FOURTH_STREET" sequence="4">
+		<event sequence="5" type="BET" timestamp="1335155494773" player="0" amount="0.10"/>
+		<event sequence="6" type="CALL" timestamp="1335155499090" player="1" amount="0.10"/>
+		<cards type="DRAW_DRAWN_CARDS" cards="null,null,Kc,Jh" player="0"/>
+		<cards type="HOLE" cards="3s,9d,Qd,3h" player="1" hand="Pair of Threes"/>
+	</round>
+	<round id="FIFTH_STREET" sequence="5">
+		<event sequence="7" type="BET" timestamp="1335155504023" player="0" amount="0.13"/>
+		<event sequence="8" type="CALL" timestamp="1335155505473" player="1" amount="0.13"/>
+		<cards type="DRAW_DRAWN_CARDS" cards="null,null,Kc,Jh,5s" player="0"/>
+		<cards type="HOLE" cards="3s,9d,Qd,3h,5d" player="1" hand="Pair of Threes"/>
+	</round>
+	<round id="SIXTH_STREET" sequence="6">
+		<event sequence="9" type="BET" timestamp="1335155510392" player="0" amount="0.39"/>
+		<event sequence="10" type="CALL" timestamp="1335155512204" player="1" amount="0.39"/>
+		<cards type="DRAW_DRAWN_CARDS" cards="null,null,Kc,Jh,5s,6h" player="0"/>
+		<cards type="HOLE" cards="3s,9d,Qd,3h,5d,4d" player="1" hand="Pair of Threes"/>
+	</round>
+	<round id="SEVENTH_STREET" sequence="7">
+		<event sequence="11" type="BET" timestamp="1335155517967" player="0" amount="0.65"/>
+		<event sequence="12" type="RAISE" timestamp="1335155519464" player="1" amount="1.30"/>
+		<event sequence="13" type="FOLD" timestamp="1335155527421" player="0"/>
+		<cards type="DRAW_DRAWN_CARDS" cards="null,null,Kc,Jh,5s,6h,null" player="0"/>
+		<cards type="HOLE" cards="3s,9d,Qd,3h,5d,4d,3d" player="1" hand="Flush Queen High"/>
+	</round>
+	<round id="END_OF_FOLDED_GAME" sequence="8">
+		<event sequence="14" type="MUCK" timestamp="1335155527954" player="1"/>
+		<winner amount="3.12" uncalled="false" potnumber="1" player="1" pottype="n"/>
+	</round>
+	<round id="END_OF_GAME" sequence="9">
+	</round>
+</game>

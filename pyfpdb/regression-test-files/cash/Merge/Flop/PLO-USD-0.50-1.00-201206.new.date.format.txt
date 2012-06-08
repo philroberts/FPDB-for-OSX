@@ -1,0 +1,30 @@
+<description type="Omaha" stakes="Pot Limit ($0.50/$1)"/>
+<game id="56541889-2" starttime="2012/06/05 19:39:26 -0400" numholecards="4" gametype="9" seats="2" realmoney="true" data="20120605|Siberia (Heads Up) III|56541889|56541889-2|false">
+	<players dealer="0">
+		<player seat="0" nickname="Player0" balance="$100.00" dealtin="true" />
+		<player seat="1" nickname="Hero" balance="$50.00" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1338939705137" player="0" amount="0.50"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1338939705272" player="1" amount="1.00"/>
+	</round>
+	<round id="PREFLOP" sequence="2">
+		<event sequence="3" type="RAISE" timestamp="1338939709384" player="0" amount="3.00"/>
+		<event sequence="4" type="CALL" timestamp="1338939711443" player="1" amount="2.00"/>
+		<cards type="HOLE" cards="4c,4s,Qh,Jh" player="1" hand="Pair of Fours"/>
+	</round>
+	<round id="POSTFLOP" sequence="3">
+		<event sequence="5" type="CHECK" timestamp="1338939713148" player="1"/>
+		<event sequence="6" type="BET" timestamp="1338939723242" player="0" amount="4.00"/>
+		<event sequence="7" type="RAISE" timestamp="1338939726770" player="1" amount="18.00"/>
+		<event sequence="8" type="FOLD" timestamp="1338939731602" player="0"/>
+		<cards type="COMMUNITY" cards="6c,6d,4d" hand="Full House - Fours over Sixes"/>
+	</round>
+	<round id="END_OF_FOLDED_GAME" sequence="4">
+		<event sequence="9" type="MUCK" timestamp="1338939734711" player="1"/>
+		<winner amount="13.50" uncalled="false" potnumber="1" player="1" pottype="n"/>
+		<winner amount="14.00" uncalled="true" potnumber="2" player="1" pottype="n"/>
+	</round>
+	<round id="END_OF_GAME" sequence="5">
+	</round>
+</game>

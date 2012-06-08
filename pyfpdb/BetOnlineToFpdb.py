@@ -130,10 +130,10 @@ class BetOnline(HandHistoryConverter):
     re_DateTime     = re.compile("""(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+)""", re.MULTILINE)
 
     re_PostSB           = re.compile(r"^%(PLYR)s: posts small blind (%(LS)s)?(?P<SB>[.0-9]+)" %  substitutions, re.MULTILINE)
-    re_PostBB           = re.compile(r"^%(PLYR)s: posts big blind (%(LS)s)?(?P<BB>[.0-9]+)" %  substitutions, re.MULTILINE)
+    re_PostBB           = re.compile(r"^%(PLYR)s: (posts big blind|post now) (%(LS)s)?(?P<BB>[.0-9]+)" %  substitutions, re.MULTILINE)
     re_Antes            = re.compile(r"^%(PLYR)s: posts the ante (%(LS)s)?(?P<ANTE>[.0-9]+)" % substitutions, re.MULTILINE)
     re_BringIn          = re.compile(r"^%(PLYR)s: brings[- ]in( low|) for (%(LS)s)?(?P<BRINGIN>[.0-9]+)" % substitutions, re.MULTILINE)
-    re_PostBoth         = re.compile(r"^%(PLYR)s: posts small \& big blinds (%(LS)s)?(?P<SBBB>[.0-9]+)" %  substitutions, re.MULTILINE)
+    re_PostBoth         = re.compile(r"^%(PLYR)s: post dead (%(LS)s)?(?P<SBBB>[.0-9]+)" %  substitutions, re.MULTILINE)
     re_HeroCards        = re.compile(r"^Dealt to %(PLYR)s(?: \[(?P<OLDCARDS>.+?)\])?( \[(?P<NEWCARDS>.+?)\])" % substitutions, re.MULTILINE)
     re_Action           = re.compile(r"""
                         ^%(PLYR)s:(?P<ATYPE>\sbets|\schecks|\sraises|\scalls|\sfolds|\sdiscards|\sstands\spat)
@@ -422,6 +422,7 @@ class BetOnline(HandHistoryConverter):
     def readBlinds(self, hand):
         liveBlind = True
         for a in self.re_PostSB.finditer(hand.handText):
+            self.unknownPlayer(hand, a.group('PNAME'))
             if liveBlind:
                 hand.addBlind(a.group('PNAME'), 'small blind', a.group('SB'))
                 liveBlind = False
@@ -429,9 +430,17 @@ class BetOnline(HandHistoryConverter):
                 # Post dead blinds as ante
                 hand.addBlind(a.group('PNAME'), 'secondsb', a.group('SB'))
         for a in self.re_PostBB.finditer(hand.handText):
+            self.unknownPlayer(hand, a.group('PNAME'))
             hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
         for a in self.re_PostBoth.finditer(hand.handText):
-            hand.addBlind(a.group('PNAME'), 'both', a.group('SBBB'))
+            self.unknownPlayer(hand, a.group('PNAME'))
+            amount = str(Decimal(a.group('SBBB')) + Decimal(a.group('SBBB'))/2)
+            hand.addBlind(a.group('PNAME'), 'both', amount)
+            
+    def unknownPlayer(self, hand, pname):
+        if pname == 'Unknown player':
+            if pname not in (p[1] for p in hand.players):
+                hand.addPlayer(0, pname, '0')
 
     def readHeroCards(self, hand):
 #    streets PREFLOP, PREDRAW, and THIRD are special cases beacause
@@ -476,23 +485,23 @@ class BetOnline(HandHistoryConverter):
         for action in m:
             acts = action.groupdict()
             #print "DEBUG: acts: %s" %acts
-            if action.group('PNAME') != 'Unknown player':
-                if action.group('ATYPE') == ' folds':
-                    hand.addFold( street, action.group('PNAME'))
-                elif action.group('ATYPE') == ' checks':
-                    hand.addCheck( street, action.group('PNAME'))
-                elif action.group('ATYPE') == ' calls':
-                    hand.addCall( street, action.group('PNAME'), action.group('BET') )
-                elif action.group('ATYPE') == ' raises':
-                    hand.addCallandRaise( street, action.group('PNAME'), action.group('BET') )
-                elif action.group('ATYPE') == ' bets':
-                    hand.addBet( street, action.group('PNAME'), action.group('BET') )
-                elif action.group('ATYPE') == ' discards':
-                    hand.addDiscard(street, action.group('PNAME'), action.group('BET'), action.group('CARDS'))
-                elif action.group('ATYPE') == ' stands pat':
-                    hand.addStandsPat( street, action.group('PNAME'), action.group('CARDS'))
-                else:
-                    print (_("DEBUG:") + " " + _("Unimplemented %s: '%s' '%s'") % ("readAction", action.group('PNAME'), action.group('ATYPE')))
+            self.unknownPlayer(hand, action.group('PNAME'))
+            if action.group('ATYPE') == ' folds':
+                hand.addFold( street, action.group('PNAME'))
+            elif action.group('ATYPE') == ' checks':
+                hand.addCheck( street, action.group('PNAME'))
+            elif action.group('ATYPE') == ' calls':
+                hand.addCall( street, action.group('PNAME'), action.group('BET') )
+            elif action.group('ATYPE') == ' raises':
+                hand.addCallandRaise( street, action.group('PNAME'), action.group('BET') )
+            elif action.group('ATYPE') == ' bets':
+                hand.addBet( street, action.group('PNAME'), action.group('BET') )
+            elif action.group('ATYPE') == ' discards':
+                hand.addDiscard(street, action.group('PNAME'), action.group('BET'), action.group('CARDS'))
+            elif action.group('ATYPE') == ' stands pat':
+                hand.addStandsPat( street, action.group('PNAME'), action.group('CARDS'))
+            else:
+                print (_("DEBUG:") + " " + _("Unimplemented %s: '%s' '%s'") % ("readAction", action.group('PNAME'), action.group('ATYPE')))
 
 
     def readShowdownActions(self, hand):

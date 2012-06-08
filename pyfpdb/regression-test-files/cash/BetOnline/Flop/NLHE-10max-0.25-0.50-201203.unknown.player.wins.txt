@@ -1,0 +1,40 @@
+BetOnline Poker Game #991142904: Hold'em No Limit ($0.25/0.50) - 2012/03/18 15:58:15 GMT Standard Time
+Table 'Blade Runner' 10-Max, Seat #0 is the button
+Seat 9: Player4 (62.99 in chips) - Sitting out
+Seat 7: Player2 (43.59 in chips)
+Seat 3: Player6 (82.96 in chips)
+Seat 1: Player7 (53.73 in chips) - Small Blind
+Seat 4: Player0 (25.38 in chips)
+Seat 0: Player1 (82.42 in chips) - The button
+Seat 6: Player3 (22.36 in chips)
+Seat 5: Player5 (38.00 in chips)
+Seat 2: Player8 (50.00 in chips) - Big Blind
+Player7: posts small blind 0.25
+Player8: posts big blind 0.50
+*** HOLE CARDS *** 
+Dealt to Player0 [3h 10c]
+Player6: folds
+Player0: folds
+Player3: folds
+Player6 has left the table
+Player2: raises 1.00 to 1.00
+Unknown player: raises 3.00 to 3.00
+Player1: folds
+Player7: folds
+cajvpetan joins the table at seat #3
+Player8: folds
+Player2: raises 11.00 to 12.00
+Unknown player: raises 15.75 to 18.75 and is all in
+Player2: calls 6.75
+Player2 shows As Kc
+*** SUMMARY *** 
+Total pot 36.34 | Rake 1.91
+Board [2h 4c 3d 7c 4d]
+Seat 7: Player2 showed [As Kc] but did not win
+Seat 1: Player7 folded before Flop
+Seat 4: Player0 folded before Flop
+Seat 0: Player1 folded before Flop
+Seat 6: Player3 folded before Flop
+Seat 5: Player5 collected (0.00)
+Seat 2: Player8 folded before Flop
+

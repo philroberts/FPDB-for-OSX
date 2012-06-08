@@ -1,0 +1,34 @@
+<SESSION time="1335014137" tableName="Kitwe-5" id="1548.205.168" type="ring" money="$" screenName="Hero" game="hold-em" gametype="fixed-limit"/>
+<HAND time="1335014414" id="7526266449" index="7" blinds="$0.01/$0.02" stakes="$0.02/$0.04">
+  <SEAT position="0" name="Player0" balance="197"/>
+  <SEAT position="2" name="Hero" balance="200"/>
+  <SEAT position="3" name="Player1" balance="102"/>
+  <SEAT position="4" name="Player2" balance="182"/>
+  <SEAT position="5" name="Player3" balance="28"/>
+  <DEALER position="0"/>
+  <BLIND position="2" amount="2" penalty="0"/>
+  <HOLE position="2">Jh</HOLE>
+  <HOLE position="3">--</HOLE>
+  <HOLE position="4">--</HOLE>
+  <HOLE position="5">--</HOLE>
+  <HOLE position="0">--</HOLE>
+  <HOLE position="2">Jd</HOLE>
+  <HOLE position="3">--</HOLE>
+  <HOLE position="4">--</HOLE>
+  <HOLE position="5">--</HOLE>
+  <HOLE position="0">--</HOLE>
+  <FOLD position="3"/>
+  <FOLD position="4"/>
+  <FOLD position="5"/>
+  <BET position="0" amount="2"/>
+  <BET position="2" amount="2"/>
+  <BET position="0" amount="2"/>
+  <SWEEP rake="0" tax="0">8</SWEEP>
+  <COMMUNITY>10d, 10s, Kd</COMMUNITY>
+  <BET position="2" amount="2"/>
+  <FOLD position="0"/>
+  <PUSH position="2" amount="2"/>
+  <SWEEP rake="0" tax="0">8</SWEEP>
+  <SHOW position="2">Jh, Jd</SHOW>
+  <WIN position="2" amount="8" pot="0" potAmount="8"/>
+</HAND>

@@ -3145,10 +3145,11 @@ class Database:
                     summaryAttribute=ev[0]
                     if ev[0]!="winnings" and ev[0]!="winningsCurrency":
                         summaryAttribute+="s"
-
-                    if getattr(summary, summaryAttribute)[player]==None and resultDict[ev[1]]!=None:#DB has this value but object doesnt, so update object
-                        setattr(summary, summaryAttribute, resultDict[ev[1]][player])
-                    elif getattr(summary, summaryAttribute)[player]!=None and resultDict[ev[1]]==None:#object has this value but DB doesnt, so update DB
+                    summaryDict = getattr(summary, summaryAttribute)
+                    if summaryDict[player]==None and resultDict[ev[1]]!=None:#DB has this value but object doesnt, so update object 
+                        summaryDict[player] = resultDict[ev[1]]
+                        setattr(summary, summaryAttribute, summaryDict)
+                    elif summaryDict!=None and resultDict[ev[1]]==None:#object has this value but DB doesnt, so update DB
                         updateDb=True
                 if updateDb:
                     q = self.sql.query['updateTourneysPlayer'].replace('%s', self.sql.query['placeholder'])

@@ -593,6 +593,7 @@ or None if we fail to get the info """
         if not money:
             return money
         money = money.replace(' ', '')
+        money = money.replace(u'\xa0', u'')
         if 'K' in money:
             money = money.replace('K', '000')
         if 'M' in money:

@@ -1,0 +1,29 @@
+﻿ï»¿Hand#2966A90C51000018 - New Depositor Freeroll T11078737 -- TICKET -- $0 + $0 -- 10 Max -- Table 12 -- 0/10/20 NL Hold'em -- 2012/05/19 - 13:00:00
+Dealer: Seat 1
+Seat 1: Player0 (1,500 in chips) 
+Seat 2: Hero (1,500 in chips) 
+Seat 3: Player1 (1,500 in chips) 
+Seat 4: Player2 (1,500 in chips) 
+Seat 5: Player3 (1,500 in chips) 
+Seat 6: Player4 (1,500 in chips) 
+Seat 7: Player5 (1,500 in chips) 
+Seat 8: Player6 (1,500 in chips) 
+Seat 9: Player7 (1,500 in chips) 
+Seat 10: Player8 (1,500 in chips) 
+Hero: posts small blind 10
+Player1: posts big blind 20
+Dealt to Hero [8c,Qs]
+Player2: folds
+Player3: folds
+Player4: folds
+Player5: folds
+Player6: folds
+Player7: folds
+Player8: folds
+Player0: folds
+Hero: raises to 40
+Player1: folds
+Hero: returns uncalled bet 20
+***SHOW DOWN***
+Hero: mucks
+Hero wins 40 
