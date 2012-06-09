@@ -618,9 +618,6 @@ class Hand(object):
                 self.bets['BLINDSANTES'][player].append(sb)
                 self.pot.addCommonMoney(player, sb)
                 
-            self.bets['BLINDSANTES'][player].append(amount)
-            self.pot.addMoney(player, amount)
-
             street = 'BLAH'
 
             if self.gametype['base'] == 'hold':
@@ -628,6 +625,8 @@ class Hand(object):
             elif self.gametype['base'] == 'draw':
                 street = 'DEAL'
             
+            self.bets[street][player].append(amount)
+            self.pot.addMoney(player, amount)
             if amount>self.lastBet.get(street):
                 self.lastBet[street] = amount
             self.posted = self.posted + [[player,blindtype]]
@@ -805,12 +804,24 @@ class Hand(object):
             self.pot.end()
             self.totalpot = self.pot.total
         
+        def gettempcontainers():
+            (collected, collectees, valid) = ([], {}, True)
+            for i,v in enumerate(self.collected):
+                collected.append([v[0], Decimal(v[1])])
+            for k, j in self.collectees.iteritems():
+                collectees[k] = j
+            return collected, collectees, valid
+        
         if self.uncalledbets:
+            collected, collectees, valid = gettempcontainers()
             for i,v in enumerate(self.collected):
                 if v[0] in self.pot.returned:
-                    self.collected[i][1] = Decimal(v[1]) - self.pot.returned[v[0]]
-                    self.collectees[v[0]] -= self.pot.returned[v[0]]
+                    collected[i][1] = Decimal(v[1]) - self.pot.returned[v[0]]
+                    collectees[v[0]] -= self.pot.returned[v[0]]
                     self.pot.returned[v[0]] = 0
+                    if collectees[v[0]] < 0: valid = False            
+            if valid:
+                (self.collected, self.collectees) = (collected, collectees)
 
         # This gives us the amount collected, i.e. after rake
         if self.totalcollected is None:

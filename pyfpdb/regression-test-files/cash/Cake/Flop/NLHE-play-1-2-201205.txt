@@ -1,0 +1,31 @@
+﻿Hand#2972014254000151 - Play Money 21 14254 -- 1/2 NL Hold'em -- 2012/05/24 - 19:43:08
+Dealer: Seat 7
+Seat 1: Player0 (149 in chips) 
+Seat 2: Player1 (677 in chips) 
+Seat 3: Player2 (962 in chips) 
+Seat 4: Player3 (841 in chips) 
+Seat 7: Player4 (177 in chips) 
+Seat 8: Player5 (198 in chips) 
+Seat 10: Hero (200 in chips) 
+Player5: posts small blind 1
+Hero: posts big blind 2
+Dealt to Hero [5c,3s]
+Player0: calls 2
+Player1: raises to 9
+Player2: calls 9
+Player3: folds
+Player4: calls 9
+Player5: is all in 197
+Hero: folds
+Player0: folds
+Player1: calls 189
+Player2: folds
+Player4: folds
+Player1: shows [Kh Js]
+Player5: shows [Kc 4h]
+*** FLOP *** [Ac,Ad,9h]
+*** TURN *** [7s]
+*** RIVER *** [6s]
+***SHOW DOWN***
+Player1 wins 418 with Pair of Aces with King, Jack kickers 
+

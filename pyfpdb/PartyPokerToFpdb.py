@@ -135,7 +135,7 @@ class PartyPoker(HandHistoryConverter):
           \(\s*[%(LS)s]?(?P<CASH>[%(NUM)s]+)\s*(?:%(LEGAL_ISO)s|)\s*\)
           """ % substitutions, re.VERBOSE| re.UNICODE)
 
-    re_NewLevel = re.compile(u"^Blinds(-Antes)?\((?P<SB>[%(NUM)s]+)/(?P<BB>[%(NUM)s]+)(?:\s*-\s*(?P<ANTE>[%(NUM)s]+))?\)" % substitutions, re.VERBOSE|re.MULTILINE|re.DOTALL)
+    re_NewLevel = re.compile(u"^Blinds(-Antes)?\((?P<SB>[%(NUM)s ]+)/(?P<BB>[%(NUM)s ]+)(?:\s*-\s*(?P<ANTE>[%(NUM)s ]+))?\)" % substitutions, re.VERBOSE|re.MULTILINE|re.DOTALL)
     re_CountedSeats = re.compile("^Total\s+number\s+of\s+players\s*:\s*(?P<COUNTED_SEATS>\d+)", re.MULTILINE)
     re_SplitHands   = re.compile('\n\n+')
     re_TailSplitHands   = re.compile('(\x00+)')
@@ -490,7 +490,7 @@ class PartyPoker(HandHistoryConverter):
                 self.readButton(hand)
             # NOTE: code below depends on Hand's implementation
             # playersMap - dict {seat: (pname,stack)}
-            playersMap = dict([(f[0], f[1:3]) for f in hand.players])
+            playersMap = dict([(f[0], f[1:3]) for f in hand.players if f[1] in hand.handText.split('Trny:')[-1]])
             maxSeat = max(playersMap)
 
             def findFirstNonEmptySeat(startSeat):

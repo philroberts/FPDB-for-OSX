@@ -1,0 +1,31 @@
+﻿Hand#2531919760000002 - $1 NLH Short Stack - 6-players T9541472 -- Table 1 -- 0/10/20 NL Hold'em -- 2011.03.12 - 01:45:59
+Seat 1: laci***1 (500 in chips) 
+Seat 2: chri***2 (540 in chips) DEALER
+Seat 3: pork***3 (480 in chips) 
+Seat 8: Hero (500 in chips) 
+Seat 9: Labo***9 (480 in chips) 
+Seat 10: EdVa***10 (500 in chips) 
+pork***3: posts small blind 10
+Hero: posts big blind 20
+Dealt to Hero [4s,3h]
+Labo***9: folds
+EdVa***10: folds
+laci***1: folds
+chri***2: folds
+pork***3: calls 10
+Hero: checks
+*** FLOP *** [2s,Kc,Kd]
+pork***3: checks
+Hero: checks
+*** TURN *** [As]
+pork***3: checks
+Hero: checks
+*** RIVER *** [8c]
+pork***3: checks
+Hero: checks
+***SHOW DOWN***
+pork***3: shows [8h 9d] (Two Pairs Kings and Eights  )
+Hero: mucks
+pork***3 wins 40 with Two Pairs Kings and Eights   
+Hero: mucks [4s,3h] (Pair) .
+

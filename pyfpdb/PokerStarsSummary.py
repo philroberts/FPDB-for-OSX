@@ -83,7 +83,7 @@ class PokerStarsSummary(TourneySummary):
     #re_WinningRankOther = re.compile(u"^%(PLYR)s finished the tournament in (?P<RANK>[0-9]+)(st|nd|rd|th) place and received %(CUR)s(?P<AMT>[.0-9]+)\.$" %  substitutions, re.MULTILINE)
     #re_RankOther        = re.compile(u"^%(PLYR)s finished the tournament in (?P<RANK>[0-9]+)(st|nd|rd|th) place$" %  substitutions, re.MULTILINE)
 
-    codepage = ["utf-8"]
+    codepage = ("utf8", "cp1252")
 
     @staticmethod
     def getSplitRe(self, head):

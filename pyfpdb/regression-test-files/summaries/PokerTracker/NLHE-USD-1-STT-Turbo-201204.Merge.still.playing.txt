@@ -1,0 +1,18 @@
+PokerTracker 4 Tournament Summary
+Site: Merge
+Game: Holdem
+Tournament #: 54176283
+Started: 2012/04/28 09:19:06
+Finished: 2012/04/28 09:24:29
+Buyin: $1.00
+Fee: $0.06
+Table Type: STT (6 max) Super-Turbo SNG
+Tourney Type: No Limit
+Players: 6
+
+Place: 0, Player: tayha8989, Won: $0.00,
+Place: 0, Player: heavencry, Won: $0.00,
+Place: 3, Player: JustJay4Reals, Won: $0.00,
+Place: 4, Player: Sturmjager13, Won: $0.00,
+Place: 5, Player: JDK6390, Won: $0.00,
+Place: 6, Player: asdlkjhasldkjhas, Won: $0.00,

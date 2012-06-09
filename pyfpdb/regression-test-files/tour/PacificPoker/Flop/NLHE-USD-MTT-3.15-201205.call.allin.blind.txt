@@ -1,0 +1,43 @@
+#Game No : 305700479
+***** Cassava Hand History for Game 305700479 *****
+$750/$1,500 Blinds No Limit Holdem - *** 23 05 2012 22:24:08
+Tournament #38339532 $3.15 + $0.35 - Table #47 (Real Money)
+Seat 10 is the button
+Total number of players : 8
+Seat 1: Player0 ( $999 )
+Seat 2: Player1 ( $90,663 )
+Seat 3: Player2 ( $34,294 )
+Seat 4: Player3 ( $31,403 )
+Seat 5: Player4 ( $25,218 )
+Seat 6: Player5 ( $30,666 )
+Seat 9: Hero ( $28,501 )
+Seat 10: Player6 ( $13,755 )
+Player1 posts ante [$150]
+Player2 posts ante [$150]
+Player3 posts ante [$150]
+Player0 posts ante [$150]
+Hero posts ante [$150]
+Player5 posts ante [$150]
+Player6 posts ante [$150]
+Player4 posts ante [$150]
+Player0 posts small blind [$750]
+Player1 posts big blind [$1,500]
+** Dealing down cards **
+Dealt to Hero [ Ah, 2s ]
+Player2 folds
+Player3 folds
+Player4 folds
+Player5 folds
+Hero folds
+Player6 folds
+Player0 calls [$99]
+** Dealing flop ** [ Th, 5s, 9d ]
+** Dealing turn ** [ 6d ]
+** Dealing river ** [ Ks ]
+** Summary **
+Player0 shows [ 4d, 8c ]
+Player1 shows [ Jh, 5c ]
+Player1 collected [ $2,898 ]
+Player1 collected [ $651 ]
+
+

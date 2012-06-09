@@ -1,0 +1,52 @@
+BetOnline Poker Game #1002134798: Hold'em No Limit ($0.25/0.50) - 2012/04/11 01:59:39 GMT Daylight Time
+Table 'Blade Runner' 10-Max, Seat #5 is the button
+Seat 4: Player9 (43.42 in chips)
+Seat 8: Player6 (56.54 in chips)
+Seat 5: Player3 (126.09 in chips) - The button
+Seat 9: Player4 (332.23 in chips)
+Seat 2: Player8 (41.05 in chips)
+Seat 6: Player1 (60.12 in chips) - Small Blind
+Seat 0: Player2 (39.79 in chips)
+Seat 1: Player7 (17.50 in chips)
+Seat 3: Player0 (38.63 in chips)
+Seat 7: Player5 (48.25 in chips) - Big Blind
+Player1: posts small blind 0.25
+Player5: posts big blind 0.50
+Player0: post dead 0.50
+*** HOLE CARDS *** 
+Dealt to Player6 [2h 3c]
+Player6: folds
+Player4: folds
+Player2: folds
+Player7: folds
+Player8: folds
+Player0: checks
+Player9: raises 1.50 to 1.50
+Player3: folds
+Player1: calls 1.25
+Player5: calls 1.00
+Player0: calls 1.00
+*** FLOP *** [6c 7s Qc]
+Player1: checks
+Player5: bets 4.68
+Player0: calls 4.68
+Player9: folds
+Player1: folds
+*** TURN *** [6c 7s Qc][10d]
+Player5: bets 11.12
+Player0: folds
+Uncalled bet (11.12) returned to Player5
+*** SUMMARY *** 
+Total pot 14.83 | Rake 0.78
+Board [6c 7s Qc 10d]
+Seat 4: Player9 folded on the Flop
+Seat 8: Player6 folded before Flop
+Seat 5: Player3 folded before Flop
+Seat 9: Player4 folded before Flop
+Seat 2: Player8 folded before Flop
+Seat 6: Player1 folded on the Flop
+Seat 0: Player2 folded before Flop
+Seat 1: Player7 folded before Flop
+Seat 3: Player0 folded on the Turn
+Seat 7: Player5 collected (14.83)
+

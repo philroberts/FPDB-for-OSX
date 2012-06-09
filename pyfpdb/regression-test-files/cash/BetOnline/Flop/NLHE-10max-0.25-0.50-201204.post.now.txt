@@ -1,0 +1,56 @@
+BetOnline Poker Game #1002060530: Hold'em No Limit ($0.25/0.50) - 2012/04/10 23:14:10 GMT Daylight Time
+Table 'Blade Runner' 10-Max, Seat #7 is the button
+Seat 7: Player2 (38.53 in chips) - The button
+Seat 6: Player5 (31.68 in chips)
+Seat 4: Player8 (34.33 in chips)
+Seat 3: Player4 (28.58 in chips)
+Seat 2: Player6 (56.05 in chips)
+Seat 0: Player9 (36.83 in chips)
+Seat 8: Player0 (24.00 in chips) - Small Blind
+Seat 9: Player7 (50.00 in chips) - Big Blind
+Seat 5: Player3 (15.29 in chips)
+Seat 1: Player1 (50.00 in chips)
+Player0: posts small blind 0.25
+Player7: posts big blind 0.50
+Player1: post now 0.50
+Player3: post now 0.50
+*** HOLE CARDS *** 
+Dealt to Player0 [Qd Ac]
+Player9: folds
+Player1: checks
+Player6: calls 0.50
+Player4: folds
+Player8: folds
+Player3: checks
+Player5: calls 0.50
+Player2: calls 0.50
+Player0: raises 3.25 to 3.50
+Player7: folds
+Player1: folds
+Player6: calls 3.00
+Player3: folds
+Player5: folds
+Player2: folds
+*** FLOP *** [7h Kh 9d]
+Player0: bets 5.75
+Player6: calls 5.75
+*** TURN *** [7h Kh 9d][6h]
+Player0: bets 14.75
+Player6: calls 14.75
+*** SHOW DOWN *** 
+Player0 shows Qd Ac
+Player6 shows 9s Qh
+*** SUMMARY *** 
+Total pot 47.98 | Rake 2.52
+Board [7h Kh 9d 6h Js]
+Seat 7: Player2 folded before Flop
+Seat 6: Player5 folded before Flop
+Seat 4: Player8 folded before Flop
+Seat 3: Player4 folded before Flop
+Seat 2: Player6 showed [9s Qh] and won (47.98)
+Seat 0: Player9 folded before Flop
+Seat 8: Player0 showed [Qd Ac] but did not win
+Seat 9: Player7 folded before Flop
+Seat 5: Player3 folded before Flop
+Seat 1: Player1 folded before Flop
+
