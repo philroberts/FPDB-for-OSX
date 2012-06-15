@@ -145,6 +145,7 @@ class BetOnline(HandHistoryConverter):
     re_Board2        = re.compile(r"\[(?P<CARDS>.+)\]")
     
 
+
     re_DateTime1     = re.compile("""(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+)(:(?P<S>[0-9]+))?\s(?P<TZ>.*$)""", re.MULTILINE)
     re_DateTime2     = re.compile("""(?P<Y>[0-9]{4})\-(?P<M>[0-9]{2})\-(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)""", re.MULTILINE)
 
