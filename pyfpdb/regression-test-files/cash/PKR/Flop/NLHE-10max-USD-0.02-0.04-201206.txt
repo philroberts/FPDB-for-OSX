@@ -1,0 +1,2955 @@
+Player11 checks
+Hero brings $4 to table 45406961
+Player7 checks
+Player4 checks
+Pot sizes: $0.38
+Taking Rake of $0.03 from pot 1
+Player4 shows [K d][A d]
+Player4 has One Pair: Tens
+Player11 shows [9 d][3 d]
+Player11 has Two Pairs: Tens, 3s
+Player7 mucks
+Player11 wins $0.35 with: Two Pairs: Tens, 3s
+Seat 1: Player13 - $4
+Seat 2: Player7 - $0.67
+Seat 3: Player6 - $3.38
+Seat 4: Player9 - $0.75
+Seat 5: Player4 - $4.45
+Seat 6: Player1 - $2.18
+Seat 7: Player3 - $3.53
+Seat 8: Player11 - $4.11
+Seat 9: Player0 - $4
+Seat 10: Hero - $4
+End of Hand #2103757303
+
+Table #45406961 - Pink Paisley
+Starting Hand #2103758909
+Start time of hand: 11 Jun 2012 21:38:10
+Last Hand #2103757303
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: RING
+Money Type: REAL MONEY
+Blinds are now $0.02 / $0.04
+Button is at seat 6
+Seat 1: Player13 - $4
+Seat 2: Player7 - $0.67
+Seat 3: Player6 - $3.38
+Seat 4: Player9 - $0.75
+Seat 5: Player4 - $4.45
+Seat 6: Player1 - $2.18
+Seat 7: Player3 - $3.53
+Seat 8: Player11 - $4.11
+Seat 9: Player0 - $4
+Seat 10: Hero - $4
+Shuffling Deck
+Moving Button to seat 7
+Player11 posts small blind ($0.02)
+Player0 posts big blind ($0.04)
+Dealing Cards
+Player13 calls $0.04
+Player7 calls $0.04
+Player6 folds
+Player9 folds
+Player4 folds
+Player1 folds
+Player3 calls $0.04
+Player11 calls $0.04
+Player0 checks
+Pot sizes: $0.20
+Dealing Flop [J d][9 d][Q d]
+Player11 checks
+Player0 checks
+Player13 checks
+Player7 checks
+Player3 checks
+Pot sizes: $0.20
+Dealing Turn [K h]
+Player11 checks
+Player0 checks
+Player13 checks
+Player7 bets $0.13
+Player3 calls $0.13
+Player11 folds
+Player0 did not respond in time and is folded
+Player0 folds
+Player13 folds
+Pot sizes: $0.46
+Dealing River [7 s]
+Player7 bets $0.04
+Player3 calls $0.04
+Pot sizes: $0.54
+Taking Rake of $0.05 from pot 1
+Player7 shows [A s][3 h]
+Player7 has High Card: Ace
+Player3 shows [J h][T s]
+Player3 has Straight, King high 
+Player3 wins $0.49 with: Straight, King high 
+Seat 1: Player13 - $3.96
+Seat 2: Player7 - $0.46
+Seat 3: Player6 - $3.38
+Seat 4: Player9 - $0.75
+Seat 5: Player4 - $4.45
+Seat 6: Player1 - $2.18
+Seat 7: Player3 - $3.81
+Seat 8: Player11 - $4.07
+Seat 9: Player0 - $3.96
+Seat 10: Hero - $4
+End of Hand #2103758909
+
+Table #45406961 - Pink Paisley
+Starting Hand #2103761138
+Start time of hand: 11 Jun 2012 21:40:49
+Last Hand #2103758909
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: RING
+Money Type: REAL MONEY
+Blinds are now $0.02 / $0.04
+Button is at seat 7
+Seat 1: Player13 - $3.96
+Seat 2: Player7 - $0.46
+Seat 3: Player6 - $3.38
+Seat 4: Player9 - $0.75
+Seat 5: Player4 - $4.45
+Seat 7: Player3 - $3.81
+Seat 8: Player11 - $4.07
+Seat 9: Player0 - $3.96
+Seat 10: Hero - $4
+Shuffling Deck
+Moving Button to seat 8
+Player0 posts small blind ($0.02)
+Hero posts big blind ($0.04)
+Dealing Cards
+Dealing [J s][Q h] to Hero
+Player13 calls $0.04
+Player7 calls $0.04
+Player6 folds
+Player9 folds
+Player4 folds
+Player3 folds
+Player11 folds
+Player0 calls $0.04
+Hero says hi.
+Hero raises to $0.20
+Player13 calls $0.20
+Player7 folds
+Player0 folds
+Pot sizes: $0.48
+Dealing Flop [8 d][2 h][6 d]
+Hero bets $0.24
+Player13 folds
+Pot sizes: $0.48
+Taking Rake of $0.04 from pot 1
+Hero doesn't show
+Hero wins $0.44
+Seat 1: Player13 - $3.76
+Seat 2: Player7 - $0.42
+Seat 3: Player6 - $3.38
+Seat 4: Player9 - $0.75
+Seat 5: Player4 - $4.45
+Seat 7: Player3 - $3.81
+Seat 8: Player11 - $4.07
+Seat 9: Player0 - $3.92
+Seat 10: Hero - $4.24
+End of Hand #2103761138
+
+Table #45406961 - Pink Paisley
+Starting Hand #2103762355
+Start time of hand: 11 Jun 2012 21:42:16
+Last Hand #2103761138
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: RING
+Money Type: REAL MONEY
+Blinds are now $0.02 / $0.04
+Button is at seat 8
+Seat 1: Player13 - $3.76
+Seat 3: Player6 - $3.38
+Seat 4: Player9 - $0.75
+Seat 5: Player4 - $4.45
+Seat 7: Player3 - $3.81
+Seat 8: Player11 - $4.07
+Seat 9: Player0 - $3.92
+Seat 10: Hero - $4.24
+Shuffling Deck
+Moving Button to seat 9
+Hero posts small blind ($0.02)
+Player13 posts big blind ($0.04)
+Dealing Cards
+Dealing [A d][6 s] to Hero
+Player6 raises to $0.16
+Player9 folds
+Player4 folds
+Player3 folds
+Player11 folds
+Player0 did not respond in time and is folded
+Player0 folds
+Hero folds
+Player13 folds
+Pot sizes: $0.10
+Player6 doesn't show
+Player6 wins $0.10
+Player2 brings $2 to table 45406961
+Seat 1: Player13 - $3.72
+Seat 3: Player6 - $3.44
+Seat 4: Player9 - $0.75
+Seat 5: Player4 - $4.45
+Seat 6: Player2 - $2
+Seat 7: Player3 - $3.81
+Seat 8: Player11 - $4.07
+Seat 9: Player0 - $3.92
+Seat 10: Hero - $4.22
+End of Hand #2103762355
+
+Table #45406961 - Pink Paisley
+Starting Hand #2103763053
+Start time of hand: 11 Jun 2012 21:43:06
+Last Hand #2103762355
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: RING
+Money Type: REAL MONEY
+Blinds are now $0.02 / $0.04
+Button is at seat 9
+Seat 1: Player13 - $3.72
+Seat 3: Player6 - $3.44
+Seat 4: Player9 - $0.75
+Seat 5: Player4 - $4.45
+Seat 6: Player2 - $2
+Seat 7: Player3 - $3.81
+Seat 8: Player11 - $4.07
+Seat 9: Player0 - $3.92
+Seat 10: Hero - $4.22
+Shuffling Deck
+Moving Button to seat 10
+Player13 posts small blind ($0.02)
+Player9 posts big blind ($0.04)
+Player2 posts $0.04
+Dealing Cards
+Dealing [5 h][7 s] to Hero
+Player4 folds
+Player2 checks
+Player3 folds
+Player11 folds
+Player0 folds
+Hero folds
+Player13 calls $0.04
+Player9 checks
+Pot sizes: $0.12
+Dealing Flop [3 h][Q c][7 h]
+Player13 bets $0.04
+Player9 raises to $0.17
+Player2 folds
+Player13 calls $0.17
+Pot sizes: $0.46
+Dealing Turn [Q s]
+Player13 checks
+Player9 bets $0.23
+Player13 raises to $0.46
+Player9 raises to $0.54 (all-in)
+Player13 calls $0.54
+Pot sizes: $1.54
+Player13 shows [Q d][T h]
+Player9 shows [J c][7 c]
+Dealing River [7 d]
+Pot sizes: $1.54
+Taking Rake of $0.15 from pot 1
+Player9 has Full House, 7s over Queens
+Player13 has Full House, Queens over 7s
+Player13 wins $1.39 with: Full House, Queens over 7s
+Player2 says Boom!
+Seat 1: Player13 - $4.36
+Seat 3: Player6 - $3.44
+Seat 4: Player9 - $0
+Seat 5: Player4 - $4.45
+Seat 6: Player2 - $1.96
+Seat 7: Player3 - $3.81
+Seat 8: Player11 - $4.07
+Seat 9: Player0 - $3.92
+Seat 10: Hero - $4.22
+End of Hand #2103763053
+
+Player9 rebuys $0.70
+
+Table #45406961 - Pink Paisley
+Starting Hand #2103764576
+Start time of hand: 11 Jun 2012 21:44:53
+Last Hand #2103763053
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: RING
+Money Type: REAL MONEY
+Blinds are now $0.02 / $0.04
+Button is at seat 10
+Seat 1: Player13 - $4.36
+Seat 4: Player9 - $0 (away from table)
+Seat 5: Player4 - $4.45
+Seat 6: Player2 - $1.96
+Seat 7: Player3 - $3.81
+Seat 8: Player11 - $4.07
+Seat 9: Player0 - $3.92
+Seat 10: Hero - $4.22
+Shuffling Deck
+Moving Button to seat 10
+Player13 posts small blind ($0.02)
+Player4 posts big blind ($0.04)
+Dealing Cards
+Dealing [A s][6 s] to Hero
+Player2 folds
+Player9 rebuys $0.70
+Player3 folds
+Player9: gg
+Player11 folds
+Player0 raises to $0.10
+Hero calls $0.10
+Player13 folds
+Player4 folds
+Pot sizes: $0.26
+Dealing Flop [7 c][8 s][4 c]
+Player8 brings $2 to table 45406961
+Player0 checks
+Hero bets $0.13
+Player0 calls $0.13
+Pot sizes: $0.52
+Dealing Turn [5 s]
+Player0 checks
+Hero bets $0.26
+Player0 folds
+Pot sizes: $0.52
+Taking Rake of $0.05 from pot 1
+Hero shows [XX] [6 s]
+Hero has Straight, 8 high 
+Hero wins $0.47
+Seat 1: Player13 - $4.34
+Seat 3: Player8 - $2
+Seat 4: Player9 - $0.70
+Seat 5: Player4 - $4.41
+Seat 6: Player2 - $1.96
+Seat 7: Player3 - $3.81
+Seat 8: Player11 - $4.07
+Seat 9: Player0 - $3.69
+Seat 10: Hero - $4.46
+End of Hand #2103764576
+
+Table #45406961 - Pink Paisley
+Starting Hand #2103765764
+Start time of hand: 11 Jun 2012 21:46:24
+Last Hand #2103764576
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: RING
+Money Type: REAL MONEY
+Blinds are now $0.02 / $0.04
+Button is at seat 10
+Seat 1: Player13 - $4.34
+Seat 3: Player8 - $2
+Seat 4: Player9 - $0.70
+Seat 5: Player4 - $4.41
+Seat 6: Player2 - $1.96
+Seat 7: Player3 - $3.81
+Seat 8: Player11 - $4.07
+Seat 9: Player0 - $3.69
+Seat 10: Hero - $4.46
+Shuffling Deck
+Player9 will be dealt in after the button
+Moving Button to seat 4
+Player5 brings $2 to table 45406961
+Player4 posts small blind ($0.02)
+Player2 posts big blind ($0.04)
+Player8 posts $0.04
+Dealing Cards
+Dealing [6 s][A h] to Hero
+Player3 calls $0.04
+Hero says thank you.
+Player11 folds
+Player0 raises to $0.12
+Hero folds
+Player13 calls $0.12
+Player8 folds
+Player4 folds
+Player2 folds
+Player3 folds
+Pot sizes: $0.38
+Dealing Flop [K c][2 c][5 c]
+Player0 bets $0.16
+Player13 folds
+Pot sizes: $0.38
+Taking Rake of $0.03 from pot 1
+Player0 doesn't show
+Player0 wins $0.35
+Seat 1: Player13 - $4.22
+Seat 2: Player5 - $2
+Seat 3: Player8 - $1.96
+Seat 4: Player9 - $0.70
+Seat 5: Player4 - $4.39
+Seat 6: Player2 - $1.92
+Seat 7: Player3 - $3.77
+Seat 8: Player11 - $4.07
+Seat 9: Player0 - $3.92
+Seat 10: Hero - $4.46
+End of Hand #2103765764
+
+Table #45406961 - Pink Paisley
+Starting Hand #2103766804
+Start time of hand: 11 Jun 2012 21:47:37
+Last Hand #2103765764
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: RING
+Money Type: REAL MONEY
+Blinds are now $0.02 / $0.04
+Button is at seat 4
+Seat 1: Player13 - $4.22
+Seat 2: Player5 - $2
+Seat 3: Player8 - $1.96
+Seat 4: Player9 - $0.70
+Seat 5: Player4 - $4.39
+Seat 6: Player2 - $1.92
+Seat 7: Player3 - $3.77
+Seat 8: Player11 - $4.07
+Seat 9: Player0 - $3.92
+Seat 10: Hero - $4.46
+Shuffling Deck
+Moving Button to seat 5
+Player2 posts small blind ($0.02)
+Player3 posts big blind ($0.04)
+Player5 posts $0.04
+Dealing Cards
+Dealing [7 h][6 c] to Hero
+Player11 calls $0.04
+Player0 calls $0.04
+Hero folds
+Player13 folds
+Player5 checks
+Player8 raises to $0.18
+Player4 folds
+Player2 folds
+Player3 folds
+Player11 folds
+Player0 folds
+Player5 calls $0.18
+Pot sizes: $0.50
+Dealing Flop [3 c][5 s][Q c]
+Player5 checks
+Player8 checks
+Pot sizes: $0.50
+Dealing Turn [9 c]
+Player5 checks
+Player8 checks
+Pot sizes: $0.50
+Dealing River [6 d]
+Player5 checks
+Player8 checks
+Pot sizes: $0.50
+Taking Rake of $0.05 from pot 1
+Player8 shows [K h][A c]
+Player8 has High Card: Ace
+Player5 shows [2 s][2 d]
+Player5 has One Pair: 2s
+Player5 wins $0.45 with: One Pair: 2s
+Seat 1: Player13 - $4.22
+Seat 2: Player5 - $2.27
+Seat 3: Player8 - $1.78
+Seat 4: Player9 - $0.70
+Seat 5: Player4 - $4.39
+Seat 6: Player2 - $1.90
+Seat 7: Player3 - $3.73
+Seat 8: Player11 - $4.03
+Seat 9: Player0 - $3.88
+Seat 10: Hero - $4.46
+End of Hand #2103766804
+
+Table #45406961 - Pink Paisley
+Starting Hand #2103768777
+Start time of hand: 11 Jun 2012 21:49:56
+Last Hand #2103766804
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: RING
+Money Type: REAL MONEY
+Blinds are now $0.02 / $0.04
+Button is at seat 5
+Seat 1: Player13 - $4.22
+Seat 2: Player5 - $2.27
+Seat 3: Player8 - $1.78
+Seat 4: Player9 - $0.70
+Seat 5: Player4 - $4.39
+Seat 6: Player2 - $1.90
+Seat 7: Player3 - $3.73
+Seat 8: Player11 - $4.03
+Seat 9: Player0 - $3.88
+Seat 10: Hero - $4.46
+Shuffling Deck
+Moving Button to seat 6
+Player3 posts small blind ($0.02)
+Player11 posts big blind ($0.04)
+Dealing Cards
+Dealing [2 c][4 s] to Hero
+Player0 folds
+Hero folds
+Player13 calls $0.04
+Player5 folds
+Player8 folds
+Player4 folds
+Player2 folds
+Player3 calls $0.04
+Player11 checks
+Pot sizes: $0.12
+Dealing Flop [5 c][T c][8 c]
+Player3 checks
+Player11 checks
+Player13 checks
+Pot sizes: $0.12
+Dealing Turn [Q s]
+Player3 checks
+Player11 checks
+Player13 checks
+Pot sizes: $0.12
+Dealing River [T d]
+Player3 checks
+Player11 checks
+Player13 checks
+Pot sizes: $0.12
+Taking Rake of $0.01 from pot 1
+Player3 shows [A h][3 d]
+Player3 has One Pair: Tens
+Player11 mucks
+Player13 mucks
+Player3 wins $0.11 with: One Pair: Tens
+Seat 1: Player13 - $4.18
+Seat 2: Player5 - $2.27
+Seat 3: Player8 - $1.78
+Seat 4: Player9 - $0.70
+Seat 5: Player4 - $4.39
+Seat 6: Player2 - $1.90
+Seat 7: Player3 - $3.80
+Seat 8: Player11 - $3.99
+Seat 9: Player0 - $3.88
+Seat 10: Hero - $4.46
+End of Hand #2103768777
+
+Table #45406961 - Pink Paisley
+Starting Hand #2103770315
+Start time of hand: 11 Jun 2012 21:51:44
+Last Hand #2103768777
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: RING
+Money Type: REAL MONEY
+Blinds are now $0.02 / $0.04
+Button is at seat 6
+Seat 1: Player13 - $4.18
+Seat 2: Player5 - $2.27
+Seat 3: Player8 - $1.78
+Seat 4: Player9 - $0.70
+Seat 5: Player4 - $4.39
+Seat 6: Player2 - $1.90
+Seat 7: Player3 - $3.80
+Seat 8: Player11 - $3.99
+Seat 9: Player0 - $3.88
+Seat 10: Hero - $4.46
+Shuffling Deck
+Moving Button to seat 7
+Player11 posts small blind ($0.02)
+Player0 posts big blind ($0.04)
+Dealing Cards
+Dealing [7 c][6 c] to Hero
+Hero folds
+Player13 calls $0.04
+Player5 calls $0.04
+Player8 folds
+Player4 folds
+Player2 folds
+Player3 folds
+Player11 calls $0.04
+Player0 checks
+Pot sizes: $0.16
+Dealing Flop [4 d][K c][Q h]
+Player11 checks
+Player0 checks
+Player13 checks
+Player5 checks
+Pot sizes: $0.16
+Dealing Turn [4 s]
+Player11 bets $0.10
+Player0 folds
+Player13 folds
+Player5 folds
+Pot sizes: $0.16
+Taking Rake of $0.01 from pot 1
+Player11 doesn't show
+Player11 wins $0.15
+Seat 1: Player13 - $4.14
+Seat 2: Player5 - $2.23
+Seat 3: Player8 - $1.78
+Seat 4: Player9 - $0.70
+Seat 5: Player4 - $4.39
+Seat 6: Player2 - $1.90
+Seat 7: Player3 - $3.80
+Seat 8: Player11 - $4.10
+Seat 9: Player0 - $3.84
+Seat 10: Hero - $4.46
+End of Hand #2103770315
+
+Table #45406961 - Pink Paisley
+Starting Hand #2103771850
+Start time of hand: 11 Jun 2012 21:53:31
+Last Hand #2103770315
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: RING
+Money Type: REAL MONEY
+Blinds are now $0.02 / $0.04
+Button is at seat 7
+Seat 1: Player13 - $4.14
+Seat 2: Player5 - $2.23
+Seat 3: Player8 - $1.78
+Seat 4: Player9 - $0.70
+Seat 5: Player4 - $4.39
+Seat 6: Player2 - $1.90
+Seat 7: Player3 - $3.80
+Seat 8: Player11 - $4.10
+Seat 9: Player0 - $3.84
+Seat 10: Hero - $4.46
+Shuffling Deck
+Moving Button to seat 8
+Player0 posts small blind ($0.02)
+Hero posts big blind ($0.04)
+Dealing Cards
+Dealing [5 d][J s] to Hero
+Player13 folds
+Player5 calls $0.04
+Player8 calls $0.04
+Player4 folds
+Player2 folds
+Player3 folds
+Player11 folds
+Player0 calls $0.04
+Hero checks
+Pot sizes: $0.16
+Dealing Flop [7 c][T d][6 s]
+Player0 checks
+Hero checks
+Player5 checks
+Player8 checks
+Pot sizes: $0.16
+Dealing Turn [J h]
+Player0 bets $0.08
+Hero folds
+Player5 folds
+Player8 folds
+Pot sizes: $0.16
+Taking Rake of $0.01 from pot 1
+Player0 doesn't show
+Player0 wins $0.15
+Seat 1: Player13 - $4.14
+Seat 2: Player5 - $2.19
+Seat 3: Player8 - $1.74
+Seat 4: Player9 - $0.70
+Seat 5: Player4 - $4.39
+Seat 6: Player2 - $1.90
+Seat 7: Player3 - $3.80
+Seat 8: Player11 - $4.10
+Seat 9: Player0 - $3.95
+Seat 10: Hero - $4.42
+End of Hand #2103771850
+
+Table #45406961 - Pink Paisley
+Starting Hand #2103773363
+Start time of hand: 11 Jun 2012 21:55:23
+Last Hand #2103771850
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: RING
+Money Type: REAL MONEY
+Blinds are now $0.02 / $0.04
+Button is at seat 8
+Seat 1: Player13 - $4.14
+Seat 2: Player5 - $2.19
+Seat 3: Player8 - $1.74
+Seat 4: Player9 - $0.70
+Seat 5: Player4 - $4.39
+Seat 6: Player2 - $1.90
+Seat 7: Player3 - $3.80
+Seat 8: Player11 - $4.10
+Seat 9: Player0 - $3.95
+Seat 10: Hero - $4.42
+Shuffling Deck
+Moving Button to seat 9
+Hero posts small blind ($0.02)
+Player13 posts big blind ($0.04)
+Dealing Cards
+Dealing [3 h][9 s] to Hero
+Player5 folds
+Player8 raises to $0.16
+Player4 folds
+Player2 folds
+Player3 folds
+Player11 folds
+Player0 folds
+Hero folds
+Player13 folds
+Pot sizes: $0.10
+Player8 doesn't show
+Player8 wins $0.10
+Seat 1: Player13 - $4.10
+Seat 2: Player5 - $2.19
+Seat 3: Player8 - $1.80
+Seat 4: Player9 - $0.70
+Seat 5: Player4 - $4.39
+Seat 6: Player2 - $1.90
+Seat 7: Player3 - $3.80
+Seat 8: Player11 - $4.10
+Seat 9: Player0 - $3.95
+Seat 10: Hero - $4.40
+End of Hand #2103773363
+
+Table #45406961 - Pink Paisley
+Starting Hand #2103773766
+Start time of hand: 11 Jun 2012 21:56:00
+Last Hand #2103773363
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: RING
+Money Type: REAL MONEY
+Blinds are now $0.02 / $0.04
+Button is at seat 9
+Seat 1: Player13 - $4.10
+Seat 2: Player5 - $2.19
+Seat 3: Player8 - $1.80
+Seat 4: Player9 - $0.70
+Seat 5: Player4 - $4.39
+Seat 6: Player2 - $1.90
+Seat 7: Player3 - $3.80
+Seat 8: Player11 - $4.10
+Seat 9: Player0 - $3.95
+Seat 10: Hero - $4.40
+Shuffling Deck
+Moving Button to seat 10
+Player13 posts small blind ($0.02)
+Player5 posts big blind ($0.04)
+Dealing Cards
+Dealing [9 h][3 s] to Hero
+Player8 folds
+Player4 raises to $0.08
+Player2 folds
+Player3 folds
+Player11 calls $0.08
+Player0 folds
+Hero folds
+Player13 calls $0.08
+Player5 folds
+Pot sizes: $0.28
+Dealing Flop [5 h][6 h][6 c]
+Player13 checks
+Player4 checks
+Player11 bets $0.14
+Player13 folds
+Player4 folds
+Pot sizes: $0.28
+Taking Rake of $0.02 from pot 1
+Player11 doesn't show
+Player11 wins $0.26
+Seat 1: Player13 - $4.02
+Seat 2: Player5 - $2.15
+Seat 3: Player8 - $1.80
+Seat 4: Player9 - $0.70
+Seat 5: Player4 - $4.31
+Seat 6: Player2 - $1.90
+Seat 7: Player3 - $3.80
+Seat 8: Player11 - $4.28
+Seat 9: Player0 - $3.95
+Seat 10: Hero - $4.40
+End of Hand #2103773766
+
+Table #45406961 - Pink Paisley
+Starting Hand #2103774915
+Start time of hand: 11 Jun 2012 21:57:47
+Last Hand #2103773766
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: RING
+Money Type: REAL MONEY
+Blinds are now $0.02 / $0.04
+Button is at seat 10
+Seat 1: Player13 - $4.02
+Seat 2: Player5 - $2.15
+Seat 3: Player8 - $1.80
+Seat 4: Player9 - $0.70
+Seat 5: Player4 - $4.31
+Seat 6: Player2 - $1.90
+Seat 7: Player3 - $3.80
+Seat 8: Player11 - $4.28
+Seat 9: Player0 - $3.95
+Seat 10: Hero - $4.40
+Shuffling Deck
+Moving Button to seat 1
+Player5 posts small blind ($0.02)
+Player8 posts big blind ($0.04)
+Dealing Cards
+Dealing [Q h][8 s] to Hero
+Player4 folds
+Player2 folds
+Player3 folds
+Player11 raises to $0.12
+Player0 folds
+Hero folds
+Player13 folds
+Player5 folds
+Player8 raises to $0.46
+Player11 raises to $4.28 (all-in)
+Player8 calls $1.80 (all-in)
+Returning $2.48 to Player11 uncalled
+Pot sizes: $3.62
+Player8 shows [K d][K h]
+Player11 shows [Q c][A d]
+Dealing Flop [A c][6 h][7 d]
+Pot sizes: $3.62
+Dealing Turn [8 d]
+Pot sizes: $3.62
+Dealing River [2 h]
+Pot sizes: $3.62
+Taking Rake of $0.36 from pot 1
+Player11 has One Pair: Aces
+Player11 wins $3.26 with: One Pair: Aces
+Seat 1: Player13 - $4.02
+Seat 2: Player5 - $2.13
+Seat 3: Player8 - $0
+Seat 4: Player9 - $0.70
+Seat 5: Player4 - $4.31
+Seat 6: Player2 - $1.90
+Seat 7: Player3 - $3.80
+Seat 8: Player11 - $5.74
+Seat 9: Player0 - $3.95
+Seat 10: Hero - $4.40
+End of Hand #2103774915
+
+Table #45406961 - Pink Paisley
+Starting Hand #2103775624
+Start time of hand: 11 Jun 2012 21:58:52
+Last Hand #2103774915
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: RING
+Money Type: REAL MONEY
+Blinds are now $0.02 / $0.04
+Button is at seat 1
+Seat 1: Player13 - $4.02
+Seat 2: Player5 - $2.13
+Seat 3: Player8 - $2
+Seat 4: Player9 - $0.70
+Seat 5: Player4 - $4.31
+Seat 6: Player2 - $1.90
+Seat 7: Player3 - $3.80
+Seat 8: Player11 - $5.74
+Seat 9: Player0 - $3.95
+Seat 10: Hero - $4.40
+Shuffling Deck
+Moving Button to seat 2
+Player8 posts small blind ($0.02)
+Player9 posts big blind ($0.04)
+Dealing Cards
+Dealing [5 h][4 d] to Hero
+Player4 folds
+Player2 folds
+Player3 folds
+Player11 folds
+Player0 folds
+Hero folds
+Player13 calls $0.04
+Player5 folds
+Player8 folds
+Player9 checks
+Pot sizes: $0.10
+Dealing Flop [A c][7 s][4 s]
+Player9 checks
+Player13 bets $0.05
+Player9 folds
+Pot sizes: $0.10
+Taking Rake of $0.01 from pot 1
+Player13 doesn't show
+Player13 wins $0.09
+Seat 1: Player13 - $4.07
+Seat 2: Player5 - $2.13
+Seat 3: Player8 - $1.98
+Seat 4: Player9 - $0.66
+Seat 5: Player4 - $4.31
+Seat 6: Player2 - $1.90
+Seat 7: Player3 - $3.80
+Seat 8: Player11 - $5.74
+Seat 9: Player0 - $3.95
+Seat 10: Hero - $4.40
+End of Hand #2103775624
+
+Table #45406961 - Pink Paisley
+Starting Hand #2103776568
+Start time of hand: 11 Jun 2012 22:00:17
+Last Hand #2103775624
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: RING
+Money Type: REAL MONEY
+Blinds are now $0.02 / $0.04
+Button is at seat 2
+Seat 1: Player13 - $4.07
+Seat 2: Player5 - $2.13
+Seat 3: Player8 - $1.98
+Seat 4: Player9 - $0.66
+Seat 5: Player4 - $4.31
+Seat 6: Player2 - $1.90
+Seat 7: Player3 - $3.80
+Seat 8: Player11 - $5.74
+Seat 9: Player0 - $3.95
+Seat 10: Hero - $4.40
+Shuffling Deck
+Moving Button to seat 3
+Player9 posts small blind ($0.02)
+Player4 posts big blind ($0.04)
+Dealing Cards
+Dealing [A h][K s] to Hero
+Player2 folds
+Player3 folds
+Player11 folds
+Player0 raises to $0.12
+Hero raises to $0.20
+Player13 folds
+Player5 folds
+Player8 calls $0.20
+Player9 folds
+Player4 folds
+Player0 calls $0.20
+Pot sizes: $0.66
+Dealing Flop [A d][2 s][3 d]
+Player0 checks
+Hero bets $0.49
+Player8 calls $0.49
+Player0 folds
+Pot sizes: $1.64
+Dealing Turn [J c]
+Hero bets $1.32
+Player8 folds
+Pot sizes: $1.64
+Taking Rake of $0.16 from pot 1
+Hero doesn't show
+Hero wins $1.48
+Seat 1: Player13 - $4.07
+Seat 2: Player5 - $2.13
+Seat 3: Player8 - $1.29
+Seat 4: Player9 - $0.64
+Seat 5: Player4 - $4.27
+Seat 6: Player2 - $1.90
+Seat 7: Player3 - $3.80
+Seat 8: Player11 - $5.74
+Seat 9: Player0 - $3.75
+Seat 10: Hero - $5.19
+End of Hand #2103776568
+
+Table #45406961 - Pink Paisley
+Starting Hand #2103778063
+Start time of hand: 11 Jun 2012 22:02:04
+Last Hand #2103776568
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: RING
+Money Type: REAL MONEY
+Blinds are now $0.02 / $0.04
+Button is at seat 3
+Seat 1: Player13 - $4.07
+Seat 2: Player5 - $2.13
+Seat 3: Player8 - $2
+Seat 4: Player9 - $0.64
+Seat 5: Player4 - $4.27
+Seat 6: Player2 - $1.90
+Seat 7: Player3 - $3.80
+Seat 8: Player11 - $5.74
+Seat 9: Player0 - $3.75
+Seat 10: Hero - $5.19
+Shuffling Deck
+Moving Button to seat 4
+Player4 posts small blind ($0.02)
+Player2 posts big blind ($0.04)
+Dealing Cards
+Dealing [7 h][6 s] to Hero
+Player3 raises to $0.16
+Player11 folds
+Player0 folds
+Hero folds
+Player13 calls $0.16
+Player5 folds
+Player8 calls $0.16
+Player9 folds
+Player4 folds
+Player2 folds
+Pot sizes: $0.54
+Dealing Flop [5 c][6 h][Q s]
+Player2 says GRRrrrRRRRrr!
+Player3 bets $0.24
+Player13 has requested more time
+Player13  is using the time bank 
+Player13 has 14 seconds remaining in the time bank
+Player13 folds
+Player8 folds
+Pot sizes: $0.54
+Taking Rake of $0.05 from pot 1
+Player3 doesn't show
+Player3 wins $0.49
+Seat 1: Player13 - $3.91
+Seat 2: Player5 - $2.13
+Seat 3: Player8 - $1.84
+Seat 4: Player9 - $0.64
+Seat 5: Player4 - $4.25
+Seat 6: Player2 - $1.86
+Seat 7: Player3 - $4.13
+Seat 8: Player11 - $5.74
+Seat 9: Player0 - $3.75
+Seat 10: Hero - $5.19
+End of Hand #2103778063
+
+Table #45406961 - Pink Paisley
+Starting Hand #2103779465
+Start time of hand: 11 Jun 2012 22:03:46
+Last Hand #2103778063
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: RING
+Money Type: REAL MONEY
+Blinds are now $0.02 / $0.04
+Button is at seat 4
+Seat 1: Player13 - $3.91
+Seat 2: Player5 - $2.13
+Seat 3: Player8 - $1.84
+Seat 4: Player9 - $0.64
+Seat 5: Player4 - $4.25
+Seat 6: Player2 - $1.86
+Seat 7: Player3 - $4.13
+Seat 8: Player11 - $5.74
+Seat 9: Player0 - $3.75
+Seat 10: Hero - $5.19
+Shuffling Deck
+Moving Button to seat 5
+Player2 posts small blind ($0.02)
+Player3 posts big blind ($0.04)
+Dealing Cards
+Dealing [2 h][K h] to Hero
+Player11 folds
+Player0 folds
+Hero folds
+Player13 folds
+Player5 calls $0.04
+Player8 folds
+Player9 folds
+Player4 folds
+Player2 folds
+Player3 raises to $0.12
+Player5 calls $0.12
+Pot sizes: $0.26
+Dealing Flop [8 s][4 d][9 c]
+Player3 bets $0.12
+Player5 calls $0.12
+Pot sizes: $0.50
+Dealing Turn [A c]
+Player3 bets $0.20
+Player5 folds
+Pot sizes: $0.50
+Taking Rake of $0.05 from pot 1
+Player3 doesn't show
+Player3 wins $0.45
+Seat 1: Player13 - $3.91
+Seat 2: Player5 - $1.89
+Seat 3: Player8 - $1.84
+Seat 4: Player9 - $0.64
+Seat 5: Player4 - $4.25
+Seat 6: Player2 - $1.84
+Seat 7: Player3 - $4.34
+Seat 8: Player11 - $5.74
+Seat 9: Player0 - $3.75
+Seat 10: Hero - $5.19
+End of Hand #2103779465
+
+Table #45406961 - Pink Paisley
+Starting Hand #2103780863
+Start time of hand: 11 Jun 2012 22:05:26
+Last Hand #2103779465
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: RING
+Money Type: REAL MONEY
+Blinds are now $0.02 / $0.04
+Button is at seat 5
+Seat 1: Player13 - $3.91
+Seat 2: Player5 - $1.89
+Seat 3: Player8 - $1.84
+Seat 4: Player9 - $0.64
+Seat 5: Player4 - $4.25
+Seat 6: Player2 - $1.84
+Seat 7: Player3 - $4.34
+Seat 8: Player11 - $5.74
+Seat 9: Player0 - $3.75
+Seat 10: Hero - $5.19
+Shuffling Deck
+Moving Button to seat 6
+Player3 posts small blind ($0.02)
+Player11 posts big blind ($0.04)
+Dealing Cards
+Dealing [9 c][5 d] to Hero
+Player0 calls $0.04
+Hero folds
+Player13 folds
+Player5 folds
+Player8 folds
+Player9 folds
+Player4 folds
+Player2 calls $0.04
+Player3 folds
+Player11 checks
+Pot sizes: $0.14
+Dealing Flop [T s][J h][2 d]
+Player11 checks
+Player0 checks
+Player2 bets $0.07
+Player11 folds
+Player0 folds
+Pot sizes: $0.14
+Taking Rake of $0.01 from pot 1
+Player2 doesn't show
+Player2 wins $0.13
+Seat 1: Player13 - $3.91
+Seat 2: Player5 - $1.89
+Seat 3: Player8 - $1.84
+Seat 4: Player9 - $0.64
+Seat 5: Player4 - $4.25
+Seat 6: Player2 - $1.93
+Seat 7: Player3 - $4.32
+Seat 8: Player11 - $5.70
+Seat 9: Player0 - $3.71
+Seat 10: Hero - $5.19
+End of Hand #2103780863
+
+Table #45406961 - Pink Paisley
+Starting Hand #2103782441
+Start time of hand: 11 Jun 2012 22:07:15
+Last Hand #2103780863
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: RING
+Money Type: REAL MONEY
+Blinds are now $0.02 / $0.04
+Button is at seat 6
+Seat 1: Player13 - $3.91
+Seat 2: Player5 - $1.89
+Seat 3: Player8 - $1.84
+Seat 4: Player9 - $0.64
+Seat 5: Player4 - $4.25
+Seat 6: Player2 - $1.93
+Seat 7: Player3 - $4.32
+Seat 8: Player11 - $5.70
+Seat 9: Player0 - $3.71
+Seat 10: Hero - $5.19
+Shuffling Deck
+Moving Button to seat 7
+Player11 posts small blind ($0.02)
+Player0 posts big blind ($0.04)
+Dealing Cards
+Dealing [Q h][T s] to Hero
+Hero folds
+Player13 folds
+Player5 calls $0.04
+Player8 folds
+Player9 raises to $0.16
+Player4 folds
+Player2 folds
+Player3 folds
+Player11 folds
+Player0 folds
+Player5 calls $0.16
+Pot sizes: $0.38
+Dealing Flop [5 s][J d][J c]
+Player5 bets $0.38
+Player9 raises to $0.48 (all-in)
+Player5 calls $0.48
+Pot sizes: $1.34
+Player5 shows [J h][Q s]
+Player9 shows [A c][A s]
+Dealing Turn [8 s]
+Pot sizes: $1.34
+Dealing River [6 s]
+Pot sizes: $1.34
+Taking Rake of $0.13 from pot 1
+Player9 has Two Pairs: Aces, Jacks
+Player5 has Three of a Kind: Jacks
+Player5 wins $1.21 with: Three of a Kind: Jacks
+Seat 1: Player13 - $3.91
+Seat 2: Player5 - $2.46
+Seat 3: Player8 - $1.84
+Seat 4: Player9 - $0
+Seat 5: Player4 - $4.25
+Seat 6: Player2 - $1.93
+Seat 7: Player3 - $4.32
+Seat 8: Player11 - $5.68
+Seat 9: Player0 - $3.67
+Seat 10: Hero - $5.19
+End of Hand #2103782441
+
+Player9 rebuys $0.70
+
+Player0 rebuys $0.53
+
+Table #45406961 - Pink Paisley
+Starting Hand #2103783663
+Start time of hand: 11 Jun 2012 22:08:44
+Last Hand #2103782441
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: RING
+Money Type: REAL MONEY
+Blinds are now $0.02 / $0.04
+Button is at seat 7
+Seat 1: Player13 - $3.91
+Seat 2: Player5 - $2.46
+Seat 3: Player8 - $1.84
+Seat 4: Player9 - $0 (away from table)
+Seat 5: Player4 - $4.25
+Seat 6: Player2 - $1.93
+Seat 7: Player3 - $4.32
+Seat 8: Player11 - $5.68
+Seat 9: Player0 - $3.67
+Seat 10: Hero - $5.19
+Shuffling Deck
+Moving Button to seat 8
+Player0 posts small blind ($0.02)
+Hero posts big blind ($0.04)
+Dealing Cards
+Dealing [8 h][T d] to Hero
+Player9 rebuys $0.70
+Player13 folds
+Player5 calls $0.04
+Player8 calls $0.04
+Player4 raises to $0.12
+Player2 raises to $0.20
+Player3 folds
+Player11 folds
+Player5: sry Jackal ,nh
+Player0 calls $0.20
+Hero folds
+Player5 calls $0.20
+Player8 folds
+Player4 calls $0.20
+Pot sizes: $0.88
+Dealing Flop [7 c][8 c][J s]
+Player0 checks
+Player5 bets $0.44
+Player4 folds
+Player2 raises to $0.88
+Player0 folds
+Player0 rebuys $0.53
+Player5 calls $0.88
+Pot sizes: $2.64
+Dealing Turn [7 d]
+Player5 bets $0.32
+Player2 raises to $0.85 (all-in)
+Player5 calls $0.85
+Pot sizes: $4.34
+Player5 shows [Q c][Q s]
+Player2 shows [J c][A s]
+Dealing River [8 d]
+Pot sizes: $4.34
+Taking Rake of $0.43 from pot 1
+Player2 has Two Pairs: Jacks, 8s
+Player5 has Two Pairs: Queens, 8s
+Player5 wins $3.91 with: Two Pairs: Queens, 8s
+Player2 says Boom!
+Seat 1: Player13 - $3.91
+Seat 2: Player5 - $4.44
+Seat 3: Player8 - $1.80
+Seat 4: Player9 - $0.70
+Seat 5: Player4 - $4.05
+Seat 6: Player2 - $0
+Seat 7: Player3 - $4.32
+Seat 8: Player11 - $5.68
+Seat 9: Player0 - $4
+Seat 10: Hero - $5.15
+End of Hand #2103783663
+
+Table #45406961 - Pink Paisley
+Starting Hand #2103785419
+Start time of hand: 11 Jun 2012 22:10:54
+Last Hand #2103783663
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: RING
+Money Type: REAL MONEY
+Blinds are now $0.02 / $0.04
+Button is at seat 8
+Seat 1: Player13 - $3.91
+Seat 2: Player5 - $4.44
+Seat 3: Player8 - $1.80
+Seat 4: Player9 - $0.70
+Seat 5: Player4 - $4.05
+Seat 6: Player2 - $0 (away from table)
+Seat 7: Player3 - $4.32
+Seat 8: Player11 - $5.68
+Seat 9: Player0 - $4
+Seat 10: Hero - $5.15
+Shuffling Deck
+Moving Button to seat 9
+Hero posts small blind ($0.02)
+Player13 posts big blind ($0.04)
+Dealing Cards
+Dealing [Q s][7 c] to Hero
+Player5 folds
+Player8 folds
+Player9 folds
+Player4 folds
+Player3 folds
+Player11 folds
+Player0 folds
+Hero calls $0.04
+Player13 checks
+Pot sizes: $0.08
+Dealing Flop [6 h][9 s][2 d]
+Hero checks
+Player13 bets $0.04
+Hero folds
+Pot sizes: $0.08
+No Rake Taken
+Player13 doesn't show
+Player13 wins $0.08
+Seat 1: Player13 - $3.95
+Seat 2: Player5 - $4.44
+Seat 3: Player8 - $1.80
+Seat 4: Player9 - $0.70
+Seat 5: Player4 - $4.05
+Seat 6: Player2 - $0
+Seat 7: Player3 - $4.32
+Seat 8: Player11 - $5.68
+Seat 9: Player0 - $4
+Seat 10: Hero - $5.11
+End of Hand #2103785419
+
+Table #45406961 - Pink Paisley
+Starting Hand #2103786179
+Start time of hand: 11 Jun 2012 22:11:49
+Last Hand #2103785419
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: RING
+Money Type: REAL MONEY
+Blinds are now $0.02 / $0.04
+Button is at seat 9
+Seat 1: Player13 - $3.95
+Seat 2: Player5 - $4.44
+Seat 3: Player8 - $1.80
+Seat 4: Player9 - $0.70
+Seat 5: Player4 - $4.05
+Seat 7: Player3 - $4.32
+Seat 8: Player11 - $5.68
+Seat 9: Player0 - $4
+Seat 10: Hero - $5.11
+Shuffling Deck
+Moving Button to seat 10
+Player13 posts small blind ($0.02)
+Player5 posts big blind ($0.04)
+Dealing Cards
+Dealing [A s][7 h] to Hero
+Player8 calls $0.04
+Player9 folds
+Player4 folds
+Player3 calls $0.04
+Player11 folds
+Player0 folds
+Hero calls $0.04
+Player13 calls $0.04
+Player5 checks
+Pot sizes: $0.20
+Dealing Flop [2 s][2 d][5 h]
+Player13 checks
+Player5 checks
+Player8 checks
+Player3 checks
+Hero checks
+Pot sizes: $0.20
+Dealing Turn [J d]
+Player13 checks
+Player5 checks
+Player8 bets $0.12
+Player3 folds
+Hero folds
+Player15 brings $1 to table 45406961
+Player13 folds
+Player5 folds
+Pot sizes: $0.20
+Taking Rake of $0.02 from pot 1
+Player13 has received 1 additional seconds in the time bank (15 total seconds)
+Player8 doesn't show
+Player8 wins $0.18
+Seat 1: Player13 - $3.91
+Seat 2: Player5 - $4.40
+Seat 3: Player8 - $1.94
+Seat 4: Player9 - $0.70
+Seat 5: Player4 - $4.05
+Seat 6: Player15 - $1
+Seat 7: Player3 - $4.28
+Seat 8: Player11 - $5.68
+Seat 9: Player0 - $4
+Seat 10: Hero - $5.07
+End of Hand #2103786179
+
+Table #45406961 - Pink Paisley
+Starting Hand #2103787665
+Start time of hand: 11 Jun 2012 22:13:41
+Last Hand #2103786179
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: RING
+Money Type: REAL MONEY
+Blinds are now $0.02 / $0.04
+Button is at seat 10
+Seat 1: Player13 - $3.91
+Seat 2: Player5 - $4.40
+Seat 3: Player8 - $1.94
+Seat 4: Player9 - $0.70
+Seat 5: Player4 - $4.05
+Seat 6: Player15 - $1
+Seat 7: Player3 - $4.28
+Seat 8: Player11 - $5.68
+Seat 9: Player0 - $4
+Seat 10: Hero - $5.07
+Shuffling Deck
+Moving Button to seat 1
+Player5 posts small blind ($0.02)
+Player8 posts big blind ($0.04)
+Player15 posts $0.04
+Dealing Cards
+Dealing [J s][3 c] to Hero
+Player9 folds
+Player4 folds
+Player15 checks
+Player3 folds
+Player11 folds
+Player0 folds
+Hero folds
+Player13 calls $0.04
+Player5 folds
+Player8 checks
+Pot sizes: $0.14
+Dealing Flop [2 s][7 h][7 c]
+Player8 checks
+Player15 checks
+Player13 checks
+Pot sizes: $0.14
+Dealing Turn [4 c]
+Player8 checks
+Player15 checks
+Player13 checks
+Pot sizes: $0.14
+Dealing River [6 d]
+Player8 checks
+Player15 checks
+Player13 checks
+Pot sizes: $0.14
+Taking Rake of $0.01 from pot 1
+Player8 shows [9 d][8 d]
+Player8 has One Pair: 7s
+Player15 shows [3 d][K c]
+Player15 has One Pair: 7s
+Player13 shows [K s][Q c]
+Player13 has One Pair: 7s
+Player13 wins $0.13 with: One Pair: 7s
+Seat 1: Player13 - $4
+Seat 2: Player5 - $4.38
+Seat 3: Player8 - $1.90
+Seat 4: Player9 - $0.70
+Seat 5: Player4 - $4.05
+Seat 6: Player15 - $0.96
+Seat 7: Player3 - $4.28
+Seat 8: Player11 - $5.68
+Seat 9: Player0 - $4
+Seat 10: Hero - $5.07
+End of Hand #2103787665
+
+Table #45406961 - Pink Paisley
+Starting Hand #2103789173
+Start time of hand: 11 Jun 2012 22:15:34
+Last Hand #2103787665
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: RING
+Money Type: REAL MONEY
+Blinds are now $0.02 / $0.04
+Button is at seat 1
+Seat 1: Player13 - $4
+Seat 2: Player5 - $4.38
+Seat 3: Player8 - $1.90
+Seat 4: Player9 - $0.70
+Seat 5: Player4 - $4.05
+Seat 6: Player15 - $0.96
+Seat 7: Player3 - $4.28
+Seat 8: Player11 - $5.68
+Seat 9: Player0 - $4
+Seat 10: Hero - $5.07
+Shuffling Deck
+Moving Button to seat 2
+Player8 posts small blind ($0.02)
+Player9 posts big blind ($0.04)
+Dealing Cards
+Dealing [7 c][K h] to Hero
+Player4 folds
+Player15 calls $0.04
+Player3 folds
+Player11 raises to $0.18
+Player0 calls $0.18
+Hero folds
+Player13 folds
+Player5 calls $0.18
+Player8 calls $0.18
+Player9 folds
+Player15 folds
+Pot sizes: $0.80
+Dealing Flop [6 s][5 s][8 h]
+Player8 checks
+Player11 bets $0.40
+Player0 folds
+Player5 folds
+Player8 folds
+Pot sizes: $0.80
+Taking Rake of $0.08 from pot 1
+Player11 doesn't show
+Player11 wins $0.72
+Seat 1: Player13 - $4
+Seat 2: Player5 - $4.20
+Seat 3: Player8 - $1.72
+Seat 4: Player9 - $0.66
+Seat 5: Player4 - $4.05
+Seat 6: Player15 - $0.92
+Seat 7: Player3 - $4.28
+Seat 8: Player11 - $6.22
+Seat 9: Player0 - $3.82
+Seat 10: Hero - $5.07
+End of Hand #2103789173
+
+Table #45406961 - Pink Paisley
+Starting Hand #2103790266
+Start time of hand: 11 Jun 2012 22:16:57
+Last Hand #2103789173
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: RING
+Money Type: REAL MONEY
+Blinds are now $0.02 / $0.04
+Button is at seat 2
+Seat 1: Player13 - $4
+Seat 2: Player5 - $4.20
+Seat 3: Player8 - $1.72
+Seat 4: Player9 - $0.66
+Seat 5: Player4 - $4.05
+Seat 6: Player15 - $0.92
+Seat 7: Player3 - $4.28
+Seat 8: Player11 - $6.22
+Seat 9: Player0 - $3.82
+Seat 10: Hero - $5.07
+Shuffling Deck
+Moving Button to seat 3
+Player9 posts small blind ($0.02)
+Player4 posts big blind ($0.04)
+Dealing Cards
+Dealing [K c][4 s] to Hero
+Player15 folds
+Player3 folds
+Player11 folds
+Player0 folds
+Hero folds
+Player13 folds
+Player5 folds
+Player8 calls $0.04
+Player9 calls $0.04
+Player4 checks
+Pot sizes: $0.12
+Dealing Flop [T h][6 c][4 c]
+Player9 checks
+Player4 checks
+Player8 bets $0.04
+Player9 folds
+Player4 calls $0.04
+Pot sizes: $0.20
+Dealing Turn [J c]
+Player4 checks
+Player8 bets $0.12
+Player4 folds
+Pot sizes: $0.20
+Taking Rake of $0.02 from pot 1
+Player8 doesn't show
+Player8 wins $0.18
+Seat 1: Player13 - $4
+Seat 2: Player5 - $4.20
+Seat 3: Player8 - $1.82
+Seat 4: Player9 - $0.62
+Seat 5: Player4 - $3.97
+Seat 6: Player15 - $0.92
+Seat 7: Player3 - $4.28
+Seat 8: Player11 - $6.22
+Seat 9: Player0 - $3.82
+Seat 10: Hero - $5.07
+End of Hand #2103790266
+
+Table #45406961 - Pink Paisley
+Starting Hand #2103791339
+Start time of hand: 11 Jun 2012 22:18:22
+Last Hand #2103790266
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: RING
+Money Type: REAL MONEY
+Blinds are now $0.02 / $0.04
+Button is at seat 3
+Seat 1: Player13 - $4
+Seat 2: Player5 - $4.20
+Seat 3: Player8 - $1.82
+Seat 4: Player9 - $0.62
+Seat 5: Player4 - $3.97
+Seat 6: Player15 - $0.92
+Seat 7: Player3 - $4.28
+Seat 8: Player11 - $6.22
+Seat 9: Player0 - $3.82
+Seat 10: Hero - $5.07
+Shuffling Deck
+Moving Button to seat 4
+Player4 posts small blind ($0.02)
+Player15 posts big blind ($0.04)
+Dealing Cards
+Dealing [6 h][4 h] to Hero
+Player3 folds
+Player11 raises to $0.08
+Player0 calls $0.08
+Hero folds
+Player13 calls $0.08
+Player5 calls $0.08
+Player8 folds
+Player9 folds
+Player4 folds
+Player15 calls $0.08
+Pot sizes: $0.42
+Dealing Flop [T h][A s][6 s]
+Player15 checks
+Player11 checks
+Player0 checks
+Player13 checks
+Player5 bets $0.28
+Player15 folds
+Player11 folds
+Player0 folds
+Player13 folds
+Pot sizes: $0.42
+Taking Rake of $0.04 from pot 1
+Player5 doesn't show
+Player5 wins $0.38
+Seat 1: Player13 - $3.92
+Seat 2: Player5 - $4.50
+Seat 3: Player8 - $1.82
+Seat 4: Player9 - $0.62
+Seat 5: Player4 - $3.95
+Seat 6: Player15 - $0.84
+Seat 7: Player3 - $4.28
+Seat 8: Player11 - $6.14
+Seat 9: Player0 - $3.74
+Seat 10: Hero - $5.07
+End of Hand #2103791339
+
+Table #45406961 - Pink Paisley
+Starting Hand #2103792851
+Start time of hand: 11 Jun 2012 22:20:15
+Last Hand #2103791339
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: RING
+Money Type: REAL MONEY
+Blinds are now $0.02 / $0.04
+Button is at seat 4
+Seat 1: Player13 - $3.92
+Seat 2: Player5 - $4.50
+Seat 3: Player8 - $1.82
+Seat 4: Player9 - $0.62
+Seat 5: Player4 - $3.95
+Seat 6: Player15 - $0.84
+Seat 7: Player3 - $4.28
+Seat 8: Player11 - $6.14
+Seat 9: Player0 - $3.74
+Seat 10: Hero - $5.07
+Shuffling Deck
+Moving Button to seat 5
+Player15 posts small blind ($0.02)
+Player3 posts big blind ($0.04)
+Dealing Cards
+Dealing [J h][6 h] to Hero
+Player11 folds
+Player0 raises to $0.16
+Hero folds
+Player13 folds
+Player5 calls $0.16
+Player8 folds
+Player9 raises to $0.62 (all-in)
+Player4 calls $0.62
+Player15 folds
+Player3 folds
+Player0 calls $0.62
+Player5 calls $0.62
+Pot sizes: $2.54
+Dealing Flop [T h][6 d][Q d]
+Player0 checks
+Player5 checks
+Player4 bets $1.27
+Player0 folds
+Player5 folds
+Returning $1.27 to Player4 uncalled
+Pot sizes: $2.54
+Player9 shows [A c][K h]
+Player4 shows [Q h][Q c]
+Dealing Turn [2 c]
+Pot sizes: $2.54
+Dealing River [4 c]
+Pot sizes: $2.54
+Taking Rake of $0.25 from pot 1
+Player4 has Three of a Kind: Queens
+Player4 wins $2.29 with: Three of a Kind: Queens
+Seat 1: Player13 - $3.92
+Seat 2: Player5 - $3.88
+Seat 3: Player8 - $1.82
+Seat 4: Player9 - $0
+Seat 5: Player4 - $5.62
+Seat 6: Player15 - $0.82
+Seat 7: Player3 - $4.24
+Seat 8: Player11 - $6.14
+Seat 9: Player0 - $3.12
+Seat 10: Hero - $5.07
+End of Hand #2103792851
+
+Player0 rebuys $0.88
+
+Player9 rebuys $0.70
+
+Table #45406961 - Pink Paisley
+Starting Hand #2103794522
+Start time of hand: 11 Jun 2012 22:22:27
+Last Hand #2103792851
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: RING
+Money Type: REAL MONEY
+Blinds are now $0.02 / $0.04
+Button is at seat 5
+Seat 1: Player13 - $3.92
+Seat 2: Player5 - $3.88
+Seat 3: Player8 - $1.82
+Seat 4: Player9 - $0 (away from table)
+Seat 5: Player4 - $5.62
+Seat 6: Player15 - $0.82
+Seat 7: Player3 - $4.24
+Seat 8: Player11 - $6.14
+Seat 9: Player0 - $4
+Seat 10: Hero - $5.07
+Shuffling Deck
+Moving Button to seat 6
+Player3 posts small blind ($0.02)
+Player11 posts big blind ($0.04)
+Dealing Cards
+Player5 acknowledges a nice hand.
+Dealing [3 s][4 h] to Hero
+Player0 folds
+Player9 rebuys $0.70
+Hero folds
+Player13 folds
+Player5 folds
+Player8 calls $0.04
+Player4 folds
+Player15 calls $0.04
+Player3 calls $0.04
+Player11 checks
+Pot sizes: $0.16
+Dealing Flop [6 s][Q c][2 c]
+Player3 checks
+Player11 checks
+Player8 bets $0.16
+Player15 calls $0.16
+Player3 folds
+Player11 folds
+Pot sizes: $0.48
+Dealing Turn [6 h]
+Player8 bets $0.48
+Player15 calls $0.48
+Pot sizes: $1.44
+Dealing River [T c]
+Player8 bets $1.08
+Player15 calls $0.14 (all-in)
+Returning $0.94 to Player8 uncalled
+Pot sizes: $1.72
+Player8 shows [J h][Q h]
+Player15 shows [8 c][7 c]
+Taking Rake of $0.17 from pot 1
+Player8 has Two Pairs: Queens, 6s
+Player15 has Flush, Queen high 
+Player15 wins $1.55 with: Flush, Queen high 
+Seat 1: Player13 - $3.92
+Seat 2: Player5 - $3.88
+Seat 3: Player8 - $1
+Seat 4: Player9 - $0.70
+Seat 5: Player4 - $5.62
+Seat 6: Player15 - $1.55
+Seat 7: Player3 - $4.20
+Seat 8: Player11 - $6.10
+Seat 9: Player0 - $4
+Seat 10: Hero - $5.07
+End of Hand #2103794522
+
+Table #45406961 - Pink Paisley
+Starting Hand #2103795998
+Start time of hand: 11 Jun 2012 22:24:24
+Last Hand #2103794522
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: RING
+Money Type: REAL MONEY
+Blinds are now $0.02 / $0.04
+Button is at seat 6
+Seat 1: Player13 - $3.92
+Seat 2: Player5 - $3.88
+Seat 3: Player8 - $1.01
+Seat 4: Player9 - $0.70
+Seat 5: Player4 - $5.62
+Seat 6: Player15 - $1.55
+Seat 7: Player3 - $4.20
+Seat 8: Player11 - $6.10
+Seat 9: Player0 - $4
+Seat 10: Hero - $5.07
+Shuffling Deck
+Moving Button to seat 7
+Player11 posts small blind ($0.02)
+Player0 posts big blind ($0.04)
+Dealing Cards
+Dealing [3 c][6 s] to Hero
+Hero folds
+Player15 says thank you.
+Player13 folds
+Player5 calls $0.04
+Player8 raises to $1.01 (all-in)
+Player9 folds
+Player4 folds
+Player15 folds
+Player3 folds
+Player11 folds
+Player0 folds
+Player5 folds
+Pot sizes: $0.14
+Player8 doesn't show
+Player8 wins $0.14
+Seat 1: Player13 - $3.92
+Seat 2: Player5 - $3.84
+Seat 3: Player8 - $1.11
+Seat 4: Player9 - $0.70
+Seat 5: Player4 - $5.62
+Seat 6: Player15 - $1.55
+Seat 7: Player3 - $4.20
+Seat 8: Player11 - $6.08
+Seat 9: Player0 - $3.96
+Seat 10: Hero - $5.07
+End of Hand #2103795998
+
+Table #45406961 - Pink Paisley
+Starting Hand #2103796462
+Start time of hand: 11 Jun 2012 22:25:02
+Last Hand #2103795998
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: RING
+Money Type: REAL MONEY
+Blinds are now $0.02 / $0.04
+Button is at seat 7
+Seat 1: Player13 - $3.92
+Seat 2: Player5 - $3.84
+Seat 3: Player8 - $1.11
+Seat 4: Player9 - $0.70
+Seat 5: Player4 - $5.62
+Seat 6: Player15 - $1.55
+Seat 7: Player3 - $4.20
+Seat 8: Player11 - $6.08
+Seat 9: Player0 - $3.96
+Seat 10: Hero - $5.07
+Shuffling Deck
+Moving Button to seat 8
+Player0 posts small blind ($0.02)
+Hero posts big blind ($0.04)
+Dealing Cards
+Dealing [Q c][A h] to Hero
+Player13 folds
+Player5 folds
+Player8 folds
+Player9 raises to $0.70 (all-in)
+Player4 folds
+Player15 folds
+Player3 folds
+Player11 folds
+Player0 folds
+Hero calls $0.70
+Pot sizes: $1.42
+Player9 shows [Q s][Q d]
+Hero shows [Q c][A h]
+Dealing Flop [4 d][9 c][K c]
+Pot sizes: $1.42
+Dealing Turn [2 h]
+Pot sizes: $1.42
+Dealing River [2 c]
+Pot sizes: $1.42
+Taking Rake of $0.14 from pot 1
+Player9 has Two Pairs: Queens, 2s
+Player9 wins $1.28 with: Two Pairs: Queens, 2s
+Seat 1: Player13 - $3.92
+Seat 2: Player5 - $3.84
+Seat 3: Player8 - $1.11
+Seat 4: Player9 - $1.28
+Seat 5: Player4 - $5.62
+Seat 6: Player15 - $1.55
+Seat 7: Player3 - $4.20
+Seat 8: Player11 - $6.08
+Seat 9: Player0 - $3.94
+Seat 10: Hero - $4.37
+End of Hand #2103796462
+
+Table #45406961 - Pink Paisley
+Starting Hand #2103797258
+Start time of hand: 11 Jun 2012 22:26:06
+Last Hand #2103796462
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: RING
+Money Type: REAL MONEY
+Blinds are now $0.02 / $0.04
+Button is at seat 8
+Seat 1: Player13 - $3.92
+Seat 2: Player5 - $3.84
+Seat 4: Player9 - $1.28
+Seat 5: Player4 - $5.62
+Seat 6: Player15 - $1.55
+Seat 7: Player3 - $4.20
+Seat 8: Player11 - $6.08
+Seat 9: Player0 - $3.94
+Seat 10: Hero - $4.37
+Shuffling Deck
+Moving Button to seat 9
+Hero posts small blind ($0.02)
+Player13 posts big blind ($0.04)
+Dealing Cards
+Dealing [7 d][9 s] to Hero
+Player5 calls $0.04
+Player5 acknowledges a nice hand.
+Player9 folds
+Player4 raises to $0.12
+Player15 folds
+Player3 folds
+Player11 folds
+Player0 folds
+Hero folds
+Player13 folds
+Player5 raises to $0.20
+Player4 calls $0.20
+Pot sizes: $0.46
+Dealing Flop [2 s][T d][8 c]
+Player5 bets $0.46
+Player4 folds
+Pot sizes: $0.46
+Taking Rake of $0.04 from pot 1
+Player5 shows [A h][A d]
+Player5 has One Pair: Aces
+Player5 wins $0.42
+Seat 1: Player13 - $3.88
+Seat 2: Player5 - $4.06
+Seat 4: Player9 - $1.28
+Seat 5: Player4 - $5.42
+Seat 6: Player15 - $1.55
+Seat 7: Player3 - $4.20
+Seat 8: Player11 - $6.08
+Seat 9: Player0 - $3.94
+Seat 10: Hero - $4.35
+End of Hand #2103797258
+
+Table #45406961 - Pink Paisley
+Starting Hand #2103798195
+Start time of hand: 11 Jun 2012 22:27:26
+Last Hand #2103797258
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: RING
+Money Type: REAL MONEY
+Blinds are now $0.02 / $0.04
+Button is at seat 9
+Seat 1: Player13 - $3.88
+Seat 2: Player5 - $4.06
+Seat 4: Player9 - $1.28
+Seat 5: Player4 - $5.42
+Seat 6: Player15 - $1.55
+Seat 7: Player3 - $4.20
+Seat 8: Player11 - $6.08
+Seat 9: Player0 - $3.94
+Seat 10: Hero - $4.35
+Shuffling Deck
+Moving Button to seat 10
+Player13 posts small blind ($0.02)
+Player5 posts big blind ($0.04)
+Dealing Cards
+Dealing [5 h][Q c] to Hero
+Player9 folds
+Player4 folds
+Player15 calls $0.04
+Player3 folds
+Player14 brings $4 to table 45406961
+Player11 raises to $0.18
+Player0 folds
+Hero folds
+Player13 folds
+Player5 folds
+Player15 folds
+Pot sizes: $0.14
+Player11 doesn't show
+Player11 wins $0.14
+Seat 1: Player13 - $3.86
+Seat 2: Player5 - $4.02
+Seat 3: Player14 - $4
+Seat 4: Player9 - $1.28
+Seat 5: Player4 - $5.42
+Seat 6: Player15 - $1.51
+Seat 7: Player3 - $4.20
+Seat 8: Player11 - $6.18
+Seat 9: Player0 - $3.94
+Seat 10: Hero - $4.35
+End of Hand #2103798195
+
+Table #45406961 - Pink Paisley
+Starting Hand #2103798780
+Start time of hand: 11 Jun 2012 22:28:14
+Last Hand #2103798195
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: RING
+Money Type: REAL MONEY
+Blinds are now $0.02 / $0.04
+Button is at seat 10
+Seat 1: Player13 - $3.86
+Seat 2: Player5 - $4.02
+Seat 3: Player14 - $4
+Seat 4: Player9 - $1.28
+Seat 5: Player4 - $5.42
+Seat 6: Player15 - $1.51
+Seat 7: Player3 - $4.20
+Seat 8: Player11 - $6.18
+Seat 9: Player0 - $3.94
+Seat 10: Hero - $4.35
+Shuffling Deck
+Moving Button to seat 1
+Player5 posts small blind ($0.02)
+Player14 posts big blind ($0.04)
+Dealing Cards
+Dealing [3 h][A d] to Hero
+Player9 folds
+Player4 folds
+Player15 calls $0.04
+Player3 folds
+Player11 folds
+Player0 raises to $0.12
+Hero folds
+Player13 folds
+Player5 folds
+Player14 calls $0.12
+Player15 folds
+Pot sizes: $0.30
+Dealing Flop [9 h][A s][5 c]
+Player14 checks
+Player0 bets $0.18
+Player14 folds
+Pot sizes: $0.30
+Taking Rake of $0.03 from pot 1
+Player0 doesn't show
+Player0 wins $0.27
+Seat 1: Player13 - $3.86
+Seat 2: Player5 - $4
+Seat 3: Player14 - $3.88
+Seat 4: Player9 - $1.28
+Seat 5: Player4 - $5.42
+Seat 6: Player15 - $1.47
+Seat 7: Player3 - $4.20
+Seat 8: Player11 - $6.18
+Seat 9: Player0 - $4.09
+Seat 10: Hero - $4.35
+End of Hand #2103798780
+
+Table #45406961 - Pink Paisley
+Starting Hand #2103799833
+Start time of hand: 11 Jun 2012 22:29:34
+Last Hand #2103798780
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: RING
+Money Type: REAL MONEY
+Blinds are now $0.02 / $0.04
+Button is at seat 1
+Seat 1: Player13 - $3.86
+Seat 2: Player5 - $4
+Seat 3: Player14 - $3.88
+Seat 4: Player9 - $1.28
+Seat 5: Player4 - $5.42
+Seat 6: Player15 - $1.47
+Seat 7: Player3 - $4.20
+Seat 8: Player11 - $6.18
+Seat 9: Player0 - $4.09
+Seat 10: Hero - $4.35
+Shuffling Deck
+Moving Button to seat 2
+Player14 posts small blind ($0.02)
+Player9 posts big blind ($0.04)
+Dealing Cards
+Dealing [Q d][K s] to Hero
+Player4 folds
+Player15 folds
+Player3 folds
+Player11 folds
+Player0 raises to $0.10
+Hero calls $0.10
+Player13 calls $0.10
+Player5 folds
+Player14 calls $0.10
+Player9 calls $0.10
+Pot sizes: $0.50
+Dealing Flop [4 h][3 s][J c]
+Player14 checks
+Player9 checks
+Player0 checks
+Hero checks
+Player13 checks
+Pot sizes: $0.50
+Dealing Turn [T c]
+Player14 checks
+Player9 checks
+Player0 checks
+Hero bets $0.25
+Player13 calls $0.25
+Player14 folds
+Player9 folds
+Player0 folds
+Pot sizes: $1
+Dealing River [J h]
+Hero checks
+Player13 checks
+Pot sizes: $1
+Taking Rake of $0.10 from pot 1
+Hero shows [Q d][K s]
+Hero has One Pair: Jacks
+Player13 shows [K d][Q c]
+Player13 has One Pair: Jacks
+Hero ties, and wins $0.45 with: One Pair: Jacks
+Player13 ties, and wins $0.45 with: One Pair: Jacks
+Seat 1: Player13 - $3.96
+Seat 2: Player5 - $4
+Seat 3: Player14 - $3.78
+Seat 4: Player9 - $1.18
+Seat 5: Player4 - $5.42
+Seat 6: Player15 - $1.47
+Seat 7: Player3 - $4.20
+Seat 8: Player11 - $6.18
+Seat 9: Player0 - $3.99
+Seat 10: Hero - $4.45
+End of Hand #2103799833
+
+Table #45406961 - Pink Paisley
+Starting Hand #2103801694
+Start time of hand: 11 Jun 2012 22:32:02
+Last Hand #2103799833
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: RING
+Money Type: REAL MONEY
+Blinds are now $0.02 / $0.04
+Button is at seat 2
+Seat 1: Player13 - $3.96
+Seat 2: Player5 - $4
+Seat 3: Player14 - $3.78
+Seat 4: Player9 - $1.18
+Seat 5: Player4 - $5.42
+Seat 6: Player15 - $1.47
+Seat 7: Player3 - $4.20
+Seat 8: Player11 - $6.18
+Seat 9: Player0 - $3.99
+Seat 10: Hero - $4.45
+Shuffling Deck
+Moving Button to seat 3
+Player9 posts small blind ($0.02)
+Player4 posts big blind ($0.04)
+Dealing Cards
+Dealing [2 c][8 c] to Hero
+Player15 calls $0.04
+Player3 folds
+Player11 folds
+Player0 folds
+Hero folds
+Player13 calls $0.04
+Player5 calls $0.04
+Player14 calls $0.04
+Player9 calls $0.04
+Player4 checks
+Pot sizes: $0.24
+Dealing Flop [7 c][A d][4 c]
+Player9 checks
+Player4 checks
+Player15 bets $0.12
+Player13 folds
+Player5 folds
+Player14 folds
+Player9 folds
+Player4 calls $0.12
+Pot sizes: $0.48
+Dealing Turn [2 h]
+Player4 checks
+Player15 bets $0.12
+Player4 calls $0.12
+Pot sizes: $0.72
+Dealing River [J h]
+Player4 checks
+Player15 checks
+Pot sizes: $0.72
+Taking Rake of $0.07 from pot 1
+Player15 shows [A s][9 d]
+Player15 has One Pair: Aces
+Player4 mucks
+Player15 wins $0.65 with: One Pair: Aces
+Seat 1: Player13 - $3.92
+Seat 2: Player5 - $3.96
+Seat 3: Player14 - $3.74
+Seat 4: Player9 - $1.14
+Seat 5: Player4 - $5.14
+Seat 6: Player15 - $1.84
+Seat 7: Player3 - $4.20
+Seat 8: Player11 - $6.18
+Seat 9: Player0 - $3.99
+Seat 10: Hero - $4.45
+End of Hand #2103801694
+
+Table #45406961 - Pink Paisley
+Starting Hand #2103803502
+Start time of hand: 11 Jun 2012 22:34:26
+Last Hand #2103801694
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: RING
+Money Type: REAL MONEY
+Blinds are now $0.02 / $0.04
+Button is at seat 3
+Seat 1: Player13 - $3.92
+Seat 2: Player5 - $3.96
+Seat 3: Player14 - $3.74
+Seat 4: Player9 - $1.14
+Seat 5: Player4 - $5.14
+Seat 6: Player15 - $1.84
+Seat 7: Player3 - $4.20
+Seat 8: Player11 - $6.18
+Seat 9: Player0 - $3.99
+Seat 10: Hero - $4.45
+Shuffling Deck
+Moving Button to seat 4
+Player4 posts small blind ($0.02)
+Player15 posts big blind ($0.04)
+Dealing Cards
+Dealing [3 s][Q d] to Hero
+Player3 folds
+Player11 folds
+Player0 folds
+Hero folds
+Player13 calls $0.04
+Player5 folds
+Player14 folds
+Player9 calls $0.04
+Player4 calls $0.04
+Player15 checks
+Pot sizes: $0.16
+Dealing Flop [9 h][5 d][A c]
+Player4 checks
+Player15 bets $0.10
+Player13 folds
+Player9 folds
+Player4 folds
+Pot sizes: $0.16
+Taking Rake of $0.01 from pot 1
+Player15 doesn't show
+Player15 wins $0.15
+Seat 1: Player13 - $3.88
+Seat 2: Player5 - $3.96
+Seat 3: Player14 - $3.74
+Seat 4: Player9 - $1.10
+Seat 5: Player4 - $5.10
+Seat 6: Player15 - $1.95
+Seat 7: Player3 - $4.20
+Seat 8: Player11 - $6.18
+Seat 9: Player0 - $3.99
+Seat 10: Hero - $4.45
+End of Hand #2103803502
+
+Table #45406961 - Pink Paisley
+Starting Hand #2103804783
+Start time of hand: 11 Jun 2012 22:36:08
+Last Hand #2103803502
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: RING
+Money Type: REAL MONEY
+Blinds are now $0.02 / $0.04
+Button is at seat 4
+Seat 1: Player13 - $3.88
+Seat 2: Player5 - $3.96
+Seat 3: Player14 - $3.74
+Seat 4: Player9 - $1.10
+Seat 5: Player4 - $5.10
+Seat 6: Player15 - $1.95
+Seat 7: Player3 - $4.20
+Seat 8: Player11 - $6.18
+Seat 9: Player0 - $3.99
+Seat 10: Hero - $4.45
+Shuffling Deck
+Moving Button to seat 5
+Player15 posts small blind ($0.02)
+Player3 posts big blind ($0.04)
+Dealing Cards
+Dealing [T h][2 c] to Hero
+Player11 folds
+Player0 folds
+Hero folds
+Player13 raises to $0.08
+Player5 folds
+Player14 calls $0.08
+Player9 raises to $0.16
+Player4 folds
+Player15 folds
+Player3 folds
+Player13 raises to $0.92
+Player14 folds
+Player9 raises to $1.10 (all-in)
+Player13 calls $1.10
+Pot sizes: $2.34
+Player13 shows [A h][K h]
+Player9 shows [A c][Q h]
+Dealing Flop [3 s][J s][2 d]
+Pot sizes: $2.34
+Dealing Turn [2 s]
+Pot sizes: $2.34
+Dealing River [4 c]
+Pot sizes: $2.34
+Taking Rake of $0.23 from pot 1
+Player9 has One Pair: 2s
+Player13 has One Pair: 2s
+Player13 wins $2.11 with: One Pair: 2s
+Seat 1: Player13 - $4.89
+Seat 2: Player5 - $3.96
+Seat 3: Player14 - $3.66
+Seat 4: Player9 - $0
+Seat 5: Player4 - $5.10
+Seat 6: Player15 - $1.93
+Seat 7: Player3 - $4.16
+Seat 8: Player11 - $6.18
+Seat 9: Player0 - $3.99
+Seat 10: Hero - $4.45
+End of Hand #2103804783
+
+Player9 rebuys $0.70
+
+Table #45406961 - Pink Paisley
+Starting Hand #2103806172
+Start time of hand: 11 Jun 2012 22:37:46
+Last Hand #2103804783
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: RING
+Money Type: REAL MONEY
+Blinds are now $0.02 / $0.04
+Button is at seat 5
+Seat 1: Player13 - $4.89
+Seat 2: Player5 - $3.96
+Seat 3: Player14 - $3.66
+Seat 4: Player9 - $0 (away from table)
+Seat 5: Player4 - $5.10
+Seat 6: Player15 - $1.93
+Seat 7: Player3 - $4.16
+Seat 8: Player11 - $6.18
+Seat 9: Player0 - $3.99
+Seat 10: Hero - $4.45
+Shuffling Deck
+Moving Button to seat 6
+Player3 posts small blind ($0.02)
+Player11 posts big blind ($0.04)
+Dealing Cards
+Dealing [5 d][7 d] to Hero
+Player0 raises to $0.12
+Player9 rebuys $0.70
+Hero folds
+Player13 folds
+Player5 calls $0.12
+Player14 folds
+Player4 folds
+Player15 folds
+Player3 folds
+Player11 calls $0.12
+Pot sizes: $0.38
+Dealing Flop [K d][8 s][6 c]
+Player11 checks
+Player0 checks
+Player5 checks
+Pot sizes: $0.38
+Dealing Turn [9 s]
+Player11 checks
+Player0 checks
+Player5 checks
+Pot sizes: $0.38
+Dealing River [J d]
+Player11 checks
+Player0 checks
+Player5 checks
+Pot sizes: $0.38
+Taking Rake of $0.03 from pot 1
+Player0 shows [J s][A c]
+Player0 has One Pair: Jacks
+Player5 mucks
+Player11 mucks
+Player0 wins $0.35 with: One Pair: Jacks
+Seat 1: Player13 - $4.89
+Seat 2: Player5 - $3.84
+Seat 3: Player14 - $3.66
+Seat 4: Player9 - $0.70
+Seat 5: Player4 - $5.10
+Seat 6: Player15 - $1.93
+Seat 7: Player3 - $4.14
+Seat 8: Player11 - $6.06
+Seat 9: Player0 - $4.22
+Seat 10: Hero - $4.45
+End of Hand #2103806172
+
+Table #45406961 - Pink Paisley
+Starting Hand #2103807268
+Start time of hand: 11 Jun 2012 22:39:13
+Last Hand #2103806172
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: RING
+Money Type: REAL MONEY
+Blinds are now $0.02 / $0.04
+Button is at seat 6
+Seat 1: Player13 - $4.89
+Seat 2: Player5 - $3.84
+Seat 3: Player14 - $3.66
+Seat 4: Player9 - $0.70
+Seat 5: Player4 - $5.10
+Seat 6: Player15 - $1.93
+Seat 7: Player3 - $4.14
+Seat 8: Player11 - $6.06
+Seat 9: Player0 - $4.22
+Seat 10: Hero - $4.45
+Shuffling Deck
+Moving Button to seat 7
+Player11 posts small blind ($0.02)
+Player0 posts big blind ($0.04)
+Dealing Cards
+Dealing [2 h][T d] to Hero
+Hero folds
+Player13 folds
+Player5 calls $0.04
+Player14 folds
+Player9 folds
+Player4 folds
+Player15 calls $0.04
+Player3 calls $0.04
+Player11 calls $0.04
+Player0 checks
+Pot sizes: $0.20
+Dealing Flop [5 c][3 d][3 c]
+Player11 checks
+Player0 bets $0.04
+Player5 calls $0.04
+Player15 folds
+Player3 folds
+Player11 calls $0.04
+Pot sizes: $0.32
+Dealing Turn [T h]
+Player11 checks
+Player0 checks
+Player5 checks
+Pot sizes: $0.32
+Dealing River [J c]
+Player11 checks
+Player0 checks
+Player5 checks
+Pot sizes: $0.32
+Taking Rake of $0.03 from pot 1
+Player0 shows [5 s][8 c]
+Player0 has Two Pairs: 5s, 3s
+Player5 shows [6 c][7 d]
+Player5 has One Pair: 3s
+Player11 shows [5 h][9 c]
+Player11 has Two Pairs: 5s, 3s
+Player0 ties, and wins $0.15 with: Two Pairs: 5s, 3s
+Player11 ties, and wins $0.14 with: Two Pairs: 5s, 3s
+Seat 1: Player13 - $4.89
+Seat 2: Player5 - $3.76
+Seat 3: Player14 - $3.66
+Seat 4: Player9 - $0.70
+Seat 5: Player4 - $5.10
+Seat 6: Player15 - $1.89
+Seat 7: Player3 - $4.10
+Seat 8: Player11 - $6.12
+Seat 9: Player0 - $4.29
+Seat 10: Hero - $4.45
+End of Hand #2103807268
+
+Table #45406961 - Pink Paisley
+Starting Hand #2103808490
+Start time of hand: 11 Jun 2012 22:40:55
+Last Hand #2103807268
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: RING
+Money Type: REAL MONEY
+Blinds are now $0.02 / $0.04
+Button is at seat 7
+Seat 1: Player13 - $4.89
+Seat 2: Player5 - $3.76
+Seat 3: Player14 - $3.66
+Seat 4: Player9 - $0.70
+Seat 5: Player4 - $5.10
+Seat 6: Player15 - $1.89 (away from table)
+Seat 7: Player3 - $4.10
+Seat 8: Player11 - $6.12
+Seat 9: Player0 - $4.29
+Seat 10: Hero - $4.45
+Shuffling Deck
+Moving Button to seat 8
+Player0 posts small blind ($0.02)
+Hero posts big blind ($0.04)
+Dealing Cards
+Dealing [A s][K d] to Hero
+Player5: nhs
+Player13 calls $0.04
+Player5 calls $0.04
+Player14 folds
+Player9 folds
+Player4 folds
+Player3 folds
+Player11 calls $0.04
+Player0 calls $0.04
+Hero raises to $0.24
+Player13 folds
+Player5 folds
+Player11 folds
+Player0 folds
+Pot sizes: $0.20
+Hero doesn't show
+Hero wins $0.20
+Seat 1: Player13 - $4.85
+Seat 2: Player5 - $3.72
+Seat 3: Player14 - $3.66
+Seat 4: Player9 - $0.70
+Seat 5: Player4 - $5.10
+Seat 6: Player15 - $1.89
+Seat 7: Player3 - $4.10
+Seat 8: Player11 - $6.08
+Seat 9: Player0 - $4.25
+Seat 10: Hero - $4.61
+End of Hand #2103808490
+
+Table #45406961 - Pink Paisley
+Starting Hand #2103809242
+Start time of hand: 11 Jun 2012 22:41:59
+Last Hand #2103808490
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: RING
+Money Type: REAL MONEY
+Blinds are now $0.02 / $0.04
+Button is at seat 8
+Seat 1: Player13 - $4.85
+Seat 2: Player5 - $3.72
+Seat 3: Player14 - $3.66
+Seat 4: Player9 - $0.70
+Seat 5: Player4 - $5.10
+Seat 7: Player3 - $4.10
+Seat 8: Player11 - $6.08
+Seat 9: Player0 - $4.25
+Seat 10: Hero - $4.61
+Shuffling Deck
+Moving Button to seat 9
+Hero posts small blind ($0.02)
+Player13 posts big blind ($0.04)
+Dealing Cards
+Dealing [9 s][7 s] to Hero
+Player5 folds
+Player14 raises to $0.16
+Player9 folds
+Player4 folds
+Player3 folds
+Player11 folds
+Player0 folds
+Hero folds
+Player13 calls $0.16
+Pot sizes: $0.34
+Dealing Flop [5 s][7 h][A h]
+Player13 bets $0.17
+Player14 calls $0.17
+Pot sizes: $0.68
+Dealing Turn [3 h]
+Player13 bets $0.34
+Player14 calls $0.34
+Pot sizes: $1.36
+Dealing River [K h]
+Player13 bets $0.68
+Player14 raises to $2.99 (all-in)
+Player13 calls $2.99
+Pot sizes: $7.34
+Player13 shows [J h][A c]
+Player14 shows [Q d][Q h]
+Taking Rake of $0.73 from pot 1
+Player14 has Flush, Ace high 
+Player14 wins $6.61 with: Flush, Ace high 
+Seat 1: Player13 - $1.19
+Seat 2: Player5 - $3.72
+Seat 3: Player14 - $6.61
+Seat 4: Player9 - $0.70
+Seat 5: Player4 - $5.10
+Seat 7: Player3 - $4.10
+Seat 8: Player11 - $6.08
+Seat 9: Player0 - $4.25
+Seat 10: Hero - $4.59
+End of Hand #2103809242
+
+Table #45406961 - Pink Paisley
+Starting Hand #2103810522
+Start time of hand: 11 Jun 2012 22:43:35
+Last Hand #2103809242
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: RING
+Money Type: REAL MONEY
+Blinds are now $0.02 / $0.04
+Button is at seat 9
+Seat 1: Player13 - $1.19
+Seat 2: Player5 - $3.72
+Seat 3: Player14 - $6.61
+Seat 4: Player9 - $0.70
+Seat 5: Player4 - $5.10
+Seat 7: Player3 - $4.10
+Seat 8: Player11 - $6.08
+Seat 9: Player0 - $4.25
+Seat 10: Hero - $4.59
+Shuffling Deck
+Moving Button to seat 10
+Player13 posts small blind ($0.02)
+Player5 posts big blind ($0.04)
+Dealing Cards
+Dealing [5 h][A s] to Hero
+Player13: NH
+Player14 raises to $0.14
+Player9 folds
+Player4 folds
+Player3 folds
+Player11 folds
+Player0 folds
+Hero folds
+Player13 folds
+Player5: ul gmb
+Player5 folds
+Pot sizes: $0.10
+Player14 doesn't show
+Player14 wins $0.10
+Seat 1: Player13 - $1.17
+Seat 2: Player5 - $3.68
+Seat 3: Player14 - $6.67
+Seat 4: Player9 - $0.70
+Seat 5: Player4 - $5.10
+Seat 7: Player3 - $4.10
+Seat 8: Player11 - $6.08
+Seat 9: Player0 - $4.25
+Seat 10: Hero - $4.59
+End of Hand #2103810522
+
+Table #45406961 - Pink Paisley
+Starting Hand #2103811091
+Start time of hand: 11 Jun 2012 22:44:20
+Last Hand #2103810522
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: RING
+Money Type: REAL MONEY
+Blinds are now $0.02 / $0.04
+Button is at seat 10
+Seat 2: Player5 - $3.68
+Seat 3: Player14 - $6.67
+Seat 4: Player9 - $0.70
+Seat 5: Player4 - $5.10
+Seat 7: Player3 - $4.10
+Seat 8: Player11 - $6.08
+Seat 9: Player0 - $4.25
+Seat 10: Hero - $4.59
+Shuffling Deck
+Moving Button to seat 10
+Player5 posts small blind ($0.02)
+Player14 posts big blind ($0.04)
+Dealing Cards
+Dealing [Q c][8 c] to Hero
+Player9 folds
+Player4 folds
+Player3 folds
+Player11 folds
+Player0 folds
+Hero raises to $0.10
+Player5 folds
+Player14 calls $0.10
+Pot sizes: $0.22
+Dealing Flop [4 c][A c][K s]
+Player14 checks
+Player10 brings $4 to table 45406961
+Hero bets $0.11
+Player14 calls $0.11
+Pot sizes: $0.44
+Dealing Turn [9 s]
+Player14 checks
+Hero checks
+Pot sizes: $0.44
+Dealing River [7 d]
+Player14 bets $0.10
+Hero folds
+Pot sizes: $0.44
+Taking Rake of $0.04 from pot 1
+Player14 doesn't show
+Player14 wins $0.40
+Seat 2: Player5 - $3.66
+Seat 3: Player14 - $6.86
+Seat 4: Player9 - $0.70
+Seat 5: Player4 - $5.10
+Seat 6: Player10 - $4
+Seat 7: Player3 - $4.10
+Seat 8: Player11 - $6.08
+Seat 9: Player0 - $4.25
+Seat 10: Hero - $4.38
+End of Hand #2103811091
+
+Table #45406961 - Pink Paisley
+Starting Hand #2103812172
+Start time of hand: 11 Jun 2012 22:45:55
+Last Hand #2103811091
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: RING
+Money Type: REAL MONEY
+Blinds are now $0.02 / $0.04
+Button is at seat 10
+Seat 2: Player5 - $3.66
+Seat 3: Player14 - $6.86
+Seat 4: Player9 - $0.70
+Seat 5: Player4 - $5.10
+Seat 6: Player10 - $4
+Seat 7: Player3 - $4.10
+Seat 8: Player11 - $6.08
+Seat 9: Player0 - $4.25
+Seat 10: Hero - $4.38
+Shuffling Deck
+Moving Button to seat 2
+Player14 posts small blind ($0.02)
+Player9 posts big blind ($0.04)
+Player10 posts $0.04
+Dealing Cards
+Dealing [J h][Q s] to Hero
+Player4 folds
+Player10 checks
+Player3 folds
+Player11 folds
+Player0 folds
+Hero raises to $0.20
+Player5 folds
+Player14 folds
+Player9 folds
+Player10 folds
+Pot sizes: $0.14
+Hero doesn't show
+Hero wins $0.14
+Seat 2: Player5 - $3.66
+Seat 3: Player14 - $6.84
+Seat 4: Player9 - $0.66
+Seat 5: Player4 - $5.10
+Seat 6: Player10 - $3.96
+Seat 7: Player3 - $4.10
+Seat 8: Player11 - $6.08
+Seat 9: Player0 - $4.25
+Seat 10: Hero - $4.48
+End of Hand #2103812172
+
+Table #45406961 - Pink Paisley
+Starting Hand #2103812858
+Start time of hand: 11 Jun 2012 22:46:55
+Last Hand #2103812172
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: RING
+Money Type: REAL MONEY
+Blinds are now $0.02 / $0.04
+Button is at seat 2
+Seat 2: Player5 - $3.66
+Seat 3: Player14 - $6.84
+Seat 4: Player9 - $0.66
+Seat 5: Player4 - $5.10
+Seat 6: Player10 - $3.96
+Seat 7: Player3 - $4.10
+Seat 8: Player11 - $6.08
+Seat 9: Player0 - $4.25
+Seat 10: Hero - $4.48
+Shuffling Deck
+Moving Button to seat 3
+Player9 posts small blind ($0.02)
+Player4 posts big blind ($0.04)
+Dealing Cards
+Dealing [3 c][5 s] to Hero
+Player10 calls $0.04
+Player3 calls $0.04
+Player11 folds
+Player0 folds
+Hero folds
+Player5 folds
+Player14 folds
+Player9 calls $0.04
+Player4 checks
+Pot sizes: $0.16
+Dealing Flop [4 s][7 c][3 d]
+Player9 checks
+Player4 checks
+Player10 checks
+Player3 bets $0.12
+Player9 did not respond in time and is folded
+Player9 folds
+Player4 folds
+Player10 folds
+Pot sizes: $0.16
+Taking Rake of $0.01 from pot 1
+Player3 doesn't show
+Player3 wins $0.15
+Seat 2: Player5 - $3.66
+Seat 3: Player14 - $6.84
+Seat 4: Player9 - $0.62
+Seat 5: Player4 - $5.06
+Seat 6: Player10 - $3.92
+Seat 7: Player3 - $4.21
+Seat 8: Player11 - $6.08
+Seat 9: Player0 - $4.25
+Seat 10: Hero - $4.48
+End of Hand #2103812858
+
+Table #45406961 - Pink Paisley
+Starting Hand #2103813764
+Start time of hand: 11 Jun 2012 22:48:18
+Last Hand #2103812858
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: RING
+Money Type: REAL MONEY
+Blinds are now $0.02 / $0.04
+Button is at seat 3
+Seat 2: Player5 - $3.66
+Seat 3: Player14 - $6.84
+Seat 4: Player9 - $0.62
+Seat 5: Player4 - $5.06
+Seat 6: Player10 - $3.92
+Seat 7: Player3 - $4.21
+Seat 8: Player11 - $6.08
+Seat 9: Player0 - $4.25
+Seat 10: Hero - $4.48
+Shuffling Deck
+Moving Button to seat 4
+Player4 posts small blind ($0.02)
+Player10 posts big blind ($0.04)
+Dealing Cards
+Dealing [3 c][6 d] to Hero
+Player3 calls $0.04
+Player11 folds
+Player0 folds
+Hero folds
+Player5 calls $0.04
+Player14 calls $0.04
+Player9 folds
+Player4 folds
+Player10 checks
+Pot sizes: $0.18
+Dealing Flop [3 d][J h][Q d]
+Player10 checks
+Player3 checks
+Player5 checks
+Player14 bets $0.09
+Player10 folds
+Player3 folds
+Player5 folds
+Pot sizes: $0.18
+Taking Rake of $0.01 from pot 1
+Player14 doesn't show
+Player14 wins $0.17
+Seat 2: Player5 - $3.62
+Seat 3: Player14 - $6.97
+Seat 4: Player9 - $0.62
+Seat 5: Player4 - $5.04
+Seat 6: Player10 - $3.88
+Seat 7: Player3 - $4.17
+Seat 8: Player11 - $6.08
+Seat 9: Player0 - $4.25
+Seat 10: Hero - $4.48
+End of Hand #2103813764
+
+Table #45406961 - Pink Paisley
+Starting Hand #2103814532
+Start time of hand: 11 Jun 2012 22:49:27
+Last Hand #2103813764
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: RING
+Money Type: REAL MONEY
+Blinds are now $0.02 / $0.04
+Button is at seat 4
+Seat 2: Player5 - $3.62
+Seat 3: Player14 - $6.97
+Seat 4: Player9 - $0.62
+Seat 5: Player4 - $5.04
+Seat 6: Player10 - $3.88
+Seat 7: Player3 - $4.17
+Seat 8: Player11 - $6.08
+Seat 9: Player0 - $4.25
+Seat 10: Hero - $4.48
+Shuffling Deck
+Moving Button to seat 5
+Player10 posts small blind ($0.02)
+Player3 posts big blind ($0.04)
+Dealing Cards
+Dealing [6 d][A h] to Hero
+Player11 folds
+Player0 folds
+Hero folds
+Player5 folds
+Player14 folds
+Player9 folds
+Player4 folds
+Player10 calls $0.04
+Player3 checks
+Pot sizes: $0.08
+Dealing Flop [7 c][K c][8 s]
+Player10 checks
+Player3 bets $0.04
+Player10 folds
+Pot sizes: $0.08
+No Rake Taken
+Player3 doesn't show
+Player3 wins $0.08
+Seat 2: Player5 - $3.62
+Seat 3: Player14 - $6.97
+Seat 4: Player9 - $0.62
+Seat 5: Player4 - $5.04
+Seat 6: Player10 - $3.84
+Seat 7: Player3 - $4.21
+Seat 8: Player11 - $6.08
+Seat 9: Player0 - $4.25
+Seat 10: Hero - $4.48
+End of Hand #2103814532
+
+
