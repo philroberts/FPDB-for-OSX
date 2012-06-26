@@ -345,6 +345,7 @@ class Cake(HandHistoryConverter):
             elif actionType == ' calls':
                 hand.addCall( street, action.group('PNAME'), bet )
             elif actionType == ' raises':
+                hand.setUncalledBets(None)
                 hand.addRaiseTo( street, action.group('PNAME'), bet )
             elif actionType == ' bets':
                 hand.addBet( street, action.group('PNAME'), bet )
