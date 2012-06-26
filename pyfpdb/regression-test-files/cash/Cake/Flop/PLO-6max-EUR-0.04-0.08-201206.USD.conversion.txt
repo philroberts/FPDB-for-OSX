@@ -1,0 +1,32 @@
+Hand#2999013495000096 - Odesa (6-Max) 13495 -- €0,04/€0,08 PL Omaha -- 2012-06-21 - 05:30:58
+Dealer: Seat 3
+Seat 1: Player0 ($21,89 in chips)  (EUR €17,29)
+Seat 2: Hero ($9,68 in chips)  (EUR €7,65)
+Seat 3: Player1 ($22,50 in chips)  (EUR €17,78)
+Seat 8: Player2 ($9,48 in chips)  (EUR €7,49)
+Seat 9: Player3 ($20,83 in chips)  (EUR €16,46)
+Player2: posts small blind $0,05 (EUR €0,04)
+Player3: posts big blind $0,10 (EUR €0,08)
+Dealt to Hero [3c,5d,Ks,6h]
+Player0: folds
+Hero: folds
+Player1: raises to $0,30 (EUR €0,24)
+Player2: calls $0,25 (EUR €0,20)
+Player3: calls $0,20 (EUR €0,16)
+*** FLOP *** [3d,Qs,8d]
+Player2: checks
+Player3: checks
+Player1: bets $0,45 (EUR €0,36)
+Player2: folds
+Player3: calls $0,45 (EUR €0,36)
+*** TURN *** [4s]
+Player3: checks
+Player1: checks
+*** RIVER *** [Ad]
+Player3: checks
+Player1: bets $1 (EUR €0,79)
+Player3: calls $1 (EUR €0,79)
+***SHOW DOWN***
+Player1: shows [7s 9d Tc 7c] (Pair of Sevens  )
+Player3: shows [Qc 7d As Jh] (Two Pairs Aces and Queens  )
+Player3 wins $3,55 with Two Pairs Aces and Queens   (EUR €2,80)
