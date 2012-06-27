@@ -144,7 +144,7 @@ class BetOnline(HandHistoryConverter):
     re_Board2        = re.compile(r"\[(?P<CARDS>.+)\]")
     
 
-    re_DateTime1     = re.compile("""(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+)\s(?P<TZ>.*$)""", re.MULTILINE)
+    re_DateTime1     = re.compile("""(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+)(:(?P<S>[0-9]+))?\s(?P<TZ>.*$)""", re.MULTILINE)
     re_DateTime2     = re.compile("""(?P<Y>[0-9]{4})\-(?P<M>[0-9]{2})\-(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)""", re.MULTILINE)
 
     re_PostSB           = re.compile(r"^%(PLYR)s: [Pp]osts small blind (%(LS)s)?(?P<SB>[.0-9]+)" %  substitutions, re.MULTILINE)
@@ -272,7 +272,10 @@ class BetOnline(HandHistoryConverter):
                 if self.skin not in ('ActionPoker', 'GearPoker'):
                     m1 = self.re_DateTime1.finditer(info[key])
                     for a in m1:
-                        datetimestr = "%s/%s/%s %s:%s:%s" % (a.group('Y'), a.group('M'),a.group('D'),a.group('H'),a.group('MIN'),'00')
+                        seconds = '00'
+                        if a.group('S'):
+                            seconds = a.group('S')
+                        datetimestr = "%s/%s/%s %s:%s:%s" % (a.group('Y'), a.group('M'),a.group('D'),a.group('H'),a.group('MIN'),seconds)
                         tz = a.group('TZ')  # just assume ET??
                         if tz == 'GMT Standard Time':
                             time_zone = 'GMT'
