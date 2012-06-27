@@ -548,7 +548,8 @@ class Hand(object):
             return
 
         if player not in (p[1] for p in self.players):
-            log.error(_("Hand.%s: '%s' unknown player: '%s'") % (source, self.handid, player))
+            if source is not None:
+                log.error(_("Hand.%s: '%s' unknown player: '%s'") % (source, self.handid, player))
             raise FpdbParseError
         else:
             self.player_exists_cache.add(player)
