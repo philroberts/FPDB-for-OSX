@@ -541,7 +541,8 @@ class Hand(object):
 
     def checkPlayerExists(self,player,source = None):
         if player not in [p[1] for p in self.players]:
-            log.error(_("Hand.%s: '%s' unknown player: '%s'") % (source, self.handid, player))
+            if source is not None:
+                log.error(_("Hand.%s: '%s' unknown player: '%s'") % (source, self.handid, player))
             raise FpdbParseError
 
     def setCommunityCards(self, street, cards):

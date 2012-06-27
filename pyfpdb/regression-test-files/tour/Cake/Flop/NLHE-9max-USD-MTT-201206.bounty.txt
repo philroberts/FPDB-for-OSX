@@ -1,0 +1,42 @@
+Hand#2990AB91EA000229 - $5 Bounty T11244010 -- CASH -- $5 + $0.5 -- 9 Max -- Table 7 -- 0/100/200 NL Hold'em -- 2012/06/12 - 13:31:20
+Dealer: Seat 5
+Seat 1: Player0 (3,158 in chips) 
+Seat 2: Player1 (3,722 in chips) 
+Seat 3: Player2 (3,275 in chips) 
+Seat 4: Player3 (1,646 in chips) 
+Seat 5: Hero (7,320 in chips) 
+Seat 7: Player4 (5,410 in chips) 
+Seat 8: Player5 (3,200 in chips) 
+Seat 10: Player6 (10,855 in chips) 
+Player4: posts small blind 100
+Player5: posts big blind 200
+Dealt to Hero [8c,6d]
+Player6: folds
+Player0: raises to 420
+Player1: folds
+Player2: calls 420
+Player3: folds
+Hero: folds
+Player4: folds
+Player5: calls 220
+*** FLOP *** [8d,9d,Qs]
+Player5: bets 200
+Player0: raises to 750
+Player2: calls 750
+Player5: calls 550
+*** TURN *** [9c]
+Player5: checks
+Player0: checks
+Player2: is all in 2,105
+Player5: is all in 2,030
+Player0: is all in 1,988
+Player2: returns uncalled bet 75
+Player0: shows [Kd Kc]
+Player2: shows [Qd Jd]
+Player5: shows [Ad Td]
+*** RIVER *** [Ac]
+***SHOW DOWN***
+Player5 wins 84 with Two Pairs Aces and Nines   
+***SHOW DOWN***
+Player5 wins 9,574 with Two Pairs Aces and Nines   
+Tournament: Player5 wins 1 bounty. (1)

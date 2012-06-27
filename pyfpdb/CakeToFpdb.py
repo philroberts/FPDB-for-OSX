@@ -113,7 +113,7 @@ class Cake(HandHistoryConverter):
                          %  substitutions, re.MULTILINE|re.VERBOSE)
     re_sitsOut          = re.compile("^%s sits out" %  substitutions['PLYR'], re.MULTILINE)
     re_ShownCards       = re.compile(r"^%s: (?P<SHOWED>shows|mucks) \[(?P<CARDS>.*)\] (\((?P<STRING>.*)\))?" % substitutions['PLYR'], re.MULTILINE)
-    re_CollectPot       = re.compile(r"%(PLYR)s wins %(CUR)s(?P<POT>[%(NUM)s]+)((\swith.+?)?\s+\(EUR\s(%(CUR)s)?(?P<EUROVALUE>[%(NUM)s]+)\))?" %  substitutions, re.MULTILINE)
+    re_CollectPot       = re.compile(r"^%(PLYR)s wins %(CUR)s(?P<POT>[%(NUM)s]+)((\swith.+?)?\s+\(EUR\s(%(CUR)s)?(?P<EUROVALUE>[%(NUM)s]+)\))?" %  substitutions, re.MULTILINE)
     re_Finished         = re.compile(r"%(PLYR)s finished \d+ out of \d+ players" %  substitutions, re.MULTILINE)
 
     def compilePlayerRegexs(self,  hand):
@@ -345,7 +345,8 @@ class Cake(HandHistoryConverter):
 
     def readCollectPot(self,hand):
         for m in self.re_CollectPot.finditer(hand.handText):
-            hand.addCollectPot(player=m.group('PNAME'),pot=self.convertMoneyString('POT', m))
+            if not re.search('Tournament:\s', m.group('PNAME')):
+                hand.addCollectPot(player=m.group('PNAME'),pot=self.convertMoneyString('POT', m))
 
     def readShownCards(self,hand):
         for m in self.re_ShownCards.finditer(hand.handText):
@@ -363,7 +364,12 @@ class Cake(HandHistoryConverter):
                     cards = cards.split(',') # needs to be a list, not a set--stud needs the order
 
                 #print "DEBUG: hand.addShownCards(%s, %s, %s, %s)" %(cards, m.group('PNAME'), shown, mucked)
-                hand.addShownCards(cards=cards, player=m.group('PNAME'), shown=shown, mucked=mucked, string=string)
+                try:
+                    hand.checkPlayerExists(m.group('PNAME'))
+                    player = m.group('PNAME')
+                except FpdbParseError:
+                    player = m.group('PNAME').replace('_', ' ')
+                hand.addShownCards(cards=cards, player=player, shown=shown, mucked=mucked, string=string)
                 
     def convertMoneyString(self, type, match):
         if match.group('EUROVALUE'):
