@@ -1,0 +1,26 @@
+Game # 2662867624 - Texas Hold'em No Limit 25/50 - Table "€10+1/1000VIP(€10) Super Turbo Sit & Go 12713943 1"
+
+Players(max 6):
+Player0                     (1,085.00 in seat 1)
+Player1                     (2,757.00 in seat 2)
+Hero                        (1,150.00 in seat 3)
+Player2                     (1,445.00 in seat 5)
+Player3                     (1,063.00 in seat 6)
+
+Dealer:                     Player1
+Small Blind:                Hero     (25.00)
+Big Blind:                  Player2  (50.00)
+
+Hero was dealt:          8h - 6h
+
+Player3                     Fold        
+Player0                     Fold        
+Player1                     Fold        
+Hero                        Fold        
+Player2                     Payback     (25.00)
+
+Player2 didn't show hand
+
+Player2 wins:            50.00
+
+Game ended 2012-06-19 22:45:51 BST
