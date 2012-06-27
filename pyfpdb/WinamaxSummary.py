@@ -55,6 +55,9 @@ class WinamaxSummary(TourneySummary):
                                            (Total\srebuys\s:\s\d+\s+)?
                                            (Total\saddons\s:\s\d+\s+)?
                                            Prizepool\s:\s(?P<PRIZEPOOL>[.0-9%(LS)s]+)\s+
+                                           (Mode\s:\s.+\s+)?
+                                           (Speed\s:\s.+\s+)?
+                                           (Levels\s:\s.+\s+)?
                                            Tournament\sstarted\s(?P<DATETIME>\d{4}/\d{2}/\d{2}\s\d{2}:\d{2}:\d{2}\sUTC)\s+
                                            (?P<BLAH>You\splayed\s.+)\s+
                                            You\sfinished\sin\s(?P<RANK>[0-9]+)(st|nd|rd|th)\splace\s+
