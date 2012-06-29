@@ -115,7 +115,7 @@ class IdentifySite:
     
     def getSiteRegex(self):
         re_identify = {}
-        re_identify['Fulltilt']     = re.compile(u'FullTiltPoker|Full\sTilt\sPoker\sGame\s#\d+:')
+        re_identify['Fulltilt']     = re.compile(u'FullTiltPoker|Full\sTilt\sPoker\sGame\s#\d+:|Full\sTilt\sPoker\.fr')
         re_identify['PokerStars']   = re.compile(u'(PokerStars|POKERSTARS)(\sGame|\sHand|\sHome\sGame|\sHome\sGame\sHand|Game|\sZoom\sHand|\sGAME)\s\#\d+:')
         re_identify['Everleaf']     = re.compile(u'\*{5}\sHand\shistory\sfor\sgame\s#\d+\s|Partouche\sPoker\s')
         re_identify['Boss']         = re.compile(u'<HISTORY\sID="\d+"\sSESSION=')
