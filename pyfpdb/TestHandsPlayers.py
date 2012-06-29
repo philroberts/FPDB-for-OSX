@@ -393,11 +393,6 @@ def main(argv=None):
         walk_testfiles("regression-test-files/tour/iPoker/", compare, importer, iPokerErrors, "iPoker")
     elif sites['iPoker'] == True and single_file_test:
         walk_testfiles(options.filename, compare, importer, iPokerErrors, "iPoker")
-    if sites['Winamax'] == True and not single_file_test:
-        walk_testfiles("regression-test-files/cash/Winamax/", compare, importer, WinamaxErrors, "Winamax")
-        walk_testfiles("regression-test-files/tour/Winamax/", compare, importer, WinamaxErrors, "Winamax")
-    elif sites['Winamax'] == True and single_file_test:
-        walk_testfiles(options.filename, compare, importer, WinamaxErrors, "Winamax")
     if sites['Boss'] == True and not single_file_test:
         walk_testfiles("regression-test-files/cash/Boss/", compare, importer, BossErrors, "Boss")
         walk_testfiles("regression-test-files/tour/Boss/", compare, importer, BossErrors, "Boss")
@@ -428,6 +423,11 @@ def main(argv=None):
         walk_testfiles("regression-test-files/tour/PokerTracker/", compare, importer, PTErrors, "PokerTracker")
     elif sites['PokerTracker'] == True and single_file_test:
         walk_testfiles(options.filename, compare, importer, PTErrors, "PokerTracker")
+    if sites['Winamax'] == True and not single_file_test:
+        walk_testfiles("regression-test-files/cash/Winamax/", compare, importer, WinamaxErrors, "Winamax")
+        walk_testfiles("regression-test-files/tour/Winamax/", compare, importer, WinamaxErrors, "Winamax")
+    elif sites['Winamax'] == True and single_file_test:
+        walk_testfiles(options.filename, compare, importer, WinamaxErrors, "Winamax")
 
     totalerrors = 0
 
