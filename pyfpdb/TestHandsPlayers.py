@@ -25,7 +25,7 @@ from Hand import *
 import Configuration
 import Database
 import SQL
-import fpdb_import
+import Importer
 import Options
 import datetime
 import pytz
@@ -273,7 +273,7 @@ def main(argv=None):
     settings.update(config.get_import_parameters())
     settings.update(config.get_default_paths())
     db.recreate_tables()
-    importer = fpdb_import.Importer(False, settings, config, None)
+    importer = Importer.Importer(False, settings, config, None)
     importer.setDropIndexes("don't drop")
     importer.setFailOnError(True)
     importer.setThreads(-1)
