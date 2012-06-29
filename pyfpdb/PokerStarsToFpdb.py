@@ -536,7 +536,7 @@ class PokerStars(HandHistoryConverter):
     @staticmethod
     def getTableTitleRe(type, table_name=None, tournament = None, table_number=None):
         "Returns string to search in windows titles"
-        regex = re.escape(table_name)
+        regex = re.escape(str(table_name))
         if type=="tour":
             regex = re.escape(str(tournament)) + ".+\\Table " + re.escape(str(table_number))
         log.info("Stars.getTableTitleRe: table_name='%s' tournament='%s' table_number='%s'" % (table_name, tournament, table_number))
