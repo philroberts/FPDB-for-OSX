@@ -1,0 +1,1420 @@
+Player1 wins 12,450 with: Flush, Ace high 
+Seat 1: Player7 - 29,448
+Seat 2: Player0 - 111,468
+Seat 3: Player5 - 18,750
+Seat 4: Player1 - 113,614
+Seat 5: Player8 - 8,200
+Seat 6: Player4 - 23,396
+Seat 7: Player9 - 3,523
+Seat 8: Hero - 36,601
+Seat 9: Player3 - 0
+Seat 10: Player2 - 0
+End of Hand #2083043513
+
+Table #44976150 - Tournament #25826986 Table #6
+Starting Hand #2083043765
+Start time of hand: 15 May 2012 01:48:45
+Last Hand #2083043513
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: TOURNAMENT
+Money Type: TOURNAMENT CHIPS
+Blinds are now 1,500 / 3,000
+Button is at seat 7
+Seat 1: Player7 - 29,448
+Seat 2: Player0 - 111,468
+Seat 3: Player5 - 18,750
+Seat 4: Player1 - 113,614
+Seat 5: Player8 - 8,200
+Seat 6: Player4 - 23,396
+Seat 7: Player9 - 3,523
+Seat 8: Hero - 36,601
+Shuffling Deck
+Hero will be dealt in after the button
+Moving Button to seat 8
+Player7 posts ante of 300
+Player0 posts ante of 300
+Player5 posts ante of 300
+Player1 posts ante of 300
+Player8 posts ante of 300
+Player4 posts ante of 300
+Player9 posts ante of 300
+Pot sizes: 2,100
+Player7 posts small blind (1,500)
+Player0 posts big blind (3,000)
+Dealing Cards
+Player5 folds
+Player1 calls 3,000
+Player8 calls 3,000
+Player4 folds
+Player9 raises to 3,223 (all-in)
+Player7 calls 3,223
+Player0 raises to 20,992
+Player1 folds
+Player8 folds
+Player7 folds
+Returning 17,769 to Player0 uncalled
+Pot sizes: 17,769
+Player0 shows [K s][A c]
+Player9 shows [4 c][A d]
+Dealing Flop [K d][Q d][5 h]
+Pot sizes: 17,769
+Dealing Turn [2 s]
+Pot sizes: 17,769
+Dealing River [6 h]
+Pot sizes: 17,769
+Player0 has One Pair: Kings
+Player0 wins 17,769 with: One Pair: Kings
+Seat 1: Player7 - 25,925
+Seat 2: Player0 - 125,714
+Seat 3: Player5 - 18,450
+Seat 4: Player1 - 110,314
+Seat 5: Player8 - 4,900
+Seat 6: Player4 - 23,096
+Seat 7: Player9 - 0
+Seat 8: Hero - 36,601
+End of Hand #2083043765
+
+Table #44976150 - Tournament #25826986 Table #6
+Starting Hand #2083044128
+Start time of hand: 15 May 2012 01:50:01
+Last Hand #2083043765
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: TOURNAMENT
+Money Type: TOURNAMENT CHIPS
+Blinds are now 1,500 / 3,000
+Button is at seat 8
+Seat 1: Player7 - 25,925
+Seat 2: Player0 - 125,714
+Seat 3: Player5 - 18,450
+Seat 4: Player1 - 110,314
+Seat 5: Player8 - 4,900
+Seat 6: Player4 - 23,096
+Seat 8: Hero - 36,601
+Shuffling Deck
+Moving Button to seat 1
+Player7 posts ante of 300
+Player0 posts ante of 300
+Player5 posts ante of 300
+Player1 posts ante of 300
+Player8 posts ante of 300
+Player4 posts ante of 300
+Hero posts ante of 300
+Pot sizes: 2,100
+Player0 posts small blind (1,500)
+Player5 posts big blind (3,000)
+Dealing Cards
+Dealing [4 d][Q s] to Hero
+Player1 calls 3,000
+Player8 raises to 4,600 (all-in)
+Player4 folds
+Hero folds
+Player7 folds
+Player0 folds
+Player5 calls 4,600
+Player1 calls 4,600
+Pot sizes: 17,400
+Dealing Flop [A s][7 h][K d]
+Player5 checks
+Player1 checks
+Pot sizes: 17,400
+Dealing Turn [7 s]
+Player5 checks
+Player1 checks
+Pot sizes: 17,400
+Dealing River [5 c]
+Player5 checks
+Player1 checks
+Pot sizes: 17,400
+Player8 shows [A d][J s]
+Player8 has Two Pairs: Aces, 7s
+Player5 mucks
+Player1 mucks
+Player8 wins 17,400 with: Two Pairs: Aces, 7s
+Seat 1: Player7 - 25,625
+Seat 2: Player0 - 123,914
+Seat 3: Player5 - 13,550
+Seat 4: Player1 - 105,414
+Seat 5: Player8 - 17,400
+Seat 6: Player4 - 22,796
+Seat 8: Hero - 36,301
+End of Hand #2083044128
+
+Table #44976150 - Tournament #25826986 Table #6
+Starting Hand #2083044490
+Start time of hand: 15 May 2012 01:51:24
+Last Hand #2083044128
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: TOURNAMENT
+Money Type: TOURNAMENT CHIPS
+Blinds are now 1,500 / 3,000
+Button is at seat 1
+Seat 1: Player7 - 25,625
+Seat 2: Player0 - 123,914
+Seat 3: Player5 - 13,550
+Seat 4: Player1 - 105,414
+Seat 5: Player8 - 17,400
+Seat 6: Player4 - 22,796
+Seat 8: Hero - 36,301
+Shuffling Deck
+Moving Button to seat 2
+Player7 posts ante of 300
+Player0 posts ante of 300
+Player5 posts ante of 300
+Player1 posts ante of 300
+Player8 posts ante of 300
+Player4 posts ante of 300
+Hero posts ante of 300
+Pot sizes: 2,100
+Player5 posts small blind (1,500)
+Player1 posts big blind (3,000)
+Dealing Cards
+Dealing [Q d][J c] to Hero
+Player8 calls 3,000
+Player4 folds
+Hero folds
+Player7 folds
+Player0 calls 3,000
+Player5 calls 3,000
+Player1 checks
+Pot sizes: 14,100
+Dealing Flop [A d][K c][8 d]
+Player5 checks
+Player1 bets 3,000
+Player8 raises to 14,100 (all-in)
+Player0 folds
+Player5 folds
+Player1 calls 14,100
+Pot sizes: 42,300
+Player1 shows [K d][6 h]
+Player8 shows [8 h][A h]
+Dealing Turn [7 s]
+Pot sizes: 42,300
+Dealing River [A s]
+Pot sizes: 42,300
+Player8 has Full House, Aces over 8s
+Player8 wins 42,300 with: Full House, Aces over 8s
+Seat 1: Player7 - 25,325
+Seat 2: Player0 - 120,614
+Seat 3: Player5 - 10,250
+Seat 4: Player1 - 88,014
+Seat 5: Player8 - 42,300
+Seat 6: Player4 - 22,496
+Seat 8: Hero - 36,001
+End of Hand #2083044490
+
+Table #44976150 - Tournament #25826986 Table #6
+Starting Hand #2083044789
+Start time of hand: 15 May 2012 01:52:28
+Last Hand #2083044490
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: TOURNAMENT
+Money Type: TOURNAMENT CHIPS
+Blinds are now 2,000 / 4,000
+Button is at seat 2
+Seat 1: Player7 - 25,325
+Seat 2: Player0 - 120,614
+Seat 3: Player5 - 10,250
+Seat 4: Player1 - 88,014
+Seat 5: Player8 - 42,300
+Seat 6: Player4 - 22,496
+Seat 8: Hero - 36,001
+Shuffling Deck
+Moving Button to seat 3
+Player7 posts ante of 400
+Player0 posts ante of 400
+Player5 posts ante of 400
+Player1 posts ante of 400
+Player8 posts ante of 400
+Player4 posts ante of 400
+Hero posts ante of 400
+Pot sizes: 2,800
+Player1 posts small blind (2,000)
+Player8 posts big blind (4,000)
+Dealing Cards
+Dealing [3 d][9 d] to Hero
+Player4 folds
+Hero folds
+Player7 folds
+Player0 folds
+Player5 folds
+Player1 calls 4,000
+Player8 checks
+Pot sizes: 10,800
+Dealing Flop [K d][2 c][J d]
+Player1 bets 4,000
+Player8 calls 4,000
+Pot sizes: 18,800
+Dealing Turn [9 s]
+Player1 bets 4,000
+Player8 calls 4,000
+Pot sizes: 26,800
+Dealing River [7 h]
+Player1 checks
+Player8 checks
+Pot sizes: 26,800
+Player1 shows [4 d][6 d]
+Player1 has High Card: King
+Player8 shows [8 c][J s]
+Player8 has One Pair: Jacks
+Player8 wins 26,800 with: One Pair: Jacks
+Seat 1: Player7 - 24,925
+Seat 2: Player0 - 120,214
+Seat 3: Player5 - 9,850
+Seat 4: Player1 - 75,614
+Seat 5: Player8 - 56,700
+Seat 6: Player4 - 22,096
+Seat 8: Hero - 35,601
+End of Hand #2083044789
+
+Table #44976150 - Tournament #25826986 Table #6
+Starting Hand #2083045053
+Start time of hand: 15 May 2012 01:53:24
+Last Hand #2083044789
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: TOURNAMENT
+Money Type: TOURNAMENT CHIPS
+Blinds are now 2,000 / 4,000
+Button is at seat 3
+Seat 1: Player7 - 24,925
+Seat 2: Player0 - 120,214
+Seat 3: Player5 - 9,850
+Seat 4: Player1 - 75,614
+Seat 5: Player8 - 56,700
+Seat 6: Player4 - 22,096
+Seat 8: Hero - 35,601
+Shuffling Deck
+Moving Button to seat 4
+Player7 posts ante of 400
+Player0 posts ante of 400
+Player5 posts ante of 400
+Player1 posts ante of 400
+Player8 posts ante of 400
+Player4 posts ante of 400
+Hero posts ante of 400
+Pot sizes: 2,800
+Player8 posts small blind (2,000)
+Player4 posts big blind (4,000)
+Dealing Cards
+Dealing [8 h][5 c] to Hero
+Hero folds
+Player7 folds
+Player0 folds
+Player5 raises to 9,450 (all-in)
+Player1 folds
+Player8 folds
+Player4 folds and shows [9 s][2 c]
+Pot sizes: 12,800
+Player5 doesn't show
+Player5 wins 12,800
+Seat 1: Player7 - 24,525
+Seat 2: Player0 - 119,814
+Seat 3: Player5 - 18,250
+Seat 4: Player1 - 75,214
+Seat 5: Player8 - 54,300
+Seat 6: Player4 - 17,696
+Seat 8: Hero - 35,201
+End of Hand #2083045053
+
+Table #44976150 - Tournament #25826986 Table #6
+Starting Hand #2083045194
+Start time of hand: 15 May 2012 01:53:52
+Last Hand #2083045053
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: TOURNAMENT
+Money Type: TOURNAMENT CHIPS
+Blinds are now 2,000 / 4,000
+Button is at seat 4
+Seat 1: Player7 - 24,525
+Seat 2: Player0 - 119,814
+Seat 3: Player5 - 18,250
+Seat 4: Player1 - 75,214
+Seat 5: Player8 - 54,300
+Seat 6: Player4 - 17,696
+Seat 8: Hero - 35,201
+Shuffling Deck
+Moving Button to seat 5
+Player7 posts ante of 400
+Player0 posts ante of 400
+Player5 posts ante of 400
+Player1 posts ante of 400
+Player8 posts ante of 400
+Player4 posts ante of 400
+Hero posts ante of 400
+Pot sizes: 2,800
+Player4 posts small blind (2,000)
+Hero posts big blind (4,000)
+Dealing Cards
+Dealing [2 d][8 d] to Hero
+Player7 folds
+Player0 folds
+Player5 folds
+Player1 folds
+Player8 folds
+Player4 folds
+Pot sizes: 6,800
+Pot sizes: 6,800
+Hero doesn't show
+Hero wins 6,800
+Seat 1: Player7 - 24,125
+Seat 2: Player0 - 119,414
+Seat 3: Player5 - 17,850
+Seat 4: Player1 - 74,814
+Seat 5: Player8 - 53,900
+Seat 6: Player4 - 15,296
+Seat 8: Hero - 39,601
+End of Hand #2083045194
+
+Table #44976150 - Tournament #25826986 Table #6
+Starting Hand #2083045330
+Start time of hand: 15 May 2012 01:54:22
+Last Hand #2083045194
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: TOURNAMENT
+Money Type: TOURNAMENT CHIPS
+Blinds are now 2,000 / 4,000
+Button is at seat 5
+Seat 1: Player7 - 24,125
+Seat 2: Player0 - 119,414
+Seat 3: Player5 - 17,850
+Seat 4: Player1 - 74,814
+Seat 5: Player8 - 53,900
+Seat 6: Player4 - 15,296
+Seat 8: Hero - 39,601
+Shuffling Deck
+Moving Button to seat 6
+Player7 posts ante of 400
+Player0 posts ante of 400
+Player5 posts ante of 400
+Player1 posts ante of 400
+Player8 posts ante of 400
+Player4 posts ante of 400
+Hero posts ante of 400
+Pot sizes: 2,800
+Hero posts small blind (2,000)
+Player7 posts big blind (4,000)
+Dealing Cards
+Dealing [3 d][6 d] to Hero
+Player0 folds
+Player5 calls 4,000
+Player1 raises to 74,414 (all-in)
+Player8 folds
+Player4 folds
+Hero has requested more time
+Hero  is using the time bank 
+Hero has 20 seconds remaining in the time bank
+Hero folds
+Player7 folds
+Player5 calls 17,450 (all-in)
+Returning 56,964 to Player1 uncalled
+Pot sizes: 43,700
+Player5 shows [5 d][A d]
+Player1 shows [5 s][5 h]
+Dealing Flop [J d][3 s][4 h]
+Pot sizes: 43,700
+Dealing Turn [K s]
+Pot sizes: 43,700
+Dealing River [2 h]
+Pot sizes: 43,700
+Player1 has One Pair: 5s
+Player5 has Straight, 5 high 
+Player5 wins 43,700 with: Straight, 5 high 
+Seat 1: Player7 - 19,725
+Seat 2: Player0 - 119,014
+Seat 3: Player5 - 43,700
+Seat 4: Player1 - 56,964
+Seat 5: Player8 - 53,500
+Seat 6: Player4 - 14,896
+Seat 8: Hero - 37,201
+End of Hand #2083045330
+
+Table #44976150 - Tournament #25826986 Table #6
+Starting Hand #2083046811
+Start time of hand: 15 May 2012 02:00:40
+Last Hand #2083045330
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: TOURNAMENT
+Money Type: TOURNAMENT CHIPS
+Blinds are now 2,000 / 4,000
+Button is at seat 6
+Seat 1: Player7 - 19,725
+Seat 2: Player0 - 119,014
+Seat 3: Player5 - 43,700
+Seat 4: Player1 - 56,964
+Seat 5: Player8 - 53,500
+Seat 6: Player4 - 14,896
+Seat 8: Hero - 37,201
+Shuffling Deck
+Moving Button to seat 8
+Player7 posts ante of 400
+Player0 posts ante of 400
+Player5 posts ante of 400
+Player1 posts ante of 400
+Player8 posts ante of 400
+Player4 posts ante of 400
+Hero posts ante of 400
+Pot sizes: 2,800
+Player7 posts small blind (2,000)
+Player0 posts big blind (4,000)
+Dealing Cards
+Dealing [T c][K h] to Hero
+Player5 raises to 12,000
+Player1 raises to 56,564 (all-in)
+Player8 folds
+Player4 folds
+Hero: no way !
+Hero folds
+Player7 folds
+Player0 folds
+Player5 calls 43,300 (all-in)
+Returning 13,264 to Player1 uncalled
+Pot sizes: 95,400
+Player5 shows [T h][T d]
+Player1 shows [A s][K c]
+Dealing Flop [2 h][9 h][9 s]
+Pot sizes: 95,400
+Dealing Turn [J s]
+Pot sizes: 95,400
+Dealing River [7 h]
+Pot sizes: 95,400
+Player1 has One Pair: 9s
+Player5 has Two Pairs: Tens, 9s
+Player5 wins 95,400 with: Two Pairs: Tens, 9s
+Seat 1: Player7 - 17,325
+Seat 2: Player0 - 114,614
+Seat 3: Player5 - 95,400
+Seat 4: Player1 - 13,264
+Seat 5: Player8 - 53,100
+Seat 6: Player4 - 14,496
+Seat 8: Hero - 36,801
+End of Hand #2083046811
+
+Table #44976150 - Tournament #25826986 Table #6
+Starting Hand #2083047122
+Start time of hand: 15 May 2012 02:01:49
+Last Hand #2083046811
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: TOURNAMENT
+Money Type: TOURNAMENT CHIPS
+Blinds are now 2,500 / 5,000
+Button is at seat 8
+Seat 1: Player7 - 17,325
+Seat 2: Player0 - 114,614
+Seat 3: Player5 - 95,400
+Seat 4: Player1 - 13,264
+Seat 5: Player8 - 53,100
+Seat 6: Player4 - 14,496
+Seat 8: Hero - 36,801
+Shuffling Deck
+Moving Button to seat 1
+Player7 posts ante of 500
+Player0 posts ante of 500
+Player5 posts ante of 500
+Player1 posts ante of 500
+Player8 posts ante of 500
+Player4 posts ante of 500
+Hero posts ante of 500
+Pot sizes: 3,500
+Player0 posts small blind (2,500)
+Player5 posts big blind (5,000)
+Dealing Cards
+Dealing [8 d][9 h] to Hero
+Player1 raises to 12,764 (all-in)
+Player8 folds
+Player4 folds
+Hero folds
+Player7 folds
+Player0 calls 12,764
+Player5 calls 12,764
+Pot sizes: 41,792
+Dealing Flop [K c][K h][Q c]
+Player0 checks
+Player5 bets 20,896
+Player0 folds
+Returning 20,896 to Player5 uncalled
+Pot sizes: 41,792
+Player5 shows [T c][K d]
+Player1 shows [Q h][A c]
+Dealing Turn [3 h]
+Pot sizes: 41,792
+Dealing River [4 c]
+Pot sizes: 41,792
+Player5 has Three of a Kind: Kings
+Player5 wins 41,792 with: Three of a Kind: Kings
+Seat 1: Player7 - 16,825
+Seat 2: Player0 - 101,350
+Seat 3: Player5 - 123,928
+Seat 4: Player1 - 0
+Seat 5: Player8 - 52,600
+Seat 6: Player4 - 13,996
+Seat 8: Hero - 36,301
+End of Hand #2083047122
+
+Table #44976150 - Tournament #25826986 Table #6
+Starting Hand #2083047378
+Start time of hand: 15 May 2012 02:02:48
+Last Hand #2083047122
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: TOURNAMENT
+Money Type: TOURNAMENT CHIPS
+Blinds are now 2,500 / 5,000
+Button is at seat 1
+Seat 1: Player7 - 16,825
+Seat 2: Player0 - 101,350
+Seat 3: Player5 - 123,928
+Seat 5: Player8 - 52,600
+Seat 6: Player4 - 13,996
+Seat 8: Hero - 36,301
+Shuffling Deck
+Moving Button to seat 2
+Player7 posts ante of 500
+Player0 posts ante of 500
+Player5 posts ante of 500
+Player8 posts ante of 500
+Player4 posts ante of 500
+Hero posts ante of 500
+Pot sizes: 3,000
+Player5 posts small blind (2,500)
+Player8 posts big blind (5,000)
+Dealing Cards
+Dealing [T d][J c] to Hero
+Hero: no pain .. lol..
+Player4 folds
+Hero folds
+Player7 folds
+Player0 folds
+Player5 calls 5,000
+Player8 raises to 10,000
+Player5 calls 10,000
+Pot sizes: 23,000
+Dealing Flop [9 d][Q s][2 h]
+Player5 checks
+Player8 bets 5,000
+Player5 calls 5,000
+Pot sizes: 33,000
+Dealing Turn [J d]
+Player5 checks
+Player8 bets 5,000
+Player5 calls 5,000
+Pot sizes: 43,000
+Dealing River [2 s]
+Player5 checks
+Player8 checks
+Pot sizes: 43,000
+Player8 shows [A h][4 h]
+Player8 has One Pair: 2s
+Player5 shows [T h][9 h]
+Player5 has Two Pairs: 9s, 2s
+Player5 wins 43,000 with: Two Pairs: 9s, 2s
+Seat 1: Player7 - 16,325
+Seat 2: Player0 - 100,850
+Seat 3: Player5 - 146,428
+Seat 5: Player8 - 32,100
+Seat 6: Player4 - 13,496
+Seat 8: Hero - 35,801
+End of Hand #2083047378
+
+Table #44976150 - Tournament #25826986 Table #6
+Starting Hand #2083047713
+Start time of hand: 15 May 2012 02:04:02
+Last Hand #2083047378
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: TOURNAMENT
+Money Type: TOURNAMENT CHIPS
+Blinds are now 2,500 / 5,000
+Button is at seat 2
+Seat 1: Player7 - 16,325
+Seat 2: Player0 - 100,850
+Seat 3: Player5 - 146,428
+Seat 5: Player8 - 32,100
+Seat 6: Player4 - 13,496
+Seat 8: Hero - 35,801
+Shuffling Deck
+Moving Button to seat 3
+Player7 posts ante of 500
+Player0 posts ante of 500
+Player5 posts ante of 500
+Player8 posts ante of 500
+Player4 posts ante of 500
+Hero posts ante of 500
+Pot sizes: 3,000
+Player8 posts small blind (2,500)
+Player4 posts big blind (5,000)
+Dealing Cards
+Dealing [T c][6 h] to Hero
+Hero folds
+Player7 folds
+Player0 raises to 15,000
+Player5 folds
+Player8 calls 15,000
+Player4 calls 12,996 (all-in)
+Pot sizes: 41,988
+Pot sizes: 4,008
+Dealing Flop [3 s][J s][T d]
+Player8 checks
+Player0 checks
+Pot sizes: 41,988
+Pot sizes: 4,008
+Dealing Turn [5 h]
+Player8 checks
+Player0 bets 5,000
+Player8 folds
+Pot sizes: 41,988
+Pot sizes: 4,008
+Player0 shows [A d][8 c]
+Player4 shows [A c][Q d]
+Dealing River [7 d]
+Pot sizes: 41,988
+Pot sizes: 4,008
+Player0 has High Card: Ace
+Player0 wins 4,008 from side pot #1 with: High Card: Ace
+Player4 has High Card: Ace
+Player4 wins 41,988 with: High Card: Ace
+Seat 1: Player7 - 15,825
+Seat 2: Player0 - 89,358
+Seat 3: Player5 - 145,928
+Seat 5: Player8 - 16,600
+Seat 6: Player4 - 41,988
+Seat 8: Hero - 35,301
+End of Hand #2083047713
+
+Table #44976150 - Tournament #25826986 Table #6
+Starting Hand #2083048074
+Start time of hand: 15 May 2012 02:05:15
+Last Hand #2083047713
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: TOURNAMENT
+Money Type: TOURNAMENT CHIPS
+Blinds are now 2,500 / 5,000
+Button is at seat 3
+Seat 1: Player7 - 15,825
+Seat 2: Player0 - 89,358
+Seat 3: Player5 - 145,928
+Seat 5: Player8 - 16,600
+Seat 6: Player4 - 41,988
+Seat 8: Hero - 35,301
+Shuffling Deck
+Moving Button to seat 5
+Player7 posts ante of 500
+Player0 posts ante of 500
+Player5 posts ante of 500
+Player8 posts ante of 500
+Player4 posts ante of 500
+Hero posts ante of 500
+Pot sizes: 3,000
+Player4 posts small blind (2,500)
+Hero posts big blind (5,000)
+Dealing Cards
+Dealing [2 s][A h] to Hero
+Player7 raises to 15,325 (all-in)
+Player0 folds
+Player5 folds
+Player8 raises to 16,100 (all-in)
+Player4 folds
+Hero folds
+Returning 775 to Player8 uncalled
+Pot sizes: 41,150
+Player7 shows [K c][A c]
+Player8 shows [K d][Q c]
+Dealing Flop [J c][Q s][6 c]
+Pot sizes: 41,150
+Dealing Turn [T s]
+Pot sizes: 41,150
+Dealing River [K h]
+Pot sizes: 41,150
+Player8 has Two Pairs: Kings, Queens
+Player7 has Straight, Ace high 
+Player7 wins 41,150 with: Straight, Ace high 
+Seat 1: Player7 - 41,150
+Seat 2: Player0 - 88,858
+Seat 3: Player5 - 145,428
+Seat 5: Player8 - 775
+Seat 6: Player4 - 38,988
+Seat 8: Hero - 29,801
+End of Hand #2083048074
+
+Table #44976150 - Tournament #25826986 Table #6
+Starting Hand #2083048223
+Start time of hand: 15 May 2012 02:05:47
+Last Hand #2083048074
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: TOURNAMENT
+Money Type: TOURNAMENT CHIPS
+Blinds are now 2,500 / 5,000
+Button is at seat 5
+Seat 1: Player7 - 41,150
+Seat 2: Player0 - 88,858
+Seat 3: Player5 - 145,428
+Seat 5: Player8 - 775
+Seat 6: Player4 - 38,988
+Seat 8: Hero - 29,801
+Shuffling Deck
+Moving Button to seat 6
+Player7 posts ante of 500
+Player0 posts ante of 500
+Player5 posts ante of 500
+Player8 posts ante of 500
+Player4 posts ante of 500
+Hero posts ante of 500
+Pot sizes: 3,000
+Hero posts small blind (2,500)
+Player7 posts big blind (5,000)
+Dealing Cards
+Dealing [4 d][J h] to Hero
+Player0 folds
+Player5 raises to 15,000
+Player8 calls 275 (all-in)
+Player4 folds
+Hero folds
+Player7 folds
+Pot sizes: 4,100
+Pot sizes: 11,675
+Player5 shows [K s][J c]
+Player8 shows [2 s][8 s]
+Dealing Flop [A s][5 s][Q d]
+Pot sizes: 4,100
+Pot sizes: 11,675
+Dealing Turn [6 c]
+Pot sizes: 4,100
+Pot sizes: 11,675
+Dealing River [7 s]
+Pot sizes: 4,100
+Pot sizes: 11,675
+Player5 has High Card: Ace
+Player5 wins 11,675 from side pot #1 with: High Card: Ace
+Player8 has Flush, Ace high 
+Player8 wins 4,100 with: Flush, Ace high 
+Seat 1: Player7 - 35,650
+Seat 2: Player0 - 88,358
+Seat 3: Player5 - 151,603
+Seat 5: Player8 - 4,100
+Seat 6: Player4 - 38,488
+Seat 8: Hero - 26,801
+End of Hand #2083048223
+
+Table #44976150 - Tournament #25826986 Table #6
+Starting Hand #2083048392
+Start time of hand: 15 May 2012 02:06:23
+Last Hand #2083048223
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: TOURNAMENT
+Money Type: TOURNAMENT CHIPS
+Blinds are now 2,500 / 5,000
+Button is at seat 6
+Seat 1: Player7 - 35,650
+Seat 2: Player0 - 88,358
+Seat 3: Player5 - 151,603
+Seat 5: Player8 - 4,100
+Seat 6: Player4 - 38,488
+Seat 8: Hero - 26,801
+Shuffling Deck
+Moving Button to seat 8
+Player7 posts ante of 500
+Player0 posts ante of 500
+Player5 posts ante of 500
+Player8 posts ante of 500
+Player4 posts ante of 500
+Hero posts ante of 500
+Pot sizes: 3,000
+Player7 posts small blind (2,500)
+Player0 posts big blind (5,000)
+Dealing Cards
+Dealing [T s][5 s] to Hero
+Player5 raises to 15,000
+Player8 folds
+Player4 folds
+Hero folds
+Player7 folds
+Player0 folds
+Pot sizes: 15,500
+Player5 doesn't show
+Player5 wins 15,500
+Seat 1: Player7 - 32,650
+Seat 2: Player0 - 82,858
+Seat 3: Player5 - 161,603
+Seat 5: Player8 - 3,600
+Seat 6: Player4 - 37,988
+Seat 8: Hero - 26,301
+End of Hand #2083048392
+
+Table #44976150 - Tournament #25826986 Table #6
+Starting Hand #2083048524
+Start time of hand: 15 May 2012 02:06:53
+Last Hand #2083048392
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: TOURNAMENT
+Money Type: TOURNAMENT CHIPS
+Blinds are now 3,000 / 6,000
+Button is at seat 8
+Seat 1: Player7 - 32,650
+Seat 2: Player0 - 82,858
+Seat 3: Player5 - 161,603
+Seat 5: Player8 - 3,600
+Seat 6: Player4 - 37,988
+Seat 8: Hero - 26,301
+Shuffling Deck
+Moving Button to seat 1
+Player7 posts ante of 600
+Player0 posts ante of 600
+Player5 posts ante of 600
+Player8 posts ante of 600
+Player4 posts ante of 600
+Hero posts ante of 600
+Pot sizes: 3,600
+Player0 posts small blind (3,000)
+Player5 posts big blind (6,000)
+Dealing Cards
+Dealing [2 h][6 c] to Hero
+Player8 folds
+Player4 folds
+Hero folds
+Player7 folds
+Player0 calls 6,000
+Player5 checks
+Pot sizes: 15,600
+Dealing Flop [J s][Q s][K d]
+Player0 bets 6,000
+Player5 raises to 12,000
+Player0 calls 12,000
+Pot sizes: 39,600
+Dealing Turn [7 s]
+Player0 bets 12,000
+Player5 calls 12,000
+Pot sizes: 63,600
+Dealing River [6 s]
+Player0 checks
+Player5 bets 21,000
+Player0 folds and shows [J d][7 c]
+Pot sizes: 63,600
+Player5 doesn't show
+Player5 wins 63,600
+Seat 1: Player7 - 32,050
+Seat 2: Player0 - 52,258
+Seat 3: Player5 - 194,603
+Seat 5: Player8 - 3,000
+Seat 6: Player4 - 37,388
+Seat 8: Hero - 25,701
+End of Hand #2083048524
+
+Table #44976150 - Tournament #25826986 Table #6
+Starting Hand #2083049032
+Start time of hand: 15 May 2012 02:08:45
+Last Hand #2083048524
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: TOURNAMENT
+Money Type: TOURNAMENT CHIPS
+Blinds are now 3,000 / 6,000
+Button is at seat 1
+Seat 1: Player7 - 32,050
+Seat 2: Player0 - 52,258
+Seat 3: Player5 - 194,603
+Seat 5: Player8 - 3,000
+Seat 6: Player4 - 37,388
+Seat 8: Hero - 25,701
+Shuffling Deck
+Moving Button to seat 2
+Player7 posts ante of 600
+Player0 posts ante of 600
+Player5 posts ante of 600
+Player8 posts ante of 600
+Player4 posts ante of 600
+Hero posts ante of 600
+Pot sizes: 3,600
+Player5 posts small blind (3,000)
+Player8 posts big blind (2,400) (all-in)
+Dealing Cards
+Dealing [9 d][9 h] to Hero
+Player4 folds
+Hero calls 6,000
+Player7 folds
+Player0 calls 6,000
+Player5 folds
+Pot sizes: 13,200
+Pot sizes: 7,800
+Dealing Flop [6 d][4 c][T h]
+Hero checks
+Player0 checks
+Pot sizes: 13,200
+Pot sizes: 7,800
+Dealing Turn [Q d]
+Hero checks
+Player0 checks
+Pot sizes: 13,200
+Pot sizes: 7,800
+Dealing River [K d]
+Hero checks
+Player0 checks
+Pot sizes: 13,200
+Pot sizes: 7,800
+Hero shows [9 d][9 h]
+Hero has One Pair: 9s
+Player0 mucks
+Hero wins 7,800 from side pot #1 with: One Pair: 9s
+Player8 shows [5 s][K s]
+Player8 has One Pair: Kings
+Player8 wins 13,200 with: One Pair: Kings
+Seat 1: Player7 - 31,450
+Seat 2: Player0 - 45,658
+Seat 3: Player5 - 191,003
+Seat 5: Player8 - 13,200
+Seat 6: Player4 - 36,788
+Seat 8: Hero - 26,901
+End of Hand #2083049032
+
+Table #44976150 - Tournament #25826986 Table #6
+Starting Hand #2083049407
+Start time of hand: 15 May 2012 02:09:48
+Last Hand #2083049032
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: TOURNAMENT
+Money Type: TOURNAMENT CHIPS
+Blinds are now 3,000 / 6,000
+Button is at seat 2
+Seat 1: Player7 - 31,450
+Seat 2: Player0 - 45,658
+Seat 3: Player5 - 191,003
+Seat 5: Player8 - 13,200
+Seat 6: Player4 - 36,788
+Seat 8: Hero - 26,901
+Shuffling Deck
+Moving Button to seat 3
+Player7 posts ante of 600
+Player0 posts ante of 600
+Player5 posts ante of 600
+Player8 posts ante of 600
+Player4 posts ante of 600
+Hero posts ante of 600
+Pot sizes: 3,600
+Player8 posts small blind (3,000)
+Player4 posts big blind (6,000)
+Dealing Cards
+Dealing [6 h][8 h] to Hero
+Hero folds
+Player7 folds
+Player0 folds
+Player5 folds
+Player8 folds
+Pot sizes: 9,600
+Pot sizes: 9,600
+Player4 doesn't show
+Player4 wins 9,600
+Seat 1: Player7 - 30,850
+Seat 2: Player0 - 45,058
+Seat 3: Player5 - 190,403
+Seat 5: Player8 - 9,600
+Seat 6: Player4 - 42,788
+Seat 8: Hero - 26,301
+End of Hand #2083049407
+
+Table #44976150 - Tournament #25826986 Table #6
+Starting Hand #2083049522
+Start time of hand: 15 May 2012 02:10:13
+Last Hand #2083049407
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: TOURNAMENT
+Money Type: TOURNAMENT CHIPS
+Blinds are now 3,000 / 6,000
+Button is at seat 3
+Seat 1: Player7 - 30,850
+Seat 2: Player0 - 45,058
+Seat 3: Player5 - 190,403
+Seat 5: Player8 - 9,600
+Seat 6: Player4 - 42,788
+Seat 8: Hero - 26,301
+Shuffling Deck
+Moving Button to seat 5
+Player7 posts ante of 600
+Player0 posts ante of 600
+Player5 posts ante of 600
+Player8 posts ante of 600
+Player4 posts ante of 600
+Hero posts ante of 600
+Pot sizes: 3,600
+Player4 posts small blind (3,000)
+Hero posts big blind (6,000)
+Dealing Cards
+Dealing [3 c][9 c] to Hero
+Player7 folds
+Player0 folds
+Player5 folds
+Player8 folds
+Player4 folds
+Pot sizes: 9,600
+Pot sizes: 9,600
+Hero doesn't show
+Hero wins 9,600
+Seat 1: Player7 - 30,250
+Seat 2: Player0 - 44,458
+Seat 3: Player5 - 189,803
+Seat 5: Player8 - 9,000
+Seat 6: Player4 - 39,188
+Seat 8: Hero - 32,301
+End of Hand #2083049522
+
+Table #44976150 - Tournament #25826986 Table #6
+Starting Hand #2083049663
+Start time of hand: 15 May 2012 02:10:43
+Last Hand #2083049522
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: TOURNAMENT
+Money Type: TOURNAMENT CHIPS
+Blinds are now 3,000 / 6,000
+Button is at seat 5
+Seat 1: Player7 - 30,250
+Seat 2: Player0 - 44,458
+Seat 3: Player5 - 189,803
+Seat 5: Player8 - 9,000
+Seat 6: Player4 - 39,188
+Seat 8: Hero - 32,301
+Shuffling Deck
+Moving Button to seat 6
+Player7 posts ante of 600
+Player0 posts ante of 600
+Player5 posts ante of 600
+Player8 posts ante of 600
+Player4 posts ante of 600
+Hero posts ante of 600
+Pot sizes: 3,600
+Hero posts small blind (3,000)
+Player7 posts big blind (6,000)
+Dealing Cards
+Dealing [J d][K s] to Hero
+Player0 raises to 15,000
+Player5 folds
+Player8 folds
+Player4 folds
+Hero folds
+Player7 raises to 29,650 (all-in)
+Player0 calls 29,650
+Pot sizes: 65,900
+Player7 shows [K c][A d]
+Player0 shows [J s][T s]
+Dealing Flop [Q h][5 h][T c]
+Pot sizes: 65,900
+Dealing Turn [3 h]
+Pot sizes: 65,900
+Dealing River [9 d]
+Pot sizes: 65,900
+Player7 has High Card: Ace
+Player0 has One Pair: Tens
+Player0 wins 65,900 with: One Pair: Tens
+Seat 1: Player7 - 0
+Seat 2: Player0 - 80,108
+Seat 3: Player5 - 189,203
+Seat 5: Player8 - 8,400
+Seat 6: Player4 - 38,588
+Seat 8: Hero - 28,701
+End of Hand #2083049663
+
+Table #44976150 - Tournament #25826986 Table #6
+Starting Hand #2083049881
+Start time of hand: 15 May 2012 02:11:34
+Last Hand #2083049663
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: TOURNAMENT
+Money Type: TOURNAMENT CHIPS
+Blinds are now 3,000 / 6,000
+Button is at seat 6
+Seat 2: Player0 - 80,108
+Seat 3: Player5 - 189,203
+Seat 5: Player8 - 8,400
+Seat 6: Player4 - 38,588
+Seat 8: Hero - 28,701
+Shuffling Deck
+Moving Button to seat 8
+Player0 posts ante of 600
+Player5 posts ante of 600
+Player8 posts ante of 600
+Player4 posts ante of 600
+Hero posts ante of 600
+Pot sizes: 3,000
+Player0 posts big blind (6,000)
+Dealing Cards
+Dealing [J c][T d] to Hero
+Hero: gh
+Player5 folds
+Player8 folds
+Player4 folds
+Hero raises to 15,000
+Player0 folds
+Pot sizes: 15,000
+Hero shows [J c][XX] 
+Hero wins 15,000
+Seat 2: Player0 - 73,508
+Seat 3: Player5 - 188,603
+Seat 5: Player8 - 7,800
+Seat 6: Player4 - 37,988
+Seat 8: Hero - 37,101
+End of Hand #2083049881
+
+Table #44976150 - Tournament #25826986 Table #6
+Starting Hand #2083050097
+Start time of hand: 15 May 2012 02:12:22
+Last Hand #2083049881
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: TOURNAMENT
+Money Type: TOURNAMENT CHIPS
+Blinds are now 4,000 / 8,000
+Button is at seat 8
+Seat 2: Player0 - 73,508
+Seat 3: Player5 - 188,603
+Seat 5: Player8 - 7,800
+Seat 6: Player4 - 37,988
+Seat 8: Hero - 37,101
+Shuffling Deck
+Moving Button to seat 8
+Player0 posts ante of 800
+Player5 posts ante of 800
+Player8 posts ante of 800
+Player4 posts ante of 800
+Hero posts ante of 800
+Pot sizes: 4,000
+Player0 posts small blind (4,000)
+Player5 posts big blind (8,000)
+Dealing Cards
+Dealing [6 s][7 s] to Hero
+Player8 folds
+Player4 raises to 37,188 (all-in)
+Hero: just - 1st Broadway card ... by last 20 hand`s .. lol..
+Hero folds
+Player0 folds
+Player5 folds
+Pot sizes: 24,000
+Player4 doesn't show
+Player4 wins 24,000
+Seat 2: Player0 - 68,708
+Seat 3: Player5 - 179,803
+Seat 5: Player8 - 7,000
+Seat 6: Player4 - 53,188
+Seat 8: Hero - 36,301
+End of Hand #2083050097
+
+Table #44976150 - Tournament #25826986 Table #6
+Starting Hand #2083050264
+Start time of hand: 15 May 2012 02:12:58
+Last Hand #2083050097
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: TOURNAMENT
+Money Type: TOURNAMENT CHIPS
+Blinds are now 4,000 / 8,000
+Button is at seat 8
+Seat 2: Player0 - 68,708
+Seat 3: Player5 - 179,803
+Seat 5: Player8 - 7,000
+Seat 6: Player4 - 53,188
+Seat 8: Hero - 36,301
+Shuffling Deck
+Moving Button to seat 2
+Player0 posts ante of 800
+Player5 posts ante of 800
+Player8 posts ante of 800
+Player4 posts ante of 800
+Hero posts ante of 800
+Pot sizes: 4,000
+Player5 posts small blind (4,000)
+Player8 posts big blind (6,200) (all-in)
+Dealing Cards
+Dealing [4 s][4 c] to Hero
+Player4 folds
+Hero calls 8,000
+Player0 folds
+Player5 calls 8,000
+Pot sizes: 22,600
+Pot sizes: 3,600
+Dealing Flop [T s][Q d][3 s]
+Player5 bets 13,100
+Hero folds
+Pot sizes: 22,600
+Pot sizes: 3,600
+Player5 shows [Q h][T d]
+Player8 shows [4 h][J h]
+Dealing Turn [K s]
+Pot sizes: 22,600
+Pot sizes: 3,600
+Dealing River [A s]
+Pot sizes: 22,600
+Pot sizes: 3,600
+Player5 has Two Pairs: Queens, Tens
+Player5 wins 3,600 from side pot #1 with: Two Pairs: Queens, Tens
+Player8 has Straight, Ace high 
+Player8 wins 22,600 with: Straight, Ace high 
+Seat 2: Player0 - 67,908
+Seat 3: Player5 - 174,603
+Seat 5: Player8 - 22,600
+Seat 6: Player4 - 52,388
+Seat 8: Hero - 27,501
+End of Hand #2083050264
+
+Table #44976150 - Tournament #25826986 Table #6
+Starting Hand #2083050452
+Start time of hand: 15 May 2012 02:13:43
+Last Hand #2083050264
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: TOURNAMENT
+Money Type: TOURNAMENT CHIPS
+Blinds are now 4,000 / 8,000
+Button is at seat 2
+Seat 2: Player0 - 67,908
+Seat 3: Player5 - 174,603
+Seat 5: Player8 - 22,600
+Seat 6: Player4 - 52,388
+Seat 8: Hero - 27,501
+Shuffling Deck
+Moving Button to seat 3
+Player0 posts ante of 800
+Player5 posts ante of 800
+Player8 posts ante of 800
+Player4 posts ante of 800
+Hero posts ante of 800
+Pot sizes: 4,000
+Player8 posts small blind (4,000)
+Player4 posts big blind (8,000)
+Dealing Cards
+Dealing [T h][7 s] to Hero
+Hero folds
+Player0 raises to 20,000
+Player5 folds
+Player8 raises to 21,800 (all-in)
+Player4 folds
+Player0 calls 21,800
+Pot sizes: 55,600
+Player0 shows [K c][J c]
+Player8 shows [K d][A h]
+Dealing Flop [J h][Q h][9 c]
+Pot sizes: 55,600
+Dealing Turn [K h]
+Pot sizes: 55,600
+Player0 claps.
+Dealing River [A d]
+Pot sizes: 55,600
+Player8 has Two Pairs: Aces, Kings
+Player8 wins 55,600 with: Two Pairs: Aces, Kings
+Seat 2: Player0 - 45,308
+Seat 3: Player5 - 173,803
+Seat 5: Player8 - 55,600
+Seat 6: Player4 - 43,588
+Seat 8: Hero - 26,701
+End of Hand #2083050452
+
+Table #44976150 - Tournament #25826986 Table #6
+Starting Hand #2083050679
+Start time of hand: 15 May 2012 02:14:33
+Last Hand #2083050452
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: TOURNAMENT
+Money Type: TOURNAMENT CHIPS
+Blinds are now 4,000 / 8,000
+Button is at seat 3
+Seat 2: Player0 - 45,308
+Seat 3: Player5 - 173,803
+Seat 5: Player8 - 55,600
+Seat 6: Player4 - 43,588
+Seat 8: Hero - 26,701
+Shuffling Deck
+Moving Button to seat 5
+Player0 posts ante of 800
+Player5 posts ante of 800
+Player8 posts ante of 800
+Player4 posts ante of 800
+Hero posts ante of 800
+Pot sizes: 4,000
+Player4 posts small blind (4,000)
+Hero posts big blind (8,000)
+Dealing Cards
+Dealing [5 d][K h] to Hero
+Player0 folds
+Player5 folds
+Player8 folds
+Player4 raises to 42,788 (all-in)
+Hero folds and shows [5 d][XX] 
+Pot sizes: 20,000
+Player4 doesn't show
+Player4 wins 20,000
+Seat 2: Player0 - 44,508
+Seat 3: Player5 - 173,003
+Seat 5: Player8 - 54,800
+Seat 6: Player4 - 54,788
+Seat 8: Hero - 17,901
+End of Hand #2083050679
+
+Table #44976150 - Tournament #25826986 Table #6
+Starting Hand #2083050846
+Start time of hand: 15 May 2012 02:15:07
+Last Hand #2083050679
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: TOURNAMENT
+Money Type: TOURNAMENT CHIPS
+Blinds are now 4,000 / 8,000
+Button is at seat 5
+Seat 2: Player0 - 44,508
+Seat 3: Player5 - 173,003
+Seat 5: Player8 - 54,800
+Seat 6: Player4 - 54,788
+Seat 8: Hero - 17,901
+Shuffling Deck
+Moving Button to seat 6
+Player0 posts ante of 800
+Player5 posts ante of 800
+Player8 posts ante of 800
+Player4 posts ante of 800
+Hero posts ante of 800
+Pot sizes: 4,000
+Hero posts small blind (4,000)
+Player0 posts big blind (8,000)
+Dealing Cards
+Dealing [K s][8 c] to Hero
+Hero: best one..
+Hero: lol..
+Player5 folds
+Player8 folds
+Player4 folds
+Hero raises to 17,101 (all-in)
+Player0 says good luck.
+Player4: had a good hand sorry
+Player0 calls 17,101
+Pot sizes: 38,202
+Player0 shows [Q s][Q c]
+Hero shows [K s][8 c]
+Dealing Flop [J d][3 s][A c]
+Player4: :)
+Pot sizes: 38,202
+Dealing Turn [8 s]
+Pot sizes: 38,202
+Dealing River [5 h]
+Pot sizes: 38,202
+Hero has One Pair: 8s
+Player0 has One Pair: Queens
+Player0 wins 38,202 with: One Pair: Queens
+Hero claps.
+Seat 2: Player0 - 64,809
+Seat 3: Player5 - 172,203
+Seat 5: Player8 - 54,000
+Seat 6: Player4 - 53,988
+Seat 8: Hero - 0
+End of Hand #2083050846
+
+

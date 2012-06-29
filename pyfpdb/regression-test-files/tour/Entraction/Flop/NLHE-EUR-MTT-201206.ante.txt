@@ -1,0 +1,43 @@
+Game # 2667452662 - Texas Hold'em No Limit 200/400 and 20 ante - Table "Double Chance €3,000 #1 12717727 2"
+
+Players(max 9):
+Player0                     (6,003.00 in seat 1)
+Player1                     (7,168.00 in seat 2)
+Player2                     (3,053.00 in seat 3)
+Player3                     (6,654.00 in seat 4)
+Player4                     (29,653.00 in seat 5)
+Player5                     (5,821.00 in seat 7)
+Player6                     (12,054.00 in seat 8)
+Hero                        (11,916.00 in seat 9)
+
+Dealer:                     Player1
+
+Player0                     Ante        (20.00)
+Player1                     Ante        (20.00)
+Player2                     Ante        (20.00)
+Player3                     Ante        (20.00)
+Player4                     Ante        (20.00)
+Player5                     Ante        (20.00)
+Player6                     Ante        (20.00)
+Hero                        Ante        (20.00)
+
+Small Blind:                Player2  (200.00)
+Big Blind:                  Player3   (400.00)
+
+Hero was dealt:          6h - 2s
+
+Player4                     Raise       (980.00)
+Player5                     Fold        
+Player6                     Fold        
+Hero                        Fold        
+Player0                     Fold        
+Player1                     Fold        
+Player2                     Fold        
+Player3                     Fold        
+Player4                     Payback     (580.00)
+
+Player4 didn't show hand
+
+Player4 wins:               1,160.00
+
+Game ended 2012-06-25 21:54:16 BST

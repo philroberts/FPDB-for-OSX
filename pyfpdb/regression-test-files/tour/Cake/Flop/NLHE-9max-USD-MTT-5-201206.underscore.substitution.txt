@@ -1,0 +1,45 @@
+Hand#2990AB91EA000257 - $5 Bounty T11244010 -- CASH -- $5 + $0.5 -- 9 Max -- Table 9 -- 20/125/250 NL Hold'em -- 2012/06/12 - 13:40:16
+Dealer: Seat 8
+Seat 3: Player0 (7,647 in chips) 
+Seat 4: Player Space (1,766 in chips) 
+Seat 5: Player1 (11,168 in chips) 
+Seat 7: Player2 (2,399 in chips) 
+Seat 8: Player3 (1,764 in chips) 
+Seat 9: Hero (6,970 in chips) 
+Seat 10: Player5 (10,399 in chips) 
+Player0: posts ante of 20
+Player Space: posts ante of 20
+Player1: posts ante of 20
+Player2: posts ante of 20
+Player3: posts ante of 20
+Hero: posts ante of 20
+Player5: posts ante of 20
+Hero: posts small blind 125
+Player5: posts big blind 250
+Dealt to Hero [8s,Js]
+Player0: calls 250
+Player Space: calls 250
+Player1: folds
+Player2: folds
+Player3: folds
+Hero: folds
+Player5: checks
+*** FLOP *** [Td,6d,Qs]
+Player5: bets 250
+Player0: calls 250
+Player Space: calls 250
+*** TURN *** [Kh]
+Player5: checks
+Player0: checks
+Player Space: checks
+*** RIVER *** [8c]
+Player5: checks
+Player0: checks
+Player Space: checks
+***SHOW DOWN***
+Player5: shows [4c Qh] (Pair of Queens  )
+Player0: mucks
+Player Space: mucks
+Player5 wins 1,765 with Pair of Queens   
+Player0: mucks [Th,Ad] (Pair) .
+Player_Space: mucks [8h,9d] (Pair) .

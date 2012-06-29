@@ -33,7 +33,8 @@ class Entraction(HandHistoryConverter):
     
     sym = {'USD': "\$", 'CAD': "\$", 'T$': "", "EUR": "\xe2\x82\xac", "GBP": "\xa3", "play": ""}
     substitutions = {
-                     'LEGAL_ISO' : "EUR|",
+                     'LEGAL_ISO' : "EUR|Fun|",
+                            'LS' : u"\$|\xe2\x82\xac|\u20ac|\£|", # legal currency symbols - Euro(cp1252, utf-8)
                            'PLYR': r'(?P<PNAME>.+?)',
                             'CUR': u"(\$|\xe2\x82\xac|\u20ac|)",
                             'NUM': u".,\d",
@@ -70,26 +71,28 @@ class Entraction(HandHistoryConverter):
           \s(?P<HID>[0-9]+)\s-\s
           (?P<GAME>Texas\sHold\'em|Omaha\sHigh)\s
           (?P<LIMIT>No\sLimit|Pot\sLimit|Fixed\sLimit)\s
-          (?P<CURRENCY>%(LEGAL_ISO)s|)?\s
+          (?P<CURRENCY>%(LEGAL_ISO)s|)?\s?
           (?P<SB>[%(NUM)s]+)/
-          (?P<BB>[%(NUM)s]+)
+          (?P<BB>[%(NUM)s]+)\s
+          (and\s[%(NUM)s]+\sante\s)?
+          \-\sTable\s\"(?P<TABLE>.+?)(\s(?P<TOURNO>\d+)\s(?P<TABLENO>\d+))?\"
         """ % substitutions, re.MULTILINE|re.VERBOSE)
 
     re_PlayerInfo   = re.compile(u"""
           ^(?P<PNAME>.*)\s
-          \((%(LEGAL_ISO)s)\s(?P<CASH>[%(NUM)s]+)\s
+          \((%(LEGAL_ISO)s)?\s?(?P<CASH>[%(NUM)s]+)\s
           in\sseat\s(?P<SEAT>[0-9]+)\)"""
             % substitutions, re.MULTILINE|re.VERBOSE)
 
     re_HandInfo     = re.compile("""
           \s(?P<HID>[0-9]+)\s-\s.+?
-          Table\s(?P<TABLE>.+)
+          Table\s"(?P<TABLE>(?P<BUYIN>(?P<BIAMT>[%(LS)s%(NUM)s]+)?\+?(?P<BIRAKE>[%(NUM)s]+)?)?.+?)(\s(?P<TOURNO>\d+)\s(?P<TABLENO>\d+))?\"
         """ % substitutions, re.MULTILINE|re.VERBOSE)
 
     re_SplitHands   = re.compile(r"\n\nGame #")
     re_Button       = re.compile(r'^Dealer:\s+(?P<PNAME>.*)$', re.MULTILINE)
     re_Board        = re.compile(r"^(?P<CARDS>.+)$", re.MULTILINE)
-    re_GameEnds     = re.compile(r"Game\sended\s(?P<Y>[0-9]{4})-(?P<M>[0-9]{2})-(?P<D>[0-9]{2})\s(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)", re.MULTILINE)
+    re_GameEnds     = re.compile(r"Game\sended\s(?P<Y>[0-9]{4})-(?P<M>[0-9]{2})-(?P<D>[0-9]{2})\s(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)(\s(?P<TZ>[A-Z]+))?", re.MULTILINE)
     re_Max          = re.compile(r"Players\(max\s(?P<MAX>\d+)\):")
 
     re_DateTime     = re.compile("""(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)""", re.MULTILINE)
@@ -97,12 +100,12 @@ class Entraction(HandHistoryConverter):
     re_PostBB       = re.compile(r"^Big Blind: {18}(?P<PNAME>.*)\s+\((?P<BB>[%(NUM)s]+)\)" % substitutions, re.MULTILINE)
     re_PostBoth     = re.compile(r"^Small \+ Big Blind: {10}(?P<PNAME>.*)\s+\((?P<SBBB>[%(NUM)s]+)\)" % substitutions, re.MULTILINE)
     re_PostSecondSB = re.compile(r"^Blind out of turn: {10}(?P<PNAME>.*)\s+\((?P<SB>[%(NUM)s]+)\)" % substitutions, re.MULTILINE)
-    re_Antes        = re.compile(r"^%(PLYR)s: posts the ante %(CUR)s(?P<ANTE>[%(NUM)s]+)" % substitutions, re.MULTILINE)
+    re_Antes        = re.compile(r"^%(PLYR)s\s+Ante\s+\((?P<ANTE>[%(NUM)s]+)\)" % substitutions, re.MULTILINE)
     re_BringIn      = re.compile(r"^%(PLYR)s: brings[- ]in( low|) for %(CUR)s(?P<BRINGIN>[%(NUM)s]+)" % substitutions, re.MULTILINE)
     re_HeroCards    = re.compile(r"^%(PLYR)s was dealt:\s+(?P<CARDS>.+)" % substitutions, re.MULTILINE)
     re_Action       = re.compile(r"""
                         ^%(PLYR)s\s+(?P<ATYPE>Fold|Check|Call|Bet|Raise|All\-In)\s+?
-                        (\((?P<BET>[.\d]+)\))?$"""
+                        (\((?P<BET>[%(NUM)s]+)\))?$"""
                          %  substitutions, re.MULTILINE|re.VERBOSE)
     re_ShowdownAction = re.compile(r"^%(PLYR)s\sdidn\'t\sshow\shand\s\((?P<CARDS>.+)\)" % substitutions, re.MULTILINE)
     re_ShownCards     = re.compile(r"^%(PLYR)s\sshows:\s+(?P<CARDS>.+)\s\((?P<STRING>.+?)\)" % substitutions, re.MULTILINE)
@@ -115,7 +118,10 @@ class Entraction(HandHistoryConverter):
         return [["ring", "hold", "nl"],
                 ["ring", "hold", "pl"],
                 ["ring", "hold", "fl"],
-
+                
+                ["tour", "hold", "nl"],
+                ["tour", "hold", "pl"],
+                ["tour", "hold", "fl"],
                 ]
 
     def determineGameType(self, handText):
@@ -133,22 +139,32 @@ class Entraction(HandHistoryConverter):
         if 'GAME' in mg:
             (info['base'], info['category']) = self.games[mg['GAME']]
         if 'SB' in mg:
-            info['sb'] = mg['SB']
+            info['sb'] = self.clearMoneyString(mg['SB'])
         if 'BB' in mg:
-            info['bb'] = mg['BB']
+            info['bb'] = self.clearMoneyString(mg['BB'])
         if 'CURRENCY' in mg:
-            info['currency'] = mg['CURRENCY']
+            if mg['CURRENCY'] == 'Fun':
+                info['currency'] = 'play'
+            else:
+                info['currency'] = mg['CURRENCY']
+        if 'TOURNO' in mg and mg['TOURNO'] is not None:
+            info['type'] = 'tour'
+            info['currency'] = 'T$'
+        else:
+            info['type'] = 'ring'
 
-        info['type'] = 'ring'
-
-        if info['limitType'] == 'fl' and info['bb'] is not None and info['type'] == 'ring':
-            try:
-                info['sb'] = self.Lim_Blinds[mg['BB']][0]
-                info['bb'] = self.Lim_Blinds[mg['BB']][1]
-            except KeyError:
-                log.error(_("Lim_Blinds has no lookup for '%s'") % mg['BB'])
-                log.error("determineGameType: " + _("Raising FpdbParseError"))
-                raise FpdbParseError(_("Lim_Blinds has no lookup for '%s'") % mg['BB'])
+        if info['limitType'] == 'fl' and info['bb'] is not None:
+            if info['type'] == 'ring':
+                try:
+                    info['sb'] = self.Lim_Blinds[info['bb']][0]
+                    info['bb'] = self.Lim_Blinds[info['bb']][1]
+                except KeyError:
+                    tmp = handText[0:200]
+                    log.error(_("PokerStarsToFpdb.determineGameType: Lim_Blinds has no lookup for '%s' - '%s'") % (info['bb'], tmp))
+                    raise FpdbParseError
+            else:
+                info['sb'] = str((Decimal(info['sb'])/2).quantize(Decimal("0.01")))
+                info['bb'] = str(Decimal(info['sb']).quantize(Decimal("0.01")))   
 #
         return info
 
@@ -170,10 +186,41 @@ class Entraction(HandHistoryConverter):
             if key == 'Y':
                 datetimestr = "%s/%s/%s %s:%s:%s" % (info['Y'], info['M'],info['D'],info['H'],info['MIN'],info['S'])
                 hand.startTime = datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S")
+                if info['TZ']:
+                    hand.startTime = HandHistoryConverter.changeTimezone(hand.startTime, info['TZ'], "UTC")
             if key == 'HID':
                 hand.handid = info[key]
+            if key == 'TOURNO':
+                hand.tourNo = info[key]
+            if key == 'BUYIN':
+                if hand.tourNo!=None:
+                    if info[key] == 'Freeroll' or info['BIAMT'] is None:
+                        hand.buyin = 0
+                        hand.fee = 0
+                        hand.buyinCurrency = "FREE"
+                    else:
+                        if info[key].find("$")!=-1:
+                            hand.buyinCurrency="USD"
+                        elif info[key].find(u"£")!=-1:
+                            hand.buyinCurrency="GBP"
+                        elif info[key].find(u"€")!=-1:
+                            hand.buyinCurrency="EUR"
+                        elif re.match("^[0-9+]*$", info[key]):
+                            hand.buyinCurrency="play"
+                        else:
+                            #FIXME: handle other currencies, play money
+                            log.error(_("EntractionToFpdb.readHandInfo: Failed to detect currency.") + " Hand ID: %s: '%s'" % (hand.handid, info[key]))
+                            raise FpdbParseError
+
+                        info['BIAMT'] = self.clearMoneyString(info['BIAMT'].strip(u'$€£'))
+                        info['BIRAKE'] = self.clearMoneyString(info['BIRAKE'].strip(u'$€£'))
+                        hand.buyin = int(100*Decimal(info['BIAMT']))
+                        hand.fee = int(100*Decimal(info['BIRAKE']))
             if key == 'TABLE':
-                hand.tablename = info[key]
+                if hand.gametype['type'] == 'tour':
+                    hand.tablename = info['TABLENO']
+                else:
+                    hand.tablename = info[key]
             if key == 'BUTTON':
                 hand.buttonpos = info[key]
             if key == 'MAX' and info[key] != None:
@@ -192,7 +239,7 @@ class Entraction(HandHistoryConverter):
         m = self.re_PlayerInfo.finditer(hand.handText)
         for a in m:
             name = a.group('PNAME').strip()
-            hand.addPlayer(int(a.group('SEAT')), name, a.group('CASH'))
+            hand.addPlayer(int(a.group('SEAT')), name, self.clearMoneyString(a.group('CASH')))
 
     def markStreets(self, hand):
         if hand.gametype['base'] in ("hold"):
@@ -210,12 +257,9 @@ class Entraction(HandHistoryConverter):
             hand.setCommunityCards(street, m.group('CARDS').split(' - '))
 
     def readAntes(self, hand):
-        pass
-#        log.debug(_("reading antes"))
-#        m = self.re_Antes.finditer(hand.handText)
-#        for player in m:
-#            #~ logging.debug("hand.addAnte(%s,%s)" %(player.group('PNAME'), player.group('ANTE')))
-#            hand.addAnte(player.group('PNAME'), player.group('ANTE'))
+        m = self.re_Antes.finditer(hand.handText)
+        for player in m:
+            hand.addAnte(player.group('PNAME'), player.group('ANTE'))
     
     def readBringIn(self, hand):
         pass

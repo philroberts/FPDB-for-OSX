@@ -1,0 +1,27 @@
+PayNoRake Game #1027919331: Hold'em No Limit ($0.25/0.50) - 2012/06/07 08:58 GMT Standard Time
+Table 'Aeon Flux' 10-Max, Seat #3 is the button
+Seat 9: Player0 (52.58 in chips) - Sitting out
+Seat 3: Player1 (10.00 in chips) - The button
+Seat 7: Hero (25.00 in chips) - Sitting out
+Player1: posts small blind 0.25
+Hero: posts big blind 0.50
+*** HOLE CARDS *** 
+Dealt to Hero [7s 9h]
+Player1: calls 0.25
+Hero: checks
+*** FLOP *** [2c 5c 6d]
+Hero: checks
+Player1: checks
+*** TURN *** [2c 5c 6d][6h]
+Hero: checks
+Player1: checks
+*** RIVER *** [2c 5c 6d 6h][As]
+Hero: checks
+Player1: checks
+*** SHOW DOWN *** 
+Hero shows 7s 9h
+Player1 shows 7h Jh
+*** SUMMARY *** 
+Total pot 0.95 | Rake 0.05
+Board [2c 5c 6d 6h As]
+Seat 3: Player1 showed [7h Jh] and won (0.95)

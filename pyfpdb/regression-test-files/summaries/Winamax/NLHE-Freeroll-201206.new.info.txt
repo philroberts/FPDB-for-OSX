@@ -1,0 +1,13 @@
+Winamax Poker - Tournament summary : Super Freeroll Stade 1 - Déglingos !(26049887)
+Player : Hero
+Buy-In : 0€ + 0€
+Registered players : 10
+Prizepool : 0€
+Mode : sngType : freeroll100k
+Speed : turbo
+Levels : [10-20:0:180:holdem-no-limit,15-30:0:180:holdem-no-limit,20-40:0:180:holdem-no-limit,30-60:0:180:holdem-no-limit,40-80:0:180:holdem-no-limit,60-120:0:180:holdem-no-limit,80-160:0:180:holdem-no-limit,100-200:10:180:holdem-no-limit,150-300:20:180:holdem-no-limit,200-400:50:180:holdem-no-limit,300-600:75:180:holdem-no-limit,400-800:100:180:holdem-no-limit,500-1000:125:180:holdem-no-limit,600-1200:150:180:holdem-no-limit,800-1600:200:180:holdem-no-limit,1k-2k:300:180:holdem-no-limit,1,25k-2,50k:400:180:holdem-no-limit,1,50k-3k:500:180:holdem-no-limit,2k-4k:600:180:holdem-no-limit,2,50k-5k:700:180:holdem-no-limit,3k-6k:800:180:holdem-no-limit,4k-8k:1k:180:holdem-no-limit,5k-10k:1,25k:180:holdem-no-limit,6k-12k:1,50k:180:holdem-no-limit,8k-16k:2k:180:holdem-no-limit,10k-20k:3k:180:holdem-no-limit,12,50k-25k:4k:180:holdem-no-limit,15k-30k:5k:180:holdem-no-limit,20k-40k:6k:180:holdem-no-limit,25k-50k:7k:180:holdem-no-limit]
+Tournament started 2012/06/25 02:25:29 UTC
+You played 9min 19s 
+You finished in 5th place
+
+

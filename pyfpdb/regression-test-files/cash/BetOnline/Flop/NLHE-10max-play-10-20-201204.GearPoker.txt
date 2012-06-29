@@ -1,0 +1,81 @@
+Gear Poker Game #1014850512: Hold'em - 2012-04-09 12:14:36
+Table 3875596-33 (Play Money) Seat #9 is the button
+Seat 0: Hero (1000.00 in Chips)
+Seat 1: Player0 (1000.00 in Chips)
+Seat 2: Player1 (960.00 in Chips)
+Seat 3: Player2 (960.00 in Chips)
+Seat 4: Player3 (1000.00 in Chips)
+Seat 5: Player4 (960.00 in Chips)
+Seat 6: Player5 (1000.00 in Chips)
+Seat 7: Player6 (1150.00 in Chips)
+Seat 8: Player7 (970.00 in Chips)
+Seat 9: Player8 (990.00 in Chips)
+Player7: Posts small blind 10.00.
+Player6: Posts big blind 20.00.
+*** HOLE CARDS ***
+Dealt To Hero [7S 7H]
+Player5: Folds.
+Player4: Calls 20.00.
+Player3: Folds.
+Player2: Folds.
+Player1: Folds.
+Player0: Folds.
+Hero: Folds.
+Player8: Folds.
+Player7: Folds.
+Player6: Checks.
+*** FLOP *** [AS QH 3S]
+Player6: Bets 20.00.
+Player4: Calls 20.00.
+*** TURN *** [AS QH 3S] [3C]
+Player6: Bets 90.00.
+Player4: Folds.
+*** SUMMARY ***
+Total Pot 90.00 | Rake 0.00
+Seat 0: Hero Folded before Flop
+Seat 1: Player0 Folded before Flop
+Seat 2: Player1 Folded before Flop
+Seat 3: Player2 Folded before Flop
+Seat 4: Player3 Folded before Flop
+Seat 5: Player4 Folded on the River
+Seat 6: Player5 Folded before Flop
+Seat 7: Player6 (Big Blind)  collected (90.00) from the Pot.
+Seat 8: Player7 (Small Blind) Seat 9: Player8 (Button) 
+
+
+Gear Poker Game #1014850775: Hold'em - 2012-04-09 12:15:46
+Table 3875596-33 (Play Money) Seat #8 is the button
+Seat 0: Hero (1000.00 in Chips)
+Seat 1: Player0 (1000.00 in Chips)
+Seat 2: Player1 (960.00 in Chips)
+Seat 3: Player2 (960.00 in Chips)
+Seat 4: Player3 (1000.00 in Chips)
+Seat 5: Player4 (920.00 in Chips)
+Seat 7: Player6 (1200.00 in Chips)
+Seat 8: Player7 (970.00 in Chips)
+Seat 9: Player8 (990.00 in Chips)
+Player6: Posts small blind 10.00.
+Player4: Posts big blind 20.00.
+*** HOLE CARDS ***
+Dealt To Hero [4D 2S]
+Player3: Folds.
+Player2: Folds.
+Player1: Folds.
+Player0: Folds.
+Hero: Raises 1000.00 and is All In.
+Player8: Folds.
+Player7: Folds.
+Player6: Folds.
+Player4: Calls 900.00 and is All In.
+*** SUMMARY ***
+Total Pot 1850.00 | Rake 0.00
+Seat 0: Hero showed [4D 2S ] and lost.
+Seat 1: Player0 Folded before Flop
+Seat 2: Player1 Folded before Flop
+Seat 3: Player2 Folded before Flop
+Seat 4: Player3 Folded before Flop
+Seat 5: Player4 (Big Blind)  showed [JH 10D QS KC AS ] and won (1850.00)
+Seat 7: Player6 (Small Blind)  Folded before Flop
+Seat 8: Player7 (Button)  Folded before Flop
+Seat 9: Player8 Folded before Flop
+
