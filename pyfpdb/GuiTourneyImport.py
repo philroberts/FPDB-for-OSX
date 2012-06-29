@@ -279,24 +279,6 @@ class SummaryImporter:
         self.updatetime = {}
         self.filelist = {}
 
-    def readFile(self, tsc, filename):
-        codepage = ["utf16", "utf8", "cp1252"]
-        whole_file = None
-        tsc.codepage
-
-        for kodec in codepage:
-            try:
-                in_fh = codecs.open(filename, 'r', kodec)
-                whole_file = in_fh.read()
-                in_fh.close()
-                break
-            except UnicodeDecodeError, e:
-                log.warning("GTI.readFile: '%s' : '%s'" % (filename,e))
-            except UnicodeError, e:
-                log.warning("GTI.readFile: '%s' : '%s'" % (filename,e))
-
-        return whole_file
-
 class ProgressBar:
     """
     Popup window to show progress
