@@ -185,17 +185,9 @@ class iPoker(HandHistoryConverter):
         tourney = False
         #print "DEBUG: m.groupdict(): %s" % mg
 
-        games = {              # base, category
-                    '7 Card Stud L' : ('stud','studhi'),
-                    '5 Card Stud L' : ('stud','5studhi'),
-                        'Holdem NL' : ('hold','holdem'),
-                        'Holdem SL' : ('hold','holdem'), #Spanish NL
-                         'Holdem L' : ('hold','holdem'),
-                         'Omaha PL' : ('hold','omahahi'),
-                   'Omaha Hi-Lo PL' : ('hold','omahahilo'),
-                         
-                }
-
+        if mg['GAME'][:2]=='LH':
+            mg['GAME'] = 'Holdem L'
+            mg['BB'] = mg['LBB']
         if 'GAME' in mg:
             (self.info['base'], self.info['category']) = self.games[mg['GAME']]
             #m = self.re_Hero.search(handText)
