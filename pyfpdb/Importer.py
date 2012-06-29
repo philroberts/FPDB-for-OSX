@@ -21,26 +21,22 @@ _ = L10n.get_translation()
 #    Standard Library modules
 
 import os  # todo: remove this once import_dir is in fpdb_import
-import sys
-from time import time, strftime, sleep, clock
-import traceback
-import math
+from time import time, sleep, clock
 import datetime
-import re
 import Queue
-from collections import deque # using Queue for now
 import threading
 import shutil
+import re
 
 import logging
 
-import pygtk
 import gtk
 
 #    fpdb/FreePokerTools modules
 import Database
 import Configuration
-import Exceptions
+import IdentifySite
+from Exceptions import FpdbParseError, FpdbHandDuplicate
 
 if __name__ == "__main__":
     Configuration.set_logfile("fpdb-log.txt")
@@ -55,6 +51,8 @@ class Importer:
         self.config     = config
         self.sql        = sql
         self.parent     = parent
+
+        self.idsite = IdentifySite.IdentifySite(config)
 
         self.filelist   = {}
         self.dirlist    = {}
@@ -105,9 +103,6 @@ class Importer:
     def setQuiet(self, value):
         self.settings['quiet'] = value
 
-    def setFailOnError(self, value):
-        self.settings['failOnError'] = value
-
     def setHandsInDB(self, value):
         self.settings['handsInDB'] = value
 
@@ -154,57 +149,62 @@ class Importer:
         self.database.updateFile([type, now, now, hands, stored, dups, partial, errs, ttime100, True, id])
         self.database.commit()
     
-    def addFileToList(self, file, site, filter):
+    def addFileToList(self, fpdbfile):
+        """FPDBFile"""
         now = datetime.datetime.utcnow()
-        file = os.path.splitext(os.path.basename(file))[0]
+        file = os.path.splitext(os.path.basename(fpdbfile.path))[0]
         try: #TODO: this is a dirty hack. GBI needs it, GAI fails with it.
             file = unicode(file, "utf8", "replace")
         except TypeError:
             pass
-        id = self.database.storeFile([file, site, now, now, 0, 0, 0, 0, 0, 0, False])
+        fpdbfile.fileId = self.database.storeFile([file, fpdbfile.site.name, now, now, 0, 0, 0, 0, 0, 0, False])
         self.database.commit()
-        return [site] + [filter] + [id]
 
     #Add an individual file to filelist
-    def addImportFile(self, filename, site = "default", filter = "passthrough"):
-        #TODO: test it is a valid file -> put that in config!!
+    def addImportFile(self, filename, site = "auto"):
         #print "addimportfile: filename is a", filename.__class__
         # filename not guaranteed to be unicode
         if filename in self.filelist or not os.path.exists(filename):
             return
-        self.filelist[filename] = self.addFileToList(filename, site, filter)
+
+        self.idsite.processFile(filename)
+        if self.idsite.get_fobj(filename):
+            fpdbfile = self.idsite.filelist[filename]
+        else:
+            log.error("Importer.addImportFile: siteId Failed for: '%s'" % filename)
+            return
+
+        self.addFileToList(fpdbfile)
+        self.filelist[filename] = fpdbfile
         if site not in self.siteIds:
             # Get id from Sites table in DB
-            result = self.database.get_site_id(site)
+            result = self.database.get_site_id(fpdbfile.site.name)
             if len(result) == 1:
-                self.siteIds[site] = result[0][0]
+                self.siteIds[fpdbfile.site.name] = result[0][0]
             else:
                 if len(result) == 0:
-                    log.error(_("Database ID for %s not found") % site)
+                    log.error(_("Database ID for %s not found") % fpdbfile.site.name)
                 else:
-                    log.error(_("More than 1 Database ID found for %s") % site)
+                    log.error(_("More than 1 Database ID found for %s") % fpdbfile.site.name)
 
 
     # Called from GuiBulkImport to add a file or directory. Bulk import never monitors
-    def addBulkImportImportFileOrDir(self, inputPath, site = "PokerStars"):
-
+    def addBulkImportImportFileOrDir(self, inputPath, site = "auto"):
+        """Add a file or directory for bulk import"""
         #for windows platform, force os.walk variable to be unicode
         # see fpdb-main post 9th July 2011
-        
         if self.config.posix:
             pass
         else:
             inputPath = unicode(inputPath)
 
-        """Add a file or directory for bulk import"""
-        filter = self.config.hhcs[site].converter
         # TODO: only add sane files?
         if os.path.isdir(inputPath):
             for subdir in os.walk(inputPath):
                 for file in subdir[2]:
-                    self.addImportFile(os.path.join(subdir[0], file), site=site, filter=filter)
+                    self.addImportFile(os.path.join(subdir[0], file), site=site)
         else:
-            self.addImportFile(inputPath, site=site, filter=filter)
+            self.addImportFile(inputPath, site=site)
 
     #Add a directory of files to filelist
     #Only one import directory per site supported.
@@ -222,7 +222,7 @@ class Importer:
             #print "addImportDirectory: checking files in", dir
             for file in os.listdir(dir):
                 #print "                    adding file ", file
-                self.addImportFile(os.path.join(dir, file), site, filter)
+                self.addImportFile(os.path.join(dir, file), "auto")
         else:
             log.warning(_("Attempted to add non-directory '%s' as an import directory") % str(dir))
 
@@ -238,45 +238,22 @@ class Importer:
         if 'dropHudCache' in self.settings and self.settings['dropHudCache'] == 'auto':
             self.settings['dropHudCache'] = self.calculate_auto2(self.database, 25.0, 500.0)    # returns "drop"/"don't drop"
 
-        if self.settings['threads'] <= 0:
-            (totstored, totdups, totpartial, toterrors) = self.importFiles(None)
+        (totstored, totdups, totpartial, toterrors) = self.importFiles(None)
+
+        # Tidying up after import
+        if 'dropHudCache' in self.settings and self.settings['dropHudCache'] == 'drop':
+            self.database.rebuild_hudcache()
         else:
-            # create queue (will probably change to deque at some point):
-            self.writeq = Queue.Queue( self.settings['writeQSize'] )
-            # start separate thread(s) to read hands from queue and write to db:
-            for i in xrange(self.settings['threads']):
-                t = threading.Thread( target=self.writerdbs[i].insert_queue_hands
-                                    , args=(self.writeq, self.settings["writeQMaxWait"])
-                                    , name="dbwriter-"+str(i) )
-                t.setDaemon(True)
-                t.start()
-            # read hands and write to q:
-            (totstored, totdups, totpartial, toterrors) = self.importFiles(self.writeq)
-
-            if self.writeq.empty():
-                print _("writers finished already")
-                pass
-            else:
-                print _("waiting for writers to finish ...")
-                #for t in threading.enumerate():
-                #    print "    "+str(t)
-                #self.writeq.join()
-                #using empty() might be more reliable:
-                while not self.writeq.empty() and len(threading.enumerate()) > 1:
-                    # TODO: Do we need to actually tell the progress indicator to move, or is it already moving, and we just need to process events...
-                    while gtk.events_pending(): # see http://faq.pygtk.org/index.py?req=index for more hints (3.7)
-                        gtk.main_iteration(False)
-                    sleep(0.5)
-                print _("... writers finished")
-
+            self.database.cleanUpTourneyTypes()
+            self.database.resetttclean()
+            log.info (_("No need to rebuild hudcache."))
+        self.database.analyzeDB()
         endtime = time()
         return (totstored, totdups, totpartial, toterrors, endtime-starttime)
     # end def runImport
 
     def importFiles(self, q):
-        """"Read filenames in self.filelist and pass to import_file_dict().
-            Uses a separate database connection if created as a thread (caller
-            passes None or no param as db)."""
+        """"Read filenames in self.filelist and pass to despatcher."""
 
         totstored = 0
         totdups = 0
@@ -291,26 +268,18 @@ class Importer:
         #prepare progress popup window
         ProgressDialog = ProgressBar(len(self.filelist), self.parent)
         
-        for file in self.filelist:
-            
+        for f in self.filelist:
             filecount = filecount + 1
-            ProgressDialog.progress_update(file, str(self.database.getHandCount()))
-        
-            if not moveimportedfiles and not movefailedfiles:    
-                (stored, duplicates, partial, errors, ttime) = self.import_file_dict(file, self.filelist[file][0]
-                                                               ,self.filelist[file][1], self.filelist[file][2], q)
-                totstored += stored
-                totdups += duplicates
-                totpartial += partial
-                toterrors += errors
-            else:
+            ProgressDialog.progress_update(f, str(self.database.getHandCount()))
+
+            (stored, duplicates, partial, errors, ttime) = self._import_despatch(self.filelist[f])
+            totstored += stored
+            totdups += duplicates
+            totpartial += partial
+            toterrors += errors
+
+            if moveimportedfiles and movefailedfiles:
                 try:
-                    (stored, duplicates, partial, errors, ttime) = self.import_file_dict(file, self.filelist[file][0]
-                                                                   ,self.filelist[file][1], self.filelist[file][2], q)
-                    totstored += stored
-                    totdups += duplicates
-                    totpartial += partial
-                    toterrors += errors
                     if moveimportedfiles:
                         shutil.move(file, "c:\\fpdbimported\\%d-%s" % (filecount, os.path.basename(file[3:]) ) )
                 except:
@@ -318,43 +287,26 @@ class Importer:
                     if movefailedfiles:
                         shutil.move(file, "c:\\fpdbfailed\\%d-%s" % (fileerrorcount, os.path.basename(file[3:]) ) )
             
-            self.logImport('bulk', file, stored, duplicates, partial, errors, ttime, self.filelist[file][2])
-
-        # Tidying up after import
-        if 'dropHudCache' in self.settings and self.settings['dropHudCache'] == 'drop':
-            self.database.rebuild_hudcache()
-        else:
-            self.database.cleanUpTourneyTypes()
-            self.database.resetttclean()
-            log.info (_("No need to rebuild hudcache."))
-        self.database.analyzeDB()
+            self.logImport('bulk', f, stored, duplicates, partial, errors, ttime, self.filelist[f].site.hhc_fname)
+        self.database.cleanUpTourneyTypes()
         self.database.commit()
-
         del ProgressDialog
-        
-        for i in xrange( self.settings['threads'] ):
-            #print ("sending finish message queue length ="), q.qsize()
-            db.send_finish_msg(q)
-
         
         return (totstored, totdups, totpartial, toterrors)
     # end def importFiles
 
-    # not used currently
-    def calculate_auto(self, db):
-        """An heuristic to determine a reasonable value of drop/don't drop"""
-        if len(self.filelist) == 1:            return "don't drop"
-        if 'handsInDB' not in self.settings:
-            try:
-                tmpcursor = db.get_cursor()
-                tmpcursor.execute("Select count(1) from Hands;")
-                self.settings['handsInDB'] = tmpcursor.fetchone()[0]
-            except:
-                pass # if this fails we're probably doomed anyway
-        if self.settings['handsInDB'] < 5000:  return "drop"
-        if len(self.filelist) < 50:            return "don't drop"
-        if self.settings['handsInDB'] > 50000: return "don't drop"
-        return "drop"
+    def _import_despatch(self, fpdbfile):
+        stored, duplicates, partial, errors, ttime = 0,0,0,0,0
+        if fpdbfile.ftype == "hh":
+            (stored, duplicates, partial, errors, ttime) = self._import_hh_file(fpdbfile)
+        if fpdbfile.ftype == "summary":
+            (stored, duplicates, partial, errors, ttime) = self._import_summary_file(fpdbfile)
+        #if fpdbfile.ftype == "both":
+            #FIXME: Do something useful here, probably site specific
+        #    pass
+        print "DEBUG: _import_summary_file.ttime: %.3f %s" % (ttime, fpdbfile.ftype)
+        return (stored, duplicates, partial, errors, ttime)
+
 
     def calculate_auto2(self, db, scale, increment):
         """A second heuristic to determine a reasonable value of drop/don't drop
@@ -393,47 +345,39 @@ class Importer:
 
     #Run import on updated files, then store latest update time. Called from GuiAutoImport.py
     def runUpdated(self):
-        #Check for new files in monitored directories
-        #todo: make efficient - always checks for new file, should be able to use mtime of directory
-        # ^^ May not work on windows
-
-        #rulog = open('runUpdated.txt', 'a')
-        #rulog.writelines("runUpdated ... ")
+        """Check for new files in monitored directories"""
         for site in self.dirlist:
             self.addImportDirectory(self.dirlist[site][0], False, site, self.dirlist[site][1])
 
-        for file in self.filelist:
-            if os.path.exists(file):
-                stat_info = os.stat(file)
-                #rulog.writelines("path exists ")
-                if file in self.updatedsize: # we should be able to assume that if we're in size, we're in time as well
-                    if stat_info.st_size > self.updatedsize[file] or stat_info.st_mtime > self.updatedtime[file]:
-#                        print "file",file," updated", os.path.basename(file), stat_info.st_size, self.updatedsize[file], stat_info.st_mtime, self.updatedtime[file]
+        for f in self.filelist:
+            if os.path.exists(f):
+                stat_info = os.stat(f)
+                if f in self.updatedsize: # we should be able to assume that if we're in size, we're in time as well
+                    if stat_info.st_size > self.updatedsize[f] or stat_info.st_mtime > self.updatedtime[f]:
                         try:
-                            if not os.path.isdir(file):
-                                self.caller.addText("\n"+os.path.basename(file))
-                        except KeyError: # TODO: What error happens here?
-                            pass
-                        (stored, duplicates, partial, errors, ttime) = self.import_file_dict(file, self.filelist[file][0]
-                                                                      ,self.filelist[file][1], self.filelist[file][2], None)
-                        self.logImport('auto', file, stored, duplicates, partial, errors, ttime, self.filelist[file][2])
+                            if not os.path.isdir(f):
+                                self.caller.addText("\n"+os.path.basename(f))
+                        except KeyError:
+                            log.error("File '%s' seems to have disappeared" % f)
+                        (stored, duplicates, partial, errors, ttime) = self._import_despatch(self.filelist[f])
+                        self.logImport('auto', f, stored, duplicates, partial, errors, ttime, self.filelist[f].site.hhc_fname)
                         self.database.commit()
                         try:
-                            if not os.path.isdir(file): # Note: This assumes that whatever calls us has an "addText" func
+                            if not os.path.isdir(f): # Note: This assumes that whatever calls us has an "addText" func
                                 self.caller.addText(" %d stored, %d duplicates, %d partial, %d errors (time = %f)" % (stored, duplicates, partial, errors, ttime))
                         except KeyError: # TODO: Again, what error happens here? fix when we find out ..
                             pass
-                        self.updatedsize[file] = stat_info.st_size
-                        self.updatedtime[file] = time()
+                        self.updatedsize[f] = stat_info.st_size
+                        self.updatedtime[f] = time()
                 else:
-                    if os.path.isdir(file) or (time() - stat_info.st_mtime) < 60:
-                        self.updatedsize[file] = 0
-                        self.updatedtime[file] = 0
+                    if os.path.isdir(f) or (time() - stat_info.st_mtime) < 60:
+                        self.updatedsize[f] = 0
+                        self.updatedtime[f] = 0
                     else:
-                        self.updatedsize[file] = stat_info.st_size
-                        self.updatedtime[file] = time()
+                        self.updatedsize[f] = stat_info.st_size
+                        self.updatedtime[f] = time()
             else:
-                self.removeFromFileList[file] = True
+                self.removeFromFileList[f] = True
 
         self.addToDirList = filter(lambda x: self.addImportDirectory(x, True, self.addToDirList[x][0], self.addToDirList[x][1]), self.addToDirList)
 
@@ -444,42 +388,38 @@ class Importer:
         self.addToDirList = {}
         self.removeFromFileList = {}
         self.database.rollback()
-        #rulog.writelines("  finished\n")
-        #rulog.close()
 
-    # This is now an internal function that should not be called directly.
-    def import_file_dict(self, file, site, filter, fileId, q=None):
-
-        if os.path.isdir(file):
-            self.addToDirList[file] = [site] + [filter]
-            return (0,0,0,0,0)
+    def _import_hh_file(self, fpdbfile):
+        """Function for actual import of a hh file
+            This is now an internal function that should not be called directly."""
+        #if os.path.isdir(fpdbfile.path):
+        #    self.addToDirList[file] = [site] + [filter]
+        #    return (0,0,0,0,0)
 
         (stored, duplicates, partial, errors, ttime) = (0, 0, 0, 0, time())
 
         # Load filter, process file, pass returned filename to import_fpdb_file
-        if self.settings['threads'] > 0 and self.writeq is not None:
-              log.info((_("Converting %s") % file) + " (" + str(q.qsize()) + ")")
-        else: log.info(_("Converting %s") % file)
+        log.info(_("Converting %s") % fpdbfile.path)
             
-        filter_name = filter.replace("ToFpdb", "")
-        mod = __import__(filter)
+        filter_name = fpdbfile.site.filter_name
+        mod = __import__(fpdbfile.site.hhc_fname)
         obj = getattr(mod, filter_name, None)
         if callable(obj):
             
-            if file in self.pos_in_file:  idx = self.pos_in_file[file]
-            else: self.pos_in_file[file], idx = 0, 0
+            if fpdbfile.path in self.pos_in_file:  idx = self.pos_in_file[fpdbfile.path]
+            else: self.pos_in_file[fpdbfile.path], idx = 0, 0
                 
-            hhc = obj( self.config, in_path = file, index = idx
+            hhc = obj( self.config, in_path = fpdbfile.path, index = idx
                       ,starsArchive = self.settings['starsArchive']
                       ,ftpArchive   = self.settings['ftpArchive']
-                      ,sitename     = site)
+                      ,sitename     = fpdbfile.site.name)
             
             if hhc.getStatus():
-                if self.caller: hhc.progressNotify()
+                if self.caller: self.progressNotify()
                 handlist = hhc.getProcessedHands()
-                self.pos_in_file[file] = hhc.getLastCharacterRead()
+                self.pos_in_file[fpdbfile.path] = hhc.getLastCharacterRead()
                 (phands, ihands, to_hud) = ([], [], [])
-                self.database.resetBulkCache(True)
+                self.database.resetBulkCache()
                 
                 ####Lock Placeholder####
                 for hand in handlist:
@@ -503,14 +443,14 @@ class Importer:
                         hand.updateSessionsCache(self.database, None, doinsert)
                         sctimer += time() - stime
                         stime = time()
-                        hand.insertHands(self.database, fileId, doinsert, self.settings['testData'])
+                        hand.insertHands(self.database, fpdbfile.fileId, doinsert, self.settings['testData'])
                         ihtimer = time() - stime
                         stime = time()
                         hand.updateHudCache(self.database, doinsert)
                         hctimer = time() - stime
                         ihands.append(hand)
                         to_hud.append(hand.dbid_hands)
-                    except Exceptions.FpdbHandDuplicate:
+                    except FpdbHandDuplicate:
                         duplicates += 1
                         #If last hand in the file is a duplicate this will backtrack and insert the new hand records
                         if (doinsert and ihands):
@@ -518,7 +458,7 @@ class Importer:
                             hp = hand.handsplayers
                             hand.hero, self.database.hbulk, hand.handsplayers  = 0, self.database.hbulk[:-1], [] #making sure we don't insert data from this hand
                             hand.updateSessionsCache(self.database, None, doinsert)
-                            hand.insertHands(self.database, fileId, doinsert, self.settings['testData'])
+                            hand.insertHands(self.database, fpdbfile.fileId, doinsert, self.settings['testData'])
                             hand.updateHudCache(self.database, doinsert)
                             hand.handsplayers = hp
                 #log.debug("DEBUG: hand.updateSessionsCache: %s" % (t5tot))
@@ -566,6 +506,59 @@ class Importer:
 
         #This will barf if conv.getStatus != True
         return (stored, duplicates, partial, errors, ttime)
+
+    def _import_summary_file(self, fpdbfile):
+        (stored, duplicates, partial, errors, ttime) = (0, 0, 0, 0, time())
+        mod = __import__(fpdbfile.site.summary)
+        obj = getattr(mod, fpdbfile.site.summary, None)
+        if callable(obj):
+            if self.caller: self.progressNotify()
+            errors = 0
+            imported = 0
+
+            foabs = obj.readFile(obj, fpdbfile.path)
+            if len(foabs) == 0:
+                log.error("Found: '%s' with 0 characters... skipping" % fpbdfile.path)
+                return (0, 1) # File had 0 characters
+            re_Split = obj.getSplitRe(obj,foabs[:1000])
+            summaryTexts = re.split(re_Split, foabs)
+
+            # The summary files tend to have a header or footer
+            # Remove the first and/or last entry if it has < 100 characters
+            if not len(summaryTexts[0]):
+                del summaryTexts[0]
+
+            if len(summaryTexts)>1:
+                if len(summaryTexts[-1]) <= 100:
+                    summaryTexts.pop()
+                    log.warn(_("Importer._import_summary_file: Removing text < 100 characters from end of file"))
+
+                if len(summaryTexts[0]) <= 130:
+                    del summaryTexts[0]
+                    log.warn(_("Importer._import_summary_file: Removing text < 100 characters from start of file"))
+
+            ####Lock Placeholder####
+            for j, summaryText in enumerate(summaryTexts, start=1):
+                doinsert = len(summaryTexts)==j
+                try:
+                    conv = obj(db=self.database, config=self.config, siteName=fpdbfile.site.name, summaryText=summaryText, in_path = fpdbfile.path)
+                    self.database.resetBulkCache(False)
+                    conv.insertOrUpdate(printtest = self.settings['testData'])
+                except FpdbParseError, e:
+                    log.error(_("Summary import parse error in file: %s") % fpdbfile.path)
+                    errors += 1
+                if j != 1:
+                    print _("Finished importing %s/%s tournament summaries") %(j, len(summaryTexts))
+                imported = j
+            ####Lock Placeholder####
+
+        ttime = time() - ttime
+        return (imported - errors, duplicates, partial, errors, ttime)
+
+    def progressNotify(self):
+        "A callback to the interface while events are pending"
+        while gtk.events_pending():
+            gtk.main_iteration(False)
         
 class ProgressBar:
 
@@ -666,6 +659,3 @@ class ProgressBar:
         
         self.progress.show()
 
-
-if __name__ == "__main__":
-    print _("CLI for importing hands is GuiBulkImport.py")
