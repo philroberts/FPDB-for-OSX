@@ -28,7 +28,6 @@ import sys
 from time import time, strftime
 
 import Card
-import fpdb_import
 import Database
 import Filters
 import Charset

@@ -29,7 +29,6 @@ from time import *
 from datetime import datetime
 #import pokereval
 
-import fpdb_import
 import Database
 import Filters
 import Charset

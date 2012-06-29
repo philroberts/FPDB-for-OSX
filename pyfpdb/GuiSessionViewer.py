@@ -43,7 +43,6 @@ except ImportError, inst:
     print "ImportError: %s" % inst.args
 
 import Card
-import fpdb_import
 import Database
 import Filters
 import Charset

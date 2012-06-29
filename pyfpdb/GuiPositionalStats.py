@@ -25,7 +25,6 @@ import gtk
 import os
 from time import time, strftime
     
-import fpdb_import
 import Database
 import Filters
 import Charset

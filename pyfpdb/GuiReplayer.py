@@ -25,7 +25,6 @@ from Hand import *
 import Configuration
 import Database
 import SQL
-import fpdb_import
 import Deck
 
 import pygtk

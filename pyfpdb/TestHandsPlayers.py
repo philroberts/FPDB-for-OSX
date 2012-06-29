@@ -275,7 +275,6 @@ def main(argv=None):
     db.recreate_tables()
     importer = Importer.Importer(False, settings, config, None)
     importer.setDropIndexes("don't drop")
-    importer.setFailOnError(True)
     importer.setThreads(-1)
     importer.setCallHud(False)
     importer.setFakeCacheHHC(True)
