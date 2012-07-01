@@ -1,0 +1,35 @@
+﻿Hand#2980AA1F9B000367 - $0.05 (1 Rebuy) T11149211 -- TICKETCASH -- $0.05 + $0.05 -- 10 Max -- Table 20 -- -1/50/100 NL Hold'em -- 2012/06/01 - 21:44:48
+Dealer: Seat 1
+Seat 1: Player0 (1,100 in chips) 
+Seat 2: Player1 (7,750 in chips) 
+Seat 3: Hero (1,500 in chips) 
+Seat 4: Player2 (1,500 in chips) 
+Seat 5: Player3 (1,105 in chips) 
+Seat 6: Player4 (3,355 in chips) 
+Seat 7: Player5 (5,560 in chips) 
+Seat 8: Player6 (3,592 in chips) 
+Seat 9: Player7 (7,096 in chips) 
+Seat 10: Player8 (5,019 in chips) 
+Player1: posts small blind 50
+Hero: posts big blind 100
+Dealt to Hero [Th,8d]
+Player2: raises to 200
+Player3: folds
+Player4: folds
+Player5: folds
+Player6: folds
+Player7: folds
+Player8: folds
+Player0: folds
+Player1: calls 150
+Hero: calls 100
+*** FLOP *** [As,4s,Qs]
+Player1: checks
+Hero: checks
+Player2: bets 300
+Player1: folds
+Hero: folds
+Player2: returns uncalled bet 300
+***SHOW DOWN***
+Player2: mucks
+Player2 wins 600 

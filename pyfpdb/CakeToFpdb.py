@@ -80,7 +80,7 @@ class Cake(HandHistoryConverter):
           (\-\-\s(TICKET|CASH|TICKETCASH)\s\-\-\s(?P<BUYIN>(?P<BIAMT>(%(LS)s)[%(NUM)s]+)\s\+\s(?P<BIRAKE>(%(LS)s)[%(NUM)s]+))\s\-\-\s(?P<TMAX>\d+)\sMax\s)?
           (\-\-\sTable\s(?P<TABLENO>\d+)\s)?\-\-\s
           (?P<CURRENCY>%(LS)s|)?
-          (?P<ANTESB>[%(NUM)s]+)/(%(LS)s)?
+          (?P<ANTESB>(\-)?[%(NUM)s]+)/(%(LS)s)?
           (?P<SBBB>[%(NUM)s]+)
           (/(%(LS)s)?(?P<BB>[%(NUM)s]+))?\s
           (?P<LIMIT>NL|FL||PL)\s
