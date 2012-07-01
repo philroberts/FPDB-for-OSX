@@ -54,6 +54,7 @@ pywin 217 ... http://sourceforge.net/projects/pywin32/files/pywin32/Build216/pyw
 pypokereval 138 ... http://sourceforge.net/projects/fpdb/files/fpdb/pypoker-eval-win32/pokereval-138.win32-py2.7.exe/download
 cdecimal 2.3 ... http://www.bytereef.org/software/mpdecimal/releases/cdecimal-2.3.win32-py2.7.msi
 winpaths 0.2 ... http://pypi.python.org/packages/any/w/winpaths/winpaths-0.2.win32.exe#md5=bd99492eb311530c630ec3f26828cd48
+python PIL 1.1.7 ... http://effbot.org/downloads/PIL-1.1.7.win32-py2.7.exe
 
 1.2/ Add the python install directory to the PATH environment variable on your system
 This will depend on your system, and the place where you installed python.
