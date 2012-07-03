@@ -1,0 +1,42 @@
+Bovada Hand #2605762685 TBL#1218245 OMAHA Pot Limit - 2012-05-14 00:54:46
+Seat 1: UTG+2 ($163 in chips)
+Seat 2: Dealer [ME] ($124 in chips)
+Seat 3: Small Blind ($116 in chips)
+Seat 4: Big Blind ($400 in chips)
+Seat 5: UTG ($3,903.98 in chips)
+Seat 6: UTG+1 ($921.75 in chips)
+Dealer  [ME] : Set dealer/Bring in spot [2] 
+Small Blind : Ante/Small Blind $2 
+Big Blind : Big blind/Bring in $4 
+*** HOLE CARDS ***
+UTG+2 : Card dealt to a spot [Tc 5s 5h Kc] 
+Dealer  [ME] : Card dealt to a spot [Js Ad Jd 9h] 
+Small Blind : Card dealt to a spot [2s Kh 6s 8d] 
+Big Blind : Card dealt to a spot [7s 7d 9d 8c] 
+UTG : Card dealt to a spot [3d Jc 3c 6c] 
+UTG+1 : Card dealt to a spot [2c 3s 5c Qc] 
+UTG : Calls $4 
+UTG+1 : Folds
+UTG+2 : Calls $4 
+Dealer  [ME] : Calls $4 
+Small Blind : Folds
+Big Blind : Raises $22 
+UTG : Raises $76 
+UTG+2 : Folds
+Dealer  [ME] : All-in(raise) $124 
+Big Blind : All-in(raise) $400 
+UTG : Calls $324 
+Dealer  [ME] : Showdown [Ad Jd Td 6d 5d] (Flush)
+Big Blind : Showdown [7d 9d Td 6d 5d] (Flush)
+UTG : Showdown [Jc 6c Td Qs 6d] (One pair)
+Big Blind : Hand result-Side pot $550.22 
+Dealer  [ME] : Hand result $376.78 
+*** SUMMARY ***
+Total Pot($930) | Rake ($3) 
+Board [Td 8h Qs 6d 5d]
+Seat 1: UTG+2 Folded on the POCKET CARDS
+Seat 2: Dealer $376.78  with Flush [Js Ad Jd 9h-Ad Jd Td 6d 5d]  
+Seat 3: Small Blind Folded on the POCKET CARDS
+Seat 4: Big Blind $550.22  with Flush [7s 7d 9d 8c-7d 9d Td 6d 5d]  
+Seat 5: UTG  lost with One pair [3d Jc 3c 6c-Jc 6c Td Qs 6d]  
+Seat 6: UTG+1 Folded on the POCKET CARDS

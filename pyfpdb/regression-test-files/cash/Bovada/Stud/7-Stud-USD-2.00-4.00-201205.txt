@@ -1,0 +1,147 @@
+﻿Bodog Hand #2604291510 TBL#1178621 7CARD Fixed Limit - 2012-05-07 03:40:07
+Seat+1: $0.57 in chips
+Seat+3 [ME]: $0.50 in chips
+Seat+5: $0.51 in chips
+Seat+1 : Ante chip $0.01 
+Seat+5 : Ante chip $0.01 
+Seat+3 [ME] : Ante chip $0.01 
+*** HOLE CARDS ***
+Seat+1 : Card dealt to a spot [7h 8c Jc] 
+Seat+3 [ME] : Card dealt to a spot [Jh Qh Th] 
+Seat+5 : Card dealt to a spot [Qc 5c 2s] 
+Seat+5 : Bring_in chip $0.02 
+Seat+1 : Calls $0.02 
+Seat+3 [ME] : Calls $0.02 
+Seat+1 : Card dealt to a spot [9c] 
+Seat+3 [ME] : Card dealt to a spot [4c] 
+Seat+5 : Card dealt to a spot [Ts] 
+Seat+1 : Checks
+Seat+3 [ME] : Checks
+Seat+5 : Checks
+Seat+1 : Card dealt to a spot [4d] 
+Seat+3 [ME] : Card dealt to a spot [Kh] 
+Seat+5 : Card dealt to a spot [3s] 
+Seat+3 [ME] : Bets $0.10 
+Seat+5 : Folds
+Seat+1 : Folds
+Seat+3 [ME] : Return uncalled portion of bet $0.10 
+Seat+3 [ME] : Does not show [Jh Qh Th 4c Kh] (High Card)
+Seat+3 [ME] : Hand result $0.09 
+*** SUMMARY ***
+Total Pot($0.09) | Rake ($0) 
+Seat 1:  Folded on the 5TH STREET
+Seat 3:  $0.09 [Does not show]  
+Seat 5:  Folded on the 5TH STREET
+
+
+Bodog Hand #2604291577 TBL#1178621 7CARD Fixed Limit - 2012-05-07 03:40:46
+Seat+1: $0.54 in chips
+Seat+3 [ME]: $0.56 in chips
+Seat+5: $0.48 in chips
+Seat+1 : Ante chip $0.01 
+Seat+3 [ME] : Ante chip $0.01 
+Seat+5 : Ante chip $0.01 
+*** HOLE CARDS ***
+Seat+1 : Card dealt to a spot [Qc 7c 3d] 
+Seat+3 [ME] : Card dealt to a spot [Js Kc 5d] 
+Seat+5 : Card dealt to a spot [Kd 6d 9d] 
+Seat+1 : Bring_in chip $0.02 
+Seat+3 [ME] : Calls $0.02 
+Seat+5 : Calls $0.02 
+Seat+1 : Card dealt to a spot [3c] 
+Seat+3 [ME] : Card dealt to a spot [Ks] 
+Seat+5 : Card dealt to a spot [6h] 
+Seat+1 : Checks
+Seat+3 [ME] : D bets $0.10 
+Seat+5 : Calls $0.10 
+Seat+1 : Calls $0.10 
+Seat+1 : Card dealt to a spot [8h] 
+Seat+3 [ME] : Card dealt to a spot [Ts] 
+Seat+5 : Card dealt to a spot [Jd] 
+Seat+1 : Checks
+Seat+3 [ME] : Checks
+Seat+5 : Bets $0.10 
+Seat+1 : Folds
+Seat+3 [ME] : Calls $0.10 
+Seat+3 [ME] : Card dealt to a spot [6c] 
+Seat+5 : Card dealt to a spot [Qs] 
+Seat+3 [ME] : Checks
+Seat+5 : Bets $0.10 
+Seat+3 [ME] : Folds
+Seat+5 : Return uncalled portion of bet $0.10 
+Seat+5 : Does not show [Kd 6d 9d 6h Jd Qs] (One pair)
+Seat+5 : Hand result $0.57 
+*** SUMMARY ***
+Total Pot($0.59) | Rake ($0.02) 
+Seat 1:  Folded on the 5TH STREET
+Seat 3:  Folded on the 6TH STREET
+Seat 5:  $0.57 [Does not show]  
+
+
+Bodog Hand #2604291699 TBL#1178621 7CARD Fixed Limit - 2012-05-07 03:41:46
+Seat+1: $0.41 in chips
+Seat+3 [ME]: $0.33 in chips
+Seat+5: $0.82 in chips
+Seat+1 : Ante chip $0.01 
+Seat+3 [ME] : Ante chip $0.01 
+Seat+5 : Ante chip $0.01 
+*** HOLE CARDS ***
+Seat+1 : Card dealt to a spot [6c Th Ks] 
+Seat+3 [ME] : Card dealt to a spot [8c Qs Qc] 
+Seat+5 : Card dealt to a spot [9d 8s Jd] 
+Seat+5 : Bring_in chip $0.02 
+Seat+1 : Folds
+Seat+3 [ME] : Calls $0.02 
+Seat+3 [ME] : Card dealt to a spot [3d] 
+Seat+5 : Card dealt to a spot [5c] 
+Seat+3 [ME] : Checks
+Seat+5 : Bets $0.05 
+Seat+3 [ME] : Raises $0.10 
+Seat+5 : Calls $0.05 
+Seat+3 [ME] : Card dealt to a spot [Ts] 
+Seat+5 : Card dealt to a spot [Td] 
+Seat+3 [ME] : Bets $0.10 
+Seat+5 : Calls $0.10 
+Seat+3 [ME] : Card dealt to a spot [4s] 
+Seat+5 : Card dealt to a spot [Ac] 
+Seat+5 : Checks
+Seat+3 [ME] : Checks
+Seat+3 [ME] : Card dealt to a spot [2h] 
+Seat+5 : Card dealt to a spot [Js] 
+Seat+5 : Checks
+Seat+3 [ME] : Checks
+Seat+5 : Showdown [Js Jd Ac Td 9d] (One pair)
+Seat+3 [ME] : Showdown [Qs Qc Ts 8c 4s] (One pair)
+Seat+3 [ME] : Hand result $0.45 
+*** SUMMARY ***
+Total Pot($0.47) | Rake ($0.02) 
+Seat 1:  Folded on the 3rd STREET
+Seat 3:  $0.45  with One pair [8c Qs Qc 3d Ts 4s 2h-Qs Qc Ts 8c 4s]  
+Seat 5:   lost with One pair [9d 8s Jd 5c Td Js-Js Jd Ac Td 9d]  
+
+
+Bodog Hand #2604291787 TBL#1178621 7CARD Fixed Limit - 2012-05-07 03:42:26
+Seat+1: $0.40 in chips
+Seat+3 [ME]: $0.55 in chips
+Seat+5: $0.59 in chips
+Seat+1 : Ante chip $0.01 
+Seat+5 : Ante chip $0.01 
+Seat+3 [ME] : Seat sit out
+*** HOLE CARDS ***
+Seat+1 : Card dealt to a spot [5d 3h Qd] 
+Seat+5 : Card dealt to a spot [7c Kh Td] 
+Seat+3 [ME] : Seat stand
+Seat+3 [ME] : Table leave user
+Seat+5 : Bring_in chip $0.02 
+Seat+1 : Calls $0.02 
+Seat+1 : Card dealt to a spot [2c] 
+Seat+5 : Card dealt to a spot [Ac] 
+Seat+5 : Bets $0.05 
+Seat+1 : Folds
+Seat+5 : Return uncalled portion of bet $0.05 
+Seat+5 : Does not show [7c Kh Td Ac] (High Card)
+Seat+5 : Hand result $0.06 
+*** SUMMARY ***
+Total Pot($0.06) | Rake ($0) 
+Seat 1:  Folded on the 4TH STREET
+Seat 5:  $0.06 [Does not show]  
