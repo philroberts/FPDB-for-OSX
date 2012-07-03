@@ -1,0 +1,28 @@
+Hand#3008011667000561 - Melbourne (Turbo, 6-max) 11667 -- $3/$6 FL Hold'em -- 2012-07-01 - 01:26:16
+Dealer: Seat 10
+Seat 1: Player0 ($18 in chips) 
+Seat 2: Hero ($120 in chips) 
+Seat 3: Player1 ($126,50 in chips) 
+Seat 8: Player2 ($212,50 in chips) 
+Seat 9: Player3 ($253,50 in chips) 
+Seat 10: Player4 ($105,50 in chips) 
+Player0: posts small blind $1,50
+Hero: posts big blind $3
+Dealt to Hero [9d,6d]
+Player1: folds
+Player2: folds
+Player3: folds
+Player4: raises to $6
+Player0: folds
+Hero: calls $3
+*** FLOP *** [8c,Kc,5h]
+Hero: checks
+Player4: checks
+*** TURN *** [Kd]
+Hero: bets $6
+Player4: raises to $12
+Hero: folds
+Player4: returns uncalled bet $6
+***SHOW DOWN***
+Player4: mucks
+Player4 wins $24,50 
