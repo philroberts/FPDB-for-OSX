@@ -73,6 +73,7 @@ class iPoker(HandHistoryConverter):
                      'Omaha PL' : ('hold','omahahi'),
                'Omaha Hi-Lo PL' : ('hold','omahahilo'),
                      'Omaha LP' : ('hold','omahahi'),
+                      'Omaha L' : ('hold','omahahi'),
                'Omaha Hi-Lo LP' : ('hold','omahahilo'),
                 'Omaha Hi-Lo L' : ('hold','omahahilo'),
                      
@@ -110,7 +111,7 @@ class iPoker(HandHistoryConverter):
     re_SplitHands = re.compile(r'</game>')
     re_TailSplitHands = re.compile(r'(</game>)')
     re_GameInfo = re.compile(ur"""(?P<HEAD>
-            <gametype>(?P<GAME>(5|7)\sCard\sStud\sL|Holdem\s(NL|SL|L|LZ|PL|БЛ)|Omaha\s(PL|LP)|Omaha\sL|Omaha\sHi\-Lo\s(L|PL|LP)|LH\s(?P<LSB>[%(NUM)s]+)/(?P<LBB>[%(NUM)s]+).+?)(\s(%(LS)s)?(?P<SB>[%(NUM)s]+)/(%(LS)s)?(?P<BB>[%(NUM)s]+))?</gametype>\s+?
+            <gametype>(?P<GAME>(5|7)\sCard\sStud\sL|Holdem\s(NL|SL|L|LZ|PL|БЛ)|Omaha\s(L|PL|LP)|Omaha\sHi\-Lo\s(L|PL|LP)|LH\s(?P<LSB>[%(NUM)s]+)/(?P<LBB>[%(NUM)s]+).+?)(\s(%(LS)s)?(?P<SB>[%(NUM)s]+)/(%(LS)s)?(?P<BB>[%(NUM)s]+))?</gametype>\s+?
             <tablename>(?P<TABLE>.+)?</tablename>\s+?
             (<(tablecurrency|tournamentcurrency)>.*</(tablecurrency|tournamentcurrency)>\s+?)?
             <duration>.+</duration>\s+?
