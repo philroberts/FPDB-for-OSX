@@ -45,6 +45,7 @@ games = {              # base, category
              'holdem' : ('hold','holdem', 'h'), 
             'omahahi' : ('hold','omaha','h'), 
           'omahahilo' : ('hold','omaha8', 's'),
+           '2_holdem' : ('hold','2_holdem', 'h'), 
                'razz' : ('stud','razz', 'l'), 
              'studhi' : ('stud','7stud', 'h'), 
            'studhilo' : ('stud','7stud8', 's'),

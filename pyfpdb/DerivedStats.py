@@ -342,7 +342,8 @@ class DerivedStats():
             best_hi, hicards, histring = None, None, None
             if (self.handsplayers[player[1]]['sawShowdown']) or player[1]==hand.hero:
                 if (hand.gametype['category'] != 'badugi' and
-                    hand.gametype['category'] != 'razz'):
+                    hand.gametype['category'] != 'razz' and
+                    hand.gametype['category'] != '2_holdem'):
                     hcs = hand.join_holecards(player[1], asList=True)
                     if game[0] == 'hold':
                         if 'omaha' in game[1]:
@@ -463,12 +464,14 @@ class DerivedStats():
                                                       winnings
                                                       ] )
                 elif (self.handsplayers[player[1]]['sawShowdown']):
-                    if game[0]=='stud': streetId = 4
-                    if game[0]=='draw': streetId = 3
-                    if player[1] in hand.showdownStrings:
-                        lostring = hand.showdownStrings[player[1]]
+                    if game[0]=='stud':
+                        streetId = 4
                     else:
-                        lostring = ''
+                        streetId = 3
+                    if game[2] == 'h':
+                        histring = hand.showdownStrings.get(player[1])
+                    else:
+                        lostring = hand.showdownStrings.get(player[1])
                     self.handsstove.append( [  
                                        hand.dbid_hands,
                                        hand.dbid_pids[player[1]],
