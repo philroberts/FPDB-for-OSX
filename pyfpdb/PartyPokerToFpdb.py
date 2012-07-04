@@ -534,6 +534,25 @@ class PartyPoker(HandHistoryConverter):
                     newcards = renderCards(found.group('NEWCARDS'))
                     hand.addHoleCards(street, hand.hero, closed=newcards, shown=False, mucked=False, dealt=True)
                     
+        for street, text in hand.streets.iteritems():
+            if not text or street in ('PREFLOP', 'DEAL'): continue  # already done these
+            m = self.re_HeroCards.finditer(hand.streets[street])
+            for found in m:
+                player = found.group('PNAME')
+                if street != 'SEVENTH':
+                    newcards = renderCards(found.group('NEWCARDS'))
+                    oldcards = []
+                else:
+                    oldcards = renderCards(found.group('NEWCARDS'))
+                    newcards = []
+
+                if street == 'THIRD' and len(newcards) == 3: # hero in stud game
+                    hand.hero = player
+                    hand.dealt.add(player) # need this for stud??
+                    hand.addHoleCards(street, player, closed=newcards[0:2], open=[newcards[2]], shown=False, mucked=False, dealt=False)
+                else:
+                    hand.addHoleCards(street, player, open=newcards, closed=oldcards, shown=False, mucked=False, dealt=False)
+                    
     def readAction(self, hand, street):
         m = self.re_Action.finditer(hand.streets[street])
         for action in m:
