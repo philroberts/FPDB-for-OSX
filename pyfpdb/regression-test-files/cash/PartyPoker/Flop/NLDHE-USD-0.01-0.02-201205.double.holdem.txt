@@ -1,0 +1,32 @@
+#Game No : 11764881345 
+***** Hand History for Game 11764881345 *****
+$2 USD NL Double Hold'em - Monday, May 21, 16:56:05 MSKS 2012
+Table Snow (Real Money)
+Seat 5 is the button
+Total number of players : 4/10 
+Seat 5: Player0 ( $2 USD )
+Seat 7: Hero ( $2.85 USD )
+Seat 9: Player1 ( $8.63 USD )
+Seat 4: Player2 ( $2.99 USD )
+Hero posts small blind [$0.01 USD].
+Player1 posts big blind [$0.02 USD].
+** Dealing down cards **
+Dealt to Hero [  2c As 6h ]
+Player2 calls [$0.02 USD]
+Player0 folds
+Hero folds
+Player1 checks
+** Dealing Flop ** [ Qd, Jh, 6d ]
+Player1 - Selects point card
+Player1 bets [$0.02 USD]
+Player2 - Selects point card
+Player2 calls [$0.02 USD]
+** Dealing Turn ** [ 9s ]
+Player1 bets [$0.02 USD]
+Player2 calls [$0.02 USD]
+** Dealing River ** [ Jd ]
+Player1 checks
+Player2 checks
+Player1 shows [ 4c, Qh, 8c ]two pairs, Queens and Jacks.
+Player2 doesn't show [ 5c, Kd, 6c ]two pairs, Jacks and Sixes.
+Player1 wins $0.13 USD from the main pot with two pairs, Queens and Jacks.

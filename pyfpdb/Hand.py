@@ -1052,7 +1052,7 @@ class HoldemOmahaHand(Hand):
             if shown:  self.shown.add(player)
             if mucked: self.mucked.add(player)
         else:
-            if len(cards) in (2, 4):  # avoid adding board by mistake (Everleaf problem)
+            if len(cards) in (2, 3, 4):  # avoid adding board by mistake (Everleaf problem)
                 self.addHoleCards('PREFLOP', player, open=[], closed=cards, shown=shown, mucked=mucked, dealt=dealt)
             elif len(cards) == 5:     # cards holds a winning hand, not hole cards
                 # filter( lambda x: x not in b, a )             # calcs a - b where a and b are lists
@@ -1086,11 +1086,13 @@ class HoldemOmahaHand(Hand):
                     hcs[i] = self.holecards[street][player][1][i]
                     hcs[i] = upper(hcs[i][0:1])+hcs[i][1:2]
                 try:
+                    idx = 2
                     for i in 2,3:
                         hcs[i] = self.holecards[street][player][1][i]
                         hcs[i] = upper(hcs[i][0:1])+hcs[i][1:2]
+                        idx += 1
                 except IndexError:
-                    hcs = hcs[0:2]
+                    hcs = hcs[0:idx]
                     pass
 
         if asList == False:

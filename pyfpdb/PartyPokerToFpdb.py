@@ -49,6 +49,7 @@ class PartyPoker(HandHistoryConverter):
                      'Omaha Hi-Lo' : ('hold','omahahilo'),
                "7 Card Stud Hi-Lo" : ('stud','studhilo'),
                      "7 Card Stud" : ('stud','studhi'),
+                  "Double Hold'em" : ('hold','2_holdem'),
             }
 
     Lim_Blinds = {  '0.04': ('0.01', '0.02'),        '0.08': ('0.02', '0.04'),
@@ -94,7 +95,7 @@ class PartyPoker(HandHistoryConverter):
              ((?P<CASHBI>[%(NUM)s]+)\s(?:%(LEGAL_ISO)s)?\s*)(?P<LIMIT2>(NL|PL|FL|))?\s*
             )
             (Tourney\s*)?
-            (?P<GAME>(Texas\sHold\'em|Omaha\sHi-Lo|Omaha|7\sCard\sStud\sHi-Lo|7\sCard\sStud))\s*
+            (?P<GAME>(Texas\sHold\'em|Omaha\sHi-Lo|Omaha|7\sCard\sStud\sHi-Lo|7\sCard\sStud|Double\sHold\'em))\s*
             (Game\sTable\s*)?
             (
              (\((?P<LIMIT>(NL|PL|FL|))\)\s*)?
@@ -532,7 +533,26 @@ class PartyPoker(HandHistoryConverter):
                     hand.hero = found.group('PNAME')
                     newcards = renderCards(found.group('NEWCARDS'))
                     hand.addHoleCards(street, hand.hero, closed=newcards, shown=False, mucked=False, dealt=True)
+                    
+        for street, text in hand.streets.iteritems():
+            if not text or street in ('PREFLOP', 'DEAL'): continue  # already done these
+            m = self.re_HeroCards.finditer(hand.streets[street])
+            for found in m:
+                player = found.group('PNAME')
+                if street != 'SEVENTH':
+                    newcards = renderCards(found.group('NEWCARDS'))
+                    oldcards = []
+                else:
+                    oldcards = renderCards(found.group('NEWCARDS'))
+                    newcards = []
 
+                if street == 'THIRD' and len(newcards) == 3: # hero in stud game
+                    hand.hero = player
+                    hand.dealt.add(player) # need this for stud??
+                    hand.addHoleCards(street, player, closed=newcards[0:2], open=[newcards[2]], shown=False, mucked=False, dealt=False)
+                else:
+                    hand.addHoleCards(street, player, open=newcards, closed=oldcards, shown=False, mucked=False, dealt=False)
+                    
     def readAction(self, hand, street):
         m = self.re_Action.finditer(hand.streets[street])
         for action in m:
@@ -583,7 +603,7 @@ class PartyPoker(HandHistoryConverter):
 
                 mucked = m.group('SHOWED') != "show"
 
-                hand.addShownCards(cards=cards, player=m.group('PNAME'), shown=True, mucked=mucked)
+                hand.addShownCards(cards=cards, player=m.group('PNAME'), shown=True, mucked=mucked, string=m.group('COMBINATION'))
 
     @staticmethod
     def getTableTitleRe(type, table_name=None, tournament = None, table_number=None):

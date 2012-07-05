@@ -59,7 +59,7 @@ class Boss(HandHistoryConverter):
     re_GameInfo     = re.compile("""<HISTORY\sID="(?P<HID>[0-9]+)"\s
                                     SESSION="session(?P<SESSIONID>[0-9]+)\.xml"\s
                                     TABLE="(?P<TABLE>.+?)"\s
-                                    GAME="(?P<GAME>GAME_THM|GAME_OMA|GAME_FCD)"\sGAMETYPE="[_a-zA-Z]+"\s
+                                    GAME="(?P<GAME>GAME_THM|GAME_OMA|GAME_FCD|GAME_OMAHL)"\sGAMETYPE="[_a-zA-Z]+"\s
                                     GAMEKIND="(?P<GAMEKIND>[_a-zA-Z]+)"\s
                                     TABLECURRENCY="(?P<CURRENCY>[A-Z]+)"\s
                                     LIMIT="(?P<LIMIT>NL|PL|FL)"\s
@@ -93,12 +93,10 @@ class Boss(HandHistoryConverter):
     #'^<ACTION TYPE="(?P<ATYPE>[_A-Z]+)" PLAYER="%s"( VALUE="(?P<BET>[.0-9]+)")?></ACTION>'
     re_Action           = re.compile(r'^<ACTION TYPE="(?P<ATYPE>[_A-Z]+)" PLAYER="%s"( VALUE="(?P<BET>[.0-9]+)")?></ACTION>' %  player_re, re.MULTILINE)
 
-    re_ShowdownAction   = re.compile(r'<RESULT PLAYER="%s" WIN="[.0-9]+" HAND="(?P<HAND>\(\$STR_G_FOLD\)|[\$\(\)_ A-Z]+)".+?>\n(?P<CARDS><CARD LINK="[0-9]+"></CARD>\n<CARD LINK="[0-9]+"></CARD>)</RESULT>' %  player_re, re.MULTILINE)
+    re_ShowdownAction   = re.compile(r'<RESULT (WINTYPE="WINTYPE_(HILO|LO|HI)" )?PLAYER="%s" WIN="[.\d]+" HAND="(?P<HAND>\(\$STR_G_FOLD\)|[\$\(\)_ A-Z]+)".+?>(?P<CARDS>(\s+<CARD LINK="[0-9]+"></CARD>){2,5})</RESULT>' %  player_re, re.MULTILINE)
     #<RESULT PLAYER="wig0r" WIN="4.10" HAND="$(STR_G_WIN_TWOPAIR) $(STR_G_CARDS_TENS) $(STR_G_ANDTEXT) $(STR_G_CARDS_EIGHTS)">
     #
-    re_CollectPot       = re.compile(r'<RESULT PLAYER="%s" WIN="(?P<POT>[.\d]+)" HAND=".+">' %  player_re, re.MULTILINE)
-    re_sitsOut          = re.compile("^%s sits out" %  player_re, re.MULTILINE)
-    re_ShownCards       = re.compile("^Seat (?P<SEAT>[0-9]+): %s \(.*\) showed \[(?P<CARDS>.*)\].*" %  player_re, re.MULTILINE)
+    re_CollectPot       = re.compile(r'<RESULT (WINTYPE="WINTYPE_(HILO|LO|HI)" )?PLAYER="%s" WIN="(?P<POT>[.\d]+)" HAND=".+"' %  player_re, re.MULTILINE)
 
     def compilePlayerRegexs(self,  hand):
         pass
@@ -131,6 +129,7 @@ class Boss(HandHistoryConverter):
         games = {              # base, category
                   "GAME_THM" : ('hold','holdem'), 
                   "GAME_OMA" : ('hold','omahahi'),
+                "GAME_OMAHL" : ('hold','omahahilo'),
                   "GAME_FCD" : ('draw','fivedraw'),
                 }
         if 'GAMEKIND' in mg:
@@ -209,8 +208,6 @@ class Boss(HandHistoryConverter):
                 if player[1] == m.group('BUTTON'):
                     hand.buttonpos = player[0]
                     break
-        else:
-            log.info('readButton: ' + _('not found'))
 
     def readPlayerStacks(self, hand):
         m = self.re_PlayerInfo.finditer(hand.handText)
@@ -427,8 +424,4 @@ class Boss(HandHistoryConverter):
                  hand.addCollectPot(player=m.group('PNAME'),pot=potcoll)
 
     def readShownCards(self,hand):
-        for m in self.re_ShownCards.finditer(hand.handText):
-            if m.group('CARDS') is not None:
-                cards = m.group('CARDS')
-                cards = cards.split(' ')
-                hand.addShownCards(cards=cards, player=m.group('PNAME'))
+        pass
