@@ -46,13 +46,15 @@ class iPokerSummary(TourneySummary):
                      'Holdem L' : ('hold','holdem'),
                      'Omaha PL' : ('hold','omahahi'),
                'Omaha Hi-Lo PL' : ('hold','omahahilo'),
-                     'Omaha LP' : ('hold','omahahi'), #Italian PL
-               'Omaha Hi-Lo LP' : ('hold','omahahilo'), #Italian PL
+                     'Omaha LP' : ('hold','omahahi'),
+                      'Omaha L' : ('hold','omahahi'),
+               'Omaha Hi-Lo LP' : ('hold','omahahilo'),
+                'Omaha Hi-Lo L' : ('hold','omahahilo'),
                      
             }
 
     re_GameType = re.compile(r"""
-            <gametype>(?P<GAME>7\sCard\sStud\sL|Holdem\sNL|Holdem\sL|Omaha\s(PL|LP)|Omaha\sL|Omaha\sHi\-Lo\s(PL|LP))(\s(%(LS)s)(?P<SB>[.0-9]+)/(%(LS)s)(?P<BB>[.0-9]+))?</gametype>\s+?
+            <gametype>(?P<GAME>7\sCard\sStud\sL|Holdem\sNL|Holdem\sL|Omaha\s(L|PL|LP)|Omaha\sHi\-Lo\s(L|PL|LP))(\s(%(LS)s)(?P<SB>[.0-9]+)/(%(LS)s)(?P<BB>[.0-9]+))?</gametype>\s+?
             <tablename>(?P<TABLE>.+)?</tablename>\s+?
             (<(tablecurrency|tournamentcurrency)>.+</(tablecurrency|tournamentcurrency)>\s+?)?
             <duration>.+</duration>\s+?
