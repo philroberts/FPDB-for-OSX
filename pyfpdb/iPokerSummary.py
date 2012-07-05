@@ -53,7 +53,6 @@ class iPokerSummary(TourneySummary):
                       'Omaha L' : ('hold','omahahi'),
                'Omaha Hi-Lo LP' : ('hold','omahahilo'),
                 'Omaha Hi-Lo L' : ('hold','omahahilo'),
-
             }
 
     re_GameType = re.compile(ur"""
