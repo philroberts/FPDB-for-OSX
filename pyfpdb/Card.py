@@ -55,6 +55,7 @@ games = {              # base, category
        }
 
 hands = {'hi':{
+            'Nothing' :  None,
             'NoPair'  : 'high card, %s',
             'OnePair' : 'a pair of %s',
             'TwoPair' : 'two pair, %s',
