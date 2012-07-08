@@ -381,8 +381,18 @@ class Boss(HandHistoryConverter):
             elif action.group('ATYPE') == 'ACTION_STAND':
                 hand.addStandsPat( street, action.group('PNAME'))
             elif action.group('ATYPE') == 'ACTION_ALLIN':
-                bet = action.group('BET') 
-                hand.addRaiseTo( street, action.group('PNAME'), bet )
+                bet = action.group('BET')
+                player = action.group('PNAME')
+                hand.checkPlayerExists(action.group('PNAME'), 'addAllIn')
+                bet = bet.replace(u',', u'') #some sites have commas
+                Ai = Decimal(bet)
+                Bp = hand.lastBet[street]
+                if Ai <= Bp:
+                    hand.addCallTo(street, player, bet)
+                elif Bp == 0:
+                    hand.addBet(street, player, bet)
+                else:
+                    hand.addRaiseTo( street, player, bet)
             else:
                 print (_("DEBUG:") + _("Unimplemented %s: '%s' '%s'") % ("readAction", action.group('PNAME'), action.group('ATYPE')))
         self.calculateAntes(street, hand)
