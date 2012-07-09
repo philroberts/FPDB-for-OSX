@@ -70,7 +70,7 @@ class Boss(HandHistoryConverter):
                                     """, re.MULTILINE| re.VERBOSE)
     re_SplitHands   = re.compile('</HISTORY>')
     re_Button       = re.compile('<ACTION TYPE="HAND_DEAL" PLAYER="(?P<BUTTON>[^"]+)">\n<CARD LINK="[0-9b]+"></CARD>\n<CARD LINK="[0-9b]+"></CARD></ACTION>\n<ACTION TYPE="ACTION_', re.MULTILINE)
-    re_PlayerInfo   = re.compile('^<PLAYER NAME="(?P<PNAME>.*)" SEAT="(?P<SEAT>[0-9]+)" AMOUNT="(?P<CASH>[.0-9]+)"( STATE="(?P<STATE>STATE_EMPTY|STATE_PLAYING|STATE_SITOUT)" DEALER="(Y|N)")?></PLAYER>', re.MULTILINE)
+    re_PlayerInfo   = re.compile('^<PLAYER NAME="(?P<PNAME>.+)" SEAT="(?P<SEAT>[0-9]+)" AMOUNT="(?P<CASH>[.0-9]+)"( STATE="(?P<STATE>STATE_EMPTY|STATE_PLAYING|STATE_SITOUT)" DEALER="(Y|N)")?></PLAYER>', re.MULTILINE)
     re_Card        = re.compile('^<CARD LINK="(?P<CARD>[0-9]+)"></CARD>', re.MULTILINE)
     re_BoardLast    = re.compile('^<CARD LINK="(?P<CARD>[0-9]+)"></CARD></ACTION>', re.MULTILINE)
     
@@ -381,8 +381,18 @@ class Boss(HandHistoryConverter):
             elif action.group('ATYPE') == 'ACTION_STAND':
                 hand.addStandsPat( street, action.group('PNAME'))
             elif action.group('ATYPE') == 'ACTION_ALLIN':
-                bet = action.group('BET') 
-                hand.addRaiseTo( street, action.group('PNAME'), bet )
+                bet = action.group('BET')
+                player = action.group('PNAME')
+                hand.checkPlayerExists(action.group('PNAME'), 'addAllIn')
+                bet = bet.replace(u',', u'') #some sites have commas
+                Ai = Decimal(bet)
+                Bp = hand.lastBet[street]
+                if Ai <= Bp:
+                    hand.addCallTo(street, player, bet)
+                elif Bp == 0:
+                    hand.addBet(street, player, bet)
+                else:
+                    hand.addRaiseTo( street, player, bet)
             else:
                 print (_("DEBUG:") + _("Unimplemented %s: '%s' '%s'") % ("readAction", action.group('PNAME'), action.group('ATYPE')))
         self.calculateAntes(street, hand)
