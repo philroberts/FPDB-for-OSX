@@ -271,13 +271,15 @@ class Table_Window(object):
             return "client_moved"
         return False  # no change
 
-    def check_table_no(self, hud):
+    def has_table_title_changed(self, hud):
+
         result = self.get_table_no()
         if result != False and result != self.table:
             self.table = result
             if hud is not None:
                 hud.parent.main_window.emit("table_changed", hud)
-        return True
+                return True
+        return False
 
     def check_bad_words(self, title):
         for word in bad_words:

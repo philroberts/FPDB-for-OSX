@@ -150,6 +150,10 @@ class HUD_main(object):
         print "hud_main: " + _("Table title changed, killing current hud")
         self.kill_hud(None, hud.table.key)
 
+    def table_is_stale(self, hud):
+        print "hud_main: " + _("Moved to a new table, killing current hud")
+        self.kill_hud(None, hud.table.key)
+        
     def destroy(self, *args):             # call back for terminating the main eventloop
         log.info(_("Quitting normally"))
         gtk.main_quit()
@@ -267,30 +271,38 @@ class HUD_main(object):
             if site_name in aux_disabled_sites:
                 continue
 
-
-            # Have we moved tables in a tournament?
-            # Check if our table from last hand still exists;
-            #  if it does not, then a table-move has taken place
-            #  so we must kill-off the existing hud
-            # Note that kill+restart will reset the aggregation settings
-                                
-            if type == "tour":
-                try:
-                    if temp_key in self.hud_dict:
-                        if unicode(tablewindow.table) != tab_number:  # tab_number is unicode, tablewindow.table is not :(
-                            log.info(_("Table number changed: %s %s >>> %s") % (str(tour_number),str(tablewindow.table),str(tab_number)))
-                            try:
-                                self.kill_hud("activate", temp_key)   # kill everything
-                                while temp_key in self.hud_dict: time.sleep(0.5)   # wait for idle_kill to complete
-                            except: continue
-                except: pass
-                
-            # regenerate temp_key
+            # regenerate temp_key for this hand- this is the tablename (+ tablenumber (if mtt))
             if type == "tour":   # hand is from a tournament
                 temp_key = "%s Table %s" % (tour_number, tab_number)
             else:
                 temp_key = table_name
-        
+                                
+            if type == "tour":
+                #
+                # Has there been a table-change?  if yes, clean-up the current hud
+                # Two checks are needed,
+                #  if a hand is received for an existing table-number, but the table-title has changed,  kill the old hud
+                #  if a hand is received for a "new" table number, clean-up the old one and create a new hud
+                #
+                if temp_key in self.hud_dict:
+                    # check if our attached window's titlebar has changed, if it has
+                    # this method will emit a "table_changed" signal which will trigger
+                    # a kill
+                    if self.hud_dict[temp_key].table.has_table_title_changed(self.hud_dict[temp_key]):
+                        #table has been renamed; the idle_kill method will housekeep hud_dict
+                        # We will skip this hand, to give time for the idle function
+                        # to complete its' work.  Normal service will be resumed on the next hand
+                        continue # abort processing this hand
+                else:
+                    #check if the tournament number is in the hud_dict under a different table
+                    #if it is, trigger a hud_kill - we can safely drop through the rest of the code
+                    # because this is a brand-new hud being created
+                    for k in self.hud_dict:
+                        if k.startswith(tour_number):
+                            self.table_is_stale(self.hud_dict[k])
+                            continue # this cancels the "for k in...." loop, NOT the outer while: loop
+
+
 #       detect maxseats changed in hud
 #       if so, kill and create new hud with specified "max"
             if temp_key in self.hud_dict:
@@ -366,12 +378,6 @@ class HUD_main(object):
                         log.error(_('Table "%s" no longer exists') % table_name)
                         self.db_connection.connection.rollback()
                         return
-
-            if type == "tour":
-                try:
-                    self.hud_dict[temp_key].table.check_table_no(self.hud_dict[temp_key])
-                except KeyError:
-                    pass
         
         self.db_connection.connection.rollback()
 
