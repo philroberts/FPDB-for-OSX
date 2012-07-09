@@ -320,7 +320,7 @@ def main(argv=None):
                 'Merge' : False,
                 'Microgaming': False,
                 'OnGame' : False,
-                'PKR' : False,
+                'Pkr' : False,
                 'PacificPoker' : False,
                 'PartyPoker' : False,
                 'PokerStars' : False,
@@ -385,9 +385,11 @@ def main(argv=None):
         walk_testfiles("regression-test-files/tour/Merge/", compare, importer, MergeErrors, "Merge")
     elif sites['Merge'] == True and single_file_test:
         walk_testfiles(options.filename, compare, importer, MergeErrors, "Merge")
-    if sites['PKR'] == True and not single_file_test:
+    if sites['Pkr'] == True and not single_file_test:
         walk_testfiles("regression-test-files/cash/PKR/", compare, importer, PKRErrors, "PKR")
         walk_testfiles("regression-test-files/tour/PKR/", compare, importer, PKRErrors, "PKR")
+    elif sites['Pkr'] == True and single_file_test:
+        walk_testfiles(options.filename, compare, importer, PKRErrors, "PKR")
     if sites['iPoker'] == True and not single_file_test:
         walk_testfiles("regression-test-files/cash/iPoker/", compare, importer, iPokerErrors, "iPoker")
         walk_testfiles("regression-test-files/tour/iPoker/", compare, importer, iPokerErrors, "iPoker")

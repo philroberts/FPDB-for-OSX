@@ -107,6 +107,7 @@ def site_alias(alias):
                 "Party"          : "PartyPoker",
                 "PartyPoker"     : "PartyPoker",
                 "Pkr"            : "Pkr",
+                "PKR"            : "Pkr",
                 "PokerStars"     : "PokerStars",
                 "Stars"          : "PokerStars",
                 "PT"             : "PokerTracker",
