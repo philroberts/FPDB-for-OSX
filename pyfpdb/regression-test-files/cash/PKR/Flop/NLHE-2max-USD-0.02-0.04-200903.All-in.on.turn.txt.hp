@@ -541,7 +541,7 @@
                     'seatNo': 5,
                     'showed': True,
                     'sitout': False,
-                    'startCards': 0,
+                    'startCards': 34,
                     'startCash': 147,
                     'street0Aggr': False,
                     'street0Bets': 0,
