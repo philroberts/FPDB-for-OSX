@@ -326,7 +326,7 @@ class Pkr(HandHistoryConverter):
     def readShowdownActions(self, hand):
         # TODO: pick up mucks also??
         for shows in self.re_ShowdownAction.finditer(hand.handText):
-            if re.search(r'\]\[', shows.group('CARDS')):
+            if re.search(r'\]\s?\[', shows.group('CARDS')):
                 m2 = self.re_Cards.finditer(shows.group('CARDS'))
                 cards = [c.group('CARD').replace(' ', '').replace('X', '') for c in m2]
             else:
@@ -342,7 +342,7 @@ class Pkr(HandHistoryConverter):
     def readShownCards(self,hand):
         for m in self.re_ShownCards.finditer(hand.handText):
             if m.group('CARDS') is not None:
-                if re.search(r'\]\[', m.group('CARDS')):
+                if re.search(r'\]\s?\[', m.group('CARDS')):
                     m2 = self.re_Cards.finditer(m.group('CARDS'))
                     cards = [c.group('CARD').replace(' ', '').replace('X', '') for c in m2]
                 else:
@@ -351,5 +351,5 @@ class Pkr(HandHistoryConverter):
                 (shown, mucked) = (False, False)
                 if m.group('SHOWED') == "showed": shown = True
                 elif m.group('SHOWED') == "mucked": mucked = True
-
+                
                 hand.addShownCards(cards=cards, player=m.group('PNAME'), shown=shown, mucked=mucked)
