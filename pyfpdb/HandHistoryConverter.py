@@ -75,7 +75,7 @@ out_path  (default '-' = sys.stdout)
         self.import_parameters = self.config.get_import_parameters()
         self.sitename = sitename
         log.info("HandHistory init - %s site, %s subclass, in_path '%s'; out_path '%s'" 
-                 % (self.sitename, self.__class__, unicode(in_path, errors='replace'), out_path) ) # should use self.filter, not self.sitename
+                 % (self.sitename, self.__class__, in_path, out_path) ) # should use self.filter, not self.sitename
 
         self.index     = index
         self.starsArchive = starsArchive
