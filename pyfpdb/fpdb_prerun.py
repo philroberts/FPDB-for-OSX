@@ -114,6 +114,7 @@ class ChooseLanguage:
             self.listbox.insert(END,(key + " -- " + language_dict[key]))
         self.listbox.pack(fill=BOTH, expand=1)
         self.listbox.select_set(0)
+        self.selected_language = ""
         
         self.listbox.bind('<Double-1>', self.callbackLanguage)
         win.mainloop()
