@@ -37,7 +37,7 @@ class Everest(HandHistoryConverter):
     substitutions = {
                         'LS' : u"\$|\xe2\x82\xac|\u20ac|",
                        'TAB' : u"-\u2013'\s\da-zA-Z",
-                       'NUM' : u"\d,\.",
+                       'NUM' : u".,\d\s",
                     }
 
     # Static regexes
@@ -127,10 +127,10 @@ class Everest(HandHistoryConverter):
         if 'GAME' in mg:
             (self.info['base'], self.info['category']) = games[mg['GAME']]
         if 'SB' in mg:
-            sb = mg['SB'].replace(',','.')
+            sb = self.clearMoneyString(mg['SB'])
             self.info['sb'] = sb
         if 'BB' in mg:
-            bb = mg['BB'].replace(',','.')
+            bb = self.clearMoneyString(mg['BB'])
             self.info['bb'] = bb
         
         if mg['TYPE']=='ring':
@@ -169,10 +169,10 @@ class Everest(HandHistoryConverter):
             hand.fee = 0
             hand.buyinCurrency="NA"
         if 'SB' in mg:
-            sb = mg['SB'].replace(',','.')
+            sb = self.clearMoneyString(mg['SB'])
             hand.gametype['sb'] = sb
         if 'BB' in mg:
-            bb = mg['BB'].replace(',','.')
+            bb = self.clearMoneyString(mg['BB'])
             hand.gametype['bb'] = bb
 
         if hand.maxseats==None:

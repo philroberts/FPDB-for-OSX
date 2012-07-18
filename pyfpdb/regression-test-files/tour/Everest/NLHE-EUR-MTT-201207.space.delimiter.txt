@@ -1,0 +1,55 @@
+<SESSION time="1341602029" tableName="52919861-3" id="52919861" type="tournament" money="" screenName="NIKKKEI" game="hold-em" gametype="no-limit"/>
+<HAND time="1341614260" id="7653077769" index="187" blinds="1 750/3 500" stakes="1 750/3 500">
+  <SEAT position="0" name="Player0" balance="2416800"/>
+  <SEAT position="1" name="Player1" balance="8475200"/>
+  <SEAT position="2" name="Hero" balance="628700"/>
+  <SEAT position="3" name="Player2" balance="2798300"/>
+  <SEAT position="4" name="Player3" balance="4547900"/>
+  <SEAT position="7" name="Player4" balance="3051400"/>
+  <SEAT position="8" name="Player5" balance="13089100"/>
+  <SEAT position="9" name="Player6" balance="1742600"/>
+  <ANTE position="0" amount="35000"/>
+  <ANTE position="1" amount="35000"/>
+  <ANTE position="2" amount="35000"/>
+  <ANTE position="3" amount="35000"/>
+  <ANTE position="4" amount="35000"/>
+  <ANTE position="7" amount="35000"/>
+  <ANTE position="8" amount="35000"/>
+  <ANTE position="9" amount="35000"/>
+  <SWEEP rake="0" tax="0">280000</SWEEP>
+  <DEALER position="1"/>
+  <BLIND position="2" amount="175000" penalty="0"/>
+  <BLIND position="3" amount="350000" penalty="0"/>
+  <HOLE position="2">5c</HOLE>
+  <HOLE position="3">--</HOLE>
+  <HOLE position="4">--</HOLE>
+  <HOLE position="7">--</HOLE>
+  <HOLE position="8">--</HOLE>
+  <HOLE position="9">--</HOLE>
+  <HOLE position="0">--</HOLE>
+  <HOLE position="1">--</HOLE>
+  <HOLE position="2">Ah</HOLE>
+  <HOLE position="3">--</HOLE>
+  <HOLE position="4">--</HOLE>
+  <HOLE position="7">--</HOLE>
+  <HOLE position="8">--</HOLE>
+  <HOLE position="9">--</HOLE>
+  <HOLE position="0">--</HOLE>
+  <HOLE position="1">--</HOLE>
+  <FOLD position="4"/>
+  <FOLD position="7"/>
+  <FOLD position="8"/>
+  <FOLD position="9"/>
+  <FOLD position="0"/>
+  <FOLD position="1"/>
+  <BET position="2" amount="418700" allin="1"/>
+  <BET position="3" amount="243700"/>
+  <SWEEP rake="0" tax="0">1467400</SWEEP>
+  <SHOW position="2">5c, Ah</SHOW>
+  <SHOW position="3">6h, 4c</SHOW>
+  <COMMUNITY>8s, 4d, 10d, Js, Jc</COMMUNITY>
+  <SHOW position="2">5c, Ah</SHOW>
+  <SHOW position="3">6h, 4c</SHOW>
+  <WIN position="3" amount="1467400" pot="0" potAmount="1467400"/>
+</HAND>
+<PRIZE name="NIKKKEI" place="8" prize="90 €"/>
