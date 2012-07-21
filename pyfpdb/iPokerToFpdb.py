@@ -113,7 +113,7 @@ class iPoker(HandHistoryConverter):
     re_GameInfo = re.compile(ur"""(?P<HEAD>
             <gametype>(?P<GAME>(5|7)\sCard\sStud\sL|Holdem\s(NL|SL|L|LZ|PL|БЛ)|Omaha\s(L|PL|LP)|Omaha\sHi\-Lo\s(L|PL|LP)|LH\s(?P<LSB>[%(NUM)s]+)/(?P<LBB>[%(NUM)s]+).+?)(\s(%(LS)s)?(?P<SB>[%(NUM)s]+)/(%(LS)s)?(?P<BB>[%(NUM)s]+))?</gametype>\s+?
             <tablename>(?P<TABLE>.+)?</tablename>\s+?
-            (<(tablecurrency|tournamentcurrency)>.*</(tablecurrency|tournamentcurrency)>\s+?)?
+            (<(tablecurrency|tournamentcurrency)>(?P<TABLECURRENCY>.*)</(tablecurrency|tournamentcurrency)>\s+?)?
             <duration>.+</duration>\s+?
             <gamecount>.+</gamecount>\s+?
             <startdate>.+</startdate>\s+?
@@ -252,10 +252,12 @@ class iPoker(HandHistoryConverter):
         else:
             self.info['type'] = 'ring'
             self.tablename = mg['TABLE']
-            if not mg['CURRENCY']:
+            if not mg['TABLECURRENCY'] and not mg['CURRENCY']:
                 self.info['currency'] = 'play'
-            else:
+            elif not mg['TABLECURRENCY']:
                 self.info['currency'] = mg['CURRENCY']
+            else:
+                self.info['currency'] = mg['TABLECURRENCY']
                 
             if self.info['limitType'] == 'fl' and self.info['bb'] is not None:
                 try:
