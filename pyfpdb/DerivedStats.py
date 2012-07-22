@@ -860,10 +860,7 @@ class DerivedStats():
                     player done + 1
                     skip through list to the next raise action
         """
-
-        if hand.gametype['base'] <> 'hold':
-            return
- 
+        
         fast_forward = True
         for tupleread in hand.actions[hand.actionStreets[1]]:
             action = tupleread[1]
@@ -1052,4 +1049,3 @@ class DerivedStats():
             #else:
                 # haven't found player's first action yet
         return betOrRaise
-
