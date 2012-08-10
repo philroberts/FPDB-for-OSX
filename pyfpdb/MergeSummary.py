@@ -179,7 +179,10 @@ class MergeSummary(TourneySummary):
                 
                 self.buyin     = int(100*hhc.SnG_Structures[tourneyNameFull]['buyIn'])
                 self.fee       = int(100*hhc.SnG_Structures[tourneyNameFull]['fee'])
-                self.entries   = hhc.SnG_Structures[tourneyNameFull]['seats']
+                if 'max' in hhc.SnG_Structures[tourneyNameFull]:
+                    self.entries = hhc.SnG_Structures[tourneyNameFull]['max']
+                else:
+                    self.entries = hhc.SnG_Structures[tourneyNameFull]['seats']
                 self.buyinCurrency = hhc.SnG_Structures[tourneyNameFull]['currency']
                 self.currency  = hhc.SnG_Structures[tourneyNameFull]['payoutCurrency']
                 self.maxseats  = hhc.SnG_Structures[tourneyNameFull]['seats']
