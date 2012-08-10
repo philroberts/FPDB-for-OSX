@@ -1,0 +1,33 @@
+#Game No : 11970291958 
+***** Hand History for Game 11970291958 *****
+$4 USD NL Texas Hold'em - Tuesday, July 31, 21:08:37 YEKST 2012
+Table Buonmathuot (Real Money)
+Seat 8 is the button
+Total number of players : 9/9 
+Seat 6: Player0 ( $3.96 USD )
+Seat 5: Player1 ( $4 USD )
+Seat 3: Hero ( $3.94 USD )
+Seat 8: Player2 ( $3.84 USD )
+Seat 9: Player3 ( $4.53 USD )
+Seat 1: Player4 ( $3.72 USD )
+Seat 7: Player5 ( $6.07 USD )
+Seat 2: Player6 ( $0 USD )
+Seat 4: Player7 ( $3.57 USD )
+Player3 posts small blind [$0.02 USD].
+Player6 has left the table.
+Player8 has joined the table.
+Player4 is sitting out
+Player8 posts big blind [$0.04 USD].
+** Dealing down cards **
+Dealt to Hero [  4h 2h ]
+Hero folds
+Player0 folds
+Player5 folds
+Player2 folds
+Player3 calls [$0.02 USD]
+Player8 checks
+** Dealing Flop ** [ 8s, 7d, 4d ]
+Player3 bets [$0.04 USD]
+Player8 folds
+Player3 does not show cards.
+Player3 wins $0.12 USD

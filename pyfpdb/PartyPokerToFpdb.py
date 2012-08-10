@@ -400,23 +400,26 @@ class PartyPoker(HandHistoryConverter):
             #finds first vacant seat after an exact seat
             def findFirstEmptySeat(startSeat):
                 while startSeat in occupiedSeats:
-                    if startSeat >= hand.maxseats and hand.maxseats!=None:
+                    if (startSeat >= hand.maxseats and hand.maxseats!=None) or len(occupiedSeats)>=hand.maxseats:
                         startSeat = 0
                     startSeat += 1
                 return startSeat
 
             re_JoiningPlayers = re.compile(r"(?P<PLAYERNAME>.*) has joined the table")
             re_BBPostingPlayers = re.compile(r"(?P<PLAYERNAME>.*) posts big blind")
+            re_LeavingPlayers = re.compile(r"(?P<PLAYERNAME>.*) has left the table")
 
             match_JoiningPlayers = re_JoiningPlayers.findall(hand.handText)
             match_BBPostingPlayers = re_BBPostingPlayers.findall(hand.handText)
+            match_LeavingPlayers = re_LeavingPlayers.findall(hand.handText)
 
             #add every player with zero stack, but:
             #if a zero stacked player is just joined the table in this very hand then set his stack to maxKnownStack
             for p in zeroStackPlayers:
                 if p[1] in match_JoiningPlayers:
                     p[2] = self.clearMoneyString(maxKnownStack)
-                hand.addPlayer(p[0],p[1],p[2])
+                if not p[1] in match_LeavingPlayers:
+                    hand.addPlayer(p[0],p[1],p[2])
 
             seatedPlayers = list([(f[1]) for f in hand.players])
 
