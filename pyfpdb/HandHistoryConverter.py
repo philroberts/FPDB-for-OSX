@@ -178,7 +178,7 @@ HandHistoryConverter: '%(sitename)s'
             self.obs = m.sub('', self.obs)
 
         if self.obs is None or self.obs == "":
-            log.error(_("Read no hands from file: '%s'") % self.in_path)
+            log.info(_("Read no hands from file: '%s'") % self.in_path)
             return []
         handlist = re.split(self.re_SplitHands,  self.obs)
         # Some HH formats leave dangling text after the split
@@ -540,7 +540,7 @@ or None if we fail to get the info """
             givenTZ = timezone('Europe/Bucharest')
         elif (givenTimezone == 'MSK' or givenTimezone == 'MESZ'): # Moscow Standard Time
             givenTZ = timezone('Europe/Moscow')
-        elif givenTimezone == 'YEKT':
+        elif givenTimezone == 'YEKT' or givenTimezone == 'YEKST':
             givenTZ = timezone('Asia/Yekaterinburg')
         elif givenTimezone == 'IST': # India Standard Time
             givenTZ = timezone('Asia/Kolkata')
