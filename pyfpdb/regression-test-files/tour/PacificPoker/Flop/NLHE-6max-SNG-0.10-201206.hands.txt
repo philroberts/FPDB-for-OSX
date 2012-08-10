@@ -1,0 +1,32 @@
+#Game No : 414180466
+***** Cassava Hand History for Game 414180466 *****
+15 €/30 € Blinds No Limit Holdem - *** 25 06 2012 14:39:42
+Tournament #39132902 0,09 € + 0,01 € - Table #1 (Real Money)
+Seat 6 is the button
+Total number of players : 6
+Seat 1: Player0 ( 500 € )
+Seat 2: Player1 ( 500 € )
+Seat 4: Player2 ( 500 € )
+Seat 6: Player3 ( 500 € )
+Seat 7: Hero ( 500 € )
+Seat 9: Player4 ( 500 € )
+Hero posts small blind [15 €]
+Player4 posts big blind [30 €]
+** Dealing down cards **
+Dealt to Hero [ 7p, 8t ]
+Player0 folds
+Player1 calls [30 €]
+Player2 folds
+Player3 calls [30 €]
+Hero folds
+Player4 checks
+** Dealing flop ** [ Kd, 2p, 5d ]
+Player4 checks
+Player1 checks
+Player3 bets [30 €]
+Player4 folds
+Player1 folds
+** Summary **
+Player3 did not show his hand
+Player3 collected [ 105 € ]
+
