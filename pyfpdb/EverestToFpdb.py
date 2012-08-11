@@ -73,7 +73,7 @@ class Everest(HandHistoryConverter):
     re_CollectPot = re.compile(r'<WIN position="(?P<PSEAT>[0-9])" amount="(?P<POT>[.0-9]+)" pot="[0-9]+"', re.MULTILINE)
     re_SitsOut = re.compile(r'<event sequence="[0-9]+" type="SIT_OUT" player="(?P<PSEAT>[0-9])"/>', re.MULTILINE)
     re_ShownCards = re.compile(r'<(?P<SHOW>SHOW|MUCK) position="(?P<PSEAT>[0-9])">(?P<CARDS>.+)?</(SHOW|MUCK)>', re.MULTILINE)
-    re_Prize = re.compile(r'\s<(PRIZE|PLACE)', re.MULTILINE)
+    re_Prize = re.compile(r'\s<(CHAT|PRIZE|PLACE)', re.MULTILINE)
 
     def compilePlayerRegexs(self, hand):
         pass
