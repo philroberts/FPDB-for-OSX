@@ -367,7 +367,7 @@ class Microgaming(HandHistoryConverter):
             elif action.group('ATYPE') == 'MuckCards':
                 pass # Deal with elsewhere
             elif action.group('ATYPE') == 'MoneyReturned':
-                hand.setUncalledBets(False)
+                pass # Deal with elsewhere
             else:
                 print (_("DEBUG:") + _("Unimplemented %s: '%s' '%s'") % ("readAction", pname, action.group('ATYPE')))
             #elif action.group('ATYPE') == 'ACTION_ALLIN':
