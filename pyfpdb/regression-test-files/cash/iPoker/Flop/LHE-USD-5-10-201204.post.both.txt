@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+	<session sessioncode="3728527661">  
+			<general>  
+	    	<mode>real</mode>
+	      		<gametype>Holdem L $5/$10</gametype>  
+	          <tablename>Kingaroy, 51105141</tablename>  
+	          <duration>11:33</duration>  
+	          <gamecount>1092</gamecount>  
+	          <startdate>2012-04-03 15:00:29</startdate>  
+	          <currency>USD</currency>  
+	          <nickname>Hero</nickname>  
+	          <bets>$13,772.80</bets>  
+	          <wins>$14,290.60</wins>  
+	          <chipsin>$1,362.60</chipsin>
+			  		<chipsout>$1,880.40</chipsout>
+			  		<ipoints>6,992.90</ipoints>
+        		<statuspoints>6,992.90</statuspoints>
+			  		<awardpoints>6,992.90</awardpoints>
+	            
+	    </general>  
+	    <game gamecode="3232378938">
+		 <general>
+		  <startdate>2012-04-03 20:27:49</startdate>		  
+		  <players>
+		   <player seat="3" name="Player0" chips="$381" dealer="0" win="$0" bet="$2.50" rebuy="0" addon="0"/><player seat="5" name="Player1" chips="$193.42" dealer="0" win="$0" bet="$5" rebuy="0" addon="0"/><player seat="6" name="Player2" chips="$162.75" dealer="0" win="$0" bet="$7.50" rebuy="0" addon="0"/><player seat="8" name="Hero" chips="$448.10" dealer="0" win="$25" bet="$10" rebuy="0" addon="0"/><player seat="10" name="Player3" chips="$155.10" dealer="1" win="$0" bet="$0" rebuy="0" addon="0"/>
+		  </players>
+		 </general>
+		 <round no="0">
+	 <action no="1" player="Player0" type="1" sum="$2.50" cards="[cards]"/><action no="2" player="Player1" type="2" sum="$5" cards="[cards]"/><action no="3" player="Player2" type="2" sum="$7.50" cards="[cards]"/>
+	</round>
+	<round no="1">
+	 <cards type="Pocket" player="Player0">X X</cards><action no="7" player="Player0" type="0" sum="$0" cards=""/><cards type="Pocket" player="Player1">X X</cards><action no="8" player="Player1" type="0" sum="$0" cards=""/><cards type="Pocket" player="Player2">X X</cards><action no="4" player="Player2" type="0" sum="$0" cards=""/><cards type="Pocket" player="Hero">HK D7</cards><action no="5" player="Hero" type="23" sum="$10" cards=""/><cards type="Pocket" player="Player3">X X</cards><action no="6" player="Player3" type="0" sum="$0" cards=""/>
+	</round>
+	
