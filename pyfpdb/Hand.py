@@ -571,7 +571,8 @@ class Hand(object):
             self.addBet(street, player, amount)
         else:
             Rb = Ai - C
-            self._addRaise(street, player, C, Rb, Ai)
+            Rt = Bp + Rb
+            self._addRaise(street, player, C, Rb, Rt)
 
     def addAnte(self, player, ante):
         log.debug("%s %s antes %s" % ('BLINDSANTES', player, ante))
