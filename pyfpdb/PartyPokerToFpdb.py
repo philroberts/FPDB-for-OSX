@@ -116,7 +116,7 @@ class PartyPoker(HandHistoryConverter):
 
     re_GameInfoTrny     = re.compile("""
             \*{5}\sHand\sHistory\s(F|f)or\sGame\s(?P<HID>\d+)\s\*{5}\s+
-            (?P<LIMIT>(NL|PL|))\s*
+            (?P<LIMIT>(NL|PL|FL|))\s*
             (?P<GAME>(Texas\ Hold\'em|Omaha))\s+
             (?:(?P<BUYIN>[%(LS)s]?[%(NUM)s]+)\s*(?P<BUYIN_CURRENCY>%(LEGAL_ISO)s)?\s*Buy-in\s+)?
             Trny:\s?(?P<TOURNO>\d+)\s+
