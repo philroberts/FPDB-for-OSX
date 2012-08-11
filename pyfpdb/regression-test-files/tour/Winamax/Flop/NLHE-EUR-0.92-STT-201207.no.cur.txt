@@ -1,0 +1,60 @@
+Winamax Poker - Tournament "Quitte ou Double" buyIn: 0.92-0.08 level: 1 - HandId: #119419173368496129-1-1343577528 - Holdem no limit (10/20) - 2012/07/29 15:58:48 UTC
+Table: 'Quitte ou Double(27804443)#0' 10-max (real money) Seat #2 is the button
+Seat 1: Player0 (1500)
+Seat 2: Player1 (1500)
+Seat 3: Player2 (1500)
+Seat 4: Player3 (1500)
+Seat 5: Player4 (1500)
+Seat 6: Hero (1500)
+Seat 7: Player5 (1500)
+Seat 8: Player6 (1500)
+Seat 9: Player7 (1500)
+Seat 10: Player8 (1500)
+*** ANTE/BLINDS ***
+Player2 posts small blind 10
+Player3 posts big blind 20
+Dealt to Hero [2d 8c]
+*** PRE-FLOP *** 
+Player4 folds
+Hero folds
+Player5 calls 20
+Player6 raises 40 to 60
+Player7 folds
+Player8 folds
+Player0 folds
+Player1 folds
+Player2 calls 50
+Player3 folds
+Player5 calls 40
+*** FLOP *** [Tc Td Qd]
+Player2 checks
+Player5 checks
+Player6 checks
+*** TURN *** [Tc Td Qd][Qh]
+Player2 bets 20
+Player5 calls 20
+Player6 calls 20
+*** RIVER *** [Tc Td Qd Qh][4c]
+Player2 checks
+Player5 checks
+Player6 checks
+*** SHOW DOWN ***
+Player2 shows [Ac 4d] (Two pairs : Queens and Tens)
+Player5 shows [Kh As] (Two pairs : Queens and Tens)
+Player6 shows [Ad 9h] (Two pairs : Queens and Tens)
+Player6 collected 87 from pot
+Player5 collected 87 from pot
+Player2 collected 86 from pot
+*** SUMMARY ***
+Total pot 260 | No rake
+Board: [Tc Td Qd Qh 4c]
+Seat 1: Player0 folded on the pre-flop
+Seat 2: Player1 (button) folded on the pre-flop
+Seat 3: Player2 (small blind) showed [Ac 4d] and won 86 with Two pairs : Queens and Tens
+Seat 4: Player3 (big blind) folded on the pre-flop
+Seat 5: Player4 folded on the pre-flop
+Seat 6: Hero folded on the pre-flop
+Seat 7: Player5 showed [Kh As] and won 87 with Two pairs : Queens and Tens
+Seat 8: Player6 showed [Ad 9h] and won 87 with Two pairs : Queens and Tens
+Seat 9: Player7 folded on the pre-flop
+Seat 10: Player8 folded on the pre-flop

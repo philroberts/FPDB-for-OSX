@@ -74,7 +74,7 @@ class Winamax(HandHistoryConverter):
             (?P<RING>CashGame)?
             (?P<TOUR>Tournament\s
             (?P<TOURNAME>.+)?\s
-            buyIn:\s(?P<BUYIN>(?P<BIAMT>[%(LS)s\d\,]+)?\s\+?\s(?P<BIRAKE>[%(LS)s\d\,]+)?\+?(?P<BOUNTY>[%(LS)s\d\.]+)?\s?(?P<TOUR_ISO>%(LEGAL_ISO)s)?|Freeroll|Gratuit|Ticket\suniquement|Free)?\s
+            buyIn:\s(?P<BUYIN>(?P<BIAMT>[%(LS)s\d\,.]+)?(\s\+?\s|-)(?P<BIRAKE>[%(LS)s\d\,.]+)?\+?(?P<BOUNTY>[%(LS)s\d\.]+)?\s?(?P<TOUR_ISO>%(LEGAL_ISO)s)?|Freeroll|Gratuit|Ticket\suniquement|Free|Ticket)?\s
             (level:\s(?P<LEVEL>\d+))?
             .*)?
             \s-\sHandId:\s\#(?P<HID1>\d+)-(?P<HID2>\d+)-(?P<HID3>\d+).*\s  # REB says: HID3 is the correct hand number
@@ -90,6 +90,7 @@ class Winamax(HandHistoryConverter):
             (.(?P<TOURNO>\d+).\#(?P<TABLENO>\d+))?.*
             \'
             \s(?P<MAXPLAYER>\d+)\-max
+            \s(?P<MONEY>\(real\smoney\))?
             """ % substitutions, re.MULTILINE|re.DOTALL|re.VERBOSE)
 
     re_TailSplitHands = re.compile(r'\n\s*\n')
@@ -166,8 +167,11 @@ class Winamax(HandHistoryConverter):
             info['type'] = 'tour'
         elif mg.get('RING'):
             info['type'] = 'ring'
-
-        info['currency'] = 'EUR'
+        
+        if mg.get('MONEY'):
+            info['currency'] = 'EUR'
+        else:
+            info['currency'] = 'play'
 
         if 'LIMIT' in mg:
             if mg['LIMIT'] in self.limits:
@@ -256,6 +260,8 @@ class Winamax(HandHistoryConverter):
                             hand.buyinCurrency="WIFP"
                         elif info[key].find("Free")!=-1:
                             hand.buyinCurrency="WIFP"
+                        elif info['MONEY']:
+                            hand.buyinCurrency="EUR"
                         else:
                             hand.buyinCurrency="play"
 
@@ -382,7 +388,7 @@ class Winamax(HandHistoryConverter):
             for found in m:
                 hand.hero = found.group('PNAME')
                 newcards = found.group('CARDS').split(' ')
-#                print "DEBUG: addHoleCards(%s, %s, %s)" %(street, hand.hero, newcards)
+#                print "DEBUG: %s addHoleCards(%s, %s, %s)" %(hand.handid, street, hand.hero, newcards)
                 hand.addHoleCards(street, hand.hero, closed=newcards, shown=False, mucked=False, dealt=True)
                 log.debug(_("Hero cards %s: %s") % (hand.hero, newcards))
 
