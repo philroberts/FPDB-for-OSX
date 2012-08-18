@@ -1079,7 +1079,7 @@ class HoldemOmahaHand(Hand):
 
     def join_holecards(self, player, asList=False):
         """With asList = True it returns the set cards for a player including down cards if they aren't know"""
-        hcs = [u'0x', u'0x', u'0x', u'0x']
+        hcs = [u'0x', u'0x', u'0x', u'0x', u'0x']
 
         for street in self.holeStreets:
             if player in self.holecards[street].keys():
@@ -1088,7 +1088,7 @@ class HoldemOmahaHand(Hand):
                     hcs[i] = upper(hcs[i][0:1])+hcs[i][1:2]
                 try:
                     idx = 2
-                    for i in 2,3:
+                    for i in (2,3,4):
                         hcs[i] = self.holecards[street][player][1][i]
                         hcs[i] = upper(hcs[i][0:1])+hcs[i][1:2]
                         idx += 1

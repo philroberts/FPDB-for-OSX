@@ -343,7 +343,8 @@ class DerivedStats():
             if (self.handsplayers[player[1]]['sawShowdown']) or player[1]==hand.hero:
                 if (hand.gametype['category'] != 'badugi' and
                     hand.gametype['category'] != 'razz' and
-                    hand.gametype['category'] != '2_holdem'):
+                    hand.gametype['category'] != '2_holdem' and
+                    hand.gametype['category'] != '5_omahahi'):
                     hcs = hand.join_holecards(player[1], asList=True)
                     if game[0] == 'hold':
                         if 'omaha' in game[1]:
