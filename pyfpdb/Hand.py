@@ -844,7 +844,7 @@ class Hand(object):
               "fivedraw"   : "5 Card Draw",
               "27_1draw"   : "Single Draw 2-7 Lowball",
               "27_3draw"   : "Triple Draw 2-7 Lowball",
-              "5studhi"    : "5 Card Stud",
+              "5_studhi"   : "5 Card Stud",
               "badugi"     : "Badugi"
              }
         ls = {"nl"  : "No Limit",
@@ -1507,12 +1507,17 @@ class StudHand(Hand):
         if gametype['base'] != 'stud':
             pass # or indeed don't pass and complain instead
 
-        self.allStreets = ['BLINDSANTES','THIRD','FOURTH','FIFTH','SIXTH','SEVENTH']
         self.communityStreets = []
-        self.actionStreets = ['BLINDSANTES','THIRD','FOURTH','FIFTH','SIXTH','SEVENTH']
-
-        self.streetList = ['BLINDSANTES','THIRD','FOURTH','FIFTH','SIXTH','SEVENTH'] # a list of the observed street names in order
-        self.holeStreets = ['THIRD','FOURTH','FIFTH','SIXTH','SEVENTH']
+        if gametype['category'] == '5_studhi':
+            self.allStreets = ['BLINDSANTES','SECOND', 'THIRD','FOURTH','FIFTH']
+            self.actionStreets = ['BLINDSANTES','SECOND','THIRD','FOURTH','FIFTH']
+            self.streetList = ['BLINDSANTES','SECOND','THIRD','FOURTH','FIFTH'] # a list of the observed street names in order
+            self.holeStreets = ['SECOND','THIRD','FOURTH','FIFTH']
+        else:
+            self.allStreets = ['BLINDSANTES','THIRD','FOURTH','FIFTH','SIXTH','SEVENTH']
+            self.actionStreets = ['BLINDSANTES','THIRD','FOURTH','FIFTH','SIXTH','SEVENTH']
+            self.streetList = ['BLINDSANTES','THIRD','FOURTH','FIFTH','SIXTH','SEVENTH'] # a list of the observed street names in order
+            self.holeStreets = ['THIRD','FOURTH','FIFTH','SIXTH','SEVENTH']
         Hand.__init__(self, self.config, sitename, gametype, handText)
         self.sb = gametype['sb']
         self.bb = gametype['bb']
@@ -1590,7 +1595,7 @@ class StudHand(Hand):
         log.debug(_("%s %s completes %s") % (street, player, amountTo))
         amountTo = amountTo.replace(u',', u'') #some sites have commas
         self.checkPlayerExists(player, 'addComplete')
-        Bp = self.lastBet['THIRD']
+        Bp = self.lastBet[street]
         Bc = sum(self.bets[street][player])
         Rt = Decimal(amountTo)
         C = Bp - Bc
@@ -1605,15 +1610,19 @@ class StudHand(Hand):
 
     def addBringIn(self, player, bringin):
         if player is not None:
+            if self.gametype['category']=='5_studhi':
+                street = 'SECOND'
+            else:
+                street = 'THIRD'
             log.debug(_("Bringin: %s, %s") % (player , bringin))
             bringin = bringin.replace(u',', u'') #some sites have commas
             self.checkPlayerExists(player, 'addBringIn')
             bringin = Decimal(bringin)
-            self.bets['THIRD'][player].append(bringin)
+            self.bets[street][player].append(bringin)
             self.stacks[player] -= bringin
             act = (player, 'bringin', bringin, self.stacks[player]==0)
-            self.actions['THIRD'].append(act)
-            self.lastBet['THIRD'] = bringin
+            self.actions[street].append(act)
+            self.lastBet[street] = bringin
             self.pot.addMoney(player, bringin)
 
     def getStreetTotals(self):
@@ -1769,7 +1778,7 @@ class StudHand(Hand):
         holecards = []
         for street in self.holeStreets:
             if self.holecards[street].has_key(player):
-                if street == 'THIRD':
+                if street == 'THIRD' or street == 'SECOND':
                     holecards = holecards + self.holecards[street][player][1] + self.holecards[street][player][0]
                 elif street == 'SEVENTH':
                     if player == self.hero:
@@ -1783,25 +1792,28 @@ class StudHand(Hand):
         if asList == False:
             return " ".join(holecards)
         else:
-            if player == self.hero:
-                if len(holecards) < 3:
+            if self.gametype['category']=='5_studhi':
+                return holecards
+            else:
+                if player == self.hero:
+                    if len(holecards) < 3:
+                        holecards = [u'0x', u'0x'] + holecards
+                    else:
+                        return holecards
+                elif len(holecards) == 7:
+                    return holecards
+                elif len(holecards) <= 4:
+                    #Non hero folded before showdown, add first two downcards
                     holecards = [u'0x', u'0x'] + holecards
                 else:
-                    return holecards
-            elif len(holecards) == 7:
+                    log.warning(_("join_holecards: # of holecards should be either < 4, 4 or 7 - 5 and 6 should be impossible for anyone who is not a hero"))
+                    log.warning("join_holcards: holecards(%s): %s" % (player, holecards))
+                if holecards == [u'0x', u'0x']:
+                    log.warning(_("join_holecards: Player '%s' appears not to have been dealt a card") % player)
+                    # If a player is listed but not dealt a card in a cash game this can occur
+                    # Noticed in FTP Razz hand. Return 3 empty cards in this case
+                    holecards = [u'0x', u'0x', u'0x']
                 return holecards
-            elif len(holecards) <= 4:
-                #Non hero folded before showdown, add first two downcards
-                holecards = [u'0x', u'0x'] + holecards
-            else:
-                log.warning(_("join_holecards: # of holecards should be either < 4, 4 or 7 - 5 and 6 should be impossible for anyone who is not a hero"))
-                log.warning("join_holcards: holecards(%s): %s" % (player, holecards))
-            if holecards == [u'0x', u'0x']:
-                log.warning(_("join_holecards: Player '%s' appears not to have been dealt a card") % player)
-                # If a player is listed but not dealt a card in a cash game this can occur
-                # Noticed in FTP Razz hand. Return 3 empty cards in this case
-                holecards = [u'0x', u'0x', u'0x']
-            return holecards
 
 
 class Pot(object):

@@ -302,6 +302,7 @@ class DerivedStats():
     
     def assembleHandsStove(self, hand):
         game = Card.games[hand.gametype['category']]
+        streetKey = Card.streets
         holecards, holeplayers, streets, boards, boardcards, inserts_temp, allInStreets = {}, [], {}, {}, [], [], []
         defaultStreet = {'board': [[]], 'allin': False}
         showdown = False
@@ -320,7 +321,7 @@ class DerivedStats():
                         allInStreets = ['PREFLOP'] + allInStreets
                         boards['PREFLOP'] = {'board': [[]], 'allin': True}
                     else: 
-                        id = Card.streets[game[0]][street]
+                        id = streetKey[game[0]][street]
                         boards[hand.actionStreets[id]]['allin'] = True
                     boards[street]['allin'] = True
             flop, turn, river = [], [], []
@@ -343,8 +344,7 @@ class DerivedStats():
             if (self.handsplayers[player[1]]['sawShowdown']) or player[1]==hand.hero:
                 if (hand.gametype['category'] != 'badugi' and
                     hand.gametype['category'] != 'razz' and
-                    hand.gametype['category'] != '2_holdem' and
-                    hand.gametype['category'] != '5_omahahi'):
+                    hand.gametype['category'] != '2_holdem'):
                     hcs = hand.join_holecards(player[1], asList=True)
                     if game[0] == 'hold':
                         if 'omaha' in game[1]:
@@ -353,9 +353,16 @@ class DerivedStats():
                             hole = hcs[:2]
                         last = 'RIVER'
                     elif game[0] == 'stud':
-                        hole = hcs[:7]
-                        boards['SEVENTH'] = defaultStreet
-                        last = 'SEVENTH'
+                        if hand.gametype['category'] == '5_studhi':
+                            hole = hcs[:5]
+                            boards['FIFTH'] = defaultStreet
+                            last = 'FIFTH'
+                            streetKey['stud'] = {'SECOND': 0,'THIRD': 1,'FOURTH': 2,'FIFTH': 3}
+                        else:
+                            hole = hcs[:7]
+                            boards['SEVENTH'] = defaultStreet
+                            last = 'SEVENTH'
+                            streetKey['stud'] = {'THIRD': 0,'FOURTH': 1,'FIFTH': 2,'SIXTH': 3,'SEVENTH': 4}
                     elif game[0] == 'draw':
                         if u'0x' in hcs[-5:]:
                             hole = hcs[5:10]
@@ -376,7 +383,7 @@ class DerivedStats():
                     holeplayers.append(player[1])
                     
                     for street, board in boards.iteritems():
-                        streetId = Card.streets[game[0]][street]
+                        streetId = streetKey[game[0]][street]
                         if (board['allin'] or player[1]==hand.hero or self.handsplayers[player[1]]['sawShowdown']):
                             boardId = 0
                             for n in range(len(board['board'])):
@@ -394,7 +401,7 @@ class DerivedStats():
                                         bcards = []
                                 holecards[player[1]]['cards'] += [cards]
                                 if (u'0x' not in cards and 'Nu' not in cards) and ((game[0] == 'hold' and len(board['board'][n])>=3) or 
-                                   (game[0] == 'stud' and len(cards)==7) or (game[0] == 'draw' and len(cards)==5)):
+                                   (game[0] == 'stud' and len(cards)==7) or ((game[0] == 'draw' or hand.gametype['category'] == '5_studhi') and len(cards)==5)):
                                      if game[2] == 'h':
                                          best_hi = pokereval.best_hand("hi", cards, bcards)
                                          hicards = [pokereval.card2string(i) for i in best_hi[1:]]
@@ -467,8 +474,6 @@ class DerivedStats():
                 elif (self.handsplayers[player[1]]['sawShowdown']):
                     if game[0]=='stud':
                         streetId = 4
-                    else:
-                        streetId = 3
                     if game[2] == 'h':
                         histring = hand.showdownStrings.get(player[1])
                     else:
@@ -488,7 +493,7 @@ class DerivedStats():
             players = [p for p in players]
             for street in allInStreets:
                 board = boards[street]
-                tid = Card.streets[game[0]][street]
+                tid = streetKey[game[0]][street]
                 for n in range(len(board['board'])):
                     if len(board['board']) > 1: 
                         bid = n + 1
