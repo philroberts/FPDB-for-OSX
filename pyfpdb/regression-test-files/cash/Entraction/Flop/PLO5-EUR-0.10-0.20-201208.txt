@@ -1,0 +1,44 @@
+Game # 2695932189 - 5-Card Omaha High Pot Limit EUR 0.10/0.20 - Table "Nampa"
+
+Players(max 6):
+Player0                     (EUR 12.51 in seat 1)
+Player1                     (EUR 26.48 in seat 2)
+Player2                     (EUR 45.05 in seat 3)
+Hero                        (EUR 19.80 in seat 4)
+Player3                     (EUR 72.93 in seat 6)
+
+Dealer:                     Player2
+Small Blind:                Hero        (0.10)
+Big Blind:                  Player3     (0.20)
+
+Hero was dealt:             Qs - 7d - 8c - 9s - 5h
+
+Player0                     Fold        
+Player2                     Raise       (0.57)
+Hero                        Fold        
+Player3                     Call        (0.37)
+
+Flop                        Kc - 2s - 2d
+
+Player3                     Check       
+Player2                     Bet         (0.93)
+Player3                     Call        (0.93)
+
+Turn                        Kc - 2s - 2d - 8d
+
+Player3                     Check       
+Player2                     Check       
+
+River                       Kc - 2s - 2d - 8d - 5d
+
+Player3                     Check       
+Player2                     Check       
+
+Player3 shows:              Tc - 7s - 2h - Js - 9d (three of a kind, Deuces)
+
+Player2 didn't show hand (Kh - 9h - As - 6s - Qh)
+
+Player3 wins:               EUR 2.95 (with three of a kind, Deuces)
+Rake:                       EUR 0.15
+
+Game ended 2012-08-07 00:36:56 BST
