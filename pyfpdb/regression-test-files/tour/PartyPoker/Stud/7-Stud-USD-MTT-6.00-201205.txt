@@ -1,0 +1,64 @@
+#Game No : 11792805420 
+***** Hand History for Game 11792805420 *****
+FL 7 Card Stud $6 USD Buy-in Trny:69784932 Level:2  Stakes-Antes(60/120-10) - Wednesday, May 30, 14:41:43 EDT 2012
+Table Regular (2629813) Table #2 (Real Money)
+Seat 0 is the button
+Total number of players : 8/8 
+Seat 1: Hero ( 2,930 )
+Seat 4: Player0 ( 3,955 )
+Seat 6: Player1 ( 3,510 )
+Seat 2: Player2 ( 3,660 )
+Seat 5: Player3 ( 2,420 )
+Seat 8: Player4 ( 2,910 )
+Seat 3: Player5 ( 2,515 )
+Seat 7: Player6 ( 2,330 )
+Trny:69784932 Level:2 
+Stakes-Antes(60/120-10)
+Hero posts ante [10]
+Player2 posts ante [10]
+Player5 posts ante [10]
+Player0 posts ante [10]
+Player3 posts ante [10]
+Player1 posts ante [10]
+Player6 posts ante [10]
+Player4 posts ante [10]
+** Dealing **
+Dealt to Hero [  9d Qh 3h ]
+Player4 opens
+Player4 bring-ins [20]
+Hero folds
+Player2 folds
+Player5 calls [20]
+Player0 folds
+Player3 folds
+Player1 calls [20]
+Player6 calls [20]
+** Dealing Fourth street **
+Player4 opens
+Player4 double bets [120]
+Player5 calls [120]
+Player1 calls [120]
+Player6 raises [240]
+Player4 raises [240]
+Player5 folds
+Player1 folds
+Player6 calls [120]
+** Dealing Fifth street **
+Player4 opens
+Player4 bets [120]
+Player6 calls [120]
+** Dealing Sixth street **
+Player4 opens
+Player4 bets [120]
+Player6 raises [240]
+Player4 raises [240]
+Player6 raises [240]
+Player4 calls [120]
+** Dealing River **
+Player4 opens
+Player4 checks
+Player6 bets [120]
+Player4 calls [120]
+Player6 shows [ 7s, 8h, 7c, 5d, 6h, 4d, Ad ]a straight, Four to Eight.
+Player4 doesn't show [ 2s, Tc, 2h, 2d, 6d, 9s, Qc ]three of a kind, Twos.
+Player6 wins 2,560 chips from the main pot with a straight, Four to Eight.
