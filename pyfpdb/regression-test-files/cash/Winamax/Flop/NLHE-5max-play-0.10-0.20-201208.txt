@@ -1,0 +1,33 @@
+Winamax Poker - CashGame - HandId: #3357764-1085-1344984780 - Holdem no limit (0.10/0.20) - 2012/08/14 22:53:00 UTC
+Table: 'Tampa' 5-max (play money) Seat #3 is the button
+Seat 2: Hero (10)
+Seat 3: Player0 (14)
+Seat 5: Player1 (17.38)
+*** ANTE/BLINDS ***
+Player1 posts small blind 0.10
+Hero posts big blind 0.20
+Dealt to Hero [Kh 2s]
+*** PRE-FLOP *** 
+Player0 raises 0.20 to 0.40
+Player1 raises 1.60 to 2
+Hero folds
+Player0 calls 1.60
+*** FLOP *** [Qh 2h Td]
+Player1 checks
+Player0 checks
+*** TURN *** [Qh 2h Td][3d]
+Player1 bets 3.15
+Player0 calls 3.15
+*** RIVER *** [Qh 2h Td 3d][7s]
+Player1 checks
+Player0 checks
+*** SHOW DOWN ***
+Player1 shows [Kc As] (High card : Ace)
+Player0 shows [8s 8c] (One pair : 8)
+Player0 collected 9.82 from pot
+*** SUMMARY ***
+Total pot 9.82 | Rake 0.68
+Board: [Qh 2h Td 3d 7s]
+Seat 2: Hero (big blind) folded on the pre-flop
+Seat 3: Player0 (button) showed [8s 8c] and won 9.82 with One pair : 8
+Seat 5: Player1 (small blind) showed [Kc As] and lost with High card : Ace
