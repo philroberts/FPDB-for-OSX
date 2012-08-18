@@ -646,7 +646,7 @@ or None if we fail to get the info """
             fulltable = False
             for action in m2:
                 acted[action.group('PSEAT')] = True
-                if len(seated) == len(acted): # We've faound all players
+                if acted.keys() == seated.keys(): # We've faound all players
                     fulltable = True
                     break
             if fulltable != True:
