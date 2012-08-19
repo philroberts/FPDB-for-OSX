@@ -269,6 +269,7 @@ class Hand(object):
         self.stats.getStats(self)
         self.hands = self.stats.getHands()
         self.handsplayers = self.stats.getHandsPlayers()
+        self.handsactions = self.stats.getHandsActions()
         self.handsstove = self.stats.getHandsStove()
         
     def getHandId(self, db, id):    
@@ -299,8 +300,7 @@ class Hand(object):
     
     def insertHandsActions(self, db, doinsert = False, printtest = False):
         """ Function to inserts HandsActions into database"""
-        handsactions = self.stats.getHandsActions()
-        db.storeHandsActions(self.dbid_hands, self.dbid_pids, handsactions, doinsert, printtest)
+        db.storeHandsActions(self.dbid_hands, self.dbid_pids, self.handsactions, doinsert, printtest)
     
     def insertHandsStove(self, db, doinsert = False):
         """ Function to inserts HandsActions into database"""
