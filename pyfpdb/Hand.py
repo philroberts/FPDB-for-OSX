@@ -144,6 +144,7 @@ class Hand(object):
         self.totalpot = None
         self.totalcollected = None
         self.rake = None
+        self.roundPenny = False
         # currency symbol for this hand
         self.sym = self.SYMBOL[self.gametype['currency']] # save typing! delete this attr when done
         self.pot.setSym(self.sym)

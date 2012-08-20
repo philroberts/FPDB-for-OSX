@@ -261,11 +261,11 @@ class Cake(HandHistoryConverter):
         else:
             coinflip = False
         for a in m:
-            #print int(a.group('SEAT')), a.group('PNAME'), self.convertMoneyString('CASH', a), len(self.convertMoneyString('CASH', a))
+            if a.group('EUROVALUE'):
+                hand.roundPenny = True
             hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), self.convertMoneyString('CASH', a))
             if coinflip:
                 hand.addAnte(a.group('PNAME'), self.convertMoneyString('CASH', a))
-                #hand.addCoinFlip(a.group('PNAME'), self.convertMoneyString('CASH', a))
 
     def markStreets(self, hand):
         # PREFLOP = ** Dealing down cards **
