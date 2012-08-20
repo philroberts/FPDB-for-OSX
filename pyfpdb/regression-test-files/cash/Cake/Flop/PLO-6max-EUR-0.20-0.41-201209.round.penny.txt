@@ -8,6 +8,7 @@ Seat 9: Player3 ($118.14 in chips)  (EUR €95.69)
 Seat 10: Player4 ($50 in chips)  (EUR €40.50)
 Player1: posts small blind $0.25 (EUR €0.20)
 Hero: posts big blind $0.50 (EUR €0.41)
+Dealt to Hero [3c,5d,Ks,6h]
 Player2: folds
 Player3: folds
 Player0: folds
