@@ -40,8 +40,10 @@ class PacificPoker(HandHistoryConverter):
     sym = {'USD': "\$", 'CAD': "\$", 'T$': "", "EUR": "\xe2\x82\xac", "GBP": "\xa3", "play": ""}         # ADD Euro, Sterling, etc HERE
     substitutions = {
                      'LEGAL_ISO' : "USD|EUR|GBP|CAD|FPP",     # legal ISO currency codes
+                           'PLYR': r'(?P<PNAME>.+?)',
                             'LS' : u"\$|\xe2\x82\xac|\u20ac|", # legal currency symbols - Euro(cp1252, utf-8)
                            'NUM' : u".,\d\xa0",
+                           'CUR' : u"(\$|\xe2\x82\xac|\u20ac|)"
                     }
                     
     # translations from captured groups to fpdb info strings
@@ -91,7 +93,7 @@ class PacificPoker(HandHistoryConverter):
     re_GameInfo     = re.compile(u"""
           (\#Game\sNo\s:\s[0-9]+\\n)?
           \*\*\*\*\*\sCassava\sHand\sHistory\sfor\sGame\s(?P<HID>[0-9]+)\s\*\*\*\*\*\\n
-          (?P<CURRENCY1>%(LS)s)?(?P<SB>[%(NUM)s]+)(?P<CURRENCY2>%(LS)s)?/(%(LS)s)?(?P<BB>[%(NUM)s]+)(%(LS)s)?\sBlinds\s
+          (?P<CURRENCY1>%(LS)s)?(?P<SB>[%(NUM)s]+)\s?(?P<CURRENCY2>%(LS)s)?/(%(LS)s)?(?P<BB>[%(NUM)s]+)\s?(%(LS)s)?\sBlinds\s
           (?P<LIMIT>No\sLimit|Fix\sLimit|Pot\sLimit)\s
           (?P<GAME>Holdem|Omaha|OmahaHL|Hold\'em|Omaha\sHi/Lo|OmahaHL|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Badugi|Triple\sDraw\s2\-7\sLowball|Single\sDraw\s2\-7\sLowball|5\sCard\sDraw)
           \s-\s\*\*\*\s
@@ -102,7 +104,7 @@ class PacificPoker(HandHistoryConverter):
     re_PlayerInfo   = re.compile(u"""
           ^Seat\s(?P<SEAT>[0-9]+):\s
           (?P<PNAME>.*)\s
-          \(\s(%(LS)s)?(?P<CASH>[%(NUM)s]+)(%(LS)s)?\s\)""" % substitutions, 
+          \(\s(%(LS)s)?(?P<CASH>[%(NUM)s]+)\s?(%(LS)s)?\s\)""" % substitutions, 
           re.MULTILINE|re.VERBOSE)
 
     re_HandInfo     = re.compile("""
@@ -112,7 +114,7 @@ class PacificPoker(HandHistoryConverter):
             (Tournament\s\#(?P<TOURNO>\d+)\s
               (
                 (?P<BUYIN>(
-                  ((?P<BIAMT>(%(LS)s)?[%(NUM)s]+(%(LS)s)?)?\s\+\s?(?P<BIRAKE>(%(LS)s)?[%(NUM)s]+(%(LS)s)?))
+                  ((?P<BIAMT>(%(LS)s)?[%(NUM)s]+\s?(%(LS)s)?)(\s\+\s?(?P<BIRAKE>(%(LS)s)?[%(NUM)s]+\s?(%(LS)s)?))?)
                   |
                   (Free)
                   |
@@ -136,24 +138,24 @@ class PacificPoker(HandHistoryConverter):
     re_DateTime     = re.compile("""(?P<D>[0-9]{2})\s(?P<M>[0-9]{2})\s(?P<Y>[0-9]{4})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)""", re.MULTILINE)
 
     short_subst = {'PLYR': r'(?P<PNAME>.+?)', 'CUR': '\$?', 'NUM' : u".,\d\xa0"}
-    re_PostSB           = re.compile(r"^%(PLYR)s posts small blind \[(%(CUR)s)?(?P<SB>[%(NUM)s]+)(%(CUR)s)?\]" %  short_subst, re.MULTILINE)
-    re_PostBB           = re.compile(r"^%(PLYR)s posts big blind \[(%(CUR)s)?(?P<BB>[%(NUM)s]+)(%(CUR)s)?\]" %  short_subst, re.MULTILINE)
-    re_Antes            = re.compile(r"^%(PLYR)s posts (the\s)?ante \[(%(CUR)s)?(?P<ANTE>[%(NUM)s]+)(%(CUR)s)?\]" % short_subst, re.MULTILINE)
+    re_PostSB           = re.compile(r"^%(PLYR)s posts small blind \[(%(CUR)s)?(?P<SB>[%(NUM)s]+)\s?(%(CUR)s)?\]" %  substitutions, re.MULTILINE)
+    re_PostBB           = re.compile(r"^%(PLYR)s posts big blind \[(%(CUR)s)?(?P<BB>[%(NUM)s]+)\s?(%(CUR)s)?\]" %  substitutions, re.MULTILINE)
+    re_Antes            = re.compile(r"^%(PLYR)s posts (the\s)?ante \[(%(CUR)s)?(?P<ANTE>[%(NUM)s]+)\s?(%(CUR)s)?\]" % substitutions, re.MULTILINE)
     # TODO: unknown in available hand histories for pacificpoker:
-    re_BringIn          = re.compile(r"^%(PLYR)s: brings[- ]in( low|) for (%(CUR)s)?(?P<BRINGIN>[%(NUM)s]+)(%(CUR)s)?" % short_subst, re.MULTILINE)
-    re_PostBoth         = re.compile(r"^%(PLYR)s posts dead blind \[(%(CUR)s)?(?P<SBBB>[%(NUM)s]+)(%(CUR)s)?\s\+\s(%(CUR)s)?[%(NUM)s]+(%(CUR)s)?\]" %  short_subst, re.MULTILINE)
-    re_HeroCards        = re.compile(r"^Dealt to %(PLYR)s( \[\s(?P<NEWCARDS>.+?)\s\])" % short_subst, re.MULTILINE)
+    re_BringIn          = re.compile(r"^%(PLYR)s: brings[- ]in( low|) for (%(CUR)s)?(?P<BRINGIN>[%(NUM)s]+)\s?(%(CUR)s)?" % substitutions, re.MULTILINE)
+    re_PostBoth         = re.compile(r"^%(PLYR)s posts dead blind \[(%(CUR)s)?(?P<SBBB>[%(NUM)s]+)(%(CUR)s)?\s\+\s(%(CUR)s)?[%(NUM)s]+\s?(%(CUR)s)?\]" %  substitutions, re.MULTILINE)
+    re_HeroCards        = re.compile(r"^Dealt to %(PLYR)s( \[\s(?P<NEWCARDS>.+?)\s\])" % substitutions, re.MULTILINE)
     re_Action           = re.compile(r"""
                         ^%(PLYR)s(?P<ATYPE>\sbets|\schecks|\sraises|\scalls|\sfolds|\sdiscards|\sstands\spat)
-                        (\s\[(%(CUR)s)?(?P<BET>[%(NUM)s]+)(%(CUR)s)?\])?
+                        (\s\[(%(CUR)s)?(?P<BET>[%(NUM)s]+)\s?(%(CUR)s)?\])?
                         (\s*and\sis\sall.in)?
                         (\s*and\shas\sreached\sthe\s[%(CUR)s\d\.]+\scap)?
                         (\s*cards?(\s\[(?P<DISCARDED>.+?)\])?)?\s*$"""
-                         %  short_subst, re.MULTILINE|re.VERBOSE)
-    re_ShowdownAction   = re.compile(r"^%s shows \[(?P<CARDS>.*)\]" % short_subst['PLYR'], re.MULTILINE)
-    re_sitsOut          = re.compile("^%s sits out" %  short_subst['PLYR'], re.MULTILINE)
-    re_ShownCards       = re.compile("^%s ?(?P<SHOWED>shows|mucks) \[ (?P<CARDS>.*) \]$" %  short_subst['PLYR'], re.MULTILINE)
-    re_CollectPot       = re.compile(r"^%(PLYR)s collected \[ (%(CUR)s)?(?P<POT>[%(NUM)s]+)(%(CUR)s)? \]$" %  short_subst, re.MULTILINE)
+                         %  substitutions, re.MULTILINE|re.VERBOSE)
+    re_ShowdownAction   = re.compile(r"^%s shows \[(?P<CARDS>.*)\]" % substitutions['PLYR'], re.MULTILINE)
+    re_sitsOut          = re.compile("^%s sits out" %  substitutions['PLYR'], re.MULTILINE)
+    re_ShownCards       = re.compile("^%s ?(?P<SHOWED>shows|mucks) \[ (?P<CARDS>.*) \]$" %  substitutions['PLYR'], re.MULTILINE)
+    re_CollectPot       = re.compile(r"^%(PLYR)s collected \[ (%(CUR)s)?(?P<POT>[%(NUM)s]+)\s?(%(CUR)s)? \]$" %  substitutions, re.MULTILINE)
 
     def compilePlayerRegexs(self,  hand):
         pass
@@ -264,21 +266,26 @@ class PacificPoker(HandHistoryConverter):
                     hand.buyin = 0
                     hand.fee = 0
                     hand.buyinCurrency = "FREE"
-                else:
-                    if info['BIAMT'].find("$")!=-1:
+                else: 
+                    if info['BUYIN'].find("$")!=-1:
                         hand.buyinCurrency="USD"
+                    elif info['BUYIN'].find(u"€")!=-1:
+                        hand.buyinCurrency="EUR"
                     elif 'PLAY' in info and info['PLAY'] != "Practice Play":
                         hand.buyinCurrency="FREE"
                     else:
                         #FIXME: handle other currencies, FPP, play money
                         log.error(_("PacificPokerToFpdb.readHandInfo: Failed to detect currency.") + " Hand ID: %s: '%s'" % (hand.handid, info[key]))
                         raise FpdbParseError
-
+                    
                     info['BIAMT'] = self.clearMoneyString(info['BIAMT'].strip(u'$€'))
-                    info['BIRAKE'] = self.clearMoneyString(info['BIRAKE'].strip(u'$€'))
-
                     hand.buyin = int(100*Decimal(info['BIAMT']))
-                    hand.fee = int(100*Decimal(info['BIRAKE']))
+                    
+                    if info['BIRAKE'] is None:
+                        hand.fee = 0
+                    else:
+                        info['BIRAKE'] = self.clearMoneyString(info['BIRAKE'].strip(u'$€'))
+                        hand.fee = int(100*Decimal(info['BIRAKE']))
 
             if key == 'TABLE' and info['TABLE'] != None:
                 hand.tablename = info[key]
@@ -476,9 +483,21 @@ class PacificPoker(HandHistoryConverter):
                 hand.addShownCards(cards=cards, player=m.group('PNAME'), shown=shown, mucked=mucked)
                 
     def splitCards(self, cards):
+        #Polish
+        cards = cards.replace(u'Kreuz', 'c')
+        cards = cards.replace(u'Karo', 'd')
+        cards = cards.replace(u'Pik', 's')
+        cards = cards.replace(u'Herz', 'h')
+        cards = cards.replace(u'10', 'T')
+        #Russian
         cards = cards.replace(u'\xd2', 'Q')
         cards = cards.replace(u'\xc2', 'A')
         cards = cards.replace(u'\xc4', 'J')
+        #Spanish
+        cards = cards.replace(u'D', 'T')
+        cards = cards.replace(u't', 'h')
+        cards = cards.replace(u'p', 's')
+        
         cards = cards.split(', ')
         return cards
 

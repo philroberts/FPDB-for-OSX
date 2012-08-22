@@ -64,12 +64,13 @@ class Entraction(HandHistoryConverter):
     games = {                          # base, category
                            'Omaha High' : ('hold','omahahi'),
                         "Texas Hold'em" : ('hold','holdem'), 
+                    '5-Card Omaha High' : ('hold','5_omahahi'),
                }
 
     # Static regexes
     re_GameInfo     = re.compile(u"""
           \s(?P<HID>[0-9]+)\s-\s
-          (?P<GAME>Texas\sHold\'em|Omaha\sHigh)\s
+          (?P<GAME>Texas\sHold\'em|Omaha\sHigh|5-Card\sOmaha\sHigh)\s
           (?P<LIMIT>No\sLimit|Pot\sLimit|Fixed\sLimit)\s
           (?P<CURRENCY>%(LEGAL_ISO)s|)?\s?
           (?P<SB>[%(NUM)s]+)/
@@ -173,7 +174,11 @@ class Entraction(HandHistoryConverter):
         m2 = self.re_Max.search(hand.handText)
         m3 = self.re_GameEnds.search(hand.handText)
         m  = self.re_HandInfo.search(hand.handText)
-        if m is None or m2 is None or m3 is None:
+        
+        if m3 is None:
+            raise FpdbHandPartial
+        
+        if m is None or m2 is None:
             tmp = hand.handText[0:200]
             log.error(_("EntractionToFpdb.readHandInfo: '%s'") % tmp)
             raise FpdbParseError

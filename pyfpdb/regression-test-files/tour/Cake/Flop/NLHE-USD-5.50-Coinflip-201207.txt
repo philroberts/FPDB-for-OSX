@@ -1,0 +1,12 @@
+﻿ï»¿Hand#3022AFD2BD000001 - $5.50 Coin Flip T11522749 -- TICKETCASH -- $5,25 + $0,25 -- 2 Max -- Table 1 -- 0/10/20 NL Hold'em -- 2012.07.15 - 00:53:42
+Dealer: Seat 3
+Seat 3: Hero (1 500 in chips) 
+Seat 8: Player0 (1 500 in chips) 
+Dealt to Hero [Qd,4c]
+Hero: shows [Qd 4c]
+Player0: shows [As 2s]
+*** FLOP *** [8s,4d,Jd]
+*** TURN *** [Tc]
+*** RIVER *** [Ts]
+***SHOW DOWN***
+Hero wins 3 000 with Two Pairs Tens and Fours   

@@ -99,7 +99,7 @@ class Cake(HandHistoryConverter):
     re_Button       = re.compile('Seat #(?P<BUTTON>\d+) is the button', re.MULTILINE)
     re_Board        = re.compile(r"\[(?P<CARDS>.+)\]")
 
-    re_DateTime     = re.compile("""(?P<Y>[0-9]{4})[\/\-](?P<M>[0-9]{2})[\/\-](?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)""", re.MULTILINE)
+    re_DateTime     = re.compile("""(?P<Y>[0-9]{4})[\/\-\.](?P<M>[0-9]{2})[\/\-\.](?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)""", re.MULTILINE)
     re_PostSB       = re.compile(r"^%(PLYR)s: posts small blind %(CUR)s(?P<SB>[%(NUM)s]+)(\s\(EUR\s(%(CUR)s)?(?P<EUROVALUE>[%(NUM)s]+)\))?$" %  substitutions, re.MULTILINE)
     re_PostBB       = re.compile(r"^%(PLYR)s: posts big blind %(CUR)s(?P<BB>[%(NUM)s]+)(\s\(EUR\s(%(CUR)s)?(?P<EUROVALUE>[%(NUM)s]+)\))?$" %  substitutions, re.MULTILINE)
     re_Antes        = re.compile(r"^%(PLYR)s: posts ante of %(CUR)s(?P<ANTE>[%(NUM)s]+)(\s\(EUR\s(%(CUR)s)?(?P<EUROVALUE>[%(NUM)s]+)\))?" % substitutions, re.MULTILINE)
@@ -115,6 +115,7 @@ class Cake(HandHistoryConverter):
     re_ShownCards       = re.compile(r"^%s: (?P<SHOWED>shows|mucks) \[(?P<CARDS>.*)\] (\((?P<STRING>.*)\))?" % substitutions['PLYR'], re.MULTILINE)
     re_CollectPot       = re.compile(r"^%(PLYR)s wins %(CUR)s(?P<POT>[%(NUM)s]+)((\swith.+?)?\s+\(EUR\s(%(CUR)s)?(?P<EUROVALUE>[%(NUM)s]+)\))?" %  substitutions, re.MULTILINE)
     re_Finished         = re.compile(r"%(PLYR)s finished \d+ out of \d+ players" %  substitutions, re.MULTILINE)
+    re_CoinFlip         = re.compile(r"Coin\sFlip\sT\d+", re.MULTILINE)
 
     def compilePlayerRegexs(self,  hand):
         pass
@@ -255,8 +256,16 @@ class Cake(HandHistoryConverter):
 
     def readPlayerStacks(self, hand):
         m = self.re_PlayerInfo.finditer(hand.handText)
+        if self.re_CoinFlip.search(hand.handText):
+            coinflip = True
+        else:
+            coinflip = False
         for a in m:
+            if a.group('EUROVALUE'):
+                hand.roundPenny = True
             hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), self.convertMoneyString('CASH', a))
+            if coinflip:
+                hand.addAnte(a.group('PNAME'), self.convertMoneyString('CASH', a))
 
     def markStreets(self, hand):
         # PREFLOP = ** Dealing down cards **

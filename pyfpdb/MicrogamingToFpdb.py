@@ -35,14 +35,15 @@ class Microgaming(HandHistoryConverter):
     siteId   = 20
 
     # Static regexes
-    re_GameInfo     = re.compile("""id="(?P<HID>[0-9]+)"\s
+    re_GameInfo     = re.compile("""(hhversion="(?P<VERSION>\d)"\s)?
+                                    id="(?P<HID>[0-9]+)"\s
                                     date="(?P<DATETIME>[-:\d\s]+)"\s
                                     unicodetablename=".+"\s
                                     tablename="(?P<TABLE>.+)"\s
                                     stakes="(?P<SB>[.0-9]+)\|(?P<BB>[.0-9]+)"\s
                                     betlimit="(?P<LIMIT>NL|PL|FL)"\s
                                     tabletype="(Cash\sGame|MTT)"\s
-                                    gametypeid="1"\s
+                                    gametypeid="\d+"\s
                                     gametype="(?P<GAME>[a-zA-Z\&; ]+)"\s
                                     realmoney="true"\s
                                     currencysymbol="(?P<CURRENCY>.+|)"\s
@@ -54,6 +55,7 @@ class Microgaming(HandHistoryConverter):
     #re_Button       = re.compile('<ACTION TYPE="HAND_DEAL" PLAYER="(?P<BUTTON>[^"]+)">\n<CARD LINK="[0-9b]+"></CARD>\n<CARD LINK="[0-9b]+"></CARD></ACTION>\n<ACTION TYPE="ACTION_', re.MULTILINE)
     re_PlayerInfo   = re.compile('<Seat num="(?P<SEAT>[0-9]+)" alias="(?P<PNAME>.+)" unicodealias=".+" balance="(?P<CASH>[.0-9]+)" endbalance="[.0-9]+"(?P<BUTTON>\sdealer="true")?', re.MULTILINE)
     re_Card         = re.compile('<Card value="[0-9JQKA]+" suit="[csdh]" id="(?P<CARD>\d+)"/>', re.MULTILINE)
+    re_Board        = re.compile('<Action.+?</Action>', re.DOTALL)
     #re_BoardLast    = re.compile('^<CARD LINK="(?P<CARD>[0-9]+)"></CARD></ACTION>', re.MULTILINE)
     re_Table        = re.compile('\[(?P<TOURNO>[0-9]+)\]:Table (?P<TABLENO>\d+)', re.MULTILINE)
     
@@ -116,7 +118,7 @@ class Microgaming(HandHistoryConverter):
         games = {              # base, category
                   "Hold&apos;em" : ('hold','holdem'), 
       "Multi Table Hold&apos;em" : ('hold','holdem'),
-                  #"GAME_FCD" : ('draw','fivedraw'),
+                         "Omaha" : ('hold','omahahi'),
                 }
         
         if 'LIMIT' in mg:
@@ -153,6 +155,11 @@ class Microgaming(HandHistoryConverter):
         #if m: info.update(m.groupdict())
 
         for key in info:
+            if key == 'VERSION':
+                if not info[key]:
+                    hand.version = 1
+                else:
+                    hand.version = int(info[key])
             if key == 'DATETIME':
                 hand.startTime = datetime.datetime.strptime(info[key],"%Y-%m-%d %H:%M:%S")
             if key == 'HID':
@@ -215,9 +222,12 @@ class Microgaming(HandHistoryConverter):
         if street in ('FLOP','TURN','RIVER'):   # a list of streets which get dealt community cards (i.e. all but PREFLOP)
             #print "DEBUG readCommunityCards:", street, hand.streets.group(street)
             boardCards = []
-            m = self.re_Card.finditer(hand.streets[street])
-            for a in m:
-                boardCards.append(self.convertMicroCards(a.group('CARD')))
+            m = self.re_Board.search(hand.streets[street])
+            if m:
+                board = m.group()
+                m1 = self.re_Card.finditer(board)
+                for a in m1:
+                    boardCards.append(self.convertMicroCards(a.group('CARD')))
             hand.setCommunityCards(street, boardCards)
 
     def readAntes(self, hand):
@@ -318,16 +328,25 @@ class Microgaming(HandHistoryConverter):
             elif action.group('ATYPE') == 'Check':
                 hand.addCheck(street, pname)
             elif action.group('ATYPE') == 'Call':
-                hand.addCallTo(street, pname, action.group('BET') )
+                if hand.version==1:
+                    hand.addCallTo(street, pname, action.group('BET') )
+                else:
+                    hand.addCall(street, pname, action.group('BET') )
             elif action.group('ATYPE') == 'SmallBlind':
                 hand.addBlind(pname, 'small blind', action.group('BET'))
             elif action.group('ATYPE') == 'BigBlind':
                 hand.addBlind(pname, 'big blind', action.group('BET'))
             elif action.group('ATYPE') == 'Raise':
-                hand.addRaiseTo(street, pname, action.group('BET') )
+                if hand.version==1:
+                    hand.addRaiseTo(street, pname, action.group('BET') )
+                else:
+                    hand.addCallandRaise(street, pname, action.group('BET') )
             elif action.group('ATYPE') == 'Bet':
                 if street in ('PREFLOP', 'THIRD', 'DEAL'):
-                    hand.addRaiseTo(street, pname, action.group('BET'))
+                    if hand.version==1:
+                        hand.addRaiseTo(street, pname, action.group('BET'))
+                    else:
+                        hand.addCallandRaise(street, pname, action.group('BET'))
                 else:
                     hand.addBet(street, pname, action.group('BET'))
             elif action.group('ATYPE') == 'AllIn':
@@ -340,6 +359,8 @@ class Microgaming(HandHistoryConverter):
             elif action.group('ATYPE') == 'Reconnect':
                 pass # Deal with elsewhere
             elif action.group('ATYPE') == 'MuckCards':
+                pass # Deal with elsewhere
+            elif action.group('ATYPE') == 'MoneyReturned':
                 pass # Deal with elsewhere
             else:
                 print (_("DEBUG:") + _("Unimplemented %s: '%s' '%s'") % ("readAction", pname, action.group('ATYPE')))

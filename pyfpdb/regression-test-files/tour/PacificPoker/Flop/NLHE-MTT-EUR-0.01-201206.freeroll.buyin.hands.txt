@@ -1,0 +1,31 @@
+#Game No : 200877245
+***** Cassava Hand History for Game 200877245 *****
+10 €/20 € Blinds No Limit Holdem - *** 24 06 2012 21:05:24
+Tournament #38955860 0,01 € - Table #29 (Real Money)
+Seat 7 is the button
+Total number of players : 9
+Seat 1: Player0 ( 2.000 € )
+Seat 2: Player1 ( 2.000 € )
+Seat 3: Player2 ( 2.000 € )
+Seat 4: Player3 ( 2.000 € )
+Seat 5: Player4 ( 2.000 € )
+Seat 6: Player5 ( 2.000 € )
+Seat 7: Player6 ( 2.000 € )
+Seat 9: Player7 ( 2.000 € )
+Seat 10: Hero ( 2.000 € )
+Player7 posts small blind [10 €]
+Hero posts big blind [20 €]
+** Dealing down cards **
+Dealt to Hero [ 6c, 7d ]
+Player0 folds
+Player1 folds
+Player2 raises [2.000 €]
+Player3 folds
+Player4 folds
+Player5 folds
+Player6 folds
+Player7 folds
+Hero folds
+** Summary **
+Player2 did not show his hand
+Player2 collected [ 50 € ]

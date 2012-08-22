@@ -65,7 +65,7 @@ class iPoker(HandHistoryConverter):
     
     games = {              # base, category
                 '7 Card Stud L' : ('stud','studhi'),
-                '5 Card Stud L' : ('stud','5studhi'),
+                '5 Card Stud L' : ('stud','5_studhi'),
                     'Holdem NL' : ('hold','holdem'),
                    u'Holdem БЛ' : ('hold','holdem'),
                     'Holdem SL' : ('hold','holdem'), #Spanish NL
@@ -88,11 +88,11 @@ class iPoker(HandHistoryConverter):
                         '1.00': ('0.25', '0.50'),         '1': ('0.25', '0.50'),
                         '2.00': ('0.50', '1.00'),         '2': ('0.50', '1.00'),
                         '4.00': ('1.00', '2.00'),         '4': ('1.00', '2.00'),
-                        '6.00': ('1.00', '3.00'),         '6': ('1.00', '3.00'),
+                        '6.00': ('1.50', '3.00'),         '6': ('1.50', '3.00'),
                         '8.00': ('2.00', '4.00'),         '8': ('2.00', '4.00'),
-                       '10.00': ('2.00', '5.00'),        '10': ('2.00', '5.00'),
+                       '10.00': ('2.50', '5.00'),        '10': ('2.50', '5.00'),
                        '20.00': ('5.00', '10.00'),       '20': ('5.00', '10.00'),
-                       '30.00': ('10.00', '15.00'),      '30': ('10.00', '15.00'),
+                       '30.00': ('7.50', '15.00'),       '30': ('7.50', '15.00'),
                        '40.00': ('10.00', '20.00'),      '40': ('10.00', '20.00'),
                        '60.00': ('15.00', '30.00'),      '60': ('15.00', '30.00'),
                        '80.00': ('20.00', '40.00'),      '80': ('20.00', '40.00'),
@@ -134,9 +134,9 @@ class iPoker(HandHistoryConverter):
     re_Board = re.compile(r'<cards type="(?P<STREET>Flop|Turn|River)"( player="")?>(?P<CARDS>.+?)</cards>', re.MULTILINE)
     re_EndOfHand = re.compile(r'<round id="END_OF_GAME"', re.MULTILINE)
     re_PostSB = re.compile(r'<action no="[0-9]+" player="%(PLYR)s"( actiontxt="[^"]+" turntime="[^"]+")? type="1" sum="(%(LS)s)(?P<SB>[%(NUM)s]+)"' % substitutions, re.MULTILINE)
-    re_PostBB = re.compile(r'<action no="[0-9]+" player="%(PLYR)s"( actiontxt="[^"]+" turntime="[^"]+")? type="2" sum="(%(LS)s)(?P<BB>[%(NUM)s]+)"' % substitutions, re.MULTILINE)
+    re_PostBB = re.compile(r'<action no="(?P<ACT>[0-9]+)" player="%(PLYR)s"( actiontxt="[^"]+" turntime="[^"]+")? type="2" sum="(%(LS)s)(?P<BB>[%(NUM)s]+)"' % substitutions, re.MULTILINE)
     re_Hero = re.compile(r'<nickname>(?P<HERO>.+)</nickname>', re.MULTILINE)
-    re_HeroCards = re.compile(r'<cards type="(Pocket|Third\sStreet|Fourth\sStreet|Fifth\sStreet|Sixth\sStreet|River)" player="(?P<PNAME>[^"]+)">(?P<CARDS>.+?)</cards>', re.MULTILINE)
+    re_HeroCards = re.compile(r'<cards type="(Pocket|Second\sStreet|Third\sStreet|Fourth\sStreet|Fifth\sStreet|Sixth\sStreet|River)" player="(?P<PNAME>[^"]+)">(?P<CARDS>.+?)</cards>', re.MULTILINE)
     re_Action = re.compile(r'<action no="(?P<ACT>[0-9]+)" player="(?P<PNAME>[^"]+)"( actiontxt="[^"]+" turntime="[^"]+")? type="(?P<ATYPE>\d+)" sum="(%(LS)s)(?P<BET>[%(NUM)s]+)"' % substitutions, re.MULTILINE)
     re_Ante   = re.compile(r'<action no="[0-9]+" player="(?P<PNAME>[^"]+)"( actiontxt="[^"]+" turntime="[^"]+")? type="(?P<ATYPE>15)" sum="(%(LS)s)(?P<BET>[%(NUM)s]+)" cards="' % substitutions, re.MULTILINE)
     re_SitsOut = re.compile(r'<event sequence="[0-9]+" type="SIT_OUT" player="(?P<PSEAT>[0-9])"/>', re.MULTILINE)
@@ -340,12 +340,19 @@ class iPoker(HandHistoryConverter):
                        r'(<round no="3">(?P<TURN>.+(?=<round no="4">)|.+))?'
                        r'(<round no="4">(?P<RIVER>.+))?', hand.handText,re.DOTALL)
         elif hand.gametype['base'] in ('stud'):
-            m = re.search(r'(?P<ANTES>.+(?=<round no="2">)|.+)'
-                          r'(<round no="2">(?P<THIRD>.+(?=<round no="3">)|.+))?'
-                          r'(<round no="3">(?P<FOURTH>.+(?=<round no="4">)|.+))?'
-                          r'(<round no="4">(?P<FIFTH>.+(?=<round no="5">)|.+))?'
-                          r'(<round no="5">(?P<SIXTH>.+(?=<round no="6">)|.+))?'
-                          r'(<round no="6">(?P<SEVENTH>.+))?', hand.handText,re.DOTALL)
+            if hand.gametype['category'] == '5_studhi':
+                m = re.search(r'(?P<ANTES>.+(?=<round no="2">)|.+)'
+                              r'(<round no="2">(?P<SECOND>.+(?=<round no="3">)|.+))?'
+                              r'(<round no="3">(?P<THIRD>.+(?=<round no="4">)|.+))?'
+                              r'(<round no="4">(?P<FOURTH>.+(?=<round no="5">)|.+))?'
+                              r'(<round no="5">(?P<FIFTH>.+))?', hand.handText,re.DOTALL)
+            else:
+                m = re.search(r'(?P<ANTES>.+(?=<round no="2">)|.+)'
+                              r'(<round no="2">(?P<THIRD>.+(?=<round no="3">)|.+))?'
+                              r'(<round no="3">(?P<FOURTH>.+(?=<round no="4">)|.+))?'
+                              r'(<round no="4">(?P<FIFTH>.+(?=<round no="5">)|.+))?'
+                              r'(<round no="5">(?P<SIXTH>.+(?=<round no="6">)|.+))?'
+                              r'(<round no="6">(?P<SEVENTH>.+))?', hand.handText,re.DOTALL)
         hand.addStreets(m)
 
     def readCommunityCards(self, hand, street):
@@ -370,16 +377,21 @@ class iPoker(HandHistoryConverter):
             hand.addBlind(a.group('PNAME'), 'small blind', self.clearMoneyString(a.group('SB')))
             if not hand.gametype['sb']:
                 hand.gametype['sb'] = self.clearMoneyString(a.group('SB'))
-        for a in self.re_PostBB.finditer(hand.streets['PREFLOP']):
+        m = self.re_PostBB.finditer(hand.streets['PREFLOP'])
+        blinds = {}
+        for a in m:
+            blinds[int(a.group('ACT'))] = a.groupdict()
+        for b in sorted(blinds.iterkeys()):
             type = 'big blind'
+            blind = blinds[b]
             if not hand.gametype['bb']:
-                hand.gametype['bb'] = self.clearMoneyString(a.group('BB'))
+                hand.gametype['bb'] = self.clearMoneyString(blind['BB'])
             elif hand.gametype['sb']:
                 bb = Decimal(hand.gametype['bb'])
-                amount = Decimal(self.clearMoneyString(a.group('BB')))
+                amount = Decimal(self.clearMoneyString(blind['BB']))
                 if amount > bb:
                     type = 'both'
-            hand.addBlind(a.group('PNAME'), type, self.clearMoneyString(a.group('BB')))
+            hand.addBlind(blind['PNAME'], type, self.clearMoneyString(blind['BB']))
         self.fixTourBlinds(hand)
                 
     def fixTourBlinds(self, hand):
@@ -427,15 +439,19 @@ class iPoker(HandHistoryConverter):
                 cards = found.group('CARDS').split(' ')
                 if street == 'SEVENTH' and self.hero != player:
                     newcards = []
-                    oldcards = [c[1:].replace('10', 'T') + c[0].lower().replace('x', '') for c in cards]
+                    oldcards = [c[1:].replace('10', 'T') + c[0].lower() for c in cards if c[0].lower()!='x']
                 else:
-                    newcards = [c[1:].replace('10', 'T') + c[0].lower().replace('x', '') for c in cards]
+                    newcards = [c[1:].replace('10', 'T') + c[0].lower() for c in cards if c[0].lower()!='x']
                     oldcards = []
                 
                 if street == 'THIRD' and len(newcards) == 3 and self.hero == player: # hero in stud game
                     hand.hero = player
                     hand.dealt.add(player) # need this for stud??
                     hand.addHoleCards(street, player, closed=newcards[0:2], open=[newcards[2]], shown=True, mucked=False, dealt=False)
+                elif street == 'SECOND' and len(newcards) == 2 and self.hero == player: # hero in stud game
+                    hand.hero = player
+                    hand.dealt.add(player)
+                    hand.addHoleCards(street, player, closed=[newcards[0]], open=[newcards[1]], shown=True, mucked=False, dealt=False)
                 else:                       
                     hand.addHoleCards(street, player, open=newcards, closed=oldcards, shown=True, mucked=False, dealt=False)
 

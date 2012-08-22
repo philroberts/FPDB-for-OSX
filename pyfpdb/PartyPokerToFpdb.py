@@ -116,8 +116,8 @@ class PartyPoker(HandHistoryConverter):
 
     re_GameInfoTrny     = re.compile("""
             \*{5}\sHand\sHistory\s(F|f)or\sGame\s(?P<HID>\d+)\s\*{5}\s+
-            (?P<LIMIT>(NL|PL|))\s*
-            (?P<GAME>(Texas\ Hold\'em|Omaha))\s+
+            (?P<LIMIT>(NL|PL|FL|))\s*
+            (?P<GAME>(Texas\sHold\'em|Omaha\sHi-Lo|Omaha|7\sCard\sStud\sHi-Lo|7\sCard\sStud|Double\sHold\'em))\s+
             (?:(?P<BUYIN>[%(LS)s]?[%(NUM)s]+)\s*(?P<BUYIN_CURRENCY>%(LEGAL_ISO)s)?\s*Buy-in\s+)?
             Trny:\s?(?P<TOURNO>\d+)\s+
             Level:\s*(?P<LEVEL>\d+)\s+
@@ -182,7 +182,7 @@ class PartyPoker(HandHistoryConverter):
                 r"^Dealt to %(PLYR)s \[\s*(?P<NEWCARDS>.+)\s*\]" % subst,
                 re.MULTILINE)
             self.re_Action = re.compile(u"""
-                ^%(PLYR)s\s+(?P<ATYPE>bets|checks|raises|completes|bring-ins|calls|folds|is\sall-In)
+                ^%(PLYR)s\s+(?P<ATYPE>bets|checks|raises|completes|bring-ins|calls|folds|is\sall-In|double\sbets)
                 (?:\s+[%(BRAX)s]?%(CUR_SYM)s?(?P<BET>[.,\d]+)\s*(%(CUR)s)?[%(BRAX)s]?)?
                 """ %  subst, re.MULTILINE|re.VERBOSE)
             self.re_ShownCards = re.compile(
@@ -203,6 +203,8 @@ class PartyPoker(HandHistoryConverter):
                 ["tour", "hold", "nl"],
                 ["tour", "hold", "pl"],
                 ["tour", "hold", "fl"],
+                
+                ["tour", "stud", "fl"],
                ]
 
     def determineGameType(self, handText):
@@ -578,7 +580,7 @@ class PartyPoker(HandHistoryConverter):
                     hand.addCallandRaise( street, playerName, amount )
                 else:
                     hand.addCallandRaise( street, playerName, amount )
-            elif actionType == 'bets':
+            elif actionType == 'bets' or actionType ==  'double bets':
                 hand.addBet( street, playerName, amount )
             elif actionType == 'completes':
                 hand.addComplete( street, playerName, amount )

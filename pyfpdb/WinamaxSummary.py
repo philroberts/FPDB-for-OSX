@@ -46,7 +46,7 @@ class WinamaxSummary(TourneySummary):
                                            (?P<GAME>.+)?
                                            \((?P<TOURNO>[0-9]+)\)(\s-\sLate\sregistration)?\s+
                                            (Player\s:\s(?P<PNAME>.*)\s+)?
-                                           Buy-In\s:\s(?P<BUYIN>(?P<BIAMT>.+)\s\+\s(?P<BIRAKE>.+))\s+
+                                           Buy-In\s:\s(?P<BUYIN>(?P<BIAMT>.+)\s\+\s(?P<BIRAKE>.+)|Freeroll|Gratuit|Ticket\suniquement|Free|Ticket)\s+
                                            (Rebuy\scost\s:\s(?P<REBUY>(?P<REBUYAMT>.+)\s\+\s(?P<REBUYRAKE>.+))\s+)?
                                            (Addon\scost\s:\s(?P<ADDON>(?P<ADDONAMT>.+)\s\+\s(?P<ADDONRAKE>.+))\s+)?
                                            (Your\srebuys\s:\s(?P<PREBUYS>\d+)\s+)?
@@ -209,20 +209,25 @@ class WinamaxSummary(TourneySummary):
 
         if 'BUYIN' in mg:
             #print "DEBUG: BUYIN '%s'" % mg['BUYIN']
-            if mg['BUYIN'].find(u"€")!=-1:
-                self.buyinCurrency="EUR"
-            elif mg['BUYIN'].find("FPP")!=-1:
-                self.buyinCurrency="WIFP"
-            elif mg['BUYIN'].find("Free")!=-1:
-                self.buyinCurrency="WIFP"
-            else:
-                self.buyinCurrency="play"
-            rake = mg['BIRAKE'].strip('\r')
-            self.buyin = int(100*convert_to_decimal(mg['BIAMT']))
-            self.fee   = int(100*convert_to_decimal(rake))
-
-            if self.buyin == 0 and self.fee == 0:
+            if mg['BUYIN'] in ('Gratuit', 'Freeroll', 'Ticket uniquement', 'Ticket'):
+                self.buyin = 0
+                self.fee = 0
                 self.buyinCurrency = "FREE"
+            else:
+                if mg['BUYIN'].find(u"€")!=-1:
+                    self.buyinCurrency="EUR"
+                elif mg['BUYIN'].find("FPP")!=-1:
+                    self.buyinCurrency="WIFP"
+                elif mg['BUYIN'].find("Free")!=-1:
+                    self.buyinCurrency="WIFP"
+                else:
+                    self.buyinCurrency="play"
+                rake = mg['BIRAKE'].strip('\r')
+                self.buyin = int(100*convert_to_decimal(mg['BIAMT']))
+                self.fee   = int(100*convert_to_decimal(rake))
+    
+                if self.buyin == 0 and self.fee == 0:
+                    self.buyinCurrency = "FREE"
                 
         if 'REBUY' in mg and mg['REBUY'] != None:
             self.isRebuy   = True

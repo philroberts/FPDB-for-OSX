@@ -1,0 +1,29 @@
+<description type="Holdem" stakes="No Limit ($0.10/$0.25)"/>
+<game id="59766765-529" starttime="2012/08/14 21:50:08 +0400" numholecards="2" gametype="2" seats="6" realmoney="true" data="20120814|Tijuana|59766765|59766765-529|false">
+	<players dealer="2">
+		<player seat="0" nickname="Player0" balance="$57.55" dealtin="true" />
+		<player seat="1" nickname="Player1" balance="$34.44" dealtin="true" />
+		<player seat="2" nickname="Player2" balance="$25.00" dealtin="true" />
+		<player seat="3" nickname="Hero" balance="$24.75" dealtin="true" />
+		<player seat="4" nickname="Player3" balance="$25.00" dealtin="false" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1344966601281" player="3" amount="0.10"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1344966608843" player="5" amount="0.25"/>
+	</round>
+	<round id="PREFLOP" sequence="2">
+		<event sequence="3" type="FOLD" timestamp="1344966613843" player="0"/>
+		<event sequence="4" type="FOLD" timestamp="1344966628765" player="1"/>
+		<event sequence="5" type="RAISE" timestamp="1344966630953" player="2" amount="0.85"/>
+		<event sequence="6" type="FOLD" timestamp="1344966633421" player="3"/>
+		<event sequence="7" type="FOLD" timestamp="1344966634359" player="5"/>
+		<cards type="HOLE" cards="Ks,Tc" player="3" hand="King High"/>
+	</round>
+	<round id="END_OF_FOLDED_GAME" sequence="3">
+		<event sequence="8" type="MUCK" timestamp="1344966635171" player="2"/>
+		<winner amount="0.60" uncalled="false" potnumber="1" player="2" pottype="n"/>
+		<winner amount="0.60" uncalled="true" potnumber="2" player="2" pottype="n"/>
+	</round>
+	<round id="END_OF_GAME" sequence="4">
+	</round>
+</game>

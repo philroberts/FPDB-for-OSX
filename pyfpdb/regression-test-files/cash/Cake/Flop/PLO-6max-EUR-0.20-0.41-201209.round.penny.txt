@@ -1,0 +1,21 @@
+Hand#3048012347000109 - Willemstad (6-Max) 12347 -- €0.20/€0.41 PL Omaha -- 2012/08/09 - 02:43:32
+Dealer: Seat 1
+Seat 1: Player0 ($53.55 in chips)  (EUR €43.38)
+Seat 2: Player1 ($23.98 in chips)  (EUR €19.42)
+Seat 3: Hero ($67.19 in chips)  (EUR €54.42)
+Seat 8: Player2 ($36.78 in chips)  (EUR €29.79)
+Seat 9: Player3 ($118.14 in chips)  (EUR €95.69)
+Seat 10: Player4 ($50 in chips)  (EUR €40.50)
+Player1: posts small blind $0.25 (EUR €0.20)
+Hero: posts big blind $0.50 (EUR €0.41)
+Dealt to Hero [3c,5d,Ks,6h]
+Player2: folds
+Player3: folds
+Player0: folds
+Player1: calls $0.25 (EUR €0.20)
+Hero: raises to $1.50 (EUR €1.22)
+Player1: folds
+Hero: returns uncalled bet $1 (EUR €0.81)
+***SHOW DOWN***
+Hero: mucks
+Hero wins $1 (EUR €0.81)

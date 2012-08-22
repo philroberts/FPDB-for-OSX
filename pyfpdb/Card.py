@@ -42,39 +42,41 @@ card_map_abbr = [
                 ]
 
 games = {              # base, category
-             'holdem' : ('hold','holdem', 'h'), 
-            'omahahi' : ('hold','omaha','h'), 
-          'omahahilo' : ('hold','omaha8', 's'),
-           '2_holdem' : ('hold','2_holdem', 'h'), 
-               'razz' : ('stud','razz', 'l'), 
-             'studhi' : ('stud','7stud', 'h'), 
-           'studhilo' : ('stud','7stud8', 's'),
-           '27_3draw' : ('draw','lowball27', 'r'),
-           'fivedraw' : ('draw','5draw', 'h'),
-             'badugi' : ('draw','lowball27', 'l'),
-           '27_1draw' : ('draw','lowball27', 'r')
+             'holdem' : ('hold','holdem', 'h', {'PREFLOP':0,'FLOP':1,'TURN':2,'RIVER':3}, 'RIVER', (0,2)), 
+           '2_holdem' : ('hold','holdem', 'h', {'PREFLOP':0,'FLOP':1,'TURN':2,'RIVER':3}, 'RIVER', (0,3)),
+            'omahahi' : ('hold','omaha','h', {'PREFLOP':0,'FLOP':1,'TURN':2,'RIVER':3}, 'RIVER', (0,4)), 
+          'omahahilo' : ('hold','omaha8', 's', {'PREFLOP':0,'FLOP':1,'TURN':2,'RIVER':3}, 'RIVER', (0,4)),
+          '5_omahahi' : ('hold','omaha','h', {'PREFLOP':0,'FLOP':1,'TURN':2,'RIVER':3}, 'RIVER', (0,5)), 
+           '5_studhi' : ('stud','5draw', 'h', {'SECOND': 0, 'THIRD': 1,'FOURTH': 2,'FIFTH': 3}, 'FIFTH', (0,5)), 
+               'razz' : ('stud','razz', 'l', {'THIRD': 0,'FOURTH': 1,'FIFTH': 2,'SIXTH': 3,'SEVENTH': 4}, 'SEVENTH', (0,7)), 
+             'studhi' : ('stud','7stud', 'h', {'THIRD': 0,'FOURTH': 1,'FIFTH': 2,'SIXTH': 3,'SEVENTH': 4}, 'SEVENTH', (0,7)), 
+           'studhilo' : ('stud','7stud8', 's', {'THIRD': 0,'FOURTH': 1,'FIFTH': 2,'SIXTH': 3,'SEVENTH': 4}, 'SEVENTH', (0,7)),
+           '27_3draw' : ('draw','lowball27', 'r', {'DEAL':0, 'DRAWONE':1, 'DRAWTWO':2, 'DRAWTHREE':3}, 'DRAWTHREE', (15,20)),
+           'fivedraw' : ('draw','5draw', 'h', {'DEAL':0, 'DRAWONE':1}, 'DRAWONE', (5,10)),
+             'badugi' : ('draw','lowball27', 'l', {'DEAL':0, 'DRAWONE':1, 'DRAWTWO':2, 'DRAWTHREE':3}, 'DRAWTHREE', (15,20)),
+           '27_1draw' : ('draw','lowball27', 'r', {'DEAL':0, 'DRAWONE':1},'DRAWONE', (5,10))
        }
 
 hands = {'hi':{
-            'Nothing' :  None,
-            'NoPair'  : 'high card, %s',
-            'OnePair' : 'a pair of %s',
-            'TwoPair' : 'two pair, %s',
-            'Trips'   : 'three of a kind, %s',
-            'Straight': 'a straight, %s',
-            'Flush'   : 'a flush, %s',
-            'FlHouse' : 'a full house, %s',
-            'Quads'   : 'four of a kind, %s',
-            'StFlush' : 'a straight flush, %s'
+            'Nothing' : (1, None),
+            'NoPair'  : (2, 'high card, %s'),
+            'OnePair' : (3, 'a pair of %s'),
+            'TwoPair' : (4, 'two pair, %s'),
+            'Trips'   : (5, 'three of a kind, %s') ,
+            'Straight': (6, 'a straight, %s'),
+            'Flush'   : (7, 'a flush, %s'),
+            'FlHouse' : (8, 'a full house, %s'),
+            'Quads'   : (9, 'four of a kind, %s'),
+            'StFlush' : (10, 'a straight flush, %s')
             },
          'lo':{
-            'Nothing' : '%s',
-            'NoPair'  : '%s',
-            'OnePair' : 'a pair of %s',
-            'TwoPair' : 'two pair, %s',
-            'Trips'   : 'three of a kind, %s',
-            'FlHouse' : 'a full house, %s',
-            'Quads'   : 'four of a kind, %s',
+            'Nothing' : (1, '%s'),
+            'NoPair'  : (2, '%s'),
+            'OnePair' : (3,'a pair of %s'),
+            'TwoPair' : (4, 'two pair, %s'),
+            'Trips'   : (5, 'three of a kind, %s'),
+            'FlHouse' : (8, 'a full house, %s'),
+            'Quads'   : (9, 'four of a kind, %s')
             }
          }
 
@@ -93,11 +95,6 @@ names = {
             '3' : ('Three', 'Threes', 3),
             '2' : ('Two', 'Twos', 2)
             }
-
-streets = {'stud': {'THIRD': 0,'FOURTH': 1,'FIFTH': 2,'SIXTH': 3,'SEVENTH': 4},
-           'hold': {'PREFLOP':0,'FLOP':1,'TURN':2,'RIVER':3},
-           'draw': {'DEAL':0, 'DRAWONE':1, 'DRAWTWO':2, 'DRAWTHREE':3}
-          }
 
 iter = {0: 50000,
         1: 0,
