@@ -115,6 +115,7 @@ class Cake(HandHistoryConverter):
     re_ShownCards       = re.compile(r"^%s: (?P<SHOWED>shows|mucks) \[(?P<CARDS>.*)\] (\((?P<STRING>.*)\))?" % substitutions['PLYR'], re.MULTILINE)
     re_CollectPot       = re.compile(r"^%(PLYR)s wins %(CUR)s(?P<POT>[%(NUM)s]+)((\swith.+?)?\s+\(EUR\s(%(CUR)s)?(?P<EUROVALUE>[%(NUM)s]+)\))?" %  substitutions, re.MULTILINE)
     re_Finished         = re.compile(r"%(PLYR)s finished \d+ out of \d+ players" %  substitutions, re.MULTILINE)
+    re_Dealer           = re.compile(r"Dealer:") #Some Cake hands just omit the game line so we can just discard them as partial
     re_CoinFlip         = re.compile(r"Coin\sFlip\sT\d+", re.MULTILINE)
 
     def compilePlayerRegexs(self,  hand):
@@ -134,6 +135,8 @@ class Cake(HandHistoryConverter):
         m = self.re_GameInfo.search(handText)
         if not m:
             if self.re_Finished.search(handText):
+                raise FpdbHandPartial
+            if self.re_Dealer.match(handText):
                 raise FpdbHandPartial
             tmp = handText[0:200]
             log.error(_("CakeToFpdb.determineGameType: '%s'") % tmp)
