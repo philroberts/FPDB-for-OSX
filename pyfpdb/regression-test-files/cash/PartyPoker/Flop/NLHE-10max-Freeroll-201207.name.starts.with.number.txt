@@ -1,0 +1,41 @@
+#Game No : 11960068174 
+***** Hand History for Game 11960068174 *****
+NL Texas Hold'em  Trny: 71487580 Level: 1  Blinds(20/40) - Friday, July 27, 23:00:33 MSKS 2012
+Table $50 Freeroll (2695506) Table #173 (Real Money)
+Seat 10 is the button
+Total number of players : 10/10 
+Seat 10: 0Player0 ( 3,000 )
+Seat 5: Player1 ( 3,000 )
+Seat 8: Player2 ( 3,000 )
+Seat 4: Player3 ( 3,000 )
+Seat 1: Player4 ( 3,000 )
+Seat 7: Player5 ( 3,000 )
+Seat 9: Player6 ( 3,000 )
+Seat 3: Hero ( 3,000 )
+Seat 2: Player7 ( 3,000 )
+Seat 6: Player8 ( 3,000 )
+Trny: 71487580 Level: 1 
+Blinds(20/40)
+** Dealing down cards **
+Dealt to Hero [  9c 3c ]
+Hero folds
+Player3 calls [40]
+Player1 did not respond in time
+Player1 folds
+Player8 is all-In  [3,000]
+Player5 folds
+Player2 folds
+Player6 could not respond in time.(disconnected)
+Player6 folds
+0Player0 is all-In  [3,000]
+Player4 folds
+Player7 folds
+Player3 will be using his time bank for this hand.
+Player3 folds
+** Dealing Flop ** [ 2h, 6s, Ts ]
+** Dealing Turn ** [ Qd ]
+** Dealing River ** [ Qh ]
+Player8 shows [ 8d, Ah ]a pair of Queens.
+0Player0 shows [ Jd, Ad ]a pair of Queens with Jack kicker.
+0Player0 wins 6,100 chips from the main pot with a pair of Queens with Jack kicker.
+Player Player8 finished in 4 169.
