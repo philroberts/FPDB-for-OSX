@@ -1,0 +1,42 @@
+***** History for hand R5-260041977-287 *****
+Start hand: Wed Aug 01 18:09:42 EEST 2012
+Table: Tokyo [260041977] (NO_LIMIT TEXAS_HOLDEM $2/$4, Real money)
+User: Hero
+Button: seat 5
+Players in round: 5 (6)
+Seat 4: Player0 ($266.50)
+Seat 5: Player1 ($1,523.85)
+Seat 6: Player2 ($153)
+Seat 8: Player3 ($190.50)
+Seat 9: Hero ($415.60)
+Player2 posts small blind ($2)
+Player3 posts big blind ($4)
+---
+Dealing pocket cards
+Dealing to Hero: [5s, Qh]
+Hero folds
+Player0 raises $12 to $12
+Player1 calls $12
+Player2 folds
+Player3 folds
+--- Dealing flop [Jh, Th, 5c]
+Player0 bets $20
+Player1 calls $20
+--- Dealing turn [Kc]
+Player0 bets $40
+Player1 raises $100 to $100
+Player0 calls $60
+--- Dealing river [3s]
+Player0 checks
+Player1 bets $1,391.85 [all in]
+Player0 calls $134.50 [all in]
+---
+Summary:
+Main pot: $539 won by Player1 ($536)
+Rake taken: $3
+Seat 4: Player0 ($0), net: -$266.50
+Seat 5: Player1 ($1,793.35), net: +$269.50, [Js, Jc] (THREE_OF_A_KIND JACK)
+Seat 6: Player2 ($151), net: -$2
+Seat 8: Player3 ($186.50), net: -$4
+Seat 9: Hero ($415.60)
+***** End of hand R5-260041977-287 *****
