@@ -1,0 +1,604 @@
+<description type="Holdem Tournament" stakes="No Limit" version="1"/>
+<game id="60139095-1" starttime="2012/08/23 02:10:05 -0300" numholecards="2" gametype="23" seats="2" realmoney="true" data="20120822|Rattlesnake Room - Turbo Heads Up|60137968-1|60139095-1|true" version="1">
+	<players dealer="1">
+		<player seat="0" nickname="Hero" balance="$1500.00" dealtin="true" />
+		<player seat="1" nickname="Player0" balance="$1500.00" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1345698595870" player="1" amount="10.00"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1345698595870" player="0" amount="20.00"/>
+	</round>
+	<round id="PREFLOP" sequence="2">
+		<event sequence="3" type="RAISE" timestamp="1345698599287" player="1" amount="40.00"/>
+		<event sequence="4" type="FOLD" timestamp="1345698604596" player="0"/>
+		<cards type="HOLE" cards="5d,4h" player="0" hand="Five High"/>
+	</round>
+	<round id="END_OF_FOLDED_GAME" sequence="3">
+		<event sequence="5" type="MUCK" timestamp="1345698605306" player="1"/>
+		<winner amount="40.00" uncalled="false" potnumber="1" player="1" pottype="n"/>
+		<winner amount="20.00" uncalled="true" potnumber="2" player="1" pottype="n"/>
+	</round>
+	<round id="END_OF_GAME" sequence="4">
+	</round>
+</game>
+
+<game id="60139095-2" starttime="2012/08/23 02:10:17 -0300" numholecards="2" gametype="23" seats="2" realmoney="true" data="20120822|Rattlesnake Room - Turbo Heads Up|60137968-1|60139095-2|true" version="1">
+	<players dealer="0">
+		<player seat="0" nickname="Hero" balance="$1480.00" dealtin="true" />
+		<player seat="1" nickname="Player0" balance="$1520.00" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1345698607542" player="0" amount="10.00"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1345698607542" player="1" amount="20.00"/>
+	</round>
+	<round id="PREFLOP" sequence="2">
+		<event sequence="3" type="FOLD" timestamp="1345698618219" player="0"/>
+		<cards type="HOLE" cards="Js,5h" player="0" hand="Jack High"/>
+	</round>
+	<round id="END_OF_FOLDED_GAME" sequence="3">
+		<event sequence="4" type="MUCK" timestamp="1345698618923" player="1"/>
+		<winner amount="20.00" uncalled="false" potnumber="1" player="1" pottype="n"/>
+		<winner amount="10.00" uncalled="true" potnumber="2" player="1" pottype="n"/>
+	</round>
+	<round id="END_OF_GAME" sequence="4">
+	</round>
+</game>
+
+<game id="60139095-3" starttime="2012/08/23 02:10:30 -0300" numholecards="2" gametype="23" seats="2" realmoney="true" data="20120822|Rattlesnake Room - Turbo Heads Up|60137968-1|60139095-3|true" version="1">
+	<players dealer="1">
+		<player seat="0" nickname="Hero" balance="$1470.00" dealtin="true" />
+		<player seat="1" nickname="Player0" balance="$1530.00" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1345698620913" player="1" amount="10.00"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1345698620913" player="0" amount="20.00"/>
+	</round>
+	<round id="PREFLOP" sequence="2">
+		<event sequence="3" type="RAISE" timestamp="1345698625199" player="1" amount="40.00"/>
+		<event sequence="4" type="FOLD" timestamp="1345698637282" player="0"/>
+		<cards type="HOLE" cards="3h,7s" player="0" hand="Seven High"/>
+	</round>
+	<round id="END_OF_FOLDED_GAME" sequence="3">
+		<event sequence="5" type="MUCK" timestamp="1345698637957" player="1"/>
+		<winner amount="40.00" uncalled="false" potnumber="1" player="1" pottype="n"/>
+		<winner amount="20.00" uncalled="true" potnumber="2" player="1" pottype="n"/>
+	</round>
+	<round id="END_OF_GAME" sequence="4">
+	</round>
+</game>
+
+<game id="60139095-4" starttime="2012/08/23 02:10:49 -0300" numholecards="2" gametype="23" seats="2" realmoney="true" data="20120822|Rattlesnake Room - Turbo Heads Up|60137968-1|60139095-4|true" version="1">
+	<players dealer="0">
+		<player seat="0" nickname="Hero" balance="$1450.00" dealtin="true" />
+		<player seat="1" nickname="Player0" balance="$1550.00" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1345698639967" player="0" amount="10.00"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1345698639967" player="1" amount="20.00"/>
+	</round>
+	<round id="PREFLOP" sequence="2">
+		<event sequence="3" type="RAISE" timestamp="1345698649938" player="0" amount="40.00"/>
+		<event sequence="4" type="CALL" timestamp="1345698651801" player="1" amount="20.00"/>
+		<cards type="HOLE" cards="Ks,7d" player="0" hand="King High"/>
+	</round>
+	<round id="POSTFLOP" sequence="3">
+		<event sequence="5" type="CHECK" timestamp="1345698654141" player="1"/>
+		<event sequence="6" type="BET" timestamp="1345698656179" player="0" amount="40.00"/>
+		<event sequence="7" type="CALL" timestamp="1345698662823" player="1" amount="40.00"/>
+		<cards type="COMMUNITY" cards="Jh,Td,Jc" hand="Pair of Jacks"/>
+	</round>
+	<round id="POSTTURN" sequence="4">
+		<event sequence="8" type="CHECK" timestamp="1345698666681" player="1"/>
+		<event sequence="9" type="CHECK" timestamp="1345698668293" player="0"/>
+		<cards type="COMMUNITY" cards="Jh,Td,Jc,8c" hand="Pair of Jacks"/>
+	</round>
+	<round id="POSTRIVER" sequence="5">
+		<event sequence="10" type="CHECK" timestamp="1345698674559" player="1"/>
+		<event sequence="11" type="BET" timestamp="1345698679340" player="0" amount="120.00"/>
+		<event sequence="12" type="FOLD" timestamp="1345698680776" player="1"/>
+		<cards type="COMMUNITY" cards="Jh,Td,Jc,8c,9h" hand="Jack High Straight"/>
+	</round>
+	<round id="END_OF_FOLDED_GAME" sequence="6">
+		<event sequence="13" type="MUCK" timestamp="1345698687761" player="0"/>
+		<winner amount="160.00" uncalled="false" potnumber="1" player="0" pottype="n"/>
+		<winner amount="120.00" uncalled="true" potnumber="2" player="0" pottype="n"/>
+	</round>
+	<round id="END_OF_GAME" sequence="7">
+	</round>
+</game>
+
+<game id="60139095-5" starttime="2012/08/23 02:11:39 -0300" numholecards="2" gametype="23" seats="2" realmoney="true" data="20120822|Rattlesnake Room - Turbo Heads Up|60137968-1|60139095-5|true" version="1">
+	<players dealer="1">
+		<player seat="0" nickname="Hero" balance="$1530.00" dealtin="true" />
+		<player seat="1" nickname="Player0" balance="$1470.00" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1345698689770" player="1" amount="10.00"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1345698689770" player="0" amount="20.00"/>
+	</round>
+	<round id="PREFLOP" sequence="2">
+		<event sequence="3" type="RAISE" timestamp="1345698692501" player="1" amount="40.00"/>
+		<event sequence="4" type="CALL" timestamp="1345698696875" player="0" amount="20.00"/>
+		<cards type="HOLE" cards="Ks,7s" player="0" hand="King High"/>
+	</round>
+	<round id="POSTFLOP" sequence="3">
+		<event sequence="5" type="CHECK" timestamp="1345698704220" player="0"/>
+		<event sequence="6" type="BET" timestamp="1345698706990" player="1" amount="60.00"/>
+		<event sequence="7" type="CALL" timestamp="1345698714371" player="0" amount="60.00"/>
+		<cards type="COMMUNITY" cards="6d,7c,Ah" hand="Pair of Sevens"/>
+	</round>
+	<round id="POSTTURN" sequence="4">
+		<event sequence="8" type="CHECK" timestamp="1345698728041" player="0"/>
+		<event sequence="9" type="CHECK" timestamp="1345698729316" player="1"/>
+		<cards type="COMMUNITY" cards="6d,7c,Ah,Td" hand="Pair of Sevens"/>
+	</round>
+	<round id="POSTRIVER" sequence="5">
+		<event sequence="10" type="CHECK" timestamp="1345698735939" player="0"/>
+		<event sequence="11" type="CHECK" timestamp="1345698737276" player="1"/>
+		<cards type="COMMUNITY" cards="6d,7c,Ah,Td,Th" hand="Two Pair Tens and Sevens"/>
+	</round>
+	<round id="SHOWDOWN" sequence="6">
+		<event sequence="12" type="SHOW" timestamp="1345698737702" player="0"/>
+		<event sequence="13" type="SHOW" timestamp="1345698738288" player="1"/>
+		<cards type="SHOWN" cards="Ks,7s" player="0"/>
+		<cards type="SHOWN" cards="5s,7h" player="1"/>
+	</round>
+	<round id="END_OF_GAME" sequence="7">
+		<winner amount="100.00" uncalled="false" potnumber="1" player="0" hand="Two Pair Tens and Sevens" pottype="n"/>
+		<winner amount="100.00" uncalled="false" potnumber="1" player="1" hand="Two Pair Tens and Sevens" pottype="n"/>
+	</round>
+</game>
+
+<game id="60139095-6" starttime="2012/08/23 02:12:29 -0300" numholecards="2" gametype="23" seats="2" realmoney="true" data="20120822|Rattlesnake Room - Turbo Heads Up|60137968-1|60139095-6|true" version="1">
+	<players dealer="0">
+		<player seat="0" nickname="Hero" balance="$1530.00" dealtin="true" />
+		<player seat="1" nickname="Player0" balance="$1470.00" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1345698740090" player="0" amount="10.00"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1345698740090" player="1" amount="20.00"/>
+	</round>
+	<round id="PREFLOP" sequence="2">
+		<event sequence="3" type="RAISE" timestamp="1345698755440" player="0" amount="40.00"/>
+		<event sequence="4" type="FOLD" timestamp="1345698759768" player="1"/>
+		<cards type="HOLE" cards="4s,5s" player="0" hand="Five High"/>
+	</round>
+	<round id="END_OF_FOLDED_GAME" sequence="3">
+		<event sequence="5" type="MUCK" timestamp="1345698760503" player="0"/>
+		<winner amount="40.00" uncalled="false" potnumber="1" player="0" pottype="n"/>
+		<winner amount="20.00" uncalled="true" potnumber="2" player="0" pottype="n"/>
+	</round>
+	<round id="END_OF_GAME" sequence="4">
+	</round>
+</game>
+
+<game id="60139095-7" starttime="2012/08/23 02:12:51 -0300" numholecards="2" gametype="23" seats="2" realmoney="true" data="20120822|Rattlesnake Room - Turbo Heads Up|60137968-1|60139095-7|true" version="1">
+	<players dealer="1">
+		<player seat="0" nickname="Hero" balance="$1550.00" dealtin="true" />
+		<player seat="1" nickname="Player0" balance="$1450.00" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1345698762282" player="1" amount="10.00"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1345698762282" player="0" amount="20.00"/>
+	</round>
+	<round id="PREFLOP" sequence="2">
+		<event sequence="3" type="RAISE" timestamp="1345698764576" player="1" amount="40.00"/>
+		<event sequence="4" type="CALL" timestamp="1345698771196" player="0" amount="20.00"/>
+		<cards type="HOLE" cards="5h,Qd" player="0" hand="Queen High"/>
+	</round>
+	<round id="POSTFLOP" sequence="3">
+		<event sequence="5" type="CHECK" timestamp="1345698774425" player="0"/>
+		<event sequence="6" type="BET" timestamp="1345698776610" player="1" amount="60.00"/>
+		<event sequence="7" type="RAISE" timestamp="1345698781198" player="0" amount="160.00"/>
+		<event sequence="8" type="CALL" timestamp="1345698783232" player="1" amount="100.00"/>
+		<cards type="COMMUNITY" cards="6h,As,5d" hand="Pair of Fives"/>
+	</round>
+	<round id="POSTTURN" sequence="4">
+		<event sequence="9" type="CHECK" timestamp="1345698785431" player="0"/>
+		<event sequence="10" type="CHECK" timestamp="1345698787559" player="1"/>
+		<cards type="COMMUNITY" cards="6h,As,5d,6c" hand="Two Pair Sixes and Fives"/>
+	</round>
+	<round id="POSTRIVER" sequence="5">
+		<event sequence="11" type="CHECK" timestamp="1345698789130" player="0"/>
+		<event sequence="12" type="BET" timestamp="1345698791591" player="1" amount="300.00"/>
+		<event sequence="13" type="CALL" timestamp="1345698793543" player="0" amount="300.00"/>
+		<cards type="COMMUNITY" cards="6h,As,5d,6c,2d" hand="Two Pair Sixes and Fives"/>
+	</round>
+	<round id="SHOWDOWN" sequence="6">
+		<event sequence="14" type="SHOW" timestamp="1345698794332" player="1"/>
+		<event sequence="15" type="MUCK" timestamp="1345698794481" player="0"/>
+		<cards type="SHOWN" cards="6s,9h" player="1"/>
+		<cards type="MUCKED" cards="5h,Qd" player="0"/>
+	</round>
+	<round id="END_OF_GAME" sequence="7">
+		<winner amount="1000.00" uncalled="false" potnumber="1" player="1" hand="Three of a Kind Sixes" pottype="n"/>
+	</round>
+</game>
+
+<game id="60139095-8" starttime="2012/08/23 02:13:25 -0300" numholecards="2" gametype="23" seats="2" realmoney="true" data="20120822|Rattlesnake Room - Turbo Heads Up|60137968-1|60139095-8|true" version="1">
+	<players dealer="0">
+		<player seat="0" nickname="Hero" balance="$1050.00" dealtin="true" />
+		<player seat="1" nickname="Player0" balance="$1950.00" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1345698796479" player="0" amount="10.00"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1345698796479" player="1" amount="20.00"/>
+	</round>
+	<round id="PREFLOP" sequence="2">
+		<event sequence="3" type="RAISE" timestamp="1345698802520" player="0" amount="40.00"/>
+		<event sequence="4" type="FOLD" timestamp="1345698804455" player="1"/>
+		<cards type="HOLE" cards="Tc,6c" player="0" hand="Ten High"/>
+	</round>
+	<round id="END_OF_FOLDED_GAME" sequence="3">
+		<event sequence="5" type="MUCK" timestamp="1345698805107" player="0"/>
+		<winner amount="40.00" uncalled="false" potnumber="1" player="0" pottype="n"/>
+		<winner amount="20.00" uncalled="true" potnumber="2" player="0" pottype="n"/>
+	</round>
+	<round id="END_OF_GAME" sequence="4">
+	</round>
+</game>
+
+<game id="60139095-9" starttime="2012/08/23 02:13:36 -0300" numholecards="2" gametype="23" seats="2" realmoney="true" data="20120822|Rattlesnake Room - Turbo Heads Up|60137968-1|60139095-9|true" version="1">
+	<players dealer="1">
+		<player seat="0" nickname="Hero" balance="$1070.00" dealtin="true" />
+		<player seat="1" nickname="Player0" balance="$1930.00" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1345698806928" player="1" amount="10.00"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1345698806928" player="0" amount="20.00"/>
+	</round>
+	<round id="PREFLOP" sequence="2">
+		<event sequence="3" type="FOLD" timestamp="1345698808629" player="1"/>
+		<cards type="HOLE" cards="7h,3c" player="0" hand="Seven High"/>
+	</round>
+	<round id="END_OF_FOLDED_GAME" sequence="3">
+		<event sequence="4" type="MUCK" timestamp="1345698809130" player="0"/>
+		<winner amount="20.00" uncalled="false" potnumber="1" player="0" pottype="n"/>
+		<winner amount="10.00" uncalled="true" potnumber="2" player="0" pottype="n"/>
+	</round>
+	<round id="END_OF_GAME" sequence="4">
+	</round>
+</game>
+
+<game id="60139095-10" starttime="2012/08/23 02:13:40 -0300" numholecards="2" gametype="23" seats="2" realmoney="true" data="20120822|Rattlesnake Room - Turbo Heads Up|60137968-1|60139095-10|true" version="1">
+	<players dealer="0">
+		<player seat="0" nickname="Hero" balance="$1080.00" dealtin="true" />
+		<player seat="1" nickname="Player0" balance="$1920.00" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1345698811128" player="0" amount="10.00"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1345698811128" player="1" amount="20.00"/>
+	</round>
+	<round id="PREFLOP" sequence="2">
+		<event sequence="3" type="RAISE" timestamp="1345698819611" player="0" amount="40.00"/>
+		<event sequence="4" type="CALL" timestamp="1345698820958" player="1" amount="20.00"/>
+		<cards type="HOLE" cards="8d,5h" player="0" hand="Eight High"/>
+	</round>
+	<round id="POSTFLOP" sequence="3">
+		<event sequence="5" type="CHECK" timestamp="1345698823215" player="1"/>
+		<event sequence="6" type="BET" timestamp="1345698829760" player="0" amount="40.00"/>
+		<event sequence="7" type="FOLD" timestamp="1345698831633" player="1"/>
+		<cards type="COMMUNITY" cards="Ad,Qd,6h" hand="Ace High"/>
+	</round>
+	<round id="END_OF_FOLDED_GAME" sequence="4">
+		<event sequence="8" type="MUCK" timestamp="1345698832270" player="0"/>
+		<winner amount="80.00" uncalled="false" potnumber="1" player="0" pottype="n"/>
+		<winner amount="40.00" uncalled="true" potnumber="2" player="0" pottype="n"/>
+	</round>
+	<round id="END_OF_GAME" sequence="5">
+	</round>
+</game>
+
+<game id="60139095-11" starttime="2012/08/23 02:14:03 -0300" numholecards="2" gametype="23" seats="2" realmoney="true" data="20120822|Rattlesnake Room - Turbo Heads Up|60137968-1|60139095-11|true" version="1">
+	<players dealer="1">
+		<player seat="0" nickname="Hero" balance="$1120.00" dealtin="true" />
+		<player seat="1" nickname="Player0" balance="$1880.00" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1345698834270" player="1" amount="10.00"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1345698834270" player="0" amount="20.00"/>
+	</round>
+	<round id="PREFLOP" sequence="2">
+		<event sequence="3" type="RAISE" timestamp="1345698836571" player="1" amount="40.00"/>
+		<event sequence="4" type="CALL" timestamp="1345698839762" player="0" amount="20.00"/>
+		<cards type="HOLE" cards="Qh,Tc" player="0" hand="Queen High"/>
+	</round>
+	<round id="POSTFLOP" sequence="3">
+		<event sequence="5" type="CHECK" timestamp="1345698842819" player="0"/>
+		<event sequence="6" type="BET" timestamp="1345698844843" player="1" amount="60.00"/>
+		<event sequence="7" type="FOLD" timestamp="1345698849560" player="0"/>
+		<cards type="COMMUNITY" cards="Kh,6d,2s" hand="King High"/>
+	</round>
+	<round id="END_OF_FOLDED_GAME" sequence="4">
+		<event sequence="8" type="MUCK" timestamp="1345698850466" player="1"/>
+		<winner amount="80.00" uncalled="false" potnumber="1" player="1" pottype="n"/>
+		<winner amount="60.00" uncalled="true" potnumber="2" player="1" pottype="n"/>
+	</round>
+	<round id="END_OF_GAME" sequence="5">
+	</round>
+</game>
+
+<game id="60139095-12" starttime="2012/08/23 02:14:21 -0300" numholecards="2" gametype="23" seats="2" realmoney="true" data="20120822|Rattlesnake Room - Turbo Heads Up|60137968-1|60139095-12|true" version="1">
+	<players dealer="0">
+		<player seat="0" nickname="Hero" balance="$1080.00" dealtin="true" />
+		<player seat="1" nickname="Player0" balance="$1920.00" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1345698852492" player="0" amount="10.00"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1345698852492" player="1" amount="20.00"/>
+	</round>
+	<round id="PREFLOP" sequence="2">
+		<event sequence="3" type="RAISE" timestamp="1345698858437" player="0" amount="40.00"/>
+		<event sequence="4" type="RAISE" timestamp="1345698861353" player="1" amount="120.00"/>
+		<event sequence="5" type="CALL" timestamp="1345698873744" player="0" amount="80.00"/>
+		<cards type="HOLE" cards="Kd,4d" player="0" hand="King High"/>
+	</round>
+	<round id="POSTFLOP" sequence="3">
+		<event sequence="6" type="CHECK" timestamp="1345698877034" player="1"/>
+		<event sequence="7" type="CHECK" timestamp="1345698878963" player="0"/>
+		<cards type="COMMUNITY" cards="Qh,2h,Ac" hand="Ace High"/>
+	</round>
+	<round id="POSTTURN" sequence="4">
+		<event sequence="8" type="BET" timestamp="1345698881497" player="1" amount="160.00"/>
+		<event sequence="9" type="FOLD" timestamp="1345698883562" player="0"/>
+		<cards type="COMMUNITY" cards="Qh,2h,Ac,5h" hand="Ace High"/>
+	</round>
+	<round id="END_OF_FOLDED_GAME" sequence="5">
+		<event sequence="10" type="MUCK" timestamp="1345698884655" player="1"/>
+		<winner amount="240.00" uncalled="false" potnumber="1" player="1" pottype="n"/>
+		<winner amount="160.00" uncalled="true" potnumber="2" player="1" pottype="n"/>
+	</round>
+	<round id="END_OF_GAME" sequence="6">
+	</round>
+</game>
+
+<game id="60139095-13" starttime="2012/08/23 02:14:55 -0300" numholecards="2" gametype="23" seats="2" realmoney="true" data="20120822|Rattlesnake Room - Turbo Heads Up|60137968-1|60139095-13|true" version="1">
+	<players dealer="1">
+		<player seat="0" nickname="Hero" balance="$960.00" dealtin="true" />
+		<player seat="1" nickname="Player0" balance="$2040.00" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1345698886577" player="1" amount="10.00"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1345698886577" player="0" amount="20.00"/>
+	</round>
+	<round id="PREFLOP" sequence="2">
+		<event sequence="3" type="RAISE" timestamp="1345698888440" player="1" amount="40.00"/>
+		<event sequence="4" type="FOLD" timestamp="1345698901779" player="0"/>
+		<cards type="HOLE" cards="2h,Qd" player="0" hand="Queen High"/>
+	</round>
+	<round id="END_OF_FOLDED_GAME" sequence="3">
+		<event sequence="5" type="MUCK" timestamp="1345698902477" player="1"/>
+		<winner amount="40.00" uncalled="false" potnumber="1" player="1" pottype="n"/>
+		<winner amount="20.00" uncalled="true" potnumber="2" player="1" pottype="n"/>
+	</round>
+	<round id="END_OF_GAME" sequence="4">
+	</round>
+</game>
+
+<game id="60139095-14" starttime="2012/08/23 02:15:13 -0300" numholecards="2" gametype="23" seats="2" realmoney="true" data="20120822|Rattlesnake Room - Turbo Heads Up|60137968-1|60139095-14|true" version="1">
+	<players dealer="0">
+		<player seat="0" nickname="Hero" balance="$940.00" dealtin="true" />
+		<player seat="1" nickname="Player0" balance="$2060.00" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1345698904494" player="0" amount="15.00"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1345698904494" player="1" amount="30.00"/>
+	</round>
+	<round id="PREFLOP" sequence="2">
+		<event sequence="3" type="RAISE" timestamp="1345698906450" player="0" amount="60.00"/>
+		<event sequence="4" type="FOLD" timestamp="1345698908106" player="1"/>
+		<cards type="HOLE" cards="7s,3h" player="0" hand="Seven High"/>
+	</round>
+	<round id="END_OF_FOLDED_GAME" sequence="3">
+		<event sequence="5" type="MUCK" timestamp="1345698908579" player="0"/>
+		<winner amount="60.00" uncalled="false" potnumber="1" player="0" pottype="n"/>
+		<winner amount="30.00" uncalled="true" potnumber="2" player="0" pottype="n"/>
+	</round>
+	<round id="END_OF_GAME" sequence="4">
+	</round>
+</game>
+
+<game id="60139095-15" starttime="2012/08/23 02:15:19 -0300" numholecards="2" gametype="23" seats="2" realmoney="true" data="20120822|Rattlesnake Room - Turbo Heads Up|60137968-1|60139095-15|true" version="1">
+	<players dealer="1">
+		<player seat="0" nickname="Hero" balance="$970.00" dealtin="true" />
+		<player seat="1" nickname="Player0" balance="$2030.00" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1345698910591" player="1" amount="15.00"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1345698910591" player="0" amount="30.00"/>
+	</round>
+	<round id="PREFLOP" sequence="2">
+		<event sequence="3" type="RAISE" timestamp="1345698912338" player="1" amount="60.00"/>
+		<event sequence="4" type="FOLD" timestamp="1345698918613" player="0"/>
+		<cards type="HOLE" cards="Jh,2s" player="0" hand="Jack High"/>
+	</round>
+	<round id="END_OF_FOLDED_GAME" sequence="3">
+		<event sequence="5" type="MUCK" timestamp="1345698919596" player="1"/>
+		<winner amount="60.00" uncalled="false" potnumber="1" player="1" pottype="n"/>
+		<winner amount="30.00" uncalled="true" potnumber="2" player="1" pottype="n"/>
+	</round>
+	<round id="END_OF_GAME" sequence="4">
+	</round>
+</game>
+
+<game id="60139095-16" starttime="2012/08/23 02:15:30 -0300" numholecards="2" gametype="23" seats="2" realmoney="true" data="20120822|Rattlesnake Room - Turbo Heads Up|60137968-1|60139095-16|true" version="1">
+	<players dealer="0">
+		<player seat="0" nickname="Hero" balance="$940.00" dealtin="true" />
+		<player seat="1" nickname="Player0" balance="$2060.00" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1345698921543" player="0" amount="15.00"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1345698921543" player="1" amount="30.00"/>
+	</round>
+	<round id="PREFLOP" sequence="2">
+		<event sequence="3" type="RAISE" timestamp="1345698923163" player="0" amount="60.00"/>
+		<event sequence="4" type="FOLD" timestamp="1345698924464" player="1"/>
+		<cards type="HOLE" cards="Jc,5s" player="0" hand="Jack High"/>
+	</round>
+	<round id="END_OF_FOLDED_GAME" sequence="3">
+		<event sequence="5" type="MUCK" timestamp="1345698924927" player="0"/>
+		<winner amount="60.00" uncalled="false" potnumber="1" player="0" pottype="n"/>
+		<winner amount="30.00" uncalled="true" potnumber="2" player="0" pottype="n"/>
+	</round>
+	<round id="END_OF_GAME" sequence="4">
+	</round>
+</game>
+
+<game id="60139095-17" starttime="2012/08/23 02:15:35 -0300" numholecards="2" gametype="23" seats="2" realmoney="true" data="20120822|Rattlesnake Room - Turbo Heads Up|60137968-1|60139095-17|true" version="1">
+	<players dealer="1">
+		<player seat="0" nickname="Hero" balance="$970.00" dealtin="true" />
+		<player seat="1" nickname="Player0" balance="$2030.00" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1345698926929" player="1" amount="15.00"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1345698926929" player="0" amount="30.00"/>
+	</round>
+	<round id="PREFLOP" sequence="2">
+		<event sequence="3" type="RAISE" timestamp="1345698929404" player="1" amount="60.00"/>
+		<event sequence="4" type="FOLD" timestamp="1345698939720" player="0"/>
+		<cards type="HOLE" cards="2s,6s" player="0" hand="Six High"/>
+	</round>
+	<round id="END_OF_FOLDED_GAME" sequence="3">
+		<event sequence="5" type="MUCK" timestamp="1345698940481" player="1"/>
+		<winner amount="60.00" uncalled="false" potnumber="1" player="1" pottype="n"/>
+		<winner amount="30.00" uncalled="true" potnumber="2" player="1" pottype="n"/>
+	</round>
+	<round id="END_OF_GAME" sequence="4">
+	</round>
+</game>
+
+<game id="60139095-18" starttime="2012/08/23 02:15:51 -0300" numholecards="2" gametype="23" seats="2" realmoney="true" data="20120822|Rattlesnake Room - Turbo Heads Up|60137968-1|60139095-18|true" version="1">
+	<players dealer="0">
+		<player seat="0" nickname="Hero" balance="$940.00" dealtin="true" />
+		<player seat="1" nickname="Player0" balance="$2060.00" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1345698942478" player="0" amount="15.00"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1345698942478" player="1" amount="30.00"/>
+	</round>
+	<round id="PREFLOP" sequence="2">
+		<event sequence="3" type="RAISE" timestamp="1345698952578" player="0" amount="60.00"/>
+		<event sequence="4" type="RAISE" timestamp="1345698955434" player="1" amount="180.00"/>
+		<event sequence="5" type="CALL" timestamp="1345698960017" player="0" amount="120.00"/>
+		<cards type="HOLE" cards="Qs,Td" player="0" hand="Queen High"/>
+	</round>
+	<round id="POSTFLOP" sequence="3">
+		<event sequence="6" type="CHECK" timestamp="1345698972002" player="1"/>
+		<event sequence="7" type="BET" timestamp="1345698975483" player="0" amount="180.00"/>
+		<event sequence="8" type="FOLD" timestamp="1345698978727" player="1"/>
+		<cards type="COMMUNITY" cards="7s,Jh,8d" hand="Queen High"/>
+	</round>
+	<round id="END_OF_FOLDED_GAME" sequence="4">
+		<event sequence="9" type="MUCK" timestamp="1345698979386" player="0"/>
+		<winner amount="360.00" uncalled="false" potnumber="1" player="0" pottype="n"/>
+		<winner amount="180.00" uncalled="true" potnumber="2" player="0" pottype="n"/>
+	</round>
+	<round id="END_OF_GAME" sequence="5">
+	</round>
+</game>
+
+<game id="60139095-19" starttime="2012/08/23 02:16:28 -0300" numholecards="2" gametype="23" seats="2" realmoney="true" data="20120822|Rattlesnake Room - Turbo Heads Up|60137968-1|60139095-19|true" version="1">
+	<players dealer="1">
+		<player seat="0" nickname="Hero" balance="$1120.00" dealtin="true" />
+		<player seat="1" nickname="Player0" balance="$1880.00" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1345698981609" player="1" amount="15.00"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1345698981609" player="0" amount="30.00"/>
+	</round>
+	<round id="PREFLOP" sequence="2">
+		<event sequence="3" type="FOLD" timestamp="1345698983175" player="1"/>
+		<cards type="HOLE" cards="3c,7d" player="0" hand="Seven High"/>
+	</round>
+	<round id="END_OF_FOLDED_GAME" sequence="3">
+		<event sequence="4" type="MUCK" timestamp="1345698983717" player="0"/>
+		<winner amount="30.00" uncalled="false" potnumber="1" player="0" pottype="n"/>
+		<winner amount="15.00" uncalled="true" potnumber="2" player="0" pottype="n"/>
+	</round>
+	<round id="END_OF_GAME" sequence="4">
+	</round>
+</game>
+
+<game id="60139095-20" starttime="2012/08/23 02:16:35 -0300" numholecards="2" gametype="23" seats="2" realmoney="true" data="20120822|Rattlesnake Room - Turbo Heads Up|60137968-1|60139095-20|true" version="1">
+	<players dealer="0">
+		<player seat="0" nickname="Hero" balance="$1135.00" dealtin="true" />
+		<player seat="1" nickname="Player0" balance="$1865.00" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1345698985728" player="0" amount="15.00"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1345698985728" player="1" amount="30.00"/>
+	</round>
+	<round id="PREFLOP" sequence="2">
+		<event sequence="3" type="RAISE" timestamp="1345698994199" player="0" amount="60.00"/>
+		<event sequence="4" type="FOLD" timestamp="1345698995784" player="1"/>
+		<cards type="HOLE" cards="8h,Js" player="0" hand="Jack High"/>
+	</round>
+	<round id="END_OF_FOLDED_GAME" sequence="3">
+		<event sequence="5" type="MUCK" timestamp="1345698996269" player="0"/>
+		<winner amount="60.00" uncalled="false" potnumber="1" player="0" pottype="n"/>
+		<winner amount="30.00" uncalled="true" potnumber="2" player="0" pottype="n"/>
+	</round>
+	<round id="END_OF_GAME" sequence="4">
+	</round>
+</game>
+
+<game id="60139095-21" starttime="2012/08/23 02:16:48 -0300" numholecards="2" gametype="23" seats="2" realmoney="true" data="20120822|Rattlesnake Room - Turbo Heads Up|60137968-1|60139095-21|true" version="1">
+	<players dealer="1">
+		<player seat="0" nickname="Hero" balance="$1165.00" dealtin="true" />
+		<player seat="1" nickname="Player0" balance="$1835.00" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1345698998386" player="1" amount="15.00"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1345698998386" player="0" amount="30.00"/>
+	</round>
+	<round id="PREFLOP" sequence="2">
+		<event sequence="3" type="RAISE" timestamp="1345699000313" player="1" amount="60.00"/>
+		<event sequence="4" type="FOLD" timestamp="1345699007071" player="0"/>
+		<cards type="HOLE" cards="7c,2d" player="0" hand="Seven High"/>
+	</round>
+	<round id="END_OF_FOLDED_GAME" sequence="3">
+		<event sequence="5" type="MUCK" timestamp="1345699007809" player="1"/>
+		<winner amount="60.00" uncalled="false" potnumber="1" player="1" pottype="n"/>
+		<winner amount="30.00" uncalled="true" potnumber="2" player="1" pottype="n"/>
+	</round>
+	<round id="END_OF_GAME" sequence="4">
+	</round>
+</game>
+
+<game id="60139095-22" starttime="2012/08/23 02:16:59 -0300" numholecards="2" gametype="23" seats="2" realmoney="true" data="20120822|Rattlesnake Room - Turbo Heads Up|60137968-1|60139095-22|true" version="1">
+	<players dealer="0">
+		<player seat="0" nickname="Hero" balance="$1135.00" dealtin="true" />
+		<player seat="1" nickname="Player0" balance="$1865.00" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1345699009810" player="0" amount="15.00"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1345699009810" player="1" amount="30.00"/>
+	</round>
+	<round id="PREFLOP" sequence="2">
+		<event sequence="3" type="RAISE" timestamp="1345699012165" player="0" amount="60.00"/>
+		<event sequence="4" type="RAISE" timestamp="1345699014976" player="1" amount="180.00"/>
+		<event sequence="5" type="CALL" timestamp="1345699016720" player="0" amount="120.00"/>
+		<cards type="HOLE" cards="Jh,Ah" player="0" hand="Ace High"/>
+	</round>
+	<round id="POSTFLOP" sequence="3">
+		<event sequence="6" type="BET" timestamp="1345699021616" player="1" amount="180.00"/>
+		<event sequence="7" type="ALL_IN" timestamp="1345699023177" player="0" amount="955.00"/>
+		<event sequence="8" type="CALL" timestamp="1345699025130" player="1" amount="775.00"/>
+		<event sequence="9" type="SHOW" timestamp="1345699025573" player="0"/>
+		<event sequence="10" type="SHOW" timestamp="1345699025774" player="1"/>
+		<cards type="COMMUNITY" cards="Ts,Qd,7s" hand="Ace High"/>
+		<cards type="SHOWN" cards="Jh,Ah" player="0"/>
+		<cards type="SHOWN" cards="Qs,8s" player="1"/>
+	</round>
+	<round id="POSTTURN" sequence="4">
+		<cards type="COMMUNITY" cards="Ts,Qd,7s,3s" hand="Ace High"/>
+	</round>
+	<round id="POSTRIVER" sequence="5">
+		<cards type="COMMUNITY" cards="Ts,Qd,7s,3s,Td" hand="Pair of Tens"/>
+	</round>
+	<round id="END_OF_GAME" sequence="6">
+		<event sequence="11" type="PLAYER_OUT" timestamp="1345699031291" player="0"/>
+		<event sequence="12" type="PLAYER_OUT" timestamp="1345699031291" player="1"/>
+		<winner amount="2270.00" uncalled="false" potnumber="1" player="1" hand="Flush Queen High" pottype="n"/>
+	</round>
+</game>
