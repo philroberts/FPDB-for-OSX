@@ -143,7 +143,7 @@ class PacificPoker(HandHistoryConverter):
     re_Antes            = re.compile(r"^%(PLYR)s posts (the\s)?ante \[(%(CUR)s)?(?P<ANTE>[%(NUM)s]+)\s?(%(CUR)s)?\]" % substitutions, re.MULTILINE)
     # TODO: unknown in available hand histories for pacificpoker:
     re_BringIn          = re.compile(r"^%(PLYR)s: brings[- ]in( low|) for (%(CUR)s)?(?P<BRINGIN>[%(NUM)s]+)\s?(%(CUR)s)?" % substitutions, re.MULTILINE)
-    re_PostBoth         = re.compile(r"^%(PLYR)s posts dead blind \[(%(CUR)s)?(?P<SBBB>[%(NUM)s]+)(%(CUR)s)?\s\+\s(%(CUR)s)?[%(NUM)s]+\s?(%(CUR)s)?\]" %  substitutions, re.MULTILINE)
+    re_PostBoth         = re.compile(r"^%(PLYR)s posts dead blind \[(%(CUR)s)?(?P<SBBB>[%(NUM)s]+)\s?(%(CUR)s)?\s\+\s(%(CUR)s)?[%(NUM)s]+\s?(%(CUR)s)?\]" %  substitutions, re.MULTILINE)
     re_HeroCards        = re.compile(r"^Dealt to %(PLYR)s( \[\s(?P<NEWCARDS>.+?)\s\])" % substitutions, re.MULTILINE)
     re_Action           = re.compile(r"""
                         ^%(PLYR)s(?P<ATYPE>\sbets|\schecks|\sraises|\scalls|\sfolds|\sdiscards|\sstands\spat)
