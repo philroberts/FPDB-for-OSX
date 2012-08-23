@@ -1,0 +1,26 @@
+#Game No : 332877236
+***** Cassava Hand History for Game 332877236 *****
+0,01 $/0,02 $ Blinds No Limit Holdem - *** 15 07 2011 15:18:32
+Table Manzanillo (Real Money)
+Seat 5 is the button
+Total number of players : 6
+Seat 1: Player0 ( 2 $ )
+Seat 3: Player1 ( 0,55 $ )
+Seat 4: Player2 ( 0,49 $ )
+Seat 5: Player3 ( 0,38 $ )
+Seat 6: Hero ( 2 $ )
+Seat 7: Player4 ( 1,14 $ )
+Hero posts small blind [0,01 $]
+Player4 posts big blind [0,02 $]
+Player1 posts dead blind [0,01 $ + 0,02 $]
+** Dealing down cards **
+Dealt to Hero [ 8Pik, QPik ]
+Player0 folds
+Player1 checks
+Player2 folds
+Player3 raises [0,38 $]
+Hero folds
+Player4 folds
+Player1 folds
+** Summary **
+Player3 collected [ 0,08 $ ]

@@ -1,0 +1,58 @@
+Winamax Poker - Tournament "Quitte ou Double" buyIn: 0.93-0.07 level: 10 - HandId: #118267374808858625-31-1343075816 - Holdem no limit (50/200/400) - 2012/07/23 20:36:56 UTC
+Table: 'Quitte ou Double(27536269)#0' 10-max (real money) Seat #2 is the button
+Seat 1: Player0 (870)
+Seat 2: Player1 (991)
+Seat 3: Hero (1410)
+Seat 4: Player2 (169)
+Seat 5: Player3 (2650)
+Seat 6: Player4 (1845)
+Seat 7: Player5 (1810)
+Seat 8: Player6 (1880)
+Seat 9: Player7 (1190)
+Seat 10: Player8 (2185)
+*** ANTE/BLINDS ***
+Hero posts ante 50
+Player2 posts ante 50
+Player0 posts ante 50
+Player1 posts ante 50
+Player3 posts ante 50
+Player4 posts ante 50
+Player5 posts ante 50
+Player6 posts ante 50
+Player7 posts ante 50
+Player8 posts ante 50
+Hero posts small blind 200
+Player2 posts big blind 119 and is all-in
+Dealt to Hero [7h 4c]
+*** PRE-FLOP *** 
+Player3 folds
+Player4 raises 1676 to 1795 and is all-in
+Player5 folds
+Player6 folds
+Player7 folds
+Player8 folds
+Player0 folds
+Player1 calls 941 and is all-in
+Hero folds
+*** FLOP *** [As 9h Qc]
+*** TURN *** [As 9h Qc][Kc]
+*** RIVER *** [As 9h Qc Kc][3h]
+*** SHOW DOWN ***
+Player2 shows [3d Tc] (One pair : 3)
+Player1 shows [Kh Ac] (Two pairs : Aces and Kings)
+Player4 shows [Jh Jd] (One pair : Jacks)
+Player4 collected 854 from side pot 1
+Player1 collected 2701 from main pot
+*** SUMMARY ***
+Total pot 3555 | No rake
+Board: [As 9h Qc Kc 3h]
+Seat 1: Player0 folded on the pre-flop
+Seat 2: Player1 (button) showed [Kh Ac] and won 2701 with Two pairs : Aces and Kings
+Seat 3: Hero (small blind) folded on the pre-flop
+Seat 4: Player2 (big blind) showed [3d Tc] and lost with One pair : 3
+Seat 5: Player3 folded on the pre-flop
+Seat 6: Player4 showed [Jh Jd] and won 854 with One pair : Jacks
+Seat 7: Player5 folded on the pre-flop
+Seat 8: Player6 folded on the pre-flop
+Seat 9: Player7 folded on the pre-flop
+Seat 10: Player8 folded on the pre-flop
