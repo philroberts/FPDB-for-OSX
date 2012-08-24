@@ -2690,7 +2690,7 @@ class Database:
                 else:
                     pdata[p]['showdownWinnings']    = 0
                     pdata[p]['nonShowdownWinnings'] = pdata[p]['totalProfit']
-                if p!=hero:
+                if p!=hero and hero:
                     if (pdata[p]['totalProfit']>0 and 0>pdata[hero]['totalProfit']):
                         pdata[p]['vsHero'] = - pdata[hero]['totalProfit']   
                     elif (pdata[hero]['totalProfit']>0 and 0>pdata[p]['totalProfit']):
@@ -2721,7 +2721,7 @@ class Database:
                                 id.append(i)
                 if len(id) == 1:
                     i = id[0]
-                    if p==hero:
+                    if pids[p]==heroes[0]:
                         self.cc[k][i]['ids'].append(hid)
                 elif len(id) == 2:
                     i, j = id[0], id[1]
@@ -2731,14 +2731,14 @@ class Database:
                     for idx,val in enumerate(cashplayer[j]['line']):
                         cashplayer[i]['line'][idx] += val
                     g = cashplayer.pop(j)
-                    if p==hero:
+                    if pids[p]==heroes[0]:
                         self.cc[k][i]['ids'].append(hid)
                         self.cc[k][i]['ids'] += g['ids']
                 elif len(id) == 0:
                     if cashplayer is None:
                         self.cc[k] = []
                     hp['endTime'] = hp['startTime']
-                    if p==hero: hp['ids'].append(hid)
+                    if pids[p]==heroes[0]: hp['ids'].append(hid)
                     self.cc[k].append(hp)
         
         if doinsert:
@@ -2834,7 +2834,7 @@ class Database:
                 else:
                     pdata[p]['showdownWinnings']    = 0
                     pdata[p]['nonShowdownWinnings'] = pdata[p]['totalProfit']
-                if p!=hero:
+                if p!=hero and hero:
                     if (pdata[p]['totalProfit']>0 and 0>pdata[hero]['totalProfit']):
                         pdata[p]['vsHero'] = - pdata[hero]['totalProfit']   
                     elif (pdata[hero]['totalProfit']>0 and 0>pdata[p]['totalProfit']):
@@ -2850,7 +2850,7 @@ class Database:
                 if tourplayer is not None:
                     for idx,val in enumerate(line):
                         tourplayer['line'][idx] += val
-                    if p==hero:
+                    if pids[p]==heroes[0]:
                         tourplayer['ids'].append(hid)
                 else:
                     self.tc[k] = {'startTime' : None,
@@ -2858,7 +2858,7 @@ class Database:
                                               'hid' : hid,
                                               'ids' : []}
                     self.tc[k]['line'] = line
-                    if p==hero:
+                    if pids[p]==heroes[0]:
                         self.tc[k]['ids'].append(hid)
 
                 if not self.tc[k]['startTime'] or startTime < self.tc[k]['startTime']:
