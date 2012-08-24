@@ -1,0 +1,95 @@
+Game #7732310: Omaha (€0,25/€0,50) - 23:31:54 29.7.2012 - %6 
+Table 'SantElena 1 - Pot Limit' 6-max Seat #4 is the button 
+Seat 1: Player0 (€41,87 in chips)
+Seat 2: Hero (€88,05 in chips)
+Seat 3: Player1 (€36,79 in chips)
+Seat 4: Player2 (€129,20 in chips)
+Seat 5: Player3 (€50 in chips)
+Seat 6: Player4 (€151,27 in chips)
+Player4: posts small blind €0,25
+Player0: posts big blind €0,50
+*** HOLECARDS ***
+Hero: folds
+Player1: folds
+Player2: calls €0,50
+Player4: calls €0,25
+Player0: checks
+Rake: €0,09
+*** FLOP *** [9c2cQd]
+Player4: bets €1,50
+Player0: folds
+Player2: calls €1,50
+Rake: €0,18
+*** TURN *** [9c2cQd8s]
+Player4: bets €3,37
+Player2: calls €3,37
+Rake: €0,40
+*** RIVER *** [9c2cQd8sAc]
+Player4: checks
+Player2: checks
+Player2: mucked
+*** SHOWDOWN ***
+Player2: mucks hand
+Player4: shows [9dJd2dTd] (Straight, Queens high)
+Player4: collected (€10,57) from pot
+*** SUMMARY *** 
+Total pot €0 | Rake €0,67 
+Board [9c2cQd8sAc] 
+Seat 1: Player0 (big blind) folded
+Seat 2: Hero  folded
+Seat 3: Player1  folded
+Seat 4: Player2  mucked
+Seat 6: Player4 (small blind) showed [9dJd2dTd] and won (€10,57) with Straight, Queens high
+
+Game #7732419: Omaha (€0,25/€0,50) - 23:32:44 29.7.2012 - %6 
+Table 'Romania 1 - Pot Limit' 9-max Seat #1 is the button 
+Seat 1: amazing_mck (€18 in chips)
+Seat 2: cik (€58,14 in chips)
+Seat 3: tiza (€51,99 in chips)
+Seat 4: frozechka (€66,25 in chips)
+Seat 5: Player2 (€78,63 in chips)
+Seat 6: Hero (€93,34 in chips)
+Seat 7: iucupocu (€15,48 in chips)
+Seat 8: tranquillo (€13,75 in chips)
+Seat 9: Player4 (€42,15 in chips)
+tiza: posts small blind €0,25
+frozechka: posts big blind €0,50
+amazing_mck: posts big blind €0,50
+*** HOLECARDS ***
+Player2: calls €0,50
+Hero: raises €2,75
+iucupocu: calls €2,75
+tranquillo: folds
+Player4: folds
+amazing_mck: raises €11,75
+cik: calls €12,25
+tiza: folds
+frozechka: folds
+Player2: raises €38,11
+Hero: folds
+iucupocu: folds
+amazing_mck: goes all-in €5,75
+cik: goes all-in €45,89
+Player2: calls €19,53
+Rake: €3,61
+Rake: €-2,22
+*** FLOP *** [Td4h7d]
+*** TURN *** [Td4h7d2d]
+*** RIVER *** [Td4h7d2dKc]
+*** SHOWDOWN ***
+amazing_mck: shows [5cJc5hJs] (A Pair, Jacks)
+cik: shows [4dQsQh3h] (A Pair, Queens)
+Player2: shows [Kh3sThKs] (Three of a kind, Kings)
+Player2: collected (€56,64) from pot
+*** SUMMARY *** 
+Total pot €2,75 | Rake €1,39 
+Board [Td4h7d2dKc] 
+Seat 1: amazing_mck  showed [5cJc5hJs] and lost with A Pair, Jacks
+Seat 2: cik (dealer) showed [4dQsQh3h] and lost with A Pair, Queens
+Seat 3: tiza (small blind) folded
+Seat 4: frozechka (big blind) folded
+Seat 5: Player2  showed [Kh3sThKs] and won (€56,64) with Three of a kind, Kings
+Seat 6: Hero  folded
+Seat 7: iucupocu  folded
+Seat 8: tranquillo  folded
+Seat 9: Player4  folded
