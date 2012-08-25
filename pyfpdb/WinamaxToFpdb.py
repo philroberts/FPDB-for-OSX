@@ -231,6 +231,7 @@ class Winamax(HandHistoryConverter):
                 hand.tablename = info[key]
                 if hand.gametype['type'] == 'tour':
                     hand.tablename = info['TABLENO']
+                    hand.roundPenny = True
                 # TODO: long-term solution for table naming on Winamax.
                 if hand.tablename.endswith(u'No Limit Hold\'em'):
                     hand.tablename = hand.tablename[:-len(u'No Limit Hold\'em')] + u'NLHE'
