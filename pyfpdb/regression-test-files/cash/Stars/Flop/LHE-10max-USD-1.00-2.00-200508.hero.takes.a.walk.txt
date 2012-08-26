@@ -1,0 +1,39 @@
+PokerStars Game #2467687491:  Hold'em Limit ($1/$2 USD) - 2005/08/31 18:55:54 ET
+Table 'Sekanina' Seat #6 is the button
+Seat 1: Player0 ($39.50 in chips) 
+Seat 2: Player1 ($121.50 in chips) 
+Seat 3: Player2 ($19.25 in chips) 
+Seat 4: Player3 ($55 in chips) 
+Seat 5: Player4 ($44.75 in chips) 
+Seat 6: Player5 ($56.75 in chips) 
+Seat 7: Player6 ($17.75 in chips) 
+Seat 8: Hero ($35 in chips) 
+Seat 9: Player7 ($39 in chips) 
+Seat 10: Player8 ($29 in chips) 
+Player6: posts small blind $0.50
+Hero: posts big blind $1
+*** HOLE CARDS ***
+Dealt to Hero [4c Jc]
+Player7: folds 
+Player8: folds 
+Player0: folds 
+Player1: folds 
+Player2: folds 
+Player3: folds 
+Player4: folds 
+Player5: folds 
+Player6: folds 
+Hero collected $1 from pot
+Hero: doesn't show hand 
+*** SUMMARY ***
+Total pot $1 | Rake $0 
+Seat 1: Player0 folded before Flop (didn't bet)
+Seat 2: Player1 folded before Flop (didn't bet)
+Seat 3: Player2 folded before Flop (didn't bet)
+Seat 4: Player3 folded before Flop (didn't bet)
+Seat 5: Player4 folded before Flop (didn't bet)
+Seat 6: Player5 (button) folded before Flop (didn't bet)
+Seat 7: Player6 (small blind) folded before Flop
+Seat 8: Hero (big blind) collected ($1)
+Seat 9: Player7 folded before Flop (didn't bet)
+Seat 10: Player8 folded before Flop (didn't bet)

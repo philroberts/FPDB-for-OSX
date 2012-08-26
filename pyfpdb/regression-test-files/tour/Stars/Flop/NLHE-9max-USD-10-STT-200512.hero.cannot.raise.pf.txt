@@ -1,0 +1,32 @@
+PokerStars Game #3262982446: Tournament #16150855, $10+$1 USD Hold'em No Limit - Level V (75/150) - 2005/12/06 23:09:10 ET
+Table '16150855 1' Seat #6 is the button
+Seat 1: Player0 (2770 in chips) 
+Seat 5: Player1 (4675 in chips) 
+Seat 6: Player2 (3530 in chips) 
+Seat 8: Player3 (1375 in chips) 
+Seat 9: Hero (1150 in chips) 
+Player3: posts small blind 75
+Hero: posts big blind 150
+*** HOLE CARDS ***
+Dealt to Hero [9h 9s]
+Player0: folds 
+Player1: folds 
+Player2: raises 3380 to 3530 and is all-in
+Player3: calls 1300 and is all-in
+Hero: folds 
+*** FLOP *** [Js Th 2h]
+Player3 said, "k"
+*** TURN *** [Js Th 2h] [8c]
+*** RIVER *** [Js Th 2h 8c] [4c]
+*** SHOW DOWN ***
+Player3: shows [Qc Ad] (high card Ace)
+Player2: shows [5s 5c] (a pair of Fives)
+Player2 collected 2900 from pot
+*** SUMMARY ***
+Total pot 2900 | Rake 0 
+Board [Js Th 2h 8c 4c]
+Seat 1: Player0 folded before Flop (didn't bet)
+Seat 5: Player1 folded before Flop (didn't bet)
+Seat 6: Player2 (button) showed [5s 5c] and won (2900) with a pair of Fives
+Seat 8: Player3 (small blind) showed [Qc Ad] and lost with high card Ace
+Seat 9: Hero (big blind) folded before Flop
