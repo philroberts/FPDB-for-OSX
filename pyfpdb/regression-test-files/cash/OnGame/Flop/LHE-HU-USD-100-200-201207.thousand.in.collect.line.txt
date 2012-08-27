@@ -1,0 +1,34 @@
+***** History for hand R5-258035051-21 *****
+Start hand: Tue Jul 24 19:12:45 CEST 2012
+Table: Waco [258035051] (LIMIT TEXAS_HOLDEM $100/$200, Real money)
+User: Hero
+Button: seat 3
+Players in round: 2 (2)
+Seat 3: Hero ($5,496)
+Seat 8: Player0 ($3,096)
+Hero posts small blind ($50)
+Player0 posts big blind ($100)
+---
+Dealing pocket cards
+Dealing to Hero: [5c, Qc]
+Hero raises $150 to $200
+Player0 calls $100
+--- Dealing flop [9h, 4h, Qh]
+Player0 checks
+Hero bets $100
+Player0 raises $200 to $200
+Hero calls $100
+--- Dealing turn [7c]
+Player0 bets $200
+Hero calls $200
+--- Dealing river [3d]
+Player0 bets $200
+Hero raises $400 to $400
+Player0 calls $200
+---
+Summary:
+Main pot: $2,000 won by Hero ($1,999)
+Rake taken: $1
+Seat 3: Hero ($6,495), net: +$999, [5c, Qc] (PAIR QUEEN)
+Seat 8: Player0 ($2,096), net: -$1,000
+***** End of hand R5-258035051-21 *****
