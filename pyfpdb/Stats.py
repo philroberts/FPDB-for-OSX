@@ -250,12 +250,12 @@ def vpip(stat_dict, player):
     stat_descriptions["vpip"] = _("Voluntarily put in preflop/3rd street %") + " (vpip)"
     stat = 0.0
     try:
-        stat = float(stat_dict[player]['vpip'])/float(stat_dict[player]['n'])
+        stat = float(stat_dict[player]['vpip'])/float(stat_dict[player]['vpip_opp'])
         return (stat,
                 '%3.1f'         % (100.0*stat),
                 'v=%3.1f%%'     % (100.0*stat),
                 'vpip=%3.1f%%'  % (100.0*stat),
-                '(%d/%d)'       % (stat_dict[player]['vpip'], stat_dict[player]['n']),
+                '(%d/%d)'       % (stat_dict[player]['vpip'], stat_dict[player]['vpip_opp']),
                 _('Voluntarily put in preflop/3rd street %')
                 )
     except: return (stat,
@@ -270,12 +270,12 @@ def pfr(stat_dict, player):
     stat_descriptions["pfr"] = _("Preflop/3rd street raise %") + " (pfr)"
     stat = 0.0
     try:
-        stat = float(stat_dict[player]['pfr'])/float(stat_dict[player]['n'])
+        stat = float(stat_dict[player]['pfr'])/float(stat_dict[player]['pfr_opp'])
         return (stat,
                 '%3.1f'         % (100.0*stat),
                 'p=%3.1f%%'     % (100.0*stat),
                 'pfr=%3.1f%%'   % (100.0*stat),
-                '(%d/%d)'    % (stat_dict[player]['pfr'], stat_dict[player]['n']),
+                '(%d/%d)'    % (stat_dict[player]['pfr'], stat_dict[player]['pfr_opp']),
                 _('Preflop/3rd street raise %')
                 )
     except: 
