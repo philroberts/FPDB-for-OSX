@@ -1,0 +1,17 @@
+Everleaf Gaming - Concord Gaming - Game #404865765
+***** Hand history for game #404865765 *****
+Blinds €0.10/€0.20 NL Hold'em - 4 Max - 2012/09/01 - 22:44:57
+Table Harstad 18
+Seat 1 is the button
+Total number of players: 4
+Seat 1: Player0 ( € 34.43 EURO )
+Seat 2: Player1 ( € 0 EURO )
+Seat 3: Player2 ( € 31.08 EURO )
+Seat 4: Hero ( € 20 EURO )
+Player0: posts small blind [€ 0.10 EURO]
+Hero: posts big blind [€ 0.20 EURO]
+** Dealing down cards **
+Dealt to Hero [ 9s, Qh ]
+Player0 folds
+Hero does not show cards
+Hero wins € 0.20 EURO from main pot
