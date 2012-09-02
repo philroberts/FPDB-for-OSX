@@ -43,7 +43,7 @@ class OnGame(HandHistoryConverter):
                             'LS' : u"\$|\xe2\x82\xac|\u20ac|",     # Currency symbols - Euro(cp1252, utf-8)
                            'PLYR': r'(?P<PNAME>.+?)',
                             'CUR': u"(\$|\xe2\x82\xac|\u20ac||\£|)",
-                           'NUM' : u".,\d",
+                           'NUM' : u".,\dKM",
                     }
     
     Lim_Blinds = {      '0.04': ('0.01', '0.02'),    '0.10': ('0.02', '0.05'),      
