@@ -74,10 +74,20 @@ class Bovada(HandHistoryConverter):
 
     # Static regexes
     re_GameInfo     = re.compile(u"""
-          (Bovada|Bodog)\sHand\s\#(?P<HID>[0-9]+)\s+
-          TBL\#(?P<TABLE>.+?)\s
+          (Bovada|Bodog)\sHand\s\#(?P<HID>[0-9]+):?\s+
+          (TBL\#(?P<TABLE>.+?)\s)?
           (?P<GAME>HOLDEM|OMAHA|7CARD)\s+
+          (Tournament\s\#                # open paren of tournament info Tournament #2194767 TBL#1, 
+          (?P<TOURNO>\d+)\sTBL\#(?P<TABLENO>\d+),
+          \s)?
           (?P<LIMIT>No\sLimit|Fixed\sLimit|Pot\sLimit)
+          (-\sLevel\s\d+?\s
+          \(?                            # open paren of the stakes
+          (?P<CURRENCY>%(LS)s|)?
+          (?P<SB>[,.0-9]+)/(%(LS)s)?
+          (?P<BB>[,.0-9]+)
+          \s?(?P<ISO>%(LEGAL_ISO)s)?
+          \))?
           \s-\s
           (?P<DATETIME>.*$)
         """ % substitutions, re.MULTILINE|re.VERBOSE)
@@ -101,20 +111,21 @@ class Bovada(HandHistoryConverter):
     re_DateTime     = re.compile("""(?P<Y>[0-9]{4})\-(?P<M>[0-9]{2})\-(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)""", re.MULTILINE)
     # These used to be compiled per player, but regression tests say
     # we don't have to, and it makes life faster.
-    re_PostSB           = re.compile(r"^%(PLYR)s (\s?\[ME\]\s)?: (Ante\/Small Blind|Posts chip) (?P<CURRENCY>%(CUR)s)(?P<SB>[%(NUM)s]+)" %  substitutions, re.MULTILINE)
+    re_PostSB           = re.compile(r"^%(PLYR)s (\s?\[ME\]\s)?: (Ante\/Small (B|b)lind|Posts chip) (?P<CURRENCY>%(CUR)s)(?P<SB>[%(NUM)s]+)" %  substitutions, re.MULTILINE)
     re_PostBB           = re.compile(r"^Big Blind (\s?\[ME\]\s)?: Big blind\/Bring in (?P<CURRENCY>%(CUR)s)(?P<BB>[%(NUM)s]+)" %  substitutions, re.MULTILINE)
     re_Antes            = re.compile(r"^%(PLYR)s (\s?\[ME\]\s)?: Ante chip %(CUR)s(?P<ANTE>[%(NUM)s]+)" % substitutions, re.MULTILINE)
     re_BringIn          = re.compile(r"^%(PLYR)s (\s?\[ME\]\s)?: Bring_in chip %(CUR)s(?P<BRINGIN>[%(NUM)s]+)" % substitutions, re.MULTILINE)
     re_PostBoth         = re.compile(r"^%(PLYR)s (\s?\[ME\]\s)?: Posts dead chip %(CUR)s(?P<SBBB>[%(NUM)s]+)" %  substitutions, re.MULTILINE)
     re_HeroCards        = re.compile(r"^%(PLYR)s  ?\[ME\] : Card dealt to a spot \[(?P<NEWCARDS>.+?)\]" % substitutions, re.MULTILINE)
     re_Action           = re.compile(r"""(?P<ACTION>
-                        ^%(PLYR)s\s(\s?\[ME\]\s)?:(\sD)?(?P<ATYPE>\s(B|b)ets|\sChecks|\sRaises|\sCalls|\sFolds|\sBring_in\schip|\sAll\-in(\(raise\))?|\sCard\sdealt\sto\sa\sspot)
-                        (\s%(CUR)s(?P<BET>[%(NUM)s]+)(\sto\s%(CUR)s(?P<BETTO>[%(NUM)s]+))?)?)"""
+                        ^%(PLYR)s\s(\s?\[ME\]\s)?:(\sD)?(?P<ATYPE>\s(B|b)ets|\sChecks|\sRaises|\sCalls?|\sFolds|\sBring_in\schip|\sAll\-in(\(raise\))?|\sCard\sdealt\sto\sa\sspot)
+                        (\s%(CUR)s(?P<BET>[%(NUM)s]+)(\sto\s%(CUR)s(?P<BETTO>[%(NUM)s]+))?|\s\[(?P<NEWCARDS>.+?)\])?)"""
                          %  substitutions, re.MULTILINE|re.VERBOSE)
     re_ShowdownAction   = re.compile(r"^%(PLYR)s (?P<HERO>\s?\[ME\]\s)?: Card dealt to a spot \[(?P<CARDS>.*)\]" % substitutions, re.MULTILINE)
     #re_ShownCards       = re.compile("^Seat (?P<SEAT>[0-9]+): %(PLYR)s %(BRKTS)s(?P<SHOWED>showed|mucked) \[(?P<CARDS>.*)\]( and won \([.\d]+\) with (?P<STRING>.*))?" % substitutions, re.MULTILINE)
-    re_CollectPot       = re.compile(r"^%(PLYR)s (\s?\[ME\]\s)?: Hand result(\-Side pot)? %(CUR)s(?P<POT>[%(NUM)s]+)" %  substitutions, re.MULTILINE)
+    re_CollectPot       = re.compile(r"^%(PLYR)s (\s?\[ME\]\s)?: Hand (R|r)esult(\-Side pot)? %(CUR)s(?P<POT>[%(NUM)s]+)" %  substitutions, re.MULTILINE)
     re_Dealt            = re.compile(r"^%(PLYR)s (\s?\[ME\]\s)?: Card dealt to a spot" % substitutions, re.MULTILINE)
+    re_Buyin            = re.compile(r"\s-\s(?P<BUYIN>(?P<BIAMT>[%(LS)s\d\.]+)?-(?P<BIRAKE>[%(LS)s\d\.]+)?|Freeroll)\s-\s" % substitutions)
     #Small Blind : Hand result $19
     
     def compilePlayerRegexs(self,  hand):
@@ -126,6 +137,12 @@ class Bovada(HandHistoryConverter):
                 ["ring", "hold", "fl"],
                 
                 ["ring", "stud", "fl"],
+                
+                ["tour", "hold", "nl"],
+                ["tour", "hold", "pl"],
+                ["tour", "hold", "fl"],
+                
+                ["tour", "stud", "fl"],
                 ]
 
     def determineGameType(self, handText):
@@ -150,10 +167,19 @@ class Bovada(HandHistoryConverter):
         if 'GAME' in mg:
             (info['base'], info['category']) = self.games[mg['GAME']]
             
-        info['sb'] = None
-        info['bb'] = None
         info['currency'] = 'USD'
-        info['type']     = 'ring'
+               
+        if 'TOURNO' in mg and mg['TOURNO'] is None:
+            info['type'] = 'ring'
+            info['sb'] = None
+            info['bb'] = None
+        else:
+            info['type'] = 'tour'  
+            if 'SB' in mg:
+                info['sb'] = mg['SB']
+            if 'BB' in mg:
+                info['bb'] = mg['BB']
+
         return info
 
     def readHandInfo(self, hand):
@@ -163,8 +189,10 @@ class Bovada(HandHistoryConverter):
             tmp = hand.handText[0:200]
             log.error(_("BovadaToFpdb.readHandInfo: '%s'") % tmp)
             raise FpdbParseError
-
+        
         info.update(m.groupdict())
+        m = self.re_Buyin.search(self.in_path)
+        if m: info.update(m.groupdict())
 
         for key in info:
             if key == 'DATETIME':
@@ -204,7 +232,10 @@ class Bovada(HandHistoryConverter):
                         hand.fee = int(100*Decimal(info['BIRAKE']))
 
             if key == 'TABLE':
-                hand.tablename = info[key]
+                if info.get('TABLENO'):
+                    hand.tablename = info.get('TABLENO')
+                else:
+                    hand.tablename = info[key]
             if key == 'MAX' and info[key] != None:
                 hand.maxseats = int(info[key])
     
@@ -383,7 +414,7 @@ class Bovada(HandHistoryConverter):
                 hand.addFold( street, player)
             elif action.group('ATYPE') == ' Checks':
                 hand.addCheck( street, player)
-            elif action.group('ATYPE') == ' Calls':
+            elif action.group('ATYPE') == ' Calls' or action.group('ATYPE') == ' Call':
                 hand.addCall( street, player, self.clearMoneyString(action.group('BET')) )
             elif action.group('ATYPE') == ' Raises' or action.group('ATYPE') == ' All-in(raise)':
                 if action.group('BETTO'):
