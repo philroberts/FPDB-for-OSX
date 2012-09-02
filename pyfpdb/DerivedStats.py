@@ -688,7 +688,7 @@ class DerivedStats():
                     player_stats['street0VPIChance'] = False
                     player_stats['street0AggrChance'] = False
                 
-        if len(vpipers)==0:
+        if len(vpipers)==0 and bb:
             self.handsplayers[bb[0]]['street0VPIChance'] = False
             self.handsplayers[bb[0]]['street0AggrChance'] = False
 
