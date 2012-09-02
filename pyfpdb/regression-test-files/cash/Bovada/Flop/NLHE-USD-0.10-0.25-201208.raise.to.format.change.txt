@@ -1,0 +1,32 @@
+Bovada Hand #2628482935 TBL#1866535 HOLDEM No Limit - 2012-08-26 23:35:15
+Seat 1: UTG+1 ($35.82 in chips)
+Seat 2: Dealer [ME] ($32.05 in chips)
+Seat 3: Small Blind ($10.14 in chips)
+Seat 4: Big Blind ($16.79 in chips)
+Seat 5: UTG ($12.52 in chips)
+Dealer  [ME] : Set dealer/Bring in spot [2] 
+Small Blind : Ante/Small Blind $0.10 
+Big Blind : Big blind/Bring in $0.25 
+*** HOLE CARDS ***
+UTG+1 : Card dealt to a spot [7h 3s] 
+Dealer  [ME] : Card dealt to a spot [2s 4c] 
+Small Blind : Card dealt to a spot [Jd As] 
+Big Blind : Card dealt to a spot [Kd 9c] 
+UTG : Card dealt to a spot [7s Qc] 
+UTG : Folds
+UTG+1 : Folds
+Dealer  [ME] : Folds
+Small Blind : Calls $0.15 
+Big Blind : Raises $0.75 to $1
+Small Blind : All-in(raise) $9.89 to $10.14
+Big Blind : Folds
+Small Blind : Return uncalled portion of bet $9.14 
+Small Blind : Does not show [Jd As] (High Card)
+Small Blind : Hand result $2 
+*** SUMMARY ***
+Total Pot($2) | Rake ($0) 
+Seat+1: UTG+1 Folded before the FLOP
+Seat+2: Dealer Folded before the FLOP
+Seat+3: Small Blind $2 [Does not show]  
+Seat+4: Big Blind Folded before the FLOP
+Seat+5: UTG Folded before the FLOP

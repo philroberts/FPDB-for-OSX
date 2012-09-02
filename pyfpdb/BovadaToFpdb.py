@@ -109,7 +109,7 @@ class Bovada(HandHistoryConverter):
     re_HeroCards        = re.compile(r"^%(PLYR)s  ?\[ME\] : Card dealt to a spot \[(?P<NEWCARDS>.+?)\]" % substitutions, re.MULTILINE)
     re_Action           = re.compile(r"""(?P<ACTION>
                         ^%(PLYR)s\s(\s?\[ME\]\s)?:(\sD)?(?P<ATYPE>\s(B|b)ets|\sChecks|\sRaises|\sCalls|\sFolds|\sBring_in\schip|\sAll\-in(\(raise\))?|\sCard\sdealt\sto\sa\sspot)
-                        (\s%(CUR)s(?P<BET>[%(NUM)s]+)|\s\[(?P<NEWCARDS>.+?)\])?)"""
+                        (\s%(CUR)s(?P<BET>[%(NUM)s]+)(\sto\s%(CUR)s(?P<BETTO>[%(NUM)s]+))?)?)"""
                          %  substitutions, re.MULTILINE|re.VERBOSE)
     re_ShowdownAction   = re.compile(r"^%(PLYR)s (?P<HERO>\s?\[ME\]\s)?: Card dealt to a spot \[(?P<CARDS>.*)\]" % substitutions, re.MULTILINE)
     #re_ShownCards       = re.compile("^Seat (?P<SEAT>[0-9]+): %(PLYR)s %(BRKTS)s(?P<SHOWED>showed|mucked) \[(?P<CARDS>.*)\]( and won \([.\d]+\) with (?P<STRING>.*))?" % substitutions, re.MULTILINE)
@@ -304,8 +304,6 @@ class Bovada(HandHistoryConverter):
         
     def readBlinds(self, hand):
         for a in self.re_PostSB.finditer(hand.handText):
-            if not self.playersMap.get(a.group('PNAME')):
-                print hand.handid
             player = self.playersMap[a.group('PNAME')]
             hand.addBlind(player, 'small blind', self.clearMoneyString(a.group('SB')))
             if not hand.gametype['sb']:
@@ -388,7 +386,11 @@ class Bovada(HandHistoryConverter):
             elif action.group('ATYPE') == ' Calls':
                 hand.addCall( street, player, self.clearMoneyString(action.group('BET')) )
             elif action.group('ATYPE') == ' Raises' or action.group('ATYPE') == ' All-in(raise)':
-                hand.addRaiseTo( street, player, self.clearMoneyString(action.group('BET')) )
+                if action.group('BETTO'):
+                    bet = self.clearMoneyString(action.group('BETTO'))
+                else:
+                    bet = self.clearMoneyString(action.group('BET'))
+                hand.addRaiseTo( street, player, bet )
             elif action.group('ATYPE') == ' Bets' or action.group('ATYPE') == ' bets':
                 hand.addBet( street, player, self.clearMoneyString(action.group('BET')) )
             elif action.group('ATYPE') == ' All-in':
