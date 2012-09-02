@@ -1947,8 +1947,8 @@ class Database:
             query = query.replace('<group>', group)
             query = query.replace('<sessions_join_clause>', """INNER JOIN SessionsCache s ON (s.id = h.sessionId)
                 INNER JOIN Players p ON (hp.playerId = p.id)""")
-            query = query.replace('<pc_position>', """,hp.position as pc_position""")
-            query = query.replace('<hero_where>', " AND p.hero = 1")
+            query = query.replace('<pc_position>', """,case when p.hero = 1 then hp.position else 'N' end as pc_position""")
+            query = query.replace('<hero_where>', "")
             
             if type=='ring':
                 query = query.replace('<type_insert_clause>', ",gametypeId")
@@ -3042,24 +3042,27 @@ class Database:
             
         for p in pdata:
             if pids[p] in heroes:
-                k =   (weekStart
-                      ,monthStart
-                      ,gametypeId
-                      ,tourneyTypeId
-                      ,pids[p]
-                      ,len(pids)
-                      ,str(pdata[p]['position'])[0]
-                      )
-                pdata[p]['hands'] = 1
-                line = [pdata[p][s] for s in CACHE_KEYS]
-                    
-                positions = self.pcbulk.get(k)
-                # Add line to the old line in the hudcache.
-                if positions is not None:
-                    for idx,val in enumerate(line):
-                        positions[idx] += val
-                else:
-                    self.pcbulk[k] = line
+                position = str(pdata[p]['position'])[0]
+            else:
+                position = 'N'
+            k =   (weekStart
+                  ,monthStart
+                  ,gametypeId
+                  ,tourneyTypeId
+                  ,pids[p]
+                  ,len(pids)
+                  ,position
+                  )
+            pdata[p]['hands'] = 1
+            line = [pdata[p][s] for s in CACHE_KEYS]
+                
+            positions = self.pcbulk.get(k)
+            # Add line to the old line in the hudcache.
+            if positions is not None:
+                for idx,val in enumerate(line):
+                    positions[idx] += val
+            else:
+                self.pcbulk[k] = line
                 
         if doinsert:
             inserts = []
