@@ -1,0 +1,40 @@
+#Game No : 14067958
+***** Hand History for Game 14067958 *****
+$10 USD NL Texas Hold'em - Monday, September 3, 00:26:18 ET 2012
+Table Gibuti1 (Real Money)
+Seat 3 is the button
+Total number of players : 6
+Seat 1: Player0 ( $5.87 USD )
+Seat 2: Player1 ( $9.72 USD )
+Seat 3: Player2 ( $14.77 USD )
+Seat 4: Hero ( $10.51 USD )
+Seat 5: Player3 ( $15.76 USD )
+Seat 6: Player4 ( $7.36 USD )
+Player3 posts small blind [$0.05 USD].
+Player4 posts big blind [$0.10 USD].
+** Dealing down cards **
+Player0 folds.
+Player1 calls [$0.10 USD].
+Player2 checks.
+Hero folds.
+Player3 folds.
+Player4 checks.
+** Dealing Flop ** [ Td, Qc, 6d ]
+Player4 checks.
+Player1 checks.
+Player2 checks.
+** Dealing Turn ** [ 8s ]
+Player4 checks.
+Player1 checks.
+Player2 checks.
+** Dealing River ** [ 5d ]
+Player4 bets [$0.20 USD].
+Player1 folds.
+Player2 folds.
+Player0 does not show cards.
+Player1 does not show cards.
+Player2 does not show cards.
+Hero does not show cards.
+Player3 does not show cards.
+Player4 does not show cards.
+Player4 wins $0.58 USD
