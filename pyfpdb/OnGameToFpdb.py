@@ -43,7 +43,7 @@ class OnGame(HandHistoryConverter):
                             'LS' : u"\$|\xe2\x82\xac|\u20ac|",     # Currency symbols - Euro(cp1252, utf-8)
                            'PLYR': r'(?P<PNAME>.+?)',
                             'CUR': u"(\$|\xe2\x82\xac|\u20ac||\£|)",
-                           'NUM' : u".,\d",
+                           'NUM' : u".,\dKM",
                     }
     
     Lim_Blinds = {      '0.04': ('0.01', '0.02'),    '0.10': ('0.02', '0.05'),      
@@ -60,6 +60,9 @@ class OnGame(HandHistoryConverter):
                        '30.00': ('7.50', '15.00'),     '30': ('7.50', '15.00'),
                        '40.00': ('10.00', '20.00'),    '40': ('10.00', '20.00'),
                        '50.00': ('12.50', '25.00'),    '50': ('12.50', '25.00'),
+                      '100.00': ('25.00', '50.00'),   '100': ('25.00', '50.00'),
+                      '200.00': ('50.00', '100.00'),  '200': ('50.00', '100.00'),
+                      '500.00': ('125.00', '250.00'), '500': ('125.00', '250.00'),
                   }
     
     currencies = { u'\u20ac':'EUR', u'\xe2\x82\xac':'EUR', '$':'USD', '':'T$' }
@@ -148,8 +151,8 @@ class OnGame(HandHistoryConverter):
             #Main pot: $3.57 won by mleo17 ($3.40)
             #Side pot 1: $3.26 won by maac_5 ($3.10)
             #Main pot: $2.87 won by maac_5 ($1.37), sagi34 ($1.36)
-            self.re_Pot = re.compile('(Main|Side)\spot(\s\d+)?:\s.*won\sby\s(?P<POT>.*$)', re.MULTILINE)
-            self.re_CollectPot = re.compile('\s*(?P<PNAME>.*)\s\((%(CUR)s)?(?P<POT>[%(NUM)s]+)\)' % self.substitutions)
+            self.re_Pot = re.compile('(Main|Side)\spot(\s\d+)?:\s.*won\sby(?P<POT>.*$)', re.MULTILINE)
+            self.re_CollectPot = re.compile('\s(?P<PNAME>.+?)\s\((%(CUR)s)?(?P<POT>[%(NUM)s]+)\)' % self.substitutions)
             #Seat 5: mleo17 ($3.40), net: +$2.57, [Jd, Qd] (TWO_PAIR QUEEN, JACK)
             self.re_ShownCards = re.compile("^Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(.*\), net:.* \[(?P<CARDS>.*)\].*" % self.substitutions, re.MULTILINE)
             self.re_sitsOut    = re.compile('%(PLYR)s sits out' % self.substitutions, re.MULTILINE)
@@ -448,9 +451,8 @@ class OnGame(HandHistoryConverter):
 
     def readCollectPot(self,hand):
         for m in self.re_Pot.finditer(hand.handText):
-            for splitpot in m.group('POT').split(','):
-                for m in self.re_CollectPot.finditer(splitpot):
-                    hand.addCollectPot(player=m.group('PNAME'),pot=m.group('POT'))
+            for m in self.re_CollectPot.finditer(m.group('POT')):
+                hand.addCollectPot(player=m.group('PNAME'),pot=self.clearMoneyString(m.group('POT')))
 
     def readShownCards(self,hand):
         for m in self.re_ShownCards.finditer(hand.handText):

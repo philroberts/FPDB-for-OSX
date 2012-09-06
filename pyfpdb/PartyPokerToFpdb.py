@@ -184,7 +184,7 @@ class PartyPoker(HandHistoryConverter):
             self.re_Action = re.compile(u"""
                 ^%(PLYR)s\s+(?P<ATYPE>bets|checks|raises|completes|bring-ins|calls|folds|is\sall-In|double\sbets)
                 (?:\s+[%(BRAX)s]?%(CUR_SYM)s?(?P<BET>[.,\d]+)\s*(%(CUR)s)?[%(BRAX)s]?)?
-                \s*$""" %  subst, re.MULTILINE|re.VERBOSE)
+                \.?\s*$""" %  subst, re.MULTILINE|re.VERBOSE)
             self.re_ShownCards = re.compile(
                 r"^%s (?P<SHOWED>(?:doesn\'t )?shows?) "  %  player_re +
                 r"\[ *(?P<CARDS>.+) *\](?P<COMBINATION>.+)\.",
@@ -570,6 +570,9 @@ class PartyPoker(HandHistoryConverter):
             if actionType == 'folds':
                 hand.addFold( street, playerName )
             elif actionType == 'checks':
+                if street in ('DEAL', 'PREFLOP') and playerName not in [p for (p,b) in hand.posted]:
+                    both = str(Decimal(str(hand.bb)) + Decimal(str(hand.sb)))
+                    hand.addBlind(playerName, 'both', both)
                 hand.addCheck( street, playerName )
             elif actionType == 'calls':
                 hand.addCall( street, playerName, amount )

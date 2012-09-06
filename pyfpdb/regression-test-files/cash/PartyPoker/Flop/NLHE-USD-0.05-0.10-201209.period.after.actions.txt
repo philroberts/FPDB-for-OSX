@@ -1,0 +1,35 @@
+#Game No : 14019052
+***** Hand History for Game 14019052 *****
+$10 USD NL Texas Hold'em - Sunday, September 2, 21:10:58 ET 2012
+Table Banjul1 (Real Money)
+Seat 1 is the button
+Total number of players : 5
+Seat 2: Player0 ( $9.95 USD )
+Seat 3: Player1 ( $9.95 USD )
+Seat 4: Hero ( $10.00 USD )
+Seat 5: Player2 ( $6.53 USD )
+Seat 6: Player3 ( $1.24 USD )
+Player1 posts small blind [$0.05 USD].
+Hero posts big blind [$0.10 USD].
+** Dealing down cards **
+Dealt to Hero [  9d 8s ]
+Player2 folds.
+Player3 calls [$0.10 USD].
+Player0 folds.
+Player1 folds.
+Hero checks.
+** Dealing Flop ** [ Jh, 9h, 2h ]
+Hero checks.
+Player3 checks.
+** Dealing Turn ** [ 9c ]
+Hero bets [$0.12 USD].
+Player3 calls [$0.12 USD].
+** Dealing River ** [ 5c ]
+Hero bets [$0.24 USD].
+Player3 calls [$0.24 USD].
+Player0 does not show cards.
+Player1 does not show cards.
+Hero shows [ 9d, 8s ].
+Player2 does not show cards.
+Player3 does not show cards.
+Hero wins $0.92 USD
