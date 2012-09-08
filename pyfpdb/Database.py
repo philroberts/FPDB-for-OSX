@@ -3230,7 +3230,7 @@ class Database:
         _name = Charset.to_db_utf8(name)
         if re_char.match(_name[0]):
             char = '123'
-        elif re_char.match(_name[1]):
+        elif len(_name)==1 or re_char.match(_name[1]):
             char = _name[0] + '1'
         else:
             char = _name[:2]
