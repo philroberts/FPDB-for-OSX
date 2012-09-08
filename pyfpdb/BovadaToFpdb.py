@@ -126,6 +126,7 @@ class Bovada(HandHistoryConverter):
     re_CollectPot       = re.compile(r"^%(PLYR)s (\s?\[ME\]\s)?: Hand (R|r)esult(\-Side pot)? %(CUR)s(?P<POT>[%(NUM)s]+)" %  substitutions, re.MULTILINE)
     re_Dealt            = re.compile(r"^%(PLYR)s (\s?\[ME\]\s)?: Card dealt to a spot" % substitutions, re.MULTILINE)
     re_Buyin            = re.compile(r"\s-\s(?P<BUYIN>(?P<BIAMT>[%(LS)s\d\.]+)?-(?P<BIRAKE>[%(LS)s\d\.]+)?|Freeroll)\s-\s" % substitutions)
+    re_Stakes           = re.compile(r"RING\s-\s(?P<CURRENCY>%(LS)s|)?(?P<SB>[%(NUM)s]+)-(%(LS)s)?(?P<BB>[%(NUM)s]+)\s-\s" % substitutions)
     #Small Blind : Hand result $19
     
     def compilePlayerRegexs(self,  hand):
@@ -160,25 +161,30 @@ class Bovada(HandHistoryConverter):
         m1 = self.re_Dealt.search(handText)
         if not m1:
             raise FpdbHandPartial("BovadaToFpdb.determineGameType: " + _("Partial hand history"))
-
+        
         mg = m.groupdict()
+        m = self.re_Stakes.search(self.in_path)
+        if m: mg.update(m.groupdict())
+
         if 'LIMIT' in mg:
             info['limitType'] = self.limits[mg['LIMIT']]
         if 'GAME' in mg:
             (info['base'], info['category']) = self.games[mg['GAME']]
             
-        info['currency'] = 'USD'
-               
-        if 'TOURNO' in mg and mg['TOURNO'] is None:
-            info['type'] = 'ring'
-            info['sb'] = None
-            info['bb'] = None
+        if 'SB' in mg:
+            info['sb'] = mg['SB']
+        if 'BB' in mg:
+            info['bb'] = mg['BB']
+            
+        if 'TOURNO' in mg and mg['TOURNO'] is not None:
+            info['type'] = 'tour'
+            info['currency'] = 'T$'
         else:
-            info['type'] = 'tour'  
-            if 'SB' in mg:
-                info['sb'] = mg['SB']
-            if 'BB' in mg:
-                info['bb'] = mg['BB']
+            info['type'] = 'ring'
+            info['currency'] = 'USD'
+             
+        if 'CURRENCY' in mg and mg['CURRENCY'] is not None:
+            info['currency'] = self.currencies[mg['CURRENCY']]
 
         return info
 
@@ -254,11 +260,15 @@ class Bovada(HandHistoryConverter):
             m = self.re_PlayerInfo.finditer(hand.handText)
         for a in m:
             if re.search(r"%s (\s?\[ME\]\s)?: Card dealt to a spot" % re.escape(a.group('PNAME')), hand.handText):
+                sitout = False
                 if a.group('HERO'):
                     self.playersMap[a.group('PNAME')] = 'Hero'
                 else:
                     self.playersMap[a.group('PNAME')] = 'Seat %s' % a.group('SEAT')
-                hand.addPlayer(int(a.group('SEAT')), self.playersMap[a.group('PNAME')], self.clearMoneyString(a.group('CASH')))
+            else:
+                self.playersMap[a.group('PNAME')] = 'Seat %s' % a.group('SEAT')
+                sitout = True
+            hand.addPlayer(int(a.group('SEAT')), self.playersMap[a.group('PNAME')], self.clearMoneyString(a.group('CASH')), None, sitout)
         if len(hand.players)==0:
             tmp = hand.handText[0:200]
             log.error(_("BovadaToFpdb.readPlayerStacks: '%s'") % tmp)
@@ -272,14 +282,15 @@ class Bovada(HandHistoryConverter):
         else:
             street, firststreet = 'THIRD', 'THIRD'   
         m = self.re_Action.finditer(hand.handText)
-        streetactions, streetno, players, i, contenders, bets = 0, 1, len(hand.players), 0, len(hand.players), 0
+        dealtIn = len(hand.players) - len(hand.sitout)
+        streetactions, streetno, players, i, contenders, bets = 0, 1, dealtIn, 0, dealtIn, 0
         for action in m:
             acts = action.groupdict()
-            #print "DEBUG: acts: %s" %acts
             player = self.playersMap[action.group('PNAME')]
             if action.group('ATYPE') == ' Folds':
                 contenders -= 1
             elif action.group('ATYPE') == ' Raises':
+                if streetno==1: bets = 1
                 streetactions, players = 0, contenders
             elif action.group('ATYPE') == ' Bets' or action.group('ATYPE') == ' bets':
                 streetactions, players, bets = 0, contenders, 1
@@ -334,6 +345,7 @@ class Bovada(HandHistoryConverter):
             hand.gametype['bb'] = "2"
         
     def readBlinds(self, hand):
+        hand.setUncalledBets(True)
         for a in self.re_PostSB.finditer(hand.handText):
             player = self.playersMap[a.group('PNAME')]
             hand.addBlind(player, 'small blind', self.clearMoneyString(a.group('SB')))
@@ -402,7 +414,6 @@ class Bovada(HandHistoryConverter):
                     hand.addHoleCards(street, player, open=newcards, closed=oldcards, shown=False, mucked=False, dealt=False)
 
     def readAction(self, hand, street):
-        hand.setUncalledBets(True)
         m = self.re_Action.finditer(hand.streets[street])
         for action in m:
             acts = action.groupdict()
