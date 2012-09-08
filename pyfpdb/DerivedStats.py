@@ -288,9 +288,9 @@ class DerivedStats():
             if player_name!=hand.hero and hand.hero:
                 hero_stats = self.handsplayers.get(hand.hero)
                 if player_stats['totalProfit']>0 and 0>hero_stats['totalProfit']:
-                    player_stats['vsHero'] = - int(hero_stats['totalProfit'] * Decimal(player_stats['winnings'])/hand.totalpot)
+                    player_stats['vsHero'] = - int(hero_stats['totalProfit'] * Decimal(player_stats['winnings'])/hand.totalpot*100)
                 elif hero_stats['totalProfit']>0 and 0>player_stats['totalProfit']:
-                    player_stats['vsHero'] = int(player_stats['totalProfit'] * Decimal(hero_stats['winnings'])/hand.totalpot)
+                    player_stats['vsHero'] = int(player_stats['totalProfit'] * Decimal(hero_stats['winnings'])/hand.totalpot*100)
                 else:
                     player_stats['vsHero'] = 0
             else:
