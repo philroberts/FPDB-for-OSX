@@ -376,6 +376,9 @@ or None if we fail to get the info """
         if hand.rake < 0 and (not hand.roundPenny or hand.rake < 0.01):
             log.error(_("hhc.getRake(): '%s': Amount collected (%s) is greater than the pot (%s)") % (hand.handid,str(hand.totalcollected), str(hand.totalpot)))
             raise FpdbParseError
+        elif hand.totalpot > 0 and Decimal(hand.totalpot/4) < hand.rake:
+            log.error(_("hhc.getRake(): '%s': Suspiciously high rake (%s) > 25 pct of pot (%s)") % (hand.handid,str(hand.rake), str(hand.totalpot)))
+            raise FpdbParseError
 
     def sanityCheck(self):
         """Check we aren't going to do some stupid things"""
