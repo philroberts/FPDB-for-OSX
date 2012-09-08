@@ -260,15 +260,11 @@ class Bovada(HandHistoryConverter):
             m = self.re_PlayerInfo.finditer(hand.handText)
         for a in m:
             if re.search(r"%s (\s?\[ME\]\s)?: Card dealt to a spot" % re.escape(a.group('PNAME')), hand.handText):
-                sitout = False
                 if a.group('HERO'):
                     self.playersMap[a.group('PNAME')] = 'Hero'
                 else:
                     self.playersMap[a.group('PNAME')] = 'Seat %s' % a.group('SEAT')
-            else:
-                self.playersMap[a.group('PNAME')] = 'Seat %s' % a.group('SEAT')
-                sitout = True
-            hand.addPlayer(int(a.group('SEAT')), self.playersMap[a.group('PNAME')], self.clearMoneyString(a.group('CASH')), None, sitout)
+                hand.addPlayer(int(a.group('SEAT')), self.playersMap[a.group('PNAME')], self.clearMoneyString(a.group('CASH')))
         if len(hand.players)==0:
             tmp = hand.handText[0:200]
             log.error(_("BovadaToFpdb.readPlayerStacks: '%s'") % tmp)
@@ -282,7 +278,7 @@ class Bovada(HandHistoryConverter):
         else:
             street, firststreet = 'THIRD', 'THIRD'   
         m = self.re_Action.finditer(hand.handText)
-        dealtIn = len(hand.players) - len(hand.sitout)
+        dealtIn = len(hand.players)# - len(hand.sitout)
         streetactions, streetno, players, i, contenders, bets = 0, 1, dealtIn, 0, dealtIn, 0
         for action in m:
             acts = action.groupdict()
