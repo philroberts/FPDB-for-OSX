@@ -1,0 +1,39 @@
+PokerStars Hand #85872891589:  5 Card Draw Limit ($0.25/$0.50 USD) - 2012/09/08 9:27:48 ET
+Table 'Boucolion V' 6-max Seat #1 is the button
+Seat 1: Player0 ($1.64 in chips)
+Seat 2: Player1 ($7.87 in chips)
+Seat 3: Player2 ($16.78 in chips)
+Seat 4: Player3 ($3.69 in chips)
+Seat 5: Hero ($4.58 in chips)
+Seat 6: Player4 ($8.29 in chips)
+Player1: posts small blind $0.10
+Player2: posts big blind $0.25
+*** DEALING HANDS ***
+Dealt to Hero [Jd Qd Td Kd 2s]
+Player3: folds
+Hero: raises $0.25 to $0.50
+Player4: calls $0.50
+Player0: folds
+Player1: calls $0.40
+Player2: calls $0.25
+Player1: discards 1 card
+Player2: discards 1 card
+Hero: discards 1 card [2s]
+Dealt to Hero [Jd Qd Td Kd] [9h]
+Player4: discards 3 cards
+Player1: checks
+Player2: checks
+Hero: bets $0.50
+Player4: folds
+Player1: folds
+Player2: folds
+Uncalled bet ($0.50) returned to Hero
+Hero collected $1.91 from pot
+*** SUMMARY ***
+Total pot $2 | Rake $0.09
+Seat 1: Player0 (button) folded before the Draw (didn't bet)
+Seat 2: Player1 (small blind) folded after the Draw
+Seat 3: Player2 (big blind) folded after the Draw
+Seat 4: Player3 folded before the Draw (didn't bet)
+Seat 5: Hero collected ($1.91)
+Seat 6: Player4 folded after the Draw
