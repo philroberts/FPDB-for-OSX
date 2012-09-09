@@ -326,15 +326,17 @@ class Bovada(HandHistoryConverter):
     def readAntes(self, hand):
         m = self.re_Antes.finditer(hand.handText)
         for a in m:
-            player = self.playersMap[a.group('PNAME')]
-            hand.addAnte(player, self.clearMoneyString(a.group('ANTE')))
+            player = self.playersMap.get(a.group('PNAME'))
+            if player:
+                hand.addAnte(player, self.clearMoneyString(a.group('ANTE')))
     
     def readBringIn(self, hand):
         m = self.re_BringIn.search(hand.handText,re.DOTALL)
         if m:
             #~ logging.debug("readBringIn: %s for %s" %(m.group('PNAME'),  m.group('BRINGIN')))
-            player = self.playersMap[m.group('PNAME')]
-            hand.addBringIn(player,  self.clearMoneyString(m.group('BRINGIN')))
+            player = self.playersMap.get(m.group('PNAME'))
+            if player:
+                hand.addBringIn(player,  self.clearMoneyString(m.group('BRINGIN')))
             
         if hand.gametype['sb'] == None and hand.gametype['bb'] == None:
             hand.gametype['sb'] = "1"
@@ -343,24 +345,27 @@ class Bovada(HandHistoryConverter):
     def readBlinds(self, hand):
         hand.setUncalledBets(True)
         for a in self.re_PostSB.finditer(hand.handText):
-            player = self.playersMap[a.group('PNAME')]
-            hand.addBlind(player, 'small blind', self.clearMoneyString(a.group('SB')))
-            if not hand.gametype['sb']:
-                hand.gametype['sb'] = self.clearMoneyString(a.group('SB'))
+            player = self.playersMap.get(a.group('PNAME'))
+            if player:
+                hand.addBlind(player, 'small blind', self.clearMoneyString(a.group('SB')))
+                if not hand.gametype['sb']:
+                    hand.gametype['sb'] = self.clearMoneyString(a.group('SB'))
         for a in self.re_PostBB.finditer(hand.handText):
-            player = self.playersMap['Big Blind']
-            hand.addBlind(player, 'big blind', self.clearMoneyString(a.group('BB')))
-            if not hand.gametype['bb']:
-                hand.gametype['bb'] = self.clearMoneyString(a.group('BB'))
-            if not hand.gametype['currency']:
-                if a.group('CURRENCY').find("$")!=-1:
-                    hand.gametype['currency']="USD"
-                elif re.match("^[0-9+]*$", a.group('CURRENCY')):
-                    hand.gametype['currency']="play"
+            player = self.playersMap.get('Big Blind')
+            if player:
+                hand.addBlind(player, 'big blind', self.clearMoneyString(a.group('BB')))
+                if not hand.gametype['bb']:
+                    hand.gametype['bb'] = self.clearMoneyString(a.group('BB'))
+                if not hand.gametype['currency']:
+                    if a.group('CURRENCY').find("$")!=-1:
+                        hand.gametype['currency']="USD"
+                    elif re.match("^[0-9+]*$", a.group('CURRENCY')):
+                        hand.gametype['currency']="play"
         self.fixBlinds(hand)
         for a in self.re_PostBoth.finditer(hand.handText):
-            player = self.playersMap[a.group('PNAME')]
-            hand.addBlind(player, 'both', self.clearMoneyString(a.group('SBBB')))
+            player = self.playersMap.get(a.group('PNAME'))
+            if player:
+                hand.addBlind(player, 'both', self.clearMoneyString(a.group('SBBB')))
         
     def fixBlinds(self, hand):
         # See http://sourceforge.net/apps/mantisbt/fpdb/view.php?id=115
