@@ -183,6 +183,7 @@ class Microgaming(HandHistoryConverter):
                     hand.buyinCurrency = 'NA'
                     hand.isKO = False
         hand.maxseats = None
+        hand.setUncalledBets(True)
         
     def readButton(self, hand):
         pass
@@ -350,10 +351,16 @@ class Microgaming(HandHistoryConverter):
                 else:
                     hand.addBet(street, pname, action.group('BET'))
             elif action.group('ATYPE') == 'AllIn':
+                amount = action.group('BET').replace(u',', u'')
+                if Decimal(amount) <= (hand.lastBet[street] - sum(hand.bets[street][pname])):
+                    hand.setUncalledBets(False)
                 hand.addAllIn(street, pname, action.group('BET'))
             elif action.group('ATYPE') == 'PostedToPlay':
-                amount = str(Decimal(action.group('BET')) + Decimal(action.group('BET'))/2)
-                hand.addBlind(pname, 'both', amount)
+                if action.group('BET') == hand.gametype['sb']:
+                    hand.addBlind(pname, 'secondsb', action.group('BET'))
+                else:
+                    amount = str(Decimal(action.group('BET')) + Decimal(action.group('BET'))/2)
+                    hand.addBlind(pname, 'both', amount)
             elif action.group('ATYPE') == 'Disconnect':
                 pass # Deal with elsewhere
             elif action.group('ATYPE') == 'Reconnect':
@@ -361,7 +368,7 @@ class Microgaming(HandHistoryConverter):
             elif action.group('ATYPE') == 'MuckCards':
                 pass # Deal with elsewhere
             elif action.group('ATYPE') == 'MoneyReturned':
-                pass # Deal with elsewhere
+                hand.setUncalledBets(False)
             else:
                 print (_("DEBUG:") + _("Unimplemented %s: '%s' '%s'") % ("readAction", pname, action.group('ATYPE')))
             #elif action.group('ATYPE') == 'ACTION_ALLIN':
@@ -377,7 +384,7 @@ class Microgaming(HandHistoryConverter):
 
 
     def readCollectPot(self,hand):
-        hand.setUncalledBets(True)
+        
         for m in self.re_CollectPot.finditer(hand.handText):
             pname = self.playerNameFromSeatNo(m.group('SEAT'), hand)
             pot = m.group('POT')
