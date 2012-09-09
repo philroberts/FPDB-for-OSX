@@ -208,6 +208,7 @@ class PartyPoker(HandHistoryConverter):
                ]
 
     def determineGameType(self, handText):
+        handText = handText.replace(u'\x00', u'')
         info = {}
         m = self.re_GameInfo.search(handText)
         if not m:
@@ -293,8 +294,8 @@ class PartyPoker(HandHistoryConverter):
 
 
     def readHandInfo(self, hand):
-        info = {}
-        m2 = None
+        info, m2 = {}, None
+        hand.handText = hand.handText.replace(u'\x00', u'')
         m  = self.re_HandInfo.search(hand.handText,re.DOTALL)
         if hand.gametype['type'] == 'ring':
             m2 = self.re_GameInfo.search(hand.handText)
