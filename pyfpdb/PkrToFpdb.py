@@ -112,7 +112,7 @@ class Pkr(HandHistoryConverter):
                         (\s(%(CUR)s)?(?P<BET>[%(NUM)s]+))?(\s\(all\-in\))?\s*$
                         """ %  subst, re.MULTILINE|re.VERBOSE)
             self.re_ShowdownAction   = re.compile(r"^%(PLYR)s shows (?P<CARDS>\[.+\])" % subst, re.MULTILINE)
-            self.re_CollectPot       = re.compile(r"^%(PLYR)s wins %(CUR)s(?P<POT>[%(NUM)s]+)" %  subst, re.MULTILINE)
+            self.re_CollectPot       = re.compile(r"^%(PLYR)s (ties, and )?wins %(CUR)s(?P<POT>[%(NUM)s]+)" %  subst, re.MULTILINE)
             self.re_sitsOut          = re.compile("^%s sits out" %  player_re, re.MULTILINE)
             self.re_ShownCards       = re.compile("^Seat (?P<SEAT>[0-9]+): %s (\(.*\) )?(?P<SHOWED>showed|mucked) (?P<CARDS>\[.+\])" %  player_re, re.MULTILINE)
 
