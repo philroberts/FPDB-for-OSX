@@ -924,8 +924,8 @@ class DerivedStats():
                     if player_stats['street%dCBDone' % (i+1)]:
                         for pname, folds in self.foldTofirstsBetOrRaiser(street, name).iteritems():
                             #print "DEBUG: hand.handid, pname.encode('utf8'), street, folds, '--', name, 'lastbet on ', hand.actionStreets[i+1]
-                            player_stats['foldToStreet%sCBChance' % (i+1)] = True
-                            player_stats['foldToStreet%sCBDone' % (i+1)] = folds
+                            self.handsplayers[pname]['foldToStreet%sCBChance' % (i+1)] = True
+                            self.handsplayers[pname]['foldToStreet%sCBDone' % (i+1)] = folds
 
     def calcCalledRaiseStreet0(self, hand):
         """
