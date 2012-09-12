@@ -735,68 +735,73 @@ or None if we fail to get the info """
             hand.gametype['bb'] = "2"
 
     def readBlinds(self, hand):
-        if hand.gametype['base'] == 'hold':
-            street = 'PREFLOP'
-        elif hand.gametype['base'] == 'draw':
-            street = 'DEAL'
-        allinBlinds = {}
-        blindsantes = hand.handText.split(street)[0]
-        bb, sb = None, None
-        for a in self.re_PostSB.finditer(blindsantes):
-            #print "DEBUG: found sb: '%s' '%s'" %(self.playerNameFromSeatNo(a.group('PSEAT'), hand), a.group('SB'))
-            sb = a.group('SB')
-            player = self.playerNameFromSeatNo(a.group('PSEAT'), hand)
-            self.adjustMergeTourneyStack(hand, player, sb)
-            hand.addBlind(player,'small blind', sb)
-            if not hand.gametype['sb'] or hand.gametype['secondGame']:
-                hand.gametype['sb'] = sb
-        for a in self.re_PostBB.finditer(blindsantes):
-            #print "DEBUG: found bb: '%s' '%s'" %(self.playerNameFromSeatNo(a.group('PSEAT'), hand), a.group('BB'))
-            bb = a.group('BB')
-            player = self.playerNameFromSeatNo(a.group('PSEAT'), hand)
-            self.adjustMergeTourneyStack(hand, player, bb)
-            hand.addBlind(player, 'big blind', bb)
-            if not hand.gametype['bb'] or hand.gametype['secondGame']:
-                hand.gametype['bb'] = bb
-        for a in self.re_PostBoth.finditer(blindsantes):
-            bb = Decimal(self.info['bb'])
-            amount = Decimal(a.group('SBBB'))
-            player = self.playerNameFromSeatNo(a.group('PSEAT'), hand)
-            self.adjustMergeTourneyStack(hand, player, a.group('SBBB'))
-            if amount < bb:
-                hand.addBlind(player, 'small blind', a.group('SBBB'))
-            elif amount == bb:
-                hand.addBlind(player, 'big blind', a.group('SBBB'))
-            else:
-                hand.addBlind(player, 'both', a.group('SBBB'))
-        if sb is None or bb is None:
-            m = self.re_Action.finditer(blindsantes)
-            for action in m:
-                player = self.playerNameFromSeatNo(action.group('PSEAT'), hand)
-                #print "DEBUG: found: '%s' '%s'" %(self.playerNameFromSeatNo(action.group('PSEAT'), hand), action.group('BET'))
-                if sb is None:
-                    if action.group('BET') and action.group('BET')!= '0.00':
-                        sb = action.group('BET')  
-                        self.adjustMergeTourneyStack(hand, player, sb)
-                        hand.addBlind(player, 'small blind', sb)
-                        if not hand.gametype['sb'] or hand.gametype['secondGame']:
-                            hand.gametype['sb'] = sb
-                    elif action.group('BET') == '0.00':
-                        allinBlinds[player] = 'small blind'
-                        #log.error(_(_("MergeToFpdb.readBlinds: Cannot calcualte tourney all-in blind for hand '%s'")) % hand.handid)
-                        #raise FpdbParseError
-                elif sb and bb is None:
-                    if action.group('BET') and action.group('BET')!= '0.00':
-                        bb = action.group('BET')
-                        self.adjustMergeTourneyStack(hand, player, bb)
-                        hand.addBlind(player, 'big blind', bb)
-                        if not hand.gametype['bb'] or hand.gametype['secondGame']:
-                            hand.gametype['bb'] = bb
-                    elif action.group('BET') == '0.00':
-                        allinBlinds[player] = 'big blind'
-                        #log.error(_(_("MergeToFpdb.readBlinds: Cannot calcualte tourney all-in blind for hand '%s'")) % hand.handid)
-                        #raise FpdbParseError
-        self.fixTourBlinds(hand, allinBlinds)
+        if (hand.gametype['category'], hand.gametype['limitType']) == ("badugi", "hp"):
+            if hand.gametype['sb'] == None and hand.gametype['bb'] == None:
+                hand.gametype['sb'] = "1"
+                hand.gametype['bb'] = "2"
+        else:
+            if hand.gametype['base'] == 'hold':
+                street = 'PREFLOP'
+            elif hand.gametype['base'] == 'draw':
+                street = 'DEAL'
+            allinBlinds = {}
+            blindsantes = hand.handText.split(street)[0]
+            bb, sb = None, None
+            for a in self.re_PostSB.finditer(blindsantes):
+                #print "DEBUG: found sb: '%s' '%s'" %(self.playerNameFromSeatNo(a.group('PSEAT'), hand), a.group('SB'))
+                sb = a.group('SB')
+                player = self.playerNameFromSeatNo(a.group('PSEAT'), hand)
+                self.adjustMergeTourneyStack(hand, player, sb)
+                hand.addBlind(player,'small blind', sb)
+                if not hand.gametype['sb'] or hand.gametype['secondGame']:
+                    hand.gametype['sb'] = sb
+            for a in self.re_PostBB.finditer(blindsantes):
+                #print "DEBUG: found bb: '%s' '%s'" %(self.playerNameFromSeatNo(a.group('PSEAT'), hand), a.group('BB'))
+                bb = a.group('BB')
+                player = self.playerNameFromSeatNo(a.group('PSEAT'), hand)
+                self.adjustMergeTourneyStack(hand, player, bb)
+                hand.addBlind(player, 'big blind', bb)
+                if not hand.gametype['bb'] or hand.gametype['secondGame']:
+                    hand.gametype['bb'] = bb
+            for a in self.re_PostBoth.finditer(blindsantes):
+                bb = Decimal(self.info['bb'])
+                amount = Decimal(a.group('SBBB'))
+                player = self.playerNameFromSeatNo(a.group('PSEAT'), hand)
+                self.adjustMergeTourneyStack(hand, player, a.group('SBBB'))
+                if amount < bb:
+                    hand.addBlind(player, 'small blind', a.group('SBBB'))
+                elif amount == bb:
+                    hand.addBlind(player, 'big blind', a.group('SBBB'))
+                else:
+                    hand.addBlind(player, 'both', a.group('SBBB'))
+            if sb is None or bb is None:
+                m = self.re_Action.finditer(blindsantes)
+                for action in m:
+                    player = self.playerNameFromSeatNo(action.group('PSEAT'), hand)
+                    #print "DEBUG: found: '%s' '%s'" %(self.playerNameFromSeatNo(action.group('PSEAT'), hand), action.group('BET'))
+                    if sb is None:
+                        if action.group('BET') and action.group('BET')!= '0.00':
+                            sb = action.group('BET')  
+                            self.adjustMergeTourneyStack(hand, player, sb)
+                            hand.addBlind(player, 'small blind', sb)
+                            if not hand.gametype['sb'] or hand.gametype['secondGame']:
+                                hand.gametype['sb'] = sb
+                        elif action.group('BET') == '0.00':
+                            allinBlinds[player] = 'small blind'
+                            #log.error(_(_("MergeToFpdb.readBlinds: Cannot calcualte tourney all-in blind for hand '%s'")) % hand.handid)
+                            #raise FpdbParseError
+                    elif sb and bb is None:
+                        if action.group('BET') and action.group('BET')!= '0.00':
+                            bb = action.group('BET')
+                            self.adjustMergeTourneyStack(hand, player, bb)
+                            hand.addBlind(player, 'big blind', bb)
+                            if not hand.gametype['bb'] or hand.gametype['secondGame']:
+                                hand.gametype['bb'] = bb
+                        elif action.group('BET') == '0.00':
+                            allinBlinds[player] = 'big blind'
+                            #log.error(_(_("MergeToFpdb.readBlinds: Cannot calcualte tourney all-in blind for hand '%s'")) % hand.handid)
+                            #raise FpdbParseError
+            self.fixTourBlinds(hand, allinBlinds)
 
     def fixTourBlinds(self, hand, allinBlinds):
         # FIXME

@@ -1,0 +1,70 @@
+----PRIMA.DAT----
+
+<Game hhversion="2" id="4519660221" date="2012-08-10 23:38:09" unicodetablename="RABlAGEAbAAgAFAATABPACAAMgA1ADEAIAAoAEQAZQBlAHAAKQAgAC0AIACsIDUAIABNAGkAbgA=" tablename="Deal PLO 251 (Deep) - €5 Min" stakes="0.05|0.10" betlimit="PL" tabletype="Cash Game" gametypeid="50" gametype="Omaha" realmoney="true" currencysymbol="rCA=" playerseat="3" betamount="45" istournament="0" rake="106">
+   <Seats>
+      <Seat num="1" alias="Player0" unicodealias="bgBpAG4AagBhAGIAbwB5AA==" balance="10.74" endbalance="0.74" dealer="true"/>
+      <Seat num="2" alias="Player1" unicodealias="MwAzAEsAbwByAG8AdgB5AA==" balance="14.18" endbalance="13.73"/>
+      <Seat num="3" alias="Hero" unicodealias="aQBwAGwAYQB5AHQAaQBsAHQAZQBkAA==" balance="10.00" endbalance="9.55"/>
+      <Seat num="4" alias="Player2" unicodealias="YQBrAGwAZQB0AHQAZQA=" balance="10.00" endbalance="20.29"/>
+      <Seat num="5" alias="Player3" unicodealias="awBlAGIAYQBiAG0AYQBnAGUA" balance="7.60" endbalance="7.60"/>
+      <Seat num="6" alias="Player4" unicodealias="QgBJAEcATQAxADkAOAA3AA==" balance="57.20" endbalance="56.75"/>
+   </Seats>
+   <Gameplay>
+      <Action seq="1" type="SmallBlind" seat="2" value="0.05"/>
+      <Action seq="2" type="BigBlind" seat="3" value="0.10"/>
+      <Action seq="3" type="DealCards" seat="3">
+         <Card value="Q" suit="s" id="11"/>
+         <Card value="J" suit="c" id="23"/>
+         <Card value="9" suit="c" id="21"/>
+         <Card value="8" suit="d" id="33"/>
+      </Action>
+      <Action seq="4" type="Call" seat="4" value="0.10"/>
+      <Action seq="5" type="Fold" seat="5"/>
+      <Action seq="6" type="Raise" seat="6" value="0.45"/>
+      <Action seq="7" type="Call" seat="1" value="0.45"/>
+      <Action seq="8" type="Call" seat="2" value="0.40"/>
+      <Action seq="9" type="Call" seat="3" value="0.35"/>
+      <Action seq="10" type="Call" seat="4" value="0.35"/>
+      <Action seq="11" type="DealFlop">
+         <Card value="7" suit="s" id="6"/>
+         <Card value="K" suit="s" id="12"/>
+         <Card value="5" suit="h" id="43"/>
+      </Action>
+      <Action seq="12" type="Check" seat="2"/>
+      <Action seq="13" type="Check" seat="3"/>
+      <Action seq="14" type="Bet" seat="4" value="1.40"/>
+      <Action seq="15" type="Fold" seat="6"/>
+      <Action seq="16" type="Call" seat="1" value="1.40"/>
+      <Action seq="17" type="Fold" seat="2"/>
+      <Action seq="18" type="Fold" seat="3"/>
+      <Action seq="19" type="DealTurn">
+         <Card value="5" suit="d" id="30"/>
+      </Action>
+      <Action seq="20" type="Bet" seat="4" value="2.50"/>
+      <Action seq="21" type="Call" seat="1" value="2.50"/>
+      <Action seq="22" type="DealRiver">
+         <Card value="Q" suit="h" id="50"/>
+      </Action>
+      <Action seq="23" type="Check" seat="4"/>
+      <Action seq="24" type="AllIn" seat="1" value="6.39"/>
+      <Action seq="25" type="AllIn" seat="4" value="5.65"/>
+      <Action seq="26" type="MoneyReturned" seat="1" value="0.74"/>
+      <Action seq="27" type="ShowCards" seat="1">
+         <Card value="9" suit="s" id="8"/>
+         <Card value="2" suit="c" id="14"/>
+         <Card value="A" suit="s" id="0"/>
+         <Card value="2" suit="h" id="40"/>
+      </Action>
+      <Action seq="28" type="ShowCards" seat="4">
+         <Card value="K" suit="h" id="51"/>
+         <Card value="3" suit="s" id="2"/>
+         <Card value="7" suit="c" id="19"/>
+         <Card value="3" suit="d" id="28"/>
+      </Action>
+      <Action type="Win">
+         <Seat num="4" amount="20.29" pot="0" type="" lowhandwin="0"/>
+      </Action>
+   </Gameplay>
+</Game>
+
+ExtendedTableName: Deal PLO 251 (Deep) - €5 Min [197715]

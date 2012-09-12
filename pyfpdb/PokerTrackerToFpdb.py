@@ -565,8 +565,8 @@ class PokerTracker(HandHistoryConverter):
                 else:
                     if curr_pot > amount:
                         hand.addCall( street, action.group('PNAME'), action.group('BET') )
-                    elif not action.group('RAISETO') and action.group('ATYPE')==' Raise':
-                        hand.addRaiseBy( street, action.group('PNAME'), action.group('BET') )
+                    #elif not action.group('RAISETO') and action.group('ATYPE')==' Raise':
+                    #    hand.addRaiseBy( street, action.group('PNAME'), action.group('BET') )
                     else:
                         hand.addRaiseTo( street, action.group('PNAME'), action.group('BET') )
                 curr_pot = amount

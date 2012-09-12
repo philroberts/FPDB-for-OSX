@@ -117,6 +117,7 @@ class Cake(HandHistoryConverter):
     re_Finished         = re.compile(r"%(PLYR)s finished \d+ out of \d+ players" %  substitutions, re.MULTILINE)
     re_Dealer           = re.compile(r"Dealer:") #Some Cake hands just omit the game line so we can just discard them as partial
     re_CoinFlip         = re.compile(r"Coin\sFlip\sT\d+", re.MULTILINE)
+    re_ReturnBet        = re.compile(r"returns\suncalled\sbet", re.MULTILINE)
 
     def compilePlayerRegexs(self,  hand):
         pass
@@ -301,6 +302,8 @@ class Cake(HandHistoryConverter):
         
     def readBlinds(self, hand):
         liveBlind = True
+        if not self.re_ReturnBet.search(hand.handText):
+            hand.setUncalledBets(True)
         for a in self.re_PostSB.finditer(hand.handText):
             if liveBlind:
                 hand.addBlind(a.group('PNAME'), 'small blind', self.convertMoneyString('SB',a))
@@ -310,7 +313,6 @@ class Cake(HandHistoryConverter):
                 hand.addBlind(a.group('PNAME'), 'secondsb', self.convertMoneyString('SB', a))
         for a in self.re_PostBB.finditer(hand.handText):
             hand.addBlind(a.group('PNAME'), 'big blind', self.convertMoneyString('BB', a))
-            hand.setUncalledBets(True)
         for a in self.re_PostBoth.finditer(hand.handText):
             sb = Decimal(self.clearMoneyString(a.group('SB')))
             bb = Decimal(self.clearMoneyString(a.group('BB')))
@@ -333,21 +335,19 @@ class Cake(HandHistoryConverter):
             #print "DEBUG: acts: %s" %acts
             bet = self.convertMoneyString('BET', action)
             actionType = action.group('ATYPE')
+            if street != 'PREFLOP' or actionType != ' folds':
+                hand.setUncalledBets(False)
             if actionType == ' folds':
                 hand.addFold( street, action.group('PNAME'))
             elif actionType == ' checks':
                 hand.addCheck( street, action.group('PNAME'))
             elif actionType == ' calls':
-                hand.setUncalledBets(None)
                 hand.addCall( street, action.group('PNAME'), bet )
             elif actionType == ' raises':
-                hand.setUncalledBets(None)
                 hand.addRaiseTo( street, action.group('PNAME'), bet )
             elif actionType == ' bets':
-                hand.setUncalledBets(None)
                 hand.addBet( street, action.group('PNAME'), bet )
             elif actionType == ' is all in':
-                hand.setUncalledBets(None)
                 hand.addAllIn(street, action.group('PNAME'), bet)
             else:
                 print (_("DEBUG:") + " " + _("Unimplemented %s: '%s' '%s'") % ("readAction", action.group('PNAME'), action.group('ATYPE')))

@@ -1,0 +1,54 @@
+----PRIMA.DAT----
+
+<Game hhversion="2" id="4519644415" date="2012-08-10 23:28:15" unicodetablename="RABlAGEAbAAgAFAATABPACAAMQAgAC0AIACsIDEAMAAgAE0AYQB4AA==" tablename="Deal PLO 1 - €10 Max" stakes="0.05|0.10" betlimit="PL" tabletype="Cash Game" gametypeid="50" gametype="Omaha" realmoney="true" currencysymbol="rCA=" playerseat="1" betamount="160" istournament="0" rake="72">
+   <Seats>
+      <Seat num="1" alias="Hero" unicodealias="aQBwAGwAYQB5AHQAaQBsAHQAZQBkAA==" balance="10.00" endbalance="8.40"/>
+      <Seat num="2" alias="Player0" unicodealias="aABoADEAOQA0AA==" balance="15.92" endbalance="15.92"/>
+      <Seat num="3" alias="Player1" unicodealias="TwBNAEcAVABoAGUARwByAGUAYQB0AEQAYQBuAA==" balance="33.15" endbalance="33.15"/>
+      <Seat num="4" alias="Player2" unicodealias="cwBoAGEAbgBlAGEAYwBlAA==" balance="27.84" endbalance="21.44" dealer="true"/>
+      <Seat num="5" alias="Player3" unicodealias="TQBhAG4AbgBlAEUA" balance="9.58" endbalance="9.58" sittingout="true"/>
+      <Seat num="6" alias="Player4" unicodealias="QgBJAEcATQAxADkAOAA3AA==" balance="10.00" endbalance="17.28"/>
+   </Seats>
+   <Gameplay>
+      <Action seq="1" type="SmallBlind" seat="6" value="0.05"/>
+      <Action seq="2" type="BigBlind" seat="1" value="0.10"/>
+      <Action seq="3" type="DealCards" seat="1">
+         <Card value="5" suit="d" id="30"/>
+         <Card value="7" suit="d" id="32"/>
+         <Card value="K" suit="h" id="51"/>
+         <Card value="J" suit="h" id="49"/>
+      </Action>
+      <Action seq="4" type="Fold" seat="2"/>
+      <Action seq="5" type="Fold" seat="3"/>
+      <Action seq="6" type="Call" seat="4" value="0.10"/>
+      <Action seq="7" type="Call" seat="6" value="0.05"/>
+      <Action seq="8" type="Bet" seat="1" value="0.30"/>
+      <Action seq="9" type="Call" seat="4" value="0.30"/>
+      <Action seq="10" type="Call" seat="6" value="0.30"/>
+      <Action seq="11" type="DealFlop">
+         <Card value="Q" suit="h" id="50"/>
+         <Card value="4" suit="h" id="42"/>
+         <Card value="3" suit="c" id="15"/>
+      </Action>
+      <Action seq="12" type="Bet" seat="6" value="1.20"/>
+      <Action seq="13" type="Call" seat="1" value="1.20"/>
+      <Action seq="14" type="Call" seat="4" value="1.20"/>
+      <Action seq="15" type="DealTurn">
+         <Card value="K" suit="d" id="38"/>
+      </Action>
+      <Action seq="16" type="Bet" seat="6" value="4.80"/>
+      <Action seq="17" type="Fold" seat="1"/>
+      <Action seq="18" type="Call" seat="4" value="4.80"/>
+      <Action seq="19" type="DealRiver">
+         <Card value="8" suit="d" id="33"/>
+      </Action>
+      <Action seq="20" type="AllIn" seat="6" value="3.60"/>
+      <Action seq="21" type="Fold" seat="4"/>
+      <Action seq="22" type="MuckCards" seat="6"/>
+      <Action type="Win">
+         <Seat num="6" amount="17.28" pot="0" type="" lowhandwin="0"/>
+      </Action>
+   </Gameplay>
+</Game>
+
+ExtendedTableName: Deal PLO 1 - €10 Max [197705]
