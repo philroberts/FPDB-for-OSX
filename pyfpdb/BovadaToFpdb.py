@@ -186,6 +186,19 @@ class Bovada(HandHistoryConverter):
              
         if 'CURRENCY' in mg and mg['CURRENCY'] is not None:
             info['currency'] = self.currencies[mg['CURRENCY']]
+            
+        if info['limitType'] == 'fl' and info['bb'] is not None:
+            if info['type'] == 'ring':
+                try:
+                    info['sb'] = self.Lim_Blinds[mg['BB']][0]
+                    info['bb'] = self.Lim_Blinds[mg['BB']][1]
+                except KeyError:
+                    tmp = handText[0:200]
+                    log.error(_("PokerStarsToFpdb.determineGameType: Lim_Blinds has no lookup for '%s' - '%s'") % (mg['BB'], tmp))
+                    raise FpdbParseError
+            else:
+                info['sb'] = str((Decimal(mg['SB'])/2).quantize(Decimal("0.01")))
+                info['bb'] = str(Decimal(mg['SB']).quantize(Decimal("0.01")))   
 
         return info
 

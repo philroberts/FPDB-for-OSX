@@ -1,0 +1,44 @@
+﻿Bovada Hand #2599656336 TBL#1039719 HOLDEM Fixed Limit - 2012-04-16 04:14:53
+Seat 1: UTG+2 ($1,597 in chips)
+Seat 3: UTG+3 ($1,436 in chips)
+Seat 4: Dealer ($1,154 in chips)
+Seat 5: Small Blind ($1,066.02 in chips)
+Seat 6: Big Blind ($677 in chips)
+Seat 8: UTG [ME] ($527 in chips)
+Seat 9: UTG+1 ($180 in chips)
+Dealer : Set dealer/Bring in spot [4] 
+Small Blind : Ante/Small Blind $10 
+Big Blind : Big blind/Bring in $20 
+UTG+3 : Posts dead chip $30 
+*** HOLE CARDS ***
+UTG+2 : Card dealt to a spot [Ad 7h] 
+UTG+3 : Card dealt to a spot [4h Qd] 
+Dealer : Card dealt to a spot [2d 9h] 
+Small Blind : Card dealt to a spot [9d Td] 
+Big Blind : Card dealt to a spot [3s 7c] 
+UTG  [ME] : Card dealt to a spot [Qh 3d] 
+UTG+1 : Card dealt to a spot [7d 5d] 
+UTG  [ME] : Folds
+UTG+1 : Folds
+UTG+2 : Folds
+UTG+3 : Checks
+Dealer : Folds
+Small Blind : Raises $40 
+Big Blind : Folds
+UTG+3 : Calls $20 
+Small Blind : Bets $20 
+UTG+3 : Folds
+Small Blind : Return uncalled portion of bet $20 
+Small Blind : Does not show [9d Td] (One pair)
+Small Blind : Hand result $107 
+UTG+1 : Table deposit $674 
+*** SUMMARY ***
+Total Pot($110) | Rake ($3) 
+Board [Kd 9s 5c  ]
+Seat 1: UTG+2 Folded on the POCKET CARDS
+Seat 3: UTG+3 Folded on the FLOP
+Seat 4: Dealer Folded on the POCKET CARDS
+Seat 5: Small Blind $107 [Does not show]  
+Seat 6: Big Blind Folded on the POCKET CARDS
+Seat 8: UTG Folded on the POCKET CARDS
+Seat 9: UTG+1 Folded on the POCKET CARDS
