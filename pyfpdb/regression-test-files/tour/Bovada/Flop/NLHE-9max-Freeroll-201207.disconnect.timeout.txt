@@ -1,0 +1,55 @@
+Bovada Hand #2648080702: HOLDEM Tournament #1930685 TBL#29, No Limit- Level 7 (100/200) - 2012-07-31 21:36:21
+Seat 1: UTG+5 (5,135 in chips)
+Seat 2: Dealer (14,133 in chips)
+Seat 3: Small Blind (1,704 in chips)
+Seat 4: Big Blind (420 in chips)
+Seat 5: UTG (4,460 in chips)
+Seat 6: UTG+1 (8,844 in chips)
+Seat 7: UTG+2 (5,678 in chips)
+Seat 8: UTG+3 (50 in chips)
+Seat 9: UTG+4 [ME] (3,404 in chips)
+Dealer : Set dealer/Bring in spot [2] 
+Small Blind : Ante/Small blind 100 
+Big Blind : Big blind/Bring in 200 
+*** HOLE CARDS ***
+UTG+5 : Card dealt to a spot [Jd Ac] 
+Dealer : Card dealt to a spot [3d 7h] 
+Small Blind : Card dealt to a spot [5c 5h] 
+Big Blind : Card dealt to a spot [4s 9d] 
+UTG : Card dealt to a spot [4d As] 
+UTG+1 : Card dealt to a spot [7s 7d] 
+UTG+2 : Card dealt to a spot [Kd Qh] 
+UTG+3 : Card dealt to a spot [2d Js] 
+UTG+4 [ME] : Card dealt to a spot [Qd Ad] 
+UTG : Call 200 
+UTG+1 : Raises 8792 
+UTG+2 : Folds
+UTG+3 : Fold(Blind Disconnected)
+UTG+4 [ME] : All-in 3404 
+UTG+5 : Folds
+Dealer : Folds
+Small Blind : All-in(timeout) 1604 
+Big Blind : Fold(Blind Disconnected)
+UTG : Folds
+UTG+1 : Return uncalled portion of bet 5388 
+Small Blind : Showdown [Jh Jc 5h 5c Kh] (Two pair)
+UTG+1 : Showdown [Jh Jc 7s 7d Kh] (Two pair)
+UTG+4 [ME] : Showdown [Jh Jc Ad Kh Qd] (One pair)
+UTG+1 : Hand Result-Side Pot 3400 
+UTG+1 : Hand Result 5512 
+Small Blind : Ranking 153 
+UTG+4 [ME] : Ranking 152 
+Small Blind : Stand
+UTG+4 [ME] : Stand
+*** SUMMARY ***
+Total Pot(8912)
+Board [Jh Jc 6c 3c Kh]
+Seat 1: UTG+5 Folded on the POCKET CARDS
+Seat 2: Dealer Folded on the POCKET CARDS
+Seat 3: Small Blind  lose with Two pair [5c 5h-Jh Jc 5h 5c Kh]  
+Seat 4: Big Blind Folded on the POCKET CARDS
+Seat 5: UTG Folded on the POCKET CARDS
+Seat 6: UTG+1 8912  with Two pair [7s 7d-Jh Jc 7s 7d Kh]  
+Seat 7: UTG+2 Folded on the POCKET CARDS
+Seat 8: UTG+3 Folded on the POCKET CARDS
+Seat 9: UTG+4  lose with One pair [Qd Ad-Jh Jc Ad Kh Qd]  

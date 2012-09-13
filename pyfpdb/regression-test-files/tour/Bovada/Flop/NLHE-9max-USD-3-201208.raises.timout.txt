@@ -1,0 +1,54 @@
+Bovada Hand #2648848668: HOLDEM Tournament #1433519 TBL#17, No Limit- Level 7 (100/200) - 2012-08-03 12:50:33
+Seat 1: UTG+4 (13,125 in chips)
+Seat 2: UTG+5 (15,146 in chips)
+Seat 3: Dealer (5,125 in chips)
+Seat 4: Small Blind [ME] (11,625 in chips)
+Seat 5: Big Blind (12,830 in chips)
+Seat 6: UTG (16,880 in chips)
+Seat 7: UTG+1 (18,275 in chips)
+Seat 8: UTG+2 (15,935 in chips)
+Seat 9: UTG+3 (5,959 in chips)
+Dealer : Set dealer/Bring in spot [3] 
+Small Blind [ME] : Ante/Small blind 100 
+Big Blind : Big blind/Bring in 200 
+*** HOLE CARDS ***
+UTG+4 : Card dealt to a spot [Qh Tc] 
+UTG+5 : Card dealt to a spot [9d 3c] 
+Dealer : Card dealt to a spot [7d 8h] 
+Small Blind [ME] : Card dealt to a spot [7c Qc] 
+Big Blind : Card dealt to a spot [Kh Kd] 
+UTG : Card dealt to a spot [8s 5c] 
+UTG+1 : Card dealt to a spot [9c Td] 
+UTG+2 : Card dealt to a spot [7s 6s] 
+UTG+3 : Card dealt to a spot [Th 3d] 
+UTG : Folds
+UTG+1 : Folds
+UTG+2 : Folds(timeout)
+UTG+3 : Folds
+UTG+2 : Sit out
+UTG+4 : Raises 500 
+UTG+5 : Folds
+Dealer : Folds
+Small Blind [ME] : Folds
+Big Blind : Raises 800 
+UTG+4 : Raises(timeout) 1700 
+Big Blind : Raises 2600 
+UTG+4 : Call 900 
+Big Blind : Bets 5300 
+UTG+2 : Re-join
+UTG+4 : Folds
+Big Blind : Return uncalled portion of bet 5300 
+Big Blind : Does not show [Kh Kd] (Two pair)
+Big Blind : Hand Result 5300 
+*** SUMMARY ***
+Total Pot(5300)
+Board [2s 2d Ad  ]
+Seat 1: UTG+4 Folded on the FLOP
+Seat 2: UTG+5 Folded on the POCKET CARDS
+Seat 3: Dealer Folded on the POCKET CARDS
+Seat 4: Small Blind Folded on the POCKET CARDS
+Seat 5: Big Blind 5300 [Does not show]  
+Seat 6: UTG Folded on the POCKET CARDS
+Seat 7: UTG+1 Folded on the POCKET CARDS
+Seat 8: UTG+2 Folded on the POCKET CARDS
+Seat 9: UTG+3 Folded on the POCKET CARDS

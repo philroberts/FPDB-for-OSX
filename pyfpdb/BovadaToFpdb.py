@@ -68,6 +68,7 @@ class Bovada(HandHistoryConverter):
     games = {                          # base, category
                                "HOLDEM" : ('hold','holdem'),
                                 'OMAHA' : ('hold','omahahi'),
+                           'OMAHA HiLo' : ('hold','omahahilo'),
                                 '7CARD' : ('stud', 'studhi'),
                }
     currencies = {'$':'USD', '':'T$'}
@@ -76,7 +77,7 @@ class Bovada(HandHistoryConverter):
     re_GameInfo     = re.compile(u"""
           (Bovada|Bodog)\sHand\s\#(?P<HID>[0-9]+):?\s+
           (TBL\#(?P<TABLE>.+?)\s)?
-          (?P<GAME>HOLDEM|OMAHA|7CARD)\s+
+          (?P<GAME>HOLDEM|OMAHA|7CARD|OMAHA\sHiLo)\s+
           (Tournament\s\#                # open paren of tournament info Tournament #2194767 TBL#1, 
           (?P<TOURNO>\d+)\sTBL\#(?P<TABLENO>\d+),
           \s)?
@@ -112,20 +113,20 @@ class Bovada(HandHistoryConverter):
     # These used to be compiled per player, but regression tests say
     # we don't have to, and it makes life faster.
     re_PostSB           = re.compile(r"^%(PLYR)s (\s?\[ME\]\s)?: (Ante\/Small (B|b)lind|Posts chip) (?P<CURRENCY>%(CUR)s)(?P<SB>[%(NUM)s]+)" %  substitutions, re.MULTILINE)
-    re_PostBB           = re.compile(r"^Big Blind (\s?\[ME\]\s)?: Big blind\/Bring in (?P<CURRENCY>%(CUR)s)(?P<BB>[%(NUM)s]+)" %  substitutions, re.MULTILINE)
+    re_PostBB           = re.compile(r"^%(PLYR)s (\s?\[ME\]\s)?: Big blind\/Bring in (?P<CURRENCY>%(CUR)s)(?P<BB>[%(NUM)s]+)" %  substitutions, re.MULTILINE)
     re_Antes            = re.compile(r"^%(PLYR)s (\s?\[ME\]\s)?: Ante chip %(CUR)s(?P<ANTE>[%(NUM)s]+)" % substitutions, re.MULTILINE)
     re_BringIn          = re.compile(r"^%(PLYR)s (\s?\[ME\]\s)?: Bring_in chip %(CUR)s(?P<BRINGIN>[%(NUM)s]+)" % substitutions, re.MULTILINE)
     re_PostBoth         = re.compile(r"^%(PLYR)s (\s?\[ME\]\s)?: Posts dead chip %(CUR)s(?P<SBBB>[%(NUM)s]+)" %  substitutions, re.MULTILINE)
     re_HeroCards        = re.compile(r"^%(PLYR)s  ?\[ME\] : Card dealt to a spot \[(?P<NEWCARDS>.+?)\]" % substitutions, re.MULTILINE)
     re_Action           = re.compile(r"""(?P<ACTION>
-                        ^%(PLYR)s\s(\s?\[ME\]\s)?:(\sD)?(?P<ATYPE>\s(B|b)ets|\sChecks|\sRaises|\sCalls?|\sFolds|\sBring_in\schip|\sAll\-in(\(raise\))?|\sCard\sdealt\sto\sa\sspot)
-                        (\s%(CUR)s(?P<BET>[%(NUM)s]+)(\sto\s%(CUR)s(?P<BETTO>[%(NUM)s]+))?|\s\[(?P<NEWCARDS>.+?)\])?)"""
+                        ^%(PLYR)s\s(\s?\[ME\]\s)?:(\sD)?(?P<ATYPE>\s(B|b)ets|\sChecks|\sRaises|\sCalls?|\sFold|\sBring_in\schip|\sAll\-in(\((raise|raise\-timeout)\))?|\sCard\sdealt\sto\sa\sspot)
+                        (\schip\sinfo)?(\(timeout\))?(\s%(CUR)s(?P<BET>[%(NUM)s]+)(\sto\s%(CUR)s(?P<BETTO>[%(NUM)s]+))?|\s\[(?P<NEWCARDS>.+?)\])?)"""
                          %  substitutions, re.MULTILINE|re.VERBOSE)
     re_ShowdownAction   = re.compile(r"^%(PLYR)s (?P<HERO>\s?\[ME\]\s)?: Card dealt to a spot \[(?P<CARDS>.*)\]" % substitutions, re.MULTILINE)
     #re_ShownCards       = re.compile("^Seat (?P<SEAT>[0-9]+): %(PLYR)s %(BRKTS)s(?P<SHOWED>showed|mucked) \[(?P<CARDS>.*)\]( and won \([.\d]+\) with (?P<STRING>.*))?" % substitutions, re.MULTILINE)
-    re_CollectPot       = re.compile(r"^%(PLYR)s (\s?\[ME\]\s)?: Hand (R|r)esult(\-Side pot)? %(CUR)s(?P<POT>[%(NUM)s]+)" %  substitutions, re.MULTILINE)
+    re_CollectPot       = re.compile(r"^%(PLYR)s (\s?\[ME\]\s)?: Hand (R|r)esult(\-Side (P|p)ot)? %(CUR)s(?P<POT>[%(NUM)s]+)" %  substitutions, re.MULTILINE)
     re_Dealt            = re.compile(r"^%(PLYR)s (\s?\[ME\]\s)?: Card dealt to a spot" % substitutions, re.MULTILINE)
-    re_Buyin            = re.compile(r"\s-\s(?P<BUYIN>(?P<BIAMT>[%(LS)s\d\.]+)?-(?P<BIRAKE>[%(LS)s\d\.]+)?|Freeroll)\s-\s" % substitutions)
+    re_Buyin            = re.compile(r"\s-\s(?P<BUYIN>(?P<BIAMT>[%(LS)s\d\.]+)?-?(?P<BIRAKE>[%(LS)s\d\.]+)?)?\s-\s" % substitutions)
     re_Stakes           = re.compile(r"RING\s-\s(?P<CURRENCY>%(LS)s|)?(?P<SB>[%(NUM)s]+)-(%(LS)s)?(?P<BB>[%(NUM)s]+)\s-\s" % substitutions)
     #Small Blind : Hand result $19
     
@@ -231,8 +232,11 @@ class Bovada(HandHistoryConverter):
                             raise FpdbParseError
 
                         info['BIAMT'] = info['BIAMT'].strip(u'$')
-                        hand.isKO = False
-                        info['BIRAKE'] = info['BIRAKE'].strip(u'$')
+                        
+                        if info['BIRAKE']:
+                            info['BIRAKE'] = info['BIRAKE'].strip(u'$')
+                        else:
+                            info['BIRAKE'] = '0'
 
                         hand.buyin = int(100*Decimal(info['BIAMT']))
                         hand.fee = int(100*Decimal(info['BIRAKE']))
@@ -283,14 +287,14 @@ class Bovada(HandHistoryConverter):
         for action in m:
             acts = action.groupdict()
             player = self.playersMap[action.group('PNAME')]
-            if action.group('ATYPE') == ' Folds':
+            if action.group('ATYPE') == ' Fold':
                 contenders -= 1
             elif action.group('ATYPE') == ' Raises':
                 if streetno==1: bets = 1
                 streetactions, players = 0, contenders
             elif action.group('ATYPE') == ' Bets' or action.group('ATYPE') == ' bets':
                 streetactions, players, bets = 0, contenders, 1
-            elif action.group('ATYPE') == ' All-in(raise)':
+            elif action.group('ATYPE') in (' All-in(raise)', 'All-in(raise-timeout)'):
                 streetactions, players = 0, contenders
                 contenders -= 1
             elif action.group('ATYPE') == ' All-in':
@@ -329,6 +333,7 @@ class Bovada(HandHistoryConverter):
             player = self.playersMap.get(a.group('PNAME'))
             if player:
                 hand.addAnte(player, self.clearMoneyString(a.group('ANTE')))
+                self.allInBlind(hand, 'PREFLOP', a, 'ante')
     
     def readBringIn(self, hand):
         m = self.re_BringIn.search(hand.handText,re.DOTALL)
@@ -344,16 +349,19 @@ class Bovada(HandHistoryConverter):
         
     def readBlinds(self, hand):
         hand.setUncalledBets(True)
+        hand.allInBlind = False
         for a in self.re_PostSB.finditer(hand.handText):
             player = self.playersMap.get(a.group('PNAME'))
             if player:
                 hand.addBlind(player, 'small blind', self.clearMoneyString(a.group('SB')))
                 if not hand.gametype['sb']:
                     hand.gametype['sb'] = self.clearMoneyString(a.group('SB'))
+                self.allInBlind(hand, 'PREFLOP', a, 'small blind')
         for a in self.re_PostBB.finditer(hand.handText):
             player = self.playersMap.get('Big Blind')
             if player:
                 hand.addBlind(player, 'big blind', self.clearMoneyString(a.group('BB')))
+                self.allInBlind(hand, 'PREFLOP', a, 'big blind')
                 if not hand.gametype['bb']:
                     hand.gametype['bb'] = self.clearMoneyString(a.group('BB'))
                 if not hand.gametype['currency']:
@@ -366,6 +374,7 @@ class Bovada(HandHistoryConverter):
             player = self.playersMap.get(a.group('PNAME'))
             if player:
                 hand.addBlind(player, 'both', self.clearMoneyString(a.group('SBBB')))
+                self.allInBlind(hand, 'PREFLOP', a, 'both')
         
     def fixBlinds(self, hand):
         # See http://sourceforge.net/apps/mantisbt/fpdb/view.php?id=115
@@ -420,15 +429,15 @@ class Bovada(HandHistoryConverter):
             acts = action.groupdict()
             #print "DEBUG: %s, %s, %s" % (street, acts['PNAME'], acts['ATYPE']), action.group('BET')
             player = self.playersMap[action.group('PNAME')]
-            if action.group('ATYPE') not in (' Folds', ' Card dealt to a spot'):
+            if action.group('ATYPE') not in (' Fold', ' Card dealt to a spot') and not hand.allInBlind:
                 hand.setUncalledBets(False)
-            if action.group('ATYPE') == ' Folds':
+            if action.group('ATYPE') == ' Fold':
                 hand.addFold( street, player)
             elif action.group('ATYPE') == ' Checks':
                 hand.addCheck( street, player)
             elif action.group('ATYPE') == ' Calls' or action.group('ATYPE') == ' Call':
                 hand.addCall( street, player, self.clearMoneyString(action.group('BET')) )
-            elif action.group('ATYPE') == ' Raises' or action.group('ATYPE') == ' All-in(raise)':
+            elif action.group('ATYPE') in (' Raises', ' All-in(raise)', ' All-in(raise-timeout)'):
                 if action.group('BETTO'):
                     bet = self.clearMoneyString(action.group('BETTO'))
                 else:
@@ -438,13 +447,19 @@ class Bovada(HandHistoryConverter):
                 hand.addBet( street, player, self.clearMoneyString(action.group('BET')) )
             elif action.group('ATYPE') == ' All-in':
                 hand.addAllIn( street, player, self.clearMoneyString(action.group('BET')) )
+                self.allInBlind(hand, street, action, action.group('ATYPE'))
             elif action.group('ATYPE') == ' Bring_in chip':
                 pass
             elif action.group('ATYPE') == ' Card dealt to a spot':
                 pass
             else:
                 print (_("DEBUG:") + " " + _("Unimplemented %s: '%s' '%s'") % ("readAction", action.group('PNAME'), action.group('ATYPE')))
-
+                
+    def allInBlind(self, hand, street, action, actiontype):
+        if street in ('PREFLOP', 'DEAL'):
+            if hand.stacks[self.playersMap[action.group('PNAME')]]==0:
+                hand.setUncalledBets(True)
+                hand.allInBlind = True
 
     def readShowdownActions(self, hand):
 # TODO: pick up mucks also??
