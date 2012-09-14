@@ -268,8 +268,6 @@ class Bovada(HandHistoryConverter):
         m = self.re_Button.search(hand.handText)
         if m:
             hand.buttonpos = int(m.group('BUTTON'))
-        else:
-            log.info('readButton: ' + _('not found'))
 
     def readPlayerStacks(self, hand):
         self.playersMap = {}
@@ -279,6 +277,8 @@ class Bovada(HandHistoryConverter):
             m = self.re_PlayerInfo.finditer(hand.handText)
         for a in m:
             if re.search(r"%s (\s?\[ME\]\s)?: Card dealt to a spot" % re.escape(a.group('PNAME')), hand.handText):
+                if not hand.buttonpos and a.group('PNAME')=='Dealer':
+                    hand.buttonpos = int(a.group('SEAT'))
                 if a.group('HERO'):
                     self.playersMap[a.group('PNAME')] = 'Hero'
                 else:
@@ -288,6 +288,13 @@ class Bovada(HandHistoryConverter):
             tmp = hand.handText[0:200]
             log.error(_("BovadaToFpdb.readPlayerStacks: '%s'") % tmp)
             raise FpdbParseError
+        
+    def playerSeatFromPosition(self, source, handid, position):
+        player = self.playersMap.get(position)
+        if player is None:
+            log.error(_("Hand.%s: '%s' unknown player seat from position: '%s'") % (source, handid, position))
+            raise FpdbParseError
+        return player            
 
     def markStreets(self, hand):
         # PREFLOP = ** Dealing down cards **
@@ -301,7 +308,7 @@ class Bovada(HandHistoryConverter):
         streetactions, streetno, players, i, contenders, bets = 0, 1, dealtIn, 0, dealtIn, 0
         for action in m:
             acts = action.groupdict()
-            player = self.playersMap[action.group('PNAME')]
+            player = self.playerSeatFromPosition('BovadaToFpdb.markStreets', hand.handid, action.group('PNAME'))
             if action.group('ATYPE') == ' Fold':
                 contenders -= 1
             elif action.group('ATYPE') == ' Raises':
@@ -345,18 +352,16 @@ class Bovada(HandHistoryConverter):
     def readAntes(self, hand):
         m = self.re_Antes.finditer(hand.handText)
         for a in m:
-            player = self.playersMap.get(a.group('PNAME'))
-            if player:
-                hand.addAnte(player, self.clearMoneyString(a.group('ANTE')))
-                self.allInBlind(hand, 'PREFLOP', a, 'ante')
+            player = self.playerSeatFromPosition('BovadaToFpdb.readAntes', hand.handid, a.group('PNAME'))
+            hand.addAnte(player, self.clearMoneyString(a.group('ANTE')))
+            self.allInBlind(hand, 'PREFLOP', a, 'ante')
     
     def readBringIn(self, hand):
         m = self.re_BringIn.search(hand.handText,re.DOTALL)
         if m:
             #~ logging.debug("readBringIn: %s for %s" %(m.group('PNAME'),  m.group('BRINGIN')))
-            player = self.playersMap.get(m.group('PNAME'))
-            if player:
-                hand.addBringIn(player,  self.clearMoneyString(m.group('BRINGIN')))
+            player = self.playerSeatFromPosition('BovadaToFpdb.readBringIn', hand.handid, m.group('PNAME'))
+            hand.addBringIn(player,  self.clearMoneyString(m.group('BRINGIN')))
             
         if hand.gametype['sb'] == None and hand.gametype['bb'] == None:
             hand.gametype['sb'] = "1"
@@ -365,30 +370,27 @@ class Bovada(HandHistoryConverter):
     def readBlinds(self, hand):
         hand.setUncalledBets(True)
         for a in self.re_PostSB.finditer(hand.handText):
-            player = self.playersMap.get(a.group('PNAME'))
-            if player:
-                hand.addBlind(player, 'small blind', self.clearMoneyString(a.group('SB')))
-                if not hand.gametype['sb']:
-                    hand.gametype['sb'] = self.clearMoneyString(a.group('SB'))
-                self.allInBlind(hand, 'PREFLOP', a, 'small blind')
+            player = self.playerSeatFromPosition('BovadaToFpdb.readBlinds.postSB', hand.handid, a.group('PNAME'))
+            hand.addBlind(player, 'small blind', self.clearMoneyString(a.group('SB')))
+            if not hand.gametype['sb']:
+                hand.gametype['sb'] = self.clearMoneyString(a.group('SB'))
+            self.allInBlind(hand, 'PREFLOP', a, 'small blind')
         for a in self.re_PostBB.finditer(hand.handText):
-            player = self.playersMap.get('Big Blind')
-            if player:
-                hand.addBlind(player, 'big blind', self.clearMoneyString(a.group('BB')))
-                self.allInBlind(hand, 'PREFLOP', a, 'big blind')
-                if not hand.gametype['bb']:
-                    hand.gametype['bb'] = self.clearMoneyString(a.group('BB'))
-                if not hand.gametype['currency']:
-                    if a.group('CURRENCY').find("$")!=-1:
-                        hand.gametype['currency']="USD"
-                    elif re.match("^[0-9+]*$", a.group('CURRENCY')):
-                        hand.gametype['currency']="play"
+            player = self.playerSeatFromPosition('BovadaToFpdb.readBlinds.postBB', hand.handid, 'Big Blind')
+            hand.addBlind(player, 'big blind', self.clearMoneyString(a.group('BB')))
+            self.allInBlind(hand, 'PREFLOP', a, 'big blind')
+            if not hand.gametype['bb']:
+                hand.gametype['bb'] = self.clearMoneyString(a.group('BB'))
+            if not hand.gametype['currency']:
+                if a.group('CURRENCY').find("$")!=-1:
+                    hand.gametype['currency']="USD"
+                elif re.match("^[0-9+]*$", a.group('CURRENCY')):
+                    hand.gametype['currency']="play"
         self.fixBlinds(hand)
         for a in self.re_PostBoth.finditer(hand.handText):
-            player = self.playersMap.get(a.group('PNAME'))
-            if player:
-                hand.addBlind(player, 'both', self.clearMoneyString(a.group('SBBB')))
-                self.allInBlind(hand, 'PREFLOP', a, 'both')
+            player = self.playerSeatFromPosition('BovadaToFpdb.readBlinds.postBoth', hand.handid, a.group('PNAME'))
+            hand.addBlind(player, 'both', self.clearMoneyString(a.group('SBBB')))
+            self.allInBlind(hand, 'PREFLOP', a, 'both')
         
     def fixBlinds(self, hand):
         # See http://sourceforge.net/apps/mantisbt/fpdb/view.php?id=115
@@ -422,7 +424,7 @@ class Bovada(HandHistoryConverter):
             if not text or street in ('PREFLOP', 'DEAL'): continue  # already done these
             m = self.re_ShowdownAction.finditer(hand.streets[street])
             for found in m:
-                player = self.playersMap[found.group('PNAME')]
+                player = self.playerSeatFromPosition('BovadaToFpdb.readHeroCards', hand.handid, found.group('PNAME'))
                 if street != 'SEVENTH' or found.group('HERO'):
                     newcards = found.group('CARDS').split(' ')
                     oldcards = []
@@ -442,7 +444,7 @@ class Bovada(HandHistoryConverter):
         for action in m:
             acts = action.groupdict()
             #print "DEBUG: %s, %s, %s" % (street, acts['PNAME'], acts['ATYPE']), action.group('BET')
-            player = self.playersMap[action.group('PNAME')]
+            player = self.playerSeatFromPosition('BovadaToFpdb.readAction', hand.handid, action.group('PNAME'))
             if action.group('ATYPE') not in (' Fold', ' Card dealt to a spot') and not hand.allInBlind:
                 hand.setUncalledBets(False)
             if action.group('ATYPE') == ' Fold':
@@ -471,7 +473,8 @@ class Bovada(HandHistoryConverter):
                 
     def allInBlind(self, hand, street, action, actiontype):
         if street in ('PREFLOP', 'DEAL'):
-            if hand.stacks[self.playersMap[action.group('PNAME')]]==0:
+            player = self.playerSeatFromPosition('BovadaToFpdb.allInBlind', hand.handid, action.group('PNAME'))
+            if hand.stacks[player]==0:
                 hand.setUncalledBets(True)
                 hand.allInBlind = True
 
@@ -480,12 +483,12 @@ class Bovada(HandHistoryConverter):
         if hand.gametype['base'] in ("hold"):
             for shows in self.re_ShowdownAction.finditer(hand.handText):            
                 cards = shows.group('CARDS').split(' ')
-                player = self.playersMap[shows.group('PNAME')]
+                player = self.playerSeatFromPosition('BovadaToFpdb.readShowdownActions', hand.handid, shows.group('PNAME'))
                 hand.addShownCards(cards, player)
 
     def readCollectPot(self,hand):
         for m in self.re_CollectPot.finditer(hand.handText):
-            player = self.playersMap[m.group('PNAME')]
+            player = self.playerSeatFromPosition('BovadaToFpdb.readCollectPot', hand.handid, m.group('PNAME'))
             hand.addCollectPot(player=player,pot=self.clearMoneyString(m.group('POT')))
 
     def readShownCards(self,hand):
