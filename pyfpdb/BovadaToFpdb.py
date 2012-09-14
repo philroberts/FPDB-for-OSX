@@ -214,7 +214,8 @@ class Bovada(HandHistoryConverter):
         info.update(m.groupdict())
         m = self.re_Buyin.search(self.in_path)
         if m: info.update(m.groupdict())
-
+        hand.allInBlind = False
+        
         for key in info:
             if key == 'DATETIME':
                 m1 = self.re_DateTime.finditer(info[key])
@@ -363,7 +364,6 @@ class Bovada(HandHistoryConverter):
         
     def readBlinds(self, hand):
         hand.setUncalledBets(True)
-        hand.allInBlind = False
         for a in self.re_PostSB.finditer(hand.handText):
             player = self.playersMap.get(a.group('PNAME'))
             if player:
