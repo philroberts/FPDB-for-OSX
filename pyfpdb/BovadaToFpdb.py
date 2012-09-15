@@ -309,7 +309,7 @@ class Bovada(HandHistoryConverter):
         streetactions, streetno, players, i, contenders, bets = 0, 1, dealtIn, 0, dealtIn, 0
         for action in m:
             acts = action.groupdict()
-            #print "DEBUG: %s, %s, %s" % (street, acts['PNAME'], acts['ATYPE']), action.group('BET')
+            #print "DEBUG: %s, %s, %s" % (street, acts['PNAME'], acts['ATYPE']), action.group('BET'), streetactions, players, contenders
             player = self.playerSeatFromPosition('BovadaToFpdb.markStreets', hand.handid, action.group('PNAME'))
             if action.group('ATYPE') == ' Fold':
                 contenders -= 1
@@ -322,7 +322,7 @@ class Bovada(HandHistoryConverter):
                 streetactions, players = 0, contenders
                 contenders -= 1
             elif action.group('ATYPE') == ' All-in':
-                if bets == 0:
+                if bets == 0 and streetno>1:
                     streetactions, players, bets = 0, contenders, 1
                 contenders -= 1
             if action.group('ATYPE') != ' Card dealt to a spot':

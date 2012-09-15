@@ -1,0 +1,63 @@
+﻿Bovada Hand #2641146259: OMAHA HiLo Tournament #1235263 TBL#13, Fixed Limit- Level 6 (75/150) - 2012-07-10 23:17:04
+Seat 2: Dealer (1,200 in chips)
+Seat 3: Small Blind [ME] (90 in chips)
+Seat 4: Big Blind (5,020 in chips)
+Seat 5: UTG (2,097 in chips)
+Seat 6: UTG+1 (3,125 in chips)
+Seat 7: UTG+2 (2,365 in chips)
+Seat 8: UTG+3 (2,470 in chips)
+Seat 9: UTG+4 (2,645 in chips)
+Dealer : Set dealer/Bring in spot [2] 
+Small Blind [ME] : Ante/Small blind 75 
+Big Blind : Big blind/Bring in 150 
+*** HOLE CARDS ***
+Dealer : Card dealt to a spot [4s 8c Kd 9c] 
+Small Blind [ME] : Card dealt to a spot [2s 4c 3c 5h] 
+Big Blind : Card dealt to a spot [3s Jh Th 6d] 
+UTG : Card dealt to a spot [7c 7s 9h Kc] 
+UTG+1 : Card dealt to a spot [9d Jc 8d Td] 
+UTG+2 : Card dealt to a spot [3h Tc Ks Kh] 
+UTG+3 : Card dealt to a spot [4h 6h Qs Qh] 
+UTG+4 : Card dealt to a spot [6s As 4d 9s] 
+UTG : Folds
+UTG+1 : Call 150 
+UTG+2 : Folds
+UTG+3 : Folds
+UTG+4 : Call 150 
+Dealer : Folds(timeout)
+Dealer : Sit out
+Small Blind [ME] : All-in 15 
+Big Blind : Checks
+Dealer : Re-join
+Big Blind : Bets 150 
+UTG+1 : Raises 300 
+UTG+4 : Folds
+Big Blind : Call 150 
+Big Blind : Bets 300 
+UTG+1 : Raises 600 
+Big Blind : Raises 900 
+UTG+1 : Raises 1200 
+Big Blind : Call 300 
+Big Blind : Bets 300 
+UTG+1 : Raises 600 
+Big Blind : Call 300 
+UTG+1 : Showdown [Jc Td Ts Jd Js] (Full House)
+Small Blind [ME] : Mucks [2s 4c 3c 5h] (Three of a kind)
+Big Blind : Showdown [Jh Th Ts Jd Js] (Full House)
+Big Blind : Hand Result-Side Pot 2190 
+UTG+1 : Hand Result-Side Pot 2190 
+Big Blind : Hand Result 180 
+UTG+1 : Hand Result 180 
+Small Blind [ME] : Ranking 39 
+Small Blind [ME] : Stand
+*** SUMMARY ***
+Total Pot(4740)
+Board [Ts Jd 5d Js 5c]
+Seat 2: Dealer Folded on the POCKET CARDS
+Seat 3: Small Blind  [Mucked] [2s 4c 3c 5h    ]  
+Seat 4: Big Blind HI 2370  with Full House [3s Jh Th 6d-Jh Th Ts Jd Js]  
+Seat 5: UTG Folded on the POCKET CARDS
+Seat 6: UTG+1 HI 2370  with Full House [9d Jc 8d Td-Jc Td Ts Jd Js]  
+Seat 7: UTG+2 Folded on the POCKET CARDS
+Seat 8: UTG+3 Folded on the POCKET CARDS
+Seat 9: UTG+4 Folded on the FLOP
