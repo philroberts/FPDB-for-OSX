@@ -3446,7 +3446,11 @@ class Database:
                 self.ttnew.add(ttid)
         return ttid
     
-    def cleanUpTourneyTypes(self, tables = ('HudCache', 'CardsCache', 'PositionsCache')):
+    def cleanUpTourneyTypes(self):
+        if self.build_full_hudcache:
+            tables = ('HudCache',)
+        else:
+            tables = ('CardsCache', 'PositionsCache')
         select = self.sql.query['selectTourneyWithTypeId'].replace('%s', self.sql.query['placeholder'])
         delete = self.sql.query['deleteTourneyTypeId'].replace('%s', self.sql.query['placeholder'])
         cursor = self.get_cursor()
