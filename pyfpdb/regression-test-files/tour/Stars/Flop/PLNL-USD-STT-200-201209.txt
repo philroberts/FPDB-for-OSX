@@ -1,0 +1,40 @@
+PokerStars Hand #86183965766: Tournament #2012090038, $200+$15 USD Hold'em Pot Limit Pre-Flop, No Limit Post-Flop - Level I (10/20) - 2012/09/14 17:05:13 ET
+Table '2012090038 14' 9-max Seat #8 is the button
+Seat 1: Player0 (5000 in chips) 
+Seat 2: Hero (5000 in chips) 
+Seat 3: Player1 (4770 in chips) 
+Seat 4: Player2 (5000 in chips) 
+Seat 5: Player3 (5030 in chips) 
+Seat 6: Player4 (4970 in chips) 
+Seat 7: Player5 (5000 in chips) 
+Seat 8: Player6 (4970 in chips) 
+Seat 9: Player7 (4920 in chips) 
+Player7: posts small blind 10
+Player0: posts big blind 20
+*** HOLE CARDS ***
+Dealt to Hero [Jh 7c]
+Hero: folds 
+Player1: folds 
+Player2: folds 
+Player3: folds 
+Player4: folds 
+Player5 has timed out
+Player5: folds 
+Player5 is sitting out
+Player5 has returned
+Player6: folds 
+Player7: folds 
+Uncalled bet (10) returned to Player0
+Player0 collected 20 from pot
+Player0: doesn't show hand 
+*** SUMMARY ***
+Total pot 20 | Rake 0 
+Seat 1: Player0 (big blind) collected (20)
+Seat 2: Hero folded before Flop (didn't bet)
+Seat 3: Player1 folded before Flop (didn't bet)
+Seat 4: Player2 folded before Flop (didn't bet)
+Seat 5: Player3 folded before Flop (didn't bet)
+Seat 6: Player4 folded before Flop (didn't bet)
+Seat 7: Player5 folded before Flop (didn't bet)
+Seat 8: Player6 (button) folded before Flop (didn't bet)
+Seat 9: Player7 (small blind) folded before Flop
