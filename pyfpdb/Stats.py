@@ -622,6 +622,7 @@ def cfour_B(stat_dict, player):
                 '(0/0)',
                 _('% cold 4 bet preflop/3rd street'))
 
+# Four Bet Range
 def fbr(stat_dict, player):
     stat_descriptions["fbr"] = _("4 bet range") + " (fbr)"
     stat = 0.0
@@ -641,6 +642,26 @@ def fbr(stat_dict, player):
                 'fbr=NA',
                 '(pfr*four_B)',
                 _('4 bet range'))
+
+# Call 3 Bet
+def ctb(stat_dict, player):
+    stat_descriptions["ctb"] = _("% call 3 bet") + " (ctb)"
+    stat = 0.0
+    try: 
+        stat = (float(stat_dict[player]['f3b_opp_0'])-float(stat_dict[player]['f3b_0'])-float(stat_dict[player]['fb_0']))/float(stat_dict[player]['f3b_opp_0'])
+        return (stat,
+                '%3.1f'         % (100.0*stat),
+                'ctb=%3.1f%%'    % (100.0*stat),
+                'ctb=%3.1f%%' % (100.0*stat),
+                '(%d/%d)'       % (float(stat_dict[player]['f3b_opp_0'])-stat_dict[player]['fb_0']-stat_dict[player]['f3b_0'], stat_dict[player]['fb_opp_0']),
+                _('% call 3 bet'))
+    except:
+        return (stat,
+                'NA',
+                'ctb=NA',
+                'ctb=NA',
+                '(0/0)',
+                _('% call 3 bet')
 
 def squeeze(stat_dict, player):
     stat_descriptions["squeeze"] = _("% squeeze preflop") + " (squeeze)"
