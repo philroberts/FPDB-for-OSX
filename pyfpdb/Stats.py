@@ -661,7 +661,7 @@ def ctb(stat_dict, player):
                 'ctb=NA',
                 'ctb=NA',
                 '(0/0)',
-                _('% call 3 bet')
+                _('% call 3 bet'))
 
 def squeeze(stat_dict, player):
     stat_descriptions["squeeze"] = _("% squeeze preflop") + " (squeeze)"
