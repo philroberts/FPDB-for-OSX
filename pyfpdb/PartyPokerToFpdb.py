@@ -620,11 +620,11 @@ class PartyPoker(HandHistoryConverter):
         if type=="tour":
             if table_name:
                 TableName = table_name.split(" ")
-                print 'party', 'getTableTitleRe', "%s.+Table\s#%s" % (TableName[0], table_number)
+                print 'party', 'getTableTitleRe', "%s.+Table\s#?%s" % (TableName[0], table_number)
                 if len(TableName[1]) > 6:
-                    return "#%s" % (table_number)
+                    return "#?%s" % (table_number)
                 else:
-                   return "%s.+Table\s#%s" % (TableName[0], table_number)
+                   return "%s.+Table\s#?%s" % (TableName[0], table_number)
             else:
                 #
                 #sng's seem to get passed in with:
@@ -633,7 +633,7 @@ class PartyPoker(HandHistoryConverter):
                 #   table_number = 7 digit table number
                 # screen string is normally Turbo|Speed|(etc) #table_number
                 #
-                return "#%s" % (table_number)
+                return "#?%s" % (table_number)
         else:
             return table_name
 
