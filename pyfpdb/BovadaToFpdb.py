@@ -264,6 +264,8 @@ class Bovada(HandHistoryConverter):
             if key == 'MAX' and info[key] != None:
                 hand.maxseats = int(info[key])
                 
+        if not hand.maxseats:
+            hand.maxseats = 9          
     
     def readButton(self, hand):
         m = self.re_Button.search(hand.handText)
@@ -289,6 +291,8 @@ class Bovada(HandHistoryConverter):
             tmp = hand.handText[0:200]
             log.error(_("BovadaToFpdb.readPlayerStacks: '%s'") % tmp)
             raise FpdbParseError
+        elif len(hand.players)==10:
+            hand.maxseats = 10
         
     def playerSeatFromPosition(self, source, handid, position):
         player = self.playersMap.get(position)
