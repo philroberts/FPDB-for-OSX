@@ -663,6 +663,129 @@ def ctb(stat_dict, player):
                 '(0/0)',
                 _('% call 3 bet'))
 
+def dbr1(stat_dict, player):
+    stat_descriptions["dbr1"] = _("% DonkBetAndRaise flop/4th street") + " (dbr1)"
+    stat = 0.0
+    try:
+        stat = float(stat_dict[player]['aggr_1']) - float(stat_dict[player]['cb_1'])
+        stat /= float(stat_dict[player]['saw_f']) - float(stat_dict[player]['cb_opp_1'])
+        return (stat,
+                '%3.1f'             % (100.0*stat),
+                'dbr1=%3.1f%%'        % (100.0*stat),
+                'dbr1=%3.1f%%'    % (100.0*stat),
+                '(%d/%d)'      % (float(stat_dict[player]['aggr_1']) - float(stat_dict[player]['cb_1']), float(stat_dict[player]['saw_f']) - float(stat_dict[player]['cb_opp_1'])),
+                _('% DonkBetAndRaise flop/4th street'))
+    except:
+        return (stat,
+                'NA',
+                'dbr1=NA',
+                'dbr1=NA',
+                '(0/0)',
+                _('% DonkBetAndRaise flop/4th street'))
+
+def dbr2(stat_dict, player):
+    stat_descriptions["dbr2"] = _("% DonkBetAndRaise turn/5th street") + " (dbr2)"
+    stat = 0.0
+    try:
+        stat = float(stat_dict[player]['aggr_2']) - float(stat_dict[player]['cb_2'])
+        stat /= float(stat_dict[player]['saw_2']) - float(stat_dict[player]['cb_opp_2'])
+        return (stat,
+                '%3.1f'             % (100.0*stat),
+                'dbr2=%3.1f%%'        % (100.0*stat),
+                'dbr2=%3.1f%%'    % (100.0*stat),
+                '(%d/%d)'      % (float(stat_dict[player]['aggr_2']) - float(stat_dict[player]['cb_2']), float(stat_dict[player]['saw_2']) - float(stat_dict[player]['cb_opp_2'])),
+                _('% DonkBetAndRaise turn/5th street'))
+    except:
+        return (stat,
+                'NA',
+                'dbr2=NA',
+                'dbr2=NA',
+                '(0/0)',
+                _('% DonkBetAndRaise turn/5th street'))
+
+def dbr3(stat_dict, player):
+    stat_descriptions["dbr3"] = _("% DonkBetAndRaise river/6th street") + " (dbr3)"
+    stat = 0.0
+    try:
+        stat = float(stat_dict[player]['aggr_3']) - float(stat_dict[player]['cb_3'])
+        stat /= float(stat_dict[player]['saw_3']) - float(stat_dict[player]['cb_opp_3'])
+        return (stat,
+                '%3.1f'             % (100.0*stat),
+                'dbr3=%3.1f%%'        % (100.0*stat),
+                'dbr3=%3.1f%%'    % (100.0*stat),
+                '(%d/%d)'      % (float(stat_dict[player]['aggr_3']) - float(stat_dict[player]['cb_3']), float(stat_dict[player]['saw_3']) - float(stat_dict[player]['cb_opp_3'])),
+                _('% DonkBetAndRaise river/6th street'))
+    except:
+        return (stat,
+                'NA',
+                'dbr3=NA',
+                'dbr3=NA',
+                '(0/0)',
+                _('% DonkBetAndRaise river/6th street'))
+
+
+def f_dbr1(stat_dict, player):
+    stat_descriptions["f_dbr1"] = _("% Fold to DonkBetAndRaise flop/4th street") + " (f_dbr1)"
+    stat = 0.0
+    try:
+        stat = float(stat_dict[player]['f_freq_1']) - float(stat_dict[player]['f_cb_1'])
+        stat /= float(stat_dict[player]['was_raised_1']) - float(stat_dict[player]['f_cb_opp_1'])
+        return (stat,
+                '%3.1f'             % (100.0*stat),
+                'f_dbr1=%3.1f%%'        % (100.0*stat),
+                'f_dbr1=%3.1f%%'    % (100.0*stat),
+                '(%d/%d)'      % (float(stat_dict[player]['f_freq_1']) - float(stat_dict[player]['f_cb_1']), float(stat_dict[player]['was_raised_1']) - float(stat_dict[player]['f_cb_opp_1'])),
+                _('% Fold to DonkBetAndRaise flop/4th street'))
+    except:
+        return (stat,
+                'NA',
+                'f_dbr1=NA',
+                'f_dbr1=NA',
+                '(0/0)',
+                _('% Fold DonkBetAndRaise flop/4th street'))
+
+def f_dbr2(stat_dict, player):
+    stat_descriptions["f_dbr2"] = _("% Fold to DonkBetAndRaise turn") + " (f_dbr2)"
+    stat = 0.0
+    try:
+        stat = float(stat_dict[player]['f_freq_2']) - float(stat_dict[player]['f_cb_2'])
+        stat /= float(stat_dict[player]['was_raised_2']) - float(stat_dict[player]['f_cb_opp_2'])
+        return (stat,
+                '%3.1f'             % (100.0*stat),
+                'f_dbr2=%3.1f%%'        % (100.0*stat),
+                'f_dbr2=%3.1f%%'    % (100.0*stat),
+                '(%d/%d)'      % (float(stat_dict[player]['f_freq_2']) - float(stat_dict[player]['f_cb_2']), float(stat_dict[player]['was_raised_2']) - float(stat_dict[player]['f_cb_opp_2'])),
+                _('% Fold to DonkBetAndRaise turn'))
+    except:
+        return (stat,
+                'NA',
+                'f_dbr2=NA',
+                'f_dbr2=NA',
+                '(0/0)',
+                _('% Fold DonkBetAndRaise turn'))
+
+
+def f_dbr3(stat_dict, player):
+    stat_descriptions["f_dbr3"] = _("% Fold to DonkBetAndRaise river") + " (f_dbr3)"
+    stat = 0.0
+    try:
+        stat = float(stat_dict[player]['f_freq_3']) - float(stat_dict[player]['f_cb_3'])
+        stat /= float(stat_dict[player]['was_raised_3']) - float(stat_dict[player]['f_cb_opp_3'])
+        return (stat,
+                '%3.1f'             % (100.0*stat),
+                'f_dbr3=%3.1f%%'        % (100.0*stat),
+                'f_dbr3=%3.1f%%'    % (100.0*stat),
+                '(%d/%d)'      % (float(stat_dict[player]['f_freq_3']) - float(stat_dict[player]['f_cb_3']), float(stat_dict[player]['was_raised_3']) - float(stat_dict[player]['f_cb_opp_3'])),
+                _('% Fold to DonkBetAndRaise river'))
+    except:
+        return (stat,
+                'NA',
+                'f_dbr3=NA',
+                'f_dbr3=NA',
+                '(0/0)',
+                _('% Fold DonkBetAndRaise river'))
+
+
 def squeeze(stat_dict, player):
     stat_descriptions["squeeze"] = _("% squeeze preflop") + " (squeeze)"
     stat = 0.0
