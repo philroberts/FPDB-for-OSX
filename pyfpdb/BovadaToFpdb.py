@@ -71,6 +71,7 @@ class Bovada(HandHistoryConverter):
                                 'OMAHA' : ('hold','omahahi'),
                            'OMAHA HiLo' : ('hold','omahahilo'),
                                 '7CARD' : ('stud', 'studhi'),
+                           '7CARD HiLo' : ('stud', 'studhilo'),
                }
     currencies = {'$':'USD', '':'T$'}
 
@@ -78,7 +79,7 @@ class Bovada(HandHistoryConverter):
     re_GameInfo     = re.compile(u"""
           (Bovada|Bodog)\sHand\s\#(?P<HID>[0-9]+):?\s+
           (TBL\#(?P<TABLE>.+?)\s)?
-          (?P<GAME>HOLDEM|OMAHA|7CARD|OMAHA\sHiLo)\s+
+          (?P<GAME>HOLDEM|OMAHA|7CARD|7CARD\sHiLo|OMAHA\sHiLo)\s+
           (Tournament\s\#                # open paren of tournament info Tournament #2194767 TBL#1, 
           (?P<TOURNO>\d+)\sTBL\#(?P<TABLENO>\d+),
           \s)?
