@@ -1,0 +1,57 @@
+Table #46120523 - Audeamus 1
+Starting Hand #2138526544
+Start time of hand: 01 Aug 2012 03:36:03
+Last Hand #2138526325
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: RING
+Money Type: REAL MONEY
+Blinds are now $0.02 / $0.04
+Button is at seat 10
+Seat 1: Player0 - $4.63
+Seat 3: Hero - $7.15
+Seat 5: Player1 - $5.23
+Seat 6: Player2 - $3
+Seat 8: Player3 - $2.80
+Seat 9: Player4 - $2.85
+Seat 10: Player5 - $4.22
+Shuffling Deck
+Moving Button to seat 1
+Hero posts small blind ($0.02)
+Player1 posts big blind ($0.04)
+Dealing Cards
+Dealing [T h][9 s] to Hero
+Player2 calls $0.04
+Player3 calls $0.04
+Player4 folds
+Player5 calls $0.04
+Player0 folds
+Hero folds
+Player1 raises to $0.22
+Player2 folds
+Player3 folds
+Player5 has become disconnected and has 10 seconds to reconnect
+Player1: :)
+Player5 has disconnected and has been granted disconnection protection
+Returning $0.18 to Player1 uncalled
+Pot sizes: $0.18
+Dealing Flop [8 h][2 c][5 c]
+Pot sizes: $0.18
+Dealing Turn [7 d]
+Pot sizes: $0.18
+Dealing River [J h]
+Pot sizes: $0.18
+Taking Rake of $0.01 from pot 1
+Player5 shows [6 d][7 h]
+Player5 has One Pair: 7s
+Player1 doesn't show
+Player5 wins $0.04, disconnection protection limited from $0.17 with: One Pair: 7s
+Player1 wins $0.13
+Seat 1: Player0 - $4.63
+Seat 3: Hero - $7.13
+Seat 5: Player1 - $5.32
+Seat 6: Player2 - $2.96
+Seat 8: Player3 - $2.76
+Seat 9: Player4 - $2.85
+Seat 10: Player5 - $4.22
+End of Hand #2138526544
