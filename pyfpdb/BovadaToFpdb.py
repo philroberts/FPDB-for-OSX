@@ -130,6 +130,7 @@ class Bovada(HandHistoryConverter):
     re_Dealt            = re.compile(r"^%(PLYR)s (\s?\[ME\]\s)?: Card dealt to a spot" % substitutions, re.MULTILINE)
     re_Buyin            = re.compile(r"\s-\s(?P<BUYIN>(?P<BIAMT>[%(LS)s\d\.]+)-(?P<BIRAKE>[%(LS)s\d\.]+)?)\s-\s" % substitutions)
     re_Stakes           = re.compile(r"RING\s-\s(?P<CURRENCY>%(LS)s|)?(?P<SB>[%(NUM)s]+)-(%(LS)s)?(?P<BB>[%(NUM)s]+)\s-\s" % substitutions)
+    re_Summary          = re.compile(r"\*\*\*\sSUMMARY\s\*\*\*")
     #Small Blind : Hand result $19
     
     def compilePlayerRegexs(self,  hand):
@@ -150,19 +151,16 @@ class Bovada(HandHistoryConverter):
                 ]
 
     def determineGameType(self, handText):
-        info = {}
+        info = {}            
         m = self.re_GameInfo.search(handText)
         if not m:
-            m1 = self.re_Dealt.search(handText)
-            if m1:
-                tmp = handText[0:200]
-                log.error(_("BovadaToFpdb.determineGameType: '%s'") % tmp)
-                raise FpdbParseError
-            else:
-                raise FpdbHandPartial("BovadaToFpdb.determineGameType: " + _("Partial hand history"))
-            
+            tmp = handText[0:200]
+            log.error(_("BovadaToFpdb.determineGameType: '%s'") % tmp)
+            raise FpdbParseError
+        
         m1 = self.re_Dealt.search(handText)
-        if not m1:
+        m2 = self.re_Summary.search(handText)
+        if not m1 or not m2:
             raise FpdbHandPartial("BovadaToFpdb.determineGameType: " + _("Partial hand history"))
         
         mg = m.groupdict()
