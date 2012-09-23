@@ -1,0 +1,80 @@
+Table #46301943 - Hellenic Aquarium
+Starting Hand #2147625245
+Start time of hand: 15 Aug 2012 00:51:26
+Last Hand #2147624295
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: RING
+Money Type: REAL MONEY
+Blinds are now $0.02 / $0.04
+Button is at seat 5
+Seat 1: Player0 - $0.40
+Seat 2: Hero - $6.09
+Seat 3: Player1 - $4.14
+Seat 4: Player2 - $0.06
+Seat 5: Player3 - $0.59
+Seat 6: Player4 - $3.28
+Seat 7: Player5 - $5.62 (away from table)
+Seat 8: Player6 - $3.39
+Seat 9: Player7 - $0.76
+Seat 10: Player8 - $0.35
+Shuffling Deck
+Player7 will be dealt in after the button
+Moving Button to seat 9
+Player8 posts small blind ($0.02)
+Player0 posts big blind ($0.04)
+Player3 posts $0.04
+Player6 posts $0.04
+Dealing Cards
+Dealing [4 h][Q s] to Hero
+Hero folds
+Player1 calls $0.04
+Player2 raises to $0.06 (all-in)
+Player3 calls $0.06
+Player4 folds
+Player6 calls $0.06
+Player8 folds
+Player0 calls $0.06
+Player1 calls $0.06
+Pot sizes: $0.32
+Dealing Flop [4 d][3 d][6 c]
+Player0 checks
+Player1 checks
+Player3 checks
+Player6 checks
+Pot sizes: $0.32
+Dealing Turn [7 s]
+Player0 bets $0.34 (all-in)
+Player1 folds
+Player3 raises to $0.53 (all-in)
+Player6 calls $0.53
+Pot sizes: $0.32
+Pot sizes: $1.02
+Pot sizes: $0.38
+Player0 shows [T c][5 c]
+Player2 shows [A s][J s]
+Player3 shows [5 s][3 h]
+Player6 shows [8 s][3 c]
+Dealing River [K s]
+Pot sizes: $0.32
+Pot sizes: $1.02
+Pot sizes: $0.38
+Taking Rake of $0.17 from pot 2
+Player3 has Straight, 7 high 
+Player3 wins $0.38 from side pot #2 with: Straight, 7 high 
+Player0 has Straight, 7 high 
+Player3 ties side pot #1, and wins $0.43 with: Straight, 7 high 
+Player0 ties side pot #1, and wins $0.42 with: Straight, 7 high 
+Player3 ties, and wins $0.16 with: Straight, 7 high 
+Player0 ties, and wins $0.16 with: Straight, 7 high 
+Seat 1: Player0 - $0.58
+Seat 2: Hero - $6.09
+Seat 3: Player1 - $4.08
+Seat 4: Player2 - $0
+Seat 5: Player3 - $0.97
+Seat 6: Player4 - $3.28
+Seat 7: Player5 - $5.62
+Seat 8: Player6 - $2.80
+Seat 9: Player7 - $0.76
+Seat 10: Player8 - $0.33
+End of Hand #2147625245

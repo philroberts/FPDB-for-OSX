@@ -1,0 +1,52 @@
+Table #46301943 - Hellenic Aquarium
+Starting Hand #2147619083
+Start time of hand: 15 Aug 2012 00:33:59
+Last Hand #2147618572
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: RING
+Money Type: REAL MONEY
+Blinds are now $0.02 / $0.04
+Button is at seat 8
+Seat 1: Player0 - $3.78
+Seat 2: Hero - $5.11
+Seat 3: Player1 - $12.21
+Seat 4: Player2 - $2
+Seat 5: Player3 - $0.92
+Seat 7: Player4 - $5.62
+Seat 8: Player5 - $0.78
+Seat 9: Player6 - $2.72
+Seat 10: Player7 - $0.82
+Shuffling Deck
+Moving Button to seat 9
+Player4: lets go ride poney in the rainbow
+Player0 yawns at Player4.
+Player7 posts small blind ($0.02)
+Player0 posts big blind ($0.04)
+Player5 posts $0
+Player5 posts $0.02 dead
+Dealing Cards
+Dealing [A s][4 d] to Hero
+Hero folds
+Player1 folds
+Player3 folds
+Hero: just one quick look .. and - that`s all ! .. ;)
+Player4 folds
+Player5 raises to $0.08
+Player6 folds
+Player7 folds
+Player0 folds
+Pot sizes: $0.12
+Player5 doesn't show
+Player5 wins $0.12
+Hero: sit to the table - without any of dress..
+Seat 1: Player0 - $3.74
+Seat 2: Hero - $5.11
+Seat 3: Player1 - $12.21
+Seat 4: Player2 - $2
+Seat 5: Player3 - $0.92
+Seat 7: Player4 - $5.62
+Seat 8: Player5 - $0.84
+Seat 9: Player6 - $2.72
+Seat 10: Player7 - $0.80
+End of Hand #2147619083

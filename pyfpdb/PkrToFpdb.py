@@ -106,13 +106,14 @@ class Pkr(HandHistoryConverter):
             self.re_Antes     = re.compile(r"^%(PLYR)s posts ante of %(CUR)s(?P<ANTE>[%(NUM)s]+)" % subst, re.MULTILINE)
             self.re_BringIn   = re.compile(r"^%(PLYR)s brings[- ]in( low|) for %(CUR)s(?P<BRINGIN>[%(NUM)s]+)" % subst, re.MULTILINE)
             self.re_PostBoth  = re.compile(r"^%(PLYR)s posts small \& big blinds %(CUR)s(?P<SBBB>[%(NUM)s]+)" %  subst, re.MULTILINE)
+            self.re_PostDead  = re.compile(r"^%(PLYR)s posts %(CUR)s(?P<SB>[%(NUM)s]+) dead" %  subst, re.MULTILINE)
             self.re_HeroCards = re.compile(r"^Dealing( (?P<OLDCARDS>\[.+\]))?( (?P<NEWCARDS>\[.+\])) to %(PLYR)s" % subst, re.MULTILINE)
             self.re_Action    = re.compile(r"""
                         ^%(PLYR)s(?P<ATYPE>\sbets|\schecks|\sraises|\scalls|\sfolds)(\sto)?
                         (\s(%(CUR)s)?(?P<BET>[%(NUM)s]+))?(\s\(all\-in\))?\s*$
                         """ %  subst, re.MULTILINE|re.VERBOSE)
             self.re_ShowdownAction   = re.compile(r"^%(PLYR)s shows (?P<CARDS>\[.+\])" % subst, re.MULTILINE)
-            self.re_CollectPot       = re.compile(r"^%(PLYR)s (ties, and )?wins %(CUR)s(?P<POT>[%(NUM)s]+)" %  subst, re.MULTILINE)
+            self.re_CollectPot       = re.compile(r"^%(PLYR)s (ties( side pot \#\d)?, and )?wins %(CUR)s(?P<POT>[%(NUM)s]+)" %  subst, re.MULTILINE)
             self.re_sitsOut          = re.compile("^%s sits out" %  player_re, re.MULTILINE)
             self.re_ShownCards       = re.compile("^Seat (?P<SEAT>[0-9]+): %s (\(.*\) )?(?P<SHOWED>showed|mucked) (?P<CARDS>\[.+\])" %  player_re, re.MULTILINE)
 
@@ -273,6 +274,8 @@ class Pkr(HandHistoryConverter):
             hand.addBlind(None, None, None)
         for a in self.re_PostBB.finditer(hand.handText):
             hand.addBlind(a.group('PNAME'), 'big blind', self.clearMoneyString(a.group('BB')))
+        for a in self.re_PostDead.finditer(hand.handText):
+            hand.addBlind(a.group('PNAME'), 'secondsb', self.clearMoneyString(a.group('SB')))
         for a in self.re_PostBoth.finditer(hand.handText):
             hand.addBlind(a.group('PNAME'), 'both', self.clearMoneyString(a.group('SBBB')))
 
