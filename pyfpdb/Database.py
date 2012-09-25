@@ -2669,7 +2669,7 @@ class Database:
         delete_CC    = self.sql.query['delete_CC'].replace('%s', self.sql.query['placeholder'])
         THRESHOLD    = timedelta(seconds=int(self.sessionTimeout * 60))
        
-        if gametype['type']=='ring' and len(heroes)>0:
+        if gametype['type']=='ring' and pdata:
             for p, pid in pids.iteritems():
                 hp = {}
                 k = (gtid, pid)
@@ -2818,7 +2818,7 @@ class Database:
         select_TC = self.sql.query['select_TC']
         select_TC = select_TC.replace('%s', self.sql.query['placeholder'])
         
-        if gametype['type']=='tour' and len(heroes)>0:
+        if gametype['type']=='tour' and pdata:
             for p in pdata:
                 k = (tid
                     ,pids[p]
