@@ -3076,7 +3076,7 @@ class Database:
             if updateDb:
                 #print 'DEBUG createOrUpdateTourneyType:', 'old', _ttid, 'new', ttid, row
                 q = self.sql.query['updateTourneyTypeId'].replace('%s', self.sql.query['placeholder'])
-                cursor.execute(q, (ttid, obj.tourNo))
+                cursor.execute(q, (ttid, obj.siteId, obj.tourNo))
                 self.ttclean.add(_ttid)
         return ttid
     

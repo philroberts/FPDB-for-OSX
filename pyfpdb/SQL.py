@@ -6682,7 +6682,10 @@ class Sql:
                                         WHERE t.tourneyTypeId=%s AND t.siteTourneyNo=%s
         """
         
-        self.query['updateTourneyTypeId'] = """UPDATE Tourneys SET tourneyTypeId = %s WHERE id=%s"""
+        self.query['updateTourneyTypeId'] = """UPDATE Tourneys t INNER JOIN TourneyTypes tt ON (t.tourneyTypeId = tt.id)
+                                            SET tourneyTypeId = %s
+                                            WHERE tt.siteId=%s AND t.siteTourneyNo=%s
+        """
         
         self.query['updateTourneyTypeIdHudCache'] = """UPDATE HudCache SET tourneyTypeId = %s  WHERE tourneyId=%s"""
         
