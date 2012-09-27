@@ -1405,6 +1405,7 @@ class DrawHand(Hand):
         for i, _street in enumerate(self.holeStreets):
             if player in self.holecards[_street].keys():
                 allhole = self.holecards[_street][player][1] + self.holecards[_street][player][0]
+                allhole = allhole[:5]
                 for c in range(len(allhole)):
                     idx = c + (i*5)
                     holecards[idx] = allhole[c]
