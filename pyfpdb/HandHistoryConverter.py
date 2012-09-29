@@ -539,11 +539,11 @@ or None if we fail to get the info """
             givenTZ = timezone('America/Sao_Paulo')
         elif givenTimezone == 'COT':
             givenTZ = timezone('America/Bogota')
-        elif givenTimezone == 'EET': # Eastern European Time
+        elif givenTimezone in ('EET', 'EEST'): # Eastern European Time
             givenTZ = timezone('Europe/Bucharest')
-        elif (givenTimezone == 'MSK' or givenTimezone == 'MESZ'): # Moscow Standard Time
+        elif givenTimezone in ('MSK', 'MESZ', 'MSKS'): # Moscow Standard Time
             givenTZ = timezone('Europe/Moscow')
-        elif givenTimezone == 'YEKT' or givenTimezone == 'YEKST':
+        elif givenTimezone in ('YEKT','YEKST'):
             givenTZ = timezone('Asia/Yekaterinburg')
         elif givenTimezone == 'IST': # India Standard Time
             givenTZ = timezone('Asia/Kolkata')
