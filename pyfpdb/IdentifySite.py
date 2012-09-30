@@ -81,6 +81,8 @@ class Site:
             line_addendum = '*'
         elif filter_name == 'Merge':
             line_addendum = '<'
+        elif filter_name == 'Entraction':
+            line_addendum = '\n\n'
             
         return line_addendum
 
