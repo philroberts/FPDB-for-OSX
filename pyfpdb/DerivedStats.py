@@ -356,7 +356,7 @@ class DerivedStats():
             pname = player[1]
             hp = self.handsplayers.get(pname)
             hero = pname==hand.hero
-            if (hp['sawShowdown']) or hero:
+            if hp['sawShowdown'] or hp['showed'] or hero:
                 if category not in ('badugi', 'razz', '2_holdem', '5_omahahi'):
                     hcs = hand.join_holecards(pname, asList=True)
                     hole = hcs[hrange[0]:hrange[1]]                            
@@ -373,7 +373,7 @@ class DerivedStats():
                             streetstring = 'street%sSeen' % str(streetId)
                             streetSeen = hp[streetstring]
                         else: streetSeen = False
-                        if (board['allin'] or (hero and streetSeen) or hp['sawShowdown']):
+                        if (board['allin'] or (hero and streetSeen) or (hp['showed'] and streetSeen) or hp['sawShowdown']):
                             boardId = 0
                             for n in range(len(board['board'])):
                                 if len(board['board']) > 1: 
@@ -459,7 +459,7 @@ class DerivedStats():
                                                       lostringvalue,
                                                       winnings
                                                       ] )
-                elif (hp['sawShowdown']):
+                elif (hp['sawShowdown'] or hp['showed']):
                     streetId = streets[last]
                     if hilo == 'h':
                         histring = hand.showdownStrings.get(pname)
