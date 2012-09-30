@@ -45,7 +45,7 @@ class Pkr(HandHistoryConverter):
     limits = { 'NO LIMIT':'nl', 'POT LIMIT':'pl', 'LIMIT':'fl' }
     games = {                          # base, category
                               "HOLD'EM" : ('hold','holdem'),
-                           'FIXMEOmaha' : ('hold','omahahi'),
+                                'OMAHA' : ('hold','omahahi'),
                      'FIXMEOmaha Hi/Lo' : ('hold','omahahilo'),
                      'FIXME5 Card Draw' : ('draw','fivedraw')
                }
@@ -62,7 +62,7 @@ class Pkr(HandHistoryConverter):
           Starting\sHand\s\#(?P<HID>[0-9]+)\s
           Start\stime\sof\shand:\s(?P<DATETIME>.*)\s
           Last\sHand\s(n/a|\#[0-9]+)\s
-          Game\sType:\s(?P<GAME>HOLD'EM)\s
+          Game\sType:\s(?P<GAME>HOLD'EM|OMAHA)\s
           Limit\sType:\s(?P<LIMIT>NO\sLIMIT|LIMIT|POT\sLIMIT)\s
           Table\sType:\s(RING|TOURNAMENT)\s
           Money\sType:\s(REAL\sMONEY|TOURNAMENT\sCHIPS)\s
@@ -73,7 +73,8 @@ class Pkr(HandHistoryConverter):
 
     re_PlayerInfo   = re.compile(u"""
               ^Seat\s(?P<SEAT>[0-9]+):\s
-              (?P<PNAME>.*)\s-\s
+              (?P<PNAME>.+)
+              (\s\(bounty\svalue\s(%(LS)s)?[%(NUM)s]+,\sbounty\swon\s(%(LS)s)?[%(NUM)s]+\))?\s-\s
               (%(LS)s)?(?P<CASH>[%(NUM)s]+)
             """ % substitutions, re.MULTILINE|re.VERBOSE)
 

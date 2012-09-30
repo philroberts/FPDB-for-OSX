@@ -1,0 +1,69 @@
+Table #42688466 - Tournament #24820874 Table #7
+Starting Hand #1976740130
+Start time of hand: 13 Jan 2012 03:54:16
+Last Hand #1976739668
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: TOURNAMENT
+Money Type: TOURNAMENT CHIPS
+Blinds are now 10 / 20
+Button is at seat 2
+Seat 1: Player0 (bounty value $0.40, bounty won $0) - 2,940
+Seat 2: Player1 (bounty value $0.40, bounty won $0) - 2,840
+Seat 3: Player2 (bounty value $0.40, bounty won $0) - 2,343
+Seat 4: Player3 (bounty value $0.40, bounty won $0) - 2,740
+Seat 5: Player4 (bounty value $0.40, bounty won $0) - 3,000
+Seat 6: Hero (bounty value $0.40, bounty won $0) - 3,000
+Seat 7: Player5 (bounty value $0.40, bounty won $0) - 3,540
+Seat 8: Player6 (bounty value $0.40, bounty won $0) - 3,625
+Seat 10: Player7 (bounty value $0.48, bounty won $0.32) - 5,942
+Shuffling Deck
+Moving Button to seat 3
+Player3 posts small blind (10)
+Player4 posts big blind (20)
+Dealing Cards
+Dealing [3 c][2 c] to Hero
+Hero folds
+Player5 folds
+Player6 folds
+Player7 folds
+Player0 calls 20
+Player1 folds
+Player2 calls 20
+Player3 calls 20
+Player4 checks
+Pot sizes: 80
+Dealing Flop [9 h][7 s][2 s]
+Player3 checks
+Player4 bets 40
+Player0 raises to 120
+Player2 folds
+Player3 calls 120
+Player4 calls 120
+Pot sizes: 440
+Dealing Turn [5 h]
+Player3 checks
+Player4 checks
+Player0 checks
+Pot sizes: 440
+Dealing River [5 s]
+Player3 checks
+Player4 bets 220
+Player0 calls 220
+Player3 folds
+Pot sizes: 880
+Player4 shows [Q h][9 d]
+Player4 has Two Pairs: 9s, 5s
+Player0 shows [7 d][A d]
+Player0 has Two Pairs: 7s, 5s
+Player4 wins 880 with: Two Pairs: 9s, 5s
+Seat 1: Player0 (bounty value $0.40, bounty won $0) - 2,580
+Seat 2: Player1 (bounty value $0.40, bounty won $0) - 2,840
+Seat 3: Player2 (bounty value $0.40, bounty won $0) - 2,323
+Seat 4: Player3 (bounty value $0.40, bounty won $0) - 2,600
+Seat 5: Player4 (bounty value $0.40, bounty won $0) - 3,520
+Seat 6: Hero (bounty value $0.40, bounty won $0) - 3,000
+Seat 7: Player5 (bounty value $0.40, bounty won $0) - 3,540
+Seat 8: Player6 (bounty value $0.40, bounty won $0) - 3,625
+Seat 10: Player7 (bounty value $0.48, bounty won $0.32) - 5,942
+End of Hand #1976740130
