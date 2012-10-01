@@ -73,7 +73,7 @@ class Pkr(HandHistoryConverter):
 
     re_PlayerInfo   = re.compile(u"""
               ^Seat\s(?P<SEAT>[0-9]+):\s
-              (?P<PNAME>.+)
+              (?P<PNAME>.+?)
               (\s\(bounty\svalue\s(%(LS)s)?[%(NUM)s]+,\sbounty\swon\s(%(LS)s)?[%(NUM)s]+\))?\s-\s
               (%(LS)s)?(?P<CASH>[%(NUM)s]+)
             """ % substitutions, re.MULTILINE|re.VERBOSE)
