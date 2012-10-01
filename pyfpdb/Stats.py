@@ -195,7 +195,7 @@ def m_ratio(stat_dict, player, hand_instance):
         for i in hand_instance.bets['BLINDSANTES'][p]:
             compulsory_bets += float(i)
     compulsory_bets += float(hand_instance.gametype['sb'])
-    compulsory_bets += float(hand_instance.gametype['sb'])
+    compulsory_bets += float(hand_instance.gametype['bb'])
     
     stack = calculate_end_stack(stat_dict, player, hand_instance)
 
