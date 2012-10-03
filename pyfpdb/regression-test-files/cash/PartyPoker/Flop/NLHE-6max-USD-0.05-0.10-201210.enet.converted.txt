@@ -1,0 +1,32 @@
+Game #19421044 starts.
+
+#Game No : 19421044
+***** Hand History for Game 19421044 *****
+$10 USD NL Texas Hold'em - Wednesday, October 3, 13:50:06 ET 2012
+Table Parigi1 (Real Money)
+Seat 1 is the button
+Total number of players : 6
+Seat 1: Player0 ( $13.51 USD )
+Seat 2: Player1 ( $10.21 USD )
+Seat 3: Player2 ( $11.12 USD )
+Seat 4: Player3 ( $10.76 USD )
+Seat 5: Player4 ( $8.08 USD )
+Seat 6: Player5 ( $2.70 USD )
+Player2 posts small blind [$0.05 USD].
+Player3 posts big blind [$0.10 USD].
+** Dealing down cards **
+Player4 folds.
+Player5 calls [$0.10 USD].
+Player0 raises [$0.50 USD].
+Player1 folds.
+Player2 folds.
+Player3 folds.
+Player5 raises [$1.90 USD].
+Player0 folds.
+Player0 does not show cards.
+Player1 does not show cards.
+Player2 does not show cards.
+Player3 does not show cards.
+Player4 does not show cards.
+Player5 does not show cards.
+Player5 wins $2.65 USD
