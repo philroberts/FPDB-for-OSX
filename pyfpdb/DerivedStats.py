@@ -556,6 +556,38 @@ class DerivedStats():
             if string[0] in ('As', 'Ad', 'Ah', 'Ac'):
                 string = _('a Royal Flush')
         return string
+    
+    def awardPots(self, hand):
+        if pokereval and len(hand.pot.pots)>1:
+            hand.collected = [] #list of ?
+            hand.collectees = {} # dict from player names to amounts collected (?)
+            base, game, hilo, streets, last, hrange = Card.games[hand.gametype['category']]
+            rakes, totrake = {}, 0
+            board = [str(b) for b in hand.board['FLOP'] + hand.board['TURN'] + hand.board['RIVER']]
+            for pot, players in hand.pot.pots:
+                holecards = []
+                for p in players:
+                    hcs = hand.join_holecards(p, asList=True)
+                    if 'omaha' not in game:
+                        holes = [str(c) for c in hcs[hrange[0]:hrange[1]] + board]
+                        board = []
+                    else:
+                        holes = [str(c) for c in hcs[hrange[0]:hrange[1]]]
+                    if '0x' not in hcs:
+                        holecards.append(holes)
+                win = pokereval.winners(game = game, pockets = holecards, board = board)
+                totalrake = hand.rakes.get('rake')
+                if not totalrake:
+                    totalpot = hand.rakes.get('pot')
+                    if totalpot:
+                        totalrake = hand.totalpot - totalpot
+                    else:
+                        totalrake = 0
+                rake = (totalrake * (pot/hand.totalpot))
+                for w in win['hi']:
+                    pname = list(players)[w]
+                    ppot  = str(((pot-rake)/len(win['hi'])).quantize(Decimal("0.01")))
+                    hand.addCollectPot(player=pname,pot=ppot)
 
     def setPositions(self, hand):
         """Sets the position for each player in HandsPlayers

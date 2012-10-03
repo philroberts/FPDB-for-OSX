@@ -79,6 +79,7 @@ class Hand(object):
         self.buttonpos = 0
         self.runItTimes = 0
         self.uncalledbets = False
+        self.adjustCollected = False
 
         #tourney stuff
         self.tourNo = None
@@ -131,6 +132,7 @@ class Hand(object):
             self.holecards[street] = {} # dict from player names to holecards
             self.discards[street] = {} # dict from player names to dicts by street ... of tuples ... of discarded holecards
         # Collections indexed by player names
+        self.rakes = {}
         self.stacks = {}
         self.collected = [] #list of ?
         self.collectees = {} # dict from player names to amounts collected (?)
@@ -814,6 +816,9 @@ class Hand(object):
         if self.totalpot is None:
             self.pot.end()
             self.totalpot = self.pot.total
+            
+        if self.adjustCollected:
+            self.stats.awardPots(self)
         
         def gettempcontainers():
             (collected, collectees, totalcolleted) = ([], {}, 0)
@@ -1361,6 +1366,7 @@ class DrawHand(Hand):
             if self.maxseats is None:
                 self.maxseats = hhc.guessMaxSeats(self)
             hhc.readOther(self)
+            
         elif builtFrom == "DB":
             # Creator expected to call hhc.select(hid) to fill out object
             print "DEBUG: DrawHand initialised for select()"
@@ -1563,6 +1569,7 @@ class StudHand(Hand):
             if self.maxseats is None:
                 self.maxseats = hhc.guessMaxSeats(self)
             hhc.readOther(self)
+            
         elif builtFrom == "DB":
             # Creator expected to call hhc.select(hid) to fill out object
             print "DEBUG: StudHand initialised for select()"

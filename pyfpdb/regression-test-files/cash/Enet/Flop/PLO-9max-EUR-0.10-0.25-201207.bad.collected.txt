@@ -1,0 +1,54 @@
+Game #6404139: Omaha (€0,10/€0,25) - 16:40:41 23.7.2012 - %6 
+Table 'Reunion 1 - Pot Limit' 9-max Seat #4 is the button 
+Seat 1: Player0 (€5 in chips)
+Seat 2: Player1 (€1,95 in chips)
+Seat 3: Player2 (€3,69 in chips)
+Seat 4: Player3 (€7,33 in chips)
+Seat 5: Player4 (€38,50 in chips)
+Seat 6: Player5 (€6,66 in chips)
+Seat 7: Player6 (€20 in chips)
+Seat 8: Player7 (€13,87 in chips)
+Seat 9: Hero (€16,55 in chips)
+Player5: posts small blind €0,10
+Player6: posts big blind €0,25
+Player0: posts big blind €0,25
+*** HOLECARDS ***
+Player7: calls €0,25
+Hero: folds
+Player0: checks
+Player1: raises €1,35
+Player2: folds
+Player3: calls €1,35
+Player4: raises €4,05
+Player5: folds
+Player6: folds
+Player7: folds
+Player0: goes all-in €4,75
+Player1: goes all-in €0,60
+Player3: goes all-in €5,98
+Player4: calls €3,28
+Rake: €0,52
+Rake: €0,02
+Rake: €-0,27
+*** FLOP *** [8h2sTd]
+*** TURN *** [8h2sTd2c]
+*** RIVER *** [8h2sTd2c6s]
+*** SHOWDOWN ***
+Player0: shows [2h4sJh4c] (Three of a kind, Twos)
+Player0: collected (€7,88) from pot
+Player1: shows [9h3cAsAh] (Two Pairs, Aces and Twos)
+Player3: shows [Ac9cJsTc] (Two Pairs, Tens and Twos)
+Player4: shows [KsJdKh7h] (Two Pairs, Kings and Twos)
+Player4: collected (€4,39) from pot
+*** SUMMARY *** 
+Total pot €0 | Rake €0,27 
+Board [8h2sTd2c6s] 
+Seat 1: Player0  showed [2h4sJh4c] and won (€7,88) with Three of a kind, Twos
+Seat 2: Player1  showed [9h3cAsAh] and lost with Two Pairs, Aces and Twos
+Seat 3: Player2  folded
+Seat 4: Player3  showed [Ac9cJsTc] and lost with Two Pairs, Tens and Twos
+Seat 5: Player4 (dealer) showed [KsJdKh7h] and won (€4,39) with Two Pairs, Kings and Twos
+Seat 6: Player5 (small blind) folded
+Seat 7: Player6 (big blind) folded
+Seat 8: Player7  folded
+Seat 9: Hero  folded

@@ -121,6 +121,7 @@ class Enet(HandHistoryConverter):
     # we don't have to, and it makes life faster.
     re_PostSB           = re.compile(r"^%(PLYR)s: posts small blind %(CUR)s(?P<SB>[%(NUM)s]+)" %  substitutions, re.MULTILINE)
     re_PostBB           = re.compile(r"^%(PLYR)s: posts big blind %(CUR)s(?P<BB>[%(NUM)s]+)" %  substitutions, re.MULTILINE)
+    re_PostDead         = re.compile(r"^%(PLYR)s: posts small blind $" %  substitutions, re.MULTILINE)
     re_Antes            = re.compile(r"^%(PLYR)s: posts the ante %(CUR)s(?P<ANTE>[%(NUM)s]+)" % substitutions, re.MULTILINE)
     re_BringIn          = re.compile(r"^%(PLYR)s: brings[- ]in( low|) for %(CUR)s(?P<BRINGIN>[%(NUM)s]+)" % substitutions, re.MULTILINE)
     re_PostBoth         = re.compile(r"^%(PLYR)s: posts small \& big blinds %(CUR)s(?P<SBBB>[%(NUM)s]+)" %  substitutions, re.MULTILINE)
@@ -135,6 +136,7 @@ class Enet(HandHistoryConverter):
     re_sitsOut          = re.compile("^%s sits out" %  substitutions['PLYR'], re.MULTILINE)
     re_ShownCards       = re.compile("^Seat (?P<SEAT>[0-9]+): %(PLYR)s %(BRKTS)s(?P<SHOWED>showed|mucked) \[(?P<CARDS>.*)\]( and (lost|won \(%(CUR)s(?P<POT>[%(NUM)s]+)\)) with (?P<STRING>.*))?" % substitutions, re.MULTILINE)
     re_CollectPot       = re.compile(r"Seat (?P<SEAT>[0-9]+): %(PLYR)s %(BRKTS)s(collected|showed \[.*\] and won) \(%(CUR)s(?P<POT>[%(NUM)s]+)\)(, mucked| with.*|)" %  substitutions, re.MULTILINE)
+    re_Rake             = re.compile(r"^Rake: %(CUR)s(?P<RAKE>[%(NUM)s]+)" %  substitutions, re.MULTILINE)
 
     def compilePlayerRegexs(self,  hand):
         pass
@@ -326,6 +328,8 @@ class Enet(HandHistoryConverter):
             hand.addBlind(a.group('PNAME'), 'big blind', self.clearMoneyString(a.group('BB')))
         for a in self.re_PostBoth.finditer(hand.handText):
             hand.addBlind(a.group('PNAME'), 'both', self.clearMoneyString(a.group('SBBB')))
+        for a in self.re_PostDead.finditer(hand.handText):
+            hand.addBlind(a.group('PNAME'), 'secondsb', self.clearMoneyString(hand.sb))
 
     def readHeroCards(self, hand):
 #    streets PREFLOP, PREDRAW, and THIRD are special cases beacause
@@ -350,6 +354,9 @@ class Enet(HandHistoryConverter):
             if action.group('ATYPE') == ' folds':
                 hand.addFold( street, action.group('PNAME'))
             elif action.group('ATYPE') == ' checks':
+                if street =='PREFLOP' and action.group('PNAME') not in [p for (p,b) in hand.posted]:
+                    both = str(Decimal(str(hand.bb)) + Decimal(str(hand.sb)))
+                    hand.addBlind(action.group('PNAME'), 'both', both)
                 hand.addCheck( street, action.group('PNAME'))
             elif action.group('ATYPE') == ' calls':
                 hand.addCall( street, action.group('PNAME'), self.clearMoneyString(action.group('BET')) )
@@ -371,8 +378,14 @@ class Enet(HandHistoryConverter):
             hand.addShownCards(cards, shows.group('PNAME'))
 
     def readCollectPot(self,hand):
+        hand.adjustCollected = True
         for m in self.re_CollectPot.finditer(hand.handText):
             hand.addCollectPot(player=m.group('PNAME'),pot=self.clearMoneyString(m.group('POT')))
+        for m in self.re_Rake.finditer(hand.handText):
+            if hand.rakes.get('rake'):
+                hand.rakes['rake'] += Decimal(self.clearMoneyString(m.group('RAKE')))
+            else:
+                hand.rakes['rake'] = Decimal(self.clearMoneyString(m.group('RAKE')))
 
     def readShownCards(self,hand):
         for m in self.re_ShownCards.finditer(hand.handText):
@@ -386,4 +399,5 @@ class Enet(HandHistoryConverter):
                 elif m.group('SHOWED') == "mucked": mucked = True
 
                 #print "DEBUG: hand.addShownCards(%s, %s, %s, %s)" %(cards, m.group('PNAME'), shown, mucked)
-                hand.addShownCards(cards=cards, player=m.group('PNAME'), shown=shown, mucked=mucked, string=string)
+                hand.addShownCards(cards=cards, player=m.group('PNAME'), shown=shown, mucked=mucked, string=string)          
+    

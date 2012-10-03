@@ -1,0 +1,30 @@
+Game #19408739: Hold'em (€0,05/€0,10) - 12:16:31 3.10.2012 - %6 
+Table 'Parfigi 1 - No Limit' 6-max Seat #2 is the button 
+Seat 1: Player0 (€14,90 in chips)
+Seat 2: Player1 (€1,90 in chips)
+Seat 3: Hero (€14,51 in chips)
+Seat 4: Player2 (€2,73 in chips)
+Seat 5: Player3 (€12,64 in chips)
+Seat 6: Player4 (€10 in chips)
+Player2: posts small blind €0,05
+Player3: posts big blind €0,10
+Player4: posts big blind 
+Player1: posts small blind 
+*** HOLECARDS ***
+Player0: folds
+Player1: folds
+Hero: raises €0,30
+Player2: folds
+Player3: folds
+Uncalled bet (€0,20) returned to Hero
+Hero collected (€0,20) from pot
+Hero: mucked
+*** SUMMARY *** 
+Total pot €0,30 | Rake €0 
+Board [] 
+Seat 1: Player0  folded
+Seat 2: Player1  folded
+Seat 3: Hero (dealer) collected (€0,30) from pot
+Seat 4: Player2 (small blind) folded
+Seat 5: Player3 (big blind) folded
+Seat 6: Player4  showed [] and lost with 
