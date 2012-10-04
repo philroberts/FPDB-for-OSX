@@ -65,7 +65,7 @@ class HandHistoryConverter():
 
     # maybe archive params should be one archive param, then call method in specific converter.   if archive:  convert_archive()
     def __init__( self, config, in_path = '-', out_path = '-', index=0
-                , autostart=True, starsArchive=False, ftpArchive=False, sitename="PokerStars"):
+                , autostart=True, starsArchive=False, ftpArchive=False, sitename="PokerStars", importType = 'bulk'):
         """\
 in_path   (default '-' = sys.stdin)
 out_path  (default '-' = sys.stdout)
@@ -80,6 +80,7 @@ out_path  (default '-' = sys.stdout)
         self.index     = index
         self.starsArchive = starsArchive
         self.ftpArchive = ftpArchive
+        self.importType = importType
 
         self.in_path = in_path
         self.out_path = out_path
@@ -88,6 +89,7 @@ out_path  (default '-' = sys.stdout)
         self.numHands = 0
         self.numErrors = 0
         self.numPartial = 0
+        self.lastGood = False
 
         # Tourney object used to store TourneyInfo when called to deal with a Summary file
         self.tourney = None
@@ -124,6 +126,7 @@ HandHistoryConverter: '%(sitename)s'
 
         self.numHands = 0
         self.numErrors = 0
+        self.lastGood = False
         handsList = self.allHandsAsList()
         log.debug( _("Hands list is:") + str(handsList))
         log.info(_("Parsing %d hands") % len(handsList))
@@ -134,11 +137,14 @@ HandHistoryConverter: '%(sitename)s'
             for handText in handsList:
                 try:
                     self.processedHands.append(self.processHand(handText))
+                    self.lastGood = True
                 except FpdbHandPartial, e:
                     self.numPartial += 1
+                    self.lastGood = False
                     log.debug("%s" % e)
                 except FpdbParseError:
                     self.numErrors += 1
+                    self.lastGood = False
                     log.error(_("FpdbParseError for file '%s'") % self.in_path)
             self.numHands = len(handsList)
             endtime = time.time()
@@ -184,7 +190,7 @@ HandHistoryConverter: '%(sitename)s'
         # Some HH formats leave dangling text after the split
         # ie. </game> (split) </session>EOL
         # Remove this dangler if less than 50 characters and warn in the log
-        if len(handlist[-1]) <= 50:
+        if len(handlist[-1]) <= 50 and self.importType != 'auto':
             handlist.pop()
             log.info(_("Removing text < 50 characters"))
         return handlist
