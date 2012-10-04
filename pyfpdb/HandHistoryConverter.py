@@ -151,7 +151,7 @@ HandHistoryConverter: '%(sitename)s'
                 self.index -= len(handsList[-1])
                 if self.isCarraige:
                      self.index -= handsList[-1].count('\n')
-                handlist.pop()
+                handsList.pop()
                 if lastParsed=='partial':
                     self.numPartial -= 1
                 else:
