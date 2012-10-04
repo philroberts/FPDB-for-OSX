@@ -148,9 +148,9 @@ HandHistoryConverter: '%(sitename)s'
                     lastParsed = 'error'
                     log.error(_("FpdbParseError for file '%s'") % self.in_path)
             if lastParsed in ('partial', 'error'):
-                self.index -= len(handlist[-1])
+                self.index -= len(handsList[-1])
                 if self.isCarraige:
-                     self.index -= handlist[-1].count('\n')
+                     self.index -= handsList[-1].count('\n')
                 handlist.pop()
                 if lastParsed=='partial':
                     self.numPartial -= 1
