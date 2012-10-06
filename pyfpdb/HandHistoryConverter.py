@@ -567,9 +567,10 @@ or None if we fail to get the info """
             givenTZ = timezone('Pacific/Auckland')
 
         if givenTZ is None:
-            # do not crash if timezone not in list, just return unconverted time
+            # do not crash if timezone not in list, just return UTC localized time
             log.warn(_("Timezone conversion not supported") + ": " + givenTimezone + " " + str(time))
-            return time
+            givenTZ = pytz.UTC
+            return givenTZ.localize(time)
 
         localisedTime = givenTZ.localize(time)
         utcTime = localisedTime.astimezone(wantedTimezone) + datetime.timedelta(seconds=-3600*(offset/100)-60*(offset%100))
