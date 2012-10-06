@@ -545,6 +545,8 @@ or None if we fail to get the info """
             givenTZ = timezone('Europe/Moscow')
         elif givenTimezone in ('YEKT','YEKST'):
             givenTZ = timezone('Asia/Yekaterinburg')
+        elif givenTimezone in ('KRAT','KRAST'):
+            givenTZ = timezone('Asia/Krasnoyarsk')
         elif givenTimezone == 'IST': # India Standard Time
             givenTZ = timezone('Asia/Kolkata')
         elif givenTimezone == 'CCT': # China Coast Time
