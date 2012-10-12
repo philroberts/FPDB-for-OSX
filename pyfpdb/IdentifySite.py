@@ -136,7 +136,7 @@ class IdentifySite:
         re_identify['BetOnline']    = re.compile(u'(BetOnline\sPoker|PayNoRake|ActionPoker\.com|Gear\sPoker)\sGame\s\#\d+')
         re_identify['PokerTracker'] = re.compile(u'(EverestPoker\sGame\s\#|GAME\s\#|MERGE_GAME\s\#|\*{2}\sGame\sID\s)\d+')
         re_identify['Microgaming']  = re.compile(u'<Game\s(hhversion="\d"\s)?id=\"\d+\"\sdate=\"[\d\-\s:]+\"\sunicodetablename')
-        re_identify['Bovada']       = re.compile(u'(Bovada|Bodog(\sUK)?)\sHand')
+        re_identify['Bovada']       = re.compile(u'(Bovada|Bodog(\sUK|\sCanada)?)\sHand')
         re_identify['Enet']         = re.compile(u'^Game\s\#\d+:')
         re_identify['FullTiltPokerSummary'] = re.compile(u'Full\sTilt\sPoker\.fr\sTournament|Full\sTilt\sPoker\sTournament\sSummary')
         re_identify['PokerStarsSummary']    = re.compile(u'PokerStars\sTournament\s\#\d+')
