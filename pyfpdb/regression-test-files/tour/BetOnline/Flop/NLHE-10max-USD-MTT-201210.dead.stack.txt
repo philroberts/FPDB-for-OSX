@@ -1,0 +1,49 @@
+BetOnline Poker Game #1078353699: Tournament #4157956: Hold'em $10.00/$20.00 - 2012/10/13 20:13:28 Eastern Daylight Time
+Table '4157956-06' 10-Max, Seat #3 is the button
+Seat 7: Player0 (8200.00 in chips)
+Seat 4:  (100.00 in chips)
+Seat 3: Hero (3670.00 in chips) - The button
+Seat 6: Player2 (29513.42 in chips) - Big Blind
+Seat 1: Player3 (9420.00 in chips)
+Seat 2: Player4 (5365.01 in chips)
+Seat 8: Player5 (21986.21 in chips)
+Seat 9: Player6 (6828.54 in chips)
+Seat 5: Player7 (6625.00 in chips) - Small Blind
+Seat 0: Player8 (13700.00 in chips)
+: posts small blind 100.00
+Hero said "KQ?"
+Player7: posts big blind 400.00
+*** HOLE CARDS *** 
+Dealt to Hero [Js Ad]
+Player2: folds
+Player0: folds
+Player5: folds
+Player6: folds
+Player8: calls 400.00
+Player3: folds
+Player5 said "8)"
+Player4: calls 400.00
+Hero said "nh"
+Hero: raises 1600.00 to 1600.00
+Player7: folds
+Player8: folds
+Player4: folds
+Uncalled bet (1200.00) returned to Hero
+Total pot 1200.00
+*** SHOW DOWN *** 
+ shows 8h 7s
+Hero shows Js Ad
+*** SUMMARY *** 
+Total pot 500.00
+Board [2h As 9c 2d Jh]
+Seat 7: Player0 folded before Flop
+Seat 4:  showed [8h 7s] but did not win
+Seat 3: Hero showed [Js Ad] and won (500.00)
+Seat 6: Player2 folded before Flop
+Seat 1: Player3 folded before Flop
+Seat 2: Player4 folded before Flop
+Seat 8: Player5 folded before Flop
+Seat 9: Player6 folded before Flop
+Seat 5: Player7 folded before Flop
+Seat 0: Player8 folded before Flop
+ has left the table
