@@ -539,12 +539,14 @@ or None if we fail to get the info """
             givenTZ = timezone('America/Sao_Paulo')
         elif givenTimezone == 'COT':
             givenTZ = timezone('America/Bogota')
-        elif givenTimezone == 'EET': # Eastern European Time
+        elif givenTimezone in ('EET', 'EEST'): # Eastern European Time
             givenTZ = timezone('Europe/Bucharest')
-        elif (givenTimezone == 'MSK' or givenTimezone == 'MESZ'): # Moscow Standard Time
+        elif givenTimezone in ('MSK', 'MESZ', 'MSKS'): # Moscow Standard Time
             givenTZ = timezone('Europe/Moscow')
-        elif givenTimezone == 'YEKT' or givenTimezone == 'YEKST':
+        elif givenTimezone in ('YEKT','YEKST'):
             givenTZ = timezone('Asia/Yekaterinburg')
+        elif givenTimezone in ('KRAT','KRAST'):
+            givenTZ = timezone('Asia/Krasnoyarsk')
         elif givenTimezone == 'IST': # India Standard Time
             givenTZ = timezone('Asia/Kolkata')
         elif givenTimezone == 'CCT': # China Coast Time
@@ -565,9 +567,10 @@ or None if we fail to get the info """
             givenTZ = timezone('Pacific/Auckland')
 
         if givenTZ is None:
-            # do not crash if timezone not in list, just return unconverted time
+            # do not crash if timezone not in list, just return UTC localized time
             log.warn(_("Timezone conversion not supported") + ": " + givenTimezone + " " + str(time))
-            return time
+            givenTZ = pytz.UTC
+            return givenTZ.localize(time)
 
         localisedTime = givenTZ.localize(time)
         utcTime = localisedTime.astimezone(wantedTimezone) + datetime.timedelta(seconds=-3600*(offset/100)-60*(offset%100))
@@ -603,7 +606,7 @@ or None if we fail to get the info """
             money = money.replace('K', '000')
         if 'M' in money:
             money = money.replace('M', '000000')
-        if money[-1] == '.':
+        if money[-1] in ('.', ','):
             money = money[:-1]
         if len(money) < 3:
             return money # No commas until 0,01 or 1,00

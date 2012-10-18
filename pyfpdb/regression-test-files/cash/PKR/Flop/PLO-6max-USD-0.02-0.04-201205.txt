@@ -1,0 +1,58 @@
+Table #44913344 - Eumelus
+Starting Hand #2080628024
+Start time of hand: 12 May 2012 03:37:34
+Last Hand #2080627672
+Game Type: OMAHA
+Limit Type: POT LIMIT
+Table Type: RING
+Money Type: REAL MONEY
+Blinds are now $0.02 / $0.04
+Button is at seat 3
+Seat 1: Player0 - $4.06 (away from table)
+Seat 2: Player1 - $2.88
+Seat 3: Player2 - $9.81
+Seat 4: Hero - $3.88
+Seat 5: Player3 - $5.81
+Seat 6: Player4 - $0.05
+Shuffling Deck
+Moving Button to seat 4
+Player3 posts small blind ($0.02)
+Player4 posts big blind ($0.04)
+Dealing Cards
+Dealing [T c][2 s][9 s][3 h] to Hero
+Player1 folds
+Player2 raises to $0.08
+Hero folds
+Player3 calls $0.08
+Player4 calls $0.05 (all-in)
+Pot sizes: $0.15
+Pot sizes: $0.06
+Dealing Flop [7 h][9 c][2 c]
+Player3 checks
+Player2 checks
+Pot sizes: $0.15
+Pot sizes: $0.06
+Dealing Turn [A h]
+Player3 checks
+Player2 bets $0.21
+Player3 folds
+Pot sizes: $0.15
+Pot sizes: $0.06
+Player2 shows [A d][8 s][4 d][4 c]
+Player4 shows [T h][6 h][2 h][J d]
+Dealing River [8 c]
+Pot sizes: $0.15
+Pot sizes: $0.06
+Taking Rake of $0.02 from pot 1
+Player2 has Two Pairs: Aces, 8s
+Player2 wins $0.06 from side pot #1 with: Two Pairs: Aces, 8s
+Player4 has Straight, Jack high 
+Player4 wins $0.13 with: Straight, Jack high 
+Player2 cheers.
+Seat 1: Player0 - $4.06
+Seat 2: Player1 - $2.88
+Seat 3: Player2 - $9.79
+Seat 4: Hero - $3.88
+Seat 5: Player3 - $5.73
+Seat 6: Player4 - $0.13
+End of Hand #2080628024

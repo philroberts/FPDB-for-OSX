@@ -45,7 +45,7 @@ class Pkr(HandHistoryConverter):
     limits = { 'NO LIMIT':'nl', 'POT LIMIT':'pl', 'LIMIT':'fl' }
     games = {                          # base, category
                               "HOLD'EM" : ('hold','holdem'),
-                           'FIXMEOmaha' : ('hold','omahahi'),
+                                'OMAHA' : ('hold','omahahi'),
                      'FIXMEOmaha Hi/Lo' : ('hold','omahahilo'),
                      'FIXME5 Card Draw' : ('draw','fivedraw')
                }
@@ -62,7 +62,7 @@ class Pkr(HandHistoryConverter):
           Starting\sHand\s\#(?P<HID>[0-9]+)\s
           Start\stime\sof\shand:\s(?P<DATETIME>.*)\s
           Last\sHand\s(n/a|\#[0-9]+)\s
-          Game\sType:\s(?P<GAME>HOLD'EM)\s
+          Game\sType:\s(?P<GAME>HOLD'EM|OMAHA)\s
           Limit\sType:\s(?P<LIMIT>NO\sLIMIT|LIMIT|POT\sLIMIT)\s
           Table\sType:\s(RING|TOURNAMENT)\s
           Money\sType:\s(REAL\sMONEY|TOURNAMENT\sCHIPS)\s
@@ -73,7 +73,8 @@ class Pkr(HandHistoryConverter):
 
     re_PlayerInfo   = re.compile(u"""
               ^Seat\s(?P<SEAT>[0-9]+):\s
-              (?P<PNAME>.*)\s-\s
+              (?P<PNAME>.+?)
+              (\s\(bounty\svalue\s(%(LS)s)?[%(NUM)s]+,\sbounty\swon\s(%(LS)s)?[%(NUM)s]+\))?\s-\s
               (%(LS)s)?(?P<CASH>[%(NUM)s]+)
             """ % substitutions, re.MULTILINE|re.VERBOSE)
 
@@ -106,13 +107,14 @@ class Pkr(HandHistoryConverter):
             self.re_Antes     = re.compile(r"^%(PLYR)s posts ante of %(CUR)s(?P<ANTE>[%(NUM)s]+)" % subst, re.MULTILINE)
             self.re_BringIn   = re.compile(r"^%(PLYR)s brings[- ]in( low|) for %(CUR)s(?P<BRINGIN>[%(NUM)s]+)" % subst, re.MULTILINE)
             self.re_PostBoth  = re.compile(r"^%(PLYR)s posts small \& big blinds %(CUR)s(?P<SBBB>[%(NUM)s]+)" %  subst, re.MULTILINE)
+            self.re_PostDead  = re.compile(r"^%(PLYR)s posts %(CUR)s(?P<SB>[%(NUM)s]+) dead" %  subst, re.MULTILINE)
             self.re_HeroCards = re.compile(r"^Dealing( (?P<OLDCARDS>\[.+\]))?( (?P<NEWCARDS>\[.+\])) to %(PLYR)s" % subst, re.MULTILINE)
             self.re_Action    = re.compile(r"""
                         ^%(PLYR)s(?P<ATYPE>\sbets|\schecks|\sraises|\scalls|\sfolds)(\sto)?
                         (\s(%(CUR)s)?(?P<BET>[%(NUM)s]+))?(\s\(all\-in\))?\s*$
                         """ %  subst, re.MULTILINE|re.VERBOSE)
             self.re_ShowdownAction   = re.compile(r"^%(PLYR)s shows (?P<CARDS>\[.+\])" % subst, re.MULTILINE)
-            self.re_CollectPot       = re.compile(r"^%(PLYR)s (ties, and )?wins %(CUR)s(?P<POT>[%(NUM)s]+)" %  subst, re.MULTILINE)
+            self.re_CollectPot       = re.compile(r"^%(PLYR)s (ties( side pot \#\d)?, and )?wins %(CUR)s(?P<POT>[%(NUM)s]+)" %  subst, re.MULTILINE)
             self.re_sitsOut          = re.compile("^%s sits out" %  player_re, re.MULTILINE)
             self.re_ShownCards       = re.compile("^Seat (?P<SEAT>[0-9]+): %s (\(.*\) )?(?P<SHOWED>showed|mucked) (?P<CARDS>\[.+\])" %  player_re, re.MULTILINE)
 
@@ -273,6 +275,8 @@ class Pkr(HandHistoryConverter):
             hand.addBlind(None, None, None)
         for a in self.re_PostBB.finditer(hand.handText):
             hand.addBlind(a.group('PNAME'), 'big blind', self.clearMoneyString(a.group('BB')))
+        for a in self.re_PostDead.finditer(hand.handText):
+            hand.addBlind(a.group('PNAME'), 'secondsb', self.clearMoneyString(a.group('SB')))
         for a in self.re_PostBoth.finditer(hand.handText):
             hand.addBlind(a.group('PNAME'), 'both', self.clearMoneyString(a.group('SBBB')))
 

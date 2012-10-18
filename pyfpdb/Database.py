@@ -3053,7 +3053,7 @@ class Database:
             tourneyId = resultDict["id"]
             for ev in expectedValues :
                 if getattr(summary, ev[0])==None and resultDict[ev[1]]!=None:#DB has this value but object doesnt, so update object
-                    setattr(summary, ev[0], resultDict[ev][1])
+                    setattr(summary, ev[0], resultDict[ev[1]])
                 elif getattr(summary, ev[0])!=None and not resultDict[ev[1]]:#object has this value but DB doesnt, so update DB
                     updateDb=True
                 #elif ev=="startTime":
