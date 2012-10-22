@@ -46,7 +46,7 @@ class Pkr(HandHistoryConverter):
     games = {                          # base, category
                               "HOLD'EM" : ('hold','holdem'),
                                 'OMAHA' : ('hold','omahahi'),
-                     'FIXMEOmaha Hi/Lo' : ('hold','omahahilo'),
+                          'OMAHA HI/LO' : ('hold','omahahilo'),
                      'FIXME5 Card Draw' : ('draw','fivedraw')
                }
     currencies = { u'€':'EUR', '$':'USD', '':'T$', u'£':'GBP' }
@@ -62,7 +62,7 @@ class Pkr(HandHistoryConverter):
           Starting\sHand\s\#(?P<HID>[0-9]+)\s
           Start\stime\sof\shand:\s(?P<DATETIME>.*)\s
           Last\sHand\s(n/a|\#[0-9]+)\s
-          Game\sType:\s(?P<GAME>HOLD'EM|OMAHA)\s
+          Game\sType:\s(?P<GAME>HOLD'EM|OMAHA|OMAHA\sHI/LO)\s
           Limit\sType:\s(?P<LIMIT>NO\sLIMIT|LIMIT|POT\sLIMIT)\s
           Table\sType:\s(RING|TOURNAMENT)\s
           Money\sType:\s(REAL\sMONEY|TOURNAMENT\sCHIPS)\s
