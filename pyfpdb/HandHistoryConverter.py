@@ -90,6 +90,7 @@ out_path  (default '-' = sys.stdout)
         self.numErrors = 0
         self.numPartial = 0
         self.isCarraige = False
+        self.autoPop = False
 
         # Tourney object used to store TourneyInfo when called to deal with a Summary file
         self.tourney = None
@@ -147,7 +148,7 @@ HandHistoryConverter: '%(sitename)s'
                     self.numErrors += 1
                     lastParsed = 'error'
                     log.error(_("FpdbParseError for file '%s'") % self.in_path)
-            if lastParsed in ('partial', 'error'):
+            if lastParsed in ('partial', 'error') and self.autoPop:
                 self.index -= len(handsList[-1])
                 if self.isCarraige:
                      self.index -= handsList[-1].count('\n')
@@ -168,7 +169,9 @@ HandHistoryConverter: '%(sitename)s'
                 log.info(_("Summary file '%s' correctly parsed (took %.3f seconds)") % (self.in_path, endtime - starttime))
             else :
                 log.warning(_("Error converting summary file '%s' (took %.3f seconds)") % (self.in_path, endtime - starttime))
-
+    
+    def setAutoPop(self, value):
+        self.autoPop = value
                 
     def progressNotify(self):
         "A callback to the interface while events are pending"
