@@ -78,13 +78,15 @@ class Bovada(HandHistoryConverter):
 
     # Static regexes
     re_GameInfo     = re.compile(u"""
-          (Bovada|Bodog(\sUK|\sCanada)?)\sHand\s\#(?P<HID>[0-9]+):?\s+
+          (Bovada|Bodog(\sUK|\sCanada)?)\sHand\s\#C?(?P<HID>[0-9]+):?\s+
           (TBL\#(?P<TABLE>.+?)\s)?
           (?P<GAME>HOLDEM|OMAHA|7CARD|7CARD\sHiLo|OMAHA\sHiLo)\s+
           (Tournament\s\#                # open paren of tournament info Tournament #2194767 TBL#1, 
           (?P<TOURNO>\d+)\sTBL\#(?P<TABLENO>\d+),
           \s)?
+          (?P<HU>1\son\s1\s)? 
           (?P<LIMIT>No\sLimit|Fixed\sLimit|Pot\sLimit)
+          (\sNormal\s)?
           (-\sLevel\s\d+?\s
           \(?                            # open paren of the stakes
           (?P<CURRENCY>%(LS)s|)?
@@ -263,6 +265,8 @@ class Bovada(HandHistoryConverter):
                     hand.tablename = info[key]
             if key == 'MAX' and info[key] != None:
                 hand.maxseats = int(info[key])
+            if key == 'HU' and info[key] != None:
+                hand.maxseats = 2
                 
         if not hand.maxseats:
             hand.maxseats = 9          
