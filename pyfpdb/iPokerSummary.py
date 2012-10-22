@@ -40,9 +40,12 @@ class iPokerSummary(TourneySummary):
     
     games = {              # base, category
                 '7 Card Stud L' : ('stud','studhi'),
-                '5 Card Stud L' : ('stud','5studhi'),
+                '5 Card Stud L' : ('stud','5_studhi'),
                     'Holdem NL' : ('hold','holdem'),
+                   u'Holdem БЛ' : ('hold','holdem'),
                     'Holdem SL' : ('hold','holdem'), #Spanish NL
+                    'Holdem LZ' : ('hold','holdem'), #Limit
+                    'Holdem PL' : ('hold','holdem'), #Limit
                      'Holdem L' : ('hold','holdem'),
                      'Omaha PL' : ('hold','omahahi'),
                'Omaha Hi-Lo PL' : ('hold','omahahilo'),
@@ -53,8 +56,8 @@ class iPokerSummary(TourneySummary):
                      
             }
 
-    re_GameType = re.compile(r"""
-            <gametype>(?P<GAME>7\sCard\sStud\sL|Holdem\sNL|Holdem\sL|Omaha\s(L|PL|LP)|Omaha\sHi\-Lo\s(L|PL|LP))(\s(%(LS)s)(?P<SB>[.0-9]+)/(%(LS)s)(?P<BB>[.0-9]+))?</gametype>\s+?
+    re_GameType = re.compile(ur"""
+            <gametype>(?P<GAME>(5|7)\sCard\sStud\sL|Holdem\s(NL|SL|L|LZ|PL|БЛ)|Omaha\s(L|PL|LP)|Omaha\sHi\-Lo\s(L|PL|LP)|LH\s(?P<LSB>[%(NUM)s]+)/(?P<LBB>[%(NUM)s]+).+?)(\s(%(LS)s)?(?P<SB>[%(NUM)s]+)/(%(LS)s)?(?P<BB>[%(NUM)s]+))?</gametype>\s+?
             <tablename>(?P<TABLE>.+)?</tablename>\s+?
             (<(tablecurrency|tournamentcurrency)>.*</(tablecurrency|tournamentcurrency)>\s+?)?
             <duration>.+</duration>\s+?
@@ -107,7 +110,7 @@ class iPokerSummary(TourneySummary):
         if self.games[mg['GAME']][0] == 'stud':
             self.gametype['limitType']  = 'fl'
         if self.games[mg['GAME']][0] == 'hold':
-            if mg['GAME'][-2:] == 'NL' or mg['GAME'][-2:] == 'SL':
+            if mg['GAME'][-2:] == 'NL' or mg['GAME'][-2:] == 'SL' or mg['GAME'][-2:] == u'БЛ':
                 self.gametype['limitType']  = 'nl'
             elif mg['GAME'][-2:] == 'PL' or mg['GAME'][-2:] == 'LP':
                 self.gametype['limitType'] = 'pl'
