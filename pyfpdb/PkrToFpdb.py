@@ -58,7 +58,7 @@ class Pkr(HandHistoryConverter):
 
     # Static regexes
     re_GameInfo     = re.compile(u"""
-          Table\s\#\d+\s\-\s((Tournament|STT)\s\#\s?(?P<TOURNO>\d+)(\sTable\s\#)?)?(?P<TABLE>[a-zA-Z\ \d]+)?\s
+          Table\s\#\d+\s\-\s((Tournament|STT)\s\#\s?(?P<TOURNO>\d+)(\sTable\s\#)?)?(?P<TABLE>.+?)?\s
           Starting\sHand\s\#(?P<HID>[0-9]+)\s
           Start\stime\sof\shand:\s(?P<DATETIME>.*)\s
           Last\sHand\s(n/a|\#[0-9]+)\s
