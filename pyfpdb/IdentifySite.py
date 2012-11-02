@@ -224,7 +224,8 @@ class IdentifySite:
                 f.ftype = "hh"
                 if f.site.re_HeroCards:
                     h = f.site.re_HeroCards.search(whole_file)
-                    if h: f.hero = h.group('PNAME')
+                    if h and 'PNAME' in h.groupdict():
+                        f.hero = h.group('PNAME')
                 else:
                     f.hero = 'Hero'
                 return f
