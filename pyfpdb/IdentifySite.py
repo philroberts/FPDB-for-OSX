@@ -43,6 +43,7 @@ class FPDBFile:
     kodec = None
     archive = False
     gametype = False
+    hero = '-'
 
     def __init__(self, path):
         self.path = path
@@ -61,6 +62,7 @@ class Site:
         self.copyGameHeader = obj.copyGameHeader
         self.line_delimiter = self.getDelimiter(filter_name)
         self.line_addendum  = self.getAddendum(filter_name)
+        self.getHeroRegex(obj, filter_name)
         
     def getDelimiter(self, filter_name):
         line_delimiter =  None
@@ -85,6 +87,15 @@ class Site:
             line_addendum = '\n\n'
             
         return line_addendum
+    
+    def getHeroRegex(self, obj, filter_name):
+        self.re_HeroCards   = None
+        if hasattr(obj, 're_HeroCards'):
+            if filter_name not in ('Bovada', 'Enet'):
+                self.re_HeroCards = obj.re_HeroCards
+        if filter_name == 'PokerTracker':
+            self.re_HeroCards1 = obj.re_HeroCards1
+            self.re_HeroCards2 = obj.re_HeroCards2        
 
 class IdentifySite:
     def __init__(self, config, hhcs = None):
@@ -211,6 +222,11 @@ class IdentifySite:
             if m:
                 f.site = site
                 f.ftype = "hh"
+                if f.site.re_HeroCards:
+                    h = f.site.re_HeroCards.search(whole_file)
+                    if h: f.hero = h.group('PNAME')
+                else:
+                    f.hero = 'Hero'
                 return f
 
         for id, site in self.sitelist.iteritems():
@@ -237,6 +253,13 @@ class IdentifySite:
                 if re_SplitHands.search( m1.group()):
                     f.site.line_delimiter = None
                     f.site.re_SplitHands = re.compile(u'\n\n\n\*{2}\sGame\sID\s')
+                m3 = f.site.re_HeroCards1.search(whole_file)
+                if m3:
+                    f.hero = m3.group('PNAME')
+                else:
+                     m4 = f.site.re_HeroCards2.search(whole_file)
+                     if m4:
+                         f.hero = m4.group('PNAME')
             else:
                 f.ftype = "summary"
             return f
