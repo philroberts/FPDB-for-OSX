@@ -1,0 +1,399 @@
+Table #45061966 - Tournament #25865515 Table #21
+Starting Hand #2087122526
+Start time of hand: 20 May 2012 11:06:47
+Last Hand n/a
+Game Type: OMAHA HI/LO
+Limit Type: POT LIMIT
+Table Type: TOURNAMENT
+Money Type: TOURNAMENT CHIPS
+Blinds are now 10 / 20
+Button is at seat 8
+Seat 1: Player0 - 1,200
+Seat 2: Player1 - 1,200
+Seat 3: Player2 - 1,200
+Seat 4: Player3 - 1,200
+Seat 5: Hero - 1,200
+Seat 6: Player4 - 1,200
+Seat 7: Player5 - 1,200
+Seat 8: Player6 - 1,200
+Seat 9: Player7 - 1,200
+Seat 10: Player8 - 1,200
+Shuffling Deck
+Moving Button to seat 8
+Player7 posts small blind (10)
+Player8 posts big blind (20)
+Dealing Cards
+Dealing [9 s][7 s][Q s][T d] to Hero
+Player0 calls 20
+Player6 yawns.
+Player1 calls 20
+Player2 folds
+Player3 raises to 110
+Player6 yawns.
+Hero did not respond in time and is folded
+Hero folds
+Player4 folds
+Player6 yawns.
+Player5 calls 110
+Player6 calls 110
+Player6 yawns.
+Player7 did not respond in time and is folded
+Player7 folds
+Player8 folds
+Player0 calls 110
+Player6: wake up
+Player1 calls 110
+Pot sizes: 580
+Dealing Flop [3 d][6 s][4 h]
+Player0 bets 580
+Player1 calls 580
+Player3 raises to 1,090 (all-in)
+Player5 folds
+Player6 calls 1,090 (all-in)
+Player0 calls 1,090 (all-in)
+Player1 calls 1,090 (all-in)
+Pot sizes: 4,940
+Player0 shows [A s][5 c][4 d][K s]
+Player1 shows [6 d][A d][8 c][2 c]
+Player3 shows [6 h][T s][A c][3 c]
+Player6 shows [2 d][3 h][7 c][5 s]
+Dealing Turn [A h]
+Pot sizes: 4,940
+Dealing River [Q d]
+Pot sizes: 4,940
+Player3 has Two Pairs: Aces, 6s
+Player3 has no qualifying low hand
+Player6 has Straight, 7 high 
+Player6 has low hand: A2345
+Player6 wins 2,470 with high hand: Straight, 7 high 
+Player6 wins 2,470 with low hand: A2345
+Player6 says thank you.
+Seat 1: Player0 - 0
+Seat 2: Player1 - 0
+Seat 3: Player2 - 1,200
+Seat 4: Player3 - 0
+Seat 5: Hero - 1,200
+Seat 6: Player4 - 1,200
+Seat 7: Player5 - 1,090
+Seat 8: Player6 - 4,940
+Seat 9: Player7 - 1,190
+Seat 10: Player8 - 1,180
+End of Hand #2087122526
+
+Table #45061966 - Tournament #25865515 Table #21
+Starting Hand #2087124046
+Start time of hand: 20 May 2012 11:09:29
+Last Hand #2087122526
+Game Type: OMAHA HI/LO
+Limit Type: POT LIMIT
+Table Type: TOURNAMENT
+Money Type: TOURNAMENT CHIPS
+Blinds are now 10 / 20
+Button is at seat 8
+Seat 1: Player9 - 1,110
+Seat 2: Player10 - 655
+Seat 3: Player2 - 1,200
+Seat 5: Hero - 1,200
+Seat 6: Player4 - 1,200
+Seat 7: Player5 - 1,090
+Seat 8: Player6 - 4,940
+Seat 9: Player7 - 1,190
+Seat 10: Player8 - 1,180
+Shuffling Deck
+Moving Button to seat 9
+Player8 posts small blind (10)
+Player9 posts big blind (20)
+Dealing Cards
+Dealing [9 c][Q d][6 s][5 h] to Hero
+Player10 folds
+Player11 brings 1,020 to table 45061966
+Player11 has joined from Tournament Table #74
+Player2 raises to 40
+Hero calls 40
+Player4 folds
+Player5 folds
+Player6 calls 40
+Player7 folds
+Player8 folds
+Player9 calls 40
+Pot sizes: 170
+Dealing Flop [7 d][8 c][4 h]
+Player9 checks
+Player2 bets 170
+Hero raises to 680
+Player6 calls 680
+Player9 raises to 1,070 (all-in)
+Player2 raises to 1,160 (all-in)
+Hero calls 1,160 (all-in)
+Player6 calls 1,160
+Pot sizes: 4,450
+Pot sizes: 270
+Player9 shows [2 s][J h][T h][3 c]
+Player2 shows [9 s][3 s][8 s][Q h]
+Hero shows [9 c][Q d][6 s][5 h]
+Player6 shows [6 c][9 d][7 h][T s]
+Dealing Turn [4 d]
+Pot sizes: 4,450
+Pot sizes: 270
+Dealing River [A h]
+Pot sizes: 4,450
+Pot sizes: 270
+Player2 has Two Pairs: 8s, 4s
+Player2 has low hand: A3478
+Hero has Straight, 8 high 
+Hero has low hand: A4567
+Hero wins 135 from side pot #1 with high hand: Straight, 8 high 
+Hero wins 135 from side pot #1 with low hand: A4567
+Player9 has One Pair: 4s
+Player9 has low hand: A2347
+Hero wins 2,225 with high hand: Straight, 8 high 
+Player9 wins 2,225 with low hand: A2347
+Seat 1: Player9 - 2,225
+Seat 2: Player10 - 655
+Seat 3: Player2 - 0
+Seat 4: Player11 - 1,020
+Seat 5: Hero - 2,495
+Seat 6: Player4 - 1,200
+Seat 7: Player5 - 1,090
+Seat 8: Player6 - 3,740
+Seat 9: Player7 - 1,190
+Seat 10: Player8 - 1,170
+End of Hand #2087124046
+
+Table #45061966 - Tournament #25865515 Table #21
+Starting Hand #2087124912
+Start time of hand: 20 May 2012 11:11:00
+Last Hand #2087124046
+Game Type: OMAHA HI/LO
+Limit Type: POT LIMIT
+Table Type: TOURNAMENT
+Money Type: TOURNAMENT CHIPS
+Blinds are now 10 / 20
+Button is at seat 9
+Seat 1: Player9 - 2,225
+Seat 2: Player10 - 655
+Seat 4: Player11 - 1,020
+Seat 5: Hero - 2,495
+Seat 6: Player4 - 1,200
+Seat 7: Player5 - 1,090
+Seat 8: Player6 - 3,740
+Seat 9: Player7 - 1,190
+Seat 10: Player8 - 1,170
+Shuffling Deck
+Moving Button to seat 10
+Player9 posts small blind (10)
+Player10 posts big blind (20)
+Dealing Cards
+Dealing [2 d][5 d][J d][4 c] to Hero
+Player12 brings 1,180 to table 45061966
+Player12 has joined from Tournament Table #1
+Player11 calls 20
+Hero calls 20
+Player4 folds
+Player5 calls 20
+Player6 calls 20
+Player7 folds
+Player8 folds
+Player9 calls 20
+Player10 checks
+Pot sizes: 120
+Dealing Flop [9 c][3 h][J h]
+Player9 checks
+Player10 has requested more time
+Player10 checks
+Player11 checks
+Hero bets 120
+Player5 calls 120
+Player6 folds
+Player9 folds
+Player10 calls 120
+Player11 calls 120
+Pot sizes: 600
+Dealing Turn [T s]
+Player10 checks
+Player11 checks
+Hero checks
+Player5 checks
+Pot sizes: 600
+Dealing River [9 h]
+Player10 checks
+Player11 checks
+Hero checks
+Player5 checks
+Pot sizes: 600
+Hero shows [2 d][5 d][J d][4 c]
+Hero has Two Pairs: Jacks, 9s
+Hero has no qualifying low hand
+Player5 mucks
+Player10 mucks
+Player11 shows [8 h][K h][8 d][3 d]
+Player11 has Flush, King high 
+Player11 has no qualifying low hand
+Player11 wins 600 with high hand: Flush, King high 
+There is no qualifying low hand
+Seat 1: Player9 - 2,205
+Seat 2: Player10 - 515
+Seat 3: Player12 - 1,180
+Seat 4: Player11 - 1,480
+Seat 5: Hero - 2,355
+Seat 6: Player4 - 1,200
+Seat 7: Player5 - 950
+Seat 8: Player6 - 3,720
+Seat 9: Player7 - 1,190
+Seat 10: Player8 - 1,170
+End of Hand #2087124912
+
+Table #45061966 - Tournament #25865515 Table #21
+Starting Hand #2087126607
+Start time of hand: 20 May 2012 11:13:53
+Last Hand #2087124912
+Game Type: OMAHA HI/LO
+Limit Type: POT LIMIT
+Table Type: TOURNAMENT
+Money Type: TOURNAMENT CHIPS
+Blinds are now 10 / 20
+Button is at seat 10
+Seat 1: Player9 - 2,205
+Seat 2: Player10 - 515
+Seat 3: Player12 - 1,180
+Seat 4: Player11 - 1,480
+Seat 5: Hero - 2,355
+Seat 6: Player4 - 1,200
+Seat 7: Player5 - 950
+Seat 8: Player6 - 3,720
+Seat 9: Player7 - 1,190
+Seat 10: Player8 - 1,170
+Shuffling Deck
+Moving Button to seat 1
+Player10 posts small blind (10)
+Player12 posts big blind (20)
+Dealing Cards
+Dealing [K s][4 s][2 d][2 s] to Hero
+Player11 folds
+Hero calls 20
+Player4 folds
+Player5 raises to 90
+Player6 folds
+Player7 folds
+Player8 folds
+Player9 calls 90
+Player10 calls 90
+Player12 calls 90
+Hero calls 90
+Pot sizes: 450
+Dealing Flop [6 s][8 h][2 c]
+Player10 checks
+Player12 bets 450
+Hero raises to 1,800
+Player5 calls 860 (all-in)
+Player12: donks  - no lotterie
+Player9 folds
+Player10 folds
+Player12 calls 1,090 (all-in)
+Returning 710 to Hero uncalled
+Pot sizes: 3,030
+Pot sizes: 460
+Player12 shows [3 c][3 d][K d][A d]
+Hero shows [K s][4 s][2 d][2 s]
+Player5 shows [7 d][A s][A h][8 d]
+Dealing Turn [9 d]
+Pot sizes: 3,030
+Pot sizes: 460
+Dealing River [4 c]
+Pot sizes: 3,030
+Pot sizes: 460
+Hero has Three of a Kind: 2s
+Hero has no qualifying low hand
+Player12 has One Pair: 3s
+Player12 has low hand: A2346
+Hero wins 230 from side pot #1 with high hand: Three of a Kind: 2s
+Player12 wins 230 from side pot #1 with low hand: A2346
+Player5 has One Pair: Aces
+Player5 has low hand: A2467
+Hero wins 1,515 with high hand: Three of a Kind: 2s
+Player12 wins 1,515 with low hand: A2346
+Seat 1: Player9 - 2,115
+Seat 2: Player10 - 425
+Seat 3: Player12 - 1,745
+Seat 4: Player11 - 1,480
+Seat 5: Hero - 2,920
+Seat 6: Player4 - 1,200
+Seat 7: Player5 - 0
+Seat 8: Player6 - 3,720
+Seat 9: Player7 - 1,190
+Seat 10: Player8 - 1,170
+End of Hand #2087126607
+
+Table #45061966 - Tournament #25865515 Table #21
+Starting Hand #2087127467
+Start time of hand: 20 May 2012 11:15:23
+Last Hand #2087126607
+Game Type: OMAHA HI/LO
+Limit Type: POT LIMIT
+Table Type: TOURNAMENT
+Money Type: TOURNAMENT CHIPS
+Blinds are now 20 / 40
+Button is at seat 1
+Seat 1: Player9 - 2,115
+Seat 2: Player10 - 425
+Seat 3: Player12 - 1,745
+Seat 4: Player11 - 1,480
+Seat 5: Hero - 2,920
+Seat 6: Player4 - 1,200
+Seat 8: Player6 - 3,720
+Seat 9: Player7 - 1,190
+Seat 10: Player8 - 1,170
+Shuffling Deck
+Moving Button to seat 2
+Player12 posts small blind (20)
+Player11 posts big blind (40)
+Dealing Cards
+Dealing [4 d][J h][4 h][K c] to Hero
+jorenol brings 823 to table 45061966
+jorenol has joined from Tournament Table #50
+Hero calls 40
+Player4 folds
+Player6 calls 40
+Player7 folds
+Player8 folds
+Player9 folds
+Player10 calls 40
+Player12 calls 40
+Player11 checks
+Pot sizes: 200
+Dealing Flop [A s][3 d][T c]
+Player12 bets 200
+Player11 calls 200
+Hero folds
+Player6 calls 200
+Player10 folds
+Pot sizes: 800
+Dealing Turn [3 h]
+Player12 bets 800
+Player11 calls 800
+Player6 folds
+Pot sizes: 2,400
+Dealing River [K h]
+Player12 bets 705 (all-in)
+Player11 calls 440 (all-in)
+Returning 265 to Player12 uncalled
+Pot sizes: 3,280
+Player12 shows [A c][A d][6 s][J d]
+Player11 shows [5 h][T h][Q h][K s]
+Player12 has Full House, Aces over 3s
+Player12 has no qualifying low hand
+Player12 says Ship It!
+Player12 wins 3,280 with high hand: Full House, Aces over 3s
+There is no qualifying low hand
+Seat 1: Player9 - 2,115
+Seat 2: Player10 - 385
+Seat 3: Player12 - 3,545
+Seat 4: Player11 - 0
+Seat 5: Hero - 2,880
+Seat 6: Player4 - 1,200
+Seat 7: jorenol - 823
+Seat 8: Player6 - 3,480
+Seat 9: Player7 - 1,190
+Seat 10: Player8 - 1,170
+End of Hand #2087127467
+
