@@ -62,7 +62,7 @@ class FullTiltPokerSummary(TourneySummary):
                         \((?P<TOURNO>[0-9]+)\)
                         (\s+)?(\sMatch\s\d\s)?
                         (?P<GAME>Hold\'em|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Stud\sH/L|Stud\sHi|Omaha|Omaha\sHi|Omaha\sHi/Lo|Omaha\sH/L|Badugi|Triple\sDraw\s2\-7\sLowball|2-7\sTriple\sDraw|5\sCard\sDraw|7-Game\sMixed|HORSE|10-Game\sMixed)\s+
-                        ((?P<LIMIT>No\sLimit|Limit|LIMIT|Pot\sLimit)\s+)?
+                        ((?P<LIMIT>No\sLimit|Limit|LIMIT|Pot\sLimit)\s+)?(\(.+?\)\s+)?
                         (Buy-In:\s[%(LS)s]?(?P<BUYIN>[%(NUM)s]+)(\sFTP)?(\s\+\s[%(LS)s]?(?P<FEE>[%(NUM)s]+)(\sFTP)?)?\s+)?
                         (Knockout\sBounty:\s[%(LS)s](?P<KOBOUNTY>[%(NUM)s]+)\s+)?
                         ((?P<PNAMEBOUNTIES>.{2,15})\sreceived\s(?P<PBOUNTIES>\d+)\sKnockout\sBounty\sAwards?\s+)?
@@ -79,8 +79,7 @@ class FullTiltPokerSummary(TourneySummary):
                         (Total\sPrize\sPool:\s[%(LS)s]?(?P<PRIZEPOOL>[%(NUM)s]+)(\sFTP)?\s+)?
                         (Top\s(\d+\s)?finishers?\sreceives?\s.+\s+)?
                         (Target\sTournament\s.+\s+)?
-                        Tournament\sstarted:\s
-                        (?P<DATETIME>((?P<Y>[\d]{4})\/(?P<M>[\d]{2})\/(?P<D>[\d]+)\s+(?P<H>[\d]+):(?P<MIN>[\d]+):(?P<S>[\d]+)\s??(?P<TZ>[A-Z]+)\s|\w+,\s(?P<MONTH>\w+)\s(?P<DAY>\d+),\s(?P<YEAR>[\d]{4})\s(?P<HOUR>\d+):(?P<MIN2>\d+)))
+                        Tournament\sstarted:\s(?P<DATETIME>((?P<Y>[\d]{4})\/(?P<M>[\d]{2})\/(?P<D>[\d]+)\s+(?P<H>[\d]+):(?P<MIN>[\d]+):(?P<S>[\d]+)\s??(?P<TZ>[A-Z]+)\s|\w+,\s(?P<MONTH>\w+)\s(?P<DAY>\d+),\s(?P<YEAR>[\d]{4})\s(?P<HOUR>\d+):(?P<MIN2>\d+)))
                                """ % substitutions ,re.VERBOSE|re.MULTILINE|re.DOTALL)
 
     re_Currency = re.compile(u"""(?P<CURRENCY>[%(LS)s]|FPP|FTP)""" % substitutions)
