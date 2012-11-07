@@ -1,0 +1,18 @@
+PokerStars Game #2667630751: Tournament #2416076, $20+$1 USD Hold'em No Limit - Match Round I, Level I (10/20) - 2012/09/27 05:51:02 ET
+Table '1' 2-max Seat #2 is the button
+Seat 1: Hero (1500 in chips)
+Seat 2: Villain (1500 in chips)
+Villain: posts small blind 10 
+Hero: posts big blind 20 
+*** HOLE CARDS ***
+Dealt to Hero [6h Qd] 
+Dealt to Villain [Ac 2h] 
+Villain: raises 30 to 40
+Hero: folds
+Uncalled bet (20) returned to Villain 
+Villain: shows [Ac 2h] (High Card)
+Villain collected 40 from pot 
+*** SUMMARY ***
+Total pot 40 | Rake 0
+Seat 1: Hero (big blind) showed [6h Qd] and folded before Flop
+Seat 2: Villain (button) (small blind) showed [Ac 2h] and collected (40)  

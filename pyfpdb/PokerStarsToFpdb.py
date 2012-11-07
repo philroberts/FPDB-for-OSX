@@ -327,8 +327,9 @@ class PokerStars(HandHistoryConverter):
                 hand.level = info[key]
 
             if key == 'TABLE':
-                if hand.tourNo != None:
-                    hand.tablename = re.split(" ", info[key])[1]
+                tablesplit = re.split(" ", info[key])
+                if hand.tourNo != None and len(tablesplit)>1:
+                    hand.tablename = tablesplit[1]
                 else:
                     hand.tablename = info[key]
             if key == 'BUTTON':
