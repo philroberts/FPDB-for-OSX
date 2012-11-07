@@ -428,7 +428,7 @@ class DerivedStats():
                                                      if lostringvalue < inserts_temp[j][9]:
                                                          lostring += loappend
                                                      else:
-                                                         if loappend not in inserts_temp[j][5] and inserts_temp[k][10]>0:
+                                                         if loappend not in inserts_temp[j][5] and inserts_temp[j][10]>0:
                                                              inserts_temp[j][5] += loappend
                                      if histring:
                                          histring = self.getHandString('hi', histring, hicards, best_hi)
