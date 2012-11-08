@@ -98,8 +98,8 @@ class Fulltilt(HandHistoryConverter):
                                  ''' % substitutions, re.MULTILINE|re.VERBOSE)
     re_Cancelled = re.compile("Hand\s\#[0-9]+\shas\sbeen\scanceled?")
     re_TourneyExtraInfo  = re.compile('''(((?P<TOURNEY_NAME>[^$]+)?
-                                         (?P<CURRENCY>[%(LS)s])?(?P<BUYIN>[.0-9]+)?\s*\+\s*[%(LS)s]?(?P<FEE>[.0-9]+)?
-                                         (\s(?P<SPECIAL>(KO|Heads\sUp|Matrix\s\dx|Rebuy|Madness)))?
+                                         (?P<CURRENCY>[%(LS)s])?(?P<BUYIN>[.0-9]+)?(\s*\+\s*[%(LS)s]?(?P<FEE>[.0-9]+))?
+                                         (\s(?P<SPECIAL>(KO|Heads\sUp|Heads\-Up|Head\'s\sUp|Matrix\s\dx|Rebuy|Madness)))?
                                          (\s(?P<SHOOTOUT>Shootout))?
                                          (\s(?P<SNG>Sit\s&\sGo))?
                                          (\s\((?P<TURBO>Turbo)\))?)|(?P<UNREADABLE_INFO>.+))
@@ -356,7 +356,7 @@ class Fulltilt(HandHistoryConverter):
                         hand.isRebuy = True
                     if special == "KO":
                         hand.isKO = True
-                    if special == "Head's Up" or special == "Heads Up":
+                    if special in ("Head's Up", "Heads-Up", "Heads Up"):
                         hand.maxseats = 2
                     if re.search("Matrix", special):
                         hand.isMatrix = True
