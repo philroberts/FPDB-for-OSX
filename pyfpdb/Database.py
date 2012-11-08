@@ -2925,9 +2925,10 @@ class Database:
             resultDict = dict(zip(columnNames, result))
             ttid = resultDict["id"]
             for ev in expectedValues:
-                if not getattr(obj, ev[0]) and resultDict[ev[1]]:#DB has this value but object doesnt, so update object
+                val = getattr(obj, ev[0])
+                if (not val or val=='NA') and resultDict[ev[1]]:#DB has this value but object doesnt, so update object
                     setattr(obj, ev[0], resultDict[ev[1]])
-                elif getattr(obj, ev[0]) and (resultDict[ev[1]] != getattr(obj, ev[0])):#object has this value but DB doesnt, so update DB
+                elif val and (resultDict[ev[1]] != val):#object has this value but DB doesnt, so update DB
                     updateDb=True
                     _ttid = ttid
         if not result or updateDb:
