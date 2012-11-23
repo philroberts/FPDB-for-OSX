@@ -1,0 +1,28 @@
+Full Tilt Poker Game #31497971185: Table Tam (6 max) - $5/$10 - Limit 2-7 Triple Draw - 15:37:47 ET - 2012/11/23
+Seat 1: Hero ($320.50)
+Seat 2: Player0 ($53)
+Seat 3: Player1 ($216.65)
+Seat 4: Player2 ($353.55)
+Seat 6: Player3 ($140)
+Hero posts the small blind of $2.50
+Player0 posts the big blind of $5
+Player2 posts a dead small blind of $2.50
+Player2 posts $5
+The button is in seat #6
+*** HOLE CARDS ***
+Dealt to Hero [Qc 8d Tc 2h Th]
+Player1 folds
+Player2 raises to $10
+Player3 folds
+Hero folds
+Player0 folds
+Uncalled bet of $5 returned to Player2
+Player2 mucks
+Player2 wins the pot ($15)
+*** SUMMARY ***
+Total pot $15 | Rake $0
+Seat 1: Hero (small blind) folded before the Draw
+Seat 2: Player0 (big blind) folded before the Draw
+Seat 3: Player1 folded before the Draw (didn't bet)
+Seat 4: Player2 collected ($15), mucked
+Seat 6: Player3 (button) folded before the Draw (didn't bet)
