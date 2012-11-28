@@ -826,15 +826,15 @@ def raiseToSteal(stat_dict, player):
                 _('% raise to steal'))
 
 def car0(stat_dict, player):
-    stat_descriptions["car_0"] = _("% called a raise preflop") + " (car_0)"
+    stat_descriptions["car0"] = _("% called a raise preflop") + " (car0)"
     stat = 0.0
     try:
-        stat = float(stat_dict[player]['car_0'])/float(stat_dict[player]['car_opp_0'])
+        stat = float(stat_dict[player]['car0'])/float(stat_dict[player]['car_opp_0'])
         return (stat,
                 '%3.1f'         % (100.0*stat),
                 'CAR0=%3.1f%%'    % (100.0*stat),
                 'CAR_pf=%3.1f%%' % (100.0*stat),
-                '(%d/%d)'       % (stat_dict[player]['car_0'], stat_dict[player]['car_opp_0']),
+                '(%d/%d)'       % (stat_dict[player]['car0'], stat_dict[player]['car_opp_0']),
                 _('% called a raise preflop'))
     except:
         return (stat,
