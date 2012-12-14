@@ -97,7 +97,7 @@ class Cake(HandHistoryConverter):
           re.MULTILINE|re.VERBOSE)
 
     re_SplitHands   = re.compile('\n\n+')
-    re_Button       = re.compile('Seat #(?P<BUTTON>\d+) is the button', re.MULTILINE)
+    re_Button       = re.compile('Dealer: Seat (?P<BUTTON>\d+)', re.MULTILINE)
     re_Board        = re.compile(r"\[(?P<CARDS>.+)\]")
 
     re_DateTime     = re.compile("""(?P<Y>[0-9]{4})[\/\-\.](?P<M>[0-9]{2})[\/\-\.](?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)""", re.MULTILINE)
