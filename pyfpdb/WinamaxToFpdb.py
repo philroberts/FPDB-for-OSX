@@ -138,7 +138,6 @@ class Winamax(HandHistoryConverter):
 
             self.re_CollectPot = re.compile('\s*(?P<PNAME>.*)\scollected\s(%(CUR)s)?(?P<POT>[\.\d]+)(%(CUR)s)?.*' % subst)
             self.re_ShownCards = re.compile("^Seat (?P<SEAT>[0-9]+): %(PLYR)s showed \[(?P<CARDS>.*)\].*" % subst, re.MULTILINE)
-            self.re_sitsOut    = re.compile('(?P<PNAME>.*) sits out')
 
     def readSupportedGames(self):
         return [
