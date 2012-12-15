@@ -72,7 +72,6 @@ class Microgaming(HandHistoryConverter):
 
     #re_ShowdownAction   = re.compile(r'<RESULT PLAYER="(?P<SEAT>\d+)" WIN="[.0-9]+" HAND="(?P<HAND>\(\$STR_G_FOLD\)|[\$\(\)_ A-Z]+)">\n(?P<CARDS><CARD LINK="[0-9]+"></CARD>\n<CARD LINK="[0-9]+"></CARD>)</RESULT>', re.MULTILINE)
     re_CollectPot       = re.compile(r'<Seat num="(?P<SEAT>\d+)" amount="(?P<POT>[.\d]+)" pot=".+" type=".*" lowhandwin="\d+"/>', re.MULTILINE)
-    #re_sitsOut          = re.compile("^(?P<SEAT>\d+) sits out", re.MULTILINE)
     re_ShownCards       = re.compile(r'<Action seq="\d+" type="(?P<SHOWED>ShowCards|MuckCards)" seat="(?P<SEAT>\d+)">\s+?(?P<CARDS>(<Card value="[0-9TJQKA]+" suit="[csdh]" id="(?P<CARD>\d+)"/>\s+)+)', re.MULTILINE)
 
     cid_toval = {
