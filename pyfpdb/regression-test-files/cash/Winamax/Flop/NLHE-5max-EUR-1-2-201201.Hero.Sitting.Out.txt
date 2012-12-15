@@ -1,0 +1,20 @@
+Winamax Poker - CashGame - HandId: #2334898-436-1326450000 - Holdem no limit (1€/2€) - 2012/01/19 12:03:46 UTC
+Table: 'Neuilly-sur-Seine' 5-max (real money) Seat 0000005 is the button
+Seat 1: Player1 (197€)
+Seat 2: SatOutToo (286€)
+Seat 3: Player2 (87€)
+Seat 4: Hero (200€)
+Seat 5: Player3 (210.92€)
+*** ANTE/BLINDS ***
+SatOutToo denies big blind
+Player1 posts small blind 1€
+Player2 posts big blind 2€
+*** PRE-FLOP ***
+Player3 folds
+Player1 folds
+Player2 collected 3€ from pot
+*** SUMMARY ***
+Total pot 3€ | No rake
+Seat 1: Player1 (small blind) folded on the pre-flop
+Seat 3: Player2 (big blind) won 3€
+Seat 5: Player3 (button) folded on the pre-flop 
