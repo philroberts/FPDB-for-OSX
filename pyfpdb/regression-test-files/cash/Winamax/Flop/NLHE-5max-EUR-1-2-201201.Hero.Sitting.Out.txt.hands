@@ -16,7 +16,7 @@
     'playersAtStreet4': 0,
     'playersVpi': 0,
     'runItTwice': False,
-    'seats': 5,
+    'seats': 3,
     'sessionId': None,
     'showdownPot': 0,
     'siteHandNo': '4361326450000',
