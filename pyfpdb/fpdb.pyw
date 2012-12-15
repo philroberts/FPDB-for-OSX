@@ -150,7 +150,7 @@ class fpdb:
         tabBox.pack_start(tabLabel, False)
         eventBox.add(tabBox)
 
-        # fixme: force background state to fix problem where STATE_ACTIVE
+        # FIXME: force background state to fix problem where STATE_ACTIVE
         # tab labels are black in some gtk themes, and therefore unreadable
         # This behaviour is probably a bug in libwimp.dll or pygtk, but
         # need to force background to avoid issues with menu labels being
@@ -162,12 +162,9 @@ class fpdb:
         # Insensitive/base is chosen as the background colour, because 
         # although not perfect, it seems to be the least instrusive.
         baseNormStyle = eventBox.get_style().base[gtk.STATE_INSENSITIVE]
-        try:
-            gtk.gdk.color_parse(str(baseNormStyle))
-            if baseNormStyle:
-                eventBox.modify_bg(gtk.STATE_ACTIVE, gtk.gdk.color_parse(str(baseNormStyle)))
-        except:
-            pass
+        gtk.gdk.color_parse(str(baseNormStyle))
+        if baseNormStyle:
+            eventBox.modify_bg(gtk.STATE_ACTIVE, gtk.gdk.color_parse(str(baseNormStyle)))
 
         tabButton = gtk.Button()
         tabButton.connect('clicked', self.remove_tab, (nb, text))
