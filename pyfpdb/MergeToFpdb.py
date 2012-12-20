@@ -994,6 +994,9 @@ or None if we fail to get the info """
             # "$200 Freeroll - NL Holdem - 20:00 (46302299) - Table 1" -- the table number doesn't matter, it seems to always be 1 in the HH.
             # "Fun Step 1 (4358174) - Table 1"
             regex = "\(" + re.escape(str(tournament)) + "\)"
+        else type == "ring":
+            regex += " \("
+
         log.info("Merge.getTableTitleRe: table_name='%s' tournament='%s' table_number='%s'" % (table_name, tournament, table_number))
         log.info("Merge.getTableTitleRe: returns: '%s'" % (regex))
         return regex
