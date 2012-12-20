@@ -150,21 +150,15 @@ class fpdb:
         tabBox.pack_start(tabLabel, False)
         eventBox.add(tabBox)
 
-        # FIXME: force background state to fix problem where STATE_ACTIVE
+        # NOTE: look at git annotate of this line to see when the revert of:
+        #
+        # force background state to fix problem where STATE_ACTIVE
         # tab labels are black in some gtk themes, and therefore unreadable
         # This behaviour is probably a bug in libwimp.dll or pygtk, but
         # need to force background to avoid issues with menu labels being
         # unreadable
         #
-        #   gtk.STATE_ACTIVE is a displayed, but not selected tab
-        #   gtk.STATE_NORMAL is a displayed, selected, focussed tab
-        #   gtk.STATE_INSENSITIVE is an inactive tab
-        # Insensitive/base is chosen as the background colour, because 
-        # although not perfect, it seems to be the least instrusive.
-        baseNormStyle = eventBox.get_style().base[gtk.STATE_INSENSITIVE]
-        gtk.gdk.color_parse(str(baseNormStyle))
-        if baseNormStyle:
-            eventBox.modify_bg(gtk.STATE_ACTIVE, gtk.gdk.color_parse(str(baseNormStyle)))
+        # was removed. Removing to fix http://sourceforge.net/apps/mantisbt/fpdb/view.php?id=123
 
         tabButton = gtk.Button()
         tabButton.connect('clicked', self.remove_tab, (nb, text))
