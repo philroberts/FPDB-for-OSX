@@ -105,7 +105,7 @@ class PartyPoker(HandHistoryConverter):
             (?P<DATETIME>.+)
             """ % substitutions, re.VERBOSE | re.UNICODE)
 
-    re_HandInfo     = re.compile("""
+    re_HandInfo     = re.compile(u"""
             ^Table\s(?P<TABLE>.+?)?\s+
             ((?: \#|\(|)(?P<TABLENO>\d+)\)?\s+)?
             (\(No\sDP\)\s)?
@@ -114,7 +114,7 @@ class PartyPoker(HandHistoryConverter):
             \s+Total\s+number\s+of\s+players\s+\:\s+(?P<PLYRS>\d+)/?(?P<MAX>\d+)?
             """, re.VERBOSE|re.MULTILINE|re.DOTALL)
 
-    re_GameInfoTrny     = re.compile("""
+    re_GameInfoTrny     = re.compile(u"""
             \*{5}\sHand\sHistory\s(F|f)or\sGame\s(?P<HID>\d+)\s\*{5}\s+
             (?P<LIMIT>(NL|PL|FL|))\s*
             (?P<GAME>(Texas\sHold\'em|Omaha\sHi-Lo|Omaha|7\sCard\sStud\sHi-Lo|7\sCard\sStud|Double\sHold\'em))\s+
