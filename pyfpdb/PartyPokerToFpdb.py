@@ -622,14 +622,15 @@ class PartyPoker(HandHistoryConverter):
     @staticmethod
     def getTableTitleRe(type, table_name=None, tournament = None, table_number=None):
         "Returns string to search in windows titles"
+        log.info("Party.getTableTitleRe: table_name='%s' tournament='%s' table_number='%s'" % (table_name, tournament, table_number))
+        regex = "%s" % (table_name)
         if type=="tour":
             if table_name:
                 TableName = table_name.split(" ")
-                print 'party', 'getTableTitleRe', "%s.+Table\s#?%s" % (TableName[0], table_number)
                 if len(TableName[1]) > 6:
-                    return "#?%s" % (table_number)
+                    regex = "#?%s" % (table_number)
                 else:
-                   return "%s.+Table\s#?%s" % (TableName[0], table_number)
+                    regex = "%s.+Table\s#?%s" % (TableName[0], table_number)
             else:
                 #
                 #sng's seem to get passed in with:
@@ -638,9 +639,9 @@ class PartyPoker(HandHistoryConverter):
                 #   table_number = 7 digit table number
                 # screen string is normally Turbo|Speed|(etc) #table_number
                 #
-                return "#?%s" % (table_number)
-        else:
-            return table_name
+                regex = "#?%s" % (table_number)
+        log.info("Party.getTableTitleRe: returns: '%s'" % (regex))
+        return regex
 
 def renderCards(string):
     "Splits strings like ' Js, 4d '"
