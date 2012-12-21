@@ -44,9 +44,8 @@ def main():
     pygame.init()
     clock = pygame.time.Clock()
     screen = pygame.display.set_mode((640, 480))
-    table_string = "Tournament 2010090009 Table %s - Blinds $600/$1200 Anto $150"
     table_no = 1
-    table_title = "Yarmouth Texas Hold'em NL -$0.01/$0.02"
+    table_title = "Valparaíso / aaaaaaaaaaaaaaaaa"
     pygame.display.set_caption(table_title)
     pygame.mouse.set_visible(0)
 
