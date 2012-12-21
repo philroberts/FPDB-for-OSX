@@ -20,6 +20,8 @@ import time
 from pygame.locals import *
 from pygame.compat import geterror
 
+import Charset
+
 main_dir = os.path.split(os.path.abspath(__file__))[0]
 data_dir = os.path.join(main_dir, '.')
 
@@ -46,7 +48,7 @@ def main():
     screen = pygame.display.set_mode((640, 480))
     table_no = 1
     table_title = "Valparaíso / aaaaaaaaaaaaaaaaa"
-    pygame.display.set_caption(table_title)
+    pygame.display.set_caption(Charset.to_utf8(table_title))
     pygame.mouse.set_visible(0)
 
     # Load background image
