@@ -36,7 +36,6 @@ class Fulltilt(HandHistoryConverter):
     substitutions = {
                      'LEGAL_ISO' : "USD|EUR|GBP|CAD|FPP",       # legal ISO currency codes
                             'LS' : u"\$|\u20AC|\xe2\x82\xac|",  # legal currency symbols - Euro(cp1252, utf-8)
-                           'TAB' : u"-\u2013'\s\da-zA-Z#_\.",     # legal characters for tablename
                            'NUM' : u".,\dKM",                     # legal characters in number format
                     }
 
@@ -86,9 +85,9 @@ class Fulltilt(HandHistoryConverter):
     re_HandInfo     = re.compile(u'''\#(?P<HID>[0-9]+):\s
                                     (?:(?P<TOURNAMENT>.+)\s\((?P<TOURNO>\d+)\),\s)?
                                     ((Table|Match)\s)?
-                                    (?P<PLAY>Play\sChip\s|PC)?
-                                    ((?P<TABLE>[%(TAB)s]+)(\s|,))
-                                    (?P<ENTRYID>\sEntry\s\#\d+\s)?
+                                    ((?P<PLAY>Play\sChip\s|PC)?
+                                    (?P<TABLE>.+?)(\s|,)
+                                    (?P<ENTRYID>\sEntry\s\#\d+\s)?)
                                     (\((?P<TABLEATTRIBUTES>.+)\)\s)?-\s
                                     [%(LS)s]?(?P<SB>[%(NUM)s]+)/[%(LS)s]?(?P<BB>[%(NUM)s]+)\s(Ante\s[%(LS)s]?(?P<ANTE>[%(NUM)s]+)\s)?-\s
                                     [%(LS)s]?(?P<CAP>[%(NUM)s]+\sCap\s)?
