@@ -30,7 +30,7 @@ class Fulltilt(HandHistoryConverter):
     
     sitename = "Fulltilt"
     filetype = "text"
-    codepage = ["utf-16", "cp1252", "utf-8"]
+    codepage = ["utf-16", "utf-8", "cp1252"]
     siteId   = 1 # Needs to match id entry in Sites database
 
     substitutions = {
