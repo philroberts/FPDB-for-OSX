@@ -111,6 +111,7 @@ class Bovada(HandHistoryConverter):
           (%(LS)s)?(?P<CASH>[%(NUM)s]+)\sin\schips""" % substitutions, 
           re.MULTILINE|re.VERBOSE)
 
+    re_Identify     = re.compile(u'(Bovada|Bodog(\sUK|\sCanada|88)?)\sHand')
     re_SplitHands   = re.compile('\n\n+')
     re_TailSplitHands   = re.compile('(\n\n\n+)')
     re_Button       = re.compile('Dealer : Set dealer\/Bring in spot \[(?P<BUTTON>\d+)\]', re.MULTILINE)
@@ -125,7 +126,7 @@ class Bovada(HandHistoryConverter):
     re_PostBoth         = re.compile(r"^%(PLYR)s (\s?\[ME\]\s)?: Posts dead chip %(CUR)s(?P<SBBB>[%(NUM)s]+)" %  substitutions, re.MULTILINE)
     re_HeroCards        = re.compile(r"^%(PLYR)s  ?\[ME\] : Card dealt to a spot \[(?P<NEWCARDS>.+?)\]" % substitutions, re.MULTILINE)
     re_Action           = re.compile(r"""(?P<ACTION>
-                        ^%(PLYR)s\s(\s?\[ME\]\s)?:(\sD)?(?P<ATYPE>\s(B|b)ets|\sDouble\sbets|\sChecks|\sRaises|\sCalls?|\sFold|\sBring_in\schip|\sBig\sblind\/Bring\sin|\sAll\-in(\((raise|raise\-timeout)\))?|\sCard\sdealt\sto\sa\sspot)
+                        ^%(PLYR)s\s(\s?\[ME\]\s)?:(\sD)?(?P<ATYPE>\s(B|b)ets|\sDouble\sbets|\sChecks|\s(R|r)aises|\sCalls?|\sFold|\sBring_in\schip|\sBig\sblind\/Bring\sin|\sAll\-in(\((raise|raise\-timeout)\))?|\sCard\sdealt\sto\sa\sspot)
                         (\schip\sinfo)?(\(timeout\))?(\s%(CUR)s(?P<BET>[%(NUM)s]+)(\sto\s%(CUR)s(?P<BETTO>[%(NUM)s]+))?|\s\[(?P<NEWCARDS>.+?)\])?)"""
                          %  substitutions, re.MULTILINE|re.VERBOSE)
     re_ShowdownAction   = re.compile(r"^%(PLYR)s (?P<HERO>\s?\[ME\]\s)?: Card dealt to a spot \[(?P<CARDS>.*)\]" % substitutions, re.MULTILINE)
@@ -326,7 +327,7 @@ class Bovada(HandHistoryConverter):
             player = self.playerSeatFromPosition('BovadaToFpdb.markStreets', hand.handid, action.group('PNAME'))
             if action.group('ATYPE') == ' Fold':
                 contenders -= 1
-            elif action.group('ATYPE') == ' Raises':
+            elif action.group('ATYPE') in (' Raises', ' raises'):
                 if streetno==1: bets = 1
                 streetactions, players = 0, contenders
             elif action.group('ATYPE') in (' Bets', ' bets', ' Double bets'):
@@ -488,7 +489,7 @@ class Bovada(HandHistoryConverter):
                 hand.addCheck( street, player)
             elif action.group('ATYPE') == ' Calls' or action.group('ATYPE') == ' Call':
                 hand.addCall( street, player, self.clearMoneyString(action.group('BET')) )
-            elif action.group('ATYPE') in (' Raises', ' All-in(raise)', ' All-in(raise-timeout)'):
+            elif action.group('ATYPE') in (' Raises', ' raises', ' All-in(raise)', ' All-in(raise-timeout)'):
                 if action.group('BETTO'):
                     bet = self.clearMoneyString(action.group('BETTO'))
                 else:
