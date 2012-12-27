@@ -1,0 +1,37 @@
+#Game No : 4567631488
+***** Hand History for Game 12395241485 *****
+$25 USD NL Texas Hold'em - Sunday,December 9, 14:34:49 ICT 2012
+Table Algeciras ( Real Money )
+Seat 1 is the button
+Total number of players : 6/6
+seat 1: Player1 ( $26,02 USD )
+seat 2: Player2 ( $30,04 USD )
+seat 3: Player3 ( $27,15 USD )
+seat 4: Player4 ( $35,89 USD )
+seat 5: Hero ( $26,18 USD )
+seat 6: Player5 ( $25 USD )
+Player2 posts small blind [$0,10 USD].
+Player3 posts big blind [$0,25 USD].
+** Dealing down cards **
+Dealt to Hero [ 6s, Ts ]
+Player4 calls [ $0,25 USD ]
+Hero folds
+Player5 folds
+Player1 raises [ $1 USD ]
+Player2 folds
+Player3 calls [ $0,75 USD ]
+Player4 calls [ $0,75 USD ]
+** Dealing Flop ** [ Th, Qd, As ]
+Player3 checks
+Player4 checks
+Player1 bets [ $2,21 USD ]
+Player3 raises [ $5,25 USD ]
+Player4 raises [ $20,91 USD ]
+Player1 folds
+Player3 is all-In  [ $20,90 USD ]
+Player4 calls [ $5,24 USD ]
+** Dealing Turn ** [ 8h ]
+** Dealing River ** [ 6c ]
+Player4 shows [ Ah, Qc ]two pairs, Aces and Queens.
+Player3 shows [ Ac, Qs ]two pairs, Aces and Queens.
+Player3 wins $27,37 USD from the main pot with two pairs, Aces and Queens.Player4 wins $27,36 USD from the main pot with two pairs, Aces and Queens.

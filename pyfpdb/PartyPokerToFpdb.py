@@ -160,7 +160,6 @@ class PartyPoker(HandHistoryConverter):
     def compilePlayerRegexs(self,  hand):
         players = set([player[1] for player in hand.players])
         if not players <= self.compiledPlayers: # x <= y means 'x is subset of y'
-
             self.compiledPlayers = players
             player_re = "(?P<PNAME>" + "|".join(map(re.escape, players)) + ")"
             subst = {'PLYR': player_re, 'CUR_SYM': self.sym[hand.gametype['currency']],
@@ -168,30 +167,30 @@ class PartyPoker(HandHistoryConverter):
                 'BRAX' : u"\[\(\)\]"
                     }
             self.re_PostSB = re.compile(
-                r"^%(PLYR)s posts small blind [%(BRAX)s]?%(CUR_SYM)s(?P<SB>[.,0-9]+) ?%(CUR)s[%(BRAX)s]?\."
+                r"%(PLYR)s posts small blind [%(BRAX)s]?%(CUR_SYM)s(?P<SB>[.,0-9]+) ?%(CUR)s[%(BRAX)s]?\."
                 %  subst, re.MULTILINE)
             self.re_PostBB = re.compile(
-                u"%(PLYR)s posts big blind [%(BRAX)s]?%(CUR_SYM)s(?P<BB>[.,0-9]+) ?%(CUR)s[%(BRAX)s]?\."
+                r"%(PLYR)s posts big blind [%(BRAX)s]?%(CUR_SYM)s(?P<BB>[.,0-9]+) ?%(CUR)s[%(BRAX)s]?\."
                 %  subst, re.MULTILINE)
             self.re_PostDead = re.compile(
-                r"^%(PLYR)s posts big blind \+ dead [%(BRAX)s]?%(CUR_SYM)s?(?P<BBNDEAD>[.,0-9]+) ?%(CUR_SYM)s?[%(BRAX)s]?\." %  subst,
+                r"%(PLYR)s posts big blind \+ dead [%(BRAX)s]?%(CUR_SYM)s?(?P<BBNDEAD>[.,0-9]+) ?%(CUR_SYM)s?[%(BRAX)s]?\." %  subst,
                 re.MULTILINE)
             self.re_Antes = re.compile(
-                r"^%(PLYR)s posts ante [%(BRAX)s]?%(CUR_SYM)s(?P<ANTE>[.,0-9]+) ?%(CUR)s[%(BRAX)s]?" %  subst,
+                r"%(PLYR)s posts ante [%(BRAX)s]?%(CUR_SYM)s(?P<ANTE>[.,0-9]+) ?%(CUR)s[%(BRAX)s]?" %  subst,
                 re.MULTILINE)
             self.re_HeroCards = re.compile(
-                r"^Dealt to %(PLYR)s \[\s*(?P<NEWCARDS>.+)\s*\]" % subst,
+                r"Dealt to %(PLYR)s \[\s*(?P<NEWCARDS>.+)\s*\]" % subst,
                 re.MULTILINE)
             self.re_Action = re.compile(u"""
-                ^%(PLYR)s\s+(?P<ATYPE>bets|checks|raises|completes|bring-ins|calls|folds|is\sall-In|double\sbets)
+                %(PLYR)s\s+(?P<ATYPE>bets|checks|raises|completes|bring-ins|calls|folds|is\sall-In|double\sbets)
                 (?:\s+[%(BRAX)s]?\s?%(CUR_SYM)s?(?P<BET>[.,\d]+)\s*(%(CUR)s)?\s?[%(BRAX)s]?)?
                 \.?\s*$""" %  subst, re.MULTILINE|re.VERBOSE)
             self.re_ShownCards = re.compile(
-                r"^%s (?P<SHOWED>(?:doesn\'t )?shows?) "  %  player_re +
+                r"%s (?P<SHOWED>(?:doesn\'t )?shows?) "  %  player_re +
                 r"\[ *(?P<CARDS>.+) *\](?P<COMBINATION>.+)\.",
                 re.MULTILINE)
             self.re_CollectPot = re.compile(
-                r"""^%(PLYR)s\s+wins\s+(Lo\s\()?%(CUR_SYM)s?(?P<POT>[.,\d]+)\s*(%(CUR)s)?\)?""" %  subst,
+                r"""%(PLYR)s\s+wins\s+(Lo\s\()?%(CUR_SYM)s?(?P<POT>[.,\d]+)\s*(%(CUR)s)?\)?""" %  subst,
                 re.MULTILINE|re.VERBOSE)
 
     def readSupportedGames(self):
@@ -253,10 +252,9 @@ class PartyPoker(HandHistoryConverter):
                 info['sb'] = self.NLim_Blinds_20bb[mg['CASHBI']][0]
                 info['bb'] = self.NLim_Blinds_20bb[mg['CASHBI']][1]
             else:
-                bb = Decimal(mg['CASHBI'])/100
-                sb = bb/2
-                info['sb'] = sb
-                info['bb'] = bb
+                nl_bb = str((Decimal(mg['CASHBI'])/50).quantize(Decimal("0.01")))
+                info['sb'] = self.Lim_Blinds[nl_bb][0]
+                info['bb'] = self.Lim_Blinds[nl_bb][1]
         else:
             m = self.re_NewLevel.search(handText)
             if m:
@@ -422,13 +420,17 @@ class PartyPoker(HandHistoryConverter):
                     if i>10: break
                 return startSeat
 
-            re_JoiningPlayers = re.compile(r"(?P<PLAYERNAME>.*) has joined the table")
-            re_BBPostingPlayers = re.compile(r"(?P<PLAYERNAME>.*) posts big blind")
-            re_LeavingPlayers = re.compile(r"(?P<PLAYERNAME>.*) has left the table")
+            re_JoiningPlayers = re.compile(r"(?P<PLAYERNAME>.+?) has joined the table")
+            re_BBPostingPlayers = re.compile(r"(table|out|^)(?P<PLAYERNAME>.+?) posts big blind")
+            re_LeavingPlayers = re.compile(r"(?P<PLAYERNAME>.+?) has left the table")
 
             match_JoiningPlayers = re_JoiningPlayers.findall(hand.handText)
             match_BBPostingPlayers = re_BBPostingPlayers.findall(hand.handText)
             match_LeavingPlayers = re_LeavingPlayers.findall(hand.handText)
+            match_BBPostingPlayers = []
+            m = re_BBPostingPlayers.finditer(hand.handText)
+            for player in m:
+                match_BBPostingPlayers.append(player.group('PLAYERNAME'))
 
             #add every player with zero stack, but:
             #if a zero stacked player is just joined the table in this very hand then set his stack to maxKnownStack
@@ -486,7 +488,7 @@ class PartyPoker(HandHistoryConverter):
         log.debug("reading antes")
         m = self.re_Antes.finditer(hand.handText)
         for player in m:
-            hand.addAnte(player.group('PNAME'), player.group('ANTE'))
+            hand.addAnte(player.group('PNAME'), self.clearMoneyString(player.group('ANTE')))
 
     def readBlinds(self, hand):
         noSmallBlind = bool(self.re_NoSmallBlind.search(hand.handText))
@@ -494,16 +496,15 @@ class PartyPoker(HandHistoryConverter):
             try:
                 assert noSmallBlind==False
                 for m in self.re_PostSB.finditer(hand.handText):
-                    hand.addBlind(m.group('PNAME'), 'small blind', m.group('SB'))
+                    hand.addBlind(m.group('PNAME'), 'small blind', self.clearMoneyString(m.group('SB')))
             except: # no small blind
                 hand.addBlind(None, None, None)
 
             for a in self.re_PostBB.finditer(hand.handText):
-                hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
+                hand.addBlind(a.group('PNAME'), 'big blind', self.clearMoneyString(a.group('BB')))
 
-            deadFilter = lambda s: s.replace(',', '.')
             for a in self.re_PostDead.finditer(hand.handText):
-                hand.addBlind(a.group('PNAME'), 'both', deadFilter(a.group('BBNDEAD')))
+                hand.addBlind(a.group('PNAME'), 'both', self.clearMoneyString(a.group('BBNDEAD')))
         else:
             # party doesn't track blinds for tournaments
             # so there're some cra^Wcaclulations
