@@ -549,6 +549,8 @@ or None if we fail to get the info """
             givenTZ = timezone('Asia/Krasnoyarsk')
         elif givenTimezone == 'IST': # India Standard Time
             givenTZ = timezone('Asia/Kolkata')
+        elif givenTimezone == 'ICT':
+            givenTZ = timezone('Asia/Bangkok')
         elif givenTimezone == 'CCT': # China Coast Time
             givenTZ = timezone('Australia/West')
         elif givenTimezone == 'JST': # Japan Standard Time
@@ -568,7 +570,7 @@ or None if we fail to get the info """
 
         if givenTZ is None:
             # do not crash if timezone not in list, just return UTC localized time
-            log.warn(_("Timezone conversion not supported") + ": " + givenTimezone + " " + str(time))
+            log.error(_("Timezone conversion not supported") + ": " + givenTimezone + " " + str(time))
             givenTZ = pytz.UTC
             return givenTZ.localize(time)
 
