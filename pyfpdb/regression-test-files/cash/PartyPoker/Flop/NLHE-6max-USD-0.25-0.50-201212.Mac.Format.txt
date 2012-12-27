@@ -1,19 +1,33 @@
-#Game No : 4420250928
-***** Hand History for Game 12412295823 *****
-$50 USD NL Texas Hold'em - Friday,December 14, 21:00:54 ICT 2012
-Table Limón ( Real Money )
-Seat 4 is the button
-Total number of players : 4/6
-seat 1: Hero ( $50 USD )
-seat 2: Player1 ( $50 USD )
-seat 4: Player2 ( $139.76 USD )
-seat 6: Player3 ( $56.96 USD )
-Player3 posts small blind [$0.25 USD].
-Hero posts big blind [$0.50 USD].
+#Game No : 4491819184
+***** Hand History for Game 12395237393 *****
+$25 USD NL Texas Hold'em - Sunday,December 9, 14:29:49 ICT 2012
+Table Ponce ( Real Money )
+Seat 2 is the button
+Total number of players : 6/6
+seat 1: Player0 ( $24,72 USD )
+seat 2: Player1 ( $26,43 USD )
+seat 3: Player2 ( $27,03 USD )
+seat 4: Player3 ( $25 USD )
+seat 5: Player4 ( $25 USD )
+seat 6: Hero ( $27,26 USD )
+Player2 posts small blind [$0,10 USD].
+Player3 is sitting outPlayer4 posts big blind [$0,25 USD].
 ** Dealing down cards **
-Dealt to Hero [ 3c, 8c ]
-Player2 folds
-Player3 raises [ $1.25 USD ]
+Dealt to Hero [ 5h, 4s ]
 Hero folds
-Player3 does not show cards.
-Player3 wins $2 USD
+Player0 calls [ $0,25 USD ]
+Player1 folds
+Player2 folds
+Player4 checks
+** Dealing Flop ** [ Jd, 9h, Qh ]
+Player4 bets [ $0,42 USD ]
+Player0 calls [ $0,42 USD ]
+** Dealing Turn ** [ 9c ]
+Player4 bets [ $1 USD ]
+Player0 calls [ $1 USD ]
+** Dealing River ** [ 6s ]
+Player4 checks
+Player0 checks
+Player4 shows [ 7s, Qc ]two pairs, Queens and Nines.
+Player0 doesn't show [ Jc, Tc ]two pairs, Jacks and Nines.
+Player4 wins $3,27 USD from the main pot with two pairs, Queens and Nines.
