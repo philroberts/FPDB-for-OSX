@@ -407,10 +407,13 @@ class PartyPoker(HandHistoryConverter):
         if hand.gametype['type'] == 'ring':
             #finds first vacant seat after an exact seat
             def findFirstEmptySeat(startSeat):
+                i=0
                 while startSeat in occupiedSeats:
                     if (startSeat >= hand.maxseats and hand.maxseats!=None) or len(occupiedSeats)>=hand.maxseats:
                         startSeat = 0
                     startSeat += 1
+                    i+=1
+                    if i>10: break
                 return startSeat
 
             re_JoiningPlayers = re.compile(r"(?P<PLAYERNAME>.*) has joined the table")
