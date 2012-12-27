@@ -1,0 +1,48 @@
+PokerStars Hand #90721705235:  Hold'em No Limit (€1/€2 EUR) - 2012/12/14 7:59:19 CUST [2012/12/13 19:59:19 ET]
+Table 'Mekbuda II' 6-max Seat #3 is the button
+Seat 1: Player1 (€109.16 in chips) 
+Seat 2: Player2 (€237.26 in chips) 
+Seat 3: Player3 (€276.30 in chips) 
+Seat 4: Player4 (€200 in chips) 
+Seat 5: Player5 (€158.55 in chips) 
+Seat 6: Hero (€200.75 in chips) 
+Player4: posts small blind €1
+Player5: posts big blind €2
+*** HOLE CARDS ***
+Dealt to Hero [Jc Ac]
+Hero: raises €4 to €6
+Player1: calls €6
+Player2: folds 
+Player3: folds 
+Player4: folds 
+Player5: calls €4
+*** FLOP *** [Js 9h Jh]
+Player5: checks 
+Hero: bets €12
+Player1: calls €12
+Player5: folds 
+*** TURN *** [Js 9h Jh] [Qs]
+Hero: bets €28
+Player1: raises €63.16 to €91.16 and is all-in
+Hero: calls €63.16
+*** FIRST RIVER *** [Js 9h Jh Qs] [2d]
+*** SECOND RIVER *** [Js 9h Jh Qs] [5h]
+*** FIRST SHOW DOWN ***
+Hero: shows [Jc Ac] (three of a kind, Jacks)
+Player1: mucks hand 
+Hero collected €111.59 from pot
+*** SECOND SHOW DOWN ***
+Hero: shows [Jc Ac] (three of a kind, Jacks)
+Player1: mucks hand 
+Hero collected €111.58 from pot
+*** SUMMARY ***
+Total pot €225.32 | Rake €2.15 
+Hand was run twice
+FIRST Board [Js 9h Jh Qs 2d]
+SECOND Board [Js 9h Jh Qs 5h]
+Seat 1: Player1 mucked [9s Ah]
+Seat 2: Player2 folded before Flop (didn't bet)
+Seat 3: Player3 (button) folded before Flop (didn't bet)
+Seat 4: Player4 (small blind) folded before Flop
+Seat 5: Player5 (big blind) folded on the Flop
+Seat 6: Hero showed [Jc Ac] and won (€111.59) with three of a kind, Jacks, and won (€111.58) with three of a kind, Jacks
