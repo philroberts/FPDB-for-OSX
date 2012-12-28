@@ -506,7 +506,7 @@ or None if we fail to get the info """
 
         if (givenTimezone=="ET" or givenTimezone=="EST" or givenTimezone=="EDT"):
             givenTZ = timezone('US/Eastern')
-        elif (givenTimezone=="CET" or givenTimezone=="CEST" or givenTimezone=="MESZ"):
+        elif givenTimezone in ("CET", "CEST", "MESZ", "HAEC"):
             #since CEST will only be used in summer time it's ok to treat it as identical to CET.
             givenTZ = timezone('Europe/Berlin')
             #Note: Daylight Saving Time is standardised across the EU so this should be fine
