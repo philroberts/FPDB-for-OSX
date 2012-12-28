@@ -606,7 +606,7 @@ class Database:
         return self.__connected
 
     def get_cursor(self, connect=False):
-        if self.backend == Database.MYSQL_INNODB and os.name == 'nt'
+        if self.backend == Database.MYSQL_INNODB and os.name == 'nt':
             self.connection.ping(True)
         return self.connection.cursor()
 
