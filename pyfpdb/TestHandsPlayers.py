@@ -267,7 +267,6 @@ def main(argv=None):
 
     config = Configuration.Config(file = "HUD_config.test.xml")
     db = Database.Database(config)
-    sql = SQL.Sql(db_server = 'sqlite')
     settings = {}
     settings.update(config.get_db_parameters())
     settings.update(config.get_import_parameters())
