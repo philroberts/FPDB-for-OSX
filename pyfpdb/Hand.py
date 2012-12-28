@@ -106,6 +106,8 @@ class Hand(object):
 
         self.seating = []
         self.players = []
+        # Cache used for checkPlayerExists.
+        self.player_exists_cache = set()
         self.posted = []
         self.tourneysPlayersIds = {}
 
@@ -541,10 +543,15 @@ class Hand(object):
             raise FpdbHandPartial(_("Streets didn't match - Assuming hand '%s' was cancelled.") % (self.handid) + " " + _("First 100 characters: %s") % tmp)
 
     def checkPlayerExists(self,player,source = None):
-        if player not in [p[1] for p in self.players]:
-            if source is not None:
-                log.error(_("Hand.%s: '%s' unknown player: '%s'") % (source, self.handid, player))
+        # Fast path, because this function is called ALL THE TIME.
+        if player in self.player_exists_cache:
+            return
+
+        if player not in (p[1] for p in self.players):
+            log.error(_("Hand.%s: '%s' unknown player: '%s'") % (source, self.handid, player))
             raise FpdbParseError
+        else:
+            self.player_exists_cache.add(player)
 
     def setCommunityCards(self, street, cards):
         log.debug("setCommunityCards %s %s" %(street,  cards))
@@ -1375,7 +1382,7 @@ class DrawHand(Hand):
 
 
     def addDiscard(self, street, player, num, cards=None):
-        self.checkPlayerExists(player, 'addCollectPot')
+        self.checkPlayerExists(player, 'addDiscard')
         if cards:
             act = (player, 'discards', Decimal(num), cards)
             self.discardDrawHoleCards(cards, player, street)
