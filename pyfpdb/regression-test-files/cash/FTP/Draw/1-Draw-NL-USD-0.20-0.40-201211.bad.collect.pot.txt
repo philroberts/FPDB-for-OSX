@@ -1,0 +1,33 @@
+Full Tilt Poker Game #31349486094: Table Holdsworth (6 max) - $0.20/$0.40 Ante $0.10 - No Limit 2-7 Single Draw - 19:20:35 ET - 2012/11/08
+Seat 1: Hero ($52.05)
+Seat 2: Player0 ($50.25)
+Seat 4: Player1 ($60.75)
+Seat 5: Player2 ($58.50)
+Seat 6: Player3 ($30.70)
+Player0 antes $0.10
+Player3 antes $0.10
+Player1 antes $0.10
+Hero antes $0.10
+Player2 antes $0.10
+Player1 posts the big blind of $0.40
+The button is in seat #2
+*** HOLE CARDS ***
+Dealt to Hero [6h Tc 6s Td 4s]
+Player2 has 15 seconds left to act
+Player2 has been disconnected
+Player2 has reconnected
+Player2 has 15 seconds left to act
+Player2 folds
+Player3 folds
+Hero folds
+Player0 folds
+Uncalled bet of $0.40 returned to Player1
+Player1 mucks
+Player1 wins the pot ($0.50)
+*** SUMMARY ***
+Total pot $0.50 | Rake $0
+Seat 1: Hero folded before the Draw
+Seat 2: Player0 (button) folded before the Draw
+Seat 3: Player4 Seat 4: Player1 (big blind) collected ($0.50), mucked
+Seat 5: Player2 folded before the Draw
+Seat 6: Player3 folded before the Draw
