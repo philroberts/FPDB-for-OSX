@@ -45,7 +45,8 @@ class FpdbError:
                     },
                    'Boss' : {},
                    'Bovada' : {},
-                   'Cake' : {},
+                   'Cake' : {
+                        "regression-test-files/tour/Cake/Flop/NLHE-USD-2-STT-201205.thousand.delimiter.txt":(1,0,1,0)},
                    'Enet' : {},
                    'Entraction' : {},
                    'Everleaf' : {},
