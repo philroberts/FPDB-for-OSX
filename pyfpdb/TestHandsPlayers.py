@@ -41,6 +41,7 @@ class FpdbError:
                    'BetOnline': {
                         "regression-test-files/cash/BetOnline/Flop/NLHE-10max-USD-0.25-0.05-201108.txt":(19,0,1,0),
                         "regression-test-files/tour/BetOnline/Flop/NLHE-10max-USD-MTT-2011-08.nobuyinfee.txt":(17,0,1,0),
+                        "regression-test-files/cash/BetOnline/Flop/NLHE-10max-0.25-0.50-201203.unknown.player.wins.txt":(0,0,0,1), #This file really is broken
                     },
                    'Boss' : {},
                    'Cake' : {},
