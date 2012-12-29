@@ -34,13 +34,45 @@ pp = pprint.PrettyPrinter(indent=4)
 
 DEBUG = False
 
-
 class FpdbError:
+    expected = {   # Site     : { path: (stored, dups, partial, errs) }
+                   'Absolute' : {},
+                   'Betfair' : {},
+                   'BetOnline': {},
+                   'Boss' : {},
+                   'Cake' : {},
+                   'Entraction' : {},
+                   'Everleaf' : {},
+                   'Everest' : {},
+                   'Full Tilt Poker' : {
+                        "regression-test-files/cash/FTP/Draw/3-Draw-Limit-USD-20-40-201101.Partial.txt":(0,0,1,0),
+                        "regression-test-files/cash/FTP/Draw/3-Draw-Limit-USD-10-20-201101.Dead.hand.txt":(0,0,1,0),
+                        "regression-test-files/cash/FTP/Flop/NLHE-6max-USD-25-50.200610.Observed.No.player.stacks.txt":(0,0,1,0),
+                     },
+                   'iPoker' : {},
+                   'Merge' : {
+                        "regression-test-files/cash/Merge/Draw/3-Draw-PL-USD-0.05-0.10-201102.Cancelled.hand.txt":(0,0,1,0),
+                        "regression-test-files/cash/Merge/Flop/NLHE-6max-USD-0.02-0.04.201107.no.community.xml":(0,0,1,0),
+                        "regression-test-files/cash/Merge/Flop/FLHE-9max-USD-0.02-0.04.20110416.xml":(9,0,1,0),
+                             },
+                   'Microgaming': {},
+                   'OnGame' : {},
+                   'PKR' : {},
+                   'PacificPoker' : { "regression-test-files/cash/PacificPoker/Flop/888-LHE-HU-USD-10-20-201202.cancelled.hand.txt":(0,0,1,0), },
+                   'Party Poker' : {},
+                   'PokerStars': { 
+                        "regression-test-files/cash/Stars/Flop/LO8-6max-USD-0.05-0.10-20090315.Hand-cancelled.txt":(0,0,1,0),
+                        "regression-test-files/cash/Stars/Draw/3-Draw-Limit-USD-1-2-200809.Hand.cancelled.txt":(0,0,1,0),
+                                 },
+                   'PokerTracker' : {},
+                   'Winamax' : {},
+                 }
     def __init__(self, sitename):
         self.site = sitename
         self.errorcount = 0
         self.histogram = {}
         self.statcount = {}
+        self.parse_errors = []
 
     def error_report(self, filename, hand, stat, ghash, testhash, player):
         print "Regression Test Error:"
@@ -56,13 +88,35 @@ class FpdbError:
             self.statcount[stat] += 1
         else:
             self.statcount[stat] = 1
+
+        if stat == "Parse":
+            self.parse_errors.append([filename, hand]) # hand is a tuple
+
         self.errorcount += 1
 
     def print_histogram(self):
         print "%s:" % self.site
         for f in self.histogram:
             idx = f.find('regression')
-            print "(%3d) : %s" %(self.histogram[f], f[idx:])
+            print "(%3d) : %s" %(self.histogram[f], self.reduce_pathname(f))
+
+    def print_parse_list(self):
+        VERBOSE = False
+        if len(self.parse_errors) > 0:
+            print "%s:" % self.site
+            for filename, import_numbers in self.parse_errors:
+                path = self.reduce_pathname(filename)
+                if path in self.expected[self.site]:
+                    if self.expected[self.site][path] == import_numbers:
+                        if VERBOSE: print "(0): %s" %(path)
+                    else:
+                        print "(X): %s" %(path)
+                else:
+                    print "(X): %s" %(path)
+
+    def reduce_pathname(self, path):
+        idx = path.find('regression')
+        return path[idx:]
 
 def compare_gametypes_file(filename, importer, errors):
     hashfilename = filename + '.gt'
@@ -200,7 +254,7 @@ def compare(leaf, importer, errors, site):
         (stored, dups, partial, errs, ttime) = importer.runImport()
 
         if errs > 0 or partial > 0:
-            errors.error_report(filename, False, "Parse", False, False, False)
+            errors.error_report(filename, (stored, dups, partial, errs), "Parse", False, False, False)
         else:
             if os.path.isfile(filename + '.hp'):
                 compare_handsplayers_file(filename, importer, errors)
@@ -465,6 +519,10 @@ def main(argv=None):
     print "---------------------"
     print "Total Errors: %d" % totalerrors
     print "---------------------"
+
+    print "-------- Parse Error List --------"
+    for i, site in enumerate(ErrorsList):
+        ErrorsList[i].print_parse_list()
 
 if __name__ == '__main__':
     sys.exit(main())
