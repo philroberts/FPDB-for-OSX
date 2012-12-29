@@ -76,6 +76,7 @@ class PokerTracker(HandHistoryConverter):
                         "Texas Hold'em" : ('hold','holdem'),
                                "Holdem" : ('hold','holdem'),
                                 'Omaha' : ('hold','omahahi'),
+                             'Omaha Hi' : ('hold','omahahi'),
                           'Omaha Hi/Lo' : ('hold','omahahilo')
                }
     sites = {     'EverestPoker Game #' : ('Everest', 16),
@@ -91,7 +92,7 @@ class PokerTracker(HandHistoryConverter):
     # Static regexes
     re_GameInfo1     = re.compile(u"""
           (?P<SITE>GAME\s\#|MERGE_GAME\s\#)(?P<HID>[0-9\-]+):\s+
-          (?P<GAME>Holdem|Texas\sHold\'em|Omaha|Omaha\sHi/Lo)\s\s?
+          (?P<GAME>Holdem|Texas\sHold\'em|Omaha|Omaha\sHi|Omaha\sHi/Lo)\s\s?
           (?P<LIMIT>PL|NL|FL|No\sLimit|Limit|LIMIT|Pot\sLimit)\s\s?
           (?P<TOUR>Tournament)?
           (                            # open paren of the stakes
@@ -114,14 +115,14 @@ class PokerTracker(HandHistoryConverter):
           (?P<BB>[%(NUM)s]+))?
           \s-\s
           (?P<LIMIT>No\sLimit|Limit|Pot\sLimit)\s
-          (?P<GAME>Hold\'em|Omaha|Omaha\sHi/Lo)\s
+          (?P<GAME>Hold\'em|Omaha|Omaha\sHi|Omaha\sHi/Lo)\s
           (-\s)?
           (?P<DATETIME>.*$)
         """ % substitutions, re.MULTILINE|re.VERBOSE)
     
     re_GameInfo3     = re.compile(u"""
           (?P<HID>[0-9]+)\sstarting\s\-\s(?P<DATETIME>.*$)\s
-          \*\*\s(?P<TABLE>.+)\[(?P<GAME>Hold\'em|Omaha|Omaha\sHi/Lo)\]\s
+          \*\*\s(?P<TABLE>.+)\[(?P<GAME>Hold\'em|Omaha|Omaha\sHi|Omaha\sHi/Lo)\]\s
           \((?P<SB>[%(NUM)s]+)\|(?P<BB>[%(NUM)s]+)\s(?P<LIMIT>NL|FL|PL)\s\-\s(?P<CURRENCY>%(LS)s|)\sCash\sGame\)\s(Real|Play)\sMoney
         """ % substitutions, re.MULTILINE|re.VERBOSE)
 
@@ -188,6 +189,7 @@ class PokerTracker(HandHistoryConverter):
     re_CollectPot1     = re.compile(r"^%(PLYR)s:? (collects|wins) %(CUR)s(?P<POT>[%(NUM)s]+)" %  substitutions, re.MULTILINE)
     re_CollectPot2     = re.compile(r"^%(PLYR)s wins %(CUR)s(?P<POT>[%(NUM)s]+)" %  substitutions, re.MULTILINE)
     re_Cancelled       = re.compile('Hand\scancelled', re.MULTILINE)
+    re_Tournament      = re.compile('\(Tournament:')
 
     def compilePlayerRegexs(self,  hand):
         pass
@@ -266,8 +268,10 @@ class PokerTracker(HandHistoryConverter):
     def readHandInfo(self, hand):
         info, m = {}, None
         if self.sitename in ('iPoker', 'Merge'):
-            m  = self.re_HandInfo_Tour.search(hand.handText,re.DOTALL)
-            if not m: 
+            m3 = self.re_Tournament.search(hand.handText,re.DOTALL)
+            if m3:
+                m  = self.re_HandInfo_Tour.search(hand.handText,re.DOTALL)
+            else:
                 m  = self.re_HandInfo_Cash.search(hand.handText,re.DOTALL)
             m2 = self.re_GameInfo1.search(hand.handText)
         elif self.sitename=='Everest':
