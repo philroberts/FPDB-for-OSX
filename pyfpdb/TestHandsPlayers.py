@@ -336,18 +336,21 @@ def main(argv=None):
     if sites['PacificPoker'] == True and not single_file_test:
         walk_testfiles("regression-test-files/cash/PacificPoker/", compare, importer, PacificPokerErrors, "PacificPoker")
         walk_testfiles("regression-test-files/tour/PacificPoker/", compare, importer, PacificPokerErrors, "PacificPoker")
+        walk_testfiles("regression-test-files/summaries/PacificPoker/", compare, importer, PacificPokerErrors, "PacificPoker")
     elif sites['PacificPoker'] == True and single_file_test:
         walk_testfiles(options.filename, compare, importer, PacificPokerErrors, "PacificPoker")
 
     if sites['PokerStars'] == True and not single_file_test:
         walk_testfiles("regression-test-files/cash/Stars/", compare, importer, PokerStarsErrors, "PokerStars")
         walk_testfiles("regression-test-files/tour/Stars/", compare, importer, PokerStarsErrors, "PokerStars")
+        walk_testfiles("regression-test-files/summaries/Stars/", compare, importer, PokerStarsErrors, "PokerStars")
     elif sites['PokerStars'] == True and single_file_test:
         walk_testfiles(options.filename, compare, importer, PokerStarsErrors, "PokerStars")
 
     if sites['Full Tilt Poker'] == True and not single_file_test:
         walk_testfiles("regression-test-files/cash/FTP/", compare, importer, FTPErrors, "Full Tilt Poker")
         walk_testfiles("regression-test-files/tour/FTP/", compare, importer, FTPErrors, "Full Tilt Poker")
+        walk_testfiles("regression-test-files/summaries/FTP/", compare, importer, FTPErrors, "Full Tilt Poker")
     elif sites['Full Tilt Poker'] == True and single_file_test:
         walk_testfiles(options.filename, compare, importer, FTPErrors, "Full Tilt Poker")
     if sites['PartyPoker'] == True and not single_file_test:
