@@ -218,8 +218,10 @@ class Winamax(HandHistoryConverter):
                 hand.startTime = datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S")
             if key == 'HID1':
                 # Need to remove non-alphanumerics for MySQL
-                # Concatenating all three or just HID2 + HID3 can produce out of range values
-                hand.handid = "%s%s" % (int(info['HID1']), int(info['HID2']))
+#                hand.handid = "1%.9d%s%s"%(int(info['HID2']),info['HID1'],info['HID3'])
+                hand.handid = "%s%s%s"%(int(info['HID1']),info['HID2'],info['HID3'])
+                if len (hand.handid) > 19:
+                    hand.handid = "%s%s" % (int(info['HID2']), int(info['HID3']))
                     
 #            if key == 'HID3':
 #                hand.handid = int(info['HID3'])   # correct hand no (REB)
@@ -426,10 +428,7 @@ class Winamax(HandHistoryConverter):
             elif action.group('ATYPE') == ' raises':
                 hand.addRaiseBy( street, action.group('PNAME'), action.group('BET') )
             elif action.group('ATYPE') == ' bets':
-                if street in ('PREFLOP', 'DEAL', 'BLINDSANTES'):
-                    hand.addRaiseBy( street, action.group('PNAME'), action.group('BET') )
-                else:
-                    hand.addBet( street, action.group('PNAME'), action.group('BET') )
+                hand.addBet( street, action.group('PNAME'), action.group('BET') )
             elif action.group('ATYPE') == ' discards':
                 hand.addDiscard(street, action.group('PNAME'), action.group('BET'), action.group('DISCARDED'))
             elif action.group('ATYPE') == ' stands pat':
@@ -448,9 +447,53 @@ class Winamax(HandHistoryConverter):
             hand.addShownCards(cards, shows.group('PNAME'))
 
     def readCollectPot(self,hand):
-        hand.setUncalledBets(True)
+        # Winamax has unfortunately thinks that a sidepot is created
+        # when there is uncalled money in the pot - something that can
+        # only happen when a player is all-in
+
+        # Becuase of this, we need to do the same calculations as class Pot()
+        # and determine if the amount returned is the same as the amount collected
+        # if so then the collected line is invalid
+
+        total = sum(hand.pot.committed.values()) + sum(hand.pot.common.values())
+
+        # Return any uncalled bet.
+        committed = sorted([ (v,k) for (k,v) in hand.pot.committed.items()])
+        #print "DEBUG: committed: %s" % committed
+        returned = {}
+        lastbet = committed[-1][0] - committed[-2][0]
+        if lastbet > 0: # uncalled
+            returnto = committed[-1][1]
+            #print "DEBUG: returning %f to %s" % (lastbet, returnto)
+            total -= lastbet
+            returned[returnto] = lastbet
+
+        collectees = []
+
+        tp = self.re_Total.search(hand.handText)
+        rake = tp.group('RAKE')
+        if rake == None:
+            rake = 0
         for m in self.re_CollectPot.finditer(hand.handText):
-            hand.addCollectPot(player=m.group('PNAME'), pot=m.group('POT'))
+            collectees.append([m.group('PNAME'), m.group('POT')])
+
+        #print "DEBUG: Total pot: %s" % tp.groupdict()
+        #print "DEBUG: According to pot: %s" % total
+        #print "DEBUG: Rake: %s" % rake
+
+        if len(collectees) == 1:
+            plyr, p = collectees[0]
+            # p may be wrong, use calculated total - rake
+            p = total - Decimal(rake)
+            #print "DEBUG: len1: addCollectPot(%s,%s)" %(plyr, p)
+            hand.addCollectPot(player=plyr,pot=p)
+        else:
+            for plyr, p in collectees:
+                if plyr in returned.keys():
+                    p = Decimal(p) - returned[plyr]
+                if p > 0:
+                    #print "DEBUG: addCollectPot(%s,%s)" %(plyr, p)
+                    hand.addCollectPot(player=plyr,pot=p)
 
     def readShownCards(self,hand):
         for m in self.re_ShownCards.finditer(hand.handText):
