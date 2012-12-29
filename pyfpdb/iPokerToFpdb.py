@@ -69,6 +69,8 @@ class iPoker(HandHistoryConverter):
                     'Holdem NL' : ('hold','holdem'),
                    u'Holdem БЛ' : ('hold','holdem'),
                     'Holdem SL' : ('hold','holdem'), #Spanish NL
+                    'Holdem LZ' : ('hold','holdem'), #Limit
+                    'Holdem PL' : ('hold','holdem'),
                      'Holdem L' : ('hold','holdem'),
                      'Omaha PL' : ('hold','omahahi'),
                'Omaha Hi-Lo PL' : ('hold','omahahilo'),
