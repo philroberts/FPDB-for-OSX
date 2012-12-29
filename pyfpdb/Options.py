@@ -92,6 +92,7 @@ def site_alias(alias):
                 "Betfair"        : "Betfair",
                 "BetOnline"      : "BetOnline",
                 "Boss"           : "Boss",
+                "Bovada"         : "Bovada",
                 "Cake"           : "Cake",
                 "Entraction"     : "Entraction",
                 "Everest"        : "Everest",

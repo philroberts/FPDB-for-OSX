@@ -44,6 +44,7 @@ class FpdbError:
                         "regression-test-files/cash/BetOnline/Flop/NLHE-10max-0.25-0.50-201203.unknown.player.wins.txt":(0,0,0,1), #This file really is broken
                     },
                    'Boss' : {},
+                   'Bovada' : {},
                    'Cake' : {},
                    'Entraction' : {},
                    'Everleaf' : {},
@@ -340,6 +341,7 @@ def main(argv=None):
     BetfairErrors     = FpdbError('Betfair')
     BetOnlineErrors   = FpdbError('BetOnline')
     BossErrors        = FpdbError('Boss')
+    BovadaErrors      = FpdbError('Bovada')
     CakeErrors        = FpdbError('Cake')
     EntractionErrors  = FpdbError('Entraction')
     EverleafErrors    = FpdbError('Everleaf Poker')
@@ -360,7 +362,7 @@ def main(argv=None):
                     AbsoluteErrors, BetfairErrors, BetOnlineErrors, BossErrors, CakeErrors, EntractionErrors,
                     EverleafErrors, EverestErrors, FTPErrors, iPokerErrors, MergeErrors, MicrogamingErrors,
                     OnGameErrors, PacificPokerErrors, PartyPokerErrors, PokerStarsErrors, PKRErrors,
-                    PTErrors, WinamaxErrors,
+                    PTErrors, WinamaxErrors, BovadaErrors
                 ]
 
     sites = {
@@ -368,6 +370,7 @@ def main(argv=None):
                 'Betfair' : False,
                 'BetOnline': False,
                 'Boss' : False,
+                'Bovada' : False,
                 'Cake' : False,
                 'Entraction' : False,
                 'Everleaf' : False,
@@ -490,6 +493,12 @@ def main(argv=None):
         walk_testfiles("regression-test-files/tour/Winamax/", compare, importer, WinamaxErrors, "Winamax")
     elif sites['Winamax'] == True and single_file_test:
         walk_testfiles(options.filename, compare, importer, WinamaxErrors, "Winamax")
+    if sites['Bovada'] == True and not single_file_test:
+        walk_testfiles("regression-test-files/cash/Bovada/", compare, importer, BovadaErrors, "Bovada")
+        walk_testfiles("regression-test-files/tour/Bovada/", compare, importer, BovadaErrors, "Bovada")
+    elif sites['Bovada'] == True and single_file_test:
+        walk_testfiles(options.filename, compare, importer, BovadaErrors, "Bovada")
+
 
     totalerrors = 0
 
