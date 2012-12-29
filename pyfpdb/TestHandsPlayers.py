@@ -46,6 +46,7 @@ class FpdbError:
                    'Boss' : {},
                    'Bovada' : {},
                    'Cake' : {},
+                   'Enet' : {},
                    'Entraction' : {},
                    'Everleaf' : {},
                    'Everest' : {},
@@ -343,6 +344,7 @@ def main(argv=None):
     BossErrors        = FpdbError('Boss')
     BovadaErrors      = FpdbError('Bovada')
     CakeErrors        = FpdbError('Cake')
+    EnetErrors        = FpdbError('Enet')
     EntractionErrors  = FpdbError('Entraction')
     EverleafErrors    = FpdbError('Everleaf Poker')
     EverestErrors     = FpdbError('Everest Poker')
@@ -362,7 +364,7 @@ def main(argv=None):
                     AbsoluteErrors, BetfairErrors, BetOnlineErrors, BossErrors, CakeErrors, EntractionErrors,
                     EverleafErrors, EverestErrors, FTPErrors, iPokerErrors, MergeErrors, MicrogamingErrors,
                     OnGameErrors, PacificPokerErrors, PartyPokerErrors, PokerStarsErrors, PKRErrors,
-                    PTErrors, WinamaxErrors, BovadaErrors
+                    PTErrors, WinamaxErrors, BovadaErrors, EnetErrors,
                 ]
 
     sites = {
@@ -372,6 +374,7 @@ def main(argv=None):
                 'Boss' : False,
                 'Bovada' : False,
                 'Cake' : False,
+                'Enet' : False,
                 'Entraction' : False,
                 'Everleaf' : False,
                 'Everest' : False,
@@ -498,6 +501,11 @@ def main(argv=None):
         walk_testfiles("regression-test-files/tour/Bovada/", compare, importer, BovadaErrors, "Bovada")
     elif sites['Bovada'] == True and single_file_test:
         walk_testfiles(options.filename, compare, importer, BovadaErrors, "Bovada")
+    if sites['Enet'] == True and not single_file_test:
+        walk_testfiles("regression-test-files/cash/Enet/", compare, importer, EnetErrors, "Enet")
+    elif sites['Enet'] == True and single_file_test:
+        walk_testfiles(options.filename, compare, importer, EnetErrors, "Enet")
+
 
 
     totalerrors = 0

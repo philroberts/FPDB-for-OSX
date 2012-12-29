@@ -94,6 +94,7 @@ def site_alias(alias):
                 "Boss"           : "Boss",
                 "Bovada"         : "Bovada",
                 "Cake"           : "Cake",
+                "Enet"           : "Enet",
                 "Entraction"     : "Entraction",
                 "Everest"        : "Everest",
                 "Everleaf"       : "Everleaf",
