@@ -38,7 +38,10 @@ class FpdbError:
     expected = {   # Site     : { path: (stored, dups, partial, errs) }
                    'Absolute' : {},
                    'Betfair' : {},
-                   'BetOnline': {},
+                   'BetOnline': {
+                        "regression-test-files/cash/BetOnline/Flop/NLHE-10max-USD-0.25-0.05-201108.txt":(19,0,1,0),
+                        "regression-test-files/tour/BetOnline/Flop/NLHE-10max-USD-MTT-2011-08.nobuyinfee.txt":(17,0,1,0),
+                    },
                    'Boss' : {},
                    'Cake' : {},
                    'Entraction' : {},
