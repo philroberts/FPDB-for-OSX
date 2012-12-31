@@ -41,6 +41,7 @@ class Everest(HandHistoryConverter):
                     }
 
     # Static regexes
+    re_Identify   = re.compile(u'<HAND\stime=\"\d+\"\sid=')
     re_SplitHands = re.compile(r'</HAND>')
     re_TailSplitHands = re.compile(r'(</game>)')
     re_GameInfo = re.compile(u"""<SESSION\stime="\d+"\s

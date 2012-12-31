@@ -35,13 +35,14 @@ class Absolute(HandHistoryConverter):
     sitename = "Absolute"
     filetype = "text"
     codepage = "cp1252"
-    siteid   = 8
+    siteId   = 8
     HORSEHand = False
     
     Lim_Blinds = {  '0.04': ('0.01', '0.02'),
                  }
 
     # Static regexes
+    re_Identify = re.compile(u'Stage\s#[A-Z0-9]+:')
     re_SplitHands  = re.compile(r"\n\n+")
     re_TailSplitHands  = re.compile(r"(\nn\n+)")
     #Stage #1571362962: Holdem  No Limit $0.02 - 2009-08-05 15:24:06 (ET)

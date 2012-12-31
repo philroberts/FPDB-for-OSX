@@ -57,6 +57,7 @@ class FullTiltPokerSummary(TourneySummary):
                            'NUM' : u".,\d",                    # legal characters in number format
                     }
 
+    re_Identify = re.compile(u'Full\sTilt\sPoker\.fr\sTournament|Full\sTilt\sPoker\sTournament\sSummary')
     re_TourNo = re.compile("\#(?P<TOURNO>[0-9]+),")
     re_TourneyInfo = re.compile(u"""
                         \((?P<TOURNO>[0-9]+)\)

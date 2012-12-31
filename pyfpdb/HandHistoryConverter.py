@@ -190,6 +190,8 @@ HandHistoryConverter: '%(sitename)s'
         return handlist
 
     def processHand(self, handText):
+        if self.isPartial(handText):
+            raise FpdbHandPartial(_("Could not identify as a %s hand") % self.sitename)
         if self.copyGameHeader:
             gametype = self.parseHeader(handText, self.whole_file)
         else:
@@ -226,8 +228,12 @@ HandHistoryConverter: '%(sitename)s'
         else:
             log.error(_("%s Unsupported game type: %s") % (self.sitename, gametype))
             # TODO: pity we don't know the HID at this stage. Log the entire hand?
-
-
+            
+    def isPartial(self, handText):
+        if not self.re_Identify.search(handText):
+            return True
+        return False
+    
     # These functions are parse actions that may be overridden by the inheriting class
     # This function should return a list of lists looking like:
     # return [["ring", "hold", "nl"], ["tour", "hold", "nl"]]

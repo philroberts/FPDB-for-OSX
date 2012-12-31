@@ -83,6 +83,7 @@ class OnGame(HandHistoryConverter):
 
     # Static regexes
     # ***** End of hand R5-75443872-57 *****
+    re_Identify   = re.compile(u'\*{5}\sHistory\sfor\shand\s[A-Z0-9\-]+\s')
     re_SplitHands = re.compile(u'\*\*\*\*\*\sEnd\sof\shand\s[-A-Z\d]+.*\n+(?=\*)')
 
     #TODO: detect play money

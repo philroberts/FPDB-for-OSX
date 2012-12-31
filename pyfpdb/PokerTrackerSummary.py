@@ -59,6 +59,8 @@ class PokerTrackerSummary(TourneySummary):
                         (?P<DATETIME>.*$)
                         """ % substitutions ,re.VERBOSE|re.MULTILINE)
     
+    re_Identify = re.compile(u"PokerTracker")
+    
     re_TourneyInfo = re.compile(u"""
                         \s(3|4)\sTournament\sSummary\s+
                         Site:\s(?P<SITE>.+?)\s+

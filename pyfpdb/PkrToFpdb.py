@@ -84,6 +84,7 @@ class Pkr(HandHistoryConverter):
           Moving\sButton\sto\sseat\s(?P<BUTTON>\d+)\s""", 
           re.MULTILINE|re.VERBOSE)
 
+    re_Identify     = re.compile(u'Starting\sHand\s\#\d+')
     re_SplitHands   = re.compile('\n\n+')
     re_TailSplitHands   = re.compile('(\n\n\n+)')
     re_Button       = re.compile('Seat #(?P<BUTTON>\d+) is the button', re.MULTILINE)

@@ -55,6 +55,8 @@ class iPokerSummary(TourneySummary):
                 'Omaha Hi-Lo L' : ('hold','omahahilo'),
                      
             }
+    
+    re_Identify = re.compile(u'<game\sgamecode=')
 
     re_GameType = re.compile(ur"""
             <gametype>(?P<GAME>(5|7)\sCard\sStud\sL|Holdem\s(NL|SL|L|LZ|PL|БЛ)|Omaha\s(L|PL|LP)|Omaha\sHi\-Lo\s(L|PL|LP)|LH\s(?P<LSB>[%(NUM)s]+)/(?P<LBB>[%(NUM)s]+).+?)(\s(%(LS)s)?(?P<SB>[%(NUM)s]+)/(%(LS)s)?(?P<BB>[%(NUM)s]+))?</gametype>\s+?
