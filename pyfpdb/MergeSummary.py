@@ -282,93 +282,94 @@ class MergeSummary(TourneySummary):
         self.buyinCurrency = "USD"
         soup = BeautifulSoup(self.summaryText)
         tables = soup.findAll('table')
-        table1 = BeautifulSoup(str(tables[0])).findAll('tr')
-        table2 = BeautifulSoup(str(tables[1])).findAll('tr')
-        # FIXME: Searching every line for all regexes is pretty horrible
-        # FIXME: Need to search for 'Status:  Finished'
-        #print self.in_path
-        for p in table1:
-            m = self.re_HTMLGameType.search(str(p))
-            if m:
-                #print "DEBUG: re_HTMLGameType: '%s' '%s'" %(m.group('LIMIT'), m.group('GAME'))
-                if m.group('GAME').strip() in self.mixes:
-                    self.gametype['category'] = self.mixes[m.group('GAME').strip()]
-                else:
-                   self.gametype['category']  = self.games_html[m.group('GAME').strip()][1] 
-                self.gametype['limitType'] = self.limits[m.group('LIMIT').strip()]
-            m = self.re_HTMLTourNo.search(str(p))
-            if m:
-                #print "DEBUG: re_HTMLTourNo: '%s'" % m.group('TOURNO')
-                self.tourNo = m.group('TOURNO').strip()
-            m = self.re_HTMLName.search(str(p))
-            if m:
-                #print "DEBUG: re_HTMLName: '%s'" % m.group('NAME')
-                self.tourneyName = m.group('NAME').strip()[:40]
-                if m.group('NAME').find("$")!=-1:
-                    self.buyinCurrency="USD"
-                elif m.group('NAME').find(u"€")!=-1:
-                    self.buyinCurrency="EUR"
-            m = self.re_HTMLPrizepool.search(str(p))
-            if m:
-                #print "DEBUG: re_HTMLPrizepool: '%s'" % m.group('PRIZEPOOL')
-                self.prizepool = int(convert_to_decimal(m.group('PRIZEPOOL').strip()))
-            m = self.re_HTMLBuyIn.search(str(p))
-            if m:
-                #print "DEBUG: re_HTMLBuyIn: '%s'" % m.group('BUYIN')
-                self.buyin = int(100*convert_to_decimal(m.group('BUYIN').strip()))
-                if self.buyin==0:
-                    self.buyinCurrency="FREE"
-            m = self.re_HTMLFee.search(str(p))
-            if m:
-                #print "DEBUG: re_HTMLFee: '%s'" % m.group('FEE')
-                self.fee = int(100*convert_to_decimal(m.group('FEE').strip()))
-            m = self.re_HTMLBounty.search(str(p))
-            if m:
-                #print "DEBUG: re_HTMLBounty: '%s'" % m.group('KOBOUNTY')
-                if m.group('KOBOUNTY').strip() != '0.00':
-                    self.isKO = True
-                    self.koBounty = int(100*convert_to_decimal(m.group('KOBOUNTY').strip()))
-            m = self.re_HTMLAddons.search(str(p))
-            if m:
-                #print "DEBUG: re_HTMLAddons: '%s'" % m.group('ADDON')
-                if m.group('ADDON').strip() != '0':
-                    self.isAddOn = True
-                    self.addOnCost = self.buyin
-            m = self.re_HTMLRebuy.search(str(p))
-            if m:
-                #print "DEBUG: re_HTMLRebuy: '%s'" % m.group('REBUY')
-                if m.group('REBUY').strip() != '0':
-                    self.isRebuy   = True
-                    self.rebuyCost = self.buyin
-            m = self.re_HTMLStartTime.search(str(p))
-            if m:
-                m2 = self.re_HTMLDateTime.search(m.group('STARTTIME'))
-                if m2:
-                    month = self.months[m2.group('M')]
-                    datetimestr = "%s/%s/%s %s:%s:%s" % (m2.group('Y'), month,m2.group('D'),m2.group('H'),m2.group('MIN'),m2.group('S'))
-                    self.startTime = datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S")
-                    self.startTime = HandHistoryConverter.changeTimezone(self.startTime, "ET", "UTC")
-        
-        self.currency = self.buyinCurrency
-        for p in table2:
-            m = self.re_HTMLPlayer.search(str(p))
-            if m:
-                self.entries += 1
-                #print "DEBUG: rank: %s pname: %s won: %s" %(m.group('RANK'), m.group('PNAME'), m.group('WINNINGS'))
-                winnings = 0
-                rebuyCount = 0
-                addOnCount = 0
-                koCount = 0
-                
-                rank = int(m.group('RANK'))
-                name = m.group('PNAME')
-                if m.group('WINNINGS') != None:
-                    if m.group('WINNINGS').find("$")!=-1:
-                        self.currency="USD"
-                    elif m.group('WINNINGS').find(u"€")!=-1:
-                        self.currency="EUR"
-                    winnings = int(100*convert_to_decimal(m.group('WINNINGS')))
-                self.addPlayer(rank, name, winnings, self.currency, rebuyCount, addOnCount, koCount)
+        if len(tables)>1:
+            table1 = BeautifulSoup(str(tables[0])).findAll('tr')
+            table2 = BeautifulSoup(str(tables[1])).findAll('tr')
+            # FIXME: Searching every line for all regexes is pretty horrible
+            # FIXME: Need to search for 'Status:  Finished'
+            #print self.in_path
+            for p in table1:
+                m = self.re_HTMLGameType.search(str(p))
+                if m:
+                    #print "DEBUG: re_HTMLGameType: '%s' '%s'" %(m.group('LIMIT'), m.group('GAME'))
+                    if m.group('GAME').strip() in self.mixes:
+                        self.gametype['category'] = self.mixes[m.group('GAME').strip()]
+                    else:
+                       self.gametype['category']  = self.games_html[m.group('GAME').strip()][1] 
+                    self.gametype['limitType'] = self.limits[m.group('LIMIT').strip()]
+                m = self.re_HTMLTourNo.search(str(p))
+                if m:
+                    #print "DEBUG: re_HTMLTourNo: '%s'" % m.group('TOURNO')
+                    self.tourNo = m.group('TOURNO').strip()
+                m = self.re_HTMLName.search(str(p))
+                if m:
+                    #print "DEBUG: re_HTMLName: '%s'" % m.group('NAME')
+                    self.tourneyName = m.group('NAME').strip()[:40]
+                    if m.group('NAME').find("$")!=-1:
+                        self.buyinCurrency="USD"
+                    elif m.group('NAME').find(u"€")!=-1:
+                        self.buyinCurrency="EUR"
+                m = self.re_HTMLPrizepool.search(str(p))
+                if m:
+                    #print "DEBUG: re_HTMLPrizepool: '%s'" % m.group('PRIZEPOOL')
+                    self.prizepool = int(convert_to_decimal(m.group('PRIZEPOOL').strip()))
+                m = self.re_HTMLBuyIn.search(str(p))
+                if m:
+                    #print "DEBUG: re_HTMLBuyIn: '%s'" % m.group('BUYIN')
+                    self.buyin = int(100*convert_to_decimal(m.group('BUYIN').strip()))
+                    if self.buyin==0:
+                        self.buyinCurrency="FREE"
+                m = self.re_HTMLFee.search(str(p))
+                if m:
+                    #print "DEBUG: re_HTMLFee: '%s'" % m.group('FEE')
+                    self.fee = int(100*convert_to_decimal(m.group('FEE').strip()))
+                m = self.re_HTMLBounty.search(str(p))
+                if m:
+                    #print "DEBUG: re_HTMLBounty: '%s'" % m.group('KOBOUNTY')
+                    if m.group('KOBOUNTY').strip() != '0.00':
+                        self.isKO = True
+                        self.koBounty = int(100*convert_to_decimal(m.group('KOBOUNTY').strip()))
+                m = self.re_HTMLAddons.search(str(p))
+                if m:
+                    #print "DEBUG: re_HTMLAddons: '%s'" % m.group('ADDON')
+                    if m.group('ADDON').strip() != '0':
+                        self.isAddOn = True
+                        self.addOnCost = self.buyin
+                m = self.re_HTMLRebuy.search(str(p))
+                if m:
+                    #print "DEBUG: re_HTMLRebuy: '%s'" % m.group('REBUY')
+                    if m.group('REBUY').strip() != '0':
+                        self.isRebuy   = True
+                        self.rebuyCost = self.buyin
+                m = self.re_HTMLStartTime.search(str(p))
+                if m:
+                    m2 = self.re_HTMLDateTime.search(m.group('STARTTIME'))
+                    if m2:
+                        month = self.months[m2.group('M')]
+                        datetimestr = "%s/%s/%s %s:%s:%s" % (m2.group('Y'), month,m2.group('D'),m2.group('H'),m2.group('MIN'),m2.group('S'))
+                        self.startTime = datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S")
+                        self.startTime = HandHistoryConverter.changeTimezone(self.startTime, "ET", "UTC")
+            
+            self.currency = self.buyinCurrency
+            for p in table2:
+                m = self.re_HTMLPlayer.search(str(p))
+                if m:
+                    self.entries += 1
+                    #print "DEBUG: rank: %s pname: %s won: %s" %(m.group('RANK'), m.group('PNAME'), m.group('WINNINGS'))
+                    winnings = 0
+                    rebuyCount = 0
+                    addOnCount = 0
+                    koCount = 0
+                    
+                    rank = int(m.group('RANK'))
+                    name = m.group('PNAME')
+                    if m.group('WINNINGS') != None:
+                        if m.group('WINNINGS').find("$")!=-1:
+                            self.currency="USD"
+                        elif m.group('WINNINGS').find(u"€")!=-1:
+                            self.currency="EUR"
+                        winnings = int(100*convert_to_decimal(m.group('WINNINGS')))
+                    self.addPlayer(rank, name, winnings, self.currency, rebuyCount, addOnCount, koCount)
                 
 def convert_to_decimal(string):
     dec = string.strip(u'€&euro;\u20ac$')
