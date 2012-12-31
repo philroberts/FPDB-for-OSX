@@ -1,0 +1,51 @@
+Game #12036770: Omaha (€0,10/€0,25) - 20:22:42 23.8.2012 - %6 
+Table 'Reunion 1 - Pot Limit' 9-max Seat #0 is the button 
+Seat 2: Player0 (€25,11 in chips)
+Seat 3: Player1 (€18,67 in chips)
+Seat 4: Hero (€41,28 in chips)
+Seat 5: Player2 (€31,58 in chips)
+Seat 6: Player3 (€51,94 in chips)
+Seat 7: Player4 (€31,86 in chips)
+Seat 8: Player5 (€25,32 in chips)
+Seat 9: Player6 (€90,90 in chips)
+Player0: posts small blind €0,10
+Player1: posts big blind €0,25
+*** HOLECARDS ***
+Hero: folds
+Player2: folds
+Player3: folds
+Player4: calls €0,25
+Player5: folds
+Player6: checks
+Player0: calls €0,15
+Player1: checks
+Rake: €0,06
+*** FLOP *** [4d2h8s]
+Player0: checks
+Player1: checks
+Player4: checks
+Player6: checks
+*** TURN *** [4d2h8sQs]
+Player0: checks
+Player1: checks
+Player4: checks
+Player6: checks
+*** RIVER *** [4d2h8sQsTs]
+Player0: bets €0,82
+Player1: folds
+Player4: folds
+Player6: folds
+Uncalled bet (€0,82) returned to Player0
+Player0 collected (€0,82) from pot
+Player0: mucked
+*** SUMMARY *** 
+Total pot €0 | Rake €0,06 
+Board [4d2h8sQsTs] 
+Seat 2: Player0 (small blind) collected (€1,04) from pot
+Seat 3: Player1 (big blind) folded
+Seat 4: Hero  folded
+Seat 5: Player2  folded
+Seat 6: Player3  folded
+Seat 7: Player4  folded
+Seat 8: Player5  folded
+Seat 9: Player6  folded

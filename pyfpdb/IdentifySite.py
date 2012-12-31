@@ -43,6 +43,7 @@ class FPDBFile:
     kodec = None
     archive = False
     gametype = False
+    hero = '-'
 
     def __init__(self, path):
         self.path = path
@@ -66,6 +67,7 @@ class Site:
             self.summary = None
         self.line_delimiter = self.getDelimiter(filter_name)
         self.line_addendum  = self.getAddendum(filter_name)
+        self.getHeroRegex(obj, filter_name)
         
     def getDelimiter(self, filter_name):
         line_delimiter =  None
@@ -86,8 +88,19 @@ class Site:
             line_addendum = '*'
         elif filter_name == 'Merge':
             line_addendum = '<'
+        elif filter_name == 'Entraction':
+            line_addendum = '\n\n'
             
         return line_addendum
+    
+    def getHeroRegex(self, obj, filter_name):
+        self.re_HeroCards   = None
+        if hasattr(obj, 're_HeroCards'):
+            if filter_name not in ('Bovada', 'Enet'):
+                self.re_HeroCards = obj.re_HeroCards
+        if filter_name == 'PokerTracker':
+            self.re_HeroCards1 = obj.re_HeroCards1
+            self.re_HeroCards2 = obj.re_HeroCards2        
 
 class IdentifySite:
     def __init__(self, config, hhcs = None):
@@ -115,6 +128,37 @@ class IdentifySite:
     
     def clear_filelist(self):
         self.filelist = {}
+    
+    def getSiteRegex(self):
+        re_identify = {}
+        re_identify['Fulltilt']     = re.compile(u'FullTiltPoker|Full\sTilt\sPoker\sGame\s#\d+:|Full\sTilt\sPoker\.fr')
+        re_identify['PokerStars']   = re.compile(u'(PokerStars|POKERSTARS)(\sGame|\sHand|\sHome\sGame|\sHome\sGame\sHand|Game|\sZoom\sHand|\sGAME)\s\#\d+:')
+        re_identify['Everleaf']     = re.compile(u'\*{5}\sHand\shistory\sfor\sgame\s#\d+\s|Partouche\sPoker\s')
+        re_identify['Boss']         = re.compile(u'<HISTORY\sID="\d+"\sSESSION=')
+        re_identify['OnGame']       = re.compile(u'\*{5}\sHistory\sfor\shand\s[A-Z0-9\-]+\s')
+        re_identify['Betfair']      = re.compile(u'\*{5}\sBetfair\sPoker\sHand\sHistory\sfor\sGame\s\d+\s')
+        re_identify['Absolute']     = re.compile(u'Stage\s#[A-Z0-9]+:')
+        re_identify['PartyPoker']   = re.compile(u'\*{5}\sHand\sHistory\s[fF]or\sGame\s\d+\s')
+        re_identify['PacificPoker'] = re.compile(u'\*{5}\sCassava\sHand\sHistory\sfor\sGame\s\d+\s')
+        re_identify['Merge']        = re.compile(u'<description\stype=')
+        re_identify['Pkr']          = re.compile(u'Starting\sHand\s\#\d+')
+        re_identify['iPoker']       = re.compile(u'<session\ssessioncode="\-?\d+">')
+        re_identify['Winamax']      = re.compile(u'Winamax\sPoker\s\-\s(CashGame|Tournament\s")')
+        re_identify['Everest']      = re.compile(u'<SESSION\stime="\d+"\stableName=".+"\sid=')
+        re_identify['Cake']         = re.compile(u'Hand\#[A-Z0-9]+\s\-\s')
+        re_identify['Entraction']   = re.compile(u'Game\s\#\s\d+\s\-\s')
+        re_identify['BetOnline']    = re.compile(u'(BetOnline\sPoker|PayNoRake|ActionPoker\.com|Gear\sPoker)\sGame\s\#\d+')
+        re_identify['PokerTracker'] = re.compile(u'(EverestPoker\sGame\s\#|GAME\s\#|MERGE_GAME\s\#|\*{2}\sGame\sID\s)\d+')
+        re_identify['Microgaming']  = re.compile(u'<Game\s(hhversion="\d"\s)?id=\"\d+\"\sdate=\"[\d\-\s:]+\"\sunicodetablename')
+        re_identify['Bovada']       = re.compile(u'(Bovada|Bodog(\sUK|\sCanada|88)?)\sHand')
+        re_identify['Enet']         = re.compile(u'^Game\s\#\d+:')
+        re_identify['FullTiltPokerSummary'] = re.compile(u'Full\sTilt\sPoker\.fr\sTournament|Full\sTilt\sPoker\sTournament\sSummary')
+        re_identify['PokerStarsSummary']    = re.compile(u'PokerStars\sTournament\s\#\d+')
+        re_identify['PacificPokerSummary']  = re.compile(u'\*{5}\sCassava Tournament Summary\s\*{5}')
+        re_identify['MergeSummary']         = re.compile(u"<meta\sname='Creator'\scontent='support@carbonpoker.ag'\s/>")
+        re_identify['WinamaxSummary']       = re.compile(u"Winamax\sPoker\s\-\sTournament\ssummary")
+        re_identify['PokerTrackerSummary']  = re.compile(u"PokerTracker")
+        return re_identify
 
     def generateSiteList(self, hhcs):
         """Generates a ordered dictionary of site, filter and filter name for each site in hhcs"""
@@ -180,6 +224,12 @@ class IdentifySite:
             if m:
                 f.site = site
                 f.ftype = "hh"
+                if f.site.re_HeroCards:
+                    h = f.site.re_HeroCards.search(whole_file)
+                    if h and 'PNAME' in h.groupdict():
+                        f.hero = h.group('PNAME')
+                else:
+                    f.hero = 'Hero'
                 return f
 
         for id, site in self.sitelist.iteritems():
@@ -205,6 +255,13 @@ class IdentifySite:
                 if re_SplitHands.search( m1.group()):
                     f.site.line_delimiter = None
                     f.site.re_SplitHands = re.compile(u'\n\n\n\*{2}\sGame\sID\s')
+                m3 = f.site.re_HeroCards1.search(whole_file)
+                if m3:
+                    f.hero = m3.group('PNAME')
+                else:
+                     m4 = f.site.re_HeroCards2.search(whole_file)
+                     if m4:
+                         f.hero = m4.group('PNAME')
             else:
                 f.ftype = "summary"
             return f

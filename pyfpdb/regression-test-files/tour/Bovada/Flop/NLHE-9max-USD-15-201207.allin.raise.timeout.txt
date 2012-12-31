@@ -1,0 +1,48 @@
+Bovada Hand #2647092083: HOLDEM Tournament #1099336 TBL#4, No Limit- Level 13 (400/800) - 2012-07-28 20:53:10
+Seat 1: UTG+3 (23,815 in chips)
+Seat 3: UTG+4 (18,495 in chips)
+Seat 5: Small Blind (2,720 in chips)
+Seat 6: Big Blind (4,365 in chips)
+Seat 7: UTG (1,255 in chips)
+Seat 8: UTG+1 (21,280 in chips)
+Seat 9: UTG+2 [ME] (15,880 in chips)
+UTG+3 : Ante chip 80 
+UTG+4 : Ante chip 80 
+Small Blind : Ante chip 80 
+Big Blind : Ante chip 80 
+UTG : Ante chip 80 
+UTG+1 : Ante chip 80 
+UTG+2 [ME] : Ante chip 80 
+Small Blind : Ante/Small blind 400 
+Big Blind : Big blind/Bring in 800 
+*** HOLE CARDS ***
+UTG+3 : Card dealt to a spot [Kc Qd] 
+UTG+4 : Card dealt to a spot [8d 4h] 
+Small Blind : Card dealt to a spot [8h Jh] 
+Big Blind : Card dealt to a spot [Th 8c] 
+UTG : Card dealt to a spot [Qh 5h] 
+UTG+1 : Card dealt to a spot [7s 4c] 
+UTG+2 [ME] : Card dealt to a spot [Jd Kd] 
+UTG : All-in(raise-timeout) 1175 
+UTG+1 : Folds
+UTG+2 [ME] : Folds
+UTG+3 : Raises 1975 
+UTG+4 : Folds
+Small Blind : Folds
+Big Blind : Folds
+UTG+3 : Return uncalled portion of bet 800 
+UTG+3 : Showdown [Ah Ad 9h 9c Kc] (Two pair)
+UTG : Showdown [Ah Ad 9h 9c Qh] (Two pair)
+UTG+3 : Hand Result 4110 
+UTG : Ranking 52 
+UTG : Stand
+*** SUMMARY ***
+Total Pot(4110)
+Board [9h 5s 9c Ad Ah]
+Seat 1: UTG+3 4110  with Two pair [Kc Qd-Ah Ad 9h 9c Kc]  
+Seat 3: UTG+4 Folded on the POCKET CARDS
+Seat 5: Small Blind Folded on the POCKET CARDS
+Seat 6: Big Blind Folded on the POCKET CARDS
+Seat 7: UTG  lose with Two pair [Qh 5h-Ah Ad 9h 9c Qh]  
+Seat 8: UTG+1 Folded on the POCKET CARDS
+Seat 9: UTG+2 Folded on the POCKET CARDS

@@ -1,0 +1,36 @@
+Bovada Hand #2656154797: HOLDEM Tournament #2194767 TBL#1, No Limit- Level 8 (200/400) - 2012-08-25 12:26:17
+Seat 2: Dealer (2,210 in chips)
+Seat 3: Small Blind (7,060 in chips)
+Seat 4: Big Blind (2,740 in chips)
+Seat 9: UTG [ME] (1,490 in chips)
+Dealer : Set dealer/Bring in spot [2] 
+Dealer : Ante chip 40 
+Small Blind : Ante chip 40 
+Big Blind : Ante chip 40 
+UTG [ME] : Ante chip 40 
+Small Blind : Ante/Small blind 200 
+Big Blind : Big blind/Bring in 400 
+*** HOLE CARDS ***
+Dealer : Card dealt to a spot [2c Ac] 
+Small Blind : Card dealt to a spot [9s 9d] 
+Big Blind : Card dealt to a spot [4d Jc] 
+UTG [ME] : Card dealt to a spot [4h Ah] 
+UTG [ME] : All-in(raise) 1450 to 1450
+Dealer : Folds
+Small Blind : Call 1250 
+Big Blind : Folds
+*** FLOP *** [Qh 5c 7s]
+*** TURN *** [Qh 5c 7s] [Qc]
+*** RIVER *** [Qh 5c 7s Qc] [Kd]
+Small Blind : Showdown [Qh Qc 9s 9d Kd] (Two pair)
+UTG [ME] : Showdown [Qh Qc Ah Kd 7s] (One pair)
+Small Blind : Hand Result 3460 
+UTG [ME] : Ranking 4 
+UTG [ME] : Stand
+*** SUMMARY ***
+Total Pot(3460)
+Board [Qh 5c 7s Qc Kd]
+Seat+2: Dealer Folded before the FLOP
+Seat+3: Small Blind 3460  with Two pair [9s 9d-Qh Qc 9s 9d Kd]  
+Seat+4: Big Blind Folded before the FLOP
+Seat+9: UTG lose with One pair [4h Ah-Qh Qc Ah Kd 7s]  

@@ -2,17 +2,17 @@
 # -*- coding: utf-8 -*-
 #
 #    Copyright 2010-2012, Carl Gherardi
-#    
+#
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
 #    the Free Software Foundation; either version 2 of the License, or
 #    (at your option) any later version.
-#    
+#
 #    This program is distributed in the hope that it will be useful,
 #    but WITHOUT ANY WARRANTY; without even the implied warranty of
 #    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 #    GNU General Public License for more details.
-#    
+#
 #    You should have received a copy of the GNU General Public License
 #    along with this program; if not, write to the Free Software
 #    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
@@ -62,13 +62,15 @@ class iPoker(HandHistoryConverter):
                      'PLYR': r'(?P<PNAME>[ a-zA-Z0-9_]+)',
                      'NUM' : r'.,\d',
                     }
-    
+
     games = {              # base, category
                 '7 Card Stud L' : ('stud','studhi'),
                 '5 Card Stud L' : ('stud','5_studhi'),
                     'Holdem NL' : ('hold','holdem'),
                    u'Holdem БЛ' : ('hold','holdem'),
                     'Holdem SL' : ('hold','holdem'), #Spanish NL
+                    'Holdem LZ' : ('hold','holdem'), #Limit
+                    'Holdem PL' : ('hold','holdem'),
                      'Holdem L' : ('hold','holdem'),
                      'Omaha PL' : ('hold','omahahi'),
                'Omaha Hi-Lo PL' : ('hold','omahahilo'),
@@ -76,11 +78,11 @@ class iPoker(HandHistoryConverter):
                       'Omaha L' : ('hold','omahahi'),
                'Omaha Hi-Lo LP' : ('hold','omahahilo'),
                 'Omaha Hi-Lo L' : ('hold','omahahilo'),
-                     
+
             }
-    
+
     currencies = { u'€':'EUR', '$':'USD', '':'T$', u'£':'GBP' }
-    
+
     # translations from captured groups to fpdb info strings
     Lim_Blinds = {      '0.04': ('0.01', '0.02'),         '0.08': ('0.02', '0.04'),
                         '0.10': ('0.02', '0.05'),         '0.20': ('0.05', '0.10'),
@@ -104,7 +106,7 @@ class iPoker(HandHistoryConverter):
                      '1000.00': ('250.00', '500.00'),  '1000': ('250.00', '500.00'),
                      '2000.00': ('500.00', '1000.00'), '2000': ('500.00', '1000.00'),
                   }
-    
+
     months = { 'Jan':1, 'Feb':2, 'Mar':3, 'Apr':4, 'May':5, 'Jun':6, 'Jul':7, 'Aug':8, 'Sep':9, 'Oct':10, 'Nov':11, 'Dec':12}
 
     # Static regexes
@@ -144,7 +146,7 @@ class iPoker(HandHistoryConverter):
     re_DateTime1 = re.compile("""(?P<D>[0-9]{2})\-(?P<M>[a-zA-Z]{3})\-(?P<Y>[0-9]{4})\s+(?P<H>[0-9]+):(?P<MIN>[0-9]+)(:(?P<S>[0-9]+))?""", re.MULTILINE)
     re_DateTime2 = re.compile("""(?P<D>[0-9]{2})\/(?P<M>[0-9]{2})\/(?P<Y>[0-9]{4})\s+(?P<H>[0-9]+):(?P<MIN>[0-9]+)(:(?P<S>[0-9]+))?""", re.MULTILINE)
     re_MaxSeats = re.compile(r'(?P<SEATS>[0-9]+) Max', re.MULTILINE)
-    
+
     def compilePlayerRegexs(self, hand):
         pass
 
@@ -178,7 +180,7 @@ class iPoker(HandHistoryConverter):
         return gametype
 
     def determineGameType(self, handText):
-        
+
         m = self.re_GameInfo.search(handText)
         if not m: return None
 
@@ -186,6 +188,7 @@ class iPoker(HandHistoryConverter):
         mg = m.groupdict()
         tourney = False
         #print "DEBUG: m.groupdict(): %s" % mg
+
         if mg['GAME'][:2]=='LH':
             mg['GAME'] = 'Holdem L'
             mg['BB'] = mg['LBB']
@@ -258,7 +261,7 @@ class iPoker(HandHistoryConverter):
                 self.info['currency'] = mg['CURRENCY']
             else:
                 self.info['currency'] = mg['TABLECURRENCY']
-                
+
             if self.info['limitType'] == 'fl' and self.info['bb'] is not None:
                 try:
                     self.info['sb'] = self.Lim_Blinds[self.clearMoneyString(mg['BB'])][0]
@@ -276,12 +279,12 @@ class iPoker(HandHistoryConverter):
             tmp = hand.handText[0:200]
             log.error(_("iPokerToFpdb.readHandInfo: '%s'") % tmp)
             raise FpdbParseError
-        
+
         mg = m.groupdict()
         #print "DEBUG: m.groupdict(): %s" % mg
         hand.tablename = self.tablename
         m1 = self.re_MaxSeats.search(self.tablename)
-        if m1: 
+        if m1:
             seats = int(m1.group('SEATS'))
             if seats > 1 and seats < 11:
                 hand.maxseats = seats
@@ -303,7 +306,7 @@ class iPoker(HandHistoryConverter):
                 if date_match.group('S') == None:
                     datestr = '%d/%m/%Y %H:%M'
                 hand.startTime = datetime.datetime.strptime(m.group('DATETIME'), datestr)
-    
+
         if self.info['type'] == 'tour':
             hand.tourNo = self.tinfo['tourNo']
             hand.buyinCurrency = self.tinfo['buyinCurrency']
@@ -323,7 +326,7 @@ class iPoker(HandHistoryConverter):
             if a.group('WIN') != '0':
                 win = self.clearMoneyString(a.group('WIN'))
                 self.playerWinnings[a.group('PNAME')] = win
-                
+
         if hand.maxseats==None:
             if self.info['type'] == 'tour' and self.maxseats==0:
                 hand.maxseats = self.guessMaxSeats(hand)
@@ -393,7 +396,7 @@ class iPoker(HandHistoryConverter):
                     type = 'both'
             hand.addBlind(blind['PNAME'], type, self.clearMoneyString(blind['BB']))
         self.fixTourBlinds(hand)
-                
+
     def fixTourBlinds(self, hand):
         # FIXME
         # The following should only trigger when a small blind is missing in a tournament, or the sb/bb is ALL_IN
@@ -415,7 +418,7 @@ class iPoker(HandHistoryConverter):
     def readButton(self, hand):
         # Found in re_Player
         pass
-            
+
     def readHeroCards(self, hand):
 #    streets PREFLOP, PREDRAW, and THIRD are special cases beacause
 #    we need to grab hero's cards
@@ -430,7 +433,7 @@ class iPoker(HandHistoryConverter):
                     if player == self.hero and cards[0]:
                         hand.hero = player
                     hand.addHoleCards(street, player, closed=cards, shown=True, mucked=False, dealt=True)
-                    
+
         for street, text in hand.streets.iteritems():
             if not text or street in ('PREFLOP', 'DEAL'): continue  # already done these
             m = self.re_HeroCards.finditer(hand.streets[street])
@@ -443,7 +446,7 @@ class iPoker(HandHistoryConverter):
                 else:
                     newcards = [c[1:].replace('10', 'T') + c[0].lower() for c in cards if c[0].lower()!='x']
                     oldcards = []
-                
+
                 if street == 'THIRD' and len(newcards) == 3 and self.hero == player: # hero in stud game
                     hand.hero = player
                     hand.dealt.add(player) # need this for stud??
@@ -452,7 +455,7 @@ class iPoker(HandHistoryConverter):
                     hand.hero = player
                     hand.dealt.add(player)
                     hand.addHoleCards(street, player, closed=[newcards[0]], open=[newcards[1]], shown=True, mucked=False, dealt=False)
-                else:                       
+                else:
                     hand.addHoleCards(street, player, open=newcards, closed=oldcards, shown=True, mucked=False, dealt=False)
 
     def readAction(self, hand, street):
@@ -505,7 +508,7 @@ class iPoker(HandHistoryConverter):
     def readShownCards(self, hand):
         # Cards lines contain cards
         pass
-    
+
     def guessMaxSeats(self, hand):
         """Return a guess at maxseats when not specified in HH."""
         # if some other code prior to this has already set it, return it

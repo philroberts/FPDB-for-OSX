@@ -297,7 +297,6 @@ class Database:
 
 
     def __init__(self, c, sql = None, autoconnect = True):
-        log.debug(_("Creating Database instance, sql = %s") % sql)
         self.config = c
         self.__connected = False
         self.settings = {}
@@ -606,8 +605,8 @@ class Database:
         return self.__connected
 
     def get_cursor(self, connect=False):
-        if connect and self.backend == Database.MYSQL_INNODB and os.name == 'nt':
-            self.do_connect(self.config)
+        if self.backend == Database.MYSQL_INNODB and os.name == 'nt':
+            self.connection.ping(True)
         return self.connection.cursor()
 
     def close_connection(self):
@@ -681,10 +680,23 @@ class Database:
         c.execute(self.sql.query['get_recent_hands'], {'last_hand': last_hand})
         return c.fetchall()
 
-    def get_hand_info(self, new_hand_id):
+    def get_gameinfo_from_hid(self, hand_id):
+        # returns a gameinfo (gametype) dictionary suitable for passing
+        #  to Hand.hand_factory
         c = self.connection.cursor()
-        c.execute(self.sql.query['get_hand_info'], new_hand_id)
-        return c.fetchall()
+        q = self.sql.query['get_gameinfo_from_hid']
+        q = q.replace('%s', self.sql.query['placeholder'])
+        c.execute (q, (hand_id, ))
+        row = c.fetchone()
+        gameinfo = {'sitename':row[0],'category':row[1],'base':row[2],'type':row[3],'limitType':row[4],
+                'hilo':row[5],'sb':row[6],'bb':row[7], 'sbet':row[8],'bbet':row[9], 'currency':row[10], 'gametypeId':row[11]}
+        return gameinfo
+        
+#   Query 'get_hand_info' does not exist, so it seems
+#    def get_hand_info(self, new_hand_id):
+#        c = self.connection.cursor()
+#        c.execute(self.sql.query['get_hand_info'], new_hand_id)
+#        return c.fetchall()      
 
     def getHandCount(self):
         c = self.connection.cursor()
@@ -793,6 +805,11 @@ class Database:
         self.h_date_ndays_ago = "d%02d%02d%02d" % (now.year - 2000, now.month, now.day)
 
     # is get_stats_from_hand slow?
+    # Gimick - yes  - reason being that the gametypeid join on hands
+    # increases exec time on SQLite and postgres by a factor of 6 to 10
+    # method below changed to lookup hand.gametypeid and pass that as
+    # a constant to the underlying query.
+    
     def get_stats_from_hand( self, hand, type   # type is "ring" or "tour"
                            , hud_params = {'hud_style':'A', 'agg_bb_mult':1000
                                           ,'seats_style':'A', 'seats_cust_nums':['n/a', 'n/a', (2,2), (3,4), (3,5), (4,6), (5,7), (6,8), (7,9), (8,10), (8,10)]
@@ -870,10 +887,14 @@ class Database:
         #elif h_hud_style == 'H':
         #    h_stylekey = date_nhands_ago  needs array by player here ...
 
+        # lookup gametypeId from hand
+        handinfo = self.get_gameinfo_from_hid(hand)
+        gametypeId = handinfo["gametypeId"]
+
         query = 'get_stats_from_hand_aggregated'
         subs = (hand
-               ,hero_id, stylekey, agg_bb_mult, agg_bb_mult, seats_min, seats_max  # hero params
-               ,hero_id, h_stylekey, h_agg_bb_mult, h_agg_bb_mult, h_seats_min, h_seats_max)    # villain params
+               ,hero_id, stylekey, agg_bb_mult, agg_bb_mult, gametypeId, seats_min, seats_max  # hero params
+               ,hero_id, h_stylekey, h_agg_bb_mult, h_agg_bb_mult, gametypeId, h_seats_min, h_seats_max)    # villain params
 
         #print "get stats: hud style =", hud_style, "query =", query, "subs =", subs
         stime = time()
@@ -1499,6 +1520,8 @@ class Database:
         c.execute("INSERT INTO Sites (id,name,code) VALUES ('18', 'Entraction', 'TR')")
         c.execute("INSERT INTO Sites (id,name,code) VALUES ('19', 'BetOnline', 'BO')")
         c.execute("INSERT INTO Sites (id,name,code) VALUES ('20', 'Microgaming', 'MG')")
+        c.execute("INSERT INTO Sites (id,name,code) VALUES ('21', 'Bovada', 'BV')")
+        c.execute("INSERT INTO Sites (id,name,code) VALUES ('22', 'Enet', 'EN')")
         #Fill Actions
         c.execute("INSERT INTO Actions (id,name,code) VALUES ('1', 'ante', 'A')")
         c.execute("INSERT INTO Actions (id,name,code) VALUES ('2', 'small blind', 'SB')")

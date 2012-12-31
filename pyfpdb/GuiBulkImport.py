@@ -32,7 +32,8 @@ import gtk
 import gobject
 
 #    fpdb/FreePokerTools modules
-import fpdb_import
+import Options
+import Importer
 import Configuration
 import Exceptions
 
@@ -152,7 +153,7 @@ class GuiBulkImport():
         self.config = config
         self.parent = parent
 
-        self.importer = fpdb_import.Importer(self, self.settings, config, sql, parent)
+        self.importer = Importer.Importer(self, self.settings, config, sql, parent)
 
         self.vbox = gtk.VBox(False, 0)
         self.vbox.show()
@@ -350,32 +351,15 @@ def main(argv=None):
     def destroy(*args):  # call back for terminating the main eventloop
         gtk.main_quit()
 
-    parser = OptionParser()
-    parser.add_option("-f", "--file", dest="filename", metavar="FILE", default=None,
-                    help=_("Input file"))
-    parser.add_option("-c", "--convert", dest="filtername", default=None, metavar="FILTER",
-                    help=_("Site")+ " (Absolute, Merge, Everleaf, Full Tilt Poker, PokerStars, ...)") #TODO: dynamically generate list
-    parser.add_option("-x", "--failOnError", action="store_true", default=False,
-                    help=_("If this option is used it quits with an extended error message if it encounters any error"))
-    parser.add_option("-u", "--usage", action="store_true", dest="usage", default=False,
-                    help=_("Print some useful one liners"))
-    parser.add_option("-s", "--starsarchive", action="store_true", dest="starsArchive", default=False,
-                    help=_("Do the required conversion for %s archive format (ie. as provided by support)") % "PokerStars")
-    parser.add_option("-F", "--ftparchive", action="store_true", dest="ftpArchive", default=False,
-                    help=_("Do the required conversion for %s archive format (ie. as provided by support)") % "Full Tilt Poker")
-    parser.add_option("-t", "--testdata", action="store_true", dest="testData", default=False,
-                    help=_("Generate and print test data for regression testing"))
-    parser.add_option("-C", "--configFile", dest="config", default=None, help=_("Specifies a configuration file."))
-    (options, argv) = parser.parse_args(args = argv)
+    Configuration.set_logfile("fpdb-log.txt")
+    (options, argv) = Options.fpdb_options()
+
+    if options.sitename:
+        options.sitename = Options.site_alias(options.sitename)
 
     if options.usage == True:
         #Print usage examples and exit
         print _("USAGE:")
-        print ('PokerStars ' + _('converter') + ': ./GuiBulkImport.py -c PokerStars -f filename')
-        print ('Full Tilt  ' + _('converter') + ': ./GuiBulkImport.py -c "Full Tilt Poker" -f filename')
-        print ('Everleaf   ' + _('converter') + ': ./GuiBulkImport.py -c Everleaf -f filename')
-        print ('Absolute   ' + _('converter') + ': ./GuiBulkImport.py -c Absolute -f filename')
-        print ('PartyPoker ' + _('converter') + ': ./GuiBulkImport.py -c PartyPoker -f filename')
         sys.exit(0)
 
     Configuration.set_logfile("GuiBulkImport-log.txt")
@@ -392,33 +376,18 @@ def main(argv=None):
     settings.update(config.get_import_parameters())
     settings.update(config.get_default_paths())
 
-    if not options.filename:
-        i = GuiBulkImport(settings, config, None)
-        main_window = gtk.Window()
-        main_window.connect('destroy', destroy)
-        main_window.add(i.vbox)
-        main_window.show()
-        gtk.main()
-    else:
-        if not options.filtername:
-            print _("You have to select a site with the -c parameter. E.g.:"), "Everleaf   converter: ./GuiBulkImport.py -c Everleaf -f filename"
-        #Do something useful
-        importer = fpdb_import.Importer(False,settings, config, None)
-        # importer.setDropIndexes("auto")
-        importer.setDropIndexes(_("don't drop"))
-        importer.setFailOnError(options.failOnError)
-        importer.setThreads(-1)
-        importer.addBulkImportImportFileOrDir(os.path.expanduser(options.filename), site=options.filtername)
-        importer.setCallHud(False)
-        if options.starsArchive:
-            importer.setStarsArchive(True)
-        if options.ftpArchive:
-            importer.setFTPArchive(True)
-        if options.testData:
-            importer.setPrintTestData(True)
-        (stored, dups, partial, errs, ttime) = importer.runImport()
-        importer.clearFileList()
-        print(_('Bulk import done: Stored: %d, Duplicates: %d, Partial: %d, Errors: %d, Time: %s seconds, Stored/second: %.0f')\
+    #Do something useful
+    importer = Importer.Importer(False,settings, config, None)
+    importer.addBulkImportImportFileOrDir(os.path.expanduser(options.filename))
+    importer.setCallHud(False)
+    if options.archive:
+        importer.setStarsArchive(True)
+        importer.setFTPArchive(True)
+    if options.testData:
+        importer.setPrintTestData(True)
+    (stored, dups, partial, errs, ttime) = importer.runImport()
+    importer.clearFileList()
+    print(_('Bulk import done: Stored: %d, Duplicates: %d, Partial: %d, Errors: %d, Time: %s seconds, Stored/second: %.0f')\
                      % (stored, dups, partial, errs, ttime, (stored+0.0) / ttime))
 
 

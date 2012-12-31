@@ -19,7 +19,8 @@
 #    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
 ########################################################################
-
+# to do
+# for win7 the fixed b_width and tb_height are not correct - need to discover these from os
 import L10n
 _ = L10n.get_translation()
 
@@ -90,7 +91,7 @@ class Table(Table_Window):
         self.title = titles[hwnd]
         self.hud = None
         self.number = hwnd
-        if self.gdkhandle is not None:
+        if self.gdkhandle is None:
             try:   # Windows likes this here - Linux doesn't
                 self.gdkhandle = gtk.gdk.window_foreign_new(self.number)
             except AttributeError:
@@ -100,18 +101,38 @@ class Table(Table_Window):
         try:
             if win32gui.IsWindow(self.number):
                 (x, y, width, height) = win32gui.GetWindowRect(self.number)
+                #log.debug(("newhud - get_geo w h x y",str(width), str(height), str(x), str(y)))
+                #print "x=", x, "y=", y, "width=", width, "height=", height
+                                
                 # this apparently returns x = far left side of window, width = far right side of window, y = top of window, height = bottom of window
                 # so apparently we have to subtract x from "width" to get actual width, and y from "height" to get actual height ?
                 # it definitely gives slightly different results than the GTK code that does the same thing.
-                #print "x=", x, "y=", y, "width=", width, "height=", height
+
+                # minimised windows are given -32000 (x,y) value,
+                #   so just zeroise to avoid downstream confusion
+                if x < 0: x = 0
+                if y < 0: y = 0
+                
                 width = width - x
                 height = height - y
+                
+                #determine system titlebar and border setting constant values
+                # see http://stackoverflow.com/questions/431470/window-border-width-and-height-in-win32-how-do-i-get-it
+                try:
+                    self.b_width; self.tb_height
+                except:
+                    self.b_width = win32api.GetSystemMetrics(win32con.SM_CXSIZEFRAME) # bordersize
+                    self.tb_height = win32api.GetSystemMetrics(win32con.SM_CYCAPTION) # titlebar height (excl border)
+
+                #fixme - x and y must _not_ be adjusted by the b_width if the window has been maximised
                 return {
-                    'x'      : int(x) + b_width,
-                    'y'      : int(y) + tb_height,
-                    'height' : int(height) - y,
-                    'width'  : int(width) - x
+                    'x'      : int(x) + self.b_width,
+                    'y'      : int(y) + self.tb_height + self.b_width,
+                    'height' : int(height),
+                    'width'  : int(width)
                 }
+            else:
+                log.debug("newhud - WinTables window not found")
         except AttributeError:
             return None
 
@@ -142,36 +163,27 @@ class Table(Table_Window):
 #
 #        return exename
 
-    def topify(self, hud):
+    def topify(self, window):
         """Set the specified gtk window to stayontop in MS Windows."""
 
-#        def windowEnumerationHandler(hwnd, resultList):
-#            '''Callback for win32gui.EnumWindows() to generate list of window handles.'''
-#            resultList.append((hwnd, win32gui.GetWindowText(hwnd)))
-#
-#        unique_name = 'unique name for finding this window'
-#        real_name = hud.main_window.get_title()
-#        hud.main_window.set_title(unique_name)
-#        tl_windows = []
-#        win32gui.EnumWindows(windowEnumerationHandler, tl_windows)
-#
-#        for w in tl_windows:
-#            if w[1] == unique_name:
-#                hud.main_window.gdkhandle = gtk.gdk.window_foreign_new(w[0])
-        hud.main_window.gdkhandle = hud.main_window.window
-        hud.main_window.gdkhandle.set_transient_for(self.gdkhandle)
-#        rect = self.gdkhandle.get_frame_extents()
-#        (innerx, innery) = self.gdkhandle.get_origin()
-#        b_width = rect.x - innerx
-#        tb_height = rect.y - innery
-#
-#                style = win32gui.GetWindowLong(self.number, win32con.GWL_EXSTYLE)
-#                style |= win32con.WS_CLIPCHILDREN
-#                win32gui.SetWindowLong(self.number, win32con.GWL_EXSTYLE, style)
-#                break
+        """
+        self is the poker table window object (the poker client)
+        self.number is the windows handle
+        self.gdkhandle is a gdkhandle associated with the poker client
+         
+        window is a seat_window object from Mucked (a gtk window)
+        window.window is a gtk.gdk.window object
+        """
+        
+        #window.set_focus_on_map(False)
+        #window.set_accept_focus(False)
 
-#        hud.main_window.set_title(real_name)
-
+        if self.gdkhandle is None:
+            self.gdkhandle = gtk.gdk.window_foreign_new(int(self.number))
+        #    Then call set_transient_for on the gdk handle of the HUD window
+        #    with the gdk handle of the table window as the argument.
+        window.window.set_transient_for(self.gdkhandle)
+        
 
 def win_enum_handler(hwnd, titles):
     titles[hwnd] = win32gui.GetWindowText(hwnd)

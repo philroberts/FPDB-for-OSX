@@ -218,8 +218,7 @@ encodeCardList = {'2h':  1, '3h':  2, '4h':  3, '5h':  4, '6h':  5, '7h':  6, '8
 def encodeCard(cardString):
     """Take a card string (Ah) and convert it to the db card code (1)."""
     global encodeCardList
-    if cardString not in encodeCardList: return 0
-    return encodeCardList[cardString]
+    return encodeCardList.get(cardString, 0)
 
 def decodeRazzStartHand(idx):
     decodeRazzList = {

@@ -152,7 +152,15 @@ class Table(Table_Window):
 #    as the argument. This should keep the HUD window on top of the table window, as if 
 #    the hud window was a dialog belonging to the table.
 
-#    This is the gdkhandle for the HUD window
+#    X doesn't like calling the foreign_new function in XTables.
+#    Nope don't know why. Moving it here seems to make X happy.
+        if self.gdkhandle is None:
+            self.gdkhandle = gtk.gdk.window_foreign_new(int(self.number))
+
+#   This is the gdkhandle for the HUD window
         gdkwindow = gtk.gdk.window_foreign_new(window.window.xid)
+
+#    Then call set_transient_for on the gdk handle of the HUD window
+#    with the gdk handle of the table window as the argument.
         gdkwindow.set_transient_for(self.gdkhandle)
 

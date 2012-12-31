@@ -80,7 +80,6 @@ class Everleaf(HandHistoryConverter):
             self.re_Action          = re.compile(ur"^%(PLAYERS)s(?P<ATYPE>: bets| checks| raises| calls| folds)(\s\[(?: ?[%(LS)s]?) (?P<BET>[%(NUM)s]+)\s?(USD|EURO|EUR|Chips|)\])?" % self.substitutions, re.MULTILINE)
             self.re_ShowdownAction  = re.compile(ur"^%(PLAYERS)s (?P<SHOWED>shows|mucks) \[ (?P<CARDS>.*) \] (?P<STRING>.*)" % self.substitutions, re.MULTILINE)
             self.re_CollectPot      = re.compile(ur"^%(PLAYERS)s wins ( (high|low) )?\(?\s?[%(LS)s]?\s?(?P<POT>[%(NUM)s]+)\s?(USD|EURO|EUR|chips)?\)?" % self.substitutions, re.MULTILINE)
-            self.re_SitsOut         = re.compile(ur"^%s sits out" % self.substitutions, re.MULTILINE)
 
     def readSupportedGames(self):
         return [

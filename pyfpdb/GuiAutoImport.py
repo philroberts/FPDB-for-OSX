@@ -28,12 +28,11 @@ import gtk
 import gobject
 import os
 import sys
-import time
 
 import logging
 
 
-import fpdb_import
+import Importer
 from optparse import OptionParser
 import Configuration
 import string
@@ -55,15 +54,12 @@ class GuiAutoImport (threading.Thread):
         self.sql = sql
         self.parent = parent
 
-        imp = self.config.get_import_parameters()
-
         self.input_settings = {}
         self.pipe_to_hud = None
 
-        self.importer = fpdb_import.Importer(self, self.settings, self.config, self.sql)
+        self.importer = Importer.Importer(self, self.settings, self.config, self.sql)
         self.importer.setCallHud(True)
         self.importer.setQuiet(False)
-        self.importer.setFailOnError(False)
         self.importer.setHandCount(0)
 
         self.server = settings['db-host']
@@ -257,7 +253,7 @@ class GuiAutoImport (threading.Thread):
                     gtk.main_iteration(False)
                 if self.pipe_to_hud is None:
                     if self.config.install_method == "exe":    # if py2exe, run hud_main.exe
-                        path = os.path.join(self.config.fpdb_program_path, u'pyfpdb')
+                        path = self.config.pyfpdb_path
                         command = "HUD_main.exe"
                         bs = 0
                     elif os.name == 'nt':
@@ -284,12 +280,10 @@ class GuiAutoImport (threading.Thread):
                         else:
                             self.pipe_to_hud = subprocess.Popen(command, bufsize=bs, stdin=subprocess.PIPE, universal_newlines=True)
                     except:
-                        err = traceback.extract_tb(sys.exc_info()[2])[-1]
-                        #self.addText( _("\n*** GuiAutoImport Error opening pipe: " + err[2] + "(" + str(err[1]) + "): " + str(sys.exc_info()[1])))
                         self.addText("\n" + _("*** GuiAutoImport Error opening pipe:") + " " + traceback.format_exc() )
                     else:
                         for site in self.input_settings:
-                            self.importer.addImportDirectory(self.input_settings[site][0], True, site, self.input_settings[site][1])
+                            self.importer.addImportDirectory(self.input_settings[site][0], monitor = True)
                             self.addText("\n * " + _("Add %s import directory %s") % (site, str(self.input_settings[site][0])))
                             self.do_import()
                     interval = int(self.intervalEntry.get_text())

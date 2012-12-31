@@ -1,0 +1,72 @@
+Bovada Hand #2633952287 TBL#2027664 7CARD HiLo Fixed Limit - 2012-09-19 13:11:08
+Seat+1: $5.03 in chips
+Seat+2 [ME]: $6.53 in chips
+Seat+3: $8.51 in chips
+Seat+4: $12.16 in chips
+Seat+5: $2.45 in chips
+Seat+6: $2.50 in chips
+Seat+8: $11.50 in chips
+Seat+1 : Ante chip $0.05 
+Seat+2 [ME] : Ante chip $0.05 
+Seat+3 : Ante chip $0.05 
+Seat+4 : Ante chip $0.05 
+Seat+5 : Ante chip $0.05 
+Seat+6 : Ante chip $0.05 
+Seat+8 : Ante chip $0.05 
+*** 3RD STREET ***
+Seat+1 : Card dealt to a spot [6d Ad 2s] 
+Seat+2 [ME] : Card dealt to a spot [4d Qd Ac] 
+Seat+3 : Card dealt to a spot [Kd 3c Ts] 
+Seat+4 : Card dealt to a spot [7s As 4c] 
+Seat+5 : Card dealt to a spot [5s 2d Th] 
+Seat+6 : Card dealt to a spot [7d Jc 8s] 
+Seat+8 : Card dealt to a spot [Ah 3d Td] 
+Seat+1 : Bets $0.25 
+Seat+2 [ME] : Folds
+Seat+3 : Folds
+Seat+4 : Calls $0.25 
+Seat+5 : Calls $0.25 
+Seat+6 : Folds
+Seat+8 : Folds
+*** 4TH STREET ***
+Seat+1 : Card dealt to a spot [3s] 
+Seat+4 : Card dealt to a spot [5c] 
+Seat+5 : Card dealt to a spot [3h] 
+Seat+5 : Checks
+Seat+1 : Bets $0.25 
+Seat+4 : Calls $0.25 
+Seat+5 : Calls $0.25 
+*** 5TH STREET ***
+Seat+1 : Card dealt to a spot [7h] 
+Seat+4 : Card dealt to a spot [Qh] 
+Seat+5 : Card dealt to a spot [9c] 
+Seat+4 : Checks
+Seat+5 : Checks
+Seat+1 : Bets $0.50 
+Seat+4 : Calls $0.50 
+Seat+5 : Folds
+*** 6TH STREET ***
+Seat+1 : Card dealt to a spot [4h] 
+Seat+4 : Card dealt to a spot [9h] 
+Seat+4 : Checks
+Seat+1 : Bets $0.50 
+Seat+4 : Calls $0.50 
+*** RIVER ***
+Seat+1 : Card dealt to a spot [Jh] 
+Seat+4 : Card dealt to a spot [Qs] 
+Seat+4 : Checks
+Seat+1 : Bets $0.50 
+Seat+4 : Calls $0.50 
+Seat+1 : Showdown [Ad Jh 7h 6d 4h Ad 2s 3s 4h 6d] (High Card)
+Seat+4 : Showdown [Qs Qh As 9h 7s] (One pair)
+Seat+1 : Hand result $2.32 
+Seat+4 : Hand result $2.33 
+*** SUMMARY ***
+Total Pot($4.85) | Rake ($0.20) 
+Seat+1:   with High Card [6d Ad 2s 3s 7h 4h Jh-Ad Jh 7h 6d 4h] LO $2.32 [6d Ad 2s 3s 7h 4h Jh-Ad 2s 3s 4h 6d]
+Seat+2:  Folded on the 3rd STREET
+Seat+3:  Folded on the 3rd STREET
+Seat+4:  HI $2.33  with One pair [7s As 4c 5c Qh 9h Qs-Qs Qh As 9h 7s]  
+Seat+5:  Folded on the 5TH STREET
+Seat+6:  Folded on the 3rd STREET
+Seat+8:  Folded on the 3rd STREET

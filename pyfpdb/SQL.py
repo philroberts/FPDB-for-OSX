@@ -2495,7 +2495,8 @@ class Sql:
                         round(g.bigBlind / 100.0,2),
                         round(g.smallBet / 100.0,2),
                         round(g.bigBet / 100.0,2),
-                        g.currency
+                        g.currency,
+                        h.gametypeId
                     FROM
                         Hands as h,
                         Sites as s,
@@ -2504,10 +2505,10 @@ class Sql:
                         Players as p
                     WHERE
                         h.id = %s
-                    and g.id = h.gametypeid
-                    and hp.handid = h.id
-                    and p.id = hp.playerid
-                    and s.id = p.siteid
+                    and g.id = h.gametypeId
+                    and hp.handId = h.id
+                    and p.id = hp.playerId
+                    and s.id = p.siteId
                     limit 1
             """
 
@@ -2588,7 +2589,7 @@ class Sql:
                     sum(hc.foldToStreet4CBChance)       AS f_cb_opp_4,
                     sum(hc.foldToStreet4CBDone)         AS f_cb_4,
                     sum(hc.totalProfit)                 AS net,
-                    sum(gt.bigblind)                    AS bigblind,
+                    sum(gt.bigblind * hc.HDs)           AS bigblind,
                     sum(hc.street1CheckCallRaiseChance) AS ccr_opp_1,
                     sum(hc.street1CheckCallRaiseDone)   AS ccr_1,
                     sum(hc.street2CheckCallRaiseChance) AS ccr_opp_2,
@@ -2755,7 +2756,7 @@ class Sql:
                                   AND    gt1.limittype = gt2.limittype     /* fl/nl */
                                   AND    gt1.bigblind <= gt2.bigblind * %s  /* bigblind similar size */
                                   AND    gt1.bigblind >= gt2.bigblind / %s
-                                  AND    gt2.id = h.gametypeId)
+                                  AND    gt2.id = %s)
                            AND hc.activeSeats between %s and %s
                           )
                        OR
@@ -2769,7 +2770,7 @@ class Sql:
                                   AND    gt1.limittype = gt2.limittype     /* fl/nl */
                                   AND    gt1.bigblind <= gt2.bigblind * %s  /* bigblind similar size */
                                   AND    gt1.bigblind >= gt2.bigblind / %s
-                                  AND    gt2.id = h.gametypeId)
+                                  AND    gt2.id = %s)
                            AND hc.activeSeats between %s and %s
                           )
                       )
@@ -3094,15 +3095,15 @@ class Sql:
                            cast(hp2.wonWhenSeenStreet1 as <signed>integer)          AS w_w_s_1,
                            cast(hp2.wonAtSD as <signed>integer)                     AS wmsd,
                            case
-                                when hp2.position = "S" then cast(hp2.raiseFirstInChance as <signed>integer)
-                                when hp2.position = "0" then cast(hp2.raiseFirstInChance as <signed>integer)
-                                when hp2.position = "1" then cast(hp2.raiseFirstInChance as <signed>integer)
+                                when hp2.position = 'S' then cast(hp2.raiseFirstInChance as <signed>integer)
+                                when hp2.position = '0' then cast(hp2.raiseFirstInChance as <signed>integer)
+                                when hp2.position = '1' then cast(hp2.raiseFirstInChance as <signed>integer)
                                 else 0
                            end                                                      AS steal_opp,
                           case
-                                when hp2.position = "S" then cast(hp2.raisedFirstIn as <signed>integer)
-                                when hp2.position = "0" then cast(hp2.raisedFirstIn as <signed>integer)
-                                when hp2.position = "1" then cast(hp2.raisedFirstIn as <signed>integer)
+                                when hp2.position = 'S' then cast(hp2.raisedFirstIn as <signed>integer)
+                                when hp2.position = '0' then cast(hp2.raisedFirstIn as <signed>integer)
+                                when hp2.position = '1' then cast(hp2.raisedFirstIn as <signed>integer)
                                 else 0
                            end                                                      AS steal,
                            cast(hp2.foldSbToStealChance as <signed>integer)         AS SBstolen,

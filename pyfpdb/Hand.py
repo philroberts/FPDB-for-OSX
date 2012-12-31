@@ -79,6 +79,7 @@ class Hand(object):
         self.buttonpos = 0
         self.runItTimes = 0
         self.uncalledbets = False
+        self.adjustCollected = False
 
         #tourney stuff
         self.tourNo = None
@@ -106,6 +107,8 @@ class Hand(object):
 
         self.seating = []
         self.players = []
+        # Cache used for checkPlayerExists.
+        self.player_exists_cache = set()
         self.posted = []
         self.tourneysPlayersIds = {}
 
@@ -129,6 +132,7 @@ class Hand(object):
             self.holecards[street] = {} # dict from player names to holecards
             self.discards[street] = {} # dict from player names to dicts by street ... of tuples ... of discarded holecards
         # Collections indexed by player names
+        self.rakes = {}
         self.stacks = {}
         self.collected = [] #list of ?
         self.collectees = {} # dict from player names to amounts collected (?)
@@ -541,10 +545,16 @@ class Hand(object):
             raise FpdbHandPartial(_("Streets didn't match - Assuming hand '%s' was cancelled.") % (self.handid) + " " + _("First 100 characters: %s") % tmp)
 
     def checkPlayerExists(self,player,source = None):
-        if player not in [p[1] for p in self.players]:
+        # Fast path, because this function is called ALL THE TIME.
+        if player in self.player_exists_cache:
+            return
+
+        if player not in (p[1] for p in self.players):
             if source is not None:
                 log.error(_("Hand.%s: '%s' unknown player: '%s'") % (source, self.handid, player))
             raise FpdbParseError
+        else:
+            self.player_exists_cache.add(player)
 
     def setCommunityCards(self, street, cards):
         log.debug("setCommunityCards %s %s" %(street,  cards))
@@ -806,6 +816,9 @@ class Hand(object):
         if self.totalpot is None:
             self.pot.end()
             self.totalpot = self.pot.total
+            
+        if self.adjustCollected:
+            self.stats.awardPots(self)
         
         def gettempcontainers():
             (collected, collectees, totalcolleted) = ([], {}, 0)
@@ -1353,6 +1366,7 @@ class DrawHand(Hand):
             if self.maxseats is None:
                 self.maxseats = hhc.guessMaxSeats(self)
             hhc.readOther(self)
+            
         elif builtFrom == "DB":
             # Creator expected to call hhc.select(hid) to fill out object
             print "DEBUG: DrawHand initialised for select()"
@@ -1375,7 +1389,7 @@ class DrawHand(Hand):
 
 
     def addDiscard(self, street, player, num, cards=None):
-        self.checkPlayerExists(player, 'addCollectPot')
+        self.checkPlayerExists(player, 'addDiscard')
         if cards:
             act = (player, 'discards', Decimal(num), cards)
             self.discardDrawHoleCards(cards, player, street)
@@ -1555,6 +1569,7 @@ class StudHand(Hand):
             if self.maxseats is None:
                 self.maxseats = hhc.guessMaxSeats(self)
             hhc.readOther(self)
+            
         elif builtFrom == "DB":
             # Creator expected to call hhc.select(hid) to fill out object
             print "DEBUG: StudHand initialised for select()"
@@ -1916,3 +1931,26 @@ class Pot(object):
         ret += " Main pot %s%.2f" % (self.sym, self.pots[0][0])
 
         return ret + ''.join([ (" Side pot %s%.2f." % (self.sym, self.pots[x][0]) ) for x in xrange(1, len(self.pots)) ])
+        
+def hand_factory(hand_id, config, db_connection):
+    # a factory function to discover the base type of the hand
+    # and to return a populated class instance of the correct hand
+    
+    gameinfo = db_connection.get_gameinfo_from_hid(hand_id)
+
+    if gameinfo['base'] == 'hold':
+        hand_instance = HoldemOmahaHand(config=config, hhc=None, sitename=gameinfo['sitename'],
+         gametype = gameinfo, handText=None, builtFrom = "DB", handid=hand_id)
+    elif gameinfo['base'] == 'stud':
+        hand_instance = StudHand(config=config, hhc=None, sitename=gameinfo['sitename'],
+         gametype = gameinfo, handText=None, builtFrom = "DB", handid=hand_id)
+    elif gameinfo['base'] == 'draw':
+        hand_instance = DrawHand(config=config, hhc=None, sitename=gameinfo['sitename'],
+         gametype = gameinfo, handText=None, builtFrom = "DB", handid=hand_id)
+
+    hand_instance.select(db_connection, hand_id)
+    hand_instance.handid_selected = hand_id #hand_instance does not supply this, create it here
+    
+    return hand_instance
+
+

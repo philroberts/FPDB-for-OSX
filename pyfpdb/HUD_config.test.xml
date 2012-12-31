@@ -862,6 +862,204 @@ Left-Drag to Move"
                 <location seat="2" x="10"  y="288"> </location>
             </layout>
         </site>
+        
+        <site enabled="True"
+              site_name="Microgaming"
+              table_finder="Microgaming.exe"
+              screen_name="Hero"
+              site_path="C:/Program Files/Microgaming/"
+              HH_path="C:/Program Files/Microgaming/HandHistory/Hero/"
+              decoder="microgaming_decode_table"
+              converter="MicrogamingToFpdb"
+              bgcolor="#000000"
+              fgcolor="#FFFFFF"
+              hudopacity="1.0"
+              font="Sans"
+              font_size="8"
+              xpad="1"
+              ypad="0"
+              xshift="0"
+              yshift="0"
+              supported_games="holdem">
+            <email fetchType="request-summary" host="YOUR_EMAIL_SERVER" username="YOUR_EMAIL_USERNAME" password="YOUR_EMAIL_PASSWORD" useSsl="True" folder="INBOX"/>
+            <layout max="8" width="792" height="546" fav_seat="0">
+                <location seat="1" x="684" y="61">  </location>
+                <location seat="2" x="689" y="239"> </location>
+                <location seat="3" x="692" y="346"> </location>
+                <location seat="4" x="525" y="402"> </location>
+                <location seat="5" x="259" y="402"> </location>
+                <location seat="6" x="0"   y="348"> </location>
+                <location seat="7" x="0"   y="240"> </location>
+                <location seat="8" x="0"   y="35">  </location>
+            </layout>
+            <layout max="6" width="792" height="546" fav_seat="0">
+                <location seat="1" x="681" y="119"> </location>
+                <location seat="2" x="681" y="301"> </location>
+                <location seat="3" x="487" y="369"> </location>
+                <location seat="4" x="226" y="369"> </location>
+                <location seat="5" x="0"   y="301"> </location>
+                <location seat="6" x="0"   y="119"> </location>
+            </layout>
+            <layout max="10" width="792" height="546" fav_seat="0">
+                <location seat="1" x="684" y="61">  </location>
+                <location seat="2" x="689" y="239"> </location>
+                <location seat="3" x="692" y="346"> </location>
+                <location seat="4" x="586" y="393"> </location>
+                <location seat="5" x="421" y="440"> </location>
+                <location seat="6" x="267" y="440"> </location>
+                <location seat="7" x="0"   y="361"> </location>
+                <location seat="8" x="0"   y="280">  </location>
+                <location seat="9" x="121" y="280">  </location>
+                <location seat="10" x="46"  y="30">  </location>
+            </layout>
+            <layout max="9" width="792" height="546" fav_seat="0">
+                <location seat="1" x="560" y="0">  </location>
+                <location seat="2" x="679" y="123"> </location>
+                <location seat="3" x="688" y="309"> </location>
+                <location seat="4" x="483" y="370"> </location>
+                <location seat="5" x="444" y="413"> </location>
+                <location seat="6" x="224" y="372"> </location>
+                <location seat="7" x="0"   y="307"> </location>
+                <location seat="8" x="0"   y="121">  </location>
+                <location seat="9" x="140" y="0">  </location>
+            </layout>
+            <layout fav_seat="0" height="546" max="2" width="792">
+                <location seat="1" x="651" y="288"> </location>
+                <location seat="2" x="10"  y="288"> </location>
+            </layout>
+        </site>
+        
+        <site enabled="True"
+              site_name="Bovada"
+              table_finder="Bovada.exe"
+              screen_name="Hero"
+              site_path="C:/Bovada/"
+              HH_path="C:/Bovada/"
+              decoder="bovada_decode_table"
+              converter="BovadaToFpdb"
+              bgcolor="#000000"
+              fgcolor="#FFFFFF"
+              hudopacity="1.0"
+              font="Sans"
+              font_size="8"
+              xpad="1"
+              ypad="0"
+              xshift="0"
+              yshift="0"
+              supported_games="holdem,omahahi,omahahilo,studhi,studhilo">
+            <email fetchType="request-summary" host="YOUR_EMAIL_SERVER" username="YOUR_EMAIL_USERNAME" password="YOUR_EMAIL_PASSWORD" useSsl="True" folder="INBOX"/>
+            <layout max="8" width="792" height="546" fav_seat="0">
+                <location seat="1" x="684" y="61">  </location>
+                <location seat="2" x="689" y="239"> </location>
+                <location seat="3" x="692" y="346"> </location>
+                <location seat="4" x="525" y="402"> </location>
+                <location seat="5" x="259" y="402"> </location>
+                <location seat="6" x="0"   y="348"> </location>
+                <location seat="7" x="0"   y="240"> </location>
+                <location seat="8" x="0"   y="35">  </location>
+            </layout>
+            <layout max="6" width="792" height="546" fav_seat="0">
+                <location seat="1" x="681" y="119"> </location>
+                <location seat="2" x="681" y="301"> </location>
+                <location seat="3" x="487" y="369"> </location>
+                <location seat="4" x="226" y="369"> </location>
+                <location seat="5" x="0"   y="301"> </location>
+                <location seat="6" x="0"   y="119"> </location>
+            </layout>
+            <layout max="10" width="792" height="546" fav_seat="0">
+                <location seat="1" x="684" y="61">  </location>
+                <location seat="2" x="689" y="239"> </location>
+                <location seat="3" x="692" y="346"> </location>
+                <location seat="4" x="586" y="393"> </location>
+                <location seat="5" x="421" y="440"> </location>
+                <location seat="6" x="267" y="440"> </location>
+                <location seat="7" x="0"   y="361"> </location>
+                <location seat="8" x="0"   y="280">  </location>
+                <location seat="9" x="121" y="280">  </location>
+                <location seat="10" x="46"  y="30">  </location>
+            </layout>
+            <layout max="9" width="792" height="546" fav_seat="0">
+                <location seat="1" x="560" y="0">  </location>
+                <location seat="2" x="679" y="123"> </location>
+                <location seat="3" x="688" y="309"> </location>
+                <location seat="4" x="483" y="370"> </location>
+                <location seat="5" x="444" y="413"> </location>
+                <location seat="6" x="224" y="372"> </location>
+                <location seat="7" x="0"   y="307"> </location>
+                <location seat="8" x="0"   y="121">  </location>
+                <location seat="9" x="140" y="0">  </location>
+            </layout>
+            <layout fav_seat="0" height="546" max="2" width="792">
+                <location seat="1" x="651" y="288"> </location>
+                <location seat="2" x="10"  y="288"> </location>
+            </layout>
+        </site>
+        
+        <site enabled="True"
+              site_name="Enet"
+              table_finder="Enet"
+              screen_name="Hero"
+              site_path="C:/Enet/"
+              HH_path="C:/Enet/"
+              decoder="enet_decode_table"
+              converter="EnetToFpdb"
+              bgcolor="#000000"
+              fgcolor="#FFFFFF"
+              hudopacity="1.0"
+              font="Sans"
+              font_size="8"
+              xpad="1"
+              ypad="0"
+              xshift="0"
+              yshift="0"
+              supported_games="holdem,omahah">
+            <email fetchType="request-summary" host="YOUR_EMAIL_SERVER" username="YOUR_EMAIL_USERNAME" password="YOUR_EMAIL_PASSWORD" useSsl="True" folder="INBOX"/>
+            <layout max="8" width="792" height="546" fav_seat="0">
+                <location seat="1" x="684" y="61">  </location>
+                <location seat="2" x="689" y="239"> </location>
+                <location seat="3" x="692" y="346"> </location>
+                <location seat="4" x="525" y="402"> </location>
+                <location seat="5" x="259" y="402"> </location>
+                <location seat="6" x="0"   y="348"> </location>
+                <location seat="7" x="0"   y="240"> </location>
+                <location seat="8" x="0"   y="35">  </location>
+            </layout>
+            <layout max="6" width="792" height="546" fav_seat="0">
+                <location seat="1" x="681" y="119"> </location>
+                <location seat="2" x="681" y="301"> </location>
+                <location seat="3" x="487" y="369"> </location>
+                <location seat="4" x="226" y="369"> </location>
+                <location seat="5" x="0"   y="301"> </location>
+                <location seat="6" x="0"   y="119"> </location>
+            </layout>
+            <layout max="10" width="792" height="546" fav_seat="0">
+                <location seat="1" x="684" y="61">  </location>
+                <location seat="2" x="689" y="239"> </location>
+                <location seat="3" x="692" y="346"> </location>
+                <location seat="4" x="586" y="393"> </location>
+                <location seat="5" x="421" y="440"> </location>
+                <location seat="6" x="267" y="440"> </location>
+                <location seat="7" x="0"   y="361"> </location>
+                <location seat="8" x="0"   y="280">  </location>
+                <location seat="9" x="121" y="280">  </location>
+                <location seat="10" x="46"  y="30">  </location>
+            </layout>
+            <layout max="9" width="792" height="546" fav_seat="0">
+                <location seat="1" x="560" y="0">  </location>
+                <location seat="2" x="679" y="123"> </location>
+                <location seat="3" x="688" y="309"> </location>
+                <location seat="4" x="483" y="370"> </location>
+                <location seat="5" x="444" y="413"> </location>
+                <location seat="6" x="224" y="372"> </location>
+                <location seat="7" x="0"   y="307"> </location>
+                <location seat="8" x="0"   y="121">  </location>
+                <location seat="9" x="140" y="0">  </location>
+            </layout>
+            <layout fav_seat="0" height="546" max="2" width="792">
+                <location seat="1" x="651" y="288"> </location>
+                <location seat="2" x="10"  y="288"> </location>
+            </layout>
+        </site>
     </supported_sites>
 
     <supported_games>
@@ -1063,6 +1261,8 @@ Left-Drag to Move"
         <hhc site="Entraction" converter="EntractionToFpdb"/>
         <hhc site="BetOnline" converter="BetOnlineToFpdb"/>
         <hhc site="Microgaming" converter="MicrogamingToFpdb"/>
+        <hhc site="Bovada" converter="BovadaToFpdb"/>
+        <hhc site="Enet" converter="EnetToFpdb"/>
     </hhcs>
 
     <raw_hands save="none" compression="none"/>

@@ -25,7 +25,8 @@ from Hand import *
 import Configuration
 import Database
 import SQL
-import fpdb_import
+import Deck
+
 import pygtk
 pygtk.require('2.0')
 import gtk
@@ -37,7 +38,8 @@ import copy
 import pprint
 pp = pprint.PrettyPrinter(indent=4)
 
-
+CARD_HEIGHT = 42
+CARD_WIDTH = 30
 global card_images
 card_images = 53 * [0]
 
@@ -119,7 +121,6 @@ class GuiReplayer:
 
         self.playing = False
 
-        self.deck_image = "Cards01.png" #FIXME: read from config (requires deck to be defined somewhere appropriate
         self.tableImage = None
         self.playerBackdrop = None
         self.cardImages = None
@@ -127,20 +128,21 @@ class GuiReplayer:
         #      replicate the copy_area() function from Pixbuf in the Pixmap class
         #      cardImages is used for the tables display card_images is used for the
         #      table display. Sooner or later we should probably use one or the other.
-        card_images = self.init_card_images(config)
+        self.deck_inst = Deck.Deck(self.conf, height=CARD_HEIGHT, width=CARD_WIDTH)
+        card_images = self.init_card_images(self.conf)
 
     def init_card_images(self, config):
         suits = ('s', 'h', 'd', 'c')
         ranks = (14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2)
-        pb = gtk.gdk.pixbuf_new_from_file(config.execution_path(self.deck_image))
 
         for j in range(0, 13):
             for i in range(0, 4):
                 loc = Card.cardFromValueSuit(ranks[j], suits[i])
-                card_images[loc] = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, pb.get_has_alpha(), pb.get_bits_per_sample(), 30, 42)
-                pb.copy_area(30*j, 42*i, 30, 42, card_images[loc], 0, 0)
-        card_images[0] = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, pb.get_has_alpha(), pb.get_bits_per_sample(), 30, 42)
-        pb.copy_area(30*13, 0, 30, 42, card_images[0], 0, 0)
+                card_im = self.deck_inst.card(suits[i], ranks[j])
+                #must use copy(), method_instance not usable in global variable
+                card_images[loc] = card_im.copy()
+        back_im = self.deck_inst.back()
+        card_images[0] = back_im.copy()
         return card_images
 
 
@@ -150,27 +152,24 @@ class GuiReplayer:
 
         if self.tableImage is None or self.playerBackdrop is None:
             try:
-                self.playerBackdrop = gtk.gdk.pixbuf_new_from_file("../gfx/playerbackdrop.png")
-                self.tableImage = gtk.gdk.pixbuf_new_from_file("../gfx/Table.png")
+                self.playerBackdrop = gtk.gdk.pixbuf_new_from_file(os.path.join(self.conf.graphics_path, u"playerbackdrop.png"))
+                self.tableImage = gtk.gdk.pixbuf_new_from_file(os.path.join(self.conf.graphics_path, u"Table.png"))
                 self.area.set_size_request(self.tableImage.get_width(), self.tableImage.get_height())
             except:
                 return
         if self.cardImages is None:
-            try:
-                pb = gtk.gdk.pixbuf_new_from_file(self.deck_image)
-            except:
-                return
-            self.cardwidth = pb.get_width() / 14
-            self.cardheight = pb.get_height() / 6
-            
+            self.cardwidth = CARD_WIDTH
+            self.cardheight = CARD_HEIGHT
             self.cardImages = [gtk.gdk.Pixmap(self.area.window, self.cardwidth, self.cardheight) for i in range(53)]
             suits = ('s', 'h', 'd', 'c')
             ranks = (14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2)
             for j in range(0, 13):
                 for i in range(0, 4):
                     index = Card.cardFromValueSuit(ranks[j], suits[i])
-                    self.cardImages[index].draw_pixbuf(self.gc, pb, self.cardwidth * j, self.cardheight * i, 0, 0, self.cardwidth, self.cardheight)
-            self.cardImages[0].draw_pixbuf(self.gc, pb, self.cardwidth*13, self.cardheight*2, 0, 0, self.cardwidth, self.cardheight)
+                    image = self.deck_inst.card(suits[i], ranks[j])
+                    self.cardImages[index].draw_pixbuf(self.gc, image, 0, 0, 0, 0, -1, -1)
+            back_im = self.deck_inst.back()
+            self.cardImages[0].draw_pixbuf(self.gc, back_im, 0, 0, 0, 0, -1,-1)
 
         self.area.window.draw_pixbuf(self.gc, self.tableImage, 0, 0, 0, 0)
 

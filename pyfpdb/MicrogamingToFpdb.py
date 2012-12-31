@@ -165,7 +165,6 @@ class Microgaming(HandHistoryConverter):
                 hand.startTime = datetime.datetime.strptime(info[key],"%Y-%m-%d %H:%M:%S")
             if key == 'HID':
                 hand.handid = info[key]
-            if key == 'TABLE':
                 hand.tablename = info[key]
             if key == 'BUTTON':
                 hand.buttonpos = info[key]
@@ -369,7 +368,7 @@ class Microgaming(HandHistoryConverter):
             elif action.group('ATYPE') == 'MuckCards':
                 pass # Deal with elsewhere
             elif action.group('ATYPE') == 'MoneyReturned':
-                hand.setUncalledBets(False)
+                pass # Deal with elsewhere
             else:
                 print (_("DEBUG:") + _("Unimplemented %s: '%s' '%s'") % ("readAction", pname, action.group('ATYPE')))
             #elif action.group('ATYPE') == 'ACTION_ALLIN':

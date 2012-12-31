@@ -77,7 +77,7 @@ class Cake(HandHistoryConverter):
     # Static regexes
     re_GameInfo     = re.compile(u"""
           Hand\#(?P<HID>[A-Z0-9]+)\s+\-\s+
-          (?P<TABLE>(?P<BUYIN1>(?P<BIAMT1>(%(LS)s)[%(NUM)s]+)\sNLH\s(?P<MAX1>\d+)\smax)?.+?)\s(\((?P<MAX>\d+)\-[Mm]ax\)\s)?((?P<TOURNO>T\d+)|\d+)\s
+          (?P<TABLE>(?P<BUYIN1>(?P<BIAMT1>(%(LS)s)[%(NUM)s]+)\sNLH\s(?P<MAX1>\d+)\smax)?.+?)\s(\((Turbo,\s)?(?P<MAX>\d+)\-[Mm]ax\)\s)?((?P<TOURNO>T\d+)|\d+)\s
           (\-\-\s(TICKET|CASH|TICKETCASH)\s\-\-\s(?P<BUYIN>(?P<BIAMT>(%(LS)s)[%(NUM)s]+)\s\+\s(?P<BIRAKE>(%(LS)s)[%(NUM)s]+))\s\-\-\s(?P<TMAX>\d+)\sMax\s)?
           (\-\-\sTable\s(?P<TABLENO>\d+)\s)?\-\-\s
           (?P<CURRENCY>%(LS)s|)?
@@ -98,7 +98,7 @@ class Cake(HandHistoryConverter):
 
     re_Identify     = re.compile(u'Hand\#[A-Z0-9]+\s\-\s')
     re_SplitHands   = re.compile('\n\n+')
-    re_Button       = re.compile('Seat #(?P<BUTTON>\d+) is the button', re.MULTILINE)
+    re_Button       = re.compile('Dealer: Seat (?P<BUTTON>\d+)', re.MULTILINE)
     re_Board        = re.compile(r"\[(?P<CARDS>.+)\]")
 
     re_DateTime     = re.compile("""(?P<Y>[0-9]{4})[\/\-\.](?P<M>[0-9]{2})[\/\-\.](?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)""", re.MULTILINE)
@@ -346,6 +346,7 @@ class Cake(HandHistoryConverter):
             elif actionType == ' calls':
                 hand.addCall( street, action.group('PNAME'), bet )
             elif actionType == ' raises':
+                hand.setUncalledBets(None)
                 hand.addRaiseTo( street, action.group('PNAME'), bet )
             elif actionType == ' bets':
                 hand.addBet( street, action.group('PNAME'), bet )

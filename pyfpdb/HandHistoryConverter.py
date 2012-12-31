@@ -65,7 +65,7 @@ class HandHistoryConverter():
 
     # maybe archive params should be one archive param, then call method in specific converter.   if archive:  convert_archive()
     def __init__( self, config, in_path = '-', out_path = '-', index=0
-                , autostart=True, starsArchive=False, ftpArchive=False, sitename="PokerStars"):
+                , autostart=True, starsArchive=False, ftpArchive=False, sitename="PokerStars", importType = 'bulk'):
         """\
 in_path   (default '-' = sys.stdin)
 out_path  (default '-' = sys.stdout)
@@ -74,12 +74,13 @@ out_path  (default '-' = sys.stdout)
         self.config = config
         self.import_parameters = self.config.get_import_parameters()
         self.sitename = sitename
-        log.info("HandHistory init - %s site, %s subclass, in_path '%s'; out_path '%s'" 
+        log.info("HandHistory init - %s site, %s subclass, in_path '%r'; out_path '%r'"
                  % (self.sitename, self.__class__, in_path, out_path) ) # should use self.filter, not self.sitename
 
         self.index     = index
         self.starsArchive = starsArchive
         self.ftpArchive = ftpArchive
+        self.importType = importType
 
         self.in_path = in_path
         self.out_path = out_path
@@ -88,6 +89,7 @@ out_path  (default '-' = sys.stdout)
         self.numHands = 0
         self.numErrors = 0
         self.numPartial = 0
+        self.lastGood = False
 
         # Tourney object used to store TourneyInfo when called to deal with a Summary file
         self.tourney = None
@@ -124,6 +126,7 @@ HandHistoryConverter: '%(sitename)s'
 
         self.numHands = 0
         self.numErrors = 0
+        self.lastGood = False
         handsList = self.allHandsAsList()
         log.debug( _("Hands list is:") + str(handsList))
         log.info(_("Parsing %d hands") % len(handsList))
@@ -134,11 +137,14 @@ HandHistoryConverter: '%(sitename)s'
             for handText in handsList:
                 try:
                     self.processedHands.append(self.processHand(handText))
+                    self.lastGood = True
                 except FpdbHandPartial, e:
                     self.numPartial += 1
+                    self.lastGood = False
                     log.debug("%s" % e)
                 except FpdbParseError:
                     self.numErrors += 1
+                    self.lastGood = False
                     log.error(_("FpdbParseError for file '%s'") % self.in_path)
             self.numHands = len(handsList)
             endtime = time.time()
@@ -184,7 +190,7 @@ HandHistoryConverter: '%(sitename)s'
         # Some HH formats leave dangling text after the split
         # ie. </game> (split) </session>EOL
         # Remove this dangler if less than 50 characters and warn in the log
-        if len(handlist[-1]) <= 50:
+        if len(handlist[-1]) <= 50 and self.importType != 'auto':
             handlist.pop()
             log.info(_("Removing text < 50 characters"))
         return handlist
@@ -379,7 +385,8 @@ or None if we fail to get the info """
     # an inheriting class can calculate it for the specific site if need be.
     def getRake(self, hand):
         hand.rake = hand.totalpot - hand.totalcollected #  * Decimal('0.05') # probably not quite right
-        if hand.rake < 0 and (not hand.roundPenny or hand.rake < 0.01):
+        round = -1 if hand.gametype['type'] == "tour" else -0.01
+        if hand.rake < 0 and (not hand.roundPenny or hand.rake < round):
             log.error(_("hhc.getRake(): '%s': Amount collected (%s) is greater than the pot (%s)") % (hand.handid,str(hand.totalcollected), str(hand.totalpot)))
             raise FpdbParseError
         elif hand.totalpot > 0 and Decimal(hand.totalpot/4) < hand.rake:
@@ -512,7 +519,7 @@ or None if we fail to get the info """
 
         if (givenTimezone=="ET" or givenTimezone=="EST" or givenTimezone=="EDT"):
             givenTZ = timezone('US/Eastern')
-        elif (givenTimezone=="CET" or givenTimezone=="CEST" or givenTimezone=="MESZ"):
+        elif givenTimezone in ("CET", "CEST", "MESZ", "HAEC"):
             #since CEST will only be used in summer time it's ok to treat it as identical to CET.
             givenTZ = timezone('Europe/Berlin')
             #Note: Daylight Saving Time is standardised across the EU so this should be fine
@@ -555,6 +562,8 @@ or None if we fail to get the info """
             givenTZ = timezone('Asia/Krasnoyarsk')
         elif givenTimezone == 'IST': # India Standard Time
             givenTZ = timezone('Asia/Kolkata')
+        elif givenTimezone == 'ICT':
+            givenTZ = timezone('Asia/Bangkok')
         elif givenTimezone == 'CCT': # China Coast Time
             givenTZ = timezone('Australia/West')
         elif givenTimezone == 'JST': # Japan Standard Time
@@ -574,7 +583,7 @@ or None if we fail to get the info """
 
         if givenTZ is None:
             # do not crash if timezone not in list, just return UTC localized time
-            log.warn(_("Timezone conversion not supported") + ": " + givenTimezone + " " + str(time))
+            log.error(_("Timezone conversion not supported") + ": " + givenTimezone + " " + str(time))
             givenTZ = pytz.UTC
             return givenTZ.localize(time)
 
@@ -639,7 +648,7 @@ def getTableNoRe(config, sitename, *args, **kwargs):
 
 def getSiteHhc(config, sitename):
     "Returns HHC class for current site"
-    hhcName = config.supported_sites[sitename].converter
+    hhcName = config.hhcs[sitename].converter
     hhcModule = __import__(hhcName)
     return getattr(hhcModule, hhcName[:-6])
 

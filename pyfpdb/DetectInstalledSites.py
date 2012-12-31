@@ -204,7 +204,8 @@ class DetectInstalledSites():
 
 # Many thanks to Ilithios for the PlayersOnly information
 
-        merge_skin_names = ["CarbonPoker", "PlayersOnly", "BlackChipPoker", "RPMPoker", "HeroPoker"]
+        merge_skin_names = ["CarbonPoker", "PlayersOnly", "BlackChipPoker", "RPMPoker", "HeroPoker",
+                            "PDCPoker", ]
         
         for skin in merge_skin_names:
             if self.Config.os_family == "Linux":

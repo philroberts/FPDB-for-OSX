@@ -111,7 +111,8 @@ class Winamax(HandHistoryConverter):
 # Seat 1: some_player (5€)
 # Seat 2: some_other_player21 (6.33€)
 
-    re_PlayerInfo = re.compile(u'Seat\s(?P<SEAT>[0-9]+):\s(?P<PNAME>.*)\s\((%(LS)s)?(?P<CASH>[.0-9]+)(%(LS)s)?\)' % substitutions)
+    re_PlayerInfo        = re.compile(u'Seat\s(?P<SEAT>[0-9]+):\s(?P<PNAME>.*)\s\((%(LS)s)?(?P<CASH>[.0-9]+)(%(LS)s)?\)' % substitutions)
+    re_PlayerInfoSummary = re.compile(u'Seat\s(?P<SEAT>[0-9]+):\s(?P<PNAME>.+?)\s' % substitutions)
 
     def compilePlayerRegexs(self, hand):
         players = set([player[1] for player in hand.players])
@@ -139,7 +140,6 @@ class Winamax(HandHistoryConverter):
 
             self.re_CollectPot = re.compile('\s*(?P<PNAME>.*)\scollected\s(%(CUR)s)?(?P<POT>[\.\d]+)(%(CUR)s)?.*' % subst)
             self.re_ShownCards = re.compile("^Seat (?P<SEAT>[0-9]+): %(PLYR)s showed \[(?P<CARDS>.*)\].*" % subst, re.MULTILINE)
-            self.re_sitsOut    = re.compile('(?P<PNAME>.*) sits out')
 
     def readSupportedGames(self):
         return [
@@ -232,6 +232,7 @@ class Winamax(HandHistoryConverter):
                 hand.tablename = info[key]
                 if hand.gametype['type'] == 'tour':
                     hand.tablename = info['TABLENO']
+                    hand.roundPenny = True
                 # TODO: long-term solution for table naming on Winamax.
                 if hand.tablename.endswith(u'No Limit Hold\'em'):
                     hand.tablename = hand.tablename[:-len(u'No Limit Hold\'em')] + u'NLHE'
@@ -248,7 +249,7 @@ class Winamax(HandHistoryConverter):
                         if k in info.keys() and info[k]:
                             info[k] = info[k].replace(',','.')
 
-                    if info[key] == 'Gratuit' or info[key] == 'Freeroll' or info[key] == 'Ticket uniquement':
+                    if info[key] in ('Gratuit', 'Freeroll', 'Ticket uniquement', 'Ticket only', 'Ticket'):
                         hand.buyin = 0
                         hand.fee = 0
                         hand.buyinCurrency = "FREE"
@@ -300,17 +301,37 @@ class Winamax(HandHistoryConverter):
             if key == 'LEVEL':
                 hand.level = info[key]
 
-        m =  self.re_Button.search(hand.handText)
-        hand.buttonpos = m.groupdict().get('BUTTON', None)
-
         hand.mixed = None
 
     def readPlayerStacks(self, hand):
-        #log.debug("readplayerstacks re: '%s'" % self.re_PlayerInfo)
-        m = self.re_PlayerInfo.finditer(hand.handText)
-        for a in m:
-            hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), a.group('CASH'))
+        # Split hand text for Winamax, as the players listed in the hh preamble and the summary will differ
+        # if someone is sitting out.
+        # Going to parse both and only add players in the summary.
+        handsplit = hand.handText.split('*** SUMMARY ***')
+        if len(handsplit)!=2:
+            raise FpdbHandPartial(_("Hand is not cleanly split into pre and post Summary %s.") % hand.handid)
+        pre, post = handsplit
+        m = self.re_PlayerInfo.finditer(pre)
+        plist = {}
+        slist = {}
 
+        # Get list of players in header.
+        for a in m:
+            plist[a.group('PNAME')] = [int(a.group('SEAT')), a.group('CASH')]
+
+        n = self.re_PlayerInfoSummary.finditer(post)
+        for b in n:
+            slist[b.group('PNAME')] = [int(b.group('SEAT')), None]
+
+        # Tourney or same length - no probs use plist
+        if hand.gametype['type'] == "tour" or len(slist) == len(plist):
+            for a in plist:
+                seat, stack = plist[a]
+                hand.addPlayer(seat, a, stack)
+        else: # Only add the players from the summary
+            for b in slist:
+                seat, stack = plist[b]
+                hand.addPlayer(seat, b, stack)
 
     def markStreets(self, hand):
         m =  re.search(r"\*\*\* ANTE\/BLINDS \*\*\*(?P<PREFLOP>.+(?=\*\*\* FLOP \*\*\*)|.+)"

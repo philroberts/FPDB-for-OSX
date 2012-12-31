@@ -35,9 +35,9 @@ class iPokerSummary(TourneySummary):
     currencies = { u'€':'EUR', '$':'USD', '':'T$', u'£':'GBP' }
 
     limits = { 'No Limit':'nl', 'Pot Limit':'pl', 'Limit':'fl', 'LIMIT':'fl' }
-    
+
     months = { 'Jan':1, 'Feb':2, 'Mar':3, 'Apr':4, 'May':5, 'Jun':6, 'Jul':7, 'Aug':8, 'Sep':9, 'Oct':10, 'Nov':11, 'Dec':12}
-    
+
     games = {              # base, category
                 '7 Card Stud L' : ('stud','studhi'),
                 '5 Card Stud L' : ('stud','5_studhi'),
@@ -53,7 +53,6 @@ class iPokerSummary(TourneySummary):
                       'Omaha L' : ('hold','omahahi'),
                'Omaha Hi-Lo LP' : ('hold','omahahilo'),
                 'Omaha Hi-Lo L' : ('hold','omahahilo'),
-                     
             }
     
     re_Identify = re.compile(u'<game\sgamecode=')
@@ -152,7 +151,7 @@ class iPokerSummary(TourneySummary):
                 self.fee   = 0
                 self.prizepool = None
                 self.entries   = None
-                
+
                 if mg2['CURRENCY']:
                     self.currency = self.currencies[mg2['CURRENCY']]
                 rank = mg2['PLACE']
@@ -161,9 +160,9 @@ class iPokerSummary(TourneySummary):
                     winnings = None
                 else:
                     winnings = int(100*self.convert_to_decimal(mg2['WIN']))
-                    
+
                 self.tourneyName = mg2['NAME'][:40]
-                
+
                 if not mg2['BIRAKE'] and mg2['TOTBUYIN']:
                     m3 = self.re_TotalBuyin.search(mg2['TOTBUYIN'])
                     if m3:

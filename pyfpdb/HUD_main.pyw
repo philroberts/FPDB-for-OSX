@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-#    Copyright 2008-2011,  Ray E. Barker
+#    Copyright 2008-2012,  Ray E. Barker
 #
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -19,6 +19,9 @@
 
 ########################################################################
 
+#TODO
+
+
 """Hud_main.py
 
 Main for FreePokerTools HUD.
@@ -29,7 +32,6 @@ _ = L10n.init_translation()
 #    Standard Library modules
 import sys
 import os
-import traceback
 import thread
 import time
 import string
@@ -44,22 +46,23 @@ import Configuration
 import Database
 import Hud
 import Options
+import Deck
 
 (options, argv) = Options.fpdb_options()
-
-#    get the correct module for the current os
-if sys.platform[0:5] == 'linux':
-    import XTables as Tables
-elif sys.platform == 'darwin':
-    import OSXTables as Tables
-else: # This is bad--figure out the values for the various windows flavors
-    is_windows = True
-    import WinTables as Tables
 
 # get config and set up logger
 Configuration.set_logfile(u"HUD-log.txt")
 c = Configuration.Config(file=options.config, dbname=options.dbname)
 log = logging.getLogger("hud")
+
+# get the correct module for the current os
+if c.os_family == 'Linux':
+    import XTables as Tables
+elif c.os_family == 'Mac':
+    import OSXTables as Tables
+elif c.os_family in ('XP', 'Win7'):
+    import WinTables as Tables
+
 
 class HUD_main(object):
     """A main() object to own both the read_stdin thread and the gui."""
@@ -78,9 +81,12 @@ class HUD_main(object):
                 errorFile = open(fileName, 'w', 0)
                 sys.stderr = errorFile
                 log.info(_("HUD_main starting"))
-
+            #update and save config
             self.hud_dict = {}
             self.hud_params = self.config.get_hud_ui_parameters()
+            self.deck = Deck.Deck(self.config,
+                deck_type=self.hud_params["deck_type"], card_back=self.hud_params["card_back"],
+                width=self.hud_params['card_wd'], height=self.hud_params['card_ht'])
 
             # a thread to read stdin
             gobject.threads_init()                        # this is required
@@ -103,15 +109,15 @@ class HUD_main(object):
             self.main_window.connect("client_moved", self.client_moved)
             self.main_window.connect("client_resized", self.client_resized)
             self.main_window.connect("client_destroyed", self.client_destroyed)
-            self.main_window.connect("game_changed", self.game_changed)
-            self.main_window.connect("table_changed", self.table_changed)
+            #self.main_window.connect("game_changed", self.game_changed)
+            self.main_window.connect("table_changed", self.table_title_changed)
             self.main_window.connect("destroy", self.destroy)
             self.vb = gtk.VBox()
             self.label = gtk.Label(_('Closing this window will exit from the HUD.'))
             self.vb.add(self.label)
             self.main_window.add(self.vb)
             self.main_window.set_title("HUD Main Window")
-            cards = os.path.join(os.getcwd(), '..','gfx','fpdb-cards.png')
+            cards = os.path.join(self.config.graphics_path,'fpdb-cards.png')
             if os.path.exists(cards):
                 self.main_window.set_icon_from_file(cards)
             elif os.path.exists('/usr/share/pixmaps/fpdb-cards.png'):
@@ -126,44 +132,49 @@ class HUD_main(object):
             gtk.main_quit()   # we're hosed, just terminate
 
     def client_moved(self, widget, hud):
-        log.debug("client_moved event")
-        hud.up_update_table_position()
+        log.debug(_("client_moved event"))
+        gobject.idle_add(idle_move, hud)
 
     def client_resized(self, widget, hud):
-        log.debug("client_resized event")
+        log.debug(_("client_resized event"))
         gobject.idle_add(idle_resize, hud)
 
     def client_destroyed(self, widget, hud): # call back for terminating the main eventloop
-        log.debug("client_destroyed event")
+        log.debug(_("client_destroyed event"))
         self.kill_hud(None, hud.table.key)
 
-    def game_changed(self, widget, hud):
-        print "hud_main: " + _("Game changed.")
+#    def game_changed(self, widget, hud):
+#        print "hud_main: " + _("Game changed.")
 
-    def table_changed(self, widget, hud):
-        print "hud_main: " + _("Table changed")
+    def table_title_changed(self, widget, hud):
+        print "hud_main: " + _("Table title changed, killing current hud")
         self.kill_hud(None, hud.table.key)
 
+    def table_is_stale(self, hud):
+        print "hud_main: " + _("Moved to a new table, killing current hud")
+        self.kill_hud(None, hud.table.key)
+        
     def destroy(self, *args):             # call back for terminating the main eventloop
         log.info(_("Quitting normally"))
         gtk.main_quit()
 
     def kill_hud(self, event, table):
-        log.debug("kill_hud event")
+        log.debug(_("kill_hud event"))
         gobject.idle_add(idle_kill, self, table)
     
     def check_tables(self):
-        for hud in self.hud_dict.keys():
-            self.hud_dict[hud].table.check_table(self.hud_dict[hud])
+        gobject.idle_add(idle_check_tables, self)
         return True
 
     def create_HUD(self, new_hand_id, table, temp_key, max, poker_game, type, stat_dict, cards):
         """type is "ring" or "tour" used to set hud_params"""
 
-        self.hud_dict[temp_key] = Hud.Hud(self, table, max, poker_game, self.config, self.db_connection)
+        self.hud_dict[temp_key] = Hud.Hud(self, table, max, poker_game, type, self.config)
         self.hud_dict[temp_key].table_name = temp_key
         self.hud_dict[temp_key].stat_dict = stat_dict
         self.hud_dict[temp_key].cards = cards
+        self.hud_dict[temp_key].max = max
+        
         table.hud = self.hud_dict[temp_key]
         
         # set agg_bb_mult so that aggregate_tour and aggregate_ring can be ignored,
@@ -183,7 +194,9 @@ class HUD_main(object):
         # so maybe the tour ones should be set as well? does this fix the bug I see mentioned?
         self.hud_params['aggregate_tour'] = True
         self.hud_params['h_aggregate_tour'] = True
-
+        #fixme - passing self.db_connection into another thread
+        # is probably pointless. Note that the valid db_connection for
+        # that thread is NOT realised until Hud.create() has been called
         [aw.update_data(new_hand_id, self.db_connection) for aw in self.hud_dict[temp_key].aux_windows]
         gobject.idle_add(idle_create, self, new_hand_id, table, temp_key, max, poker_game, type, stat_dict, cards)
 
@@ -203,22 +216,37 @@ class HUD_main(object):
 #       get hero's screen names and player ids
         self.hero, self.hero_ids = {}, {}
         found = False
+        
+        enabled_sites = self.config.get_supported_sites()
+        if not enabled_sites:
+            log.exception(_("No enabled sites found"))
+            self.db_connection.connection.rollback()
+            self.destroy()
+            return
+        
+        aux_disabled_sites = []
+        for i in enabled_sites:
+            if not c.get_site_parameters(i)['aux_enabled']:
+                log.info(_("Aux disabled for site %s") % i)
+                aux_disabled_sites.append(i)
 
         while 1:    # wait for a new hand number on stdin
             new_hand_id = sys.stdin.readline()
             new_hand_id = string.rstrip(new_hand_id)
             log.debug(_("Received hand no %s") % new_hand_id)
             if new_hand_id == "":           # blank line means quit
+                self.db_connection.connection.rollback()
                 self.destroy()
                 break # this thread is not always killed immediately with gtk.main_quit()
 
-#    This block cannot be hoisted outside the while loop, because it would
+#    The following block cannot be hoisted outside the while loop, because it would
 #    cause a problem when auto importing into an empty db.
+#    FIXME (corner-case): Because this block only executes once when the hud starts,
+#    if our hero plays at another site for the __first_time__ during that session,
+#     the hud won't display correctly, because the heroname isn't known yet.
 
-#    FIXME: This doesn't work in the case of the player playing on 2
-#    sites at once (???)  Eratosthenes
             if not found:
-                for site in self.config.get_supported_sites():
+                for site in enabled_sites:
                     result = self.db_connection.get_site_id(site)
                     if result:
                         site_id = result[0][0]
@@ -238,17 +266,74 @@ class HUD_main(object):
             except Exception:
                 log.error(_("database error: skipping %s") % new_hand_id)
                 continue
+            
+            # Do nothing if this site is on the ignore list
+            if site_name in aux_disabled_sites:
+                continue
 
+            # regenerate temp_key for this hand- this is the tablename (+ tablenumber (if mtt))
             if type == "tour":   # hand is from a tournament
                 temp_key = "%s Table %s" % (tour_number, tab_number)
             else:
                 temp_key = table_name
+                                
+            if type == "tour":
+                #
+                # Has there been a table-change?  if yes, clean-up the current hud
+                # Two checks are needed,
+                #  if a hand is received for an existing table-number, but the table-title has changed,  kill the old hud
+                #  if a hand is received for a "new" table number, clean-up the old one and create a new hud
+                #
+                if temp_key in self.hud_dict:
+                    # check if our attached window's titlebar has changed, if it has
+                    # this method will emit a "table_changed" signal which will trigger
+                    # a kill
+                    if self.hud_dict[temp_key].table.has_table_title_changed(self.hud_dict[temp_key]):
+                        #table has been renamed; the idle_kill method will housekeep hud_dict
+                        # We will skip this hand, to give time for the idle function
+                        # to complete its' work.  Normal service will be resumed on the next hand
+                        continue # abort processing this hand
+                else:
+                    #check if the tournament number is in the hud_dict under a different table
+                    #if it is, trigger a hud_kill - we can safely drop through the rest of the code
+                    # because this is a brand-new hud being created
+                    for k in self.hud_dict:
+                        if k.startswith(tour_number):
+                            self.table_is_stale(self.hud_dict[k])
+                            continue # this cancels the "for k in...." loop, NOT the outer while: loop
+
+
+#       detect maxseats changed in hud
+#       if so, kill and create new hud with specified "max"
+            if temp_key in self.hud_dict:
+                try:
+                    newmax = self.hud_dict[temp_key].hud_params['new_max_seats']  # trigger
+                    if newmax and self.hud_dict[temp_key].max != newmax:  # max has changed
+                        self.kill_hud("activate", temp_key)   # kill everything
+                        while temp_key in self.hud_dict: time.sleep(0.5)   # wait for idle_kill to complete
+                        max = newmax   # "max" localvar used in create_HUD call below
+                    self.hud_dict[temp_key].hud_params['new_max_seats'] = None   # reset trigger
+                except:
+                    pass
+                    
+#       detect poker_game changed in latest hand (i.e. mixed game)
+#       if so, kill and create new hud with specified poker_game
+#       Note that this will reset the aggretation params for that table
+            if temp_key in self.hud_dict:
+                if self.hud_dict[temp_key].poker_game != poker_game:
+                    print "game changed!:", poker_game
+                    try:
+                        self.kill_hud("activate", temp_key)   # kill everything
+                        while temp_key in self.hud_dict: time.sleep(0.5)   # wait for idle_kill to complete
+                    except:
+                        pass
 
 #        Update an existing HUD
             if temp_key in self.hud_dict:
                 # get stats using hud's specific params and get cards
                 self.db_connection.init_hud_stat_vars( self.hud_dict[temp_key].hud_params['hud_days']
                                                      , self.hud_dict[temp_key].hud_params['h_hud_days'])
+                #print "update an existing hud ", temp_key, self.hud_dict[temp_key].hud_params
                 stat_dict = self.db_connection.get_stats_from_hand(new_hand_id, type, self.hud_dict[temp_key].hud_params,
                                                                    self.hero_ids[site_id], num_seats)
 
@@ -261,17 +346,20 @@ class HUD_main(object):
                     self.db_connection.connection.rollback()
                     return
 
-                self.hud_dict[temp_key].cards = self.get_cards(new_hand_id)
+                self.hud_dict[temp_key].cards = self.get_cards(new_hand_id, poker_game)
+                #fixme - passing self.db_connection into another thread
+                # is probably pointless
                 [aw.update_data(new_hand_id, self.db_connection) for aw in self.hud_dict[temp_key].aux_windows]
                 self.update_HUD(new_hand_id, temp_key, self.config)
 
 #        Or create a new HUD
             else:
                 # get stats using default params--also get cards
+
                 self.db_connection.init_hud_stat_vars( self.hud_params['hud_days'], self.hud_params['h_hud_days'] )
                 stat_dict = self.db_connection.get_stats_from_hand(new_hand_id, type, self.hud_params,
                                                                    self.hero_ids[site_id], num_seats)
-                cards = self.get_cards(new_hand_id)
+                cards = self.get_cards(new_hand_id, poker_game)
                 table_kwargs = dict(table_name=table_name, tournament=tour_number, table_number=tab_number)
                 tablewindow = Tables.Table(self.config, site_name, **table_kwargs)
                 if tablewindow.number is None:
@@ -288,19 +376,15 @@ class HUD_main(object):
                         self.create_HUD(new_hand_id, tablewindow, temp_key, max, poker_game, type, stat_dict, cards)
                     else:
                         log.error(_('Table "%s" no longer exists') % table_name)
+                        self.db_connection.connection.rollback()
                         return
+        
+        self.db_connection.connection.rollback()
 
-            self.db_connection.connection.rollback()
-            if type == "tour":
-                try:
-                    self.hud_dict[temp_key].table.check_table_no(self.hud_dict[temp_key])
-                except KeyError:
-                    pass
-
-    def get_cards(self, new_hand_id):
+    def get_cards(self, new_hand_id, poker_game):
         cards = self.db_connection.get_cards(new_hand_id)
-        comm_cards = self.db_connection.get_common_cards(new_hand_id)
-        if comm_cards != {}: # stud!
+        if poker_game in ['holdem','omahahi','omahahilo']:
+            comm_cards = self.db_connection.get_common_cards(new_hand_id)
             cards['common'] = comm_cards['common']
         return cards
 ######################################################################
@@ -314,21 +398,33 @@ class HUD_main(object):
 #    with the gui.
 
 def idle_resize(hud):
+
     gtk.gdk.threads_enter()
     try:
-        [aw.update_card_positions() for aw in hud.aux_windows]
         hud.resize_windows()
+        [aw.resize_windows() for aw in hud.aux_windows]
     except:
         log.exception(_("Error resizing HUD for table: %s.") % hud.table.title)
     finally:
         gtk.gdk.threads_leave()
-
+        
+def idle_move(hud):
+        
+    gtk.gdk.threads_enter()
+    try:
+        hud.move_table_position()
+        [aw.move_windows() for aw in hud.aux_windows]
+    except:
+        log.exception(_("Error moving HUD for table: %s.") % hud.table.title)
+    finally:
+        gtk.gdk.threads_leave()
+        
 def idle_kill(hud_main, table):
     gtk.gdk.threads_enter()
     try:
         if table in hud_main.hud_dict:
             hud_main.vb.remove(hud_main.hud_dict[table].tablehudlabel)
-            hud_main.hud_dict[table].main_window.destroy()
+#            hud_main.hud_dict[table].main_window.destroy()
             hud_main.hud_dict[table].kill()
             del(hud_main.hud_dict[table])
         hud_main.main_window.resize(1, 1)
@@ -349,12 +445,13 @@ def idle_create(hud_main, new_hand_id, table, temp_key, max, poker_game, type, s
         hud_main.main_window.resize_children()
 
         hud_main.hud_dict[temp_key].tablehudlabel = newlabel
-        hud_main.hud_dict[temp_key].create(new_hand_id, hud_main.config, stat_dict, cards)
+        # call the hud.create method, apparently
+        hud_main.hud_dict[temp_key].create(new_hand_id, hud_main.config, stat_dict)
         for m in hud_main.hud_dict[temp_key].aux_windows:
-            m.create()
+            m.create() # create method of aux_window class (generally Mucked.aux_seats.create)
             m.update_gui(new_hand_id)
-        hud_main.hud_dict[temp_key].update(new_hand_id, hud_main.config)
-        hud_main.hud_dict[temp_key].reposition_windows()
+
+
     except:
         log.exception(_("Error creating HUD for hand %s.") % new_hand_id)
     finally:
@@ -363,11 +460,23 @@ def idle_create(hud_main, new_hand_id, table, temp_key, max, poker_game, type, s
 
 def idle_update(hud_main, new_hand_id, table_name, config):
     gtk.gdk.threads_enter()
+    
     try:
         hud_main.hud_dict[table_name].update(new_hand_id, config)
         [aw.update_gui(new_hand_id) for aw in hud_main.hud_dict[table_name].aux_windows]
     except:
         log.exception(_("Error updating HUD for hand %s.") % new_hand_id)
+    finally:
+        gtk.gdk.threads_leave()
+        return False
+
+def idle_check_tables(hud_main):
+    gtk.gdk.threads_enter()
+    try:
+        for hud in hud_main.hud_dict.keys():
+            hud_main.hud_dict[hud].table.check_table(hud_main.hud_dict[hud])
+    except:
+        log.exception("Error checking tables.")
     finally:
         gtk.gdk.threads_leave()
         return False

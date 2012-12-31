@@ -74,7 +74,7 @@ class Everest(HandHistoryConverter):
     re_CollectPot = re.compile(r'<WIN position="(?P<PSEAT>[0-9])" amount="(?P<POT>[.0-9]+)" pot="[0-9]+"', re.MULTILINE)
     re_SitsOut = re.compile(r'<event sequence="[0-9]+" type="SIT_OUT" player="(?P<PSEAT>[0-9])"/>', re.MULTILINE)
     re_ShownCards = re.compile(r'<(?P<SHOW>SHOW|MUCK) position="(?P<PSEAT>[0-9])">(?P<CARDS>.+)?</(SHOW|MUCK)>', re.MULTILINE)
-    re_Prize = re.compile(r'\s<(CHAT|PRIZE|PLACE)', re.MULTILINE)
+    re_Prize = re.compile(r'\s?<(CHAT|PRIZE|PLACE)', re.MULTILINE)
 
     def compilePlayerRegexs(self, hand):
         pass
@@ -104,13 +104,18 @@ class Everest(HandHistoryConverter):
                 tmp = handText[0:200]
                 log.error(_("EverestToFpdb.determineGameType: Unable to recognise gametype from: '%s'") % tmp)
                 raise FpdbParseError
+            elif not gametype:
+                raise FpdbHandPartial
+        elif not gametype:
+            raise FpdbHandPartial
         return gametype
 
     def determineGameType(self, handText):
         
         m = self.re_GameInfo.search(handText)
         m2 = self.re_HandInfo.search(handText)
-        if not m or not m2: return None
+        if not m: return None
+        if not m2: return False
 
         self.info = {}
         mg = m.groupdict()

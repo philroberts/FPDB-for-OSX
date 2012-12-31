@@ -278,7 +278,7 @@ class PacificPoker(HandHistoryConverter):
                         #FIXME: handle other currencies, FPP, play money
                         log.error(_("PacificPokerToFpdb.readHandInfo: Failed to detect currency.") + " Hand ID: %s: '%s'" % (hand.handid, info[key]))
                         raise FpdbParseError
-                    
+
                     info['BIAMT'] = self.clearMoneyString(info['BIAMT'].strip(u'$€'))
                     hand.buyin = int(100*Decimal(info['BIAMT']))
                     

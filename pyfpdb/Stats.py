@@ -51,6 +51,7 @@ _ = L10n.get_translation()
 
 #    Standard Library modules
 import sys
+from decimal import Decimal   # needed by hand_instance in m_ratio
 
 #    pyGTK modules
 import pygtk
@@ -62,6 +63,7 @@ import Configuration
 import Database
 import Charset
 import Card
+import Hand
 
 import logging
 if __name__ == "__main__":
@@ -93,16 +95,21 @@ def do_tip(widget, tip):
     widget.set_tooltip_text(_tip)
 
 
-def do_stat(stat_dict, player = 24, stat = 'vpip', handid = -1):
+def do_stat(stat_dict, player = 24, stat = 'vpip', hand_instance = None):
     statname = stat
     match = re_Places.search(stat)
     if match:   # override if necessary
         statname = stat[0:-2]
     
-    if stat == 'starthands':
-        result = eval("%(stat)s(stat_dict, %(player)d, %(handid)d)" % {'stat': statname, 'player': player, 'handid': int(handid)})
+    if stat in ['starthands','m_ratio','bbstack', 'game_abbr']:
+        if hand_instance:
+            result = eval("%(stat)s(stat_dict, %(player)d, hand_instance)" %
+                {'stat': statname, 'player': player})
+        else:
+            return ((''),(''),(''),(''),(''),(''))
     else:
-        result = eval("%(stat)s(stat_dict, %(player)d)" % {'stat': statname, 'player': player})
+        result = eval("%(stat)s(stat_dict, %(player)d)" %
+            {'stat': statname, 'player': player})
 
     # If decimal places have been defined, override result[1]
     # NOTE: decimal place override ALWAYS assumes the raw result is a
@@ -126,9 +133,6 @@ def do_stat(stat_dict, player = 24, stat = 'vpip', handid = -1):
 ########################################### 
 #    functions that return individual stats
 
-def blank(stat_dict, player):
-    stat_descriptions["blank"] = _(" -----")
-    return (0, ' ', ' ', ' ', ' ', ' ')
 
 def totalprofit(stat_dict, player):
     stat_descriptions["totalprofit"] = _("Total Profit") + " (totalprofit)"
@@ -145,6 +149,89 @@ def playername(stat_dict, player):
             stat_dict[player]['screen_name'],
             stat_dict[player]['screen_name'],
             stat_dict[player]['screen_name'])
+
+def calculate_end_stack(stat_dict, player, hand_instance):
+    #fixme - move this code into Hands.py - it really belongs there
+
+    #To reflect the end-of-hand position, we need a end-stack calculation
+    # fixme, is there an easier way to do this from the hand_instance???
+    # can't seem to find a hand_instance "end_of_hand_stack" attribute
+    
+    #First, find player stack size at the start of the hand
+    
+    stack = 0.0
+    for item in hand_instance.players:
+        if item[1] == stat_dict[player]['screen_name']:
+            stack = float(item[2])
+            
+    #Next, deduct all action from this player
+    for street in hand_instance.bets:
+        for item in hand_instance.bets[street]:
+            if item == stat_dict[player]['screen_name']:
+                for amount in hand_instance.bets[street][stat_dict[player]['screen_name']]:
+                    stack -= float(amount)
+    
+    #Next, add back any money returned
+    for p in hand_instance.pot.returned:
+        if p == stat_dict[player]['screen_name']:
+            stack += float(hand_instance.pot.returned[p])
+        
+    #Finally, add back any winnings
+    for item in hand_instance.collectees:
+        if item == stat_dict[player]['screen_name']:
+            stack += float(hand_instance.collectees[item])
+    return stack
+
+def m_ratio(stat_dict, player, hand_instance):
+    
+    #Tournament M-ratio calculation
+    # Using the end-of-hand stack count vs. that hand's antes/blinds
+         
+    stat_descriptions["M ratio (last hand)"] = _("M") + " (M)"
+    
+    # sum all blinds/antes
+    compulsory_bets = 0.0
+    for p in hand_instance.bets['BLINDSANTES']:
+        for i in hand_instance.bets['BLINDSANTES'][p]:
+            compulsory_bets += float(i)
+    compulsory_bets += float(hand_instance.gametype['sb'])
+    compulsory_bets += float(hand_instance.gametype['bb'])
+    
+    stack = calculate_end_stack(stat_dict, player, hand_instance)
+
+    if compulsory_bets != 0:
+        stat = stack / compulsory_bets
+    else:
+        stat = 0
+
+    return      ((int(stat)),
+                '%d'        % (int(stat)),
+                'M=%d'      % (int(stat)),
+                'M=%d'      % (int(stat)),
+                '(%d)'      % (int(stat)),
+                _('M ratio') )
+
+def bbstack(stat_dict, player, hand_instance):
+    #Tournament Stack calculation in Big Blinds
+    #Result is end of hand stack count / Current Big Blind limit
+    stat_descriptions["Stack in bb"] = _("bb") + " (bb)"
+    # current big blind limit
+    current_bigblindlimit = 0
+    current_bigblindlimit += float(hand_instance.gametype['bb'])
+    
+    stack = calculate_end_stack(stat_dict, player, hand_instance)
+
+    if current_bigblindlimit != 0:
+        stat = stack / current_bigblindlimit
+    else:
+        stat = 0
+
+    return      ((int(stat)),
+                '%d'        % (int(stat)),
+                "bb's=%d"      % (int(stat)),
+                "#bb's=%d"      % (int(stat)),
+                '(%d)'      % (int(stat)),
+                _('bb stack') )
 
 def playershort(stat_dict, player):
     stat_descriptions["playershort"] = (_("Player Name")+" 1-5") + " (playershort)"
@@ -535,6 +622,170 @@ def cfour_B(stat_dict, player):
                 '(0/0)',
                 _('% cold 4 bet preflop/3rd street'))
 
+# Four Bet Range
+def fbr(stat_dict, player):
+    stat_descriptions["fbr"] = _("4 bet range") + " (fbr)"
+    stat = 0.0
+    try: 
+        stat = float(stat_dict[player]['fb_0'])/float(stat_dict[player]['fb_opp_0'])
+        stat *= float(stat_dict[player]['pfr'])/float(stat_dict[player]['n'])
+        return (stat,
+                '%3.1f'         % (100.0*stat),
+                'fbr=%3.1f%%'    % (100.0*stat),
+                'fbr=%3.1f%%' % (100.0*stat),
+                '(pfr*four_B)',
+                _('4 bet range'))
+    except:
+        return (stat,
+                'NA',
+                'fbr=NA',
+                'fbr=NA',
+                '(pfr*four_B)',
+                _('4 bet range'))
+
+# Call 3 Bet
+def ctb(stat_dict, player):
+    stat_descriptions["ctb"] = _("% call 3 bet") + " (ctb)"
+    stat = 0.0
+    try: 
+        stat = (float(stat_dict[player]['f3b_opp_0'])-float(stat_dict[player]['f3b_0'])-float(stat_dict[player]['fb_0']))/float(stat_dict[player]['f3b_opp_0'])
+        return (stat,
+                '%3.1f'         % (100.0*stat),
+                'ctb=%3.1f%%'    % (100.0*stat),
+                'ctb=%3.1f%%' % (100.0*stat),
+                '(%d/%d)'       % (float(stat_dict[player]['f3b_opp_0'])-stat_dict[player]['fb_0']-stat_dict[player]['f3b_0'], stat_dict[player]['fb_opp_0']),
+                _('% call 3 bet'))
+    except:
+        return (stat,
+                'NA',
+                'ctb=NA',
+                'ctb=NA',
+                '(0/0)',
+                _('% call 3 bet'))
+
+def dbr1(stat_dict, player):
+    stat_descriptions["dbr1"] = _("% DonkBetAndRaise flop/4th street") + " (dbr1)"
+    stat = 0.0
+    try:
+        stat = float(stat_dict[player]['aggr_1']) - float(stat_dict[player]['cb_1'])
+        stat /= float(stat_dict[player]['saw_f']) - float(stat_dict[player]['cb_opp_1'])
+        return (stat,
+                '%3.1f'             % (100.0*stat),
+                'dbr1=%3.1f%%'        % (100.0*stat),
+                'dbr1=%3.1f%%'    % (100.0*stat),
+                '(%d/%d)'      % (float(stat_dict[player]['aggr_1']) - float(stat_dict[player]['cb_1']), float(stat_dict[player]['saw_f']) - float(stat_dict[player]['cb_opp_1'])),
+                _('% DonkBetAndRaise flop/4th street'))
+    except:
+        return (stat,
+                'NA',
+                'dbr1=NA',
+                'dbr1=NA',
+                '(0/0)',
+                _('% DonkBetAndRaise flop/4th street'))
+
+def dbr2(stat_dict, player):
+    stat_descriptions["dbr2"] = _("% DonkBetAndRaise turn/5th street") + " (dbr2)"
+    stat = 0.0
+    try:
+        stat = float(stat_dict[player]['aggr_2']) - float(stat_dict[player]['cb_2'])
+        stat /= float(stat_dict[player]['saw_2']) - float(stat_dict[player]['cb_opp_2'])
+        return (stat,
+                '%3.1f'             % (100.0*stat),
+                'dbr2=%3.1f%%'        % (100.0*stat),
+                'dbr2=%3.1f%%'    % (100.0*stat),
+                '(%d/%d)'      % (float(stat_dict[player]['aggr_2']) - float(stat_dict[player]['cb_2']), float(stat_dict[player]['saw_2']) - float(stat_dict[player]['cb_opp_2'])),
+                _('% DonkBetAndRaise turn/5th street'))
+    except:
+        return (stat,
+                'NA',
+                'dbr2=NA',
+                'dbr2=NA',
+                '(0/0)',
+                _('% DonkBetAndRaise turn/5th street'))
+
+def dbr3(stat_dict, player):
+    stat_descriptions["dbr3"] = _("% DonkBetAndRaise river/6th street") + " (dbr3)"
+    stat = 0.0
+    try:
+        stat = float(stat_dict[player]['aggr_3']) - float(stat_dict[player]['cb_3'])
+        stat /= float(stat_dict[player]['saw_3']) - float(stat_dict[player]['cb_opp_3'])
+        return (stat,
+                '%3.1f'             % (100.0*stat),
+                'dbr3=%3.1f%%'        % (100.0*stat),
+                'dbr3=%3.1f%%'    % (100.0*stat),
+                '(%d/%d)'      % (float(stat_dict[player]['aggr_3']) - float(stat_dict[player]['cb_3']), float(stat_dict[player]['saw_3']) - float(stat_dict[player]['cb_opp_3'])),
+                _('% DonkBetAndRaise river/6th street'))
+    except:
+        return (stat,
+                'NA',
+                'dbr3=NA',
+                'dbr3=NA',
+                '(0/0)',
+                _('% DonkBetAndRaise river/6th street'))
+
+
+def f_dbr1(stat_dict, player):
+    stat_descriptions["f_dbr1"] = _("% Fold to DonkBetAndRaise flop/4th street") + " (f_dbr1)"
+    stat = 0.0
+    try:
+        stat = float(stat_dict[player]['f_freq_1']) - float(stat_dict[player]['f_cb_1'])
+        stat /= float(stat_dict[player]['was_raised_1']) - float(stat_dict[player]['f_cb_opp_1'])
+        return (stat,
+                '%3.1f'             % (100.0*stat),
+                'f_dbr1=%3.1f%%'        % (100.0*stat),
+                'f_dbr1=%3.1f%%'    % (100.0*stat),
+                '(%d/%d)'      % (float(stat_dict[player]['f_freq_1']) - float(stat_dict[player]['f_cb_1']), float(stat_dict[player]['was_raised_1']) - float(stat_dict[player]['f_cb_opp_1'])),
+                _('% Fold to DonkBetAndRaise flop/4th street'))
+    except:
+        return (stat,
+                'NA',
+                'f_dbr1=NA',
+                'f_dbr1=NA',
+                '(0/0)',
+                _('% Fold DonkBetAndRaise flop/4th street'))
+
+def f_dbr2(stat_dict, player):
+    stat_descriptions["f_dbr2"] = _("% Fold to DonkBetAndRaise turn") + " (f_dbr2)"
+    stat = 0.0
+    try:
+        stat = float(stat_dict[player]['f_freq_2']) - float(stat_dict[player]['f_cb_2'])
+        stat /= float(stat_dict[player]['was_raised_2']) - float(stat_dict[player]['f_cb_opp_2'])
+        return (stat,
+                '%3.1f'             % (100.0*stat),
+                'f_dbr2=%3.1f%%'        % (100.0*stat),
+                'f_dbr2=%3.1f%%'    % (100.0*stat),
+                '(%d/%d)'      % (float(stat_dict[player]['f_freq_2']) - float(stat_dict[player]['f_cb_2']), float(stat_dict[player]['was_raised_2']) - float(stat_dict[player]['f_cb_opp_2'])),
+                _('% Fold to DonkBetAndRaise turn'))
+    except:
+        return (stat,
+                'NA',
+                'f_dbr2=NA',
+                'f_dbr2=NA',
+                '(0/0)',
+                _('% Fold DonkBetAndRaise turn'))
+
+
+def f_dbr3(stat_dict, player):
+    stat_descriptions["f_dbr3"] = _("% Fold to DonkBetAndRaise river") + " (f_dbr3)"
+    stat = 0.0
+    try:
+        stat = float(stat_dict[player]['f_freq_3']) - float(stat_dict[player]['f_cb_3'])
+        stat /= float(stat_dict[player]['was_raised_3']) - float(stat_dict[player]['f_cb_opp_3'])
+        return (stat,
+                '%3.1f'             % (100.0*stat),
+                'f_dbr3=%3.1f%%'        % (100.0*stat),
+                'f_dbr3=%3.1f%%'    % (100.0*stat),
+                '(%d/%d)'      % (float(stat_dict[player]['f_freq_3']) - float(stat_dict[player]['f_cb_3']), float(stat_dict[player]['was_raised_3']) - float(stat_dict[player]['f_cb_opp_3'])),
+                _('% Fold to DonkBetAndRaise river'))
+    except:
+        return (stat,
+                'NA',
+                'f_dbr3=NA',
+                'f_dbr3=NA',
+                '(0/0)',
+                _('% Fold DonkBetAndRaise river'))
+
+
 def squeeze(stat_dict, player):
     stat_descriptions["squeeze"] = _("% squeeze preflop") + " (squeeze)"
     stat = 0.0
@@ -575,15 +826,15 @@ def raiseToSteal(stat_dict, player):
                 _('% raise to steal'))
 
 def car0(stat_dict, player):
-    stat_descriptions["car_0"] = _("% called a raise preflop") + " (car_0)"
+    stat_descriptions["car0"] = _("% called a raise preflop") + " (car0)"
     stat = 0.0
     try:
-        stat = float(stat_dict[player]['car_0'])/float(stat_dict[player]['car_opp_0'])
+        stat = float(stat_dict[player]['car0'])/float(stat_dict[player]['car_opp_0'])
         return (stat,
                 '%3.1f'         % (100.0*stat),
                 'CAR0=%3.1f%%'    % (100.0*stat),
                 'CAR_pf=%3.1f%%' % (100.0*stat),
-                '(%d/%d)'       % (stat_dict[player]['car_0'], stat_dict[player]['car_opp_0']),
+                '(%d/%d)'       % (stat_dict[player]['car0'], stat_dict[player]['car_opp_0']),
                 _('% called a raise preflop'))
     except:
         return (stat,
@@ -1075,7 +1326,54 @@ def f_cb4(stat_dict, player):
                 '(0/0)',
                 _('% fold to continuation bet 7th street'))
 
-def starthands(stat_dict, player, handid):
+
+def game_abbr(stat_dict, player, hand_instance):
+    stat_descriptions["game_abbr"] = _("Game abbreviation") + " (game_abbr)"
+    stat = ''
+    uniq = hand_instance.gametype['category'] + '.' + hand_instance.gametype['limitType']
+    try:
+        stat = {
+                # ftp's 10-game with official abbreviations
+                'holdem.fl': 'H',
+                'studhilo.fl': 'E',
+                'omahahi.pl': 'P',
+                '27_3draw.fl': 'T',
+                'razz.fl': 'R',
+                'holdem.nl': 'N',
+                'omahahilo.fl': 'O',
+                'studhi.fl': 'S',
+                '27_1draw.nl': 'K',
+                'badugi.fl': 'B',
+                # other common games with dubious abbreviations
+                'fivedraw.fl': 'F',
+                'fivedraw.pl': 'Fp',
+                'fivedraw.nl': 'Fn',
+                '27_3draw.pl': 'Tp',
+                '27_3draw.nl': 'Tn',
+                'badugi.pl': 'Bp',
+                'badugi.hp': 'Bh',
+                'omahahilo.pl': 'Op',
+                'omahahilo.nl': 'On',
+                'holdem.pl': 'Hp',
+                'studhi.nl': 'Sn',
+                }[uniq]
+    except:
+        # this shouldn't really happen
+        stat = '?'
+    return (stat,
+            '%s' % stat,
+            'game=%s' % stat,
+            'game_abbr=%s' % stat,
+            '(%s)' % stat,
+            _('Game abbreviation'))
+
+def blank(stat_dict, player):
+    # blank space on the grid
+    stat_descriptions["blank"] = "Blank"
+    stat = " "
+    return (" ", " ", " ", " ", " ", "<blank>")
+                
+def starthands(stat_dict, player, hand_instance):
     
     
     #summary of known starting hands+position
@@ -1096,7 +1394,7 @@ def starthands(stat_dict, player, handid):
     # due to screen space required for this stat, it should only
     # be used in the popup section i.e.
     # <pu_stat pu_stat_name="starthands"> </pu_stat>
-    
+    handid = int(hand_instance.handid_selected)
     stat_descriptions["starthands"] = _("starting hands at this table") + " (starting hands)"
     PFlimp=" PFlimp:"
     PFaggr=" PFaggr:"
@@ -1104,14 +1402,6 @@ def starthands(stat_dict, player, handid):
     PFdefend=" PFdefBB:"
     count_pfl = count_pfa = count_pfc = count_pfd = 2
     
-    if handid == -1:
-        return ((''),
-                (''),
-                (''),
-                (''),
-                (''),
-                (''))
-
     c = Configuration.Config()
     db_connection = Database.Database(c)
     sc = db_connection.get_cursor()
@@ -1201,14 +1491,13 @@ def build_stat_descriptions(stats_file):
     return stat_descriptions
 
 if __name__== "__main__":
-    #TODO: fix
     statlist = dir()
     misslist = [ "Configuration", "Database", "Charset", "codecs", "encoder"
-                 , "do_stat", "do_tip", 'GFileDescriptorBased', 'GPollableInputStream'
-                 , 'GPollableOutputStream', "GInitiallyUnowned", "gtk"
-                 , "pygtk", "Card", "L10n", "_", "__stat_override"
-                 , "build_stat_descriptions", "log", "logging", "stat_descriptions"
-                 , "re", "re_Places"
+                 , "do_stat", "do_tip", "GInitiallyUnowned", "gtk", "pygtk", "Card"
+                 , "L10n", "_", "__stat_override", "build_stat_descriptions", "log"
+                 , "logging", "stat_descriptions", 'Decimal', 'GFileDescriptorBased'
+                 , 'GPollableInputStream', 'GPollableOutputStream', 'calculate_end_stack'
+                 , "re", "re_Places", 'Hand'
                ]
     statlist = [ x for x in statlist if x not in dir(sys) ]
     statlist = [ x for x in statlist if x not in dir(codecs) ]
@@ -1216,15 +1505,16 @@ if __name__== "__main__":
     #print "statlist is", statlist
 
     c = Configuration.Config()
-    #TODO: restore the below code. somehow it creates a version 119 DB but commenting this out makes it print a stat list
     db_connection = Database.Database(c)
     h = db_connection.get_last_hand()
     stat_dict = db_connection.get_stats_from_hand(h, "ring")
+    print stat_dict
+    hand_instance = Hand.hand_factory(h, c, db_connection)
     
     for player in stat_dict.keys():
         print (_("Example stats. Player = %s, Hand = %s:") % (player, h))
         for attr in statlist:
-            print "  ", do_stat(stat_dict, player=player, stat=attr)
+            print "  ", do_stat(stat_dict, player=player, stat=attr, hand_instance=hand_instance)
         break
 
     print _("Legal stats:")

@@ -1,0 +1,52 @@
+Game #7732419: Omaha (€0,25/€0,50) - 23:32:44 29.7.2012 - %6 
+Table 'Romania 1 - Pot Limit' 9-max Seat #1 is the button 
+Seat 1: amazing_mck (€18 in chips)
+Seat 2: cik (€58,14 in chips)
+Seat 3: tiza (€51,99 in chips)
+Seat 4: frozechka (€66,25 in chips)
+Seat 5: Player2 (€78,63 in chips)
+Seat 6: Hero (€93,34 in chips)
+Seat 7: iucupocu (€15,48 in chips)
+Seat 8: tranquillo (€13,75 in chips)
+Seat 9: Player4 (€42,15 in chips)
+tiza: posts small blind €0,25
+frozechka: posts big blind €0,50
+amazing_mck: posts big blind €0,50
+*** HOLECARDS ***
+Player2: calls €0,50
+Hero: raises €2,75
+iucupocu: calls €2,75
+tranquillo: folds
+Player4: folds
+amazing_mck: raises €11,75
+cik: calls €12,25
+tiza: folds
+frozechka: folds
+Player2: raises €38,11
+Hero: folds
+iucupocu: folds
+amazing_mck: goes all-in €5,75
+cik: goes all-in €45,89
+Player2: calls €19,53
+Rake: €3,61
+Rake: €-2,22
+*** FLOP *** [Td4h7d]
+*** TURN *** [Td4h7d2d]
+*** RIVER *** [Td4h7d2dKc]
+*** SHOWDOWN ***
+amazing_mck: shows [5cJc5hJs] (A Pair, Jacks)
+cik: shows [4dQsQh3h] (A Pair, Queens)
+Player2: shows [Kh3sThKs] (Three of a kind, Kings)
+Player2: collected (€56,64) from pot
+*** SUMMARY *** 
+Total pot €2,75 | Rake €1,39 
+Board [Td4h7d2dKc] 
+Seat 1: amazing_mck  showed [5cJc5hJs] and lost with A Pair, Jacks
+Seat 2: cik (dealer) showed [4dQsQh3h] and lost with A Pair, Queens
+Seat 3: tiza (small blind) folded
+Seat 4: frozechka (big blind) folded
+Seat 5: Player2  showed [Kh3sThKs] and won (€56,64) with Three of a kind, Kings
+Seat 6: Hero  folded
+Seat 7: iucupocu  folded
+Seat 8: tranquillo  folded
+Seat 9: Player4  folded

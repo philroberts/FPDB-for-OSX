@@ -1,0 +1,38 @@
+Bodog UK Hand #2635581996 TBL#2076847 HOLDEM No Limit - 2012-09-26 16:42:02
+Seat 1: Big Blind ($476.70 in chips)
+Seat 2: UTG ($81.20 in chips)
+Seat 4: UTG+1 [ME] ($400 in chips)
+Seat 5: Dealer ($674.35 in chips)
+Seat 6: Small Blind ($86.30 in chips)
+Dealer : Set dealer/Bring in spot [5] 
+Small Blind : Ante/Small Blind $2 
+Big Blind : Big blind/Bring in $4 
+UTG+1  [ME] : Seat sit out
+*** HOLE CARDS ***
+Big Blind : Card dealt to a spot [3c 7h] 
+UTG : Card dealt to a spot [8h Qh] 
+Dealer : Card dealt to a spot [9c Td] 
+Small Blind : Card dealt to a spot [Ad 9d] 
+UTG : Folds
+Dealer : Raises $8 to $8
+UTG+1  [ME] : Seat re-join
+Small Blind : Calls $6 
+Big Blind : Calls $4 
+*** FLOP *** [9h Tc 5s]
+Small Blind : Bets $4 
+Big Blind : Folds
+Dealer : Calls $4 
+*** TURN *** [9h Tc 5s] [Jd]
+Small Blind : Bets $4 
+Dealer : Raises $24 to $24
+Small Blind : Folds
+Dealer : Return uncalled portion of bet $20 
+Dealer : Does not show [9c Td] (Two pair)
+Dealer : Hand result $38 
+*** SUMMARY ***
+Total Pot($40) | Rake ($2) 
+Board [9h Tc 5s Jd ]
+Seat+1: Big Blind Folded on the FLOP
+Seat+2: UTG Folded before the FLOP
+Seat+5: Dealer $38 [Does not show]  
+Seat+6: Small Blind Folded on the TURN

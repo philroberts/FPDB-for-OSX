@@ -50,16 +50,19 @@ Step 1, basic dependency install
 
 Python 2.7 ... http://python.org/ftp/python/2.7/python-2.7.msi
 matplotlib 1.1.0 ... http://sourceforge.net/projects/matplotlib/files/matplotlib/matplotlib-1.1.0/matplotlib-1.1.0.win32-py2.7.exe
-pywin 216 ... http://sourceforge.net/projects/pywin32/files/pywin32/Build216/pywin32-216.win32-py2.7.exe/download
+pywin 217 ... http://sourceforge.net/projects/pywin32/files/pywin32/Build216/pywin32-216.win32-py2.7.exe/download
 pypokereval 138 ... http://sourceforge.net/projects/fpdb/files/fpdb/pypoker-eval-win32/pokereval-138.win32-py2.7.exe/download
-cdecimal 2.2 ... http://www.bytereef.org/software/mpdecimal/releases/cdecimal-2.2.win32-py2.7.msi
+cdecimal 2.3 ... http://www.bytereef.org/software/mpdecimal/releases/cdecimal-2.3.win32-py2.7.msi
 winpaths 0.2 ... http://pypi.python.org/packages/any/w/winpaths/winpaths-0.2.win32.exe#md5=bd99492eb311530c630ec3f26828cd48
+python PIL 1.1.7 ... http://effbot.org/downloads/PIL-1.1.7.win32-py2.7.exe
 
 1.2/ Add the python install directory to the PATH environment variable on your system
 This will depend on your system, and the place where you installed python.
 
 This document might help: http://docs.python.org/using/windows.html
 
+(Developer note - if a later dot-release version of python is used,
+ take care, because the pscopg and mysql modules are built against 2.7.0 library)
 
 Step 2, install pygtk and gtk all-in-1 package
 ----------------------------------------------
@@ -155,7 +158,7 @@ Step 7 Optional database installation
 
 7.1/ For mysql support, or if you are a exe developer, do this
 
-*** Note that this driver package supports mysql version 5.1.34-win32 only ***
+*** Note that this driver package supports mysql version 5.1.34-win32 and python 2.7.0 only ***
 
 download and install.....
 mysql-python 1.2.3 ... http://sourceforge.net/projects/fpdb/files/fpdb/MySQL-python-1.2.3-win32-py2.7/MySQL-python-1.2.3.win32-py2.7.exe/download
@@ -163,7 +166,7 @@ mysql-python 1.2.3 ... http://sourceforge.net/projects/fpdb/files/fpdb/MySQL-pyt
 
 7.2/ For postgres support, or if you are a exe developer, do this
 
-*** Note that this driver package supports postgres version 9.0.1 only ***
+*** Note that this driver package supports postgres version 9.0.1 and python 2.7.0 only ***
 
 download and install.....
 psycopg2 ... http://www.stickpeople.com/projects/python/win-psycopg/psycopg2-2.3.1.win32-py2.7-pg9.0.1-release.exe
@@ -224,19 +227,26 @@ The py2exe script copies the timezone datafiles into the package folder pyfpdb/z
 Thanks to Jeff Peck <peck.jeff <at> gmail.com> on the py2exe mailing list for documenting this problem and solution.
 
 11.1/ dos> write C:\Python27\Lib\site-packages\pytz\__init__.py 
-11.2/ At line 94 replace the following line(s):
+11.2/ At about line 94 replace the following line(s):
 
+    filename = os.path.join(os.path.dirname(__file__),
+                            'zoneinfo', *name_parts)
+
+with this section of code (which supports exe-building _and_ sourcecode running on the build system):
+
+    #py2exe installs need this syntax
+    #
+    filename = os.path.join(os.getcwd(), 'zoneinfo', *name_parts)
+    
+    #sourcecode installs need this syntax
+    #
+    if not os.path.exists(filename):
         filename = os.path.join(os.path.dirname(__file__),
                                 'zoneinfo', *name_parts)
 
-with this line:
-
-        filename = os.path.join(os.getcwd(), 'zoneinfo', *name_parts)
 
 11.3/ Save and exit
 
-****REALLY REALLY IMPORTANT NOTE****: Once you have patched pytz, running fpdb
- from SOURCECODE will ___not___ work correctly (timezones not found by hand importer)
 
 
 Step 12 Get the fpdb GIT tree and prepare for build
@@ -289,7 +299,7 @@ py2exe creates a new folder for the created software bundle, drag this out to th
 Step 15 Compress to executable archive
 --------------------------------------
 
-15.1/ Download and install 7zip 920 ... http://sourceforge.net/projects/sevenzip/files/7-Zip/9.20/7z920.exe/download
+15.1/ Download and install 7zip 922 ... http://sourceforge.net/projects/sevenzip/files/7-Zip/9.22/7z922.msi/download
 15.2/ Rightclick on fpdb executable folder, select 7zip Add to archive... select SFX archive option switch
 15.3/ This executable will be the released software
 

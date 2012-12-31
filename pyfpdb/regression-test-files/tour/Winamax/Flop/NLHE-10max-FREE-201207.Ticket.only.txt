@@ -1,0 +1,49 @@
+Winamax Poker - Tournament "Super Freeroll Stade 1 - Déglingos !" buyIn: Ticket only level: 0 - HandId: #113531237062148097-1-1341239921 - Holdem no limit (10/20) - 2012/07/02 14:38:41 UTC
+Table: 'Super Freeroll Stade 1 - Déglingos !(26433551)#0' 10-max (real money) Seat #10 is the button
+Seat 1: bordiquenel (500)
+Seat 2: tonio01278 (500)
+Seat 3: sebloulou25 (500)
+Seat 4: gpelle (500)
+Seat 5: BZH974 (500)
+Seat 6: rustinou13 (500)
+Seat 7: evgueni88 (500)
+Seat 8: AmericRlines (500)
+Seat 9: wilele (500)
+Seat 10: francemy45 (500)
+*** ANTE/BLINDS ***
+bordiquenel posts small blind 10
+tonio01278 posts big blind 20
+Dealt to gpelle [9c 9s]
+*** PRE-FLOP *** 
+sebloulou25 raises 480 to 500 and is all-in
+gpelle calls 500 and is all-in
+BZH974 folds
+rustinou13 folds
+evgueni88 folds
+AmericRlines folds
+wilele folds
+francemy45 folds
+bordiquenel calls 490 and is all-in
+tonio01278 folds
+*** FLOP *** [Jd 3h 2h]
+*** TURN *** [Jd 3h 2h][5s]
+*** RIVER *** [Jd 3h 2h 5s][2s]
+*** SHOW DOWN ***
+bordiquenel shows [Ah 7d] (One pair : 2)
+sebloulou25 shows [6c 3d] (Two pairs : 3 and 2)
+gpelle shows [9c 9s] (Two pairs : 9 and 2)
+gpelle collected 1520 from pot
+*** SUMMARY ***
+Total pot 1520 | No rake
+Board: [Jd 3h 2h 5s 2s]
+Seat 1: bordiquenel (small blind) showed [Ah 7d] and lost with One pair : 2
+Seat 2: tonio01278 (big blind) folded on the pre-flop
+Seat 3: sebloulou25 showed [6c 3d] and lost with Two pairs : 3 and 2
+Seat 4: gpelle showed [9c 9s] and won 1520 with Two pairs : 9 and 2
+Seat 5: BZH974 folded on the pre-flop
+Seat 6: rustinou13 folded on the pre-flop
+Seat 7: evgueni88 folded on the pre-flop
+Seat 8: AmericRlines folded on the pre-flop
+Seat 9: wilele folded on the pre-flop
+Seat 10: francemy45 (button) folded on the pre-flop
+

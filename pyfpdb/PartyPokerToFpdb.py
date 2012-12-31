@@ -32,7 +32,7 @@ from HandHistoryConverter import *
 
 class PartyPoker(HandHistoryConverter):
     sitename = "PartyPoker"
-    codepage = "utf8"
+    codepage = ("utf8", "cp1252")
     siteId = 9
     filetype = "text"
     sym        = {'USD': "\$", 'EUR': u"\u20ac", 'T$': ""}
@@ -105,7 +105,7 @@ class PartyPoker(HandHistoryConverter):
             (?P<DATETIME>.+)
             """ % substitutions, re.VERBOSE | re.UNICODE)
 
-    re_HandInfo     = re.compile("""
+    re_HandInfo     = re.compile(u"""
             ^Table\s(?P<TABLE>.+?)?\s+
             ((?: \#|\(|)(?P<TABLENO>\d+)\)?\s+)?
             (\(No\sDP\)\s)?
@@ -114,7 +114,7 @@ class PartyPoker(HandHistoryConverter):
             \s+Total\s+number\s+of\s+players\s+\:\s+(?P<PLYRS>\d+)/?(?P<MAX>\d+)?
             """, re.VERBOSE|re.MULTILINE|re.DOTALL)
 
-    re_GameInfoTrny     = re.compile("""
+    re_GameInfoTrny     = re.compile(u"""
             \*{5}\sHand\sHistory\s(F|f)or\sGame\s(?P<HID>\d+)\s\*{5}\s+
             (?P<LIMIT>(NL|PL|FL|))\s*
             (?P<GAME>(Texas\sHold\'em|Omaha\sHi-Lo|Omaha|7\sCard\sStud\sHi-Lo|7\sCard\sStud|Double\sHold\'em))\s+
@@ -381,6 +381,12 @@ class PartyPoker(HandHistoryConverter):
                 hand.gametype['currency'] = 'play'
             if key == 'MAX' and info[key] is not None:
                 hand.maxseats = int(info[key])
+        
+        enetStart = datetime.datetime.strptime('20120101000000','%Y%m%d%H%M%S')
+        enetStart = HandHistoryConverter.changeTimezone(enetStart, "ET", "UTC")    
+        if hand.startTime > enetStart and len(hand.handid)<10:
+            message = _("Converted Enet Hand")
+            raise FpdbHandPartial("Partial hand history: %s" % message)
 
 
     def readButton(self, hand):
@@ -581,9 +587,6 @@ class PartyPoker(HandHistoryConverter):
             if actionType == 'folds':
                 hand.addFold( street, playerName )
             elif actionType == 'checks':
-                if street in ('DEAL', 'PREFLOP') and playerName not in [p for (p,b) in hand.posted]:
-                    both = str(Decimal(str(hand.bb)) + Decimal(str(hand.sb)))
-                    hand.addBlind(playerName, 'both', both)
                 hand.addCheck( street, playerName )
             elif actionType == 'calls':
                 hand.addCall( street, playerName, amount )
@@ -627,14 +630,15 @@ class PartyPoker(HandHistoryConverter):
     @staticmethod
     def getTableTitleRe(type, table_name=None, tournament = None, table_number=None):
         "Returns string to search in windows titles"
+        log.info("Party.getTableTitleRe: table_name='%s' tournament='%s' table_number='%s'" % (table_name, tournament, table_number))
+        regex = "%s" % (table_name)
         if type=="tour":
             if table_name:
                 TableName = table_name.split(" ")
-                print 'party', 'getTableTitleRe', "%s.+Table\s#%s" % (TableName[0], table_number)
                 if len(TableName[1]) > 6:
-                    return "#%s" % (table_number)
+                    regex = "#?%s" % (table_number)
                 else:
-                   return "%s.+Table\s#%s" % (TableName[0], table_number)
+                    regex = "%s.+Table\s#?%s" % (TableName[0], table_number)
             else:
                 #
                 #sng's seem to get passed in with:
@@ -643,9 +647,9 @@ class PartyPoker(HandHistoryConverter):
                 #   table_number = 7 digit table number
                 # screen string is normally Turbo|Speed|(etc) #table_number
                 #
-                return "#%s" % (table_number)
-        else:
-            return table_name
+                regex = "#?%s" % (table_number)
+        log.info("Party.getTableTitleRe: returns: '%s'" % (regex))
+        return regex
 
 def renderCards(string):
     "Splits strings like ' Js, 4d '"

@@ -1,0 +1,45 @@
+Game #12056513: Omaha (€0,10/€0,25) - 21:50:56 23.8.2012 - %6 
+Table 'Reunion 1 - Pot Limit' 9-max Seat #4 is the button 
+Seat 1: Player0 (€72,89 in chips)
+Seat 2: Player1 (€52,29 in chips)
+Seat 3: Player2 (€122,17 in chips)
+Seat 4: Hero (€24,65 in chips)
+Seat 5: Player3 (€0 in chips)
+Seat 6: Player4 (€25 in chips)
+Seat 8: Player5 (€30,16 in chips)
+Player4: posts small blind €0,10
+Player5: posts big blind €0,25
+*** HOLECARDS ***
+Player0: folds
+Player1: folds
+Player2: folds
+Hero: folds
+Player4: raises €0,65
+Player5: raises €2
+Player4: calls €1,50
+Rake: €0,27
+*** FLOP *** [4s2d3h]
+Player4: checks
+Player5: checks
+*** TURN *** [4s2d3h5h]
+Player4: bets €3,37
+Player5: calls €3,37
+Rake: €0,40
+*** RIVER *** [4s2d3h5hQc]
+Player4: bets €7,93
+Player5: calls €7,93
+Rake: €0,95
+*** SHOWDOWN ***
+Player4: shows [Jd8sAd2s] (Straight, Fives high)
+Player4: collected (€12,74) from pot
+Player5: shows [3sKs8cAh] (Straight, Fives high)
+Player5: collected (€12,74) from pot
+*** SUMMARY *** 
+Total pot €0 | Rake €1,62 
+Board [4s2d3h5hQc] 
+Seat 1: Player0  folded
+Seat 2: Player1  folded
+Seat 3: Player2  folded
+Seat 4: Hero  folded
+Seat 6: Player4 (small blind) showed [Jd8sAd2s] and won (€12,74) with Straight, Fives high
+Seat 8: Player5 (big blind) showed [3sKs8cAh] and won (€12,74) with Straight, Fives high

@@ -1,0 +1,30 @@
+Bodog Hand #2607518885 TBL#1266397 HOLDEM Fixed Limit - 2012-05-22 14:54:12
+Seat 1: Dealer ($41.21 in chips)
+Seat 3: Small Blind ($85 in chips)
+Seat 5: Big Blind [ME] ($252.15 in chips)
+Dealer : Set dealer/Bring in spot [1] 
+Small Blind : Ante/Small Blind $1 
+Big Blind  [ME] : Big blind/Bring in $2 
+*** HOLE CARDS ***
+Dealer : Card dealt to a spot [Kh 2d] 
+Small Blind : Card dealt to a spot [4d 4s] 
+Big Blind  [ME] : Card dealt to a spot [Ad 2h] 
+Dealer : Folds
+Small Blind : Raises $4 
+Big Blind  [ME] : Calls $2 
+Small Blind : Bets $2 
+Big Blind  [ME] : Calls $2 
+Small Blind : Checks
+Big Blind  [ME] : Bets $4 
+Small Blind : Calls $4 
+Small Blind : Checks
+Big Blind  [ME] : Checks
+Small Blind : Showdown [5s 5c 4s 4d Kd] (Two pair)
+Big Blind  [ME] : Mucks [Ad 2h] (Two pair)
+Small Blind : Hand result $19.50 
+*** SUMMARY ***
+Total Pot($20) | Rake ($0.50) 
+Board [2s Qh 5c 5s Kd]
+Seat 1: Dealer Folded on the POCKET CARDS
+Seat 3: Small Blind $19.50  with Two pair [4d 4s-5s 5c 4s 4d Kd]  
+Seat 5: Big Blind [Mucked] [Ad 2h] 

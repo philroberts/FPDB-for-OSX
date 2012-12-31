@@ -4,7 +4,7 @@
 
 Mucked cards display for FreePokerTools HUD.
 """
-#    Copyright 2008-2011,  Ray E. Barker
+#    Copyright 2008-2012,  Ray E. Barker
 #    
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -25,98 +25,30 @@ Mucked cards display for FreePokerTools HUD.
 #    to do
 
 #    Standard Library modules
-#import sys
-#import pprint
+import logging
+# logging has been set up in fpdb.py or HUD_main.py, use their settings:
+log = logging.getLogger("hud")
 
 #    pyGTK modules
-#import pygtk
 import gtk
 import gobject
 
 #    FreePokerTools modules
-#import Configuration
-#import Database
 import Card
+import Aux_Base
 
-class Aux_Window(object):
-    def __init__(self, hud, params, config):
-        self.hud     = hud
-        self.params  = params
-        self.config  = config
 
-#   Override these methods as needed
-    def update_data(self, *args): pass
-    def update_gui(self, *args):  pass
-    def create(self, *args):      pass
-    def relocate(self, *args):    pass
-    def save_layout(self, *args): pass
-    def update_card_positions(self, *args): pass
-    def destroy(self):
-        try:
-            self.container.destroy()
-        except:
-            pass
 
-############################################################################
-#    Some utility routines useful for Aux_Windows
-#
-    def get_card_images(self, card_width=30, card_height=42):
+# Utility routine to get the number of valid cards in the card tuple
+def valid_cards(ct):
+    n = 0
+    for c in ct:
+        if c != 0:
+            n += 1
+    return n
 
-        card_images = 53 * [0]
-        suits = ('s', 'h', 'd', 'c')
-        ranks = (14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2)
-        deckimg = self.params['deck']
-        try:
-            pb = gtk.gdk.pixbuf_new_from_file(self.config.execution_path(deckimg))
-        except:
-            #FIXME: this can't be right? /usr will not exist on windows
-            stockpath = '/usr/share/python-fpdb/' + deckimg
-            pb = gtk.gdk.pixbuf_new_from_file(stockpath)
         
-        for j in range(0, 13):
-            for i in range(0, 4):
-                card_images[Card.cardFromValueSuit(ranks[j], suits[i])] = self.cropper(pb, i, j, card_width, card_height)
-#    also pick out a card back and store in [0]
-        card_images[0] = self.cropper(pb, 2, 13, card_width, card_height)
-        return(card_images)
-#   cards are 30 wide x 42 high
-
-    def cropper(self, pb, i, j, card_width, card_height):
-        """Crop out a card image given an FTP deck and the i, j position."""
-        cropped_pb = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, pb.get_has_alpha(),
-                                    pb.get_bits_per_sample(), 30, 42)
-        pb.copy_area(30*j, 42*i, 30, 42, cropped_pb, 0, 0)
-
-        if card_height == 42:
-            """ no scaling """
-            return cropped_pb
-        else:
-            """Apply scaling to the the 30w x 42h card image """
-            scaled_pb = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, pb.get_has_alpha(),
-                                        pb.get_bits_per_sample(),
-                                        card_width, card_height)
-            scaled_card = cropped_pb.scale_simple(card_width, card_height,
-                                                gtk.gdk.INTERP_BILINEAR)
-
-            scaled_card.copy_area(0, 0, self.card_width, self.card_height,
-                                        scaled_pb, 0, 0)
-            return scaled_pb
-
-    def has_cards(self, cards):
-        """Returns the number of cards in the list."""
-        n = 0
-        for c in cards:
-            if c != None and c > 0: n = n + 1
-        return n
-
-    def get_id_from_seat(self, seat):
-        """Determine player id from seat number, given stat_dict."""
-        for id, dict in self.hud.stat_dict.iteritems():
-            if seat == dict['seat']:
-                return id
-        return None
-        
-class Stud_mucked(Aux_Window):
+class Stud_mucked(Aux_Base.Aux_Window):
     def __init__(self, hud, config, params):
 
         self.hud     = hud       # hud object that this aux window supports
@@ -257,7 +189,7 @@ class Stud_cards:
         self.config  = config
 #        self.db_name = db_name
 
-        self.card_images = self.parent.get_card_images()
+        self.card_images = self.parent.hud.parent.deck.get_all_card_images()
         self.seen_cards = {}
         self.grid_contents = {}
         self.eb = {}
@@ -271,7 +203,8 @@ class Stud_cards:
 
         for r in range(0, self.rows):
             for c in range(0, self.cols):
-                self.seen_cards[(c, r)] = gtk.image_new_from_pixbuf(self.card_images[(0)])
+                # Start by creating a box of nothing but card backs
+                self.seen_cards[(c, r)] = gtk.image_new_from_pixbuf(self.card_images[0].copy())
                 self.eb[(c, r)]= gtk.EventBox()
 
 #    set up the contents for the cells
@@ -322,8 +255,11 @@ class Stud_cards:
             for i in ((0, cards[0]), (1, cards[1]), (2, cards[2]), (3, cards[3]), 
                       (4, cards[4]), (5, cards[5]), (6, cards[6])):
                 if not i[1] == 0:
-                    self.seen_cards[(i[0], c - 1)]. \
-                        set_from_pixbuf(self.card_images[i[1]])
+                    # Pixmaps are stored in dict with rank+suit keys
+                    (_rank, _suit) = Card.valueSuitFromCard(i[1])
+                    _rank = Card.card_map[_rank]
+                    px = self.card_images[_suit][_rank].copy()
+                    self.seen_cards[(i[0], c - 1)].set_from_pixbuf(px)
 ##    action in tool tips for 3rd street cards
         for c in (0, 1, 2):
             for r in range(0, self.rows):
@@ -347,194 +283,122 @@ class Stud_cards:
         for r in range(0, self.rows):
             self.grid_contents[(1, r)].set_text("             ")
             for c in range(0, 7):
-                self.seen_cards[(c, r)].set_from_pixbuf(self.card_images[0])
+                # Start by creating a box of nothing but card backs
+                self.seen_cards[(c, r)].set_from_pixbuf(self.card_images[0].copy())
                 self.eb[(c, r)].set_tooltip_text('')
 
-class Seat_Window(gtk.Window):
-    """Subclass gtk.Window for the seat windows."""
-    def __init__(self, aw = None):
-        super(Seat_Window, self).__init__()
-        self.aw = aw
-
-class Aux_Seats(Aux_Window):
-    """A super class to display an aux_window at each seat."""
-
-    def __init__(self, hud, config, params):
-        self.hud     = hud       # hud object that this aux window supports
-        self.config  = config    # configuration object for this aux window to use
-        self.params  = params    # dict aux params from config
-        self.positions = {}      # dict of window positions
-        self.displayed = False   # the seat windows are displayed
-        self.uses_timer = False  # the Aux_seats object uses a timer to control hiding
-        self.timer_on = False    # bool = Ture if the timeout for removing the cards is on
-
-        self.aw_window_type = Seat_Window
-
-#    placeholders that should be overridden--so we don't throw errors
-    def create_contents(self): pass
-    def update_contents(self): pass
-
-    def update_card_positions(self):
-        # self.adj does not exist until .create() has been run
-        try:
-            adj = self.adj
-        except AttributeError:
-            return
-        loc = self.config.get_aux_locations(self.params['name'], int(self.hud.max))
-        width = self.hud.table.width
-        height = self.hud.table.height
-
-        for i in (range(1, self.hud.max + 1) + ['common']):
-            if i == 'common':
-                (x, y) = self.params['layout'][self.hud.max].common
-            else:
-                (x, y) = loc[adj[i]]
-#            self.positions[i] = self.card_positions((x * width) / 1000, self.hud.table.x, (y * height) /1000, self.hud.table.y)
-            self.positions[i] = self.card_positions(x, self.hud.table.x, y , self.hud.table.y)
-            self.m_windows[i].move(self.positions[i][0], self.positions[i][1])
-
-    def create(self):
-        self.adj = self.hud.adj_seats(0, self.config)  # move adj_seats to aux and get rid of it in Hud.py
-        loc = self.config.get_aux_locations(self.params['name'], int(self.hud.max))
-        
-        self.m_windows = {}      # windows to put the card images in
-        width = self.hud.table.width
-        height = self.hud.table.height
-        for i in (range(1, self.hud.max + 1) + ['common']):           
-            if i == 'common':
-                (x, y) = self.params['layout'][self.hud.max].common
-            else:
-                (x, y) = loc[self.adj[i]]
-            self.m_windows[i] = self.aw_window_type(self)
-            self.m_windows[i].set_decorated(False)
-            self.m_windows[i].set_property("skip-taskbar-hint", True)
-            self.m_windows[i].set_transient_for(self.hud.main_window)  # FIXME: shouldn't this be the table window??
-            self.m_windows[i].set_focus_on_map(False)
-            self.m_windows[i].connect("configure_event", self.configure_event_cb, i)
-#            self.positions[i] = self.card_positions((x * width) / 1000, self.hud.table.x, (y * height) /1000, self.hud.table.y)
-            self.positions[i] =  self.card_positions(x, self.hud.table.x, y , self.hud.table.y)
-            self.m_windows[i].move(self.positions[i][0], self.positions[i][1])
-            if self.params.has_key('opacity'):
-                self.m_windows[i].set_opacity(float(self.params['opacity']))
-
-#    the create_contents method is supplied by the subclass
-            self.create_contents(self.m_windows[i], i)
-
-            self.m_windows[i].show_all()
-            if self.uses_timer:
-                self.m_windows[i].hide()
-
-
-    def card_positions(self, x, table_x, y, table_y):
-        _x = int(x) + int(table_x)
-        _y = int(y) + int(table_y)
-        return (_x, _y)
-
-
-    def update_gui(self, new_hand_id):
-        """Update the gui, LDO."""
-        for i in self.m_windows.keys():
-            self.update_contents(self.m_windows[i], i)           
-
-#   Methods likely to be of use for any Seat_Window implementation
-    def destroy(self):
-        """Destroy all of the seat windows."""
-        try:
-            for i in self.m_windows.keys():
-                self.m_windows[i].destroy()
-                del(self.m_windows[i])
-        except AttributeError:
-            pass
-
-#   Methods likely to be useful for mucked card windows (or similar) only
-    def hide(self):
-        """Hide the seat windows."""
-        for (i, w) in self.m_windows.iteritems():
-            w.hide()
-        self.displayed = False
-
-    def save_layout(self, *args):
-        """Save new layout back to the aux element in the config file."""
-        new_locs = {}
-#        print "adj =", self.adj
-        witdh = self.hud.table.width
-        height = self.hud.table.height
-        for (i, pos) in self.positions.iteritems():
-             if i != 'common':
-#                new_locs[self.adj[int(i)]] = ((pos[0] - self.hud.table.x) * 1000 / witdh, (pos[1] - self.hud.table.y) * 1000 / height)
-                new_locs[self.adj[int(i)]] = ((pos[0] - self.hud.table.x), (pos[1] - self.hud.table.y) )
-             else:
-#                new_locs[i] = ((pos[0] - self.hud.table.x) * 1000 / witdh, (pos[1] - self.hud.table.y) * 1000 / height)
-                new_locs[i] = ((pos[0] - self.hud.table.x), (pos[1] - self.hud.table.y))
-        self.config.edit_aux_layout(self.params['name'], self.hud.max, locations = new_locs)
-
-    def configure_event_cb(self, widget, event, i, *args):
-        self.positions[i] = widget.get_position()
-#        self.rel_positions[i] = (self.positions[i][0] - self.hud.table.x, self.positions[i][1] - self.hud.table.y)
-
-class Flop_Mucked(Aux_Seats):
+class Flop_Mucked(Aux_Base.Aux_Seats):
     """Aux_Window class for displaying mucked cards for flop games."""
 
     def __init__(self, hud, config, params):
         super(Flop_Mucked, self).__init__(hud, config, params)
-                
-        self.card_height = int(self.params['card_ht'])
-        if (self.card_height > 84): self.card_height = 84
-        if (self.card_height < 21): self.card_height = 21
-        self.card_width = int(30. * (self.card_height / 42.))
-        
-        self.card_images = self.get_card_images(self.card_width, self.card_height)
+        self.card_images = self.hud.parent.deck.get_all_card_images()
+        self.card_height = self.hud.parent.hud_params["card_ht"]
+        self.card_width = self.hud.parent.hud_params["card_wd"]
         self.uses_timer = True  # this Aux_seats object uses a timer to control hiding
+
+    def create_common(self, x, y):
+        "Create the window for the board cards and do the initial population."
+        w = self.aw_class_window(self, "common")
+        w.set_decorated(False)
+        w.set_property("skip-taskbar-hint", True)
+        w.set_focus_on_map(False)
+        w.set_focus(None)
+        w.set_accept_focus(False)
+        w.connect("configure_event", self.configure_event_cb, "common")
+        self.positions["common"] = self.create_scale_position(x, y)
+        w.move(self.positions["common"][0]+ self.hud.table.x,
+                self.positions["common"][1]+ self.hud.table.y)
+        if self.params.has_key('opacity'):
+            w.set_opacity(float(self.params['opacity']))
+        return w
 
     def create_contents(self, container, i):
         """Create the widgets for showing the contents of the Aux_seats window."""
         container.eb = gtk.EventBox()
-        container.eb.connect("button_press_event", self.button_press_cb)
+        container.eb.connect("button_press_event", self.button_press_cb, i)
         container.add(container.eb)
-        container.seen_cards = gtk.image_new_from_pixbuf(self.card_images[0])
+        container.seen_cards = gtk.image_new_from_pixbuf(self.card_images[0].copy())
         container.eb.add(container.seen_cards)
 
+    # NOTE: self.hud.cards is a dictionary of:
+    # { seat_num: (card, card, [...]) }
+    #
+    # Thus the individual hands (cards for seat) are tuples
     def update_contents(self, container, i):
-        if not self.hud.cards.has_key(i): return
-        cards = self.hud.cards[i]
-        n_cards = self.has_cards(cards)
-        if n_cards > 1:
 
+        if not self.hud.cards.has_key(i): return
+        
+        cards = self.hud.cards[i]
+        # Here we want to know how many cards the given seat showed;
+        # board is considered a seat, and has the id 'common'
+        # 'cards' on the other hand is a tuple. The format is:
+        # (card_num, card_num, ...)
+        n_cards = valid_cards(cards)
+        if n_cards > 1:
 #    scratch is a working pixbuf, used to assemble the image
-            scratch = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, True, 8,
-                                        self.card_width * n_cards,
-                                        self.card_height)
+            scratch = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB,
+                                        has_alpha=True, bits_per_sample=8,
+                                        width=int(self.card_width)*n_cards,
+                                        height=int(self.card_height))
             x = 0 # x coord where the next card starts in scratch
             for card in cards:
 #    concatenate each card image to scratch
+                # flop game never(?) has unknown cards.
+                # FIXME: if "show one and fold" ever becomes an option,
+                # this needs to be changed
                 if card == None or card ==0:
                     break
 
-                self.card_images[card].copy_area(0, 0, 
-                                        self.card_width, self.card_height,
-                                        scratch, x, 0)
-                x = x + self.card_width
-            container.seen_cards.set_from_pixbuf(scratch)
-            container.resize(1,1)
-            container.show()
-            container.move(self.positions[i][0], self.positions[i][1])   # here is where I move back
+                # This gives us the card symbol again
+                (_rank, _suit) = Card.valueSuitFromCard(card)
+                _rank = Card.card_map[_rank]
+                # We copy the image data. Technically we __could__ use
+                # the pixmap directly but it seems there are some subtle
+                # races and explicitly creating a new pixbuf seems to
+                # work around most of them.
+                #
+                # We also should not use copy_area() but it is far
+                # easier to work with than _render_to_drawable()
+                px = self.card_images[_suit][_rank].copy()
+                px.copy_area(0, 0,
+                        px.get_width(), px.get_height(),
+                        scratch, x, 0)
+                x += px.get_width()
+                
+            if container is not None:
+                container.seen_cards.set_from_pixbuf(scratch)
+                container.resize(1,1)
+                container.move(self.positions[i][0] + self.hud.table.x,
+                            self.positions[i][1] + self.hud.table.y)   # here is where I move back
+                container.show()
+
             self.displayed = True
             if i != "common":
                 id = self.get_id_from_seat(i)
                 # sc: had KeyError here with new table so added id != None test as a guess:
                 if id is not None:
                     self.m_windows[i].eb.set_tooltip_text(self.hud.stat_dict[id]['screen_name'])
+                    
+    def save_layout(self, *args):
+        """Save new common position back to the layout element in the config file."""
+        new_locs = {}
+        for (i, pos) in self.positions.iteritems():
+            if i == 'common':
+                new_locs[i] = ((pos[0]), (pos[1]))
+            else:
+                #seat positions are owned by the aux controlling the stat block
+                # we share the locations from that aux, so don't write-back their
+                # locations here
+                pass
+
+        self.config.save_layout_set(self.hud.layout_set, self.hud.max, new_locs, width=None, height=None)
 
     def update_gui(self, new_hand_id):
         """Prepare and show the mucked cards."""
         if self.displayed: self.hide()
-
 #   See how many players showed a hand. Skip if only 1 shows (= hero)
-        n_sd = 0
-        for (i, cards) in self.hud.cards.iteritems():
-            n_cards = self.has_cards(cards)
-            if n_cards > 0 and i != 'common':
-                n_sd = n_sd + 1
+        n_sd = self.has_cards(self.hud.cards)
         if n_sd < 2: 
             return
 
@@ -546,7 +410,6 @@ class Flop_Mucked(Aux_Seats):
 
     def timed_out(self):
 #    this is the callback from the timeout
-
 #    if timer_on is False the user has cancelled the timer with a click
 #    so just return False to cancel the timer
         if not self.timer_on:
@@ -555,31 +418,25 @@ class Flop_Mucked(Aux_Seats):
             self.hide()
             return False
 
-    def button_press_cb(self, widget, event, *args):
+    def button_press_cb(self, widget, event, i, *args):
         """Handle button clicks in the event boxes."""
 
-#    shift-any button exposes all the windows and turns off the timer
-        if event.state & gtk.gdk.SHIFT_MASK:
-            self.timer_on = False
-            self.expose_all()
-            return
-
-        if event.button == 3:   # right button event
-            pass
-
-        elif event.button == 2:   # middle button event
-            if self.timer_on == True:
-                self.timer_on = False
-            else:
-                self.timer_on = False
-                self.hide()
-
-        elif event.button == 1:   # left button event
+        if event.button == 2:   # middle button event, hold display (do not timeout)
+            if self.timer_on == True:  self.timer_on = False
+            else: self.timer_on = False;  self.hide()
+        elif event.button == 1 and i == "common":   # left button event (move)
+            # firstly, cancel timer, otherwise block becomes locked if move event
+            #   is happening when timer eventually times-out
+            if self.timer_on == True:  self.timer_on = False
+            #only allow move on "common" element - seat block positions are 
+            # determined by aux_hud, not mucked card display
             window = widget.get_parent()
             window.begin_move_drag(event.button, int(event.x_root), int(event.y_root), event.time)
 
     def expose_all(self):
         for (i, cards) in self.hud.cards.iteritems():
             self.m_windows[i].show()
-            self.m_windows[i].move(self.positions[i][0], self.positions[i][1])   # here is where I move back
+            self.m_windows[i].move(self.positions[i][0] + self.hud.table.x,
+                                self.positions[i][1] + self.hud.table.y)   # here is where I move back
             self.displayed = True
+

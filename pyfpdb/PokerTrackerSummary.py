@@ -34,6 +34,7 @@ class PokerTrackerSummary(TourneySummary):
                         "Texas Hold'em" : ('hold','holdem'),
                                "Holdem" : ('hold','holdem'),
                                 'Omaha' : ('hold','omahahi'),
+                             'Omaha Hi' : ('hold','omahahi'),
                           'Omaha Hi/Lo' : ('hold','omahahilo')
                }
 
@@ -45,26 +46,12 @@ class PokerTrackerSummary(TourneySummary):
                             'CUR': u"(\$|\xe2\x82\xac|\u20ac||\£|)",
                     }
 
-    _re_TourneyInfo = re.compile(u"""
-                        \#(?P<TOURNO>[0-9]+),\s
-                        ((?P<LIMIT>No\sLimit|Limit|LIMIT|Pot\sLimit)\s)?
-                        (?P<GAME>Hold\'em|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Omaha|Omaha\sHi/Lo|Badugi|Triple\sDraw\s2\-7\sLowball|5\sCard\sDraw|HORSE|8\-Game|HOSE|Mixed\sOmaha\sH/L|Mixed\sHold\'em|Mixed\sPLH/PLO|Mixed\sNLH/PLO|Triple\sStud)\s+
-                        (?P<DESC>[ a-zA-Z]+\s+)?
-                        (Buy-In:\s(?P<CURRENCY>[%(LS)s]?)(?P<BUYIN>[,.0-9]+)(\/[%(LS)s]?(?P<FEE>[,.0-9]+))?(?P<CUR>\s(%(LEGAL_ISO)s))?\s+)?
-                        (?P<ENTRIES>[0-9]+)\splayers\s+
-                        ([%(LS)s]?(?P<ADDED>[,.\d]+)(\s(%(LEGAL_ISO)s))?\sadded\sto\sthe\sprize\spool\sby\sPokerStars(\.com)?\s+)?
-                        (Total\sPrize\sPool:\s[%(LS)s]?(?P<PRIZEPOOL>[,.0-9]+)(\s(%(LEGAL_ISO)s))?\s+)?
-                        (Target\sTournament\s.+?\s)?
-                        Tournament\sstarted\s+(-\s)?
-                        (?P<DATETIME>.*$)
-                        """ % substitutions ,re.VERBOSE|re.MULTILINE)
-    
     re_Identify = re.compile(u"PokerTracker")
-    
+
     re_TourneyInfo = re.compile(u"""
                         \s(3|4)\sTournament\sSummary\s+
                         Site:\s(?P<SITE>.+?)\s+
-                        Game:\s(?P<GAME>Holdem|Texas\sHold\'em|Omaha|Omaha\sHi/Lo)\s+
+                        Game:\s(?P<GAME>Holdem|Texas\sHold\'em|Omaha|Omaha\sHi|Omaha\sHi/Lo)\s+
                         Tournament\s\#:\s(?P<TOURNO>[0-9]+)\s+
                         Started:\s(?P<DATETIME>.+?)\s+
                         Finished:\s(?P<DATETIME1>.+?)\s+

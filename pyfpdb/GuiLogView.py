@@ -38,10 +38,12 @@ log = logging.getLogger("logview")
 
 MAX_LINES = 100000         # max lines to display in window
 EST_CHARS_PER_LINE = 150   # used to guesstimate number of lines in log file
-LOGFILES = [ [ _('Fpdb Errors'), 'fpdb-errors.txt', False ]  # label, filename, start value
-           , [ _('Fpdb Log'),    'fpdb-log.txt',    True ]
-           , [ _('HUD Errors'),  'HUD-errors.txt',  False ]
-           , [ _('HUD Log'),     'HUD-log.txt',     False ]
+LOGFILES = [ [ _('Fpdb Errors'),        'fpdb-errors.txt',   False, 'log']  # label, filename, start value, path
+           , [ _('Fpdb Log'),           'fpdb-log.txt',      True,  'log']
+           , [ _('HUD Errors'),         'HUD-errors.txt',    False, 'log']
+           , [ _('HUD Log'),            'HUD-log.txt',       False, 'log']
+           , [ _('fpdb.exe log'),       'fpdb.exe.log',      False, 'pyfpdb']
+           , [ _('HUD_main.exe Log'),   'HUD_main.exe.log ', False, 'pyfpdb']
            ]
 
 class GuiLogView:
@@ -74,6 +76,7 @@ class GuiLogView:
         self.listview.selection = self.listview.get_selection()
         self.listview.selection.connect('changed', self.row_selection_changed)
         self.clipboard = gtk.Clipboard(display=gtk.gdk.display_get_default(), selection="CLIPBOARD")
+        self.selected_rows = None
         self.listview.selection.set_mode(gtk.SELECTION_MULTIPLE)
         self.listview.set_grid_lines(gtk.TREE_VIEW_GRID_LINES_NONE)
         self.listcols = []
@@ -83,26 +86,29 @@ class GuiLogView:
         scrolledwindow.add(self.listview)
         self.vbox.pack_start(scrolledwindow, expand=True, fill=True, padding=0)
 
-        hb = gtk.HBox(False, 0)
+        hb1 = gtk.HBox(False, 0)
         grp = None
         for logf in LOGFILES:
             rb = gtk.RadioButton(group=grp, label=logf[0], use_underline=True)
             if grp is None: grp = rb
             rb.set_active(logf[2])
             rb.connect('clicked', self.__set_logfile, logf[0])
-            hb.pack_start(rb, False, False, 3)
+            hb1.pack_start(rb, False, False, 3)
+            
+        hb2 = gtk.HBox(False, 0)
         refreshbutton = gtk.Button(_("Refresh"))
         refreshbutton.connect("clicked", self.refresh, None)
-        hb.pack_start(refreshbutton, False, False, 3)
+        hb2.pack_start(refreshbutton, False, False, 3)
         refreshbutton.show()
         
         copybutton = gtk.Button(_("Copy to Clipboard"))
         copybutton.connect("clicked", self.copy_to_clipboard, None)
-        hb.pack_start(copybutton, False, False, 3)
+        hb2.pack_start(copybutton, False, False, 3)
         copybutton.show()
         
-        self.vbox.pack_start(hb, False, False, 0)
-
+        self.vbox.pack_start(hb1, False, False, 0)
+        self.vbox.pack_start(hb2, False, False, 0)
+        
         self.listview.show()
         scrolledwindow.show()
         self.vbox.show()
@@ -123,6 +129,7 @@ class GuiLogView:
         model, self.selected_rows = selection.get_selected_rows()
     
     def copy_to_clipboard(self, widget, data):
+        
         if not self.selected_rows:
             return
         text = ""
@@ -138,7 +145,10 @@ class GuiLogView:
         if w.get_active():
             for logf in LOGFILES:
                 if logf[0] == file:
-                    self.logfile = os.path.join(self.config.dir_log, logf[1])
+                    if logf[3] == 'pyfpdb':
+                        self.logfile = os.path.join(self.config.pyfpdb_path, logf[1])
+                    else:
+                        self.logfile = os.path.join(self.config.dir_log, logf[1])                        
             self.refresh(w, file)  # params are not used
 
     def dialog_response_cb(self, dialog, response_id):

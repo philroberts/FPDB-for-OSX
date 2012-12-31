@@ -24,7 +24,6 @@ _ = L10n.get_translation()
 
 import re
 import sys
-import traceback
 import logging
 import os
 import os.path
@@ -33,6 +32,7 @@ import operator
 import time,datetime
 from copy import deepcopy
 from Exceptions import *
+import codecs
 
 import pprint
 import DerivedStats
@@ -313,4 +313,22 @@ winnings    (int) the money the player ended the tourney with (can be 0, or -1 i
 
     def printSummary(self):
         self.writeSummary(sys.stdout)
+
+    @staticmethod
+    def readFile(self, filename):
+        codepage = ["utf16", "utf8", "cp1252"]
+        whole_file = None
+
+        for kodec in codepage:
+            try:
+                in_fh = codecs.open(filename, 'r', kodec)
+                whole_file = in_fh.read()
+                in_fh.close()
+                break
+            except UnicodeDecodeError, e:
+                log.warning("TS.readFile: '%s' : '%s'" % (filename,e))
+            except UnicodeError, e:
+                log.warning("TS.readFile: '%s' : '%s'" % (filename,e))
+
+        return whole_file
 

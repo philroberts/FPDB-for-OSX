@@ -1,0 +1,45 @@
+Bovada Hand #2645486142: OMAHA HiLo Tournament #1909784 TBL#19, Pot Limit- Level 5 (50/100) - 2012-07-23 20:53:32
+Seat 1: UTG+4 [ME] (3,000 in chips)
+Seat 2: UTG+5 (9,555 in chips)
+Seat 4: Small Blind (5,890 in chips)
+Seat 5: Big Blind (4,760 in chips)
+Seat 6: UTG (3,555 in chips)
+Seat 7: UTG+1 (3,347 in chips)
+Seat 8: UTG+2 (1,640 in chips)
+Seat 9: UTG+3 (4,920 in chips)
+Small Blind : Ante/Small blind 50 
+Big Blind : Big blind/Bring in 100 
+*** HOLE CARDS ***
+UTG+4 [ME] : Card dealt to a spot [5s 2d 2h Qh] 
+UTG+5 : Card dealt to a spot [8d Ts Kh 7d] 
+Small Blind : Card dealt to a spot [5c 4d 4s Qs] 
+Big Blind : Card dealt to a spot [8s 6c Ac 7c] 
+UTG : Card dealt to a spot [6s Js Tc 4h] 
+UTG+1 : Card dealt to a spot [Jd Ks 9h 3d] 
+UTG+2 : Card dealt to a spot [6h Kc 8h 3s] 
+UTG+3 : Card dealt to a spot [2c 8c Th 6d] 
+UTG : Folds
+UTG+1 : Folds
+UTG+2 : Folds
+UTG+3 : Folds
+UTG+4 [ME] : Folds
+UTG+5 : Raises 200 
+Small Blind : Folds
+Big Blind : Call 100 
+Big Blind : Checks
+UTG+5 : Bets 450 
+Big Blind : Folds
+UTG+5 : Return uncalled portion of bet 450 
+UTG+5 : Does not show [8d Ts Kh 7d] (One pair)
+UTG+5 : Hand Result 450 
+*** SUMMARY ***
+Total Pot(450)
+Board [5d 5h 9d  ]
+Seat 1: UTG+4 Folded on the POCKET CARDS
+Seat 2: UTG+5 HI 450 [Does not show]  
+Seat 4: Small Blind Folded on the POCKET CARDS
+Seat 5: Big Blind Folded on the FLOP
+Seat 6: UTG Folded on the POCKET CARDS
+Seat 7: UTG+1 Folded on the POCKET CARDS
+Seat 8: UTG+2 Folded on the POCKET CARDS
+Seat 9: UTG+3 Folded on the POCKET CARDS

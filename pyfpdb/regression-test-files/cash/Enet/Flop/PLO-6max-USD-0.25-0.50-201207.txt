@@ -1,0 +1,42 @@
+Game #7732310: Omaha (€0,25/€0,50) - 23:31:54 29.7.2012 - %6 
+Table 'SantElena 1 - Pot Limit' 6-max Seat #4 is the button 
+Seat 1: Player0 (€41,87 in chips)
+Seat 2: Hero (€88,05 in chips)
+Seat 3: Player1 (€36,79 in chips)
+Seat 4: Player2 (€129,20 in chips)
+Seat 5: Player3 (€50 in chips)
+Seat 6: Player4 (€151,27 in chips)
+Player4: posts small blind €0,25
+Player0: posts big blind €0,50
+*** HOLECARDS ***
+Hero: folds
+Player1: folds
+Player2: calls €0,50
+Player4: calls €0,25
+Player0: checks
+Rake: €0,09
+*** FLOP *** [9c2cQd]
+Player4: bets €1,50
+Player0: folds
+Player2: calls €1,50
+Rake: €0,18
+*** TURN *** [9c2cQd8s]
+Player4: bets €3,37
+Player2: calls €3,37
+Rake: €0,40
+*** RIVER *** [9c2cQd8sAc]
+Player4: checks
+Player2: checks
+Player2: mucked
+*** SHOWDOWN ***
+Player2: mucks hand
+Player4: shows [9dJd2dTd] (Straight, Queens high)
+Player4: collected (€10,57) from pot
+*** SUMMARY *** 
+Total pot €0 | Rake €0,67 
+Board [9c2cQd8sAc] 
+Seat 1: Player0 (big blind) folded
+Seat 2: Hero  folded
+Seat 3: Player1  folded
+Seat 4: Player2  mucked
+Seat 6: Player4 (small blind) showed [9dJd2dTd] and won (€10,57) with Straight, Queens high
