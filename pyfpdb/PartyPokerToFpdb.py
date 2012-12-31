@@ -422,7 +422,7 @@ class PartyPoker(HandHistoryConverter):
                 return startSeat
 
             re_JoiningPlayers = re.compile(r"(?P<PLAYERNAME>.+?) has joined the table")
-            re_BBPostingPlayers = re.compile(r"(table|out|^)(?P<PLAYERNAME>.+?) posts big blind")
+            re_BBPostingPlayers = re.compile(r"(table|out|^)(?P<PLAYERNAME>.+?) posts big blind", re.MULTILINE)
             re_LeavingPlayers = re.compile(r"(?P<PLAYERNAME>.+?) has left the table")
 
             match_JoiningPlayers = re_JoiningPlayers.findall(hand.handText)
