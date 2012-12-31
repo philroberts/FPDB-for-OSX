@@ -79,6 +79,7 @@ class MergeSummary(TourneySummary):
                             'LS' : u"\$|\xe2\x82\xac|\u20ac|" # legal currency symbols
                     }
     re_Identify   = re.compile(u"<title>Online\sPoker\sTournament\sDetails\s\-\sCarbonPoker</title>")
+    re_NotFound   = re.compile(u"Tournament not found")
     re_GameTypeHH = re.compile(r'<description type="(?P<GAME>Holdem|Omaha|Omaha|Omaha\sH/L8|2\-7\sLowball|A\-5\sLowball|Badugi|5\-Draw\sw/Joker|5\-Draw|7\-Stud|7\-Stud\sH/L8|5\-Stud|Razz|HORSE|RASH|HA|HO|SHOE|HOSE|HAR)(?P<TYPE>\sTournament)?" stakes="(?P<LIMIT>[a-zA-Z ]+)(\s\(?\$?(?P<SB>[.0-9]+)?/?\$?(?P<BB>[.0-9]+)?(?P<blah>.*)\)?)?"(\sversion="\d+")?/>\s?', re.MULTILINE)
     re_HandInfoHH = re.compile(r'<game id="(?P<HID1>[0-9]+)-(?P<HID2>[0-9]+)" starttime="(?P<DATETIME>.+?)" numholecards="[0-9]+" gametype="[0-9]+" (multigametype="(?P<MULTIGAMETYPE>\d+)" )?(seats="(?P<SEATS>[0-9]+)" )?realmoney="(?P<REALMONEY>(true|false))" data="[0-9]+[|:](?P<TABLENAME>[^|:]+)[|:](?P<TDATA>[^|:]+)[|:]?.*>', re.MULTILINE)
     re_DateTimeHH = re.compile(r'(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)', re.MULTILINE)
@@ -113,8 +114,11 @@ class MergeSummary(TourneySummary):
             mg = m.groupdict()
             if ' Tournament' == mg['TYPE']:
                 self.parseSummaryFromHH(mg)
-        else:
+        elif not self.re_NotFound.search(self.summaryText):
             self.parseSummaryFile()
+        else:
+            log.error(_("The tournament was not found or is invalid"))
+            raise FpdbParseError
 
     def parseSummaryFromHH(self, mg):           
         obj = getattr(MergeToFpdb, "Merge", None)
