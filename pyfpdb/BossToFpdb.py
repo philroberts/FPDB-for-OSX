@@ -65,7 +65,7 @@ class Boss(HandHistoryConverter):
                                     LIMIT="(?P<LIMIT>NL|PL|FL)"\s
                                     STAKES="(?P<SB>[.0-9]+)/(?P<BB>[.0-9]+)"\s
                                     DATE="(?P<DATETIME>[0-9]+)"\s
-                                    (TABLETOURNEYID=""\s)?
+                                    (TABLETOURNEYID=".*?"\s)?
                                     WIN="[.0-9]+"\sLOSS="[.0-9]+"
                                     """, re.MULTILINE| re.VERBOSE)
     re_Identify     = re.compile(u'<HISTORY\sID="\d+"\sSESSION=')
