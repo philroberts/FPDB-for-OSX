@@ -121,6 +121,7 @@ class Cake(HandHistoryConverter):
     re_CoinFlip         = re.compile(r"Coin\sFlip\sT\d+", re.MULTILINE)
     re_ReturnBet        = re.compile(r"returns\suncalled\sbet", re.MULTILINE)
     re_ShowDown         = re.compile(r"\*\*\*SHOW DOWN\*\*\*")
+    re_ShowDownLeft     = re.compile(r"\*\*\*SHOW\sDOWN\*\*\*\nPlayer\sleft\sthe\stable$", re.MULTILINE)
 
     def compilePlayerRegexs(self,  hand):
         pass
@@ -146,7 +147,7 @@ class Cake(HandHistoryConverter):
             log.error(_("CakeToFpdb.determineGameType: '%s'") % tmp)
             raise FpdbParseError
         
-        if not self.re_ShowDown.search(handText):
+        if not self.re_ShowDown.search(handText) or self.re_ShowDownLeft.search(handText):
             raise FpdbHandPartial
 
         mg = m.groupdict()
