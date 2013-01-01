@@ -221,7 +221,7 @@ class Bovada(HandHistoryConverter):
         for key in info:
             if key == 'DATETIME':
                 m1 = self.re_DateTime.finditer(info[key])
-                datetimestr = "2000-01-01 00:00:00"  # default used if time not found
+                datetimestr = "2000/01/01 00:00:00"  # default used if time not found
                 for a in m1:
                     datetimestr = "%s/%s/%s %s:%s:%s" % (a.group('Y'), a.group('M'),a.group('D'),a.group('H'),a.group('MIN'),a.group('S'))
                     #tz = a.group('TZ')  # just assume ET??
