@@ -129,7 +129,11 @@ class Simple_HUD(Aux_Base.Aux_Seats):
         
 class Simple_Stat_Window(Aux_Base.Seat_Window):
     """Simple window class for stat windows."""
-
+    
+    def __init__(self, aw = None, seat = None):
+        super(Simple_Stat_Window, self).__init__(aw, seat)
+        self.popup_count = 0
+        
     def button_press_left(self, widget, event, *args): #move window
         self.begin_move_drag(event.button, int(event.x_root), int(event.y_root), event.time)
         
@@ -137,7 +141,7 @@ class Simple_Stat_Window(Aux_Base.Seat_Window):
 
     def button_press_right(self, widget, event, *args):  #show pop up
         pu_to_run = widget.get_ancestor(gtk.Window).aw.config.popup_windows[widget.aw_popup].pu_class
-        if widget.stat_dict: # do not popup on "xxx" empty blocks
+        if widget.stat_dict and self.popup_count == 0: # do not popup on empty blocks or if one is already active
             Popup.__dict__[pu_to_run](seat = widget.aw_seat,
                 stat_dict = widget.stat_dict,
                 win = widget.get_ancestor(gtk.Window),
