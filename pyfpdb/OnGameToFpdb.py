@@ -213,14 +213,14 @@ class OnGame(HandHistoryConverter):
         if 'GAME' in mg:
             (info['base'], info['category']) = self.games[mg['GAME']]
         if 'SB' in mg:
-            info['sb'] = self.clearMoneyString(mg['SB'].replace(',', ''))
+            info['sb'] = self.clearMoneyString(mg['SB'])
         if 'BB' in mg:
-            info['bb'] = self.clearMoneyString(mg['BB'].replace(',', ''))
+            info['bb'] = self.clearMoneyString(mg['BB'])
 
         if info['limitType'] == 'fl' and info['bb'] is not None:
             if info['type'] == 'ring':
                 try:
-                    bb = self.clearMoneyString(mg['BB'].replace(',', ''))
+                    bb = self.clearMoneyString(mg['BB'])
                     info['sb'] = self.Lim_Blinds[bb][0]
                     info['bb'] = self.Lim_Blinds[bb][1]
                 except KeyError:
@@ -228,7 +228,7 @@ class OnGame(HandHistoryConverter):
                     log.error(_("OnGameToFpdb.determineGameType: Lim_Blinds has no lookup for '%s' - '%s'") % (bb, tmp))
                     raise FpdbParseError
             else:
-                sb = self.clearMoneyString(mg['SB'].replace(',', ''))
+                sb = self.clearMoneyString(mg['SB'])
                 info['sb'] = str((Decimal(sb)/2).quantize(Decimal("0.01")))
                 info['bb'] = str(Decimal(sb).quantize(Decimal("0.01")))    
         return info
@@ -306,7 +306,7 @@ class OnGame(HandHistoryConverter):
         head = re.split(re.compile('Summary:'),  hand.handText)
         m = self.re_PlayerInfo.finditer(head[0])
         for a in m:
-            hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), a.group('CASH'))
+            hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), self.clearMoneyString(a.group('CASH')))
 
     def markStreets(self, hand):
         if hand.gametype['base'] in ("hold"):
