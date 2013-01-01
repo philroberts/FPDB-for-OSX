@@ -138,7 +138,7 @@ class OnGame(HandHistoryConverter):
             self.re_PostSB    = re.compile('%(PLYR)s posts small blind \((%(CUR)s)?(?P<SB>[%(NUM)s]+)\)' % self.substitutions, re.MULTILINE)
             self.re_PostBB    = re.compile('%(PLYR)s posts big blind \((%(CUR)s)?(?P<BB>[%(NUM)s]+)\)' % self.substitutions, re.MULTILINE)
             self.re_Antes     = re.compile(r"^%(PLYR)s posts ante (%(CUR)s)?(?P<ANTE>[%(NUM)s]+)" % self.substitutions, re.MULTILINE)
-            self.re_BringIn   = re.compile(r"^%(PLYR)s small bring in (%(CUR)s)?(?P<BRINGIN>[%(NUM)s]+)" % self.substitutions, re.MULTILINE)
+            self.re_BringIn   = re.compile(r"^%(PLYR)s (small|big) bring in (%(CUR)s)?(?P<BRINGIN>[%(NUM)s]+)" % self.substitutions, re.MULTILINE)
             self.re_PostBoth  = re.compile('%(PLYR)s posts small \& big blind \( (%(CUR)s)?(?P<SBBB>[%(NUM)s]+)\)' % self.substitutions)
             self.re_PostDead  = re.compile('%(PLYR)s posts dead blind \((%(CUR)s)?(?P<DEAD>[%(NUM)s]+)\)' % self.substitutions, re.MULTILINE)
             self.re_HeroCards = re.compile('(New\shand\sfor|Dealing\sto)\s%(PLYR)s:\s\[(?P<CARDS>.*)\]' % self.substitutions)

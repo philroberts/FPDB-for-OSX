@@ -1,0 +1,49 @@
+***** History for hand R5-292493407-77 *****
+Start hand: Tue Dec 04 19:48:34 CET 2012
+Table: Winnipeg [292493407] (LIMIT SEVEN_CARD_STUD $1/$2, ante: $0.10, Real money)
+User: Hero
+Button: seat 1
+Players in round: 2 (5)
+Seat 3: Hero ($27.20)
+Seat 6: Player0 ($74.40)
+Hero posts ante $0.10
+Player0 posts ante $0.10
+---
+Dealing pocket cards
+Dealing to Hero: [5c, 2h, 2s]
+Dealing to Player0: [-, -, 7d]
+Hero big bring in $1
+Player0 raises $2 to $2
+Hero calls $1
+---
+Dealing 4th street
+Dealing to Hero: [Jc]
+Dealing to Player0: [6s]
+Hero checks
+Player0 bets $1
+Hero calls $1
+---
+Dealing 5th street
+Dealing to Hero: [Tc]
+Dealing to Player0: [8c]
+Hero checks
+Player0 bets $2
+Hero calls $2
+---
+Dealing 6th street
+Dealing to Hero: [Kc]
+Dealing to Player0: [As]
+Player0 checks
+Hero checks
+---
+Dealing river
+Dealing to Hero: [Ah]
+Player0 checks
+Hero checks
+---
+Summary:
+Main pot: $10.20 won by Player0 ($9.70)
+Rake taken: $0.50
+Seat 3: Hero ($22.10), net: -$5.10
+Seat 6: Player0 ($79), net: +$4.60, [6d, 4c, 7d, 6s, 8c, As, 8d] (TWO_PAIR EIGHT, SIX)
+***** End of hand R5-292493407-77 *****
