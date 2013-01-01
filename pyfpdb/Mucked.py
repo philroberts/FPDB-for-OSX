@@ -398,7 +398,7 @@ class Flop_Mucked(Aux_Base.Aux_Seats):
         """Prepare and show the mucked cards."""
         if self.displayed: self.hide()
 #   See how many players showed a hand. Skip if only 1 shows (= hero)
-        n_sd = self.has_cards(self.hud.cards)
+        n_sd = self.count_seats_with_cards(self.hud.cards)
         if n_sd < 2: 
             return
 
