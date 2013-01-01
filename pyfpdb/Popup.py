@@ -75,11 +75,15 @@ class Popup(gtk.Window):
 #    Override these methods to make a popup
     def create(self):   pass
     def destroy_pop(self):
+
+        self.win.popup_count -= 1
         self.destroy()
 
 class default(Popup):
 
     def create(self):
+
+        self.win.popup_count += 1
         player_id = None
         for id in self.stat_dict.keys():
             if self.seat == self.stat_dict[id]['seat']:
