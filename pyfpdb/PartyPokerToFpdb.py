@@ -151,6 +151,7 @@ class PartyPoker(HandHistoryConverter):
     re_Cancelled     = re.compile('Table\sClosed\s?', re.MULTILINE)
     re_Disconnected  = re.compile('Connection\sLost\sdue\sto\ssome\sreason\s?', re.MULTILINE)
     re_GameStartLine = re.compile('Game\s\#\d+\sstarts', re.MULTILINE)
+    re_PreliminaryHand = re.compile(r"Buy-in  - ")
 
     def allHandsAsList(self):
         list = HandHistoryConverter.allHandsAsList(self)
@@ -226,6 +227,10 @@ class PartyPoker(HandHistoryConverter):
             m = self.re_GameStartLine.match(handText)
             if m and len(handText)<50:
                 message = _("Game start line")
+                raise FpdbHandPartial("Partial hand history: %s" % message)
+            m = self.re_PreliminaryHand.search(handText)
+            if m:
+                message = _("Preliminary hand")
                 raise FpdbHandPartial("Partial hand history: %s" % message)
             tmp = handText[0:200]
             log.error(_("PartyPokerToFpdb.determineGameType: '%s'") % tmp)
