@@ -120,6 +120,7 @@ class Cake(HandHistoryConverter):
     re_Dealer           = re.compile(r"Dealer:") #Some Cake hands just omit the game line so we can just discard them as partial
     re_CoinFlip         = re.compile(r"Coin\sFlip\sT\d+", re.MULTILINE)
     re_ReturnBet        = re.compile(r"returns\suncalled\sbet", re.MULTILINE)
+    re_ShowDown         = re.compile(r"\*\*\*SHOW DOWN\*\*\*")
 
     def compilePlayerRegexs(self,  hand):
         pass
@@ -144,6 +145,9 @@ class Cake(HandHistoryConverter):
             tmp = handText[0:200]
             log.error(_("CakeToFpdb.determineGameType: '%s'") % tmp)
             raise FpdbParseError
+        
+        if not self.re_ShowDown.search(handText):
+            raise FpdbHandPartial
 
         mg = m.groupdict()
         #print "DEBUG: mg: %s" % mg
