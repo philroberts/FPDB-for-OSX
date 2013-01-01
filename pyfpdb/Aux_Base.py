@@ -76,18 +76,13 @@ class Aux_Window(object):
     # XXX XXX: 'cards' is a dictionary with EVERY INVOLVED SEAT included;
     # XXX XXX: in addition, the unknown/unshown cards are marked with
     # zeroes, not None
-    def has_cards(self, cards):
+    def count_seats_with_cards(self, cards):
         """Returns the number of seats with shown cards in the list."""
         n = 0
-        for k in cards.keys():
-            seat_tuple = cards[k]
-            if seat_tuple[0] != 0:
+        for seat, cards_tuple in cards.items():
+            if seat != 'common' and cards_tuple[0] != 0:
                 n += 1
-        # Now we have the number of seats where we had valid cards.
-        if 'common' in cards:
-            return n-1
-        else:
-            return n
+        return n
 
     def get_id_from_seat(self, seat):
         """Determine player id from seat number, given stat_dict."""
