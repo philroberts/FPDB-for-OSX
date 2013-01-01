@@ -821,22 +821,22 @@ class Hand(object):
             self.stats.awardPots(self)
         
         def gettempcontainers():
-            (collected, collectees, totalcolleted) = ([], {}, 0)
+            (collected, collectees, totalcollected) = ([], {}, 0)
             for i,v in enumerate(self.collected):
-                totalcolleted += Decimal(v[1])
+                totalcollected += Decimal(v[1])
                 collected.append([v[0], Decimal(v[1])])
             for k, j in self.collectees.iteritems():
                 collectees[k] = j
-            return collected, collectees, totalcolleted
+            return collected, collectees, totalcollected
         
         if self.uncalledbets:
-            collected, collectees, totalcolleted = gettempcontainers()
+            collected, collectees, totalcollected = gettempcontainers()
             for i,v in enumerate(self.collected):
                 if v[0] in self.pot.returned: 
                     collected[i][1] = Decimal(v[1]) - self.pot.returned[v[0]]
                     collectees[v[0]] -= self.pot.returned[v[0]]
                     self.pot.returned[v[0]] = 0
-            if self.totalpot - totalcolleted < 0:
+            if self.totalpot - totalcollected < 0:
                 (self.collected, self.collectees) = (collected, collectees)
 
         # This gives us the amount collected, i.e. after rake
