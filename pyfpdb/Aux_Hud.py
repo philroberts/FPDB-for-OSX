@@ -243,9 +243,9 @@ class Simple_table_mw(Aux_Base.Seat_Window):
 
         self.move(self.hud.table.x + self.aw.xshift, self.hud.table.y + self.aw.yshift)
                 
-        self.menu.show_all()
-        self.show_all()
-        self.hud.table.topify(self)
+        self.menu.show_all() 
+        #self.show_all() do not do this, it creates oversize eventbox in windows pygtk2.24
+        #self.hud.table.topify(self) does not serve any useful purpose, it seems
 
 
     def create_menu_items(self, menu):
