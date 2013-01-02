@@ -59,7 +59,7 @@ class Boss(HandHistoryConverter):
     re_GameInfo     = re.compile("""<HISTORY\sID="(?P<HID>[0-9]+)"\s
                                     SESSION="session(?P<SESSIONID>[0-9]+)\.xml"\s
                                     TABLE="(?P<TABLE>.+?)"\s
-                                    GAME="(?P<GAME>GAME_THM|GAME_OMA|GAME_FCD|GAME_OMAHL)"\sGAMETYPE="[_a-zA-Z]+"\s
+                                    GAME="(?P<GAME>GAME_THM|GAME_OMA|GAME_FCD|GAME_OMAHL|GAME_OMATU)"\sGAMETYPE="[_a-zA-Z]+"\s
                                     GAMEKIND="(?P<GAMEKIND>[_a-zA-Z]+)"\s
                                     TABLECURRENCY="(?P<CURRENCY>[A-Z]+)"\s
                                     LIMIT="(?P<LIMIT>NL|PL|FL)"\s
@@ -130,6 +130,7 @@ class Boss(HandHistoryConverter):
         games = {              # base, category
                   "GAME_THM" : ('hold','holdem'), 
                   "GAME_OMA" : ('hold','omahahi'),
+                "GAME_OMATU" : ('hold','omahahi'),
                 "GAME_OMAHL" : ('hold','omahahilo'),
                   "GAME_FCD" : ('draw','fivedraw'),
                 }
