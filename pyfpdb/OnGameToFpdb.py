@@ -90,7 +90,7 @@ class OnGame(HandHistoryConverter):
     # "Play money" rather than "Real money" and set currency accordingly
     # Table:\s(\[SPEED\]\s)?(?P<TABLE>[-\'\w\#\s\.]+)\s\[\d+\]\s\( 
     re_HandInfo = re.compile(u"""
-            \*{5}\sHistory\sfor\shand\s(?P<HID>[-A-Z\d]+)(\s\(TOURNAMENT:(\s\"(?P<NAME>.+?)\",)?\s(?P<TID>[-A-Z\d]+)(?P<BUY>,\sbuy-in:\s(?P<BUYINCUR>[%(LS)s]?)(?P<BUYIN>[%(NUM)s]+))?\))?\s\*{5}\s?
+            \*{5}\sHistory\sfor\shand\s(?P<HID>[-A-Z\d]+)(?P<TOUR>\s\(TOURNAMENT:(\s\"(?P<NAME>.+?)\",)?\s(?P<TID>[-A-Z\d]+)?(?P<BUY>,\sbuy-in:\s(?P<BUYINCUR>[%(LS)s]?)(?P<BUYIN>[%(NUM)s]+))?\))?\s\*{5}\s?
             Start\shand:\s(?P<DATETIME>.+?)\s?
             Table:\s(\[SPEED\]\s)?(?P<TABLE>.+?)\s\[\d+\]\s\( 
             (
@@ -194,8 +194,11 @@ class OnGame(HandHistoryConverter):
         #print "DEBUG: mg: %s" % mg
 
         info['type'] = 'ring'
-        if mg['TID'] != None:
-            info['type'] = 'tour'
+        if mg['TOUR'] != None:
+            if mg['TID'] != None:
+                info['type'] = 'tour'
+            else:
+                raise FpdbHandPartial
 
         if 'CURRENCY' in mg and mg['CURRENCY'] != None:
             if 'MONEY' in mg and mg['MONEY']=='Play money':

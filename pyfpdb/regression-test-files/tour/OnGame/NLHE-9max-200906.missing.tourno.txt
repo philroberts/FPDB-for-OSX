@@ -1,0 +1,45 @@
+***** History for hand T5-569087-5 (TOURNAMENT: ) *****
+Start hand: Wed Jun 24 19:06:39 GMT+0200 2009
+Table: Table #40 [569087] (NO_LIMIT TEXAS_HOLDEM 10/20, TC)
+User: Hero
+Button: seat 9
+Players in round: 9
+Seat 1: Player0 (1500)
+Seat 2: Player1 (1500)
+Seat 3: Player2 (1500)
+Seat 4: Player3 (1460)
+Seat 5: Player4 (1670)
+Seat 6: Hero (1490)
+Seat 7: Player5 (4440)
+Seat 8: Player6 (1470)
+Seat 9: Player7 (1470)
+Player0 posts big blind (20)
+---
+Dealing pocket cards
+Dealing to Hero: [Jh, 2d]
+Player1 folds
+Player2 folds
+Player3 folds
+Player4 raises 1670 to 1670 [all in]
+Hero folds
+Player5 folds
+Player6 folds
+Player7 folds
+Player0 calls 1480 [all in]
+--- 
+--- Dealing flop [3s, 6s, 7s]
+--- Dealing turn [6h]
+--- Dealing river [5s]
+---
+Summary:
+Main pot: 3000 won by Player4 (3000)
+Seat 1: Player0 (0), net: -1500, [Jc, Ad] (PAIR SIX)
+Seat 2: Player1 (1500)
+Seat 3: Player2 (1500)
+Seat 4: Player3 (1460)
+Seat 5: Player4 (3170), net: +1500, [Jd, 7d] (TWO_PAIR SEVEN, SIX)
+Seat 6: Hero (1490)
+Seat 7: Player5 (4440)
+Seat 8: Player6 (1470)
+Seat 9: Player7 (1470)
+***** End of hand T5-569087-5 *****
