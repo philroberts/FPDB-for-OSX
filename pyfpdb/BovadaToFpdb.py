@@ -85,8 +85,8 @@ class Bovada(HandHistoryConverter):
           (?P<TOURNO>\d+)\sTBL\#(?P<TABLENO>\d+),
           \s)?
           (?P<HU>1\son\s1\s)? 
-          (?P<LIMIT>No\sLimit|Fixed\sLimit|Pot\sLimit)
-          (\sNormal\s)?
+          (?P<LIMIT>No\sLimit|Fixed\sLimit|Pot\sLimit)?
+          (\s?Normal\s?)?
           (-\sLevel\s\d+?\s
           \(?                            # open paren of the stakes
           (?P<CURRENCY>%(LS)s|)?
@@ -171,7 +171,10 @@ class Bovada(HandHistoryConverter):
         if m: mg.update(m.groupdict())
 
         if 'LIMIT' in mg:
-            info['limitType'] = self.limits[mg['LIMIT']]
+            if not mg['LIMIT']:
+                info['limitType'] = 'nl'
+            else:
+                info['limitType'] = self.limits[mg['LIMIT']]
         if 'GAME' in mg:
             (info['base'], info['category']) = self.games[mg['GAME']]
             
