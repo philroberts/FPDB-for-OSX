@@ -46,8 +46,18 @@ class FullTiltPokerSummary(TourneySummary):
                       '2-7 Triple Draw' : ('draw','27_3draw'),
                           '5 Card Draw' : ('draw','fivedraw'),
                          '7-Game Mixed' : ('mixed','7game'),
+                         '8-Game Mixed' : ('mixed','8game'),
+                         '9-Game Mixed' : ('mixed','9game'),
                         '10-Game Mixed' : ('mixed','10game'),
+                                   'HA' : ('mixed','ha'),
+                                'HEROS' : ('mixed','heros'),
+                                   'HO' : ('mixed','ho'),
+                                  'HOE' : ('mixed','hoe'),
                                 'HORSE' : ('mixed','horse'),
+                                 'HOSE' : ('mixed','hose'),
+                                   'OA' : ('mixed','oa'),
+                                   'OE' : ('mixed','oe'),
+                                   'SE' : ('mixed','se')                                   
                }
 
     substitutions = {
@@ -62,9 +72,9 @@ class FullTiltPokerSummary(TourneySummary):
     re_TourneyInfo = re.compile(u"""
                         \((?P<TOURNO>[0-9]+)\)
                         (\s+)?(\sMatch\s\d\s)?
-                        (?P<GAME>Hold\'em|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Stud\sH/L|Stud\sHi|Omaha|Omaha\sHi|Omaha\sHi/Lo|Omaha\sH/L|Badugi|Triple\sDraw\s2\-7\sLowball|2-7\sTriple\sDraw|5\sCard\sDraw|7-Game\sMixed|HORSE|10-Game\sMixed)\s+
+                        (?P<GAME>Hold\'em|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Stud\sH/L|Stud\sHi|Omaha|Omaha\sHi|Omaha\sHi/Lo|Omaha\sH/L|Badugi|Triple\sDraw\s2\-7\sLowball|2-7\sTriple\sDraw|5\sCard\sDraw|\d+-Game\sMixed|HORSE|HA|HEROS|HO|HOE|HORSE|HOSE|OA|OE|SE)\s+
                         ((?P<LIMIT>No\sLimit|Limit|LIMIT|Pot\sLimit)\s+)?(\(.+?\)\s+)?
-                        (Buy-In:\s[%(LS)s]?(?P<BUYIN>[%(NUM)s]+)(\sFTP)?(\s\+\s[%(LS)s]?(?P<FEE>[%(NUM)s]+)(\sFTP)?)?\s+)?
+                        (Buy-In:\s[%(LS)s]?(?P<BUYIN>[%(NUM)s]+)(\sFTP|\sT\$|\sPlay\sChips)?(\s\+\s[%(LS)s]?(?P<FEE>[%(NUM)s]+)(\sFTP|\sT\$|\sPlay\sChips)?)?\s+)?
                         (Knockout\sBounty:\s[%(LS)s](?P<KOBOUNTY>[%(NUM)s]+)\s+)?
                         ((?P<PNAMEBOUNTIES>.{2,15})\sreceived\s(?P<PBOUNTIES>\d+)\sKnockout\sBounty\sAwards?\s+)?
                         (Add-On:\s[%(LS)s](?P<ADDON>[%(NUM)s]+)\s+)?
@@ -77,13 +87,13 @@ class FullTiltPokerSummary(TourneySummary):
                         (?P<ENTRIES>[0-9]+)\sEntries\s+
                         (Total\sAdd-Ons:\s(?P<ADDONS>\d+)\s+)?
                         (Total\sRebuys:\s(?P<REBUYS>\d+)\s+)?
-                        (Total\sPrize\sPool:\s[%(LS)s]?(?P<PRIZEPOOL>[%(NUM)s]+)(\sFTP)?\s+)?
+                        (Total\sPrize\sPool:\s[%(LS)s]?(?P<PRIZEPOOL>[%(NUM)s]+)(\sFTP|\sT\$|\sPlay\sChips)?\s+)?
                         (Top\s(\d+\s)?finishers?\sreceives?\s.+\s+)?
                         (Target\sTournament\s.+\s+)?
                         Tournament\sstarted:\s(?P<DATETIME>((?P<Y>[\d]{4})\/(?P<M>[\d]{2})\/(?P<D>[\d]+)\s+(?P<H>[\d]+):(?P<MIN>[\d]+):(?P<S>[\d]+)\s??(?P<TZ>[A-Z]+)\s|\w+,\s(?P<MONTH>\w+)\s(?P<DAY>\d+),\s(?P<YEAR>[\d]{4})\s(?P<HOUR>\d+):(?P<MIN2>\d+)))
                                """ % substitutions ,re.VERBOSE|re.MULTILINE|re.DOTALL)
 
-    re_Currency = re.compile(u"""(?P<CURRENCY>[%(LS)s]|FPP|FTP)""" % substitutions)
+    re_Currency = re.compile(u"""(?P<CURRENCY>[%(LS)s]|FPP|FTP|T\$|Play\sChips)""" % substitutions)
 
     re_Player = re.compile(u"""(?P<RANK>[\d]+):\s(?P<NAME>[^,\r\n]{2,15})(,\s(?P<CURRENCY>[%(LS)s])(?P<WINNINGS>[.\d]+))?(,\s(?P<TICKET>Step\s(?P<LEVEL>\d)\sTicket))?""" % substitutions)
     re_Finished = re.compile(u"""(?P<NAME>[^,\r\n]{2,15}) finished in (?P<RANK>[\d]+)\S\S place""")
@@ -163,6 +173,7 @@ class FullTiltPokerSummary(TourneySummary):
         elif mg['CURRENCY'] == u"€":  self.buyinCurrency="EUR"
         elif mg['CURRENCY'] == "FPP": self.buyinCurrency="FTFP"
         elif mg['CURRENCY'] == "FTP": self.buyinCurrency="FTFP"
+        elif mg['CURRENCY'] == 'Play Chips': self.buyinCurrency="play"
         if self.buyin ==0:            self.buyinCurrency="FREE"
         self.currency = self.buyinCurrency
 
