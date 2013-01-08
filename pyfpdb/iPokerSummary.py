@@ -79,7 +79,8 @@ class iPokerSummary(TourneySummary):
     re_TotalBuyin = re.compile(r"""(?P<BUYIN>(?P<BIAMT>[%(LS)s%(NUM)s]+)\s\+\s?(?P<BIRAKE>[%(LS)s%(NUM)s]+)?)""" % substitutions, re.MULTILINE|re.VERBOSE)
     re_DateTime1 = re.compile("""(?P<D>[0-9]{2})\-(?P<M>[a-zA-Z]{3})\-(?P<Y>[0-9]{4})\s+(?P<H>[0-9]+):(?P<MIN>[0-9]+)(:(?P<S>[0-9]+))?""", re.MULTILINE)
     re_DateTime2 = re.compile("""(?P<D>[0-9]{2})\/(?P<M>[0-9]{2})\/(?P<Y>[0-9]{4})\s+(?P<H>[0-9]+):(?P<MIN>[0-9]+)(:(?P<S>[0-9]+))?""", re.MULTILINE)
-
+    re_Place     = re.compile("\d+")
+    
     codepage = ["utf-8"]
 
     @staticmethod
@@ -154,11 +155,9 @@ class iPokerSummary(TourneySummary):
 
                 if mg2['CURRENCY']:
                     self.currency = self.currencies[mg2['CURRENCY']]
-                rank = mg2['PLACE']
-                if rank in ('N/A', 'N/D', 'N/V'):
-                    rank = None
-                    winnings = None
-                else:
+                rank, winnings = None, None
+                if self.re_Place.search(mg2['PLACE']):
+                    rank     = int(mg2['PLACE'])
                     winnings = int(100*self.convert_to_decimal(mg2['WIN']))
 
                 self.tourneyName = mg2['NAME'][:40]
