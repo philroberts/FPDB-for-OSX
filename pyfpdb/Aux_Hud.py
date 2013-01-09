@@ -140,13 +140,14 @@ class Simple_Stat_Window(Aux_Base.Seat_Window):
     def button_press_middle(self, widget, event, *args): pass 
 
     def button_press_right(self, widget, event, *args):  #show pop up
-        pu_to_run = widget.get_ancestor(gtk.Window).aw.config.popup_windows[widget.aw_popup].pu_class
         if widget.stat_dict and self.popup_count == 0: # do not popup on empty blocks or if one is already active
-            Popup.__dict__[pu_to_run](seat = widget.aw_seat,
+            Popup.popup_factory(
+                seat = widget.aw_seat,
                 stat_dict = widget.stat_dict,
                 win = widget.get_ancestor(gtk.Window),
                 pop = widget.get_ancestor(gtk.Window).aw.config.popup_windows[widget.aw_popup],
-                hand_instance = widget.get_ancestor(gtk.Window).aw.hud.hand_instance)
+                hand_instance = widget.get_ancestor(gtk.Window).aw.hud.hand_instance,
+                config = widget.get_ancestor(gtk.Window).aw.config)
                     
     def create_contents(self, i):
         self.grid = gtk.Table(rows = self.aw.nrows, columns = self.aw.ncols, homogeneous = False)

@@ -547,8 +547,16 @@ class Popup:
         self.name  = node.getAttribute("pu_name")
         self.pu_class = node.getAttribute("pu_class")
         self.pu_stats    = []
+        self.pu_stats_submenu = []
+        
         for stat_node in node.getElementsByTagName('pu_stat'):
             self.pu_stats.append(stat_node.getAttribute("pu_stat_name"))
+            #if stat_node.getAttribute("pu_stat_submenu"):
+            self.pu_stats_submenu.append(
+                tuple(
+                (stat_node.getAttribute("pu_stat_name"),
+                stat_node.getAttribute("pu_stat_submenu"))))
+            
 
     def __str__(self):
         temp = "Popup = " + self.name + "  Class = " + self.pu_class + "\n"
