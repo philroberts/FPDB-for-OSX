@@ -41,7 +41,7 @@ class PokerStars(HandHistoryConverter):
     substitutions = {
                      'LEGAL_ISO' : "USD|EUR|GBP|CAD|FPP",      # legal ISO currency codes
                             'LS' : u"\$|\xe2\x82\xac|\u20ac|\£|", # legal currency symbols - Euro(cp1252, utf-8)
-                           'PLYR': r'(?P<PNAME>.+?)',
+                           'PLYR': r'\s?(?P<PNAME>.+?)',
                             'CUR': u"(\$|\xe2\x82\xac|\u20ac||\£|)",
                           'BRKTS': r'(\(button\) |\(small blind\) |\(big blind\) |\(button\) \(small blind\) |\(button\) \(big blind\) )?',
                     }
@@ -129,13 +129,13 @@ class PokerStars(HandHistoryConverter):
         """ % substitutions, re.MULTILINE|re.VERBOSE)
 
     re_PlayerInfo   = re.compile(u"""
-          ^Seat\s(?P<SEAT>[0-9]+):\s
+          ^\s?Seat\s(?P<SEAT>[0-9]+):\s
           (?P<PNAME>.*)\s
           \((%(LS)s)?(?P<CASH>[.0-9]+)\sin\schips\)""" % substitutions, 
           re.MULTILINE|re.VERBOSE)
 
     re_HandInfo     = re.compile("""
-          ^Table\s\'(?P<TABLE>.+?)\'\s
+          ^\s?Table\s\'(?P<TABLE>.+?)\'\s
           ((?P<MAX>\d+)-max\s)?
           (?P<PLAY>\(Play\sMoney\)\s)?
           (Seat\s\#(?P<BUTTON>\d+)\sis\sthe\sbutton)?""", 
