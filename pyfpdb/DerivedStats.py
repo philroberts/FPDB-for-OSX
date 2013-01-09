@@ -379,7 +379,7 @@ class DerivedStats():
                                 if len(board['board']) > 1: 
                                     boardId = n + 1
                                 else: boardId = n
-                                cards = [str(c) for c in hole]
+                                cards = [str(c) for c in hole if Card.encodeCardList.get(c)!=None]
                                 if board['board'][n]: bcards = [str(b) for b in board['board'][n]]
                                 else                : bcards = []
                                 histring, lostring, histringold, lostringold, lostringvalue, histringvalue, winnings, hi_id, lo_id = None, None, None, None, 0, 0, 0, 0, 0
