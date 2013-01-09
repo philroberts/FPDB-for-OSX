@@ -182,12 +182,12 @@ class Submenu(Popup):
                 grid_line[row]['text'] = stat
                 grid_line[row]['lab'].set_text(stat)
 
-            self.grid.attach(grid_line[row]['eb'], 0, 1, row-1, row)
+            self.grid.attach(grid_line[row]['eb'], 0, 1, row-1, row, xpadding=2)
 
             if submenu_to_run:
                 grid_line[row]['arrow_object'] = gtk.EventBox()
                 lab = gtk.Label()
-                lab.set_text("  >  ")
+                lab.set_text(">  ")
                 lab.modify_bg(gtk.STATE_NORMAL, self.win.aw.bgcolor)
                 lab.modify_fg(gtk.STATE_NORMAL, self.win.aw.fgcolor)
                 lab.set_alignment(xalign=0.75, yalign=0.5)
