@@ -1,0 +1,28 @@
+PokerStars Game #71348201941: Tournament #476454368, $1.40+$0.10 USD Single Draw 2-7 Lowball No Limit - Match Round I, Level V (50/100) - 2011/11/29 22:52:08 CET [2011/11/29 16:52:08 ET]
+Table '476454368 1' 2-max Seat #1 is the button
+Seat 1: Hero (1 in chips) 
+Seat 2: Player0 (2999 in chips) 
+Hero: posts the ante 1 and is all-in
+Player0: posts the ante 25
+Player0: posts big blind 100
+*** DEALING HANDS ***
+Dealt to Hero [Qs 5c 5h 2d 2s]
+Uncalled bet (124) returned to Player0
+Player0 said, "a chip and a chair?"
+Player0: stands pat 
+Hero said, "the definition"
+Hero said, "i have blockers!"
+Hero: discards 3 cards [Qs 5c 2s]
+Dealt to Hero [5h 2d] [Ks 9d Kd]
+*** SHOW DOWN ***
+Player0: shows [Qh 8h 3d 6c 7c] (Lo: Q,8,7,6,3)
+Hero: shows [Ks 9d 5h 2d Kd] (Lo: a pair of Kings)
+Player0 collected 2 from pot
+Hero finished the tournament in 2nd place
+Player0 wins the tournament and receives $2.80 - congratulations!
+*** SUMMARY ***
+Total pot 2 | Rake 0 
+Seat 1: Hero (button) (small blind) showed [Ks 9d 5h 2d Kd] and lost with Lo: a pair of Kings
+Seat 2: Player0 (big blind) showed [Qh 8h 3d 6c 7c] and won (2) with Lo: Q,8,7,6,3
+
+

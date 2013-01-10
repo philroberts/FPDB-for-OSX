@@ -1878,7 +1878,20 @@ class Pot(object):
     def end(self):
         self.total = sum(self.committed.values()) + sum(self.common.values())
 
-        # Return any uncalled bet.
+        # Return any uncalled bet.        
+        if sum(self.common.values())>0:
+            common = sorted([ (v,k) for (k,v) in self.common.items()])
+            try:
+                lastcommon = common[-1][0] - common[-2][0]
+                if lastcommon > 0: # uncalled
+                    returntocommon = common[-1][1]
+                    #print "DEBUG: returning %f to %s" % (lastbet, returnto)
+                    self.total -= lastcommon
+                    self.common[returntocommon] -= lastcommon
+            except IndexError, e:
+                log.error(_("Pot.end(): '%s': Major failure while calculating pot: '%s'") % (self.handid, e))
+                raise FpdbParseError
+        
         committed = sorted([ (v,k) for (k,v) in self.committed.items()])
         #print "DEBUG: committed: %s" % committed
         #ERROR below. lastbet is correct in most cases, but wrong when

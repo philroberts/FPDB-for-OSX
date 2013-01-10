@@ -1,0 +1,35 @@
+Table #44299989 - Tournament #25535686 Table #27
+Starting Hand #2050887314
+Start time of hand: 05 Apr 2012 21:43:19
+Last Hand #2050887068
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: TOURNAMENT
+Money Type: TOURNAMENT CHIPS
+Blinds are now 0 / 0
+Button is at seat 1
+Seat 1: Player0 - 10
+Seat 2: Hero - 20
+Shuffling Deck
+Moving Button to seat 2
+Player0 posts ante of 10 (all-in)
+Hero posts ante of 20 (all-in)
+Returning 10 to Hero uncalled
+Pot sizes: 20
+Dealing Cards
+Dealing [2 h][8 s] to Hero
+Pot sizes: 20
+Player0 shows [5 d][2 c]
+Hero shows [2 h][8 s]
+Dealing Flop [J s][Q s][Q h]
+Pot sizes: 20
+Dealing Turn [7 s]
+Pot sizes: 20
+Dealing River [J d]
+Pot sizes: 20
+Player0 has Two Pairs: Queens, Jacks
+Hero has Two Pairs: Queens, Jacks
+Hero wins 20 with: Two Pairs: Queens, Jacks
+Seat 1: Player0 - 0
+Seat 2: Hero - 30
+End of Hand #2050887314
