@@ -1,0 +1,47 @@
+#Game No : 172275663
+***** Cassava Hand History for Game 172275663 *****
+$0.01/$0.02 Blinds No Limit Holdem - *** 04 02 2011 11:27:06
+Table Huelva (Real Money)
+Seat 10 is the button
+Total number of players : 8
+Seat 1: Aussie_No.1 ( $2.58 )
+Seat 2: loffelj ( $4.14 )
+Seat 3: campdog14 ( $1.37 )
+Seat 5: Mendya. ( $2 )
+Seat 6: Borr_09 ( $0.22 )
+Seat 7: roughvan ( $1.23 )
+Seat 9: border360 ( $2.34 )
+Seat 10: guerrillero7 ( $1.97 )
+Aussie_No.1 posts small blind [$0.01]
+loffelj posts big blind [$0.02]
+campdog14 posts dead blind [$0.01 + $0.02]
+Mendya. posts dead blind [$0.01 + $0.02]
+** Dealing down cards **
+Dealt to Borr_09 [ Ad, 5c ]
+campdog14 checks
+Mendya. checks
+Borr_09 folds
+roughvan folds
+border360 folds
+guerrillero7 folds
+Aussie_No.1 calls [$0.01]
+loffelj checks
+** Dealing flop ** [ 4s, Ac, 7h ]
+Aussie_No.1 checks
+loffelj checks
+campdog14 checks
+Mendya. bets [$0.06]
+Aussie_No.1 folds
+loffelj folds
+campdog14 calls [$0.06]
+** Dealing turn ** [ 4h ]
+campdog14 checks
+Mendya. checks
+** Dealing river ** [ 4c ]
+campdog14 checks
+Mendya. bets [$0.15]
+campdog14 calls [$0.15]
+** Summary **
+Mendya. shows [ Kd, 7c ]
+campdog14 shows [ 7s, 5s ]
+campdog14 collected [ $0.24 ]
