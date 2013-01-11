@@ -1,0 +1,3107 @@
+PokerStars Hand #86563945695: Tournament #604678566, Freeroll  Hold'em No Limit - Level I (20/40) - 2012/09/22 13:59:56 ET
+Table '604678566 40' 9-max Seat #1 is the button
+Seat 1: Player15 (2500 in chips) 
+Seat 3: Player17 (2500 in chips) 
+Seat 4: Player6 (2500 in chips) is sitting out
+Seat 5: Player14 (2500 in chips) 
+Seat 6: Player11 (2500 in chips) is sitting out
+Seat 7: Player16 (2500 in chips) 
+Seat 8: Player0 (2500 in chips) 
+Seat 9: Player22 (2500 in chips) is sitting out
+Player17: posts small blind 20
+Player6: posts big blind 40
+*** HOLE CARDS ***
+Dealt to Player6 [Jh 8h]
+Player22 has returned
+Player14: folds 
+Player11: folds 
+Player16: folds 
+Player0: folds 
+Player22: raises 40 to 80
+Player15: folds 
+Player17: folds 
+Player6: folds 
+Uncalled bet (40) returned to Player22
+Player22 collected 100 from pot
+*** SUMMARY ***
+Total pot 100 | Rake 0 
+Seat 1: Player15 (button) folded before Flop (didn't bet)
+Seat 3: Player17 (small blind) folded before Flop
+Seat 4: Player6 (big blind) folded before Flop
+Seat 5: Player14 folded before Flop (didn't bet)
+Seat 6: Player11 folded before Flop (didn't bet)
+Seat 7: Player16 folded before Flop (didn't bet)
+Seat 8: Player0 folded before Flop (didn't bet)
+Seat 9: Player22 collected (100)
+
+
+
+PokerStars Hand #86564017619: Tournament #604678566, Freeroll  Hold'em No Limit - Level I (20/40) - 2012/09/22 14:01:45 ET
+Table '604678566 47' 9-max Seat #3 is the button
+Seat 1: Player6 (2460 in chips) is sitting out
+Seat 2: Player4 (2500 in chips) 
+Seat 3: Player10 (2480 in chips) is sitting out
+Seat 4: Player8 (2460 in chips) is sitting out
+Seat 5: Player5 (2500 in chips) is sitting out
+Seat 6: Player24 (2560 in chips) 
+Seat 7: Player2 (2500 in chips) 
+Seat 8: Player18 (2500 in chips) is sitting out
+Seat 9: Player7 (2500 in chips) 
+Player8: posts small blind 20
+Player5: posts big blind 40
+*** HOLE CARDS ***
+Dealt to Player6 [Ac 3d]
+Player24: folds 
+Player2: folds 
+Player18: folds 
+Player7: raises 120 to 160
+Player6: folds 
+Player4: folds 
+Player10: folds 
+Player8: folds 
+Player5: folds 
+Uncalled bet (120) returned to Player7
+Player7 collected 100 from pot
+Player7: doesn't show hand 
+*** SUMMARY ***
+Total pot 100 | Rake 0 
+Seat 1: Player6 folded before Flop (didn't bet)
+Seat 2: Player4 folded before Flop (didn't bet)
+Seat 3: Player10 (button) folded before Flop (didn't bet)
+Seat 4: Player8 (small blind) folded before Flop
+Seat 5: Player5 (big blind) folded before Flop
+Seat 6: Player24 folded before Flop (didn't bet)
+Seat 7: Player2 folded before Flop (didn't bet)
+Seat 8: Player18 folded before Flop (didn't bet)
+Seat 9: Player7 collected (100)
+
+
+
+PokerStars Hand #86564040647: Tournament #604678566, Freeroll  Hold'em No Limit - Level I (20/40) - 2012/09/22 14:02:12 ET
+Table '604678566 47' 9-max Seat #4 is the button
+Seat 1: Player6 (2460 in chips) is sitting out
+Seat 2: Player4 (2500 in chips) 
+Seat 3: Player10 (2480 in chips) is sitting out
+Seat 4: Player8 (2440 in chips) is sitting out
+Seat 5: Player5 (2460 in chips) is sitting out
+Seat 6: Player24 (2560 in chips) 
+Seat 7: Player2 (2500 in chips) 
+Seat 8: Player18 (2500 in chips) is sitting out
+Seat 9: Player7 (2560 in chips) 
+Player5: posts small blind 20
+Player24: posts big blind 40
+*** HOLE CARDS ***
+Dealt to Player6 [5d 7d]
+Player2: folds 
+Player18: folds 
+Player7: raises 40 to 80
+Player6: folds 
+Player4: folds 
+Player10: folds 
+Player8: folds 
+Player5: folds 
+Player24: calls 40
+*** FLOP *** [4d Kh Js]
+Player24: bets 90
+Player7: calls 90
+*** TURN *** [4d Kh Js] [Kd]
+Player24: bets 360
+Player7: calls 360
+*** RIVER *** [4d Kh JPokerStars Hand #86564270670: Tournament #604678566, Freeroll  Hold'em No Limit - Level I (20/40) - 2012/09/22 14:06:47 ET
+Table '604678566 47' 9-max Seat #1 is the button
+Seat 1: Player6 (2400 in chips) is sitting out
+Seat 2: Player4 (2520 in chips) 
+Seat 3: Player10 (2480 in chips) is sitting out
+Seat 4: Player8 (2440 in chips) 
+Seat 5: Player5 (2440 in chips) is sitting out
+Seat 6: Player24 (3510 in chips) 
+Seat 7: Player2 (1810 in chips) 
+Seat 8: Player18 (3300 in chips) 
+Seat 9: Player7 (1560 in chips) 
+Player4: posts small blind 20
+Player10: posts big blind 40
+*** HOLE CARDS ***
+Dealt to Player6 [Ts Jd]
+Player8: folds 
+Player5: folds 
+Player24: folds 
+Player2: folds 
+Player18: folds 
+Player7: calls 40
+Player6: folds 
+Player6 has returned
+Player4: folds 
+Player10: folds 
+Player7 collected 100 from pot
+Player7: doesn't show hand 
+*** SUMMARY ***
+Total pot 100 | Rake 0 
+Seat 1: Player6 (button) folded before Flop (didn't bet)
+Seat 2: Player4 (small blind) folded before Flop
+Seat 3: Player10 (big blind) folded before Flop
+Seat 4: Player8 folded before Flop (didn't bet)
+Seat 5: Player5 folded before Flop (didn't bet)
+Seat 6: Player24 folded before Flop (didn't bet)
+Seat 7: Player2 folded before Flop (didn't bet)
+Seat 8: Player18 folded before Flop (didn't bet)
+Seat 9: Player7 collected (100)
+
+
+
+PokerStars Hand #86564309734: Tournament #604678566, Freeroll  Hold'em No Limit - Level I (20/40) - 2012/09/22 14:07:33 ET
+Table '604678566 47' 9-max Seat #2 is the button
+Seat 1: Player6 (2400 in chips) 
+Seat 2: Player4 (2500 in chips) 
+Seat 3: Player10 (2440 in chips) is sitting out
+Seat 4: Player8 (2440 in chips) 
+Seat 5: Player5 (2440 in chips) is sitting out
+Seat 6: Player24 (3510 in chips) 
+Seat 7: Player2 (1810 in chips) 
+Seat 8: Player18 (3300 in chips) 
+Seat 9: Player7 (1620 in chips) 
+Player10: posts small blind 20
+Player8: posts big blind 40
+*** HOLE CARDS ***
+Dealt to Player6 [8d 5c]
+Player5: folds 
+Player24: folds 
+Player2: folds 
+Player18: raises 100 to 140
+Player7: raises 1480 to 1620 and is all-in
+Player6 has timed out
+Player6: folds 
+Player6 is sitting out
+Player4: folds 
+Player10: folds 
+Player6 has returned
+Player8: folds 
+Player18: calls 1480
+*** FLOP *** [7c 9d Kd]
+*** TURN *** [7c 9d Kd] [2d]
+*** RIVER *** [7c 9d Kd 2d] [Ad]
+*** SHOW DOWN ***
+Player18: shows [Js Jh] (a pair of Jacks)
+Player7: shows [9c 9h] (three of a kind, Nines)
+Player7 collected 3300 from pot
+*** SUMMARY ***
+Total pot 3300 | Rake 0 
+Board [7c 9d Kd 2d Ad]
+Seat 1: Player6 folded before Flop (didn't bet)
+Seat 2: Player4 (button) folded before Flop (didn't bet)
+Seat 3: Player10 (small blind) folded before Flop
+Seat 4: Player8 (big blind) folded before Flop
+Seat 5: Player5 folded before Flop (didn't bet)
+Seat 6: Player24 folded before Flop (didn't bet)
+Seat 7: Player2 folded before Flop (didn't bet)
+Seat 8: Player18 showed [Js Jh] and lost with a pair of Jacks
+Seat 9: Player7 showed [9c 9h] and won (3300) with three of a kind, Nines
+
+
+
+PokerStars Hand #86564377938: Tournament #604678566, Freeroll  Hold'em No Limit - Level I (20/40) - 2012/09/22 14:08:51 ET
+Table '604678566 47' 9-max Seat #3 is the button
+Seat 1: Player6 (2400 in chips) 
+Seat 2: Player4 (2500 in chips) 
+Seat 3: Player10 (2420 in chips) is sitting out
+Seat 4: Player8 (2400 in chips) 
+Seat 5: Player5 (2440 in chips) is sitting out
+Seat 6: Player24 (3510 in chips) 
+Seat 7: Player2 (1810 in chips) 
+Seat 8: Player18 (1680 in chips) 
+Seat 9: Player7 (3300 in chips) 
+Player8: posts small blind 20
+Player5: posts big blind 40
+*** HOLE CARDS ***
+Dealt to Player6 [5d Ad]
+Player5 has returned
+Player24: folds 
+Player2: folds 
+Player18: folds 
+Player7: raises 80 to 120
+Player6: calls 120
+Player4: folds 
+Player10: folds 
+Player8: folds 
+Player5: calls 80
+*** FLOP *** [Qc 4h Th]
+Player5: checks 
+Player7: bets 190
+Player6: folds 
+Player5: calls 190
+*** TURN *** [Qc 4h Th] [9c]
+Player5: checks 
+Player7: checks 
+*** RIVER *** [Qc 4h Th 9c] [2h]
+Player5: bets 440
+Player7: calls 440
+*** SHOW DOWN ***
+Player5: shows [Js 9h] (a pair of Nines)
+Player7: shows [Ks Qh] (a pair of Queens)
+Player7 collected 1640 from pot
+*** SUMMARY ***
+Total pot 1640 | Rake 0 
+Board [Qc 4h Th 9c 2h]
+Seat 1: Player6 folded on the Flop
+Seat 2: Player4 folded before Flop (didn't bet)
+Seat 3: Player10 (button) folded before Flop (didn't bet)
+Seat 4: Player8 (small blind) folded before Flop
+Seat 5: Player5 (big blind) showed [Js 9h] and lost with a pair of Nines
+Seat 6: Player24 folded before Flop (didn't bet)
+Seat 7: Player2 folded before Flop (didn't bet)
+Seat 8: Player18 folded before Flop (didn't bet)
+Seat 9: Player7 showed [Ks Qh] and won (1640) with a pair of Queens
+
+
+
+PokerStars Hand #86564468015: Tournament #604678566, Freeroll  Hold'em No Limit - Level II (30/60) - 2012/09/22 14:10:36 ET
+Table '604678566 47' 9-max Seat #4 is the button
+Seat 1: Player6 (2280 in chips) 
+Seat 2: Player4 (2500 in chips) 
+Seat 3: Player10 (2420 in chips) is sitting out
+Seat 4: Player8 (2380 in chips) 
+Seat 5: Player5 (1690 in chips) 
+Seat 6: Player24 (3510 in chips) 
+Seat 7: Player2 (1810 in chips) 
+Seat 8: Player18 (1680 in chips) 
+Seat 9: Player7 (4190 in chips) 
+Player5: posts small blind 30
+Player24: posts big blind 60
+*** HOLE CARDS ***
+Dealt to Player6 [7c 2h]
+Player2: folds 
+Player18: folds 
+Player7: folds 
+Player6: folds 
+Player4: folds 
+Player10: folds 
+Player8: folds 
+Player5: raises 1630 to 1690 and is all-in
+Player24: folds 
+Uncalled bet (1630) returned to Player5
+Player5 collected 120 from pot
+Player5: shows [4d 2c] (high card Four)
+*** SUMMARY ***
+Total pot 120 | Rake 0 
+Seat 1: Player6 folded before Flop (didn't bet)
+Seat 2: Player4 folded before Flop (didn't bet)
+Seat 3: Player10 folded before Flop (didn't bet)
+Seat 4: Player8 (button) folded before Flop (didn't bet)
+Seat 5: Player5 (small blind) collected (120)
+Seat 6: Player24 (big blind) folded before Flop
+Seat 7: Player2 folded before Flop (didn't bet)
+Seat 8: Player18 folded before Flop (didn't bet)
+Seat 9: Player7 folded before Flop (didn't bet)
+
+
+
+PokerStars Hand #86564506859: Tournament #604678566, Freeroll  Hold'em No Limit - Level II (30/60) - 2012/09/22 14:11:22 ET
+Table '604678566 47' 9-max Seat #5 is the button
+Seat 1: Player6 (2280 in chips) 
+Seat 2: Player4 (2500 in chips) 
+Seat 3: Player10 (2420 in chips) is sitting out
+Seat 4: Player8 (2380 in chips) 
+Seat 5: Player5 (1750 in chips) 
+Seat 6: Player24 (3450 in chips) 
+Seat 7: Player2 (1810 in chips) 
+Seat 8: Player18 (1680 in chips) 
+Seat 9: Player7 (4190 in chips) 
+Player24: posts small blind 30
+Player2: posts big blind 60
+*** HOLE CARDS ***
+Dealt to Player6 [Jh Ah]
+Player18: raises 60 to 120
+Player7: folds 
+Player6: calls 120
+Player4: calls 120
+Player10: folds 
+Player8: folds 
+Player5: folds 
+Player24: folds 
+Player2: calls 60
+*** FLOP *** [3c 6s 3s]
+Player2: checks 
+Player18: checks 
+Player6: checks 
+Player4: checks 
+*** TURN *** [3c 6s 3s] [Td]
+Player2: checks 
+Player18: bets 168
+Player6: folds 
+Player4: calls 168
+Player2: folds 
+*** RIVER *** [3c 6s 3s Td] [2c]
+Player18: bets 279
+Player4: folds 
+Uncalled bet (279) returned to Player18
+Player18 collected 846 from pot
+Player18: doesn't show hand 
+*** SUMMARY ***
+Total pot 846 | Rake 0 
+Board [3c 6s 3s Td 2c]
+Seat 1: Player6 folded on the Turn
+Seat 2: Player4 folded on the River
+Seat 3: Player10 folded before Flop (didn't bet)
+Seat 4: Player8 folded before Flop (didn't bet)
+Seat 5: Player5 (button) folded before Flop (didn't bet)
+Seat 6: Player24 (small blind) folded before Flop
+Seat 7: Player2 (big blind) folded on the Turn
+Seat 8: Player18 collected (846)
+Seat 9: Player7 folded before Flop (didn't bet)
+
+
+
+PokerStars Hand #86564563134: Tournament #604678566, Freeroll  Hold'em No Limit - Level II (30/60) - 2012/09/22 14:12:28 ET
+Table '604678566 47' 9-max Seat #6 is the button
+Seat 1: Player6 (2160 in chips) 
+Seat 2: Player4 (2212 in chips) 
+Seat 3: Player10 (2420 in chips) is sitting out
+Seat 4: Player8 (2380 in chips) 
+Seat 5: Player5 (1750 in chips) 
+Seat 6: Player24 (3420 in chips) 
+Seat 7: Player2 (1690 in chips) 
+Seat 8: Player18 (2238 in chips) 
+Seat 9: Player7 (4190 in chips) 
+Player2: posts small blind 30
+Player18: posts big blind 60
+*** HOLE CARDS ***
+Dealt to Player6 [Jd 4d]
+Player7: folds 
+Player6: folds 
+Player4: folds 
+Player10: folds 
+Player8: folds 
+Player5: folds 
+Player24: folds 
+Player2: folds 
+Uncalled bet (30) returned to Player18
+Player18 collected 60 from pot
+*** SUMMARY ***
+Total pot 60 | Rake 0 
+Seat 1: Player6 folded before Flop (didn't bet)
+Seat 2: Player4 folded before Flop (didn't bet)
+Seat 3: Player10 folded before Flop (didn't bet)
+Seat 4: Player8 folded before Flop (didn't bet)
+Seat 5: Player5 folded before Flop (didn't bet)
+Seat 6: Player24 (button) folded before Flop (didn't bet)
+Seat 7: Player2 (small blind) folded before Flop
+Seat 8: Player18 (big blind) collected (60)
+Seat 9: Player7 folded before Flop (didn't bet)
+
+
+
+PokerStars Hand #86564576427: Tournament #604678566, Freeroll  Hold'em No Limit - Level II (30/60) - 2012/09/22 14:12:44 ET
+Table '604678566 47' 9-max Seat #7 is the button
+Seat 1: Player6 (2160 in chips) 
+Seat 2: Player4 (2212 in chips) 
+Seat 3: Player10 (2420 in chips) is sitting out
+Seat 4: Player8 (2380 in chips) 
+Seat 5: Player5 (1750 in chips) 
+Seat 6: Player24 (3420 in chips) 
+Seat 7: Player2 (1660 in chips) 
+Seat 8: Player18 (2268 in chips) 
+Seat 9: Player7 (4190 in chips) 
+Player18: posts small blind 30
+Player7: posts big blind 60
+*** HOLE CARDS ***
+Dealt to Player6 [5c 7c]
+Player6: folds 
+Player4: calls 60
+Player10: folds 
+Player8: folds 
+Player5: calls 60
+Player24: folds 
+Player2: folds 
+Player18: folds 
+Player7: checks 
+*** FLOP *** [Jc 8d 8h]
+Player7: checks 
+Player4: bets 180
+Player5: raises 180 to 360
+Player7: folds 
+Player4: folds 
+Uncalled bet (180) returned to Player5
+Player5 collected 570 from pot
+*** SUMMARY ***
+Total pot 570 | Rake 0 
+Board [Jc 8d 8h]
+Seat 1: Player6 folded before Flop (didn't bet)
+Seat 2: Player4 folded on the Flop
+Seat 3: Player10 folded before Flop (didn't bet)
+Seat 4: Player8 folded before Flop (didn't bet)
+Seat 5: Player5 collected (570)
+Seat 6: Player24 folded before Flop (didn't bet)
+Seat 7: Player2 (button) folded before Flop (didn't bet)
+Seat 8: Player18 (small blind) folded before Flop
+Seat 9: Player7 (big blind) folded on the Flop
+
+
+
+PokerStars Hand #86564612629: Tournament #604678566, Freeroll  Hold'em No Limit - Level II (30/60) - 2012/09/22 14:13:26 ET
+Table '604678566 47' 9-max Seat #8 is the button
+Seat 1: Player6 (2160 in chips) 
+Seat 2: Player4 (1972 in chips) 
+Seat 3: Player10 (2420 in chips) is sitting out
+Seat 4: Player8 (2380 in chips) 
+Seat 5: Player5 (2080 in chips) 
+Seat 6: Player24 (3420 in chips) 
+Seat 7: Player2 (1660 in chips) 
+Seat 8: Player18 (2238 in chips) 
+Seat 9: Player7 (4130 in chips) 
+Player7: posts small blind 30
+Player6: posts big blind 60
+*** HOLE CARDS ***
+Dealt to Player6 [5s Qd]
+Player4: folds 
+Player10: folds 
+Player8: raises 84 to 144
+Player5: folds 
+Player24: folds 
+Player2: folds 
+Player18: folds 
+Player7: calls 114
+Player6: folds 
+*** FLOP *** [6h 2h 7s]
+Player7: checks 
+Player8: checks 
+*** TURN *** [6h 2h 7s] [2d]
+Player7: checks 
+Player8: checks 
+*** RIVER *** [6h 2h 7s 2d] [Th]
+Player7: bets 60
+Player8: calls 60
+*** SHOW DOWN ***
+Player7: shows [Kh Ts] (two pair, Tens and Deuces)
+Player8: mucks hand 
+Player7 collected 468 from pot
+*** SUMMARY ***
+Total pot 468 | Rake 0 
+Board [6h 2h 7s 2d Th]
+Seat 1: Player6 (big blind) folded before Flop
+Seat 2: Player4 folded before Flop (didn't bet)
+Seat 3: Player10 folded before Flop (didn't bet)
+Seat 4: Player8 mucked [Qc As]
+Seat 5: Player5 folded before Flop (didn't bet)
+Seat 6: Player24 folded before Flop (didn't bet)
+Seat 7: Player2 folded before Flop (didn't bet)
+Seat 8: Player18 (button) folded before Flop (didn't bet)
+Seat 9: Player7 (small blind) showed [Kh Ts] and won (468) with two pair, Tens and Deuces
+
+
+
+PokerStars Hand #86564657373: Tournament #604678566, Freeroll  Hold'em No Limit - Level II (30/60) - 2012/09/22 14:14:19 ET
+Table '604678566 47' 9-max Seat #9 is the button
+Seat 1: Player6 (2100 in chips) 
+Seat 2: Player4 (1972 in chips) 
+Seat 3: Player10 (2420 in chips) is sitting out
+Seat 4: Player8 (2176 in chips) 
+Seat 5: Player5 (2080 in chips) 
+Seat 6: Player24 (3420 in chips) 
+Seat 7: Player2 (1660 in chips) 
+Seat 8: Player18 (2238 in chips) 
+Seat 9: Player7 (4394 in chips) 
+Player6: posts small blind 30
+Player4: posts big blind 60
+*** HOLE CARDS ***
+Dealt to Player6 [Qh Kh]
+Player10: folds 
+Player8: folds 
+Player5 has timed out
+Player5: folds 
+Player5 is sitting out
+Player24: folds 
+Player2: folds 
+Player18: folds 
+Player5 has returned
+Player7: raises 60 to 120
+Player6: calls 90
+Player4: calls 60
+*** FLOP *** [8d 3s Kd]
+Player6: checks 
+Player4: checks 
+Player7: bets 180
+Player6: calls 180
+Player4: folds 
+*** TURN *** [8d 3s Kd] [Jh]
+Player6: checks 
+Player7: checks 
+*** RIVER *** [8d 3s Kd Jh] [6h]
+Player6: bets 240
+Player7: calls 240
+*** SHOW DOWN ***
+Player6: shows [Qh Kh] (a pair of Kings)
+Player7: mucks hand 
+Player6 collected 1200 from pot
+*** SUMMARY ***
+Total pot 1200 | Rake 0 
+Board [8d 3s Kd Jh 6h]
+Seat 1: Player6 (small blind) showed [Qh Kh] and won (1200) with a pair of Kings
+Seat 2: Player4 (big blind) folded on the Flop
+Seat 3: Player10 folded before Flop (didn't bet)
+Seat 4: Player8 folded before Flop (didn't bet)
+Seat 5: Player5 folded before Flop (didn't bet)
+Seat 6: Player24 folded before Flop (didn't bet)
+Seat 7: Player2 folded before Flop (didn't bet)
+Seat 8: Player18 folded before Flop (didn't bet)
+Seat 9: Player7 (button) mucked [Js 4s]
+
+
+
+PokerStars Hand #86564710080: Tournament #604678566, Freeroll  Hold'em No Limit - Level II (30/60) - 2012/09/22 14:15:20 ET
+Table '604678566 47' 9-max Seat #1 is the button
+Seat 1: Player6 (2760 in chips) 
+Seat 2: Player4 (1852 in chips) 
+Seat 3: Player10 (2420 in chips) is sitting out
+Seat 4: Player8 (2176 in chips) 
+Seat 5: Player5 (2080 in chips) 
+Seat 6: Player24 (3420 in chips) 
+Seat 7: Player2 (1660 in chips) 
+Seat 8: Player18 (2238 in chips) 
+Seat 9: Player7 (3854 in chips) 
+Player4: posts small blind 30
+Player10: posts big blind 60
+*** HOLE CARDS ***
+Dealt to Player6 [Kd 4d]
+Player8: folds 
+Player5: folds 
+Player24: folds 
+Player2: folds 
+Player18: folds 
+Player7: calls 60
+Player6 has timed out
+Player6: folds 
+Player6 is sitting out
+Player4: raises 240 to 300
+Player10: folds 
+Player7: folds 
+Uncalled bet (240) returned to Player4
+Player4 collected 180 from pot
+*** SUMMARY ***
+Total pot 180 | Rake 0 
+Seat 1: Player6 (button) folded before Flop (didn't bet)
+Seat 2: Player4 (small blind) collected (180)
+Seat 3: Player10 (big blind) folded before Flop
+Seat 4: Player8 folded before Flop (didn't bet)
+Seat 5: Player5 folded before Flop (didn't bet)
+Seat 6: Player24 folded before Flop (didn't bet)
+Seat 7: Player2 folded before Flop (didn't bet)
+Seat 8: Player18 folded before Flop (didn't bet)
+Seat 9: Player7 folded before Flop
+
+
+
+PokerStars Hand #86564750643: Tournament #604678566, Freeroll  Hold'em No Limit - Level II (30/60) - 2012/09/22 14:16:07 ET
+Table '604678566 47' 9-max Seat #2 is the button
+Seat 1: Player6 (2760 in chips) is sitting out
+Seat 2: Player4 (1972 in chips) 
+Seat 3: Player10 (2360 in chips) is sitting out
+Seat 4: Player8 (2176 in chips) 
+Seat 5: Player5 (2080 in chips) 
+Seat 6: Player24 (3420 in chips) 
+Seat 7: Player2 (1660 in chips) 
+Seat 8: Player18 (2238 in chips) 
+Seat 9: Player7 (3794 in chips) 
+Player10: posts small blind 30
+Player8: posts big blind 60
+*** HOLE CARDS ***
+Dealt to Player6 [4s Qd]
+Player5: folds 
+Player24: raises 90 to 150
+Player2: folds 
+Player18: calls 150
+Player7: folds 
+Player6: folds 
+Player4: folds 
+Player10: folds 
+Player8: calls 90
+*** FLOP *** [3h 7d 8s]
+Player8: checks 
+Player24: bets 240
+Player18: folds 
+Player8: folds 
+Uncalled bet (240) returned to Player24
+Player24 collected 480 from pot
+Player24: doesn't show hand 
+*** SUMMARY ***
+Total pot 480 | Rake 0 
+Board [3h 7d 8s]
+Seat 1: Player6 folded before Flop (didn't bet)
+Seat 2: Player4 (button) folded before Flop (didn't bet)
+Seat 3: Player10 (small blind) folded before Flop
+Seat 4: Player8 (big blind) folded on the Flop
+Seat 5: Player5 folded before Flop (didn't bet)
+Seat 6: Player24 collected (480)
+Seat 7: Player2 folded before Flop (didn't bet)
+Seat 8: Player18 folded on the Flop
+Seat 9: Player7 folded before Flop (didn't bet)
+
+
+
+PokerStars Hand #86564797497: Tournament #604678566, Freeroll  Hold'em No Limit - Level II (30/60) - 2012/09/22 14:17:01 ET
+Table '604678566 47' 9-max Seat #3 is the button
+Seat 1: Player6 (2760 in chips) is sitting out
+Seat 2: Player4 (1972 in chips) 
+Seat 3: Player10 (2330 in chips) is sitting out
+Seat 4: Player8 (2026 in chips) 
+Seat 5: Player5 (2080 in chips) 
+Seat 6: Player24 (3750 in chips) 
+Seat 7: Player2 (1660 in chips) 
+Seat 8: Player18 (2088 in chips) 
+Seat 9: Player7 (3794 in chips) 
+Player8: posts small blind 30
+Player5: posts big blind 60
+*** HOLE CARDS ***
+Dealt to Player6 [4d 9d]
+Player24: folds 
+Player2: raises 120 to 180
+Player18: folds 
+Player7: folds 
+Player6: folds 
+Player4: folds 
+Player10: folds 
+Player8: folds 
+Player5: calls 120
+*** FLOP *** [Qc 8s Kd]
+Player5: checks 
+Player2: bets 159
+Player5: calls 159
+*** TURN *** [Qc 8s Kd] [6c]
+Player5: checks 
+Player2: bets 290
+Player5: calls 290
+*** RIVER *** [Qc 8s Kd 6c] [9h]
+Player5: checks 
+Player2: checks 
+*** SHOW DOWN ***
+Player5: shows [Jh As] (high card Ace)
+Player2: shows [Ah Ks] (a pair of Kings)
+Player2 collected 1288 from pot
+*** SUMMARY ***
+Total pot 1288 | Rake 0 
+Board [Qc 8s Kd 6c 9h]
+Seat 1: Player6 folded before Flop (didn't bet)
+Seat 2: Player4 folded before Flop (didn't bet)
+Seat 3: Player10 (button) folded before Flop (didn't bet)
+Seat 4: Player8 (small blind) folded before Flop
+Seat 5: Player5 (big blind) showed [Jh As] and lost with high card Ace
+Seat 6: Player24 folded before Flop (didn't bet)
+Seat 7: Player2 showed [Ah Ks] and won (1288) with a pair of Kings
+Seat 8: Player18 folded before Flop (didn't bet)
+Seat 9: Player7 folded before Flop (didn't bet)
+
+
+
+PokerStars Hand #86564871878: Tournament #604678566, Freeroll  Hold'em No Limit - Level II (30/60) - 2012/09/22 14:18:27 ET
+Table '604678566 47' 9-max Seat #4 is the button
+Seat 1: Player6 (2760 in chips) is sitting out
+Seat 2: Player4 (1972 in chips) 
+Seat 3: Player10 (2330 in chips) is sitting out
+Seat 4: Player8 (1996 in chips) 
+Seat 5: Player5 (1451 in chips) 
+Seat 6: Player24 (3750 in chips) 
+Seat 7: Player2 (2319 in chips) 
+Seat 8: Player18 (2088 in chips) 
+Seat 9: Player7 (3794 in chips) 
+Player5: posts small blind 30
+Player24: posts big blind 60
+*** HOLE CARDS ***
+Dealt to Player6 [Ts 3d]
+Player2: folds 
+Player18: raises 120 to 180
+Player7: folds 
+Player6: folds 
+Player4: folds 
+Player10: folds 
+Player8: folds 
+Player5: folds 
+Player24: folds 
+Uncalled bet (120) returned to Player18
+Player18 collected 150 from pot
+*** SUMMARY ***
+Total pot 150 | Rake 0 
+Seat 1: Player6 folded before Flop (didn't bet)
+Seat 2: Player4 folded before Flop (didn't bet)
+Seat 3: Player10 folded before Flop (didn't bet)
+Seat 4: Player8 (button) folded before Flop (didn't bet)
+Seat 5: Player5 (small blind) folded before Flop
+Seat 6: Player24 (big blind) folded before Flop
+Seat 7: Player2 folded before Flop (didn't bet)
+Seat 8: Player18 collected (150)
+Seat 9: Player7 folded before Flop (didn't bet)
+
+
+
+PokerStars Hand #86564892974: Tournament #604678566, Freeroll  Hold'em No Limit - Level II (30/60) - 2012/09/22 14:18:51 ET
+Table '604678566 47' 9-max Seat #5 is the button
+Seat 1: Player6 (2760 in chips) is sitting out
+Seat 2: Player4 (1972 in chips) 
+Seat 3: Player10 (2330 in chips) is sitting out
+Seat 4: Player8 (1996 in chips) 
+Seat 5: Player5 (1421 in chips) 
+Seat 6: Player24 (3690 in chips) 
+Seat 7: Player2 (2319 in chips) 
+Seat 8: Player18 (2178 in chips) 
+Seat 9: Player7 (3794 in chips) 
+Player24: posts small blind 30
+Player2: posts big blind 60
+*** HOLE CARDS ***
+Dealt to Player6 [Kh 9s]
+Player18: folds 
+Player7: folds 
+Player6: folds 
+Player4: calls 60
+Player10: folds 
+Player8: folds 
+Player5: raises 180 to 240
+Player24: folds 
+Player2: folds 
+Player4: calls 180
+*** FLOP *** [Ah Kc 7s]
+Player4: bets 120
+Player5: raises 420 to 540
+Player4: folds 
+Uncalled bet (420) returned to Player5
+Player5 collected 810 from pot
+Player5: shows [5d Jh] (high card Ace)
+*** SUMMARY ***
+Total pot 810 | Rake 0 
+Board [Ah Kc 7s]
+Seat 1: Player6 folded before Flop (didn't bet)
+Seat 2: Player4 folded on the Flop
+Seat 3: Player10 folded before Flop (didn't bet)
+Seat 4: Player8 folded before Flop (didn't bet)
+Seat 5: Player5 (button) collected (810)
+Seat 6: Player24 (small blind) folded before Flop
+Seat 7: Player2 (big blind) folded before Flop
+Seat 8: Player18 folded before Flop (didn't bet)
+Seat 9: Player7 folded before Flop (didn't bet)
+
+
+
+PokerStars Hand #86564956390: Tournament #604678566, Freeroll  Hold'em No Limit - Level III (40/80) - 2012/09/22 14:20:05 ET
+Table '604678566 47' 9-max Seat #6 is the button
+Seat 1: Player6 (2760 in chips) is sitting out
+Seat 2: Player4 (1612 in chips) 
+Seat 3: Player10 (2330 in chips) is sitting out
+Seat 4: Player8 (1996 in chips) 
+Seat 5: Player5 (1871 in chips) 
+Seat 6: Player24 (3660 in chips) 
+Seat 7: Player2 (2259 in chips) 
+Seat 8: Player18 (2178 in chips) 
+Seat 9: Player7 (3794 in chips) 
+Player2: posts small blind 40
+Player18: posts big blind 80
+*** HOLE CARDS ***
+Dealt to Player6 [3c Kd]
+Player7: folds 
+Player6: folds 
+Player4: folds 
+Player10: folds 
+Player8: folds 
+Player5: calls 80
+Player24: raises 120 to 200
+Player2: folds 
+Player18: calls 120
+Player5: folds 
+*** FLOP *** [7s Qc 2s]
+Player18: checks 
+Player24: bets 260
+Player18: calls 260
+*** TURN *** [7s Qc 2s] [Th]
+Player18: checks 
+Player24: bets 520
+Player18: folds 
+Uncalled bet (520) returned to Player24
+Player24 collected 1040 from pot
+Player24: doesn't show hand 
+*** SUMMARY ***
+Total pot 1040 | Rake 0 
+Board [7s Qc 2s Th]
+Seat 1: Player6 folded before Flop (didn't bet)
+Seat 2: Player4 folded before Flop (didn't bet)
+Seat 3: Player10 folded before Flop (didn't bet)
+Seat 4: Player8 folded before Flop (didn't bet)
+Seat 5: Player5 folded before Flop
+Seat 6: Player24 (button) collected (1040)
+Seat 7: Player2 (small blind) folded before Flop
+Seat 8: Player18 (big blind) folded on the Turn
+Seat 9: Player7 folded before Flop (didn't bet)
+
+
+
+PokerStars Hand #86565334403: Tournament #604678566, Freeroll  Hold'em No Limit - Level III (40/80) - 2012/09/22 14:27:27 ET
+Table '604678566 47' 9-max Seat #9 is the button
+Seat 1: Player6 (2560 in chips) is sitting out
+Seat 2: Player4 (1612 in chips) 
+Seat 3: Player10 (2210 in chips) 
+Seat 4: Player8 (2116 in chips) 
+Seat 6: Player24 (4626 in chips) 
+Seat 7: Player2 (2419 in chips) 
+Seat 8: Player18 (3396 in chips) 
+Seat 9: Player7 (3521 in chips) 
+Player6: posts small blind 40
+Player4: posts big blind 80
+*** HOLE CARDS ***
+Dealt to Player6 [Qc 6d]
+Player10: folds 
+Player8: folds 
+Player24: folds 
+Player2: raises 160 to 240
+Player18: folds 
+Player7: folds 
+Player6: folds 
+Player4: calls 160
+*** FLOP *** [2h Qs 3d]
+Player4: checks 
+Player2: checks 
+*** TURN *** [2h Qs 3d] [Ts]
+Player4: checks 
+Player2: checks 
+*** RIVER *** [2h Qs 3d Ts] [5c]
+Player4: bets 240
+Player2: calls 240
+*** SHOW DOWN ***
+Player4: shows [8c Kc] (high card King)
+Player2: shows [As Tc] (a pair of Tens)
+Player2 collected 1000 from pot
+*** SUMMARY ***
+Total pot 1000 | Rake 0 
+Board [2h Qs 3d Ts 5c]
+Seat 1: Player6 (small blind) folded before Flop
+Seat 2: Player4 (big blind) showed [8c Kc] and lost with high card King
+Seat 3: Player10 folded before Flop (didn't bet)
+Seat 4: Player8 folded before Flop (didn't bet)
+Seat 6: Player24 folded before Flop (didn't bet)
+Seat 7: Player2 showed [As Tc] and won (1000) with a pair of Tens
+Seat 8: Player18 folded before Flop (didn't bet)
+Seat 9: Player7 (button) folded before Flop (didn't bet)
+
+
+
+PokerStars Hand #86565401013: Tournament #604678566, Freeroll  Hold'em No Limit - Level III (40/80) - 2012/09/22 14:28:46 ET
+Table '604678566 47' 9-max Seat #1 is the button
+Seat 1: Player6 (2520 in chips) is sitting out
+Seat 2: Player4 (1132 in chips) 
+Seat 3: Player10 (2210 in chips) 
+Seat 4: Player8 (2116 in chips) 
+Seat 5: Player9 (2480 in chips) 
+Seat 6: Player24 (4626 in chips) 
+Seat 7: Player2 (2939 in chips) 
+Seat 8: Player18 (3396 in chips) 
+Seat 9: Player7 (3521 in chips) 
+Player4: posts small blind 40
+Player10: posts big blind 80
+*** HOLE CARDS ***
+Dealt to Player6 [4d Jc]
+Player8: folds 
+Player9: folds 
+Player24: raises 120 to 200
+Player2: folds 
+Player18: folds 
+Player7: folds 
+Player6: folds 
+Player4: folds 
+Player10: folds 
+Uncalled bet (120) returned to Player24
+Player24 collected 200 from pot
+Player24: doesn't show hand 
+*** SUMMARY ***
+Total pot 200 | Rake 0 
+Seat 1: Player6 (button) folded before Flop (didn't bet)
+Seat 2: Player4 (small blind) folded before Flop
+Seat 3: Player10 (big blind) folded before Flop
+Seat 4: Player8 folded before Flop (didn't bet)
+Seat 5: Player9 folded before Flop (didn't bet)
+Seat 6: Player24 collected (200)
+Seat 7: Player2 folded before Flop (didn't bet)
+Seat 8: Player18 folded before Flop (didn't bet)
+Seat 9: Player7 folded before Flop (didn't bet)
+
+
+
+PokerStars Hand #86565431160: Tournament #604678566, Freeroll  Hold'em No Limit - Level III (40/80) - 2012/09/22 14:29:22 ET
+Table '604678566 47' 9-max Seat #2 is the button
+Seat 1: Player6 (2520 in chips) is sitting out
+Seat 2: Player4 (1092 in chips) 
+Seat 3: Player10 (2130 in chips) 
+Seat 4: Player8 (2116 in chips) 
+Seat 5: Player9 (2480 in chips) 
+Seat 6: Player24 (4746 in chips) 
+Seat 7: Player2 (2939 in chips) 
+Seat 8: Player18 (3396 in chips) 
+Seat 9: Player7 (3521 in chips) 
+Player10: posts small blind 40
+Player8: posts big blind 80
+*** HOLE CARDS ***
+Dealt to Player6 [Ac 9c]
+Player9: folds 
+Player24: folds 
+Player2: folds 
+Player18: folds 
+Player7: raises 80 to 160
+Player6: folds 
+Player4: folds 
+Player10: folds 
+Player8: calls 80
+*** FLOP *** [6c 2c 6d]
+Player8: checks 
+Player7: bets 180
+Player8: folds 
+Uncalled bet (180) returned to Player7
+Player7 collected 360 from pot
+Player7: doesn't show hand 
+*** SUMMARY ***
+Total pot 360 | Rake 0 
+Board [6c 2c 6d]
+Seat 1: Player6 folded before Flop (didn't bet)
+Seat 2: Player4 (button) folded before Flop (didn't bet)
+Seat 3: Player10 (small blind) folded before Flop
+Seat 4: Player8 (big blind) folded on the Flop
+Seat 5: Player9 folded before Flop (didn't bet)
+Seat 6: Player24 folded before Flop (didn't bet)
+Seat 7: Player2 folded before Flop (didn't bet)
+Seat 8: Player18 folded before Flop (didn't bet)
+Seat 9: Player7 collected (360)
+
+
+
+PokerStars Hand #86565835105: Tournament #604678566, Freeroll  Hold'em No Limit - Level IV (50/100) - 2012/09/22 14:37:10 ET
+Table '604678566 47' 9-max Seat #1 is the button
+Seat 1: Player6 (3054 in chips) 
+Seat 2: Player4 (758 in chips) 
+Seat 3: Player10 (2240 in chips) 
+Seat 4: Player8 (1906 in chips) 
+Seat 5: Player9 (2330 in chips) 
+Seat 6: Player24 (4496 in chips) 
+Seat 7: Player2 (2789 in chips) 
+Seat 8: Player18 (3046 in chips) 
+Seat 9: Player7 (4321 in chips) 
+Player4: posts small blind 50
+Player10: posts big blind 100
+*** HOLE CARDS ***
+Dealt to Player6 [Kc 7d]
+Player8: folds 
+Player9: folds 
+Player24: folds 
+Player2: folds 
+Player18: folds 
+Player7: raises 200 to 300
+Player6: folds 
+Player4: folds 
+Player10: folds 
+Uncalled bet (200) returned to Player7
+Player7 collected 250 from pot
+Player7: doesn't show hand 
+*** SUMMARY ***
+Total pot 250 | Rake 0 
+Seat 1: Player6 (button) folded before Flop (didn't bet)
+Seat 2: Player4 (small blind) folded before Flop
+Seat 3: Player10 (big blind) folded before Flop
+Seat 4: Player8 folded before Flop (didn't bet)
+Seat 5: Player9 folded before Flop (didn't bet)
+Seat 6: Player24 folded before Flop (didn't bet)
+Seat 7: Player2 folded before Flop (didn't bet)
+Seat 8: Player18 folded before Flop (didn't bet)
+Seat 9: Player7 collected (250)
+
+
+
+PokerStars Hand #86565871860: Tournament #604678566, Freeroll  Hold'em No Limit - Level IV (50/100) - 2012/09/22 14:37:53 ET
+Table '604678566 47' 9-max Seat #2 is the button
+Seat 1: Player6 (3054 in chips) 
+Seat 2: Player4 (708 in chips) 
+Seat 3: Player10 (2140 in chips) 
+Seat 4: Player8 (1906 in chips) 
+Seat 5: Player9 (2330 in chips) 
+Seat 6: Player24 (4496 in chips) 
+Seat 7: Player2 (2789 in chips) 
+Seat 8: Player18 (3046 in chips) 
+Seat 9: Player7 (4471 in chips) 
+Player10: posts small blind 50
+Player8: posts big blind 100
+*** HOLE CARDS ***
+Dealt to Player6 [6h 8h]
+Player9: folds 
+Player24: folds 
+Player2: folds 
+Player18: folds 
+Player7: folds 
+Player6 has timed out
+Player6: folds 
+Player6 is sitting out
+Player4: folds 
+Player10: raises 150 to 250
+Player6 has returned
+Player8: calls 150
+*** FLOP *** [Jd 3h 9h]
+Player10: bets 250
+Player8: calls 250
+*** TURN *** [Jd 3h 9h] [5c]
+Player10: bets 500
+Player8: calls 500
+*** RIVER *** [Jd 3h 9h 5c] [7s]
+Player10: checks 
+Player8: bets 906 and is all-in
+Player10: folds 
+Uncalled bet (906) returned to Player8
+Player8 collected 2000 from pot
+Player8: doesn't show hand 
+*** SUMMARY ***
+Total pot 2000 | Rake 0 
+Board [Jd 3h 9h 5c 7s]
+Seat 1: Player6 folded before Flop (didn't bet)
+Seat 2: Player4 (button) folded before Flop (didn't bet)
+Seat 3: Player10 (small blind) folded on the River
+Seat 4: Player8 (big blind) collected (2000)
+Seat 5: Player9 folded before Flop (didn't bet)
+Seat 6: Player24 folded before Flop (didn't bet)
+Seat 7: Player2 folded before Flop (didn't bet)
+Seat 8: Player18 folded before Flop (didn't bet)
+Seat 9: Player7 folded before Flop (didn't bet)
+
+
+
+PokerStars Hand #86565930398: Tournament #604678566, Freeroll  Hold'em No Limit - Level IV (50/100) - 2012/09/22 14:39:01 ET
+Table '604678566 47' 9-max Seat #3 is the button
+Seat 1: Player6 (3054 in chips) 
+Seat 2: Player4 (708 in chips) 
+Seat 3: Player10 (1140 in chips) 
+Seat 4: Player8 (2906 in chips) 
+Seat 5: Player9 (2330 in chips) 
+Seat 6: Player24 (4496 in chips) 
+Seat 7: Player2 (2789 in chips) 
+Seat 8: Player18 (3046 in chips) 
+Seat 9: Player7 (4471 in chips) 
+Player8: posts small blind 50
+Player9: posts big blind 100
+*** HOLE CARDS ***
+Dealt to Player6 [Qh 2s]
+Player24: folds 
+Player2: folds 
+Player18: folds 
+Player7: raises 100 to 200
+Player6: folds 
+Player4: folds 
+Player10: folds 
+Player8: folds 
+Player9: folds 
+Uncalled bet (100) returned to Player7
+Player7 collected 250 from pot
+Player7: doesn't show hand 
+*** SUMMARY ***
+Total pot 250 | Rake 0 
+Seat 1: Player6 folded before Flop (didn't bet)
+Seat 2: Player4 folded before Flop (didn't bet)
+Seat 3: Player10 (button) folded before Flop (didn't bet)
+Seat 4: Player8 (small blind) folded before Flop
+Seat 5: Player9 (big blind) folded before Flop
+Seat 6: Player24 folded before Flop (didn't bet)
+Seat 7: Player2 folded before Flop (didn't bet)
+Seat 8: Player18 folded before Flop (didn't bet)
+Seat 9: Player7 collected (250)
+
+
+
+PokerStars Hand #86565962688: Tournament #604678566, Freeroll  Hold'em No Limit - Level IV (50/100) - 2012/09/22 14:39:39 ET
+Table '604678566 47' 9-max Seat #4 is the button
+Seat 1: Player6 (3054 in chips) 
+Seat 2: Player4 (708 in chips) 
+Seat 3: Player10 (1140 in chips) 
+Seat 4: Player8 (2856 in chips) 
+Seat 5: Player9 (2230 in chips) 
+Seat 6: Player24 (4496 in chips) 
+Seat 7: Player2 (2789 in chips) 
+Seat 8: Player18 (3046 in chips) 
+Seat 9: Player7 (4621 in chips) 
+Player9: posts small blind 50
+Player24: posts big blind 100
+*** HOLE CARDS ***
+Dealt to Player6 [Ad 3d]
+Player2: folds 
+Player18: folds 
+Player7: folds 
+Player6: folds 
+Player4: raises 608 to 708 and is all-in
+Player10: raises 432 to 1140 and is all-in
+Player8: folds 
+Player9: folds 
+Player24: folds 
+Uncalled bet (432) returned to Player10
+*** FLOP *** [5c Tc 6d]
+*** TURN *** [5c Tc 6d] [6c]
+*** RIVER *** [5c Tc 6d 6c] [Qh]
+*** SHOW DOWN ***
+Player4: shows [Ks Kd] (two pair, Kings and Sixes)
+Player10: shows [Ah 8c] (a pair of Sixes)
+Player4 collected 1566 from pot
+*** SUMMARY ***
+Total pot 1566 | Rake 0 
+Board [5c Tc 6d 6c Qh]
+Seat 1: Player6 folded before Flop (didn't bet)
+Seat 2: Player4 showed [Ks Kd] and won (1566) with two pair, Kings and Sixes
+Seat 3: Player10 showed [Ah 8c] and lost with a pair of Sixes
+Seat 4: Player8 (button) folded before Flop (didn't bet)
+Seat 5: Player9 (small blind) folded before Flop
+Seat 6: Player24 (big blind) folded before Flop
+Seat 7: Player2 folded before Flop (didn't bet)
+Seat 8: Player18 folded before Flop (didn't bet)
+Seat 9: Player7 folded before Flop (didn't bet)
+
+
+
+PokerStars Hand #86566001568: Tournament #604678566, Freeroll  Hold'em No Limit - Level V (60/120) - 2012/09/22 14:40:24 ET
+Table '604678566 47' 9-max Seat #5 is the button
+Seat 1: Player6 (3054 in chips) 
+Seat 2: Player4 (1566 in chips) 
+Seat 3: Player10 (432 in chips) 
+Seat 4: Player8 (2856 in chips) 
+Seat 5: Player9 (2180 in chips) 
+Seat 6: Player24 (4396 in chips) 
+Seat 7: Player2 (2789 in chips) 
+Seat 8: Player18 (3046 in chips) 
+Seat 9: Player7 (4621 in chips) 
+Player6: posts the ante 10
+Player4: posts the ante 10
+Player10: posts the ante 10
+Player8: posts the ante 10
+Player9: posts the ante 10
+Player24: posts the ante 10
+Player2: posts the ante 10
+Player18: posts the ante 10
+Player7: posts the ante 10
+Player24: posts small blind 60
+Player2: posts big blind 120
+*** HOLE CARDS ***
+Dealt to Player6 [8d 6h]
+Player18: folds 
+Player7: folds 
+Player6: folds 
+Player4: folds 
+Player10: folds 
+Player8: folds 
+Player9: folds 
+Player24: folds 
+Uncalled bet (60) returned to Player2
+Player2 collected 210 from pot
+Player2: doesn't show hand 
+*** SUMMARY ***
+Total pot 210 | Rake 0 
+Seat 1: Player6 folded before Flop (didn't bet)
+Seat 2: Player4 folded before Flop (didn't bet)
+Seat 3: Player10 folded before Flop (didn't bet)
+Seat 4: Player8 folded before Flop (didn't bet)
+Seat 5: Player9 (button) folded before Flop (didn't bet)
+Seat 6: Player24 (small blind) folded before Flop
+Seat 7: Player2 (big blind) collected (210)
+Seat 8: Player18 folded before Flop (didn't bet)
+Seat 9: Player7 folded before Flop (didn't bet)
+
+
+
+PokerStars Hand #86568216297: Tournament #604678566, Freeroll  Hold'em No Limit - Level VIII (125/250) - 2012/09/22 15:23:55 ET
+Table '604678566 47' 9-max Seat #1 is the button
+Seat 1: Player6 (2164 in chips) 
+Seat 2: Player4 (756 in chips) 
+Seat 3: Player25 (10807 in chips) 
+Seat 4: Player8 (3386 in chips) 
+Seat 5: Player9 (2020 in chips) 
+Seat 6: Player24 (4751 in chips) 
+Seat 7: Player2 (2002 in chips) 
+Seat 8: Player18 (4646 in chips) 
+Seat 9: Player7 (3705 in chips) 
+Player6: posts the ante 25
+Player4: posts the ante 25
+Player25: posts the ante 25
+Player8: posts the ante 25
+Player9: posts the ante 25
+Player24: posts the ante 25
+Player2: posts the ante 25
+Player18: posts the ante 25
+Player7: posts the ante 25
+Player4: posts small blind 125
+Player25: posts big blind 250
+*** HOLE CARDS ***
+Dealt to Player6 [5h 4h]
+Player8: folds 
+Player9: folds 
+Player24: folds 
+Player2: folds 
+Player18: raises 275 to 525
+Player7: folds 
+Player6: folds 
+Player4 has timed out
+Player4: folds 
+Player4 is sitting out
+Player4 has returned
+Player25: folds 
+Uncalled bet (275) returned to Player18
+Player18 collected 850 from pot
+*** SUMMARY ***
+Total pot 850 | Rake 0 
+Seat 1: Player6 (button) folded before Flop (didn't bet)
+Seat 2: Player4 (small blind) folded before Flop
+Seat 3: Player25 (big blind) folded before Flop
+Seat 4: Player8 folded before Flop (didn't bet)
+Seat 5: Player9 folded before Flop (didn't bet)
+Seat 6: Player24 folded before Flop (didn't bet)
+Seat 7: Player2 folded before Flop (didn't bet)
+Seat 8: Player18 collected (850)
+Seat 9: Player7 folded before Flop (didn't bet)
+
+
+
+PokerStars Hand #86568286092: Tournament #604678566, Freeroll  Hold'em No Limit - Level VIII (125/250) - 2012/09/22 15:25:13 ET
+Table '604678566 47' 9-max Seat #2 is the button
+Seat 1: Player6 (2139 in chips) 
+Seat 2: Player4 (606 in chips) 
+Seat 3: Player25 (10532 in chips) 
+Seat 4: Player8 (3361 in chips) 
+Seat 5: Player9 (1995 in chips) 
+Seat 6: Player24 (4726 in chips) 
+Seat 7: Player2 (1977 in chips) 
+Seat 8: Player18 (5221 in chips) 
+Seat 9: Player7 (3680 in chips) 
+Player6: posts the ante 25
+Player4: posts the ante 25
+Player25: posts the ante 25
+Player8: posts the ante 25
+Player9: posts the ante 25
+Player24: posts the ante 25
+Player2: posts the ante 25
+Player18: posts the ante 25
+Player7: posts the ante 25
+Player25: posts small blind 125
+Player8: posts big blind 250
+*** HOLE CARDS ***
+Dealt to Player6 [8h Jh]
+Player9: folds 
+Player24: folds 
+Player2: folds 
+Player18: folds 
+Player7: folds 
+Player6: folds 
+Player4: folds 
+Player25: folds 
+Uncalled bet (125) returned to Player8
+Player8 collected 475 from pot
+*** SUMMARY ***
+Total pot 475 | Rake 0 
+Seat 1: Player6 folded before Flop (didn't bet)
+Seat 2: Player4 (button) folded before Flop (didn't bet)
+Seat 3: Player25 (small blind) folded before Flop
+Seat 4: Player8 (big blind) collected (475)
+Seat 5: Player9 folded before Flop (didn't bet)
+Seat 6: Player24 folded before Flop (didn't bet)
+Seat 7: Player2 folded before Flop (didn't bet)
+Seat 8: Player18 folded before Flop (didn't bet)
+Seat 9: Player7 folded before Flop (didn't bet)
+
+
+
+PokerStars Hand #86568364499: Tournament #604678566, Freeroll  Hold'em No Limit - Level IX (150/300) - 2012/09/22 15:26:40 ET
+Table '604678566 47' 9-max Seat #3 is the button
+Seat 1: Player6 (2114 in chips) 
+Seat 2: Player4 (581 in chips) 
+Seat 3: Player25 (10382 in chips) 
+Seat 4: Player8 (3686 in chips) 
+Seat 5: Player9 (1970 in chips) 
+Seat 6: Player24 (4701 in chips) 
+Seat 7: Player2 (1952 in chips) 
+Seat 8: Player18 (5196 in chips) 
+Seat 9: Player7 (3655 in chips) 
+Player6: posts the ante 30
+Player4: posts the ante 30
+Player25: posts the ante 30
+Player8: posts the ante 30
+Player9: posts the ante 30
+Player24: posts the ante 30
+Player2: posts the ante 30
+Player18: posts the ante 30
+Player7: posts the ante 30
+Player8: posts small blind 150
+Player9: posts big blind 300
+*** HOLE CARDS ***
+Dealt to Player6 [7s 5d]
+Player24: folds 
+Player2: folds 
+Player18: folds 
+Player7: raises 900 to 1200
+Player6: folds 
+Player4: folds 
+Player25: folds 
+Player8: folds 
+Player9: folds 
+Uncalled bet (900) returned to Player7
+Player7 collected 1020 from pot
+Player7: doesn't show hand 
+*** SUMMARY ***
+Total pot 1020 | Rake 0 
+Seat 1: Player6 folded before Flop (didn't bet)
+Seat 2: Player4 folded before Flop (didn't bet)
+Seat 3: Player25 (button) folded before Flop (didn't bet)
+Seat 4: Player8 (small blind) folded before Flop
+Seat 5: Player9 (big blind) folded before Flop
+Seat 6: Player24 folded before Flop (didn't bet)
+Seat 7: Player2 folded before Flop (didn't bet)
+Seat 8: Player18 folded before Flop (didn't bet)
+Seat 9: Player7 collected (1020)
+
+
+
+PokerStars Hand #86568452067: Tournament #604678566, Freeroll  Hold'em No Limit - Level IX (150/300) - 2012/09/22 15:28:18 ET
+Table '604678566 47' 9-max Seat #4 is the button
+Seat 1: Player6 (2084 in chips) 
+Seat 2: Player4 (551 in chips) 
+Seat 3: Player25 (10352 in chips) 
+Seat 4: Player8 (3506 in chips) 
+Seat 5: Player9 (1640 in chips) 
+Seat 6: Player24 (4671 in chips) 
+Seat 7: Player2 (1922 in chips) 
+Seat 8: Player18 (5166 in chips) 
+Seat 9: Player7 (4345 in chips) 
+Player6: posts the ante 30
+Player4: posts the ante 30
+Player25: posts the ante 30
+Player8: posts the ante 30
+Player9: posts the ante 30
+Player24: posts the ante 30
+Player2: posts the ante 30
+Player18: posts the ante 30
+Player7: posts the ante 30
+Player9: posts small blind 150
+Player24: posts big blind 300
+*** HOLE CARDS ***
+Dealt to Player6 [Jc 6c]
+Player2: folds 
+Player18: folds 
+Player7: folds 
+Player7 is sitting out
+Player6: folds 
+Player4: raises 221 to 521 and is all-in
+Player25: folds 
+Player8: folds 
+Player9: raises 1089 to 1610 and is all-in
+Player24: folds 
+Uncalled bet (1089) returned to Player9
+*** FLOP *** [8c 3d 8h]
+*** TURN *** [8c 3d 8h] [6h]
+*** RIVER *** [8c 3d 8h 6h] [4c]
+*** SHOW DOWN ***
+Player9: shows [Qs As] (a pair of Eights)
+Player4: shows [Kd Ah] (a pair of Eights - Ace+King kicker)
+Player4 collected 1612 from pot
+*** SUMMARY ***
+Total pot 1612 | Rake 0 
+Board [8c 3d 8h 6h 4c]
+Seat 1: Player6 folded before Flop (didn't bet)
+Seat 2: Player4 showed [Kd Ah] and won (1612) with a pair of Eights
+Seat 3: Player25 folded before Flop (didn't bet)
+Seat 4: Player8 (button) folded before Flop (didn't bet)
+Seat 5: Player9 (small blind) showed [Qs As] and lost with a pair of Eights
+Seat 6: Player24 (big blind) folded before Flop
+Seat 7: Player2 folded before Flop (didn't bet)
+Seat 8: Player18 folded before Flop (didn't bet)
+Seat 9: Player7 folded before Flop (didn't bet)
+
+
+
+PokerStars Hand #86568539580: Tournament #604678566, Freeroll  Hold'em No Limit - Level IX (150/300) - 2012/09/22 15:29:55 ET
+Table '604678566 47' 9-max Seat #5 is the button
+Seat 1: Player6 (2054 in chips) 
+Seat 2: Player4 (1612 in chips) 
+Seat 3: Player25 (10322 in chips) 
+Seat 4: Player8 (3476 in chips) 
+Seat 5: Player9 (1089 in chips) 
+Seat 6: Player24 (4341 in chips) 
+Seat 7: Player2 (1892 in chips) 
+Seat 8: Player18 (5136 in chips) 
+Seat 9: Player7 (4315 in chips) is sitting out
+Player6: posts the ante 30
+Player4: posts the ante 30
+Player25: posts the ante 30
+Player8: posts the ante 30
+Player9: posts the ante 30
+Player24: posts the ante 30
+Player2: posts the ante 30
+Player18: posts the ante 30
+Player7: posts the ante 30
+Player24: posts small blind 150
+Player2: posts big blind 300
+*** HOLE CARDS ***
+Dealt to Player6 [8d Ks]
+Player7 has returned
+Player18: folds 
+Player7: folds 
+Player6: folds 
+Player4: raises 600 to 900
+Player25: PokerStars Hand #86568688159: Tournament #604678566, Freeroll  Hold'em No Limit - Level IX (150/300) - 2012/09/22 15:32:38 ET
+Table '604678566 47' 9-max Seat #7 is the button
+Seat 1: Player6 (1994 in chips) 
+Seat 2: Player4 (2272 in chips) 
+Seat 3: Player25 (10982 in chips) 
+Seat 4: Player8 (3416 in chips) 
+Seat 5: Player9 (1029 in chips) 
+Seat 6: Player24 (4131 in chips) 
+Seat 7: Player2 (1382 in chips) 
+Seat 8: Player18 (4776 in chips) 
+Seat 9: Player7 (4255 in chips) 
+Player6: posts the ante 30
+Player4: posts the ante 30
+Player25: posts the ante 30
+Player8: posts the ante 30
+Player9: posts the ante 30
+Player24: posts the ante 30
+Player2: posts the ante 30
+Player18: posts the ante 30
+Player7: posts the ante 30
+Player18: posts small blind 150
+Player7: posts big blind 300
+*** HOLE CARDS ***
+Dealt to Player6 [Qh Jc]
+Player6 has timed out
+Player6: folds 
+Player6 is sitting out
+Player6 has returned
+Player4: folds 
+Player25: folds 
+Player8: folds 
+Player9: folds 
+Player24: folds 
+Player2: raises 1050 to 1350
+Player18: folds 
+Player7: folds 
+Uncalled bet (1050) returned to Player2
+Player2 collected 1020 from pot
+Player2: doesn't show hand 
+*** SUMMARY ***
+Total pot 1020 | Rake 0 
+Seat 1: Player6 folded before Flop (didn't bet)
+Seat 2: Player4 folded before Flop (didn't bet)
+Seat 3: Player25 folded before Flop (didn't bet)
+Seat 4: Player8 folded before Flop (didn't bet)
+Seat 5: Player9 folded before Flop (didn't bet)
+Seat 6: Player24 folded before Flop (didn't bet)
+Seat 7: Player2 (button) collected (1020)
+Seat 8: Player18 (small blind) folded before Flop
+Seat 9: Player7 (big blind) folded before Flop
+
+
+
+PokerStars Hand #86568776538: Tournament #604678566, Freeroll  Hold'em No Limit - Level IX (150/300) - 2012/09/22 15:34:16 ET
+Table '604678566 47' 9-max Seat #8 is the button
+Seat 1: Player6 (1964 in chips) 
+Seat 2: Player4 (2242 in chips) 
+Seat 3: Player25 (10952 in chips) 
+Seat 4: Player8 (3386 in chips) 
+Seat 5: Player9 (999 in chips) 
+Seat 6: Player24 (4101 in chips) 
+Seat 7: Player2 (2072 in chips) 
+Seat 8: Player18 (4596 in chips) 
+Seat 9: Player7 (3925 in chips) 
+Player6: posts the ante 30
+Player4: posts the ante 30
+Player25: posts the ante 30
+Player8: posts the ante 30
+Player9: posts the ante 30
+Player24: posts the ante 30
+Player2: posts the ante 30
+Player18: posts the ante 30
+Player7: posts the ante 30
+Player7: posts small blind 150
+Player6: posts big blind 300
+*** HOLE CARDS ***
+Dealt to Player6 [6d 8c]
+Player4: calls 300
+Player25: folds 
+Player8: folds 
+Player9: folds 
+Player24: folds 
+Player2: folds 
+Player18: folds 
+Player7: folds 
+Player6: checks 
+*** FLOP *** [Td 7h 5h]
+Player6: checks 
+Player4: checks 
+*** TURN *** [Td 7h 5h] [3h]
+Player6: checks 
+Player4: checks 
+*** RIVER *** [Td 7h 5h 3h] [Ts]
+Player6 has timed out
+Player6: checks 
+Player4: bets 600
+Player6 has timed out
+Player6: folds 
+Uncalled bet (600) returned to Player4
+Player6 is sitting out
+Player4 collected 1020 from pot
+*** SUMMARY ***
+Total pot 1020 | Rake 0 
+Board [Td 7h 5h 3h Ts]
+Seat 1: Player6 (big blind) folded on the River
+Seat 2: Player4 collected (1020)
+Seat 3: Player25 folded before Flop (didn't bet)
+Seat 4: Player8 folded before Flop (didn't bet)
+Seat 5: Player9 folded before Flop (didn't bet)
+Seat 6: Player24 folded before Flop (didn't bet)
+Seat 7: Player2 folded before Flop (didn't bet)
+Seat 8: Player18 (button) folded before Flop (didn't bet)
+Seat 9: Player7 (small blind) folded before Flop
+
+
+
+PokerStars Hand #86568888528: Tournament #604678566, Freeroll  Hold'em No Limit - Level IX (150/300) - 2012/09/22 15:36:19 ET
+Table '604678566 47' 9-max Seat #9 is the button
+Seat 1: Player6 (1634 in chips) is sitting out
+Seat 2: Player4 (2932 in chips) 
+Seat 3: Player25 (10922 in chips) 
+Seat 4: Player8 (3356 in chips) 
+Seat 5: Player9 (969 in chips) 
+Seat 6: Player24 (4071 in chips) 
+Seat 7: Player2 (2042 in chips) 
+Seat 8: Player18 (4566 in chips) 
+Seat 9: Player7 (3745 in chips) 
+Player6: posts the ante 30
+Player4: posts the ante 30
+Player25: posts the ante 30
+Player8: posts the ante 30
+Player9: posts the ante 30
+Player24: posts the ante 30
+Player2: posts the ante 30
+Player18: posts the ante 30
+Player7: posts the ante 30
+Player6: posts small blind 150
+Player4: posts big blind 300
+*** HOLE CARDS ***
+Dealt to Player6 [Ks 4h]
+Player6 has returned
+Player25: folds 
+Player8: folds 
+Player9: folds 
+Player24: folds 
+Player2: raises 1650 to 1950
+Player18: folds 
+Player7: folds 
+Player6: folds 
+Player4: folds 
+Uncalled bet (1650) returned to Player2
+Player2 collected 1020 from pot
+Player2: doesn't show hand 
+*** SUMMARY ***
+Total pot 1020 | Rake 0 
+Seat 1: Player6 (small blind) folded before Flop
+Seat 2: Player4 (big blind) folded before Flop
+Seat 3: Player25 folded before Flop (didn't bet)
+Seat 4: Player8 folded before Flop (didn't bet)
+Seat 5: Player9 folded before Flop (didn't bet)
+Seat 6: Player24 folded before Flop (didn't bet)
+Seat 7: Player2 collected (1020)
+Seat 8: Player18 folded before Flop (didn't bet)
+Seat 9: Player7 (button) folded before Flop (didn't bet)
+
+
+
+PokerStars Hand #86568973626: Tournament #604678566, Freeroll  Hold'em No Limit - Level X (200/400) - 2012/09/22 15:37:54 ET
+Table '604678566 47' 9-max Seat #1 is the button
+Seat 1: Player6 (1454 in chips) 
+Seat 2: Player4 (2602 in chips) 
+Seat 3: Player25 (10892 in chips) 
+Seat 4: Player8 (3326 in chips) 
+Seat 5: Player9 (939 in chips) 
+Seat 6: Player24 (4041 in chips) 
+Seat 7: Player2 (2732 in chips) 
+Seat 8: Player18 (4536 in chips) 
+Seat 9: Player7 (3715 in chips) 
+Player6: posts the ante 40
+Player4: posts the ante 40
+Player25: posts the ante 40
+Player8: posts the ante 40
+Player9: posts the ante 40
+Player24: posts the ante 40
+Player2: posts the ante 40
+Player18: posts the ante 40
+Player7: posts the ante 40
+Player4: posts small blind 200
+Player25: posts big blind 400
+*** HOLE CARDS ***
+Dealt to Player6 [9s 5h]
+Player8: folds 
+Player9: folds 
+Player24: folds 
+Player2: folds 
+Player18: folds 
+Player7: folds 
+Player6 has timed out
+Player6: folds 
+Player6 is sitting out
+Player6 has returned
+Player4: folds 
+Uncalled bet (200) returned to Player25
+Player25 collected 760 from pot
+Player25: doesn't show hand 
+*** SUMMARY ***
+Total pot 760 | Rake 0 
+Seat 1: Player6 (button) folded before Flop (didn't bet)
+Seat 2: Player4 (small blind) folded before Flop
+Seat 3: Player25 (big blind) collected (760)
+Seat 4: Player8 folded before Flop (didn't bet)
+Seat 5: Player9 folded before Flop (didn't bet)
+Seat 6: Player24 folded before Flop (didn't bet)
+Seat 7: Player2 folded before Flop (didn't bet)
+Seat 8: Player18 folded before Flop (didn't bet)
+Seat 9: Player7 folded before Flop (didn't bet)
+
+
+
+PokerStars Hand #86569067334: Tournament #604678566, Freeroll  Hold'em No Limit - Level X (200/400) - 2012/09/22 15:39:39 ET
+Table '604678566 47' 9-max Seat #2 is the button
+Seat 1: Player6 (1414 in chips) 
+Seat 2: Player4 (2362 in chips) 
+Seat 3: Player25 (11412 in chips) 
+Seat 4: Player8 (3286 in chips) 
+Seat 5: Player9 (899 in chips) 
+Seat 6: Player24 (4001 in chips) 
+Seat 7: Player2 (2692 in chips) 
+Seat 8: Player18 (4496 in chips) 
+Seat 9: Player7 (3675 in chips) 
+Player6: posts the ante 40
+Player4: posts the ante 40
+Player25: posts the ante 40
+Player8: posts the ante 40
+Player9: posts the ante 40
+Player24: posts the ante 40
+Player2: posts the ante 40
+Player18: posts the ante 40
+Player7: posts the ante 40
+Player25: posts small blind 200
+Player8: posts big blind 400
+*** HOLE CARDS ***
+Dealt to Player6 [9h Td]
+Player9: folds 
+Player24: folds 
+Player2: folds 
+Player18: folds 
+Player7: raises 3235 to 3635 and is all-in
+Player6: folds 
+Player4: folds 
+Player25: folds 
+Player8: folds 
+Uncalled bet (3235) returned to Player7
+Player7 collected 1360 from pot
+Player7: doesn't show hand 
+*** SUMMARY ***
+Total pot 1360 | Rake 0 
+Seat 1: Player6 folded before Flop (didn't bet)
+Seat 2: Player4 (button) folded before Flop (didn't bet)
+Seat 3: Player25 (small blind) folded before Flop
+Seat 4: Player8 (big blind) folded before Flop
+Seat 5: Player9 folded before Flop (didn't bet)
+Seat 6: Player24 folded before Flop (didn't bet)
+Seat 7: Player2 folded before Flop (didn't bet)
+Seat 8: Player18 folded before Flop (didn't bet)
+Seat 9: Player7 collected (1360)
+
+
+
+PokerStars Hand #86569149462: Tournament #604678566, Freeroll  Hold'em No Limit - Level X (200/400) - 2012/09/22 15:41:12 ET
+Table '604678566 47' 9-max Seat #3 is the button
+Seat 1: Player6 (1374 in chips) 
+Seat 2: Player4 (2322 in chips) 
+Seat 3: Player25 (11172 in chips) 
+Seat 4: Player8 (2846 in chips) 
+Seat 5: Player9 (859 in chips) 
+Seat 6: Player24 (3961 in chips) 
+Seat 7: Player2 (2652 in chips) 
+Seat 8: Player18 (4456 in chips) 
+Seat 9: Player7 (4595 in chips) 
+Player6: posts the ante 40
+Player4: posts the ante 40
+Player25: posts the ante 40
+Player8: posts the ante 40
+Player9: posts the ante 40
+Player24: posts the ante 40
+Player2: posts the ante 40
+Player18: posts the ante 40
+Player7: posts the ante 40
+Player8: posts small blind 200
+Player9: posts big blind 400
+*** HOLE CARDS ***
+Dealt to Player6 [5s 4h]
+Player24: folds 
+Player2: folds 
+Player18: folds 
+Player7: folds 
+Player6: folds 
+Player4: raises 400 to 800
+Player25: folds 
+Player8: folds 
+Player9: raises 19 to 819 and is all-in
+Player4: calls 19
+*** FLOP *** [7h 6s 8d]
+*** TURN *** [7h 6s 8d] [5h]
+*** RIVER *** [7h 6s 8d 5h] [7s]
+*** SHOW DOWN ***
+Player9: shows [7c 9c] (a straight, Five to Nine)
+Player4: shows [4c 4s] (a straight, Four to Eight)
+Player9 collected 2198 from pot
+*** SUMMARY ***
+Total pot 2198 | Rake 0 
+Board [7h 6s 8d 5h 7s]
+Seat 1: Player6 folded before Flop (didn't bet)
+Seat 2: Player4 showed [4c 4s] and lost with a straight, Four to Eight
+Seat 3: Player25 (button) folded before Flop (didn't bet)
+Seat 4: Player8 (small blind) folded before Flop
+Seat 5: Player9 (big blind) showed [7c 9c] and won (2198) with a straight, Five to Nine
+Seat 6: Player24 folded before Flop (didn't bet)
+Seat 7: Player2 folded before Flop (didn't bet)
+Seat 8: Player18 folded before Flop (didn't bet)
+Seat 9: Player7 folded before Flop (didn't bet)
+
+
+
+PokerStars Hand #86569220474: Tournament #604678566, Freeroll  Hold'em No Limit - Level X (200/400) - 2012/09/22 15:42:33 ET
+Table '604678566 47' 9-max Seat #4 is the button
+Seat 1: Player6 (1334 in chips) 
+Seat 2: Player4 (1463 in chips) 
+Seat 3: Player25 (11132 in chips) 
+Seat 4: Player8 (2606 in chips) 
+Seat 5: Player9 (2198 in chips) 
+Seat 6: Player24 (3921 in chips) 
+Seat 7: Player2 (2612 in chips) 
+Seat 8: Player18 (4416 in chips) 
+Seat 9: Player7 (4555 in chips) 
+Player6: posts the ante 40
+Player4: posts the ante 40
+Player25: posts the ante 40
+Player8: posts the ante 40
+Player9: posts the ante 40
+Player24: posts the ante 40
+Player2: posts the ante 40
+Player18: posts the ante 40
+Player7: posts the ante 40
+Player9: posts small blind 200
+Player24: posts big blind 400
+*** HOLE CARDS ***
+Dealt to Player6 [6s Jd]
+Player2: folds 
+Player18: folds 
+Player7: folds 
+Player6: folds 
+Player4: folds 
+Player25: folds 
+Player8: folds 
+Player9: raises 1758 to 2158 and is all-in
+Player24: folds 
+Uncalled bet (1758) returned to Player9
+Player9 collected 1160 from pot
+*** SUMMARY ***
+Total pot 1160 | Rake 0 
+Seat 1: Player6 folded before Flop (didn't bet)
+Seat 2: Player4 folded before Flop (didn't bet)
+Seat 3: Player25 folded before Flop (didn't bet)
+Seat 4: Player8 (button) folded before Flop (didn't bet)
+Seat 5: Player9 (small blind) collected (1160)
+Seat 6: Player24 (big blind) folded before Flop
+Seat 7: Player2 folded before Flop (didn't bet)
+Seat 8: Player18 folded before Flop (didn't bet)
+Seat 9: Player7 folded before Flop (didn't bet)
+
+
+
+PokerStars Hand #86569285497: Tournament #604678566, Freeroll  Hold'em No Limit - Level X (200/400) - 2012/09/22 15:43:48 ET
+Table '604678566 47' 9-max Seat #5 is the button
+Seat 1: Player6 (1294 in chips) 
+Seat 2: Player4 (1423 in chips) 
+Seat 3: Player25 (11092 in chips) 
+Seat 4: Player8 (2566 in chips) 
+Seat 5: Player9 (2918 in chips) 
+Seat 6: Player24 (3481 in chips) 
+Seat 7: Player2 (2572 in chips) 
+Seat 8: Player18 (4376 in chips) 
+Seat 9: Player7 (4515 in chips) 
+Player6: posts the ante 40
+Player4: posts the ante 40
+Player25: posts the ante 40
+Player8: posts the ante 40
+Player9: posts the ante 40
+Player24: posts the ante 40
+Player2: posts the ante 40
+Player18: posts the ante 40
+Player7: posts the ante 40
+Player24: posts small blind 200
+Player2: posts big blind 400
+*** HOLE CARDS ***
+Dealt to Player6 [9c Kc]
+Player18: folds 
+Player7: folds 
+Player6: folds 
+Player4: folds 
+Player25: folds 
+Player8: raises 2126 to 2526 and is all-in
+Player9: folds 
+Player24: folds 
+Player2: folds 
+Uncalled bet (2126) returned to Player8
+Player8 collected 1360 from pot
+*** SUMMARY ***
+Total pot 1360 | Rake 0 
+Seat 1: Player6 folded before Flop (didn't bet)
+Seat 2: Player4 folded before Flop (didn't bet)
+Seat 3: Player25 folded before Flop (didn't bet)
+Seat 4: Player8 collected (1360)
+Seat 5: Player9 (button) folded before Flop (didn't bet)
+Seat 6: Player24 (small blind) folded before Flop
+Seat 7: Player2 (big blind) folded before Flop
+Seat 8: Player18 folded before Flop (didn't bet)
+Seat 9: Player7 folded before Flop (didn't bet)
+
+
+
+PokerStars Hand #86569376412: Tournament #604678566, Freeroll  Hold'em No Limit - Level X (200/400) - 2012/09/22 15:45:32 ET
+Table '604678566 47' 9-max Seat #6 is the button
+Seat 1: Player6 (1254 in chips) 
+Seat 2: Player4 (1383 in chips) 
+Seat 3: Player25 (11052 in chips) 
+Seat 4: Player8 (3486 in chips) 
+Seat 5: Player9 (2878 in chips) 
+Seat 6: Player24 (3241 in chips) 
+Seat 7: Player2 (2132 in chips) 
+Seat 8: Player18 (4336 in chips) 
+Seat 9: Player7 (4475 in chips) 
+Player6: posts the ante 40
+Player4: posts the ante 40
+Player25: posts the ante 40
+Player8: posts the ante 40
+Player9: posts the ante 40
+Player24: posts the ante 40
+Player2: posts the ante 40
+Player18: posts the ante 40
+Player7: posts the ante 40
+Player2: posts small blind 200
+Player18: posts big blind 400
+*** HOLE CARDS ***
+Dealt to Player6 [Qd 2s]
+Player7: folds 
+Player6: folds 
+Player24 is disconnected 
+Player4 has timed out
+Player4: folds 
+Player4 is sitting out
+Player4 has returned
+Player25: folds 
+Player8: raises 475 to 875
+Player9: folds 
+Player24: folds 
+Player2: raises 1125 to 2000
+Player18: folds 
+Player8: raises 1125 to 3125
+Player2: calls 92 and is all-in
+Uncalled bet (1033) returned to Player8
+*** FLOP *** [Td Jh 6h]
+*** TURN *** [Td Jh 6h] [4s]
+*** RIVER *** [Td Jh 6h 4s] [Jc]
+*** SHOW DOWN ***
+Player2: shows [9h 9d] (two pair, Jacks and Nines)
+Player8: shows [As 9c] (a pair of Jacks)
+Player2 collected 4944 from pot
+*** SUMMARY ***
+Total pot 4944 | Rake 0 
+Board [Td Jh 6h 4s Jc]
+Seat 1: Player6 folded before Flop (didn't bet)
+Seat 2: Player4 folded before Flop (didn't bet)
+Seat 3: Player25 folded before Flop (didn't bet)
+Seat 4: Player8 showed [As 9c] and lost with a pair of Jacks
+Seat 5: Player9 folded before Flop (didn't bet)
+Seat 6: Player24 (button) folded before Flop (didn't bet)
+Seat 7: Player2 (small blind) showed [9h 9d] and won (4944) with two pair, Jacks and Nines
+Seat 8: Player18 (big blind) folded before Flop
+Seat 9: Player7 folded before Flop (didn't bet)
+
+
+
+PokerStars Hand #86569494516: Tournament #604678566, Freeroll  Hold'em No Limit - Level XI (250/500) - 2012/09/22 15:47:47 ET
+Table '604678566 47' 9-max Seat #7 is the button
+Seat 1: Player6 (1214 in chips) 
+Seat 2: Player4 (1343 in chips) 
+Seat 3: Player25 (11012 in chips) 
+Seat 4: Player8 (1354 in chips) 
+Seat 5: Player9 (2838 in chips) 
+Seat 6: Player24 (3201 in chips) 
+Seat 7: Player2 (4944 in chips) 
+Seat 8: Player18 (3896 in chips) 
+Seat 9: Player7 (4435 in chips) 
+Player6: posts the ante 50
+Player4: posts the ante 50
+Player25: posts the ante 50
+Player8: posts the ante 50
+Player9: posts the ante 50
+Player24: posts the ante 50
+Player2: posts the ante 50
+Player18: posts the ante 50
+Player7: posts the ante 50
+Player18: posts small blind 250
+Player7: posts big blind 500
+*** HOLE CARDS ***
+Dealt to Player6 [7c 6s]
+Player6 has timed out while being disconnected
+Player6: folds 
+Player6 is sitting out
+Player4: folds 
+Player25: folds 
+Player8: raises 750 to 1250
+Player9: folds 
+Player24: folds 
+Player2: folds 
+Player6 has returned
+Player18: folds 
+Player7: folds 
+Uncalled bet (750) returned to Player8
+Player8 collected 1700 from pot
+*** SUMMARY ***
+Total pot 1700 | Rake 0 
+Seat 1: Player6 folded before Flop (didn't bet)
+Seat 2: Player4 folded before Flop (didn't bet)
+Seat 3: Player25 folded before Flop (didn't bet)
+Seat 4: Player8 collected (1700)
+Seat 5: Player9 folded before Flop (didn't bet)
+Seat 6: Player24 folded before Flop (didn't bet)
+Seat 7: Player2 (button) folded before Flop (didn't bet)
+Seat 8: Player18 (small blind) folded before Flop
+Seat 9: Player7 (big blind) folded before Flop
+
+
+
+PokerStars Hand #86569587076: Tournament #604678566, Freeroll  Hold'em No Limit - Level XI (250/500) - 2012/09/22 15:49:33 ET
+Table '604678566 47' 9-max Seat #8 is the button
+Seat 1: Player6 (1164 in chips) 
+Seat 2: Player4 (1293 in chips) 
+Seat 3: Player25 (10962 in chips) 
+Seat 4: Player8 (2504 in chips) 
+Seat 5: Player9 (2788 in chips) 
+Seat 6: Player24 (3151 in chips) 
+Seat 7: Player2 (4894 in chips) 
+Seat 8: Player18 (3596 in chips) 
+Seat 9: Player7 (3885 in chips) 
+Player6: posts the ante 50
+Player4: posts the ante 50
+Player25: posts the ante 50
+Player8: posts the ante 50
+Player9: posts the ante 50
+Player24: posts the ante 50
+Player2: posts the ante 50
+Player18: posts the ante 50
+Player7: posts the ante 50
+Player7: posts small blind 250
+Player6: posts big blind 500
+*** HOLE CARDS ***
+Dealt to Player6 [Th 7d]
+Player4 has timed out
+Player4: folds 
+Player4 is sitting out
+Player25: folds 
+Player4 has returned
+Player8: folds 
+Player9: folds 
+Player24: folds 
+Player2 has timed out
+Player2: folds 
+Player2 is sitting out
+Player2 has returned
+Player18: folds 
+Player7: raises 2500 to 3000
+Player6: folds 
+Uncalled bet (2500) returned to Player7
+Player7 collected 1450 from pot
+Player7: doesn't show hand 
+*** SUMMARY ***
+Total pot 1450 | Rake 0 
+Seat 1: Player6 (big blind) folded before Flop
+Seat 2: Player4 folded before Flop (didn't bet)
+Seat 3: Player25 folded before Flop (didn't bet)
+Seat 4: Player8 folded before Flop (didn't bet)
+Seat 5: Player9 folded before Flop (didn't bet)
+Seat 6: Player24 folded before Flop (didn't bet)
+Seat 7: Player2 folded before Flop (didn't bet)
+Seat 8: Player18 (button) folded before Flop (didn't bet)
+Seat 9: Player7 (small blind) collected (1450)
+
+
+
+PokerStars Hand #86569682219: Tournament #604678566, Freeroll  Hold'em No Limit - Level XI (250/500) - 2012/09/22 15:51:23 ET
+Table '604678566 47' 9-max Seat #9 is the button
+Seat 1: Player6 (614 in chips) 
+Seat 2: Player4 (1243 in chips) 
+Seat 3: Player25 (10912 in chips) 
+Seat 4: Player8 (2454 in chips) 
+Seat 5: Player9 (2738 in chips) 
+Seat 6: Player24 (3101 in chips) 
+Seat 7: Player2 (4844 in chips) 
+Seat 8: Player18 (3546 in chips) 
+Seat 9: Player7 (4785 in chips) 
+Player6: posts the ante 50
+Player4: posts the ante 50
+Player25: posts the ante 50
+Player8: posts the ante 50
+Player9: posts the ante 50
+Player24: posts the ante 50
+Player2: posts the ante 50
+Player18: posts the ante 50
+Player7: posts the ante 50
+Player6: posts small blind 250
+Player4: posts big blind 500
+*** HOLE CARDS ***
+Dealt to Player6 [Kc Kd]
+Player25: folds 
+Player8: folds 
+Player9: folds 
+Player24: folds 
+Player2 has timed out
+Player2: folds 
+Player2 is sitting out
+Player2 has returned
+Player18: folds 
+Player7: raises 2000 to 2500
+Player6: calls 314 and is all-in
+Player4: calls 693 and is all-in
+Uncalled bet (1307) returned to Player7
+*** FLOP *** [3s Jd 3c]
+*** TURN *** [3s Jd 3c] [8c]
+*** RIVER *** [3s Jd 3c 8c] [2d]
+*** SHOW DOWN ***
+Player4: shows [Qc Ah] (a pair of Threes)
+Player7: shows [Kh Qs] (a pair of Threes - lower kicker)
+Player4 collected 1258 from side pot
+Player6: shows [Kc Kd] (two pair, Kings and Threes)
+Player6 collected 2142 from main pot
+*** SUMMARY ***
+Total pot 3400 Main pot 2142. Side pot 1258. | Rake 0 
+Board [3s Jd 3c 8c 2d]
+Seat 1: Player6 (small blind) showed [Kc Kd] and won (2142) with two pair, Kings and Threes
+Seat 2: Player4 (big blind) showed [Qc Ah] and won (1258) with a pair of Threes
+Seat 3: Player25 folded before Flop (didn't bet)
+Seat 4: Player8 folded before Flop (didn't bet)
+Seat 5: Player9 folded before Flop (didn't bet)
+Seat 6: Player24 folded before Flop (didn't bet)
+Seat 7: Player2 folded before Flop (didn't bet)
+Seat 8: Player18 folded before Flop (didn't bet)
+Seat 9: Player7 (button) showed [Kh Qs] and lost with a pair of Threes
+
+
+
+PokerStars Hand #86569770442: Tournament #604678566, Freeroll  Hold'em No Limit - Level XI (250/500) - 2012/09/22 15:53:06 ET
+Table '604678566 47' 9-max Seat #1 is the button
+Seat 1: Player6 (2142 in chips) 
+Seat 2: Player4 (1258 in chips) 
+Seat 3: Player25 (10862 in chips) 
+Seat 4: Player8 (2404 in chips) 
+Seat 5: Player9 (2688 in chips) 
+Seat 6: Player24 (3051 in chips) 
+Seat 7: Player2 (4794 in chips) 
+Seat 8: Player18 (3496 in chips) 
+Seat 9: Player7 (3542 in chips) 
+Player6: posts the ante 50
+Player4: posts the ante 50
+Player25: posts the ante 50
+Player8: posts the ante 50
+Player9: posts the ante 50
+Player24: posts the ante 50
+Player2: posts the ante 50
+Player18: posts the ante 50
+Player7: posts the ante 50
+Player4: posts small blind 250
+Player25: posts big blind 500
+*** HOLE CARDS ***
+Dealt to Player6 [Ad Kd]
+Player8: folds 
+Player9: folds 
+Player24: folds 
+Player2 has timed out
+Player2: folds 
+Player2 is sitting out
+Player2 has returned
+Player18: folds 
+Player7: folds 
+Player6: raises 1592 to 2092 and is all-in
+Player4: folds 
+Player25: calls 1592
+*** FLOP *** [2h 4c 5d]
+*** TURN *** [2h 4c 5d] [5s]
+*** RIVER *** [2h 4c 5d 5s] [9d]
+*** SHOW DOWN ***
+Player25: shows [Qs Th] (a pair of Fives)
+Player6: shows [Ad Kd] (a pair of Fives - Ace kicker)
+Player6 collected 4884 from pot
+*** SUMMARY ***
+Total pot 4884 | Rake 0 
+Board [2h 4c 5d 5s 9d]
+Seat 1: Player6 (button) showed [Ad Kd] and won (4884) with a pair of Fives
+Seat 2: Player4 (small blind) folded before Flop
+Seat 3: Player25 (big blind) showed [Qs Th] and lost with a pair of Fives
+Seat 4: Player8 folded before Flop (didn't bet)
+Seat 5: Player9 folded before Flop (didn't bet)
+Seat 6: Player24 folded before Flop (didn't bet)
+Seat 7: Player2 folded before Flop (didn't bet)
+Seat 8: Player18 folded before Flop (didn't bet)
+Seat 9: Player7 folded before Flop (didn't bet)
+
+
+
+PokerStars Hand #86569867877: Tournament #604678566, Freeroll  Hold'em No Limit - Level XI (250/500) - 2012/09/22 15:55:00 ET
+Table '604678566 47' 9-max Seat #2 is the button
+Seat 1: Player6 (4884 in chips) 
+Seat 2: Player4 (958 in chips) 
+Seat 3: Player25 (8720 in chips) 
+Seat 4: Player8 (2354 in chips) 
+Seat 5: Player9 (2638 in chips) 
+Seat 6: Player24 (3001 in chips) 
+Seat 7: Player2 (4744 in chips) 
+Seat 8: Player18 (3446 in chips) 
+Seat 9: Player7 (3492 in chips) 
+Player6: posts the ante 50
+Player4: posts the ante 50
+Player25: posts the ante 50
+Player8: posts the ante 50
+Player9: posts the ante 50
+Player24: posts the ante 50
+Player2: posts the ante 50
+Player18: posts the ante 50
+Player7: posts the ante 50
+Player25: posts small blind 250
+Player8: posts big blind 500
+*** HOLE CARDS ***
+Dealt to Player6 [Kc 6h]
+Player9: folds 
+Player24: folds 
+Player2 has timed out
+Player2: folds 
+Player2 is sitting out
+Player2 has returned
+Player18: folds 
+Player7: folds 
+Player6: folds 
+Player4: folds 
+Player25: raises 1675 to 2175
+Player8: folds 
+Uncalled bet (1675) returned to Player25
+Player25 collected 1450 from pot
+Player25: doesn't show hand 
+*** SUMMARY ***
+Total pot 1450 | Rake 0 
+Seat 1: Player6 folded before Flop (didn't bet)
+Seat 2: Player4 (button) folded before Flop (didn't bet)
+Seat 3: Player25 (small blind) collected (1450)
+Seat 4: Player8 (big blind) folded before Flop
+Seat 5: Player9 folded before Flop (didn't bet)
+Seat 6: Player24 folded before Flop (didn't bet)
+Seat 7: Player2 folded before Flop (didn't bet)
+Seat 8: Player18 folded before Flop (didn't bet)
+Seat 9: Player7 folded before Flop (didn't bet)
+
+
+
+PokerStars Hand #86570121132: Tournament #604678566, Freeroll  Hold'em No Limit - Level XI (250/500) - 2012/09/22 16:01:50 ET
+Table '604678566 47' 9-max Seat #3 is the button
+Seat 1: Player6 (4834 in chips) 
+Seat 2: Player4 (908 in chips) 
+Seat 3: Player25 (9620 in chips) 
+Seat 4: Player8 (1804 in chips) 
+Seat 5: Player9 (2588 in chips) 
+Seat 6: Player24 (2951 in chips) 
+Seat 7: Player2 (4694 in chips) 
+Seat 8: Player18 (3396 in chips) 
+Seat 9: Player7 (3442 in chips) 
+Player6: posts the ante 50
+Player4: posts the ante 50
+Player25: posts the ante 50
+Player8: posts the ante 50
+Player9: posts the ante 50
+Player24: posts the ante 50
+Player2: posts the ante 50
+Player18: posts the ante 50
+Player7: posts the ante 50
+Player8: posts small blind 250
+Player9: posts big blind 500
+*** HOLE CARDS ***
+Dealt to Player6 [Td 3s]
+Player24: folds 
+Player2 has timed out
+Player2: folds 
+Player2 is sitting out
+Player2 has returned
+Player18: folds 
+Player7: folds 
+Player6: folds 
+Player4: folds 
+Player25: folds 
+Player8: calls 250
+Player9: checks 
+*** FLOP *** [As Qd 5d]
+Player8: bets 1000
+Player9: folds 
+Uncalled bet (1000) returned to Player8
+Player8 collected 1450 from pot
+Player8: doesn't show hand 
+*** SUMMARY ***
+Total pot 1450 | Rake 0 
+Board [As Qd 5d]
+Seat 1: Player6 folded before Flop (didn't bet)
+Seat 2: Player4 folded before Flop (didn't bet)
+Seat 3: Player25 (button) folded before Flop (didn't bet)
+Seat 4: Player8 (small blind) collected (1450)
+Seat 5: Player9 (big blind) folded on the Flop
+Seat 6: Player24 folded before Flop (didn't bet)
+Seat 7: Player2 folded before Flop (didn't bet)
+Seat 8: Player18 folded before Flop (didn't bet)
+Seat 9: Player7 folded before Flop (didn't bet)
+
+
+
+PokerStars Hand #86570226578: Tournament #604678566, Freeroll  Hold'em No Limit - Level XII (300/600) - 2012/09/22 16:03:50 ET
+Table '604678566 47' 9-max Seat #4 is the button
+Seat 1: Player6 (4784 in chips) 
+Seat 2: Player4 (858 in chips) 
+Seat 3: Player25 (9570 in chips) 
+Seat 4: Player8 (2704 in chips) 
+Seat 5: Player9 (2038 in chips) 
+Seat 6: Player24 (2901 in chips) 
+Seat 7: Player2 (4644 in chips) 
+Seat 8: Player18 (3346 in chips) 
+Seat 9: Player7 (3392 in chips) 
+Player6: posts the ante 60
+Player4: posts the ante 60
+Player25: posts the ante 60
+Player8: posts the ante 60
+Player9: posts the ante 60
+Player24: posts the ante 60
+Player2: posts the ante 60
+Player18: posts the ante 60
+Player7: posts the ante 60
+Player9: posts small blind 300
+Player24: posts big blind 600
+*** HOLE CARDS ***
+Dealt to Player6 [7c 9d]
+Player2 has timed out
+Player2: folds 
+Player2 is sitting out
+Player2 has returned
+Player18: folds 
+Player7: folds 
+Player6: folds 
+Player4: folds 
+Player25: folds 
+Player8 has timed out
+Player8: folds 
+Player8 is sitting out
+Player8 has returned
+Player9: folds 
+Uncalled bet (300) returned to Player24
+Player24 collected 1140 from pot
+Player24: doesn't show hand 
+*** SUMMARY ***
+Total pot 1140 | Rake 0 
+Seat 1: Player6 folded before Flop (didn't bet)
+Seat 2: Player4 folded before Flop (didn't bet)
+Seat 3: Player25 folded before Flop (didn't bet)
+Seat 4: Player8 (button) folded before Flop (didn't bet)
+Seat 5: Player9 (small blind) folded before Flop
+Seat 6: Player24 (big blind) collected (1140)
+Seat 7: Player2 folded before Flop (didn't bet)
+Seat 8: Player18 folded before Flop (didn't bet)
+Seat 9: Player7 folded before Flop (didn't bet)
+
+
+
+PokerStars Hand #86570321582: Tournament #604678566, Freeroll  Hold'em No Limit - Level XII (300/600) - 2012/09/22 16:05:35 ET
+Table '604678566 47' 9-max Seat #5 is the button
+Seat 1: Player6 (4724 in chips) 
+Seat 2: Player4 (798 in chips) 
+Seat 3: Player25 (9510 in chips) 
+Seat 4: Player8 (2644 in chips) 
+Seat 5: Player9 (1678 in chips) 
+Seat 6: Player24 (3681 in chips) 
+Seat 7: Player2 (4584 in chips) 
+Seat 8: Player18 (3286 in chips) 
+Seat 9: Player7 (3332 in chips) 
+Player6: posts the ante 60
+Player4: posts the ante 60
+Player25: posts the ante 60
+Player8: posts the ante 60
+Player9: posts the ante 60
+Player24: posts the ante 60
+Player2: posts the ante 60
+Player18: posts the ante 60
+Player7: posts the ante 60
+Player24: posts small blind 300
+Player2: posts big blind 600
+*** HOLE CARDS ***
+Dealt to Player6 [3h 4s]
+Player18: folds 
+Player7: folds 
+Player6: folds 
+Player4: folds 
+Player25: folds 
+Player8 has timed out
+Player8: folds 
+Player8 is sitting out
+Player9: folds 
+Player24: folds 
+Uncalled bet (300) returned to Player2
+Player2 collected 1140 from pot
+Player2: doesn't show hand 
+*** SUMMARY ***
+Total pot 1140 | Rake 0 
+Seat 1: Player6 folded before Flop (didn't bet)
+Seat 2: Player4 folded before Flop (didn't bet)
+Seat 3: Player25 folded before Flop (didn't bet)
+Seat 4: Player8 folded before Flop (didn't bet)
+Seat 5: Player9 (button) folded before Flop (didn't bet)
+Seat 6: Player24 (small blind) folded before Flop
+Seat 7: Player2 (big blind) collected (1140)
+Seat 8: Player18 folded before Flop (didn't bet)
+Seat 9: Player7 folded before Flop (didn't bet)
+
+
+
+PokerStars Hand #86570393931: Tournament #604678566, Freeroll  Hold'em No Limit - Level XII (300/600) - 2012/09/22 16:06:55 ET
+Table '604678566 47' 9-max Seat #6 is the button
+Seat 1: Player6 (4664 in chips) 
+Seat 2: Player4 (738 in chips) 
+Seat 3: Player25 (9450 in chips) 
+Seat 4: Player8 (2584 in chips) is sitting out
+Seat 5: Player9 (1618 in chips) 
+Seat 6: Player24 (3321 in chips) 
+Seat 7: Player2 (5364 in chips) 
+Seat 8: Player18 (3226 in chips) 
+Seat 9: Player7 (3272 in chips) 
+Player6: posts the ante 60
+Player4: posts the ante 60
+Player25: posts the ante 60
+Player8: posts the ante 60
+Player9: posts the ante 60
+Player24: posts the ante 60
+Player2: posts the ante 60
+Player18: posts the ante 60
+Player7: posts the ante 60
+Player2: posts small blind 300
+Player18: posts big blind 600
+*** HOLE CARDS ***
+Dealt to Player6 [4c Jc]
+Player7: folds 
+Player6: folds 
+Player4: folds 
+Player8 has returned
+Player25: folds 
+Player8: raises 1924 to 2524 and is all-in
+Player9: folds 
+Player24: folds 
+Player2 has timed out
+Player2: folds 
+Player2 is sitting out
+Player2 has returned
+Player18: folds 
+Uncalled bet (1924) returned to Player8
+Player8 collected 2040 from pot
+*** SUMMARY ***
+Total pot 2040 | Rake 0 
+Seat 1: Player6 folded before Flop (didn't bet)
+Seat 2: Player4 folded before Flop (didn't bet)
+Seat 3: Player25 folded before Flop (didn't bet)
+Seat 4: Player8 collected (2040)
+Seat 5: Player9 folded before Flop (didn't bet)
+Seat 6: Player24 (button) folded before Flop (didn't bet)
+Seat 7: Player2 (small blind) folded before Flop
+Seat 8: Player18 (big blind) folded before Flop
+Seat 9: Player7 folded before Flop (didn't bet)
+
+
+
+PokerStars Hand #86570465583: Tournament #604678566, Freeroll  Hold'em No Limit - Level XII (300/600) - 2012/09/22 16:08:15 ET
+Table '604678566 47' 9-max Seat #7 is the button
+Seat 1: Player6 (4604 in chips) 
+Seat 2: Player4 (678 in chips) 
+Seat 3: Player25 (9390 in chips) 
+Seat 4: Player8 (3964 in chips) 
+Seat 5: Player9 (1558 in chips) 
+Seat 6: Player24 (3261 in chips) 
+Seat 7: Player2 (5004 in chips) 
+Seat 8: Player18 (2566 in chips) 
+Seat 9: Player7 (3212 in chips) 
+Player6: posts the ante 60
+Player4: posts the ante 60
+Player25: posts the ante 60
+Player8: posts the ante 60
+Player9: posts the ante 60
+Player24: posts the ante 60
+Player2: posts the ante 60
+Player18: posts the ante 60
+Player7: posts the ante 60
+Player18: posts small blind 300
+Player7: posts big blind 600
+*** HOLE CARDS ***
+Dealt to Player6 [3c 4d]
+Player6: folds 
+Player4: raises 18 to 618 and is all-in
+Player25: folds 
+Player8: folds 
+Player9: folds 
+Player24: folds 
+Player2: calls 618
+Player18: folds 
+Player7: calls 18
+*** FLOP *** [9h Th 9c]
+Player7: checks 
+Player2 has timed out
+Player2: checks 
+*** TURN *** [9h Th 9c] [3d]
+Player7: checks 
+Player2 has timed out
+Player2: checks 
+*** RIVER *** [9h Th 9c 3d] [As]
+Player7: bets 600
+Player2: raises 3600 to 4200
+Player7: calls 1934 and is all-in
+Uncalled bet (1666) returned to Player2
+*** SHOW DOWN ***
+Player2: shows [7s 9s] (three of a kind, Nines)
+Player7: shows [Ah 6s] (two pair, Aces and Nines)
+Player2 collected 5068 from side pot
+Player4: shows [Qd Jd] (a pair of Nines)
+Player2 collected 2694 from main pot
+*** SUMMARY ***
+Total pot 7762 Main pot 2694. Side pot 5068. | Rake 0 
+Board [9h Th 9c 3d As]
+Seat 1: Player6 folded before Flop (didn't bet)
+Seat 2: Player4 showed [Qd Jd] and lost with a pair of Nines
+Seat 3: Player25 folded before Flop (didn't bet)
+Seat 4: Player8 folded before Flop (didn't bet)
+Seat 5: Player9 folded before Flop (didn't bet)
+Seat 6: Player24 folded before Flop (didn't bet)
+Seat 7: Player2 (button) showed [7s 9s] and won (7762) with three of a kind, Nines
+Seat 8: Player18 (small blind) folded before Flop
+Seat 9: Player7 (big blind) showed [Ah 6s] and lost with two pair, Aces and Nines
+
+
+
+PokerStars Hand #86570654897: Tournament #604678566, Freeroll  Hold'em No Limit - Level XII (300/600) - 2012/09/22 16:11:45 ET
+Table '604678566 48' 9-max Seat #2 is the button
+Seat 1: Player13 (5955 in chips) 
+Seat 2: Player19 (6535 in chips) 
+Seat 3: Player23 (15894 in chips) 
+Seat 4: Player6 (4544 in chips) 
+Seat 5: Player12 (18039 in chips) 
+Seat 6: Player21 (6531 in chips) 
+Seat 7: Player1 (8085 in chips) 
+Seat 8: Player20 (5664 in chips) 
+Seat 9: Player3 (5637 in chips) 
+Player13: posts the ante 60
+Player19: posts the ante 60
+Player23: posts the ante 60
+Player6: posts the ante 60
+Player12: posts the ante 60
+Player21: posts the ante 60
+Player1: posts the ante 60
+Player20: posts the ante 60
+Player3: posts the ante 60
+Player23: posts small blind 300
+Player6: posts big blind 600
+*** HOLE CARDS ***
+Dealt to Player6 [2c Ks]
+Player12: folds 
+Player21: folds 
+Player1: folds 
+Player20: raises 1800 to 2400
+Player3: folds 
+Player13: folds 
+Player19: folds 
+Player23: folds 
+Player6: folds 
+Uncalled bet (1800) returned to Player20
+Player20 collected 2040 from pot
+*** SUMMARY ***
+Total pot 2040 | Rake 0 
+Seat 1: Player13 folded before Flop (didn't bet)
+Seat 2: Player19 (button) folded before Flop (didn't bet)
+Seat 3: Player23 (small blind) folded before Flop
+Seat 4: Player6 (big blind) folded before Flop
+Seat 5: Player12 folded before Flop (didn't bet)
+Seat 6: Player21 folded before Flop (didn't bet)
+Seat 7: Player1 folded before Flop (didn't bet)
+Seat 8: Player20 collected (2040)
+Seat 9: Player3 folded before Flop (didn't bet)
+
+
+
+PokerStars Hand #86570717140: Tournament #604678566, Freeroll  Hold'em No Limit - Level XII (300/600) - 2012/09/22 16:12:52 ET
+Table '604678566 48' 9-max Seat #3 is the button
+Seat 1: Player13 (5895 in chips) 
+Seat 2: Player19 (6475 in chips) 
+Seat 3: Player23 (15534 in chips) 
+Seat 4: Player6 (3884 in chips) 
+Seat 5: Player12 (17979 in chips) 
+Seat 6: Player21 (6471 in chips) 
+Seat 7: Player1 (8025 in chips) 
+Seat 8: Player20 (7044 in chips) 
+Seat 9: Player3 (5577 in chips) 
+Player13: posts the ante 60
+Player19: posts the ante 60
+Player23: posts the ante 60
+Player6: posts the ante 60
+Player12: posts the ante 60
+Player21: posts the ante 60
+Player1: posts the ante 60
+Player20: posts the ante 60
+Player3: posts the ante 60
+Player6: posts small blind 300
+Player12: posts big blind 600
+*** HOLE CARDS ***
+Dealt to Player6 [3h 6c]
+Player21: folds 
+Player1: folds 
+Player20: folds 
+Player3: folds 
+Player13: folds 
+Player19: folds 
+Player23: folds 
+Player6: folds 
+Uncalled bet (300) returned to Player12
+Player12 collected 1140 from pot
+*** SUMMARY ***
+Total pot 1140 | Rake 0 
+Seat 1: Player13 folded before Flop (didn't bet)
+Seat 2: Player19 folded before Flop (didn't bet)
+Seat 3: Player23 (button) folded before Flop (didn't bet)
+Seat 4: Player6 (small blind) folded before Flop
+Seat 5: Player12 (big blind) collected (1140)
+Seat 6: Player21 folded before Flop (didn't bet)
+Seat 7: Player1 folded before Flop (didn't bet)
+Seat 8: Player20 folded before Flop (didn't bet)
+Seat 9: Player3 folded before Flop (didn't bet)
+
+
+
+PokerStars Hand #86570784242: Tournament #604678566, Freeroll  Hold'em No Limit - Level XIII (400/800) - 2012/09/22 16:14:05 ET
+Table '604678566 48' 9-max Seat #4 is the button
+Seat 1: Player13 (5835 in chips) 
+Seat 2: Player19 (6415 in chips) 
+Seat 3: Player23 (15474 in chips) 
+Seat 4: Player6 (3524 in chips) 
+Seat 5: Player12 (18759 in chips) 
+Seat 6: Player21 (6411 in chips) 
+Seat 7: Player1 (7965 in chips) 
+Seat 8: Player20 (6984 in chips) 
+Seat 9: Player3 (5517 in chips) 
+Player13: posts the ante 80
+Player19: posts the ante 80
+Player23: posts the ante 80
+Player6: posts the ante 80
+Player12: posts the ante 80
+Player21: posts the ante 80
+Player1: posts the ante 80
+Player20: posts the ante 80
+Player3: posts the ante 80
+Player12: posts small blind 400
+Player21: posts big blind 800
+*** HOLE CARDS ***
+Dealt to Player6 [2d Qs]
+Player1: folds 
+Player20: folds 
+Player3 has timed out
+Player3: folds 
+Player3 is sitting out
+Player13: folds 
+Player19: folds 
+Player23: folds 
+Player3 has returned
+Player6: folds 
+Player12: folds 
+Uncalled bet (400) returned to Player21
+Player21 collected 1520 from pot
+Player21: doesn't show hand 
+*** SUMMARY ***
+Total pot 1520 | Rake 0 
+Seat 1: Player13 folded before Flop (didn't bet)
+Seat 2: Player19 folded before Flop (didn't bet)
+Seat 3: Player23 folded before Flop (didn't bet)
+Seat 4: Player6 (button) folded before Flop (didn't bet)
+Seat 5: Player12 (small blind) folded before Flop
+Seat 6: Player21 (big blind) collected (1520)
+Seat 7: Player1 folded before Flop (didn't bet)
+Seat 8: Player20 folded before Flop (didn't bet)
+Seat 9: Player3 folded before Flop (didn't bet)
+
+
+
+PokerStars Hand #86570829097: Tournament #604678566, Freeroll  Hold'em No Limit - Level XIII (400/800) - 2012/09/22 16:14:53 ET
+Table '604678566 48' 9-max Seat #5 is the button
+Seat 1: Player13 (5755 in chips) 
+Seat 2: Player19 (6335 in chips) 
+Seat 3: Player23 (15394 in chips) 
+Seat 4: Player6 (3444 in chips) 
+Seat 5: Player12 (18279 in chips) 
+Seat 6: Player21 (7451 in chips) 
+Seat 7: Player1 (7885 in chips) 
+Seat 8: Player20 (6904 in chips) 
+Seat 9: Player3 (5437 in chips) 
+Player13: posts the ante 80
+Player19: posts the ante 80
+Player23: posts the ante 80
+Player6: posts the ante 80
+Player12: posts the ante 80
+Player21: posts the ante 80
+Player1: posts the ante 80
+Player20: posts the ante 80
+Player3: posts the ante 80
+Player21: posts small blind 400
+Player1: posts big blind 800
+*** HOLE CARDS ***
+Dealt to Player6 [Qd 7h]
+Player20: folds 
+Player3: folds 
+Player13: folds 
+Player19: folds 
+Player23: folds 
+Player6: folds 
+Player12: folds 
+Player21: raises 6571 to 7371 and is all-in
+Player1: folds 
+Uncalled bet (6571) returned to Player21
+Player21 collected 2320 from pot
+Player21: doesn't show hand 
+*** SUMMARY ***
+Total pot 2320 | Rake 0 
+Seat 1: Player13 folded before Flop (didn't bet)
+Seat 2: Player19 folded before Flop (didn't bet)
+Seat 3: Player23 folded before Flop (didn't bet)
+Seat 4: Player6 folded before Flop (didn't bet)
+Seat 5: Player12 (button) folded before Flop (didn't bet)
+Seat 6: Player21 (small blind) collected (2320)
+Seat 7: Player1 (big blind) folded before Flop
+Seat 8: Player20 folded before Flop (didn't bet)
+Seat 9: Player3 folded before Flop (didn't bet)
+
+
+
+PokerStars Hand #86570877023: Tournament #604678566, Freeroll  Hold'em No Limit - Level XIII (400/800) - 2012/09/22 16:15:44 ET
+Table '604678566 48' 9-max Seat #6 is the button
+Seat 1: Player13 (5675 in chips) 
+Seat 2: Player19 (6255 in chips) 
+Seat 3: Player23 (15314 in chips) 
+Seat 4: Player6 (3364 in chips) 
+Seat 5: Player12 (18199 in chips) 
+Seat 6: Player21 (8891 in chips) 
+Seat 7: Player1 (7005 in chips) 
+Seat 8: Player20 (6824 in chips) 
+Seat 9: Player3 (5357 in chips) 
+Player13: posts the ante 80
+Player19: posts the ante 80
+Player23: posts the ante 80
+Player6: posts the ante 80
+Player12: posts the ante 80
+Player21: posts the ante 80
+Player1: posts the ante 80
+Player20: posts the ante 80
+Player3: posts the ante 80
+Player1: posts small blind 400
+Player20: posts big blind 800
+*** HOLE CARDS ***
+Dealt to Player6 [8h Th]
+Player3: folds 
+Player13: folds 
+Player19: folds 
+Player23: folds 
+Player6: folds 
+Player12: folds 
+Player21: raises 8011 to 8811 and is all-in
+Player1: folds 
+Player20: folds 
+Uncalled bet (8011) returned to Player21
+Player21 collected 2720 from pot
+Player21: doesn't show hand 
+*** SUMMARY ***
+Total pot 2720 | Rake 0 
+Seat 1: Player13 folded before Flop (didn't bet)
+Seat 2: Player19 folded before Flop (didn't bet)
+Seat 3: Player23 folded before Flop (didn't bet)
+Seat 4: Player6 folded before Flop (didn't bet)
+Seat 5: Player12 folded before Flop (didn't bet)
+Seat 6: Player21 (button) collected (2720)
+Seat 7: Player1 (small blind) folded before Flop
+Seat 8: Player20 (big blind) folded before Flop
+Seat 9: Player3 folded before Flop (didn't bet)
+
+
+
+PokerStars Hand #86570901844: Tournament #604678566, Freeroll  Hold'em No Limit - Level XIII (400/800) - 2012/09/22 16:16:11 ET
+Table '604678566 48' 9-max Seat #7 is the button
+Seat 1: Player13 (5595 in chips) 
+Seat 2: Player19 (6175 in chips) 
+Seat 3: Player23 (15234 in chips) 
+Seat 4: Player6 (3284 in chips) 
+Seat 5: Player12 (18119 in chips) 
+Seat 6: Player21 (10731 in chips) 
+Seat 7: Player1 (6525 in chips) 
+Seat 8: Player20 (5944 in chips) 
+Seat 9: Player3 (5277 in chips) 
+Player13: posts the ante 80
+Player19: posts the ante 80
+Player23: posts the ante 80
+Player6: posts the ante 80
+Player12: posts the ante 80
+Player21: posts the ante 80
+Player1: posts the ante 80
+Player20: posts the ante 80
+Player3: posts the ante 80
+Player20: posts small blind 400
+Player3: posts big blind 800
+*** HOLE CARDS ***
+Dealt to Player6 [7h Kd]
+Player13: folds 
+Player19: folds 
+Player23: folds 
+Player6: folds 
+Player12: folds 
+Player21: raises 9851 to 10651 and is all-in
+Player1: folds 
+Player20: folds 
+Player3: folds 
+Uncalled bet (9851) returned to Player21
+Player21 collected 2720 from pot
+Player21: doesn't show hand 
+*** SUMMARY ***
+Total pot 2720 | Rake 0 
+Seat 1: Player13 folded before Flop (didn't bet)
+Seat 2: Player19 folded before Flop (didn't bet)
+Seat 3: Player23 folded before Flop (didn't bet)
+Seat 4: Player6 folded before Flop (didn't bet)
+Seat 5: Player12 folded before Flop (didn't bet)
+Seat 6: Player21 collected (2720)
+Seat 7: Player1 (button) folded before Flop (didn't bet)
+Seat 8: Player20 (small blind) folded before Flop
+Seat 9: Player3 (big blind) folded before Flop
+
+
+
+PokerStars Hand #86570945256: Tournament #604678566, Freeroll  Hold'em No Limit - Level XIII (400/800) - 2012/09/22 16:16:59 ET
+Table '604678566 48' 9-max Seat #8 is the button
+Seat 1: Player13 (5515 in chips) 
+Seat 2: Player19 (6095 in chips) 
+Seat 3: Player23 (15154 in chips) 
+Seat 4: Player6 (3204 in chips) 
+Seat 5: Player12 (18039 in chips) 
+Seat 6: Player21 (12571 in chips) 
+Seat 7: Player1 (6445 in chips) 
+Seat 8: Player20 (5464 in chips) 
+Seat 9: Player3 (4397 in chips) 
+Player13: posts the ante 80
+Player19: posts the ante 80
+Player23: posts the ante 80
+Player6: posts the ante 80
+Player12: posts the ante 80
+Player21: posts the ante 80
+Player1: posts the ante 80
+Player20: posts the ante 80
+Player3: posts the ante 80
+Player3: posts small blind 400
+Player13: posts big blind 800
+*** HOLE CARDS ***
+Dealt to Player6 [As 6h]
+Player19: folds 
+Player23: folds 
+Player6: folds 
+Player12: folds 
+Player21: folds 
+Player1: raises 800 to 1600
+Player20: folds 
+Player3: folds 
+Player13 has timed out
+Player13: folds 
+Uncalled bet (800) returned to Player1
+Player13 is sitting out
+Player1 collected 2720 from pot
+Player1: doesn't show hand 
+*** SUMMARY ***
+Total pot 2720 | Rake 0 
+Seat 1: Player13 (big blind) folded before Flop
+Seat 2: Player19 folded before Flop (didn't bet)
+Seat 3: Player23 folded before Flop (didn't bet)
+Seat 4: Player6 folded before Flop (didn't bet)
+Seat 5: Player12 folded before Flop (didn't bet)
+Seat 6: Player21 folded before Flop (didn't bet)
+Seat 7: Player1 collected (2720)
+Seat 8: Player20 (button) folded before Flop (didn't bet)
+Seat 9: Player3 (small blind) folded before Flop
+
+
+
+PokerStars Hand #86571008610: Tournament #604678566, Freeroll  Hold'em No Limit - Level XIII (400/800) - 2012/09/22 16:18:08 ET
+Table '604678566 48' 9-max Seat #9 is the button
+Seat 1: Player13 (4635 in chips) is sitting out
+Seat 2: Player19 (6015 in chips) 
+Seat 3: Player23 (15074 in chips) 
+Seat 4: Player6 (3124 in chips) 
+Seat 5: Player12 (17959 in chips) 
+Seat 6: Player21 (12491 in chips) 
+Seat 7: Player1 (8285 in chips) 
+Seat 8: Player20 (5384 in chips) 
+Seat 9: Player3 (3917 in chips) 
+Player13: posts the ante 80
+Player19: posts the ante 80
+Player23: posts the ante 80
+Player6: posts the ante 80
+Player12: posts the ante 80
+Player21: posts the ante 80
+Player1: posts the ante 80
+Player20: posts the ante 80
+Player3: posts the ante 80
+Player13: posts small blind 400
+Player19: posts big blind 800
+*** HOLE CARDS ***
+Dealt to Player6 [8s Jd]
+Player23: folds 
+Player6: folds 
+Player12: folds 
+Player21: raises 11611 to 12411 and is all-in
+Player1: folds 
+Player20: folds 
+Player3: folds 
+Player13: folds 
+Player19: folds 
+Uncalled bet (11611) returned to Player21
+Player21 collected 2720 from pot
+Player21: doesn't show hand 
+*** SUMMARY ***
+Total pot 2720 | Rake 0 
+Seat 1: Player13 (small blind) folded before Flop
+Seat 2: Player19 (big blind) folded before Flop
+Seat 3: Player23 folded before Flop (didn't bet)
+Seat 4: Player6 folded before Flop (didn't bet)
+Seat 5: Player12 folded before Flop (didn't bet)
+Seat 6: Player21 collected (2720)
+Seat 7: Player1 folded before Flop (didn't bet)
+Seat 8: Player20 folded before Flop (didn't bet)
+Seat 9: Player3 (button) folded before Flop (didn't bet)
+
+
+
+PokerStars Hand #86571048226: Tournament #604678566, Freeroll  Hold'em No Limit - Level XIII (400/800) - 2012/09/22 16:18:51 ET
+Table '604678566 48' 9-max Seat #1 is the button
+Seat 1: Player13 (4155 in chips) is sitting out
+Seat 2: Player19 (5135 in chips) 
+Seat 3: Player23 (14994 in chips) 
+Seat 4: Player6 (3044 in chips) 
+Seat 5: Player12 (17879 in chips) 
+Seat 6: Player21 (14331 in chips) 
+Seat 7: Player1 (8205 in chips) 
+Seat 8: Player20 (5304 in chips) 
+Seat 9: Player3 (3837 in chips) 
+Player13: posts the ante 80
+Player19: posts the ante 80
+Player23: posts the ante 80
+Player6: posts the ante 80
+Player12: posts the ante 80
+Player21: posts the ante 80
+Player1: posts the ante 80
+Player20: posts the ante 80
+Player3: posts the ante 80
+Player19: posts small blind 400
+Player23: posts big blind 800
+*** HOLE CARDS ***
+Dealt to Player6 [2s Ad]
+Player13 has returned
+Player6: folds 
+Player12: folds 
+Player21: folds 
+Player1: folds 
+Player20: folds 
+Player3: raises 2957 to 3757 and is all-in
+Player13: folds 
+Player19: folds 
+Player23: folds 
+Uncalled bet (2957) returned to Player3
+Player3 collected 2720 from pot
+Player3: doesn't show hand 
+*** SUMMARY ***
+Total pot 2720 | Rake 0 
+Seat 1: Player13 (button) folded before Flop (didn't bet)
+Seat 2: Player19 (small blind) folded before Flop
+Seat 3: Player23 (big blind) folded before Flop
+Seat 4: Player6 folded before Flop (didn't bet)
+Seat 5: Player12 folded before Flop (didn't bet)
+Seat 6: Player21 folded before Flop (didn't bet)
+Seat 7: Player1 folded before Flop (didn't bet)
+Seat 8: Player20 folded before Flop (didn't bet)
+Seat 9: Player3 collected (2720)
+
+
+
+PokerStars Hand #86571105811: Tournament #604678566, Freeroll  Hold'em No Limit - Level XIII (400/800) - 2012/09/22 16:19:54 ET
+Table '604678566 48' 9-max Seat #2 is the button
+Seat 1: Player13 (4075 in chips) 
+Seat 2: Player19 (4655 in chips) 
+Seat 3: Player23 (14114 in chips) 
+Seat 4: Player6 (2964 in chips) 
+Seat 5: Player12 (17799 in chips) 
+Seat 6: Player21 (14251 in chips) 
+Seat 7: Player1 (8125 in chips) 
+Seat 8: Player20 (5224 in chips) 
+Seat 9: Player3 (5677 in chips) 
+Player13: posts the ante 80
+Player19: posts the ante 80
+Player23: posts the ante 80
+Player6: posts the ante 80
+Player12: posts the ante 80
+Player21: posts the ante 80
+Player1: posts the ante 80
+Player20: posts the ante 80
+Player3: posts the ante 80
+Player23: posts small blind 400
+Player6: posts big blind 800
+*** HOLE CARDS ***
+Dealt to Player6 [Qh As]
+Player12: folds 
+Player21: folds 
+Player1: folds 
+Player20: folds 
+Player3: folds 
+Player13: calls 800
+Player19: raises 3775 to 4575 and is all-in
+Player23: folds 
+Player6 has timed out
+Player6: folds 
+Player6 is sitting out
+Player6 has returned
+Player13: calls 3195 and is all-in
+Uncalled bet (580) returned to Player19
+*** FLOP *** [9s Kh 8d]
+*** TURN *** [9s Kh 8d] [2h]
+*** RIVER *** [9s Kh 8d 2h] [Jd]
+*** SHOW DOWN ***
+Player13: shows [Ah Kc] (a pair of Kings)
+Player19: shows [9h 9c] (three of a kind, Nines)
+Player19 collected 9910 from pot
+Player13 finished the tournament in 132nd place
+*** SUMMARY ***
+Total pot 9910 | Rake 0 
+Board [9s Kh 8d 2h Jd]
+Seat 1: Player13 showed [Ah Kc] and lost with a pair of Kings
+Seat 2: Player19 (button) showed [9h 9c] and won (9910) with three of a kind, Nines
+Seat 3: Player23 (small blind) folded before Flop
+Seat 4: Player6 (big blind) folded before Flop
+Seat 5: Player12 folded before Flop (didn't bet)
+Seat 6: Player21 folded before Flop (didn't bet)
+Seat 7: Player1 folded before Flop (didn't bet)
+Seat 8: Player20 folded before Flop (didn't bet)
+Seat 9: Player3 folded before Flop (didn't bet)
+
+
+
+PokerStars Hand #86571156436: Tournament #604678566, Freeroll  Hold'em No Limit - Level XIII (400/800) - 2012/09/22 16:20:51 ET
+Table '604678566 48' 9-max Seat #3 is the button
+Seat 2: Player19 (10490 in chips) 
+Seat 3: Player23 (13634 in chips) 
+Seat 4: Player6 (2084 in chips) 
+Seat 5: Player12 (17719 in chips) 
+Seat 6: Player21 (14171 in chips) 
+Seat 7: Player1 (8045 in chips) 
+Seat 8: Player20 (5144 in chips) 
+Seat 9: Player3 (5597 in chips) 
+Player19: posts the ante 80
+Player23: posts the ante 80
+Player6: posts the ante 80
+Player12: posts the ante 80
+Player21: posts the ante 80
+Player1: posts the ante 80
+Player20: posts the ante 80
+Player3: posts the ante 80
+Player6: posts small blind 400
+Player12: posts big blind 800
+*** HOLE CARDS ***
+Dealt to Player6 [3c Qs]
+Player21: raises 800 to 1600
+Player1: folds 
+Player20: folds 
+Player3: folds 
+Player19: folds 
+Player23: folds 
+Player6: folds 
+Player12: calls 800
+*** FLOP *** [7h 3s 8s]
+Player12: checks 
+Player21: bets 1568
+Player12: calls 1568
+*** TURN *** [7h 3s 8s] [Qc]
+Player12: checks 
+Player21: checks 
+*** RIVER *** [7h 3s 8s Qc] [Ts]
+Player12: checks 
+Player21: checks 
+*** SHOW DOWN ***
+Player12: shows [Kc 8c] (a pair of Eights)
+Player21: mucks hand 
+Player12 collected 7376 from pot
+*** SUMMARY ***
+Total pot 7376 | Rake 0 
+Board [7h 3s 8s Qc Ts]
+Seat 2: Player19 folded before Flop (didn't bet)
+Seat 3: Player23 (button) folded before Flop (didn't bet)
+Seat 4: Player6 (small blind) folded before Flop
+Seat 5: Player12 (big blind) showed [Kc 8c] and won (7376) with a pair of Eights
+Seat 6: Player21 mucked [6c 6s]
+Seat 7: Player1 folded before Flop (didn't bet)
+Seat 8: Player20 folded before Flop (didn't bet)
+Seat 9: Player3 folded before Flop (didn't bet)
+
+
+
+PokerStars Hand #86571215734: Tournament #604678566, Freeroll  Hold'em No Limit - Level XIII (400/800) - 2012/09/22 16:21:56 ET
+Table '604678566 48' 9-max Seat #4 is the button
+Seat 2: Player19 (10410 in chips) 
+Seat 3: Player23 (13554 in chips) 
+Seat 4: Player6 (1604 in chips) 
+Seat 5: Player12 (21847 in chips) 
+Seat 6: Player21 (10923 in chips) 
+Seat 7: Player1 (7965 in chips) 
+Seat 8: Player20 (5064 in chips) 
+Seat 9: Player3 (5517 in chips) 
+Player19: posts the ante 80
+Player23: posts the ante 80
+Player6: posts the ante 80
+Player12: posts the ante 80
+Player21: posts the ante 80
+Player1: posts the ante 80
+Player20: posts the ante 80
+Player3: posts the ante 80
+Player12: posts small blind 400
+Player21: posts big blind 800
+*** HOLE CARDS ***
+Dealt to Player6 [Qd Ah]
+Player1: folds 
+Player20: folds 
+Player3: folds 
+Player19: folds 
+Player23: folds 
+Player6: raises 724 to 1524 and is all-in
+Player12: folds 
+Player21: calls 724
+*** FLOP *** [7c 3d Ad]
+*** TURN *** [7c 3d Ad] [8h]
+*** RIVER *** [7c 3d Ad 8h] [9d]
+*** SHOW DOWN ***
+Player21: shows [Jd 5d] (a flush, Ace high)
+Player6: shows [Qd Ah] (a pair of Aces)
+Player21 collected 4088 from pot
+Player6 finished the tournament in 129th place
+*** SUMMARY ***
+Total pot 4088 | Rake 0 
+Board [7c 3d Ad 8h 9d]
+Seat 2: Player19 folded before Flop (didn't bet)
+Seat 3: Player23 folded before Flop (didn't bet)
+Seat 4: Player6 (button) showed [Qd Ah] and lost with a pair of Aces
+Seat 5: Player12 (small blind) folded before Flop
+Seat 6: Player21 (big blind) showed [Jd 5d] and won (4088) with a flush, Ace high
+Seat 7: Player1 folded before Flop (didn't bet)
+Seat 8: Player20 folded before Flop (didn't bet)
+Seat 9: Player3 folded before Flop (didn't bet)
+
+
+
+

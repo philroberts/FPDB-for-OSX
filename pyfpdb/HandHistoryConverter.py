@@ -236,7 +236,10 @@ HandHistoryConverter: '%(sitename)s'
             # TODO: pity we don't know the HID at this stage. Log the entire hand?
             
     def isPartial(self, handText):
-        if not self.re_Identify.search(handText):
+        count = 0
+        for m in self.re_Identify.finditer(handText):
+            count += 1
+        if count!=1:
             return True
         return False
     
