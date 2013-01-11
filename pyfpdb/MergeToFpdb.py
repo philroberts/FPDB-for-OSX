@@ -464,6 +464,7 @@ class Merge(HandHistoryConverter):
     re_PlayerOut   = re.compile(r'<event sequence="\d+" type="PLAYER_OUT" timestamp="\d+" player="(?P<PSEAT>[0-9])"/>', re.MULTILINE)
     re_EndOfHand   = re.compile(r'<round id="END_OF_GAME"', re.MULTILINE)
     re_DateTime    = re.compile(r'(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)', re.MULTILINE)
+    re_PlayMoney   = re.compile(r'realmoney="false"')
 
     def compilePlayerRegexs(self, hand):
         pass
@@ -558,7 +559,10 @@ or None if we fail to get the info """
             self.info['currency'] = 'T$'
         else:
             self.info['type'] = 'ring'
-            self.info['currency'] = 'USD'
+            if self.re_PlayMoney.search(handText):
+                self.info['currency'] = 'play'
+            else:
+                self.info['currency'] = 'USD'
 
         if self.info['limitType'] == 'fl' and self.info['bb'] is not None and self.info['type'] == 'ring':
             try:
