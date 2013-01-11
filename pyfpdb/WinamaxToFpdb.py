@@ -75,7 +75,7 @@ class Winamax(HandHistoryConverter):
             (?P<RING>CashGame)?
             (?P<TOUR>Tournament\s
             (?P<TOURNAME>.+)?\s
-            buyIn:\s(?P<BUYIN>(?P<BIAMT>[%(LS)s\d\,.]+)?(\s\+?\s|-)(?P<BIRAKE>[%(LS)s\d\,.]+)?\+?(?P<BOUNTY>[%(LS)s\d\.]+)?\s?(?P<TOUR_ISO>%(LEGAL_ISO)s)?|Freeroll|Gratuit|Ticket\suniquement|Free|Ticket)?\s
+            buyIn:\s(?P<BUYIN>(?P<BIAMT>[%(LS)s\d\,.]+)?(\s\+?\s|-)(?P<BIRAKE>[%(LS)s\d\,.]+)?\+?(?P<BOUNTY>[%(LS)s\d\.]+)?\s?(?P<TOUR_ISO>%(LEGAL_ISO)s)?|(?P<FREETICKET>[\sa-zA-Z]+))?\s
             (level:\s(?P<LEVEL>\d+))?
             .*)?
             \s-\sHandId:\s\#(?P<HID1>\d+)-(?P<HID2>\d+)-(?P<HID3>\d+).*\s  # REB says: HID3 is the correct hand number
@@ -249,7 +249,7 @@ class Winamax(HandHistoryConverter):
                         if k in info.keys() and info[k]:
                             info[k] = info[k].replace(',','.')
 
-                    if info[key] in ('Gratuit', 'Freeroll', 'Ticket uniquement', 'Ticket only', 'Ticket'):
+                    if info['FREETICKET'] is not None:
                         hand.buyin = 0
                         hand.fee = 0
                         hand.buyinCurrency = "FREE"
