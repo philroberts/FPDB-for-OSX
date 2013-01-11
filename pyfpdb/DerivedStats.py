@@ -379,7 +379,7 @@ class DerivedStats():
                                 if len(board['board']) > 1: 
                                     boardId = n + 1
                                 else: boardId = n
-                                cards = [str(c) for c in hole if Card.encodeCardList.get(c)!=None]
+                                cards = [str(c) for c in hole if Card.encodeCardList.get(c)!=None or c=='0x']
                                 if board['board'][n]: bcards = [str(b) for b in board['board'][n]]
                                 else                : bcards = []
                                 histring, lostring, histringold, lostringold, lostringvalue, histringvalue, winnings, hi_id, lo_id = None, None, None, None, 0, 0, 0, 0, 0
@@ -389,7 +389,7 @@ class DerivedStats():
                                         cards  = [str(c) for c in cards]
                                         bcards = []
                                 holecards[pname]['cards'] += [cards]
-                                if (u'0x' not in cards) and ((base=='hold' and len(board['board'][n])>=3) or (base!='hold' and len(cards)==reduce(lambda x, y: y-x,hrange))):
+                                if ('0x' not in cards) and ((base=='hold' and len(board['board'][n])>=3) or (base!='hold' and len(cards)==reduce(lambda x, y: y-x,hrange))):
                                      if hilo == 'h':
                                          best_hi = pokereval.best_hand("hi", cards, bcards)
                                          hicards = [pokereval.card2string(i) for i in best_hi[1:]]
