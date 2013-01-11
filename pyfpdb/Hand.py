@@ -596,6 +596,7 @@ class Hand(object):
             act = (player, 'ante', ante, self.stacks[player]==0)
             self.actions['BLINDSANTES'].append(act)
             self.pot.addCommonMoney(player, ante)
+            self.pot.addAntes(player, ante)
             if not 'ante' in self.gametype.keys() or self.gametype['ante'] == 0:
                 self.gametype['ante'] = ante
 #I think the antes should be common money, don't have enough hand history to check
@@ -1841,6 +1842,7 @@ class Pot(object):
         self.committed    = {}
         self.streettotals = {}
         self.common       = {}
+        self.antes        = {}
         self.total        = None
         self.returned     = {}
         self.sym          = u'$' # this is the default currency symbol
@@ -1853,6 +1855,7 @@ class Pot(object):
     def addPlayer(self,player):
         self.committed[player] = Decimal(0)
         self.common[player] = Decimal(0)
+        self.antes[player] = Decimal(0)
 
     def addFold(self, player):
         # addFold must be called when a player folds
@@ -1860,6 +1863,9 @@ class Pot(object):
 
     def addCommonMoney(self, player, amount):
         self.common[player] += amount
+        
+    def addAntes(self, player, amount):
+        self.antes[player] += amount
 
     def addMoney(self, player, amount):
         # addMoney must be called for any actions that put money in the pot, in the order they occur
@@ -1878,8 +1884,8 @@ class Pot(object):
     def end(self):
         self.total = sum(self.committed.values()) + sum(self.common.values())
 
-        # Return any uncalled bet.        
-        if sum(self.common.values())>0:
+        # Return any uncalled bet.
+        if sum(self.common.values())>0 and sum(self.common.values())==sum(self.antes.values()):
             common = sorted([ (v,k) for (k,v) in self.common.items()])
             try:
                 lastcommon = common[-1][0] - common[-2][0]
