@@ -79,7 +79,6 @@ class Popup(gtk.Window):
     def button_press_cb(self, widget, event, *args):
         """Handle button clicks on the popup window."""
 #    Any button click gets rid of popup.
-        print "buttonpress cb"
         self.destroy_pop()
 
     def create(self):
@@ -90,7 +89,6 @@ class Popup(gtk.Window):
             self.parent_popup.submenu_count += 1
         else:
             self.win.popup_count += 1
-        print "create", self.win.popup_count, self.submenu_count
         
 
         
@@ -100,7 +98,6 @@ class Popup(gtk.Window):
             self.parent_popup.submenu_count -= 1
         else:
             self.win.popup_count -= 1
-        print "destroy", self.win.popup_count, self.submenu_count
         self.destroy()
 
 class default(Popup):
@@ -171,7 +168,7 @@ class Submenu(Popup):
             grid_line[row]['lab'].modify_bg(gtk.STATE_NORMAL, self.win.aw.bgcolor)
             grid_line[row]['lab'].modify_fg(gtk.STATE_NORMAL, self.win.aw.fgcolor)
             grid_line[row]['lab'].set_alignment(xalign=0, yalign=0.5) 
-            grid_line[row]['eb'].connect("button_press_event", self.button_press_cb)            
+                        
             try:
                 number = Stats.do_stat(
                     self.stat_dict, player = int(player_id),stat = stat, hand_instance = self.hand_instance)
@@ -180,9 +177,7 @@ class Submenu(Popup):
                 Stats.do_tip(grid_line[row]['lab'], number[5] + " " + number[4])
             except:
                 grid_line[row]['text'] = stat
-                grid_line[row]['lab'].set_text(stat)
-
-            self.grid.attach(grid_line[row]['eb'], 0, 1, row-1, row, xpadding=2)
+                grid_line[row]['lab'].set_text(stat)            
 
             if submenu_to_run:
                 grid_line[row]['arrow_object'] = gtk.EventBox()
@@ -194,22 +189,23 @@ class Submenu(Popup):
                 grid_line[row]['arrow_object'].add(lab)
                 grid_line[row]['arrow_object'].modify_bg(gtk.STATE_NORMAL, self.win.aw.bgcolor)
                 grid_line[row]['arrow_object'].modify_fg(gtk.STATE_NORMAL, self.win.aw.fgcolor)
-                grid_line[row]['arrow_object'].connect("button_press_event", self.arrow_press_cb, submenu_to_run)
+                grid_line[row]['arrow_object'].connect("button_press_event", self.submenu_press_cb, submenu_to_run)
                 self.grid.attach(grid_line[row]['arrow_object'], 1, 2, row-1, row)
-                
+                grid_line[row]['eb'].connect("button_press_event", self.submenu_press_cb, submenu_to_run)
+            else:
+                grid_line[row]['eb'].connect("button_press_event", self.button_press_cb)
+
+            self.grid.attach(grid_line[row]['eb'], 0, 1, row-1, row, xpadding=2)
                 
             row += 1
 
         self.show_all()
 
 
-    def arrow_press_cb(self, widget, event, *args):
+    def submenu_press_cb(self, widget, event, *args):
         """Handle button clicks in the FPDB main menu event box."""
-        print "custom", args
-        popup_to_run = args[0]
-        print self.config.popup_windows[popup_to_run].pu_class
-        print dir(self.config.popup_windows)
 
+        popup_to_run = args[0]
         if self.submenu_count < 1: # only 1 popup allowed to be open at this level
             popup_factory(self.seat,self.stat_dict, self.win, self.config.popup_windows[popup_to_run], self.hand_instance, self.config, self)
             
