@@ -1670,15 +1670,16 @@
 
         <pu pu_name="holdring_main" pu_class="Submenu">
             <pu_stat pu_stat_name="playername"/>
-            <pu_stat pu_stat_name="n"/>
             <pu_stat pu_stat_name="general" pu_stat_submenu="holdring_general"/>            
             <pu_stat pu_stat_name="preflop" pu_stat_submenu="hold_pre"/>
             <pu_stat pu_stat_name="flop" pu_stat_submenu="hold_flop"/>
+            <pu_stat pu_stat_name="turn" pu_stat_submenu="hold_turn"/>
+            <pu_stat pu_stat_name="river" pu_stat_submenu="hold_river"/>
             <pu_stat pu_stat_name="hands seen" pu_stat_submenu="hold_starthands"/>
         </pu>
 
         <pu pu_name="holdring_general" pu_class="Submenu">
-            <pu_stat pu_stat_name="playername"/>
+            <pu_stat pu_stat_name="~General"/>
             <pu_stat pu_stat_name="n"/>
             <pu_stat pu_stat_name="agg_freq"/>
             <pu_stat pu_stat_name="cbet"/>
@@ -1690,15 +1691,16 @@
 
         <pu pu_name="holdtour_main" pu_class="Submenu">
             <pu_stat pu_stat_name="playername"/>
-            <pu_stat pu_stat_name="n"/>
             <pu_stat pu_stat_name="general" pu_stat_submenu="holdtour_general"/>            
             <pu_stat pu_stat_name="preflop" pu_stat_submenu="hold_pre"/>
             <pu_stat pu_stat_name="flop" pu_stat_submenu="hold_flop"/>
+            <pu_stat pu_stat_name="turn" pu_stat_submenu="hold_turn"/>
+            <pu_stat pu_stat_name="river" pu_stat_submenu="hold_river"/>
             <pu_stat pu_stat_name="hands seen" pu_stat_submenu="hold_starthands"/>
         </pu>
 
         <pu pu_name="holdtour_general" pu_class="Submenu">
-            <pu_stat pu_stat_name="playername"/>
+            <pu_stat pu_stat_name="~General"/>
             <pu_stat pu_stat_name="n"/>
             <pu_stat pu_stat_name="agg_freq"/>
             <pu_stat pu_stat_name="cbet"/>
@@ -1708,13 +1710,12 @@
         </pu>        
 
         <pu pu_name="hold_starthands" pu_class="Submenu">
-            <pu_stat pu_stat_name="playername"/>
-            <pu_stat pu_stat_name="n"/>
+            <pu_stat pu_stat_name="~Preflop action seen"/>
             <pu_stat pu_stat_name="starthands"/>
         </pu>
 
         <pu pu_name="hold_pre" pu_class="Submenu">
-            <pu_stat pu_stat_name="playername"/>
+            <pu_stat pu_stat_name="~Preflop"/>
             <pu_stat pu_stat_name="n"/>
             <pu_stat pu_stat_name="vpip"/>
             <pu_stat pu_stat_name="pfr"/>
@@ -1725,7 +1726,7 @@
         </pu>
 
         <pu pu_name="hold_steal" pu_class="Submenu">
-            <pu_stat pu_stat_name="playername"/>
+            <pu_stat pu_stat_name="~Steal"/>
             <pu_stat pu_stat_name="n"/>
             <pu_stat pu_stat_name="steal"/>
             <pu_stat pu_stat_name="s_steal"/>
@@ -1737,7 +1738,7 @@
         </pu>
 
         <pu pu_name="hold_34bet" pu_class="Submenu">
-            <pu_stat pu_stat_name="playername"/>
+            <pu_stat pu_stat_name="~3/4 bettinge"/>
             <pu_stat pu_stat_name="n"/>
             <pu_stat pu_stat_name="three_B"/>
             <pu_stat pu_stat_name="four_B"/>
@@ -1752,7 +1753,7 @@
         </pu>
         
         <pu pu_name="hold_flop" pu_class="Submenu">
-            <pu_stat pu_stat_name="playername"/>
+            <pu_stat pu_stat_name="~Flop"/>
             <pu_stat pu_stat_name="n"/>
             <pu_stat pu_stat_name="cb1"/>
             <pu_stat pu_stat_name="a_freq1"/>
@@ -1763,7 +1764,7 @@
         </pu>
   
         <pu pu_name="hold_turn" pu_class="Submenu">
-            <pu_stat pu_stat_name="playername"/>
+            <pu_stat pu_stat_name="~Turn"/>
             <pu_stat pu_stat_name="n"/>
             <pu_stat pu_stat_name="cb2"/>
             <pu_stat pu_stat_name="a_freq2"/>
@@ -1774,7 +1775,7 @@
         </pu>
 
         <pu pu_name="hold_river" pu_class="Submenu">
-            <pu_stat pu_stat_name="playername"/>
+            <pu_stat pu_stat_name="~River"/>
             <pu_stat pu_stat_name="n"/>
             <pu_stat pu_stat_name="cb3"/>
             <pu_stat pu_stat_name="a_freq3"/>

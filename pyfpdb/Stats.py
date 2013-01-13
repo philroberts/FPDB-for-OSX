@@ -1396,11 +1396,11 @@ def starthands(stat_dict, player, hand_instance):
     # <pu_stat pu_stat_name="starthands"> </pu_stat>
     handid = int(hand_instance.handid_selected)
     stat_descriptions["starthands"] = _("starting hands at this table") + " (starting hands)"
-    PFlimp=" PFlimp:"
-    PFaggr=" PFaggr:"
-    PFcar=" PFCaRa:"
-    PFdefend=" PFdefBB:"
-    count_pfl = count_pfa = count_pfc = count_pfd = 2
+    PFlimp="Limped:"
+    PFaggr="Raised:"
+    PFcar="Called raise:"
+    PFdefend="Defended blind:"
+    count_pfl = count_pfa = count_pfc = count_pfd = 5
     
     c = Configuration.Config()
     db_connection = Database.Database(c)
