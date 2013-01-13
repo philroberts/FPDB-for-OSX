@@ -135,7 +135,7 @@ class default(Popup):
 
 
 class Submenu(Popup):
-
+#fixme refactor this class, too much repeat code
     def create(self):
         super(Submenu, self).create()
 
@@ -146,13 +146,22 @@ class Submenu(Popup):
         if player_id is None:
             self.destroy_pop()
 
-        count_toplevel = len(self.pop.pu_stats)
-
-        if count_toplevel < 1:
+        number_of_items = len(self.pop.pu_stats)
+        if number_of_items < 1:
             self.destroy_pop()
 
-        self.grid = gtk.Table(count_toplevel,2,False)
-        self.eb.add(self.grid)
+        #Put an eventbox into an eventbox - this allows an all-round
+        #border to be created
+        self.inner_box = gtk.EventBox()
+        self.inner_box.set_border_width(1)
+        self.inner_box.modify_bg(gtk.STATE_NORMAL, self.win.aw.bgcolor)
+        self.inner_box.modify_fg(gtk.STATE_NORMAL, self.win.aw.fgcolor)
+        #set outerbox colour to grey, and attach innerbox
+        self.eb.modify_bg(gtk.STATE_NORMAL, gtk.gdk.Color("#303030"))
+        self.eb.add(self.inner_box)
+        
+        self.grid = gtk.Table(number_of_items,3,False)
+        self.inner_box.add(self.grid)
         
         grid_line = {}
         row = 1
@@ -167,7 +176,8 @@ class Submenu(Popup):
             grid_line[row]['eb'].modify_fg(gtk.STATE_NORMAL, self.win.aw.fgcolor)
             grid_line[row]['lab'].modify_bg(gtk.STATE_NORMAL, self.win.aw.bgcolor)
             grid_line[row]['lab'].modify_fg(gtk.STATE_NORMAL, self.win.aw.fgcolor)
-            grid_line[row]['lab'].set_alignment(xalign=0, yalign=0.5) 
+            grid_line[row]['lab'].set_alignment(xalign=0, yalign=1)
+            grid_line[row]['lab'].set_padding(2,0)
                         
             try:
                 number = Stats.do_stat(
@@ -179,10 +189,27 @@ class Submenu(Popup):
                 grid_line[row]['text'] = stat
                 grid_line[row]['lab'].set_text(stat)            
 
+            if row == 1:
+                #put an "x" close label onto the popup, invert bg/fg
+                # the window can also be closed by clicking on any non-menu label
+                # but this "x" is added incase the menu is entirely non-menu labels
+                
+                grid_line[row]['x'] = gtk.EventBox()
+                xlab = gtk.Label()
+                xlab.set_text("x")
+                xlab.modify_bg(gtk.STATE_NORMAL, self.win.aw.fgcolor)
+                xlab.modify_fg(gtk.STATE_NORMAL, self.win.aw.bgcolor) 
+                grid_line[row]['x'].add(xlab)
+                grid_line[row]['x'].modify_bg(gtk.STATE_NORMAL, self.win.aw.fgcolor)
+                grid_line[row]['x'].modify_fg(gtk.STATE_NORMAL, self.win.aw.bgcolor)
+                #grid_line[row]['x'].set_border_width(2)
+                self.grid.attach(grid_line[row]['x'], 2, 3, row-1, row)
+                grid_line[row]['x'].connect("button_press_event", self.submenu_press_cb, "_destroy")
+                
             if submenu_to_run:
                 grid_line[row]['arrow_object'] = gtk.EventBox()
                 lab = gtk.Label()
-                lab.set_text(">  ")
+                lab.set_text(">")
                 lab.modify_bg(gtk.STATE_NORMAL, self.win.aw.bgcolor)
                 lab.modify_fg(gtk.STATE_NORMAL, self.win.aw.fgcolor)
                 lab.set_alignment(xalign=0.75, yalign=0.5)
@@ -190,12 +217,15 @@ class Submenu(Popup):
                 grid_line[row]['arrow_object'].modify_bg(gtk.STATE_NORMAL, self.win.aw.bgcolor)
                 grid_line[row]['arrow_object'].modify_fg(gtk.STATE_NORMAL, self.win.aw.fgcolor)
                 grid_line[row]['arrow_object'].connect("button_press_event", self.submenu_press_cb, submenu_to_run)
-                self.grid.attach(grid_line[row]['arrow_object'], 1, 2, row-1, row)
+                if row == 1:
+                    self.grid.attach(grid_line[row]['arrow_object'], 1, 2, row-1, row)
+                else:
+                    self.grid.attach(grid_line[row]['arrow_object'], 1, 3, row-1, row)
                 grid_line[row]['eb'].connect("button_press_event", self.submenu_press_cb, submenu_to_run)
             else:
                 grid_line[row]['eb'].connect("button_press_event", self.button_press_cb)
 
-            self.grid.attach(grid_line[row]['eb'], 0, 1, row-1, row, xpadding=2)
+            self.grid.attach(grid_line[row]['eb'], 0, 1, row-1, row)
                 
             row += 1
 
@@ -206,6 +236,9 @@ class Submenu(Popup):
         """Handle button clicks in the FPDB main menu event box."""
 
         popup_to_run = args[0]
+        if popup_to_run == "_destroy":
+            self.destroy_pop()
+            return
         if self.submenu_count < 1: # only 1 popup allowed to be open at this level
             popup_factory(self.seat,self.stat_dict, self.win, self.config.popup_windows[popup_to_run], self.hand_instance, self.config, self)
             
