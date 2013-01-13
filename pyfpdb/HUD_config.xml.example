@@ -1708,6 +1708,8 @@
         </pu>        
 
         <pu pu_name="hold_starthands" pu_class="Submenu">
+            <pu_stat pu_stat_name="playername"/>
+            <pu_stat pu_stat_name="n"/>
             <pu_stat pu_stat_name="starthands"/>
         </pu>
 
