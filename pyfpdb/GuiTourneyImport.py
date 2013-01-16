@@ -237,7 +237,7 @@ class SummaryImporter:
             errors = 0
             imported = 0
 
-            foabs = self.readFile(obj, filename)
+            foabs = obj.readFile(obj, filename)
             if len(foabs) == 0:
                 log.error("Found: '%s' with 0 characters... skipping" % filename)
                 return (0, 1) # File had 0 characters
