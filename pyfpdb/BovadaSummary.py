@@ -100,7 +100,7 @@ class BovadaSummary(TourneySummary):
                     self.buyin = 0
                     self.fee = 0
                     self.buyinCurrency = "FREE"
-                else:
+                elif info['BIAMT'] is not None and info['BIRAKE'] is not None:
                     if info['BUYIN'].find("$")!=-1:
                         self.buyinCurrency="USD"
                     elif re.match("^[0-9+]*$", info['BUYIN']):
@@ -109,9 +109,6 @@ class BovadaSummary(TourneySummary):
                         log.error(_("BovadaSummary.parseSummary: Failed to detect currency"))
                         raise FpdbParseError
                     self.currency = self.buyinCurrency
-                    
-                    tourneyNameFull = info['TOURNAME'] + ' - ' + info['BIAMT'] + '+' + info['BIRAKE']
-                    self.tourneyName = tourneyNameFull[:40] 
 
                     info['BIAMT'] = info['BIAMT'].strip(u'$')
                     
@@ -122,6 +119,15 @@ class BovadaSummary(TourneySummary):
 
                     self.buyin = int(100*Decimal(info['BIAMT']))
                     self.fee = int(100*Decimal(info['BIRAKE']))
+                    
+                    if info['TOURNAME'] is not None:
+                        tourneyNameFull = info['TOURNAME'] + ' - ' + info['BIAMT'] + '+' + info['BIRAKE']
+                        self.tourneyName = tourneyNameFull[:40] 
+                        
+                        if 'TOURNAME' in info and 'Rebuy' in info['TOURNAME']:
+                            self.isAddOn, self.isRebuy = True, True
+                            self.rebuyCost = self.buyin
+                            self.addOnCost = self.buyin
             
             rank, winnings, rebuys, addons = None, None, 0, 0
             
@@ -136,11 +142,6 @@ class BovadaSummary(TourneySummary):
                 elif re.match("^[0-9+]*$", m.group('WINNINGS')):
                     self.currency="play"
                 winnings = int(100*Decimal(m.group('WINNINGS').strip(u'$')))
-                
-            if 'TOURNAME' in info and 'Rebuy' in info['TOURNAME']:
-                self.isAddOn, self.isRebuy = True, True
-                self.rebuyCost = self.buyin
-                self.addOnCost = self.buyin
                 
             m = self.re_Rebuyin.finditer(self.summaryText)
             for a in m: rebuys += 1
