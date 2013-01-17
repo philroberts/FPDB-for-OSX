@@ -83,7 +83,7 @@ class Boss(HandHistoryConverter):
 
     re_PostSB           = re.compile(r'^<ACTION TYPE="HAND_BLINDS" PLAYER="%s" KIND="HAND_SB" VALUE="(?P<SB>[.0-9]+)"></ACTION>' %  player_re, re.MULTILINE)
     re_PostBB           = re.compile(r'^<ACTION TYPE="HAND_BLINDS" PLAYER="%s" KIND="HAND_BB" VALUE="(?P<BB>[.0-9]+)"></ACTION>' %  player_re, re.MULTILINE)
-    re_Antes            = re.compile(r"^%s: posts the ante \$?(?P<ANTE>[.0-9]+)" % player_re, re.MULTILINE)
+    re_Antes            = re.compile(r'^<ACTION TYPE="HAND_ANTE" PLAYER="%s" VALUE="(?P<ANTE>[.0-9]+)"></ACTION>' % player_re, re.MULTILINE)
     re_BringIn          = re.compile(r"^%s: brings[- ]in( low|) for \$?(?P<BRINGIN>[.0-9]+)" % player_re, re.MULTILINE)
     re_FlopPot          = re.compile(r'^<ACTION TYPE="HAND_BOARD" VALUE="BOARD_FLOP" POT="(?P<POT>[.0-9]+)"', re.MULTILINE)
     re_ShowDownPot      = re.compile(r'^<SHOWDOWN NAME="HAND_SHOWDOWN" POT="(?P<POT>[.0-9]+)"', re.MULTILINE)
@@ -249,7 +249,6 @@ class Boss(HandHistoryConverter):
             hand.setCommunityCards(street, boardCards)
 
     def readAntes(self, hand):
-        logging.debug(_("reading antes"))
         m = self.re_Antes.finditer(hand.handText)
         for player in m:
             #~ logging.debug("hand.addAnte(%s,%s)" %(player.group('PNAME'), player.group('ANTE')))
