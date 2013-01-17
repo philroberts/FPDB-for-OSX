@@ -95,7 +95,7 @@ class FullTiltPokerSummary(TourneySummary):
 
     re_Currency = re.compile(u"""(?P<CURRENCY>[%(LS)s]|FPP|FTP|T\$|Play\sChips)""" % substitutions)
 
-    re_Player = re.compile(u"""(?P<RANK>[\d]+):\s(?P<NAME>[^,\r\n]{2,15})(,\s(?P<CURRENCY>[%(LS)s])(?P<WINNINGS>[.\d]+))?(,\s(?P<TICKET>Step\s(?P<LEVEL>\d)\sTicket))?""" % substitutions)
+    re_Player = re.compile(u"""(?P<RANK>[\d]+):\s(?P<NAME>[^,\r\n]{2,15})(,\s(?P<CURRENCY>[%(LS)s]|FPP|FTP|T\$|Play\sChips)(?P<WINNINGS>[.\d]+))?(,\s(?P<TICKET>Step\s(?P<LEVEL>\d)\sTicket))?""" % substitutions)
     re_Finished = re.compile(u"""(?P<NAME>[^,\r\n]{2,15}) finished in (?P<RANK>[\d]+)\S\S place""")
 
     re_DateTime = re.compile("\[(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)")
@@ -173,6 +173,7 @@ class FullTiltPokerSummary(TourneySummary):
         elif mg['CURRENCY'] == u"€":  self.buyinCurrency="EUR"
         elif mg['CURRENCY'] == "FPP": self.buyinCurrency="FTFP"
         elif mg['CURRENCY'] == "FTP": self.buyinCurrency="FTFP"
+        elif mg['CURRENCY'] == "T$":  self.buyinCurrency="FTFP"
         elif mg['CURRENCY'] == 'Play Chips': self.buyinCurrency="play"
         if self.buyin ==0:            self.buyinCurrency="FREE"
         self.currency = self.buyinCurrency
@@ -195,6 +196,8 @@ class FullTiltPokerSummary(TourneySummary):
                 elif mg['CURRENCY'] == u"€":  self.currency="EUR"
                 elif mg['CURRENCY'] == "FPP": self.currency="FTFP"
                 elif mg['CURRENCY'] == "FTP": self.currency="FTFP"
+                elif mg['CURRENCY'] == "T$": self.currency="FTFP"
+                elif mg['CURRENCY'] == "Play Chips": self.currency="play"
                 
             if name in rebuyCounts:
                 rebuyCount = rebuyCounts[name]
