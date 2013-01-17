@@ -59,6 +59,7 @@ class Site:
         self.re_SplitHands  = obj.re_SplitHands
         self.codepage       = obj.codepage
         self.copyGameHeader = obj.copyGameHeader
+        self.summaryInFile  = obj.summaryInFile
         self.re_Identify    = obj.re_Identify
         if summary and filter_name != 'iPoker':
             self.summary = summary

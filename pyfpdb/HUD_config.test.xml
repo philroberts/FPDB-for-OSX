@@ -1261,7 +1261,7 @@ Left-Drag to Move"
         <hhc site="Entraction" converter="EntractionToFpdb"/>
         <hhc site="BetOnline" converter="BetOnlineToFpdb"/>
         <hhc site="Microgaming" converter="MicrogamingToFpdb"/>
-        <hhc site="Bovada" converter="BovadaToFpdb"/>
+        <hhc site="Bovada" converter="BovadaToFpdb" summaryImporter="BovadaSummary"/>
         <hhc site="Enet" converter="EnetToFpdb"/>
     </hhcs>
 

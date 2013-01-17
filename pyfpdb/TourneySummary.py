@@ -51,8 +51,8 @@ class TourneySummary(object):
     MS = {'horse' : 'HORSE', '8game' : '8-Game', 'hose'  : 'HOSE', 'ha': 'HA'}
     SITEIDS = {'Fulltilt':1, 'Full Tilt Poker':1, 'PokerStars':2, 'Everleaf':3, 'Boss':4, 'OnGame':5,
                'UltimateBet':6, 'Betfair':7, 'Absolute':8, 'PartyPoker':9, 'PacificPoker':10,
-               'Partouche':11, 'Merge':12, 'PKR':13, 'iPoker':14, 'Winamax':15,
-               'Everest':16, 'Cake':17, 'Entraction':18, 'BetOnline':19, 'Microgaming':20 }
+               'Partouche':11, 'Merge':12, 'PKR':13, 'iPoker':14, 'Winamax':15, 'Everest':16,
+               'Cake':17, 'Entraction':18, 'BetOnline':19, 'Microgaming':20, 'Bovada':21, 'Enet':22}
 
 
     def __init__(self, db, config, siteName, summaryText, in_path = '-', builtFrom = "HHC"):
