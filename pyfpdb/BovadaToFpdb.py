@@ -37,6 +37,7 @@ class Bovada(HandHistoryConverter):
     filetype = "text"
     codepage = ("utf8", "cp1252")
     siteId   = 21 # Needs to match id entry in Sites database
+    summaryInFile = True
     sym = {'USD': "\$", 'T$': "", "play": ""}         # ADD Euro, Sterling, etc HERE
     substitutions = {
                      'LEGAL_ISO' : "USD",      # legal ISO currency codes
@@ -119,7 +120,7 @@ class Bovada(HandHistoryConverter):
     # we don't have to, and it makes life faster.
     re_PostSB           = re.compile(r"^%(PLYR)s (\s?\[ME\]\s)?: (Ante\/Small (B|b)lind|Posts chip) (?P<CURRENCY>%(CUR)s)(?P<SB>[%(NUM)s]+)" %  substitutions, re.MULTILINE)
     re_PostBB           = re.compile(r"^%(PLYR)s (\s?\[ME\]\s)?: Big blind\/Bring in (?P<CURRENCY>%(CUR)s)(?P<BB>[%(NUM)s]+)" %  substitutions, re.MULTILINE)
-    re_Antes            = re.compile(r"^%(PLYR)s (\s?\[ME\]\s)?: (All\-in|Ante chip) %(CUR)s(?P<ANTE>[%(NUM)s]+)" % substitutions, re.MULTILINE)
+    re_Antes            = re.compile(r"^%(PLYR)s (\s?\[ME\]\s)?: Ante chip %(CUR)s(?P<ANTE>[%(NUM)s]+)" % substitutions, re.MULTILINE)
     re_BringIn          = re.compile(r"^%(PLYR)s (\s?\[ME\]\s)?: (Bring_in chip|Big blind\/Bring in)\s?(\(timeout\) )?%(CUR)s(?P<BRINGIN>[%(NUM)s]+)" % substitutions, re.MULTILINE)
     re_PostBoth         = re.compile(r"^%(PLYR)s (\s?\[ME\]\s)?: Posts dead chip %(CUR)s(?P<SBBB>[%(NUM)s]+)" %  substitutions, re.MULTILINE)
     re_HeroCards        = re.compile(r"^%(PLYR)s  ?\[ME\] : Card dealt to a spot \[(?P<NEWCARDS>.+?)\]" % substitutions, re.MULTILINE)
@@ -131,7 +132,7 @@ class Bovada(HandHistoryConverter):
     #re_ShownCards       = re.compile("^Seat (?P<SEAT>[0-9]+): %(PLYR)s %(BRKTS)s(?P<SHOWED>showed|mucked) \[(?P<CARDS>.*)\]( and won \([.\d]+\) with (?P<STRING>.*))?" % substitutions, re.MULTILINE)
     re_CollectPot       = re.compile(r"^%(PLYR)s (\s?\[ME\]\s)?: Hand (R|r)esult(\-Side (P|p)ot)? %(CUR)s(?P<POT>[%(NUM)s]+)" %  substitutions, re.MULTILINE)
     re_Dealt            = re.compile(r"^%(PLYR)s (\s?\[ME\]\s)?: Card dealt to a spot" % substitutions, re.MULTILINE)
-    re_Buyin            = re.compile(r"\s-\s(?P<BUYIN>(?P<BIAMT>[%(LS)s\d\.]+)-(?P<BIRAKE>[%(LS)s\d\.]+)?)\s-\s" % substitutions)
+    re_Buyin            = re.compile(r"(\s-\s(?P<TOURNAME>.+?))?\s-\s(?P<BUYIN>(?P<BIAMT>[%(LS)s\d\.]+)-(?P<BIRAKE>[%(LS)s\d\.]+)?)\s-\s" % substitutions)
     re_Stakes           = re.compile(r"RING\s-\s(?P<CURRENCY>%(LS)s|)?(?P<SB>[%(NUM)s]+)-(%(LS)s)?(?P<BB>[%(NUM)s]+)\s-\s" % substitutions)
     re_Summary          = re.compile(r"\*\*\*\sSUMMARY\s\*\*\*")
     re_Hole_Third       = re.compile(r"\*\*\*\s(3RD\sSTREET|HOLE\sCARDS)\s\*\*\*")
@@ -237,7 +238,7 @@ class Bovada(HandHistoryConverter):
             if key == 'TOURNO':
                 hand.tourNo = info[key]
             if key == 'BUYIN':
-                if hand.tourNo!=None:
+                if info['TOURNO']!=None:
                     if info[key] == 'Freeroll':
                         hand.buyin = 0
                         hand.fee = 0
@@ -365,11 +366,10 @@ class Bovada(HandHistoryConverter):
                 hand.setCommunityCards(street, cards)
 
     def readAntes(self, hand):
-        m = self.re_Antes.finditer(self.re_Hole_Third.split(hand.handText)[0])
+        m = self.re_Antes.finditer(hand.handText)
         for a in m:
             player = self.playerSeatFromPosition('BovadaToFpdb.readAntes', hand.handid, a.group('PNAME'))
             hand.addAnte(player, self.clearMoneyString(a.group('ANTE')))
-            self.allInBlind(hand, 'PREFLOP', a, 'ante')
     
     def readBringIn(self, hand):
         m = self.re_BringIn.search(hand.handText,re.DOTALL)
@@ -383,12 +383,14 @@ class Bovada(HandHistoryConverter):
             hand.gametype['bb'] = "2"
         
     def readBlinds(self, hand):
+        sb, bb = None, None
         hand.setUncalledBets(True)
         for a in self.re_PostSB.finditer(hand.handText):
             player = self.playerSeatFromPosition('BovadaToFpdb.readBlinds.postSB', hand.handid, a.group('PNAME'))
             hand.addBlind(player, 'small blind', self.clearMoneyString(a.group('SB')))
             if not hand.gametype['sb']:
                 hand.gametype['sb'] = self.clearMoneyString(a.group('SB'))
+            sb = self.clearMoneyString(a.group('SB'))
             self.allInBlind(hand, 'PREFLOP', a, 'small blind')
         for a in self.re_PostBB.finditer(hand.handText):
             player = self.playerSeatFromPosition('BovadaToFpdb.readBlinds.postBB', hand.handid, 'Big Blind')
@@ -396,16 +398,34 @@ class Bovada(HandHistoryConverter):
             self.allInBlind(hand, 'PREFLOP', a, 'big blind')
             if not hand.gametype['bb']:
                 hand.gametype['bb'] = self.clearMoneyString(a.group('BB'))
+            bb = self.clearMoneyString(a.group('BB'))
             if not hand.gametype['currency']:
                 if a.group('CURRENCY').find("$")!=-1:
                     hand.gametype['currency']="USD"
                 elif re.match("^[0-9+]*$", a.group('CURRENCY')):
                     hand.gametype['currency']="play"
+        for a in self.re_Action.finditer(self.re_Hole_Third.split(hand.handText)[0]):
+            if a.group('ATYPE') == ' All-in':
+                m = self.re_Antes.finditer(hand.handText)
+                if ((sb is None or bb is None) and (len(hand.players)>2 or not m)):
+                    player = self.playerSeatFromPosition('BovadaToFpdb.readBlinds.postBB', hand.handid, a.group('PNAME'))
+                    if a.group('PNAME') == 'Big Blind':
+                        hand.addBlind(player, 'big blind', self.clearMoneyString(a.group('BET')))
+                        self.allInBlind(hand, 'PREFLOP', a, 'big blind')
+                    elif a.group('PNAME') == 'Small Blind' or (a.group('PNAME') == 'Dealer' and len(hand.players)==2):
+                        hand.addBlind(player, 'small blind', self.clearMoneyString(a.group('BET')))
+                        self.allInBlind(hand, 'PREFLOP', a, 'small blind')
+                elif m:
+                    player = self.playerSeatFromPosition('BovadaToFpdb.readAntes', hand.handid, a.group('PNAME'))
+                    hand.addAnte(player, self.clearMoneyString(a.group('BET')))
+                    self.allInBlind(hand, 'PREFLOP', a, 'antes')
         self.fixBlinds(hand)
         for a in self.re_PostBoth.finditer(hand.handText):
             player = self.playerSeatFromPosition('BovadaToFpdb.readBlinds.postBoth', hand.handid, a.group('PNAME'))
             hand.addBlind(player, 'both', self.clearMoneyString(a.group('SBBB')))
             self.allInBlind(hand, 'PREFLOP', a, 'both')
+        
+        
         
     def fixBlinds(self, hand):
         # See http://sourceforge.net/apps/mantisbt/fpdb/view.php?id=115
