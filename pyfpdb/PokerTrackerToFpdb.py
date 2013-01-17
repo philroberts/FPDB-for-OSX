@@ -332,7 +332,6 @@ class PokerTracker(HandHistoryConverter):
                             hand.buyinCurrency=self.SnG_Structures[tourneyname]['currency']
                             hand.maxseats = self.SnG_Structures[tourneyname]['seats']
                             hand.isSng = True
-                            self.summaryInFile = True
                         else:
                             #print 'DEBUG', 'no match for tourney %s tourNo %s' % (tourneyname, hand.tourNo)
                             hand.buyin = 0
