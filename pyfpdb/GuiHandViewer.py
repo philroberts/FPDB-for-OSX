@@ -23,7 +23,8 @@ import L10n
 _ = L10n.get_translation()
 
 
-from Hand import *
+import Hand
+import Card
 import Configuration
 import Database
 import SQL
@@ -488,28 +489,10 @@ class GuiHandViewer:
         # We need at least sitename, gametype, handid
         # for the Hand.__init__
 
-        ####### Shift this section in Database.py for all to use ######
-        q = self.sql.query['get_gameinfo_from_hid']
-        q = q.replace('%s', self.sql.query['placeholder'])
-
-        c = self.db.get_cursor()
-
-        c.execute(q, (handid,))
-        res = c.fetchone()
-        gametype = {'category':res[1],'base':res[2],'type':res[3],'limitType':res[4],'hilo':res[5],'sb':res[6],'bb':res[7], 'currency':res[10]}
-        #FIXME: smallbet and bigbet are res[8] and res[9] respectively
-        ###### End section ########
-        if gametype['base'] == 'hold':
-            h = HoldemOmahaHand(config = self.config, hhc = None, sitename=res[0], gametype = gametype, handText=None, builtFrom = "DB", handid=handid)
-        elif gametype['base'] == 'stud':
-            h = StudHand(config = self.config, hhc = None, sitename=res[0], gametype = gametype, handText=None, builtFrom = "DB", handid=handid)
-        elif gametype['base'] == 'draw':
-            h = DrawHand(config = self.config, hhc = None, sitename=res[0], gametype = gametype, handText=None, builtFrom = "DB", handid=handid)
+        h = Hand.hand_factory(handid, self.config, self.db)
 
         # Set the hero for this hand using the filter for the sitename of this hand
-        h.hero = self.filters.getHeroes()[res[0]]
-
-        h.select(self.db, handid)
+        h.hero = self.filters.getHeroes()[h.sitename]
         return h
 
     '''

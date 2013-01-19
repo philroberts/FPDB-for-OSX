@@ -21,7 +21,8 @@ import L10n
 _ = L10n.get_translation()
 
 
-from Hand import *
+import Hand
+import Card
 import Configuration
 import Database
 import SQL
@@ -32,8 +33,11 @@ pygtk.require('2.0')
 import gtk
 import math
 import gobject
+from decimal_wrapper import Decimal
 
 import copy
+import sys
+import os
 
 import pprint
 pp = pprint.PrettyPrinter(indent=4)
@@ -298,28 +302,9 @@ class GuiReplayer:
         self.area.window.process_updates(True)
 
     def importhand(self, handid=1):
-        # Fetch hand info
-        # We need at least sitename, gametype, handid
-        # for the Hand.__init__
 
-        ####### Shift this section in Database.py for all to use ######
-        q = self.sql.query['get_gameinfo_from_hid']
-        q = q.replace('%s', self.sql.query['placeholder'])
-
-        c = self.db.get_cursor()
-
-        c.execute(q, (handid,))
-        res = c.fetchone()
-        gametype = {'category':res[1],'base':res[2],'type':res[3],'limitType':res[4],'hilo':res[5],'sb':res[6],'bb':res[7], 'currency':res[10]}
-        #FIXME: smallbet and bigbet are res[8] and res[9] respectively
-        ###### End section ########
-        if gametype['base'] == 'hold':
-            h = HoldemOmahaHand(config = self.conf, hhc = None, sitename=res[0], gametype = gametype, handText=None, builtFrom = "DB", handid=handid)
-        elif gametype['base'] == 'stud':
-            h = StudHand(config = self.conf, hhc = None, sitename=res[0], gametype = gametype, handText=None, builtFrom = "DB", handid=handid)
-        elif gametype['base'] == 'draw':
-            h = DrawHand(config = self.conf, hhc = None, sitename=res[0], gametype = gametype, handText=None, builtFrom = "DB", handid=handid)
-        h.select(self.db, handid)
+        h = Hand.hand_factory(handid, self.conf, self.db)
+        
         return h
 
     def play_clicked(self, button):
