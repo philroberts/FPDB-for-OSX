@@ -1670,44 +1670,23 @@
 
         <pu pu_name="holdring_main" pu_class="Submenu">
             <pu_stat pu_stat_name="playername"/>
-            <pu_stat pu_stat_name="general" pu_stat_submenu="holdring_general"/>            
+            <pu_stat pu_stat_name="general" pu_stat_submenu="default"/>            
             <pu_stat pu_stat_name="preflop" pu_stat_submenu="hold_pre"/>
             <pu_stat pu_stat_name="flop" pu_stat_submenu="hold_flop"/>
             <pu_stat pu_stat_name="turn" pu_stat_submenu="hold_turn"/>
             <pu_stat pu_stat_name="river" pu_stat_submenu="hold_river"/>
             <pu_stat pu_stat_name="hands seen" pu_stat_submenu="hold_starthands"/>
-        </pu>
-
-        <pu pu_name="holdring_general" pu_class="Submenu">
-            <pu_stat pu_stat_name="~General"/>
-            <pu_stat pu_stat_name="n"/>
-            <pu_stat pu_stat_name="agg_freq"/>
-            <pu_stat pu_stat_name="cbet"/>
-            <pu_stat pu_stat_name="WMsF"/>
-            <pu_stat pu_stat_name="bbper100"/>         
-            <pu_stat pu_stat_name="profit100"/>
-            <pu_stat pu_stat_name="totalprofit"/>
-        </pu>            
+        </pu>       
 
         <pu pu_name="holdtour_main" pu_class="Submenu">
             <pu_stat pu_stat_name="playername"/>
-            <pu_stat pu_stat_name="general" pu_stat_submenu="holdtour_general"/>            
+            <pu_stat pu_stat_name="general" pu_stat_submenu="default"/>            
             <pu_stat pu_stat_name="preflop" pu_stat_submenu="hold_pre"/>
             <pu_stat pu_stat_name="flop" pu_stat_submenu="hold_flop"/>
             <pu_stat pu_stat_name="turn" pu_stat_submenu="hold_turn"/>
             <pu_stat pu_stat_name="river" pu_stat_submenu="hold_river"/>
             <pu_stat pu_stat_name="hands seen" pu_stat_submenu="hold_starthands"/>
-        </pu>
-
-        <pu pu_name="holdtour_general" pu_class="Submenu">
-            <pu_stat pu_stat_name="~General"/>
-            <pu_stat pu_stat_name="n"/>
-            <pu_stat pu_stat_name="agg_freq"/>
-            <pu_stat pu_stat_name="cbet"/>
-            <pu_stat pu_stat_name="WMsF"/>
-            <pu_stat pu_stat_name="m_ratio"/>         
-            <pu_stat pu_stat_name="bbstack"/>
-        </pu>        
+        </pu>    
 
         <pu pu_name="hold_starthands" pu_class="Submenu">
             <pu_stat pu_stat_name="~Preflop action seen"/>
