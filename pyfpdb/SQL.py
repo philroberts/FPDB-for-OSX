@@ -4817,7 +4817,31 @@ class Sql:
             #AND   gt.type = 'ring'
             #<limit_test>
             #<game_test>
+            
+        ####################################
+        # Tourney Graph query
+        # FIXME this is a horrible hack to prevent nonsense data
+        #  being graphed - needs proper fix mantis #180 +#182
+        ####################################
+        self.query['tourneyGraph'] = """
+            SELECT tp.tourneyId, (coalesce(tp.winnings,0) - coalesce(tt.buyIn,0) - coalesce(tt.fee,0)) as profit, tp.koCount, tp.rebuyCount, tp.addOnCount, tt.buyIn, tt.fee, t.siteTourneyNo
+            FROM TourneysPlayers tp
+            INNER JOIN Players pl      ON  (pl.id = tp.playerId)
+            INNER JOIN Tourneys t         ON  (t.id  = tp.tourneyId)
+            INNER JOIN TourneyTypes tt    ON  (tt.id = t.tourneyTypeId)
+            WHERE pl.id in <player_test>
+            AND   pl.siteId in <site_test>
+            AND   (t.startTime > '<startdate_test>' AND t.startTime < '<enddate_test>')
+            AND   tt.currency = 'USD'
+            GROUP BY t.startTime, tp.tourneyId, tp.winningsCurrency,
+                     tp.winnings, tp.koCount,
+                     tp.rebuyCount, tp.addOnCount,
+                     tt.buyIn, tt.fee, t.siteTourneyNo
+            ORDER BY t.startTime"""
 
+            #AND   gt.type = 'ring'
+            #<limit_test>
+            #<game_test>
         ####################################
         # Session stats query
         ####################################

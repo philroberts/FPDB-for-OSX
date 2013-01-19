@@ -215,7 +215,7 @@ class GuiTourneyGraphViewer (threading.Thread):
     #end of def showClicked
 
     def getData(self, names, sites):
-        tmp = self.sql.query['tourneyResults']
+        tmp = self.sql.query['tourneyGraph']
         print "DEBUG: getData"
         start_date, end_date = self.filters.getDates()
 
