@@ -367,7 +367,7 @@ class Importer:
                         except KeyError:
                             log.error("File '%s' seems to have disappeared" % f)
                         (stored, duplicates, partial, errors, ttime) = self._import_despatch(self.filelist[f])
-                        self.logImport('auto', f, stored, duplicates, partial, errors, ttime, self.filelist[f].site.hhc_fname)
+                        self.logImport('auto', f, stored, duplicates, partial, errors, ttime, self.filelist[f].fileId)
                         self.database.commit()
                         try:
                             if not os.path.isdir(f): # Note: This assumes that whatever calls us has an "addText" func
