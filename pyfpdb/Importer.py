@@ -287,7 +287,7 @@ class Importer:
                     if movefailedfiles:
                         shutil.move(file, "c:\\fpdbfailed\\%d-%s" % (fileerrorcount, os.path.basename(file[3:]) ) )
             
-            self.logImport('bulk', f, stored, duplicates, partial, errors, ttime, self.filelist[f].site.hhc_fname)
+            self.logImport('bulk', f, stored, duplicates, partial, errors, ttime, self.filelist[f].fileId)
         self.database.cleanUpTourneyTypes()
         self.database.commit()
         del ProgressDialog
