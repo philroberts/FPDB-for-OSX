@@ -813,7 +813,6 @@ class fpdb:
                 </menu>
                 <menu action="viewers">
                   <menuitem action="autoimp"/>
-                  <menuitem action="hud_preferences"/>
                   <menuitem action="graphs"/>
                   <menuitem action="tourneygraphs"/>
                   <menuitem action="ringplayerstats"/>
