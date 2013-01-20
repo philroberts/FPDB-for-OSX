@@ -156,7 +156,7 @@
                 screen_name="YOUR SCREEN NAME HERE"
                 site_path="C:/Program Files/PokerStars/"
                 HH_path="C:/Program Files/PokerStars/HandHistory/YOUR SCREEN NAME HERE/"
-                aux_enabled="True" hud_menu_xshift="180" hud_menu_yshift="-20">
+                aux_enabled="True" hud_menu_xshift="20" hud_menu_yshift="-20">
             <email fetchType="request-summary" host="YOUR_EMAIL_SERVER"
                 username="YOUR_EMAIL_USERNAME" password="YOUR_EMAIL_PASSWORD"
                 useSsl="True" folder="INBOX"/>
@@ -1717,7 +1717,7 @@
         </pu>
 
         <pu pu_name="hold_34bet" pu_class="Submenu">
-            <pu_stat pu_stat_name="~3/4 bettinge"/>
+            <pu_stat pu_stat_name="~3/4 betting"/>
             <pu_stat pu_stat_name="n"/>
             <pu_stat pu_stat_name="three_B"/>
             <pu_stat pu_stat_name="four_B"/>
