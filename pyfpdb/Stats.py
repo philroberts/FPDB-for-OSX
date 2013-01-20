@@ -1441,8 +1441,8 @@ def starthands(stat_dict, player, hand_instance):
 
     for (qstartcards, qstreet0Aggr, qstreet0CalledRaiseDone, qposition) in sc.fetchall():
         humancards = Card.decodeStartHandValue("holdem", qstartcards)
-                
-        if qposition == "b" and qstreet0Aggr == False:
+        #print humancards, qstreet0Aggr, qstreet0CalledRaiseDone, qposition
+        if qposition == "b" and qstreet0CalledRaiseDone:
             PFdefend=PFdefend+"/"+humancards
             count_pfd += 1
             if (count_pfd / 8.0 == int(count_pfd / 8.0)):
