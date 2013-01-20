@@ -4224,6 +4224,15 @@ class Sql:
                            ,case when sum(street0_3Bchance) = 0 then '0'
                                  else to_char(100.0*sum(street0_3Bdone)/sum(street0_3Bchance),'90D0')
                             end                                                             AS pf3
+                           ,case when sum(street0_4Bchance) = 0 then '0'
+                                 else round(100.0*sum(street0_4Bdone)/sum(street0_4Bchance),1)
+                            end                                                             AS pf4
+                           ,case when sum(street0_FoldTo3Bchance) = 0 then '0'
+                                 else round(100.0*sum(street0_FoldTo3Bdone)/sum(street0_FoldTo3Bchance),1)
+                            end                                                             AS pff3
+                           ,case when sum(street0_FoldTo4Bchance) = 0 then '0'
+                                 else round(100.0*sum(street0_FoldTo4Bdone)/sum(street0_FoldTo4Bchance),1)
+                            end                                                             AS pff4
                            ,case when sum(raiseFirstInChance) = 0 then '-'
                                  else to_char(100.0*sum(raisedFirstIn)/sum(raiseFirstInChance),'90D0')
                             end                                                             AS steals
@@ -4276,7 +4285,7 @@ class Sql:
                                   else variance(hprof.profit/100.0)
                              end as variance
                              ,case when hprof.gtId = -1 then -999
-                                  else sqrt(variance(hprof.profit/100.0)
+                                  else sqrt(variance(hprof.profit/100.0))
                              end as stddev
                       from
                           (select hp.handId, <hgametypeId> as gtId, hp.totalProfit as profit
