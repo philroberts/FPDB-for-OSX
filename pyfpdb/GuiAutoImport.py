@@ -283,7 +283,7 @@ class GuiAutoImport (threading.Thread):
                         self.addText("\n" + _("*** GuiAutoImport Error opening pipe:") + " " + traceback.format_exc() )
                     else:
                         for site in self.input_settings:
-                            self.importer.addImportDirectory(self.input_settings[site][0], monitor = True)
+                            self.importer.addImportDirectory(self.input_settings[site][0], monitor = True, site=site)
                             self.addText("\n * " + _("Add %s import directory %s") % (site, str(self.input_settings[site][0])))
                             self.do_import()
                     interval = int(self.intervalEntry.get_text())
