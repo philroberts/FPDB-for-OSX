@@ -176,15 +176,13 @@
                 screen_name="YOUR SCREEN NAME HERE"
                 site_path="C:/Program Files/Full Tilt Poker/"
                 HH_path="C:/Program Files/Full Tilt Poker/HandHistory/YOUR SCREEN NAME HERE/"
-                aux_enabled="True" hud_menu_xshift="0" hud_menu_yshift="0">
+                aux_enabled="True" hud_menu_xshift="20" hud_menu_yshift="-20">
             <layout_set game_type="all" ls="default"/>
-            <fav max="2" fav_seat="0"/>
-            <fav max="4" fav_seat="0"/>
-            <fav max="6" fav_seat="0"/>
-            <fav max="7" fav_seat="0"/>
-            <fav max="8" fav_seat="0"/>
-            <fav max="9" fav_seat="0"/>
-            <fav max="10" fav_seat="0"/>
+            <fav fav_seat="1" max="2"/>
+            <fav fav_seat="3" max="6"/>
+            <fav fav_seat="4" max="8"/>
+            <fav fav_seat="5" max="9"/>
+            
         </site>
 
         <site site_name="Everleaf"
@@ -661,6 +659,46 @@
             </layout>
         </ls>
 
+        <ls name="fulltilt_default">
+            <layout height="546" max="2" width="792">
+                <location seat="1" x="681" y="221"/>
+                <location seat="2" x="2" y="221"/>
+                <location common="1" x="323" y="232"/>
+            </layout>
+            <layout height="547" max="6" width="794">
+                <location seat="1" x="623" y="184"/>
+                <location seat="2" x="675" y="374"/>
+                <location seat="3" x="429" y="424"/>
+                <location seat="4" x="42" y="373"/>
+                <location seat="5" x="23" y="183"/>
+                <location seat="6" x="428" y="1"/>
+                <location common="1" x="323" y="232"/>
+            </layout>
+            <layout height="547" max="8" width="794">
+                <location seat="1" x="618" y="179"/>
+                <location seat="2" x="672" y="366"/>
+                <location seat="3" x="616" y="427"/>
+                <location seat="4" x="411" y="435"/>
+                <location seat="5" x="159" y="464"/>
+                <location seat="6" x="32" y="367"/>
+                <location seat="7" x="86" y="177"/>
+                <location seat="8" x="440" y="0"/>
+                <location common="1" x="323" y="232"/>
+            </layout>
+            <layout height="547" max="9" width="794">
+                <location seat="1" x="544" y="1"/>
+                <location seat="2" x="669" y="208"/>
+                <location seat="3" x="673" y="363"/>
+                <location seat="4" x="528" y="463"/>
+                <location seat="5" x="339" y="480"/>
+                <location seat="6" x="151" y="471"/>
+                <location seat="7" x="13" y="365"/>
+                <location seat="8" x="12" y="209"/>
+                <location seat="9" x="288" y="2"/>
+                <location common="1" x="320" y="229"/>
+            </layout>
+        </ls>
+        
         <ls name="party_default">
             <layout max="2" height="546" width="792">
                 <location seat="1" x="681" y="221"/>

@@ -151,6 +151,7 @@ class Fulltilt(HandHistoryConverter):
 # These regexes are for FTP only
     re_Mixed        = re.compile(r'\s\-\s(?P<MIXED>7\-Game|8\-Game|9\-Game|10\-Game|HA|HEROS|HO|HOE|HORSE|HOSE|OA|OE|SE)\s\-\s', re.VERBOSE)
     re_Max          = re.compile("(?P<MAX>\d+)( max)?", re.MULTILINE)
+    re_HeadsUp      = re.compile("heads up", re.MULTILINE)
     # NB: if we ever match "Full Tilt Poker" we should also match "FullTiltPoker", which PT Stud erroneously exports.
     re_DateTime     = re.compile("""((?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)\s(?P<TZ>\w+)\s-\s(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})|(?P<H2>[0-9]+):(?P<MIN2>[0-9]+)\s(?P<TZ2>\w+)\s-\s\w+\,\s(?P<M2>\w+)\s(?P<D2>\d+)\,\s(?P<Y2>[0-9]{4}))(?P<PARTIAL>\s\(partial\))?""", re.MULTILINE)
 
@@ -325,8 +326,21 @@ class Fulltilt(HandHistoryConverter):
             raise FpdbHandPartial(_("Hand '%s' was cancelled.") % m.group('HID'))
 
         if m.group('TABLEATTRIBUTES'):
-            m2 = self.re_Max.search(m.group('TABLEATTRIBUTES'))
-            if m2: hand.maxseats = int(m2.group('MAX'))
+            # search for keywords "max" and "heads up"
+            max_found = self.re_Max.search(m.group('TABLEATTRIBUTES'))
+            if max_found:
+                hand.maxseats = int(max_found.group('MAX'))
+            elif self.re_HeadsUp.search(m.group('TABLEATTRIBUTES')):
+                hand.maxseats = 2
+            # otherwise use some sensible defaults based on gametype
+        if not hand.maxseats:
+            if hand.gametype['base'] == 'stud':
+                hand.maxseats = 8
+            elif hand.gametype['base'] == 'draw':
+                hand.maxseats = 8
+            else:
+                hand.maxseats = 9
+        #print hand.maxseats
 
         hand.tourNo = m.group('TOURNO')
         if m.group('PLAY') is not None:
@@ -369,7 +383,7 @@ class Fulltilt(HandHistoryConverter):
 
         if hand.level is None:
             hand.level = "0"            
-
+        
     def readPlayerStacks(self, hand):
         # Split hand text for FTP, as the regex matches the player names incorrectly
         # in the summary section
