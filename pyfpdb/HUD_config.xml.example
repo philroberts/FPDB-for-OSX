@@ -177,7 +177,7 @@
                 site_path="C:/Program Files/Full Tilt Poker/"
                 HH_path="C:/Program Files/Full Tilt Poker/HandHistory/YOUR SCREEN NAME HERE/"
                 aux_enabled="True" hud_menu_xshift="20" hud_menu_yshift="-20">
-            <layout_set game_type="all" ls="default"/>
+            <layout_set game_type="all" ls="fulltilt_default"/>
             <fav fav_seat="1" max="2"/>
             <fav fav_seat="3" max="6"/>
             <fav fav_seat="4" max="8"/>
