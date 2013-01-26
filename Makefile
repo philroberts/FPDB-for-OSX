@@ -13,7 +13,7 @@
 #In the "official" distribution you can find the license in agpl-3.0.txt.
 
 # Variable definitions
-VERSION = 0.39.3
+VERSION = 0.39.4
 DATE = $(shell date +%Y%m%d)
 
 all:
