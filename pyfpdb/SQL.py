@@ -308,6 +308,7 @@ class Sql:
                         name VARCHAR(32) NOT NULL,
                         siteId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (siteId) REFERENCES Sites(id),
                         hero BOOLEAN, 
+                        chars char(3),
                         comment text,
                         commentTs DATETIME)
                         ENGINE=INNODB"""
@@ -317,6 +318,7 @@ class Sql:
                         name VARCHAR(32),
                         siteId INTEGER, FOREIGN KEY (siteId) REFERENCES Sites(id),
                         hero INT,
+                        chars char(3),
                         comment text,
                         commentTs timestamp without time zone)"""
         elif db_server == 'sqlite':
@@ -325,6 +327,7 @@ class Sql:
                         name TEXT,
                         siteId INTEGER,
                         hero INT,
+                        chars TEXT,
                         comment TEXT,
                         commentTs REAL,
                         FOREIGN KEY(siteId) REFERENCES Sites(id) ON DELETE CASCADE)"""
@@ -3263,6 +3266,10 @@ class Sql:
         self.query['addPositionsCacheCompundIndex_1'] = """CREATE UNIQUE INDEX PositionsCache_Compound_idx_1 ON PositionsCache(weekId, monthId, gametypeId, playerId, activeSeats, position)"""
         self.query['addPositionsCacheCompundIndex_2'] = """CREATE UNIQUE INDEX PositionsCache_Compound_idx_2 ON PositionsCache(weekId, monthId, tourneyTypeId, playerId, activeSeats, position)"""
 
+        self.query['addFilesIndex'] = """CREATE UNIQUE INDEX index_file ON Files (file(255))"""
+        self.query['addPlayerCharsIndex'] = """CREATE INDEX player_char_3 ON Players (chars(3))"""
+        self.query['addPlayerHeroesIndex'] = """CREATE INDEX player_heroes ON Players (hero)"""
+        
         self.query['get_last_hand'] = "select max(id) from Hands"
         
         self.query['get_last_date'] = "SELECT MAX(startTime) FROM Hands"

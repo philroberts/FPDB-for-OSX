@@ -1646,6 +1646,9 @@ class Database:
         c.execute(self.sql.query['addStartCardsIndex'])
         c.execute(self.sql.query['addActiveSeatsIndex'])
         c.execute(self.sql.query['addPositionIndex'])
+        c.execute(self.sql.query['addFilesIndex'])
+        c.execute(self.sql.query['addPlayerCharsIndex'])
+        c.execute(self.sql.query['addPlayerHeroesIndex'])
 
         c.execute(self.sql.query['addCashCacheCompundIndex'])
         c.execute(self.sql.query['addTourCacheCompundIndex'])
