@@ -141,7 +141,7 @@ HandHistoryConverter: '%(sitename)s'
                 except FpdbHandPartial, e:
                     self.numPartial += 1
                     self.lastGood = False
-                    log.debug("%s" % e)
+                    log.error("%s" % e)
                 except FpdbParseError:
                     self.numErrors += 1
                     self.lastGood = False
@@ -193,6 +193,9 @@ HandHistoryConverter: '%(sitename)s'
         if len(handlist[-1]) <= 50 and self.importType != 'auto':
             handlist.pop()
             log.info(_("Removing text < 50 characters"))
+        elif len(handlist[0]) <= 50 and self.importType != 'auto':
+            handlist = handlist[1:]
+            log.info(_("Removing text < 50 characters from front"))
         return handlist
 
     def processHand(self, handText):
