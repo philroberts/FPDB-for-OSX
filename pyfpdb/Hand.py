@@ -247,9 +247,8 @@ class Hand(object):
         # Players, Gametypes, TourneyTypes are all shared functions that are needed for additional tables
         # These functions are intended for prep insert eventually
         #####
-        db.sethero(self.hero)
         self.gametype['maxSeats'] = self.maxseats #TODO: move up to individual parsers
-        self.dbid_pids = db.getSqlPlayerIDs([p[1] for p in self.players], self.siteId)
+        self.dbid_pids = db.getSqlPlayerIDs([p[1] for p in self.players], self.siteId, self.hero)
         self.dbid_gt = db.getSqlGameTypeId(self.siteId, self.gametype, printdata = printtest)
         
         #Gametypes
@@ -1806,7 +1805,7 @@ class StudHand(Hand):
                         holecards = holecards + self.holecards[street][player][1]
                 else:
                     holecards = holecards + self.holecards[street][player][0]
-                #print "DEBUG: street, holecards, player, self.holecards[street][player][0], self.holecards[street][player][1]
+                #print "DEBUG:", street, holecards, player, self.holecards[street][player][0], self.holecards[street][player][1]
 
         if asList == False:
             return " ".join(holecards)

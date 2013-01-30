@@ -3168,11 +3168,11 @@ class Sql:
             self.query['addHandsIndex'] = """CREATE UNIQUE INDEX siteHandNo ON Hands (siteHandNo, gametypeId)"""
 
         if db_server == 'mysql':
-            self.query['addPlayersIndex'] = """ALTER TABLE Players ADD UNIQUE INDEX name(name, siteId, hero)"""
+            self.query['addPlayersIndex'] = """ALTER TABLE Players ADD UNIQUE INDEX name(name, siteId)"""
         elif db_server == 'postgresql':
-            self.query['addPlayersIndex'] = """CREATE UNIQUE INDEX name ON Players (name, siteId, hero)"""
+            self.query['addPlayersIndex'] = """CREATE UNIQUE INDEX name ON Players (name, siteId)"""
         elif db_server == 'sqlite':
-            self.query['addPlayersIndex'] = """CREATE UNIQUE INDEX name ON Players (name, siteId, hero)"""
+            self.query['addPlayersIndex'] = """CREATE UNIQUE INDEX name ON Players (name, siteId)"""
 
         if db_server == 'mysql':
             self.query['addTPlayersIndex'] = """ALTER TABLE TourneysPlayers ADD UNIQUE INDEX _tourneyId(tourneyId, playerId)"""

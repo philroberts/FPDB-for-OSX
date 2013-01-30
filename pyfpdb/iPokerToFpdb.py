@@ -82,6 +82,30 @@ class iPoker(HandHistoryConverter):
             }
 
     currencies = { u'€':'EUR', '$':'USD', '':'T$', u'£':'GBP' }
+    
+    # translations from captured groups to fpdb info strings
+    Lim_Blinds = {      '0.04': ('0.01', '0.02'),         '0.08': ('0.02', '0.04'),
+                        '0.10': ('0.02', '0.05'),         '0.20': ('0.05', '0.10'),
+                        '0.40': ('0.10', '0.20'),         '0.50': ('0.10', '0.25'),
+                        '1.00': ('0.25', '0.50'),         '1': ('0.25', '0.50'),
+                        '2.00': ('0.50', '1.00'),         '2': ('0.50', '1.00'),
+                        '4.00': ('1.00', '2.00'),         '4': ('1.00', '2.00'),
+                        '6.00': ('1.00', '3.00'),         '6': ('1.00', '3.00'),
+                        '8.00': ('2.00', '4.00'),         '8': ('2.00', '4.00'),
+                       '10.00': ('2.00', '5.00'),        '10': ('2.00', '5.00'),
+                       '20.00': ('5.00', '10.00'),       '20': ('5.00', '10.00'),
+                       '30.00': ('10.00', '15.00'),      '30': ('10.00', '15.00'),
+                       '40.00': ('10.00', '20.00'),      '40': ('10.00', '20.00'),
+                       '60.00': ('15.00', '30.00'),      '60': ('15.00', '30.00'),
+                       '80.00': ('20.00', '40.00'),      '80': ('20.00', '40.00'),
+                      '100.00': ('25.00', '50.00'),     '100': ('25.00', '50.00'),
+                      '150.00': ('50.00', '75.00'),     '150': ('50.00', '75.00'),
+                      '200.00': ('50.00', '100.00'),    '200': ('50.00', '100.00'),
+                      '400.00': ('100.00', '200.00'),   '400': ('100.00', '200.00'),
+                      '800.00': ('200.00', '400.00'),   '800': ('200.00', '400.00'),
+                     '1000.00': ('250.00', '500.00'),  '1000': ('250.00', '500.00'),
+                     '2000.00': ('500.00', '1000.00'), '2000': ('500.00', '1000.00'),
+                  }
 
     # translations from captured groups to fpdb info strings
     Lim_Blinds = {      '0.04': ('0.01', '0.02'),         '0.08': ('0.02', '0.04'),
@@ -191,7 +215,6 @@ class iPoker(HandHistoryConverter):
         mg = m.groupdict()
         tourney = False
         #print "DEBUG: m.groupdict(): %s" % mg
-
         if mg['GAME'][:2]=='LH':
             mg['GAME'] = 'Holdem L'
             mg['BB'] = mg['LBB']
@@ -262,9 +285,13 @@ class iPoker(HandHistoryConverter):
                 self.info['currency'] = 'play'
             elif not mg['TABLECURRENCY']:
                 self.info['currency'] = mg['CURRENCY']
+<<<<<<< HEAD
             else:
                 self.info['currency'] = mg['TABLECURRENCY']
 
+=======
+                
+>>>>>>> 9cdf62e... Several fixes for iPoker stud and tournaments that will be ported over to chazdazzle branch. Updates to the method for storing hero so it works with updates to players table.
             if self.info['limitType'] == 'fl' and self.info['bb'] is not None:
                 try:
                     self.info['sb'] = self.Lim_Blinds[self.clearMoneyString(mg['BB'])][0]
@@ -445,11 +472,17 @@ class iPoker(HandHistoryConverter):
                 cards = found.group('CARDS').split(' ')
                 if street == 'SEVENTH' and self.hero != player:
                     newcards = []
+<<<<<<< HEAD
                     oldcards = [c[1:].replace('10', 'T') + c[0].lower() for c in cards if c[0].lower()!='x']
                 else:
                     newcards = [c[1:].replace('10', 'T') + c[0].lower() for c in cards if c[0].lower()!='x']
+=======
+                    oldcards = [c[1:].replace('10', 'T') + c[0].lower().replace('x', '') for c in cards] #[c[1:].replace('10', 'T') + c[0].lower() for c in cards if c != 'X']
+                else:
+                    newcards = [c[1:].replace('10', 'T') + c[0].lower().replace('x', '') for c in cards] #[c[1:].replace('10', 'T') + c[0].lower() for c in cards if c != 'X']
+>>>>>>> 9cdf62e... Several fixes for iPoker stud and tournaments that will be ported over to chazdazzle branch. Updates to the method for storing hero so it works with updates to players table.
                     oldcards = []
-
+                
                 if street == 'THIRD' and len(newcards) == 3 and self.hero == player: # hero in stud game
                     hand.hero = player
                     hand.dealt.add(player) # need this for stud??

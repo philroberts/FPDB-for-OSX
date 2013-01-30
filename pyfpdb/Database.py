@@ -47,6 +47,8 @@ import math
 import pytz
 import logging
 
+re_char = re.compile('[^a-zA-Z]')
+
 #    FreePokerTools modules
 import SQL
 import Card
@@ -2029,8 +2031,8 @@ class Database:
             monthStart = datetime(local.year, local.month, 1) - offset
             weekdate   = datetime(local.year, local.month, local.day) 
             weekStart  = weekdate - timedelta(days=weekdate.weekday()) - offset
-            wid = self.insertOrUpdate(c, weekStart, select_WC, insert_WC)
-            mid = self.insertOrUpdate(c, monthStart, select_MC, insert_MC)
+            wid = self.insertOrUpdate('weeks', c, weekStart, select_WC, insert_WC)
+            mid = self.insertOrUpdate('months', c, monthStart, select_MC, insert_MC)
             row = [wid, mid, s['id']]
             c.execute(update_WM_SC, row)
         self.commit()        
@@ -2608,8 +2610,8 @@ class Database:
                             month, updateM = self.sc['bk'][i]['monthStart'], True
                     if self.sc['bk'][i]['sessionEnd'] > end:
                         end, update = self.sc['bk'][i]['sessionEnd'], True
-                    if updateW:  wid = self.insertOrUpdate(c, week, select_WC, insert_WC)
-                    if updateM:  mid = self.insertOrUpdate(c, month, select_MC, insert_MC)
+                    if updateW:  wid = self.insertOrUpdate('weeks', c, week, select_WC, insert_WC)
+                    if updateM:  mid = self.insertOrUpdate('months', c, month, select_MC, insert_MC)
                     if update: 
                         c.execute(update_SC, [wid, mid, start, end, r[0]['id']])
                     for h in  self.sc['bk'][i]['ids']:
@@ -2634,8 +2636,8 @@ class Database:
                                 end = n['sessionEnd']
                         else:
                             end = n['sessionEnd']
-                    wid = self.insertOrUpdate(c, week, select_WC, insert_WC)
-                    mid = self.insertOrUpdate(c, month, select_MC, insert_MC)
+                    wid = self.insertOrUpdate('weeks', c, week, select_WC, insert_WC)
+                    mid = self.insertOrUpdate('months', c, month, select_MC, insert_MC)
                     row = [wid, mid, start, end]
                     c.execute(insert_SC, row)
                     sid = self.get_last_insert_id(c)
@@ -2657,8 +2659,8 @@ class Database:
                     end     =  self.sc['bk'][i]['sessionEnd']
                     week    =  self.sc['bk'][i]['weekStart']
                     month   =  self.sc['bk'][i]['monthStart']
-                    wid = self.insertOrUpdate(c, week, select_WC, insert_WC)
-                    mid = self.insertOrUpdate(c, month, select_MC, insert_MC)
+                    wid = self.insertOrUpdate('weeks', c, week, select_WC, insert_WC)
+                    mid = self.insertOrUpdate('months', c, month, select_MC, insert_MC)
                     row = [wid, mid, start, end]
                     c.execute(insert_SC, row)
                     sid = self.get_last_insert_id(c)
@@ -3032,8 +3034,8 @@ class Database:
             inserts = []
             c = self.get_cursor()
             for k, dc in self.dcbulk.iteritems():
-                wid = self.insertOrUpdate(c, k[0], select_WC, insert_WC)
-                mid = self.insertOrUpdate(c, k[1], select_MC, insert_MC)
+                wid = self.insertOrUpdate('weeks', c, k[0], select_WC, insert_WC)
+                mid = self.insertOrUpdate('months', c, k[1], select_MC, insert_MC)
                 dc['wid'] = wid
                 
                 if k[2]:
@@ -3159,8 +3161,8 @@ class Database:
             inserts = []
             c = self.get_cursor()
             for k, pc in self.pcbulk.iteritems():
-                wid = self.insertOrUpdate(c, k[0], select_WC, insert_WC)
-                mid = self.insertOrUpdate(c, k[1], select_MC, insert_MC)
+                wid = self.insertOrUpdate('weeks', c, k[0], select_WC, insert_WC)
+                mid = self.insertOrUpdate('months', c, k[1], select_MC, insert_MC)
                 pc['wid'] = wid
                 
                 if k[2]:
@@ -3260,16 +3262,13 @@ class Database:
         self.siteHandNos.append((gametypeID, siteHandNo))
         return False
     
-    def sethero(self, hero):
-        self._hero = Charset.to_db_utf8(hero)
-    
-    def getSqlPlayerIDs(self, pnames, siteid):
+    def getSqlPlayerIDs(self, pnames, siteid, hero):
         result = {}
         if(self.pcache == None):
-            self.pcache = LambdaDict(lambda  key:self.insertPlayer(key[0], key[1]))
+            self.pcache = LambdaDict(lambda  key:self.insertPlayer(key[0], key[1], key[2]))
 
         for player in pnames:
-            result[player] = self.pcache[(player,siteid)]
+            result[player] = self.pcache[(player,siteid,player==hero)]
             # NOTE: Using the LambdaDict does the same thing as:
             #if player in self.pcache:
             #    #print "DEBUG: cachehit"
@@ -3280,12 +3279,18 @@ class Database:
 
         return result
     
-    def insertPlayer(self, name, site_id):
-        insert_player = "INSERT INTO Players (name, siteId, hero) VALUES (%s, %s, %s)"
+    def insertPlayer(self, name, site_id, hero):
+        insert_player = "INSERT INTO Players (name, siteId, hero, chars) VALUES (%s, %s, %s, %s)"
         insert_player = insert_player.replace('%s', self.sql.query['placeholder'])
         _name = Charset.to_db_utf8(name)
-        _hero = self._hero == _name
-        key = (_name, site_id, _hero)
+        if re_char.match(_name[0]):
+            char = '123'
+        elif re_char.match(_name[1]):
+            char = _name[0] + '1'
+        else:
+            char = _name[:2]
+        
+        key = (_name, site_id, hero, char.upper())
         
         #NOTE/FIXME?: MySQL has ON DUPLICATE KEY UPDATE
         #Usage:
@@ -3297,19 +3302,27 @@ class Database:
         #print "DEBUG: name: %s site: %s" %(name, site_id)
         result = None
         c = self.get_cursor()
-        q = "SELECT id, name FROM Players WHERE name=%s and siteid=%s and hero=%s"
+        q = "SELECT id, name, hero FROM Players WHERE name=%s and siteid=%s"
         q = q.replace('%s', self.sql.query['placeholder'])
-        result = self.insertOrUpdate(c, key, q, insert_player)
+        result = self.insertOrUpdate('players', c, key, q, insert_player)
         return result
     
-    def insertOrUpdate(self, cursor, key, select, insert):
-        cursor.execute (select, key)
+    def insertOrUpdate(self, type, cursor, key, select, insert):
+        if type=='players':
+            cursor.execute (select, key[:2])
+        else:
+            cursor.execute (select, key)
         tmp = cursor.fetchone()
         if (tmp == None):
             cursor.execute (insert, key)
             result = self.get_last_insert_id(cursor)
         else:
             result = tmp[0]
+            if type=='players':
+                if not tmp[2] and key[2]:
+                    q = "UPDATE Players SET hero=1 WHERE name=%s and siteid=%s"
+                    q = q.replace('%s', self.sql.query['placeholder'])
+                    cursor.execute (q, key[:2])
         return result
     
     def getSqlGameTypeId(self, siteid, game, printdata = False):
