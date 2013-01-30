@@ -31,6 +31,78 @@ try:
     pokereval = PokerEval()
 except:
     pokereval = None
+    
+def _buildStatsInitializer():
+    init = {}
+    #Init vars that may not be used, but still need to be inserted.
+    # All stud street4 need this when importing holdem
+    init['winnings']    = 0
+    init['rake']        = 0
+    init['totalProfit'] = 0
+    init['allInEV']     = 0
+    init['street4Aggr'] = False
+    init['wonWhenSeenStreet1'] = 0.0
+    init['sawShowdown'] = False
+    init['showed']      = False
+    init['wonAtSD']     = 0.0
+    init['startCards']  = 0
+    init['position']            = 2
+    init['street0CalledRaiseChance'] = 0
+    init['street0CalledRaiseDone'] = 0
+    init['street0_3BChance']    = False
+    init['street0_3BDone']      = False
+    init['street0_4BChance']    = False
+    init['street0_4BDone']      = False
+    init['street0_C4BChance']   = False
+    init['street0_C4BDone']     = False
+    init['street0_FoldTo3BChance']= False
+    init['street0_FoldTo3BDone']= False
+    init['street0_FoldTo4BChance']= False
+    init['street0_FoldTo4BDone']= False
+    init['street0_SqueezeChance']= False
+    init['street0_SqueezeDone'] = False
+    init['success_Steal']       = False
+    init['raiseToStealChance']  = False
+    init['raiseToStealDone']  = False
+    init['raiseFirstInChance']  = False
+    init['raisedFirstIn']       = False
+    init['foldBbToStealChance'] = False
+    init['foldSbToStealChance'] = False
+    init['foldedSbToSteal']     = False
+    init['foldedBbToSteal']     = False
+    init['tourneyTypeId']       = None
+    init['street1Seen']         = False
+    init['street2Seen']         = False
+    init['street3Seen']         = False
+    init['street4Seen']         = False
+
+
+    for i in range(5):
+        init['street%dCalls' % i] = 0
+        init['street%dBets' % i] = 0
+        init['street%dRaises' % i] = 0
+    for i in range(1,5):
+        init['street%dCBChance' %i] = False
+        init['street%dCBDone' %i] = False
+        init['street%dCheckCallRaiseChance' %i] = False
+        init['street%dCheckCallRaiseDone' %i]   = False
+        init['otherRaisedStreet%d' %i]          = False
+        init['foldToOtherRaisedStreet%d' %i]    = False
+
+    #FIXME - Everything below this point is incomplete.
+    init['other3BStreet0']              = False
+    init['other4BStreet0']              = False
+    init['otherRaisedStreet0']          = False
+    init['foldToOtherRaisedStreet0']    = False
+    for i in range(1,5):
+        init['foldToStreet%dCBChance' %i]       = False
+        init['foldToStreet%dCBDone' %i]         = False
+    init['wonWhenSeenStreet2'] = 0.0
+    init['wonWhenSeenStreet3'] = 0.0
+    init['wonWhenSeenStreet4'] = 0.0
+    return init
+
+_INIT_STATS = _buildStatsInitializer()
 
 def _buildStatsInitializer():
     init = {}
@@ -236,29 +308,28 @@ class DerivedStats():
             # You can really only pay rake when you collect money, but
             # different sites calculate rake differently.
             # Should be fine for split-pots, but won't be accurate for multi-way pots
-            self.handsplayers[player]['rake'] = int(100* hand.rake)/len(hand.collectees)
-            if self.handsplayers[player]['street1Seen'] == True:
-                self.handsplayers[player]['wonWhenSeenStreet1'] = 1.0
-            if self.handsplayers[player]['street2Seen'] == True:
-                self.handsplayers[player]['wonWhenSeenStreet2'] = 1.0
-            if self.handsplayers[player]['street3Seen'] == True:
-                self.handsplayers[player]['wonWhenSeenStreet3'] = 1.0
-            if self.handsplayers[player]['street4Seen'] == True:
-                self.handsplayers[player]['wonWhenSeenStreet4'] = 1.0
-            if self.handsplayers[player]['sawShowdown'] == True:
-                self.handsplayers[player]['wonAtSD'] = 1.0
+            collectee_stats['rake'] = int(100 * hand.rake)/num_collectees
+            if collectee_stats['street1Seen'] == True:
+                collectee_stats['wonWhenSeenStreet1'] = 1.0
+            if collectee_stats['street2Seen'] == True:
+                collectee_stats['wonWhenSeenStreet2'] = 1.0
+            if collectee_stats['street3Seen'] == True:
+                collectee_stats['wonWhenSeenStreet3'] = 1.0
+            if collectee_stats['street4Seen'] == True:
+                collectee_stats['wonWhenSeenStreet4'] = 1.0
+            if collectee_stats['sawShowdown'] == True:
+                collectee_stats['wonAtSD'] = 1.0
 
-        for player in hand.pot.committed:
-            profit = int(self.handsplayers[player]['winnings'] - (100*hand.pot.committed[player])- (100*hand.pot.common[player]))
-            self.handsplayers[player]['totalProfit'] = profit
-            self.handsplayers[player]['allInEV']     = profit
+        for player, money_committed in hand.pot.committed.iteritems():
+            committed_player_stats = self.handsplayers[player]
+            committed_player_stats['totalProfit'] = int(committed_player_stats['winnings'] - (100 * money_committed) - (100*hand.pot.common[player]))
+            committed_player_stats['allInEV']     = committed_player_stats['totalProfit']
 
         self.calcCBets(hand)
-
+        
         # More inner-loop speed hackery.
         encodeCard = Card.encodeCard
         calcStartCards = Card.calcStartCards
-
         for player in hand.players:
             player_name = player[1]
             hcs = hand.join_holecards(player_name, asList=True)
