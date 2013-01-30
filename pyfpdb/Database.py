@@ -53,6 +53,7 @@ import Card
 import Charset
 from Exceptions import *
 import Configuration
+import Archive
 
 if __name__ == "__main__":
     Configuration.set_logfile("fpdb-log.txt")
@@ -2269,8 +2270,8 @@ class Database:
         self.tbulk       = {}         # Tourneys bulk updates
         self.tpbulk      = []         # TourneysPlayers bulk updates
         self.sc          = {'bk': []} # SessionsCache bulk updates
-        self.cc          = {'bk': {}} # CashCache bulk updates
-        self.tc          = {'bk': {}} # TourCache bulk updates
+        self.cc          = {}         # CashCache bulk updates
+        self.tc          = {}         # TourCache bulk updates
         self.hids        = []         # hand ids in order of hand bulk inserts
         #self.tids        = []         # tourney ids in order of hp bulk inserts
         if reconnect: self.do_connect(self.config)
@@ -2367,8 +2368,6 @@ class Database:
             # keys in HANDS_PLAYERS_KEYS to hpbulk.
             #self.tids.append(tid)
             bulk_data = [pvalue[key] for key in HANDS_PLAYERS_KEYS]
-            bulk_data.append(None)
-            bulk_data.append(None)
             bulk_data.append(pids[p])
             bulk_data.append(hid)
             bulk_data.reverse()
@@ -2491,297 +2490,6 @@ class Database:
                     pass
             if inserts:
                 self.executemany(c, insert_hudcache, inserts) #c.executemany(insert_hudcache, inserts)
-            self.commit()
-            
-    def storeTourCache(self, hid, pids, tid, startTime, gametype, pdata, heroes, hero, doinsert = False):
-        update_TC = self.sql.query['update_TC']
-        update_TC = update_TC.replace('%s', self.sql.query['placeholder'])
-        insert_TC = self.sql.query['insert_TC']
-        insert_TC = insert_TC.replace('%s', self.sql.query['placeholder'])
-        select_TC = self.sql.query['select_TC']
-        select_TC = select_TC.replace('%s', self.sql.query['placeholder'])
-        
-        if gametype['type']=='tour' and len(heroes)>0:
-            for p in pdata:
-                k = (tid
-                    ,pids[p]
-                    )
-                pdata[p]['hands'] = 1
-                if pdata[p]['street0VPI'] or pdata[p]['street1Seen']:
-                    pdata[p]['played'] = 1
-                else:
-                    pdata[p]['played'] = 0
-                if pdata[p]['sawShowdown']:
-                    pdata[p]['showdownWinnings']    = pdata[p]['totalProfit']
-                    pdata[p]['nonShowdownWinnings'] = 0
-                else:
-                    pdata[p]['showdownWinnings']    = 0
-                    pdata[p]['nonShowdownWinnings'] = pdata[p]['totalProfit']
-                if p!=hero:
-                    if (pdata[p]['totalProfit']>0 and 0>pdata[hero]['totalProfit']):
-                        pdata[p]['vsHero'] = - pdata[hero]['totalProfit']   
-                    elif (pdata[hero]['totalProfit']>0 and 0>pdata[p]['totalProfit']):
-                        pdata[p]['vsHero'] = pdata[p]['totalProfit']
-                    else:
-                        pdata[p]['vsHero'] = 0
-                else:
-                    pdata[p]['vsHero'] = 0
-                line = [pdata[p][s] for s in CACHE_KEYS]
-                
-                tourplayer = self.tc['bk'].get(k)
-                # Add line to the old line in the tourcache.
-                if tourplayer is not None:
-                    for idx,val in enumerate(line):
-                        tourplayer['line'][idx] += val
-                    tourplayer['ids'].append((hid,pids[p]))
-                else:
-                    self.tc['bk'][k] = {'startTime' : None,
-                                          'endTime' : None,
-                                              'hid' : hid,
-                                              'ids' : []}
-                    self.tc['bk'][k]['ids'].append((hid,pids[p]))
-                    self.tc['bk'][k]['line'] = line
-
-                if not self.tc['bk'][k]['startTime'] or startTime < self.tc['bk'][k]['startTime']:
-                    self.tc['bk'][k]['startTime']  = startTime
-                if not self.tc['bk'][k]['endTime'] or startTime > self.tc['bk'][k]['endTime']:
-                    self.tc['bk'][k]['endTime']    = startTime
-                
-        if doinsert:
-            inserts = []
-            c = self.get_cursor()
-            for k, tc in self.tc['bk'].iteritems():
-                hid = tc['hid']
-                sc = self.sc.get(hid)
-                if sc is not None:
-                    sid = sc['id']
-                else:
-                    sid = None
-                if self.backend == self.SQLITE:
-                    tc['startTime'] = datetime.strptime(tc['startTime'], '%Y-%m-%d %H:%M:%S')
-                    tc['endTime']   = datetime.strptime(tc['endTime'], '%Y-%m-%d %H:%M:%S')
-                else:
-                    tc['startTime'] = tc['startTime'].replace(tzinfo=None)
-                    tc['endTime']   = tc['endTime'].replace(tzinfo=None)
-                c.execute(select_TC, k)
-                result = c.fetchone()
-                if result:
-                    id, start, end = result
-                    tc['id'] = id
-                    for hp in tc['ids']: self.tc[hp] = {'id': id} 
-                else: start, end = None, None
-                update = not start or not end
-                if (update or (tc['startTime']<start and tc['endTime']>end)):
-                    q = update_TC.replace('<UPDATE>', 'startTime=%s, endTime=%s,')
-                    row = [tc['startTime'], tc['endTime']] + tc['line'] + list(k[:2])
-                elif tc['startTime']<start:
-                    q = update_TC.replace('<UPDATE>', 'startTime=%s, ')
-                    row = [tc['startTime']] + tc['line'] + list(k[:2])
-                elif tc['endTime']>end:
-                    q = update_TC.replace('<UPDATE>', 'endTime=%s, ')
-                    row = [tc['endTime']] + tc['line'] + list(k[:2])
-                else:
-                    q = update_TC.replace('<UPDATE>', '')
-                    row = tc['line'] + list(k[:2])
-                
-                num = c.execute(q, row)
-                # Try to do the update first. Do insert it did not work
-                if ((self.backend == self.PGSQL and c.statusmessage != "UPDATE 1")
-                        or (self.backend == self.MYSQL_INNODB and num == 0)
-                        or (self.backend == self.SQLITE and num.rowcount == 0)):
-                    row = [sid, tc['startTime'], tc['endTime']] + list(k[:2]) + tc['line']
-                    #append to the bulk inserts
-                    inserts.append(row)
-                
-            if inserts:
-                c.executemany(insert_TC, inserts)
-            self.commit()
-            
-            for k, tc in self.tc['bk'].iteritems():
-                id = tc.get('id')
-                if id is None:
-                    c.execute(select_TC, k)
-                    id, start, end = c.fetchone()
-                    tc['id'] = id
-                    for hp in tc['ids']: self.tc[hp] = {'id': id} 
-                    
-            
-    def storeCardsCache(self, gametype, startTime, pids, gid, ttid, heroes, pdata, doinsert):
-        """Update cached statistics. If update fails because no record exists, do an insert."""
-        update_cardscache = self.sql.query['update_cardscache']
-        update_cardscache = update_cardscache.replace('%s', self.sql.query['placeholder'])
-        insert_cardscache = self.sql.query['insert_cardscache']
-        insert_cardscache = insert_cardscache.replace('%s', self.sql.query['placeholder'])
-        select_cardscache_ring = self.sql.query['select_cardscache_ring']
-        select_cardscache_ring = select_cardscache_ring.replace('%s', self.sql.query['placeholder'])
-        select_cardscache_tour = self.sql.query['select_cardscache_tour']
-        select_cardscache_tour = select_cardscache_tour.replace('%s', self.sql.query['placeholder'])
-        
-        select_WC     = self.sql.query['select_WC'].replace('%s', self.sql.query['placeholder'])
-        select_MC     = self.sql.query['select_MC'].replace('%s', self.sql.query['placeholder'])
-        insert_WC     = self.sql.query['insert_WC'].replace('%s', self.sql.query['placeholder'])
-        insert_MC     = self.sql.query['insert_MC'].replace('%s', self.sql.query['placeholder'])
-        
-        if startTime:
-            if self.backend == self.SQLITE:
-                naive = datetime.strptime(startTime, '%Y-%m-%d %H:%M:%S')
-            else:
-                naive = startTime.replace(tzinfo=None)
-            monthStart = datetime(naive.year, naive.month, 1)
-            weekdate   = datetime(naive.year, naive.month, naive.day)
-            weekStart  = weekdate - timedelta(days=weekdate.weekday())
-
-
-        tourneyTypeId, gametypeId = None, None
-        if gametype['type']=='ring':
-            gametypeId = gid
-        else:
-            tourneyTypeId = ttid
-        
-        for p in pdata:
-            if pids[p] in heroes and gametype['category'] in ('razz', 'holdem'):
-                k =   (weekStart
-                      ,monthStart
-                      ,gametypeId
-                      ,tourneyTypeId
-                      ,pids[p]
-                      ,pdata[p]['startCards']
-                      )
-                pdata[p]['hands'] = 1
-                if pdata[p]['street0VPI'] or pdata[p]['street1Seen']:
-                    pdata[p]['played'] = 1
-                else:
-                    pdata[p]['played'] = 0
-                if pdata[p]['sawShowdown']:
-                    pdata[p]['showdownWinnings']    = pdata[p]['totalProfit']
-                    pdata[p]['nonShowdownWinnings'] = 0
-                else:
-                    pdata[p]['showdownWinnings']    = 0
-                    pdata[p]['nonShowdownWinnings'] = pdata[p]['totalProfit']
-                pdata[p]['vsHero'] = 0
-                line = [pdata[p][s] for s in CACHE_KEYS]
-
-                old_line = self.dcbulk.get(k)
-                # Add line to the old line in the hudcache.
-                if old_line is not None:
-                    for idx,val in enumerate(line):
-                        old_line[idx] += val
-                else:
-                    self.dcbulk[k] = line
-                
-        if doinsert:
-            inserts = []
-            c = self.get_cursor()
-            for k, line in self.dcbulk.iteritems():
-                wid = self.insertOrUpdate(c, k[0], select_WC, insert_WC)
-                mid = self.insertOrUpdate(c, k[1], select_MC, insert_MC)
-                
-                if k[2]:
-                    q = select_cardscache_ring
-                    row = [wid, mid] + [k[2]] + list(k[-2:])
-                else:
-                    q = select_cardscache_tour
-                    row = [wid, mid] + list(k[-3:])
-                    
-                c.execute(q, row)
-                result = c.fetchone()
-                if result:
-                    row = line + [result[0]]
-                    c.execute(update_cardscache, row)
-                else:
-                    inserts.append([wid, mid] + list(k[-4:]) + line)
-            if inserts:
-                c.executemany(insert_cardscache, inserts)
-            self.commit()
-            
-    def storePositionsCache(self, gametype, startTime, pids, gid, ttid, heroes, pdata, doinsert):
-        """Update cached statistics. If update fails because no record exists, do an insert."""
-        update_positionscache = self.sql.query['update_positionscache']
-        update_positionscache = update_positionscache.replace('%s', self.sql.query['placeholder'])
-        insert_positionscache = self.sql.query['insert_positionscache']
-        insert_positionscache = insert_positionscache.replace('%s', self.sql.query['placeholder'])
-        
-        select_positionscache_ring = self.sql.query['select_positionscache_ring']
-        select_positionscache_ring = select_positionscache_ring.replace('%s', self.sql.query['placeholder'])
-        select_positionscache_tour = self.sql.query['select_positionscache_tour']
-        select_positionscache_tour = select_positionscache_tour.replace('%s', self.sql.query['placeholder'])
-        
-        
-        select_WC     = self.sql.query['select_WC'].replace('%s', self.sql.query['placeholder'])
-        select_MC     = self.sql.query['select_MC'].replace('%s', self.sql.query['placeholder'])
-        insert_WC     = self.sql.query['insert_WC'].replace('%s', self.sql.query['placeholder'])
-        insert_MC     = self.sql.query['insert_MC'].replace('%s', self.sql.query['placeholder'])
-        
-        if startTime:
-            if self.backend == self.SQLITE:
-                naive = datetime.strptime(startTime, '%Y-%m-%d %H:%M:%S')
-            else:
-                naive = startTime.replace(tzinfo=None)
-            monthStart = datetime(naive.year, naive.month, 1)
-            weekdate   = datetime(naive.year, naive.month, naive.day)
-            weekStart  = weekdate - timedelta(days=weekdate.weekday())
-        
-        tourneyTypeId, gametypeId = None, None
-        if gametype['type']=='ring':
-            gametypeId = gid
-        else:
-            tourneyTypeId = ttid
-            
-        for p in pdata:
-            if pids[p] in heroes:
-                k =   (weekStart
-                      ,monthStart
-                      ,gametypeId
-                      ,tourneyTypeId
-                      ,pids[p]
-                      ,len(pids)
-                      ,str(pdata[p]['position'])[0]
-                      )
-                pdata[p]['hands'] = 1
-                if pdata[p]['street0VPI'] or pdata[p]['street1Seen']:
-                    pdata[p]['played'] = 1
-                else:
-                    pdata[p]['played'] = 0
-                if pdata[p]['sawShowdown']:
-                    pdata[p]['showdownWinnings']    = pdata[p]['totalProfit']
-                    pdata[p]['nonShowdownWinnings'] = 0
-                else:
-                    pdata[p]['showdownWinnings']    = 0
-                    pdata[p]['nonShowdownWinnings'] = pdata[p]['totalProfit']
-                pdata[p]['vsHero'] = 0
-                line = [pdata[p][s] for s in CACHE_KEYS]
-                    
-                old_line = self.pcbulk.get(k)
-                # Add line to the old line in the hudcache.
-                if old_line is not None:
-                    for idx,val in enumerate(line):
-                        old_line[idx] += val
-                else:
-                    self.pcbulk[k] = line
-                
-        if doinsert:
-            inserts = []
-            c = self.get_cursor()
-            for k, line in self.pcbulk.iteritems():
-                wid = self.insertOrUpdate(c, k[0], select_WC, insert_WC)
-                mid = self.insertOrUpdate(c, k[1], select_MC, insert_MC)
-                
-                if k[2]:
-                    q = select_positionscache_ring
-                    row = [wid, mid] + [k[2]] + list(k[-3:])
-                else:
-                    q = select_positionscache_tour
-                    row = [wid, mid] + list(k[-4:])
-                
-                c.execute(q, row)
-                result = c.fetchone()
-                if result:
-                    row = line + [result[0]]
-                    c.execute(update_positionscache, row)
-                else:
-                    inserts.append([wid, mid] + list(k[-5:]) + line)
-            if inserts:
-                c.executemany(insert_positionscache, inserts)
             self.commit()
             
     def storeSessionsCache(self, hid, pids, startTime, heroes, tz_name, doinsert = False):
@@ -2931,6 +2639,7 @@ class Database:
                     row = [wid, mid, start, end]
                     c.execute(insert_SC, row)
                     sid = self.get_last_insert_id(c)
+                    self.archive.createSession(sid)
                     for h in self.sc['bk'][i]['ids']: self.sc[h] = {'id': sid}
                     for m in merge:
                         for h, n in self.sc.iteritems():
@@ -2942,6 +2651,7 @@ class Database:
                         c.execute(update_SC_T, (sid, m))
                         c.execute(update_SC_H, (sid, m))
                         c.execute(delete_SC, m)
+                        self.archive.mergeSessions(m, sid)
                 elif (num == 0):
                     start   =  self.sc['bk'][i]['sessionStart']
                     end     =  self.sc['bk'][i]['sessionEnd']
@@ -2953,6 +2663,7 @@ class Database:
                     c.execute(insert_SC, row)
                     sid = self.get_last_insert_id(c)
                     for h in self.sc['bk'][i]['ids']: self.sc[h] = {'id': sid}
+                    self.archive.createSession(sid)
             self.commit()
     
     def storeCashCache(self, hid, pids, startTime, gtid, gametype, pdata, heroes, hero, doinsert = False):
@@ -2964,7 +2675,6 @@ class Database:
         update_CC_HP = self.sql.query['update_CC_HP'].replace('%s', self.sql.query['placeholder'])
         delete_CC    = self.sql.query['delete_CC'].replace('%s', self.sql.query['placeholder'])
         THRESHOLD    = timedelta(seconds=int(self.sessionTimeout * 60))
-
        
         if gametype['type']=='ring' and len(heroes)>0:
             for p, pid in pids.iteritems():
@@ -2998,7 +2708,7 @@ class Database:
                     pdata[p]['vsHero'] = 0
                 hp['line'] = [pdata[p][s] for s in CACHE_KEYS]
                 id = []
-                cashplayer = self.cc['bk'].get(k)
+                cashplayer = self.cc.get(k)
                 if cashplayer is not None:        
                     lower = hp['startTime']-THRESHOLD
                     upper = hp['startTime']+THRESHOLD
@@ -3018,7 +2728,8 @@ class Database:
                                 id.append(i)
                 if len(id) == 1:
                     i = id[0]
-                    self.cc['bk'][k][i]['ids'].append((hid,pid))
+                    if p==hero:
+                        self.cc[k][i]['ids'].append(hid)
                 elif len(id) == 2:
                     i, j = id[0], id[1]
                     if    cashplayer[i]['startTime'] < cashplayer[j]['startTime']:
@@ -3027,18 +2738,19 @@ class Database:
                     for idx,val in enumerate(cashplayer[j]['line']):
                         cashplayer[i]['line'][idx] += val
                     g = cashplayer.pop(j)
-                    self.cc['bk'][k][i]['ids'].append((hid,pid))
-                    self.cc['bk'][k][i]['ids'] += g['ids']
+                    if p==hero:
+                        self.cc[k][i]['ids'].append(hid)
+                        self.cc[k][i]['ids'] += g['ids']
                 elif len(id) == 0:
                     if cashplayer is None:
-                        self.cc['bk'][k] = []
+                        self.cc[k] = []
                     hp['endTime'] = hp['startTime']
-                    hp['ids'].append((hid,pid))
-                    self.cc['bk'][k].append(hp)
+                    if p==hero: hp['ids'].append(hid)
+                    self.cc[k].append(hp)
         
         if doinsert:
             c = self.get_cursor()
-            for k, cashplayer in self.cc['bk'].iteritems():
+            for k, cashplayer in self.cc.iteritems():
                 for session in cashplayer:
                     hid = session['hid']
                     sc = self.sc.get(hid)
@@ -3061,14 +2773,14 @@ class Database:
                         d[z]['startTime'] = r[z]['startTime']
                         d[z]['endTime']   = r[z]['endTime']
                     if (num == 1):
-                        start, end = r[0]['startTime'], r[0]['endTime']
+                        start, end, id = r[0]['startTime'], r[0]['endTime'], r[0]['id']
                         if session['startTime'] < start:
                             start = session['startTime']
                         if session['endTime']   > end:
                             end = session['endTime']
-                        row = [start, end] + session['line'] + [r[0]['id']]
+                        row = [start, end] + session['line'] + [id]
                         c.execute(update_CC, row)
-                        for hp in session['ids']: self.cc[hp] = {'id': r[0]['id']} 
+                        self.archive.addSessionHands('ring', sid, id, session['ids'])
                     elif (num > 1):
                         start, end, merge, line = None, None, [], [0]*len(CACHE_KEYS)
                         for n in r: merge.append(n['id'])
@@ -3090,23 +2802,388 @@ class Database:
                                 line[idx] += n['line'][idx]
                         row = [sid, start, end] + list(k[:2]) + line 
                         c.execute(insert_CC, row)
-                        cashId = self.get_last_insert_id(c)
-                        for hp in session['ids']: self.cc[hp] = {'id': cashId}
+                        id = self.get_last_insert_id(c)
+                        self.archive.addSessionHands('ring', sid, id, session['ids'])
                         for m in merge:
-                            for hp, cp in self.cc.iteritems():
-                                _cashId = cp.get('id')
-                                if _cashId==m:
-                                    self.cc[hp] = {'id': cashId}
-                            #c.execute(update_CC_HP, (cashId, m))
                             c.execute(delete_CC, m)
                             self.commit()
+                            self.archive.mergeSubSessions('ring', sid, m, id, session['ids'])
                     elif (num == 0):
                         start               = session['startTime']
                         end                 = session['endTime']
                         row = [sid, start, end] + list(k[:2]) + session['line'] 
                         c.execute(insert_CC, row)
-                        cashId = self.get_last_insert_id(c)
-                        for hp in session['ids']: self.cc[hp] = {'id': cashId}                            
+                        id = self.get_last_insert_id(c)
+                        self.archive.addSessionHands('ring', sid, id, session['ids'])                
+            self.commit()
+            
+    def storeTourCache(self, hid, pids, startTime, tid, gametype, pdata, heroes, hero, doinsert = False):
+        update_TC = self.sql.query['update_TC']
+        update_TC = update_TC.replace('%s', self.sql.query['placeholder'])
+        insert_TC = self.sql.query['insert_TC']
+        insert_TC = insert_TC.replace('%s', self.sql.query['placeholder'])
+        select_TC = self.sql.query['select_TC']
+        select_TC = select_TC.replace('%s', self.sql.query['placeholder'])
+        
+        if gametype['type']=='tour' and len(heroes)>0:
+            for p in pdata:
+                k = (tid
+                    ,pids[p]
+                    )
+                pdata[p]['hands'] = 1
+                if pdata[p]['street0VPI'] or pdata[p]['street1Seen']:
+                    pdata[p]['played'] = 1
+                else:
+                    pdata[p]['played'] = 0
+                if pdata[p]['sawShowdown']:
+                    pdata[p]['showdownWinnings']    = pdata[p]['totalProfit']
+                    pdata[p]['nonShowdownWinnings'] = 0
+                else:
+                    pdata[p]['showdownWinnings']    = 0
+                    pdata[p]['nonShowdownWinnings'] = pdata[p]['totalProfit']
+                if p!=hero:
+                    if (pdata[p]['totalProfit']>0 and 0>pdata[hero]['totalProfit']):
+                        pdata[p]['vsHero'] = - pdata[hero]['totalProfit']   
+                    elif (pdata[hero]['totalProfit']>0 and 0>pdata[p]['totalProfit']):
+                        pdata[p]['vsHero'] = pdata[p]['totalProfit']
+                    else:
+                        pdata[p]['vsHero'] = 0
+                else:
+                    pdata[p]['vsHero'] = 0
+                line = [pdata[p][s] for s in CACHE_KEYS]
+                
+                tourplayer = self.tc.get(k)
+                # Add line to the old line in the tourcache.
+                if tourplayer is not None:
+                    for idx,val in enumerate(line):
+                        tourplayer['line'][idx] += val
+                    if p==hero:
+                        tourplayer['ids'].append(hid)
+                else:
+                    self.tc[k] = {'startTime' : None,
+                                          'endTime' : None,
+                                              'hid' : hid,
+                                              'ids' : []}
+                    self.tc[k]['line'] = line
+                    if p==hero:
+                        self.tc[k]['ids'].append(hid)
+
+                if not self.tc[k]['startTime'] or startTime < self.tc[k]['startTime']:
+                    self.tc[k]['startTime']  = startTime
+                if not self.tc[k]['endTime'] or startTime > self.tc[k]['endTime']:
+                    self.tc[k]['endTime']    = startTime
+                
+        if doinsert:
+            inserts = []
+            c = self.get_cursor()
+            for k, tc in self.tc.iteritems():
+                hid = tc['hid']
+                sc = self.sc.get(hid)
+                if sc is not None:
+                    sid = sc['id']
+                    tc['sid'] = sid
+                else:
+                    sid = None
+                if self.backend == self.SQLITE:
+                    tc['startTime'] = datetime.strptime(tc['startTime'], '%Y-%m-%d %H:%M:%S')
+                    tc['endTime']   = datetime.strptime(tc['endTime'], '%Y-%m-%d %H:%M:%S')
+                else:
+                    tc['startTime'] = tc['startTime'].replace(tzinfo=None)
+                    tc['endTime']   = tc['endTime'].replace(tzinfo=None)
+                c.execute(select_TC, k)
+                result = c.fetchone()
+                if result:
+                    id, start, end = result
+                    self.tc[k]['id'] = id
+                    self.archive.addSessionHands('tour', sid, id, tc['ids'])
+                else:
+                    id, start, end = None, None, None
+                    self.tc[k]['id'] = id
+                update = not start or not end
+                if (update or (tc['startTime']<start and tc['endTime']>end)):
+                    q = update_TC.replace('<UPDATE>', 'startTime=%s, endTime=%s,')
+                    row = [tc['startTime'], tc['endTime']] + tc['line'] + list(k[:2])
+                elif tc['startTime']<start:
+                    q = update_TC.replace('<UPDATE>', 'startTime=%s, ')
+                    row = [tc['startTime']] + tc['line'] + list(k[:2])
+                elif tc['endTime']>end:
+                    q = update_TC.replace('<UPDATE>', 'endTime=%s, ')
+                    row = [tc['endTime']] + tc['line'] + list(k[:2])
+                else:
+                    q = update_TC.replace('<UPDATE>', '')
+                    row = tc['line'] + list(k[:2])
+                
+                num = c.execute(q, row)
+                # Try to do the update first. Do insert it did not work
+                if ((self.backend == self.PGSQL and c.statusmessage != "UPDATE 1")
+                        or (self.backend == self.MYSQL_INNODB and num == 0)
+                        or (self.backend == self.SQLITE and num.rowcount == 0)):
+                    row = [sid, tc['startTime'], tc['endTime']] + list(k[:2]) + tc['line']
+                    #append to the bulk inserts
+                    inserts.append(row)
+                
+            if inserts:
+                c.executemany(insert_TC, inserts)
+            self.commit()
+            
+            for k, tc in self.tc.iteritems():
+                if tc['id'] is None:
+                    c.execute(select_TC, k)
+                    result = c.fetchone()
+                    if result:
+                        id, start, end = result
+                        self.archive.addSessionHands('tour', tc['sid'], id, tc['ids'])
+    
+    def storeCardsCache(self, hid, pids, startTime, gid, ttid, gametype, pdata, heroes, tz_name, doinsert):
+        """Update cached statistics. If update fails because no record exists, do an insert."""
+        update_cardscache = self.sql.query['update_cardscache']
+        update_cardscache = update_cardscache.replace('%s', self.sql.query['placeholder'])
+        insert_cardscache = self.sql.query['insert_cardscache']
+        insert_cardscache = insert_cardscache.replace('%s', self.sql.query['placeholder'])
+        select_cardscache_ring = self.sql.query['select_cardscache_ring']
+        select_cardscache_ring = select_cardscache_ring.replace('%s', self.sql.query['placeholder'])
+        select_cardscache_tour = self.sql.query['select_cardscache_tour']
+        select_cardscache_tour = select_cardscache_tour.replace('%s', self.sql.query['placeholder'])
+        
+        select_WC     = self.sql.query['select_WC'].replace('%s', self.sql.query['placeholder'])
+        select_MC     = self.sql.query['select_MC'].replace('%s', self.sql.query['placeholder'])
+        insert_WC     = self.sql.query['insert_WC'].replace('%s', self.sql.query['placeholder'])
+        insert_MC     = self.sql.query['insert_MC'].replace('%s', self.sql.query['placeholder'])
+        
+        #if startTime:
+        #    if self.backend == self.SQLITE:
+        #        naive = datetime.strptime(startTime, '%Y-%m-%d %H:%M:%S')
+        #    else:
+        #        naive = startTime.replace(tzinfo=None)
+        #    monthStart = datetime(naive.year, naive.month, 1)
+        #    weekdate   = datetime(naive.year, naive.month, naive.day)
+        #    weekStart  = weekdate - timedelta(days=weekdate.weekday())
+   
+        if tz_name in pytz.common_timezones:
+            if self.backend == self.SQLITE:
+                naive = datetime.strptime(startTime, '%Y-%m-%d %H:%M:%S')
+            else:
+                naive = startTime.replace(tzinfo=None)
+            utc_start = pytz.utc.localize(naive)
+            tz = pytz.timezone(tz_name)
+            loc_tz = utc_start.astimezone(tz).strftime('%z')
+            offset = timedelta(hours=int(loc_tz[:-2]), minutes=int(loc_tz[0]+loc_tz[-2:]))
+            local = naive + offset
+            monthStart = datetime(local.year, local.month, 1)
+            weekdate   = datetime(local.year, local.month, local.day)
+            weekStart  = weekdate - timedelta(days=weekdate.weekday())
+        else:
+            if strftime('%Z') == 'UTC':
+                local = startTime
+                loc_tz = '0'
+            else:
+                tz_dt = datetime.today() - datetime.utcnow()
+                loc_tz = tz_dt.seconds/3600 - 24
+                offset = timedelta(hours=int(loc_tz))
+                local = startTime + offset
+                monthStart = datetime(local.year, local.month, 1)
+                weekdate   = datetime(local.year, local.month, local.day)
+                weekStart  = weekdate - timedelta(days=weekdate.weekday())
+
+
+        tourneyTypeId, gametypeId = None, None
+        if gametype['type']=='ring':
+            gametypeId = gid
+        else:
+            tourneyTypeId = ttid
+        
+        for p in pdata:
+            if pids[p] in heroes and gametype['category'] in ('razz', 'holdem'):
+                k =   (weekStart
+                      ,monthStart
+                      ,gametypeId
+                      ,tourneyTypeId
+                      ,pids[p]
+                      ,pdata[p]['startCards']
+                      )
+                pdata[p]['hands'] = 1
+                if pdata[p]['street0VPI'] or pdata[p]['street1Seen']:
+                    pdata[p]['played'] = 1
+                else:
+                    pdata[p]['played'] = 0
+                if pdata[p]['sawShowdown']:
+                    pdata[p]['showdownWinnings']    = pdata[p]['totalProfit']
+                    pdata[p]['nonShowdownWinnings'] = 0
+                else:
+                    pdata[p]['showdownWinnings']    = 0
+                    pdata[p]['nonShowdownWinnings'] = pdata[p]['totalProfit']
+                pdata[p]['vsHero'] = 0
+                line = [pdata[p][s] for s in CACHE_KEYS]
+
+                startCards = self.dcbulk.get(k)
+                # Add line to the old line in the hudcache.
+                if startCards is not None:
+                    for idx,val in enumerate(line):
+                        startCards['line'][idx] += val
+                    startCards['ids'].append(hid)
+                else:
+                    self.dcbulk[k] = {'wid' : None,
+                                      'id'  : None,
+                                      'ids' : []}
+                    self.dcbulk[k]['ids'].append(hid)
+                    self.dcbulk[k]['line'] = line
+                
+        if doinsert:
+            inserts = []
+            c = self.get_cursor()
+            for k, dc in self.dcbulk.iteritems():
+                wid = self.insertOrUpdate(c, k[0], select_WC, insert_WC)
+                mid = self.insertOrUpdate(c, k[1], select_MC, insert_MC)
+                dc['wid'] = wid
+                
+                if k[2]:
+                    q = select_cardscache_ring
+                    row = [wid, mid] + [k[2]] + list(k[-2:])
+                else:
+                    q = select_cardscache_tour
+                    row = [wid, mid] + list(k[-3:])
+                
+                c.execute(q, row)
+                result = c.fetchone()
+                if result:
+                    id = result[0]
+                    row = dc['line'] + [id]
+                    c.execute(update_cardscache, row)
+                    dc['id'] = id
+                    
+                else:
+                    inserts.append([wid, mid] + list(k[-4:]) + dc['line'])   
+                self.archive.addStartCardsHands(gametype['category'], gametype['type'], k[5], wid, dc['ids'])
+                
+            if inserts:
+                c.executemany(insert_cardscache, inserts)
+            self.commit()
+            
+    def storePositionsCache(self, hid, pids, startTime, gid, ttid, gametype, pdata, heroes, tz_name, doinsert):
+        """Update cached statistics. If update fails because no record exists, do an insert."""
+        update_positionscache = self.sql.query['update_positionscache']
+        update_positionscache = update_positionscache.replace('%s', self.sql.query['placeholder'])
+        insert_positionscache = self.sql.query['insert_positionscache']
+        insert_positionscache = insert_positionscache.replace('%s', self.sql.query['placeholder'])
+        
+        select_positionscache_ring = self.sql.query['select_positionscache_ring']
+        select_positionscache_ring = select_positionscache_ring.replace('%s', self.sql.query['placeholder'])
+        select_positionscache_tour = self.sql.query['select_positionscache_tour']
+        select_positionscache_tour = select_positionscache_tour.replace('%s', self.sql.query['placeholder'])
+        
+        
+        select_WC     = self.sql.query['select_WC'].replace('%s', self.sql.query['placeholder'])
+        select_MC     = self.sql.query['select_MC'].replace('%s', self.sql.query['placeholder'])
+        insert_WC     = self.sql.query['insert_WC'].replace('%s', self.sql.query['placeholder'])
+        insert_MC     = self.sql.query['insert_MC'].replace('%s', self.sql.query['placeholder'])
+        
+        #if startTime:
+        #    if self.backend == self.SQLITE:
+        #        naive = datetime.strptime(startTime, '%Y-%m-%d %H:%M:%S')
+        #    else:
+        #        naive = startTime.replace(tzinfo=None)
+        #    monthStart = datetime(naive.year, naive.month, 1)
+        #    weekdate   = datetime(naive.year, naive.month, naive.day)
+        #    weekStart  = weekdate - timedelta(days=weekdate.weekday())
+               
+        if tz_name in pytz.common_timezones:
+            if self.backend == self.SQLITE:
+                naive = datetime.strptime(startTime, '%Y-%m-%d %H:%M:%S')
+            else:
+                naive = startTime.replace(tzinfo=None)
+            utc_start = pytz.utc.localize(naive)
+            tz = pytz.timezone(tz_name)
+            loc_tz = utc_start.astimezone(tz).strftime('%z')
+            offset = timedelta(hours=int(loc_tz[:-2]), minutes=int(loc_tz[0]+loc_tz[-2:]))
+            local = naive + offset
+            monthStart = datetime(local.year, local.month, 1)
+            weekdate   = datetime(local.year, local.month, local.day)
+            weekStart  = weekdate - timedelta(days=weekdate.weekday())
+        else:
+            if strftime('%Z') == 'UTC':
+                local = startTime
+                loc_tz = '0'
+            else:
+                tz_dt = datetime.today() - datetime.utcnow()
+                loc_tz = tz_dt.seconds/3600 - 24
+                offset = timedelta(hours=int(loc_tz))
+                local = startTime + offset
+                monthStart = datetime(local.year, local.month, 1)
+                weekdate   = datetime(local.year, local.month, local.day)
+                weekStart  = weekdate - timedelta(days=weekdate.weekday())
+        
+        tourneyTypeId, gametypeId = None, None
+        if gametype['type']=='ring':
+            gametypeId = gid
+        else:
+            tourneyTypeId = ttid
+            
+        for p in pdata:
+            if pids[p] in heroes:
+                k =   (weekStart
+                      ,monthStart
+                      ,gametypeId
+                      ,tourneyTypeId
+                      ,pids[p]
+                      ,len(pids)
+                      ,str(pdata[p]['position'])[0]
+                      )
+                pdata[p]['hands'] = 1
+                if pdata[p]['street0VPI'] or pdata[p]['street1Seen']:
+                    pdata[p]['played'] = 1
+                else:
+                    pdata[p]['played'] = 0
+                if pdata[p]['sawShowdown']:
+                    pdata[p]['showdownWinnings']    = pdata[p]['totalProfit']
+                    pdata[p]['nonShowdownWinnings'] = 0
+                else:
+                    pdata[p]['showdownWinnings']    = 0
+                    pdata[p]['nonShowdownWinnings'] = pdata[p]['totalProfit']
+                pdata[p]['vsHero'] = 0
+                line = [pdata[p][s] for s in CACHE_KEYS]
+                    
+                positions = self.pcbulk.get(k)
+                # Add line to the old line in the hudcache.
+                if positions is not None:
+                    for idx,val in enumerate(line):
+                        positions['line'][idx] += val
+                    positions['ids'].append(hid)
+                else:
+                    self.pcbulk[k] = {'wid' : None,
+                                      'id'  : None,
+                                      'ids' : []}
+                    self.pcbulk[k]['ids'].append(hid)
+                    self.pcbulk[k]['line'] = line
+                
+        if doinsert:
+            inserts = []
+            c = self.get_cursor()
+            for k, pc in self.pcbulk.iteritems():
+                wid = self.insertOrUpdate(c, k[0], select_WC, insert_WC)
+                mid = self.insertOrUpdate(c, k[1], select_MC, insert_MC)
+                pc['wid'] = wid
+                
+                if k[2]:
+                    q = select_positionscache_ring
+                    row = [wid, mid] + [k[2]] + list(k[-3:])
+                else:
+                    q = select_positionscache_tour
+                    row = [wid, mid] + list(k[-4:])
+                
+                c.execute(q, row)
+                result = c.fetchone()
+                if result:
+                    id = result[0]
+                    row = pc['line'] + [id]
+                    c.execute(update_positionscache, row)
+                    pc['id'] = id
+                    
+                else:
+                    inserts.append([wid, mid] + list(k[-5:]) + pc['line'])
+                self.archive.addPositionsHands(gametype['type'], k[5], k[6], wid, pc['ids'])
+                
+            if inserts:
+                c.executemany(insert_positionscache, inserts)
             self.commit()
     
     def appendHandsSessionIds(self):
@@ -3117,16 +3194,6 @@ class Database:
             if sc is not None:
                 self.hbulk[i][4] = sc['id']
                 if tid: self.tbulk[tid] = sc['id']
-        
-    def appendHandsPlayersSessionIds(self):
-        for i in range(len(self.hpbulk)):
-            k = (self.hpbulk[i][0],self.hpbulk[i][1])
-            cc = self.cc.get(k)
-            if cc is not None:
-                self.hpbulk[i][2] = cc['id']
-            tc = self.tc.get(k)
-            if tc is not None:
-                self.hpbulk[i][3] = tc['id']
 
     def storeFile(self, fdata):
         q = self.sql.query['store_file']

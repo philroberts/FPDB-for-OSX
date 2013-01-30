@@ -674,8 +674,6 @@ class Sql:
                         id BIGINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
                         handId BIGINT UNSIGNED NOT NULL, FOREIGN KEY (handId) REFERENCES Hands(id),
                         playerId INT UNSIGNED NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
-                        cashSessionId INT UNSIGNED, FOREIGN KEY (cashSessionId) REFERENCES CashCache(id),
-                        tourSessionId INT UNSIGNED, FOREIGN KEY (tourSessionId) REFERENCES TourCache(id),
                         startCash INT NOT NULL,
                         position CHAR(1),
                         seatNo SMALLINT NOT NULL,
@@ -820,8 +818,6 @@ class Sql:
                         id BIGSERIAL, PRIMARY KEY (id),
                         handId BIGINT NOT NULL, FOREIGN KEY (handId) REFERENCES Hands(id),
                         playerId INT NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
-                        cashSessionId INT, FOREIGN KEY (cashSessionId) REFERENCES CashCache(id),
-                        tourSessionId INT, FOREIGN KEY (tourSessionId) REFERENCES TourCache(id),
                         startCash INT NOT NULL,
                         position CHAR(1),
                         seatNo SMALLINT NOT NULL,
@@ -965,8 +961,6 @@ class Sql:
                         id INTEGER PRIMARY KEY,
                         handId INT NOT NULL,
                         playerId INT NOT NULL,
-                        cashSessionId INT,
-                        tourSessionId INT,
                         startCash INT NOT NULL,
                         position TEXT,
                         seatNo INT NOT NULL,
@@ -8098,8 +8092,6 @@ class Sql:
         self.query['store_hands_players'] = """insert into HandsPlayers (
                 handId,
                 playerId,
-                cashSessionId,
-                tourSessionId,
                 startCash,
                 seatNo,
                 sitout,
@@ -8245,7 +8237,7 @@ class Sql:
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
-                    %s, %s, %s
+                    %s
                 )"""
 
         self.query['store_hands_actions'] = """insert into HandsActions (

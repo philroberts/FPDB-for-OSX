@@ -116,7 +116,7 @@ class iPoker(HandHistoryConverter):
     re_Identify = re.compile(u'<game\sgamecode=')
     re_SplitHands = re.compile(r'</game>')
     re_TailSplitHands = re.compile(r'(</game>)')
-    re_GameInfo = re.compile(ur"""(?P<HEAD>
+    re_GameInfo = re.compile(ur"""
             <gametype>(?P<GAME>(5|7)\sCard\sStud\sL|Holdem\s(NL|SL|L|LZ|PL|БЛ)|Omaha\s(L|PL|LP)|Omaha\sHi\-Lo\s(L|PL|LP)|LH\s(?P<LSB>[%(NUM)s]+)/(?P<LBB>[%(NUM)s]+).+?)(\s(%(LS)s)?(?P<SB>[%(NUM)s]+)/(%(LS)s)?(?P<BB>[%(NUM)s]+))?</gametype>\s+?
             <tablename>(?P<TABLE>.+)?</tablename>\s+?
             (<(tablecurrency|tournamentcurrency)>(?P<TABLECURRENCY>.*)</(tablecurrency|tournamentcurrency)>\s+?)?
@@ -124,7 +124,7 @@ class iPoker(HandHistoryConverter):
             <gamecount>.+</gamecount>\s+?
             <startdate>.+</startdate>\s+?
             <currency>(?P<CURRENCY>.+)?</currency>\s+?
-            <nickname>(?P<HERO>.+)?</nickname>)
+            <nickname>(?P<HERO>.+)?</nickname>
             """ % substitutions, re.MULTILINE|re.VERBOSE)
     re_GameInfoTrny = re.compile(r"""(?P<HEAD>
                 <tournamentname>.+?<place>(?P<PLACE>.+?)</place>

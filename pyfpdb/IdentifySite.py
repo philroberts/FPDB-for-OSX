@@ -101,7 +101,7 @@ class Site:
                 self.re_HeroCards = obj.re_HeroCards
         if filter_name == 'PokerTracker':
             self.re_HeroCards1 = obj.re_HeroCards1
-            self.re_HeroCards2 = obj.re_HeroCards2        
+            self.re_HeroCards2 = obj.re_HeroCards2 
 
 class IdentifySite:
     def __init__(self, config, hhcs = None):
