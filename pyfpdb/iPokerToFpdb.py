@@ -285,13 +285,9 @@ class iPoker(HandHistoryConverter):
                 self.info['currency'] = 'play'
             elif not mg['TABLECURRENCY']:
                 self.info['currency'] = mg['CURRENCY']
-<<<<<<< HEAD
             else:
                 self.info['currency'] = mg['TABLECURRENCY']
 
-=======
-                
->>>>>>> 9cdf62e... Several fixes for iPoker stud and tournaments that will be ported over to chazdazzle branch. Updates to the method for storing hero so it works with updates to players table.
             if self.info['limitType'] == 'fl' and self.info['bb'] is not None:
                 try:
                     self.info['sb'] = self.Lim_Blinds[self.clearMoneyString(mg['BB'])][0]
@@ -472,15 +468,9 @@ class iPoker(HandHistoryConverter):
                 cards = found.group('CARDS').split(' ')
                 if street == 'SEVENTH' and self.hero != player:
                     newcards = []
-<<<<<<< HEAD
                     oldcards = [c[1:].replace('10', 'T') + c[0].lower() for c in cards if c[0].lower()!='x']
                 else:
                     newcards = [c[1:].replace('10', 'T') + c[0].lower() for c in cards if c[0].lower()!='x']
-=======
-                    oldcards = [c[1:].replace('10', 'T') + c[0].lower().replace('x', '') for c in cards] #[c[1:].replace('10', 'T') + c[0].lower() for c in cards if c != 'X']
-                else:
-                    newcards = [c[1:].replace('10', 'T') + c[0].lower().replace('x', '') for c in cards] #[c[1:].replace('10', 'T') + c[0].lower() for c in cards if c != 'X']
->>>>>>> 9cdf62e... Several fixes for iPoker stud and tournaments that will be ported over to chazdazzle branch. Updates to the method for storing hero so it works with updates to players table.
                     oldcards = []
                 
                 if street == 'THIRD' and len(newcards) == 3 and self.hero == player: # hero in stud game
