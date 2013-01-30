@@ -69,6 +69,8 @@ class Fulltilt(HandHistoryConverter):
                      '3000.00': ('750.00', '1500.00'),'3000': ('750.00', '1500.00'),
                      '4000.00': ('1000.00','2000.00'),'4000': ('1000.00', '2000.00'),
                   }
+    
+    Rush_Tables = ('Mach 10', 'Lightning', 'Velociraptor', 'Supercharger', 'Adrenaline', 'Afterburner', 'Mercury', 'Apollo', 'Warp Speed', 'Speeding Bullet')
 
     # Static regexes
     re_GameInfo     = re.compile(u'''\#(?P<HID>[0-9]+):\s
@@ -256,6 +258,9 @@ class Fulltilt(HandHistoryConverter):
         #print "DEBUG: m.groupdict: %s" % m.groupdict()
         hand.handid = m.group('HID')
         hand.tablename = m.group('TABLE')
+        
+        if hand.tablename in self.Rush_Tables:
+            hand.gametype['zoom'] = True
 
         if m.group('DATETIME'):
             # This section of code should match either a single date (which is ET) or

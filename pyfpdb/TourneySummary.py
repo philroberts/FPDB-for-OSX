@@ -87,6 +87,7 @@ class TourneySummary(object):
         self.isKO               = False
         self.isMatrix           = False
         self.isShootout         = False
+        self.isZoom             = False
         self.matrixMatchId      = None  # For Matrix tourneys : 1-4 => match tables (traditionnal), 0 => Positional winnings info
         self.matrixIdProcessed  = None
         self.subTourneyBuyin    = None

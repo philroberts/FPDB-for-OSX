@@ -224,6 +224,14 @@ class PokerStars(HandHistoryConverter):
             info['currency'] = self.currencies[mg['CURRENCY']]
         if 'MIXED' in mg:
             if mg['MIXED'] is not None: info['mix'] = self.mixes[mg['MIXED']]
+        if 'Zoom' in mg['TITLE']:
+            info['zoom'] = True
+        else:
+            info['zoom'] = False
+        if 'CAP' in mg and mg['CAP'] is None:
+            info['cap'] = True
+        else:
+            info['cap'] = False
                 
         if 'TOURNO' in mg and mg['TOURNO'] is None:
             info['type'] = 'ring'
@@ -325,6 +333,10 @@ class PokerStars(HandHistoryConverter):
                         else:
                             hand.buyin = int(Decimal(info['BIAMT']))
                             hand.fee = 0
+                    if 'Zoom' in info['TITLE']:
+                        hand.isZoom = True
+                    else:
+                        hand.isZoom = False
             if key == 'LEVEL':
                 hand.level = info[key]
 

@@ -216,6 +216,8 @@ HandHistoryConverter: '%(sitename)s'
             # See if gametype is supported.
             if 'mix' not in gametype: gametype['mix'] = 'none'
             if 'ante' not in gametype: gametype['ante'] = 0
+            if 'zoom' not in gametype: gametype['zoom'] = False
+            if 'cap' not in gametype: gametype['cap'] = False
             type = gametype['type']
             base = gametype['base']
             limit = gametype['limitType']
