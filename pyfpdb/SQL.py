@@ -8371,6 +8371,11 @@ class Sql:
         # queries for Files Table
         ################################
         
+        self.query['get_id'] = """
+                        SELECT id
+                        FROM Files
+                        WHERE file=%s"""
+        
         self.query['store_file'] = """  insert into Files (
                         file,
                         site,

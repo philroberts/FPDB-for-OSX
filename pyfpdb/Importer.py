@@ -28,7 +28,7 @@ import threading
 import shutil
 import re
 
-import logging
+import logging, traceback
 
 import gtk
 
@@ -64,6 +64,7 @@ class Importer:
         self.updatedtime = {}
         self.lines      = None
         self.faobs      = None       # File as one big string
+        self.mode       = None
         self.pos_in_file = {}        # dict to remember how far we have read in the file
         #Set defaults
         self.callHud    = self.config.get_import_parameters().get("callFpdbHud")
@@ -91,6 +92,9 @@ class Importer:
         clock() # init clock in windows
 
     #Set functions
+    def setMode(self, value):
+        self.mode = value
+        
     def setCallHud(self, value):
         self.callHud = value
         
@@ -151,20 +155,22 @@ class Importer:
     
     def addFileToList(self, fpdbfile):
         """FPDBFile"""
-        now = datetime.datetime.utcnow()
         file = os.path.splitext(os.path.basename(fpdbfile.path))[0]
         try: #TODO: this is a dirty hack. GBI needs it, GAI fails with it.
             file = unicode(file, "utf8", "replace")
         except TypeError:
             pass
-        fpdbfile.fileId = self.database.storeFile([file, fpdbfile.site.name, now, now, 0, 0, 0, 0, 0, 0, False])
-        self.database.commit()
-
+        fpdbfile.fileId = self.database.get_id(file)
+        if not fpdbfile.fileId:
+            now = datetime.datetime.utcnow()
+            fpdbfile.fileId = self.database.storeFile([file, fpdbfile.site.name, now, now, 0, 0, 0, 0, 0, 0, False])
+            self.database.commit()
+            
     #Add an individual file to filelist
     def addImportFile(self, filename, site = "auto"):
         #print "addimportfile: filename is a", filename.__class__
         # filename not guaranteed to be unicode
-        if filename in self.filelist or not os.path.exists(filename):
+        if self.filelist.get(filename)!=None or not os.path.exists(filename):
             return
 
         self.idsite.processFile(filename)
@@ -173,7 +179,7 @@ class Importer:
         else:
             log.error("Importer.addImportFile: siteId Failed for: '%s'" % filename)
             return
-
+        
         self.addFileToList(fpdbfile)
         self.filelist[filename] = fpdbfile
         if site not in self.siteIds:
@@ -221,8 +227,9 @@ class Importer:
 
             #print "addImportDirectory: checking files in", dir
             for file in os.listdir(dir):
-                #print "                    adding file ", file
-                self.addImportFile(os.path.join(dir, file), "auto")
+                filename = os.path.join(dir, file)
+                if (time() - os.stat(filename).st_mtime)<= 300:
+                    self.addImportFile(filename, "auto")
         else:
             log.warning(_("Attempted to add non-directory '%s' as an import directory") % str(dir))
 
@@ -409,31 +416,44 @@ class Importer:
             if fpdbfile.path in self.pos_in_file:  idx = self.pos_in_file[fpdbfile.path]
             else: self.pos_in_file[fpdbfile.path], idx = 0, 0
                 
-            hhc = obj( self.config, in_path = fpdbfile.path, index = idx
+            hhc = obj( self.config, in_path = fpdbfile.path, index = idx, autostart=False
                       ,starsArchive = self.settings['starsArchive']
                       ,ftpArchive   = self.settings['ftpArchive']
                       ,sitename     = fpdbfile.site.name)
+            hhc.setAutoPop(self.mode=='auto')
+            hhc.start()
             
-            if hhc.getStatus():
+            self.pos_in_file[file] = hhc.getLastCharacterRead()
+            #Tally the results
+            partial  = getattr(hhc, 'numPartial')
+            errors   = getattr(hhc, 'numErrors')
+            stored   = getattr(hhc, 'numHands')
+            stored -= errors
+            stored -= partial
+            
+            if stored > 0:
                 if self.caller: self.progressNotify()
                 handlist = hhc.getProcessedHands()
+                self.database.resetBulkCache(True)
                 self.pos_in_file[fpdbfile.path] = hhc.getLastCharacterRead()
-                (phands, ihands, to_hud) = ([], [], [])
+                (phands, ahands, ihands, to_hud) = ([], [], [], [])
                 self.database.resetBulkCache()
                 
                 ####Lock Placeholder####
                 for hand in handlist:
                     hand.prepInsert(self.database, printtest = self.settings['testData'])
-                    self.database.commit()
-                    phands.append(hand)
+                    ahands.append(hand)
+                self.database.commit()
                 ####Lock Placeholder####
                 
-                for hand in phands:
+                for hand in ahands:
                     hand.assembleHand()
+                    phands.append(hand)
                 
                 ####Lock Placeholder####
+                backtrack = False
                 id = self.database.nextHandId()
-                sctimer, ihtimer, hctimer = 0,0,0
+                sctimer, ihtimer, cctimer, pctimer, hctimer = 0,0,0,0,0
                 for i in range(len(phands)):
                     doinsert = len(phands)==i+1
                     hand = phands[i]
@@ -446,21 +466,37 @@ class Importer:
                         hand.insertHands(self.database, fpdbfile.fileId, doinsert, self.settings['testData'])
                         ihtimer = time() - stime
                         stime = time()
+                        hand.updateCardsCache(self.database, self.tz, doinsert)
+                        cctimer = time() - stime
+                        stime = time()
+                        hand.updatePositionsCache(self.database, self.tz, doinsert) 
+                        pctimer = time() - stime
+                        stime = time()
                         hand.updateHudCache(self.database, doinsert)
                         hctimer = time() - stime
                         ihands.append(hand)
                         to_hud.append(hand.dbid_hands)
                     except FpdbHandDuplicate:
                         duplicates += 1
-                        #If last hand in the file is a duplicate this will backtrack and insert the new hand records
-                        if (doinsert and ihands):
-                            hand = ihands[-1]
-                            hp = hand.handsplayers
-                            hand.hero, self.database.hbulk, hand.handsplayers  = 0, self.database.hbulk[:-1], [] #making sure we don't insert data from this hand
-                            hand.updateSessionsCache(self.database, None, doinsert)
-                            hand.insertHands(self.database, fpdbfile.fileId, doinsert, self.settings['testData'])
-                            hand.updateHudCache(self.database, doinsert)
-                            hand.handsplayers = hp
+                        if (doinsert and ihands): backtrack = True
+                    except:
+                        formatted_lines = traceback.format_exc().splitlines()
+                        for line in formatted_lines:
+                            error_trace += line
+                        tmp = hand.handText[0:200]
+                        log.error(_("Importer._import_hh_file: '%r' Fatal error: '%r'") % (file, error_trace))
+                        log.error(_("'%r'") % tmp)
+                        if (doinsert and ihands): backtrack = True
+                    if backtrack: #If last hand in the file is a duplicate this will backtrack and insert the new hand records
+                        hand = ihands[-1]
+                        hp, hero = hand.handsplayers, hand.hero
+                        hand.hero, self.database.hbulk, hand.handsplayers  = 0, self.database.hbulk[:-1], [] #making sure we don't insert data from this hand
+                        hand.updateSessionsCache(self.database, None, doinsert)
+                        hand.insertHands(self.database, fpdbfile.fileId, doinsert, self.settings['testData'])
+                        hand.updateCardsCache(self.database, None, doinsert)
+                        hand.updatePositionsCache(self.database, None, doinsert)
+                        hand.updateHudCache(self.database, doinsert)
+                        hand.handsplayers, hand.hero = hp, hero
                 #log.debug("DEBUG: hand.updateSessionsCache: %s" % (t5tot))
                 #log.debug("DEBUG: hand.insertHands: %s" % (t6tot))
                 #log.debug("DEBUG: hand.updateHudCache: %s" % (t7tot))
@@ -483,28 +519,16 @@ class Importer:
                             self.caller.pipe_to_hud.stdin.write("%s" % (hid) + os.linesep)
                         except IOError, e:
                             log.error(_("Failed to send hand to HUD: %s") % e)
-
-                partial = getattr(hhc, 'numPartial')
-                errors  = getattr(hhc, 'numErrors')
-                stored  = getattr(hhc, 'numHands')
-                stored -= duplicates
-                stored -= errors
-                stored -= partial
                 # Really ugly hack to allow testing Hands within the HHC from someone
                 # with only an Importer objec
                 if self.settings['cacheHHC']:
                     self.handhistoryconverter = hhc
-            else:
-                # conversion didn't work
-                # TODO: appropriate response?
-                return (0, 0, 0, 1, time() - ttime)
-        else:
-            log.warning(_("Unknown filter name %s in filter %s.") %(filter_name, filter))
-            return (0, 0, 0, 1, time() - ttime)
+        elif (self.mode=='auto'):
+            return (0, 0, partial, errors, time() - ttime)
+        
+        stored -= duplicates
 
         ttime = time() - ttime
-
-        #This will barf if conv.getStatus != True
         return (stored, duplicates, partial, errors, ttime)
 
     def _import_summary_file(self, fpdbfile):

@@ -3141,6 +3141,16 @@ class Database:
             if sc is not None:
                 self.hbulk[i][4] = sc['id']
                 if tid: self.tbulk[tid] = sc['id']
+                
+    def get_id(self, file):
+        q = self.sql.query['get_id']
+        q = q.replace('%s', self.sql.query['placeholder'])
+        c = self.get_cursor()
+        c.execute(q, file)
+        id = c.fetchone()
+        if not id:
+            return 0
+        return id[0]
 
     def storeFile(self, fdata):
         q = self.sql.query['store_file']
