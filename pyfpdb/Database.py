@@ -75,8 +75,7 @@ except ImportError:
     use_numpy = False
 
 
-DB_VERSION = 171
-
+DB_VERSION = 173
 
 # Variance created as sqlite has a bunch of undefined aggregate functions.
 
@@ -143,6 +142,9 @@ class Database:
                 , {'tab':'HudCache',        'col':'gametypeId',        'drop':1}
                 , {'tab':'HudCache',        'col':'playerId',          'drop':0}
                 , {'tab':'HudCache',        'col':'tourneyTypeId',     'drop':0}
+                , {'tab':'HudCache',        'col':'tourneyId',         'drop':0}
+                , {'tab':'SessionsCache',   'col':'weekId',            'drop':1}
+                , {'tab':'SessionsCache',   'col':'monthId',           'drop':1}
                 , {'tab':'GamesCache',      'col':'sessionId',         'drop':1}
                 , {'tab':'GamesCache',      'col':'gametypeId',        'drop':1}
                 , {'tab':'GamesCache',      'col':'playerId',          'drop':0}
@@ -178,6 +180,9 @@ class Database:
                 , {'tab':'HudCache',        'col':'gametypeId',        'drop':1}
                 , {'tab':'HudCache',        'col':'playerId',          'drop':0}
                 , {'tab':'HudCache',        'col':'tourneyTypeId',     'drop':0}
+                , {'tab':'HudCache',        'col':'tourneyId',         'drop':0}
+                , {'tab':'SessionsCache',   'col':'weekId',            'drop':1}
+                , {'tab':'SessionsCache',   'col':'monthId',           'drop':1}
                 , {'tab':'GamesCache',      'col':'sessionId',         'drop':1}
                 , {'tab':'GamesCache',      'col':'gametypeId',        'drop':1}
                 , {'tab':'GamesCache',      'col':'playerId',          'drop':0}
@@ -215,6 +220,9 @@ class Database:
                     , {'fktab':'HudCache',     'fkcol':'gametypeId',    'rtab':'Gametypes',     'rcol':'id', 'drop':1}
                     , {'fktab':'HudCache',     'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':0}
                     , {'fktab':'HudCache',     'fkcol':'tourneyTypeId', 'rtab':'TourneyTypes',  'rcol':'id', 'drop':1}
+                    , {'fktab':'HudCache',     'fkcol':'tourneyId',     'rtab':'Tourneys',      'rcol':'id', 'drop':1}
+                    , {'fktab':'SessionsCache',   'fkcol':'weekId',     'rtab':'WeeksCache',    'rcol':'id', 'drop':1}
+                    , {'fktab':'SessionsCache',   'fkcol':'monthId',    'rtab':'MonthsCache',   'rcol':'id', 'drop':1}
                     , {'fktab':'GamesCache',   'fkcol':'sessionId',     'rtab':'SessionsCache', 'rcol':'id', 'drop':1}
                     , {'fktab':'GamesCache',   'fkcol':'gametypeId',    'rtab':'Gametypes',     'rcol':'id', 'drop':1}
                     , {'fktab':'GamesCache',   'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':0}
@@ -239,6 +247,9 @@ class Database:
                     , {'fktab':'HudCache',     'fkcol':'gametypeId',    'rtab':'Gametypes',     'rcol':'id', 'drop':1}
                     , {'fktab':'HudCache',     'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':0}
                     , {'fktab':'HudCache',     'fkcol':'tourneyTypeId', 'rtab':'TourneyTypes',  'rcol':'id', 'drop':1}
+                    , {'fktab':'HudCache',     'fkcol':'tourneyId',     'rtab':'Tourneys',      'rcol':'id', 'drop':1}
+                    , {'fktab':'SessionsCache','fkcol':'weekId',        'rtab':'WeeksCache',    'rcol':'id', 'drop':1}
+                    , {'fktab':'SessionsCache','fkcol':'monthId',       'rtab':'MonthsCache',   'rcol':'id', 'drop':1}
                     , {'fktab':'GamesCache',   'fkcol':'sessionId',     'rtab':'SessionsCache', 'rcol':'id', 'drop':1}
                     , {'fktab':'GamesCache',   'fkcol':'gametypeId',    'rtab':'Gametypes',     'rcol':'id', 'drop':1}
                     , {'fktab':'GamesCache',   'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':0}
@@ -1265,6 +1276,8 @@ class Database:
         c.execute(self.sql.query['createFilesTable'])
         c.execute(self.sql.query['createPlayersTable'])
         c.execute(self.sql.query['createAutoratesTable'])
+        c.execute(self.sql.query['createWeeksCacheTable'])
+        c.execute(self.sql.query['createMonthsCacheTable'])
         c.execute(self.sql.query['createSessionsCacheTable'])
         c.execute(self.sql.query['createTourneyTypesTable'])
         c.execute(self.sql.query['createTourneysTable'])
@@ -1644,20 +1657,49 @@ class Database:
         #print _("Rebuild hudcache took %.1f seconds") % (time() - stime,)
     #end def rebuild_hudcache
     
-    def rebuild_sessionscache(self, tz_name = None):
-        """clears sessionscache and rebuilds from the individual records"""
-        heroes, hero, = [], {}
+    def update_timezone(self, tz_name):
+        select_WC     = self.sql.query['select_WC'].replace('%s', self.sql.query['placeholder'])
+        select_MC     = self.sql.query['select_MC'].replace('%s', self.sql.query['placeholder'])
+        insert_WC     = self.sql.query['insert_WC'].replace('%s', self.sql.query['placeholder'])
+        insert_MC     = self.sql.query['insert_MC'].replace('%s', self.sql.query['placeholder'])
+        update_WM_SC  = self.sql.query['update_WM_SC'].replace('%s', self.sql.query['placeholder'])
         c = self.get_cursor()
-        c.execute("SELECT playerId FROM GamesCache GROUP BY playerId")
-        herorecords_cash = c.fetchall()
-        for h in herorecords_cash:
-            heroes += h
-        c.execute("SELECT playerId FROM TourneysPlayers WHERE startTime is not NULL GROUP BY playerId")
-        herorecords_tour = c.fetchall()
-        for h in herorecords_tour:
-            if h not in heroes:
-                heroes += h
+        c.execute(self.sql.query['clear_WC_SC'])
+        c.execute(self.sql.query['clear_MC_SC'])
+        c.execute(self.sql.query['clearWeeksCache'])
+        c.execute(self.sql.query['clearMonthsCache'])
+        c.execute("SELECT id, sessionStart from SessionsCache")
+        sessions = self.fetchallDict(c)
+        for s in sessions:
+            utc_start = pytz.utc.localize(s['sessionStart'])
+            tz = pytz.timezone(tz_name)
+            loc_tz = utc_start.astimezone(tz).strftime('%z')
+            offset = timedelta(hours=int(loc_tz[:-2]), minutes=int(loc_tz[0]+loc_tz[-2:]))
+            local = s['sessionStart'] + offset
+            monthStart = datetime(local.year, local.month, 1) - offset
+            weekdate   = datetime(local.year, local.month, local.day) 
+            weekStart  = weekdate - timedelta(days=weekdate.weekday()) - offset
+            wid = self.insertOrUpdate(c, weekStart, select_WC, insert_WC)
+            mid = self.insertOrUpdate(c, monthStart, select_MC, insert_MC)
+            row = [wid, mid, s['id']]
+            c.execute(update_WM_SC, row)
+        self.commit()        
+    
+    def rebuild_sessionscache(self, tz_name = None, recreate=False, heroes = []):
+        """clears sessionscache and rebuilds from the individual records"""
+        c = self.get_cursor()
         if not heroes:
+            c.execute("SELECT playerId FROM GamesCache GROUP BY playerId")
+            herorecords_cash = c.fetchall()
+            for h in herorecords_cash:
+                heroes += h
+            c.execute("SELECT playerId FROM TourneysPlayers WHERE startTime is not NULL GROUP BY playerId")
+            herorecords_tour = c.fetchall()
+            for h in herorecords_tour:
+                if h not in heroes:
+                    heroes += h
+        if not heroes:
+            hero = {}
             for site in self.config.get_supported_sites():
                 result = self.get_site_id(site)
                 if result:
@@ -1667,7 +1709,7 @@ class Database:
                     if p_id:
                         heroes.append(int(p_id))
                                 
-        rebuildSessionsCache    = self.sql.query['rebuildSessionsCache']
+        rebuildSessionsCache = self.sql.query['rebuildSessionsCache']
         if len(heroes) == 0:
             where         = '0'
             where_summary = '0'
@@ -1699,6 +1741,19 @@ class Database:
         c.execute(self.sql.query['clear_SC_TP'])
         c.execute(self.sql.query['clearGamesCache'])
         c.execute(self.sql.query['clearSessionsCache'])
+        if not recreate:
+            c.execute(self.sql.query['clearWeeksCache'])
+            c.execute(self.sql.query['clearMonthsCache'])
+        else:
+            if self.backend == self.MYSQL_INNODB:
+                c.execute('SET FOREIGN_KEY_CHECKS=0')
+            c.execute('DROP TABLE IF EXISTS GamesCache, SessionsCache, WeeksCache, MonthsCache')
+            if self.backend == self.MYSQL_INNODB:
+                c.execute('SET FOREIGN_KEY_CHECKS=1')
+            c.execute(self.sql.query['createWeeksCacheTable'])
+            c.execute(self.sql.query['createMonthsCacheTable'])
+            c.execute(self.sql.query['createSessionsCacheTable'])
+            c.execute(self.sql.query['createGamesCacheTable'])            
         self.commit()
         
         for k in range(2):
@@ -1726,8 +1781,8 @@ class Database:
                     pdata['pname']['sawShowdown']         = tmp[12]
                     tmp = c.fetchone()
                     hid[id] = tid
-                    self.storeSessionsCache (id, pids, startTime, heroes, tmp == None)
-                    self.storeGamesCache(id, pids, startTime, gtid, game, pdata, tz_name, heroes, tmp == None)
+                    self.storeSessionsCache (id, pids, startTime, heroes, tz_name, tmp == None)
+                    self.storeGamesCache(id, pids, startTime, gtid, game, pdata, heroes, tmp == None)
                     self.updateTourneysPlayersSessions(pids, tid, startTime, pdata, heroes, tmp == None)
                     if tmp == None:
                         for i, id in self.sc.iteritems():
@@ -2421,26 +2476,59 @@ class Database:
                 c.executemany(insert_positionscache, inserts)
             self.commit()
             
-    def storeSessionsCache(self, hid, pids, startTime, heroes, doinsert = False):
+    def storeSessionsCache(self, hid, pids, startTime, heroes, tz_name, doinsert = False):
         """Update cached sessions. If no record exists, do an insert"""
-        THRESHOLD = timedelta(seconds=int(self.sessionTimeout * 60))
         
         select_SC     = self.sql.query['select_SC'].replace('%s', self.sql.query['placeholder'])
+        select_WC     = self.sql.query['select_WC'].replace('%s', self.sql.query['placeholder'])
+        select_MC     = self.sql.query['select_MC'].replace('%s', self.sql.query['placeholder'])
         update_SC     = self.sql.query['update_SC'].replace('%s', self.sql.query['placeholder'])
+        insert_WC     = self.sql.query['insert_WC'].replace('%s', self.sql.query['placeholder'])
+        insert_MC     = self.sql.query['insert_MC'].replace('%s', self.sql.query['placeholder'])
         insert_SC     = self.sql.query['insert_SC'].replace('%s', self.sql.query['placeholder'])
         update_SC_GC  = self.sql.query['update_SC_GC'].replace('%s', self.sql.query['placeholder'])
         update_SC_T   = self.sql.query['update_SC_T'].replace('%s', self.sql.query['placeholder'])
         update_SC_H   = self.sql.query['update_SC_H'].replace('%s', self.sql.query['placeholder'])
         delete_SC     = self.sql.query['delete_SC'].replace('%s', self.sql.query['placeholder'])
+        THRESHOLD     = timedelta(seconds=int(self.sessionTimeout * 60))
         
-        #print "DEBUG: %s %s %s" %(hid, pids, pdata)
+        if tz_name in pytz.common_timezones:
+            if self.backend == self.SQLITE:
+                naive = datetime.strptime(startTime, '%Y-%m-%d %H:%M:%S')
+            else:
+                naive = startTime.replace(tzinfo=None)
+            utc_start = pytz.utc.localize(naive)
+            tz = pytz.timezone(tz_name)
+            loc_tz = utc_start.astimezone(tz).strftime('%z')
+            offset = timedelta(hours=int(loc_tz[:-2]), minutes=int(loc_tz[0]+loc_tz[-2:]))
+            local = naive + offset
+            monthStart = datetime(local.year, local.month, 1)
+            weekdate   = datetime(local.year, local.month, local.day)
+            weekStart  = weekdate - timedelta(days=weekdate.weekday())
+        else:
+            if strftime('%Z') == 'UTC':
+                local = startTime
+                loc_tz = '0'
+            else:
+                tz_dt = datetime.today() - datetime.utcnow()
+                loc_tz = tz_dt.seconds/3600 - 24
+                offset = timedelta(hours=int(loc_tz))
+                local = startTime + offset
+                monthStart = datetime(local.year, local.month, 1)
+                weekdate   = datetime(local.year, local.month, local.day)
+                weekStart  = weekdate - timedelta(days=weekdate.weekday())
+       
         hand = {}
         for p, id in pids.iteritems():
             if id in heroes:
                 if self.backend == self.SQLITE:
-                    hand['startTime'] = datetime.strptime(startTime, '%Y-%m-%d %H:%M:%S')
+                    hand['startTime']  = datetime.strptime(startTime, '%Y-%m-%d %H:%M:%S')
+                    hand['weekStart']  = datetime.strptime(weekStart, '%Y-%m-%d %H:%M:%S')
+                    hand['monthStart'] = datetime.strptime(monthStart, '%Y-%m-%d %H:%M:%S')
                 else:
-                    hand['startTime'] = startTime.replace(tzinfo=None)
+                    hand['startTime']  = startTime.replace(tzinfo=None)
+                    hand['weekStart']  = weekStart
+                    hand['monthStart'] = monthStart
                 hand['ids'] = []
         
         if hand:
@@ -2455,6 +2543,8 @@ class Database:
                          id.append(i)
                     elif hand['startTime'] < self.sc['bk'][i]['sessionStart']:
                          self.sc['bk'][i]['sessionStart'] = hand['startTime']
+                         self.sc['bk'][i]['weekStart']    = hand['weekStart']
+                         self.sc['bk'][i]['monthStart']   = hand['monthStart']
                          id.append(i)
                     elif hand['startTime'] > self.sc['bk'][i]['sessionEnd']:
                          self.sc['bk'][i]['sessionEnd'] = hand['startTime']
@@ -2467,6 +2557,8 @@ class Database:
                     self.sc['bk'][id[0]]['sessionEnd']   = self.sc['bk'][id[1]]['sessionEnd']
                 else:
                     self.sc['bk'][id[0]]['sessionStart'] = self.sc['bk'][id[1]]['sessionStart']
+                    self.sc['bk'][id[0]]['weekStart']    = self.sc['bk'][id[1]]['weekStart']
+                    self.sc['bk'][id[0]]['monthStart']   = self.sc['bk'][id[1]]['monthStart']
                 sh = self.sc['bk'].pop(id[1])
                 id = id[0]
                 self.sc['bk'][id]['ids'].append(hid)
@@ -2488,13 +2580,22 @@ class Database:
                 r = self.fetchallDict(c)
                 num = len(r)
                 if (num == 1):
-                    start, end, update = r[0]['sessionStart'], r[0]['sessionEnd'], False
+                    start, end  = r[0]['sessionStart'], r[0]['sessionEnd']
+                    week, month = r[0]['weekStart'],    r[0]['monthStart']
+                    wid, mid    = r[0]['weekId'],       r[0]['monthId']
+                    update, updateW, updateM = False, False, False
                     if self.sc['bk'][i]['sessionStart'] < start:
                         start, update = self.sc['bk'][i]['sessionStart'], True
+                        if self.sc['bk'][i]['weekStart'] != week:
+                            week, updateW = self.sc['bk'][i]['weekStart'], True
+                        if self.sc['bk'][i]['monthStart'] != month:
+                            month, updateM = self.sc['bk'][i]['monthStart'], True
                     if self.sc['bk'][i]['sessionEnd'] > end:
                         end, update = self.sc['bk'][i]['sessionEnd'], True
+                    if updateW:  wid = self.insertOrUpdate(c, week, select_WC, insert_WC)
+                    if updateM:  mid = self.insertOrUpdate(c, month, select_MC, insert_MC)
                     if update: 
-                        c.execute(update_SC, [start, end, r[0]['id']])
+                        c.execute(update_SC, [wid, mid, start, end, r[0]['id']])
                     for h in  self.sc['bk'][i]['ids']:
                         self.sc[h] = {'id': r[0]['id'], 'data': [start, end]}
                 elif (num > 1):
@@ -2506,12 +2607,20 @@ class Database:
                         if start: 
                             if  start > n['sessionStart']: 
                                 start = n['sessionStart']
-                        else:   start = n['sessionStart']
+                                week  = n['weekStart']
+                                month = n['monthStart']
+                        else: 
+                            start = n['sessionStart']
+                            week  = n['weekStart']
+                            month = n['monthStart']
                         if end: 
                             if  end < n['sessionEnd']: 
                                 end = n['sessionEnd']
-                        else:   end = n['sessionEnd']
-                    row = [start, end]
+                        else:
+                            end = n['sessionEnd']
+                    wid = self.insertOrUpdate(c, week, select_WC, insert_WC)
+                    mid = self.insertOrUpdate(c, month, select_MC, insert_MC)
+                    row = [wid, mid, start, end]
                     c.execute(insert_SC, row)
                     sid = self.get_last_insert_id(c)
                     for h in self.sc['bk'][i]['ids']: self.sc[h] = {'id': sid}
@@ -2525,50 +2634,33 @@ class Database:
                         c.execute(update_SC_H, (sid, m))
                         c.execute(delete_SC, m)
                 elif (num == 0):
-                    start =  self.sc['bk'][i]['sessionStart']
-                    end   =  self.sc['bk'][i]['sessionEnd']
-                    row = [start, end]
+                    start   =  self.sc['bk'][i]['sessionStart']
+                    end     =  self.sc['bk'][i]['sessionEnd']
+                    week    =  self.sc['bk'][i]['weekStart']
+                    month   =  self.sc['bk'][i]['monthStart']
+                    wid = self.insertOrUpdate(c, week, select_WC, insert_WC)
+                    mid = self.insertOrUpdate(c, month, select_MC, insert_MC)
+                    row = [wid, mid, start, end]
                     c.execute(insert_SC, row)
                     sid = self.get_last_insert_id(c)
                     for h in self.sc['bk'][i]['ids']: self.sc[h] = {'id': sid}
             self.commit()
     
-    def storeGamesCache(self, hid, pids, startTime, gtid, game, pdata, tz_name, heroes, doinsert = False):
+    def storeGamesCache(self, hid, pids, startTime, gtid, game, pdata, heroes, doinsert = False):
         """Update cached sessions. If no record exists, do an insert"""
-        utc = pytz.utc
-        if tz_name in pytz.common_timezones:
-            if self.backend == self.SQLITE:
-                naive = datetime.strptime(startTime, '%Y-%m-%d %H:%M:%S')
-            else:
-                naive = startTime.replace(tzinfo=None)
-            utc_start = utc.localize(naive)
-            tz = pytz.timezone(tz_name)
-            loc_tz = utc_start.astimezone(tz).strftime('%z')
-            local = naive + timedelta(hours=int(loc_tz[:-2]), minutes=int(loc_tz[0]+loc_tz[-2:]))
-        else:
-            if strftime('%Z') == 'UTC':
-                local = startTime
-                loc_tz = '0'
-            else:
-                tz_dt = datetime.today() - datetime.utcnow()
-                loc_tz = tz_dt.seconds/3600 - 24
-                local = startTime + timedelta(hours=int(loc_tz))
-                loc_tz = str(loc_tz)
-        date = "d%02d%02d%02d" % (local.year - 2000, local.month, local.day)
-        THRESHOLD = timedelta(seconds=int(self.sessionTimeout * 60))
-        
+               
         select_GC   = self.sql.query['select_GC'].replace('%s', self.sql.query['placeholder'])
         update_GC   = self.sql.query['update_GC'].replace('%s', self.sql.query['placeholder'])
         insert_GC   = self.sql.query['insert_GC'].replace('%s', self.sql.query['placeholder'])
         update_GC_H = self.sql.query['update_GC_H'].replace('%s', self.sql.query['placeholder'])
         delete_GC   = self.sql.query['delete_GC'].replace('%s', self.sql.query['placeholder'])
+        THRESHOLD   = timedelta(seconds=int(self.sessionTimeout * 60))
 
         hand = {}
         for p, pid in pids.iteritems():
             if pid in heroes and game['type']=='ring':
                 hand['playerId']      = pid
                 hand['gametypeId']    = None
-                hand['date']          = date
                 if self.backend == self.SQLITE:
                     hand['startTime'] = datetime.strptime(startTime, '%Y-%m-%d %H:%M:%S')
                 else:
@@ -2597,11 +2689,10 @@ class Database:
             lower = hand['startTime']-THRESHOLD
             upper = hand['startTime']+THRESHOLD
             for i in range(len(self.gc['bk'])):
-                if ((hand['gametypeId'] == self.gc['bk'][i]['gametypeId'])
-                and (hand['playerId']   == self.gc['bk'][i]['playerId'])
-                and (lower <= self.gc['bk'][i]['gameEnd'])
-                and (upper >= self.gc['bk'][i]['gameStart'])):
-                    if len(id)==0:
+                if ((hand['gametypeId']    == self.gc['bk'][i]['gametypeId'])
+                and (hand['playerId']      == self.gc['bk'][i]['playerId'])): 
+                    if ((lower <= self.gc['bk'][i]['gameEnd'])
+                    and (upper >= self.gc['bk'][i]['gameStart'])):
                         self.gc['bk'][i]['played']              += hand['played']
                         self.gc['bk'][i]['hands']               += hand['hands']
                         self.gc['bk'][i]['totalProfit']         += hand['totalProfit']
@@ -2648,8 +2739,7 @@ class Database:
                 sid = self.sc[hid]['id']
                 lower = self.gc['bk'][i]['gameStart'] - THRESHOLD
                 upper = self.gc['bk'][i]['gameEnd']   + THRESHOLD
-                game = [self.gc['bk'][i]['date']
-                       ,self.gc['bk'][i]['gametypeId']
+                game = [self.gc['bk'][i]['gametypeId']
                        ,self.gc['bk'][i]['playerId']]
                 row = [lower, upper] + game
                 c.execute(select_GC, row)

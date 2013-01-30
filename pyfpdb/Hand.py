@@ -325,8 +325,8 @@ class Hand(object):
             if self.hero in self.dbid_pids: 
                 heroes = [self.dbid_pids[self.hero]]
                 
-            db.storeSessionsCache(self.dbid_hands, self.dbid_pids, self.startTime, heroes, doinsert) 
-            db.storeGamesCache(self.dbid_hands, self.dbid_pids, self.startTime, self.dbid_gt, self.gametype, self.handsplayers, tz, heroes, doinsert)
+            db.storeSessionsCache(self.dbid_hands, self.dbid_pids, self.startTime, heroes, tz, doinsert) 
+            db.storeGamesCache(self.dbid_hands, self.dbid_pids, self.startTime, self.dbid_gt, self.gametype, self.handsplayers, heroes, doinsert)
             db.updateTourneysPlayersSessions(self.dbid_pids, self.tourneyId, self.startTime, self.handsplayers, heroes, doinsert)
             
     def updateCardsCache(self, db, doinsert = False):
