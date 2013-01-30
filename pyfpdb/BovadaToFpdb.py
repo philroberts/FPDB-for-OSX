@@ -406,8 +406,9 @@ class Bovada(HandHistoryConverter):
                 elif re.match("^[0-9+]*$", a.group('CURRENCY')):
                     hand.gametype['currency']="play"
         for a in self.re_Action.finditer(self.re_Hole_Third.split(hand.handText)[0]):
+            print a.groupdict()
             if a.group('ATYPE') == ' All-in':
-                m = self.re_Antes.finditer(hand.handText)
+                m = self.re_Antes.search(hand.handText)
                 if ((sb is None or bb is None) and (len(hand.players)>2 or not m)):
                     player = self.playerSeatFromPosition('BovadaToFpdb.readBlinds.postBB', hand.handid, a.group('PNAME'))
                     if a.group('PNAME') == 'Big Blind':

@@ -1,0 +1,26 @@
+Bovada Hand #2667379227 TBL#3050766 HOLDEM Fixed Limit - 2013-01-25 23:43:20
+Seat 1: Dealer [ME] ($884 in chips)
+Seat 6: Big Blind ($15 in chips)
+Dealer  [ME] : Set dealer/Bring in spot [1] 
+Dealer  [ME] : Ante/Small Blind $15 
+Big Blind : All-in $15 
+*** HOLE CARDS ***
+Dealer  [ME] : Card dealt to a spot [Kd 3s] 
+Big Blind : Card dealt to a spot [5s Td] 
+*** FLOP *** [8h 3d As]
+*** TURN *** [8h 3d As] [4s]
+*** RIVER *** [8h 3d As 4s] [7c]
+Dealer  [ME] : Showdown [3s 3d As Kd 8h] (One pair)
+Big Blind : Showdown [As Td 8h 7c 5s] (High Card)
+Dealer  [ME] : Hand result $30 
+Big Blind : Seat sit out
+Big Blind : Seat stand
+Big Blind : Table leave user
+Big Blind : Table enter user
+Big Blind : Seat sit down
+Big Blind : Table deposit $300 
+*** SUMMARY ***
+Total Pot($30)
+Board [8h 3d As 4s 7c]
+Seat+1: Dealer $30  with One pair [Kd 3s-3s 3d As Kd 8h]  
+Seat+6: Big Blind lost with High Card [5s Td-As Td 8h 7c 5s]  
