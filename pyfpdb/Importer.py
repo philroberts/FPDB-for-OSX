@@ -465,12 +465,12 @@ class Importer:
                         stime = time()
                         hand.insertHands(self.database, fpdbfile.fileId, doinsert, self.settings['testData'])
                         ihtimer = time() - stime
-                        stime = time()
-                        hand.updateCardsCache(self.database, self.tz, doinsert)
-                        cctimer = time() - stime
-                        stime = time()
-                        hand.updatePositionsCache(self.database, self.tz, doinsert) 
-                        pctimer = time() - stime
+                        #stime = time()
+                        #hand.updateCardsCache(self.database, self.tz, doinsert)
+                        #cctimer = time() - stime
+                        #stime = time()
+                        #hand.updatePositionsCache(self.database, self.tz, doinsert) 
+                        #pctimer = time() - stime
                         stime = time()
                         hand.updateHudCache(self.database, doinsert)
                         hctimer = time() - stime
