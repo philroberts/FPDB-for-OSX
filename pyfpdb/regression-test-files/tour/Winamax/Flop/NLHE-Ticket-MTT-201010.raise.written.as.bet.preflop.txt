@@ -1,0 +1,56 @@
+Winamax Poker - Tournament "KING 5 - Stade 2C" buyIn: Ticket level: 7 - HandId: #6307872438747255-64-1288123510 - Holdem no limit (10/60/120) - 2010/10/26 21:05:10 UTC
+Table: 'KING 5 - Stade 2C(1468666)#118' 9-max (real money) Seat #5 is the button
+Seat 1: Player0 (4818)
+Seat 2: Player1 (1305)
+Seat 3: Player2 (6370)
+Seat 4: Player3 (4215)
+Seat 5: Player4 (5168)
+Seat 6: Player5 (2255)
+Seat 7: Player6 (1220)
+Seat 8: Player7 (2232)
+Seat 9: Hero (2525)
+*** ANTE/BLINDS *** 
+Player0 posts ante 10
+Player1 posts ante 10
+Player2 posts ante 10
+Player3 posts ante 10
+Player4 posts ante 10
+Player5 posts ante 10
+Player6 posts ante 10
+Player7 posts ante 10
+Hero posts ante 10
+Player5 posts small blind 60
+Player6 posts big blind 120
+Dealt to Hero [Jh 5c]
+*** PRE-FLOP *** 
+Player7 folds
+Hero folds
+Player0 folds
+Player1 folds
+Player2 calls 120
+Player3 folds
+Player4 folds
+Player5 folds
+Player6 bets 292.50
+Player2 calls 292.50
+*** FLOP *** [5h 3c 9d]
+Player6 bets 797.50
+Player2 raises 797.50 to 1595
+*** TURN *** [5h 3c 9d][Jd]
+*** RIVER *** [5h 3c 9d Jd][7h]
+*** SHOW DOWN ***
+Player6 shows [Ah Td] (High card : Ace)
+Player2 shows [7c 9c] (Two pairs : 9 and 7)
+Player2 collected 3368 from pot
+*** SUMMARY ***
+Total pot 3.37k | No rake
+Board: [5h 3c 9d Jd 7h]
+Seat 1: Player0 folded on the pre-flop
+Seat 2: Player1 folded on the pre-flop
+Seat 3: Player2 showed [7c 9c] and won 3368 with Two pairs : 9 and 7
+Seat 4: Player3 folded on the pre-flop
+Seat 5: Player4 (button) folded on the pre-flop
+Seat 6: Player5 (small blind) folded
+Seat 7: Player6 (big blind) showed [Ah Td] and lost with High card : Ace
+Seat 8: Player7 folded on the pre-flop
+Seat 9: Hero folded on the pre-flop

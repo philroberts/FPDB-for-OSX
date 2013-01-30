@@ -1,0 +1,39 @@
+Winamax Poker - CashGame - HandId: #947321-694-1299021223 - Omaha pot limit (0.50€/1€) - 2011/03/01 23:13:43 UTC
+Table: 'Gif-sur-Yvette' 5-max (real money) Seat #4 is the button
+Seat 1: Player0 (133.89€)
+Seat 2: Hero (102.13€)
+Seat 3: Player1 (315.82€)
+Seat 4: Player2 (99.50€)
+Seat 5: Player3 (112.97€)
+*** ANTE/BLINDS *** 
+Player3 posts small blind 0.50€
+Player0 posts big blind 1€
+Dealt to Hero [Jd 6s 7d Kh]
+*** PRE-FLOP *** 
+Hero folds
+Player1 folds
+Player2 folds
+Player3 raises 1€ to 2€
+Player0 calls 1€
+*** FLOP *** [Ad 4s 3c]
+Player3 checks
+Player0 bets 4€
+Player3 calls 4€
+*** TURN *** [Ad 4s 3c][8d]
+Player3 checks
+Player0 checks
+*** RIVER *** [Ad 4s 3c 8d][4c]
+Player3 checks
+Player0 checks
+*** SHOW DOWN ***
+Player3 shows [3s 6d Js 2s] (Two pairs : 4 and 3)
+Player0 shows [5h As Ks 5s] (Two pairs : Aces and 4)
+Player0 collected 11.22€ from pot
+*** SUMMARY ***
+Total pot 11.22€ | Rake 0.78€
+Board: [Ad 4s 3c 8d 4c]
+Seat 1: Player0 (big blind) showed [5h As Ks 5s] and won 11.22€ with Two pairs : Aces and 4
+Seat 2: Hero folded on the pre-flop
+Seat 3: Player1 folded on the pre-flop
+Seat 4: Player2 (button) folded on the pre-flop
+Seat 5: Player3 (small blind) showed [3s 6d Js 2s] and lost with Two pairs : 4 and 3
