@@ -473,8 +473,6 @@ class Database:
                 , {'tab':'Boards',          'col':'handId',            'drop':1}
                 , {'tab':'HandsPlayers',    'col':'handId',            'drop':1}
                 , {'tab':'HandsPlayers',    'col':'playerId',          'drop':1}
-                , {'tab':'HandsPlayers',    'col':'cashSessionId',     'drop':1} # mct 22/3/09
-                , {'tab':'HandsPlayers',    'col':'tourSessionId',     'drop':1} # mct 22/3/09
                 , {'tab':'HandsPlayers',    'col':'tourneysPlayersId', 'drop':0}
                 , {'tab':'HudCache',        'col':'gametypeId',        'drop':1}
                 , {'tab':'HudCache',        'col':'playerId',          'drop':0}
@@ -509,8 +507,6 @@ class Database:
                 , {'tab':'Gametypes',       'col':'siteId',            'drop':0}
                 , {'tab':'HandsPlayers',    'col':'handId',            'drop':0}
                 , {'tab':'HandsPlayers',    'col':'playerId',          'drop':0}
-                , {'tab':'HandsPlayers',    'col':'cashSessionId',     'drop':0}
-                , {'tab':'HandsPlayers',    'col':'tourSessionId',     'drop':0}
                 , {'tab':'HandsPlayers',    'col':'tourneysPlayersId', 'drop':0}
                 , {'tab':'HandsActions',    'col':'handId',            'drop':0}
                 , {'tab':'HandsActions',    'col':'playerId',          'drop':0}
@@ -552,8 +548,6 @@ class Database:
                     , {'fktab':'Boards',       'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
                     , {'fktab':'HandsPlayers', 'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
                     , {'fktab':'HandsPlayers', 'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':1}
-                    , {'fktab':'HandsPlayers', 'fkcol':'cashSessionId', 'rtab':'CashCache',     'rcol':'id', 'drop':1}
-                    , {'fktab':'HandsPlayers', 'fkcol':'tourSessionId', 'rtab':'TourCache',     'rcol':'id', 'drop':1}
                     , {'fktab':'HandsPlayers', 'fkcol':'tourneysPlayersId','rtab':'TourneysPlayers','rcol':'id', 'drop':1}
                     , {'fktab':'HandsActions', 'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
                     , {'fktab':'HandsActions', 'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':1}
@@ -582,8 +576,6 @@ class Database:
                     , {'fktab':'Boards',       'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
                     , {'fktab':'HandsPlayers', 'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
                     , {'fktab':'HandsPlayers', 'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':1}
-                    , {'fktab':'HandsPlayers', 'fkcol':'cashSessionId', 'rtab':'CashCache',     'rcol':'id', 'drop':1}
-                    , {'fktab':'HandsPlayers', 'fkcol':'tourSessionId', 'rtab':'TourCache',     'rcol':'id', 'drop':1}
                     , {'fktab':'HandsPlayers', 'fkcol':'tourneysPlayersId','rtab':'TourneysPlayers','rcol':'id', 'drop':1}
                     , {'fktab':'HandsActions', 'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
                     , {'fktab':'HandsActions', 'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':1}
@@ -2072,7 +2064,6 @@ class Database:
         c = self.get_cursor()
         c.execute("SELECT count(H.id) FROM Hands H")
         max = c.fetchone()[0]
-        c.execute(self.sql.query['clear_CC_HP'])
         c.execute(self.sql.query['clear_SC_H'])
         c.execute(self.sql.query['clear_SC_T'])
         c.execute(self.sql.query['clear_SC_CC'])
@@ -2140,8 +2131,6 @@ class Database:
                                 q = self.sql.query['update_RSC_H']
                                 q = q.replace('%s', self.sql.query['placeholder'])
                                 c.execute(q, (sid, gid, i))
-                                #q = self.sql.query['update_RSC_HP']
-                                #q = q.replace('%s', self.sql.query['placeholder'])
                         self.updateTourneysSessions()
                         self.commit()
                         break
@@ -2361,7 +2350,7 @@ class Database:
                 c.execute(q_update_sessions,  (sid, t))
                 self.commit()
 
-    def storeHandsPlayers(self, hid, pids, pdata, tid, doinsert = False, printdata = False):
+    def storeHandsPlayers(self, hid, pids, pdata, doinsert = False, printdata = False):
         #print "DEBUG: %s %s %s" %(hid, pids, pdata)
         if printdata:
             import pprint
@@ -2372,7 +2361,6 @@ class Database:
         for p, pvalue in pdata.iteritems():
             # Add (hid, pids[p]) + all the values in pvalue at the
             # keys in HANDS_PLAYERS_KEYS to hpbulk.
-            #self.tids.append(tid)
             bulk_data = [pvalue[key] for key in HANDS_PLAYERS_KEYS]
             bulk_data.append(pids[p])
             bulk_data.append(hid)
@@ -2678,7 +2666,6 @@ class Database:
         select_CC    = self.sql.query['select_CC'].replace('%s', self.sql.query['placeholder'])
         update_CC    = self.sql.query['update_CC'].replace('%s', self.sql.query['placeholder'])
         insert_CC    = self.sql.query['insert_CC'].replace('%s', self.sql.query['placeholder'])
-        update_CC_HP = self.sql.query['update_CC_HP'].replace('%s', self.sql.query['placeholder'])
         delete_CC    = self.sql.query['delete_CC'].replace('%s', self.sql.query['placeholder'])
         THRESHOLD    = timedelta(seconds=int(self.sessionTimeout * 60))
        

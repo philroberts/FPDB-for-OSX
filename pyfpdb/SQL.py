@@ -7121,8 +7121,7 @@ class Sql:
         ####################################
         # Queries to rebuild/modify sessionscache
         ####################################
-        
-        self.query['clear_CC_HP']  = "UPDATE HandsPlayers SET cashSessionId = NULL, tourSessionId = NULL"
+
         self.query['clear_SC_H']  = "UPDATE Hands SET sessionId = NULL"
         self.query['clear_SC_T']  = "UPDATE Tourneys SET sessionId = NULL"
         self.query['clear_SC_CC'] = "UPDATE CashCache SET sessionId = NULL"
@@ -7135,7 +7134,6 @@ class Sql:
         self.query['clearWeeksCache']    = "DELETE FROM WeeksCache WHERE 1"
         self.query['clearMonthsCache']   = "DELETE FROM MonthsCache WHERE 1"
         self.query['update_RSC_H']       = "UPDATE Hands SET sessionId = %s WHERE id = %s"
-        self.query['update_RSC_HP'] = "UPDATE HandsPlayers SET cashSessionId = %s, tourSessionId = %s WHERE handId = %s"
         
         self.query['rebuildSessionsCache'] = """
                     SELECT Hands.id as id,
@@ -7847,11 +7845,6 @@ class Sql:
                     UPDATE Hands SET
                     sessionId=%s
                     WHERE sessionId=%s"""
-                            
-        self.query['update_CC_HP'] = """
-                    UPDATE HandsPlayers SET
-                    cashSessionId=%s
-                    WHERE cashSessionId=%s"""
                     
         ####################################
         # update Tourneys w. sessionIds, hands, start/end

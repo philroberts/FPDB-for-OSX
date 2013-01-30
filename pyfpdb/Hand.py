@@ -303,7 +303,7 @@ class Hand(object):
 
     def insertHandsPlayers(self, db, doinsert = False, printtest = False):
         """ Function to inserts HandsPlayers into database"""
-        db.storeHandsPlayers(self.dbid_hands, self.dbid_pids, self.handsplayers, self.tourneyId, doinsert, printtest)
+        db.storeHandsPlayers(self.dbid_hands, self.dbid_pids, self.handsplayers, doinsert, printtest)
     
     def insertHandsActions(self, db, doinsert = False, printtest = False):
         """ Function to inserts HandsActions into database"""
