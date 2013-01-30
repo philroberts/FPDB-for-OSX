@@ -236,23 +236,22 @@ class DerivedStats():
             # You can really only pay rake when you collect money, but
             # different sites calculate rake differently.
             # Should be fine for split-pots, but won't be accurate for multi-way pots
-            collectee_stats['rake'] = int(100 * hand.rake)/num_collectees
-            if collectee_stats['street1Seen'] == True:
-                collectee_stats['wonWhenSeenStreet1'] = 1.0
-            if collectee_stats['street2Seen'] == True:
-                collectee_stats['wonWhenSeenStreet2'] = 1.0
-            if collectee_stats['street3Seen'] == True:
-                collectee_stats['wonWhenSeenStreet3'] = 1.0
-            if collectee_stats['street4Seen'] == True:
-                collectee_stats['wonWhenSeenStreet4'] = 1.0
-            if collectee_stats['sawShowdown'] == True:
-                collectee_stats['wonAtSD'] = 1.0
+            self.handsplayers[player]['rake'] = int(100* hand.rake)/len(hand.collectees)
+            if self.handsplayers[player]['street1Seen'] == True:
+                self.handsplayers[player]['wonWhenSeenStreet1'] = 1.0
+            if self.handsplayers[player]['street2Seen'] == True:
+                self.handsplayers[player]['wonWhenSeenStreet2'] = 1.0
+            if self.handsplayers[player]['street3Seen'] == True:
+                self.handsplayers[player]['wonWhenSeenStreet3'] = 1.0
+            if self.handsplayers[player]['street4Seen'] == True:
+                self.handsplayers[player]['wonWhenSeenStreet4'] = 1.0
+            if self.handsplayers[player]['sawShowdown'] == True:
+                self.handsplayers[player]['wonAtSD'] = 1.0
 
-        for player, money_committed in hand.pot.committed.iteritems():
-            committed_player_stats = self.handsplayers[player]
-            committed_player_stats['totalProfit'] = int(committed_player_stats['winnings'] - (100 * money_committed) - (100*hand.pot.common[player]))
-            if hand.gametype['type'] == 'ring' and pokereval:
-                committed_player_stats['allInEV']     = committed_player_stats['totalProfit']
+        for player in hand.pot.committed:
+            profit = int(self.handsplayers[player]['winnings'] - (100*hand.pot.committed[player])- (100*hand.pot.common[player]))
+            self.handsplayers[player]['totalProfit'] = profit
+            self.handsplayers[player]['allInEV']     = profit
 
         self.calcCBets(hand)
 

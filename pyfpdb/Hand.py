@@ -247,6 +247,7 @@ class Hand(object):
         # Players, Gametypes, TourneyTypes are all shared functions that are needed for additional tables
         # These functions are intended for prep insert eventually
         #####
+        db.sethero(self.hero)
         self.gametype['maxSeats'] = self.maxseats #TODO: move up to individual parsers
         self.dbid_pids = db.getSqlPlayerIDs([p[1] for p in self.players], self.siteId)
         self.dbid_gt = db.getSqlGameTypeId(self.siteId, self.gametype, printdata = printtest)
@@ -301,7 +302,7 @@ class Hand(object):
 
     def insertHandsPlayers(self, db, doinsert = False, printtest = False):
         """ Function to inserts HandsPlayers into database"""
-        db.storeHandsPlayers(self.dbid_hands, self.dbid_pids, self.handsplayers, doinsert, printtest)
+        db.storeHandsPlayers(self.dbid_hands, self.dbid_pids, self.handsplayers, self.tourneyId, doinsert, printtest)
     
     def insertHandsActions(self, db, doinsert = False, printtest = False):
         """ Function to inserts HandsActions into database"""
@@ -322,26 +323,26 @@ class Hand(object):
         """ Function to update the SessionsCache"""
         if self.cacheSessions:
             heroes = []
-            if self.hero in self.dbid_pids: 
+            if self.hero in self.dbid_pids:
                 heroes = [self.dbid_pids[self.hero]]
                 
             db.storeSessionsCache(self.dbid_hands, self.dbid_pids, self.startTime, heroes, tz, doinsert) 
-            db.storeGamesCache(self.dbid_hands, self.dbid_pids, self.startTime, self.dbid_gt, self.gametype, self.handsplayers, heroes, doinsert)
-            db.updateTourneysPlayersSessions(self.dbid_pids, self.tourneyId, self.startTime, self.handsplayers, heroes, doinsert)
+            db.storeCashCache(self.dbid_hands, self.dbid_pids, self.startTime, self.dbid_gt, self.gametype, self.handsplayers, heroes, self.hero, doinsert)
+            db.storeTourCache(self.dbid_hands, self.dbid_pids, self.tourneyId, self.startTime, self.gametype, self.handsplayers, heroes, self.hero, doinsert)
             
     def updateCardsCache(self, db, doinsert = False):
         """ Function to update the HandsCache"""
         heroes = []
         if self.hero in self.dbid_pids: 
             heroes = [self.dbid_pids[self.hero]]
-        db.storeCardsCache(self.gametype, self.dbid_pids, heroes, self.handsplayers, doinsert)
+        db.storeCardsCache(self.gametype, self.startTime, self.dbid_pids, self.dbid_gt, self.tourneyTypeId, heroes, self.handsplayers, doinsert)
                 
     def updatePositionsCache(self, db, doinsert = False):
         """ Function to update the PositionsCache"""
         heroes = []
         if self.hero in self.dbid_pids: 
             heroes = [self.dbid_pids[self.hero]]
-        db.storePositionsCache(self.gametype, self.dbid_pids, heroes, self.handsplayers, doinsert)
+        db.storePositionsCache(self.gametype, self.startTime, self.dbid_pids, self.dbid_gt, self.tourneyTypeId, heroes, self.handsplayers, doinsert)
 
     def select(self, db, handId):
         """ Function to create Hand object from database """
