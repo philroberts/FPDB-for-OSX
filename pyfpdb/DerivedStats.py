@@ -207,7 +207,10 @@ class DerivedStats():
             player_stats = self.handsplayers[player_name]
             player_stats['seatNo'] = player[0]
             player_stats['startCash'] = int(100 * Decimal(player[2]))
-            player_stats['sitout'] = False #TODO: implement actual sitout detection
+            if player_name in hand.sitout:
+                player_stats['sitout'] = True
+            else:
+                player_stats['sitout'] = False
             if hand.gametype["type"]=="tour":
                 player_stats['tourneyTypeId']=hand.tourneyTypeId
                 player_stats['tourneysPlayersIds'] = hand.tourneysPlayersIds[player[1]]

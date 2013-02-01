@@ -340,19 +340,30 @@ class iPoker(HandHistoryConverter):
             hand.fee = self.tinfo['fee']
 
     def readPlayerStacks(self, hand):
-        self.playerWinnings = {}
+        self.playerWinnings, plist = {}, {}
         m = self.re_PlayerInfo.finditer(hand.handText)
         for a in m:
             ag = a.groupdict()
-            seatno = int(a.group('SEAT'))
-            if a.group('BUTTONPOS') == '1':
-                hand.buttonpos = seatno
-            cash = self.clearMoneyString(a.group('CASH'))
-            hand.addPlayer(seatno, a.group('PNAME'), cash)
-            if a.group('WIN') != '0':
-                win = self.clearMoneyString(a.group('WIN'))
-                self.playerWinnings[a.group('PNAME')] = win
-
+            plist[a.group('PNAME')] = [int(a.group('SEAT')), self.clearMoneyString(a.group('CASH')), a.group('WIN'), False]
+            re_sitout = re.compile(r'<action no="[0-9]+" player="' + re.escape(a.group('PNAME')) + '" type="9"')
+            if re_sitout.search(hand.handText):
+                if hand.gametype['type'] == "ring" :
+                    # Remove any listed as sitting out in the summary as start of hand info unreliable
+                    #print "DEBUG: Deleting '%s' from player dict" %(b.group('PNAME'))
+                    del plist[a.group('PNAME')]
+                else:
+                    plist[a.group('PNAME')][2] = True
+            else:
+                if a.group('BUTTONPOS') == '1':
+                    hand.buttonpos = int(a.group('SEAT'))
+                    
+        # Add remaining players
+        for pname in plist:
+            seat, stack, win, sitout = plist[pname]
+            hand.addPlayer(seat, pname, stack, None, sitout)
+            if win != '0':
+                self.playerWinnings[pname] = self.clearMoneyString(win)
+                
         if hand.maxseats==None:
             if self.info['type'] == 'tour' and self.maxseats==0:
                 hand.maxseats = self.guessMaxSeats(hand)

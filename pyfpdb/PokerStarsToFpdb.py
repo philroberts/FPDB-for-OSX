@@ -131,7 +131,8 @@ class PokerStars(HandHistoryConverter):
     re_PlayerInfo   = re.compile(u"""
           ^\s?Seat\s(?P<SEAT>[0-9]+):\s
           (?P<PNAME>.*)\s
-          \((%(LS)s)?(?P<CASH>[.0-9]+)\sin\schips\)""" % substitutions, 
+          \((%(LS)s)?(?P<CASH>[.0-9]+)\sin\schips\)
+          (?P<SITOUT>\sis\ssitting\sout)?""" % substitutions, 
           re.MULTILINE|re.VERBOSE)
 
     re_HandInfo     = re.compile("""
@@ -365,7 +366,7 @@ class PokerStars(HandHistoryConverter):
         log.debug("readPlayerStacks")
         m = self.re_PlayerInfo.finditer(hand.handText)
         for a in m:
-            hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), a.group('CASH'))
+            hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), a.group('CASH'), None, a.group('SITOUT'))
 
     def markStreets(self, hand):
 

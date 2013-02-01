@@ -350,20 +350,22 @@ class Fulltilt(HandHistoryConverter):
 
         # Get list of players in header.
         for a in m:
-            plist[a.group('PNAME')] = [int(a.group('SEAT')), a.group('CASH')]
+            plist[a.group('PNAME')] = [int(a.group('SEAT')), a.group('CASH'), False]
 
-        if hand.gametype['type'] == "ring" :
-            # Remove any listed as sitting out in the summary as start of hand info unreliable
             n = self.re_SummarySitout.finditer(post)
             for b in n:
                 if b.group('PNAME') in plist:
-                    #print "DEBUG: Deleting '%s' from player dict" %(b.group('PNAME'))
-                    del plist[b.group('PNAME')]
+                    if hand.gametype['type'] == "ring" :
+                        # Remove any listed as sitting out in the summary as start of hand info unreliable
+                        #print "DEBUG: Deleting '%s' from player dict" %(b.group('PNAME'))
+                        del plist[b.group('PNAME')]
+                    else:
+                        plist[b.group('PNAME')][2] = True
 
         # Add remaining players
         for a in plist:
-            seat, stack = plist[a]
-            hand.addPlayer(seat, a, stack)
+            seat, stack, sitout = plist[a]
+            hand.addPlayer(seat, a, stack, None, sitout)
 
         if plist == {}:
             #No players! The hand is either missing stacks or everyone is sitting out

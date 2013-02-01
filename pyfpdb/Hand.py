@@ -143,6 +143,7 @@ class Hand(object):
         self.dealt = set()  # 'dealt to' line to be printed
         self.shown = set()  # cards were shown
         self.mucked = set() # cards were mucked at showdown
+        self.sitout = set() # players sitting out or not dealt in (usually tournament)
 
         # Things to do with money
         self.pot = Pot()
@@ -519,7 +520,7 @@ class Hand(object):
         #hc.readShownCards(self)
 
 
-    def addPlayer(self, seat, name, chips, position=None):
+    def addPlayer(self, seat, name, chips, position=None, sitout=False):
         """ Adds a player to the hand, and initialises data structures indexed by player.
             seat    (int) indicating the seat
             name    (string) player name
@@ -536,6 +537,8 @@ class Hand(object):
                 self.bets[street][name] = []
                 #self.holecards[name] = {} # dict from street names.
                 #self.discards[name] = {} # dict from street names.
+            if sitout:
+                self.sitout.add(name)
 
 
     def addStreets(self, match):
@@ -811,6 +814,19 @@ class Hand(object):
             board = set([c for s in self.board.values() for c in s])
             self.addHoleCards(holeandboard.difference(board),player,shown, mucked)
             
+    def sittingOut(self):
+        dealtIn = set()
+        for i, street in enumerate(self.actionStreets):
+            for j, act in enumerate(self.actions[street]):
+                dealtIn.add(act[0])
+        for player in self.collectees.keys():
+            dealtIn.add(player)
+        for player in self.dealt:
+            dealtIn.add(player)
+        for p in self.players:
+            if p[1] not in dealtIn:
+                self.sitout.add(p[1])
+            
     def setUncalledBets(self, value):
         self.uncalledbets = value                
                 
@@ -1054,6 +1070,7 @@ class HoldemOmahaHand(Hand):
             self.pot.handid = self.handid # This is only required so Pot can throw it in totalPot
             self.totalPot() # finalise it (total the pot)
             hhc.getRake(self)
+            self.sittingOut()
             if self.maxseats is None:
                 self.maxseats = hhc.guessMaxSeats(self)
             hhc.readOther(self)
@@ -1368,6 +1385,7 @@ class DrawHand(Hand):
             self.pot.handid = self.handid # This is only required so Pot can throw it in totalPot
             self.totalPot() # finalise it (total the pot)
             hhc.getRake(self)
+            self.sittingOut()
             if self.maxseats is None:
                 self.maxseats = hhc.guessMaxSeats(self)
             hhc.readOther(self)
@@ -1571,6 +1589,7 @@ class StudHand(Hand):
             self.pot.handid = self.handid # This is only required so Pot can throw it in totalPot
             self.totalPot() # finalise it (total the pot)
             hhc.getRake(self)
+            self.sittingOut()
             if self.maxseats is None:
                 self.maxseats = hhc.guessMaxSeats(self)
             hhc.readOther(self)
