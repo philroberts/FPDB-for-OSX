@@ -77,7 +77,7 @@ except ImportError:
     use_numpy = False
 
 
-DB_VERSION = 177
+DB_VERSION = 178
 
 # Variance created as sqlite has a bunch of undefined aggregate functions.
 
@@ -227,7 +227,8 @@ HANDS_PLAYERS_KEYS = [
     'street1Raises',
     'street2Raises',
     'street3Raises',
-    'street4Raises'
+    'street4Raises',
+    'handString'
 ]
 
 # Just like STATS_KEYS, this lets us efficiently add data at the
@@ -380,10 +381,13 @@ class Database:
                 , {'tab':'HandsActions',    'col':'actionId',          'drop':1}
                 , {'tab':'HandsStove',      'col':'handId',            'drop':1}
                 , {'tab':'HandsStove',      'col':'playerId',          'drop':1}
+                , {'tab':'HandsStove',      'col':'hiId',              'drop':1}
+                , {'tab':'HandsStove',      'col':'loId',              'drop':1}
                 , {'tab':'Boards',          'col':'handId',            'drop':1}
                 , {'tab':'HandsPlayers',    'col':'handId',            'drop':1}
                 , {'tab':'HandsPlayers',    'col':'playerId',          'drop':1}
                 , {'tab':'HandsPlayers',    'col':'tourneysPlayersId', 'drop':0}
+                , {'tab':'HandsPlayers',    'col':'startCards',        'drop':1}
                 , {'tab':'HudCache',        'col':'gametypeId',        'drop':1}
                 , {'tab':'HudCache',        'col':'playerId',          'drop':0}
                 , {'tab':'HudCache',        'col':'tourneyTypeId',     'drop':0}
@@ -459,11 +463,14 @@ class Database:
                     , {'fktab':'HandsPlayers', 'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
                     , {'fktab':'HandsPlayers', 'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':1}
                     , {'fktab':'HandsPlayers', 'fkcol':'tourneysPlayersId','rtab':'TourneysPlayers','rcol':'id', 'drop':1}
+                    , {'fktab':'HandsPlayers', 'fkcol':'startCards',    'rtab':'StartCards',    'rcol':'id', 'drop':1}
                     , {'fktab':'HandsActions', 'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
                     , {'fktab':'HandsActions', 'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':1}
                     , {'fktab':'HandsActions', 'fkcol':'actionId',      'rtab':'Actions',       'rcol':'id', 'drop':1}
                     , {'fktab':'HandsStove',   'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
                     , {'fktab':'HandsStove',   'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':1}
+                    , {'fktab':'HandsStove',   'fkcol':'hiId',          'rtab':'HiRank',        'rcol':'id', 'drop':1}
+                    , {'fktab':'HandsStove',   'fkcol':'loId',          'rtab':'LoRank',        'rcol':'id', 'drop':1}
                     , {'fktab':'HudCache',     'fkcol':'gametypeId',    'rtab':'Gametypes',     'rcol':'id', 'drop':1}
                     , {'fktab':'HudCache',     'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':0}
                     , {'fktab':'HudCache',     'fkcol':'tourneyTypeId', 'rtab':'TourneyTypes',  'rcol':'id', 'drop':1}
@@ -487,11 +494,14 @@ class Database:
                     , {'fktab':'HandsPlayers', 'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
                     , {'fktab':'HandsPlayers', 'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':1}
                     , {'fktab':'HandsPlayers', 'fkcol':'tourneysPlayersId','rtab':'TourneysPlayers','rcol':'id', 'drop':1}
+                    , {'fktab':'HandsPlayers', 'fkcol':'startCards',    'rtab':'StartCards',    'rcol':'id', 'drop':1}
                     , {'fktab':'HandsActions', 'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
                     , {'fktab':'HandsActions', 'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':1}
                     , {'fktab':'HandsActions', 'fkcol':'actionId',      'rtab':'Actions',       'rcol':'id', 'drop':1}
                     , {'fktab':'HandsStove',   'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
                     , {'fktab':'HandsStove',   'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':1}
+                    , {'fktab':'HandsStove',   'fkcol':'hiId',          'rtab':'HiRank',        'rcol':'id', 'drop':1}
+                    , {'fktab':'HandsStove',   'fkcol':'loId',          'rtab':'LoRank',        'rcol':'id', 'drop':1}
                     , {'fktab':'HudCache',     'fkcol':'gametypeId',    'rtab':'Gametypes',     'rcol':'id', 'drop':1}
                     , {'fktab':'HudCache',     'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':0}
                     , {'fktab':'HudCache',     'fkcol':'tourneyTypeId', 'rtab':'TourneyTypes',  'rcol':'id', 'drop':1}
@@ -1521,6 +1531,9 @@ class Database:
 
         log.debug("Creating tables")
         c.execute(self.sql.query['createActionsTable'])
+        c.execute(self.sql.query['createHiRankTable'])
+        c.execute(self.sql.query['createLoRankTable'])
+        c.execute(self.sql.query['createStartCardsTable'])
         c.execute(self.sql.query['createSitesTable'])
         c.execute(self.sql.query['createGametypesTable'])
         c.execute(self.sql.query['createFilesTable'])
@@ -1558,7 +1571,12 @@ class Database:
         c.execute(self.sql.query['addFilesIndex'])
         c.execute(self.sql.query['addPlayerCharsIndex'])
         c.execute(self.sql.query['addPlayerHeroesIndex'])
-
+        c.execute(self.sql.query['addStartCashIndex'])
+        c.execute(self.sql.query['addTotalProfitIndex'])
+        c.execute(self.sql.query['addWinningsIndex'])
+        c.execute(self.sql.query['addShowdownPotIndex'])
+        c.execute(self.sql.query['addStreetIndex'])
+        c.execute(self.sql.query['addStreetIdIndex'])
         c.execute(self.sql.query['addCashCacheCompundIndex'])
         c.execute(self.sql.query['addTourCacheCompundIndex'])
         c.execute(self.sql.query['addHudCacheCompundIndex'])
@@ -1810,6 +1828,33 @@ class Database:
         c.execute("INSERT INTO Actions (id,name,code) VALUES ('12', 'discards', 'D')")
         c.execute("INSERT INTO Actions (id,name,code) VALUES ('13', 'bringin', 'I')")
         c.execute("INSERT INTO Actions (id,name,code) VALUES ('14', 'completes', 'P')")
+        #Fill HiRank
+        c.execute("INSERT INTO HiRank (id,name) VALUES ('1', 'Nothing')")
+        c.execute("INSERT INTO HiRank (id,name) VALUES ('2', 'NoPair')")
+        c.execute("INSERT INTO HiRank (id,name) VALUES ('3', 'OnePair')")
+        c.execute("INSERT INTO HiRank (id,name) VALUES ('4', 'TwoPair')")
+        c.execute("INSERT INTO HiRank (id,name) VALUES ('5', 'Trips')")
+        c.execute("INSERT INTO HiRank (id,name) VALUES ('6', 'Straight')")
+        c.execute("INSERT INTO HiRank (id,name) VALUES ('7', 'Flush')")
+        c.execute("INSERT INTO HiRank (id,name) VALUES ('8', 'FlHouse')")
+        c.execute("INSERT INTO HiRank (id,name) VALUES ('9', 'Quads')")
+        c.execute("INSERT INTO HiRank (id,name) VALUES ('10', 'StFlush')")
+        #Fill LoRank
+        c.execute("INSERT INTO LoRank (id,name) VALUES ('1', 'Nothing')")
+        c.execute("INSERT INTO LoRank (id,name) VALUES ('2', 'Quads')")
+        c.execute("INSERT INTO LoRank (id,name) VALUES ('3', 'FlHouse')")
+        c.execute("INSERT INTO LoRank (id,name) VALUES ('4', 'Trips')")
+        c.execute("INSERT INTO LoRank (id,name) VALUES ('5', 'TwoPair')")
+        c.execute("INSERT INTO LoRank (id,name) VALUES ('6', 'OnePair')")
+        c.execute("INSERT INTO LoRank (id,name) VALUES ('7', 'NoPair')")
+        #Fill StartCards
+        sql = "INSERT INTO StartCards (category, name, rank, combinations) VALUES (%s, %s, %s, %s)".replace('%s', self.sql.query['placeholder'])
+        for i in range(170):
+            (name, rank, combinations) = Card.StartCardRank(i)
+            c.execute(sql,  ('holdem', name, rank, combinations))
+        for idx in range(-13,1179):
+            name = Card.decodeRazzStartHand(idx)
+            c.execute(sql, ('razz', name, idx, 0))        
 
     #end def fillDefaultData
 
@@ -1890,30 +1935,40 @@ class Database:
                 ,monthId
                 <type_insert_clause>
                 ,playerId
-                ,startCards"""
+                ,streetId
+                ,startCards
+                ,hiId
+                ,loId"""
     
             select = """s.weekId
                       ,s.monthId 
                       <type_select_clause>
                       ,hp.playerId
-                      ,hp.startCards"""
+                      ,case when hs.street is null then 0 else hs.street end as streetId
+                      ,case when hs.street = 0 OR hs.street is null then hp.startCards else 170 end as start_cards
+                      ,case when hs.street = 0 OR hs.street is null then 1 else hs.hiId end as hi_id
+                      ,case when hs.street = 0 OR hs.street is null then 1 else hs.loId end as lo_id"""
                           
             group = """s.weekId
                         ,s.monthId 
                         <type_group_clause>
                         ,hp.playerId
-                        ,hp.startCards"""
+                        ,streetId
+                        ,start_cards
+                        ,hi_id
+                        ,lo_id"""
                         
             query = query.replace('<insert>', insert)
             query = query.replace('<select>', select)
             query = query.replace('<group>', group)
             query = query.replace('<sessions_join_clause>', """INNER JOIN SessionsCache s ON (s.id = h.sessionId)
-                INNER JOIN Players p ON (hp.playerId = p.id)""")
+                INNER JOIN Players p ON (hp.playerId = p.id)
+                LEFT JOIN HandsStove hs ON (hp.playerId = hs.playerId AND hp.handId = hs.handId)""")
             query = query.replace('<hero_where>', " AND p.hero = 1")
             if type=='ring':
                 query = query.replace('<type_insert_clause>', ",gametypeId")
                 query = query.replace('<type_select_clause>', ",h.gametypeId")
-                query = query.replace('<type_group_clause>', ",h.gametypeId,")
+                query = query.replace('<type_group_clause>', ",h.gametypeId")
             else:
                 query = query.replace('<type_insert_clause>', ",tourneyTypeId")
                 query = query.replace('<type_select_clause>', ",t.tourneyTypeId")
@@ -1953,7 +2008,7 @@ class Database:
             if type=='ring':
                 query = query.replace('<type_insert_clause>', ",gametypeId")
                 query = query.replace('<type_select_clause>', ",h.gametypeId")
-                query = query.replace('<type_group_clause>', ",h.gametypeId,")
+                query = query.replace('<type_group_clause>', ",h.gametypeId")
             else:
                 query = query.replace('<type_insert_clause>', ",tourneyTypeId")
                 query = query.replace('<type_select_clause>', ",t.tourneyTypeId")
@@ -2896,7 +2951,7 @@ class Database:
                 c.executemany(insert_TC, inserts)
             self.commit()
     
-    def storeCardsCache(self, hid, pids, startTime, gid, ttid, gametype, siteId, pdata, heroes, tz_name, doinsert):
+    def storeCardsCache(self, hid, pids, startTime, gid, ttid, gametype, siteId, pdata, sdata, heroes, tz_name, doinsert):
         """Update cached statistics. If update fails because no record exists, do an insert."""
         update_cardscache = self.sql.query['update_cardscache']
         update_cardscache = update_cardscache.replace('%s', self.sql.query['placeholder'])
@@ -2946,23 +3001,32 @@ class Database:
         
         for p in pdata:
             if pids[p] in heroes and gametype['category'] in ('razz', 'holdem'):
-                k =   (weekStart
-                      ,monthStart
-                      ,gametypeId
-                      ,tourneyTypeId
-                      ,pids[p]
-                      ,pdata[p]['startCards']
-                      )
-                pdata[p]['hands'] = 1
-                line = [pdata[p][s] for s in CACHE_KEYS]
-
-                startCards = self.dcbulk.get(k)
-                # Add line to the old line in the hudcache.
-                if startCards is not None:
-                    for idx,val in enumerate(line):
-                        startCards[idx] += val
-                else:
-                    self.dcbulk[k] = line
+                info = [hs for hs in sdata if hs[2]!=0]
+                info.append([0, pids[p], 0, 0, 1, 1, 0])
+                for hs in info:
+                    (pid, streetId, boardId, hiId, loId, startCards) = (hs[1], hs[2], hs[3], hs[4], hs[5], pdata[p]['startCards'])
+                    if pid==pids[p]:
+                        if streetId > 0: startCards = 170
+                        k =   (weekStart
+                              ,monthStart
+                              ,gametypeId
+                              ,tourneyTypeId
+                              ,pids[p]
+                              ,streetId
+                              ,startCards
+                              ,hiId
+                              ,loId
+                              )
+                        pdata[p]['hands'] = 1
+                        line = [pdata[p][s] for s in CACHE_KEYS]
+        
+                        startCards = self.dcbulk.get(k)
+                        # Add line to the old line in the hudcache.
+                        if startCards is not None:
+                            for idx,val in enumerate(line):
+                                startCards[idx] += val
+                        else:
+                            self.dcbulk[k] = line
                 
         if doinsert:
             inserts = []
@@ -2973,19 +3037,21 @@ class Database:
                 
                 if k[2]:
                     q = select_cardscache_ring
-                    row = [wid, mid] + [k[2]] + list(k[-2:])
+                    row = [wid, mid] + [k[2]] + list(k[-5:])
                 else:
                     q = select_cardscache_tour
-                    row = [wid, mid] + list(k[-3:])
+                    row = [wid, mid] + list(k[-6:])
                 
                 c.execute(q, row)
                 result = c.fetchone()
                 if result:
                     id = result[0]
                     update = item + [id]
+                    #print 'update', item[0]
                     c.execute(update_cardscache, update)                    
                 else:
-                    inserts.append([wid, mid] + list(k[-4:]) + item)
+                    #print 'insert', item[0]
+                    inserts.append([wid, mid] + list(k[-7:]) + item)
                 
             if inserts:
                 c.executemany(insert_cardscache, inserts)

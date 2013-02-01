@@ -339,7 +339,7 @@ class Hand(object):
         heroes = []
         if self.hero in self.dbid_pids: 
             heroes = [self.dbid_pids[self.hero]]
-        db.storeCardsCache(self.dbid_hands, self.dbid_pids, self.startTime, self.dbid_gt, self.tourneyTypeId, self.gametype, self.siteId, self.handsplayers, heroes, tz, doinsert)
+        db.storeCardsCache(self.dbid_hands, self.dbid_pids, self.startTime, self.dbid_gt, self.tourneyTypeId, self.gametype, self.siteId, self.handsplayers, self.handsstove, heroes, tz, doinsert)
                 
     def updatePositionsCache(self, db, tz, doinsert = False):
         """ Function to update the PositionsCache"""
