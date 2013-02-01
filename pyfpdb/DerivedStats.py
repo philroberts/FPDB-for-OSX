@@ -418,7 +418,7 @@ class DerivedStats():
                             cards = [str(c) for c in hole if Card.encodeCardList.get(c)!=None or c=='0x']
                             if board['board'][n]: bcards = [str(b) for b in board['board'][n]]
                             else                : bcards = []
-                            hi_id, lo_id = 1, 1
+                            best_hi, hi_id, hiCards, best_lo, lo_id, loCards = (None, 1, None, None, 1, None)
                             if 'omaha' not in game:
                                 if board['board'][n]:
                                     cards = hole + board['board'][n]
@@ -443,11 +443,13 @@ class DerivedStats():
                                  elif hilo == 'r':
                                      best_lo = pokereval.best_hand("hi", cards, bcards)
                                      lo_id = Card.hands['hi'][best_lo[0]][0]
-                            self.handsstove.append( [hand.dbid_hands, hand.dbid_pids[pname], streetId, boardId, hi_id, lo_id, 0] )
+                                 hiCards, loCards = self.getCards(best_hi, best_lo)
+                            self.handsstove.append( [hand.dbid_hands, hand.dbid_pids[pname], streetId, boardId, hi_id, hiCards, lo_id, loCards, 0] )
             elif (hp['sawShowdown'] or hp['showed']):
                 streetId = streets[last]
                 hp['handString'] = hand.showdownStrings.get(pname)
-                self.handsstove.append( [hand.dbid_hands, hand.dbid_pids[player[1]], streetId, 0, 1, 1, 0] )
+                self.handsstove.append( [hand.dbid_hands, hand.dbid_pids[player[1]], streetId, 0, 1, None, 1, None, 0] )
+                
         startstreet = None
         for pot, players in hand.pot.pots:
             players = [p for p in players]
@@ -488,47 +490,14 @@ class DerivedStats():
         for p in holeplayers:
             if holecards[p]['committed'] != 0: 
                 self.handsplayers[p]['allInEV'] = holecards[p]['eq'] - holecards[p]['committed']
-              
-    def getHandString(self, type, string, cards, best):
-        if best[0] == 'Nothing':
-            string, cards = None, None
-        elif best[0] == 'NoPair':
-            if type == 'lo':
-                string = cards[0]+','+cards[1]+','+cards[2]+','+cards[3]+','+cards[4]
-            else:
-                highcard = Card.names[cards[0][0]][0]
-                string = string % highcard
-        elif best[0] == 'OnePair':
-            pair = Card.names[cards[0][0]][1]
-            string = string % pair
-        elif best[0] == 'TwoPair':
-            hipair = Card.names[cards[0][0]][1]
-            pair = Card.names[cards[2][0]][1]
-            pairs = _("%s and %s") % (hipair, pair)
-            string = string % pairs
-        elif best[0] == 'Trips':
-            threeoak = Card.names[cards[0][0]][1]
-            string = string % threeoak
-        elif best[0] == 'Straight':
-            straight = Card.names[cards[0][0]][0] + " " + _("high")
-            string = string % straight
-        elif best[0] == 'Flush':
-            flush = Card.names[cards[0][0]][0] + " " + _("high")
-            string = string % flush
-        elif best[0] == 'FlHouse':
-            threeoak = Card.names[cards[0][0]][1]
-            pair     = Card.names[cards[3][0]][1]
-            full     = _("%s full of %s") % (threeoak, pair)
-            string = string % full
-        elif best[0] == 'Quads':
-            four = Card.names[cards[0][0]][1]
-            string = string % four
-        elif best[0] == 'StFlush':
-            flush = Card.names[cards[0][0]][0] + " " + _("high")
-            string = string % flush
-            if string[0] in ('As', 'Ad', 'Ah', 'Ac'):
-                string = _('a Royal Flush')
-        return string
+                
+    def getCards(self, best_hi, best_lo):
+        hiCards, loCards = None, None
+        if best_hi!=None and best_hi[0] != 'Nothing':
+            hiCards = ''.join([pokereval.card2string(i)[0] for i in best_hi[1:]])
+        if best_lo!=None and best_lo[0] != 'Nothing':
+            loCards = ''.join([pokereval.card2string(i)[0] for i in best_lo[1:]])
+        return hiCards, loCards
     
     def awardPots(self, hand):
         if pokereval and len(hand.pot.pots)>1:
@@ -561,6 +530,7 @@ class DerivedStats():
                     pname = list(players)[w]
                     ppot  = str(((pot-rake)/len(win['hi'])).quantize(Decimal("0.01")))
                     hand.addCollectPot(player=pname,pot=ppot)
+
 
     def setPositions(self, hand):
         """Sets the position for each player in HandsPlayers

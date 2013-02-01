@@ -1200,7 +1200,7 @@ class Sql:
                         street3Raises INT,
                         street4Raises INT,
                         
-                        handString VARCHAR(32),
+                        handString TEXT,
                         actionString VARCHAR(15))
                         """
 
@@ -1319,7 +1319,9 @@ class Sql:
                         street SMALLINT,
                         boardId SMALLINT,
                         hiId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (hiId) REFERENCES HiRank(id),
+                        hiCards VARCHAR(5),
                         loId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (loId) REFERENCES LoRank(id),
+                        loCards VARCHAR(5),
                         ev INT)
                         ENGINE=INNODB"""
         elif db_server == 'postgresql':
@@ -1330,7 +1332,9 @@ class Sql:
                         street SMALLINT,
                         boardId SMALLINT,
                         hiId SMALLINT NOT NULL, FOREIGN KEY (hiId) REFERENCES HiRank(id),
+                        hiCards VARCHAR(5),
                         loId SMALLINT NOT NULL, FOREIGN KEY (hiId) REFERENCES LoRank(id),
+                        loCards VARCHAR(5),
                         ev INT)"""
         elif db_server == 'sqlite':
             self.query['createHandsStoveTable'] = """CREATE TABLE HandsStove (
@@ -1340,7 +1344,9 @@ class Sql:
                         street INT,
                         boardId INT,
                         hiId INT,
+                        hiCards TEXT,
                         loId INT,
+                        loCards TEXT,
                         ev INT
                         )""" 
                         
@@ -8510,12 +8516,14 @@ class Sql:
                         street,
                         boardId,
                         hiId,
+                        hiCards,
                         loId,
+                        loCards,
                         ev
                )
                values (
                     %s, %s, %s, %s, %s,
-                    %s, %s
+                    %s, %s, %s, %s
                )"""
                 
         self.query['store_boards'] = """insert into Boards (

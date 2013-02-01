@@ -54,7 +54,8 @@ games = {              # base, category
            '27_3draw' : ('draw','lowball27', 'r', {'DEAL':0, 'DRAWONE':1, 'DRAWTWO':2, 'DRAWTHREE':3}, 'DRAWTHREE', (15,20)),
            'fivedraw' : ('draw','5draw', 'h', {'DEAL':0, 'DRAWONE':1}, 'DRAWONE', (5,10)),
              'badugi' : ('draw','lowball27', 'l', {'DEAL':0, 'DRAWONE':1, 'DRAWTWO':2, 'DRAWTHREE':3}, 'DRAWTHREE', (15,20)),
-           '27_1draw' : ('draw','lowball27', 'r', {'DEAL':0, 'DRAWONE':1},'DRAWONE', (5,10))
+           '27_1draw' : ('draw','lowball27', 'r', {'DEAL':0, 'DRAWONE':1},'DRAWONE', (5,10)),
+           'a5_3draw' : ('draw', 'lowball', 'l', {'DEAL':0, 'DRAWONE':1, 'DRAWTWO':2, 'DRAWTHREE':3}, 'DRAWTHREE', (15,20))
        }
 
 hands = {'hi':{

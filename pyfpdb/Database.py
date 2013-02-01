@@ -77,7 +77,7 @@ except ImportError:
     use_numpy = False
 
 
-DB_VERSION = 178
+DB_VERSION = 179
 
 # Variance created as sqlite has a bunch of undefined aggregate functions.
 
@@ -2487,7 +2487,6 @@ class Database:
             self.executemany(c, q, self.habulk) #c.executemany(q, self.habulk)
     
     def storeHandsStove(self, sdata, doinsert):
-        #print sdata
         self.hsbulk += sdata
         if doinsert and self.hsbulk:
             q = self.sql.query['store_hands_stove']
@@ -3002,9 +3001,9 @@ class Database:
         for p in pdata:
             if pids[p] in heroes and gametype['category'] in ('razz', 'holdem'):
                 info = [hs for hs in sdata if hs[2]!=0]
-                info.append([0, pids[p], 0, 0, 1, 1, 0])
+                info.append([0, pids[p], 0, 0, 1, None, 1, None, 0])
                 for hs in info:
-                    (pid, streetId, boardId, hiId, loId, startCards) = (hs[1], hs[2], hs[3], hs[4], hs[5], pdata[p]['startCards'])
+                    (pid, streetId, boardId, hiId, loId, startCards) = (hs[1], hs[2], hs[3], hs[4], hs[6], pdata[p]['startCards'])
                     if pid==pids[p]:
                         if streetId > 0: startCards = 170
                         k =   (weekStart
