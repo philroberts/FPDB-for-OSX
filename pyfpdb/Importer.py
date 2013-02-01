@@ -493,8 +493,8 @@ class Importer:
                         hand.hero, self.database.hbulk, hand.handsplayers  = 0, self.database.hbulk[:-1], [] #making sure we don't insert data from this hand
                         hand.updateSessionsCache(self.database, None, doinsert)
                         hand.insertHands(self.database, fpdbfile.fileId, doinsert, self.settings['testData'])
-                        hand.updateCardsCache(self.database, None, doinsert)
-                        hand.updatePositionsCache(self.database, None, doinsert)
+                        #hand.updateCardsCache(self.database, None, doinsert)
+                        #hand.updatePositionsCache(self.database, None, doinsert)
                         hand.updateHudCache(self.database, doinsert)
                         hand.handsplayers, hand.hero = hp, hero
                 #log.debug("DEBUG: hand.updateSessionsCache: %s" % (t5tot))
