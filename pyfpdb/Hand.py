@@ -319,7 +319,7 @@ class Hand(object):
     def updateHudCache(self, db, doinsert = False):
         """ Function to update the HudCache"""
         if self.callHud:
-            db.storeHudCache(self.dbid_gt, self.dbid_pids, self.startTime, self.handsplayers, doinsert)
+            db.storeHudCache(self.dbid_gt, self.gametype, self.dbid_pids, self.startTime, self.handsplayers, doinsert)
         
     def updateSessionsCache(self, db, tz, doinsert = False):
         """ Function to update the SessionsCache"""

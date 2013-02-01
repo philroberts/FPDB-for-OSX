@@ -569,7 +569,7 @@ class fpdb:
                 while gtk.events_pending():
                     gtk.main_iteration_do(False)
 
-                self.db.rebuild_hudcache(self.h_start_date.get_text(), self.start_date.get_text())
+                self.db.rebuild_cache(self.h_start_date.get_text(), self.start_date.get_text())
             elif response == gtk.RESPONSE_NO:
                 print _('User cancelled rebuilding hud cache')
 

@@ -36,6 +36,7 @@ def _buildStatsInitializer():
     init = {}
     #Init vars that may not be used, but still need to be inserted.
     # All stud street4 need this when importing holdem
+    init['played']      = 0
     init['winnings']    = 0
     init['rake']        = 0
     init['rakeDealt']   = 0
@@ -272,6 +273,28 @@ class DerivedStats():
             
         for player in contributed:
             self.handsplayers[player]['rakeContributed'] = int(100* hand.rake)/len(contributed)
+            
+        for player in hand.players:
+            player_name = player[1]
+            player_stats = self.handsplayers.get(player_name)
+            if player_stats['street0VPI'] or player_stats['street1Seen']:
+                player_stats['played'] = True
+            if player_stats['sawShowdown']:
+                player_stats['showdownWinnings'] = player_stats['totalProfit']
+                player_stats['nonShowdownWinnings'] = 0
+            else:
+                player_stats['showdownWinnings']    = 0
+                player_stats['nonShowdownWinnings'] = player_stats['totalProfit']
+            if player_name!=hand.hero and hand.hero:
+                hero_stats = self.handsplayers.get(hand.hero)
+                if player_stats['totalProfit']>0 and 0>hero_stats['totalProfit']:
+                    player_stats['vsHero'] = - int(hero_stats['totalProfit'] * Decimal(player_stats['winnings'])/hand.totalpot)
+                elif hero_stats['totalProfit']>0 and 0>player_stats['totalProfit']:
+                    player_stats['vsHero'] = int(player_stats['totalProfit'] * Decimal(hero_stats['winnings'])/hand.totalpot)
+                else:
+                    player_stats['vsHero'] = 0
+            else:
+                player_stats['vsHero'] = 0
 
         self.calcCBets(hand)
         
