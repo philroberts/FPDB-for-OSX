@@ -2521,6 +2521,7 @@ class Database:
             seats = len(pids)
             
             select_hudcache_tour = select_hudcache_tour.replace('<hudcache_full>', 'gametypeId=%s')
+            select_hudcache_tour = select_hudcache_tour.replace('%s', self.sql.query['placeholder'])
             
         for p in pdata:
             player_stats = pdata.get(p)
