@@ -8229,10 +8229,17 @@ class Sql:
                                               VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
         """
         
-        self.query['updateTourneyTypeId'] = """UPDATE Tourneys t INNER JOIN TourneyTypes tt ON (t.tourneyTypeId = tt.id)
-                                            SET tourneyTypeId = %s
-                                            WHERE tt.siteId=%s AND t.siteTourneyNo=%s
-        """
+        if db_server == 'sqlite':  
+            self.query['updateTourneyTypeId'] = """UPDATE Tourneys t 
+                                                SET tourneyTypeId = %s
+                                                WHERE t.tourneyTypeId in (SELECT id FROM TourneyTypes tt WHERE tt.siteId=%s)
+                                                AND t.siteTourneyNo=%s
+            """
+        else:
+            self.query['updateTourneyTypeId'] = """UPDATE Tourneys t INNER JOIN TourneyTypes tt ON (t.tourneyTypeId = tt.id)
+                                                SET tourneyTypeId = %s
+                                                WHERE tt.siteId=%s AND t.siteTourneyNo=%s
+            """
         
         self.query['selectTourneyWithTypeId'] = """SELECT id 
                                                 FROM Tourneys
