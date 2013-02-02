@@ -2109,8 +2109,8 @@ class Database:
             monthStart = datetime(local.year, local.month, 1)
             weekdate   = datetime(local.year, local.month, local.day) 
             weekStart  = weekdate - timedelta(days=weekdate.weekday())
-            wid = self.insertOrUpdate('weeks', c, weekStart, select_WC, insert_WC)
-            mid = self.insertOrUpdate('months', c, monthStart, select_MC, insert_MC)
+            wid = self.insertOrUpdate('weeks', c, (weekStart,), select_WC, insert_WC)
+            mid = self.insertOrUpdate('months', c, (monthStart,), select_MC, insert_MC)
             if wid != s['wid'] or mid != s['mid']:
                 row = [wid, mid, s['id']]
                 c.execute(update_WM_SC, row)
@@ -2686,8 +2686,8 @@ class Database:
                             month, updateM = self.sc['bk'][i]['monthStart'], True
                     if self.sc['bk'][i]['sessionEnd'] > end:
                         end, update = self.sc['bk'][i]['sessionEnd'], True
-                    if updateW:  wid = self.insertOrUpdate('weeks', c, week, select_WC, insert_WC)
-                    if updateM:  mid = self.insertOrUpdate('months', c, month, select_MC, insert_MC)
+                    if updateW:  wid = self.insertOrUpdate('weeks', c, (week,), select_WC, insert_WC)
+                    if updateM:  mid = self.insertOrUpdate('months', c, (month,), select_MC, insert_MC)
                     if update: 
                         c.execute(update_SC, [wid, mid, start, end, r[0]['id']])
                     for h in  self.sc['bk'][i]['ids']:
@@ -2712,8 +2712,8 @@ class Database:
                                 end = n['sessionEnd']
                         else:
                             end = n['sessionEnd']
-                    wid = self.insertOrUpdate('weeks', c, week, select_WC, insert_WC)
-                    mid = self.insertOrUpdate('months', c, month, select_MC, insert_MC)
+                    wid = self.insertOrUpdate('weeks', c, (week,), select_WC, insert_WC)
+                    mid = self.insertOrUpdate('months', c, (month,), select_MC, insert_MC)
                     row = [wid, mid, start, end]
                     c.execute(insert_SC, row)
                     sid = self.get_last_insert_id(c)
@@ -2727,14 +2727,14 @@ class Database:
                         c.execute(update_SC_CC,(sid, m))
                         c.execute(update_SC_T, (sid, m))
                         c.execute(update_SC_H, (sid, m))
-                        c.execute(delete_SC, m)
+                        c.execute(delete_SC, (m,))
                 elif (num == 0):
                     start   =  self.sc['bk'][i]['sessionStart']
                     end     =  self.sc['bk'][i]['sessionEnd']
                     week    =  self.sc['bk'][i]['weekStart']
                     month   =  self.sc['bk'][i]['monthStart']
-                    wid = self.insertOrUpdate('weeks', c, week, select_WC, insert_WC)
-                    mid = self.insertOrUpdate('months', c, month, select_MC, insert_MC)
+                    wid = self.insertOrUpdate('weeks', c, (week,), select_WC, insert_WC)
+                    mid = self.insertOrUpdate('months', c, (month,), select_MC, insert_MC)
                     row = [wid, mid, start, end]
                     c.execute(insert_SC, row)
                     sid = self.get_last_insert_id(c)
@@ -2858,7 +2858,7 @@ class Database:
                         c.execute(insert_CC, row)
                         id = self.get_last_insert_id(c)
                         for m in merge:
-                            c.execute(delete_CC, m)
+                            c.execute(delete_CC, (m,))
                             self.commit()
                     elif (num == 0):
                         start               = session['startTime']
@@ -3035,8 +3035,8 @@ class Database:
             inserts = []
             c = self.get_cursor()
             for k, item in self.dcbulk.iteritems():
-                wid = self.insertOrUpdate('weeks', c, k[0], select_WC, insert_WC)
-                mid = self.insertOrUpdate('months', c, k[1], select_MC, insert_MC)
+                wid = self.insertOrUpdate('weeks', c, (k[0],), select_WC, insert_WC)
+                mid = self.insertOrUpdate('months', c, (k[1],), select_MC, insert_MC)
                 
                 if k[2]:
                     q = select_cardscache_ring
@@ -3137,8 +3137,8 @@ class Database:
             inserts = []
             c = self.get_cursor()
             for k, item in self.pcbulk.iteritems():
-                wid = self.insertOrUpdate('weeks', c, k[0], select_WC, insert_WC)
-                mid = self.insertOrUpdate('months', c, k[1], select_MC, insert_MC)
+                wid = self.insertOrUpdate('weeks', c, (k[0],), select_WC, insert_WC)
+                mid = self.insertOrUpdate('months', c, (k[1],), select_MC, insert_MC)
                 
                 if k[2]:
                     q = select_positionscache_ring
@@ -3174,7 +3174,7 @@ class Database:
         q = self.sql.query['get_id']
         q = q.replace('%s', self.sql.query['placeholder'])
         c = self.get_cursor()
-        c.execute(q, file)
+        c.execute(q, (file,))
         id = c.fetchone()
         if not id:
             return 0
