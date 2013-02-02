@@ -55,6 +55,7 @@ pypokereval 138 ... http://sourceforge.net/projects/fpdb/files/fpdb/pypoker-eval
 cdecimal 2.3 ... http://www.bytereef.org/software/mpdecimal/releases/cdecimal-2.3.win32-py2.7.msi
 winpaths 0.2 ... http://pypi.python.org/packages/any/w/winpaths/winpaths-0.2.win32.exe#md5=bd99492eb311530c630ec3f26828cd48
 python PIL 1.1.7 ... http://effbot.org/downloads/PIL-1.1.7.win32-py2.7.exe
+7zip 922 ... http://sourceforge.net/projects/sevenzip/files/7-Zip/9.22/7z922.msi/download
 
 1.2/ Add the python install directory to the PATH environment variable on your system
 This will depend on your system, and the place where you installed python.
@@ -86,8 +87,18 @@ git ... http://code.google.com/p/msysgit/downloads/list
 Help is here: http://sourceforge.net/apps/mediawiki/fpdb/index.php?title=Git_intro
 fpdb can normally started by selecting run_fpdb.py from the fpdb folder.
 
+3.3 install beautifulsoup
+-------------------------
 
-3.3/ next steps
+Get the installer here: http://www.crummy.com/software/BeautifulSoup/download/3.x/BeautifulSoup-3.2.1.tar.gz
+
+Unpack
+
+from a terminal window:
+a) cd to the BeautifulSoup-3.2.1 folder
+b) install as follows: "python setup.py install"
+
+3.4/ next steps
 ---------------
 
 If you are fpdb developer who wants to build an exe package, go to Step 6 now.
@@ -299,9 +310,8 @@ py2exe creates a new folder for the created software bundle, drag this out to th
 Step 15 Compress to executable archive
 --------------------------------------
 
-15.1/ Download and install 7zip 922 ... http://sourceforge.net/projects/sevenzip/files/7-Zip/9.22/7z922.msi/download
-15.2/ Rightclick on fpdb executable folder, select 7zip Add to archive... select SFX archive option switch
-15.3/ This executable will be the released software
+15.1/ Rightclick on fpdb executable folder, select 7zip Add to archive... select SFX archive option switch
+15.2/ This executable will be the released software
 
 
 Step 16 basic testing

@@ -156,7 +156,7 @@ setup(
               ],
 
     options = {'py2exe': {
-                      'packages'    : ['encodings', 'matplotlib'],
+                      'packages'    : ['encodings', 'matplotlib', 'BeautifulSoup'],
                                                             
                       'includes'    : ['gio', 'cairo', 'pango', 'pangocairo'
 				      ,'atk', 'gobject'] + tofpdb_module_list + fpdb_aux_module_list,
