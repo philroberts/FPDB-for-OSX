@@ -2057,7 +2057,7 @@ class Database:
                     + "   or (    hp.playerId in " + str(tuple(self.hero_ids.values())) \
                     + "       and h.startTime > '" + h_start + "'))" \
                     + "   AND hp.tourneysPlayersId IS NULL)"
-        rebuild_sql_cash = self.sql.query['rebuildCache']
+        rebuild_sql_cash = self.sql.query['rebuildCache'].replace('%s', self.sql.query['placeholder'])
         rebuild_sql_cash = rebuild_sql_cash.replace('<tourney_join_clause>', "")
         rebuild_sql_cash = rebuild_sql_cash.replace('<where_clause>', where)
         rebuild_sql_cash = self.replace_statscache('ring', table, rebuild_sql_cash)
@@ -2080,7 +2080,7 @@ class Database:
                     + "   or (    hp.playerId in " + str(tuple(self.hero_ids.values())) \
                     + "       and h.startTime > '" + h_start + "'))" \
                     + "   AND hp.tourneysPlayersId >= 0)"
-        rebuild_sql_tourney = self.sql.query['rebuildCache']
+        rebuild_sql_tourney = self.sql.query['rebuildCache'].replace('%s', self.sql.query['placeholder'])
         rebuild_sql_tourney = rebuild_sql_tourney.replace('<tourney_join_clause>', """INNER JOIN TourneysPlayers tp ON (tp.id = hp.tourneysPlayersId)
             INNER JOIN Tourneys t ON (t.id = tp.tourneyId)""")
         rebuild_sql_tourney = rebuild_sql_tourney.replace('<where_clause>', where)
@@ -3356,7 +3356,7 @@ class Database:
                 pp.pprint(gtinsert)
                 print ("###### End Gametype ########")
                 
-            c.execute(self.sql.query['insertGameTypes'], gtinsert)
+            c.execute(self.sql.query['insertGameTypes'].replace('%s', self.sql.query['placeholder']), gtinsert)
             result = self.get_last_insert_id(c)
         else:
             result = tmp[0]
@@ -3364,7 +3364,8 @@ class Database:
     
     def getTourneyInfo(self, siteName, tourneyNo):
         c = self.get_cursor()
-        c.execute(self.sql.query['getTourneyInfo'], (siteName, tourneyNo))
+        q = self.sql.query['getTourneyInfo'].replace('%s', self.sql.query['placeholder'])
+        c.execute(q, (siteName, tourneyNo))
         columnNames=c.description
 
         names=[]
