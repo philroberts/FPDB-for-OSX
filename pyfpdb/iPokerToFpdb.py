@@ -239,7 +239,6 @@ class iPoker(HandHistoryConverter):
             if not mg['SB']: tourney = True
         if 'BB' in mg:
             self.info['bb'] = self.clearMoneyString(mg['BB'])
-        self.header = mg['HEAD']
 
         if tourney:
             self.info['type'] = 'tour'

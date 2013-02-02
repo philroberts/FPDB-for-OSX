@@ -1926,7 +1926,7 @@ class Sql:
                         weekId INT, FOREIGN KEY (weekId) REFERENCES WeeksCache(id),
                         monthId INT, FOREIGN KEY (monthId) REFERENCES MonthsCache(id),
                         gametypeId INT, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
-                        tourneyTypeId INT, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyType(id),
+                        tourneyTypeId INT, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
                         playerId INT, FOREIGN KEY (playerId) REFERENCES Players(id),
                         streetId SMALLINT NOT NULL,
                         startCards SMALLINT, FOREIGN KEY (startCards) REFERENCES StartCards(id),
@@ -3492,9 +3492,15 @@ class Sql:
         
         self.query['addCardsCacheCompundIndex'] = """CREATE UNIQUE INDEX CardsCache_Compound_idx ON CardsCache(weekId, monthId, gametypeId, tourneyTypeId, playerId, streetId, startCards, hiId, loId)"""
         self.query['addPositionsCacheCompundIndex'] = """CREATE UNIQUE INDEX PositionsCache_Compound_idx ON PositionsCache(weekId, monthId, gametypeId, tourneyTypeId, playerId, activeSeats, position)"""
-
-        self.query['addFilesIndex'] = """CREATE UNIQUE INDEX index_file ON Files (file(255))"""
-        self.query['addPlayerCharsIndex'] = """CREATE INDEX player_char_3 ON Players (chars(3))"""
+        
+        if db_server == 'mysql':
+            self.query['addFilesIndex'] = """CREATE UNIQUE INDEX index_file ON Files (file(255))"""
+        elif db_server == 'postgresql':
+            self.query['addFilesIndex'] = """CREATE UNIQUE INDEX index_file ON Files (left(file, 255))"""
+        elif db_server == 'sqlite':
+            self.query['addFilesIndex'] = """CREATE UNIQUE INDEX index_file ON Files (file)"""
+            
+        self.query['addPlayerCharsIndex'] = """CREATE INDEX player_char_3 ON Players (chars)"""
         self.query['addPlayerHeroesIndex'] = """CREATE INDEX player_heroes ON Players (hero)"""
         
         self.query['get_last_hand'] = "select max(id) from Hands"
