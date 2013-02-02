@@ -36,6 +36,7 @@ def _buildStatsInitializer():
     init = {}
     #Init vars that may not be used, but still need to be inserted.
     # All stud street4 need this when importing holdem
+    init['effStack']    = 0
     init['played']      = 0
     init['winnings']    = 0
     init['rake']        = 0
@@ -44,6 +45,7 @@ def _buildStatsInitializer():
     init['rakeWeighted'] = 0
     init['totalProfit'] = 0
     init['allInEV']     = 0
+    init['BBwon']       = 0
     init['street4Aggr'] = False
     init['wonWhenSeenStreet1'] = 0.0
     init['sawShowdown'] = False
@@ -279,6 +281,8 @@ class DerivedStats():
         for player in hand.players:
             player_name = player[1]
             player_stats = self.handsplayers.get(player_name)
+            if hand.gametype['bb']>0:
+                player_stats['BBwon'] = player_stats['totalProfit'] / (hand.gametype['bb']*2)
             if player_stats['street0VPI'] or player_stats['street1Seen']:
                 player_stats['played'] = True
             if player_stats['sawShowdown']:
@@ -315,6 +319,7 @@ class DerivedStats():
             player_stats['startCards'] = calcStartCards(hand, player_name)
 
         self.setPositions(hand)
+        self.calcEffectiveStack(hand)
         self.calcCheckCallRaise(hand)
         self.calc34BetStreet0(hand)
         self.calcSteals(hand)
@@ -970,6 +975,27 @@ class DerivedStats():
             seen[action[0]] = 1
             players.append(action[0])
         return players
+    
+    def calcEffectiveStack(self,hand):
+        """Calculates the effective stack for each player on street 1
+        """
+        seen = {}
+        pstacks = {}
+        actions = hand.actions[hand.holeStreets[0]]
+        for p in hand.players: 
+            if p not in hand.sitout:
+                pstacks[p[1]] = int(100 * Decimal(p[2])) / hand.gametype['bb']
+        for action in actions:
+            if action[0] in seen: continue
+            seen[action[0]] = 1
+            oppstacks = [v for (k,v) in pstacks.iteritems() if k != action[0]]
+            if oppstacks:
+                if pstacks[action[0]] > max(oppstacks):
+                    self.handsplayers[action[0]]['effStack'] = max(oppstacks)
+                else:
+                    self.handsplayers[action[0]]['effStack'] = pstacks[action[0]]
+                if action[1] == 'folds':
+                    pstacks[action[0]] = 0
 
     def firstsBetOrRaiser(self, actions):
         """Returns player name that placed the first bet or raise.

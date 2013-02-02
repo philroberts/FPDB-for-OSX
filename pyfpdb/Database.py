@@ -101,6 +101,7 @@ class sqlitemath:
 # Keys used to index into player data in storeHandsPlayers.
 HANDS_PLAYERS_KEYS = [
     'startCash',
+    'effStack',
     'seatNo',
     'sitout',
     'card1',
@@ -133,6 +134,7 @@ HANDS_PLAYERS_KEYS = [
     'nonShowdownWinnings',
     'totalProfit',
     'allInEV',
+    'BBwon',
     'vsHero',
     'street0VPIChance',
     'street0VPI',
@@ -313,6 +315,7 @@ CACHE_KEYS = [
     'rakeWeighted',
     'showdownWinnings',
     'nonShowdownWinnings',
+    'BBwon',
     'allInEV',
     'vsHero',
     'street1CheckCallRaiseChance',
@@ -1572,6 +1575,7 @@ class Database:
         c.execute(self.sql.query['addPlayerCharsIndex'])
         c.execute(self.sql.query['addPlayerHeroesIndex'])
         c.execute(self.sql.query['addStartCashIndex'])
+        c.execute(self.sql.query['addEffStackIndex'])
         c.execute(self.sql.query['addTotalProfitIndex'])
         c.execute(self.sql.query['addWinningsIndex'])
         c.execute(self.sql.query['addShowdownPotIndex'])

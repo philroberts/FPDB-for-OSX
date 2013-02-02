@@ -751,6 +751,7 @@ class Sql:
                         handId BIGINT UNSIGNED NOT NULL, FOREIGN KEY (handId) REFERENCES Hands(id),
                         playerId INT UNSIGNED NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
                         startCash INT NOT NULL,
+                        effStack INT NOT NULL,
                         position CHAR(1),
                         seatNo SMALLINT NOT NULL,
                         sitout BOOLEAN NOT NULL,
@@ -788,6 +789,7 @@ class Sql:
                         nonShowdownWinnings INT,
                         totalProfit INT,
                         allInEV INT,
+                        BBwon INT,
                         vsHero INT,
                         comment text,
                         commentTs DATETIME,
@@ -904,6 +906,7 @@ class Sql:
                         handId BIGINT NOT NULL, FOREIGN KEY (handId) REFERENCES Hands(id),
                         playerId INT NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
                         startCash INT NOT NULL,
+                        effStack INT NOT NULL,
                         position CHAR(1),
                         seatNo SMALLINT NOT NULL,
                         sitout BOOLEAN NOT NULL,
@@ -941,6 +944,7 @@ class Sql:
                         nonShowdownWinnings INT,
                         totalProfit INT,
                         allInEV INT,
+                        BBwon INT,
                         vsHero INT,
                         comment text,
                         commentTs timestamp without time zone,
@@ -1056,6 +1060,7 @@ class Sql:
                         handId INT NOT NULL,
                         playerId INT NOT NULL,
                         startCash INT NOT NULL,
+                        effStack INT NOT NULL,
                         position TEXT,
                         seatNo INT NOT NULL,
                         sitout BOOLEAN NOT NULL,
@@ -1093,6 +1098,7 @@ class Sql:
                         nonShowdownWinnings INT,
                         totalProfit INT,
                         allInEV INT,
+                        BBwon INT,
                         vsHero INT,
                         comment TEXT,
                         commentTs REAL,
@@ -1506,6 +1512,7 @@ class Sql:
                         showdownWinnings INT,
                         nonShowdownWinnings INT,
                         allInEV INT,
+                        BBwon INT,
                         vsHero INT,
                         
                         street1CheckCallRaiseChance INT,
@@ -1629,6 +1636,7 @@ class Sql:
                         showdownWinnings INT,
                         nonShowdownWinnings INT,
                         allInEV INT,
+                        BBwon INT,
                         vsHero INT,
 
                         street1CheckCallRaiseChance INT,
@@ -1751,6 +1759,7 @@ class Sql:
                         showdownWinnings INT,
                         nonShowdownWinnings INT,
                         allInEV INT,
+                        BBwon INT,
                         vsHero INT,
 
                         street1CheckCallRaiseChance INT,
@@ -1882,6 +1891,7 @@ class Sql:
                         showdownWinnings INT,
                         nonShowdownWinnings INT,
                         allInEV INT,
+                        BBwon INT,
                         vsHero INT,
                         
                         street1CheckCallRaiseChance INT,
@@ -2008,6 +2018,7 @@ class Sql:
                         showdownWinnings INT,
                         nonShowdownWinnings INT,
                         allInEV INT,
+                        BBwon INT,
                         vsHero INT,
 
                         street1CheckCallRaiseChance INT,
@@ -2133,6 +2144,7 @@ class Sql:
                         showdownWinnings INT,
                         nonShowdownWinnings INT,
                         allInEV INT,
+                        BBwon INT,
                         vsHero INT,
 
                         street1CheckCallRaiseChance INT,
@@ -2263,6 +2275,7 @@ class Sql:
                         showdownWinnings INT,
                         nonShowdownWinnings INT,
                         allInEV INT,
+                        BBwon INT,
                         vsHero INT,
                         
                         street1CheckCallRaiseChance INT,
@@ -2387,6 +2400,7 @@ class Sql:
                         showdownWinnings INT,
                         nonShowdownWinnings INT,
                         allInEV INT,
+                        BBwon INT,
                         vsHero INT,
 
                         street1CheckCallRaiseChance INT,
@@ -2510,6 +2524,7 @@ class Sql:
                         showdownWinnings INT,
                         nonShowdownWinnings INT,
                         allInEV INT,
+                        BBwon INT,
                         vsHero INT,
 
                         street1CheckCallRaiseChance INT,
@@ -2715,6 +2730,7 @@ class Sql:
                         showdownWinnings INT,
                         nonShowdownWinnings INT,
                         allInEV INT,
+                        BBwon INT,
                         vsHero INT,
                         
                         street1CheckCallRaiseChance INT,
@@ -2838,6 +2854,7 @@ class Sql:
                         showdownWinnings INT,
                         nonShowdownWinnings INT,
                         allInEV INT,
+                        BBwon INT,
                         vsHero INT,
 
                         street1CheckCallRaiseChance INT,
@@ -2960,6 +2977,7 @@ class Sql:
                         showdownWinnings INT,
                         nonShowdownWinnings INT,
                         allInEV INT,
+                        BBwon INT,
                         vsHero INT,
 
                         street1CheckCallRaiseChance INT,
@@ -3087,6 +3105,7 @@ class Sql:
                         showdownWinnings INT,
                         nonShowdownWinnings INT,
                         allInEV INT,
+                        BBwon INT,
                         vsHero INT,
                         
                         street1CheckCallRaiseChance INT,
@@ -3210,6 +3229,7 @@ class Sql:
                         showdownWinnings INT,
                         nonShowdownWinnings INT,
                         allInEV INT,
+                        BBwon INT,
                         vsHero INT,
 
                         street1CheckCallRaiseChance INT,
@@ -3332,6 +3352,7 @@ class Sql:
                         showdownWinnings INT,
                         nonShowdownWinnings INT,
                         allInEV INT,
+                        BBwon INT,
                         vsHero INT,
 
                         street1CheckCallRaiseChance INT,
@@ -3417,11 +3438,25 @@ class Sql:
             self.query['addStartCashIndex'] = """CREATE INDEX cash_idx ON HandsPlayers (startCash)"""
             
         if db_server == 'mysql':
+            self.query['addEffStackIndex'] = """ALTER TABLE HandsPlayers ADD INDEX eff_stack_idx (effStack)"""
+        elif db_server == 'postgresql':
+            self.query['addEffStackIndex'] = """CREATE INDEX eff_stack_idx ON HandsPlayers (effStack)"""
+        elif db_server == 'sqlite':
+            self.query['addEffStackIndex'] = """CREATE INDEX eff_stack_idx ON HandsPlayers (effStack)"""
+            
+        if db_server == 'mysql':
             self.query['addTotalProfitIndex'] = """ALTER TABLE HandsPlayers ADD INDEX profit_idx (totalProfit)"""
         elif db_server == 'postgresql':
             self.query['addTotalProfitIndex'] = """CREATE INDEX profit_idx ON HandsPlayers (totalProfit)"""
         elif db_server == 'sqlite':
             self.query['addTotalProfitIndex'] = """CREATE INDEX profit_idx ON HandsPlayers (totalProfit)"""
+            
+        if db_server == 'mysql':
+            self.query['addBBwonIndex'] = """ALTER TABLE HandsPlayers ADD INDEX bbwon_idx (BBwon)"""
+        elif db_server == 'postgresql':
+            self.query['addBBwonIndex'] = """CREATE INDEX bbwon_idx ON HandsPlayers (BBwon)"""
+        elif db_server == 'sqlite':
+            self.query['addBBwonIndex'] = """CREATE INDEX bbwon_idx ON HandsPlayers (BBwon)"""
             
         if db_server == 'mysql':
             self.query['addWinningsIndex'] = """ALTER TABLE HandsPlayers ADD INDEX winnings_idx (winnings)"""
@@ -6119,6 +6154,7 @@ class Sql:
                 ,showdownWinnings
                 ,nonShowdownWinnings
                 ,allInEV
+                ,BBwon
                 ,vsHero
                 ,street1CheckCallRaiseChance
                 ,street1CheckCallRaiseDone
@@ -6222,6 +6258,7 @@ class Sql:
                       ,sum(showdownWinnings)
                       ,sum(nonShowdownWinnings)
                       ,sum(allInEV)
+                      ,sum(BBwon)
                       ,sum(vsHero)
                       ,sum(street1CheckCallRaiseChance)
                       ,sum(street1CheckCallRaiseDone)
@@ -6334,6 +6371,7 @@ class Sql:
                 ,showdownWinnings
                 ,nonShowdownWinnings
                 ,allInEV
+                ,BBwon
                 ,vsHero
                 ,street1CheckCallRaiseChance
                 ,street1CheckCallRaiseDone
@@ -6437,6 +6475,7 @@ class Sql:
                       ,sum(CAST(showdownWinnings as integer))
                       ,sum(CAST(nonShowdownWinnings as integer))
                       ,sum(CAST(allInEV as integer))
+                      ,sum(CAST(BBwon as integer))
                       ,sum(CAST(vsHero as integer))
                       ,sum(CAST(street1CheckCallRaiseChance as integer))
                       ,sum(CAST(street1CheckCallRaiseDone as integer))
@@ -6555,6 +6594,7 @@ class Sql:
                 showdownWinnings,
                 nonShowdownWinnings,
                 allInEV,
+                BBwon,
                 vsHero,
                 street1CheckCallRaiseChance,
                 street1CheckCallRaiseDone,
@@ -6600,7 +6640,7 @@ class Sql:
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
-                    %s, %s)"""
+                    %s, %s, %s)"""
 
         self.query['update_hudcache'] = """
             UPDATE HudCache SET
@@ -6681,6 +6721,7 @@ class Sql:
             showdownWinnings=showdownWinnings+%s,
             nonShowdownWinnings=nonShowdownWinnings+%s,
             allInEV=allInEV+%s,
+            BBwon=BBwon+%s,
             vsHero=vsHero+%s,
             street1CheckCallRaiseChance=street1CheckCallRaiseChance+%s,
             street1CheckCallRaiseDone=street1CheckCallRaiseDone+%s,
@@ -6824,6 +6865,7 @@ class Sql:
                 showdownWinnings,
                 nonShowdownWinnings,
                 allInEV,
+                BBwon,
                 vsHero,
                 street1CheckCallRaiseChance,
                 street1CheckCallRaiseDone,
@@ -6869,7 +6911,8 @@ class Sql:
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
-                    %s, %s, %s, %s, %s
+                    %s, %s, %s, %s, %s,
+                    %s
                     )"""
 
         self.query['update_cardscache'] = """
@@ -6951,6 +6994,7 @@ class Sql:
                     showdownWinnings=showdownWinnings+%s,
                     nonShowdownWinnings=nonShowdownWinnings+%s,
                     allInEV=allInEV+%s,
+                    BBwon=BBwon+%s,
                     vsHero=vsHero+%s,
                     street1CheckCallRaiseChance=street1CheckCallRaiseChance+%s,
                     street1CheckCallRaiseDone=street1CheckCallRaiseDone+%s,
@@ -7093,6 +7137,7 @@ class Sql:
                 showdownWinnings,
                 nonShowdownWinnings,
                 allInEV,
+                BBwon,
                 vsHero,
                 street1CheckCallRaiseChance,
                 street1CheckCallRaiseDone,
@@ -7138,7 +7183,7 @@ class Sql:
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
-                    %s, %s, %s
+                    %s, %s, %s, %s
                     )"""
 
         self.query['update_positionscache'] = """
@@ -7220,6 +7265,7 @@ class Sql:
                     showdownWinnings=showdownWinnings+%s,
                     nonShowdownWinnings=nonShowdownWinnings+%s,
                     allInEV=allInEV+%s,
+                    BBwon=BBwon+%s,
                     vsHero=vsHero+%s,
                     street1CheckCallRaiseChance=street1CheckCallRaiseChance+%s,
                     street1CheckCallRaiseDone=street1CheckCallRaiseDone+%s,
@@ -7431,6 +7477,7 @@ class Sql:
                     showdownWinnings,
                     nonShowdownWinnings,
                     allInEV,
+                    BBwon,
                     vsHero,
                     street1CheckCallRaiseChance,
                     street1CheckCallRaiseDone,
@@ -7573,6 +7620,7 @@ class Sql:
                     showdownWinnings,
                     nonShowdownWinnings,
                     allInEV,
+                    BBwon,
                     vsHero,
                     street1CheckCallRaiseChance,
                     street1CheckCallRaiseDone,
@@ -7619,7 +7667,7 @@ class Sql:
                             %s, %s, %s, %s, %s,
                             %s, %s, %s, %s, %s,
                             %s, %s, %s, %s, %s,
-                            %s)"""
+                            %s, %s)"""
                             
         self.query['insert_TC'] = """
                     insert into TourCache (
@@ -7852,6 +7900,7 @@ class Sql:
                     showdownWinnings=showdownWinnings+%s,
                     nonShowdownWinnings=nonShowdownWinnings+%s,
                     allInEV=allInEV+%s,
+                    BBwon=BBwon+%s,
                     vsHero=vsHero+%s,
                     street1CheckCallRaiseChance=street1CheckCallRaiseChance+%s,
                     street1CheckCallRaiseDone=street1CheckCallRaiseDone+%s,
@@ -7958,6 +8007,7 @@ class Sql:
                     showdownWinnings=showdownWinnings+%s,
                     nonShowdownWinnings=nonShowdownWinnings+%s,
                     allInEV=allInEV+%s,
+                    BBwon=BBwon+%s,
                     vsHero=vsHero+%s,
                     street1CheckCallRaiseChance=street1CheckCallRaiseChance+%s,
                     street1CheckCallRaiseDone=street1CheckCallRaiseDone+%s,
@@ -8331,6 +8381,7 @@ class Sql:
                 handId,
                 playerId,
                 startCash,
+                effStack,
                 seatNo,
                 sitout,
                 card1,
@@ -8363,6 +8414,7 @@ class Sql:
                 nonShowdownWinnings,
                 totalProfit,
                 allInEV,
+                BBwon,
                 vsHero,
                 street0VPIChance,
                 street0VPI,
@@ -8487,7 +8539,7 @@ class Sql:
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
-                    %s
+                    %s, %s, %s
                 )"""
 
         self.query['store_hands_actions'] = """insert into HandsActions (
