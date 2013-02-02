@@ -249,7 +249,7 @@ class Importer:
 
         # Tidying up after import
         if 'dropHudCache' in self.settings and self.settings['dropHudCache'] == 'drop':
-            self.database.rebuild_hudcache()
+            self.database.rebuild_cache()
         else:
             self.database.cleanUpTourneyTypes()
             self.database.resetttclean()
@@ -480,6 +480,7 @@ class Importer:
                         duplicates += 1
                         if (doinsert and ihands): backtrack = True
                     except:
+                        error_trace = ''
                         formatted_lines = traceback.format_exc().splitlines()
                         for line in formatted_lines:
                             error_trace += line
