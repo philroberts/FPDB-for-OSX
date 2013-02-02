@@ -6508,6 +6508,7 @@ class Sql:
                       ,sum(CAST(hp.street4Raises as integer))
                 FROM HandsPlayers hp
                 INNER JOIN Hands h ON (h.id = hp.handId)
+                INNER JOIN Gametypes g ON (h.gametypeId = g.id)
                 <sessions_join_clause>
                 <tourney_join_clause>
                 <where_clause>
