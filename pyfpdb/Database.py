@@ -3238,7 +3238,8 @@ class Database:
         if (gametypeID, siteHandNo) in self.siteHandNos:
             return True
         c = self.get_cursor()
-        c.execute(self.sql.query['isAlreadyInDB'], (gametypeID, siteHandNo))
+        q = self.sql.query['isAlreadyInDB'].replace('%s', self.sql.query['placeholder'])
+        c.execute(q, (gametypeID, siteHandNo))
         result = c.fetchall()
         if len(result) > 0:
             return True
