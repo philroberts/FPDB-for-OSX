@@ -258,7 +258,6 @@ class iPoker(HandHistoryConverter):
             m2 = self.re_GameInfoTrny.search(handText)
             if m2:
                 mg =  m2.groupdict()
-                self.header = self.header + mg['HEAD']
                 if not mg['BIRAKE'] and mg['TOTBUYIN']:
                     m3 = self.re_TotalBuyin.search(mg['TOTBUYIN'])
                     if m3:
