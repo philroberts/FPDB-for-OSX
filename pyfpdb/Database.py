@@ -77,7 +77,7 @@ except ImportError:
     use_numpy = False
 
 
-DB_VERSION = 179
+DB_VERSION = 180
 
 # Variance created as sqlite has a bunch of undefined aggregate functions.
 

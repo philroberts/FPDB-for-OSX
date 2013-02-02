@@ -7753,6 +7753,7 @@ class Sql:
                     showdownWinnings,
                     nonShowdownWinnings,
                     allInEV,
+                    BBwon,
                     vsHero,
                     street1CheckCallRaiseChance,
                     street1CheckCallRaiseDone,
@@ -7799,7 +7800,7 @@ class Sql:
                             %s, %s, %s, %s, %s,
                             %s, %s, %s, %s, %s,
                             %s, %s, %s, %s, %s,
-                            %s)"""
+                            %s, %s)"""
                     
         ####################################
         # update

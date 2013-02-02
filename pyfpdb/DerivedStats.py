@@ -281,8 +281,7 @@ class DerivedStats():
         for player in hand.players:
             player_name = player[1]
             player_stats = self.handsplayers.get(player_name)
-            if hand.gametype['bb']>0:
-                player_stats['BBwon'] = player_stats['totalProfit'] / (hand.gametype['bb']*2)
+            player_stats['BBwon'] = player_stats['totalProfit'] / int(Decimal(hand.gametype['bb'])*2)
             if player_stats['street0VPI'] or player_stats['street1Seen']:
                 player_stats['played'] = True
             if player_stats['sawShowdown']:
@@ -983,10 +982,11 @@ class DerivedStats():
         pstacks = {}
         actions = hand.actions[hand.holeStreets[0]]
         for p in hand.players: 
-            if p not in hand.sitout:
-                pstacks[p[1]] = int(100 * Decimal(p[2])) / hand.gametype['bb']
+            if p[1] not in hand.sitout:
+                pstacks[p[1]] = int(100 * Decimal(p[2])) / int(Decimal(hand.gametype['bb']))
         for action in actions:
             if action[0] in seen: continue
+            if action[0] not in pstacks: continue
             seen[action[0]] = 1
             oppstacks = [v for (k,v) in pstacks.iteritems() if k != action[0]]
             if oppstacks:
