@@ -384,7 +384,7 @@ class Sql:
                         id SERIAL, PRIMARY KEY (id),
                         name VARCHAR(32),
                         siteId INTEGER, FOREIGN KEY (siteId) REFERENCES Sites(id),
-                        hero INT,
+                        hero BOOLEAN,
                         chars char(3),
                         comment text,
                         commentTs timestamp without time zone)"""
@@ -393,7 +393,7 @@ class Sql:
                         id INTEGER PRIMARY KEY,
                         name TEXT,
                         siteId INTEGER,
-                        hero INT,
+                        hero BOOLEAN,
                         chars TEXT,
                         comment TEXT,
                         commentTs REAL,
