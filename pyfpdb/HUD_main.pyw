@@ -38,6 +38,8 @@ import string
 import logging
 
 #    pyGTK modules
+import pygtk            # requred for some Gentoo environments
+pygtk.require('2.0')     # please do not delete these 2 lines
 import gtk
 import gobject
 
