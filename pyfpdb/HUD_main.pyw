@@ -270,6 +270,9 @@ class HUD_main(object):
             # Do nothing if this site is on the ignore list
             if site_name in aux_disabled_sites:
                 continue
+            # Do nothing if this site is not enabled
+            if site_name not in enabled_sites:
+                continue
 
             # regenerate temp_key for this hand- this is the tablename (+ tablenumber (if mtt))
             if type == "tour":   # hand is from a tournament
