@@ -8230,10 +8230,10 @@ class Sql:
         """
         
         if db_server == 'sqlite':  
-            self.query['updateTourneyTypeId'] = """UPDATE Tourneys t 
+            self.query['updateTourneyTypeId'] = """UPDATE Tourneys
                                                 SET tourneyTypeId = %s
-                                                WHERE t.tourneyTypeId in (SELECT id FROM TourneyTypes tt WHERE tt.siteId=%s)
-                                                AND t.siteTourneyNo=%s
+                                                WHERE tourneyTypeId in (SELECT id FROM TourneyTypes WHERE siteId=%s)
+                                                AND siteTourneyNo=%s
             """
         else:
             self.query['updateTourneyTypeId'] = """UPDATE Tourneys t INNER JOIN TourneyTypes tt ON (t.tourneyTypeId = tt.id)
