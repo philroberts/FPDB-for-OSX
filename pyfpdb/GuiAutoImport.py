@@ -264,7 +264,9 @@ class GuiAutoImport (threading.Thread):
                             command = 'python "'+path+'\\HUD_main.pyw" ' + self.settings['cl_options']
                         bs = 0
                     else:
-                        command = os.path.join(sys.path[0], 'HUD_main.pyw')
+                        command = os.path.join(sys.path[1], 'HUD_main.pyw')
+                        if not os.path.isfile(command):
+                            self.addText("\n" + _('*** %s was not found') % (command))
                         command = [command, ] + string.split(self.settings['cl_options'])
                         bs = 1
 
