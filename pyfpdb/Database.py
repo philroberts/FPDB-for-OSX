@@ -77,7 +77,7 @@ except ImportError:
     use_numpy = False
 
 
-DB_VERSION = 180
+DB_VERSION = 181
 
 # Variance created as sqlite has a bunch of undefined aggregate functions.
 
@@ -2535,7 +2535,7 @@ class Database:
                   ,styleKey
                   )
             player_stats['hands'] = 1
-            line = [player_stats[s] for s in CACHE_KEYS]
+            line = [int(player_stats[s]) for s in CACHE_KEYS]
                 
             hud = self.hcbulk.get(k)
             # Add line to the old line in the hudcache.
@@ -2762,7 +2762,7 @@ class Database:
                 hp['hid']           = hid
                 hp['ids']           = []
                 pdata[p]['hands']   = 1
-                hp['line'] = [pdata[p][s] for s in CACHE_KEYS]
+                hp['line'] = [int(pdata[p][s]) for s in CACHE_KEYS]
                 id = []
                 cashplayer = self.cc.get(k)
                 if cashplayer is not None:        
@@ -2823,7 +2823,7 @@ class Database:
                     d = [0]*num
                     for z in range(num):
                         d[z] = {}
-                        d[z]['line'] = [r[z][s] for s in CACHE_KEYS]
+                        d[z]['line'] = [int(r[z][s]) for s in CACHE_KEYS]
                         d[z]['id']   = r[z]['id']
                         d[z]['startTime'] = r[z]['sessionId']
                         d[z]['startTime'] = r[z]['startTime']
@@ -2854,7 +2854,7 @@ class Database:
                             if not sid and n['sessionId']:
                                 sid = n['id']
                             for idx in range(len(CACHE_KEYS)):
-                                line[idx] += n['line'][idx]
+                                line[idx] += int(n['line'][idx])
                         row = [sid, start, end] + list(k[:2]) + line 
                         c.execute(insert_CC, row)
                         id = self.get_last_insert_id(c)
@@ -2883,7 +2883,7 @@ class Database:
                     ,pids[p]
                     )
                 pdata[p]['hands'] = 1
-                line = [pdata[p][s] for s in CACHE_KEYS]
+                line = [int(pdata[p][s]) for s in CACHE_KEYS]
                 tourplayer = self.tc.get(k)
                 # Add line to the old line in the tourcache.
                 if tourplayer is not None:
@@ -3022,7 +3022,7 @@ class Database:
                               ,loId
                               )
                         pdata[p]['hands'] = 1
-                        line = [pdata[p][s] for s in CACHE_KEYS]
+                        line = [int(pdata[p][s]) for s in CACHE_KEYS]
         
                         startCards = self.dcbulk.get(k)
                         # Add line to the old line in the hudcache.
@@ -3124,7 +3124,7 @@ class Database:
                   ,position
                   )
             pdata[p]['hands'] = 1
-            line = [pdata[p][s] for s in CACHE_KEYS]
+            line = [int(pdata[p][s]) for s in CACHE_KEYS]
                 
             positions = self.pcbulk.get(k)
             # Add line to the old line in the hudcache.

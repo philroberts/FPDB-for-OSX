@@ -47,10 +47,10 @@ def _buildStatsInitializer():
     init['allInEV']     = 0
     init['BBwon']       = 0
     init['street4Aggr'] = False
-    init['wonWhenSeenStreet1'] = 0.0
+    init['wonWhenSeenStreet1'] = False
     init['sawShowdown'] = False
     init['showed']      = False
-    init['wonAtSD']     = 0.0
+    init['wonAtSD']     = False
     init['startCards']  = 170
     init['handString']  = None
     init['position']    = 2
@@ -108,9 +108,9 @@ def _buildStatsInitializer():
     for i in range(1,5):
         init['foldToStreet%dCBChance' %i]       = False
         init['foldToStreet%dCBDone' %i]         = False
-    init['wonWhenSeenStreet2'] = 0.0
-    init['wonWhenSeenStreet3'] = 0.0
-    init['wonWhenSeenStreet4'] = 0.0
+    init['wonWhenSeenStreet2'] = False
+    init['wonWhenSeenStreet3'] = False
+    init['wonWhenSeenStreet4'] = False
     return init
 
 _INIT_STATS = _buildStatsInitializer()
@@ -252,15 +252,15 @@ class DerivedStats():
             # Should be fine for split-pots, but won't be accurate for multi-way pots
             collectee_stats['rake'] = int(100 * hand.rake)/num_collectees
             if collectee_stats['street1Seen'] == True:
-                collectee_stats['wonWhenSeenStreet1'] = 1.0
+                collectee_stats['wonWhenSeenStreet1'] = True
             if collectee_stats['street2Seen'] == True:
-                collectee_stats['wonWhenSeenStreet2'] = 1.0
+                collectee_stats['wonWhenSeenStreet2'] = True
             if collectee_stats['street3Seen'] == True:
-                collectee_stats['wonWhenSeenStreet3'] = 1.0
+                collectee_stats['wonWhenSeenStreet3'] = True
             if collectee_stats['street4Seen'] == True:
-                collectee_stats['wonWhenSeenStreet4'] = 1.0
+                collectee_stats['wonWhenSeenStreet4'] = True
             if collectee_stats['sawShowdown'] == True:
-                collectee_stats['wonAtSD'] = 1.0
+                collectee_stats['wonAtSD'] = True
         
         contributed = []
         for player, money_committed in hand.pot.committed.iteritems():

@@ -795,11 +795,11 @@ class Sql:
                         commentTs DATETIME,
                         tourneysPlayersId BIGINT UNSIGNED, FOREIGN KEY (tourneysPlayersId) REFERENCES TourneysPlayers(id),
 
-                        wonWhenSeenStreet1 FLOAT,
-                        wonWhenSeenStreet2 FLOAT,
-                        wonWhenSeenStreet3 FLOAT,
-                        wonWhenSeenStreet4 FLOAT,
-                        wonAtSD FLOAT,
+                        wonWhenSeenStreet1 BOOLEAN,
+                        wonWhenSeenStreet2 BOOLEAN,
+                        wonWhenSeenStreet3 BOOLEAN,
+                        wonWhenSeenStreet4 BOOLEAN,
+                        wonAtSD BOOLEAN,
                         
                         street0VPIChance BOOLEAN,
                         street0VPI BOOLEAN,
@@ -950,11 +950,11 @@ class Sql:
                         commentTs timestamp without time zone,
                         tourneysPlayersId BIGINT, FOREIGN KEY (tourneysPlayersId) REFERENCES TourneysPlayers(id),
 
-                        wonWhenSeenStreet1 FLOAT,
-                        wonWhenSeenStreet2 FLOAT,
-                        wonWhenSeenStreet3 FLOAT,
-                        wonWhenSeenStreet4 FLOAT,
-                        wonAtSD FLOAT,
+                        wonWhenSeenStreet1 BOOLEAN,
+                        wonWhenSeenStreet2 BOOLEAN,
+                        wonWhenSeenStreet3 BOOLEAN,
+                        wonWhenSeenStreet4 BOOLEAN,
+                        wonAtSD BOOLEAN,
 
                         street0VPIChance BOOLEAN,
                         street0VPI BOOLEAN,
@@ -1104,11 +1104,11 @@ class Sql:
                         commentTs REAL,
                         tourneysPlayersId INT,
 
-                        wonWhenSeenStreet1 REAL,
-                        wonWhenSeenStreet2 REAL,
-                        wonWhenSeenStreet3 REAL,
-                        wonWhenSeenStreet4 REAL,
-                        wonAtSD REAL,
+                        wonWhenSeenStreet1 INT,
+                        wonWhenSeenStreet2 INT,
+                        wonWhenSeenStreet3 INT,
+                        wonWhenSeenStreet4 INT,
+                        wonAtSD INT,
                         
                         street0VPIChance INT,
                         street0VPI INT,
@@ -1427,11 +1427,11 @@ class Sql:
                         hands INT NOT NULL,
                         played INT NOT NULL,
 
-                        wonWhenSeenStreet1 FLOAT,
-                        wonWhenSeenStreet2 FLOAT,
-                        wonWhenSeenStreet3 FLOAT,
-                        wonWhenSeenStreet4 FLOAT,
-                        wonAtSD FLOAT,
+                        wonWhenSeenStreet1 INT,
+                        wonWhenSeenStreet2 INT,
+                        wonWhenSeenStreet3 INT,
+                        wonWhenSeenStreet4 INT,
+                        wonAtSD INT,
                         
                         street0VPIChance INT,
                         street0VPI INT,
@@ -1553,11 +1553,11 @@ class Sql:
                         hands INT,
                         played INT,
 
-                        wonWhenSeenStreet1 FLOAT,
-                        wonWhenSeenStreet2 FLOAT,
-                        wonWhenSeenStreet3 FLOAT,
-                        wonWhenSeenStreet4 FLOAT,
-                        wonAtSD FLOAT,
+                        wonWhenSeenStreet1 INT,
+                        wonWhenSeenStreet2 INT,
+                        wonWhenSeenStreet3 INT,
+                        wonWhenSeenStreet4 INT,
+                        wonAtSD INT,
                         
                         street0VPIChance INT,
                         street0VPI INT,
@@ -1676,11 +1676,11 @@ class Sql:
                         hands INT,
                         played INT,
 
-                        wonWhenSeenStreet1 REAL,
-                        wonWhenSeenStreet2 REAL,
-                        wonWhenSeenStreet3 REAL,
-                        wonWhenSeenStreet4 REAL,
-                        wonAtSD REAL,
+                        wonWhenSeenStreet1 INT,
+                        wonWhenSeenStreet2 INT,
+                        wonWhenSeenStreet3 INT,
+                        wonWhenSeenStreet4 INT,
+                        wonAtSD INT,
                         
                         street0VPIChance INT,
                         street0VPI INT,
@@ -1807,11 +1807,11 @@ class Sql:
                         hands INT NOT NULL,
                         played INT NOT NULL,
 
-                        wonWhenSeenStreet1 FLOAT,
-                        wonWhenSeenStreet2 FLOAT,
-                        wonWhenSeenStreet3 FLOAT,
-                        wonWhenSeenStreet4 FLOAT,
-                        wonAtSD FLOAT,
+                        wonWhenSeenStreet1 INT,
+                        wonWhenSeenStreet2 INT,
+                        wonWhenSeenStreet3 INT,
+                        wonWhenSeenStreet4 INT,
+                        wonAtSD INT,
                         
                         street0VPIChance INT,
                         street0VPI INT,
@@ -1935,11 +1935,11 @@ class Sql:
                         hands INT,
                         played INT,
 
-                        wonWhenSeenStreet1 FLOAT,
-                        wonWhenSeenStreet2 FLOAT,
-                        wonWhenSeenStreet3 FLOAT,
-                        wonWhenSeenStreet4 FLOAT,
-                        wonAtSD FLOAT,
+                        wonWhenSeenStreet1 INT,
+                        wonWhenSeenStreet2 INT,
+                        wonWhenSeenStreet3 INT,
+                        wonWhenSeenStreet4 INT,
+                        wonAtSD INT,
                         
                         street0VPIChance INT,
                         street0VPI INT,
@@ -2061,11 +2061,11 @@ class Sql:
                         hands INT,
                         played INT,
 
-                        wonWhenSeenStreet1 REAL,
-                        wonWhenSeenStreet2 REAL,
-                        wonWhenSeenStreet3 REAL,
-                        wonWhenSeenStreet4 REAL,
-                        wonAtSD REAL,
+                        wonWhenSeenStreet1 INT,
+                        wonWhenSeenStreet2 INT,
+                        wonWhenSeenStreet3 INT,
+                        wonWhenSeenStreet4 INT,
+                        wonAtSD INT,
                         
                         street0VPIChance INT,
                         street0VPI INT,
@@ -2190,11 +2190,11 @@ class Sql:
                         hands INT NOT NULL,
                         played INT NOT NULL,
 
-                        wonWhenSeenStreet1 FLOAT,
-                        wonWhenSeenStreet2 FLOAT,
-                        wonWhenSeenStreet3 FLOAT,
-                        wonWhenSeenStreet4 FLOAT,
-                        wonAtSD FLOAT,
+                        wonWhenSeenStreet1 INT,
+                        wonWhenSeenStreet2 INT,
+                        wonWhenSeenStreet3 INT,
+                        wonWhenSeenStreet4 INT,
+                        wonAtSD INT,
                         
                         street0VPIChance INT,
                         street0VPI INT,
@@ -2317,11 +2317,11 @@ class Sql:
                         hands INT,
                         played INT,
 
-                        wonWhenSeenStreet1 FLOAT,
-                        wonWhenSeenStreet2 FLOAT,
-                        wonWhenSeenStreet3 FLOAT,
-                        wonWhenSeenStreet4 FLOAT,
-                        wonAtSD FLOAT,
+                        wonWhenSeenStreet1 INT,
+                        wonWhenSeenStreet2 INT,
+                        wonWhenSeenStreet3 INT,
+                        wonWhenSeenStreet4 INT,
+                        wonAtSD INT,
 
                         street0VPIChance INT,
                         street0VPI INT,
@@ -2441,11 +2441,11 @@ class Sql:
                         hands INT,
                         played INT,
 
-                        wonWhenSeenStreet1 REAL,
-                        wonWhenSeenStreet2 REAL,
-                        wonWhenSeenStreet3 REAL,
-                        wonWhenSeenStreet4 REAL,
-                        wonAtSD REAL,
+                        wonWhenSeenStreet1 INT,
+                        wonWhenSeenStreet2 INT,
+                        wonWhenSeenStreet3 INT,
+                        wonWhenSeenStreet4 INT,
+                        wonAtSD INT,
 
                         street0VPIChance INT,
                         street0VPI INT,
@@ -2646,11 +2646,11 @@ class Sql:
                         hands INT NOT NULL,
                         played INT NOT NULL,
                         
-                        wonWhenSeenStreet1 FLOAT,
-                        wonWhenSeenStreet2 FLOAT,
-                        wonWhenSeenStreet3 FLOAT,
-                        wonWhenSeenStreet4 FLOAT,
-                        wonAtSD FLOAT,
+                        wonWhenSeenStreet1 INT,
+                        wonWhenSeenStreet2 INT,
+                        wonWhenSeenStreet3 INT,
+                        wonWhenSeenStreet4 INT,
+                        wonAtSD INT,
                         
                         street0VPIChance INT,
                         street0VPI INT,
@@ -2771,11 +2771,11 @@ class Sql:
                         hands INT,
                         played INT,
                         
-                        wonWhenSeenStreet1 FLOAT,
-                        wonWhenSeenStreet2 FLOAT,
-                        wonWhenSeenStreet3 FLOAT,
-                        wonWhenSeenStreet4 FLOAT,
-                        wonAtSD FLOAT,
+                        wonWhenSeenStreet1 INT,
+                        wonWhenSeenStreet2 INT,
+                        wonWhenSeenStreet3 INT,
+                        wonWhenSeenStreet4 INT,
+                        wonAtSD INT,
                         
                         street0VPIChance INT,
                         street0VPI INT,
@@ -2894,11 +2894,11 @@ class Sql:
                         hands INT,
                         played INT,
                         
-                        wonWhenSeenStreet1 REAL,
-                        wonWhenSeenStreet2 REAL,
-                        wonWhenSeenStreet3 REAL,
-                        wonWhenSeenStreet4 REAL,
-                        wonAtSD REAL,
+                        wonWhenSeenStreet1 INT,
+                        wonWhenSeenStreet2 INT,
+                        wonWhenSeenStreet3 INT,
+                        wonWhenSeenStreet4 INT,
+                        wonAtSD INT,
 
                         street0VPIChance INT,
                         street0VPI INT,
@@ -3021,11 +3021,11 @@ class Sql:
                         hands INT NOT NULL,
                         played INT NOT NULL,
                         
-                        wonWhenSeenStreet1 FLOAT,
-                        wonWhenSeenStreet2 FLOAT,
-                        wonWhenSeenStreet3 FLOAT,
-                        wonWhenSeenStreet4 FLOAT,
-                        wonAtSD FLOAT,
+                        wonWhenSeenStreet1 INT,
+                        wonWhenSeenStreet2 INT,
+                        wonWhenSeenStreet3 INT,
+                        wonWhenSeenStreet4 INT,
+                        wonAtSD INT,
                         
                         street0VPIChance INT,
                         street0VPI INT,
@@ -3146,11 +3146,11 @@ class Sql:
                         hands INT,
                         played INT,
                         
-                        wonWhenSeenStreet1 FLOAT,
-                        wonWhenSeenStreet2 FLOAT,
-                        wonWhenSeenStreet3 FLOAT,
-                        wonWhenSeenStreet4 FLOAT,
-                        wonAtSD FLOAT,
+                        wonWhenSeenStreet1 INT,
+                        wonWhenSeenStreet2 INT,
+                        wonWhenSeenStreet3 INT,
+                        wonWhenSeenStreet4 INT,
+                        wonAtSD INT,
                         
                         street0VPIChance INT,
                         street0VPI INT,
@@ -3269,11 +3269,11 @@ class Sql:
                         hands INT,
                         played INT,
                         
-                        wonWhenSeenStreet1 REAL,
-                        wonWhenSeenStreet2 REAL,
-                        wonWhenSeenStreet3 REAL,
-                        wonWhenSeenStreet4 REAL,
-                        wonAtSD REAL,
+                        wonWhenSeenStreet1 INT,
+                        wonWhenSeenStreet2 INT,
+                        wonWhenSeenStreet3 INT,
+                        wonWhenSeenStreet4 INT,
+                        wonAtSD INT,
 
                         street0VPIChance INT,
                         street0VPI INT,
@@ -6406,11 +6406,11 @@ class Sql:
                 SELECT <select>
                       ,count(1)
                       ,sum(CAST(played as integer))
-                      ,sum(wonWhenSeenStreet1)
-                      ,sum(wonWhenSeenStreet2)
-                      ,sum(wonWhenSeenStreet3)
-                      ,sum(wonWhenSeenStreet4)
-                      ,sum(wonAtSD)
+                      ,sum(CAST(wonWhenSeenStreet1 as integer))
+                      ,sum(CAST(wonWhenSeenStreet2 as integer))
+                      ,sum(CAST(wonWhenSeenStreet3 as integer))
+                      ,sum(CAST(wonWhenSeenStreet4 as integer))
+                      ,sum(CAST(wonAtSD as integer))
                       ,sum(CAST(street0VPIChance as integer))
                       ,sum(CAST(street0VPI as integer))
                       ,sum(CAST(street0AggrChance as integer))
