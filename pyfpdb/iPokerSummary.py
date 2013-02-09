@@ -28,11 +28,11 @@ from TourneySummary import *
 
 class iPokerSummary(TourneySummary):
     substitutions = {
-                     'LS'  : u"\$|\xe2\x82\xac|\xe2\u201a\xac|\u20ac|\xc2\xa3|\£|",
+                     'LS'  : u"\$|\xe2\x82\xac|\xe2\u201a\xac|\u20ac|\xc2\xa3|\£|RSD|",
                      'PLYR': r'(?P<PNAME>[a-zA-Z0-9]+)',
                      'NUM' : r'.,0-9',
                     }
-    currencies = { u'€':'EUR', '$':'USD', '':'T$', u'£':'GBP' }
+    currencies = { u'€':'EUR', '$':'USD', '':'T$', u'£':'GBP', 'RSD': 'RSD'}
 
     limits = { 'No Limit':'nl', 'Pot Limit':'pl', 'Limit':'fl', 'LIMIT':'fl' }
 

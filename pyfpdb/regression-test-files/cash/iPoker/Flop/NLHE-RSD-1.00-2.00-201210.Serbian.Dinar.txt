@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+	<session sessioncode="2754408688">  
+			<general>  
+	    	<mode>real</mode>
+	      		<gametype>Holdem NL RSD1/RSD2</gametype>  
+	          <tablename>Ibar, 316547221</tablename>
+	          <tablecurrency>RSD</tablecurrency>  
+	          <duration>02:49</duration>  
+	          <gamecount>229</gamecount>  
+	          <startdate>2012-10-21 19:33:12</startdate>  
+	          <currency>RSD</currency>  
+	          <nickname>Hero</nickname>  
+	          <bets>RSD1,110.25</bets>  
+	          <wins>RSD1,023.25</wins>  
+	          <chipsin>RSD140</chipsin>
+			  		<chipsout>RSD53</chipsout>
+			  		<ipoints>4.20</ipoints>
+        		<statuspoints>4.20</statuspoints>
+			  		<awardpoints>4.20</awardpoints>
+			  		<is_asian>0</is_asian>
+	            
+	    </general>  
+	    <game gamecode="1712488009">
+		 <general>
+		  <startdate>2012-10-21 19:33:12</startdate>		  
+		  <players>
+		   <player seat="3" name="Player0" chips="RSD45.70" dealer="1" win="RSD0" bet="RSD16" rebuy="0" addon="0"/><player seat="5" name="Player1" chips="RSD61" dealer="0" win="RSD0" bet="RSD1" rebuy="0" addon="0"/><player seat="6" name="Player2" chips="RSD16" dealer="0" win="RSD31" bet="RSD16" rebuy="0" addon="0"/><player seat="10" name="Hero" chips="RSD140" dealer="0" win="RSD0" bet="RSD0" rebuy="0" addon="0"/>
+		  </players>
+		 </general>
+		 <round no="0">
+	 <action no="1" player="Player1" type="1" sum="RSD1" cards="[cards]"/><action no="2" player="Player2" type="2" sum="RSD2" cards="[cards]"/>
+	</round>
+	<round no="1">
+	 <cards type="Pocket" player="Player0">DQ DA</cards><action no="3" player="Player0" type="23" sum="RSD8" cards=""/><cards type="Pocket" player="Player1">X X</cards><action no="4" player="Player1" type="0" sum="RSD0" cards=""/><cards type="Pocket" player="Player2">HA H10</cards><action no="5" player="Player2" type="3" sum="RSD6" cards=""/>
+	</round>
+	<round no="2">
+	 <cards type="Flop" player="">H7 C10 S5</cards><action no="7" player="Player0" type="5" sum="RSD8" cards=""/><action no="6" player="Player2" type="4" sum="RSD0" cards=""/><action no="8" player="Player2" type="7" sum="RSD8" cards=""/>
+	</round>
+	<round no="3">
+	 <cards type="Turn" player="">C9</cards>
+	</round>
+	<round no="4">
+	 <cards type="River" player="">SJ</cards>
+	</round>
