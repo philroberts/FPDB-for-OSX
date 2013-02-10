@@ -119,9 +119,13 @@ class default(Popup):
         for stat in self.pop.pu_stats:
             number = Stats.do_stat(
                 self.stat_dict, player = int(player_id),stat = stat, hand_instance = self.hand_instance)
-            text += number[3] + "\n"
-            tip_text += number[5] + " " + number[4] + "\n"
-        
+            if number:
+                text += number[3] + "\n"
+                tip_text += number[5] + " " + number[4] + "\n"
+            else:
+                text += "xxx" + "\n"
+                tip_text += "xxx" + " " + "xxx" + "\n"
+                       
         #trim final \n
         tip_text = tip_text[:-1]
         text = text[:-1]
@@ -179,13 +183,13 @@ class Submenu(Popup):
             grid_line[row]['lab'].set_alignment(xalign=0, yalign=1)
             grid_line[row]['lab'].set_padding(2,0)
                         
-            try:
-                number = Stats.do_stat(
+            number = Stats.do_stat(
                     self.stat_dict, player = int(player_id),stat = stat, hand_instance = self.hand_instance)
+            if number:
                 grid_line[row]['text'] = number[3]
                 grid_line[row]['lab'].set_text(number[3])
                 Stats.do_tip(grid_line[row]['lab'], number[5] + " " + number[4])
-            except:
+            else:
                 grid_line[row]['text'] = stat
                 grid_line[row]['lab'].set_text(stat)            
 

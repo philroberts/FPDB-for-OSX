@@ -131,6 +131,9 @@ class Classic_stat(Aux_Hud.Simple_stat):
     def update(self, player_id, stat_dict):
         super(Classic_stat, self).update(player_id, stat_dict)
 
+        if not self.number: #stat did not create, so exit now
+            return False
+            
         fg=self.hudcolor        
         if self.stat_loth != "":
             try: # number[1] might not be a numeric (e.g. NA)

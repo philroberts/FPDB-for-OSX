@@ -195,7 +195,8 @@ class Simple_stat(object):
         self.stat_dict = stat_dict     # So the Simple_stat obj always has a fresh stat_dict
         self.eb.stat_dict = stat_dict
         self.number = Stats.do_stat(stat_dict, player_id, self.stat, self.hud.hand_instance)
-        self.lab.set_text( str(self.number[1]))
+        if self.number:
+            self.lab.set_text( str(self.number[1]))
 
     def set_color(self, fg=None, bg=None):
         if fg:

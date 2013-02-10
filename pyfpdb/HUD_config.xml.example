@@ -1833,7 +1833,7 @@
             <pu_stat pu_stat_name="a_freq2"/>
             <pu_stat pu_stat_name="a_freq3"/>
             <pu_stat pu_stat_name="a_freq4"/>
-            <pu_stat pu_stat_name="agg_freq"/>
+            <pu_stat pu_stat_name="a_freq_123"/>
             <pu_stat pu_stat_name="cbet"/>
             <pu_stat pu_stat_name="cb1"/>
             <pu_stat pu_stat_name="cb2"/>

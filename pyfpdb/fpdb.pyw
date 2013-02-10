@@ -422,7 +422,7 @@ class fpdb:
         self.hud_preferences_table_contents = []
         table = gtk.Table(rows=self.hud_preferences_rows + 1, columns=self.hud_preferences_columns + 1, homogeneous=True)
 
-        statDict = Stats.build_stat_descriptions(Stats)
+        statDict = Stats.get_valid_stats()
 
         for rowNumber in range(self.hud_preferences_rows + 1):
             newRow = []
