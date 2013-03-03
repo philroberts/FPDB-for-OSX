@@ -1,0 +1,54 @@
+Table #49267106 - Feng Shui
+Starting Hand #2293443778
+Start time of hand: 03 Mar 2013 00:27:34
+Last Hand #2293442800
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: RING
+Money Type: REAL MONEY
+Blinds are now €0.25 / €0.50
+Button is at seat 1
+Seat 1: Player0 - €93.92
+Seat 2: Player1 - €28.52
+Seat 3: Player2 - €110.65
+Seat 4: Hero - €50.75
+Seat 6: Player3 - €48.45
+Shuffling Deck
+Moving Button to seat 2
+Player2 posts small blind (€0.25)
+Hero posts big blind (€0.50)
+Dealing Cards
+Dealing [7 c][A s] to Hero
+Player3 raises to €1
+Player3 claps.
+Player0 folds
+Player1 calls €1
+Player2 folds
+Hero calls €1
+Pot sizes: €3.25
+Dealing Flop [T h][5 h][Q h]
+Hero folds
+Player3 checks
+Player1 bets €2.16
+Player3 calls €2.16
+Pot sizes: €7.57
+Dealing Turn [Q c]
+Player3 bets €2.50
+Player1 calls €2.50
+Pot sizes: €12.57
+Dealing River [K s]
+Player3 bets €2
+Player1 calls €2
+Pot sizes: €16.57
+Taking Rake of €1.27 from pot 1
+Player3 shows [J c][K d]
+Player3 has Two Pairs: Kings, Queens
+Player1 mucks
+Player3 wins €15.30 with: Two Pairs: Kings, Queens
+Seat 1: Player0 - €93.92
+Seat 2: Player1 - €20.86
+Seat 3: Player2 - €110.40
+Seat 4: Hero - €49.75
+Seat 6: Player3 - €56.09
+End of Hand #2293443778
+

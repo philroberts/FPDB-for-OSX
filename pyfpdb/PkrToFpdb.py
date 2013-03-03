@@ -35,7 +35,7 @@ class Pkr(HandHistoryConverter):
     siteId   = 13 # Needs to match id entry in Sites database
 
     mixes = { 'HORSE': 'horse', '8-Game': '8game', 'HOSE': 'hose'} # Legal mixed games
-    sym = {'USD': "\$", 'T$': "", "EUR": "\xe2\x82\xac", "GBP": "\£"} # ADD Euro, Sterling, etc HERE
+    sym = {'USD': "\$", 'T$': "", "EUR": u"\u20ac", "GBP": u"\£"} # ADD Euro, Sterling, etc HERE
     substitutions = {
                      'LEGAL_ISO' : "USD|EUR|GBP",    # legal ISO currency codes
                             'LS' : u"\$|\xe2\x82\xac|\u20ac|\£|", # legal currency symbols - Euro(cp1252, utf-8)
