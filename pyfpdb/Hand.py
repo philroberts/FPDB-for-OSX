@@ -61,7 +61,7 @@ class Hand(object):
         self.cacheSessions = self.config.get_import_parameters().get("cacheSessions")
         self.sitename = sitename
         self.siteId = self.config.get_site_id(sitename)
-        self.stats = DerivedStats.DerivedStats(self)
+        self.stats = DerivedStats.DerivedStats()
         self.gametype = gametype
         self.startTime = 0
         self.handText = handText
@@ -279,6 +279,7 @@ class Hand(object):
         self.handsplayers = self.stats.getHandsPlayers()
         self.handsactions = self.stats.getHandsActions()
         self.handsstove = self.stats.getHandsStove()
+        self.handspots = self.stats.getHandsPots()
         
     def getHandId(self, db, id):
         if db.isDuplicate(self.dbid_gt, self.hands['siteHandNo']):
@@ -305,6 +306,11 @@ class Hand(object):
     def insertHandsPlayers(self, db, doinsert = False, printtest = False):
         """ Function to inserts HandsPlayers into database"""
         db.storeHandsPlayers(self.dbid_hands, self.dbid_pids, self.handsplayers, doinsert, printtest)
+        if self.handspots:
+            self.handspots.sort(key=lambda x: x[1])
+            for ht in self.handspots: 
+                ht[0] = self.dbid_hands
+        db.storeHandsPots(self.handspots, doinsert)
     
     def insertHandsActions(self, db, doinsert = False, printtest = False):
         """ Function to inserts HandsActions into database"""
@@ -837,7 +843,7 @@ class Hand(object):
         if self.totalpot is None:
             self.pot.end()
             self.totalpot = self.pot.total
-            
+        
         if self.adjustCollected:
             self.stats.awardPots(self)
         

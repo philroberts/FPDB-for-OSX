@@ -77,7 +77,7 @@ except ImportError:
     use_numpy = False
 
 
-DB_VERSION = 181
+DB_VERSION = 182
 
 # Variance created as sqlite has a bunch of undefined aggregate functions.
 
@@ -386,6 +386,8 @@ class Database:
                 , {'tab':'HandsStove',      'col':'playerId',          'drop':1}
                 , {'tab':'HandsStove',      'col':'hiId',              'drop':1}
                 , {'tab':'HandsStove',      'col':'loId',              'drop':1}
+                , {'tab':'HandsPots',       'col':'handId',            'drop':1}
+                , {'tab':'HandsPots',       'col':'playerId',          'drop':1}
                 , {'tab':'Boards',          'col':'handId',            'drop':1}
                 , {'tab':'HandsPlayers',    'col':'handId',            'drop':1}
                 , {'tab':'HandsPlayers',    'col':'playerId',          'drop':1}
@@ -430,6 +432,8 @@ class Database:
                 , {'tab':'HandsActions',    'col':'actionId',          'drop':1}
                 , {'tab':'HandsStove',      'col':'handId',            'drop':0}
                 , {'tab':'HandsStove',      'col':'playerId',          'drop':0}
+                , {'tab':'HandsPots',       'col':'handId',            'drop':0}
+                , {'tab':'HandsPots',       'col':'playerId',          'drop':0}
                 , {'tab':'HudCache',        'col':'gametypeId',        'drop':1}
                 , {'tab':'HudCache',        'col':'playerId',          'drop':0}
                 , {'tab':'HudCache',        'col':'tourneyTypeId',     'drop':0}
@@ -474,6 +478,8 @@ class Database:
                     , {'fktab':'HandsStove',   'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':1}
                     , {'fktab':'HandsStove',   'fkcol':'hiId',          'rtab':'HiRank',        'rcol':'id', 'drop':1}
                     , {'fktab':'HandsStove',   'fkcol':'loId',          'rtab':'LoRank',        'rcol':'id', 'drop':1}
+                    , {'fktab':'HandsPots',    'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
+                    , {'fktab':'HandsPots',    'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':1}
                     , {'fktab':'HudCache',     'fkcol':'gametypeId',    'rtab':'Gametypes',     'rcol':'id', 'drop':1}
                     , {'fktab':'HudCache',     'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':0}
                     , {'fktab':'HudCache',     'fkcol':'tourneyTypeId', 'rtab':'TourneyTypes',  'rcol':'id', 'drop':1}
@@ -505,6 +511,8 @@ class Database:
                     , {'fktab':'HandsStove',   'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':1}
                     , {'fktab':'HandsStove',   'fkcol':'hiId',          'rtab':'HiRank',        'rcol':'id', 'drop':1}
                     , {'fktab':'HandsStove',   'fkcol':'loId',          'rtab':'LoRank',        'rcol':'id', 'drop':1}
+                    , {'fktab':'HandsPots',    'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
+                    , {'fktab':'HandsPots',    'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':1}
                     , {'fktab':'HudCache',     'fkcol':'gametypeId',    'rtab':'Gametypes',     'rcol':'id', 'drop':1}
                     , {'fktab':'HudCache',     'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':0}
                     , {'fktab':'HudCache',     'fkcol':'tourneyTypeId', 'rtab':'TourneyTypes',  'rcol':'id', 'drop':1}
@@ -1554,6 +1562,7 @@ class Database:
         c.execute(self.sql.query['createHandsPlayersTable'])
         c.execute(self.sql.query['createHandsActionsTable'])
         c.execute(self.sql.query['createHandsStoveTable'])
+        c.execute(self.sql.query['createHandsPotsTable'])
         c.execute(self.sql.query['createHudCacheTable'])
         c.execute(self.sql.query['createCardsCacheTable'])
         c.execute(self.sql.query['createPositionsCacheTable'])
@@ -2348,6 +2357,7 @@ class Database:
         self.dcbulk      = {}
         self.pcbulk      = {}
         self.hsbulk      = []         # HandsStove bulk inserts
+        self.htbulk      = []         # HandsPots bulk inserts
         self.tbulk       = {}         # Tourneys bulk updates
         self.tpbulk      = []         # TourneysPlayers bulk updates
         self.sc          = {'bk': []} # SessionsCache bulk updates
@@ -2459,6 +2469,14 @@ class Database:
             q = q.replace('%s', self.sql.query['placeholder'])
             c = self.get_cursor(True)
             self.executemany(c, q, self.hpbulk) #c.executemany(q, self.hpbulk)
+            
+    def storeHandsPots(self, tdata, doinsert):
+        self.htbulk += tdata
+        if doinsert and self.htbulk:
+            q = self.sql.query['store_hands_pots']
+            q = q.replace('%s', self.sql.query['placeholder'])
+            c = self.get_cursor()
+            self.executemany(c, q, self.htbulk) #c.executemany(q, self.hsbulk)
 
     def storeHandsActions(self, hid, pids, adata, doinsert = False, printdata = False):
         #print "DEBUG: %s %s %s" %(hid, pids, adata)
