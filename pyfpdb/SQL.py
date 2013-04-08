@@ -187,40 +187,21 @@ class Sql:
                         code TEXT NOT NULL)"""  
                         
         ################################
-        # Create HiRank
+        # Create Rank
         ################################
 
         if db_server == 'mysql':
-            self.query['createHiRankTable'] = """CREATE TABLE HiRank (
+            self.query['createRankTable'] = """CREATE TABLE Rank (
                         id SMALLINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id), 
                         name varchar(8) NOT NULL)
                         ENGINE=INNODB"""
                         
         elif db_server == 'postgresql':
-            self.query['createHiRankTable'] = """CREATE TABLE HiRank (
+            self.query['createRankTable'] = """CREATE TABLE Rank (
                         id SERIAL, PRIMARY KEY (id),
                         name varchar(8))"""
         elif db_server == 'sqlite':
-            self.query['createHiRankTable'] = """CREATE TABLE HiRank (
-                        id INTEGER PRIMARY KEY,
-                        name TEXT NOT NULL)"""  
-                        
-        ################################
-        # Create LoRank
-        ################################
-
-        if db_server == 'mysql':
-            self.query['createLoRankTable'] = """CREATE TABLE LoRank (
-                        id SMALLINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id), 
-                        name varchar(8) NOT NULL)
-                        ENGINE=INNODB"""
-                        
-        elif db_server == 'postgresql':
-            self.query['createLoRankTable'] = """CREATE TABLE LoRank (
-                        id SERIAL, PRIMARY KEY (id),
-                        name varchar(8))"""
-        elif db_server == 'sqlite':
-            self.query['createLoRankTable'] = """CREATE TABLE LoRank (
+            self.query['createRankTable'] = """CREATE TABLE Rank (
                         id INTEGER PRIMARY KEY,
                         name TEXT NOT NULL)"""  
                         
@@ -450,6 +431,7 @@ class Sql:
                             startTime DATETIME NOT NULL,
                             importTime DATETIME NOT NULL,
                             seats TINYINT NOT NULL,
+                            heroSeat TINYINT NOT NULL,
                             boardcard1 smallint,  /* 0=none, 1-13=2-Ah 14-26=2-Ad 27-39=2-Ac 40-52=2-As */
                             boardcard2 smallint,
                             boardcard3 smallint,
@@ -488,6 +470,7 @@ class Sql:
                             startTime timestamp without time zone NOT NULL,
                             importTime timestamp without time zone NOT NULL,
                             seats SMALLINT NOT NULL,
+                            heroSeat SMALLINT NOT NULL,
                             boardcard1 smallint,  /* 0=none, 1-13=2-Ah 14-26=2-Ad 27-39=2-Ac 40-52=2-As */
                             boardcard2 smallint,
                             boardcard3 smallint,
@@ -525,6 +508,7 @@ class Sql:
                             startTime REAL NOT NULL,
                             importTime REAL NOT NULL,
                             seats INT NOT NULL,
+                            heroSeat INT NOT NULL,
                             boardcard1 INT,  /* 0=none, 1-13=2-Ah 14-26=2-Ad 27-39=2-Ac 40-52=2-As */
                             boardcard2 INT,
                             boardcard3 INT,
@@ -1322,12 +1306,12 @@ class Sql:
                         id BIGINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
                         handId BIGINT UNSIGNED NOT NULL, FOREIGN KEY (handId) REFERENCES Hands(id),
                         playerId INT UNSIGNED NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
-                        street SMALLINT,
+                        streetId SMALLINT,
                         boardId SMALLINT,
-                        hiId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (hiId) REFERENCES HiRank(id),
-                        hiCards VARCHAR(5),
-                        loId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (loId) REFERENCES LoRank(id),
-                        loCards VARCHAR(5),
+                        hiLo char(1) NOT NULL,
+                        rankId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (rankId) REFERENCES Rank(id),
+                        value BIGINT,
+                        cards VARCHAR(5),
                         ev INT)
                         ENGINE=INNODB"""
         elif db_server == 'postgresql':
@@ -1335,24 +1319,24 @@ class Sql:
                         id BIGSERIAL, PRIMARY KEY (id),
                         handId BIGINT NOT NULL, FOREIGN KEY (handId) REFERENCES Hands(id),
                         playerId INT NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
-                        street SMALLINT,
+                        streetId SMALLINT,
                         boardId SMALLINT,
-                        hiId SMALLINT NOT NULL, FOREIGN KEY (hiId) REFERENCES HiRank(id),
-                        hiCards VARCHAR(5),
-                        loId SMALLINT NOT NULL, FOREIGN KEY (hiId) REFERENCES LoRank(id),
-                        loCards VARCHAR(5),
+                        hiLo char(1) NOT NULL,
+                        rankId SMALLINT NOT NULL, FOREIGN KEY (rankId) REFERENCES Rank(id),
+                        value BIGINT,
+                        cards VARCHAR(5)
                         ev INT)"""
         elif db_server == 'sqlite':
             self.query['createHandsStoveTable'] = """CREATE TABLE HandsStove (
                         id INTEGER PRIMARY KEY,
                         handId INT NOT NULL,
                         playerId INT NOT NULL,
-                        street INT,
+                        streetId INT,
                         boardId INT,
-                        hiId INT,
-                        hiCards TEXT,
-                        loId INT,
-                        loCards TEXT,
+                        hiLo TEXT NOT NULL,
+                        rankId INT,
+                        value INT,
+                        cards TEXT,
                         ev INT
                         )""" 
                         
@@ -1842,9 +1826,10 @@ class Sql:
                         tourneyTypeId SMALLINT UNSIGNED, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
                         playerId INT UNSIGNED NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
                         streetId SMALLINT NOT NULL,
+                        boardId SMALLINT NOT NULL,
+                        hiLo char(1) NOT NULL,
                         startCards SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (startCards) REFERENCES StartCards(id),
-                        hiId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (hiId) REFERENCES HiRank(id),
-                        loId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (loId) REFERENCES LoRank(id),
+                        rankId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (rankId) REFERENCES Rank(id),
                         hands INT NOT NULL,
                         played INT NOT NULL,
 
@@ -1970,9 +1955,10 @@ class Sql:
                         tourneyTypeId INT, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
                         playerId INT, FOREIGN KEY (playerId) REFERENCES Players(id),
                         streetId SMALLINT NOT NULL,
+                        boardId SMALLINT NOT NULL,
+                        hiLo char(1) NOT NULL,
                         startCards SMALLINT, FOREIGN KEY (startCards) REFERENCES StartCards(id),
-                        hiId SMALLINT NOT NULL, FOREIGN KEY (hiId) REFERENCES HiRank(id),
-                        loId SMALLINT NOT NULL, FOREIGN KEY (loId) REFERENCES LoRank(id),
+                        rankId SMALLINT NOT NULL, FOREIGN KEY (rankId) REFERENCES Rank(id),
                         hands INT,
                         played INT,
 
@@ -2096,9 +2082,10 @@ class Sql:
                         tourneyTypeId INT,
                         playerId INT,
                         streetId INT,
+                        boardId INT,
+                        hiLo TEXT NOT NULL,
                         startCards INT,
-                        hiId INT,
-                        loId INT,
+                        rankId INT,
                         hands INT,
                         played INT,
 
@@ -3430,11 +3417,32 @@ class Sql:
             self.query['addTourneyIndex'] = """CREATE UNIQUE INDEX siteTourneyNo ON Tourneys (siteTourneyNo, tourneyTypeId)"""
 
         if db_server == 'mysql':
-            self.query['addHandsIndex'] = """ALTER TABLE Hands ADD UNIQUE INDEX siteHandNo(siteHandNo, gametypeId)"""
+            self.query['addHandsIndex'] = """ALTER TABLE Hands ADD UNIQUE INDEX siteHandNo(gametypeId, siteHandNo, heroSeat)"""
         elif db_server == 'postgresql':
-            self.query['addHandsIndex'] = """CREATE UNIQUE INDEX siteHandNo ON Hands (siteHandNo, gametypeId)"""
+            self.query['addHandsIndex'] = """CREATE UNIQUE INDEX siteHandNo ON Hands (gametypeId, siteHandNo, heroSeat)"""
         elif db_server == 'sqlite':
-            self.query['addHandsIndex'] = """CREATE UNIQUE INDEX siteHandNo ON Hands (siteHandNo, gametypeId)"""
+            self.query['addHandsIndex'] = """CREATE UNIQUE INDEX siteHandNo ON Hands (gametypeId, siteHandNo, heroSeat)"""
+            
+        if db_server == 'mysql':
+            self.query['addPlayersSeat'] = """ALTER TABLE HandsPlayers ADD UNIQUE INDEX playerSeat_idx(handId, seatNo)"""
+        elif db_server == 'postgresql':
+            self.query['addPlayersSeat'] = """CREATE UNIQUE INDEX playerSeat_idx ON HandsPlayers (handId, seatNo)"""
+        elif db_server == 'sqlite':
+            self.query['addPlayersSeat'] = """CREATE UNIQUE INDEX playerSeat_idx ON HandsPlayers (handId, seatNo)"""
+             
+        if db_server == 'mysql':
+            self.query['addHeroSeat'] = """ALTER TABLE Hands ADD UNIQUE INDEX heroSeat_idx(id, heroSeat)"""
+        elif db_server == 'postgresql':
+            self.query['addHeroSeat'] = """CREATE UNIQUE INDEX heroSeat_idx ON Hands (id, heroSeat)"""
+        elif db_server == 'sqlite':
+            self.query['addHeroSeat'] = """CREATE UNIQUE INDEX heroSeat_idx ON Hands (id, heroSeat)"""
+            
+        if db_server == 'mysql':
+            self.query['addHandsPlayersSeat'] = """ALTER TABLE HandsPlayers ADD UNIQUE INDEX handsPlayerSeat_idx(handId, seatNo)"""
+        elif db_server == 'postgresql':
+            self.query['addHandsPlayersSeat'] = """CREATE UNIQUE INDEX handsPlayerSeat_idx ON Hands (handId, seatNo)"""
+        elif db_server == 'sqlite':
+            self.query['addHandsPlayersSeat'] = """CREATE UNIQUE INDEX handsPlayerSeat_idx ON Hands (handId, seatNo)"""
 
         if db_server == 'mysql':
             self.query['addPlayersIndex'] = """ALTER TABLE Players ADD UNIQUE INDEX name(name, siteId)"""
@@ -3514,11 +3522,11 @@ class Sql:
             self.query['addShowdownPotIndex'] = """CREATE INDEX pot_idx ON Hands (showdownPot)"""
             
         if db_server == 'mysql':
-            self.query['addStreetIndex'] = """ALTER TABLE HandsStove ADD INDEX street_idx (street, boardId)"""
+            self.query['addStreetIndex'] = """ALTER TABLE HandsStove ADD INDEX street_idx (streetId, boardId)"""
         elif db_server == 'postgresql':
-            self.query['addStreetIndex'] = """CREATE INDEX street_idx ON HandsStove (street, boardId)"""
+            self.query['addStreetIndex'] = """CREATE INDEX street_idx ON HandsStove (streetId, boardId)"""
         elif db_server == 'sqlite':
-            self.query['addStreetIndex'] = """CREATE INDEX street_idx ON HandsStove (street, boardId)"""
+            self.query['addStreetIndex'] = """CREATE INDEX street_idx ON HandsStove (streetId, boardId)"""
             
         if db_server == 'mysql':
             self.query['addStreetIdIndex'] = """ALTER TABLE CardsCache ADD INDEX streetId_idx (streetId)"""
@@ -3531,7 +3539,7 @@ class Sql:
         self.query['addTourCacheCompundIndex'] = """CREATE UNIQUE INDEX TourCache_Compound_idx ON TourCache(tourneyId, playerId)"""
         self.query['addHudCacheCompundIndex'] = """CREATE UNIQUE INDEX HudCache_Compound_idx ON HudCache(gametypeId, playerId, activeSeats, position, tourneyTypeId, styleKey)"""
         
-        self.query['addCardsCacheCompundIndex'] = """CREATE UNIQUE INDEX CardsCache_Compound_idx ON CardsCache(weekId, monthId, gametypeId, tourneyTypeId, playerId, streetId, startCards, hiId, loId)"""
+        self.query['addCardsCacheCompundIndex'] = """CREATE UNIQUE INDEX CardsCache_Compound_idx ON CardsCache(weekId, monthId, gametypeId, tourneyTypeId, playerId, streetId, boardId, hiLo, startCards, rankId)"""
         self.query['addPositionsCacheCompundIndex'] = """CREATE UNIQUE INDEX PositionsCache_Compound_idx ON PositionsCache(weekId, monthId, gametypeId, tourneyTypeId, playerId, activeSeats, position)"""
         
         if db_server == 'mysql':
@@ -6330,8 +6338,8 @@ class Sql:
                       ,sum(hp.street2Raises)
                       ,sum(hp.street3Raises)
                       ,sum(hp.street4Raises)
-                FROM HandsPlayers hp
-                INNER JOIN Hands h ON (h.id = hp.handId)
+                FROM Hands h
+                INNER JOIN HandsPlayers hp ON (h.id = hp.handId<hero_join>)
                 INNER JOIN Gametypes g ON (h.gametypeId = g.id)
                 <sessions_join_clause>
                 <tourney_join_clause>
@@ -6547,8 +6555,8 @@ class Sql:
                       ,sum(CAST(hp.street2Raises as integer))
                       ,sum(CAST(hp.street3Raises as integer))
                       ,sum(CAST(hp.street4Raises as integer))
-                FROM HandsPlayers hp
-                INNER JOIN Hands h ON (h.id = hp.handId)
+                FROM Hands h
+                INNER JOIN HandsPlayers hp ON (h.id = hp.handId<hero_join>)
                 INNER JOIN Gametypes g ON (h.gametypeId = g.id)
                 <sessions_join_clause>
                 <tourney_join_clause>
@@ -6833,9 +6841,10 @@ class Sql:
                 tourneyTypeId,
                 playerId,
                 streetId,
+                boardId,
+                hiLo,
                 startCards,
-                hiId,
-                loId,
+                rankId,
                 hands,
                 played,
                 street0VPIChance,
@@ -6960,7 +6969,7 @@ class Sql:
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
-                    %s
+                    %s, %s
                     )"""
 
         self.query['update_cardscache'] = """
@@ -7078,9 +7087,10 @@ class Sql:
                     AND   tourneyTypeId is NULL
                     AND   playerId=%s
                     AND   streetId=%s
+                    AND   boardId=%s
+                    AND   hiLo=%s
                     AND   startCards=%s
-                    AND   hiId=%s
-                    AND   loId=%s"""
+                    AND   rankId=%s"""
                     
         self.query['select_cardscache_tour'] = """
                     SELECT id
@@ -7091,9 +7101,10 @@ class Sql:
                     AND   tourneyTypeId=%s
                     AND   playerId=%s
                     AND   streetId=%s
+                    AND   boardId=%s
+                    AND   hiLo=%s
                     AND   startCards=%s
-                    AND   hiId=%s
-                    AND   loId=%s"""
+                    AND   rankId=%s"""
                    
         ####################################
         # Queries to insert/update positionscache
@@ -8215,7 +8226,7 @@ class Sql:
                                            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
 
         self.query['isAlreadyInDB'] = """SELECT id FROM Hands 
-                                         WHERE gametypeId=%s AND siteHandNo=%s
+                                         WHERE gametypeId=%s AND siteHandNo=%s AND heroSeat=%s
         """
         
         self.query['getTourneyTypeIdByTourneyNo'] = """SELECT tt.id,
@@ -8403,6 +8414,7 @@ class Sql:
                                             startTime,
                                             importtime,
                                             seats,
+                                            heroSeat,
                                             texture,
                                             playersVpi,
                                             boardcard1,
@@ -8430,7 +8442,7 @@ class Sql:
                                              values
                                               (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
                                                %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
-                                               %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
+                                               %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
 
 
         self.query['store_hands_players'] = """insert into HandsPlayers (
@@ -8621,12 +8633,12 @@ class Sql:
         self.query['store_hands_stove'] = """insert into HandsStove (
                         handId,
                         playerId,
-                        street,
+                        streetId,
                         boardId,
-                        hiId,
-                        hiCards,
-                        loId,
-                        loCards,
+                        hiLo,
+                        rankId,
+                        value,
+                        cards,
                         ev
                )
                values (

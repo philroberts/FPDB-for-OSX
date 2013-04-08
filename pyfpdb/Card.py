@@ -42,24 +42,23 @@ card_map_abbr = [
                 ]
 
 games = {              # base, category
-             'holdem' : ('hold','holdem', 'h', {'PREFLOP':0,'FLOP':1,'TURN':2,'RIVER':3}, 'RIVER', (0,2)), 
-           '2_holdem' : ('hold','holdem', 'h', {'PREFLOP':0,'FLOP':1,'TURN':2,'RIVER':3}, 'RIVER', (0,3)),
-            'omahahi' : ('hold','omaha','h', {'PREFLOP':0,'FLOP':1,'TURN':2,'RIVER':3}, 'RIVER', (0,4)), 
-          'omahahilo' : ('hold','omaha8', 's', {'PREFLOP':0,'FLOP':1,'TURN':2,'RIVER':3}, 'RIVER', (0,4)),
-          '5_omahahi' : ('hold','omaha','h', {'PREFLOP':0,'FLOP':1,'TURN':2,'RIVER':3}, 'RIVER', (0,5)), 
-           '5_studhi' : ('stud','holdem', 'h', {'SECOND': 0, 'THIRD': 1,'FOURTH': 2,'FIFTH': 3}, 'FIFTH', (0,5)), 
-               'razz' : ('stud','razz', 'l', {'THIRD': 0,'FOURTH': 1,'FIFTH': 2,'SIXTH': 3,'SEVENTH': 4}, 'SEVENTH', (0,7)), 
-             'studhi' : ('stud','7stud', 'h', {'THIRD': 0,'FOURTH': 1,'FIFTH': 2,'SIXTH': 3,'SEVENTH': 4}, 'SEVENTH', (0,7)), 
-           'studhilo' : ('stud','7stud8', 's', {'THIRD': 0,'FOURTH': 1,'FIFTH': 2,'SIXTH': 3,'SEVENTH': 4}, 'SEVENTH', (0,7)),
-           '27_3draw' : ('draw','lowball27', 'r', {'DEAL':0, 'DRAWONE':1, 'DRAWTWO':2, 'DRAWTHREE':3}, 'DRAWTHREE', (15,20)),
-           'fivedraw' : ('draw','holdem', 'h', {'DEAL':0, 'DRAWONE':1}, 'DRAWONE', (5,10)),
-             'badugi' : ('draw','lowball27', 'l', {'DEAL':0, 'DRAWONE':1, 'DRAWTWO':2, 'DRAWTHREE':3}, 'DRAWTHREE', (15,20)),
-           '27_1draw' : ('draw','lowball27', 'r', {'DEAL':0, 'DRAWONE':1},'DRAWONE', (5,10)),
-           'a5_3draw' : ('draw', 'lowball', 'l', {'DEAL':0, 'DRAWONE':1, 'DRAWTWO':2, 'DRAWTHREE':3}, 'DRAWTHREE', (15,20))
+             'holdem' : ('hold','holdem', 'h', {'PREFLOP':0,'FLOP':1,'TURN':2,'RIVER':3}, 'RIVER', [(0,2)]), 
+           '2_holdem' : ('hold', None, 'h', {'PREFLOP':0,'FLOP':1,'TURN':2,'RIVER':3}, 'RIVER', [(0,3)]),
+            'omahahi' : ('hold','omaha','h', {'PREFLOP':0,'FLOP':1,'TURN':2,'RIVER':3}, 'RIVER', [(0,4)]), 
+          'omahahilo' : ('hold','omaha8', 's', {'PREFLOP':0,'FLOP':1,'TURN':2,'RIVER':3}, 'RIVER', [(0,4)]),
+          '5_omahahi' : ('hold', None,'h', {'PREFLOP':0,'FLOP':1,'TURN':2,'RIVER':3}, 'RIVER', [(0,5)]), 
+           '5_studhi' : ('stud','holdem', 'h', {'SECOND': 0, 'THIRD': 1,'FOURTH': 2,'FIFTH': 3}, 'FIFTH', [(0,2),(0,3),(0,4),(0,5)]), 
+               'razz' : ('stud', None, 'l', {'THIRD': 0,'FOURTH': 1,'FIFTH': 2,'SIXTH': 3,'SEVENTH': 4}, 'SEVENTH', [(0,3),(0,4),(0,5),(0,6),(0,7)]), 
+             'studhi' : ('stud','7stud', 'h', {'THIRD': 0,'FOURTH': 1,'FIFTH': 2,'SIXTH': 3,'SEVENTH': 4}, 'SEVENTH', [(0,3),(0,4),(0,5),(0,6),(0,7)]), 
+           'studhilo' : ('stud','7stud8', 's', {'THIRD': 0,'FOURTH': 1,'FIFTH': 2,'SIXTH': 3,'SEVENTH': 4}, 'SEVENTH', [(0,3),(0,4),(0,5),(0,6),(0,7)]),
+           '27_3draw' : ('draw','lowball27', 'r', {'DEAL':0, 'DRAWONE':1, 'DRAWTWO':2, 'DRAWTHREE':3}, 'DRAWTHREE', [(0,5),(5,10),(10,15),(15,20)]),
+           'fivedraw' : ('draw','holdem', 'h', {'DEAL':0, 'DRAWONE':1}, 'DRAWONE', [(0,5),(5,10)]),
+             'badugi' : ('draw', None, 'l', {'DEAL':0, 'DRAWONE':1, 'DRAWTWO':2, 'DRAWTHREE':3}, 'DRAWTHREE', [(0,4),(5,9),(10,14),(15,19)]),
+           '27_1draw' : ('draw','lowball27', 'r', {'DEAL':0, 'DRAWONE':1},'DRAWONE', [(0,5),(5,10)]),
+           'a5_3draw' : ('draw', 'lowball', 'l', {'DEAL':0, 'DRAWONE':1, 'DRAWTWO':2, 'DRAWTHREE':3}, 'DRAWTHREE', [(0,5),(5,10),(10,15),(15,20)])
        }
 
-hands = {'hi':{
-            'Nothing' : (1, None),
+hands = {   'Nothing' : (1, None),
             'NoPair'  : (2, 'high card, %s'),
             'OnePair' : (3, 'a pair of %s'),
             'TwoPair' : (4, 'two pair, %s'),
@@ -69,16 +68,6 @@ hands = {'hi':{
             'FlHouse' : (8, 'a full house, %s'),
             'Quads'   : (9, 'four of a kind, %s'),
             'StFlush' : (10, 'a straight flush, %s')
-            },
-         'lo':{
-            'Nothing' : (1, '%s'),
-            'Quads'   : (2, 'four of a kind, %s'),
-            'FlHouse' : (3, 'a full house, %s'),
-            'Trips'   : (4, 'three of a kind, %s'),
-            'TwoPair' : (5, 'two pair, %s'),
-            'OnePair' : (6,'a pair of %s'),
-            'NoPair'  : (7, '%s'),
-            }
          }
 
 names = {

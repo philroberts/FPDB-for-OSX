@@ -165,7 +165,11 @@ class DerivedStats():
         #self.hands['maxSeats']      = hand.maxseats
         self.hands['texture']       = None                    # No calculation done for this yet.
         self.hands['tourneyId']     = hand.tourneyId
-
+        
+        self.hands['heroSeat']      = 0
+        for player in hand.players:
+            if hand.hero==player[1]:
+                self.hands['heroSeat'] = player[0]
         # This (i think...) is correct for both stud and flop games, as hand.board['street'] disappears, and
         # those values remain default in stud.
         boardcards = []
@@ -364,49 +368,17 @@ class DerivedStats():
     
     def assembleHandsStove(self, hand):
         category = hand.gametype['category']
-        base, game, hilo, streets, last, hrange = Card.games[category]
-        holecards, holeplayers, boards, boardcards, allInStreets, showdown = {}, [], {}, [], [], False
-        for player in hand.players:
-            if (self.handsplayers[player[1]]['sawShowdown']):
-                showdown = True
-        if base == 'hold':
-            allInStreets = hand.communityStreets
-            boards['FLOP']  = {'board': [hand.board['FLOP']], 'allin': False}
-            boards['TURN']  = {'board': [hand.board['FLOP'] + hand.board['TURN']], 'allin': False}
-            boards['RIVER'] = {'board': [hand.board['FLOP'] + hand.board['TURN'] + hand.board['RIVER']], 'allin': False}
-            for street in hand.communityStreets:
-                boardcards += hand.board[street]
-                if not hand.actions[street] and showdown:
-                    if street=='FLOP':
-                        allInStreets = ['PREFLOP'] + allInStreets
-                        boards['PREFLOP'] = {'board': [[]], 'allin': True}
-                    else: 
-                        id = streets[street]
-                        boards[hand.actionStreets[id]]['allin'] = True
-                    boards[street]['allin'] = True
-            flop, turn, river = [], [], []
-            for i in range(hand.runItTimes):
-                runitcards = []
-                for street in hand.communityStreets:
-                    street_i = street + str((i+1))
-                    if street_i in hand.board:
-                        runitcards += hand.board[street_i]
-                        if len(boardcards + runitcards)==3: flop.append(boardcards + runitcards)
-                        if len(boardcards + runitcards)==4: turn.append(boardcards + runitcards)
-                        if len(boardcards + runitcards)==5: river.append(boardcards + runitcards)
-            if flop: boards['FLOP']['board'] = flop
-            if turn: boards['TURN']['board'] = turn
-            if river: boards['RIVER']['board'] = river
-        else:
-            boards[last] = {'board': [[]], 'allin': False}
-            
+        holecards, holeplayers, allInStreets = {}, [], hand.allStreets[1:]
+        base, evalgame, hilo, streets, last, hrange = Card.games[category]
+        hiLoKey = {'h': [('h', 'hi')], 'l': [('l', 'low')], 's': [('h', 'hi'),('l', 'low')], 'r': [('l', 'hi')]}
+        boards = self.getBoardsDict(hand, base, streets) 
         for player in hand.players:
             hole, cards, bcards = [], [], []
             pname = player[1]
             hp = self.handsplayers.get(pname)
-            if category not in ('badugi', 'razz', '2_holdem', '5_omahahi'):
+            if evalgame:
                 hcs = hand.join_holecards(pname, asList=True)
-                hole = hcs[hrange[0]:hrange[1]]                            
+                hole = hcs[hrange[-1][0]:hrange[-1][1]]                            
                 holecards[pname] = {}
                 holecards[pname]['hole'] = [str(c) for c in hole]
                 holecards[pname]['cards'] = []
@@ -417,98 +389,91 @@ class DerivedStats():
                     streetId = streets[street]
                     if streetId > 0:
                         streetSeen = hp['street%sSeen' % str(streetId)]
-                    else: streetSeen = False
+                    else: streetSeen = True
                     if (board['allin'] or (pname==hand.hero and streetSeen) or (hp['showed'] and streetSeen) or hp['sawShowdown']):
-                        boardId = 0
+                        boardId, hl, rankId, value, _cards = 0, 'n', 1, 0, None
                         for n in range(len(board['board'])):
                             if len(board['board']) > 1: 
                                 boardId = n + 1
                             else: boardId = n
+                            if base!='hold':
+                                hole = hcs[hrange[streetId][0]:hrange[streetId][1]]  
                             cards = [str(c) for c in hole if Card.encodeCardList.get(c)!=None or c=='0x']
                             if board['board'][n]: bcards = [str(b) for b in board['board'][n]]
                             else                : bcards = []
-                            best_hi, hi_id, hiCards, best_lo, lo_id, loCards = (None, 1, None, None, 1, None)
-                            if 'omaha' not in game:
+                            if 'omaha' not in evalgame:
                                 if board['board'][n]:
                                     cards = hole + board['board'][n]
                                     cards  = [str(c) for c in cards]
                                     bcards = []
-                            holecards[pname]['cards'] += [cards]
+                            if base=='hold':
+                                holecards[pname]['cards'] += [cards]
+                            
                             notnull  = ('0x' not in cards)
                             postflop = (base=='hold' and len(board['board'][n])>=3)
-                            maxcards = (base!='hold' and len(cards)==reduce(lambda x, y: y-x,hrange))
+                            maxcards = (base!='hold' and len(cards)>=5)
+                            #print pname, street, streetId, cards, notnull, postflop, maxcards
                             if notnull and (postflop or maxcards):
-                                 if hilo == 'h':
-                                     best_hi = pokereval.best_hand("hi", cards, bcards)
-                                     hi_id = Card.hands['hi'][best_hi[0]][0]
-                                 elif hilo == 'l':
-                                     best_lo = pokereval.best_hand("low", cards, bcards)
-                                     lo_id = Card.hands['lo'][best_lo[0]][0]
-                                 elif hilo == 's':
-                                     best_hi = pokereval.best_hand("hi", cards, bcards)
-                                     hi_id = Card.hands['hi'][best_hi[0]][0]
-                                     best_lo = pokereval.best_hand("low", cards, bcards)
-                                     lo_id = Card.hands['lo'][best_lo[0]][0]
-                                 elif hilo == 'r':
-                                     best_lo = pokereval.best_hand("hi", cards, bcards)
-                                     lo_id = Card.hands['hi'][best_lo[0]][0]
-                                 hiCards, loCards = self.getCards(best_hi, best_lo)
-                            self.handsstove.append( [hand.dbid_hands, hand.dbid_pids[pname], streetId, boardId, hi_id, hiCards, lo_id, loCards, 0] )
-            elif (hp['sawShowdown'] or hp['showed']):
-                streetId = streets[last]
-                hp['handString'] = hand.showdownStrings.get(pname)
-                self.handsstove.append( [hand.dbid_hands, hand.dbid_pids[player[1]], streetId, 0, 1, None, 1, None, 0] )
+                                for hl, side in hiLoKey[hilo]:
+                                    value, rank = pokereval.best(side, cards, bcards)
+                                    rankId = Card.hands[rank[0]][0]
+                                    if rank!=None and rank[0] != 'Nothing':
+                                        _cards = ''.join([pokereval.card2string(i)[0] for i in rank[1:]])
+                                    else:
+                                        _cards = None
+                                    self.handsstove.append( [hand.dbid_hands, hand.dbid_pids[pname], streetId, boardId, hl, rankId, value, _cards, 0] )
+                            else:
+                                self.handsstove.append( [hand.dbid_hands, hand.dbid_pids[pname], streetId, boardId, 'n', 1, 0, None, 0] )
+            else:
+                hl, streetId = hiLoKey[hilo][0][0], 0
+                if (hp['sawShowdown'] or hp['showed']):
+                    hp['handString'] = hand.showdownStrings.get(pname)
+                    streetId = streets[last]
+                self.handsstove.append( [hand.dbid_hands, hand.dbid_pids[player[1]], streetId, 0, hl, 1, 0, None, 0] )
+        
+        if base=='hold' and evalgame and hand.gametype['type'] == 'ring':
+            self.getAllInEV(hand, evalgame, holeplayers, boards, streets, holecards)
                 
-        startstreet = None
+    def getAllInEV(self, hand, evalgame, holeplayers, boards, streets, holecards):
+        startstreet, potId, allInStreets = None, 0, hand.allStreets[1:]
         for pot, players in hand.pot.pots:
+            if potId ==0: pot += sum(hand.pot.common.values())
+            potId+=1
             players = [p for p in players]
             for street in allInStreets:
                 board = boards[street]
                 streetId = streets[street]
                 for n in range(len(board['board'])):
                     if len(board['board']) > 1: 
-                        boardId, portion = n + 1, 2
-                    else: 
-                        boardId, portion = n, 1
-                    if board['allin']:
-                        if len([p for p in players if p in holecards and u'0x' not in holecards[p]['cards'][n]]) > 0:
-                            if not startstreet: startstreet = street
-                            bcards = [str(b) for b in board['board'][n]]
-                            b = bcards + (5 - len(board['board'][n])) * ['__']
-                            holeshow = [holecards[p]['hole'] for p in players if self.handsplayers[p]['sawShowdown']and u'0x' not in holecards[p]['cards'][n]]
-                            if len(holeshow)> 1:
-                                evs = pokereval.poker_eval(game = game
-                                                          ,iterations = Card.iter[streetId]
-                                                          ,pockets = holeshow
-                                                          ,dead = []
-                                                          ,board = b)
-                                equities = [e['ev'] for e in evs['eval']]
-                            else:
-                                equities = [1000]
-                            for i in range(len(equities)):
-                                for j in self.handsstove:
-                                    p = players[i]
-                                    pid = hand.dbid_pids[p]
-                                    if ((j[1] == pid) and (j[2] == streetId) and (j[3] == boardId)):
-                                        if len(players) == len(hand.pot.contenders): j[-1] = equities[i]
-                                        if street == startstreet and hand.gametype['type'] == 'ring':
-                                            rake = (hand.rake * (pot/hand.totalpot))
-                                            holecards[p]['eq'] += int(((100*pot - 100*rake) * Decimal(equities[i])/1000)/portion)
-                                            holecards[p]['committed'] = int(((100*hand.pot.committed[p]) + (100*hand.pot.common[p]))/portion)
-                                            
+                        boardId = n + 1
+                    else: boardId = n
+                    if board['allin'] and len([p for p in players if p in holecards and u'0x' not in holecards[p]['cards'][n]]) > 0:
+                        if not startstreet: startstreet = street
+                        bcards = [str(b) for b in board['board'][n]]
+                        b = bcards + (5 - len(board['board'][n])) * ['__']
+                        holeshow = [holecards[p]['hole'] for p in players if self.handsplayers[p]['sawShowdown'] and u'0x' not in holecards[p]['cards'][n]]
+                        if len(holeshow)> 1:
+                            #print hand.handid, game, Card.iter[streetId], holeshow, b
+                            evs = pokereval.poker_eval(game = evalgame, iterations = Card.iter[streetId] ,pockets = holeshow ,dead = [], board = b)
+                            equities = [e['ev'] for e in evs['eval']]
+                        else:
+                            equities = [1000]
+                        for i in range(len(equities)):
+                            p = players[i]
+                            pid = hand.dbid_pids[p]
+                            if street == startstreet:
+                                rake = (hand.rake * (pot/hand.totalpot))
+                                holecards[p]['eq'] += int(((100*pot - 100*rake) * Decimal(equities[i])/1000))
+                                holecards[p]['committed'] = int(((100*hand.pot.committed[p]) + (100*hand.pot.common[p])))
+                            for j in self.handsstove:
+                                if ((j[1] == pid) and (j[2] == streetId) and (j[3] == boardId)):
+                                    if len(players) == len(hand.pot.contenders): 
+                                        j[-1] = equities[i]         
         for p in holeplayers:
             if holecards[p]['committed'] != 0: 
                 self.handsplayers[p]['allInEV'] = holecards[p]['eq'] - holecards[p]['committed']
-                
-    def getCards(self, best_hi, best_lo):
-        hiCards, loCards = None, None
-        if best_hi!=None and best_hi[0] != 'Nothing':
-            hiCards = ''.join([pokereval.card2string(i)[0] for i in best_hi[1:]])
-        if best_lo!=None and best_lo[0] != 'Nothing':
-            loCards = ''.join([pokereval.card2string(i)[0] for i in best_lo[1:]])
-        return hiCards, loCards
     
-    def getBoards(self, hand):
+    def getBoardsList(self, hand):
         boards, community = [], []
         if hand.gametype['base']=='hold':
             for s in hand.communityStreets:
@@ -526,25 +491,61 @@ class DerivedStats():
             boards = [community]
         return boards
     
+    def getBoardsDict(self, hand, base, streets):
+        boards, boardcards, allInStreets, showdown = {}, [], hand.allStreets[1:], False
+        for player in hand.players:
+            if (self.handsplayers[player[1]]['sawShowdown']):
+                showdown = True
+        if base == 'hold':
+            for s in allInStreets:
+                streetId = streets[s]
+                b = [x for sublist in [hand.board[k] for k in allInStreets[:streetId+1]] for x in sublist]
+                boards[s] = {'board': [b], 'allin': False}
+                boardcards += hand.board[s]
+                if not hand.actions[s] and showdown:
+                    if streetId>0: boards[allInStreets[streetId-1]]['allin'] = True
+                    boards[s]['allin'] = True
+            boardStreets = [[], [], []]
+            for i in range(hand.runItTimes):
+                runitcards = []
+                for street in hand.communityStreets:
+                    street_i = street + str((i+1))
+                    if street_i in hand.board:
+                        runitcards += hand.board[street_i]
+                        sId = len(boardcards + runitcards) - 3
+                        boardStreets[sId].append(boardcards + runitcards)
+            for i in range(len(boardStreets)):
+                if boardStreets[i]:
+                    boards[allInStreets[i+1]]['board'] = boardStreets[i]
+        else:   
+            for s in allInStreets:
+                streetId = streets[s]
+                boards[s] = {}
+                boards[s]['board'] = [[]]
+                boards[s]['allin'] = False
+        return boards
+    
     def awardPots(self, hand):
-        if pokereval and len(hand.pot.pots)>1:
+        base, evalgame, hilo, streets, last, hrange = Card.games[hand.gametype['category']]
+        if pokereval and len(hand.pot.pots)>1 and evalgame:
             hand.collected = [] #list of ?
             hand.collectees = {} # dict from player names to amounts collected (?)
-            base, game, hilo, streets, last, hrange = Card.games[hand.gametype['category']]
-            rakes, totrake = {}, 0
+            rakes, totrake, potId = {}, 0, 0
             board = [str(b) for b in hand.board['FLOP'] + hand.board['TURN'] + hand.board['RIVER']]
             for pot, players in hand.pot.pots:
+                if potId ==0: pot += sum(hand.pot.common.values())
+                potId+=1
                 holecards = []
                 for p in players:
                     hcs = hand.join_holecards(p, asList=True)
-                    if 'omaha' not in game:
-                        holes = [str(c) for c in hcs[hrange[0]:hrange[1]] + board]
+                    if 'omaha' not in evalgame:
+                        holes = [str(c) for c in hcs[hrange[-1][0]:hrange[-1][1]] + board]
                         board = []
                     else:
-                        holes = [str(c) for c in hcs[hrange[0]:hrange[1]]]
+                        holes = [str(c) for c in hcs[hrange[-1][0]:hrange[-1][1]]]
                     if '0x' not in hcs:
                         holecards.append(holes)
-                win = pokereval.winners(game = game, pockets = holecards, board = board)
+                win = pokereval.winners(game = evalgame, pockets = holecards, board = board)
                 totalrake = hand.rakes.get('rake')
                 if not totalrake:
                     totalpot = hand.rakes.get('pot')
@@ -576,16 +577,15 @@ class DerivedStats():
                (not [n for (n,v) in hand.pot.pots if (n % Decimal('1.00'))!=0])):
             factor = 1  
         hiLoKey = {'h':['hi'],'l':['low'],'r':['low'],'s':['hi','low']}
-        base, game, hilo, streets, last, hrange = Card.games[category]
-        if ((category not in ('badugi', 'razz', '2_holdem', '5_omahahi')) and 
-            (len(hand.pot.pots)>1 or (showdown and (hilo=='s' or hand.runItTimes==2)))):
+        base, evalgame, hilo, streets, last, hrange = Card.games[category]
+        if (evalgame and (len(hand.pot.pots)>1 or (showdown and (hilo=='s' or hand.runItTimes==2)))):
             #print 'DEBUG hand.collected', hand.collected
             #print 'DEBUG hand.oollectees', hand.collectees
             rakes, totrake, potId = {}, 0, 0
             for pot, players in hand.pot.pots:
                 if potId ==0: pot += sum(hand.pot.common.values())
                 potId+=1
-                boards, boardId, sumpot = self.getBoards(hand), 0, 0
+                boards, boardId, sumpot = self.getBoardsList(hand), 0, 0
                 for b in boards:
                     boardId += (hand.runItTimes==2)
                     potBoard = Decimal(int(pot/len(boards)*factor))/factor
@@ -595,14 +595,14 @@ class DerivedStats():
                     holeplayers, holecards = [], []
                     for p in players:
                         hcs = hand.join_holecards(p, asList=True)
-                        holes = [str(c) for c in hcs[hrange[0]:hrange[1]] if Card.encodeCardList.get(c)!=None or c=='0x']
-                        board = [str(c) for c in b if 'omaha' in game]
-                        if 'omaha' not in game:
+                        holes = [str(c) for c in hcs[hrange[-1][0]:hrange[-1][1]] if Card.encodeCardList.get(c)!=None or c=='0x']
+                        board = [str(c) for c in b if 'omaha' in evalgame]
+                        if 'omaha' not in evalgame:
                             holes = holes + [str(c) for c in b if base=='hold']
                         if '0x' not in holes and '0x' not in board:
                             holecards.append(holes)
                             holeplayers.append(p)
-                    win = pokereval.winners(game = game, pockets = holecards, board = board)
+                    win = pokereval.winners(game = evalgame, pockets = holecards, board = board)
                     for hl in hiLoKey[hilo]:
                         if hl in win and len(win[hl])>0:
                             potHiLo = Decimal(int(potBoard/len(win)*factor))/factor
@@ -628,28 +628,28 @@ class DerivedStats():
             for p, (total, info) in playersPots.iteritems():
                 if hand.collectees.get(p):
                     potFound[p][1] = hand.collectees.get(p)
-                    for item in info:
-                        split = [n for n in item['winners'] if len(playersPots[n][1])==1]
-                        if len(info)==1:
-                            ppot = item['ppot']
-                            rake = ppot - hand.collectees[p]
-                            collected = hand.collectees[p]
-                        elif item==info[-1]:
-                            ppot, collected = potFound[p]
-                            rake = ppot - collected
-                        elif len(split)>0 and not item['mod']:
-                            ppot = item['ppot']
-                            collected = min([hand.collectees[s] for s in split] + [ppot])
-                            rake = ppot - collected
-                        else:
-                            ppot = item['ppot']
-                            totalrake = total - hand.collectees[p]
-                            rake = (totalrake * (ppot/total)).quantize(Decimal("0.01"))
-                            collected = ppot - rake 
-                        potFound[p][0] -= ppot
-                        potFound[p][1] -= collected
-                        insert = [None, item['potId'], item['boardId'], item['hiLo'][0], hand.dbid_pids[p], int(item['ppot']*100), int(collected*100), int(rake*100)]   
-                        self.handspots.append(insert)
+                for item in info:
+                    split = [n for n in item['winners'] if len(playersPots[n][1])==1]
+                    if len(info)==1:
+                        ppot = item['ppot']
+                        rake = ppot - hand.collectees[p]
+                        collected = hand.collectees[p]
+                    elif item==info[-1]:
+                        ppot, collected = potFound[p]
+                        rake = ppot - collected
+                    elif len(split)>0 and not item['mod']:
+                        ppot = item['ppot']
+                        collected = min([hand.collectees[s] for s in split] + [ppot])
+                        rake = ppot - collected
+                    else:
+                        ppot = item['ppot']
+                        totalrake = total - hand.collectees[p]
+                        rake = (totalrake * (ppot/total)).quantize(Decimal("0.01"))
+                        collected = ppot - rake 
+                    potFound[p][0] -= ppot
+                    potFound[p][1] -= collected
+                    insert = [None, item['potId'], item['boardId'], item['hiLo'][0], hand.dbid_pids[p], int(item['ppot']*100), int(collected*100), int(rake*100)]   
+                    self.handspots.append(insert)
 
     def setPositions(self, hand):
         """Sets the position for each player in HandsPlayers
