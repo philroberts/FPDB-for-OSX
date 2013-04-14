@@ -47,7 +47,7 @@ class Hand(object):
 #    Class Variables
     UPS = {'a':'A', 't':'T', 'j':'J', 'q':'Q', 'k':'K', 'S':'s', 'C':'c', 'H':'h', 'D':'d'}
     LCS = {'H':'h', 'D':'d', 'C':'c', 'S':'s'}
-    SYMBOL = {'USD': '$', 'CAD': '$', 'EUR': u'$', 'GBP': '$', 'SEK': '$', 'T$': '', 'play': ''}
+    SYMBOL = {'USD': '$', 'CAD': 'C$', 'EUR': u'€', 'GBP': u'£', 'SEK': 'kr.', 'RSD': u'РСД', 'T$': '', 'play': ''}
     MS = {'horse' : 'HORSE', '8game' : '8-Game', 'hose'  : 'HOSE', 'ha': 'HA'}
     ACTION = {'ante': 1, 'small blind': 2, 'secondsb': 3, 'big blind': 4, 'both': 5, 'calls': 6, 'raises': 7,
               'bets': 8, 'stands pat': 9, 'folds': 10, 'checks': 11, 'discards': 12, 'bringin': 13, 'completes': 14}
@@ -61,7 +61,7 @@ class Hand(object):
         self.cacheSessions = self.config.get_import_parameters().get("cacheSessions")
         self.sitename = sitename
         self.siteId = self.config.get_site_id(sitename)
-        self.stats = DerivedStats.DerivedStats(self)
+        self.stats = DerivedStats.DerivedStats()
         self.gametype = gametype
         self.startTime = 0
         self.handText = handText
@@ -101,6 +101,7 @@ class Hand(object):
         self.koBounty = 0
         self.isMatrix = False
         self.isShootout = False
+        self.isZoom = False
         self.added = None
         self.addedCurrency = None
         self.tourneyComment = None
@@ -142,6 +143,7 @@ class Hand(object):
         self.dealt = set()  # 'dealt to' line to be printed
         self.shown = set()  # cards were shown
         self.mucked = set() # cards were mucked at showdown
+        self.sitout = set() # players sitting out or not dealt in (usually tournament)
 
         # Things to do with money
         self.pot = Pot()
@@ -248,7 +250,7 @@ class Hand(object):
         # These functions are intended for prep insert eventually
         #####
         self.gametype['maxSeats'] = self.maxseats #TODO: move up to individual parsers
-        self.dbid_pids = db.getSqlPlayerIDs([p[1] for p in self.players], self.siteId)
+        self.dbid_pids = db.getSqlPlayerIDs([p[1] for p in self.players], self.siteId, self.hero)
         self.dbid_gt = db.getSqlGameTypeId(self.siteId, self.gametype, printdata = printtest)
         
         #Gametypes
@@ -262,7 +264,8 @@ class Hand(object):
                             self.gametype['category'], self.gametype['limitType'], hilo, self.gametype['mix'],
                             int(Decimal(self.gametype['sb'])*100), int(Decimal(self.gametype['bb'])*100),
                             int(Decimal(self.gametype['bb'])*100), int(Decimal(self.gametype['bb'])*200),
-                            int(self.gametype['maxSeats']), int(self.gametype['ante']*100))
+                            int(self.gametype['maxSeats']), int(self.gametype['ante']*100),
+                            self.gametype['cap'], self.gametype['zoom'])
         # Note: the above data is calculated in db.getGameTypeId
         #       Only being calculated above so we can grab the testdata
         if self.tourNo!=None:
@@ -276,9 +279,10 @@ class Hand(object):
         self.handsplayers = self.stats.getHandsPlayers()
         self.handsactions = self.stats.getHandsActions()
         self.handsstove = self.stats.getHandsStove()
+        self.handspots = self.stats.getHandsPots()
         
-    def getHandId(self, db, id):    
-        if db.isDuplicate(self.dbid_gt, self.hands['siteHandNo']):
+    def getHandId(self, db, id):
+        if db.isDuplicate(self.dbid_gt, self.hands['siteHandNo'], self.hands['heroSeat']):
             #log.info(_("Hand.insert(): hid #: %s is a duplicate") % hh['siteHandNo'])
             self.is_duplicate = True  # i.e. don't update hudcache
             next = id
@@ -302,13 +306,18 @@ class Hand(object):
     def insertHandsPlayers(self, db, doinsert = False, printtest = False):
         """ Function to inserts HandsPlayers into database"""
         db.storeHandsPlayers(self.dbid_hands, self.dbid_pids, self.handsplayers, doinsert, printtest)
+        if self.handspots:
+            self.handspots.sort(key=lambda x: x[1])
+            for ht in self.handspots: 
+                ht[0] = self.dbid_hands
+        db.storeHandsPots(self.handspots, doinsert)
     
     def insertHandsActions(self, db, doinsert = False, printtest = False):
         """ Function to inserts HandsActions into database"""
         db.storeHandsActions(self.dbid_hands, self.dbid_pids, self.handsactions, doinsert, printtest)
     
     def insertHandsStove(self, db, doinsert = False):
-        """ Function to inserts HandsActions into database"""
+        """ Function to inserts HandsStove into database"""
         if self.handsstove:
             for hs in self.handsstove: hs[0] = self.dbid_hands
         db.storeHandsStove(self.handsstove, doinsert)
@@ -316,32 +325,34 @@ class Hand(object):
     def updateHudCache(self, db, doinsert = False):
         """ Function to update the HudCache"""
         if self.callHud:
-            db.storeHudCache(self.dbid_gt, self.dbid_pids, self.startTime, self.handsplayers, doinsert)
+            db.storeHudCache(self.dbid_gt, self.gametype, self.dbid_pids, self.startTime, self.handsplayers, doinsert)
         
     def updateSessionsCache(self, db, tz, doinsert = False):
         """ Function to update the SessionsCache"""
         if self.cacheSessions:
             heroes = []
-            if self.hero in self.dbid_pids: 
+            if self.hero in self.dbid_pids:
                 heroes = [self.dbid_pids[self.hero]]
+            else:
+                heroes = [self.dbid_pids[self.players[0][1]]]
                 
-            db.storeSessionsCache(self.dbid_hands, self.dbid_pids, self.startTime, heroes, doinsert) 
-            db.storeGamesCache(self.dbid_hands, self.dbid_pids, self.startTime, self.dbid_gt, self.gametype, self.handsplayers, tz, heroes, doinsert)
-            db.updateTourneysPlayersSessions(self.dbid_pids, self.tourneyId, self.startTime, self.handsplayers, heroes, doinsert)
+            db.storeSessionsCache(self.dbid_hands, self.dbid_pids, self.startTime, heroes, tz, doinsert) 
+            db.storeCashCache(self.dbid_hands, self.dbid_pids, self.startTime, self.dbid_gt, self.gametype, self.handsplayers, heroes, self.hero, doinsert)
+            db.storeTourCache(self.dbid_hands, self.dbid_pids, self.startTime, self.tourneyId, self.gametype, self.handsplayers, heroes, self.hero, doinsert)
             
-    def updateCardsCache(self, db, doinsert = False):
+    def updateCardsCache(self, db, tz, doinsert = False):
         """ Function to update the HandsCache"""
         heroes = []
         if self.hero in self.dbid_pids: 
             heroes = [self.dbid_pids[self.hero]]
-        db.storeCardsCache(self.gametype, self.dbid_pids, heroes, self.handsplayers, doinsert)
+        db.storeCardsCache(self.dbid_hands, self.dbid_pids, self.startTime, self.dbid_gt, self.tourneyTypeId, self.gametype, self.siteId, self.handsplayers, self.handsstove, heroes, tz, doinsert)
                 
-    def updatePositionsCache(self, db, doinsert = False):
+    def updatePositionsCache(self, db, tz, doinsert = False):
         """ Function to update the PositionsCache"""
         heroes = []
         if self.hero in self.dbid_pids: 
             heroes = [self.dbid_pids[self.hero]]
-        db.storePositionsCache(self.gametype, self.dbid_pids, heroes, self.handsplayers, doinsert)
+        db.storePositionsCache(self.dbid_hands, self.dbid_pids, self.startTime, self.dbid_gt, self.tourneyTypeId, self.gametype, self.siteId, self.handsplayers, heroes, tz, doinsert)
 
     def select(self, db, handId):
         """ Function to create Hand object from database """
@@ -515,7 +526,7 @@ class Hand(object):
         #hc.readShownCards(self)
 
 
-    def addPlayer(self, seat, name, chips, position=None):
+    def addPlayer(self, seat, name, chips, position=None, sitout=False):
         """ Adds a player to the hand, and initialises data structures indexed by player.
             seat    (int) indicating the seat
             name    (string) player name
@@ -532,6 +543,8 @@ class Hand(object):
                 self.bets[street][name] = []
                 #self.holecards[name] = {} # dict from street names.
                 #self.discards[name] = {} # dict from street names.
+            if sitout:
+                self.sitout.add(name)
 
 
     def addStreets(self, match):
@@ -596,6 +609,7 @@ class Hand(object):
             act = (player, 'ante', ante, self.stacks[player]==0)
             self.actions['BLINDSANTES'].append(act)
             self.pot.addCommonMoney(player, ante)
+            self.pot.addAntes(player, ante)
             if not 'ante' in self.gametype.keys() or self.gametype['ante'] == 0:
                 self.gametype['ante'] = ante
 #I think the antes should be common money, don't have enough hand history to check
@@ -806,6 +820,19 @@ class Hand(object):
             board = set([c for s in self.board.values() for c in s])
             self.addHoleCards(holeandboard.difference(board),player,shown, mucked)
             
+    def sittingOut(self):
+        dealtIn = set()
+        for i, street in enumerate(self.actionStreets):
+            for j, act in enumerate(self.actions[street]):
+                dealtIn.add(act[0])
+        for player in self.collectees.keys():
+            dealtIn.add(player)
+        for player in self.dealt:
+            dealtIn.add(player)
+        for p in self.players:
+            if p[1] not in dealtIn:
+                self.sitout.add(p[1])
+            
     def setUncalledBets(self, value):
         self.uncalledbets = value                
                 
@@ -816,27 +843,27 @@ class Hand(object):
         if self.totalpot is None:
             self.pot.end()
             self.totalpot = self.pot.total
-            
+        
         if self.adjustCollected:
             self.stats.awardPots(self)
         
         def gettempcontainers():
-            (collected, collectees, totalcolleted) = ([], {}, 0)
+            (collected, collectees, totalcollected) = ([], {}, 0)
             for i,v in enumerate(self.collected):
-                totalcolleted += Decimal(v[1])
+                totalcollected += Decimal(v[1])
                 collected.append([v[0], Decimal(v[1])])
             for k, j in self.collectees.iteritems():
                 collectees[k] = j
-            return collected, collectees, totalcolleted
+            return collected, collectees, totalcollected
         
         if self.uncalledbets:
-            collected, collectees, totalcolleted = gettempcontainers()
+            collected, collectees, totalcollected = gettempcontainers()
             for i,v in enumerate(self.collected):
                 if v[0] in self.pot.returned: 
                     collected[i][1] = Decimal(v[1]) - self.pot.returned[v[0]]
                     collectees[v[0]] -= self.pot.returned[v[0]]
                     self.pot.returned[v[0]] = 0
-            if self.totalpot - totalcolleted < 0:
+            if self.totalpot - totalcollected < 0:
                 (self.collected, self.collectees) = (collected, collectees)
 
         # This gives us the amount collected, i.e. after rake
@@ -1049,6 +1076,7 @@ class HoldemOmahaHand(Hand):
             self.pot.handid = self.handid # This is only required so Pot can throw it in totalPot
             self.totalPot() # finalise it (total the pot)
             hhc.getRake(self)
+            self.sittingOut()
             if self.maxseats is None:
                 self.maxseats = hhc.guessMaxSeats(self)
             hhc.readOther(self)
@@ -1363,6 +1391,7 @@ class DrawHand(Hand):
             self.pot.handid = self.handid # This is only required so Pot can throw it in totalPot
             self.totalPot() # finalise it (total the pot)
             hhc.getRake(self)
+            self.sittingOut()
             if self.maxseats is None:
                 self.maxseats = hhc.guessMaxSeats(self)
             hhc.readOther(self)
@@ -1566,6 +1595,7 @@ class StudHand(Hand):
             self.pot.handid = self.handid # This is only required so Pot can throw it in totalPot
             self.totalPot() # finalise it (total the pot)
             hhc.getRake(self)
+            self.sittingOut()
             if self.maxseats is None:
                 self.maxseats = hhc.guessMaxSeats(self)
             hhc.readOther(self)
@@ -1804,7 +1834,7 @@ class StudHand(Hand):
                         holecards = holecards + self.holecards[street][player][1]
                 else:
                     holecards = holecards + self.holecards[street][player][0]
-                #print "DEBUG: street, holecards, player, self.holecards[street][player][0], self.holecards[street][player][1]
+                #print "DEBUG:", street, holecards, player, self.holecards[street][player][0], self.holecards[street][player][1]
 
         if asList == False:
             return " ".join(holecards)
@@ -1841,6 +1871,7 @@ class Pot(object):
         self.committed    = {}
         self.streettotals = {}
         self.common       = {}
+        self.antes        = {}
         self.total        = None
         self.returned     = {}
         self.sym          = u'$' # this is the default currency symbol
@@ -1853,6 +1884,7 @@ class Pot(object):
     def addPlayer(self,player):
         self.committed[player] = Decimal(0)
         self.common[player] = Decimal(0)
+        self.antes[player] = Decimal(0)
 
     def addFold(self, player):
         # addFold must be called when a player folds
@@ -1860,6 +1892,9 @@ class Pot(object):
 
     def addCommonMoney(self, player, amount):
         self.common[player] += amount
+        
+    def addAntes(self, player, amount):
+        self.antes[player] += amount
 
     def addMoney(self, player, amount):
         # addMoney must be called for any actions that put money in the pot, in the order they occur
@@ -1879,6 +1914,19 @@ class Pot(object):
         self.total = sum(self.committed.values()) + sum(self.common.values())
 
         # Return any uncalled bet.
+        if sum(self.common.values())>0 and sum(self.common.values())==sum(self.antes.values()):
+            common = sorted([ (v,k) for (k,v) in self.common.items()])
+            try:
+                lastcommon = common[-1][0] - common[-2][0]
+                if lastcommon > 0: # uncalled
+                    returntocommon = common[-1][1]
+                    #print "DEBUG: returning %f to %s" % (lastbet, returnto)
+                    self.total -= lastcommon
+                    self.common[returntocommon] -= lastcommon
+            except IndexError, e:
+                log.error(_("Pot.end(): '%s': Major failure while calculating pot: '%s'") % (self.handid, e))
+                raise FpdbParseError
+        
         committed = sorted([ (v,k) for (k,v) in self.committed.items()])
         #print "DEBUG: committed: %s" % committed
         #ERROR below. lastbet is correct in most cases, but wrong when

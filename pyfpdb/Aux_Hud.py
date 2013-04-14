@@ -140,6 +140,7 @@ class Simple_Stat_Window(Aux_Base.Seat_Window):
     def button_press_middle(self, widget, event, *args): pass 
 
     def button_press_right(self, widget, event, *args):  #show pop up
+
         if widget.stat_dict and self.popup_count == 0: # do not popup on empty blocks or if one is already active
             Popup.popup_factory(
                 seat = widget.aw_seat,

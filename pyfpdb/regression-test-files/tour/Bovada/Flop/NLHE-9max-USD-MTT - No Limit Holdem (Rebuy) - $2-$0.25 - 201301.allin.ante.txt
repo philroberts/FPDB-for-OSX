@@ -1,0 +1,57 @@
+Bovada Hand #2697696244: HOLDEM Tournament #2750220 TBL#14, No Limit- Level 15 (600/1200) - 2012-12-13 05:21:51
+Seat 1: UTG+2 (65,460 in chips)
+Seat 3: UTG+3 (18,579 in chips)
+Seat 4: Dealer (59,476 in chips)
+Seat 5: Small Blind (11,419 in chips)
+Seat 6: Big Blind (5,530 in chips)
+Seat 8: UTG (12 in chips)
+Seat 9: UTG+1 [ME] (58,524 in chips)
+Dealer : Set dealer/Bring in spot [4] 
+UTG+2 : Ante chip 120 
+UTG+3 : Ante chip 120 
+Dealer : Ante chip 120 
+Small Blind : Ante chip 120 
+Big Blind : Ante chip 120 
+UTG : All-in 12 
+UTG+1 [ME] : Ante chip 120 
+Small Blind : Ante/Small blind 600 
+Big Blind : Big blind/Bring in 1200 
+*** HOLE CARDS ***
+UTG+2 : Card dealt to a spot [As Jh] 
+UTG+3 : Card dealt to a spot [3c Kh] 
+Dealer : Card dealt to a spot [Ad Qc] 
+Small Blind : Card dealt to a spot [2d 8d] 
+Big Blind : Card dealt to a spot [5d 8s] 
+UTG : Card dealt to a spot [Qd 8c] 
+UTG+1 [ME] : Card dealt to a spot [Ac 9c] 
+UTG+1 [ME] : Raises 3600 to 3600
+UTG+2 : Call 3600 
+UTG+3 : Folds(timeout)
+UTG+3 : Sit out
+Dealer : All-in(raise) 59356 to 59356
+Small Blind : Folds
+Big Blind : Folds
+UTG+3 : Re-join
+UTG+1 [ME] : Folds
+UTG+2 : Call 55756 
+*** FLOP *** [5s 7h 5h]
+*** TURN *** [5s 7h 5h] [Ks]
+*** RIVER *** [5s 7h 5h Ks] [6h]
+UTG+2 : Showdown [5s 5h As Ks Jh] (One pair)
+Dealer : Showdown [5s 5h Ad Ks Qc] (One pair)
+UTG : Showdown [5s 5h Ks Qd 8c] (One pair)
+Dealer : Hand Result-Side Pot 124760 
+Dealer : Hand Result 84 
+UTG : Ranking 7 
+UTG : Prize Cash [$11.16] 
+UTG : Stand
+*** SUMMARY ***
+Total Pot(124844)
+Board [5s 7h 5h Ks 6h]
+Seat+1: UTG+2 lose with One pair [As Jh-5s 5h As Ks Jh]  
+Seat+3: UTG+3 Folded before the FLOP
+Seat+4: Dealer 124844  with One pair [Ad Qc-5s 5h Ad Ks Qc]  
+Seat+5: Small Blind Folded before the FLOP
+Seat+6: Big Blind Folded before the FLOP
+Seat+8: UTG lose with One pair [Qd 8c-5s 5h Ks Qd 8c]  
+Seat+9: UTG+1 Folded before the FLOP

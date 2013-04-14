@@ -430,6 +430,7 @@ class Merge(HandHistoryConverter):
                      }
 
     # Static regexes
+    re_Identify = re.compile(u'<game\sid=\"[0-9]+\-[0-9]+\"\sstarttime')
     re_SplitHands = re.compile(r'</game>\n+(?=<)')
     re_TailSplitHands = re.compile(r'(</game>)')
     re_GameInfo = re.compile(r'<description type="(?P<GAME>Holdem|Omaha|Omaha|Omaha\sH/L8|2\-7\sLowball|A\-5\sLowball|Badugi|5\-Draw\sw/Joker|5\-Draw|7\-Stud|7\-Stud\sH/L8|5\-Stud|Razz|HORSE|RASH|HA|HO|SHOE|HOSE|HAR)(?P<TYPE>\sTournament)?" stakes="(?P<LIMIT>[a-zA-Z ]+)(\s\(?\$?(?P<SB>[.0-9]+)?/?\$?(?P<BB>[.0-9]+)?(?P<blah>.*)\)?)?"(\sversion="\d+")?/>', re.MULTILINE)
@@ -463,6 +464,7 @@ class Merge(HandHistoryConverter):
     re_PlayerOut   = re.compile(r'<event sequence="\d+" type="PLAYER_OUT" timestamp="\d+" player="(?P<PSEAT>[0-9])"/>', re.MULTILINE)
     re_EndOfHand   = re.compile(r'<round id="END_OF_GAME"', re.MULTILINE)
     re_DateTime    = re.compile(r'(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)', re.MULTILINE)
+    re_PlayMoney   = re.compile(r'realmoney="false"')
 
     def compilePlayerRegexs(self, hand):
         pass
@@ -557,7 +559,10 @@ or None if we fail to get the info """
             self.info['currency'] = 'T$'
         else:
             self.info['type'] = 'ring'
-            self.info['currency'] = 'USD'
+            if self.re_PlayMoney.search(handText):
+                self.info['currency'] = 'play'
+            else:
+                self.info['currency'] = 'USD'
 
         if self.info['limitType'] == 'fl' and self.info['bb'] is not None and self.info['type'] == 'ring':
             try:

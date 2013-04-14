@@ -1,0 +1,40 @@
+PokerStars Game #3352709873: Tournament #16609627, $10+$1 USD Hold'em No Limit - Level IV (50/100) - 2005/12/16 21:02:28 ET
+Table '16609627 1' Seat #6 is the button
+Seat 1: Player0 (1555 in chips) 
+Seat 2: Player1 (1865 in chips) 
+Seat 3: Player2 (2260 in chips) is sitting out
+Seat 4: Player3 (3510 in chips) 
+Seat 5: Player4 (1380 in chips) 
+Seat 6: Hero (950 in chips) 
+Seat 7: Player5 (1170 in chips) 
+Seat 9: Player6 (810 in chips) 
+Player5: posts small blind 50
+Player6: posts big blind 100
+*** HOLE CARDS ***
+Dealt to Hero [6h Jh]
+Player0: folds 
+Player2 has returned
+Player1: folds 
+Player2: folds 
+Player3: folds 
+Player4: folds 
+Hero: folds 
+Player5: calls 50
+Player6: checks 
+*** FLOP *** [Kd 5h 3s]
+Player5: checks 
+Player6: bets 100
+Player5: folds 
+Player6 collected 200 from pot
+Player6: doesn't show hand 
+*** SUMMARY ***
+Total pot 200 | Rake 0 
+Board [Kd 5h 3s]
+Seat 1: Player0 folded before Flop (didn't bet)
+Seat 2: Player1 folded before Flop (didn't bet)
+Seat 3: Player2 folded before Flop (didn't bet)
+Seat 4: Player3 folded before Flop (didn't bet)
+Seat 5: Player4 folded before Flop (didn't bet)
+Seat 6: Hero (button) folded before Flop (didn't bet)
+Seat 7: Player5 (small blind) folded on the Flop
+Seat 9: Player6 (big blind) collected (200)

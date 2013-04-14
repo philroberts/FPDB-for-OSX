@@ -96,6 +96,7 @@ class Cake(HandHistoryConverter):
           (\s\s\(EUR\s(%(CUR)s)?(?P<EUROVALUE>[%(NUM)s]+)\))?""" % substitutions, 
           re.MULTILINE|re.VERBOSE)
 
+    re_Identify     = re.compile(u'Hand\#[A-Z0-9]+\s\-\s')
     re_SplitHands   = re.compile('\n\n+')
     re_Button       = re.compile('Dealer: Seat (?P<BUTTON>\d+)', re.MULTILINE)
     re_Board        = re.compile(r"\[(?P<CARDS>.+)\]")
@@ -114,11 +115,13 @@ class Cake(HandHistoryConverter):
                          %  substitutions, re.MULTILINE|re.VERBOSE)
     re_sitsOut          = re.compile("^%s sits out" %  substitutions['PLYR'], re.MULTILINE)
     re_ShownCards       = re.compile(r"^%s: (?P<SHOWED>shows|mucks) \[(?P<CARDS>.*)\] (\((?P<STRING>.*)\))?" % substitutions['PLYR'], re.MULTILINE)
-    re_CollectPot       = re.compile(r"^%(PLYR)s wins %(CUR)s(?P<POT>[%(NUM)s]+)((\swith.+?)?\s+\(EUR\s(%(CUR)s)?(?P<EUROVALUE>[%(NUM)s]+)\))?" %  substitutions, re.MULTILINE)
-    re_Finished         = re.compile(r"%(PLYR)s finished \d+ out of \d+ players" %  substitutions, re.MULTILINE)
+    re_CollectPot       = re.compile(r"^%(PLYR)s:? wins %(CUR)s(?P<POT>[%(NUM)s]+)((\swith.+?)?\s+\(EUR\s(%(CUR)s)?(?P<EUROVALUE>[%(NUM)s]+)\))?" %  substitutions, re.MULTILINE)
+    re_Finished         = re.compile(r"%(PLYR)s:? finished \d+ out of \d+ players" %  substitutions, re.MULTILINE)
     re_Dealer           = re.compile(r"Dealer:") #Some Cake hands just omit the game line so we can just discard them as partial
     re_CoinFlip         = re.compile(r"Coin\sFlip\sT\d+", re.MULTILINE)
     re_ReturnBet        = re.compile(r"returns\suncalled\sbet", re.MULTILINE)
+    re_ShowDown         = re.compile(r"\*\*\*SHOW DOWN\*\*\*")
+    re_ShowDownLeft     = re.compile(r"\*\*\*SHOW\sDOWN\*\*\*\nPlayer\sleft\sthe\stable$", re.MULTILINE)
 
     def compilePlayerRegexs(self,  hand):
         pass
@@ -143,6 +146,9 @@ class Cake(HandHistoryConverter):
             tmp = handText[0:200]
             log.error(_("CakeToFpdb.determineGameType: '%s'") % tmp)
             raise FpdbParseError
+        
+        if not self.re_ShowDown.search(handText) or self.re_ShowDownLeft.search(handText):
+            raise FpdbHandPartial
 
         mg = m.groupdict()
         #print "DEBUG: mg: %s" % mg
@@ -375,7 +381,7 @@ class Cake(HandHistoryConverter):
                     cards = cards.split(' ') # needs to be a list, not a set--stud needs the order
                 elif m.group('SHOWED') == "mucks":
                     mucked = True
-                    cards = cards.split(',') # needs to be a list, not a set--stud needs the order
+                    cards = [c.strip() for c in cards.split(',')] # needs to be a list, not a set--stud needs the order
 
                 #print "DEBUG: hand.addShownCards(%s, %s, %s, %s)" %(cards, m.group('PNAME'), shown, mucked)
                 try:

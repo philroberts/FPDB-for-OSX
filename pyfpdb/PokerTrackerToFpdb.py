@@ -151,6 +151,7 @@ class PokerTracker(HandHistoryConverter):
           (,\sSeats\s(?P<MAX>\d+))?""" % substitutions
           , re.MULTILINE|re.VERBOSE)
 
+    re_Identify     = re.compile(u'(EverestPoker\sGame\s\#|GAME\s\#|MERGE_GAME\s\#|\*{2}\sGame\sID\s)\d+')
     re_SplitHands   = re.compile('\n\n\n+?')
     re_TailSplitHands   = re.compile('(\n\n\n+)')
     re_Button       = re.compile('The button is in seat #(?P<BUTTON>\d+)', re.MULTILINE)
@@ -331,7 +332,6 @@ class PokerTracker(HandHistoryConverter):
                             hand.buyinCurrency=self.SnG_Structures[tourneyname]['currency']
                             hand.maxseats = self.SnG_Structures[tourneyname]['seats']
                             hand.isSng = True
-                            self.summaryInFile = True
                         else:
                             #print 'DEBUG', 'no match for tourney %s tourNo %s' % (tourneyname, hand.tourNo)
                             hand.buyin = 0

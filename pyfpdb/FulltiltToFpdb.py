@@ -45,9 +45,9 @@ class Fulltilt(HandHistoryConverter):
                         '2.00': ('0.50', '1.00'),       '2': ('0.50', '1.00'),
                         '4.00': ('1.00', '2.00'),       '4': ('1.00', '2.00'),
                         '5.00': ('1.25', '2.50'),       '5': ('1.25', '2.50'),
-                        '6.00': ('1.00', '3.00'),       '6': ('1.00', '3.00'),
+                        '6.00': ('1.50', '3.00'),       '6': ('1.50', '3.00'),
                         '8.00': ('2.00', '4.00'),       '8': ('2.00', '4.00'),
-                       '10.00': ('2.00', '5.00'),      '10': ('2.00', '5.00'),
+                       '10.00': ('2.50', '5.00'),      '10': ('2.50', '5.00'),
                        '16.00': ('4.00', '8.00'),      '16': ('4.00', '8.00'),
                        '20.00': ('5.00', '10.00'),     '20': ('5.00', '10.00'),
                        '24.00': ('6.00', '12.00'),     '24': ('6.00', '12.00'),
@@ -57,6 +57,7 @@ class Fulltilt(HandHistoryConverter):
                        '60.00': ('15.00', '30.00'),    '60': ('15.00', '30.00'),
                        '80.00': ('20.00', '40.00'),    '80': ('20.00', '40.00'),
                       '100.00': ('25.00', '50.00'),   '100': ('25.00', '50.00'),
+                      '120.00': ('30.00', '60.00'),   '120': ('30.00', '60.00'),
                       '200.00': ('50.00', '100.00'),  '200': ('50.00', '100.00'),
                       '300.00': ('75.00', '150.00'),  '300': ('75.00', '150.00'),
                       '400.00': ('100.00', '200.00'), '400': ('100.00', '200.00'),
@@ -66,7 +67,10 @@ class Fulltilt(HandHistoryConverter):
                      '1000.00': ('250.00', '500.00'),'1000': ('250.00', '500.00'),
                      '2000.00': ('500.00', '750.00'),'2000': ('500.00', '1000.00'),
                      '3000.00': ('750.00', '1500.00'),'3000': ('750.00', '1500.00'),
+                     '4000.00': ('1000.00','2000.00'),'4000': ('1000.00', '2000.00'),
                   }
+    
+    Rush_Tables = ('Mach 10', 'Lightning', 'Velociraptor', 'Supercharger', 'Adrenaline', 'Afterburner', 'Mercury', 'Apollo', 'Warp Speed', 'Speeding Bullet')
 
     # Static regexes
     re_GameInfo     = re.compile(u'''\#(?P<HID>[0-9]+):\s
@@ -80,6 +84,7 @@ class Fulltilt(HandHistoryConverter):
                                     (?P<LIMIT>(No\sLimit|Pot\sLimit|Limit))?\s
                                     (?P<GAME>(Hold\'em|Omaha(\sH/L|\sHi/Lo|\sHi|)|7\sCard\sStud|Stud\sH/L|Razz|Stud\sHi|2-7\sTriple\sDraw|5\sCard\sDraw|Badugi|2-7\sSingle\sDraw|A-5\sTriple\sDraw))
                                  ''' % substitutions, re.VERBOSE)
+    re_Identify     = re.compile(u'FullTiltPoker|Full\sTilt\sPoker\sGame\s#\d+:')
     re_SplitHands   = re.compile(r"\n\n\n+")
     re_TailSplitHands   = re.compile(r"(\n\n+)")
     re_HandInfo     = re.compile(u'''\#(?P<HID>[0-9]+):\s
@@ -96,59 +101,17 @@ class Fulltilt(HandHistoryConverter):
                                     (?P<PARTIAL>\(partial\))?\s
                                  ''' % substitutions, re.MULTILINE|re.VERBOSE)
     re_Cancelled = re.compile("Hand\s\#[0-9]+\shas\sbeen\scanceled?")
-    re_TourneyExtraInfo  = re.compile('''(((?P<TOURNEY_NAME>[^$]+)?
-                                         (?P<CURRENCY>[%(LS)s])?(?P<BUYIN>[.0-9]+)?(\s*\+\s*[%(LS)s]?(?P<FEE>[.0-9]+))?
-                                         (\s(?P<SPECIAL>(KO|Heads\sUp|Heads\-Up|Head\'s\sUp|Matrix\s\dx|Rebuy|Madness)))?
+    re_TourneyExtraInfo  = re.compile('''(((?P<CURRENCY>[%(LS)s])?(?P<BUYIN>[%(NUM)s]+)?(\s*\+\s*[%(LS)s]?(?P<FEE>[%(NUM)s]+))?
+                                         (\s(?P<SPECIAL>(Play\sMoney|Freeroll|KO|Heads\sUp|Heads\-Up|Head\'s\sUp|Matrix\s\dx|Rebuy|Madness)))?
                                          (\s(?P<SHOOTOUT>Shootout))?
                                          (\s(?P<SNG>Sit\s&\sGo))?
-                                         (\s\((?P<TURBO>Turbo)\))?)|(?P<UNREADABLE_INFO>.+))
-                                    ''' % substitutions, re.VERBOSE)
+                                         (\s(?P<GUARANTEE>Guarantee))?
+                                         (\s\((?P<TURBO>Turbo)\))?))
+                                    ''' % substitutions, re.MULTILINE|re.VERBOSE)
     re_Button       = re.compile('^The button is in seat #(?P<BUTTON>\d+)', re.MULTILINE)
     re_PlayerInfo   = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.{2,15}) \([%(LS)s]?(?P<CASH>[%(NUM)s]+)\)(?P<SITOUT>, is sitting out)?$' % substitutions, re.MULTILINE)
     re_SummarySitout = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.{2,15}?) (\(button\) )?is sitting out?$' % substitutions, re.MULTILINE)
     re_Board        = re.compile(r"\[(?P<CARDS>.+)\]")
-
-    #static regex for tourney purpose
-    re_TourneyInfo  = re.compile('''Tournament\sSummary\s
-                                    (?P<TOURNAMENT_NAME>[^$(]+)?\s*
-                                    ((?P<CURRENCY>[%(LS)s]|)?(?P<BUYIN>[.0-9]+)\s*\+\s*[%(LS)s]?(?P<FEE>[.0-9]+)\s)?
-                                    ((?P<SPECIAL>(KO|Heads\sUp|Matrix\s\dx|Rebuy|Madness))\s)?
-                                    ((?P<SHOOTOUT>Shootout)\s)?
-                                    ((?P<SNG>Sit\s&\sGo)\s)?
-                                    (\((?P<TURBO1>Turbo)\)\s)?
-                                    \((?P<TOURNO>\d+)\)\s
-                                    ((?P<MATCHNO>Match\s\d)\s)?
-                                    (?P<GAME>(Hold\'em|Omaha(\sHi/Lo|\sH/L|\sHi|)|7\sCard\sStud|Stud\sH/L|Razz|Stud\sHi))\s
-                                    (\((?P<TURBO2>Turbo)\)\s)?
-                                    (?P<LIMIT>(No\sLimit|Pot\sLimit|Limit))?
-                                ''' % substitutions, re.VERBOSE)
-    re_TourneyBuyInFee      = re.compile("Buy-In: (?P<BUYIN_CURRENCY>[%(LS)s]|)?(?P<BUYIN>[.0-9]+) \+ [%(LS)s]?(?P<FEE>[.0-9]+)" % substitutions)
-    re_TourneyBuyInChips    = re.compile("Buy-In Chips: (?P<BUYINCHIPS>\d+)")
-    re_TourneyEntries       = re.compile("(?P<ENTRIES>\d+) Entries")
-    re_TourneyPrizePool     = re.compile("Total Prize Pool: (?P<PRIZEPOOL_CURRENCY>[%(LS)s]|)?(?P<PRIZEPOOL>[.,0-9]+)" % substitutions)
-    re_TourneyRebuyCost     = re.compile("Rebuy: (?P<REBUY_CURRENCY>[%(LS)s]|)?(?P<REBUY_COST>[.,0-9]+)"% substitutions)
-    re_TourneyAddOnCost     = re.compile("Add-On: (?P<ADDON_CURRENCY>[%(LS)s]|)?(?P<ADDON_COST>[.,0-9]+)"% substitutions)
-    re_TourneyRebuyCount    = re.compile("performed (?P<REBUY_COUNT>\d+) Rebuy")
-    re_TourneyAddOnCount    = re.compile("performed (?P<ADDON_COUNT>\d+) Add-On")
-    re_TourneyRebuysTotal   = re.compile("Total Rebuys: (?P<REBUY_TOTAL>\d+)")
-    re_TourneyAddOnsTotal   = re.compile("Total Add-Ons: (?P<ADDONS_TOTAL>\d+)")
-    re_TourneyRebuyChips    = re.compile("Rebuy Chips: (?P<REBUY_CHIPS>\d+)")
-    re_TourneyAddOnChips    = re.compile("Add-On Chips: (?P<ADDON_CHIPS>\d+)")
-    re_TourneyKOBounty      = re.compile("Knockout Bounty: (?P<KO_BOUNTY_CURRENCY>[%(LS)s]|)?(?P<KO_BOUNTY_AMOUNT>[.,0-9]+)" % substitutions)
-    re_TourneyKoCount       = re.compile("received (?P<COUNT_KO>\d+) Knockout Bounty Award(s)?")
-    re_TourneyTimeInfo      = re.compile("Tournament started: (?P<STARTTIME>.*)\nTournament ((?P<IN_PROGRESS>is still in progress)?|(finished:(?P<ENDTIME>.*))?)$")
-
-    re_TourneysPlayersSummary = re.compile("^(?P<RANK>(Still Playing|\d+))( - |: )(?P<PNAME>[^\n,]+)(, )?(?P<WINNING_CURRENCY>[%(LS)s]|)?(?P<WINNING>[.\d]+)?" % substitutions, re.MULTILINE)
-    re_TourneyHeroFinishingP = re.compile("(?P<HERO_NAME>.*) finished in (?P<HERO_FINISHING_POS>\d+)(st|nd|rd|th) place")
-
-#TODO: See if we need to deal with play money tourney summaries -- Not right now (they shouldn't pass the re_TourneyInfo)
-##Full Tilt Poker Tournament Summary 250 Play Money Sit & Go (102909471) Hold'em No Limit
-##Buy-In: 250 Play Chips + 0 Play Chips
-##Buy-In Chips: 1500
-##6 Entries
-##Total Prize Pool: 1,500 Play Chips
-
-# These regexes are for FTP only
     re_Mixed        = re.compile(r'\s\-\s(?P<MIXED>7\-Game|8\-Game|9\-Game|10\-Game|HA|HEROS|HO|HOE|HORSE|HOSE|OA|OE|SE)\s\-\s', re.VERBOSE)
     re_Max          = re.compile("(?P<MAX>\d+)( max)?", re.MULTILINE)
     re_HeadsUp      = re.compile("heads up", re.MULTILINE)
@@ -296,6 +259,9 @@ class Fulltilt(HandHistoryConverter):
         #print "DEBUG: m.groupdict: %s" % m.groupdict()
         hand.handid = m.group('HID')
         hand.tablename = m.group('TABLE')
+        
+        if hand.tablename in self.Rush_Tables:
+            hand.gametype['zoom'] = True
 
         if m.group('DATETIME'):
             # This section of code should match either a single date (which is ET) or
@@ -349,41 +315,43 @@ class Fulltilt(HandHistoryConverter):
         # Done: if there's a way to figure these out, we should.. otherwise we have to stuff it with unknowns
         if m.group('TOURNAMENT') is not None:
             n = self.re_TourneyExtraInfo.search(m.group('TOURNAMENT'))
-            if n.group('UNREADABLE_INFO') is not None:
-                hand.tourneyComment = n.group('UNREADABLE_INFO') 
-            else:
-                hand.tourneyComment = n.group('TOURNEY_NAME')   # can be None
-                if (n.group('CURRENCY') is not None and n.group('BUYIN') is not None and n.group('FEE') is not None):
-                    if n.group('CURRENCY')=="$":
-                        hand.buyinCurrency="USD"
-                    elif n.group('CURRENCY')==u"€":
-                        hand.buyinCurrency="EUR"
-                    else:
-                        hand.buyinCurrency="FREE"
-                    hand.buyin = int(100*Decimal(n.group('BUYIN')))
-                    hand.fee = int(100*Decimal(n.group('FEE')))
-                if n.group('TURBO') is not None :
-                    hand.speed = "Turbo"
-                if n.group('SPECIAL') is not None :
-                    special = n.group('SPECIAL')
-                    if special == "Rebuy":
-                        hand.isRebuy = True
-                    if special == "KO":
-                        hand.isKO = True
-                    if special in ("Head's Up", "Heads-Up", "Heads Up"):
-                        hand.maxseats = 2
-                    if re.search("Matrix", special):
-                        hand.isMatrix = True
-                    if special == "Shootout":
-                        hand.isShootout = True
-            if hand.buyin is None:
+            if (n.group('BUYIN') is not None and n.group('FEE') is not None):
+                if n.group('CURRENCY')=="$":
+                    hand.buyinCurrency="USD"
+                elif n.group('CURRENCY')==u"€":
+                    hand.buyinCurrency="EUR"
+                else:
+                    hand.buyinCurrency="NA"
+                hand.buyin = int(100*Decimal(n.group('BUYIN')))
+                hand.fee = int(100*Decimal(n.group('FEE')))
+            elif n.group('SPECIAL')=='Play Money':
+                hand.buyinCurrency="play"
+                hand.buyin = int(100*Decimal(n.group('BUYIN')))
+                hand.fee = 0
+            elif n.group('SPECIAL')=='Freeroll':
                 hand.buyin = 0
                 hand.fee=0
-                hand.buyinCurrency="NA"
+                hand.buyinCurrency="FREE"  
+            else:
+                hand.buyin = 0
+                hand.fee=0
+                hand.buyinCurrency="NA"  
+                 
+            if n.group('TURBO') is not None :
+                hand.speed = "Turbo"
+            if n.group('SPECIAL') is not None :
+                special = n.group('SPECIAL')
+                if special == "Rebuy":
+                    hand.isRebuy = True
+                if special == "KO":
+                    hand.isKO = True
+                if special in ("Head's Up", "Heads-Up", "Heads Up"):
+                    hand.maxseats = 2
+                if re.search("Matrix", special):
+                    hand.isMatrix = True
+                if special == "Shootout":
+                    hand.isShootout = True  
 
-        if hand.level is None:
-            hand.level = "0"            
-        
     def readPlayerStacks(self, hand):
         # Split hand text for FTP, as the regex matches the player names incorrectly
         # in the summary section
@@ -396,20 +364,22 @@ class Fulltilt(HandHistoryConverter):
 
         # Get list of players in header.
         for a in m:
-            plist[a.group('PNAME')] = [int(a.group('SEAT')), a.group('CASH')]
+            plist[a.group('PNAME')] = [int(a.group('SEAT')), a.group('CASH'), False]
 
-        if hand.gametype['type'] == "ring" :
-            # Remove any listed as sitting out in the summary as start of hand info unreliable
             n = self.re_SummarySitout.finditer(post)
             for b in n:
                 if b.group('PNAME') in plist:
-                    #print "DEBUG: Deleting '%s' from player dict" %(b.group('PNAME'))
-                    del plist[b.group('PNAME')]
+                    if hand.gametype['type'] == "ring" :
+                        # Remove any listed as sitting out in the summary as start of hand info unreliable
+                        #print "DEBUG: Deleting '%s' from player dict" %(b.group('PNAME'))
+                        del plist[b.group('PNAME')]
+                    else:
+                        plist[b.group('PNAME')][2] = True
 
         # Add remaining players
         for a in plist:
-            seat, stack = plist[a]
-            hand.addPlayer(seat, a, stack)
+            seat, stack, sitout = plist[a]
+            hand.addPlayer(seat, a, stack, None, sitout)
 
         if plist == {}:
             #No players! The hand is either missing stacks or everyone is sitting out
@@ -583,250 +553,3 @@ class Fulltilt(HandHistoryConverter):
 
                 #print "DEBUG: hand.addShownCards(%s, %s, %s, %s)" %(cards, m.group('PNAME'), shown, mucked)
                 hand.addShownCards(cards=cards, player=m.group('PNAME'), shown=shown, mucked=mucked, string=string)
-
-    def readSummaryInfo(self, summaryInfoList):
-        self.status = True
-
-        #m = re.search("Tournament Summary", summaryInfoList[0])
-        #if m:
-        #    # info list should be 2 lines : Tourney infos & Finsihing postions with winnings
-        #    if (len(summaryInfoList) != 2 ):
-        #        log.info("Too many or too few lines (%d) in file '%s' : '%s'" % (len(summaryInfoList), self.in_path, summaryInfoList) )
-        #        self.status = False
-        #    else:
-        #        self.tourney = TourneySummary.TourneySummary(sitename = self.sitename, gametype = None, summaryText = summaryInfoList, builtFrom = "HHC")
-        #        self.status = self.getPlayersPositionsAndWinnings(self.tourney)
-        #        if self.status == True :
-        #            self.status = self.determineTourneyType(self.tourney)
-        #            #print self.tourney
-        #        else:
-        #            log.info("Parsing NOK : rejected")
-        #else:
-        #    log.info( "This is not a summary file : '%s'" % (self.in_path) )
-        #    self.status = False
-
-        return self.status
-
-    def determineTourneyType(self, tourney):
-        info = {'type':'tour'}
-        tourneyText = tourney.summaryText[0]
-        #print "Examine : '%s'" %(tourneyText)
-        
-        m = self.re_TourneyInfo.search(tourneyText)
-        if not m: 
-            log.info(_("Error:") + " determineTourneyType")
-            return False
-        mg = m.groupdict()
-        #print mg
-        
-        # translations from captured groups to our info strings
-        limits = { 'No Limit':'nl', 'Pot Limit':'pl', 'Limit':'fl' }
-        games = {              # base, category
-                  "Hold'em" : ('hold','holdem'), 
-                 'Omaha Hi' : ('hold','omahahi'), 
-                'Omaha H/L' : ('hold','omahahilo'),
-                     'Razz' : ('stud','razz'), 
-                  'Stud Hi' : ('stud','studhi'), 
-                 'Stud H/L' : ('stud','studhilo')
-               }
-        currencies = { u' €':'EUR', '$':'USD', '':'T$' }
-        info['limitType'] = limits[mg['LIMIT']]
-        if mg['GAME'] is not None:
-            (info['base'], info['category']) = games[mg['GAME']]
-        if mg['CURRENCY'] is not None:
-            info['currency'] = currencies[mg['CURRENCY']]
-        if mg['TOURNO'] is None:
-            info['type'] = "ring"
-        else:
-            info['type'] = "tour"
-        # NB: SB, BB must be interpreted as blinds or bets depending on limit type.
-
-        # Info is now ready to be copied in the tourney object        
-        tourney.gametype = info
-
-        # Additional info can be stored in the tourney object
-        if mg['BUYIN'] is not None:
-            tourney.buyin = 100*Decimal(self.clearMoneyString(mg['BUYIN']))
-            tourney.fee = 0 
-        if mg['FEE'] is not None:
-            tourney.fee = 100*Decimal(self.clearMoneyString(mg['FEE']))
-        if mg['TOURNAMENT_NAME'] is not None:
-            # Tournament Name can have a trailing space at the end (depending on the tournament description)
-            tourney.tourneyName = mg['TOURNAMENT_NAME'].rstrip()
-        if mg['SPECIAL'] is not None:
-            special = mg['SPECIAL']
-            if special == "KO":
-                tourney.isKO = True
-            if special == "Heads Up":
-                tourney.maxseats = 2
-            if re.search("Matrix", special):
-                tourney.isMatrix = True
-            if special == "Rebuy":
-                tourney.isRebuy = True
-            if special == "Madness":
-                tourney.tourneyComment = "Madness"
-        if mg['SHOOTOUT'] is not None:
-            tourney.isShootout = True
-        if mg['TURBO1'] is not None or mg['TURBO2'] is not None :
-            tourney.speed = "Turbo"
-        if mg['TOURNO'] is not None:
-            tourney.tourNo = mg['TOURNO']
-        else:
-            log.info(_("Unable to get a valid Tournament ID -- File rejected"))
-            return False
-        if tourney.isMatrix:
-            if mg['MATCHNO'] is not None:
-                tourney.matrixMatchId = mg['MATCHNO']
-            else:
-                tourney.matrixMatchId = 0
-
-
-        # Get BuyIn/Fee
-        # Try and deal with the different cases that can occur :
-        # - No buy-in/fee can be on the first line (freerolls, Satellites sometimes ?, ...) but appears in the rest of the description ==> use this one
-        # - Buy-In/Fee from the first line differs from the rest of the description : 
-        #   * OK in matrix tourneys (global buy-in dispatched between the different matches)
-        #   * NOK otherwise ==> issue a warning and store specific data as if were a Matrix Tourney
-        # - If no buy-in/fee can be found : assume it's a freeroll
-        m = self.re_TourneyBuyInFee.search(tourneyText)
-        if m is not None:
-            mg = m.groupdict()
-            if tourney.isMatrix :
-                if mg['BUYIN'] is not None:
-                    tourney.subTourneyBuyin = 100*Decimal(self.clearMoneyString(mg['BUYIN']))
-                    tourney.subTourneyFee = 0
-                if mg['FEE'] is not None:
-                    tourney.subTourneyFee = 100*Decimal(self.clearMoneyString(mg['FEE']))
-            else :
-                if mg['BUYIN'] is not None:
-                    buyin = clearMoneyString(mg['BUYIN'])
-                    if tourney.buyin is None:
-                        tourney.buyin = 100*Decimal(buyin)
-                    else :
-                        if 100*Decimal(buyin) != tourney.buyin:
-                            log.error(_("Conflict between buyins read in top line (%s) and in BuyIn field (%s)") % (tourney.buyin, 100*Decimal(buyin)))
-                            tourney.subTourneyBuyin = 100*Decimal(buyin)
-                if mg['FEE'] is not None:
-                    fee = clearMoneyString(mg['FEE'])
-                    if tourney.fee is None:
-                        tourney.fee = 100*Decimal(fee)
-                    else :
-                        if 100*Decimal(fee) != tourney.fee:
-                            log.error(_("Conflict between fees read in top line (%s) and in Fee field (%s)") % (tourney.fee, 100*Decimal(fee)))
-                            tourney.subTourneyFee = 100*Decimal(fee)
-
-        if tourney.buyin is None:
-            log.info(_("Unable to detect a buyin to this tournament : assume it's a freeroll"))
-            tourney.buyin = 0
-            tourney.fee = 0
-        else:
-            if tourney.fee is None:
-                #print "Couldn't initialize fee, even though buyin went OK : assume there are no fees"
-                tourney.fee = 0
-
-        #Get single line infos
-        dictRegex = {   "BUYINCHIPS"        : self.re_TourneyBuyInChips,
-                        "ENTRIES"           : self.re_TourneyEntries,
-                        "PRIZEPOOL"         : self.re_TourneyPrizePool,
-                        "REBUY_COST"        : self.re_TourneyRebuyCost,
-                        "ADDON_COST"        : self.re_TourneyAddOnCost,
-                        "REBUY_TOTAL"       : self.re_TourneyRebuysTotal,
-                        "ADDONS_TOTAL"      : self.re_TourneyAddOnsTotal,
-                        "REBUY_CHIPS"       : self.re_TourneyRebuyChips,
-                        "ADDON_CHIPS"       : self.re_TourneyAddOnChips,
-                        "STARTTIME"         : self.re_TourneyTimeInfo,
-                        "KO_BOUNTY_AMOUNT"  : self.re_TourneyKOBounty,
-                    }
-
-
-        dictHolders = { "BUYINCHIPS"        : "buyInChips",
-                        "ENTRIES"           : "entries",
-                        "PRIZEPOOL"         : "prizepool",
-                        "REBUY_COST"        : "rebuyCost",
-                        "ADDON_COST"        : "addOnCost",
-                        "REBUY_TOTAL"       : "totalRebuyCount",
-                        "ADDONS_TOTAL"      : "totalAddOnCount",
-                        "REBUY_CHIPS"       : "rebuyChips",
-                        "ADDON_CHIPS"       : "addOnChips",
-                        "STARTTIME"         : "starttime",
-                        "KO_BOUNTY_AMOUNT"  : "koBounty"
-                    }
-
-        mg = {}
-        for data in dictRegex:
-            m = dictRegex.get(data).search(tourneyText)
-            if m is not None:
-                mg.update(m.groupdict())
-                setattr(tourney, dictHolders[data], mg[data])
-
-        if mg['IN_PROGRESS'] is not None or mg['ENDTIME'] is not None:
-            tourney.endtime = mg['ENDTIME'] # None is ok - tourney may not be over
-
-        # Deal with hero specific information
-        if tourney.hero is not None :
-            m = self.re_TourneyRebuyCount.search(tourneyText)
-            if m is not None:
-                mg = m.groupdict()
-                if mg['REBUY_COUNT'] is not None :
-                    tourney.rebuyCounts.update( { tourney.hero : Decimal(mg['REBUY_COUNT']) } )
-            m = self.re_TourneyAddOnCount.search(tourneyText)
-            if m is not None:
-                mg = m.groupdict()
-                if mg['ADDON_COUNT'] is not None :
-                    tourney.addOnCounts.update( { tourney.hero : Decimal(mg['ADDON_COUNT']) } )
-            m = self.re_TourneyKoCount.search(tourneyText)
-            if m is not None:
-                mg = m.groupdict()
-                if mg['COUNT_KO'] is not None :
-                    tourney.koCounts.update( { tourney.hero : Decimal(mg['COUNT_KO']) } )
-
-        # Deal with money amounts
-        tourney.koBounty    = 100*Decimal(clearMoneyString(tourney.koBounty))
-        tourney.prizepool   = 100*Decimal(clearMoneyString(tourney.prizepool))
-        tourney.rebuyCost   = 100*Decimal(clearMoneyString(tourney.rebuyCost))
-        tourney.addOnCost   = 100*Decimal(clearMoneyString(tourney.addOnCost))
-        
-        # Calculate payin amounts and update winnings -- not possible to take into account nb of rebuys, addons or Knockouts for other players than hero on FTP
-        for p in tourney.players :
-            if tourney.isKO :
-                #tourney.incrementPlayerWinnings(tourney.players[p], Decimal(tourney.koBounty)*Decimal(tourney.koCounts[p]))
-                tourney.winnings[p] += Decimal(tourney.koBounty)*Decimal(tourney.koCounts[p])
-                #print "player %s : winnings %d" % (p, tourney.winnings[p])
-
-        #print mg
-        return True
-    #end def determineTourneyType
-
-    def getPlayersPositionsAndWinnings(self, tourney):
-        playersText = tourney.summaryText[1]
-        #print "Examine : '%s'" %(playersText)
-        m = self.re_TourneysPlayersSummary.finditer(playersText)
-
-        for a in m:
-            if a.group('PNAME') is not None and a.group('RANK') is not None:
-                if a.group('RANK') == "Still Playing":
-                    rank = -1
-                else:
-                    rank = Decimal(a.group('RANK'))
-
-                if a.group('WINNING') is not None:
-                    winnings = 100*Decimal(clearMoneyString(a.group('WINNING')))
-                else:
-                    winnings = "0"
-
-                tourney.addPlayer(rank, a.group('PNAME'), winnings, "USD", 0, 0, 0) #TODO: make it store actual winnings currency
-            else:
-                print (_("Player finishing stats unreadable : %s") % a)
-
-        # Find Hero
-        n = self.re_TourneyHeroFinishingP.search(playersText)
-        if n is not None:
-            heroName = n.group('HERO_NAME')
-            tourney.hero = heroName
-            # Is this really useful ?
-            if heroName not in tourney.ranks:
-                log.error(_("Could not find rank for %s.") % (heroName))
-            elif (tourney.ranks[heroName] != Decimal(n.group('HERO_FINISHING_POS'))):            
-                log.error(_("Parsed finish position incoherent : %s / %s") % (tourney.ranks[heroName], n.group('HERO_FINISHING_POS')))
-
-        return True

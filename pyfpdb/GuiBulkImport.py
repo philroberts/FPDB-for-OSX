@@ -79,6 +79,7 @@ class GuiBulkImport():
                 self.importer.setQuiet(self.chk_st_st.get_active())
                 self.importer.setThreads(int(self.spin_threads.get_text()))
                 self.importer.setHandsInDB(self.n_hands_in_db)
+                self.importer.setMode('bulk')
                 cb_model = self.cb_dropindexes.get_model()
                 cb_index = self.cb_dropindexes.get_active()
                 cb_hmodel = self.cb_drophudcache.get_model()

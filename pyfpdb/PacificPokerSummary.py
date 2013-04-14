@@ -52,6 +52,8 @@ class PacificPokerSummary(TourneySummary):
                            'NUM' : u".,\d\xa0"                     # legal characters in number format
                     }
     
+    re_Identify = re.compile(u'\*{5}\sCassava Tournament Summary\s\*{5}')
+    
     re_TourneyInfo = re.compile(u"""
                         Tournament\sID:\s(?P<TOURNO>[0-9]+)\s+
                         Buy-In:\s(?P<BUYIN>(((?P<BIAMT>(?P<CURRENCY1>%(LS)s)?[%(NUM)s]+\s?(?P<CURRENCY2>%(LS)s)?)(\s\+\s?(?P<BIRAKE>(%(LS)s)?[%(NUM)s]+\s?(%(LS)s)?))?)|(Free)|(.+?)))\s+

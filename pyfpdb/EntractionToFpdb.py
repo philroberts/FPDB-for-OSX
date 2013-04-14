@@ -90,7 +90,8 @@ class Entraction(HandHistoryConverter):
           Table\s"(?P<TABLE>(?P<BUYIN>(?P<BIAMT>[%(LS)s%(NUM)s]+)?\+?(?P<BIRAKE>[%(NUM)s]+)?)?.+?)(\s(?P<TOURNO>\d+)\s(?P<TABLENO>\d+))?\"
         """ % substitutions, re.MULTILINE|re.VERBOSE)
 
-    re_SplitHands   = re.compile(r"\n\nGame #")
+    re_Identify     = re.compile(u'Game\s\#\s\d+\s\-\s')
+    re_SplitHands   = re.compile(r"\n\n(?=Game\s#)")
     re_Button       = re.compile(r'^Dealer:\s+(?P<PNAME>.*)$', re.MULTILINE)
     re_Board        = re.compile(r"^(?P<CARDS>.+)$", re.MULTILINE)
     re_GameEnds     = re.compile(r"Game\sended\s(?P<Y>[0-9]{4})-(?P<M>[0-9]{2})-(?P<D>[0-9]{2})\s(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)(\s(?P<TZ>[A-Z]+))?", re.MULTILINE)

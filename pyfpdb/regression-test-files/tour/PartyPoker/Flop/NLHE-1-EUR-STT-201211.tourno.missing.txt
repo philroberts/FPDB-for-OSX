@@ -1,0 +1,51 @@
+#Game No : 12359566781 
+***** Hand History for Game 12359566781 *****
+NL Texas Hold'em €1 EUR Buy-in  - Wednesday, November 28, 13:05:32 CET 2012
+Table Quitte ou Double Speed #2211127 (Real Money)
+Seat 3 is the button
+Total number of players : 9/10 
+Seat 8: Player0 ( 1 )
+Seat 4: Player1 ( 1 )
+Seat 1: Player2 ( 1 )
+Seat 5: Player3 ( 1 )
+Seat 2: Player4 ( 1 )
+Seat 3: Player5 ( 1 )
+Seat 6: Player6 ( 1 )
+Seat 9: Player7 ( 1 )
+Seat 10: Player8 ( 1 )
+Trny: 75582100 Level: 1 
+Blinds(20/40)
+** Dealing down cards **
+Dealt to Player4 [  As 5d ]
+Player6 calls [40]
+oup77777 folds
+Player0 folds
+Player7 folds
+Player8 folds
+Player2 calls [40]
+Player4 folds
+Player5 did not respond in time
+Player5 folds
+Player1 calls [20]
+Player3 will be using his time bank for this hand.
+Player3 checks
+** Dealing Flop ** [ 9d, 8d, Tc ]
+Player1 checks
+Player3 bets [40]
+Player6 folds
+Player2 calls [40]
+Player1 calls [40]
+** Dealing Turn ** [ 7c ]
+Player1 checks
+Player3 bets [40]
+Player2 calls [40]
+Player1 calls [40]
+** Dealing River ** [ Ts ]
+Player1 checks
+Player3 checks
+Player2 bets [80]
+Player1 folds
+Player3 calls [80]
+Player2 shows [ Kh, Js ]a straight, Seven to Jack.
+Player3 doesn't show [ 7s, 8c ]two pairs, Tens and Eights.
+Player2 wins 560 chips from the main pot with a straight, Seven to Jack.

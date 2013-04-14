@@ -87,7 +87,8 @@ try:
     VERSION = subprocess.Popen(["git", "describe", "--tags", "--dirty"], stdout=subprocess.PIPE).communicate()[0]
     VERSION = VERSION[:-1]
 except:
-    VERSION = "0.39.5"
+    VERSION = "0.39.900"
+
 
 class fpdb:
     def tab_clicked(self, widget, tab_name):
@@ -569,7 +570,7 @@ class fpdb:
                 while gtk.events_pending():
                     gtk.main_iteration_do(False)
 
-                self.db.rebuild_hudcache(self.h_start_date.get_text(), self.start_date.get_text())
+                self.db.rebuild_cache(self.h_start_date.get_text(), self.start_date.get_text())
             elif response == gtk.RESPONSE_NO:
                 print _('User cancelled rebuilding hud cache')
 

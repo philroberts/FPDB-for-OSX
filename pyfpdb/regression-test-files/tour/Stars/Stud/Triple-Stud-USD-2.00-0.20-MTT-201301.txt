@@ -1,0 +1,60 @@
+PokerStars Hand #91733835979: Tournament #664712833, $2.00+$0.20 USD Triple Stud (7 Card Stud Limit) - Level XXXI (250/500) - 2013/01/03 16:27:43 EET [2013/01/03 9:27:43 ET]
+Table '664712833 3' 8-max
+Seat 1: Hero (6920 in chips) 
+Seat 2: Player0 (4981 in chips) 
+Seat 3: Player1 (3193 in chips) 
+Seat 4: Player2 (3182 in chips) 
+Seat 6: Player3 (14388 in chips) 
+Seat 7: Player4 (2083 in chips) 
+Seat 8: Player5 (372 in chips) 
+Hero: posts the ante 50
+Player0: posts the ante 50
+Player1: posts the ante 50
+Player2: posts the ante 50
+Player3: posts the ante 50
+Player4: posts the ante 50
+Player5: posts the ante 50
+*** 3rd STREET ***
+Dealt to Hero [Ah 3c Ac]
+Dealt to Player0 [7h]
+Dealt to Player1 [4d]
+Dealt to Player2 [6h]
+Dealt to Player3 [Qs]
+Dealt to Player4 [8d]
+Dealt to Player5 [Jh]
+Player1: brings in for 75
+Player2: folds 
+Player3: calls 75
+Player4: folds 
+Player5: raises 175 to 250
+Hero: raises 250 to 500
+Player0: folds 
+Player1: folds 
+Player3: folds 
+Player5: calls 72 and is all-in
+Uncalled bet (178) returned to Hero
+*** 4th STREET ***
+Dealt to Hero [Ah 3c Ac] [8h]
+Dealt to Player5 [Jh] [5s]
+*** 5th STREET ***
+Dealt to Hero [Ah 3c Ac 8h] [Qd]
+Dealt to Player5 [Jh 5s] [6d]
+*** 6th STREET ***
+Dealt to Hero [Ah 3c Ac 8h Qd] [As]
+Dealt to Player5 [Jh 5s 6d] [Ts]
+*** RIVER ***
+Dealt to Hero [Ah 3c Ac 8h Qd As] [of]
+*** SHOW DOWN ***
+Hero: shows [Ah 3c Ac] (three of a kind, Aces)
+Player5: shows [9c Js Jh 5s 6d Ts 4c] (a pair of Jacks)
+Hero collected 1144 from pot
+Player5 finished the tournament in 28th place
+*** SUMMARY ***
+Total pot 1144 | Rake 0 
+Seat 1: Hero showed [Ah 3c Ac] and won (1144) with three of a kind, Aces
+Seat 2: Player0 folded on the 3rd Street (didn't bet)
+Seat 3: Player1 folded on the 3rd Street
+Seat 4: Player2 folded on the 3rd Street (didn't bet)
+Seat 6: Player3 folded on the 3rd Street
+Seat 7: Player4 folded on the 3rd Street (didn't bet)
+Seat 8: Player5 showed [9c Js Jh 5s 6d Ts 4c] and lost with a pair of Jacks

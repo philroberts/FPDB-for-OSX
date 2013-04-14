@@ -41,7 +41,7 @@ class BetOnline(HandHistoryConverter):
     sym = {'USD': "\$", 'CAD': "\$", 'T$': "", "EUR": "\xe2\x82\xac", "GBP": "\xa3", "play": ""}         # ADD Euro, Sterling, etc HERE
     substitutions = {
                      'LS' : u"\$|\xe2\x82\xac|\u20ac|", # legal currency symbols - Euro(cp1252, utf-8)
-                     'PLYR': r'(?P<PNAME>.*)',
+                     'PLYR': r'(?P<PNAME>.+?)',
                      'NUM' :u".,\d",
                     }
                     
@@ -137,7 +137,8 @@ class BetOnline(HandHistoryConverter):
           (?P<MONEY>\((Play\sMoney|Real\sMoney)\)\s)?
           (Seat\s\#(?P<BUTTON>\d+)\sis\sthe\sbutton)?""", 
           re.MULTILINE|re.VERBOSE)
-    #re_Identify     = re.compile(u'(BetOnline\sPoker|PayNoRake|ActionPoker\.com|Gear\sPoker)\sGame\s\#\d+')
+
+    re_Identify     = re.compile(u'(BetOnline\sPoker|PayNoRake|ActionPoker\.com|Gear\sPoker)\sGame\s\#\d+')
     re_SplitHands   = re.compile('\n\n\n+')
     re_TailSplitHands   = re.compile('(\n\n\n+)')
     re_Button       = re.compile('Seat #(?P<BUTTON>\d+) is the button', re.MULTILINE)

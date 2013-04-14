@@ -1,0 +1,42 @@
+Bovada Hand #2710007631: HOLDEM Tournament #3246325 TBL#1, No Limit- Level 4 (50/100) - 2013-01-11 03:36:25
+Seat 2: UTG+2 (1,590 in chips)
+Seat 3: Dealer [ME] (5,566 in chips)
+Seat 5: Small Blind (1,335 in chips)
+Seat 6: Big Blind (19 in chips)
+Seat 7: UTG (2,475 in chips)
+Seat 9: UTG+1 (2,515 in chips)
+Dealer [ME] : Set dealer/Bring in spot [3] 
+Small Blind : Ante/Small blind 50 
+Big Blind : All-in 19 
+*** HOLE CARDS ***
+UTG+2 : Card dealt to a spot [7s 8d] 
+Dealer [ME] : Card dealt to a spot [6c 3d] 
+Small Blind : Card dealt to a spot [2d Th] 
+Big Blind : Card dealt to a spot [5d 7d] 
+UTG : Card dealt to a spot [2c Js] 
+UTG+1 : Card dealt to a spot [Ad Jh] 
+UTG : Folds
+UTG+1 : Call 100 
+UTG+2 : Folds
+Dealer [ME] : Folds
+Small Blind : Folds(timeout)
+UTG+1 : Return uncalled portion of bet 50 
+Small Blind : Sit out
+*** FLOP *** [Kh Kc As]
+*** TURN *** [Kh Kc As] [5c]
+*** RIVER *** [Kh Kc As 5c] [9d]
+Big Blind : Showdown [Kh Kc 5d 5c As] (Two pair)
+UTG+1 : Showdown [As Ad Kh Kc Jh] (Two pair)
+UTG+1 : Hand Result-Side Pot 62 
+UTG+1 : Hand Result 57 
+Big Blind : Ranking 6 
+Big Blind : Stand
+*** SUMMARY ***
+Total Pot(119)
+Board [Kh Kc As 5c 9d]
+Seat+2: UTG+2 Folded before the FLOP
+Seat+3: Dealer Folded before the FLOP
+Seat+5: Small Blind Folded before the FLOP
+Seat+6: Big Blind lose with Two pair [5d 7d-Kh Kc 5d 5c As]  
+Seat+7: UTG Folded before the FLOP
+Seat+9: UTG+1 119  with Two pair [Ad Jh-As Ad Kh Kc Jh]  

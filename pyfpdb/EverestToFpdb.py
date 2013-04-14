@@ -41,6 +41,7 @@ class Everest(HandHistoryConverter):
                     }
 
     # Static regexes
+    re_Identify   = re.compile(u'<HAND\stime=\"\d+\"\sid=')
     re_SplitHands = re.compile(r'</HAND>')
     re_TailSplitHands = re.compile(r'(</game>)')
     re_GameInfo = re.compile(u"""<SESSION\stime="\d+"\s
@@ -150,7 +151,6 @@ class Everest(HandHistoryConverter):
             self.info['currency'] = 'EUR'
         elif not mg['CURRENCY']:
             self.info['currency'] = 'play'
-            
         
         # HACK - tablename not in every hand.
         self.info['TABLENAME'] = mg['TABLE']

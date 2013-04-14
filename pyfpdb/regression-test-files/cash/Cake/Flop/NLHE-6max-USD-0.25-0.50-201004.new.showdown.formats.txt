@@ -1,0 +1,32 @@
+Hand#2217011712000147 - Pebble Beach (6-Max) 11712 -- $0.25/$0.50 NL Hold'em -- 2010/04/30 - 18:26:41
+Seat 4: dirt***4 ($44.55 in chips) 
+Seat 5: stro***5 ($157.23 in chips) 
+Seat 6: Wolvish ($62.65 in chips) DEALER
+Seat 7: Noot***7 ($120.14 in chips) 
+Seat 8: soft***8 ($50 in chips) 
+Seat 9: obla***9 ($45.75 in chips) 
+Noot***7: posts small blind $0.25
+soft***8: posts big blind $0.50
+Dealt to Wolvish [Qh,5s]
+obla***9: folds
+dirt***4: folds
+stro***5: folds
+Wolvish: folds
+Noot***7: raises to $1.50
+soft***8: calls $1
+*** FLOP *** [As,8c,9s]
+Noot***7: bets $2
+soft***8: raises to $6
+Noot***7: calls $4
+*** TURN *** [3d]
+Noot***7: checks
+soft***8: bets $8
+Noot***7: calls $8
+*** RIVER *** [2s]
+Noot***7: bets $24
+soft***8: calls $24
+***SHOW DOWN***
+Noot***7: shows [8s 7s] (Flush, Ace high)
+soft***8: mucks
+Noot***7: wins $76 with Flush, Ace high
+soft***8: mucks [ Td, Ac ] (Pair)

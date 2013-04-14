@@ -104,7 +104,6 @@ class default(Popup):
 
     def create(self):
         super(default, self).create()
-
         player_id = None
         for id in self.stat_dict.keys():
             if self.seat == self.stat_dict[id]['seat']:

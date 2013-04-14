@@ -46,6 +46,8 @@ class PokerTrackerSummary(TourneySummary):
                             'CUR': u"(\$|\xe2\x82\xac|\u20ac||\£|)",
                     }
 
+    re_Identify = re.compile(u"PokerTracker")
+
     re_TourneyInfo = re.compile(u"""
                         \s(3|4)\sTournament\sSummary\s+
                         Site:\s(?P<SITE>.+?)\s+

@@ -58,7 +58,7 @@ class iPoker(HandHistoryConverter):
     summaryInFile = True
 
     substitutions = {
-                     'LS'  : u"\$|\xe2\x82\xac|\xe2\u201a\xac|\u20ac|\xc2\xa3|\£|",
+                     'LS'  : u"\$|\xe2\x82\xac|\xe2\u201a\xac|\u20ac|\xc2\xa3|\£|RSD|",
                      'PLYR': r'(?P<PNAME>[ a-zA-Z0-9_]+)',
                      'NUM' : r'.,\d',
                     }
@@ -81,7 +81,31 @@ class iPoker(HandHistoryConverter):
 
             }
 
-    currencies = { u'€':'EUR', '$':'USD', '':'T$', u'£':'GBP' }
+    currencies = { u'€':'EUR', '$':'USD', '':'T$', u'£':'GBP', 'RSD': 'RSD'}
+    
+    # translations from captured groups to fpdb info strings
+    Lim_Blinds = {      '0.04': ('0.01', '0.02'),         '0.08': ('0.02', '0.04'),
+                        '0.10': ('0.02', '0.05'),         '0.20': ('0.05', '0.10'),
+                        '0.40': ('0.10', '0.20'),         '0.50': ('0.10', '0.25'),
+                        '1.00': ('0.25', '0.50'),         '1': ('0.25', '0.50'),
+                        '2.00': ('0.50', '1.00'),         '2': ('0.50', '1.00'),
+                        '4.00': ('1.00', '2.00'),         '4': ('1.00', '2.00'),
+                        '6.00': ('1.00', '3.00'),         '6': ('1.00', '3.00'),
+                        '8.00': ('2.00', '4.00'),         '8': ('2.00', '4.00'),
+                       '10.00': ('2.00', '5.00'),        '10': ('2.00', '5.00'),
+                       '20.00': ('5.00', '10.00'),       '20': ('5.00', '10.00'),
+                       '30.00': ('10.00', '15.00'),      '30': ('10.00', '15.00'),
+                       '40.00': ('10.00', '20.00'),      '40': ('10.00', '20.00'),
+                       '60.00': ('15.00', '30.00'),      '60': ('15.00', '30.00'),
+                       '80.00': ('20.00', '40.00'),      '80': ('20.00', '40.00'),
+                      '100.00': ('25.00', '50.00'),     '100': ('25.00', '50.00'),
+                      '150.00': ('50.00', '75.00'),     '150': ('50.00', '75.00'),
+                      '200.00': ('50.00', '100.00'),    '200': ('50.00', '100.00'),
+                      '400.00': ('100.00', '200.00'),   '400': ('100.00', '200.00'),
+                      '800.00': ('200.00', '400.00'),   '800': ('200.00', '400.00'),
+                     '1000.00': ('250.00', '500.00'),  '1000': ('250.00', '500.00'),
+                     '2000.00': ('500.00', '1000.00'), '2000': ('500.00', '1000.00'),
+                  }
 
     # translations from captured groups to fpdb info strings
     Lim_Blinds = {      '0.04': ('0.01', '0.02'),         '0.08': ('0.02', '0.04'),
@@ -101,18 +125,22 @@ class iPoker(HandHistoryConverter):
                       '100.00': ('25.00', '50.00'),     '100': ('25.00', '50.00'),
                       '150.00': ('50.00', '75.00'),     '150': ('50.00', '75.00'),
                       '200.00': ('50.00', '100.00'),    '200': ('50.00', '100.00'),
+                      '300.00': ('75.00', '150.00'),    '300': ('75.00', '150.00'),
                       '400.00': ('100.00', '200.00'),   '400': ('100.00', '200.00'),
+                      '600.00': ('150.00', '300.00'),   '600': ('150.00', '300.00'),
                       '800.00': ('200.00', '400.00'),   '800': ('200.00', '400.00'),
                      '1000.00': ('250.00', '500.00'),  '1000': ('250.00', '500.00'),
                      '2000.00': ('500.00', '1000.00'), '2000': ('500.00', '1000.00'),
+                     '4000.00': ('1000.00','2000.00'), '4000': ('1000.00', '2000.00'),
                   }
 
     months = { 'Jan':1, 'Feb':2, 'Mar':3, 'Apr':4, 'May':5, 'Jun':6, 'Jul':7, 'Aug':8, 'Sep':9, 'Oct':10, 'Nov':11, 'Dec':12}
 
     # Static regexes
+    re_Identify = re.compile(u'<game\sgamecode=')
     re_SplitHands = re.compile(r'</game>')
     re_TailSplitHands = re.compile(r'(</game>)')
-    re_GameInfo = re.compile(ur"""(?P<HEAD>
+    re_GameInfo = re.compile(ur"""
             <gametype>(?P<GAME>(5|7)\sCard\sStud\sL|Holdem\s(NL|SL|L|LZ|PL|БЛ)|Omaha\s(L|PL|LP)|Omaha\sHi\-Lo\s(L|PL|LP)|LH\s(?P<LSB>[%(NUM)s]+)/(?P<LBB>[%(NUM)s]+).+?)(\s(%(LS)s)?(?P<SB>[%(NUM)s]+)/(%(LS)s)?(?P<BB>[%(NUM)s]+))?</gametype>\s+?
             <tablename>(?P<TABLE>.+)?</tablename>\s+?
             (<(tablecurrency|tournamentcurrency)>(?P<TABLECURRENCY>.*)</(tablecurrency|tournamentcurrency)>\s+?)?
@@ -120,7 +148,7 @@ class iPoker(HandHistoryConverter):
             <gamecount>.+</gamecount>\s+?
             <startdate>.+</startdate>\s+?
             <currency>(?P<CURRENCY>.+)?</currency>\s+?
-            <nickname>(?P<HERO>.+)?</nickname>)
+            <nickname>(?P<HERO>.+)?</nickname>
             """ % substitutions, re.MULTILINE|re.VERBOSE)
     re_GameInfoTrny = re.compile(r"""(?P<HEAD>
                 <tournamentname>.+?<place>(?P<PLACE>.+?)</place>
@@ -187,7 +215,6 @@ class iPoker(HandHistoryConverter):
         mg = m.groupdict()
         tourney = False
         #print "DEBUG: m.groupdict(): %s" % mg
-
         if mg['GAME'][:2]=='LH':
             mg['GAME'] = 'Holdem L'
             mg['BB'] = mg['LBB']
@@ -212,7 +239,6 @@ class iPoker(HandHistoryConverter):
             if not mg['SB']: tourney = True
         if 'BB' in mg:
             self.info['bb'] = self.clearMoneyString(mg['BB'])
-        self.header = mg['HEAD']
 
         if tourney:
             self.info['type'] = 'tour'
@@ -232,7 +258,6 @@ class iPoker(HandHistoryConverter):
             m2 = self.re_GameInfoTrny.search(handText)
             if m2:
                 mg =  m2.groupdict()
-                self.header = self.header + mg['HEAD']
                 if not mg['BIRAKE'] and mg['TOTBUYIN']:
                     m3 = self.re_TotalBuyin.search(mg['TOTBUYIN'])
                     if m3:
@@ -313,19 +338,30 @@ class iPoker(HandHistoryConverter):
             hand.fee = self.tinfo['fee']
 
     def readPlayerStacks(self, hand):
-        self.playerWinnings = {}
+        self.playerWinnings, plist = {}, {}
         m = self.re_PlayerInfo.finditer(hand.handText)
         for a in m:
             ag = a.groupdict()
-            seatno = int(a.group('SEAT'))
-            if a.group('BUTTONPOS') == '1':
-                hand.buttonpos = seatno
-            cash = self.clearMoneyString(a.group('CASH'))
-            hand.addPlayer(seatno, a.group('PNAME'), cash)
-            if a.group('WIN') != '0':
-                win = self.clearMoneyString(a.group('WIN'))
-                self.playerWinnings[a.group('PNAME')] = win
-
+            plist[a.group('PNAME')] = [int(a.group('SEAT')), self.clearMoneyString(a.group('CASH')), a.group('WIN'), False]
+            re_sitout = re.compile(r'<action no="[0-9]+" player="' + re.escape(a.group('PNAME')) + '" type="9"')
+            if re_sitout.search(hand.handText):
+                if hand.gametype['type'] == "ring" :
+                    # Remove any listed as sitting out in the summary as start of hand info unreliable
+                    #print "DEBUG: Deleting '%s' from player dict" %(b.group('PNAME'))
+                    del plist[a.group('PNAME')]
+                else:
+                    plist[a.group('PNAME')][2] = True
+            else:
+                if a.group('BUTTONPOS') == '1':
+                    hand.buttonpos = int(a.group('SEAT'))
+                    
+        # Add remaining players
+        for pname in plist:
+            seat, stack, win, sitout = plist[pname]
+            hand.addPlayer(seat, pname, stack, None, sitout)
+            if win != '0':
+                self.playerWinnings[pname] = self.clearMoneyString(win)
+                
         if hand.maxseats==None:
             if self.info['type'] == 'tour' and self.maxseats==0:
                 hand.maxseats = self.guessMaxSeats(hand)
@@ -445,7 +481,7 @@ class iPoker(HandHistoryConverter):
                 else:
                     newcards = [c[1:].replace('10', 'T') + c[0].lower() for c in cards if c[0].lower()!='x']
                     oldcards = []
-
+                
                 if street == 'THIRD' and len(newcards) == 3 and self.hero == player: # hero in stud game
                     hand.hero = player
                     hand.dealt.add(player) # need this for stud??

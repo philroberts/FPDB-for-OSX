@@ -41,6 +41,8 @@ class WinamaxSummary(TourneySummary):
                             'LS' : u"\$|\xe2\x82\xac|\u20ac|" # legal currency symbols
                     }
     
+    re_Identify = re.compile(u"Winamax\sPoker\s\-\sTournament\ssummary")
+    
     re_SummaryTourneyInfo = re.compile(u"""Winamax\sPoker\s-\sTournament\ssummary\s:\s
                                            ((?P<LIMIT>No\sLimit|Limit|LIMIT|Pot\sLimit)\s)?
                                            (?P<GAME>.+)?

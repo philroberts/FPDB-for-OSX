@@ -83,13 +83,14 @@ class OnGame(HandHistoryConverter):
 
     # Static regexes
     # ***** End of hand R5-75443872-57 *****
+    re_Identify   = re.compile(u'\*{5}\sHistory\sfor\shand\s[A-Z0-9\-]+\s')
     re_SplitHands = re.compile(u'\*\*\*\*\*\sEnd\sof\shand\s[-A-Z\d]+.*\n+(?=\*)')
 
     #TODO: detect play money
     # "Play money" rather than "Real money" and set currency accordingly
     # Table:\s(\[SPEED\]\s)?(?P<TABLE>[-\'\w\#\s\.]+)\s\[\d+\]\s\( 
     re_HandInfo = re.compile(u"""
-            \*{5}\sHistory\sfor\shand\s(?P<HID>[-A-Z\d]+)(\s\(TOURNAMENT:(\s\"(?P<NAME>.+?)\",)?\s(?P<TID>[-A-Z\d]+)(?P<BUY>,\sbuy-in:\s(?P<BUYINCUR>[%(LS)s]?)(?P<BUYIN>[%(NUM)s]+))?\))?\s\*{5}\s?
+            \*{5}\sHistory\sfor\shand\s(?P<HID>[-A-Z\d]+)(?P<TOUR>\s\(TOURNAMENT:(\s\"(?P<NAME>.+?)\",)?\s(?P<TID>[-A-Z\d]+)?(?P<BUY>,\sbuy-in:\s(?P<BUYINCUR>[%(LS)s]?)(?P<BUYIN>[%(NUM)s]+))?\))?\s\*{5}\s?
             Start\shand:\s(?P<DATETIME>.+?)\s?
             Table:\s(\[SPEED\]\s)?(?P<TABLE>.+?)\s\[\d+\]\s\( 
             (
@@ -137,7 +138,7 @@ class OnGame(HandHistoryConverter):
             self.re_PostSB    = re.compile('%(PLYR)s posts small blind \((%(CUR)s)?(?P<SB>[%(NUM)s]+)\)' % self.substitutions, re.MULTILINE)
             self.re_PostBB    = re.compile('%(PLYR)s posts big blind \((%(CUR)s)?(?P<BB>[%(NUM)s]+)\)' % self.substitutions, re.MULTILINE)
             self.re_Antes     = re.compile(r"^%(PLYR)s posts ante (%(CUR)s)?(?P<ANTE>[%(NUM)s]+)" % self.substitutions, re.MULTILINE)
-            self.re_BringIn   = re.compile(r"^%(PLYR)s small bring in (%(CUR)s)?(?P<BRINGIN>[%(NUM)s]+)" % self.substitutions, re.MULTILINE)
+            self.re_BringIn   = re.compile(r"^%(PLYR)s (small|big) bring in (%(CUR)s)?(?P<BRINGIN>[%(NUM)s]+)" % self.substitutions, re.MULTILINE)
             self.re_PostBoth  = re.compile('%(PLYR)s posts small \& big blind \( (%(CUR)s)?(?P<SBBB>[%(NUM)s]+)\)' % self.substitutions)
             self.re_PostDead  = re.compile('%(PLYR)s posts dead blind \((%(CUR)s)?(?P<DEAD>[%(NUM)s]+)\)' % self.substitutions, re.MULTILINE)
             self.re_HeroCards = re.compile('(New\shand\sfor|Dealing\sto)\s%(PLYR)s:\s\[(?P<CARDS>.*)\]' % self.substitutions)
@@ -193,8 +194,11 @@ class OnGame(HandHistoryConverter):
         #print "DEBUG: mg: %s" % mg
 
         info['type'] = 'ring'
-        if mg['TID'] != None:
-            info['type'] = 'tour'
+        if mg['TOUR'] != None:
+            if mg['TID'] != None:
+                info['type'] = 'tour'
+            else:
+                raise FpdbHandPartial
 
         if 'CURRENCY' in mg and mg['CURRENCY'] != None:
             if 'MONEY' in mg and mg['MONEY']=='Play money':
@@ -212,14 +216,14 @@ class OnGame(HandHistoryConverter):
         if 'GAME' in mg:
             (info['base'], info['category']) = self.games[mg['GAME']]
         if 'SB' in mg:
-            info['sb'] = self.clearMoneyString(mg['SB'].replace(',', ''))
+            info['sb'] = self.clearMoneyString(mg['SB'])
         if 'BB' in mg:
-            info['bb'] = self.clearMoneyString(mg['BB'].replace(',', ''))
+            info['bb'] = self.clearMoneyString(mg['BB'])
 
         if info['limitType'] == 'fl' and info['bb'] is not None:
             if info['type'] == 'ring':
                 try:
-                    bb = self.clearMoneyString(mg['BB'].replace(',', ''))
+                    bb = self.clearMoneyString(mg['BB'])
                     info['sb'] = self.Lim_Blinds[bb][0]
                     info['bb'] = self.Lim_Blinds[bb][1]
                 except KeyError:
@@ -227,7 +231,7 @@ class OnGame(HandHistoryConverter):
                     log.error(_("OnGameToFpdb.determineGameType: Lim_Blinds has no lookup for '%s' - '%s'") % (bb, tmp))
                     raise FpdbParseError
             else:
-                sb = self.clearMoneyString(mg['SB'].replace(',', ''))
+                sb = self.clearMoneyString(mg['SB'])
                 info['sb'] = str((Decimal(sb)/2).quantize(Decimal("0.01")))
                 info['bb'] = str(Decimal(sb).quantize(Decimal("0.01")))    
         return info
@@ -305,7 +309,7 @@ class OnGame(HandHistoryConverter):
         head = re.split(re.compile('Summary:'),  hand.handText)
         m = self.re_PlayerInfo.finditer(head[0])
         for a in m:
-            hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), a.group('CASH'))
+            hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), self.clearMoneyString(a.group('CASH')))
 
     def markStreets(self, hand):
         if hand.gametype['base'] in ("hold"):

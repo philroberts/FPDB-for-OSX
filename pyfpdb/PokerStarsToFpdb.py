@@ -41,7 +41,7 @@ class PokerStars(HandHistoryConverter):
     substitutions = {
                      'LEGAL_ISO' : "USD|EUR|GBP|CAD|FPP",      # legal ISO currency codes
                             'LS' : u"\$|\xe2\x82\xac|\u20ac|\£|", # legal currency symbols - Euro(cp1252, utf-8)
-                           'PLYR': r'(?P<PNAME>.+?)',
+                           'PLYR': r'\s?(?P<PNAME>.+?)',
                             'CUR': u"(\$|\xe2\x82\xac|\u20ac||\£|)",
                           'BRKTS': r'(\(button\) |\(small blind\) |\(big blind\) |\(button\) \(small blind\) |\(button\) \(big blind\) )?',
                     }
@@ -129,18 +129,20 @@ class PokerStars(HandHistoryConverter):
         """ % substitutions, re.MULTILINE|re.VERBOSE)
 
     re_PlayerInfo   = re.compile(u"""
-          ^Seat\s(?P<SEAT>[0-9]+):\s
+          ^\s?Seat\s(?P<SEAT>[0-9]+):\s
           (?P<PNAME>.*)\s
-          \((%(LS)s)?(?P<CASH>[.0-9]+)\sin\schips\)""" % substitutions, 
+          \((%(LS)s)?(?P<CASH>[.0-9]+)\sin\schips\)
+          (?P<SITOUT>\sis\ssitting\sout)?""" % substitutions, 
           re.MULTILINE|re.VERBOSE)
 
     re_HandInfo     = re.compile("""
-          ^Table\s\'(?P<TABLE>.+?)\'\s
+          ^\s?Table\s\'(?P<TABLE>.+?)\'\s
           ((?P<MAX>\d+)-max\s)?
           (?P<PLAY>\(Play\sMoney\)\s)?
           (Seat\s\#(?P<BUTTON>\d+)\sis\sthe\sbutton)?""", 
           re.MULTILINE|re.VERBOSE)
 
+    re_Identify     = re.compile(u'(PokerStars|POKERSTARS)(\sGame|\sHand|\sHome\sGame|\sHome\sGame\sHand|Game|\sZoom\sHand|\sGAME)\s\#\d+:')
     re_SplitHands   = re.compile('(?:\s?\n){2,}')
     re_TailSplitHands   = re.compile('(\n\n\n+)')
     re_Button       = re.compile('Seat #(?P<BUTTON>\d+) is the button', re.MULTILINE)
@@ -166,8 +168,9 @@ class PokerStars(HandHistoryConverter):
                         (\s\[(?P<CARDS>.+?)\])?\s*$"""
                          %  substitutions, re.MULTILINE|re.VERBOSE)
     re_ShowdownAction   = re.compile(r"^%s: shows \[(?P<CARDS>.*)\]" % substitutions['PLYR'], re.MULTILINE)
-    re_ShownCards       = re.compile("^Seat (?P<SEAT>[0-9]+): %(PLYR)s %(BRKTS)s(?P<SHOWED>showed|mucked) \[(?P<CARDS>.*)\]( and (lost|won \(%(CUR)s(?P<POT>[.\d]+)\)) with (?P<STRING>.*))?" % substitutions, re.MULTILINE)
-    re_CollectPot       = re.compile(r"Seat (?P<SEAT>[0-9]+): %(PLYR)s %(BRKTS)s(collected|showed \[.*\] and won) \(%(CUR)s(?P<POT>[.\d]+)\)(, mucked| with.*|)" %  substitutions, re.MULTILINE)
+    re_sitsOut          = re.compile("^%s sits out" %  substitutions['PLYR'], re.MULTILINE)
+    re_ShownCards       = re.compile("^Seat (?P<SEAT>[0-9]+): %(PLYR)s %(BRKTS)s(?P<SHOWED>showed|mucked) \[(?P<CARDS>.*)\]( and (lost|(won|collected) \(%(CUR)s(?P<POT>[.\d]+)\)) with (?P<STRING>.*))?" % substitutions, re.MULTILINE)
+    re_CollectPot       = re.compile(r"Seat (?P<SEAT>[0-9]+): %(PLYR)s %(BRKTS)s(collected|showed \[.*\] and (won|collected)) \(%(CUR)s(?P<POT>[.\d]+)\)(, mucked| with.*|)" %  substitutions, re.MULTILINE)
     re_CollectPot2      = re.compile(r"^%(PLYR)s collected %(CUR)s(?P<POT>[.\d]+)" %  substitutions, re.MULTILINE)
     re_WinningRankOne   = re.compile(u"^%(PLYR)s wins the tournament and receives %(CUR)s(?P<AMT>[\.0-9]+) - congratulations!$" %  substitutions, re.MULTILINE)
     re_WinningRankOther = re.compile(u"^%(PLYR)s finished the tournament in (?P<RANK>[0-9]+)(st|nd|rd|th) place and received %(CUR)s(?P<AMT>[.0-9]+)\.$" %  substitutions, re.MULTILINE)
@@ -222,6 +225,14 @@ class PokerStars(HandHistoryConverter):
             info['currency'] = self.currencies[mg['CURRENCY']]
         if 'MIXED' in mg:
             if mg['MIXED'] is not None: info['mix'] = self.mixes[mg['MIXED']]
+        if 'Zoom' in mg['TITLE']:
+            info['zoom'] = True
+        else:
+            info['zoom'] = False
+        if 'CAP' in mg and mg['CAP'] is not None:
+            info['cap'] = True
+        else:
+            info['cap'] = False
                 
         if 'TOURNO' in mg and mg['TOURNO'] is None:
             info['type'] = 'ring'
@@ -323,6 +334,10 @@ class PokerStars(HandHistoryConverter):
                         else:
                             hand.buyin = int(Decimal(info['BIAMT']))
                             hand.fee = 0
+                    if 'Zoom' in info['TITLE']:
+                        hand.isZoom = True
+                    else:
+                        hand.isZoom = False
             if key == 'LEVEL':
                 hand.level = info[key]
 
@@ -351,7 +366,7 @@ class PokerStars(HandHistoryConverter):
         log.debug("readPlayerStacks")
         m = self.re_PlayerInfo.finditer(hand.handText)
         for a in m:
-            hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), a.group('CASH'))
+            hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), a.group('CASH'), None, a.group('SITOUT'))
 
     def markStreets(self, hand):
 

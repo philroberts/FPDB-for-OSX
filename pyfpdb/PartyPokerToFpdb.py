@@ -138,6 +138,7 @@ class PartyPoker(HandHistoryConverter):
 
     re_NewLevel = re.compile(u"^Blinds(-Antes)?\((?P<SB>[%(NUM)s ]+)/(?P<BB>[%(NUM)s ]+)(?:\s*-\s*(?P<ANTE>[%(NUM)s ]+))?\)" % substitutions, re.VERBOSE|re.MULTILINE|re.DOTALL)
     re_CountedSeats = re.compile("^Total\s+number\s+of\s+players\s*:\s*(?P<COUNTED_SEATS>\d+)", re.MULTILINE)
+    re_Identify     = re.compile(u'\*{5}\sHand\sHistory\s[fF]or\sGame\s\d+\s')
     re_SplitHands   = re.compile('\n\n+')
     re_TailSplitHands   = re.compile('(\x00+)')
     lineSplitter    = '\n'
@@ -150,6 +151,7 @@ class PartyPoker(HandHistoryConverter):
     re_Cancelled     = re.compile('Table\sClosed\s?', re.MULTILINE)
     re_Disconnected  = re.compile('Connection\sLost\sdue\sto\ssome\sreason\s?', re.MULTILINE)
     re_GameStartLine = re.compile('Game\s\#\d+\sstarts', re.MULTILINE)
+    re_PreliminaryHand = re.compile(r"Buy-in  - ")
 
     def allHandsAsList(self):
         list = HandHistoryConverter.allHandsAsList(self)
@@ -225,6 +227,10 @@ class PartyPoker(HandHistoryConverter):
             m = self.re_GameStartLine.match(handText)
             if m and len(handText)<50:
                 message = _("Game start line")
+                raise FpdbHandPartial("Partial hand history: %s" % message)
+            m = self.re_PreliminaryHand.search(handText)
+            if m:
+                message = _("Preliminary hand")
                 raise FpdbHandPartial("Partial hand history: %s" % message)
             tmp = handText[0:200]
             log.error(_("PartyPokerToFpdb.determineGameType: '%s'") % tmp)
@@ -419,16 +425,16 @@ class PartyPoker(HandHistoryConverter):
                     i+=1
                     if i>10: break
                 return startSeat
-
+            
+            re_SplitTest = re.compile(r"(joined the table|left the table|is sitting out)")
             re_JoiningPlayers = re.compile(r"(?P<PLAYERNAME>.+?) has joined the table")
-            re_BBPostingPlayers = re.compile(r"(table|out|^)(?P<PLAYERNAME>.+?) posts big blind")
+            re_BBPostingPlayers = re.compile(r"(?P<PLAYERNAME>.+?) posts big blind", re.MULTILINE)
             re_LeavingPlayers = re.compile(r"(?P<PLAYERNAME>.+?) has left the table")
 
             match_JoiningPlayers = re_JoiningPlayers.findall(hand.handText)
-            match_BBPostingPlayers = re_BBPostingPlayers.findall(hand.handText)
             match_LeavingPlayers = re_LeavingPlayers.findall(hand.handText)
             match_BBPostingPlayers = []
-            m = re_BBPostingPlayers.finditer(hand.handText)
+            m = re_BBPostingPlayers.finditer(re_SplitTest.split(hand.handText)[-1])
             for player in m:
                 match_BBPostingPlayers.append(player.group('PLAYERNAME'))
 

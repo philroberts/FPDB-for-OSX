@@ -56,9 +56,10 @@ class PokerStarsSummary(TourneySummary):
 
     substitutions = {
                      'LEGAL_ISO' : "USD|EUR|GBP|CAD|FPP",    # legal ISO currency codes
-                            'LS' : u"\$|\xe2\x82\xac|\u20AC|" # legal currency symbols - Euro(cp1252, utf-8)
+                            'LS' : u"\$|\xe2\x82\xac|\u20AC||\£|" # legal currency symbols - Euro(cp1252, utf-8)
                     }
-
+    
+    re_Identify = re.compile(u'PokerStars\sTournament\s\#\d+')
     
     re_TourNo = re.compile("\#(?P<TOURNO>[0-9]+),")
 
@@ -76,7 +77,7 @@ class PokerStarsSummary(TourneySummary):
                         (?P<DATETIME>.*$)
                         """ % substitutions ,re.VERBOSE|re.MULTILINE)
 
-    re_Player = re.compile(u"""(?P<RANK>[0-9]+):\s(?P<NAME>.*)\s\(.*\),(\s)?((?P<CUR>[%(LS)s]?)(?P<WINNINGS>[,.0-9]+))?(?P<STILLPLAYING>still\splaying)?((?P<TICKET>Tournament\sTicket)\s\(WSOP\sStep\s(?P<LEVEL>\d)\))?(\s+)?""" % substitutions)
+    re_Player = re.compile(u"""(?P<RANK>[0-9]+):\s(?P<NAME>.+?)\s\(.+?\),(\s)?((?P<CUR>[%(LS)s]?)(?P<WINNINGS>[,.0-9]+))?(?P<STILLPLAYING>still\splaying)?((?P<TICKET>Tournament\sTicket)\s\(WSOP\sStep\s(?P<LEVEL>\d)\))?(\s+)?""" % substitutions)
 
     re_DateTime = re.compile("""(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)""", re.MULTILINE)
 
@@ -170,6 +171,7 @@ class PokerStarsSummary(TourneySummary):
 
         if mg['CURRENCY'] == "$":     self.buyinCurrency="USD"
         elif mg['CURRENCY'] == u"€":  self.buyinCurrency="EUR"
+        elif mg['CURRENCY'] == u"£":  self.buyinCurrency="GBP"
         elif mg['CURRENCY'] == "FPP": self.buyinCurrency="PSFP"
         elif not mg['CURRENCY']:      self.buyinCurrency="play"
         if self.buyin == 0:           self.buyinCurrency="FREE"
@@ -192,6 +194,7 @@ class PokerStarsSummary(TourneySummary):
             if 'CUR' in mg and mg['CUR'] != None:
                 if mg['CUR'] == "$":     self.currency="USD"
                 elif mg['CUR'] == u"€":  self.currency="EUR"
+                elif mg['CUR'] == u"£":  self.currency="GBP"
                 elif mg['CUR'] == "FPP": self.currency="PSFP"
 
             if 'STILLPLAYING' in mg and mg['STILLPLAYING'] != None:

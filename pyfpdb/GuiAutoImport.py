@@ -61,6 +61,7 @@ class GuiAutoImport (threading.Thread):
         self.importer.setCallHud(True)
         self.importer.setQuiet(False)
         self.importer.setHandCount(0)
+        self.importer.setMode('auto')
 
         self.server = settings['db-host']
         self.user = settings['db-user']

@@ -1,0 +1,22 @@
+#Game No : 4552168752
+***** Hand History for Game 12385840660 *****
+$25 USD NL Texas Hold'em - Thursday,December 6, 21:31:27 ICT 2012
+Table Skagen ( Real Money )
+Seat 6 is the button
+Total number of players : 5/6
+seat 1: Player0 ( $48,47 USD )
+seat 3: Player1 ( $31,06 USD )
+seat 4: Hero ( $25 USD )
+seat 5: Player2 ( $26,70 USD )
+seat 6: Player3 ( $21,64 USD )
+Player0 posts small blind [$0,10 USD].
+Player4 posts big blind [$0,25 USD].
+** Dealing down cards **
+Dealt to Hero [ Td, 7d ]
+Player1 folds
+Hero folds
+Player2 raises [ $0,75 USD ]
+Player3 folds
+Player0 folds
+Player4 folds
+Player2 does not show cards.Player2 wins $1,10 USD

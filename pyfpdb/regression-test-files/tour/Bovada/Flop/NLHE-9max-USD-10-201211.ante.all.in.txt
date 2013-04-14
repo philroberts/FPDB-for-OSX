@@ -1,0 +1,27 @@
+Bovada Hand #2690849153: HOLDEM Tournament #1378133 TBL#12, No Limit- Level 24 (24/48) - 2012-11-25 23:56:24
+Seat 1: Big Blind [ME] (166 in chips)
+Seat 5: Dealer (99,834 in chips)
+Dealer : Set dealer/Bring in spot [5] 
+Big Blind [ME] : All-in 166 
+Dealer : Ante chip 240 
+Dealer : Return uncalled portion of bet 74 
+*** HOLE CARDS ***
+Big Blind [ME] : Card dealt to a spot [8h Th] 
+Dealer : Card dealt to a spot [Kc 9d] 
+*** FLOP *** [9s 3h Ac]
+*** TURN *** [9s 3h Ac] [Qd]
+*** RIVER *** [9s 3h Ac Qd] [7c]
+Big Blind [ME] : Showdown [Ac Qd Th 9s 8h] (High Card)
+Dealer : Showdown [9s 9d Ac Kc Qd] (One pair)
+Dealer : Hand Result 332 
+Big Blind [ME] : Ranking 2 
+Big Blind [ME] : Prize Cash [$60] 
+Big Blind [ME] : Stand
+Dealer : Ranking 1 
+Dealer : Prize Cash [$100] 
+Dealer : Stand
+*** SUMMARY ***
+Total Pot(332)
+Board [9s 3h Ac Qd 7c]
+Seat+1: Big Blind lose with High Card [8h Th-Ac Qd Th 9s 8h]  
+Seat+5: Dealer 332  with One pair [Kc 9d-9s 9d Ac Kc Qd] 

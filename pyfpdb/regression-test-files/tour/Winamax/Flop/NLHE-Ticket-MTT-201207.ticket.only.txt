@@ -1,0 +1,41 @@
+Winamax Poker - Tournament "Super Freeroll Stade 1" buyIn: Ticket only level: 0 - HandId: #113666927963930625-1-1341268367 - Holdem no limit (10/20) - 2012/07/02 22:32:47 UTC
+Table: 'Super Freeroll Stade 1(26465144)#0' 10-max (real money) Seat #6 is the button
+Seat 1: Player0 (1500)
+Seat 2: Player1 (1500)
+Seat 3: Player2 (1500)
+Seat 4: Player3 (1500)
+Seat 5: Player4 (1500)
+Seat 6: Player5 (1500)
+Seat 7: Player6 (1500)
+Seat 8: Player7 (1500)
+Seat 9: Player8 (1500)
+Seat 10: Hero (1500)
+*** ANTE/BLINDS ***
+Player6 posts small blind 10
+Player7 posts big blind 20
+Dealt to Hero [Qc 8c]
+*** PRE-FLOP *** 
+Player8 folds
+Hero folds
+Player0 raises 40 to 60
+Player1 folds
+Player2 folds
+Player3 folds
+Player4 raises 120 to 180
+Player5 folds
+Player6 folds
+Player7 folds
+Player0 folds
+Player4 collected 270 from pot
+*** SUMMARY ***
+Total pot 270 | No rake
+Seat 1: Player0 folded on the pre-flop
+Seat 2: Player1 folded on the pre-flop
+Seat 3: Player2 folded on the pre-flop
+Seat 4: Player3 folded on the pre-flop
+Seat 5: Player4 won 270
+Seat 6: Player5 (button) folded on the pre-flop
+Seat 7: Player6 (small blind) folded on the pre-flop
+Seat 8: Player7 (big blind) folded on the pre-flop
+Seat 9: Player8 folded on the pre-flop
+Seat 10: Hero folded on the pre-flop

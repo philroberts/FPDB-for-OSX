@@ -56,10 +56,16 @@ class Site:
         self.hhc_fname = hhc_fname
         # FIXME: rename filter_name to hhc_type
         self.filter_name    = filter_name
-        self.summary        = summary
         self.re_SplitHands  = obj.re_SplitHands
         self.codepage       = obj.codepage
         self.copyGameHeader = obj.copyGameHeader
+        self.summaryInFile  = obj.summaryInFile
+        self.re_Identify    = obj.re_Identify
+        if summary and filter_name != 'iPoker':
+            self.summary = summary
+            self.re_SumIdentify = getattr(__import__(summary), summary, None).re_Identify
+        else:
+            self.summary = None
         self.line_delimiter = self.getDelimiter(filter_name)
         self.line_addendum  = self.getAddendum(filter_name)
         self.getHeroRegex(obj, filter_name)
@@ -95,16 +101,14 @@ class Site:
                 self.re_HeroCards = obj.re_HeroCards
         if filter_name == 'PokerTracker':
             self.re_HeroCards1 = obj.re_HeroCards1
-            self.re_HeroCards2 = obj.re_HeroCards2        
+            self.re_HeroCards2 = obj.re_HeroCards2 
 
 class IdentifySite:
     def __init__(self, config, hhcs = None):
         self.config = config
         self.codepage = ("utf8", "utf-16", "cp1252")
-        self.db = Database.Database(self.config)
         self.sitelist = {}
         self.filelist = {}
-        self.re_identify = self.getSiteRegex()
         self.generateSiteList(hhcs)
 
     def scan(self, path):
@@ -165,11 +169,11 @@ class IdentifySite:
             filter = hhc.converter
             filter_name = filter.replace("ToFpdb", "")
             summary = hhc.summaryImporter
-            result = self.db.get_site_id(site)
-            if len(result) == 1:
-                mod = __import__(filter)
-                obj = getattr(mod, filter_name, None)
-                self.sitelist[result[0][0]] = Site(site, filter, filter_name, summary, obj)
+            mod = __import__(filter)
+            obj = getattr(mod, filter_name, None)
+            self.sitelist[obj.siteId] = Site(site, filter, filter_name, summary, obj)
+        self.re_Identify_PT = getattr(__import__("PokerTrackerToFpdb"), "PokerTracker", None).re_Identify
+        self.re_SumIdentify_PT = getattr(__import__("PokerTrackerSummary"), "PokerTrackerSummary", None).re_Identify
 
     def walkDirectory(self, dir, sitelist):
         """Walks a directory, and executes a callback on each file"""
@@ -188,15 +192,14 @@ class IdentifySite:
             return [x]
 
     def processFile(self, path):
-        if path.endswith('.txt') or path.endswith('.xml') or path.endswith('.log'):
-            if path not in self.filelist:
-                whole_file, kodec = self.read_file(path)
-                if whole_file:
-                    fobj = self.idSite(path, whole_file[:5000], kodec)
-                    if fobj == False: # Site id failed
-                        log.debug(_("DEBUG:") + " " + _("siteId Failed for: %s") % path)
-                    else:
-                        self.filelist[path] = fobj
+        if path not in self.filelist:
+            whole_file, kodec = self.read_file(path)
+            if whole_file:
+                fobj = self.idSite(path, whole_file[:5000], kodec)
+                if fobj == False: # Site id failed
+                    log.debug(_("DEBUG:") + " " + _("siteId Failed for: %s") % path)
+                else:
+                    self.filelist[path] = fobj
 
     def read_file(self, in_path):
         for kodec in self.codepage:
@@ -215,7 +218,7 @@ class IdentifySite:
         f.kodec = kodec
         for id, site in self.sitelist.iteritems():
             filter_name = site.filter_name
-            m = self.re_identify[filter_name].search(whole_file)
+            m = site.re_Identify.search(whole_file)
             if m and filter_name in ('Fulltilt', 'PokerStars'):
                 if re_SplitArchive[filter_name].search(whole_file):
                     f.archive = True
@@ -231,16 +234,15 @@ class IdentifySite:
                 return f
 
         for id, site in self.sitelist.iteritems():
-            filter_name = site.filter_name
-            if site.summary in self.re_identify:
-                m = self.re_identify[site.summary].search(whole_file)
+            if site.summary:
+                m = site.re_SumIdentify.search(whole_file)
                 if m:
                     f.site = site
                     f.ftype = "summary"
                     return f
                 
-        m1 = self.re_identify['PokerTracker'].search(whole_file)
-        m2 = self.re_identify['PokerTrackerSummary'].search(whole_file[:100])
+        m1 = self.re_Identify_PT.search(whole_file)
+        m2 = self.re_SumIdentify_PT.search(whole_file[:100])
         if m1 or m2:
             filter = 'PokerTrackerToFpdb'
             filter_name = 'PokerTracker'

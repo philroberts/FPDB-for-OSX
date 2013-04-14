@@ -1,0 +1,23 @@
+***** History for hand T5-295703542-3 (TOURNAMENT: "Coinflip", S-6169-242, buy-in: $21) *****
+Start hand: Tue Dec 18 01:53:38 MSK 2012
+Table: Table #1 [295703542] (NO_LIMIT TEXAS_HOLDEM 50000/100000, ante: 40000, Chips)
+User: Hero
+Button: seat 5
+Players in round: 2 (5)
+Seat 4: Hero (1)
+Seat 5: Player0 (4)
+Hero posts ante 1
+Player0 posts ante 4
+---
+Dealing pocket cards
+Dealing to Hero: [Ac, 7d]
+--- Dealing flop [8c, Td, 8d]
+--- Dealing turn [Jd]
+--- Dealing river [Th]
+---
+Summary:
+Main pot: 2 won by Player0 (2)
+Rake taken: $0
+Seat 4: Hero (0), net: -1, [Ac, 7d] (TWO_PAIR TEN, EIGHT)
+Seat 5: Player0 (5), net: +1, [8s, 3d] (FULL_HOUSE EIGHT, TEN)
+***** End of hand T5-295703542-3 *****

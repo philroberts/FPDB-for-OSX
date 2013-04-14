@@ -1,0 +1,18 @@
+Hand#3165C58A73000009 - Hyper Turbo NLH Heads-up - $0.75 T12946035 -- CASH -- $0.72 + $0.03 -- 2 Max -- Table 1 -- 0/20/40 NL Hold'em -- 2012/12/04 - 00:53:43
+Dealer: Seat 3
+Seat 3: Hero (265 in chips) 
+Seat 8: Player0 (735 in chips) 
+Hero: posts small blind 20
+Player0: posts big blind 40
+Dealt to Hero [2d,Ks]
+Hero: calls 20
+Player0: raises to 120
+Hero: is all in 225
+Player0: calls 145
+Hero: shows [2d Ks]
+Player0: shows [Qd Qs]
+*** FLOP *** [Qc,As,4s]
+*** TURN *** [Kd]
+*** RIVER *** [Ad]
+***SHOW DOWN***
+Player left the table

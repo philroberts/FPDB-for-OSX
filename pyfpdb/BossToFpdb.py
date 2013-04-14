@@ -59,15 +59,16 @@ class Boss(HandHistoryConverter):
     re_GameInfo     = re.compile("""<HISTORY\sID="(?P<HID>[0-9]+)"\s
                                     SESSION="session(?P<SESSIONID>[0-9]+)\.xml"\s
                                     TABLE="(?P<TABLE>.+?)"\s
-                                    GAME="(?P<GAME>GAME_THM|GAME_OMA|GAME_FCD|GAME_OMAHL)"\sGAMETYPE="[_a-zA-Z]+"\s
+                                    GAME="(?P<GAME>GAME_THM|GAME_OMA|GAME_FCD|GAME_OMAHL|GAME_OMATU)"\sGAMETYPE="[_a-zA-Z]+"\s
                                     GAMEKIND="(?P<GAMEKIND>[_a-zA-Z]+)"\s
                                     TABLECURRENCY="(?P<CURRENCY>[A-Z]+)"\s
                                     LIMIT="(?P<LIMIT>NL|PL|FL)"\s
                                     STAKES="(?P<SB>[.0-9]+)/(?P<BB>[.0-9]+)"\s
                                     DATE="(?P<DATETIME>[0-9]+)"\s
-                                    (TABLETOURNEYID=""\s)?
+                                    (TABLETOURNEYID=".*?"\s)?
                                     WIN="[.0-9]+"\sLOSS="[.0-9]+"
                                     """, re.MULTILINE| re.VERBOSE)
+    re_Identify     = re.compile(u'<HISTORY\sID="\d+"\sSESSION=')
     re_SplitHands   = re.compile('</HISTORY>')
     re_Button       = re.compile('<ACTION TYPE="HAND_DEAL" PLAYER="(?P<BUTTON>[^"]+)">\n<CARD LINK="[0-9b]+"></CARD>\n<CARD LINK="[0-9b]+"></CARD></ACTION>\n<ACTION TYPE="ACTION_', re.MULTILINE)
     re_PlayerInfo   = re.compile('^<PLAYER NAME="(?P<PNAME>.+)" SEAT="(?P<SEAT>[0-9]+)" AMOUNT="(?P<CASH>[.0-9]+)"( STATE="(?P<STATE>STATE_EMPTY|STATE_PLAYING|STATE_SITOUT)" DEALER="(Y|N)")?></PLAYER>', re.MULTILINE)
@@ -82,7 +83,7 @@ class Boss(HandHistoryConverter):
 
     re_PostSB           = re.compile(r'^<ACTION TYPE="HAND_BLINDS" PLAYER="%s" KIND="HAND_SB" VALUE="(?P<SB>[.0-9]+)"></ACTION>' %  player_re, re.MULTILINE)
     re_PostBB           = re.compile(r'^<ACTION TYPE="HAND_BLINDS" PLAYER="%s" KIND="HAND_BB" VALUE="(?P<BB>[.0-9]+)"></ACTION>' %  player_re, re.MULTILINE)
-    re_Antes            = re.compile(r"^%s: posts the ante \$?(?P<ANTE>[.0-9]+)" % player_re, re.MULTILINE)
+    re_Antes            = re.compile(r'^<ACTION TYPE="HAND_ANTE" PLAYER="%s" VALUE="(?P<ANTE>[.0-9]+)"></ACTION>' % player_re, re.MULTILINE)
     re_BringIn          = re.compile(r"^%s: brings[- ]in( low|) for \$?(?P<BRINGIN>[.0-9]+)" % player_re, re.MULTILINE)
     re_FlopPot          = re.compile(r'^<ACTION TYPE="HAND_BOARD" VALUE="BOARD_FLOP" POT="(?P<POT>[.0-9]+)"', re.MULTILINE)
     re_ShowDownPot      = re.compile(r'^<SHOWDOWN NAME="HAND_SHOWDOWN" POT="(?P<POT>[.0-9]+)"', re.MULTILINE)
@@ -129,6 +130,7 @@ class Boss(HandHistoryConverter):
         games = {              # base, category
                   "GAME_THM" : ('hold','holdem'), 
                   "GAME_OMA" : ('hold','omahahi'),
+                "GAME_OMATU" : ('hold','omahahi'),
                 "GAME_OMAHL" : ('hold','omahahilo'),
                   "GAME_FCD" : ('draw','fivedraw'),
                 }
@@ -247,7 +249,6 @@ class Boss(HandHistoryConverter):
             hand.setCommunityCards(street, boardCards)
 
     def readAntes(self, hand):
-        logging.debug(_("reading antes"))
         m = self.re_Antes.finditer(hand.handText)
         for player in m:
             #~ logging.debug("hand.addAnte(%s,%s)" %(player.group('PNAME'), player.group('ANTE')))

@@ -65,7 +65,7 @@ class HandHistoryConverter():
 
     # maybe archive params should be one archive param, then call method in specific converter.   if archive:  convert_archive()
     def __init__( self, config, in_path = '-', out_path = '-', index=0
-                , autostart=True, starsArchive=False, ftpArchive=False, sitename="PokerStars", importType = 'bulk'):
+                , autostart=True, starsArchive=False, ftpArchive=False, sitename="PokerStars"):
         """\
 in_path   (default '-' = sys.stdin)
 out_path  (default '-' = sys.stdout)
@@ -80,16 +80,17 @@ out_path  (default '-' = sys.stdout)
         self.index     = index
         self.starsArchive = starsArchive
         self.ftpArchive = ftpArchive
-        self.importType = importType
 
         self.in_path = in_path
         self.out_path = out_path
+        self.kodec = None
 
         self.processedHands = []
         self.numHands = 0
         self.numErrors = 0
         self.numPartial = 0
-        self.lastGood = False
+        self.isCarraige = False
+        self.autoPop = False
 
         # Tourney object used to store TourneyInfo when called to deal with a Summary file
         self.tourney = None
@@ -123,10 +124,11 @@ HandHistoryConverter: '%(sitename)s'
         if not self.sanityCheck():
             log.warning(_("Failed sanity check"))
             return
-
+        
         self.numHands = 0
+        self.numPartial = 0
         self.numErrors = 0
-        self.lastGood = False
+        lastParsed = None
         handsList = self.allHandsAsList()
         log.debug( _("Hands list is:") + str(handsList))
         log.info(_("Parsing %d hands") % len(handsList))
@@ -137,15 +139,25 @@ HandHistoryConverter: '%(sitename)s'
             for handText in handsList:
                 try:
                     self.processedHands.append(self.processHand(handText))
-                    self.lastGood = True
+                    lastParsed = 'stored'
                 except FpdbHandPartial, e:
                     self.numPartial += 1
-                    self.lastGood = False
+                    lastParsed = 'partial'
                     log.debug("%s" % e)
                 except FpdbParseError:
                     self.numErrors += 1
-                    self.lastGood = False
+                    lastParsed = 'error'
                     log.error(_("FpdbParseError for file '%s'") % self.in_path)
+            if lastParsed in ('partial', 'error') and self.autoPop:
+                self.index -= len(handsList[-1])
+                if self.isCarraige:
+                     self.index -= handsList[-1].count('\n')
+                handsList.pop()
+                if lastParsed=='partial':
+                    self.numPartial -= 1
+                else:
+                    self.numErrors -= 1
+                log.info(_("Removing partially written hand & resetting index"))
             self.numHands = len(handsList)
             endtime = time.time()
             log.info(_("Read %d hands (%d failed) in %.3f seconds") % (self.numHands, (self.numErrors + self.numPartial), endtime - starttime))
@@ -157,7 +169,9 @@ HandHistoryConverter: '%(sitename)s'
                 log.info(_("Summary file '%s' correctly parsed (took %.3f seconds)") % (self.in_path, endtime - starttime))
             else :
                 log.warning(_("Error converting summary file '%s' (took %.3f seconds)") % (self.in_path, endtime - starttime))
-
+    
+    def setAutoPop(self, value):
+        self.autoPop = value
                 
     def progressNotify(self):
         "A callback to the interface while events are pending"
@@ -169,8 +183,14 @@ HandHistoryConverter: '%(sitename)s'
         """Return a list of handtexts in the file at self.in_path"""
         #TODO : any need for this to be generator? e.g. stars support can email one huge file of all hands in a year. Better to read bit by bit than all at once.
         self.readFile()
-        self.obs = self.obs.strip()
+        lenobs = len(self.obs)
+        self.obs = self.obs.rstrip()
+        self.index -= (lenobs - len(self.obs))
+        self.obs = self.obs.lstrip()
+        lenobs = len(self.obs)
         self.obs = self.obs.replace('\r\n', '\n')
+        if lenobs != len(self.obs):
+            self.isCarraige = True
         # maybe archive params should be one archive param, then call method in specific converter?
         # if self.archive:
         #     self.obs = self.convert_archive(self.obs)
@@ -182,7 +202,7 @@ HandHistoryConverter: '%(sitename)s'
             # Remove  ******************** # 1 *************************
             m = re.compile('\*{20}\s#\s\d+\s\*{20,25}\s+', re.MULTILINE)
             self.obs = m.sub('', self.obs)
-
+    
         if self.obs is None or self.obs == "":
             log.info(_("Read no hands from file: '%s'") % self.in_path)
             return []
@@ -190,12 +210,17 @@ HandHistoryConverter: '%(sitename)s'
         # Some HH formats leave dangling text after the split
         # ie. </game> (split) </session>EOL
         # Remove this dangler if less than 50 characters and warn in the log
-        if len(handlist[-1]) <= 50 and self.importType != 'auto':
+        if len(handlist[-1]) <= 50:
+            self.index -= len(handlist[-1])
+            if self.isCarraige:
+                self.index -= handlist[-1].count('\n')
             handlist.pop()
-            log.info(_("Removing text < 50 characters"))
+            log.info(_("Removing text < 50 characters & resetting index"))
         return handlist
 
     def processHand(self, handText):
+        if self.isPartial(handText):
+            raise FpdbHandPartial(_("Could not identify as a %s hand") % self.sitename)
         if self.copyGameHeader:
             gametype = self.parseHeader(handText, self.whole_file)
         else:
@@ -210,6 +235,8 @@ HandHistoryConverter: '%(sitename)s'
             # See if gametype is supported.
             if 'mix' not in gametype: gametype['mix'] = 'none'
             if 'ante' not in gametype: gametype['ante'] = 0
+            if 'zoom' not in gametype: gametype['zoom'] = False
+            if 'cap' not in gametype: gametype['cap'] = False
             type = gametype['type']
             base = gametype['base']
             limit = gametype['limitType']
@@ -232,8 +259,15 @@ HandHistoryConverter: '%(sitename)s'
         else:
             log.error(_("%s Unsupported game type: %s") % (self.sitename, gametype))
             # TODO: pity we don't know the HID at this stage. Log the entire hand?
-
-
+            
+    def isPartial(self, handText):
+        count = 0
+        for m in self.re_Identify.finditer(handText):
+            count += 1
+        if count!=1:
+            return True
+        return False
+    
     # These functions are parse actions that may be overridden by the inheriting class
     # This function should return a list of lists looking like:
     # return [["ring", "hold", "nl"], ["tour", "hold", "nl"]]
@@ -425,6 +459,7 @@ or None if we fail to get the info """
                     in_fh.close()
                     self.obs = self.whole_file[self.index:]
                     self.index = len(self.whole_file)
+                    self.kodec = kodec
                     return True
                 except:
                     pass

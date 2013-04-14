@@ -28,11 +28,11 @@ from TourneySummary import *
 
 class iPokerSummary(TourneySummary):
     substitutions = {
-                     'LS'  : u"\$|\xe2\x82\xac|\xe2\u201a\xac|\u20ac|\xc2\xa3|\£|",
+                     'LS'  : u"\$|\xe2\x82\xac|\xe2\u201a\xac|\u20ac|\xc2\xa3|\£|RSD|",
                      'PLYR': r'(?P<PNAME>[a-zA-Z0-9]+)',
                      'NUM' : r'.,0-9',
                     }
-    currencies = { u'€':'EUR', '$':'USD', '':'T$', u'£':'GBP' }
+    currencies = { u'€':'EUR', '$':'USD', '':'T$', u'£':'GBP', 'RSD': 'RSD'}
 
     limits = { 'No Limit':'nl', 'Pot Limit':'pl', 'Limit':'fl', 'LIMIT':'fl' }
 
@@ -54,6 +54,8 @@ class iPokerSummary(TourneySummary):
                'Omaha Hi-Lo LP' : ('hold','omahahilo'),
                 'Omaha Hi-Lo L' : ('hold','omahahilo'),
             }
+    
+    re_Identify = re.compile(u'<game\sgamecode=')
 
     re_GameType = re.compile(ur"""
             <gametype>(?P<GAME>(5|7)\sCard\sStud\sL|Holdem\s(NL|SL|L|LZ|PL|БЛ)|Omaha\s(L|PL|LP)|Omaha\sHi\-Lo\s(L|PL|LP)|LH\s(?P<LSB>[%(NUM)s]+)/(?P<LBB>[%(NUM)s]+).+?)(\s(%(LS)s)?(?P<SB>[%(NUM)s]+)/(%(LS)s)?(?P<BB>[%(NUM)s]+))?</gametype>\s+?
@@ -77,7 +79,8 @@ class iPokerSummary(TourneySummary):
     re_TotalBuyin = re.compile(r"""(?P<BUYIN>(?P<BIAMT>[%(LS)s%(NUM)s]+)\s\+\s?(?P<BIRAKE>[%(LS)s%(NUM)s]+)?)""" % substitutions, re.MULTILINE|re.VERBOSE)
     re_DateTime1 = re.compile("""(?P<D>[0-9]{2})\-(?P<M>[a-zA-Z]{3})\-(?P<Y>[0-9]{4})\s+(?P<H>[0-9]+):(?P<MIN>[0-9]+)(:(?P<S>[0-9]+))?""", re.MULTILINE)
     re_DateTime2 = re.compile("""(?P<D>[0-9]{2})\/(?P<M>[0-9]{2})\/(?P<Y>[0-9]{4})\s+(?P<H>[0-9]+):(?P<MIN>[0-9]+)(:(?P<S>[0-9]+))?""", re.MULTILINE)
-
+    re_Place     = re.compile("\d+")
+    
     codepage = ["utf-8"]
 
     @staticmethod
@@ -152,11 +155,9 @@ class iPokerSummary(TourneySummary):
 
                 if mg2['CURRENCY']:
                     self.currency = self.currencies[mg2['CURRENCY']]
-                rank = mg2['PLACE']
-                if rank in ('N/A', 'N/D', 'N/V'):
-                    rank = None
-                    winnings = None
-                else:
+                rank, winnings = None, None
+                if self.re_Place.search(mg2['PLACE']):
+                    rank     = int(mg2['PLACE'])
                     winnings = int(100*self.convert_to_decimal(mg2['WIN']))
 
                 self.tourneyName = mg2['NAME'][:40]

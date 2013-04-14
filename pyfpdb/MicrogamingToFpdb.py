@@ -51,6 +51,7 @@ class Microgaming(HandHistoryConverter):
                                     betamount="\d+"\s
                                     istournament="(?P<TOUR>\d)"
                                     """, re.MULTILINE| re.VERBOSE)
+    re_Identify     = re.compile(u'<Game\s(hhversion="\d"\s)?id=\"\d+\"\sdate=\"[\d\-\s:]+\"\sunicodetablename')
     re_SplitHands   = re.compile('\n*----.+.DAT----\n*')
     #re_Button       = re.compile('<ACTION TYPE="HAND_DEAL" PLAYER="(?P<BUTTON>[^"]+)">\n<CARD LINK="[0-9b]+"></CARD>\n<CARD LINK="[0-9b]+"></CARD></ACTION>\n<ACTION TYPE="ACTION_', re.MULTILINE)
     re_PlayerInfo   = re.compile('<Seat num="(?P<SEAT>[0-9]+)" alias="(?P<PNAME>.+)" unicodealias=".+" balance="(?P<CASH>[.0-9]+)" endbalance="[.0-9]+"(?P<BUTTON>\sdealer="true")?', re.MULTILINE)

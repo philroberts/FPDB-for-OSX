@@ -1,0 +1,43 @@
+Stage #C282012441: Holdem  Normal $0.25/$0.50 - 2010-12-07 22:18:14 (ET)
+Table: MONTEGO DR (Real Money) Seat #4 is the dealer
+Seat 4 - Player0 ($12.45 in chips)
+Seat 5 - Player1 ($13.05 in chips)
+Seat 6 - Hero ($5 in chips)
+Seat 1 - Player2 ($27.35 in chips)
+Seat 2 - Player3 ($2.50 in chips)
+Seat 3 - Player4 ($8.78 in chips)
+Player1 - Posts small blind $0.10
+Hero - Posts big blind $0.25
+*** POCKET CARDS ***
+Dealt to Hero [7c 8h] 
+Player2 - Folds
+Player3 - Folds
+Player4 - Raises $0.50 to $0.50
+Player0 - Folds
+Player1 - Calls $0.40
+Hero - Calls $0.25
+*** FLOP *** [Qs Ks 6s]
+Player1 - Bets $0.25
+Hero - Folds
+Player4 - Raises $0.50 to $0.50
+Player1 - Calls $0.25
+*** TURN *** [Qs Ks 6s] [Js]
+Player1 - Checks
+Player4 - Bets $0.50
+Player1 - Calls $0.50
+*** RIVER *** [Qs Ks 6s Js] [10d]
+Player1 - Bets $0.50
+Player4 - Calls $0.50
+*** SHOW DOWN ***
+Player1 - Shows [Ac Ah] (Straight, ten to ace) 
+Player4 - Mucks
+Player1 Collects $4.30 from main pot
+*** SUMMARY ***
+Total Pot($4.50) | Rake ($0.20)
+Board [Qs Ks 6s Js 10d]
+Seat 1: Player2 Folded on the POCKET CARDS
+Seat 2: Player3 Folded on the POCKET CARDS
+Seat 3: Player4 HI: [Mucked] [Kd 6c] 
+Seat 4: Player0 (dealer) Folded on the POCKET CARDS
+Seat 5: Player1 (small blind) won Total ($4.30) HI:($4.30) with Straight, ten to ace [Ac Ah - P:Ah,B:Ks,B:Qs,B:Js,B:10d] 
+Seat 6: Hero (big blind) Folded on the FLOP

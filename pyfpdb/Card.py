@@ -42,23 +42,23 @@ card_map_abbr = [
                 ]
 
 games = {              # base, category
-             'holdem' : ('hold','holdem', 'h', {'PREFLOP':0,'FLOP':1,'TURN':2,'RIVER':3}, 'RIVER', (0,2)), 
-           '2_holdem' : ('hold','holdem', 'h', {'PREFLOP':0,'FLOP':1,'TURN':2,'RIVER':3}, 'RIVER', (0,3)),
-            'omahahi' : ('hold','omaha','h', {'PREFLOP':0,'FLOP':1,'TURN':2,'RIVER':3}, 'RIVER', (0,4)), 
-          'omahahilo' : ('hold','omaha8', 's', {'PREFLOP':0,'FLOP':1,'TURN':2,'RIVER':3}, 'RIVER', (0,4)),
-          '5_omahahi' : ('hold','omaha','h', {'PREFLOP':0,'FLOP':1,'TURN':2,'RIVER':3}, 'RIVER', (0,5)), 
-           '5_studhi' : ('stud','5draw', 'h', {'SECOND': 0, 'THIRD': 1,'FOURTH': 2,'FIFTH': 3}, 'FIFTH', (0,5)), 
-               'razz' : ('stud','razz', 'l', {'THIRD': 0,'FOURTH': 1,'FIFTH': 2,'SIXTH': 3,'SEVENTH': 4}, 'SEVENTH', (0,7)), 
-             'studhi' : ('stud','7stud', 'h', {'THIRD': 0,'FOURTH': 1,'FIFTH': 2,'SIXTH': 3,'SEVENTH': 4}, 'SEVENTH', (0,7)), 
-           'studhilo' : ('stud','7stud8', 's', {'THIRD': 0,'FOURTH': 1,'FIFTH': 2,'SIXTH': 3,'SEVENTH': 4}, 'SEVENTH', (0,7)),
-           '27_3draw' : ('draw','lowball27', 'r', {'DEAL':0, 'DRAWONE':1, 'DRAWTWO':2, 'DRAWTHREE':3}, 'DRAWTHREE', (15,20)),
-           'fivedraw' : ('draw','5draw', 'h', {'DEAL':0, 'DRAWONE':1}, 'DRAWONE', (5,10)),
-             'badugi' : ('draw','lowball27', 'l', {'DEAL':0, 'DRAWONE':1, 'DRAWTWO':2, 'DRAWTHREE':3}, 'DRAWTHREE', (15,20)),
-           '27_1draw' : ('draw','lowball27', 'r', {'DEAL':0, 'DRAWONE':1},'DRAWONE', (5,10))
+             'holdem' : ('hold','holdem', 'h', {'PREFLOP':0,'FLOP':1,'TURN':2,'RIVER':3}, 'RIVER', [(0,2)]), 
+           '2_holdem' : ('hold', None, 'h', {'PREFLOP':0,'FLOP':1,'TURN':2,'RIVER':3}, 'RIVER', [(0,3)]),
+            'omahahi' : ('hold','omaha','h', {'PREFLOP':0,'FLOP':1,'TURN':2,'RIVER':3}, 'RIVER', [(0,4)]), 
+          'omahahilo' : ('hold','omaha8', 's', {'PREFLOP':0,'FLOP':1,'TURN':2,'RIVER':3}, 'RIVER', [(0,4)]),
+          '5_omahahi' : ('hold', None,'h', {'PREFLOP':0,'FLOP':1,'TURN':2,'RIVER':3}, 'RIVER', [(0,5)]), 
+           '5_studhi' : ('stud','holdem', 'h', {'SECOND': 0, 'THIRD': 1,'FOURTH': 2,'FIFTH': 3}, 'FIFTH', [(0,2),(0,3),(0,4),(0,5)]), 
+               'razz' : ('stud', None, 'l', {'THIRD': 0,'FOURTH': 1,'FIFTH': 2,'SIXTH': 3,'SEVENTH': 4}, 'SEVENTH', [(0,3),(0,4),(0,5),(0,6),(0,7)]), 
+             'studhi' : ('stud','7stud', 'h', {'THIRD': 0,'FOURTH': 1,'FIFTH': 2,'SIXTH': 3,'SEVENTH': 4}, 'SEVENTH', [(0,3),(0,4),(0,5),(0,6),(0,7)]), 
+           'studhilo' : ('stud','7stud8', 's', {'THIRD': 0,'FOURTH': 1,'FIFTH': 2,'SIXTH': 3,'SEVENTH': 4}, 'SEVENTH', [(0,3),(0,4),(0,5),(0,6),(0,7)]),
+           '27_3draw' : ('draw','lowball27', 'r', {'DEAL':0, 'DRAWONE':1, 'DRAWTWO':2, 'DRAWTHREE':3}, 'DRAWTHREE', [(0,5),(5,10),(10,15),(15,20)]),
+           'fivedraw' : ('draw','holdem', 'h', {'DEAL':0, 'DRAWONE':1}, 'DRAWONE', [(0,5),(5,10)]),
+             'badugi' : ('draw', None, 'l', {'DEAL':0, 'DRAWONE':1, 'DRAWTWO':2, 'DRAWTHREE':3}, 'DRAWTHREE', [(0,4),(5,9),(10,14),(15,19)]),
+           '27_1draw' : ('draw','lowball27', 'r', {'DEAL':0, 'DRAWONE':1},'DRAWONE', [(0,5),(5,10)]),
+           'a5_3draw' : ('draw', 'lowball', 'l', {'DEAL':0, 'DRAWONE':1, 'DRAWTWO':2, 'DRAWTHREE':3}, 'DRAWTHREE', [(0,5),(5,10),(10,15),(15,20)])
        }
 
-hands = {'hi':{
-            'Nothing' : (1, None),
+hands = {   'Nothing' : (1, None),
             'NoPair'  : (2, 'high card, %s'),
             'OnePair' : (3, 'a pair of %s'),
             'TwoPair' : (4, 'two pair, %s'),
@@ -68,16 +68,6 @@ hands = {'hi':{
             'FlHouse' : (8, 'a full house, %s'),
             'Quads'   : (9, 'four of a kind, %s'),
             'StFlush' : (10, 'a straight flush, %s')
-            },
-         'lo':{
-            'Nothing' : (1, '%s'),
-            'NoPair'  : (2, '%s'),
-            'OnePair' : (3,'a pair of %s'),
-            'TwoPair' : (4, 'two pair, %s'),
-            'Trips'   : (5, 'three of a kind, %s'),
-            'FlHouse' : (8, 'a full house, %s'),
-            'Quads'   : (9, 'four of a kind, %s')
-            }
          }
 
 names = {
@@ -117,10 +107,11 @@ def calcStartCards(hand, player):
         value2 = card_map[hcs[1][0]]
         return twoStartCards(value1, hcs[0][1], value2, hcs[1][1])
     elif hand.gametype['category'] == 'razz':
-        return encodeRazzStartHand(hcs)
+        idx = encodeRazzStartHand(hcs)
+        return idx + 184
     else:
         # FIXME: Only do startCards value for holdem at the moment
-        return 0
+        return 170
 
 
 # The following depends on the exact implementation of twoStartCards.
@@ -136,6 +127,24 @@ DATABASE_FILTERS = {
     'offsuit_connectors': _gap % (_secondcard, _firstcard, 1)
 }
 
+def StartCardRank(idx):
+    rankList =  [
+        ('22',54,12),('32o',160,24),('42o',157,24),('52o',154,24),('62o',164,24),('72o',169,24),('82o',168,24),('92o',166,24),('T2o',161,24),('J2o',153,24),('Q2o',145,24),('K2o',134,24),('A2o',113,24),
+        ('32s',111,8),('33',53,12),('43o',146,24),('53o',140,24),('63o',151,24),('73o',162,24),('83o',167,24),('93o',165,24),('T3o',159,24),('J3o',152,24),('Q3o',144,24),('K3o',132,24),('A3o',105,24),
+        ('42s',103,8),('43s',87,8),('44',51,12),('54o',129,24),('64o',137,24),('74o',147,24),('84o',156,24),('94o',163,24),('T4o',158,24),('J4o',149,24),('Q4o',141,24),('K4o',131,24),('A4o',101,24),
+        ('52s',100,8),('53s',82,8),('54s',66,8),('55',48,12),('65o',125,24),('75o',133,24),('85o',142,24),('95o',150,24),('T5o',155,24),('J5o',148,24),('Q5o',138,24),('K5o',126,24),('A5o',93,24),
+        ('62s',116,8),('63s',91,8),('64s',76,8),('65s',64,8),('66',38,12),('76o',121,24),('86o',127,24),('96o',136,24),('T6o',139,24),('J6o',143,24),('Q6o',135,24),('K6o',123,24),('A6o',107,24),
+        ('72s',122,8),('73s',108,8),('74s',86,8),('75s',71,8),('76s',58,8),('77',29,12),('87o',114,24),('97o',119,24),('T7o',124,24),('J7o',128,24),('Q7o',130,24),('K7o',117,24),('A7o',94,24),
+        ('82s',120,8),('83s',118,8),('84s',99,8),('85s',81,8),('86s',63,8),('87s',49,8),('88',21,12),('98o',97,24),('T8o',95,24),('J8o',106,24),('Q8o',109,24),('K8o',104,24),('A8o',83,24),
+        ('92s',115,8),('93s',112,8),('94s',110,8),('95s',89,8),('96s',70,8),('97s',52,8),('98s',42,8),('99',16,12),('T9o',69,24),('J9o',74,24),('Q9o',78,24),('K9o',73,24),('A9o',67,24),
+        ('T2s',102,8),('T3s',98,8),('T4s',96,8),('T5s',92,8),('T6s',77,8),('T7s',56,8),('T8s',40,8),('T9s',23,8),('TT',9,12),('JTo',45,24),('QTo',46,24),('KTo',41,24),('ATo',36,24),
+        ('J2s',90,8),('J3s',88,8),('J4s',85,8),('J5s',84,8),('J6s',80,8),('J7s',61,8),('J8s',44,8),('J9s',26,8),('JTs',17,8),('JJ',5,12),('QJo',32,24),('KJo',28,24),('AJo',24,24),
+        ('Q2s',79,8),('Q3s',75,8),('Q4s',72,8),('Q5s',68,8),('Q6s',65,8),('Q7s',59,8),('Q8s',43,8),('Q9s',27,8),('QTs',15,8),('QJs',13,8),('QQ',3,12),('KQo',19,24),('AQo',18,24),
+        ('K2s',62,8),('K3s',60,8),('K4s',57,8),('K5s',55,8),('K6s',50,8),('K7s',47,8),('K8s',37,8),('K9s',22,8),('KTs',14,8),('KJs',11,8),('KQs',7,8),('KK',2,12),('AKo',10,24),
+        ('A2s',39,8),('A3s',34,8),('A4s',33,8),('A5s',30,8),('A6s',35,8),('A7s',31,8),('A8s',25,8),('A9s',20,8),('ATs',12,8),('AJs',8,8),('AQs',6,8),('AKs',4,8),('AA',1,12),('xx',170,0)      
+        ]
+    return rankList[idx]
+
 def twoStartCards(value1, suit1, value2, suit2):
     """ Function to convert 2 value,suit pairs into a Holdem style starting hand e.g. AQo
         Incoming values should be ints 2-14 (2,3,...K,A), suits are 'd'/'h'/'c'/'s'
@@ -143,7 +152,6 @@ def twoStartCards(value1, suit1, value2, suit2):
         (y+2) represents rank of second card (2=2 .. 14=Ace)
         If x > y then pair is suited, if x < y then unsuited
         Examples:
-           0  Unknown / Illegal cards
            1  22
            2  32o
            3  42o
@@ -152,10 +160,11 @@ def twoStartCards(value1, suit1, value2, suit2):
           15  33
           16  42o
               ...
-         170  AA
+         169  AA
+         170  Unknown / Illegal cards
     """
     if value1 is None or value1 < 2 or value1 > 14 or value2 is None or value2 < 2 or value2 > 14:
-        ret = 0
+        ret = 170
     elif value1 == value2: # pairs
         ret = (13 * (value2-2) + (value2-2) ) + 1
     elif suit1 == suit2:
@@ -176,7 +185,7 @@ def twoStartCardString(card):
     """ Function to convert an int representing 2 holdem hole cards (as created by twoStartCards)
         into a string like AQo """
     ret = 'xx'
-    if card > 0:
+    if card > 0 and card < 170:
         s = ('2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A')
         x = (card-1) / 13
         y = (card-1) - 13 * x
