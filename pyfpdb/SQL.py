@@ -1371,7 +1371,6 @@ class Sql:
             self.query['createHandsPotsTable'] = """CREATE TABLE HandsPots (
                         id INTEGER PRIMARY KEY,
                         handId INT NOT NULL,
-                        playerId INT NOT NULL,
                         potId INT,
                         boardId INT,
                         hiLo TEXT NOT NULL,
