@@ -377,7 +377,7 @@ class PartyPoker(HandHistoryConverter):
                     else:
                         log.error(_("PartyPokerToFpdb.readHandInfo: Failed to detect currency Hand ID: '%s' - '%s'") % (hand.handid, info[key]))
                         raise FpdbParseError
-                    info[key] = info[key].strip(u'$€')
+                    info[key] = self.clearMoneyString(info[key].strip(u'$€'))
                     hand.buyin = int(100*Decimal(info[key]))
             if key == 'LEVEL':
                 hand.level = info[key]
