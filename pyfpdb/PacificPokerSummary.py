@@ -106,20 +106,20 @@ class PacificPokerSummary(TourneySummary):
                 self.buyin = 0
                 self.fee = 0
             else:
-                self.buyin = int(100*convert_to_decimal(mg['BIAMT']))
+                self.buyin = int(100*self.convert_to_decimal(mg['BIAMT']))
                 if mg['BIRAKE'] is None:
                     self.fee = 0
                 else:
-                    self.fee = int(100*convert_to_decimal(mg['BIRAKE']))
+                    self.fee = int(100*self.convert_to_decimal(mg['BIRAKE']))
          
         self.entries   = mg['ENTRIES']
         self.prizepool = self.buyin * int(self.entries)
         if 'REBUYAMT' in mg and mg['REBUYAMT'] != None:
             self.isRebuy   = True
-            self.rebuyCost = int(100*convert_to_decimal(mg['REBUYAMT']))
+            self.rebuyCost = int(100*self.convert_to_decimal(mg['REBUYAMT']))
         if 'ADDON' in mg and mg['ADDON'] != None:
             self.isAddOn = True
-            self.addOnCost = int(100*convert_to_decimal(mg['ADDON']))
+            self.addOnCost = int(100*self.convert_to_decimal(mg['ADDON']))
         #self.startTime = datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S")
         
         if 'CURRENCY1' in mg and mg['CURRENCY1']:
@@ -146,7 +146,7 @@ class PacificPokerSummary(TourneySummary):
         koCount = 0
         
         if 'WINNINGS' in mg and mg['WINNINGS'] != None:
-            winnings = int(100*convert_to_decimal(mg['WINNINGS']))
+            winnings = int(100*self.convert_to_decimal(mg['WINNINGS']))
             if mg.get('WCURRENCY'):
                 if mg['WCURRENCY'] == "$":     self.currency="USD"
                 elif mg['WCURRENCY'] == u"€":  self.currency="EUR"
@@ -160,10 +160,8 @@ class PacificPokerSummary(TourneySummary):
         
         self.addPlayer(rank, player, winnings, self.currency, rebuyCount, addOnCount, koCount)
 
-def convert_to_decimal(string):
-    dec = string.strip(u'€&euro;\u20ac$ ')
-    dec = dec.replace(u',','.')
-    dec = dec.replace(u' ','')
-    dec = Decimal(dec)
-    return dec
+    def convert_to_decimal(self, string):
+        dec = self.clearMoneyString(string)
+        dec = Decimal(dec)
+        return dec
 

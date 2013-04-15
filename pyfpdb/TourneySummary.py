@@ -38,6 +38,7 @@ import pprint
 import DerivedStats
 import Card
 import Database
+from HandHistoryConverter import HandHistoryConverter
 
 log = logging.getLogger("parser")
 
@@ -210,7 +211,8 @@ class TourneySummary(object):
     @staticmethod
     def clearMoneyString(money):
         "Renders 'numbers' like '1 200' and '2,000'"
-        return money.replace(' ', '').replace(',', '')
+        money = money.strip(u'€&euro;\u20ac$ ')
+        return HandHistoryConverter.clearMoneyString(money)
     
     def insertOrUpdate(self, printtest = False):
         # First : check all needed info is filled in the object, especially for the initial select

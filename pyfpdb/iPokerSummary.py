@@ -186,9 +186,7 @@ class iPokerSummary(TourneySummary):
 
 
     def convert_to_decimal(self, string):
-        dec = string.strip(u'$£€&euro;\u20ac')
-        dec = dec.replace(u',','.')
-        dec = dec.replace(u' ','')
+        dec = self.clearMoneyString(string)
         m = self.re_Buyin.search(dec)
         if m:
             dec = Decimal(m.group('BUYIN'))

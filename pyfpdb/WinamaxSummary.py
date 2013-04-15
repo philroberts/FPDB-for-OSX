@@ -153,7 +153,7 @@ class WinamaxSummary(TourneySummary):
             if is_satellite:
                 # Ticket
                 if is_satellite.group('VALUE'):
-                    winnings = convert_to_decimal(is_satellite.group('VALUE'))
+                    winnings = self.convert_to_decimal(is_satellite.group('VALUE'))
                 else: # Value not specified
                     rank = 1
                     # FIXME: Do lookup here
@@ -164,7 +164,7 @@ class WinamaxSummary(TourneySummary):
                 if winnings > 0:
                     rank = 1
             else:
-                winnings = convert_to_decimal(mg['WINNINGS'])
+                winnings = self.convert_to_decimal(mg['WINNINGS'])
 
             winnings = int(100*Decimal(winnings))
             #print "DEBUG: %s) %s: %s"  %(rank, name, winnings)
@@ -201,7 +201,7 @@ class WinamaxSummary(TourneySummary):
         if 'ENTRIES' in mg:
             self.entries   = mg['ENTRIES']
         if 'PRIZEPOOL' in mg:
-            self.prizepool = int(100*convert_to_decimal(mg['PRIZEPOOL']))
+            self.prizepool = int(100*self.convert_to_decimal(mg['PRIZEPOOL']))
         if 'DATETIME' in mg:
             self.startTime = datetime.datetime.strptime(mg['DATETIME'], "%Y/%m/%d %H:%M:%S UTC")
 
@@ -225,8 +225,8 @@ class WinamaxSummary(TourneySummary):
                 else:
                     self.buyinCurrency="play"
                 rake = mg['BIRAKE'].strip('\r')
-                self.buyin = int(100*convert_to_decimal(mg['BIAMT']))
-                self.fee   = int(100*convert_to_decimal(rake))
+                self.buyin = int(100*self.convert_to_decimal(mg['BIAMT']))
+                self.fee   = int(100*self.convert_to_decimal(rake))
     
                 if self.buyin == 0 and self.fee == 0:
                     self.buyinCurrency = "FREE"
@@ -234,14 +234,14 @@ class WinamaxSummary(TourneySummary):
         if 'REBUY' in mg and mg['REBUY'] != None:
             self.isRebuy   = True
             rebuyrake = mg['REBUYRAKE'].strip('\r')
-            rebuyamt = int(100*convert_to_decimal(mg['REBUYAMT']))
-            rebuyfee   = int(100*convert_to_decimal(rebuyrake))
+            rebuyamt = int(100*self.convert_to_decimal(mg['REBUYAMT']))
+            rebuyfee   = int(100*self.convert_to_decimal(rebuyrake))
             self.rebuyCost = rebuyamt + rebuyfee
         if 'ADDON' in mg and mg['ADDON'] != None:
             self.isAddOn = True
             addonrake = mg['ADDONRAKE'].strip('\r')
-            addonamt = int(100*convert_to_decimal(mg['ADDONAMT']))
-            addonfee   = int(100*convert_to_decimal(addonrake))
+            addonamt = int(100*self.convert_to_decimal(mg['ADDONAMT']))
+            addonfee   = int(100*self.convert_to_decimal(addonrake))
             self.addOnCost = addonamt + addonfee
 
         if 'TOURNO' in mg:
@@ -266,7 +266,7 @@ class WinamaxSummary(TourneySummary):
                     self.currency="WIFP"
                 else:
                     self.currency="play"
-                winnings = int(100*convert_to_decimal(mg['WINNINGS']))
+                winnings = int(100*self.convert_to_decimal(mg['WINNINGS']))
             if 'PREBUYS' in mg and mg['PREBUYS'] != None:
                 rebuyCount = int(mg['PREBUYS'])
             if 'PADDONS' in mg and mg['PADDONS'] != None:
@@ -275,10 +275,8 @@ class WinamaxSummary(TourneySummary):
             #print "DEBUG: addPlayer(%s, %s, %s, %s, %s, %s, %s)" %(rank, name, winnings, self.currency, rebuyCount, addOnCount, koCount)
             self.addPlayer(rank, name, winnings, self.currency, rebuyCount, addOnCount, koCount)
 
-def convert_to_decimal(string):
-    dec = string.strip(u'€&euro;\u20ac')
-    dec = dec.replace(u',','.')
-    dec = dec.replace(u' ','')
-    dec = Decimal(dec)
-    return dec
+    def convert_to_decimal(self, string):
+        dec = self.clearMoneyString(string)
+        dec = Decimal(dec)
+        return dec
 

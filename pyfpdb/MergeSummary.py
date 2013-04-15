@@ -180,7 +180,7 @@ class MergeSummary(TourneySummary):
                 if tourneyNameFull not in hhc.SnG_Structures:
                     log.error(_("MergeSummary.determineGameType: No match in SnG_Structures"))
                     continue
-                    #raise FpdbParseError
+                    raise FpdbParseError
                 
                 self.buyin     = int(100*hhc.SnG_Structures[tourneyNameFull]['buyIn'])
                 self.fee       = int(100*hhc.SnG_Structures[tourneyNameFull]['fee'])
@@ -316,23 +316,23 @@ class MergeSummary(TourneySummary):
                 m = self.re_HTMLPrizepool.search(str(p))
                 if m:
                     #print "DEBUG: re_HTMLPrizepool: '%s'" % m.group('PRIZEPOOL')
-                    self.prizepool = int(convert_to_decimal(m.group('PRIZEPOOL').strip()))
+                    self.prizepool = int(self.convert_to_decimal(m.group('PRIZEPOOL').strip()))
                 m = self.re_HTMLBuyIn.search(str(p))
                 if m:
                     #print "DEBUG: re_HTMLBuyIn: '%s'" % m.group('BUYIN')
-                    self.buyin = int(100*convert_to_decimal(m.group('BUYIN').strip()))
+                    self.buyin = int(100*self.convert_to_decimal(m.group('BUYIN').strip()))
                     if self.buyin==0:
                         self.buyinCurrency="FREE"
                 m = self.re_HTMLFee.search(str(p))
                 if m:
                     #print "DEBUG: re_HTMLFee: '%s'" % m.group('FEE')
-                    self.fee = int(100*convert_to_decimal(m.group('FEE').strip()))
+                    self.fee = int(100*self.convert_to_decimal(m.group('FEE').strip()))
                 m = self.re_HTMLBounty.search(str(p))
                 if m:
                     #print "DEBUG: re_HTMLBounty: '%s'" % m.group('KOBOUNTY')
                     if m.group('KOBOUNTY').strip() != '0.00':
                         self.isKO = True
-                        self.koBounty = int(100*convert_to_decimal(m.group('KOBOUNTY').strip()))
+                        self.koBounty = int(100*self.convert_to_decimal(m.group('KOBOUNTY').strip()))
                 m = self.re_HTMLAddons.search(str(p))
                 if m:
                     #print "DEBUG: re_HTMLAddons: '%s'" % m.group('ADDON')
@@ -372,13 +372,11 @@ class MergeSummary(TourneySummary):
                             self.currency="USD"
                         elif m.group('WINNINGS').find(u"€")!=-1:
                             self.currency="EUR"
-                        winnings = int(100*convert_to_decimal(m.group('WINNINGS')))
+                        winnings = int(100*self.convert_to_decimal(m.group('WINNINGS')))
                     self.addPlayer(rank, name, winnings, self.currency, rebuyCount, addOnCount, koCount)
                 
-def convert_to_decimal(string):
-    dec = string.strip(u'€&euro;\u20ac$')
-    dec = dec.replace(u',','.')
-    dec = dec.replace(u' ','')
-    dec = Decimal(dec)
-    return dec
+    def convert_to_decimal(self, string):
+        dec = self.clearMoneyString(string)
+        dec = Decimal(dec)
+        return dec
 

@@ -141,7 +141,7 @@ class BovadaSummary(TourneySummary):
                     self.currency="USD"
                 elif re.match("^[0-9+]*$", m.group('WINNINGS')):
                     self.currency="play"
-                winnings = int(100*Decimal(self.clearMoneyString(m.group('WINNINGS').strip(u'$'))))
+                winnings = int(100*Decimal(self.clearMoneyString(m.group('WINNINGS'))))
                 
             m = self.re_Rebuyin.finditer(self.summaryText)
             for a in m: rebuys += 1
