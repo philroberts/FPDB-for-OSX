@@ -396,9 +396,12 @@ class iPoker(HandHistoryConverter):
     def readCommunityCards(self, hand, street):
         cards = []
         m = self.re_Board.search(hand.streets[street])
-        cards = m.group('CARDS').split(' ')
-        cards = [c[1:].replace('10', 'T') + c[0].lower() for c in cards]
-        hand.setCommunityCards(street, cards)
+        if m:
+            cards = m.group('CARDS').split(' ')
+            cards = [c[1:].replace('10', 'T') + c[0].lower() for c in cards]
+            hand.setCommunityCards(street, cards)
+        else:
+            raise FpdbHandPartial(hid=hand.handid)
 
     def readAntes(self, hand):
         m = self.re_Ante.finditer(hand.handText)

@@ -1324,7 +1324,7 @@ class Sql:
                         hiLo char(1) NOT NULL,
                         rankId SMALLINT NOT NULL, FOREIGN KEY (rankId) REFERENCES Rank(id),
                         value BIGINT,
-                        cards VARCHAR(5)
+                        cards VARCHAR(5),
                         ev INT)"""
         elif db_server == 'sqlite':
             self.query['createHandsStoveTable'] = """CREATE TABLE HandsStove (
@@ -1371,7 +1371,6 @@ class Sql:
             self.query['createHandsPotsTable'] = """CREATE TABLE HandsPots (
                         id INTEGER PRIMARY KEY,
                         handId INT NOT NULL,
-                        playerId INT NOT NULL,
                         potId INT,
                         boardId INT,
                         hiLo TEXT NOT NULL,

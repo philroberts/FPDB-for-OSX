@@ -540,12 +540,13 @@ class DerivedStats():
                     hcs = hand.join_holecards(p, asList=True)
                     if 'omaha' not in evalgame:
                         holes = [str(c) for c in hcs[hrange[-1][0]:hrange[-1][1]] + board]
-                        board = []
+                        bcards = []
                     else:
                         holes = [str(c) for c in hcs[hrange[-1][0]:hrange[-1][1]]]
+                        bcards = [str(b) for b in board]
                     if '0x' not in hcs:
                         holecards.append(holes)
-                win = pokereval.winners(game = evalgame, pockets = holecards, board = board)
+                win = pokereval.winners(game = evalgame, pockets = holecards, board = bcards)
                 totalrake = hand.rakes.get('rake')
                 if not totalrake:
                     totalpot = hand.rakes.get('pot')
@@ -626,30 +627,30 @@ class DerivedStats():
                                     playersPots[pname][1].append(data)
         
             for p, (total, info) in playersPots.iteritems():
-                if hand.collectees.get(p):
+                if hand.collectees.get(p) and info:
                     potFound[p][1] = hand.collectees.get(p)
-                for item in info:
-                    split = [n for n in item['winners'] if len(playersPots[n][1])==1]
-                    if len(info)==1:
-                        ppot = item['ppot']
-                        rake = ppot - hand.collectees[p]
-                        collected = hand.collectees[p]
-                    elif item==info[-1]:
-                        ppot, collected = potFound[p]
-                        rake = ppot - collected
-                    elif len(split)>0 and not item['mod']:
-                        ppot = item['ppot']
-                        collected = min([hand.collectees[s] for s in split] + [ppot])
-                        rake = ppot - collected
-                    else:
-                        ppot = item['ppot']
-                        totalrake = total - hand.collectees[p]
-                        rake = (totalrake * (ppot/total)).quantize(Decimal("0.01"))
-                        collected = ppot - rake 
-                    potFound[p][0] -= ppot
-                    potFound[p][1] -= collected
-                    insert = [None, item['potId'], item['boardId'], item['hiLo'][0], hand.dbid_pids[p], int(item['ppot']*100), int(collected*100), int(rake*100)]   
-                    self.handspots.append(insert)
+                    for item in info:
+                        split = [n for n in item['winners'] if len(playersPots[n][1])==1]
+                        if len(info)==1:
+                            ppot = item['ppot']
+                            rake = ppot - hand.collectees[p]
+                            collected = hand.collectees[p]
+                        elif item==info[-1]:
+                            ppot, collected = potFound[p]
+                            rake = ppot - collected
+                        elif len(split)>0 and not item['mod']:
+                            ppot = item['ppot']
+                            collected = min([hand.collectees[s] for s in split] + [ppot])
+                            rake = ppot - collected
+                        else:
+                            ppot = item['ppot']
+                            totalrake = total - hand.collectees[p]
+                            rake = (totalrake * (ppot/total)).quantize(Decimal("0.01"))
+                            collected = ppot - rake 
+                        potFound[p][0] -= ppot
+                        potFound[p][1] -= collected
+                        insert = [None, item['potId'], item['boardId'], item['hiLo'][0], hand.dbid_pids[p], int(item['ppot']*100), int(collected*100), int(rake*100)]   
+                        self.handspots.append(insert)
 
     def setPositions(self, hand):
         """Sets the position for each player in HandsPlayers

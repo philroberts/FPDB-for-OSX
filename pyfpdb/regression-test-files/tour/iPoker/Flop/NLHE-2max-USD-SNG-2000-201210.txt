@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="utf-8"?>
+	<session sessioncode="5945331139">  
+			<general>  
+	    	<mode>real</mode>
+	      		<gametype>Holdem NL</gametype>  
+	          <tablename>"TURBO" NLH Heads Up $2,000, 770109371</tablename>
+	          <tournamentcurrency></tournamentcurrency>  
+	          <duration>00:11</duration>  
+	          <gamecount>20</gamecount>  
+	          <startdate>2012-10-21 08:10:09</startdate>  
+	          <currency>USD</currency>  
+	          <nickname>Hero</nickname>  
+	          <bets>6,780</bets>  
+	          <wins>5,280</wins>  
+	          <chipsin>0</chipsin>
+			  		<chipsout>0</chipsout>
+			  		<ipoints>3,750</ipoints>
+        		<statuspoints>1,250</statuspoints>
+			  		<awardpoints>3,750</awardpoints>
+			  		<is_asian>0</is_asian>
+	          <tournamentname>"TURBO" NLH Heads Up $2,000</tournamentname><place>2</place><buyin>$2,000.00+$50.00</buyin> <totalbuyin>$2,050.00</totalbuyin> <ipoints>3,750</ipoints> <win>$0.00</win> <statuspoints>1,250</statuspoints> <awardpoints>3,750</awardpoints>  
+	    </general>  
+	    <game gamecode="4335364086">
+		 <general>
+		  <startdate>2012-10-21 08:10:09</startdate>		  
+		  <players>
+		   <player seat="3" name="Player0" chips="1,500" dealer="1" win="0" bet="40" rebuy="0" addon="0"/><player seat="8" name="Hero" chips="1,500" dealer="0" win="160" bet="120" rebuy="0" addon="0"/>
+		  </players>
+		 </general>
+		 <round no="0">
+	 <action no="1" player="Player0" type="1" sum="10" cards="[cards]"/><action no="2" player="Hero" type="2" sum="20" cards="[cards]"/>
+	</round>
+	<round no="1">
+	 <cards type="Pocket" player="Player0">X X</cards><action no="3" player="Player0" type="23" sum="40" cards=""/><action no="5" player="Player0" type="0" sum="0" cards=""/><cards type="Pocket" player="Hero">C4 S4</cards><action no="4" player="Hero" type="23" sum="120" cards=""/>
+	</round>
+	
+		</game><game gamecode="4335364135">
+		 <general>
+		  <startdate>2012-10-21 08:10:26</startdate>		  
+		  <players>
+		   <player seat="3" name="Player0" chips="1,460" dealer="0" win="0" bet="490" rebuy="0" addon="0"/><player seat="8" name="Hero" chips="1,540" dealer="1" win="2,030" bet="1,540" rebuy="0" addon="0"/>
+		  </players>
+		 </general>
+		 <round no="0">
+	 <action no="2" player="Player0" type="2" sum="20" cards="[cards]"/><action no="1" player="Hero" type="1" sum="10" cards="[cards]"/>
+	</round>
+	<round no="1">
+	 <cards type="Pocket" player="Player0">X X</cards><action no="4" player="Player0" type="3" sum="20" cards=""/><cards type="Pocket" player="Hero">S6 S3</cards><action no="3" player="Hero" type="23" sum="40" cards=""/>
+	</round>
+	<round no="2">
+	 <cards type="Flop" player="">S4 C10 CJ</cards><action no="5" player="Player0" type="4" sum="0" cards=""/><action no="7" player="Player0" type="3" sum="60" cards=""/><action no="6" player="Hero" type="5" sum="60" cards=""/>
+	</round>
+	<round no="3">
+	 <cards type="Turn" player="">S9</cards><action no="8" player="Player0" type="4" sum="0" cards=""/><action no="10" player="Player0" type="23" sum="390" cards=""/><action no="9" player="Hero" type="5" sum="150" cards=""/><action no="11" player="Hero" type="3" sum="240" cards=""/>
+	</round>
+	<round no="4">
+	 <cards type="River" player="">SK</cards><action no="12" player="Player0" type="4" sum="0" cards=""/><action no="14" player="Player0" type="0" sum="0" cards=""/><action no="13" player="Hero" type="5" sum="1,050" cards=""/>
+	</round>
+	
+		</game><game gamecode="4335364358">
+		 <general>
+		  <startdate>2012-10-21 08:11:46</startdate>		  
+		  <players>
+		   <player seat="3" name="Player0" chips="970" dealer="1" win="0" bet="40" rebuy="0" addon="0"/><player seat="8" name="Hero" chips="2,030" dealer="0" win="160" bet="120" rebuy="0" addon="0"/>
+		  </players>
+		 </general>
+		 <round no="0">
+	 <action no="1" player="Player0" type="1" sum="10" cards="[cards]"/><action no="2" player="Hero" type="2" sum="20" cards="[cards]"/>
+	</round>
+	<round no="1">
+	 <cards type="Pocket" player="Player0">X X</cards><action no="3" player="Player0" type="23" sum="40" cards=""/><action no="5" player="Player0" type="0" sum="0" cards=""/><cards type="Pocket" player="Hero">CA SA</cards><action no="4" player="Hero" type="23" sum="120" cards=""/>
+	</round>
+	
+		</game><game gamecode="4335364412">
+		 <general>
+		  <startdate>2012-10-21 08:12:03</startdate>		  
+		  <players>
+		   <player seat="3" name="Player0" chips="930" dealer="0" win="0" bet="20" rebuy="0" addon="0"/><player seat="8" name="Hero" chips="2,070" dealer="1" win="60" bet="40" rebuy="0" addon="0"/>
+		  </players>
+		 </general>
+		 <round no="0">
+	 <action no="2" player="Player0" type="2" sum="20" cards="[cards]"/><action no="1" player="Hero" type="1" sum="10" cards="[cards]"/>
+	</round>
+	<round no="1">
+	 <cards type="Pocket" player="Player0">X X</cards><action no="4" player="Player0" type="0" sum="0" cards=""/><cards type="Pocket" player="Hero">HA DA</cards><action no="3" player="Hero" type="23" sum="40" cards=""/>
+	</round>
+	
+		</game><game gamecode="4335364456">
+		 <general>
+		  <startdate>2012-10-21 08:12:17</startdate>		  
+		  <players>
+		   <player seat="3" name="Player0" chips="910" dealer="1" win="0" bet="40" rebuy="0" addon="0"/><player seat="8" name="Hero" chips="2,090" dealer="0" win="140" bet="100" rebuy="0" addon="0"/>
+		  </players>
+		 </general>
+		 <round no="0">
+	 <action no="1" player="Player0" type="1" sum="10" cards="[cards]"/><action no="2" player="Hero" type="2" sum="20" cards="[cards]"/>
+	</round>
+	<round no="1">
+	 <cards type="Pocket" player="Player0">X X</cards><action no="3" player="Player0" type="23" sum="40" cards=""/><cards type="Pocket" player="Hero">DK SJ</cards><action no="4" player="Hero" type="3" sum="20" cards=""/>
+	</round>
+	<round no="2">
+	 <cards type="Flop" player="">HJ S4 S6</cards><action no="6" player="Player0" type="4" sum="0" cards=""/><action no="5" player="Hero" type="4" sum="0" cards=""/>
+	</round>
+	<round no="3">
+	 <cards type="Turn" player="">S9</cards><action no="8" player="Player0" type="0" sum="0" cards=""/><action no="7" player="Hero" type="5" sum="60" cards=""/>
+	</round>
+	
+		</game><game gamecode="4335364531">
+		 <general>
+		  <startdate>2012-10-21 08:12:41</startdate>		  
+		  <players>
+		   <player seat="3" name="Player0" chips="870" dealer="0" win="500" bet="250" rebuy="0" addon="0"/><player seat="8" name="Hero" chips="2,130" dealer="1" win="0" bet="250" rebuy="0" addon="0"/>
+		  </players>
+		 </general>
+		 <round no="0">
+	 <action no="2" player="Player0" type="2" sum="20" cards="[cards]"/><action no="1" player="Hero" type="1" sum="10" cards="[cards]"/>
+	</round>
+	<round no="1">
+	 <cards type="Pocket" player="Player0">S3 DA</cards><action no="4" player="Player0" type="3" sum="20" cards=""/><cards type="Pocket" player="Hero">C8 SQ</cards><action no="3" player="Hero" type="23" sum="40" cards=""/>
+	</round>
+	<round no="2">
+	 <cards type="Flop" player="">S4 H2 D10</cards><action no="5" player="Player0" type="4" sum="0" cards=""/><action no="7" player="Player0" type="3" sum="60" cards=""/><action no="6" player="Hero" type="5" sum="60" cards=""/>
+	</round>
+	<round no="3">
+	 <cards type="Turn" player="">D9</cards><action no="8" player="Player0" type="4" sum="0" cards=""/><action no="9" player="Hero" type="4" sum="0" cards=""/>
+	</round>
+	<round no="4">
+	 <cards type="River" player="">C3</cards><action no="10" player="Player0" type="4" sum="0" cards=""/><action no="12" player="Player0" type="3" sum="150" cards=""/><action no="11" player="Hero" type="5" sum="150" cards=""/>
+	</round>
+	
+		</game><game gamecode="4335365500">
+		 <general>
+		  <startdate>2012-10-21 08:13:31</startdate>		  
+		  <players>
+		   <player seat="3" name="Player0" chips="1,120" dealer="1" win="120" bet="80" rebuy="0" addon="0"/><player seat="8" name="Hero" chips="1,880" dealer="0" win="0" bet="40" rebuy="0" addon="0"/>
+		  </players>
+		 </general>
+		 <round no="0">
+	 <action no="1" player="Player0" type="1" sum="10" cards="[cards]"/><action no="2" player="Hero" type="2" sum="20" cards="[cards]"/>
+	</round>
+	<round no="1">
+	 <cards type="Pocket" player="Player0">X X</cards><action no="3" player="Player0" type="23" sum="40" cards=""/><cards type="Pocket" player="Hero">HA S8</cards><action no="4" player="Hero" type="3" sum="20" cards=""/>
+	</round>
+	<round no="2">
+	 <cards type="Flop" player="">HJ C10 S5</cards><action no="6" player="Player0" type="5" sum="40" cards=""/><action no="5" player="Hero" type="4" sum="0" cards=""/><action no="7" player="Hero" type="0" sum="0" cards=""/>
+	</round>
+	
+		</game><game gamecode="4335365568">
+		 <general>
+		  <startdate>2012-10-21 08:13:54</startdate>		  
+		  <players>
+		   <player seat="3" name="Player0" chips="1,160" dealer="0" win="160" bet="120" rebuy="0" addon="0"/><player seat="8" name="Hero" chips="1,840" dealer="1" win="0" bet="40" rebuy="0" addon="0"/>
+		  </players>
+		 </general>
+		 <round no="0">
+	 <action no="2" player="Player0" type="2" sum="20" cards="[cards]"/><action no="1" player="Hero" type="1" sum="10" cards="[cards]"/>
+	</round>
+	<round no="1">
+	 <cards type="Pocket" player="Player0">X X</cards><action no="4" player="Player0" type="23" sum="120" cards=""/><cards type="Pocket" player="Hero">C2 D8</cards><action no="3" player="Hero" type="23" sum="40" cards=""/><action no="5" player="Hero" type="0" sum="0" cards=""/>
+	</round>
+	
+		</game><game gamecode="4335365608">
+		 <general>
+		  <startdate>2012-10-21 08:14:08</startdate>		  
+		  <players>
+		   <player seat="3" name="Player0" chips="1,200" dealer="1" win="0" bet="40" rebuy="0" addon="0"/><player seat="8" name="Hero" chips="1,800" dealer="0" win="160" bet="120" rebuy="0" addon="0"/>
+		  </players>
+		 </general>
+		 <round no="0">
+	 <action no="1" player="Player0" type="1" sum="10" cards="[cards]"/><action no="2" player="Hero" type="2" sum="20" cards="[cards]"/>
+	</round>
+	<round no="1">
+	 <cards type="Pocket" player="Player0">X X</cards><action no="3" player="Player0" type="23" sum="40" cards=""/><action no="5" player="Player0" type="0" sum="0" cards=""/><cards type="Pocket" player="Hero">S9 C9</cards><action no="4" player="Hero" type="23" sum="120" cards=""/>
+	</round>
+	
+		</game><game gamecode="4335365666">
+		 <general>
+		  <startdate>2012-10-21 08:14:27</startdate>		  
+		  <players>
+		   <player seat="3" name="Player0" chips="1,160" dealer="0" win="0" bet="360" rebuy="0" addon="0"/><player seat="8" name="Hero" chips="1,840" dealer="1" win="2,200" bet="1,840" rebuy="0" addon="0"/>
+		  </players>
+		 </general>
+		 <round no="0">
+	 <action no="2" player="Player0" type="2" sum="40" cards="[cards]"/><action no="1" player="Hero" type="1" sum="20" cards="[cards]"/>
+	</round>
+	<round no="1">
+	 <cards type="Pocket" player="Player0">X X</cards><action no="4" player="Player0" type="23" sum="200" cards=""/><cards type="Pocket" player="Hero">DA C5</cards><action no="3" player="Hero" type="23" sum="80" cards=""/><action no="5" player="Hero" type="3" sum="120" cards=""/>
+	</round>
+	<round no="2">
+	 <cards type="Flop" player="">D7 C3 CA</cards><action no="6" player="Player0" type="5" sum="160" cards=""/><action no="7" player="Hero" type="3" sum="160" cards=""/>
+	</round>
+	<round no="3">
+	 <cards type="Turn" player="">H4</cards><action no="8" player="Player0" type="4" sum="0" cards=""/><action no="9" player="Hero" type="4" sum="0" cards=""/>
+	</round>
+	<round no="4">
+	 <cards type="River" player="">H6</cards><action no="10" player="Player0" type="4" sum="0" cards=""/><action no="12" player="Player0" type="0" sum="0" cards=""/><action no="11" player="Hero" type="5" sum="1,480" cards=""/>
+	</round>
+	
+		</game><game gamecode="4335365869">
+		 <general>
+		  <startdate>2012-10-21 08:15:41</startdate>		  
+		  <players>
+		   <player seat="3" name="Player0" chips="800" dealer="1" win="0" bet="80" rebuy="0" addon="0"/><player seat="8" name="Hero" chips="2,200" dealer="0" win="280" bet="200" rebuy="0" addon="0"/>
+		  </players>
+		 </general>
+		 <round no="0">
+	 <action no="1" player="Player0" type="1" sum="20" cards="[cards]"/><action no="2" player="Hero" type="2" sum="40" cards="[cards]"/>
+	</round>
+	<round no="1">
+	 <cards type="Pocket" player="Player0">X X</cards><action no="3" player="Player0" type="23" sum="80" cards=""/><cards type="Pocket" player="Hero">DJ SQ</cards><action no="4" player="Hero" type="3" sum="40" cards=""/>
+	</round>
+	<round no="2">
+	 <cards type="Flop" player="">D9 SJ CJ</cards><action no="6" player="Player0" type="4" sum="0" cards=""/><action no="5" player="Hero" type="4" sum="0" cards=""/>
+	</round>
+	<round no="3">
+	 <cards type="Turn" player="">S10</cards><action no="8" player="Player0" type="0" sum="0" cards=""/><action no="7" player="Hero" type="5" sum="120" cards=""/>
+	</round>
+	
+		</game><game gamecode="4335365939">
+		 <general>
+		  <startdate>2012-10-21 08:16:05</startdate>		  
+		  <players>
+		   <player seat="3" name="Player0" chips="720" dealer="0" win="800" bet="720" rebuy="0" addon="0"/><player seat="8" name="Hero" chips="2,280" dealer="1" win="0" bet="80" rebuy="0" addon="0"/>
+		  </players>
+		 </general>
+		 <round no="0">
+	 <action no="2" player="Player0" type="2" sum="40" cards="[cards]"/><action no="1" player="Hero" type="1" sum="20" cards="[cards]"/>
+	</round>
+	<round no="1">
+	 <cards type="Pocket" player="Player0">X X</cards><action no="4" player="Player0" type="23" sum="720" cards=""/><cards type="Pocket" player="Hero">C6 C5</cards><action no="3" player="Hero" type="23" sum="80" cards=""/><action no="5" player="Hero" type="0" sum="0" cards=""/>
+	</round>
+	
+		</game><game gamecode="4335365993">
+		 <general>
+		  <startdate>2012-10-21 08:16:20</startdate>		  
+		  <players>
+		   <player seat="3" name="Player0" chips="800" dealer="1" win="1,160" bet="800" rebuy="0" addon="0"/><player seat="8" name="Hero" chips="2,200" dealer="0" win="0" bet="360" rebuy="0" addon="0"/>
+		  </players>
+		 </general>
+		 <round no="0">
+	 <action no="1" player="Player0" type="1" sum="20" cards="[cards]"/><action no="2" player="Hero" type="2" sum="40" cards="[cards]"/>
+	</round>
+	<round no="1">
+	 <cards type="Pocket" player="Player0">X X</cards><action no="3" player="Player0" type="23" sum="80" cards=""/><cards type="Pocket" player="Hero">H3 HQ</cards><action no="4" player="Hero" type="3" sum="40" cards=""/>
+	</round>
+	<round no="2">
+	 <cards type="Flop" player="">DQ DK D7</cards><action no="6" player="Player0" type="5" sum="80" cards=""/><action no="5" player="Hero" type="4" sum="0" cards=""/><action no="7" player="Hero" type="3" sum="80" cards=""/>
+	</round>
+	<round no="3">
+	 <cards type="Turn" player="">S10</cards><action no="9" player="Player0" type="5" sum="200" cards=""/><action no="8" player="Hero" type="4" sum="0" cards=""/><action no="10" player="Hero" type="3" sum="200" cards=""/>
+	</round>
+	<round no="4">
+	 <cards type="River" player="">C8</cards><action no="12" player="Player0" type="5" sum="440" cards=""/><action no="11" player="Hero" type="4" sum="0" cards=""/><action no="13" player="Hero" type="0" sum="0" cards=""/>
+	</round>
+	
+		</game><game gamecode="4335366833">
+		 <general>
+		  <startdate>2012-10-21 08:17:10</startdate>		  
+		  <players>
+		   <player seat="3" name="Player0" chips="1,160" dealer="0" win="1,020" bet="700" rebuy="0" addon="0"/><player seat="8" name="Hero" chips="1,840" dealer="1" win="0" bet="320" rebuy="0" addon="0"/>
+		  </players>
+		 </general>
+		 <round no="0">
+	 <action no="2" player="Player0" type="2" sum="40" cards="[cards]"/><action no="1" player="Hero" type="1" sum="20" cards="[cards]"/>
+	</round>
+	<round no="1">
+	 <cards type="Pocket" player="Player0">X X</cards><action no="4" player="Player0" type="3" sum="40" cards=""/><cards type="Pocket" player="Hero">C10 HJ</cards><action no="3" player="Hero" type="23" sum="80" cards=""/>
+	</round>
+	<round no="2">
+	 <cards type="Flop" player="">C6 CJ D3</cards><action no="5" player="Player0" type="4" sum="0" cards=""/><action no="7" player="Player0" type="3" sum="80" cards=""/><action no="6" player="Hero" type="5" sum="80" cards=""/>
+	</round>
+	<round no="3">
+	 <cards type="Turn" player="">SA</cards><action no="8" player="Player0" type="4" sum="0" cards=""/><action no="10" player="Player0" type="3" sum="160" cards=""/><action no="9" player="Hero" type="5" sum="160" cards=""/>
+	</round>
+	<round no="4">
+	 <cards type="River" player="">CK</cards><action no="11" player="Player0" type="5" sum="380" cards=""/><action no="12" player="Hero" type="0" sum="0" cards=""/>
+	</round>
+	
+		</game><game gamecode="4335367018">
+		 <general>
+		  <startdate>2012-10-21 08:18:14</startdate>		  
+		  <players>
+		   <player seat="3" name="Player0" chips="1,480" dealer="1" win="360" bet="240" rebuy="0" addon="0"/><player seat="8" name="Hero" chips="1,520" dealer="0" win="0" bet="120" rebuy="0" addon="0"/>
+		  </players>
+		 </general>
+		 <round no="0">
+	 <action no="1" player="Player0" type="1" sum="30" cards="[cards]"/><action no="2" player="Hero" type="2" sum="60" cards="[cards]"/>
+	</round>
+	<round no="1">
+	 <cards type="Pocket" player="Player0">X X</cards><action no="3" player="Player0" type="23" sum="120" cards=""/><cards type="Pocket" player="Hero">D4 D6</cards><action no="4" player="Hero" type="3" sum="60" cards=""/>
+	</round>
+	<round no="2">
+	 <cards type="Flop" player="">CK D3 C10</cards><action no="6" player="Player0" type="5" sum="120" cards=""/><action no="5" player="Hero" type="4" sum="0" cards=""/><action no="7" player="Hero" type="0" sum="0" cards=""/>
+	</round>
+	
+		</game><game gamecode="4335367108">
+		 <general>
+		  <startdate>2012-10-21 08:18:43</startdate>		  
+		  <players>
+		   <player seat="3" name="Player0" chips="1,600" dealer="0" win="2,100" bet="1,050" rebuy="0" addon="0"/><player seat="8" name="Hero" chips="1,400" dealer="1" win="0" bet="1,050" rebuy="0" addon="0"/>
+		  </players>
+		 </general>
+		 <round no="0">
+	 <action no="2" player="Player0" type="2" sum="60" cards="[cards]"/><action no="1" player="Hero" type="1" sum="30" cards="[cards]"/>
+	</round>
+	<round no="1">
+	 <cards type="Pocket" player="Player0">DK S7</cards><action no="4" player="Player0" type="3" sum="120" cards=""/><cards type="Pocket" player="Hero">SA HQ</cards><action no="3" player="Hero" type="23" sum="180" cards=""/>
+	</round>
+	<round no="2">
+	 <cards type="Flop" player="">C9 D6 C7</cards><action no="5" player="Player0" type="4" sum="0" cards=""/><action no="7" player="Player0" type="3" sum="240" cards=""/><action no="6" player="Hero" type="5" sum="240" cards=""/>
+	</round>
+	<round no="3">
+	 <cards type="Turn" player="">S9</cards><action no="8" player="Player0" type="4" sum="0" cards=""/><action no="9" player="Hero" type="4" sum="0" cards=""/>
+	</round>
+	<round no="4">
+	 <cards type="River" player="">H9</cards><action no="10" player="Player0" type="5" sum="630" cards=""/><action no="11" player="Hero" type="3" sum="630" cards=""/>
+	</round>
+	
+		</game><game gamecode="4335367380">
+		 <general>
+		  <startdate>2012-10-21 08:20:03</startdate>		  
+		  <players>
+		   <player seat="3" name="Player0" chips="2,650" dealer="1" win="2,710" bet="2,650" rebuy="0" addon="0"/><player seat="8" name="Hero" chips="350" dealer="0" win="0" bet="60" rebuy="0" addon="0"/>
+		  </players>
+		 </general>
+		 <round no="0">
+	 <action no="1" player="Player0" type="1" sum="30" cards="[cards]"/><action no="2" player="Hero" type="2" sum="60" cards="[cards]"/>
+	</round>
+	<round no="1">
+	 <cards type="Pocket" player="Player0">X X</cards><action no="3" player="Player0" type="23" sum="2,650" cards=""/><cards type="Pocket" player="Hero">C2 D4</cards><action no="4" player="Hero" type="0" sum="0" cards=""/>
+	</round>
+	
+		</game><game gamecode="4335367454">
+		 <general>
+		  <startdate>2012-10-21 08:20:29</startdate>		  
+		  <players>
+		   <player seat="3" name="Player0" chips="2,710" dealer="0" win="2,770" bet="2,710" rebuy="0" addon="0"/><player seat="8" name="Hero" chips="290" dealer="1" win="0" bet="60" rebuy="0" addon="0"/>
+		  </players>
+		 </general>
+		 <round no="0">
+	 <action no="2" player="Player0" type="2" sum="60" cards="[cards]"/><action no="1" player="Hero" type="1" sum="30" cards="[cards]"/>
+	</round>
+	<round no="1">
+	 <cards type="Pocket" player="Player0">X X</cards><action no="4" player="Player0" type="23" sum="2,710" cards=""/><cards type="Pocket" player="Hero">C6 H4</cards><action no="3" player="Hero" type="3" sum="30" cards=""/><action no="5" player="Hero" type="0" sum="0" cards=""/>
+	</round>
+	
+		</game><game gamecode="4335367526">
+		 <general>
+		  <startdate>2012-10-21 08:20:57</startdate>		  
+		  <players>
+		   <player seat="3" name="Player0" chips="2,770" dealer="1" win="0" bet="30" rebuy="0" addon="0"/><player seat="8" name="Hero" chips="230" dealer="0" win="90" bet="60" rebuy="0" addon="0"/>
+		  </players>
+		 </general>
+		 <round no="0">
+	 <action no="1" player="Player0" type="1" sum="30" cards="[cards]"/><action no="2" player="Hero" type="2" sum="60" cards="[cards]"/>
+	</round>
+	<round no="1">
+	 <cards type="Pocket" player="Player0">X X</cards><action no="3" player="Player0" type="0" sum="0" cards=""/><cards type="Pocket" player="Hero">C3 H6</cards>
+	</round>
+	
+		</game><game gamecode="4335368555">
+		 <general>
+		  <startdate>2012-10-21 08:21:14</startdate>		  
+		  <players>
+		   <player seat="3" name="Player0" chips="2,740" dealer="0" win="3,000" bet="2,740" rebuy="0" addon="0"/><player seat="8" name="Hero" chips="260" dealer="1" win="0" bet="260" rebuy="0" addon="0"/>
+		  </players>
+		 </general>
+		 <round no="0">
+	 <action no="2" player="Player0" type="2" sum="60" cards="[cards]"/><action no="1" player="Hero" type="1" sum="30" cards="[cards]"/>
+	</round>
+	<round no="1">
+	 <cards type="Pocket" player="Player0">S2 CK</cards><action no="4" player="Player0" type="23" sum="2,740" cards=""/><cards type="Pocket" player="Hero">DQ D9</cards><action no="3" player="Hero" type="3" sum="30" cards=""/><action no="5" player="Hero" type="7" sum="200" cards=""/>
+	</round>
+	<round no="2">
+	 <cards type="Flop" player="">H7 C6 S8</cards>
+	</round>
+	<round no="3">
+	 <cards type="Turn" player="">D3</cards>
+	</round>
+	<round no="4">
+	 <cards type="River" player="">H3</cards>
+	</round>
+	
+		</game>  
+	</session>
+	
