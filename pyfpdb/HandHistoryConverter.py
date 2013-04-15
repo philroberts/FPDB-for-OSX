@@ -546,7 +546,7 @@ or None if we fail to get the info """
             #log.debug("changeTimeZone: offset=") + str(offset))
         else: offset=0
 
-        if (givenTimezone=="ET" or givenTimezone=="EST" or givenTimezone=="EDT"):
+        if givenTimezone in ("ET", "EST", "EDT"):
             givenTZ = timezone('US/Eastern')
         elif givenTimezone in ("CET", "CEST", "MESZ", "HAEC"):
             #since CEST will only be used in summer time it's ok to treat it as identical to CET.
@@ -561,15 +561,15 @@ or None if we fail to get the info """
              givenTZ = timezone('Europe/London')
         elif givenTimezone == 'WET': # WET is GMT with daylight saving delta
             givenTZ = timezone('WET')
-        elif givenTimezone == 'HST': # Hawaiian Standard Time
+        elif givenTimezone in ('HT', 'HST', 'HDT'): # Hawaiian Standard Time
             givenTZ = timezone('US/Hawaii')
         elif givenTimezone == 'AKT': # Alaska Time
             givenTZ = timezone('US/Alaska')
-        elif givenTimezone == 'PT': # Pacific Time
+        elif givenTimezone in ('PT', 'PST', 'PDT'): # Pacific Time
             givenTZ = timezone('US/Pacific')
-        elif givenTimezone == 'MT': # Mountain Time
+        elif givenTimezone in ('MT', 'MST', 'MDT'): # Mountain Time
             givenTZ = timezone('US/Mountain')
-        elif givenTimezone == 'CT': # Central Time
+        elif givenTimezone in ('CT', 'CST', 'CDT'): # Central Time
             givenTZ = timezone('US/Central')
         elif givenTimezone == 'AT': # Atlantic Time
             givenTZ = timezone('Canada/Atlantic')
