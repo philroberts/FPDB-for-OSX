@@ -390,7 +390,7 @@ class DerivedStats():
                     if streetId > 0:
                         streetSeen = hp['street%sSeen' % str(streetId)]
                     else: streetSeen = True
-                    if (board['allin'] or (pname==hand.hero and streetSeen) or (hp['showed'] and streetSeen) or hp['sawShowdown']):
+                    if ((pname==hand.hero and streetSeen) or (hp['showed'] and streetSeen) or hp['sawShowdown']):
                         boardId, hl, rankId, value, _cards = 0, 'n', 1, 0, None
                         for n in range(len(board['board'])):
                             if len(board['board']) > 1: 
