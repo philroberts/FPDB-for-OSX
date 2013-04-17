@@ -208,7 +208,7 @@ class PacificPoker(HandHistoryConverter):
         if 'CURRENCY1' in mg:
             #print "DEBUG: re_GameInfo[CURRENCY] \'", mg['CURRENCY'], "\'"
             info['currency'] = self.currencies[mg['CURRENCY1']]
-        if 'CURRENCY2' in mg:
+        if 'CURRENCY2' in mg and mg['CURRENCY2']:
             #print "DEBUG: re_GameInfo[CURRENCY] \'", mg['CURRENCY'], "\'"
             info['currency'] = self.currencies[mg['CURRENCY2']]
         
