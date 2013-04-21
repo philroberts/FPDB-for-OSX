@@ -171,14 +171,14 @@ class Importer:
         #print "addimportfile: filename is a", filename.__class__
         # filename not guaranteed to be unicode
         if self.filelist.get(filename)!=None or not os.path.exists(filename):
-            return
+            return False
 
         self.idsite.processFile(filename)
         if self.idsite.get_fobj(filename):
             fpdbfile = self.idsite.filelist[filename]
         else:
             log.error("Importer.addImportFile: siteId Failed for: '%s'" % filename)
-            return
+            return False
         
         self.addFileToList(fpdbfile)
         self.filelist[filename] = fpdbfile
@@ -193,7 +193,7 @@ class Importer:
                 else:
                     log.error(_("More than 1 Database ID found for %s") % fpdbfile.site.name)
 
-
+        return True
     # Called from GuiBulkImport to add a file or directory. Bulk import never monitors
     def addBulkImportImportFileOrDir(self, inputPath, site = "auto"):
         """Add a file or directory for bulk import"""
@@ -209,8 +209,9 @@ class Importer:
             for subdir in os.walk(inputPath):
                 for file in subdir[2]:
                     self.addImportFile(os.path.join(subdir[0], file), site=site)
+            return True
         else:
-            self.addImportFile(inputPath, site=site)
+            return self.addImportFile(inputPath, site=site)
 
     #Add a directory of files to filelist
     #Only one import directory per site supported.

@@ -1,1 +1,3 @@
-(1, 'USD', 'ring', 'draw', 'badugi', 'fl', 'l', 'none', 2, 5, 5, 10, 8, 0)
+(1, 'USD', 'ring', 'draw', 'badugi', 'fl', 'l', 'none', 2, 5, 5, 10, 8, 0,
+    False,
+    False)

@@ -36,7 +36,7 @@ DEBUG = False
 
 class FpdbError:
     expected = {   # Site     : { path: (stored, dups, partial, errs) }
-                   'Absolute' : {},
+                   'Absolute Poker' : {},
                    'Betfair' : {},
                    'BetOnline': {
                         "regression-test-files/cash/BetOnline/Flop/NLHE-10max-USD-0.25-0.05-201108.txt":(19,0,1,0),
@@ -50,7 +50,7 @@ class FpdbError:
                    'Enet' : {},
                    'Entraction' : {},
                    'Everleaf' : {},
-                   'Everest' : {},
+                   'Everest Poker' : {},
                    'Full Tilt Poker' : {
                         "regression-test-files/cash/FTP/Draw/3-Draw-Limit-USD-20-40-201101.Partial.txt":(0,0,1,0),
                         "regression-test-files/cash/FTP/Draw/3-Draw-Limit-USD-10-20-201101.Dead.hand.txt":(0,0,1,0),
@@ -151,7 +151,9 @@ def compare_gametypes_file(filename, importer, errors):
                 10:'Gametype: Small Bet',
                 11:'Gametype: Big Bet',
                 12:'Gametype: maxSeats',
-                13:'Gametype: ante'
+                13:'Gametype: ante',
+                14:'Gametype: cap',
+                15:'Gametype: zoom'
             }
 
     for hand in handlist:
@@ -174,6 +176,7 @@ def compare_handsplayers_file(filename, importer, errors):
 
     testhash = eval(whole_file)
 
+
     hhc = importer.getCachedHHC()
     handlist = hhc.getProcessedHands()
     #We _really_ only want to deal with a single hand here.
@@ -183,7 +186,6 @@ def compare_handsplayers_file(filename, importer, errors):
             #print "DEBUG: player: '%s'" % p
             pstat = ghash[p]
             teststat = testhash[p]
-
             for stat in pstat:
                 #print "pstat[%s][%s]: %s == %s" % (p, stat, pstat[stat], teststat[stat])
                 try:
@@ -257,9 +259,14 @@ def compare(leaf, importer, errors, site):
         # test if there is a .hp version of the file
         if DEBUG: print "Site: %s" % site
         if DEBUG: print "Filename: %s" % filename
-        importer.addBulkImportImportFileOrDir(filename, site=site)
+        file_added = importer.addBulkImportImportFileOrDir(filename, site=site)
+        if not file_added:
+            errors.error_report(filename, (0, 0, 0, 1), "Parse", False, False, False)
+            importer.clearFileList()
+            return False
+                
         (stored, dups, partial, errs, ttime) = importer.runImport()
-
+        
         if errs > 0 or partial > 0:
             errors.error_report(filename, (stored, dups, partial, errs), "Parse", False, False, False)
         else:

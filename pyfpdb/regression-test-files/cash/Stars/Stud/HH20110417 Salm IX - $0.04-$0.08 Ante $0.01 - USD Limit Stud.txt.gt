@@ -1,2 +1,4 @@
-(2, 'USD', 'ring', 'stud', 'studhi', 'fl', 'h', 'none', 2, 4, 4, 8, 8, 1)
+(2, 'USD', 'ring', 'stud', 'studhi', 'fl', 'h', 'none', 2, 4, 4, 8, 8, 1,
+    False,
+    False)
 

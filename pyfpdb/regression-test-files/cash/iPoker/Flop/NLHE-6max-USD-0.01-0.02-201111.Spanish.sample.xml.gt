@@ -1,1 +1,3 @@
-(14, u'USD', 'ring', 'hold', 'holdem', 'nl', 'h', 'none', 1, 2, 2, 4, 10, 0)
+(14, u'USD', 'ring', 'hold', 'holdem', 'nl', 'h', 'none', 1, 2, 2, 4, 10, 0,
+    False,
+    False)
