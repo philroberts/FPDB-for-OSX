@@ -1,0 +1,72 @@
+Full Tilt Poker Game #32412111030: Big Game of the Week (251332389), Table 1 - 800/1600 Ante 150 - Limit 5 Card Stud - 18:30:57 ET - 2013/03/31
+Seat 1: Player0 (4,950)
+Seat 2: Player1 (27,915)
+Seat 4: Player2 (3,740)
+Seat 5: Player3 (12,330)
+Seat 6: Hero (17,724)
+Seat 7: Player4 (1,495)
+Seat 8: Player5 (14,030)
+Player0 antes 150
+Player1 antes 150
+Player2 antes 150
+Player3 antes 150
+Hero antes 150
+Player4 antes 150
+Player5 antes 150
+*** 2ND STREET *** (Total Pot: 1,050, 7 Players)
+Dealt to Player0 [Kc]
+Dealt to Player1 [Qh]
+Dealt to Player2 [5s]
+Dealt to Player3 [7s]
+Dealt to Hero [6s] [6h]
+Dealt to Player4 [Js]
+Dealt to Player5 [2c]
+Player5 is low with [2c]
+Player5 brings in for 250
+Player0 completes it to 800
+Player1 calls 800
+Player2 folds
+Player3 folds
+Hero has 15 seconds left to act
+Hero has timed out
+Hero folds
+Hero is sitting out
+Player4 raises to 1,345, and is all in
+Player5 folds
+Player0 raises to 2,145
+Player1 calls 1,345
+*** 3RD STREET *** (Total Pot: 6,935, 3 Players, 1 All-In)
+Dealt to Player0 [Kc] [Tc]
+Dealt to Player1 [Qh] [3h]
+Dealt to Player4 [Js] [9h]
+Player0 bets 800
+Player1 calls 800
+*** 4TH STREET *** (Total Pot: 8,535, 3 Players, 1 All-In)
+Dealt to Player0 [Kc Tc] [Qd]
+Dealt to Player1 [Qh 3h] [Kd]
+Dealt to Player4 [Js 9h] [4c]
+Player0 bets 1,600
+Player1 calls 1,600
+*** 5TH STREET *** (Total Pot: 11,735, 3 Players, 1 All-In)
+Dealt to Player0 [Kc Tc Qd] [3d]
+Dealt to Player1 [Qh 3h Kd] [Ah]
+Dealt to Player4 [Js 9h 4c] [2d]
+Player1 bets 1,600
+Player0 calls 255, and is all in
+Uncalled bet of 1,345 returned to Player1
+*** SHOW DOWN ***
+Player1 shows [Ad Qh 3h Kd Ah] a pair of Aces
+Hero has returned
+Player0 mucks
+Player1 wins the side pot (6,910) with a pair of Aces
+Player4 mucks
+Player1 wins the main pot (5,335) with a pair of Aces
+*** SUMMARY ***
+Total pot 12,245 Main pot 5,335. Side pot 6,910. | Rake 0
+Seat 1: Player0 mucked [Ks Kc Tc Qd 3d] - a pair of Kings
+Seat 2: Player1 showed [Ad Qh 3h Kd Ah] and won (12,245) with a pair of Aces
+Seat 4: Player2 folded on 2nd St.
+Seat 5: Player3 folded on 2nd St.
+Seat 6: Hero folded on 2nd St.
+Seat 7: Player4 mucked [Ac Js 9h 4c 2d] - Ace Jack high
+Seat 8: Player5 folded on 2nd St.

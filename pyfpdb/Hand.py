@@ -1610,6 +1610,11 @@ class StudHand(Hand):
             if shown:  self.shown.add(player)
             if mucked: self.mucked.add(player)
         else:
+            if self.gametype['category'] == '5_studhi' and len(cards)>4:
+                self.addHoleCards('SECOND', player, open=[cards[1]], closed=[cards[0]], shown=shown, mucked=mucked)
+                self.addHoleCards('THIRD', player, open=[cards[2]], closed=[cards[1]], shown=shown, mucked=mucked)
+                self.addHoleCards('FOURTH', player, open=[cards[3]], closed=cards[1:2],  shown=shown, mucked=mucked)
+                self.addHoleCards('FIFTH', player, open=[cards[4]], closed=cards[1:3], shown=shown, mucked=mucked)
             if len(cards) > 6:
                 self.addHoleCards('THIRD', player, open=[cards[2]], closed=cards[0:2], shown=shown, mucked=mucked)
                 self.addHoleCards('FOURTH', player, open=[cards[3]], closed=[cards[2]],  shown=shown, mucked=mucked)
@@ -1825,7 +1830,8 @@ class StudHand(Hand):
         holecards = []
         for street in self.holeStreets:
             if self.holecards[street].has_key(player):
-                if street == 'THIRD' or street == 'SECOND':
+                if ((self.gametype['category']=='5_studhi' and street == 'SECOND') or 
+                    (self.gametype['category']!='5_studhi' and street == 'THIRD')):
                     holecards = holecards + self.holecards[street][player][1] + self.holecards[street][player][0]
                 elif street == 'SEVENTH':
                     if player == self.hero:
@@ -1840,6 +1846,8 @@ class StudHand(Hand):
             return " ".join(holecards)
         else:
             if self.gametype['category']=='5_studhi':
+                if len(holecards) < 2:
+                    holecards = [u'0x'] + holecards
                 return holecards
             else:
                 if player == self.hero:
