@@ -35,6 +35,7 @@ class FullTiltPokerSummary(TourneySummary):
                              'Omaha Hi' : ('hold','omahahi'),
                           'Omaha Hi/Lo' : ('hold','omahahilo'),
                             'Omaha H/L' : ('hold','omahahilo'),
+                                'Irish' : ('hold', 'irish'),
                                  'Razz' : ('stud','razz'), 
                                  'RAZZ' : ('stud','razz'),
                           '7 Card Stud' : ('stud','studhi'),
@@ -74,7 +75,7 @@ class FullTiltPokerSummary(TourneySummary):
     re_TourneyInfo = re.compile(u"""
                         \((?P<TOURNO>[0-9]+)\)
                         (\s+)?(\sMatch\s\d\s)?
-                        (?P<GAME>Hold\'em|Razz|RAZZ|5\sCard\sStud|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Stud\sH/L|Stud\sHi|Omaha|Omaha\sHi|Omaha\sHi/Lo|Omaha\sH/L|2\-7\sSingle\sDraw|Badugi|Triple\sDraw\s2\-7\sLowball|2\-7\sTriple\sDraw|5\sCard\sDraw|\d+\-Game\sMixed|HORSE|HA|HEROS|HO|HOE|HORSE|HOSE|OA|OE|SE)\s+
+                        (?P<GAME>Hold\'em|Irish|Razz|RAZZ|5\sCard\sStud|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Stud\sH/L|Stud\sHi|Omaha|Omaha\sHi|Omaha\sHi/Lo|Omaha\sH/L|2\-7\sSingle\sDraw|Badugi|Triple\sDraw\s2\-7\sLowball|2\-7\sTriple\sDraw|5\sCard\sDraw|\d+\-Game\sMixed|HORSE|HA|HEROS|HO|HOE|HORSE|HOSE|OA|OE|SE)\s+
                         ((?P<LIMIT>No\sLimit|Limit|LIMIT|Pot\sLimit)\s+)?(\(.+?\)\s+)?
                         (Buy-In:\s[%(LS)s]?(?P<BUYIN>[%(NUM)s]+)(\sFTP|\sT\$|\sPlay\sChips)?(\s\+\s[%(LS)s]?(?P<FEE>[%(NUM)s]+)(\sFTP|\sT\$|\sPlay\sChips)?)?\s+)?
                         (Knockout\sBounty:\s[%(LS)s](?P<KOBOUNTY>[%(NUM)s]+)\s+)?

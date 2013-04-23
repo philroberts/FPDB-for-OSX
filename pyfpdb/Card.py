@@ -46,6 +46,7 @@ games = {              # base, category
            '2_holdem' : ('hold', None, 'h', {'PREFLOP':0,'FLOP':1,'TURN':2,'RIVER':3}, 'RIVER', [(0,3)]),
             'omahahi' : ('hold','omaha','h', {'PREFLOP':0,'FLOP':1,'TURN':2,'RIVER':3}, 'RIVER', [(0,4)]), 
           'omahahilo' : ('hold','omaha8', 's', {'PREFLOP':0,'FLOP':1,'TURN':2,'RIVER':3}, 'RIVER', [(0,4)]),
+             'irish'  : ('hold', None,'h', {'PREFLOP':0,'FLOP':1,'TURN':2,'RIVER':3}, 'RIVER', [(0,4)]), 
           '5_omahahi' : ('hold', None,'h', {'PREFLOP':0,'FLOP':1,'TURN':2,'RIVER':3}, 'RIVER', [(0,5)]), 
            '5_studhi' : ('stud','holdem', 'h', {'SECOND': 0, 'THIRD': 1,'FOURTH': 2,'FIFTH': 3}, 'FIFTH', [(0,2),(0,3),(0,4),(0,5)]), 
                'razz' : ('stud', None, 'l', {'THIRD': 0,'FOURTH': 1,'FIFTH': 2,'SIXTH': 3,'SEVENTH': 4}, 'SEVENTH', [(0,3),(0,4),(0,5),(0,6),(0,7)]), 

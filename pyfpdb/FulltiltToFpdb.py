@@ -82,7 +82,7 @@ class Fulltilt(HandHistoryConverter):
                                     (Ante\s\$?(?P<ANTE>[%(NUM)s]+)\s)?-\s
                                     [%(LS)s]?(?P<CAP>[%(NUM)s]+\sCap\s)?
                                     (?P<LIMIT>(No\sLimit|Pot\sLimit|Limit))?\s
-                                    (?P<GAME>(Hold\'em|Omaha(\sH/L|\sHi/Lo|\sHi|)|5\sCard\sStud|7\sCard\sStud|7\sCard\sStud|Stud\sH/L|Razz|Stud\sHi|2-7\sTriple\sDraw|5\sCard\sDraw|Badugi|2-7\sSingle\sDraw|A-5\sTriple\sDraw))
+                                    (?P<GAME>(Hold\'em|Omaha(\sH/L|\sHi/Lo|\sHi|)|Irish|5\sCard\sStud|7\sCard\sStud|7\sCard\sStud|Stud\sH/L|Razz|Stud\sHi|2-7\sTriple\sDraw|5\sCard\sDraw|Badugi|2-7\sSingle\sDraw|A-5\sTriple\sDraw))
                                  ''' % substitutions, re.VERBOSE)
     re_Identify     = re.compile(u'FullTiltPoker|Full\sTilt\sPoker\sGame\s#\d+:')
     re_SplitHands   = re.compile(r"\n\n\n+")
@@ -184,6 +184,7 @@ class Fulltilt(HandHistoryConverter):
                     'Omaha' : ('hold','omahahi'),
                 'Omaha H/L' : ('hold','omahahilo'),
               'Omaha Hi/Lo' : ('hold','omahahilo'),
+                    'Irish' : ('hold','irish'), 
                      'Razz' : ('stud','razz'), 
               '7 Card Stud' : ('stud','studhi'),
                   'Stud Hi' : ('stud','studhi'),
@@ -527,7 +528,12 @@ class Fulltilt(HandHistoryConverter):
             elif action.group('ATYPE') == ' bets':
                 hand.addBet( street, action.group('PNAME'), action.group('BET') )
             elif action.group('ATYPE') == ' discards':
-                hand.addDiscard(street, action.group('PNAME'), action.group('BET'), action.group('CARDS'))
+                discarded = 0
+                if hand.gametype['category'] == 'irish':
+                    if action.group('BET') is None:
+                        discarded = 2
+                    street = 'TURN'
+                hand.addDiscard(street, action.group('PNAME'), discarded, action.group('CARDS'))
             elif action.group('ATYPE') == ' completes it to':
                 hand.addComplete( street, action.group('PNAME'), action.group('BET') )
             elif action.group('ATYPE') == ' stands pat':

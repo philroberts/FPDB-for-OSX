@@ -1,0 +1,33 @@
+Full Tilt Poker Game #32447075821: Table Armonia (6 max) - $2/$4 - No Limit Irish - 00:56:40 ET - 2013/04/07
+Seat 3: Player0 ($688.20)
+Seat 4: Hero ($556.10)
+Hero posts the small blind of $2
+Player0 posts the big blind of $4
+The button is in seat #4
+*** HOLE CARDS ***
+Dealt to Hero [9h 9c Ts Kc]
+Hero raises to $12
+Player0 raises to $48
+Hero calls $36
+*** FLOP *** [Qh 7c Jd] (Total Pot: $96, 2 Players)
+Player0 checks
+Hero has 15 seconds left to act
+Hero bets $52
+Player0 calls $52
+*** DISCARD ROUND *** (Total Pot: $200, 2 Players)
+Player0 discards
+Hero discards [9h 9c]
+*** TURN *** [Qh 7c Jd] [6d] (Total Pot: $200, 2 Players)
+Player0 checks
+Hero checks
+*** RIVER *** [Qh 7c Jd 6d] [3c] (Total Pot: $200, 2 Players)
+Player0 bets $62
+Hero folds
+Uncalled bet of $62 returned to Player0
+Player0 mucks
+Player0 wins the pot ($199.50)
+*** SUMMARY ***
+Total pot $200 | Rake $0.50
+Board: [Qh 7c Jd 6d 3c]
+Seat 3: Player0 (big blind) collected ($199.50), mucked
+Seat 4: Hero (small blind) folded on the River
