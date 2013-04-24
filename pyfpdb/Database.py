@@ -77,7 +77,7 @@ except ImportError:
     use_numpy = False
 
 
-DB_VERSION = 183
+DB_VERSION = 184
 
 # Variance created as sqlite has a bunch of undefined aggregate functions.
 
@@ -3331,11 +3331,7 @@ class Database:
             self.gtcache = LambdaDict(lambda  key:self.insertGameTypes(key[0], key[1]))
             
         self.gtprintdata = printdata
-        hilo = "h"
-        if game['category'] in ['studhilo', 'omahahilo']:
-            hilo = "s"
-        elif game['category'] in ['razz','27_3draw','badugi', '27_1draw']:
-            hilo = "l"
+        hilo = Card.games[game['category']][2]
             
         gtinfo = (siteid, game['type'], game['category'], game['limitType'], game['currency'],
                   game['mix'], int(Decimal(game['sb'])*100), int(Decimal(game['bb'])*100),

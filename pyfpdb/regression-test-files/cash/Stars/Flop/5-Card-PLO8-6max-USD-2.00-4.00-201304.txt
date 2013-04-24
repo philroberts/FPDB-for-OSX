@@ -1,0 +1,33 @@
+PokerStars Hand #96961585867:  5 Card Omaha Hi/Lo Pot Limit ($2/$4 USD) - 2013/04/10 19:06:22 WET [2013/04/10 14:06:22 ET]
+Table 'Signe VI' 6-max Seat #6 is the button
+Seat 3: Player0 ($91.64 in chips) 
+Seat 4: Player1 ($403.64 in chips) 
+Seat 5: Player2 ($422.50 in chips) 
+Seat 6: Hero ($203.33 in chips) 
+Player0: posts small blind $2
+Player1: posts big blind $4
+*** HOLE CARDS ***
+Dealt to Hero [Td Kh 3d 4s 9d]
+Player2: raises $4 to $8
+Hero: folds 
+Player0: folds 
+Player1: calls $4
+*** FLOP *** [Jc 6c Kd]
+Player1: checks 
+Player2: checks 
+*** TURN *** [Jc 6c Kd] [9c]
+Player1: checks 
+Player2: checks 
+*** RIVER *** [Jc 6c Kd 9c] [Ad]
+Player1: bets $8
+Player2: folds 
+Uncalled bet ($8) returned to Player1
+Player1 collected $17.19 from pot
+Player1: doesn't show hand 
+*** SUMMARY ***
+Total pot $18 | Rake $0.81 
+Board [Jc 6c Kd 9c Ad]
+Seat 3: Player0 (small blind) folded before Flop
+Seat 4: Player1 (big blind) collected ($17.19)
+Seat 5: Player2 folded on the River
+Seat 6: Hero (button) folded before Flop (didn't bet)

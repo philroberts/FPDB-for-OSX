@@ -255,12 +255,9 @@ class Hand(object):
         self.dbid_gt = db.getSqlGameTypeId(self.siteId, self.gametype, printdata = printtest)
         
         #Gametypes
-        hilo = "h"
-        if self.gametype['category'] in ['studhilo', 'omahahilo']:
-            hilo = "s"
-        elif self.gametype['category'] in ['razz','27_3draw','badugi', '27_1draw']:
-            hilo = "l"
-        
+        hilo = Card.games[self.gametype['category']][2]
+        print self.gametype['category'], hilo
+                
         self.gametyperow = (self.siteId, self.gametype['currency'], self.gametype['type'], self.gametype['base'],
                             self.gametype['category'], self.gametype['limitType'], hilo, self.gametype['mix'],
                             int(Decimal(self.gametype['sb'])*100), int(Decimal(self.gametype['bb'])*100),
@@ -1115,7 +1112,7 @@ class HoldemOmahaHand(Hand):
             if shown:  self.shown.add(player)
             if mucked: self.mucked.add(player)
         else:
-            if len(cards) in (2, 3, 4) or self.gametype['category']=='5_omahahi':  # avoid adding board by mistake (Everleaf problem)
+            if len(cards) in (2, 3, 4) or self.gametype['category'] in ('5_omahahi', '5_omaha8', 'cour_hi', 'cour_hilo'):  # avoid adding board by mistake (Everleaf problem)
                 self.addHoleCards('PREFLOP', player, open=[], closed=cards, shown=shown, mucked=mucked, dealt=dealt)
             elif len(cards) == 5:     # cards holds a winning hand, not hole cards
                 # filter( lambda x: x not in b, a )             # calcs a - b where a and b are lists

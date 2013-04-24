@@ -1,0 +1,40 @@
+PokerStars Hand #96353118546:  Courchevel Pot Limit ($0.10/$0.25 USD) - 2013/03/29 17:16:11 ET
+Table 'Pollux IV' 6-max Seat #4 is the button
+Seat 1: Player0 ($25 in chips) 
+Seat 4: Player1 ($114.25 in chips) 
+Seat 5: Player2 ($38.61 in chips) 
+Seat 6: Hero ($25 in chips) 
+Player2: posts small blind $0.10
+Hero: posts big blind $0.25
+Player3: sits out 
+*** HOLE CARDS ***
+Dealt to Hero [Jh 7h Jd 5s Kc]
+*** PRE-FLOP *** [2s]
+Player0: folds 
+Player1: raises $0.50 to $0.75
+Player2: calls $0.65
+Hero: calls $0.50
+*** FLOP *** [2s 3h 4h]
+Player2: checks 
+Hero: checks 
+Player1: bets $1.55
+Player2: folds 
+Hero: calls $1.55
+*** TURN *** [2s 3h 4h] [5c]
+christos805 joins the table at seat #2 
+Hero: checks 
+Player1: checks 
+*** RIVER *** [2s 3h 4h 5c] [Qs]
+Hero: bets $5.11
+Player1: calls $5.11
+*** SHOW DOWN ***
+Hero: shows [Jh 7h Jd 5s Kc] (a pair of Jacks)
+Player1: shows [6c Kh 9s 2d 5h] (a straight, Deuce to Six)
+Player1 collected $14.87 from pot
+*** SUMMARY ***
+Total pot $15.57 | Rake $0.70 
+Board [2s 3h 4h 5c Qs]
+Seat 1: Player0 folded before Flop (didn't bet)
+Seat 4: Player1 (button) showed [6c Kh 9s 2d 5h] and won ($14.87) with a straight, Deuce to Six
+Seat 5: Player2 (small blind) folded on the Flop
+Seat 6: Hero (big blind) showed [Jh 7h Jd 5s Kc] and lost with a pair of Jacks

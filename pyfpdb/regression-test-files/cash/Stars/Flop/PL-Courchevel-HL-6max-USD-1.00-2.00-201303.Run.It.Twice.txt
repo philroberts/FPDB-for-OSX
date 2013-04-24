@@ -1,0 +1,39 @@
+PokerStars Hand #97007286518:  Courchevel Hi/Lo Pot Limit ($1/$2 USD) - 2013/04/11 11:57:19 CT [2013/04/11 12:57:19 ET]
+Table 'Lagrangea IV' 6-max Seat #3 is the button
+Seat 3: Player0 ($81.75 in chips) 
+Seat 4: Hero ($353.48 in chips) 
+Player0: posts small blind $1
+Hero: posts big blind $2
+*** HOLE CARDS ***
+Dealt to Hero [As 4s Ks Ad Qh]
+*** PRE-FLOP *** [7h]
+Player0: raises $2 to $4
+Hero: raises $8 to $12
+Player0: raises $24 to $36
+Hero: calls $24
+*** FLOP *** [7h 5d 3s]
+Hero: bets $71.50
+Player0: calls $45.75 and is all-in
+Uncalled bet ($25.75) returned to Hero
+*** FIRST TURN *** [7h 5d 3s] [7s]
+*** FIRST RIVER *** [7h 5d 3s 7s] [Ts]
+*** SECOND TURN *** [7h 5d 3s] [2s]
+*** SECOND RIVER *** [7h 5d 3s 2s] [4h]
+*** FIRST SHOW DOWN ***
+Hero: shows [As 4s Ks Ad Qh] (HI: a flush, Ace high; LO: 7,5,4,3,A)
+Player0: shows [7d 6d Jh Ah 5s] (HI: a full house, Sevens full of Fives; LO: 7,6,5,3,A)
+Player0 collected $40.75 from pot
+Hero collected $40.75 from pot
+*** SECOND SHOW DOWN ***
+Hero: shows [As 4s Ks Ad Qh] (HI: a straight, Ace to Five; LO: 5,4,3,2,A)
+Player0: shows [7d 6d Jh Ah 5s] (HI: a straight, Three to Seven; LO: 5,4,3,2,A)
+Player0 collected $40.75 from pot
+Hero collected $20.38 from pot
+Player0 collected $20.37 from pot
+*** SUMMARY ***
+Total pot $163.50 | Rake $0.50 
+Hand was run twice
+FIRST Board [7h 5d 3s 7s Ts]
+SECOND Board [7h 5d 3s 2s 4h]
+Seat 3: Player0 (button) (small blind) showed [7d 6d Jh Ah 5s] and won ($40.75) with HI: a full house, Sevens full of Fives; LO: 7,6,5,3,A, and won ($61.12) with HI: a straight, Three to Seven; LO: 5,4,3,2,A
+Seat 4: Hero (big blind) showed [As 4s Ks Ad Qh] and won ($40.75) with HI: a flush, Ace high; LO: 7,5,4,3,A, and won ($20.38) with HI: a straight, Ace to Five; LO: 5,4,3,2,A
