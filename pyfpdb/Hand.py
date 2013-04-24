@@ -256,7 +256,6 @@ class Hand(object):
         
         #Gametypes
         hilo = Card.games[self.gametype['category']][2]
-        print self.gametype['category'], hilo
                 
         self.gametyperow = (self.siteId, self.gametype['currency'], self.gametype['type'], self.gametype['base'],
                             self.gametype['category'], self.gametype['limitType'], hilo, self.gametype['mix'],
