@@ -1856,7 +1856,7 @@ class Database:
         for i in range(170):
             (name, rank, combinations) = Card.StartCardRank(i)
             c.execute(sql,  ('holdem', name, rank, combinations))
-        for idx in range(-13,1179):
+        for idx in range(-13,1183):
             name = Card.decodeRazzStartHand(idx)
             c.execute(sql, ('razz', name, idx, 0))        
 
