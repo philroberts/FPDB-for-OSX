@@ -219,6 +219,10 @@ class OnGame(HandHistoryConverter):
             info['sb'] = self.clearMoneyString(mg['SB'])
         if 'BB' in mg:
             info['bb'] = self.clearMoneyString(mg['BB'])
+        if 'Strobe' in mg['TABLE']:
+            info['zoom'] = True
+        else:
+            info['zoom'] = False
 
         if info['limitType'] == 'fl' and info['bb'] is not None:
             if info['type'] == 'ring':
