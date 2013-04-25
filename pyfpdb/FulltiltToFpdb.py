@@ -528,11 +528,9 @@ class Fulltilt(HandHistoryConverter):
             elif action.group('ATYPE') == ' bets':
                 hand.addBet( street, action.group('PNAME'), action.group('BET') )
             elif action.group('ATYPE') == ' discards':
-                discarded = 0
+                discarded = action.group('BET')
                 if hand.gametype['category'] == 'irish':
-                    if action.group('BET') is None:
-                        discarded = 2
-                    street = 'TURN'
+                    street, discarded = 'TURN', '2'
                 hand.addDiscard(street, action.group('PNAME'), discarded, action.group('CARDS'))
             elif action.group('ATYPE') == ' completes it to':
                 hand.addComplete( street, action.group('PNAME'), action.group('BET') )
