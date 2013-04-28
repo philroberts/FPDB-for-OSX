@@ -32,6 +32,7 @@ _ = L10n.get_translation()
 #    Standard Library modules
 import re
 import logging
+from time import time, sleep
 
 #    pyGTK modules
 import gtk
@@ -148,6 +149,9 @@ class Table_Window(object):
         while True:
             self.find_table_parameters()
             if self.number is not None: break
+            # make a small delay otherwise Xtables.root.get_windows()
+            #  returns empty for unknown reasons
+            sleep(0.1)
             trys += 1
             if trys > 4:
                 log.error(_("Can't find table %s") % table_name)
