@@ -286,11 +286,26 @@ class Layout:
         self.height   = int( node.getAttribute('height') )
 
         self.location = []
+        self.hh_seats = []
         self.location = map(lambda x: None, range(self.max+1)) # fill array with max seats+1 empty entries
+        # hh_seats is used to map the seat numbers specified in hand history files (and stored in db) onto 
+        #   the contiguous integerss, 1 to self.max, used to index hud stat_windows (and aw seat_windows) for display
+        #   For most sites these numbers are the same, but some sites (e.g. iPoker) omit seat numbers in hand histories
+        #   for tables smaller than 10-max.   
+        self.hh_seats= map(lambda x: None, range(self.max+1)) # fill array with max seats+1 empty entries
 
         for location_node in node.getElementsByTagName('location'):
-            if location_node.getAttribute('seat') != "":
-                self.location[int( location_node.getAttribute('seat') )] = (int( location_node.getAttribute('x') ), int( location_node.getAttribute('y')))
+            hud_seat = location_node.getAttribute('seat')
+            if hud_seat != "":
+                
+                # if hist_seat for this seat number is specified in the layout, then store it in the hh_seats list
+                hist_seat = location_node.getAttribute('hist_seat') #XXX
+                if hist_seat:
+                    self.hh_seats[int( hud_seat )] = int( hist_seat )
+                else:
+                    # .. otherwise just store the original seat number in the hh_seats list 
+                    self.hh_seats[int( hud_seat )] = int( hud_seat )
+                self.location[int( hud_seat )] = (int( location_node.getAttribute('x') ), int( location_node.getAttribute('y')))
             elif location_node.getAttribute('common') != "":
                 self.common = (int( location_node.getAttribute('x') ), int( location_node.getAttribute('y')))
 
@@ -304,8 +319,7 @@ class Layout:
             temp = temp + "        Common = (%d, %d)\n" % (self.common[0], self.common[1])
         temp = temp + "        Locations = "
         for i in range(1, len(self.location)):
-            temp = temp + "(%d,%d)" % self.location[i]
-
+            temp = temp + "%s:(%d,%d) " % (self.hh_seats[i],self.location[i][0],self.location[i][1])
         return temp + "\n"
 
 class Email:

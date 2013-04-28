@@ -86,6 +86,11 @@ class Aux_Window(object):
 
     def get_id_from_seat(self, seat):
         """Determine player id from seat number, given stat_dict."""
+        
+        # hh_seats is a list of the actual seat numbers used in the hand history.
+        #  Some sites (e.g. iPoker) miss out some seat numbers if max is <10,
+        #  e.g. iPoker 6-max uses seats 1,3,5,6,8,10 NOT 1,2,3,4,5,6
+        seat = self.hud.layout.hh_seats[seat]
         for id, dict in self.hud.stat_dict.iteritems():
             if seat == dict['seat']:
                 return id

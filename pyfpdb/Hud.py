@@ -206,8 +206,22 @@ class Hud:
     def get_actual_seat(self, heroname):
         for key in self.stat_dict:
             if self.stat_dict[key]['screen_name'] == heroname:
-                return self.stat_dict[key]['seat']
-
+                # Seat from stat_dict is the seat num recorded in the hand history and database
+                # For tables <10-max, some sites omit some seat nums (e.g. iPoker 6-max uses 1,3,5,6,8,10)
+                # The seat nums in the hh from the site are recorded in config file for each layout, and available
+                # here as the self.layout.hh_seats list
+                #    (e.g. for iPoker - [None,1,3,5,6,8,10];
+                #      for most sites-  [None, 1,2,3,4,5,6]
+                # we need to match 'seat' from hand history with the postion in the list, as the hud
+                #  always numbers its stat_windows using consecutive numbers (e.g. 1-6)
+                hh_seat = self.stat_dict[key]['seat']
+                for i in range(1, self.layout.max):
+                    if self.layout.hh_seats[i] == hh_seat:
+                        hud_seat = i
+                        break
+                # TODO - If hud_seat is not in range 1-layout.max, there is an error, as layout.HH_seat
+                return hud_seat
+            
     def create(self, hand, config, stat_dict):
 #    update this hud, to the stats and players as of "hand"
 #    hand is the hand id of the most recent hand played at this table
