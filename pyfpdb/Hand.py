@@ -131,6 +131,7 @@ class Hand(object):
             self.board[street] = []
         for street in self.holeStreets:
             self.holecards[street] = {} # dict from player names to holecards
+        for street in self.discardStreets:
             self.discards[street] = {} # dict from player names to dicts by street ... of tuples ... of discarded holecards
         # Collections indexed by player names
         self.rakes = {}
@@ -254,12 +255,8 @@ class Hand(object):
         self.dbid_gt = db.getSqlGameTypeId(self.siteId, self.gametype, printdata = printtest)
         
         #Gametypes
-        hilo = "h"
-        if self.gametype['category'] in ['studhilo', 'omahahilo']:
-            hilo = "s"
-        elif self.gametype['category'] in ['razz','27_3draw','badugi', '27_1draw']:
-            hilo = "l"
-        
+        hilo = Card.games[self.gametype['category']][2]
+                
         self.gametyperow = (self.siteId, self.gametype['currency'], self.gametype['type'], self.gametype['base'],
                             self.gametype['category'], self.gametype['limitType'], hilo, self.gametype['mix'],
                             int(Decimal(self.gametype['sb'])*100), int(Decimal(self.gametype['bb'])*100),
@@ -797,6 +794,21 @@ class Hand(object):
         self.actions[street].append((player, 'checks'))
 
 
+    def discardDrawHoleCards(self, cards, player, street):
+        log.debug("discardDrawHoleCards '%s' '%s' '%s'" % (cards, player, street))
+        self.discards[street][player] = set([cards])
+
+
+    def addDiscard(self, street, player, num, cards=None):
+        self.checkPlayerExists(player, 'addDiscard')
+        if cards:
+            act = (player, 'discards', Decimal(num), cards)
+            self.discardDrawHoleCards(cards, player, street)
+        else:
+            act = (player, 'discards', Decimal(num))
+        self.actions[street].append(act)
+
+
     def addCollectPot(self,player, pot):
         log.debug("%s collected %s" % (player, pot))
         self.checkPlayerExists(player, 'addCollectPot')
@@ -1033,6 +1045,10 @@ class HoldemOmahaHand(Hand):
         log.debug("HoldemOmahaHand")
         self.allStreets = ['BLINDSANTES', 'PREFLOP','FLOP','TURN','RIVER']
         self.holeStreets = ['PREFLOP']
+        if gametype['category']=='irish':
+            self.discardStreets = ['TURN']
+        else:
+            self.discardStreets = ['PREFLOP']
         self.communityStreets = ['FLOP', 'TURN', 'RIVER']
         self.actionStreets = ['BLINDSANTES','PREFLOP','FLOP','TURN','RIVER']
         Hand.__init__(self, self.config, sitename, gametype, handText, builtFrom = "HHC")
@@ -1095,7 +1111,7 @@ class HoldemOmahaHand(Hand):
             if shown:  self.shown.add(player)
             if mucked: self.mucked.add(player)
         else:
-            if len(cards) in (2, 3, 4) or self.gametype['category']=='5_omahahi':  # avoid adding board by mistake (Everleaf problem)
+            if len(cards) in (2, 3, 4) or self.gametype['category'] in ('5_omahahi', '5_omaha8', 'cour_hi', 'cour_hilo'):  # avoid adding board by mistake (Everleaf problem)
                 self.addHoleCards('PREFLOP', player, open=[], closed=cards, shown=shown, mucked=mucked, dealt=dealt)
             elif len(cards) == 5:     # cards holds a winning hand, not hole cards
                 # filter( lambda x: x not in b, a )             # calcs a - b where a and b are lists
@@ -1356,6 +1372,7 @@ class DrawHand(Hand):
             self.allStreets += ['DRAWTWO', 'DRAWTHREE']
             self.holeStreets += ['DRAWTWO', 'DRAWTHREE']
             self.actionStreets += ['DRAWTWO', 'DRAWTHREE']
+        self.discardStreets = self.holeStreets
         self.communityStreets = []
         Hand.__init__(self, self.config, sitename, gametype, handText)
         self.sb = gametype['sb']
@@ -1410,21 +1427,6 @@ class DrawHand(Hand):
             self.addHoleCards(self.actionStreets[-1], player, open=[], closed=cards, shown=shown, mucked=mucked, dealt=dealt)
         if string is not None:
             self.showdownStrings[player] = string
-
-
-    def discardDrawHoleCards(self, cards, player, street):
-        log.debug("discardDrawHoleCards '%s' '%s' '%s'" % (cards, player, street))
-        self.discards[street][player] = set([cards])
-
-
-    def addDiscard(self, street, player, num, cards=None):
-        self.checkPlayerExists(player, 'addDiscard')
-        if cards:
-            act = (player, 'discards', Decimal(num), cards)
-            self.discardDrawHoleCards(cards, player, street)
-        else:
-            act = (player, 'discards', Decimal(num))
-        self.actions[street].append(act)
 
     def holecardsAsSet(self, street, player):
         """Return holdcards: (oc, nc) as set()"""
@@ -1563,6 +1565,7 @@ class StudHand(Hand):
             self.actionStreets = ['BLINDSANTES','THIRD','FOURTH','FIFTH','SIXTH','SEVENTH']
             self.streetList = ['BLINDSANTES','THIRD','FOURTH','FIFTH','SIXTH','SEVENTH'] # a list of the observed street names in order
             self.holeStreets = ['THIRD','FOURTH','FIFTH','SIXTH','SEVENTH']
+        self.discardStreets = self.holeStreets
         Hand.__init__(self, self.config, sitename, gametype, handText)
         self.sb = gametype['sb']
         self.bb = gametype['bb']
@@ -1610,6 +1613,11 @@ class StudHand(Hand):
             if shown:  self.shown.add(player)
             if mucked: self.mucked.add(player)
         else:
+            if self.gametype['category'] == '5_studhi' and len(cards)>4:
+                self.addHoleCards('SECOND', player, open=[cards[1]], closed=[cards[0]], shown=shown, mucked=mucked)
+                self.addHoleCards('THIRD', player, open=[cards[2]], closed=[cards[1]], shown=shown, mucked=mucked)
+                self.addHoleCards('FOURTH', player, open=[cards[3]], closed=cards[1:2],  shown=shown, mucked=mucked)
+                self.addHoleCards('FIFTH', player, open=[cards[4]], closed=cards[1:3], shown=shown, mucked=mucked)
             if len(cards) > 6:
                 self.addHoleCards('THIRD', player, open=[cards[2]], closed=cards[0:2], shown=shown, mucked=mucked)
                 self.addHoleCards('FOURTH', player, open=[cards[3]], closed=[cards[2]],  shown=shown, mucked=mucked)
@@ -1825,7 +1833,8 @@ class StudHand(Hand):
         holecards = []
         for street in self.holeStreets:
             if self.holecards[street].has_key(player):
-                if street == 'THIRD' or street == 'SECOND':
+                if ((self.gametype['category']=='5_studhi' and street == 'SECOND') or 
+                    (self.gametype['category']!='5_studhi' and street == 'THIRD')):
                     holecards = holecards + self.holecards[street][player][1] + self.holecards[street][player][0]
                 elif street == 'SEVENTH':
                     if player == self.hero:
@@ -1840,6 +1849,8 @@ class StudHand(Hand):
             return " ".join(holecards)
         else:
             if self.gametype['category']=='5_studhi':
+                if len(holecards) < 2:
+                    holecards = [u'0x'] + holecards
                 return holecards
             else:
                 if player == self.hero:

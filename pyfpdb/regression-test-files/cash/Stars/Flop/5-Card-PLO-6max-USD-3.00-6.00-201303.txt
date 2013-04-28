@@ -1,0 +1,40 @@
+PokerStars Hand #96318916658:  5 Card Omaha Pot Limit ($3/$6 USD) - 2013/03/29 3:47:12 ET
+Table 'Armida III' 6-max Seat #4 is the button
+Seat 1: Hero ($958.50 in chips) 
+Seat 4: Player0 ($2037.50 in chips) 
+Player0: posts small blind $3
+Hero: posts big blind $6
+*** HOLE CARDS ***
+Dealt to Hero [Td 9c 7d 8c Qd]
+Hero said, "quads in ur face"
+Player0: raises $12 to $18
+Hero said, "holy ****"
+Hero said, "i have v pretty hand"
+Hero: raises $36 to $54
+Player0: raises $36 to $90
+Hero: raises $180 to $270
+Player0 said, "u canadian"
+Player0 said, "or american"
+Player0 said, "or hondurian"
+Player0: raises $180 to $450
+Hero said, "amer"
+Hero: calls $180
+*** FLOP *** [Tc 7s 8h]
+Player0 said, "****"
+Player0 said, "NOGOOD"
+Hero said, "for me?"
+Player0 said, "for me"
+Hero: bets $508.50 and is all-in
+Player0: calls $508.50
+Hero said, "oh goodie"
+*** TURN *** [Tc 7s 8h] [6d]
+*** RIVER *** [Tc 7s 8h 6d] [9h]
+*** SHOW DOWN ***
+Hero: shows [Td 9c 7d 8c Qd] (a straight, Six to Ten)
+Player0: shows [4c Jc 4s Kc Jd] (a pair of Jacks)
+Hero collected $1916.50 from pot
+*** SUMMARY ***
+Total pot $1917 | Rake $0.50 
+Board [Tc 7s 8h 6d 9h]
+Seat 1: Hero (big blind) showed [Td 9c 7d 8c Qd] and won ($1916.50) with a straight, Six to Ten
+Seat 4: Player0 (button) (small blind) showed [4c Jc 4s Kc Jd] and lost with a pair of Jacks

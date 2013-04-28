@@ -1,0 +1,159 @@
+***** History for hand R5-69701-1672 *****
+Start hand: Thu Feb 28 07:30:49 CET 2013
+Table: Round GC, Strobe ref: 69701  [69701] (NO_LIMIT TEXAS_HOLDEM $0.05/$0.10, Real money)
+User: user233_9
+Button: seat 1
+Players in round: 3 (5)
+Seat 1: user233_3 ($10)
+Seat 2: user233_2 ($10)
+Seat 4: user233_9 ($10)
+user233_2 posts small blind ($0.05)
+user233_9 posts big blind ($0.10)
+---
+Dealing pocket cards
+Dealing to user233_9: [Th, 3d]
+user233_3 calls $0.10
+user233_2 calls $0.05
+user233_9 checks
+--- Dealing flop [6c, Jc, 8c]
+user233_2 bets $0.10
+user233_9 calls $0.10
+user233_3 folds
+--- Dealing turn [7h]
+user233_2 bets $0.10
+user233_9 folds
+---
+Summary:
+Main pot: $0.50 won by user233_2 ($0.48)
+Rake taken: $0.02
+Seat 1: user233_3 ($9.90), net: -$0.10
+Seat 2: user233_2 ($10.28), net: +$0.28
+Seat 4: user233_9 ($9.80), net: -$0.20
+***** End of hand R5-69701-1672 *****
+***** History for hand R5-69701-1673 *****
+Start hand: Thu Feb 28 07:31:55 CET 2013
+Table: Round GC, Strobe ref: 69701  [69701] (NO_LIMIT TEXAS_HOLDEM $0.05/$0.10, Real money)
+User: user233_9
+Button: seat 1
+Players in round: 3 (5)
+Seat 1: user233_3 ($9.90)
+Seat 2: user233_9 ($9.80)
+Seat 4: user233_2 ($10.28)
+user233_9 posts small blind ($0.05)
+user233_2 posts big blind ($0.10)
+---
+Dealing pocket cards
+Dealing to user233_9: [7s, Jh]
+user233_3 raises $0.20 to $0.20
+user233_9 folds
+user233_2 folds
+---
+Summary:
+Main pot: $0.25 won by user233_3 ($0.25)
+Rake taken: $0
+Seat 1: user233_3 ($10.05), net: +$0.15
+Seat 2: user233_9 ($9.75), net: -$0.05
+Seat 4: user233_2 ($10.18), net: -$0.10
+***** End of hand R5-69701-1673 *****
+***** History for hand R5-69701-1674 *****
+Start hand: Thu Feb 28 07:32:09 CET 2013
+Table: Round GC, Strobe ref: 69701  [69701] (NO_LIMIT TEXAS_HOLDEM $0.05/$0.10, Real money)
+User: user233_9
+Button: seat 1
+Players in round: 3 (5)
+Seat 1: user233_9 ($9.75)
+Seat 2: user233_2 ($10.18)
+Seat 4: user233_3 ($10.05)
+user233_2 posts small blind ($0.05)
+user233_3 posts big blind ($0.10)
+---
+Dealing pocket cards
+Dealing to user233_9: [Kd, 6d]
+user233_9 calls $0.10
+user233_2 raises $0.15 to $0.20
+user233_3 calls $0.10
+user233_9 folds
+--- Dealing flop [Th, 6h, Tc]
+user233_2 checks
+user233_3 checks
+--- Dealing turn [7s]
+user233_2 bets $0.10
+user233_3 calls $0.10
+--- Dealing river [4d]
+user233_2 checks
+user233_3 checks
+---
+Summary:
+Main pot: $0.70 won by user233_2 ($0.67)
+Rake taken: $0.03
+Seat 1: user233_9 ($9.65), net: -$0.10
+Seat 2: user233_2 ($10.55), net: +$0.37, [7c, 7d] (FULL_HOUSE SEVEN, TEN)
+Seat 4: user233_3 ($9.75), net: -$0.30
+***** End of hand R5-69701-1674 *****
+***** History for hand R5-69701-1675 *****
+Start hand: Thu Feb 28 07:32:40 CET 2013
+Table: Round GC, Strobe ref: 69701  [69701] (NO_LIMIT TEXAS_HOLDEM $0.05/$0.10, Real money)
+User: user233_9
+Button: seat 1
+Players in round: 3 (5)
+Seat 1: user233_2 ($10.55)
+Seat 2: user233_3 ($9.75)
+Seat 4: user233_9 ($9.65)
+user233_3 posts small blind ($0.05)
+user233_9 posts big blind ($0.10)
+---
+Dealing pocket cards
+Dealing to user233_9: [2h, 8d]
+user233_2 calls $0.10
+user233_3 calls $0.05
+user233_9 checks
+--- Dealing flop [9s, Th, Qd]
+user233_3 checks
+user233_9 bets $0.10
+user233_2 folds
+user233_3 folds
+---
+Summary:
+Main pot: $0.30 won by user233_9 ($0.29)
+Rake taken: $0.01
+Seat 1: user233_2 ($10.45), net: -$0.10
+Seat 2: user233_3 ($9.65), net: -$0.10
+Seat 4: user233_9 ($9.84), net: +$0.19
+***** End of hand R5-69701-1675 *****
+***** History for hand R5-69701-1676 *****
+Start hand: Thu Feb 28 07:33:32 CET 2013
+Table: Round GC, Strobe ref: 69701  [69701] (NO_LIMIT TEXAS_HOLDEM $0.05/$0.10, Real money)
+User: user233_9
+Button: seat 1
+Players in round: 3 (5)
+Seat 1: user233_3 ($9.65)
+Seat 2: user233_9 ($9.84)
+Seat 4: user233_2 ($10.45)
+user233_9 posts small blind ($0.05)
+user233_2 posts big blind ($0.10)
+---
+Dealing pocket cards
+Dealing to user233_9: [7c, Jc]
+user233_3 calls $0.10
+user233_9 calls $0.05
+user233_2 raises $0.10 to $0.20
+user233_3 calls $0.10
+user233_9 folds
+--- Dealing flop [Jh, Jd, 3h]
+user233_2 checks
+user233_3 bets $0.10
+user233_2 calls $0.10
+--- Dealing turn [8s]
+user233_2 checks
+user233_3 checks
+--- Dealing river [Tc]
+user233_2 checks
+user233_3 checks
+---
+Summary:
+Main pot: $0.70 won by user233_3 ($0.67)
+Rake taken: $0.03
+Seat 1: user233_3 ($10.02), net: +$0.37, [9s, 3d] (TWO_PAIR JACK, THREE)
+Seat 2: user233_9 ($9.74), net: -$0.10
+Seat 4: user233_2 ($10.15), net: -$0.30, [4h, Kh] (PAIR JACK)
+***** End of hand R5-69701-1676 *****

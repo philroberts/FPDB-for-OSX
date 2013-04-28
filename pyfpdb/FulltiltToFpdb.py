@@ -82,7 +82,7 @@ class Fulltilt(HandHistoryConverter):
                                     (Ante\s\$?(?P<ANTE>[%(NUM)s]+)\s)?-\s
                                     [%(LS)s]?(?P<CAP>[%(NUM)s]+\sCap\s)?
                                     (?P<LIMIT>(No\sLimit|Pot\sLimit|Limit))?\s
-                                    (?P<GAME>(Hold\'em|Omaha(\sH/L|\sHi/Lo|\sHi|)|7\sCard\sStud|Stud\sH/L|Razz|Stud\sHi|2-7\sTriple\sDraw|5\sCard\sDraw|Badugi|2-7\sSingle\sDraw|A-5\sTriple\sDraw))
+                                    (?P<GAME>(Hold\'em|Omaha(\sH/L|\sHi/Lo|\sHi|)|Irish|5\sCard\sStud|7\sCard\sStud|7\sCard\sStud|Stud\sH/L|Razz|Stud\sHi|2-7\sTriple\sDraw|5\sCard\sDraw|Badugi|2-7\sSingle\sDraw|A-5\sTriple\sDraw))
                                  ''' % substitutions, re.VERBOSE)
     re_Identify     = re.compile(u'FullTiltPoker|Full\sTilt\sPoker\sGame\s#\d+:')
     re_SplitHands   = re.compile(r"\n\n\n+")
@@ -184,9 +184,13 @@ class Fulltilt(HandHistoryConverter):
                     'Omaha' : ('hold','omahahi'),
                 'Omaha H/L' : ('hold','omahahilo'),
               'Omaha Hi/Lo' : ('hold','omahahilo'),
+                    'Irish' : ('hold','irish'), 
                      'Razz' : ('stud','razz'), 
-                  'Stud Hi' : ('stud','studhi'), 
+              '7 Card Stud' : ('stud','studhi'),
+                  'Stud Hi' : ('stud','studhi'),
+        '7 Card Stud Hi/Lo' : ('stud','studhilo'),
                  'Stud H/L' : ('stud','studhilo'),
+              '5 Card Stud' : ('stud', '5_studhi'),
           '2-7 Triple Draw' : ('draw','27_3draw'),
           'A-5 Triple Draw' : ('draw','a5_3draw'),
               '5 Card Draw' : ('draw','fivedraw'),
@@ -400,12 +404,19 @@ class Fulltilt(HandHistoryConverter):
                        r"(\*\*\* TURN 2 \*\*\* \[\S\S \S\S \S\S] (?P<TURN2>\[\S\S\].+(?=\*\*\* RIVER 2 \*\*\*)|.+))?"
                        r"(\*\*\* RIVER 2 \*\*\* \[\S\S \S\S \S\S \S\S] (?P<RIVER2>\[\S\S\].+))?", hand.handText,re.DOTALL)
         elif hand.gametype['base'] == "stud":
-            m =  re.search(r"(?P<ANTES>.+(?=\*\*\* 3RD STREET \*\*\*)|.+)"
-                           r"(\*\*\* 3RD STREET \*\*\*(?P<THIRD>.+(?=\*\*\* 4TH STREET \*\*\*)|.+))?"
-                           r"(\*\*\* 4TH STREET \*\*\*(?P<FOURTH>.+(?=\*\*\* 5TH STREET \*\*\*)|.+))?"
-                           r"(\*\*\* 5TH STREET \*\*\*(?P<FIFTH>.+(?=\*\*\* 6TH STREET \*\*\*)|.+))?"
-                           r"(\*\*\* 6TH STREET \*\*\*(?P<SIXTH>.+(?=\*\*\* 7TH STREET \*\*\*)|.+))?"
-                           r"(\*\*\* 7TH STREET \*\*\*(?P<SEVENTH>.+))?", hand.handText,re.DOTALL)
+            if hand.gametype['category'] != '5_studhi':
+                m =  re.search(r"(?P<ANTES>.+(?=\*\*\* 3RD STREET \*\*\*)|.+)"
+                               r"(\*\*\* 3RD STREET \*\*\*(?P<THIRD>.+(?=\*\*\* 4TH STREET \*\*\*)|.+))?"
+                               r"(\*\*\* 4TH STREET \*\*\*(?P<FOURTH>.+(?=\*\*\* 5TH STREET \*\*\*)|.+))?"
+                               r"(\*\*\* 5TH STREET \*\*\*(?P<FIFTH>.+(?=\*\*\* 6TH STREET \*\*\*)|.+))?"
+                               r"(\*\*\* 6TH STREET \*\*\*(?P<SIXTH>.+(?=\*\*\* 7TH STREET \*\*\*)|.+))?"
+                               r"(\*\*\* 7TH STREET \*\*\*(?P<SEVENTH>.+))?", hand.handText,re.DOTALL)
+            else:
+                m =  re.search(r"(?P<ANTES>.+(?=\*\*\* 2ND STREET \*\*\*)|.+)"
+                               r"(\*\*\* 2ND STREET \*\*\*(?P<SECOND>.+(?=\*\*\* 3RD STREET \*\*\*)|.+))?"
+                               r"(\*\*\* 3RD STREET \*\*\*(?P<THIRD>.+(?=\*\*\* 4TH STREET \*\*\*)|.+))?"
+                               r"(\*\*\* 4TH STREET \*\*\*(?P<FOURTH>.+(?=\*\*\* 5TH STREET \*\*\*)|.+))?"
+                               r"(\*\*\* 5TH STREET \*\*\*(?P<FIFTH>.+))?", hand.handText,re.DOTALL)
         elif hand.gametype['base'] in ("draw"):
             m =  re.search(r"(?P<PREDEAL>.+(?=\*\*\* HOLE CARDS \*\*\*)|.+)"
                            r"(\*\*\* HOLE CARDS \*\*\*(?P<DEAL>.+(?=(\*\*\* FIRST DRAW \*\*\*|\*\*\* DRAW \*\*\*))|.+))?"
@@ -493,8 +504,9 @@ class Fulltilt(HandHistoryConverter):
                     oldcards = []
                 else:
                     oldcards = found.group('OLDCARDS').split(' ')
-
-                if street == 'THIRD' and len(oldcards) == 2: # hero in stud game
+                    
+                if ((hand.gametype['category'] == '5_studhi' and street == 'SECOND' and len(oldcards) == 1) or 
+                     hand.gametype['category'] != '5_studhi' and street == 'THIRD' and len(oldcards) == 2): # hero in stud game
                     hand.hero = player
                     hand.dealt.add(player) # need this for stud??
                     hand.addHoleCards(street, player, closed=oldcards, open=newcards, shown=False, mucked=False, dealt=False)
@@ -516,7 +528,10 @@ class Fulltilt(HandHistoryConverter):
             elif action.group('ATYPE') == ' bets':
                 hand.addBet( street, action.group('PNAME'), action.group('BET') )
             elif action.group('ATYPE') == ' discards':
-                hand.addDiscard(street, action.group('PNAME'), action.group('BET'), action.group('CARDS'))
+                discarded = action.group('BET')
+                if hand.gametype['category'] == 'irish':
+                    street, discarded = 'TURN', '2'
+                hand.addDiscard(street, action.group('PNAME'), discarded, action.group('CARDS'))
             elif action.group('ATYPE') == ' completes it to':
                 hand.addComplete( street, action.group('PNAME'), action.group('BET') )
             elif action.group('ATYPE') == ' stands pat':
