@@ -456,14 +456,6 @@
             <game_stat_set game_type="tour" stat_set="holdem_tour"/>
             <game_stat_set game_type="ring" stat_set="holdem_ring"/>
         </game>
-        <game game_name="2_holdem" aux="Classic_HUD, mucked">
-            <game_stat_set game_type="tour" stat_set="holdem_tour"/>
-            <game_stat_set game_type="ring" stat_set="holdem_ring"/>
-        </game>
-        <game game_name="irish" aux="Classic_HUD, mucked">
-            <game_stat_set game_type="tour" stat_set="holdem_tour"/>
-            <game_stat_set game_type="ring" stat_set="holdem_ring"/>
-        </game>
         <game game_name="razz" aux="stud_mucked, Classic_HUD">
             <game_stat_set game_type="all" stat_set="stud_default"/>
         </game>
@@ -473,22 +465,7 @@
         <game game_name="omahahilo" aux="Classic_HUD, mucked">
             <game_stat_set game_type="all" stat_set="omaha_default"/>
         </game>
-        <game game_name="5_omahahi" aux="Classic_HUD, mucked">
-            <game_stat_set game_type="all" stat_set="omaha_default"/>
-        </game>
-        <game game_name="5_omaha8" aux="Classic_HUD, mucked">
-            <game_stat_set game_type="all" stat_set="omaha_default"/>
-        </game>
-        <game game_name="cour_hi" aux="Classic_HUD, mucked">
-            <game_stat_set game_type="all" stat_set="omaha_default"/>
-        </game>
-        <game game_name="cour_hilo" aux="Classic_HUD, mucked">
-            <game_stat_set game_type="all" stat_set="omaha_default"/>
-        </game>
         <game game_name="studhi" aux="stud_mucked, Classic_HUD">
-            <game_stat_set game_type="all" stat_set="stud_default"/>
-        </game>
-        <game game_name="5_studhi" aux="stud_mucked, Classic_HUD">
             <game_stat_set game_type="all" stat_set="stud_default"/>
         </game>
         <game game_name="studhilo" aux="stud_mucked, Classic_HUD">
@@ -503,12 +480,9 @@
         <game game_name="badugi" aux="Classic_HUD, mucked">
             <game_stat_set game_type="all" stat_set="draw_default"/>
         </game>
-        <game game_name="fivedraw" aux="Classic_HUD, mucked">
-            <game_stat_set game_type="all" stat_set ="draw_default"/>
+            <game game_name="fivedraw" aux="Classic_HUD, mucked">
+        <game_stat_set game_type="all" stat_set ="draw_default"/>
         </game>
-        <game game_name="a5_3draw" aux="Classic_HUD, mucked">
-            <game_stat_set game_type="all" stat_set ="draw_default"/>
-        </game>  
     </supported_games>
 
 

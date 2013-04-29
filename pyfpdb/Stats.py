@@ -1324,11 +1324,10 @@ def starthands(stat_dict, player):
     # this info is NOT read from the cache, so does not obey aggregation
     # parameters for other stats
     
-    #display shows 5 categories
+    #display shows 3 categories
     # PFcall - limp or coldcall preflop
     # PFaggr - raise preflop
-    # PFdefend - defended in BB
-    # PFcar
+    # PFdefBB - defended in BB
     
     # hand is shown, followed by position indicator
     # (b=SB/BB. l=Button/cutoff m=previous 3 seats to that, e=remainder)
@@ -1340,14 +1339,14 @@ def starthands(stat_dict, player):
     PFlimp="Limped:"
     PFaggr="Raised:"
     PFcar="Called raise:"
-    PFdefendBB="Defend BB:"
+    PFdefend="Defended blind:"
     count_pfl = count_pfa = count_pfc = count_pfd = 5
     
     c = Configuration.Config()
     db_connection = Database.Database(c)
     sc = db_connection.get_cursor()
 
-    query = ("SELECT distinct startCards, street0Aggr, street0CalledRaiseDone, " +
+    sc.execute(("SELECT distinct startCards, street0Aggr, street0CalledRaiseDone, " +
     			"case when HandsPlayers.position = 'B' then 'b' " +
                             "when HandsPlayers.position = 'S' then 'b' " +
                             "when HandsPlayers.position = '0' then 'l' " +
@@ -1375,20 +1374,19 @@ def starthands(stat_dict, player):
                         " WHERE Hands.id = %d) " +
                         "AND HandsPlayers.playerId = %d " +
                         "AND street0VPI " +
-                        "AND startCards > 0 AND startCards <> 170 " +
+                        "AND startCards > 0 " +
                         "ORDER BY startCards DESC " +
-                        ";")   % (int(handid), int(handid), int(handid), int(player))
+                        ";")
+                         % (int(handid), int(handid), int(handid), int(player)))
 
-    #print query
-    sc.execute(query)
     for (qstartcards, qstreet0Aggr, qstreet0CalledRaiseDone, qposition) in sc.fetchall():
         humancards = Card.decodeStartHandValue("holdem", qstartcards)
         #print humancards, qstreet0Aggr, qstreet0CalledRaiseDone, qposition
         if qposition == "b" and qstreet0CalledRaiseDone:
-            PFdefendBB=PFdefendBB+"/"+humancards
+            PFdefend=PFdefend+"/"+humancards
             count_pfd += 1
             if (count_pfd / 8.0 == int(count_pfd / 8.0)):
-                PFdefendBB=PFdefendBB+"\n"
+                PFdefend=PFdefend+"\n"
         elif qstreet0Aggr == True:
             PFaggr=PFaggr+"/"+humancards+"."+qposition
             count_pfa += 1
@@ -1406,14 +1404,14 @@ def starthands(stat_dict, player):
                 PFlimp=PFlimp+"\n"
     sc.close()
     
-    returnstring = PFlimp + "\n" + PFaggr + "\n" + PFcar + "\n" + PFdefendBB  #+ "\n" + str(handid)
+    returnstring = PFlimp + "\n" + PFaggr + "\n" + PFcar + "\n" + PFdefend  #+ "\n" + str(handid)
 
     return ((returnstring),
             (returnstring),
             (returnstring),
             (returnstring),
             (returnstring),
-            _('Hands seen at this table\n'))
+            _('Hands seen at this table'))
 
                 
 def get_valid_stats():

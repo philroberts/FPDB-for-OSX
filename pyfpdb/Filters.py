@@ -59,7 +59,7 @@ class Filters(threading.Thread):
         self.gameName = {"27_1draw"  : _("Single Draw 2-7 Lowball")
                         ,"27_3draw"  : _("Triple Draw 2-7 Lowball")
                         ,"a5_3draw"  : _("Triple Draw A-5 Lowball")
-                        ,"5_studhi"   : _("5 Card Stud")
+                        ,"5studhi"   : _("5 Card Stud")
                         ,"badugi"    : _("Badugi")
                         ,"fivedraw"  : _("5 Card Draw")
                         ,"holdem"    : _("Hold'em")
@@ -68,12 +68,6 @@ class Filters(threading.Thread):
                         ,"razz"      : _("Razz")
                         ,"studhi"    : _("7 Card Stud")
                         ,"studhilo"  : _("7 Card Stud Hi/Lo")
-                        ,"5_omahahi" : _("5 Card Omaha")
-                        ,"5_omaha8"  : _("5 Card Omaha Hi/Lo")
-                        ,"cour_hi"   : _("Courchevel")
-                        ,"cour_hilo" : _("Courchevel Hi/Lo")
-                        ,"2_holdem"  : _("Double hold'em")
-                        ,"irish"     : _("Irish")
                         }
 
         self.currencyName = {"USD" : _("US Dollar")
