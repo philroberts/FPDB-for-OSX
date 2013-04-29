@@ -609,6 +609,8 @@ or None if we fail to get the info """
             givenTZ = timezone('Australia/Sydney')
         elif givenTimezone == 'NZT': # New Zealand Time
             givenTZ = timezone('Pacific/Auckland')
+        elif givenTimezone == 'UTC': # Universal time co-ordinated
+            givenTZ = pytz.UTC
 
         if givenTZ is None:
             # do not crash if timezone not in list, just return UTC localized time
