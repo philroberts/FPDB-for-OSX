@@ -8317,6 +8317,14 @@ class Sql:
                                                 WHERE tourneyTypeId in (SELECT id FROM TourneyTypes WHERE siteId=%s)
                                                 AND siteTourneyNo=%s
             """
+        elif db_server == 'postgresql':
+            self.query['updateTourneyTypeId'] = """UPDATE Tourneys t 
+                                                SET tourneyTypeId = %s
+                                                FROM TourneyTypes tt 
+                                                WHERE t.tourneyTypeId = tt.id
+                                                AND tt.siteId=%s 
+                                                AND t.siteTourneyNo=%s
+            """       
         else:
             self.query['updateTourneyTypeId'] = """UPDATE Tourneys t INNER JOIN TourneyTypes tt ON (t.tourneyTypeId = tt.id)
                                                 SET tourneyTypeId = %s

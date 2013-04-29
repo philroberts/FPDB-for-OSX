@@ -384,8 +384,7 @@ class Database:
                 , {'tab':'HandsActions',    'col':'actionId',          'drop':1}
                 , {'tab':'HandsStove',      'col':'handId',            'drop':1}
                 , {'tab':'HandsStove',      'col':'playerId',          'drop':1}
-                , {'tab':'HandsStove',      'col':'hiId',              'drop':1}
-                , {'tab':'HandsStove',      'col':'loId',              'drop':1}
+                , {'tab':'HandsStove',      'col':'hiLo',              'drop':1}
                 , {'tab':'HandsPots',       'col':'handId',            'drop':1}
                 , {'tab':'HandsPots',       'col':'playerId',          'drop':1}
                 , {'tab':'Boards',          'col':'handId',            'drop':1}

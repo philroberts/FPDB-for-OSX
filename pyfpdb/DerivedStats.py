@@ -91,7 +91,7 @@ def _buildStatsInitializer():
         init['street%dCalls' % i] = 0
         init['street%dBets' % i] = 0
         init['street%dRaises' % i] = 0
-        init['street%dAggr' % i] = 0
+        init['street%dAggr' % i] = False
     for i in range(1,5):
         init['street%dCBChance' %i] = False
         init['street%dCBDone' %i] = False
@@ -291,7 +291,7 @@ class DerivedStats():
             if int(Decimal(hand.gametype['bb']))>0:
                 player_stats['BBwon'] = player_stats['totalProfit'] / int(Decimal(hand.gametype['bb'])*2)
             if player_stats['street0VPI'] or player_stats['street1Seen']:
-                player_stats['played'] = True
+                player_stats['played'] = 1
             if player_stats['sawShowdown']:
                 player_stats['showdownWinnings'] = player_stats['totalProfit']
                 player_stats['nonShowdownWinnings'] = 0
