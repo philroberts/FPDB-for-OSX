@@ -762,7 +762,7 @@ class Database:
                     pass
             if not self.is_connected():
                 try:
-                    print(host, user, password, database)
+                    #print(host, user, password, database)
                     self.connection = psycopg2.connect(host = host,
                                                user = user,
                                                password = password,
