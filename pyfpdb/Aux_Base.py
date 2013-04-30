@@ -168,7 +168,7 @@ class Aux_Seats(Aux_Window):
         
     def create(self):
         
-        self.adj = self.hud.adj_seats(0, self.config)  # move adj_seats to aux and get rid of it in Hud.py
+        self.adj = self.adj_seats()
         self.m_windows = {}      # windows to put the card/hud items in
 
         for i in (range(1, self.hud.max + 1) + ['common']):   
@@ -280,4 +280,45 @@ class Aux_Seats(Aux_Window):
             else:
                 self.hud.layout.common = new_position
 
+    def adj_seats(self):
+        # determine how to adjust seating arrangements, if a "preferred seat" is set in the hud layout configuration
+        #  Need range here, not xrange -> need the actual list
+    
+        adj = range(0, self.hud.max + 1) # default seat adjustments = no adjustment
+        
+        #   does the user have a fav_seat? if so, just get out now
+        if self.hud.site_parameters["fav_seat"][self.hud.max] == 0:
+            return adj
 
+        # find the hero's actual seat
+        
+        actual_seat = None
+        for key in self.hud.stat_dict:
+            if self.hud.stat_dict[key]['screen_name'] == self.config.supported_sites[self.hud.site].screen_name:
+                # Seat from stat_dict is the seat num recorded in the hand history and database
+                # For tables <10-max, some sites omit some seat nums (e.g. iPoker 6-max uses 1,3,5,6,8,10)
+                # The seat nums in the hh from the site are recorded in config file for each layout, and available
+                # here as the self.layout.hh_seats list
+                #    (e.g. for iPoker - [None,1,3,5,6,8,10];
+                #      for most sites-  [None, 1,2,3,4,5,6]
+                # we need to match 'seat' from hand history with the postion in the list, as the hud
+                #  always numbers its stat_windows using consecutive numbers (e.g. 1-6)
+
+                for i in range(1, self.hud.max + 1):
+                    if self.hud.layout.hh_seats[i] == self.hud.stat_dict[key]['seat']:
+                        actual_seat = i
+                        break
+
+        if not actual_seat:
+            log.error(_("Error finding hero seat."))
+            return adj
+                
+        for i in xrange(0, self.hud.max + 1):
+            j = actual_seat + i
+            if j > self.hud.max:
+                j = j - self.hud.max
+            adj[j] = self.hud.site_parameters["fav_seat"][self.hud.max] + i
+            if adj[j] > self.hud.max:
+                adj[j] = adj[j] - self.hud.max
+
+        return adj
