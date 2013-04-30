@@ -215,12 +215,11 @@ class Hud:
                 # we need to match 'seat' from hand history with the postion in the list, as the hud
                 #  always numbers its stat_windows using consecutive numbers (e.g. 1-6)
                 hh_seat = self.stat_dict[key]['seat']
-                for i in range(1, self.layout.max):
+                for i in range(1, self.layout.max + 1):
                     if self.layout.hh_seats[i] == hh_seat:
-                        hud_seat = i
-                        break
+                        return i
                 # TODO - If hud_seat is not in range 1-layout.max, there is an error, as layout.HH_seat
-                return hud_seat
+                return False
             
     def create(self, hand, config, stat_dict):
 #    update this hud, to the stats and players as of "hand"
