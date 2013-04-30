@@ -30,7 +30,8 @@ global_modules_to_test =   ["gobject",
                             "numpy",
                             "pylab",
                             "sqlite3",
-                            "pytz"]
+                            "pytz",
+                            "BeautifulSoup"]
 
 windows_modules_to_test =  ["win32gui",
                             "win32api",
