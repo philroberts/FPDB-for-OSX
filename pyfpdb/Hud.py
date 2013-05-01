@@ -67,11 +67,11 @@ class Hud:
         self.poker_game    = poker_game
         self.game_type     = game_type # (ring|tour)
         self.max           = max
-        # self.db_hud_connection is available to this thread 
-        #  this is available once the create() method has been called
+        
         # the db_connection created in HUD_Main is NOT available to the
-        #  hud.py and aux handlers
-              
+        #  hud.py and aux handlers, so create a fresh connection in this class
+        self.db_hud_connection = Database.Database(self.config)
+                      
         self.site          = table.site
         self.hud_params    = dict.copy(parent.hud_params) # we must dict.copy a fresh hud_params dict
                                                           # because each aux hud can control local hud param 
@@ -181,26 +181,17 @@ class Hud:
 
 
     def create(self, hand, config, stat_dict):
-#    update this hud, to the stats and players as of "hand"
-#    hand is the hand id of the most recent hand played at this table
+        # update this hud, to the stats and players as of "hand"
+        # hand is the hand id of the most recent hand played at this table
 
-        self.creation_attrs = hand, config, stat_dict
-
-        #create new database connection for this table - must create a fresh one
-        # here because the one used in HUD_Main is not available in this thread
-        self.db_hud_connection = Database.Database(self.config)
+        self.stat_dict = stat_dict # stat_dict from HUD_main.read_stdin is mapped here
         # Load a hand instance (factory will load correct type for this hand)
         self.hand_instance = Hand.hand_factory(hand, config, self.db_hud_connection)
-
-        self.hand = hand            #fixme - not sure what this is doing here?
-        self.stat_dict = stat_dict  #fixme - not sure what this is doing here?
         self.db_hud_connection.connection.rollback()
         log.info(_('Creating hud from hand ')+str(hand))
 
 
     def update(self, hand, config):
-         # Load a hand instance (factory will load correct type for this hand)
+         # re-load a hand instance (factory will load correct type for this hand)
         self.hand_instance = Hand.hand_factory(hand, config, self.db_hud_connection)
         self.db_hud_connection.connection.rollback()
-        self.hand = hand   # this is the last hand, so it is available later
-

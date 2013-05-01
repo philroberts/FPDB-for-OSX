@@ -231,6 +231,15 @@ class HUD_main(object):
                 aux_disabled_sites.append(i)
 
         while 1:    # wait for a new hand number on stdin
+            time.sleep(0.1) # pause an arbitrary amount of time
+                            # This throttles thru-put to about 8 or 10
+                            # hands per second.  Otherwise, the downstream
+                            # code can become flooded and errors start to
+                            # occur due to stat_dict being overwritten before
+                            # the previous hand completed processing.
+                            # Flooding normally occurs when the hud "fast forwards"
+                            # at tables where a bunch of hands have already been played
+                            # with the HUD switched off.
             new_hand_id = sys.stdin.readline()
             new_hand_id = string.rstrip(new_hand_id)
             log.debug(_("Received hand no %s") % new_hand_id)
