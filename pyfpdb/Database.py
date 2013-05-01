@@ -1182,7 +1182,7 @@ class Database:
         # Now get the stats
         c.execute(self.sql.query[query], subs)
         ptime = time() - stime
-        log.info("HudCache query get_stats_from_hand_aggregated took %.3f seconds" % ptime)
+        #log.info("HudCache query get_stats_from_hand_aggregated took %.3f seconds" % ptime)
         colnames = [desc[0] for desc in c.description]
         for row in c.fetchall():
             playerid = row[0]

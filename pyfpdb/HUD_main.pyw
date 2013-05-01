@@ -195,8 +195,7 @@ class HUD_main(object):
         self.hud_params['aggregate_tour'] = True
         self.hud_params['h_aggregate_tour'] = True
         #fixme - passing self.db_connection into another thread
-        # is probably pointless. Note that the valid db_connection for
-        # that thread is NOT realised until Hud.create() has been called
+        # is probably pointless.
         [aw.update_data(new_hand_id, self.db_connection) for aw in self.hud_dict[temp_key].aux_windows]
         gobject.idle_add(idle_create, self, new_hand_id, table, temp_key, max, poker_game, type, stat_dict, cards)
 
@@ -231,7 +230,7 @@ class HUD_main(object):
                 aux_disabled_sites.append(i)
 
         while 1:    # wait for a new hand number on stdin
-            time.sleep(0.1) # pause an arbitrary amount of time
+            time.sleep(0.075) # pause an arbitrary amount of time
                             # This throttles thru-put to about 8 or 10
                             # hands per second.  Otherwise, the downstream
                             # code can become flooded and errors start to
@@ -390,8 +389,9 @@ class HUD_main(object):
                         log.error(_('Table "%s" no longer exists') % table_name)
                         self.db_connection.connection.rollback()
                         return
-        
-        self.db_connection.connection.rollback()
+                        
+            # end of loop, be a good citizen and rollback connection
+            self.db_connection.connection.rollback()
 
     def get_cards(self, new_hand_id, poker_game):
         cards = self.db_connection.get_cards(new_hand_id)
