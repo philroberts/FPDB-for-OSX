@@ -431,7 +431,7 @@ class DerivedStats():
                     streetId = streets[last]
                 self.handsstove.append( [hand.dbid_hands, hand.dbid_pids[player[1]], streetId, 0, hl, 1, 0, None, 0] )
         
-        if base=='hold' and evalgame and hand.gametype['type'] == 'ring':
+        if base=='hold' and evalgame:
             self.getAllInEV(hand, evalgame, holeplayers, boards, streets, holecards)
                 
     def getAllInEV(self, hand, evalgame, holeplayers, boards, streets, holecards):
@@ -453,7 +453,6 @@ class DerivedStats():
                         b = bcards + (5 - len(board['board'][n])) * ['__']
                         holeshow = [holecards[p]['hole'] for p in players if self.handsplayers[p]['sawShowdown'] and u'0x' not in holecards[p]['cards'][n]]
                         if len(holeshow)> 1:
-                            #print hand.handid, game, Card.iter[streetId], holeshow, b
                             evs = pokereval.poker_eval(game = evalgame, iterations = Card.iter[streetId] ,pockets = holeshow ,dead = [], board = b)
                             equities = [e['ev'] for e in evs['eval']]
                         else:
@@ -466,9 +465,8 @@ class DerivedStats():
                                 holecards[p]['eq'] += int(((100*pot - 100*rake) * Decimal(equities[i])/1000))
                                 holecards[p]['committed'] = int(((100*hand.pot.committed[p]) + (100*hand.pot.common[p])))
                             for j in self.handsstove:
-                                if ((j[1] == pid) and (j[2] == streetId) and (j[3] == boardId)):
-                                    if len(players) == len(hand.pot.contenders): 
-                                        j[-1] = equities[i]         
+                                if [pid, streetId, boardId] == j[1:4] and len(players) == len(hand.pot.contenders):
+                                    j[-1] = equities[i]
         for p in holeplayers:
             if holecards[p]['committed'] != 0: 
                 self.handsplayers[p]['allInEV'] = holecards[p]['eq'] - holecards[p]['committed']
