@@ -67,10 +67,7 @@ class Hud:
         self.poker_game    = poker_game
         self.game_type     = game_type # (ring|tour)
         self.max           = max
-        
-        # the db_connection created in HUD_Main is NOT available to the
-        #  hud.py and aux handlers, so create a fresh connection in this class
-        self.db_hud_connection = Database.Database(self.config)
+
                       
         self.site          = table.site
         self.hud_params    = dict.copy(parent.hud_params) # we must dict.copy a fresh hud_params dict
@@ -185,6 +182,11 @@ class Hud:
         # hand is the hand id of the most recent hand played at this table
 
         self.stat_dict = stat_dict # stat_dict from HUD_main.read_stdin is mapped here
+        # the db_connection created in HUD_Main is NOT available to the
+        #  hud.py and aux handlers, so create a fresh connection in this class
+        # if the db connection is made in __init__, then the sqlite db threading will fail
+        #  so the db connection is made here instead.
+        self.db_hud_connection = Database.Database(self.config)
         # Load a hand instance (factory will load correct type for this hand)
         self.hand_instance = Hand.hand_factory(hand, config, self.db_hud_connection)
         self.db_hud_connection.connection.rollback()
