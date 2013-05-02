@@ -326,11 +326,11 @@ class Fulltilt(HandHistoryConverter):
                     hand.buyinCurrency="EUR"
                 else:
                     hand.buyinCurrency="NA"
-                hand.buyin = int(100*Decimal(n.group('BUYIN')))
-                hand.fee = int(100*Decimal(n.group('FEE')))
+                hand.buyin = int(100*Decimal(self.clearMoneyString(n.group('BUYIN'))))
+                hand.fee = int(100*Decimal(self.clearMoneyString(n.group('FEE'))))
             elif n.group('SPECIAL')=='Play Money':
                 hand.buyinCurrency="play"
-                hand.buyin = int(100*Decimal(n.group('BUYIN')))
+                hand.buyin = int(100*Decimal(self.clearMoneyString(n.group('BUYIN'))))
                 hand.fee = 0
             elif n.group('SPECIAL')=='Freeroll':
                 hand.buyin = 0
