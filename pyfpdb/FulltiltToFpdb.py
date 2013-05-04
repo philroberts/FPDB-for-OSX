@@ -82,7 +82,7 @@ class Fulltilt(HandHistoryConverter):
                                     (Ante\s\$?(?P<ANTE>[%(NUM)s]+)\s)?-\s
                                     [%(LS)s]?(?P<CAP>[%(NUM)s]+\sCap\s)?
                                     (?P<LIMIT>(No\sLimit|Pot\sLimit|Limit))?\s
-                                    (?P<GAME>(Hold\'em|Omaha(\sH/L|\sHi/Lo|\sHi|)|Irish|5\sCard\sStud|7\sCard\sStud|7\sCard\sStud|Stud\sH/L|Razz|Stud\sHi|2-7\sTriple\sDraw|5\sCard\sDraw|Badugi|2-7\sSingle\sDraw|A-5\sTriple\sDraw))
+                                    (?P<GAME>(Hold\'em|Omaha(\sH/L|\sHi/Lo|\sHi|)|Irish|5(-|\s)Card\sStud(\sHi)?|7\sCard\sStud|7\sCard\sStud|Stud\sH/L|Razz|Stud\sHi|2-7\sTriple\sDraw|5\sCard\sDraw|Badugi|2-7\sSingle\sDraw|A-5\sTriple\sDraw))
                                  ''' % substitutions, re.VERBOSE)
     re_Identify     = re.compile(u'FullTiltPoker|Full\sTilt\sPoker\sGame\s#\d+:')
     re_SplitHands   = re.compile(r"\n\n\n+")
@@ -192,6 +192,7 @@ class Fulltilt(HandHistoryConverter):
         '7 Card Stud Hi/Lo' : ('stud','studhilo'),
                  'Stud H/L' : ('stud','studhilo'),
               '5 Card Stud' : ('stud', '5_studhi'),
+           '5-Card Stud Hi' : ('stud', '5_studhi'),
           '2-7 Triple Draw' : ('draw','27_3draw'),
           'A-5 Triple Draw' : ('draw','a5_3draw'),
               '5 Card Draw' : ('draw','fivedraw'),
