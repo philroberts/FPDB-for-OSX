@@ -59,7 +59,9 @@ class PartyPoker(HandHistoryConverter):
                         '2.00': ('0.50', '1.00'),       '2': ('0.50', '1.00'),
                         '4.00': ('1.00', '2.00'),       '4': ('1.00', '2.00'),
                         '6.00': ('1.00', '3.00'),       '6': ('1.00', '3.00'),
+                        '8.00': ('2.00', '4.00'),       '8': ('2.00', '4.00'),
                        '10.00': ('2.00', '5.00'),      '10': ('2.00', '5.00'),
+                       '12.00': ('3.00', '6.00'),      '12': ('3.00', '6.00'),
                        '20.00': ('5.00', '10.00'),     '20': ('5.00', '10.00'),
                        '30.00': ('10.00', '15.00'),    '30': ('10.00', '15.00'),
                        '40.00': ('10.00', '20.00'),    '40': ('10.00', '20.00'),
@@ -255,12 +257,22 @@ class PartyPoker(HandHistoryConverter):
             mg['CASHBI'] = self.clearMoneyString(mg['CASHBI'])
             m_20BBmin = self.re_20BBmin.search(handText)
             if m_20BBmin is not None:
-                info['sb'] = self.NLim_Blinds_20bb[mg['CASHBI']][0]
-                info['bb'] = self.NLim_Blinds_20bb[mg['CASHBI']][1]
+                try:
+                    info['sb'] = self.NLim_Blinds_20bb[mg['CASHBI']][0]
+                    info['bb'] = self.NLim_Blinds_20bb[mg['CASHBI']][1]
+                except KeyError:
+                    tmp = handText[0:200]
+                    log.error(_("PartyPokerToFpdb.determineGameType: NLim_Blinds_20bb has no lookup for '%s' - '%s'") % (mg['CASHBI'], tmp))
+                    raise FpdbParseError
             else:
-                nl_bb = str((Decimal(mg['CASHBI'])/50).quantize(Decimal("0.01")))
-                info['sb'] = self.Lim_Blinds[nl_bb][0]
-                info['bb'] = self.Lim_Blinds[nl_bb][1]
+                try:
+                    nl_bb = str((Decimal(mg['CASHBI'])/50).quantize(Decimal("0.01")))
+                    info['sb'] = self.Lim_Blinds[nl_bb][0]
+                    info['bb'] = self.Lim_Blinds[nl_bb][1]
+                except KeyError:
+                    tmp = handText[0:200]
+                    log.error(_("PartyPokerToFpdb.determineGameType: Lim_Blinds has no lookup for '%s' - '%s'") % (nl_bb, tmp))
+                    raise FpdbParseError
         else:
             m = self.re_NewLevel.search(handText)
             if m:
