@@ -1,0 +1,48 @@
+PokerStars Hand #98042238002:  5 Card Omaha Pot Limit ($0.50/$1.00 USD) - 2013/05/03 14:08:57 CET [2013/05/03 8:08:57 ET]
+Table 'Antilochus IV' 6-max Seat #3 is the button
+Seat 1: Player0 ($48.89 in chips) 
+Seat 2: Player1 ($166.53 in chips) 
+Seat 3: Hero ($40 in chips) 
+Seat 4: Player2 ($208.93 in chips) 
+Seat 5: Player3 ($186.17 in chips) 
+Seat 6: Player4 ($69.72 in chips) 
+Player2: posts small blind $0.50
+Player3: posts big blind $1
+*** HOLE CARDS ***
+Dealt to Hero [4h 6c 5c 9h 9d]
+Player4: calls $1
+Player0: folds 
+Player1: raises $3 to $4
+Hero: folds 
+Player2: calls $3.50
+Player3: calls $3
+Player4: calls $3
+*** FLOP *** [2s 5s Ts]
+Player2: checks 
+Player3: checks 
+Player4: checks 
+Player1: bets $12
+Player2: folds 
+Player3: calls $12
+Player4: folds 
+*** TURN *** [2s 5s Ts] [Kd]
+Player3: checks 
+Player1: bets $35
+Player3: calls $35
+*** RIVER *** [2s 5s Ts Kd] [8s]
+Player3: checks 
+Player1: bets $97
+Player3 said, "blah, set and k flush, grr"
+Player3: folds 
+Uncalled bet ($97) returned to Player1
+Player1 collected $107.20 from pot
+Player1: shows [As]
+*** SUMMARY ***
+Total pot $110 | Rake $2.80 
+Board [2s 5s Ts Kd 8s]
+Seat 1: Player0 folded before Flop (didn't bet)
+Seat 2: Player1 collected ($107.20)
+Seat 3: Hero (button) folded before Flop (didn't bet)
+Seat 4: Player2 (small blind) folded on the Flop
+Seat 5: Player3 (big blind) folded on the River
+Seat 6: Player4 folded on the Flop
