@@ -1,0 +1,61 @@
+Full Tilt Poker Game #31319837969: Table Rymer (6 max, shallow) - $2/$4 - Pot Limit Omaha Hi - 18:33:09 CET - 2012/11/06 [12:33:09 ET - 2012/11/06]
+Seat 1: Player0 ($120.15)
+Seat 2: Player1 ($114)
+Seat 3: Player2 ($147.90)
+Seat 4: Hero ($125.70)
+Seat 5: Player3 ($752.30)
+Seat 6: Player4 ($194.40)
+Hero posts the small blind of $2
+Player3 posts the big blind of $4
+The button is in seat #3
+*** HOLE CARDS ***
+Dealt to Hero [Ah Qd Jh Ad]
+Player4 folds
+Player0 folds
+Player1 folds
+Player2 has 15 seconds left to act
+Player2 folds
+Hero raises to $12
+Player3 raises to $36
+Hero raises to $108
+Player3 raises to $180
+Hero calls $17.70, and is all in
+Players agree to Run It Twice
+Player3 shows [As Ac Kd Jd]
+Hero shows [Ah Qd Jh Ad]
+Uncalled bet of $54.30 returned to Player3
+*** FLOP 1 *** [7c 4h 7d] (Total Pot: $251.40, 2 Players, 1 All-In)
+*** TURN 1 *** [7c 4h 7d] [5c] (Total Pot: $251.40, 2 Players, 1 All-In)
+*** RIVER 1 *** [7c 4h 7d 5c] [Th] (Total Pot: $251.40, 2 Players, 1 All-In)
+*** FLOP 2 *** [Kc 7h 3h] (Total Pot: $251.40, 2 Players, 1 All-In)
+*** TURN 2 *** [Kc 7h 3h] [Qh] (Total Pot: $251.40, 2 Players, 1 All-In)
+*** RIVER 2 *** [Kc 7h 3h Qh] [6c] (Total Pot: $251.40, 2 Players, 1 All-In)
+*** SHOW DOWN 1 ***
+Player3 shows two pair, Aces and Sevens
+Hero shows two pair, Aces and Sevens
+*** SHOW DOWN 2 ***
+Player3 shows a pair of Aces
+Hero shows a flush, Ace high
+Hero ties for pot 1 ($62.10) with two pair, Aces and Sevens
+Player3 ties for pot 1 ($62.10) with two pair, Aces and Sevens
+Hero wins pot 2 ($124.20) with a flush, Ace high
+*** SUMMARY ***
+Total pot $251.40 | Rake $3
+*** SUMMARY 1 ***
+Pot 1 $124.20
+Board: [7c 4h 7d 5c Th]
+Seat 1: Player0 didn't bet (folded)
+Seat 2: Player1 didn't bet (folded)
+Seat 3: Player2 (button) didn't bet (folded)
+Seat 4: Hero (small blind) showed [Ah Qd Jh Ad] and won ($62.10) with two pair, Aces and Sevens
+Seat 5: Player3 (big blind) showed [As Ac Kd Jd] and won ($62.10) with two pair, Aces and Sevens
+Seat 6: Player4 didn't bet (folded)
+*** SUMMARY 2 ***
+Pot 2 $124.20
+Board: [Kc 7h 3h Qh 6c]
+Seat 1: Player0 didn't bet (folded)
+Seat 2: Player1 didn't bet (folded)
+Seat 3: Player2 (button) didn't bet (folded)
+Seat 4: Hero (small blind) showed [Ah Qd Jh Ad] and won ($124.20) with a flush, Ace high
+Seat 5: Player3 (big blind) showed [As Ac Kd Jd] and lost with a pair of Aces
+Seat 6: Player4 didn't bet (folded)
