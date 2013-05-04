@@ -312,25 +312,12 @@ class Winamax(HandHistoryConverter):
         pre, post = handsplit
         m = self.re_PlayerInfo.finditer(pre)
         plist = {}
-        slist = {}
 
         # Get list of players in header.
         for a in m:
-            plist[a.group('PNAME')] = [int(a.group('SEAT')), a.group('CASH')]
-
-        n = self.re_PlayerInfoSummary.finditer(post)
-        for b in n:
-            slist[b.group('PNAME')] = [int(b.group('SEAT')), None]
-
-        # Tourney or same length - no probs use plist
-        if hand.gametype['type'] == "tour" or len(slist) == len(plist):
-            for a in plist:
-                seat, stack = plist[a]
-                hand.addPlayer(seat, a, stack)
-        else: # Only add the players from the summary
-            for b in slist:
-                seat, stack = plist[b]
-                hand.addPlayer(seat, b, stack)
+            if plist.get(a.group('PNAME')) is None:
+                hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), a.group('CASH'))
+                plist[a.group('PNAME')] = [int(a.group('SEAT')), a.group('CASH')]
 
     def markStreets(self, hand):
         m =  re.search(r"\*\*\* ANTE\/BLINDS \*\*\*(?P<PREFLOP>.+(?=\*\*\* FLOP \*\*\*)|.+)"
