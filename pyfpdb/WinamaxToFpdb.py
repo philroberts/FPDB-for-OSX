@@ -53,7 +53,7 @@ class Winamax(HandHistoryConverter):
                             'LS' : u"\$|\xe2\x82\xac|\u20ac|" # legal currency symbols - Euro(cp1252, utf-8)
                     }
 
-    limits = { 'no limit':'nl', 'pot limit' : 'pl','LIMIT':'fl'}
+    limits = { 'no limit':'nl', 'pot limit' : 'pl', 'fixed limit':'fl'}
 
     games = {                          # base, category
                                 "Holdem" : ('hold','holdem'),
@@ -80,7 +80,7 @@ class Winamax(HandHistoryConverter):
             .*)?
             \s-\sHandId:\s\#(?P<HID1>\d+)-(?P<HID2>\d+)-(?P<HID3>\d+).*\s  # REB says: HID3 is the correct hand number
             (?P<GAME>Holdem|Omaha)\s
-            (?P<LIMIT>no\slimit|pot\slimit)\s
+            (?P<LIMIT>fixed\slimit|no\slimit|pot\slimit)\s
             \(
             (((%(LS)s)?(?P<ANTE>[.0-9]+)(%(LS)s)?)/)?
             ((%(LS)s)?(?P<SB>[.0-9]+)(%(LS)s)?)/
@@ -143,7 +143,7 @@ class Winamax(HandHistoryConverter):
 
     def readSupportedGames(self):
         return [
-                #["ring", "hold", "fl"], need Lim_Blinds
+                ["ring", "hold", "fl"],
                 ["ring", "hold", "nl"],
                 ["ring", "hold", "pl"],
                 ["tour", "hold", "fl"],
@@ -189,11 +189,8 @@ class Winamax(HandHistoryConverter):
             info['bb'] = mg['BB']
             
         if info['limitType'] == 'fl' and info['bb'] is not None:
-            if info['type'] == 'ring':
-                pass
-            else:
-                info['sb'] = str((Decimal(mg['SB'])/2).quantize(Decimal("0.01")))
-                info['bb'] = str(Decimal(mg['SB']).quantize(Decimal("0.01")))
+            info['sb'] = str((Decimal(mg['SB'])/2).quantize(Decimal("0.01")))
+            info['bb'] = str(Decimal(mg['SB']).quantize(Decimal("0.01")))
 
         return info
 
