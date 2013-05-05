@@ -407,8 +407,10 @@ class Bovada(HandHistoryConverter):
                     hand.gametype['currency']="play"
         for a in self.re_Action.finditer(self.re_Hole_Third.split(hand.handText)[0]):
             if a.group('ATYPE') == ' All-in':
+                re_Ante_Plyr  = re.compile(r"^" + re.escape(a.group('PNAME')) + " (\s?\[ME\]\s)?: Ante chip %(CUR)s(?P<ANTE>[%(NUM)s]+)" % self.substitutions, re.MULTILINE)
                 m = self.re_Antes.search(hand.handText)
-                if ((sb is None or bb is None) and (len(hand.players)>2 or not m)):
+                m1 = re_Ante_Plyr.search(hand.handText)
+                if (not m or m1):
                     player = self.playerSeatFromPosition('BovadaToFpdb.readBlinds.postBB', hand.handid, a.group('PNAME'))
                     if a.group('PNAME') == 'Big Blind':
                         hand.addBlind(player, 'big blind', self.clearMoneyString(a.group('BET')))
