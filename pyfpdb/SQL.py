@@ -857,13 +857,17 @@ class Sql:
                         foldToStreet4CBDone BOOLEAN,
 
                         street1CheckCallRaiseChance BOOLEAN,
-                        street1CheckCallRaiseDone BOOLEAN,
+                        street1CheckCallDone BOOLEAN,
+                        street1CheckRaiseDone BOOLEAN,
                         street2CheckCallRaiseChance BOOLEAN,
-                        street2CheckCallRaiseDone BOOLEAN,
+                        street2CheckCallDone BOOLEAN,
+                        street2CheckRaiseDone BOOLEAN,
                         street3CheckCallRaiseChance BOOLEAN,
-                        street3CheckCallRaiseDone BOOLEAN,
+                        street3CheckCallDone BOOLEAN,
+                        street3CheckRaiseDone BOOLEAN,
                         street4CheckCallRaiseChance BOOLEAN,
-                        street4CheckCallRaiseDone BOOLEAN,
+                        street4CheckCallDone BOOLEAN,
+                        street4CheckRaiseDone BOOLEAN,
 
                         street0Calls TINYINT,
                         street1Calls TINYINT,
@@ -1012,13 +1016,17 @@ class Sql:
                         foldToStreet4CBDone BOOLEAN,
 
                         street1CheckCallRaiseChance BOOLEAN,
-                        street1CheckCallRaiseDone BOOLEAN,
+                        street1CheckCallDone BOOLEAN,
+                        street1CheckRaiseDone BOOLEAN,
                         street2CheckCallRaiseChance BOOLEAN,
-                        street2CheckCallRaiseDone BOOLEAN,
+                        street2CheckCallDone BOOLEAN,
+                        street2CheckRaiseDone BOOLEAN,
                         street3CheckCallRaiseChance BOOLEAN,
-                        street3CheckCallRaiseDone BOOLEAN,
+                        street3CheckCallDone BOOLEAN,
+                        street3CheckRaiseDone BOOLEAN,
                         street4CheckCallRaiseChance BOOLEAN,
-                        street4CheckCallRaiseDone BOOLEAN,
+                        street4CheckCallDone BOOLEAN,
+                        street4CheckRaiseDone BOOLEAN,
 
                         street0Calls SMALLINT,
                         street1Calls SMALLINT,
@@ -1166,13 +1174,17 @@ class Sql:
                         foldToStreet4CBDone INT,
 
                         street1CheckCallRaiseChance INT,
-                        street1CheckCallRaiseDone INT,
+                        street1CheckCallDone INT,
+                        street1CheckRaiseDone INT,
                         street2CheckCallRaiseChance INT,
-                        street2CheckCallRaiseDone INT,
+                        street2CheckCallDone INT,
+                        street2CheckRaiseDone INT,
                         street3CheckCallRaiseChance INT,
-                        street3CheckCallRaiseDone INT,
+                        street3CheckCallDone INT,
+                        street3CheckRaiseDone INT,
                         street4CheckCallRaiseChance INT,
-                        street4CheckCallRaiseDone INT,
+                        street4CheckCallDone INT,
+                        street4CheckRaiseDone INT,
 
                         street0Calls INT,
                         street1Calls INT,
@@ -1540,13 +1552,17 @@ class Sql:
                         vsHero BIGINT,
                         
                         street1CheckCallRaiseChance INT,
-                        street1CheckCallRaiseDone INT,
+                        street1CheckCallDone INT,
+                        street1CheckRaiseDone INT,
                         street2CheckCallRaiseChance INT,
-                        street2CheckCallRaiseDone INT,
+                        street2CheckCallDone INT,
+                        street2CheckRaiseDone INT,
                         street3CheckCallRaiseChance INT,
-                        street3CheckCallRaiseDone INT,
+                        street3CheckCallDone INT,
+                        street3CheckRaiseDone INT,
                         street4CheckCallRaiseChance INT,
-                        street4CheckCallRaiseDone INT,
+                        street4CheckCallDone INT,
+                        street4CheckRaiseDone INT,
 
                         street0Calls INT,
                         street1Calls INT,
@@ -1664,13 +1680,17 @@ class Sql:
                         vsHero BIGINT,
 
                         street1CheckCallRaiseChance INT,
-                        street1CheckCallRaiseDone INT,
+                        street1CheckCallDone INT,
+                        street1CheckRaiseDone INT,
                         street2CheckCallRaiseChance INT,
-                        street2CheckCallRaiseDone INT,
+                        street2CheckCallDone INT,
+                        street2CheckRaiseDone INT,
                         street3CheckCallRaiseChance INT,
-                        street3CheckCallRaiseDone INT,
+                        street3CheckCallDone INT,
+                        street3CheckRaiseDone INT,
                         street4CheckCallRaiseChance INT,
-                        street4CheckCallRaiseDone INT,
+                        street4CheckCallDone INT,
+                        street4CheckRaiseDone INT,
 
                         street0Calls INT,
                         street1Calls INT,
@@ -1787,13 +1807,17 @@ class Sql:
                         vsHero INT,
 
                         street1CheckCallRaiseChance INT,
-                        street1CheckCallRaiseDone INT,
+                        street1CheckCallDone INT,
+                        street1CheckRaiseDone INT,
                         street2CheckCallRaiseChance INT,
-                        street2CheckCallRaiseDone INT,
+                        street2CheckCallDone INT,
+                        street2CheckRaiseDone INT,
                         street3CheckCallRaiseChance INT,
-                        street3CheckCallRaiseDone INT,
+                        street3CheckCallDone INT,
+                        street3CheckRaiseDone INT,
                         street4CheckCallRaiseChance INT,
-                        street4CheckCallRaiseDone INT,
+                        street4CheckCallDone INT,
+                        street4CheckRaiseDone INT,
 
                         street0Calls INT,
                         street1Calls INT,
@@ -1920,13 +1944,17 @@ class Sql:
                         vsHero BIGINT,
                         
                         street1CheckCallRaiseChance INT,
-                        street1CheckCallRaiseDone INT,
+                        street1CheckCallDone INT,
+                        street1CheckRaiseDone INT,
                         street2CheckCallRaiseChance INT,
-                        street2CheckCallRaiseDone INT,
+                        street2CheckCallDone INT,
+                        street2CheckRaiseDone INT,
                         street3CheckCallRaiseChance INT,
-                        street3CheckCallRaiseDone INT,
+                        street3CheckCallDone INT,
+                        street3CheckRaiseDone INT,
                         street4CheckCallRaiseChance INT,
-                        street4CheckCallRaiseDone INT,
+                        street4CheckCallDone INT,
+                        street4CheckRaiseDone INT,
 
                         street0Calls INT,
                         street1Calls INT,
@@ -2048,13 +2076,17 @@ class Sql:
                         vsHero BIGINT,
 
                         street1CheckCallRaiseChance INT,
-                        street1CheckCallRaiseDone INT,
+                        street1CheckCallDone INT,
+                        street1CheckRaiseDone INT,
                         street2CheckCallRaiseChance INT,
-                        street2CheckCallRaiseDone INT,
+                        street2CheckCallDone INT,
+                        street2CheckRaiseDone INT,
                         street3CheckCallRaiseChance INT,
-                        street3CheckCallRaiseDone INT,
+                        street3CheckCallDone INT,
+                        street3CheckRaiseDone INT,
                         street4CheckCallRaiseChance INT,
-                        street4CheckCallRaiseDone INT,
+                        street4CheckCallDone INT,
+                        street4CheckRaiseDone INT,
 
                         street0Calls INT,
                         street1Calls INT,
@@ -2175,13 +2207,17 @@ class Sql:
                         vsHero INT,
 
                         street1CheckCallRaiseChance INT,
-                        street1CheckCallRaiseDone INT,
+                        street1CheckCallDone INT,
+                        street1CheckRaiseDone INT,
                         street2CheckCallRaiseChance INT,
-                        street2CheckCallRaiseDone INT,
+                        street2CheckCallDone INT,
+                        street2CheckRaiseDone INT,
                         street3CheckCallRaiseChance INT,
-                        street3CheckCallRaiseDone INT,
+                        street3CheckCallDone INT,
+                        street3CheckRaiseDone INT,
                         street4CheckCallRaiseChance INT,
-                        street4CheckCallRaiseDone INT,
+                        street4CheckCallDone INT,
+                        street4CheckRaiseDone INT,
 
                         street0Calls INT,
                         street1Calls INT,
@@ -2306,13 +2342,17 @@ class Sql:
                         vsHero BIGINT,
                         
                         street1CheckCallRaiseChance INT,
-                        street1CheckCallRaiseDone INT,
+                        street1CheckCallDone INT,
+                        street1CheckRaiseDone INT,
                         street2CheckCallRaiseChance INT,
-                        street2CheckCallRaiseDone INT,
+                        street2CheckCallDone INT,
+                        street2CheckRaiseDone INT,
                         street3CheckCallRaiseChance INT,
-                        street3CheckCallRaiseDone INT,
+                        street3CheckCallDone INT,
+                        street3CheckRaiseDone INT,
                         street4CheckCallRaiseChance INT,
-                        street4CheckCallRaiseDone INT,
+                        street4CheckCallDone INT,
+                        street4CheckRaiseDone INT,
 
                         street0Calls INT,
                         street1Calls INT,
@@ -2431,13 +2471,17 @@ class Sql:
                         vsHero BIGINT,
 
                         street1CheckCallRaiseChance INT,
-                        street1CheckCallRaiseDone INT,
+                        street1CheckCallDone INT,
+                        street1CheckRaiseDone INT,
                         street2CheckCallRaiseChance INT,
-                        street2CheckCallRaiseDone INT,
+                        street2CheckCallDone INT,
+                        street2CheckRaiseDone INT,
                         street3CheckCallRaiseChance INT,
-                        street3CheckCallRaiseDone INT,
+                        street3CheckCallDone INT,
+                        street3CheckRaiseDone INT,
                         street4CheckCallRaiseChance INT,
-                        street4CheckCallRaiseDone INT,
+                        street4CheckCallDone INT,
+                        street4CheckRaiseDone INT,
 
                         street0Calls INT,
                         street1Calls INT,
@@ -2555,13 +2599,17 @@ class Sql:
                         vsHero INT,
 
                         street1CheckCallRaiseChance INT,
-                        street1CheckCallRaiseDone INT,
+                        street1CheckCallDone INT,
+                        street1CheckRaiseDone INT,
                         street2CheckCallRaiseChance INT,
-                        street2CheckCallRaiseDone INT,
+                        street2CheckCallDone INT,
+                        street2CheckRaiseDone INT,
                         street3CheckCallRaiseChance INT,
-                        street3CheckCallRaiseDone INT,
+                        street3CheckCallDone INT,
+                        street3CheckRaiseDone INT,
                         street4CheckCallRaiseChance INT,
-                        street4CheckCallRaiseDone INT,
+                        street4CheckCallDone INT,
+                        street4CheckRaiseDone INT,
 
                         street0Calls INT,
                         street1Calls INT,
@@ -2761,13 +2809,17 @@ class Sql:
                         vsHero BIGINT,
                         
                         street1CheckCallRaiseChance INT,
-                        street1CheckCallRaiseDone INT,
+                        street1CheckCallDone INT,
+                        street1CheckRaiseDone INT,
                         street2CheckCallRaiseChance INT,
-                        street2CheckCallRaiseDone INT,
+                        street2CheckCallDone INT,
+                        street2CheckRaiseDone INT,
                         street3CheckCallRaiseChance INT,
-                        street3CheckCallRaiseDone INT,
+                        street3CheckCallDone INT,
+                        street3CheckRaiseDone INT,
                         street4CheckCallRaiseChance INT,
-                        street4CheckCallRaiseDone INT,
+                        street4CheckCallDone INT,
+                        street4CheckRaiseDone INT,
 
                         street0Calls INT,
                         street1Calls INT,
@@ -2885,13 +2937,17 @@ class Sql:
                         vsHero BIGINT,
 
                         street1CheckCallRaiseChance INT,
-                        street1CheckCallRaiseDone INT,
+                        street1CheckCallDone INT,
+                        street1CheckRaiseDone INT,
                         street2CheckCallRaiseChance INT,
-                        street2CheckCallRaiseDone INT,
+                        street2CheckCallDone INT,
+                        street2CheckRaiseDone INT,
                         street3CheckCallRaiseChance INT,
-                        street3CheckCallRaiseDone INT,
+                        street3CheckCallDone INT,
+                        street3CheckRaiseDone INT,
                         street4CheckCallRaiseChance INT,
-                        street4CheckCallRaiseDone INT,
+                        street4CheckCallDone INT,
+                        street4CheckRaiseDone INT,
 
                         street0Calls INT,
                         street1Calls INT,
@@ -3008,13 +3064,17 @@ class Sql:
                         vsHero INT,
 
                         street1CheckCallRaiseChance INT,
-                        street1CheckCallRaiseDone INT,
+                        street1CheckCallDone INT,
+                        street1CheckRaiseDone INT,
                         street2CheckCallRaiseChance INT,
-                        street2CheckCallRaiseDone INT,
+                        street2CheckCallDone INT,
+                        street2CheckRaiseDone INT,
                         street3CheckCallRaiseChance INT,
-                        street3CheckCallRaiseDone INT,
+                        street3CheckCallDone INT,
+                        street3CheckRaiseDone INT,
                         street4CheckCallRaiseChance INT,
-                        street4CheckCallRaiseDone INT,
+                        street4CheckCallDone INT,
+                        street4CheckRaiseDone INT,
 
                         street0Calls INT,
                         street1Calls INT,
@@ -3136,13 +3196,17 @@ class Sql:
                         vsHero BIGINT,
                         
                         street1CheckCallRaiseChance INT,
-                        street1CheckCallRaiseDone INT,
+                        street1CheckCallDone INT,
+                        street1CheckRaiseDone INT,
                         street2CheckCallRaiseChance INT,
-                        street2CheckCallRaiseDone INT,
+                        street2CheckCallDone INT,
+                        street2CheckRaiseDone INT,
                         street3CheckCallRaiseChance INT,
-                        street3CheckCallRaiseDone INT,
+                        street3CheckCallDone INT,
+                        street3CheckRaiseDone INT,
                         street4CheckCallRaiseChance INT,
-                        street4CheckCallRaiseDone INT,
+                        street4CheckCallDone INT,
+                        street4CheckRaiseDone INT,
 
                         street0Calls INT,
                         street1Calls INT,
@@ -3260,13 +3324,17 @@ class Sql:
                         vsHero BIGINT,
 
                         street1CheckCallRaiseChance INT,
-                        street1CheckCallRaiseDone INT,
+                        street1CheckCallDone INT,
+                        street1CheckRaiseDone INT,
                         street2CheckCallRaiseChance INT,
-                        street2CheckCallRaiseDone INT,
+                        street2CheckCallDone INT,
+                        street2CheckRaiseDone INT,
                         street3CheckCallRaiseChance INT,
-                        street3CheckCallRaiseDone INT,
+                        street3CheckCallDone INT,
+                        street3CheckRaiseDone INT,
                         street4CheckCallRaiseChance INT,
-                        street4CheckCallRaiseDone INT,
+                        street4CheckCallDone INT,
+                        street4CheckRaiseDone INT,
 
                         street0Calls INT,
                         street1Calls INT,
@@ -3383,13 +3451,17 @@ class Sql:
                         vsHero INT,
 
                         street1CheckCallRaiseChance INT,
-                        street1CheckCallRaiseDone INT,
+                        street1CheckCallDone INT,
+                        street1CheckRaiseDone INT,
                         street2CheckCallRaiseChance INT,
-                        street2CheckCallRaiseDone INT,
+                        street2CheckCallDone INT,
+                        street2CheckRaiseDone INT,
                         street3CheckCallRaiseChance INT,
-                        street3CheckCallRaiseDone INT,
+                        street3CheckCallDone INT,
+                        street3CheckRaiseDone INT,
                         street4CheckCallRaiseChance INT,
-                        street4CheckCallRaiseDone INT,
+                        street4CheckCallDone INT,
+                        street4CheckRaiseDone INT,
 
                         street0Calls INT,
                         street1Calls INT,
@@ -3682,13 +3754,17 @@ class Sql:
                     sum(hc.totalProfit)                 AS net,
                     sum(gt.bigblind * hc.HDs)           AS bigblind,
                     sum(hc.street1CheckCallRaiseChance) AS ccr_opp_1,
-                    sum(hc.street1CheckCallRaiseDone)   AS ccr_1,
+                    sum(hc.street1CheckCallDone)        AS cc_1,
+                    sum(hc.street1CheckRaiseDone)       AS cr_1,
                     sum(hc.street2CheckCallRaiseChance) AS ccr_opp_2,
-                    sum(hc.street2CheckCallRaiseDone)   AS ccr_2,
+                    sum(hc.street2CheckCallDone)        AS cc_2,
+                    sum(hc.street2CheckRaiseDone)       AS cr_2,
                     sum(hc.street3CheckCallRaiseChance) AS ccr_opp_3,
-                    sum(hc.street3CheckCallRaiseDone)   AS ccr_3,
+                    sum(hc.street3CheckCallDone)        AS cc_3,
+                    sum(hc.street3CheckRaiseDone)       AS cr_3,
                     sum(hc.street4CheckCallRaiseChance) AS ccr_opp_4,
-                    sum(hc.street4CheckCallRaiseDone)   AS ccr_4
+                    sum(hc.street4CheckCallDone)        AS cc_4
+                    sum(hc.street4CheckRaiseDone)       AS cr_4
                     sum(hc.street0Calls)                AS call_0,
                     sum(hc.street1Calls)                AS call_1,
                     sum(hc.street2Calls)                AS call_2,
@@ -3808,15 +3884,19 @@ class Sql:
                        sum(hc.foldToStreet4CBChance)       AS f_cb_opp_4,
                        sum(hc.foldToStreet4CBDone)         AS f_cb_4,
                        sum(hc.totalProfit)                 AS net,
-                       sum(gt.bigblind * hc.hands)           AS bigblind,
+                       sum(gt.bigblind * hc.hands)         AS bigblind,
                        sum(hc.street1CheckCallRaiseChance) AS ccr_opp_1,
-                       sum(hc.street1CheckCallRaiseDone)   AS ccr_1,
+                       sum(hc.street1CheckCallDone)        AS cc_1,
+                       sum(hc.street1CheckRaiseDone)       AS cr_1,
                        sum(hc.street2CheckCallRaiseChance) AS ccr_opp_2,
-                       sum(hc.street2CheckCallRaiseDone)   AS ccr_2,
+                       sum(hc.street2CheckCallDone)        AS cc_2,
+                       sum(hc.street2CheckRaiseDone)       AS cr_2,
                        sum(hc.street3CheckCallRaiseChance) AS ccr_opp_3,
-                       sum(hc.street3CheckCallRaiseDone)   AS ccr_3,
+                       sum(hc.street3CheckCallDone)        AS cc_3,
+                       sum(hc.street3CheckRaiseDone)       AS cr_3,
                        sum(hc.street4CheckCallRaiseChance) AS ccr_opp_4,
-                       sum(hc.street4CheckCallRaiseDone)   AS ccr_4,
+                       sum(hc.street4CheckCallDone)        AS cc_4,
+                       sum(hc.street4CheckRaiseDone)       AS cr_4,
                        sum(hc.street0Calls)                AS call_0,
                        sum(hc.street1Calls)                AS call_1,
                        sum(hc.street2Calls)                AS call_2,
@@ -3965,13 +4045,17 @@ class Sql:
                            cast(hp2.totalProfit as <signed>integer)                 AS net,
                            cast(gt.bigblind as <signed>integer)                     AS bigblind,
                            cast(hp2.street1CheckCallRaiseChance as <signed>integer) AS ccr_opp_1,
-                           cast(hp2.street1CheckCallRaiseDone as <signed>integer)   AS ccr_1,
+                           cast(hp2.street1CheckCallDone as <signed>integer)        AS cc_1,
+                           cast(hp2.street1CheckRaiseDone as <signed>integer)       AS cr_1,
                            cast(hp2.street2CheckCallRaiseChance as <signed>integer) AS ccr_opp_2,
-                           cast(hp2.street2CheckCallRaiseDone as <signed>integer)   AS ccr_2,
+                           cast(hp2.street2CheckCallDone as <signed>integer)        AS cc_2,
+                           cast(hp2.street2CheckRaiseDone as <signed>integer)       AS cr_2,
                            cast(hp2.street3CheckCallRaiseChance as <signed>integer) AS ccr_opp_3,
-                           cast(hp2.street3CheckCallRaiseDone as <signed>integer)   AS ccr_3,
+                           cast(hp2.street3CheckCallDone as <signed>integer)        AS cc_3,
+                           cast(hp2.street3CheckRaiseDone as <signed>integer)       AS cr_3,
                            cast(hp2.street4CheckCallRaiseChance as <signed>integer) AS ccr_opp_4,
-                           cast(hp2.street4CheckCallRaiseDone as <signed>integer)   AS ccr_4,
+                           cast(hp2.street4CheckCallDone as <signed>integer)        AS cc_4,
+                           cast(hp2.street4CheckRaiseDone as <signed>integer)       AS cr_4,
                            cast(hp2.street0Calls as <signed>integer)                AS call_0,
                            cast(hp2.street1Calls as <signed>integer)                AS call_1,
                            cast(hp2.street2Calls as <signed>integer)                AS call_2,
@@ -4096,13 +4180,17 @@ class Sql:
                            cast(hp2.totalProfit as <signed>integer)                 AS net,
                            cast(gt.bigblind as <signed>integer)                     AS bigblind,
                            cast(hp2.street1CheckCallRaiseChance as <signed>integer) AS ccr_opp_1,
-                           cast(hp2.street1CheckCallRaiseDone as <signed>integer)   AS ccr_1,
+                           cast(hp2.street1CheckCallDone as <signed>integer)        AS cc_1,
+                           cast(hp2.street1CheckRaiseDone as <signed>integer)       AS cr_1,
                            cast(hp2.street2CheckCallRaiseChance as <signed>integer) AS ccr_opp_2,
-                           cast(hp2.street2CheckCallRaiseDone as <signed>integer)   AS ccr_2,
+                           cast(hp2.street2CheckCallDone as <signed>integer)        AS cc_2,
+                           cast(hp2.street2CheckRaiseDone as <signed>integer)       AS cr_2,
                            cast(hp2.street3CheckCallRaiseChance as <signed>integer) AS ccr_opp_3,
-                           cast(hp2.street3CheckCallRaiseDone as <signed>integer)   AS ccr_3,
+                           cast(hp2.street3CheckCallDone as <signed>integer)        AS cc_3,
+                           cast(hp2.street3CheckRaiseDone as <signed>integer)       AS cr_3,
                            cast(hp2.street4CheckCallRaiseChance as <signed>integer) AS ccr_opp_4,
-                           cast(hp2.street4CheckCallRaiseDone as <signed>integer)   AS ccr_4,
+                           cast(hp2.street4CheckCallDone as <signed>integer)        AS cc_4,
+                           cast(hp2.street4CheckRaiseDone as <signed>integer)       AS cr_4,
                            cast(hp2.street0Calls as <signed>integer)                AS call_0,
                            cast(hp2.street1Calls as <signed>integer)                AS call_1,
                            cast(hp2.street2Calls as <signed>integer)                AS call_2,
@@ -4228,13 +4316,17 @@ class Sql:
                            cast(hp2.totalProfit as <signed>integer)                 AS net,
                            cast(gt.bigblind as <signed>integer)                     AS bigblind,
                            cast(hp2.street1CheckCallRaiseChance as <signed>integer) AS ccr_opp_1,
-                           cast(hp2.street1CheckCallRaiseDone as <signed>integer)   AS ccr_1,
+                           cast(hp2.street1CheckCallDone as <signed>integer)        AS cc_1,
+                           cast(hp2.street1CheckRaiseDone as <signed>integer)       AS cr_1,
                            cast(hp2.street2CheckCallRaiseChance as <signed>integer) AS ccr_opp_2,
-                           cast(hp2.street2CheckCallRaiseDone as <signed>integer)   AS ccr_2,
+                           cast(hp2.street2CheckCallDone as <signed>integer)        AS cc_2,
+                           cast(hp2.street2CheckRaiseDone as <signed>integer)       AS cr_2,
                            cast(hp2.street3CheckCallRaiseChance as <signed>integer) AS ccr_opp_3,
-                           cast(hp2.street3CheckCallRaiseDone as <signed>integer)   AS ccr_3,
+                           cast(hp2.street3CheckCallDone as <signed>integer)        AS cc_3,
+                           cast(hp2.street3CheckRaiseDone as <signed>integer)       AS cr_3,
                            cast(hp2.street4CheckCallRaiseChance as <signed>integer) AS ccr_opp_4,
-                           cast(hp2.street4CheckCallRaiseDone as <signed>integer)   AS ccr_4,
+                           cast(hp2.street4CheckCallDone as <signed>integer)        AS cc_4,
+                           cast(hp2.street4CheckRaiseDone as <signed>integer)       AS cr_4,
                            cast(hp2.street0Calls as <signed>integer)                AS call_0,
                            cast(hp2.street1Calls as <signed>integer)                AS call_1,
                            cast(hp2.street2Calls as <signed>integer)                AS call_2,
@@ -6242,13 +6334,17 @@ class Sql:
                 ,BBwon
                 ,vsHero
                 ,street1CheckCallRaiseChance
-                ,street1CheckCallRaiseDone
+                ,street1CheckCallDone
+                ,street1CheckRaiseDone
                 ,street2CheckCallRaiseChance
-                ,street2CheckCallRaiseDone
+                ,street2CheckCallDone
+                ,street2CheckRaiseDone
                 ,street3CheckCallRaiseChance
-                ,street3CheckCallRaiseDone
+                ,street3CheckCallDone
+                ,street3CheckRaiseDone
                 ,street4CheckCallRaiseChance
-                ,street4CheckCallRaiseDone
+                ,street4CheckCallDone
+                ,street4CheckRaiseDone
                 ,street0Calls
                 ,street1Calls
                 ,street2Calls
@@ -6346,13 +6442,17 @@ class Sql:
                       ,sum(BBwon)
                       ,sum(vsHero)
                       ,sum(street1CheckCallRaiseChance)
-                      ,sum(street1CheckCallRaiseDone)
+                      ,sum(street1CheckCallDone)
+                      ,sum(street1CheckRaiseDone)
                       ,sum(street2CheckCallRaiseChance)
-                      ,sum(street2CheckCallRaiseDone)
+                      ,sum(street2CheckCallDone)
+                      ,sum(street2CheckRaiseDone)
                       ,sum(street3CheckCallRaiseChance)
-                      ,sum(street3CheckCallRaiseDone)
+                      ,sum(street3CheckCallDone)
+                      ,sum(street3CheckRaiseDone)
                       ,sum(street4CheckCallRaiseChance)
-                      ,sum(street4CheckCallRaiseDone)
+                      ,sum(street4CheckCallDone)
+                      ,sum(street4CheckRaiseDone)
                       ,sum(street0Calls)
                       ,sum(street1Calls)
                       ,sum(street2Calls)
@@ -6459,13 +6559,17 @@ class Sql:
                 ,BBwon
                 ,vsHero
                 ,street1CheckCallRaiseChance
-                ,street1CheckCallRaiseDone
+                ,street1CheckCallDone
+                ,street1CheckRaiseDone
                 ,street2CheckCallRaiseChance
-                ,street2CheckCallRaiseDone
+                ,street2CheckCallDone
+                ,street2CheckRaiseDone
                 ,street3CheckCallRaiseChance
-                ,street3CheckCallRaiseDone
+                ,street3CheckCallDone
+                ,street3CheckRaiseDone
                 ,street4CheckCallRaiseChance
-                ,street4CheckCallRaiseDone
+                ,street4CheckCallDone
+                ,street4CheckRaiseDone
                 ,street0Calls
                 ,street1Calls
                 ,street2Calls
@@ -6563,13 +6667,17 @@ class Sql:
                       ,sum(CAST(BBwon as integer))
                       ,sum(CAST(vsHero as integer))
                       ,sum(CAST(street1CheckCallRaiseChance as integer))
-                      ,sum(CAST(street1CheckCallRaiseDone as integer))
+                      ,sum(CAST(street1CheckCallDone as integer))
+                      ,sum(CAST(street1CheckRaiseDone as integer))
                       ,sum(CAST(street2CheckCallRaiseChance as integer))
-                      ,sum(CAST(street2CheckCallRaiseDone as integer))
+                      ,sum(CAST(street2CheckCallDone as integer))
+                      ,sum(CAST(street2CheckRaiseDone as integer))
                       ,sum(CAST(street3CheckCallRaiseChance as integer))
-                      ,sum(CAST(street3CheckCallRaiseDone as integer))
+                      ,sum(CAST(street3CheckCallDone as integer))
+                      ,sum(CAST(street3CheckRaiseDone as integer))
                       ,sum(CAST(street4CheckCallRaiseChance as integer))
-                      ,sum(CAST(street4CheckCallRaiseDone as integer))
+                      ,sum(CAST(street4CheckCallDone as integer))
+                      ,sum(CAST(street4CheckRaiseDone as integer))
                       ,sum(CAST(street0Calls as integer))
                       ,sum(CAST(street1Calls as integer))
                       ,sum(CAST(street2Calls as integer))
@@ -6683,13 +6791,17 @@ class Sql:
                 BBwon,
                 vsHero,
                 street1CheckCallRaiseChance,
-                street1CheckCallRaiseDone,
+                street1CheckCallDone,
+                street1CheckRaiseDone,
                 street2CheckCallRaiseChance,
-                street2CheckCallRaiseDone,
+                street2CheckCallDone,
+                street2CheckRaiseDone,
                 street3CheckCallRaiseChance,
-                street3CheckCallRaiseDone,
+                street3CheckCallDone,
+                street3CheckRaiseDone,
                 street4CheckCallRaiseChance,
-                street4CheckCallRaiseDone,
+                street4CheckCallDone,
+                street4CheckRaiseDone,
                 street0Calls,
                 street1Calls,
                 street2Calls,
@@ -6726,7 +6838,8 @@ class Sql:
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
-                    %s, %s, %s)"""
+                    %s, %s, %s, %s, %s,
+                    %s, %s)"""
 
         self.query['update_hudcache'] = """
             UPDATE HudCache SET
@@ -6810,13 +6923,17 @@ class Sql:
             BBwon=BBwon+%s,
             vsHero=vsHero+%s,
             street1CheckCallRaiseChance=street1CheckCallRaiseChance+%s,
-            street1CheckCallRaiseDone=street1CheckCallRaiseDone+%s,
+            street1CheckCallDone=street1CheckCallDone+%s,
+            street1CheckRaiseDone=street1CheckRaiseDone+%s,
             street2CheckCallRaiseChance=street2CheckCallRaiseChance+%s,
-            street2CheckCallRaiseDone=street2CheckCallRaiseDone+%s,
+            street2CheckCallDone=street2CheckCallDone+%s,
+            street2CheckRaiseDone=street2CheckRaiseDone+%s,
             street3CheckCallRaiseChance=street3CheckCallRaiseChance+%s,
-            street3CheckCallRaiseDone=street3CheckCallRaiseDone+%s,
+            street3CheckCallDone=street3CheckCallDone+%s,
+            street3CheckRaiseDone=street3CheckRaiseDone+%s,
             street4CheckCallRaiseChance=street4CheckCallRaiseChance+%s,
-            street4CheckCallRaiseDone=street4CheckCallRaiseDone+%s,
+            street4CheckCallDone=street4CheckCallDone+%s,
+            street4CheckRaiseDone=street4CheckRaiseDone+%s,
             street0Calls=street0Calls+%s,
             street1Calls=street1Calls+%s,
             street2Calls=street2Calls+%s,
@@ -6955,13 +7072,17 @@ class Sql:
                 BBwon,
                 vsHero,
                 street1CheckCallRaiseChance,
-                street1CheckCallRaiseDone,
+                street1CheckCallDone,
+                street1CheckRaiseDone,
                 street2CheckCallRaiseChance,
-                street2CheckCallRaiseDone,
+                street2CheckCallDone,
+                street2CheckRaiseDone,
                 street3CheckCallRaiseChance,
-                street3CheckCallRaiseDone,
+                street3CheckCallDone,
+                street3CheckRaiseDone,
                 street4CheckCallRaiseChance,
-                street4CheckCallRaiseDone,
+                street4CheckCallDone,
+                street4CheckRaiseDone,
                 street0Calls,
                 street1Calls,
                 street2Calls,
@@ -6999,7 +7120,8 @@ class Sql:
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
-                    %s, %s
+                    %s, %s, %s, %s, %s,
+                    %s
                     )"""
 
         self.query['update_cardscache'] = """
@@ -7084,13 +7206,17 @@ class Sql:
                     BBwon=BBwon+%s,
                     vsHero=vsHero+%s,
                     street1CheckCallRaiseChance=street1CheckCallRaiseChance+%s,
-                    street1CheckCallRaiseDone=street1CheckCallRaiseDone+%s,
+                    street1CheckCallDone=street1CheckCallDone+%s,
+                    street1CheckRaiseDone=street1CheckRaiseDone+%s,
                     street2CheckCallRaiseChance=street2CheckCallRaiseChance+%s,
-                    street2CheckCallRaiseDone=street2CheckCallRaiseDone+%s,
+                    street2CheckCallDone=street2CheckCallDone+%s,
+                    street2CheckRaiseDone=street2CheckRaiseDone+%s,
                     street3CheckCallRaiseChance=street3CheckCallRaiseChance+%s,
-                    street3CheckCallRaiseDone=street3CheckCallRaiseDone+%s,
+                    street3CheckCallDone=street3CheckCallDone+%s,
+                    street3CheckRaiseDone=street3CheckRaiseDone+%s,
                     street4CheckCallRaiseChance=street4CheckCallRaiseChance+%s,
-                    street4CheckCallRaiseDone=street4CheckCallRaiseDone+%s,
+                    street4CheckCallDone=street4CheckCallDone+%s,
+                    street4CheckRaiseDone=street4CheckRaiseDone+%s,
                     street0Calls=street0Calls+%s,
                     street1Calls=street1Calls+%s,
                     street2Calls=street2Calls+%s,
@@ -7229,13 +7355,17 @@ class Sql:
                 BBwon,
                 vsHero,
                 street1CheckCallRaiseChance,
-                street1CheckCallRaiseDone,
+                street1CheckCallDone,
+                street1CheckRaiseDone,
                 street2CheckCallRaiseChance,
-                street2CheckCallRaiseDone,
+                street2CheckCallDone,
+                street2CheckRaiseDone,
                 street3CheckCallRaiseChance,
-                street3CheckCallRaiseDone,
+                street3CheckCallDone,
+                street3CheckRaiseDone,
                 street4CheckCallRaiseChance,
-                street4CheckCallRaiseDone,
+                street4CheckCallDone,
+                street4CheckRaiseDone,
                 street0Calls,
                 street1Calls,
                 street2Calls,
@@ -7272,7 +7402,8 @@ class Sql:
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
-                    %s, %s, %s, %s
+                    %s, %s, %s, %s, %s,
+                    %s, %s, %s
                     )"""
 
         self.query['update_positionscache'] = """
@@ -7357,13 +7488,17 @@ class Sql:
                     BBwon=BBwon+%s,
                     vsHero=vsHero+%s,
                     street1CheckCallRaiseChance=street1CheckCallRaiseChance+%s,
-                    street1CheckCallRaiseDone=street1CheckCallRaiseDone+%s,
+                    street1CheckCallDone=street1CheckCallDone+%s,
+                    street1CheckRaiseDone=street1CheckRaiseDone+%s,
                     street2CheckCallRaiseChance=street2CheckCallRaiseChance+%s,
-                    street2CheckCallRaiseDone=street2CheckCallRaiseDone+%s,
+                    street2CheckCallDone=street2CheckCallDone+%s,
+                    street2CheckRaiseDone=street2CheckRaiseDone+%s,
                     street3CheckCallRaiseChance=street3CheckCallRaiseChance+%s,
-                    street3CheckCallRaiseDone=street3CheckCallRaiseDone+%s,
+                    street3CheckCallDone=street3CheckCallDone+%s,
+                    street3CheckRaiseDone=street3CheckRaiseDone+%s,
                     street4CheckCallRaiseChance=street4CheckCallRaiseChance+%s,
-                    street4CheckCallRaiseDone=street4CheckCallRaiseDone+%s,
+                    street4CheckCallDone=street4CheckCallDone+%s,
+                    street4CheckRaiseDone=street4CheckRaiseDone+%s,
                     street0Calls=street0Calls+%s,
                     street1Calls=street1Calls+%s,
                     street2Calls=street2Calls+%s,
@@ -7569,13 +7704,17 @@ class Sql:
                     BBwon,
                     vsHero,
                     street1CheckCallRaiseChance,
-                    street1CheckCallRaiseDone,
+                    street1CheckCallDone,
+                    street1CheckRaiseDone,
                     street2CheckCallRaiseChance,
-                    street2CheckCallRaiseDone,
+                    street2CheckCallDone,
+                    street2CheckRaiseDone,
                     street3CheckCallRaiseChance,
-                    street3CheckCallRaiseDone,
+                    street3CheckCallDone,
+                    street3CheckRaiseDone,
                     street4CheckCallRaiseChance,
-                    street4CheckCallRaiseDone,
+                    street4CheckCallDone,
+                    street4CheckRaiseDone,
                     street0Calls,
                     street1Calls,
                     street2Calls,
@@ -7712,13 +7851,17 @@ class Sql:
                     BBwon,
                     vsHero,
                     street1CheckCallRaiseChance,
-                    street1CheckCallRaiseDone,
+                    street1CheckCallDone,
+                    street1CheckRaiseDone,
                     street2CheckCallRaiseChance,
-                    street2CheckCallRaiseDone,
+                    street2CheckCallDone,
+                    street2CheckRaiseDone,
                     street3CheckCallRaiseChance,
-                    street3CheckCallRaiseDone,
+                    street3CheckCallDone,
+                    street3CheckRaiseDone,
                     street4CheckCallRaiseChance,
-                    street4CheckCallRaiseDone,
+                    street4CheckCallDone,
+                    street4CheckRaiseDone,
                     street0Calls,
                     street1Calls,
                     street2Calls,
@@ -7756,7 +7899,8 @@ class Sql:
                             %s, %s, %s, %s, %s,
                             %s, %s, %s, %s, %s,
                             %s, %s, %s, %s, %s,
-                            %s, %s)"""
+                            %s, %s, %s, %s, %s,
+                            %s)"""
                             
         self.query['insert_TC'] = """
                     insert into TourCache (
@@ -7845,13 +7989,17 @@ class Sql:
                     BBwon,
                     vsHero,
                     street1CheckCallRaiseChance,
-                    street1CheckCallRaiseDone,
+                    street1CheckCallDone,
+                    street1CheckRaiseDone,
                     street2CheckCallRaiseChance,
-                    street2CheckCallRaiseDone,
+                    street2CheckCallDone,
+                    street2CheckRaiseDone,
                     street3CheckCallRaiseChance,
-                    street3CheckCallRaiseDone,
+                    street3CheckCallDone,
+                    street3CheckRaiseDone,
                     street4CheckCallRaiseChance,
-                    street4CheckCallRaiseDone,
+                    street4CheckCallDone,
+                    street4CheckRaiseDone,
                     street0Calls,
                     street1Calls,
                     street2Calls,
@@ -7889,7 +8037,8 @@ class Sql:
                             %s, %s, %s, %s, %s,
                             %s, %s, %s, %s, %s,
                             %s, %s, %s, %s, %s,
-                            %s, %s)"""
+                            %s, %s, %s, %s, %s,
+                            %s)"""
                     
         ####################################
         # update
@@ -7993,13 +8142,17 @@ class Sql:
                     BBwon=BBwon+%s,
                     vsHero=vsHero+%s,
                     street1CheckCallRaiseChance=street1CheckCallRaiseChance+%s,
-                    street1CheckCallRaiseDone=street1CheckCallRaiseDone+%s,
+                    street1CheckCallDone=street1CheckCallDone+%s,
+                    street1CheckRaiseDone=street1CheckRaiseDone+%s,
                     street2CheckCallRaiseChance=street2CheckCallRaiseChance+%s,
-                    street2CheckCallRaiseDone=street2CheckCallRaiseDone+%s,
+                    street2CheckCallDone=street2CheckCallDone+%s,
+                    street2CheckRaiseDone=street2CheckRaiseDone+%s,
                     street3CheckCallRaiseChance=street3CheckCallRaiseChance+%s,
-                    street3CheckCallRaiseDone=street3CheckCallRaiseDone+%s,
+                    street3CheckCallDone=street3CheckCallDone+%s,
+                    street3CheckRaiseDone=street3CheckRaiseDone+%s,
                     street4CheckCallRaiseChance=street4CheckCallRaiseChance+%s,
-                    street4CheckCallRaiseDone=street4CheckCallRaiseDone+%s,
+                    street4CheckCallDone=street4CheckCallDone+%s,
+                    street4CheckRaiseDone=street4CheckRaiseDone+%s,
                     street0Calls=street0Calls+%s,
                     street1Calls=street1Calls+%s,
                     street2Calls=street2Calls+%s,
@@ -8100,13 +8253,17 @@ class Sql:
                     BBwon=BBwon+%s,
                     vsHero=vsHero+%s,
                     street1CheckCallRaiseChance=street1CheckCallRaiseChance+%s,
-                    street1CheckCallRaiseDone=street1CheckCallRaiseDone+%s,
+                    street1CheckCallDone=street1CheckCallDone+%s,
+                    street1CheckRaiseDone=street1CheckRaiseDone+%s,
                     street2CheckCallRaiseChance=street2CheckCallRaiseChance+%s,
-                    street2CheckCallRaiseDone=street2CheckCallRaiseDone+%s,
+                    street2CheckCallDone=street2CheckCallDone+%s,
+                    street2CheckRaiseDone=street2CheckRaiseDone+%s,
                     street3CheckCallRaiseChance=street3CheckCallRaiseChance+%s,
-                    street3CheckCallRaiseDone=street3CheckCallRaiseDone+%s,
+                    street3CheckCallDone=street3CheckCallDone+%s,
+                    street3CheckRaiseDone=street3CheckRaiseDone+%s,
                     street4CheckCallRaiseChance=street4CheckCallRaiseChance+%s,
-                    street4CheckCallRaiseDone=street4CheckCallRaiseDone+%s,
+                    street4CheckCallDone=street4CheckCallDone+%s,
+                    street4CheckRaiseDone=street4CheckRaiseDone+%s,
                     street0Calls=street0Calls+%s,
                     street1Calls=street1Calls+%s,
                     street2Calls=street2Calls+%s,
@@ -8604,13 +8761,17 @@ class Sql:
                 foldToStreet4CBChance,
                 foldToStreet4CBDone,
                 street1CheckCallRaiseChance,
-                street1CheckCallRaiseDone,
+                street1CheckCallDone,
+                street1CheckRaiseDone,
                 street2CheckCallRaiseChance,
-                street2CheckCallRaiseDone,
+                street2CheckCallDone,
+                street2CheckRaiseDone,
                 street3CheckCallRaiseChance,
-                street3CheckCallRaiseDone,
+                street3CheckCallDone,
+                street3CheckRaiseDone,
                 street4CheckCallRaiseChance,
-                street4CheckCallRaiseDone,
+                street4CheckCallDone,
+                street4CheckRaiseDone,
                 street0Raises,
                 street1Raises,
                 street2Raises,
@@ -8645,7 +8806,8 @@ class Sql:
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
-                    %s, %s, %s
+                    %s, %s, %s, %s, %s,
+                    %s, %s
                 )"""
 
         self.query['store_hands_actions'] = """insert into HandsActions (

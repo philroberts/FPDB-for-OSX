@@ -77,7 +77,7 @@ except ImportError:
     use_numpy = False
 
 
-DB_VERSION = 186
+DB_VERSION = 187
 
 # Variance created as sqlite has a bunch of undefined aggregate functions.
 
@@ -218,13 +218,17 @@ HANDS_PLAYERS_KEYS = [
     'foldToStreet4CBChance',
     'foldToStreet4CBDone',
     'street1CheckCallRaiseChance',
-    'street1CheckCallRaiseDone',
+    'street1CheckCallDone',
+    'street1CheckRaiseDone',
     'street2CheckCallRaiseChance',
-    'street2CheckCallRaiseDone',
+    'street2CheckCallDone',
+    'street2CheckRaiseDone',
     'street3CheckCallRaiseChance',
-    'street3CheckCallRaiseDone',
+    'street3CheckCallDone',
+    'street3CheckRaiseDone',
     'street4CheckCallRaiseChance',
-    'street4CheckCallRaiseDone',
+    'street4CheckCallDone',
+    'street4CheckRaiseDone',
     'street0Raises',
     'street1Raises',
     'street2Raises',
@@ -319,13 +323,17 @@ CACHE_KEYS = [
     'BBwon',
     'vsHero',
     'street1CheckCallRaiseChance',
-    'street1CheckCallRaiseDone',
+    'street1CheckCallDone',
+    'street1CheckRaiseDone',
     'street2CheckCallRaiseChance',
-    'street2CheckCallRaiseDone',
+    'street2CheckCallDone',
+    'street2CheckRaiseDone',
     'street3CheckCallRaiseChance',
-    'street3CheckCallRaiseDone',
+    'street3CheckCallDone',
+    'street3CheckRaiseDone',
     'street4CheckCallRaiseChance',
-    'street4CheckCallRaiseDone',
+    'street4CheckCallDone',
+    'street4CheckRaiseDone',
     'street0Calls',
     'street1Calls',
     'street2Calls',
