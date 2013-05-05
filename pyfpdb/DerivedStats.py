@@ -989,7 +989,7 @@ class DerivedStats():
         # XXX: enumerate(list, start=x) is python 2.6 syntax; 'start'
         #for i, street in enumerate(hand.actionStreets[2:], start=1):
         for i, street in enumerate(hand.actionStreets[2:]):
-            actions = hand.actions[hand.actionStreets[i+1]]
+            actions = hand.actions[street]
             checkers = set()
             initial_raiser = None
             for action in actions:

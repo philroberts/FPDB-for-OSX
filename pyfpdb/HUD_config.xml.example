@@ -1801,6 +1801,7 @@
             <pu_stat pu_stat_name="cb1"/>
             <pu_stat pu_stat_name="a_freq1"/>
             <pu_stat pu_stat_name="dbr1"/>
+            <pu_stat pu_stat_name="cr1"/>
             <pu_stat pu_stat_name="ffreq1"/>
             <pu_stat pu_stat_name="f_cb1"/>
             <pu_stat pu_stat_name="f_dbr1"/> 
@@ -1812,6 +1813,7 @@
             <pu_stat pu_stat_name="cb2"/>
             <pu_stat pu_stat_name="a_freq2"/>
             <pu_stat pu_stat_name="dbr2"/>
+            <pu_stat pu_stat_name="cr2"/>
             <pu_stat pu_stat_name="ffreq2"/>
             <pu_stat pu_stat_name="f_cb2"/>
             <pu_stat pu_stat_name="f_dbr2"/> 
@@ -1823,6 +1825,7 @@
             <pu_stat pu_stat_name="cb3"/>
             <pu_stat pu_stat_name="a_freq3"/>
             <pu_stat pu_stat_name="dbr3"/>
+            <pu_stat pu_stat_name="cr3"/>
             <pu_stat pu_stat_name="ffreq3"/>
             <pu_stat pu_stat_name="f_cb3"/>
             <pu_stat pu_stat_name="f_dbr3"/> 
