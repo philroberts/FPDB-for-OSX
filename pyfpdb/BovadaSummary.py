@@ -134,6 +134,7 @@ class BovadaSummary(TourneySummary):
             m = self.re_Ranking.search(self.summaryText)
             if m and m.group('RANK') is not None: 
                 rank = int(m.group('RANK'))
+                winnings = 0
                 
             m = self.re_Winnings.search(self.summaryText)
             if m and m.group('WINNINGS') is not None: 

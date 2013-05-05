@@ -133,7 +133,7 @@ class Bovada(HandHistoryConverter):
     #re_ShownCards       = re.compile("^Seat (?P<SEAT>[0-9]+): %(PLYR)s %(BRKTS)s(?P<SHOWED>showed|mucked) \[(?P<CARDS>.*)\]( and won \([.\d]+\) with (?P<STRING>.*))?" % substitutions, re.MULTILINE)
     re_CollectPot       = re.compile(r"^%(PLYR)s (\s?\[ME\]\s)?: Hand (R|r)esult(\-Side (P|p)ot)? %(CUR)s(?P<POT>[%(NUM)s]+)" %  substitutions, re.MULTILINE)
     re_Dealt            = re.compile(r"^%(PLYR)s (\s?\[ME\]\s)?: Card dealt to a spot" % substitutions, re.MULTILINE)
-    re_Buyin            = re.compile(r"(\s-\s(?P<TOURNAME>.+?))?\s-\s(?P<BUYIN>(?P<BIAMT>[%(LS)s\d\.]+)-(?P<BIRAKE>[%(LS)s\d\.]+)?)\s-\s" % substitutions)
+    re_Buyin            = re.compile(r"(\s-\s\d+\s-\s(?P<TOURNAME>.+?))?\s-\s(?P<BUYIN>(?P<BIAMT>[%(LS)s\d\.]+)-(?P<BIRAKE>[%(LS)s\d\.]+)?)\s-\s" % substitutions)
     re_Stakes           = re.compile(r"RING\s-\s(?P<CURRENCY>%(LS)s|)?(?P<SB>[%(NUM)s]+)-(%(LS)s)?(?P<BB>[%(NUM)s]+)\s-\s" % substitutions)
     re_Summary          = re.compile(r"\*\*\*\sSUMMARY\s\*\*\*")
     re_Hole_Third       = re.compile(r"\*\*\*\s(3RD\sSTREET|HOLE\sCARDS)\s\*\*\*")
