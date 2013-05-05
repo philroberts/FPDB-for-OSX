@@ -225,10 +225,21 @@ class Fulltilt(HandHistoryConverter):
         if mg['TOURNO'] is None:  info['type'] = "ring"
         else:                     info['type'] = "tour"
 
+        if mg['GAME'] is not None:
+            (info['base'], info['category']) = games[mg['GAME']]
+        if mg['CURRENCY'] is not None:
+            info['currency'] = currencies[mg['CURRENCY']]
+        # NB: SB, BB must be interpreted as blinds or bets depending on limit type.
+        m = self.re_Mixed.search(self.in_path)
+        if m: info['mix'] = mixes[m.groupdict()['MIXED']]
+
         if mg['CAP']:
             info['limitType'] = 'cn'
         else:
             info['limitType'] = limits[mg['LIMIT']]
+            
+        if not mg['CURRENCY'] and info['type']=='ring':
+            info['currency'] = 'play'
 
         if info['limitType'] == 'fl' and info['bb'] is not None:
             if info['type'] == 'ring':
@@ -244,14 +255,6 @@ class Fulltilt(HandHistoryConverter):
                 sb = self.clearMoneyString(mg['SB'])
                 info['sb'] = str((Decimal(sb)/2).quantize(Decimal("0.01")))
                 info['bb'] = str(Decimal(sb).quantize(Decimal("0.01")))
-
-        if mg['GAME'] is not None:
-            (info['base'], info['category']) = games[mg['GAME']]
-        if mg['CURRENCY'] is not None:
-            info['currency'] = currencies[mg['CURRENCY']]
-        # NB: SB, BB must be interpreted as blinds or bets depending on limit type.
-        m = self.re_Mixed.search(self.in_path)
-        if m: info['mix'] = mixes[m.groupdict()['MIXED']]
 
         return info
 
