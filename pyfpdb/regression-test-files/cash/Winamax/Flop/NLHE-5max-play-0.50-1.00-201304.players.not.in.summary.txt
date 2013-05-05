@@ -1,0 +1,35 @@
+Winamax Poker - CashGame - HandId: #4489532-965-1366095481 - Holdem no limit (0.50/1) - 2013/04/16 06:58:01 UTC
+Table: 'Lexington 02' 5-max (play money) Seat #2 is the button
+Seat 1: Player0 (212.27)
+Seat 2: Player1 (0)
+Seat 3: Player2 (112.20)
+Seat 4: Player3 (51.83)
+Seat 5: Player4 (168.47)
+*** ANTE/BLINDS ***
+Player2 posts small blind 0.50
+Player3 posts big blind 1
+*** PRE-FLOP *** 
+Player4 calls 1
+Player0 raises 11.29 to 12.29
+Player2 folds
+Player3 calls 11.29
+Player4 folds
+*** FLOP *** [9d 6h 8h]
+Player3 checks
+Player0 bets 35.72
+Player3 calls 35.72
+*** TURN *** [9d 6h 8h][3h]
+Player3 checks
+Player0 checks
+*** RIVER *** [9d 6h 8h 3h][7d]
+Player3 bets 3.82 and is all-in
+Player0 calls 3.82
+*** SHOW DOWN ***
+Player0 shows [Ad Jh] (High card : Ace)
+Player3 shows [Tc Ks] (Straight Ten high)
+Player3 collected 102.66 from pot
+*** SUMMARY ***
+Total pot 102.66 | Rake 2.50
+Board: [9d 6h 8h 3h 7d]
+Seat 1: Player0 showed [Ad Jh] and lost with High card : Ace
+Seat 4: Player3 (big blind) showed [Tc Ks] and won 102.66 with Straight Ten high

@@ -1,0 +1,24 @@
+Winamax Poker - CashGame - HandId: #2769259-665-1335035306 - Holdem fixed limit (0.05€/0.10€) - 2012/04/21 21:08:26 UTC
+Table: 'Ostrava' 2-max (real money) Seat #2 is the button
+Seat 1: Hero (10€)
+Seat 2: Player0 (1€)
+*** ANTE/BLINDS ***
+Player0 posts small blind 0.02€
+Hero posts big blind 0.05€
+Dealt to Hero [7s Kd]
+*** PRE-FLOP *** 
+Player0 calls 0.03€
+Hero checks
+*** FLOP *** [Qc 4d 4s]
+Hero checks
+Player0 checks
+*** TURN *** [Qc 4d 4s][6s]
+Hero checks
+Player0 bets 0.10€
+Hero folds
+Player0 collected 0.19€ from pot
+*** SUMMARY ***
+Total pot 0.19€ | Rake 0.01€
+Board: [Qc 4d 4s 6s]
+Seat 1: Hero (big blind) folded on the turn
+Seat 2: Player0 (small blind) (button) won 0.19€

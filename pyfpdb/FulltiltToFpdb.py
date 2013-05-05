@@ -82,7 +82,7 @@ class Fulltilt(HandHistoryConverter):
                                     (Ante\s\$?(?P<ANTE>[%(NUM)s]+)\s)?-\s
                                     [%(LS)s]?(?P<CAP>[%(NUM)s]+\sCap\s)?
                                     (?P<LIMIT>(No\sLimit|Pot\sLimit|Limit))?\s
-                                    (?P<GAME>(Hold\'em|Omaha(\sH/L|\sHi/Lo|\sHi|)|Irish|5\sCard\sStud|7\sCard\sStud|7\sCard\sStud|Stud\sH/L|Razz|Stud\sHi|2-7\sTriple\sDraw|5\sCard\sDraw|Badugi|2-7\sSingle\sDraw|A-5\sTriple\sDraw))
+                                    (?P<GAME>(Hold\'em|Omaha(\sH/L|\sHi/Lo|\sHi|)|Irish|5(-|\s)Card\sStud(\sHi)?|7\sCard\sStud|7\sCard\sStud|Stud\sH/L|Razz|Stud\sHi|2-7\sTriple\sDraw|5\sCard\sDraw|Badugi|2-7\sSingle\sDraw|A-5\sTriple\sDraw))
                                  ''' % substitutions, re.VERBOSE)
     re_Identify     = re.compile(u'FullTiltPoker|Full\sTilt\sPoker\sGame\s#\d+:')
     re_SplitHands   = re.compile(r"\n\n\n+")
@@ -138,7 +138,8 @@ class Fulltilt(HandHistoryConverter):
             self.re_Action           = re.compile(r"^%(PLAYERS)s(?P<ATYPE> bets| checks| raises to| completes it to| calls| folds| discards| stands pat)( [%(LS)s]?(?P<BET>[%(NUM)s]+))?( on| cards?)?( \[(?P<CARDS>.+?)\])?" % self.substitutions, re.MULTILINE)
             self.re_ShowdownAction   = re.compile(r"^%s shows \[(?P<CARDS>.*)\]" % player_re, re.MULTILINE)
             self.re_CollectPot       = re.compile(r"^Seat (?P<SEAT>[0-9]+): %(PLAYERS)s (\(button\) |\(small blind\) |\(big blind\) )?(collected|showed \[.*\] and won) \([%(LS)s]?(?P<POT>[%(NUM)s]+)\)(, mucked| with.*)?" % self.substitutions, re.MULTILINE)
-            self.re_CollectPot2      = re.compile(r"^%(PLAYERS)s wins the pot \([%(LS)s]?(?P<POT>[%(NUM)s]+)\)" %  self.substitutions, re.MULTILINE)
+            self.re_CollectPot2      = re.compile(r"^%(PLAYERS)s (ties for|wins) (the (main |side )?pot|pot (1|2)) \([%(LS)s]?(?P<POT>[%(NUM)s]+)\)" %  self.substitutions, re.MULTILINE)
+            self.re_CollectSidePot   = re.compile(r"^Seat (?P<SEAT>[0-9]+): %(PLAYERS)s \s?(ties for|wins) (the (main |side )?pot|pot (1|2)) \([%(LS)s]?(?P<POT>[%(NUM)s]+)\)" %  self.substitutions, re.MULTILINE)
             self.re_SitsOut          = re.compile(r"^%s sits out" % player_re, re.MULTILINE)
             self.re_ShownCards       = re.compile(r"^Seat (?P<SEAT>[0-9]+): %s (\(button\) |\(small blind\) |\(big blind\) )?(?P<SHOWED>showed|mucked) \[(?P<CARDS>.*)\](( and won \(.*\) with | and lost with | \- )(?P<STRING>.*))?" % player_re, re.MULTILINE)
 
@@ -191,6 +192,7 @@ class Fulltilt(HandHistoryConverter):
         '7 Card Stud Hi/Lo' : ('stud','studhilo'),
                  'Stud H/L' : ('stud','studhilo'),
               '5 Card Stud' : ('stud', '5_studhi'),
+           '5-Card Stud Hi' : ('stud', '5_studhi'),
           '2-7 Triple Draw' : ('draw','27_3draw'),
           'A-5 Triple Draw' : ('draw','a5_3draw'),
               '5 Card Draw' : ('draw','fivedraw'),
@@ -326,11 +328,11 @@ class Fulltilt(HandHistoryConverter):
                     hand.buyinCurrency="EUR"
                 else:
                     hand.buyinCurrency="NA"
-                hand.buyin = int(100*Decimal(n.group('BUYIN')))
-                hand.fee = int(100*Decimal(n.group('FEE')))
+                hand.buyin = int(100*Decimal(self.clearMoneyString(n.group('BUYIN'))))
+                hand.fee = int(100*Decimal(self.clearMoneyString(n.group('FEE'))))
             elif n.group('SPECIAL')=='Play Money':
                 hand.buyinCurrency="play"
-                hand.buyin = int(100*Decimal(n.group('BUYIN')))
+                hand.buyin = int(100*Decimal(self.clearMoneyString(n.group('BUYIN'))))
                 hand.fee = 0
             elif n.group('SPECIAL')=='Freeroll':
                 hand.buyin = 0
@@ -399,7 +401,7 @@ class Fulltilt(HandHistoryConverter):
                        r"(\*\*\* RIVER \*\*\* \[\S\S \S\S \S\S \S\S] (?P<RIVER>\[\S\S\].+))?"
                        r"(\*\*\* FLOP 1 \*\*\*(?P<FLOP1> \[\S\S \S\S \S\S\].+(?=\*\*\* TURN 1 \*\*\*)|.+))?"
                        r"(\*\*\* TURN 1 \*\*\* \[\S\S \S\S \S\S] (?P<TURN1>\[\S\S\].+(?=\*\*\* RIVER 1 \*\*\*)|.+))?"
-                       r"(\*\*\* RIVER 1 \*\*\* \[\S\S \S\S \S\S \S\S] (?P<RIVER1>\[\S\S\].))?"
+                       r"(\*\*\* RIVER 1 \*\*\* \[\S\S \S\S \S\S \S\S] (?P<RIVER1>\[\S\S\].+?(?=\*\*\* (FLOP|TURN|RIVER) 2 \*\*\*)))?"
                        r"(\*\*\* FLOP 2 \*\*\*(?P<FLOP2> \[\S\S \S\S \S\S\].+(?=\*\*\* TURN 2 \*\*\*)|.+))?"
                        r"(\*\*\* TURN 2 \*\*\* \[\S\S \S\S \S\S] (?P<TURN2>\[\S\S\].+(?=\*\*\* RIVER 2 \*\*\*)|.+))?"
                        r"(\*\*\* RIVER 2 \*\*\* \[\S\S \S\S \S\S \S\S] (?P<RIVER2>\[\S\S\].+))?", hand.handText,re.DOTALL)
@@ -547,11 +549,14 @@ class Fulltilt(HandHistoryConverter):
             hand.addShownCards(cards, shows.group('PNAME'))
 
     def readCollectPot(self,hand):
-        i=0
+        awardFound = False
         for m in self.re_CollectPot.finditer(hand.handText):
             hand.addCollectPot(player=m.group('PNAME'),pot=re.sub(u',',u'',m.group('POT')))
-            i+=1
-        if i==0:
+            awardFound = True
+        for m in self.re_CollectSidePot.finditer(hand.handText):
+            hand.addCollectPot(player=m.group('PNAME'),pot=re.sub(u',',u'',m.group('POT')))
+            awardFound = True
+        if not awardFound:
             for m in self.re_CollectPot2.finditer(hand.handText):
                  hand.addCollectPot(player=m.group('PNAME'),pot=re.sub(u',',u'',m.group('POT')))
 

@@ -1141,6 +1141,7 @@ class HoldemOmahaHand(Hand):
 
         for street in self.holeStreets:
             if player in self.holecards[street].keys():
+                if len(self.holecards[street][player][1])==1: continue
                 for i in 0,1:
                     hcs[i] = self.holecards[street][player][1][i]
                     hcs[i] = upper(hcs[i][0:1])+hcs[i][1:2]

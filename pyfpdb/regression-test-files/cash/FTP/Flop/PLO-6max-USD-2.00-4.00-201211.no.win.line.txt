@@ -1,0 +1,36 @@
+Full Tilt Poker Game #31318808612: Table Rymer (6 max, shallow) - $2/$4 - Pot Limit Omaha Hi - 17:09:49 CET - 2012/11/06 [11:09:49 ET - 2012/11/06]
+Seat 1: lplr ($60)
+Seat 2: Fejhoa ($311.75)
+Seat 3: dalgoy6ko ($739.20)
+Seat 4: FatChipStack ($249.10)
+Seat 5: jflex1989 ($412)
+Seat 6: BEBZILLA ($210.40)
+dalgoy6ko posts the small blind of $2
+FatChipStack posts the big blind of $4
+The button is in seat #2
+*** HOLE CARDS ***
+Dealt to FatChipStack [9d 4s 7s 5h]
+jflex1989 raises to $8
+BEBZILLA raises to $19
+lplr folds
+Fejhoa folds
+dalgoy6ko has 15 seconds left to act
+dalgoy6ko folds
+FatChipStack folds
+jflex1989 calls $11
+*** FLOP *** [8h Jc 4d] (Total Pot: $44, 2 Players)
+jflex1989 checks
+BEBZILLA checks
+*** TURN *** [8h Jc 4d] [3d] (Total Pot: $44, 2 Players)
+jflex1989 bets $44
+BEBZILLA folds
+Uncalled bet of $44 returned to jflex1989
+*** SUMMARY ***
+Total pot $44 | Rake $2.20
+Board: [8h Jc 4d 3d]
+Seat 1: lplr didn't bet (folded)
+Seat 2: Fejhoa (button) didn't bet (folded)
+Seat 3: dalgoy6ko (small blind) folded before the Flop
+Seat 4: FatChipStack (big blind) folded before the Flop
+Seat 5: jflex1989 collected ($41.80), mucked
+Seat 6: BEBZILLA folded on the Turn

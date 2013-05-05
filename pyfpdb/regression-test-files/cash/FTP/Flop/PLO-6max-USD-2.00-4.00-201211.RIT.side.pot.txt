@@ -1,0 +1,65 @@
+Full Tilt Poker Game #31318697695: Table Rymer (6 max, shallow) - $2/$4 - Pot Limit Omaha Hi - 17:00:14 CET - 2012/11/06 [11:00:14 ET - 2012/11/06]
+Seat 1: Player0 ($38.55)
+Seat 2: Player1 ($263.80)
+Seat 3: Player2 ($663.20)
+Seat 4: Hero ($420.10)
+Seat 5: Player3 ($414)
+Seat 6: Player4 ($209)
+Player1 posts the small blind of $2
+Player2 posts the big blind of $4
+The button is in seat #1
+*** HOLE CARDS ***
+Dealt to Hero [5c 6s 6c 8d]
+Hero raises to $12
+Player3 folds
+Player4 calls $12
+Player0 calls $12
+Player1 has 15 seconds left to act
+Player1 raises to $64
+Player2 folds
+Hero calls $52
+Player4 calls $52
+Player0 calls $26.55, and is all in
+*** FLOP *** [2c As Jh] (Total Pot: $234.55, 4 Players, 1 All-In)
+Player1 has 15 seconds left to act
+Player1 bets $56
+Hero folds
+Player4 folds
+Players agree to Run It Twice
+Player1 shows [Ah 9c 4h Ac]
+Player0 shows [6d Jc Kd Qc]
+Uncalled bet of $56 returned to Player1
+*** TURN 1 *** [2c As Jh] [9h] (Total Pot: $234.55, 2 Players, 1 All-In)
+*** RIVER 1 *** [2c As Jh 9h] [Kh] (Total Pot: $234.55, 2 Players, 1 All-In)
+*** TURN 2 *** [2c As Jh] [Th] (Total Pot: $234.55, 2 Players, 1 All-In)
+*** RIVER 2 *** [2c As Jh Th] [5d] (Total Pot: $234.55, 2 Players, 1 All-In)
+Player1 wins the side pot ($76.35)
+*** SHOW DOWN 1 ***
+Player1 shows a flush, Ace high
+Player0 shows two pair, Kings and Jacks
+*** SHOW DOWN 2 ***
+Player1 shows three of a kind, Aces
+Player0 shows a straight, Ace high
+Player1 wins pot 1 ($77.60) with a flush, Ace high
+Player0 wins pot 2 ($77.60) with a straight, Ace high
+*** SUMMARY ***
+Total pot $234.55 Main pot $158.20. Side pot $76.35. | Rake $3
+Seat 2: Player1  wins the side pot ($76.35)
+*** SUMMARY 1 ***
+Pot 1 $77.60
+Board: [2c As Jh 9h Kh]
+Seat 1: Player0 (button) showed [6d Jc Kd Qc] and lost with two pair, Kings and Jacks
+Seat 2: Player1 (small blind) showed [Ah 9c 4h Ac] and won ($77.60) with a flush, Ace high
+Seat 3: Player2 (big blind) folded before the Flop
+Seat 4: Hero folded on the Flop
+Seat 5: Player3 didn't bet (folded)
+Seat 6: Player4 folded on the Flop
+*** SUMMARY 2 ***
+Pot 2 $77.60
+Board: [2c As Jh Th 5d]
+Seat 1: Player0 (button) showed [6d Jc Kd Qc] and won ($77.60) with a straight, Ace high
+Seat 2: Player1 (small blind) showed [Ah 9c 4h Ac] and lost with three of a kind, Aces
+Seat 3: Player2 (big blind) folded before the Flop
+Seat 4: Hero folded on the Flop
+Seat 5: Player3 didn't bet (folded)
+Seat 6: Player4 folded on the Flop

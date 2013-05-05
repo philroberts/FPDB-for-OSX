@@ -2358,7 +2358,6 @@ class Database:
         self.hsbulk      = []         # HandsStove bulk inserts
         self.htbulk      = []         # HandsPots bulk inserts
         self.tbulk       = {}         # Tourneys bulk updates
-        self.tpbulk      = []         # TourneysPlayers bulk updates
         self.sc          = {'bk': []} # SessionsCache bulk updates
         self.cc          = {}         # CashCache bulk updates
         self.tc          = {}         # TourCache bulk updates
@@ -3672,8 +3671,7 @@ class Database:
         return result
     
     def createOrUpdateTourneysPlayers(self, summary):
-        tplayers = []
-        tourneysPlayersIds={}
+        tourneysPlayersIds, tplayers, inserts = {}, [], []
         cursor = self.get_cursor()
         cursor.execute (self.sql.query['getTourneysPlayersByTourney'].replace('%s', self.sql.query['placeholder']),
                             (summary.tourneyId,))
@@ -3724,12 +3722,14 @@ class Database:
             else:
                 #print "all values: tourneyId",summary.tourneyId, "playerId",playerId, "rank",summary.ranks[player], "winnings",summary.winnings[player], "winCurr",summary.winningsCurrency[player], summary.rebuyCounts[player], summary.addOnCounts[player], summary.koCounts[player]
                 if summary.ranks[player]:
-                    self.tpbulk.append((summary.tourneyId, playerId, int(summary.ranks[player]), int(summary.winnings[player]), summary.winningsCurrency[player],
+                    inserts.append((summary.tourneyId, playerId, int(summary.ranks[player]), int(summary.winnings[player]), summary.winningsCurrency[player],
                                         summary.rebuyCounts[player], summary.addOnCounts[player], summary.koCounts[player]))
                 else:
-                    self.tpbulk.append((summary.tourneyId, playerId, None, None, None,
+                    inserts.append((summary.tourneyId, playerId, None, None, None,
                                          summary.rebuyCounts[player], summary.addOnCounts[player], summary.koCounts[player]))
-        cursor.executemany(self.sql.query['insertTourneysPlayer'].replace('%s', self.sql.query['placeholder']),self.tpbulk)
+        if inserts:
+            cursor.executemany(self.sql.query['insertTourneysPlayer'].replace('%s', self.sql.query['placeholder']),inserts)
+            
     
 #end class Database
 
