@@ -80,7 +80,7 @@ class Fulltilt(HandHistoryConverter):
                                     (?P<SB>[%(NUM)s]+)/
                                     [%(LS)s]?(?P<BB>[%(NUM)s]+)\s
                                     (Ante\s\$?(?P<ANTE>[%(NUM)s]+)\s)?-\s
-                                    [%(LS)s]?(?P<CAP>[%(NUM)s]+\sCap\s)?
+                                    (?P<CAP>[%(LS)s]?(?P<CAPAMT>[%(NUM)s]+)\sCap\s)?
                                     (?P<LIMIT>(No\sLimit|Pot\sLimit|Limit))?\s
                                     (?P<GAME>(Hold\'em|Omaha(\sH/L|\sHi/Lo|\sHi|)|Irish|5(-|\s)Card\sStud(\sHi)?|7\sCard\sStud|7\sCard\sStud|Stud\sH/L|Razz|Stud\sHi|2-7\sTriple\sDraw|5\sCard\sDraw|Badugi|2-7\sSingle\sDraw|A-5\sTriple\sDraw))
                                  ''' % substitutions, re.VERBOSE)
@@ -95,7 +95,7 @@ class Fulltilt(HandHistoryConverter):
                                     (?P<ENTRYID>\sEntry\s\#\d+\s)?)
                                     (\((?P<TABLEATTRIBUTES>.+)\)\s)?-\s
                                     [%(LS)s]?(?P<SB>[%(NUM)s]+)/[%(LS)s]?(?P<BB>[%(NUM)s]+)\s(Ante\s[%(LS)s]?(?P<ANTE>[%(NUM)s]+)\s)?-\s
-                                    [%(LS)s]?(?P<CAP>[%(NUM)s]+\sCap\s)?
+                                    (?P<CAP>[%(LS)s]?(?P<CAPAMT>[%(NUM)s]+)\sCap\s)?
                                     (?P<GAMETYPE>[-\da-zA-Z\/\'\s]+)\s-\s
                                     (?P<DATETIME>.+$)
                                     (?P<PARTIAL>\(partial\))?\s
@@ -224,11 +224,21 @@ class Fulltilt(HandHistoryConverter):
 
         if mg['TOURNO'] is None:  info['type'] = "ring"
         else:                     info['type'] = "tour"
-
-        if mg['CAP']:
-            info['limitType'] = 'cn'
-        else:
+        if mg['LIMIT'] is not None:
             info['limitType'] = limits[mg['LIMIT']]
+        if mg['GAME'] is not None:
+            (info['base'], info['category']) = games[mg['GAME']]
+        if mg['CURRENCY'] is not None:
+            info['currency'] = currencies[mg['CURRENCY']]
+        # NB: SB, BB must be interpreted as blinds or bets depending on limit type.
+        m = self.re_Mixed.search(self.in_path)
+        if m: info['mix'] = mixes[m.groupdict()['MIXED']]
+
+        if mg['CAP'] is not None:
+            info['cap'] = self.clearMoneyString(mg['CAPAMT'])
+            
+        if not mg['CURRENCY'] and info['type']=='ring':
+            info['currency'] = 'play'
 
         if info['limitType'] == 'fl' and info['bb'] is not None:
             if info['type'] == 'ring':
@@ -244,14 +254,6 @@ class Fulltilt(HandHistoryConverter):
                 sb = self.clearMoneyString(mg['SB'])
                 info['sb'] = str((Decimal(sb)/2).quantize(Decimal("0.01")))
                 info['bb'] = str(Decimal(sb).quantize(Decimal("0.01")))
-
-        if mg['GAME'] is not None:
-            (info['base'], info['category']) = games[mg['GAME']]
-        if mg['CURRENCY'] is not None:
-            info['currency'] = currencies[mg['CURRENCY']]
-        # NB: SB, BB must be interpreted as blinds or bets depending on limit type.
-        m = self.re_Mixed.search(self.in_path)
-        if m: info['mix'] = mixes[m.groupdict()['MIXED']]
 
         return info
 

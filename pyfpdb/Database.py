@@ -77,7 +77,7 @@ except ImportError:
     use_numpy = False
 
 
-DB_VERSION = 184
+DB_VERSION = 187
 
 # Variance created as sqlite has a bunch of undefined aggregate functions.
 
@@ -218,13 +218,17 @@ HANDS_PLAYERS_KEYS = [
     'foldToStreet4CBChance',
     'foldToStreet4CBDone',
     'street1CheckCallRaiseChance',
-    'street1CheckCallRaiseDone',
+    'street1CheckCallDone',
+    'street1CheckRaiseDone',
     'street2CheckCallRaiseChance',
-    'street2CheckCallRaiseDone',
+    'street2CheckCallDone',
+    'street2CheckRaiseDone',
     'street3CheckCallRaiseChance',
-    'street3CheckCallRaiseDone',
+    'street3CheckCallDone',
+    'street3CheckRaiseDone',
     'street4CheckCallRaiseChance',
-    'street4CheckCallRaiseDone',
+    'street4CheckCallDone',
+    'street4CheckRaiseDone',
     'street0Raises',
     'street1Raises',
     'street2Raises',
@@ -315,17 +319,21 @@ CACHE_KEYS = [
     'rakeWeighted',
     'showdownWinnings',
     'nonShowdownWinnings',
-    'BBwon',
     'allInEV',
+    'BBwon',
     'vsHero',
     'street1CheckCallRaiseChance',
-    'street1CheckCallRaiseDone',
+    'street1CheckCallDone',
+    'street1CheckRaiseDone',
     'street2CheckCallRaiseChance',
-    'street2CheckCallRaiseDone',
+    'street2CheckCallDone',
+    'street2CheckRaiseDone',
     'street3CheckCallRaiseChance',
-    'street3CheckCallRaiseDone',
+    'street3CheckCallDone',
+    'street3CheckRaiseDone',
     'street4CheckCallRaiseChance',
-    'street4CheckCallRaiseDone',
+    'street4CheckCallDone',
+    'street4CheckRaiseDone',
     'street0Calls',
     'street1Calls',
     'street2Calls',
@@ -3319,9 +3327,9 @@ class Database:
             result = tmp[0]
             if type=='players':
                 if not tmp[2] and key[2]:
-                    q = "UPDATE Players SET hero=1 WHERE name=%s and siteid=%s"
+                    q = "UPDATE Players SET hero=%s WHERE name=%s and siteid=%s"
                     q = q.replace('%s', self.sql.query['placeholder'])
-                    cursor.execute (q, key[:2])
+                    cursor.execute (q, (key[2], key[0], key[1]))
         return result
     
     def getSqlGameTypeId(self, siteid, game, printdata = False):
@@ -3333,12 +3341,12 @@ class Database:
             
         gtinfo = (siteid, game['type'], game['category'], game['limitType'], game['currency'],
                   game['mix'], int(Decimal(game['sb'])*100), int(Decimal(game['bb'])*100),
-                  game['maxSeats'], int(game['ante']*100), game['cap'], game['zoom'])
+                  game['maxSeats'], int(game['ante']*100), int(Decimal(game['cap'])*100), game['zoom'])
         
         gtinsert = (siteid, game['currency'], game['type'], game['base'], game['category'], game['limitType'], hilo,
                     game['mix'], int(Decimal(game['sb'])*100), int(Decimal(game['bb'])*100),
                     int(Decimal(game['bb'])*100), int(Decimal(game['bb'])*200), game['maxSeats'], int(game['ante']*100),
-                    game['cap'], game['zoom'])
+                    int(Decimal(game['cap'])*100), game['zoom'])
         
         result = self.gtcache[(gtinfo, gtinsert)]
         # NOTE: Using the LambdaDict does the same thing as:

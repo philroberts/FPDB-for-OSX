@@ -125,7 +125,7 @@ class PokerStars(HandHistoryConverter):
           (?P<CURRENCY>%(LS)s|)?
           (?P<SB>[.0-9]+)/(%(LS)s)?
           (?P<BB>[.0-9]+)
-          (?P<CAP>\s-\s[%(LS)s\d\.]+\sCap\s-\s)?        # Optional Cap part
+          (?P<CAP>\s-\s[%(LS)s]?(?P<CAPAMT>[.0-9]+)\sCap\s-\s)?        # Optional Cap part
           \s?(?P<ISO>%(LEGAL_ISO)s)?
           \)                        # close paren of the stakes
           (?P<BLAH2>\s\[AAMS\sID:\s[A-Z0-9]+\])?         # AAMS ID: in .it HH's
@@ -235,9 +235,7 @@ class PokerStars(HandHistoryConverter):
         else:
             info['zoom'] = False
         if 'CAP' in mg and mg['CAP'] is not None:
-            info['cap'] = True
-        else:
-            info['cap'] = False
+            info['cap'] = mg['CAPAMT']
                 
         if 'TOURNO' in mg and mg['TOURNO'] is None:
             info['type'] = 'ring'

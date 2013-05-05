@@ -96,7 +96,8 @@ def _buildStatsInitializer():
         init['street%dCBChance' %i] = False
         init['street%dCBDone' %i] = False
         init['street%dCheckCallRaiseChance' %i] = False
-        init['street%dCheckCallRaiseDone' %i]   = False
+        init['street%dCheckCallDone' %i]        = False
+        init['street%dCheckRaiseDone' %i]       = False
         init['otherRaisedStreet%d' %i]          = False
         init['foldToOtherRaisedStreet%d' %i]    = False
 
@@ -1000,7 +1001,8 @@ class DerivedStats():
                 elif initial_raiser is not None and pname in checkers:
                     player_stats = self.handsplayers.get(pname)
                     player_stats['street%dCheckCallRaiseChance' % (i+1)] = True
-                    player_stats['street%dCheckCallRaiseDone' % (i+1)] = act!='folds'
+                    player_stats['street%dCheckCallDone' % (i+1)] = act=='calls'
+                    player_stats['street%dCheckRaiseDone' % (i+1)] = act=='raises'
 
     def aggr(self, hand, i):
         aggrers = set()
