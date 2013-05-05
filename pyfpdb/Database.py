@@ -3327,9 +3327,9 @@ class Database:
             result = tmp[0]
             if type=='players':
                 if not tmp[2] and key[2]:
-                    q = "UPDATE Players SET hero=1 WHERE name=%s and siteid=%s"
+                    q = "UPDATE Players SET hero=%s WHERE name=%s and siteid=%s"
                     q = q.replace('%s', self.sql.query['placeholder'])
-                    cursor.execute (q, key[:2])
+                    cursor.execute (q, (key[2], key[0], key[1]))
         return result
     
     def getSqlGameTypeId(self, siteid, game, printdata = False):
