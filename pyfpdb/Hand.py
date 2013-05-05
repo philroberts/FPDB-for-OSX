@@ -262,7 +262,7 @@ class Hand(object):
                             int(Decimal(self.gametype['sb'])*100), int(Decimal(self.gametype['bb'])*100),
                             int(Decimal(self.gametype['bb'])*100), int(Decimal(self.gametype['bb'])*200),
                             int(self.gametype['maxSeats']), int(self.gametype['ante']*100),
-                            self.gametype['cap'], self.gametype['zoom'])
+                            int(Decimal(self.gametype['cap'])*100), self.gametype['zoom'])
         # Note: the above data is calculated in db.getGameTypeId
         #       Only being calculated above so we can grab the testdata
         if self.tourNo!=None:

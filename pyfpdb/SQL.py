@@ -302,7 +302,7 @@ class Sql:
                         bigBet int NOT NULL,
                         maxSeats TINYINT NOT NULL,
                         ante INT NOT NULL,
-                        cap BOOLEAN,
+                        cap INT NOT NULL,
                         zoom BOOLEAN)
                         ENGINE=INNODB"""
         elif db_server == 'postgresql':
@@ -322,7 +322,7 @@ class Sql:
                         bigBet int NOT NULL,
                         maxSeats SMALLINT NOT NULL,
                         ante INT NOT NULL,
-                        cap BOOLEAN,
+                        cap int NOT NULL,
                         zoom BOOLEAN)"""
         elif db_server == 'sqlite':
             self.query['createGametypesTable'] = """CREATE TABLE Gametypes (
@@ -341,7 +341,7 @@ class Sql:
                         bigBet INTEGER NOT NULL,
                         maxSeats INT NOT NULL,
                         ante INT NOT NULL,
-                        cap BOOLEAN,
+                        cap int NOT NULL,
                         zoom BOOLEAN,
                         FOREIGN KEY(siteId) REFERENCES Sites(id) ON DELETE CASCADE)"""
 

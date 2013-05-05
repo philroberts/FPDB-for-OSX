@@ -77,7 +77,7 @@ except ImportError:
     use_numpy = False
 
 
-DB_VERSION = 184
+DB_VERSION = 185
 
 # Variance created as sqlite has a bunch of undefined aggregate functions.
 
@@ -3333,12 +3333,12 @@ class Database:
             
         gtinfo = (siteid, game['type'], game['category'], game['limitType'], game['currency'],
                   game['mix'], int(Decimal(game['sb'])*100), int(Decimal(game['bb'])*100),
-                  game['maxSeats'], int(game['ante']*100), game['cap'], game['zoom'])
+                  game['maxSeats'], int(game['ante']*100), int(Decimal(game['cap'])*100), game['zoom'])
         
         gtinsert = (siteid, game['currency'], game['type'], game['base'], game['category'], game['limitType'], hilo,
                     game['mix'], int(Decimal(game['sb'])*100), int(Decimal(game['bb'])*100),
                     int(Decimal(game['bb'])*100), int(Decimal(game['bb'])*200), game['maxSeats'], int(game['ante']*100),
-                    game['cap'], game['zoom'])
+                    int(Decimal(game['cap'])*100), game['zoom'])
         
         result = self.gtcache[(gtinfo, gtinsert)]
         # NOTE: Using the LambdaDict does the same thing as:
