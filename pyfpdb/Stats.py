@@ -1263,6 +1263,78 @@ def f_cb4(stat_dict, player):
                 'f_cb_4=NA',
                 '(0/0)',
                 _('% fold to continuation bet 7th street'))
+        
+def cr1(stat_dict, player):
+    stat = 0.0
+    try:
+        stat = float(stat_dict[player]['cr_1'])/float(stat_dict[player]['ccr_opp_1'])
+        return (stat,
+                '%3.1f'         % (100.0*stat),
+                'cr1=%3.1f%%'   % (100.0*stat),
+                'cr_1=%3.1f%%'  % (100.0*stat),
+                '(%d/%d)'       % (stat_dict[player]['cr_1'], stat_dict[player]['ccr_opp_1']),
+                _('% check-raise flop/4th street'))
+    except:
+        return (stat,
+                'NA',
+                'cr1=NA',
+                'cr_1=NA',
+                '(0/0)',
+                _('% check-raise flop/4th street'))
+    
+def cr2(stat_dict, player):
+    stat = 0.0
+    try:
+        stat = float(stat_dict[player]['cr_2'])/float(stat_dict[player]['ccr_opp_2'])
+        return (stat,
+                '%3.1f'         % (100.0*stat),
+                'cr2=%3.1f%%'   % (100.0*stat),
+                'cr_2=%3.1f%%'  % (100.0*stat),
+                '(%d/%d)'       % (stat_dict[player]['cr_2'], stat_dict[player]['ccr_opp_2']),
+                _('% check-raise turn/5th street'))
+    except:
+        return (stat,
+                'NA',
+                'cr2=NA',
+                'cr_2=NA',
+                '(0/0)',
+                _('% check-raise turn/5th street'))
+    
+def cr3(stat_dict, player):
+    stat = 0.0
+    try:
+        stat = float(stat_dict[player]['cr_3'])/float(stat_dict[player]['ccr_opp_3'])
+        return (stat,
+                '%3.1f'         % (100.0*stat),
+                'cr3=%3.1f%%'   % (100.0*stat),
+                'cr_3=%3.1f%%'  % (100.0*stat),
+                '(%d/%d)'       % (stat_dict[player]['cr_3'], stat_dict[player]['ccr_opp_3']),
+                _('% check-raise river/6th street'))
+    except:
+        return (stat,
+                'NA',
+                'cr3=NA',
+                'cr_3=NA',
+                '(0/0)',
+                _('% check-raise river/6th street'))
+    
+def cr4(stat_dict, player):
+    stat = 0.0
+    try:
+        stat = float(stat_dict[player]['cr_4'])/float(stat_dict[player]['ccr_opp_4'])
+        return (stat,
+                '%3.1f'         % (100.0*stat),
+                'cr4=%3.1f%%'   % (100.0*stat),
+                'cr_4=%3.1f%%'  % (100.0*stat),
+                '(%d/%d)'      % (stat_dict[player]['cr_4'], stat_dict[player]['ccr_opp_4']),
+                _('% check-raise 7th street'))
+    except:
+        return (stat,
+                'NA',
+                'cr4=NA',
+                'cr_4=NA',
+                '(0/0)',
+                _('% check-raise 7th street'))
 
 
 def game_abbr(stat_dict, player):
