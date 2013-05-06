@@ -799,32 +799,35 @@ class fpdb:
         fpdbmenu = """
             <ui>
               <menubar name="MenuBar">
-                <menu action="main">
-                  <menuitem action="site_preferences"/>
-                  <menuitem action="hud_preferences"/>
-                  <menuitem action="advanced_preferences"/>
+                <menu action="configure">
+                  <menuitem action="site_settings"/>
+                  <menuitem action="hud_stats"/>
+                  <menuitem action="preferences"/>
                   <separator/>
                   <menuitem action="Quit"/>
                 </menu>
                 <menu action="import">
                   <menuitem action="bulkimp"/>
-                  <menuitem action="tourneyimp"/>
                   <menuitem action="imapimport"/>
-                  <menuitem action="autoimp"/>
+                  <menuitem action="tourneyimp"/>
                 </menu>
-                <menu action="viewers">
+                <menu action="hud">
                   <menuitem action="autoimp"/>
+                </menu>                
+                <menu action="cash">
                   <menuitem action="graphs"/>
-                  <menuitem action="tourneygraphs"/>
                   <menuitem action="ringplayerstats"/>
-                  <menuitem action="tourneyplayerstats"/>
-                  <menuitem action="tourneyviewer"/>
+                  <menuitem action="handviewer"/>
                   <menuitem action="posnstats"/>
                   <menuitem action="sessionstats"/>
-                  <menuitem action="handviewer"/>
                   <menuitem action="stove"/>
                 </menu>
-                <menu action="database">
+                <menu action="tournament">
+                  <menuitem action="tourneygraphs"/>
+                  <menuitem action="tourneyplayerstats"/>
+                  <menuitem action="tourneyviewer"/>
+                </menu>
+                <menu action="maintenance">
                   <menuitem action="maintaindbs"/>
                   <menuitem action="createtabs"/>
                   <menuitem action="rebuildhudcache"/>
@@ -846,17 +849,19 @@ class fpdb:
         actiongroup = gtk.ActionGroup('UIManagerExample')
 
         # Create actions
-        actiongroup.add_actions([('main', None, _('_Main')),
+        actiongroup.add_actions([('configure', None, _('_Configure')),
                                  ('Quit', gtk.STOCK_QUIT, _('_Quit'), None, 'Quit the Program', self.quit),
-                                 ('site_preferences', None, _('_Site Preferences'), None, 'Site Preferences', self.dia_site_preferences),
-                                 ('advanced_preferences', None, _('_Advanced Preferences'), _('<control>F'), 'Edit your preferences', self.dia_advanced_preferences),
+                                 ('site_settings', None, _('_Site Settings'), None, 'Site Settings', self.dia_site_preferences),
+                                 ('preferences', None, _('_Preferences'), _('<control>F'), 'Edit your preferences', self.dia_advanced_preferences),
                                  ('import', None, _('_Import')),
                                  ('bulkimp', None, _('_Bulk Import'), _('<control>B'), 'Bulk Import', self.tab_bulk_import),
                                  ('tourneyimp', None, _('Tournament _Results Import'), _('<control>R'), 'Tournament Results Import', self.tab_tourney_import),
                                  ('imapimport', None, _('_Import through eMail/IMAP'), _('<control>I'), 'Import through eMail/IMAP', self.tab_imap_import),
-                                 ('viewers', None, _('_Viewers')),
-                                 ('autoimp', None, _('_Auto Import and HUD'), _('<control>A'), 'Auto Import and HUD', self.tab_auto_import),
-                                 ('hud_preferences', None, _('_HUD Preferences'), _('<control>H'), 'HUD Preferences', self.dia_hud_preferences),
+                                 ('cash', None, _('_Cash')),
+                                 ('hud', None, _('_HUD')),
+                                 ('tournament', None, _('_Tournament')),
+                                 ('autoimp', None, _('_HUD and Auto Import'), _('<control>A'), 'HUD and Auto Import', self.tab_auto_import),
+                                 ('hud_stats', None, _('_HUD Stats Settings'), _('<control>H'), 'HUD Stats Settings', self.dia_hud_preferences),
                                  ('graphs', None, _('_Graphs'), _('<control>G'), 'Graphs', self.tabGraphViewer),
                                  ('tourneygraphs', None, _('Tourney Graphs'), None, 'TourneyGraphs', self.tabTourneyGraphViewer),
                                  ('stove', None, _('Stove (preview)'), None, 'Stove', self.tabStove),
@@ -866,7 +871,7 @@ class fpdb:
                                  ('posnstats', None, _('P_ositional Stats (tabulated view)'), _('<control>O'), 'Positional Stats (tabulated view)', self.tab_positional_stats),
                                  ('sessionstats', None, _('Session Stats'), _('<control>S'), 'Session Stats', self.tab_session_stats),
                                  ('handviewer', None, _('Hand _Viewer'), None, 'Hand Viewer', self.tab_hand_viewer),
-                                 ('database', None, _('_Database')),
+                                 ('maintenance', None, _('_Maintenance')),
                                  ('maintaindbs', None, _('_Maintain Databases'), None, 'Maintain Databases', self.dia_maintain_dbs),
                                  ('createtabs', None, _('Create or Recreate _Tables'), None, 'Create or Recreate Tables ', self.dia_recreate_tables),
                                  ('rebuildhudcache', None, _('Rebuild HUD Cache'), None, 'Rebuild HUD Cache', self.dia_recreate_hudcache),
@@ -1065,7 +1070,7 @@ class fpdb:
         new_aimp_thread = GuiAutoImport.GuiAutoImport(self.settings, self.config, self.sql, self.window)
         self.threads.append(new_aimp_thread)
         aimp_tab = new_aimp_thread.get_vbox()
-        self.add_and_display_tab(aimp_tab, _("Auto Import"))
+        self.add_and_display_tab(aimp_tab, _("HUD"))
         if options.autoimport:
             new_aimp_thread.startClicked(new_aimp_thread.startButton, "autostart")
             options.autoimport = False
