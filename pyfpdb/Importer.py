@@ -24,7 +24,6 @@ import os  # todo: remove this once import_dir is in fpdb_import
 from time import time, sleep, clock
 import datetime
 import Queue
-import threading
 import shutil
 import re
 

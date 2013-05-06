@@ -18,7 +18,6 @@
 import L10n
 _ = L10n.get_translation()
 
-import threading
 import pygtk
 pygtk.require('2.0')
 import gtk
@@ -27,7 +26,7 @@ from socket import gaierror
 
 import ImapFetcher
 
-class GuiImapFetcher (threading.Thread):
+class GuiImapFetcher:
     def __init__(self, config, db, sql, mainwin, debug=True):
         self.config = config
         self.db = db

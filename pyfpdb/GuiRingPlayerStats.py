@@ -19,7 +19,6 @@ import L10n
 _ = L10n.get_translation()
 
 import traceback
-import threading
 import pygtk
 pygtk.require('2.0')
 import gtk
@@ -31,7 +30,6 @@ import Card
 import Database
 import Filters
 import Charset
-import GuiPlayerStats
 
 from TreeViewTooltips import TreeViewTooltips
 
@@ -97,7 +95,7 @@ class DemoTips(TreeViewTooltips):
         
         
 
-class GuiRingPlayerStats (GuiPlayerStats.GuiPlayerStats):
+class GuiRingPlayerStats:
 
     def __init__(self, config, querylist, mainwin, debug=True):
         self.debug = debug

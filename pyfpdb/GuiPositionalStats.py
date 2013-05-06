@@ -27,9 +27,8 @@ from time import time, strftime
 import Database
 import Filters
 import Charset
-import GuiPlayerStats
 
-class GuiPositionalStats (GuiPlayerStats.GuiPlayerStats):
+class GuiPositionalStats:
     def __init__(self, config, querylist, debug=True):
         self.debug = debug
         self.conf = config

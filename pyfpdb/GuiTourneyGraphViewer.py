@@ -18,7 +18,6 @@
 import L10n
 _ = L10n.get_translation()
 
-import threading
 import pygtk
 pygtk.require('2.0')
 import gtk
@@ -49,7 +48,7 @@ except ImportError, inst:
     print _("""This is of no consequence for other parts of the program, e.g. import and HUD are NOT affected by this problem.""")
     print "ImportError: %s" % inst.args
 
-class GuiTourneyGraphViewer (threading.Thread):
+class GuiTourneyGraphViewer:
 
     def __init__(self, querylist, config, parent, debug=True):
         """Constructor for GraphViewer"""

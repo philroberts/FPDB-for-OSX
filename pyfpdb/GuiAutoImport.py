@@ -18,7 +18,6 @@
 import L10n
 _ = L10n.get_translation()
 
-import threading
 import subprocess
 import traceback
 
@@ -46,7 +45,7 @@ if os.name == "nt":
     import win32console
 
 
-class GuiAutoImport (threading.Thread):
+class GuiAutoImport:
     def __init__(self, settings, config, sql = None, parent = None, cli = False):
         self.importtimer = 0
         self.settings = settings

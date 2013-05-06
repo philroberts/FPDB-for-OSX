@@ -18,7 +18,6 @@
 import L10n
 _ = L10n.get_translation()
 
-import threading
 import pygtk
 pygtk.require('2.0')
 import gtk
@@ -44,7 +43,7 @@ if __name__ == "__main__":
 # logging has been set up in fpdb.py or HUD_main.py, use their settings:
 log = logging.getLogger("filter")
 
-class Filters(threading.Thread):
+class Filters:
     MIN_DATE = '1970-01-02 00:00:00'
     MAX_DATE = '2100-12-12 23:59:59'
     def __init__(self, db, config, qdict, display = {}, debug=True):

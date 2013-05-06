@@ -29,7 +29,6 @@ if os.name == 'nt':
 print "Python " + sys.version[0:3] + '...'
 
 import traceback
-import threading
 import Options
 import string
 cl_options = string.join(sys.argv[1:])

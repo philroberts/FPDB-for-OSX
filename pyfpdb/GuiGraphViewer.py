@@ -18,7 +18,6 @@
 import L10n
 _ = L10n.get_translation()
 
-import threading
 import pygtk
 pygtk.require('2.0')
 import gtk
@@ -45,7 +44,7 @@ except ImportError, inst:
     print "ImportError: %s" % inst.args
 
 
-class GuiGraphViewer (threading.Thread):
+class GuiGraphViewer:
 
     def __init__(self, querylist, config, parent, debug=True):
         """Constructor for GraphViewer"""
