@@ -115,7 +115,7 @@ class GuiTourneyPlayerStats:
         
         query = self.sql.query[query]
         query = self.refineQuery(query, numTourneys, tourneyTypes, playerids, sitenos, seats)
-        print "DEBUG:\n%s" % query
+        #print "DEBUG:\n%s" % query
         self.cursor.execute(query)
         result = self.cursor.fetchall()
         #print "result of the big query in addGrid:",result
