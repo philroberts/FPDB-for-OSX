@@ -18,7 +18,6 @@
 import L10n
 _ = L10n.get_translation()
 
-import threading
 import pygtk
 pygtk.require('2.0')
 import gtk
@@ -28,8 +27,9 @@ from time import time, strftime
 import Database
 import Filters
 import Charset
+import GuiPlayerStats
 
-class GuiPositionalStats (threading.Thread):
+class GuiPositionalStats (GuiPlayerStats.GuiPlayerStats):
     def __init__(self, config, querylist, debug=True):
         self.debug = debug
         self.conf = config
@@ -63,6 +63,7 @@ class GuiPositionalStats (threading.Thread):
         self.filters.registerButton1Name(_("Refresh"))
         self.filters.registerButton1Callback(self.refreshStats)
 
+
         # ToDo: store in config
         # ToDo: create popup to adjust column config
         # columns to display, keys match column name returned by sql, values in tuple are:
@@ -95,17 +96,16 @@ class GuiPositionalStats (threading.Thread):
         self.stat_table = None
         self.stats_frame = None
         self.stats_vbox = None
-        
-        self.main_hbox = gtk.HBox(False, 0)
-        self.main_hbox.show()
 
-        self.stats_frame = gtk.Frame()
-        self.stats_frame.set_label_align(0.0, 0.0)
+        self.main_hbox = gtk.HPaned()
+
+        self.stats_frame = gtk.ScrolledWindow(hadjustment=None, vadjustment=None)
+        self.stats_frame.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
         self.stats_frame.show()
+
         self.stats_vbox = gtk.VBox(False, 0)
         self.stats_vbox.show()
-        
-        #FIXME Fliter box is not moveable, Treeviewer is NOT scrollable
+        self.stats_frame.add_with_viewport(self.stats_vbox)
 
         # This could be stored in config eventually, or maybe configured in this window somehow.
         # Each posncols element is the name of a column returned by the sql 
@@ -124,10 +124,11 @@ class GuiPositionalStats (threading.Thread):
                          )
 
         #self.fillStatsFrame(self.stats_vbox) #dont autoload, enter filters first (because of the bug that the tree is not scrollable, you cannot reach the refresh button with a lot of data)
-        self.stats_frame.add(self.stats_vbox)
+        #self.stats_frame.add(self.stats_vbox)
 
-        self.main_hbox.pack_start(self.filters.get_vbox())
-        self.main_hbox.pack_start(self.stats_frame)
+        self.main_hbox.pack1(self.filters.get_vbox())
+        self.main_hbox.pack2(self.stats_frame)
+        self.main_hbox.show()
 
 
     def get_vbox(self):
@@ -144,7 +145,7 @@ class GuiPositionalStats (threading.Thread):
         except AttributeError: pass
         self.stats_vbox = gtk.VBox(False, 0)
         self.stats_vbox.show()
-        self.stats_frame.add(self.stats_vbox)
+        self.stats_frame.add_with_viewport(self.stats_vbox)
         self.fillStatsFrame(self.stats_vbox)
 
     def fillStatsFrame(self, vbox):
