@@ -75,14 +75,12 @@ class Fulltilt(HandHistoryConverter):
     # Static regexes
     re_GameInfo     = re.compile(u'''\#(?P<HID>[0-9]+):\s
                                     (?:(?P<TOURNAMENT>.+)\s\((?P<TOURNO>\d+)\),\s)?
-                                    .+
-                                    -\s(?P<CURRENCY>[%(LS)s]|)?
-                                    (?P<SB>[%(NUM)s]+)/
-                                    [%(LS)s]?(?P<BB>[%(NUM)s]+)\s
-                                    (Ante\s\$?(?P<ANTE>[%(NUM)s]+)\s)?-\s
+                                    .+?
+                                    \s-\s(?P<STAKES1>(?P<CURRENCY1>[%(LS)s]|)?(?P<SB1>[%(NUM)s]+)/[%(LS)s]?(?P<BB1>[%(NUM)s]+)\s(Ante\s\$?(?P<ANTE1>[%(NUM)s]+)\s)?-\s)?
                                     (?P<CAP>[%(LS)s]?(?P<CAPAMT>[%(NUM)s]+)\sCap\s)?
-                                    (?P<LIMIT>(No\sLimit|Pot\sLimit|Limit))?\s
-                                    (?P<GAME>(Hold\'em|Omaha(\sH/L|\sHi/Lo|\sHi|)|Irish|5(-|\s)Card\sStud(\sHi)?|7\sCard\sStud|7\sCard\sStud|Stud\sH/L|Razz|Stud\sHi|2-7\sTriple\sDraw|5\sCard\sDraw|Badugi|2-7\sSingle\sDraw|A-5\sTriple\sDraw))
+                                    (?P<LIMIT>(No\sLimit|Pot\sLimit|Limit|NL|PL|FL))\s
+                                    (?P<GAME>(Hold\'em|Omaha(\sH/L|\sHi/Lo|\sHi|)|Irish|5(-|\s)Card\sStud(\sHi)?|7\sCard\sStud|7\sCard\sStud|Stud\sH/L|Razz|Stud\sHi|2-7\sTriple\sDraw|5\sCard\sDraw|Badugi|2-7\sSingle\sDraw|A-5\sTriple\sDraw))\s
+                                    (?P<STAKES2>-\s(?P<CURRENCY2>[%(LS)s]|)?(?P<SB2>[%(NUM)s]+)/[%(LS)s]?(?P<BB2>[%(NUM)s]+)\s(Ante\s\$?(?P<ANTE2>[%(NUM)s]+)\s)?)?-\s
                                  ''' % substitutions, re.VERBOSE)
     re_Identify     = re.compile(u'FullTiltPoker|Full\sTilt\sPoker\sGame\s#\d+:')
     re_SplitHands   = re.compile(r"\n\n\n+")
@@ -94,9 +92,10 @@ class Fulltilt(HandHistoryConverter):
                                     (?P<TABLE>.+?)(\s|,)
                                     (?P<ENTRYID>\sEntry\s\#\d+\s)?)
                                     (\((?P<TABLEATTRIBUTES>.+)\)\s)?-\s
-                                    [%(LS)s]?(?P<SB>[%(NUM)s]+)/[%(LS)s]?(?P<BB>[%(NUM)s]+)\s(Ante\s[%(LS)s]?(?P<ANTE>[%(NUM)s]+)\s)?-\s
+                                    (?P<STAKES1>[%(LS)s]?(?P<SB1>[%(NUM)s]+)/[%(LS)s]?(?P<BB1>[%(NUM)s]+)\s(Ante\s[%(LS)s]?(?P<ANTE1>[%(NUM)s]+)\s)?-\s)?
                                     (?P<CAP>[%(LS)s]?(?P<CAPAMT>[%(NUM)s]+)\sCap\s)?
-                                    (?P<GAMETYPE>[-\da-zA-Z\/\'\s]+)\s-\s
+                                    (?P<GAMETYPE>[-\da-zA-Z\/\'\s]+)\s
+                                    (?P<STAKES2>-\s[%(LS)s]?(?P<SB2>[%(NUM)s]+)/[%(LS)s]?(?P<BB2>[%(NUM)s]+)\s(Ante\s[%(LS)s]?(?P<ANTE2>[%(NUM)s]+)\s)?)?-\s
                                     (?P<DATETIME>.+$)
                                     (?P<PARTIAL>\(partial\))?\s
                                  ''' % substitutions, re.MULTILINE|re.VERBOSE)
@@ -178,7 +177,7 @@ class Fulltilt(HandHistoryConverter):
         mg = m.groupdict()
 
         # translations from captured groups to our info strings
-        limits = { 'No Limit':'nl', 'Pot Limit':'pl', 'Limit':'fl' }
+        limits = { 'No Limit':'nl', 'Pot Limit':'pl', 'Limit':'fl', 'NL' : 'nl', 'PL' : 'pl', 'FL': 'fl'}
         games = {              # base, category
                   "Hold'em" : ('hold','holdem'), 
                  'Omaha Hi' : ('hold','omahahi'), 
@@ -215,12 +214,19 @@ class Fulltilt(HandHistoryConverter):
                        'SE' : 'se'
             }
         currencies = { u'€':'EUR', '$':'USD', '':'T$' }
-
-        if 'SB' in mg:
-            info['sb'] = self.clearMoneyString(mg['SB'])
-
-        if 'BB' in mg:
-            info['bb'] = self.clearMoneyString(mg['BB'])
+        
+        if mg['STAKES1'] is not None:
+            stakesId = '1'
+        else:
+            stakesId = '2'
+            
+        if 'SB%s' % stakesId in mg:
+            info['sb'] = self.clearMoneyString(mg['SB%s' % stakesId])
+        if 'BB%s' % stakesId in mg:
+            info['bb'] = self.clearMoneyString(mg['BB%s' % stakesId])
+        
+        if mg['CURRENCY%s' % stakesId] is not None:
+            info['currency'] = currencies[mg['CURRENCY%s' % stakesId]]
 
         if mg['TOURNO'] is None:  info['type'] = "ring"
         else:                     info['type'] = "tour"
@@ -228,8 +234,6 @@ class Fulltilt(HandHistoryConverter):
             info['limitType'] = limits[mg['LIMIT']]
         if mg['GAME'] is not None:
             (info['base'], info['category']) = games[mg['GAME']]
-        if mg['CURRENCY'] is not None:
-            info['currency'] = currencies[mg['CURRENCY']]
         # NB: SB, BB must be interpreted as blinds or bets depending on limit type.
         m = self.re_Mixed.search(self.in_path)
         if m: info['mix'] = mixes[m.groupdict()['MIXED']]
@@ -237,13 +241,13 @@ class Fulltilt(HandHistoryConverter):
         if mg['CAP'] is not None:
             info['cap'] = self.clearMoneyString(mg['CAPAMT'])
             
-        if not mg['CURRENCY'] and info['type']=='ring':
+        if not info['currency'] and info['type']=='ring':
             info['currency'] = 'play'
 
         if info['limitType'] == 'fl' and info['bb'] is not None:
             if info['type'] == 'ring':
                 try:
-                    bb = self.clearMoneyString(mg['BB'])
+                    bb = self.clearMoneyString(info['bb'])
                     info['sb'] = self.Lim_Blinds[bb][0]
                     info['bb'] = self.Lim_Blinds[bb][1]
                 except KeyError:
@@ -251,7 +255,7 @@ class Fulltilt(HandHistoryConverter):
                     log.error(_("FulltiltToFpdb.determineGameType: Lim_Blinds has no lookup for '%s' - '%s'") % (bb, tmp))
                     raise FpdbParseError
             else:
-                sb = self.clearMoneyString(mg['SB'])
+                sb = self.clearMoneyString(info['sb'])
                 info['sb'] = str((Decimal(sb)/2).quantize(Decimal("0.01")))
                 info['bb'] = str(Decimal(sb).quantize(Decimal("0.01")))
 
