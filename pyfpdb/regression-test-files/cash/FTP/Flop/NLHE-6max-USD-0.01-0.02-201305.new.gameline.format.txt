@@ -1,0 +1,31 @@
+Full Tilt Poker Game #32616909390: Table Vera (6 max) - NL Hold'em - $0.01/$0.02 - 08:55:55 ET - 2013/05/08
+Seat 2: Player0 ($2)
+Seat 3: Hero ($2)
+Hero posts the small blind of $0.01
+Player0 posts the big blind of $0.02
+The button is in seat #3
+*** HOLE CARDS ***
+Dealt to Hero [Jh 7d]
+Hero raises to $0.04
+Player0 calls $0.02
+*** FLOP *** [3s Qs 6h] (Total Pot: $0.08, 2 Players)
+Player0 checks
+Hero bets $0.04
+7R41N33 sits down
+7R41N33 adds $2
+Player0 calls $0.04
+*** TURN *** [3s Qs 6h] [Tc] (Total Pot: $0.16, 2 Players)
+Player0 checks
+Hero checks
+*** RIVER *** [3s Qs 6h Tc] [6c] (Total Pot: $0.16, 2 Players)
+Player0 bets $0.08
+Hero calls $0.08
+*** SHOW DOWN ***
+Player0 shows [Ks 5h] a pair of Sixes
+Hero mucks
+Player0 wins the pot ($0.31) with a pair of Sixes
+*** SUMMARY ***
+Total pot $0.32 | Rake $0.01
+Board: [3s Qs 6h Tc 6c]
+Seat 2: Player0 (big blind) showed [Ks 5h] and won ($0.31) with a pair of Sixes
+Seat 3: Hero (small blind) mucked [Jh 7d] - a pair of Sixes
