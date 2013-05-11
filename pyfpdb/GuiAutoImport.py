@@ -181,6 +181,7 @@ class GuiAutoImport:
 
     def do_import(self):
         """Callback for timer to do an import iteration."""
+        self.importer.autoSummaryGrab(not self.doAutoImportBool)
         if self.doAutoImportBool:
             self.startButton.set_label(_(u'_Auto Import Running'))
             self.importer.runUpdated()
@@ -209,7 +210,7 @@ class GuiAutoImport:
                 if os.name == 'posix':
                     if self.posix_detect_hh_dirs(site):
                         #data[1].set_text(dia_chooser.get_filename())
-                        self.input_settings[site][0]
+                        self.input_settings[(site, 'hh')][0]
                         pass
                 elif os.name == 'nt':
                     # Sorry
@@ -284,9 +285,9 @@ class GuiAutoImport:
                     except:
                         self.addText("\n" + _("*** GuiAutoImport Error opening pipe:") + " " + traceback.format_exc() )
                     else:
-                        for site in self.input_settings:
-                            self.importer.addImportDirectory(self.input_settings[site][0], monitor = True, site=site)
-                            self.addText("\n * " + _("Add %s import directory %s") % (site, str(self.input_settings[site][0])))
+                        for (site,type) in self.input_settings:
+                            self.importer.addImportDirectory(self.input_settings[(site,type)][0], monitor = True, site=site)
+                            self.addText("\n * " + _("Add %s import directory %s") % (site, str(self.input_settings[(site,type)][0])))
                             self.do_import()
                     interval = int(self.intervalEntry.get_text())
                     if self.importtimer != 0:
@@ -320,13 +321,13 @@ class GuiAutoImport:
     #Create the site line given required info and setup callbacks
     #enabling and disabling sites from this interface not possible
     #expects a box to layout the line horizontally
-    def createSiteLine(self, hbox1, hbox2, site, iconpath, hhpath, filter_name, active = True):
+    def createSiteLine(self, hbox1, hbox2, site, iconpath, type, path, filter_name, active = True):
         label = gtk.Label(_("%s auto-import:") % site)
         hbox1.pack_start(label, False, False, 3)
         label.show()
 
         dirPath=gtk.Entry()
-        dirPath.set_text(hhpath)
+        dirPath.set_text(path)
         hbox1.pack_start(dirPath, True, True, 3)
 #       Anything typed into dirPath was never recognised (only the browse button works)
 #       so just prevent entry to avoid user confusion
@@ -335,7 +336,7 @@ class GuiAutoImport:
         dirPath.show()
 
         browseButton=gtk.Button(_("Browse..."))
-        browseButton.connect("clicked", self.browseClicked, [site] + [dirPath])
+        browseButton.connect("clicked", self.browseClicked, [(site,type)] + [dirPath])
         hbox2.pack_start(browseButton, False, False, 3)
         browseButton.show()
 
@@ -362,8 +363,17 @@ class GuiAutoImport:
 
             params = self.config.get_site_parameters(site)
             paths = self.config.get_default_paths(site)
-            self.createSiteLine(pathHBox1, pathHBox2, site, False, paths['hud-defaultPath'], params['converter'], params['enabled'])
-            self.input_settings[site] = [paths['hud-defaultPath']] + [params['converter']]
+            
+            self.createSiteLine(pathHBox1, pathHBox2, site, False, 'hh', paths['hud-defaultPath'], params['converter'], params['enabled'])
+            self.input_settings[(site, 'hh')] = [paths['hud-defaultPath']] + [params['converter']]
+            
+            if 'hud-defaultTSPath' in paths:
+                pathHBox1 = gtk.HBox(False, 0)
+                vbox1.pack_start(pathHBox1, False, True, 0)
+                pathHBox2 = gtk.HBox(False, 0)
+                vbox2.pack_start(pathHBox2, False, True, 0)
+                self.createSiteLine(pathHBox1, pathHBox2, site, False, 'ts', paths['hud-defaultTSPath'], params['summaryImporter'], params['enabled'])
+                self.input_settings[(site, 'ts')] = [paths['hud-defaultTSPath']] + [params['summaryImporter']]
         #log.debug("addSites: input_settings="+str(self.input_settings))
 
 if __name__== "__main__":

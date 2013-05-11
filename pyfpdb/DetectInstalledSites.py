@@ -62,6 +62,7 @@ class DetectInstalledSites():
         self.sitename = sitename
         self.heroname = ""
         self.hhpath = ""
+        self.tspath = ""
         self.detected = ""
         #
         #since each site has to be hand-coded in this module, there
@@ -94,13 +95,15 @@ class DetectInstalledSites():
             self.sitestatusdict[sitename]=self.detect(sitename)
             self.heroname = self.sitestatusdict[sitename]['heroname']
             self.hhpath = self.sitestatusdict[sitename]['hhpath']
+            self.tspath = self.sitestatusdict[sitename]['tspath']
             self.detected = self.sitestatusdict[sitename]['detected']
 
         return
 
     def detect(self, siteToDetect):
 
-        self.pathfound = ""
+        self.hhpathfound = ""
+        self.tspathfound = ""
         self.herofound = ""
 
         if siteToDetect == "Full Tilt Poker":
@@ -112,12 +115,13 @@ class DetectInstalledSites():
         elif siteToDetect == "Merge":
             self.detectMergeNetwork()
 
-        if (self.pathfound and self.herofound):
-            self.pathfound = unicode(self.pathfound)
+        if (self.hhpathfound and self.herofound):
+            self.hhpathfound = unicode(self.hhpathfound)
+            self.tspathfound = unicode(self.tspathfound)
             self.herofound = unicode(self.herofound)
-            return {"detected":True, "hhpath":self.pathfound, "heroname":self.herofound}
+            return {"detected":True, "hhpath":self.hhpathfound, "heroname":self.herofound, "tspath":self.tspathfound}
         else:
-            return {"detected":False, "hhpath":"", "heroname":""}
+            return {"detected":False, "hhpath":"", "heroname":"", "tspath":""}
 
     def detectFullTilt(self):
 
@@ -131,13 +135,13 @@ class DetectInstalledSites():
             return
 
         if os.path.exists(hhp):
-            self.pathfound = hhp
+            self.hhpathfound = hhp
         else:
             return
 
         try:
-            self.herofound = os.listdir(self.pathfound)[0]
-            self.pathfound = self.pathfound + self.herofound
+            self.herofound = os.listdir(self.hhpathfound)[0]
+            self.hhpathfound = self.hhpathfound + self.herofound
         except:
             pass
 
@@ -147,21 +151,28 @@ class DetectInstalledSites():
 
         if self.Config.os_family == "Linux":
             hhp=os.path.expanduser("~/.wine/drive_c/Program Files/PokerStars/HandHistory/")
+            tsp=os.path.expanduser("~/.wine/drive_c/Program Files/PokerStars/TournSummary/")
         elif self.Config.os_family == "XP":
             hhp=os.path.expanduser(PROGRAM_FILES+"\\PokerStars\\HandHistory\\")
+            tsp=os.path.expanduser(PROGRAM_FILES+"\\PokerStars\\TournSummary\\")
         elif self.Config.os_family == "Win7":
             hhp=os.path.expanduser(LOCAL_APPDATA+"\\PokerStars\\HandHistory\\")
+            tsp=os.path.expanduser(LOCAL_APPDATA+"\\PokerStars\\TournSummary\\")
         else:
             return
 
         if os.path.exists(hhp):
-            self.pathfound = hhp
+            self.hhpathfound = hhp
+            if os.path.exists(tsp):
+                self.tspathfound = tsp
         else:
             return
 
         try:
-            self.herofound = os.listdir(self.pathfound)[0]
-            self.pathfound = self.pathfound + self.herofound
+            self.herofound = os.listdir(self.hhpathfound)[0]
+            self.hhpathfound = self.hhpathfound + self.herofound
+            if self.tspathfound:
+                self.tspathfound = self.tspathfound + self.herofound
         except:
             pass
 
@@ -179,17 +190,17 @@ class DetectInstalledSites():
             return
 
         if os.path.exists(hhp):
-            self.pathfound = hhp
+            self.hhpathfound = hhp
         else:
             return
 
-        dirs = os.listdir(self.pathfound)
+        dirs = os.listdir(self.hhpathfound)
         if "XMLHandHistory" in dirs:
             dirs.remove("XMLHandHistory")
 
         try:
             self.herofound = dirs[0]
-            self.pathfound = self.pathfound + self.herofound
+            self.hhpathfound = self.hhpathfound + self.herofound
         except:
             pass
 
@@ -218,10 +229,10 @@ class DetectInstalledSites():
                 return
 
             if os.path.exists(hhp):
-                self.pathfound = hhp
+                self.hhpathfound = hhp
                 try:
-                    self.herofound = os.listdir(self.pathfound)[0]
-                    self.pathfound = self.pathfound + self.herofound
+                    self.herofound = os.listdir(self.hhpathfound)[0]
+                    self.hhpathfound = self.hhpathfound + self.herofound
                     break
                 except:
                     continue
