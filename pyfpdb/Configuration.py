@@ -1129,11 +1129,13 @@ class Config:
         emailNode.setAttribute("useSsl", newEmail.useSsl)
     #end def editEmail
     
-    def edit_site(self, site_name, enabled, screen_name, history_path):
+    def edit_site(self, site_name, enabled, screen_name, history_path, summary_path):
         site_node = self.get_site_node(site_name)
         site_node.setAttribute("enabled", enabled)
         site_node.setAttribute("screen_name", screen_name)
         site_node.setAttribute("HH_path", history_path)
+        if summary_path:
+            site_node.setAttribute("TS_path", history_path)
     
     def editStats(self, statsetName, statArray):
         """replaces stat selection for the given gameName with the given statArray"""

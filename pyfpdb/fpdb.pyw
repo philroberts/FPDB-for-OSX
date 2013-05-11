@@ -675,6 +675,7 @@ class fpdb:
         check_buttons=[]
         screen_names=[]
         history_paths=[]
+        summary_paths=[]
         detector = DetectInstalledSites.DetectInstalledSites()
         
         y_pos=1
@@ -694,10 +695,15 @@ class fpdb:
             table.attach(entry, 2, 3, y_pos, y_pos+1)
             history_paths.append(entry)
             
+            entry = gtk.Entry()
+            entry.set_text(self.config.supported_sites[available_site_names[site_number]].TS_path)
+            table.attach(entry, 3, 4, y_pos, y_pos+1)
+            summary_paths.append(entry)
+            
             if available_site_names[site_number] in detector.supportedSites:
                 button = gtk.Button(_("Detect"))
-                table.attach(button, 3, 4, y_pos, y_pos+1)
-                button.connect("clicked", self.detect_clicked, (detector, available_site_names[site_number], screen_names[site_number], history_paths[site_number]))
+                table.attach(button, 4, 5, y_pos, y_pos+1)
+                button.connect("clicked", self.detect_clicked, (detector, available_site_names[site_number], screen_names[site_number], history_paths[site_number], summary_paths[site_number]))
             
             y_pos+=1
         
@@ -706,7 +712,7 @@ class fpdb:
         if (response == gtk.RESPONSE_ACCEPT):
             for site_number in range(0, len(available_site_names)):
                 #print "site %s enabled=%s name=%s" % (available_site_names[site_number], check_buttons[site_number].get_active(), screen_names[site_number].get_text(), history_paths[site_number].get_text())
-                self.config.edit_site(available_site_names[site_number], str(check_buttons[site_number].get_active()), screen_names[site_number].get_text(), history_paths[site_number].get_text())
+                self.config.edit_site(available_site_names[site_number], str(check_buttons[site_number].get_active()), screen_names[site_number].get_text(), history_paths[site_number].get_text(), summary_paths[site_number].get_text())
             
             self.config.save()
             self.reload_config(dia)
@@ -718,9 +724,12 @@ class fpdb:
         site_name = data[1]
         entry_screen_name = data[2]
         entry_history_path = data[3]
+        entry_summary_path = data[4]
         if detector.sitestatusdict[site_name]['detected']:
             entry_screen_name.set_text(detector.sitestatusdict[site_name]['heroname'])
             entry_history_path.set_text(detector.sitestatusdict[site_name]['hhpath'])
+            if detector.sitestatusdict[site_name]['tspath']:
+                entry_summary_path.set_text(detector.sitestatusdict[site_name]['tspath'])
     
     def reload_config(self, dia):
         if len(self.nb_tab_names) == 1:
