@@ -349,6 +349,10 @@ class Site:
         self.hud_menu_xshift = 1 if self.hud_menu_xshift == "" else int(self.hud_menu_xshift)
         self.hud_menu_yshift = node.getAttribute("hud_menu_yshift")
         self.hud_menu_yshift = 1 if self.hud_menu_yshift == "" else int(self.hud_menu_yshift)
+        if node.hasAttribute("TS_path"):
+            self.TS_path    = normalizePath(node.getAttribute("TS_path"))
+        else:
+            self.TS_path    = ''
 
         self.fav_seat = {}
         for fav_node in node.getElementsByTagName('fav'):
@@ -1459,6 +1463,9 @@ class Config:
             paths['hud-defaultPath'] = paths['bulkImport-defaultPath'] = path
             if self.imp.hhBulkPath:
                 paths['bulkImport-defaultPath'] = self.imp.hhBulkPath
+            if self.supported_sites[site].TS_path != '':
+                tspath = os.path.expanduser(self.supported_sites[site].TS_path)
+                paths['hud-defaultTSPath'] = tspath
         except AssertionError:
             paths['hud-defaultPath'] = paths['bulkImport-defaultPath'] = "** ERROR DEFAULT PATH IN CONFIG DOES NOT EXIST **"
         return paths
@@ -1515,9 +1522,11 @@ class Config:
         """Returns a dict of the site parameters for the specified site"""
         parms = {}
         parms["converter"]    = self.hhcs[site].converter
+        parms["summaryImporter"] = self.hhcs[site].summaryImporter
         parms["screen_name"]  = self.supported_sites[site].screen_name
         parms["site_path"]    = self.supported_sites[site].site_path
         parms["HH_path"]    = self.supported_sites[site].HH_path
+        parms["TS_path"]    = self.supported_sites[site].TS_path
         parms["site_name"]    = self.supported_sites[site].site_name
         parms["enabled"]    = self.supported_sites[site].enabled
         parms["aux_enabled"]    = self.supported_sites[site].aux_enabled

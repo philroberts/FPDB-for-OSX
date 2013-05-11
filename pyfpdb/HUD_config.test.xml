@@ -156,6 +156,7 @@
                 screen_name="Hero"
                 site_path="C:/Program Files/PokerStars/"
                 HH_path="C:/Program Files/PokerStars/HandHistory/YOUR SCREEN NAME HERE/"
+                TS_path="C:/Program Files/PokerStars/TournSummary/YOUR SCREEN NAME HERE/"
                 aux_enabled="True" hud_menu_xshift="180" hud_menu_yshift="-20">
             <email fetchType="request-summary" host="YOUR_EMAIL_SERVER"
                 username="YOUR_EMAIL_USERNAME" password="YOUR_EMAIL_PASSWORD"
