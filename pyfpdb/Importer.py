@@ -305,12 +305,12 @@ class Importer:
 
     def _import_despatch(self, fpdbfile):
         stored, duplicates, partial, errors, ttime = 0,0,0,0,0
-        if fpdbfile.ftype == "hh":
+        if fpdbfile.ftype in ("hh", "both"):
             (stored, duplicates, partial, errors, ttime) = self._import_hh_file(fpdbfile)
         if fpdbfile.ftype == "summary":
             (stored, duplicates, partial, errors, ttime) = self._import_summary_file(fpdbfile)
-        #if fpdbfile.ftype == "both":
-            #FIXME: Do something useful here, probably site specific
+        if fpdbfile.ftype == "both" and f not in self.updatedsize:
+            self._import_summary_file(fpdbfile)
         #    pass
         print "DEBUG: _import_summary_file.ttime: %.3f %s" % (ttime, fpdbfile.ftype)
         return (stored, duplicates, partial, errors, ttime)
@@ -529,9 +529,20 @@ class Importer:
             return (0, 0, partial, errors, time() - ttime)
         
         stored -= duplicates
+        
+        if stored>0 and ihands[0].gametype['type']=='tour':
+            if hhc.summaryInFile:
+                fpdbfile.ftype = "both"
 
         ttime = time() - ttime
         return (stored, duplicates, partial, errors, ttime)
+    
+    def autoSummaryGrab(self, force = False):
+        for f, fpdbfile in self.filelist.items():
+            stat_info = os.stat(f)
+            if ((time() - stat_info.st_mtime)> 300 or force) and fpdbfile.ftype == "both":
+                self._import_summary_file(fpdbfile)
+                fpdbfile.ftype = "hh"
 
     def _import_summary_file(self, fpdbfile):
         (stored, duplicates, partial, errors, ttime) = (0, 0, 0, 0, time())

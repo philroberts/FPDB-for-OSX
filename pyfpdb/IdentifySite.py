@@ -61,7 +61,7 @@ class Site:
         self.copyGameHeader = obj.copyGameHeader
         self.summaryInFile  = obj.summaryInFile
         self.re_Identify    = obj.re_Identify
-        if summary and filter_name != 'iPoker':
+        if summary:
             self.summary = summary
             self.re_SumIdentify = getattr(__import__(summary), summary, None).re_Identify
         else:

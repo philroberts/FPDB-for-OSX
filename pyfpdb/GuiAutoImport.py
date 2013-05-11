@@ -181,6 +181,7 @@ class GuiAutoImport:
 
     def do_import(self):
         """Callback for timer to do an import iteration."""
+        self.importer.autoSummaryGrab(not self.doAutoImportBool)
         if self.doAutoImportBool:
             self.startButton.set_label(_(u'_Auto Import Running'))
             self.importer.runUpdated()
