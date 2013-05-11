@@ -1,0 +1,35 @@
+Full Tilt Poker Game #32635624005: Table .COM Play 6118 (6 max, deep) - PL 5 Card Omaha Hi - 5/10 - 14:39:50 ET - 2013/05/11
+Seat 3: Hero (1,170)
+Seat 4: Player0 (2,170)
+Seat 5: Player1 (10,765), is sitting out
+Player0 posts the small blind of 5
+Hero posts the big blind of 10
+The button is in seat #4
+*** HOLE CARDS ***
+Dealt to Hero [Tc 9s Jd Qh 6h]
+Player0 raises to 30
+Hero calls 20
+*** FLOP *** [Kc Td 9c] (Total Pot: 60, 2 Players)
+Hero bets 10
+Player0 raises to 90
+Hero raises to 170
+Player0 calls 80
+*** TURN *** [Kc Td 9c] [5d] (Total Pot: 400, 2 Players)
+Hero bets 400
+Player1 has returned
+Player0 has 15 seconds left to act
+Player0 raises to 1,600
+Hero calls 570, and is all in
+Player0 shows [3c 5c 2c 7s Kd]
+Hero shows [Tc 9s Jd Qh 6h]
+Uncalled bet of 630 returned to Player0
+*** RIVER *** [Kc Td 9c 5d] [3d] (Total Pot: 2,340, 2 Players, 1 All-In)
+Player0 shows two pair, Kings and Fives
+Hero shows a straight, King high
+Hero wins the pot (2,340) with a straight, King high
+*** SUMMARY ***
+Total pot 2,340 | Rake 0
+Board: [Kc Td 9c 5d 3d]
+Seat 3: Hero (big blind) showed [Tc 9s Jd Qh 6h] and won (2,340) with a straight, King high
+Seat 4: Player0 (small blind) showed [3c 5c 2c 7s Kd] and lost with two pair, Kings and Fives
+Seat 5: Player1 is sitting out

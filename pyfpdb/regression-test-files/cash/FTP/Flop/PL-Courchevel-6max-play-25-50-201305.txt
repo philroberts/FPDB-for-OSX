@@ -1,0 +1,51 @@
+Full Tilt Poker Game #32635413160: Table Play Chip 2409 (6 max) - PL Courchevel Hi - 25/50 - 14:04:16 ET - 2013/05/11
+Seat 1: Player0 (10,925)
+Seat 2: Player1 (6,100)
+Seat 3: Player2 (19,852)
+Seat 4: Player3 (5,012)
+Seat 5: Player4 (52,149), is sitting out
+Seat 6: Hero (720)
+Player2 posts the small blind of 25
+Player3 posts the big blind of 50
+The button is in seat #2
+*** HOLE CARDS ***
+Dealt to Hero [8s Ac 9c 7c 5h]
+*** FLOPET *** [9h] (Total Pot: 75, 5 Players)
+Hero calls 50
+Player0 calls 50
+Player1 calls 50
+Player2 calls 25
+Player3 checks
+*** FLOP *** [9s Kd] (Total Pot: 250, 5 Players)
+Player2 checks
+Player3 checks
+Hero checks
+Player0 checks
+Player1 checks
+*** TURN *** [9h 9s Kd] [7h] (Total Pot: 250, 5 Players)
+Player2 checks
+Player3 bets 50
+Hero raises to 150
+Player0 folds
+Player1 calls 150
+Player2 folds
+Player3 calls 100
+*** RIVER *** [9h 9s Kd 7h] [7d] (Total Pot: 700, 3 Players)
+Player3 checks
+Hero bets 100
+Player1 calls 100
+Player3 folds
+Player3 adds 188
+*** SHOW DOWN ***
+Hero shows [8s Ac 9c 7c 5h] a full house, Nines full of Sevens
+Player1 mucks
+Hero wins the pot (900) with a full house, Nines full of Sevens
+*** SUMMARY ***
+Total pot 900 | Rake 0
+Board: [9h 9s Kd 7h 7d]
+Seat 1: Player0 folded on the River
+Seat 2: Player1 (button) mucked [Td Qs 2h 3c Jc] - a pair of Nines
+Seat 3: Player2 (small blind) folded on the River
+Seat 4: Player3 (big blind) [0]
+Seat 5: Player4 is sitting out
+Seat 6: Hero showed [8s Ac 9c 7c 5h] and won (900) with a full house, Nines full of Sevens

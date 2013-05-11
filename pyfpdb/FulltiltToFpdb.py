@@ -79,7 +79,7 @@ class Fulltilt(HandHistoryConverter):
                                     \s-\s(?P<STAKES1>(?P<CURRENCY1>[%(LS)s]|)?(?P<SB1>[%(NUM)s]+)/[%(LS)s]?(?P<BB1>[%(NUM)s]+)\s(Ante\s\$?(?P<ANTE1>[%(NUM)s]+)\s)?-\s)?
                                     (?P<CAP>[%(LS)s]?(?P<CAPAMT>[%(NUM)s]+)\sCap\s)?
                                     (?P<LIMIT>(No\sLimit|Pot\sLimit|Limit|NL|PL|FL))\s
-                                    (?P<GAME>(Hold\'em|Omaha(\sH/L|\sHi/Lo|\sHi|)|Irish|5(-|\s)Card\sStud(\sHi)?|7\sCard\sStud|7\sCard\sStud|Stud\sH/L|Razz|Stud\sHi|2-7\sTriple\sDraw|5\sCard\sDraw|Badugi|2-7\sSingle\sDraw|A-5\sTriple\sDraw))\s
+                                    (?P<GAME>(Hold\'em|(5\sCard\s)?Omaha(\sH/L|\sHi/Lo|\sHi|)|Irish|Courchevel\sHi|5(-|\s)Card\sStud(\sHi)?|7\sCard\sStud|7\sCard\sStud|Stud\sH/L|Razz|Stud\sHi|2-7\sTriple\sDraw|5\sCard\sDraw|Badugi|2-7\sSingle\sDraw|A-5\sTriple\sDraw))\s
                                     (?P<STAKES2>-\s(?P<CURRENCY2>[%(LS)s]|)?(?P<SB2>[%(NUM)s]+)/[%(LS)s]?(?P<BB2>[%(NUM)s]+)\s(Ante\s\$?(?P<ANTE2>[%(NUM)s]+)\s)?)?-\s
                                  ''' % substitutions, re.VERBOSE)
     re_Identify     = re.compile(u'FullTiltPoker|Full\sTilt\sPoker\sGame\s#\d+:')
@@ -184,6 +184,8 @@ class Fulltilt(HandHistoryConverter):
                     'Omaha' : ('hold','omahahi'),
                 'Omaha H/L' : ('hold','omahahilo'),
               'Omaha Hi/Lo' : ('hold','omahahilo'),
+          '5 Card Omaha Hi' : ('hold', '5_omahahi'),
+            'Courchevel Hi' : ('hold', 'cour_hi'),
                     'Irish' : ('hold','irish'), 
                      'Razz' : ('stud','razz'), 
               '7 Card Stud' : ('stud','studhi'),
@@ -241,7 +243,7 @@ class Fulltilt(HandHistoryConverter):
         if mg['CAP'] is not None:
             info['cap'] = self.clearMoneyString(mg['CAPAMT'])
             
-        if not info['currency'] and info['type']=='ring':
+        if not mg['CURRENCY%s' % stakesId] and info['type']=='ring':
             info['currency'] = 'play'
 
         if info['limitType'] == 'fl' and info['bb'] is not None:
