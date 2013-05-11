@@ -245,7 +245,80 @@ class Submenu(Popup):
         if self.submenu_count < 1: # only 1 popup allowed to be open at this level
             popup_factory(self.seat,self.stat_dict, self.win, self.config.popup_windows[popup_to_run], self.hand_instance, self.config, self)
             
+class Multicol(Popup):
+#like a default, but will flow into columns of 16 items
+#use "blank" items if the default flowing affects readability
 
+    def create(self):
+        super(Multicol, self).create()
+
+        player_id = None
+        for id in self.stat_dict.keys():
+            if self.seat == self.stat_dict[id]['seat']:
+                player_id = id
+        if player_id is None:
+            self.destroy_pop()
+
+        number_of_items = len(self.pop.pu_stats)
+        if number_of_items < 1:
+            self.destroy_pop()
+
+        number_of_cols = number_of_items / 16.
+        if number_of_cols != round((number_of_items / 16.),0):
+            number_of_cols += 1
+        number_of_cols = int(number_of_cols)
+
+        number_per_col = number_of_items / float(number_of_cols)
+
+        #if number_per_col != round((number_of_items / float(number_of_cols)),0):
+        #    number_per_col += 1
+        #number_per_col = int(number_per_col)
+        number_per_col = 16
+
+        self.grid = gtk.Table(1,int(number_of_cols),False)
+        self.grid.set_col_spacings(5)
+        self.eb.add(self.grid)
+
+        col_index,row_index  = 0,0
+        text, tip_text = {},{}
+        for i in range(number_of_cols):
+            text[i], tip_text[i] = "", ""
+
+        for stat in self.pop.pu_stats:
+
+            number = Stats.do_stat(
+                self.stat_dict, player = int(player_id),stat = stat, hand_instance = self.hand_instance)
+            if number:
+                text[col_index] += number[3] + "\n"
+                tip_text[col_index] += number[5] + " " + number[4] + "\n"
+            else:
+                text[col_index] += stat + "\n"
+                tip_text[col_index] += stat + "\n"
+
+            row_index += 1
+            if row_index >= number_per_col:
+                col_index += 1
+                row_index = 0
+                
+        if row_index > 0:
+            for i in range(number_per_col - row_index):
+                # pad final column with blank lines
+                text[col_index] += "\n"
+
+        for i in text:
+            contentbox = gtk.EventBox()
+            contentbox.modify_bg(gtk.STATE_NORMAL, self.win.aw.bgcolor)
+            contentbox.connect("button_press_event", self.button_press_cb)
+            contentlab = gtk.Label()
+            contentbox.add(contentlab)
+            contentlab.set_text(text[i][:-1])
+            contentlab.modify_fg(gtk.STATE_NORMAL, self.win.aw.fgcolor)
+            Stats.do_tip(contentlab, tip_text[i][:-1])
+            self.grid.attach(contentbox, int(i), int(i)+1, 0, 1)
+
+        self.show_all()
+
+            
 def popup_factory(seat = None, stat_dict = None, win = None, pop = None, hand_instance = None, config = None, parent_popup = None):
     # a factory function to discover the base type of the popup
     # and to return a class instance of the correct popup

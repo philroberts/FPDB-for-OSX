@@ -1834,19 +1834,24 @@
             <pu_stat pu_stat_name="wmsd"/> 
         </pu>
                     
-        <pu pu_name="default" pu_class="default">
+        <pu pu_name="default" pu_class="Multicol">
             <pu_stat pu_stat_name="playername"/>
             <pu_stat pu_stat_name="n"/>
             <pu_stat pu_stat_name="totalprofit"/>
             <pu_stat pu_stat_name="profit100"/>
             <pu_stat pu_stat_name="bbper100"/>
             <pu_stat pu_stat_name="BBper100"/>
+            <pu_stat pu_stat_name="wmsd"/>
+            <pu_stat pu_stat_name="wtsd"/>
+            <pu_stat pu_stat_name="wmsf"/>
             <pu_stat pu_stat_name="vpip"/>
             <pu_stat pu_stat_name="pfr"/>
             <pu_stat pu_stat_name="three_B"/>
             <pu_stat pu_stat_name="four_B"/>
             <pu_stat pu_stat_name="cfour_B"/>
+            <pu_stat pu_stat_name="fbr"/>
             <pu_stat pu_stat_name="squeeze"/>
+            <pu_stat pu_stat_name="ctb"/>
             <pu_stat pu_stat_name="f_3bet"/>
             <pu_stat pu_stat_name="f_4bet"/>
             <pu_stat pu_stat_name="steal"/>
@@ -1854,16 +1859,21 @@
             <pu_stat pu_stat_name="f_steal"/>
             <pu_stat pu_stat_name="f_BB_steal"/>
             <pu_stat pu_stat_name="f_SB_steal"/>
+            <pu_stat pu_stat_name="raiseToSteal"/>
             <pu_stat pu_stat_name="car0"/>
-            <pu_stat pu_stat_name="wmsd"/>
-            <pu_stat pu_stat_name="wtsd"/>
-            <pu_stat pu_stat_name="WMsF"/>
+            <pu_stat pu_stat_name="saw_f"/>
             <pu_stat pu_stat_name="agg_fact"/>
             <pu_stat pu_stat_name="a_freq1"/>
             <pu_stat pu_stat_name="a_freq2"/>
             <pu_stat pu_stat_name="a_freq3"/>
             <pu_stat pu_stat_name="a_freq4"/>
             <pu_stat pu_stat_name="a_freq_123"/>
+            <pu_stat pu_stat_name="dbr1"/>
+            <pu_stat pu_stat_name="dbr2"/>
+            <pu_stat pu_stat_name="dbr3"/>
+            <pu_stat pu_stat_name="f_dbr1"/>
+            <pu_stat pu_stat_name="f_dbr2"/>
+            <pu_stat pu_stat_name="f_dbr3"/>
             <pu_stat pu_stat_name="cbet"/>
             <pu_stat pu_stat_name="cb1"/>
             <pu_stat pu_stat_name="cb2"/>
@@ -1873,6 +1883,14 @@
             <pu_stat pu_stat_name="ffreq2"/>
             <pu_stat pu_stat_name="ffreq3"/>
             <pu_stat pu_stat_name="ffreq4"/>
+            <pu_stat pu_stat_name="f_cb1"/>
+            <pu_stat pu_stat_name="f_cb2"/>
+            <pu_stat pu_stat_name="f_cb3"/>
+            <pu_stat pu_stat_name="f_cb4"/>
+            <pu_stat pu_stat_name="cr1"/>
+            <pu_stat pu_stat_name="cr2"/>
+            <pu_stat pu_stat_name="cr3"/>
+            <pu_stat pu_stat_name="cr4"/>
         </pu>
         
         <pu pu_name="pophands" pu_class="default">

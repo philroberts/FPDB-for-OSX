@@ -343,6 +343,7 @@ class Site:
         self.screen_name  = node.getAttribute("screen_name")
         self.site_path    = normalizePath(node.getAttribute("site_path"))
         self.HH_path    = normalizePath(node.getAttribute("HH_path"))
+        self.TS_path    = normalizePath(node.getAttribute("TS_path"))
         self.enabled    = string_to_bool(node.getAttribute("enabled"), default=True)
         self.aux_enabled  = string_to_bool(node.getAttribute("aux_enabled"), default=True)
         self.hud_menu_xshift = node.getAttribute("hud_menu_xshift")
@@ -1135,8 +1136,8 @@ class Config:
         site_node.setAttribute("screen_name", screen_name)
         site_node.setAttribute("HH_path", history_path)
         if summary_path:
-            site_node.setAttribute("TS_path", history_path)
-    
+            site_node.setAttribute("TS_path", summary_path)
+            
     def editStats(self, statsetName, statArray):
         """replaces stat selection for the given gameName with the given statArray"""
         statsetNode = self.getStatSetNode(statsetName)

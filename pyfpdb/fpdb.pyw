@@ -663,7 +663,7 @@ class fpdb:
         label = gtk.Label(" ")
         dia.vbox.add(label)
         
-        column_headers=[_("Site"), _("Screen Name"), _("History Path"), _("Detect")] #TODO , _("Summary Path"), _("HUD")] 
+        column_headers=[_("Site"), _("Detect"), _("Screen Name"), _("Hand History Path"), _(""), _("Tournament Summary Path"), _("")]  # todo _("HUD")
         #HUD column will contain a button that shows favseat and HUD locations. Make it possible to load screenshot to arrange HUD windowlets.
         table = gtk.Table(rows=len(available_site_names)+1, columns=len(column_headers), homogeneous=False)
         dia.vbox.add(table)
@@ -687,24 +687,34 @@ class fpdb:
             
             entry = gtk.Entry()
             entry.set_text(self.config.supported_sites[available_site_names[site_number]].screen_name)
-            table.attach(entry, 1, 2, y_pos, y_pos+1)
+            table.attach(entry, 2, 3, y_pos, y_pos+1)
             screen_names.append(entry)
             
             entry = gtk.Entry()
             entry.set_text(self.config.supported_sites[available_site_names[site_number]].HH_path)
-            table.attach(entry, 2, 3, y_pos, y_pos+1)
+            table.attach(entry, 3, 4, y_pos, y_pos+1)
             history_paths.append(entry)
+
+            button = gtk.Button(stock=gtk.STOCK_OPEN)
+            #blank out label with this recipe http://www.harshj.com/2007/11/17/setting-a-custom-label-for-a-button-with-stock-icon-in-pygtk/
+            button.get_children()[0].get_children()[0].get_children()[1].set_label("")
+            table.attach(button, 4, 5, y_pos, y_pos+1)
+            button.connect("clicked", self.browseClicked, (dia, self.config.supported_sites[available_site_names[site_number]].HH_path, history_paths[site_number]))
             
             entry = gtk.Entry()
             entry.set_text(self.config.supported_sites[available_site_names[site_number]].TS_path)
-            table.attach(entry, 3, 4, y_pos, y_pos+1)
+            table.attach(entry, 5, 6, y_pos, y_pos+1)
             summary_paths.append(entry)
+
+            button = gtk.Button(stock=gtk.STOCK_OPEN)
+            button.get_children()[0].get_children()[0].get_children()[1].set_label("")
+            table.attach(button, 6, 7, y_pos, y_pos+1)
+            button.connect("clicked", self.browseClicked, (dia, self.config.supported_sites[available_site_names[site_number]].TS_path, ts_paths[site_number]))
             
             if available_site_names[site_number] in detector.supportedSites:
                 button = gtk.Button(_("Detect"))
-                table.attach(button, 4, 5, y_pos, y_pos+1)
+                table.attach(button, 1, 2, y_pos, y_pos+1)
                 button.connect("clicked", self.detect_clicked, (detector, available_site_names[site_number], screen_names[site_number], history_paths[site_number], summary_paths[site_number]))
-            
             y_pos+=1
         
         dia.show_all()
@@ -718,6 +728,31 @@ class fpdb:
             self.reload_config(dia)
             
         dia.destroy()
+        
+    def browseClicked(self, widget, data):
+        """runs when user clicks one of the browse buttons for the TS folder"""
+
+        parent=data[0]
+        current_path=data[1]
+        entry_ts_path=data[2]
+
+        dia_chooser = gtk.FileChooserDialog(title=_("Please choose the path that you want to Auto Import"),
+                action=gtk.FILE_CHOOSER_ACTION_SELECT_FOLDER,
+                buttons=(gtk.STOCK_CANCEL,gtk.RESPONSE_CANCEL,gtk.STOCK_OPEN,gtk.RESPONSE_OK))
+        #dia_chooser.set_current_folder(pathname)
+        dia_chooser.set_filename(current_path)
+        #dia_chooser.set_select_multiple(select_multiple) #not in tv, but want this in bulk import
+        dia_chooser.set_show_hidden(True)
+        dia_chooser.set_destroy_with_parent(True)
+        dia_chooser.set_transient_for(parent)
+
+        response = dia_chooser.run()
+        if response == gtk.RESPONSE_OK:
+            entry_ts_path.set_text(dia_chooser.get_filename())
+        elif response == gtk.RESPONSE_CANCEL:
+            #print 'Closed, no files selected'
+            pass
+        dia_chooser.destroy()
     
     def detect_clicked(self, widget, data):
         detector = data[0]
