@@ -677,7 +677,7 @@ class fpdb:
         history_paths=[]
         summary_paths=[]
         detector = DetectInstalledSites.DetectInstalledSites()
-        
+              
         y_pos=1
         for site_number in range(0, len(available_site_names)):
             check_button = gtk.CheckButton(label=available_site_names[site_number])
@@ -694,22 +694,25 @@ class fpdb:
             entry.set_text(self.config.supported_sites[available_site_names[site_number]].HH_path)
             table.attach(entry, 3, 4, y_pos, y_pos+1)
             history_paths.append(entry)
-
-            button = gtk.Button(stock=gtk.STOCK_OPEN)
-            #blank out label with this recipe http://www.harshj.com/2007/11/17/setting-a-custom-label-for-a-button-with-stock-icon-in-pygtk/
-            button.get_children()[0].get_children()[0].get_children()[1].set_label("")
-            table.attach(button, 4, 5, y_pos, y_pos+1)
-            button.connect("clicked", self.browseClicked, (dia, self.config.supported_sites[available_site_names[site_number]].HH_path, history_paths[site_number]))
+            
+            image = gtk.Image()
+            image.set_from_stock(gtk.STOCK_OPEN, gtk.ICON_SIZE_BUTTON)
+            choose1 = gtk.Button()
+            choose1.set_image(image)
+            table.attach(choose1, 4, 5, y_pos, y_pos+1)
+            choose1.connect("clicked", self.browseClicked, (dia, self.config.supported_sites[available_site_names[site_number]].HH_path, history_paths[site_number]))
             
             entry = gtk.Entry()
             entry.set_text(self.config.supported_sites[available_site_names[site_number]].TS_path)
             table.attach(entry, 5, 6, y_pos, y_pos+1)
             summary_paths.append(entry)
 
-            button = gtk.Button(stock=gtk.STOCK_OPEN)
-            button.get_children()[0].get_children()[0].get_children()[1].set_label("")
-            table.attach(button, 6, 7, y_pos, y_pos+1)
-            button.connect("clicked", self.browseClicked, (dia, self.config.supported_sites[available_site_names[site_number]].TS_path, ts_paths[site_number]))
+            image = gtk.Image()
+            image.set_from_stock(gtk.STOCK_OPEN, gtk.ICON_SIZE_BUTTON)
+            choose2 = gtk.Button()
+            choose2.set_image(image)
+            table.attach(choose2, 6, 7, y_pos, y_pos+1)
+            choose2.connect("clicked", self.browseClicked, (dia, self.config.supported_sites[available_site_names[site_number]].TS_path, summary_paths[site_number]))
             
             if available_site_names[site_number] in detector.supportedSites:
                 button = gtk.Button(_("Detect"))
@@ -739,9 +742,8 @@ class fpdb:
         dia_chooser = gtk.FileChooserDialog(title=_("Please choose the path that you want to Auto Import"),
                 action=gtk.FILE_CHOOSER_ACTION_SELECT_FOLDER,
                 buttons=(gtk.STOCK_CANCEL,gtk.RESPONSE_CANCEL,gtk.STOCK_OPEN,gtk.RESPONSE_OK))
-        #dia_chooser.set_current_folder(pathname)
+
         dia_chooser.set_filename(current_path)
-        #dia_chooser.set_select_multiple(select_multiple) #not in tv, but want this in bulk import
         dia_chooser.set_show_hidden(True)
         dia_chooser.set_destroy_with_parent(True)
         dia_chooser.set_transient_for(parent)
