@@ -2545,9 +2545,6 @@ class Database:
             styleKey = datetime.strftime(starttime_offset, 'd%y%m%d')
             seats = len(pids)
             
-            select_hudcache_tour = select_hudcache_tour.replace('<hudcache_full>', 'gametypeId=%s')
-            select_hudcache_tour = select_hudcache_tour.replace('%s', self.sql.query['placeholder'])
-            
         for p in pdata:
             player_stats = pdata.get(p)
             pos = {'B':'B', 'S':'S', 0:'D', 1:'C', 2:'M', 3:'M', 4:'M', 5:'E', 6:'E', 7:'E', 8:'E', 9:'E' }

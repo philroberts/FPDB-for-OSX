@@ -35,6 +35,7 @@ import Importer
 from optparse import OptionParser
 import Configuration
 import string
+import interlocks
 
 if __name__ == "__main__":
     Configuration.set_logfile("fpdb-log.txt")
@@ -181,8 +182,8 @@ class GuiAutoImport:
 
     def do_import(self):
         """Callback for timer to do an import iteration."""
-        self.importer.autoSummaryGrab(not self.doAutoImportBool)
         if self.doAutoImportBool:
+            self.importer.autoSummaryGrab()
             self.startButton.set_label(_(u'_Auto Import Running'))
             self.importer.runUpdated()
             self.addText(".")
@@ -297,9 +298,10 @@ class GuiAutoImport:
             else:
                 self.addText("\n" + _("Auto Import aborted.") + _("Global lock not available."))
         else: # toggled off
+            self.doAutoImportBool = False # do_import will return this and stop the gobject callback timer
+            self.importer.autoSummaryGrab(True)
             gobject.source_remove(self.importtimer)
             self.settings['global_lock'].release()
-            self.doAutoImportBool = False # do_import will return this and stop the gobject callback timer
             self.addText("\n" + _("Stopping Auto Import.") + _("Global lock released."))
             if self.pipe_to_hud.poll() is not None:
                 self.addText("\n * " + _("Stop Auto Import") + ": " + _("HUD already terminated."))
@@ -402,6 +404,8 @@ if __name__== "__main__":
     settings.update(config.get_db_parameters())
     settings.update(config.get_import_parameters())
     settings.update(config.get_default_paths())
+    settings['global_lock'] = interlocks.InterProcessLock(name="fpdb_global_lock")
+    settings['cl_options'] = string.join(sys.argv[1:])
 
     if(options.gui == True):
         i = GuiAutoImport(settings, config, None, None)
