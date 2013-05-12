@@ -73,63 +73,56 @@ class HUD_main(object):
         self.config = c
         log.info(_("HUD_main starting") + ": " + _("Using db name = %s") % (db_name))
 
-        try:
-            if not options.errorsToConsole:
-                fileName = os.path.join(self.config.dir_log, u'HUD-errors.txt')
-                log.info(_("Note: error output is being diverted to %s.") % fileName)
-                log.info(_("Any major error will be reported there _only_."))
-                errorFile = open(fileName, 'w', 0)
-                sys.stderr = errorFile
-                log.info(_("HUD_main starting"))
-            #update and save config
-            self.hud_dict = {}
-            self.hud_params = self.config.get_hud_ui_parameters()
-            self.deck = Deck.Deck(self.config,
-                deck_type=self.hud_params["deck_type"], card_back=self.hud_params["card_back"],
-                width=self.hud_params['card_wd'], height=self.hud_params['card_ht'])
+        if not options.errorsToConsole:
+            fileName = os.path.join(self.config.dir_log, u'HUD-errors.txt')
+            log.info(_("Note: error output is being diverted to %s.") % fileName)
+            log.info(_("Any major error will be reported there _only_."))
+            errorFile = open(fileName, 'w', 0)
+            sys.stderr = errorFile
+            log.info(_("HUD_main starting"))
+        #update and save config
+        self.hud_dict = {}
+        self.hud_params = self.config.get_hud_ui_parameters()
+        self.deck = Deck.Deck(self.config,
+            deck_type=self.hud_params["deck_type"], card_back=self.hud_params["card_back"],
+            width=self.hud_params['card_wd'], height=self.hud_params['card_ht'])
 
-            # a thread to read stdin
-            gobject.threads_init()                        # this is required
-            thread.start_new_thread(self.read_stdin, ())  # starts the thread
+        # a thread to read stdin
+        gobject.threads_init()                        # this is required
+        thread.start_new_thread(self.read_stdin, ())  # starts the thread
 
-            # a main window
-            self.main_window = gtk.Window()
+        # a main window
+        self.main_window = gtk.Window()
             
-            if options.minimized:
-                self.main_window.iconify()
-            if options.hidden:
-                self.main_window.hide()        
+        if options.minimized:
+            self.main_window.iconify()
+        if options.hidden:
+            self.main_window.hide()        
             
-            if options.xloc is not None or options.yloc is not None:
-                if options.xloc is None:
-                    options.xloc = 0
-                if options.yloc is None:
-                    options.yloc = 0
-                self.main_window.move(options.xloc,options.yloc)
-            self.main_window.connect("client_moved", self.client_moved)
-            self.main_window.connect("client_resized", self.client_resized)
-            self.main_window.connect("client_destroyed", self.client_destroyed)
-            #self.main_window.connect("game_changed", self.game_changed)
-            self.main_window.connect("table_changed", self.table_title_changed)
-            self.main_window.connect("destroy", self.destroy)
-            self.vb = gtk.VBox()
-            self.label = gtk.Label(_('Closing this window will exit from the HUD.'))
-            self.vb.add(self.label)
-            self.main_window.add(self.vb)
-            self.main_window.set_title("HUD Main Window")
-            cards = os.path.join(self.config.graphics_path,'fpdb-cards.png')
-            if os.path.exists(cards):
-                self.main_window.set_icon_from_file(cards)
-            elif os.path.exists('/usr/share/pixmaps/fpdb-cards.png'):
-                self.main_window.set_icon_from_file('/usr/share/pixmaps/fpdb-cards.png')
-            
-            if not options.hidden:
-                self.main_window.show_all()
-            gobject.timeout_add(800, self.check_tables)
+        if options.xloc is not None or options.yloc is not None:
+            if options.xloc is None:
+                options.xloc = 0
+            if options.yloc is None:
+                options.yloc = 0
+            self.main_window.move(options.xloc,options.yloc)
+        self.main_window.connect("client_moved", self.client_moved)
+        self.main_window.connect("client_resized", self.client_resized)
+        self.main_window.connect("client_destroyed", self.client_destroyed)
+        #self.main_window.connect("game_changed", self.game_changed)
+        self.main_window.connect("table_changed", self.table_title_changed)
+        self.main_window.connect("destroy", self.destroy)
+        self.vb = gtk.VBox()
+        self.label = gtk.Label(_('Closing this window will exit from the HUD.'))
+        self.vb.add(self.label)
+        self.main_window.add(self.vb)
+        self.main_window.set_title("HUD Main Window")
+        cards = os.path.join(self.config.graphics_path,'fpdb-cards.png')
+        if os.path.exists(cards):
+            self.main_window.set_icon_from_file(cards)
 
-        except:
-            log.exception(_("Error initializing main_window"))
-            gtk.main_quit()   # we're hosed, just terminate
+        if not options.hidden:
+            self.main_window.show_all()
+        gobject.timeout_add(800, self.check_tables)
 
     def client_moved(self, widget, hud):
         log.debug(_("client_moved event"))
@@ -239,6 +232,7 @@ class HUD_main(object):
                             # Flooding normally occurs when the hud "fast forwards"
                             # at tables where a bunch of hands have already been played
                             # with the HUD switched off.
+            self.db_connection.connection.rollback() # release lock from previous iteration
             new_hand_id = sys.stdin.readline()
             new_hand_id = string.rstrip(new_hand_id)
             log.debug(_("Received hand no %s") % new_hand_id)
@@ -353,10 +347,8 @@ class HUD_main(object):
                 except KeyError:    # HUD instance has been killed off, key is stale
                     log.error(_('%s was not found') % ("hud_dict[%s]" % temp_key))
                     log.error(_('will not send hand'))
-                    # Unlocks table, copied from end of function
-                    self.db_connection.connection.rollback()
-                    return
-
+                    continue
+                    
                 self.hud_dict[temp_key].cards = self.get_cards(new_hand_id, poker_game)
                 #fixme - passing self.db_connection into another thread
                 # is probably pointless
@@ -378,6 +370,7 @@ class HUD_main(object):
                     if type == "tour":
                         table_name = "%s %s" % (tour_number, tab_number)
                     log.error(_("HUD create: table name %s not found, skipping.") % table_name)
+                    continue
                 else:
                     tablewindow.key = temp_key
                     tablewindow.max = max
@@ -387,11 +380,7 @@ class HUD_main(object):
                         self.create_HUD(new_hand_id, tablewindow, temp_key, max, poker_game, type, stat_dict, cards)
                     else:
                         log.error(_('Table "%s" no longer exists') % table_name)
-                        self.db_connection.connection.rollback()
-                        return
-                        
-            # end of loop, be a good citizen and rollback connection
-            self.db_connection.connection.rollback()
+                        continue
 
     def get_cards(self, new_hand_id, poker_game):
         cards = self.db_connection.get_cards(new_hand_id)

@@ -145,17 +145,14 @@ class Table_Window(object):
             return None
 
         self.search_string = getTableTitleRe(self.config, self.site, self.type, **table_kwargs)
-        trys = 0
-        while True:
-            self.find_table_parameters()
-            if self.number is not None: break
-            # make a small delay otherwise Xtables.root.get_windows()
-            #  returns empty for unknown reasons
-            sleep(0.1)
-            trys += 1
-            if trys > 4:
-                log.error(_("Can't find table %s") % table_name)
-                return None
+        # make a small delay otherwise Xtables.root.get_windows()
+        #  returns empty for unknown reasons
+        sleep(0.1)
+        
+        self.find_table_parameters()
+        if not self.number:
+            log.error(_("Can't find table %s") % table_name)
+
 
         geo = self.get_geometry()
         if geo is None:  return None
