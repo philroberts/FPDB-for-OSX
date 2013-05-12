@@ -6964,7 +6964,7 @@ class Sql:
         self.query['select_hudcache_tour'] = """
                     SELECT id
                     FROM HudCache
-                    WHERE <hudcache_full>
+                    WHERE gametypeId=%s
                     AND   playerId=%s
                     AND   activeSeats=%s
                     AND   position=%s

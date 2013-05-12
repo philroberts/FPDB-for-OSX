@@ -309,7 +309,7 @@ class Importer:
             (stored, duplicates, partial, errors, ttime) = self._import_hh_file(fpdbfile)
         if fpdbfile.ftype == "summary":
             (stored, duplicates, partial, errors, ttime) = self._import_summary_file(fpdbfile)
-        if fpdbfile.ftype == "both" and f not in self.updatedsize:
+        if fpdbfile.ftype == "both" and fpdbfile.path not in self.updatedsize:
             self._import_summary_file(fpdbfile)
         #    pass
         print "DEBUG: _import_summary_file.ttime: %.3f %s" % (ttime, fpdbfile.ftype)
