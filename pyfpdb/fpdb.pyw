@@ -685,10 +685,11 @@ class fpdb:
             table.attach(check_button, 0, 1, y_pos, y_pos+1)
             check_buttons.append(check_button)
             
-            entry = gtk.Entry()
-            entry.set_text(self.config.supported_sites[available_site_names[site_number]].screen_name)
-            table.attach(entry, 2, 3, y_pos, y_pos+1)
-            screen_names.append(entry)
+            hero = gtk.Entry()
+            hero.set_text(self.config.supported_sites[available_site_names[site_number]].screen_name)
+            table.attach(hero, 2, 3, y_pos, y_pos+1)
+            screen_names.append(hero)
+            hero.connect("changed", self.autoenableSite, (check_buttons[site_number],))
             
             entry = gtk.Entry()
             entry.set_text(self.config.supported_sites[available_site_names[site_number]].HH_path)
@@ -732,6 +733,11 @@ class fpdb:
             
         dia.destroy()
         
+    def autoenableSite(self, widget, data):
+        #autoactivate site if something gets typed in the screename field
+        checkbox=data[0]
+        checkbox.set_active(True)
+                
     def browseClicked(self, widget, data):
         """runs when user clicks one of the browse buttons for the TS folder"""
 
