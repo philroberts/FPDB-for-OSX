@@ -700,7 +700,7 @@ class fpdb:
             choose1 = gtk.Button()
             choose1.set_image(image)
             table.attach(choose1, 4, 5, y_pos, y_pos+1)
-            choose1.connect("clicked", self.browseClicked, (dia, self.config.supported_sites[available_site_names[site_number]].HH_path, history_paths[site_number]))
+            choose1.connect("clicked", self.browseClicked, (dia, history_paths[site_number]))
             
             entry = gtk.Entry()
             entry.set_text(self.config.supported_sites[available_site_names[site_number]].TS_path)
@@ -712,7 +712,7 @@ class fpdb:
             choose2 = gtk.Button()
             choose2.set_image(image)
             table.attach(choose2, 6, 7, y_pos, y_pos+1)
-            choose2.connect("clicked", self.browseClicked, (dia, self.config.supported_sites[available_site_names[site_number]].TS_path, summary_paths[site_number]))
+            choose2.connect("clicked", self.browseClicked, (dia, summary_paths[site_number]))
             
             if available_site_names[site_number] in detector.supportedSites:
                 button = gtk.Button(_("Detect"))
@@ -736,21 +736,20 @@ class fpdb:
         """runs when user clicks one of the browse buttons for the TS folder"""
 
         parent=data[0]
-        current_path=data[1]
-        entry_ts_path=data[2]
+        path=data[1]
 
         dia_chooser = gtk.FileChooserDialog(title=_("Please choose the path that you want to Auto Import"),
                 action=gtk.FILE_CHOOSER_ACTION_SELECT_FOLDER,
                 buttons=(gtk.STOCK_CANCEL,gtk.RESPONSE_CANCEL,gtk.STOCK_OPEN,gtk.RESPONSE_OK))
 
-        dia_chooser.set_filename(current_path)
+        dia_chooser.set_filename(path.get_text())
         dia_chooser.set_show_hidden(True)
         dia_chooser.set_destroy_with_parent(True)
         dia_chooser.set_transient_for(parent)
 
         response = dia_chooser.run()
         if response == gtk.RESPONSE_OK:
-            entry_ts_path.set_text(dia_chooser.get_filename())
+            path.set_text(dia_chooser.get_filename())
         elif response == gtk.RESPONSE_CANCEL:
             #print 'Closed, no files selected'
             pass
