@@ -853,7 +853,6 @@ class fpdb:
                 <menu action="import">
                   <menuitem action="bulkimp"/>
                   <menuitem action="imapimport"/>
-                  <menuitem action="tourneyimp"/>
                 </menu>
                 <menu action="hud">
                   <menuitem action="autoimp"/>
@@ -899,7 +898,6 @@ class fpdb:
                                  ('preferences', None, _('_Preferences'), _('<control>F'), 'Edit your preferences', self.dia_advanced_preferences),
                                  ('import', None, _('_Import')),
                                  ('bulkimp', None, _('_Bulk Import'), _('<control>B'), 'Bulk Import', self.tab_bulk_import),
-                                 ('tourneyimp', None, _('Tournament _Results Import'), _('<control>R'), 'Tournament Results Import', self.tab_tourney_import),
                                  ('imapimport', None, _('_Import through eMail/IMAP'), _('<control>I'), 'Import through eMail/IMAP', self.tab_imap_import),
                                  ('cash', None, _('_Cash')),
                                  ('hud', None, _('_HUD')),

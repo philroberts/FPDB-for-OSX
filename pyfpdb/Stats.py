@@ -868,7 +868,7 @@ def f_4bet(stat_dict, player):
                 '(0/0)',
                 _('% fold to 4 bet preflop/3rd street'))
 
-def wmsf(stat_dict, player):
+def WMsF(stat_dict, player):
     stat = 0.0
     try:
         stat = float(stat_dict[player]['w_w_s_1'])/float(stat_dict[player]['saw_1'])
@@ -1008,13 +1008,14 @@ def agg_fact(stat_dict, player):
                 _('Aggression factor'))
         
 def agg_fact_pct(stat_dict, player):
-    #fixme - is anyone using this stat?  no /zero check, it doesn't show %age and looks similar to agg_fact 
     stat = 0.0
     try:
         bet_raise =   stat_dict[player]['aggr_1'] + stat_dict[player]['aggr_2'] + stat_dict[player]['aggr_3'] + stat_dict[player]['aggr_4']
         post_call  =  stat_dict[player]['call_1'] + stat_dict[player]['call_2'] + stat_dict[player]['call_3'] + stat_dict[player]['call_4']
-       
-        stat = float (bet_raise) / float(post_call + bet_raise)
+
+        if float(post_call + bet_raise) > 0.0:
+            stat = float (bet_raise) / float(post_call + bet_raise)
+                   
         return (stat,
                 '%2.2f'        % (stat) ,
                 'afap=%2.2f'    % (stat) ,

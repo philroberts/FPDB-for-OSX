@@ -1843,7 +1843,7 @@
             <pu_stat pu_stat_name="BBper100"/>
             <pu_stat pu_stat_name="wmsd"/>
             <pu_stat pu_stat_name="wtsd"/>
-            <pu_stat pu_stat_name="wmsf"/>
+            <pu_stat pu_stat_name="WMsF"/>
             <pu_stat pu_stat_name="vpip"/>
             <pu_stat pu_stat_name="pfr"/>
             <pu_stat pu_stat_name="three_B"/>
