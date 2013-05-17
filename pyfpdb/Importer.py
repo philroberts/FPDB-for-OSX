@@ -249,17 +249,20 @@ class Importer:
 
         # Tidying up after import
         if 'dropHudCache' in self.settings and self.settings['dropHudCache'] == 'drop':
-            log.info(_("rebuild_cache"))
-            self.database.rebuild_cache()
+            log.info(_("rebuild_caches"))
+            self.database.rebuild_caches()
         else:
-            log.info(_("cleanUpTourneyTypes"))
-            self.database.cleanUpTourneyTypes()
-            self.database.resetttclean()
-            self.database.commit()
+            log.info(_("runPostImport"))
+            self.runPostImport()
         self.database.analyzeDB()
         endtime = time()
         return (totstored, totdups, totpartial, toterrors, endtime-starttime)
     # end def runImport
+    
+    def runPostImport(self):
+        self.database.cleanUpTourneyTypes()
+        self.database.cleanUpWeeksMonths()
+        self.database.resetClean()
 
     def importFiles(self, q):
         """"Read filenames in self.filelist and pass to despatcher."""
@@ -396,6 +399,7 @@ class Importer:
         self.addToDirList = {}
         self.removeFromFileList = {}
         self.database.rollback()
+        self.runPostImport()
 
     def _import_hh_file(self, fpdbfile):
         """Function for actual import of a hh file
@@ -466,12 +470,12 @@ class Importer:
                         stime = time()
                         hand.insertHands(self.database, fpdbfile.fileId, doinsert, self.settings['testData'])
                         ihtimer = time() - stime
-                        #stime = time()
-                        #hand.updateCardsCache(self.database, self.tz, doinsert)
-                        #cctimer = time() - stime
-                        #stime = time()
-                        #hand.updatePositionsCache(self.database, self.tz, doinsert) 
-                        #pctimer = time() - stime
+                        stime = time()
+                        hand.updateCardsCache(self.database, None, doinsert)
+                        cctimer = time() - stime
+                        stime = time()
+                        hand.updatePositionsCache(self.database, None, doinsert) 
+                        pctimer = time() - stime
                         stime = time()
                         hand.updateHudCache(self.database, doinsert)
                         hctimer = time() - stime
@@ -495,8 +499,8 @@ class Importer:
                         hand.hero, self.database.hbulk, hand.handsplayers  = 0, self.database.hbulk[:-1], [] #making sure we don't insert data from this hand
                         hand.updateSessionsCache(self.database, None, doinsert)
                         hand.insertHands(self.database, fpdbfile.fileId, doinsert, self.settings['testData'])
-                        #hand.updateCardsCache(self.database, None, doinsert)
-                        #hand.updatePositionsCache(self.database, None, doinsert)
+                        hand.updateCardsCache(self.database, None, doinsert)
+                        hand.updatePositionsCache(self.database, None, doinsert)
                         hand.updateHudCache(self.database, doinsert)
                         hand.handsplayers, hand.hero = hp, hero
                 #log.debug("DEBUG: hand.updateSessionsCache: %s" % (t5tot))

@@ -637,6 +637,8 @@ class Database:
 
             # if fastStoreHudCache is true then the hudcache will be build using the limited configuration which ignores date, seats, and position
             self.build_full_hudcache = not self.import_options['fastStoreHudCache']
+            self.cacheSessions = self.import_options['cacheSessions']
+            self.callHud = self.import_options['callFpdbHud']
 
             #self.hud_hero_style = 'T'  # Duplicate set of vars just for hero - not used yet.
             #self.hud_hero_hands = 2000 # Idea is that you might want all-time stats for others
@@ -1291,6 +1293,8 @@ class Database:
     def resetCache(self):
         self.ttold      = set()      # TourneyTypes old
         self.ttnew      = set()      # TourneyTypes new
+        self.wmold      = set()      # WeeksMonths old
+        self.wmnew      = set()      # WeeksMonths new
         self.gtcache    = None       # GameTypeId cache 
         self.tcache     = None       # TourneyId cache
         self.pcache     = None       # PlayerId cache
@@ -2019,7 +2023,7 @@ class Database:
             query = query.replace('<hero_join>', '')
             query = query.replace('<sessions_join_clause>', """INNER JOIN SessionsCache s ON (s.id = h.sessionId)
                 INNER JOIN Players p ON (hp.playerId = p.id)""")
-            query = query.replace('<pc_position>', """,case when p.hero = 1 then hp.position else 'N' end as pc_position""")
+            query = query.replace('<pc_position>', """,case when h.heroSeat = hp.seatNo then hp.position else 'N' end as pc_position""")
             query = query.replace('<hero_where>', "")
             
             if type=='ring':
@@ -2112,7 +2116,6 @@ class Database:
         insert_WC     = self.sql.query['insert_WC'].replace('%s', self.sql.query['placeholder'])
         insert_MC     = self.sql.query['insert_MC'].replace('%s', self.sql.query['placeholder'])
         update_WM_SC  = self.sql.query['update_WM_SC'].replace('%s', self.sql.query['placeholder'])
-        wmold, wmnew = set(), set()
         c = self.get_cursor()
         c.execute("SELECT id, sessionStart, weekId wid, monthId mid FROM SessionsCache")
         sessions = self.fetchallDict(c)
@@ -2130,10 +2133,10 @@ class Database:
             if wid != s['wid'] or mid != s['mid']:
                 row = [wid, mid, s['id']]
                 c.execute(update_WM_SC, row)
-                wmold.add((s['wid'], s['mid']))
-                wmnew.add((wid, mid))
+                self.wmold.add((s['wid'], s['mid']))
+                self.wmnew.add((wid, mid))
         self.commit()
-        self.cleanUpWeeksMonths(wmold, wmnew)
+        self.cleanUpWeeksMonths()
     
     def rebuild_sessionscache(self, tz_name = None, recreate=False, heroes = []):
         """clears sessionscache and rebuilds from the individual records"""
@@ -2361,8 +2364,8 @@ class Database:
         self.hpbulk      = []         # HandsPlayers bulk inserts
         self.habulk      = []         # HandsActions bulk inserts
         self.hcbulk      = {}         # HudCache bulk inserts
-        self.dcbulk      = {}
-        self.pcbulk      = {}
+        self.dcbulk      = {}         # CardsCache bulk inserts
+        self.pcbulk      = {}         # PositionsCache bulk inserts
         self.hsbulk      = []         # HandsStove bulk inserts
         self.htbulk      = []         # HandsPots bulk inserts
         self.tbulk       = {}         # Tourneys bulk updates
@@ -2525,16 +2528,7 @@ class Database:
             
     def storeHudCache(self, gid, gametype, pids, starttime, pdata, doinsert=False):
         """Update cached statistics. If update fails because no record exists, do an insert."""
-        update_hudcache = self.sql.query['update_hudcache']
-        update_hudcache = update_hudcache.replace('%s', self.sql.query['placeholder'])
-        insert_hudcache = self.sql.query['insert_hudcache']
-        insert_hudcache = insert_hudcache.replace('%s', self.sql.query['placeholder'])
-        
-        select_hudcache_ring = self.sql.query['select_hudcache_ring']
-        select_hudcache_ring = select_hudcache_ring.replace('%s', self.sql.query['placeholder'])
-        select_hudcache_tour = self.sql.query['select_hudcache_tour']
-        select_hudcache_tour = select_hudcache_tour.replace('%s', self.sql.query['placeholder'])
-        
+                
         if pdata:   
             tz = datetime.utcnow() - datetime.today()
             tz_offset = tz.seconds/3600
@@ -2545,29 +2539,41 @@ class Database:
             styleKey = datetime.strftime(starttime_offset, 'd%y%m%d')
             seats = len(pids)
             
+        pos = {'B':'B', 'S':'S', 0:'D', 1:'C', 2:'M', 3:'M', 4:'M', 5:'E', 6:'E', 7:'E', 8:'E', 9:'E' }
+            
         for p in pdata:
             player_stats = pdata.get(p)
-            pos = {'B':'B', 'S':'S', 0:'D', 1:'C', 2:'M', 3:'M', 4:'M', 5:'E', 6:'E', 7:'E', 8:'E', 9:'E' }
-            position = pos[player_stats['position']]
-            k =   (gid
-                  ,pids[p]
-                  ,seats
-                  ,position
-                  ,player_stats['tourneyTypeId']
-                  ,styleKey
-                  )
-            player_stats['hands'] = 1
-            line = [int(player_stats[s]) for s in CACHE_KEYS]
-                
-            hud = self.hcbulk.get(k)
-            # Add line to the old line in the hudcache.
-            if hud is not None:
-                for idx,val in enumerate(line):
-                    hud[idx] += val
-            else:
-                self.hcbulk[k] = line
+            garbageTourneyTypes = player_stats['tourneyTypeId'] in self.ttnew or player_stats['tourneyTypeId'] in self.ttold
+            if not garbageTourneyTypes:
+                position = pos[player_stats['position']]
+                k =   (gid
+                      ,pids[p]
+                      ,seats
+                      ,position
+                      ,player_stats['tourneyTypeId']
+                      ,styleKey
+                      )
+                player_stats['hands'] = 1
+                line = [int(player_stats[s]) for s in CACHE_KEYS]
+                    
+                hud = self.hcbulk.get(k)
+                # Add line to the old line in the hudcache.
+                if hud is not None:
+                    for idx,val in enumerate(line):
+                        hud[idx] += val
+                else:
+                    self.hcbulk[k] = line
                 
         if doinsert:
+            update_hudcache = self.sql.query['update_hudcache']
+            update_hudcache = update_hudcache.replace('%s', self.sql.query['placeholder'])
+            insert_hudcache = self.sql.query['insert_hudcache']
+            insert_hudcache = insert_hudcache.replace('%s', self.sql.query['placeholder'])
+            
+            select_hudcache_ring = self.sql.query['select_hudcache_ring']
+            select_hudcache_ring = select_hudcache_ring.replace('%s', self.sql.query['placeholder'])
+            select_hudcache_tour = self.sql.query['select_hudcache_tour']
+            select_hudcache_tour = select_hudcache_tour.replace('%s', self.sql.query['placeholder'])
             inserts = []
             c = self.get_cursor()
             for k, item in self.hcbulk.iteritems():
@@ -2595,21 +2601,7 @@ class Database:
             
     def storeSessionsCache(self, hid, pids, startTime, heroes, tz_name, doinsert = False):
         """Update cached sessions. If no record exists, do an insert"""
-        
-        select_SC     = self.sql.query['select_SC'].replace('%s', self.sql.query['placeholder'])
-        select_WC     = self.sql.query['select_WC'].replace('%s', self.sql.query['placeholder'])
-        select_MC     = self.sql.query['select_MC'].replace('%s', self.sql.query['placeholder'])
-        update_SC     = self.sql.query['update_SC'].replace('%s', self.sql.query['placeholder'])
-        insert_WC     = self.sql.query['insert_WC'].replace('%s', self.sql.query['placeholder'])
-        insert_MC     = self.sql.query['insert_MC'].replace('%s', self.sql.query['placeholder'])
-        insert_SC     = self.sql.query['insert_SC'].replace('%s', self.sql.query['placeholder'])
-        update_SC_CC  = self.sql.query['update_SC_CC'].replace('%s', self.sql.query['placeholder'])
-        update_SC_TC  = self.sql.query['update_SC_TC'].replace('%s', self.sql.query['placeholder'])
-        update_SC_T   = self.sql.query['update_SC_T'].replace('%s', self.sql.query['placeholder'])
-        update_SC_H   = self.sql.query['update_SC_H'].replace('%s', self.sql.query['placeholder'])
-        delete_SC     = self.sql.query['delete_SC'].replace('%s', self.sql.query['placeholder'])
         THRESHOLD     = timedelta(seconds=int(self.sessionTimeout * 60))
-        
         if tz_name in pytz.common_timezones:
             if self.backend == self.SQLITE:
                 naive = datetime.strptime(startTime, '%Y-%m-%d %H:%M:%S')
@@ -2689,6 +2681,18 @@ class Database:
                 self.sc['bk'].append(hand)
         
         if doinsert:
+            select_SC     = self.sql.query['select_SC'].replace('%s', self.sql.query['placeholder'])
+            select_WC     = self.sql.query['select_WC'].replace('%s', self.sql.query['placeholder'])
+            select_MC     = self.sql.query['select_MC'].replace('%s', self.sql.query['placeholder'])
+            update_SC     = self.sql.query['update_SC'].replace('%s', self.sql.query['placeholder'])
+            insert_WC     = self.sql.query['insert_WC'].replace('%s', self.sql.query['placeholder'])
+            insert_MC     = self.sql.query['insert_MC'].replace('%s', self.sql.query['placeholder'])
+            insert_SC     = self.sql.query['insert_SC'].replace('%s', self.sql.query['placeholder'])
+            update_SC_CC  = self.sql.query['update_SC_CC'].replace('%s', self.sql.query['placeholder'])
+            update_SC_TC  = self.sql.query['update_SC_TC'].replace('%s', self.sql.query['placeholder'])
+            update_SC_T   = self.sql.query['update_SC_T'].replace('%s', self.sql.query['placeholder'])
+            update_SC_H   = self.sql.query['update_SC_H'].replace('%s', self.sql.query['placeholder'])
+            delete_SC     = self.sql.query['delete_SC'].replace('%s', self.sql.query['placeholder'])
             c = self.get_cursor()
             for i in range(len(self.sc['bk'])):
                 lower = self.sc['bk'][i]['sessionStart'] - THRESHOLD
@@ -2707,20 +2711,26 @@ class Database:
                             week, updateW = self.sc['bk'][i]['weekStart'], True
                         if self.sc['bk'][i]['monthStart'] != month:
                             month, updateM = self.sc['bk'][i]['monthStart'], True
+                        if (updateW or updateM):
+                            self.wmold.add((wid, mid))
                     if self.sc['bk'][i]['sessionEnd'] > end:
                         end, update = self.sc['bk'][i]['sessionEnd'], True
                     if updateW:  wid = self.insertOrUpdate('weeks', c, (week,), select_WC, insert_WC)
                     if updateM:  mid = self.insertOrUpdate('months', c, (month,), select_MC, insert_MC)
+                    if (updateW or updateM):
+                        self.wmnew.add((wid, mid))
                     if update: 
                         c.execute(update_SC, [wid, mid, start, end, r[0]['id']])
                     for h in  self.sc['bk'][i]['ids']:
-                        self.sc[h] = {'id': r[0]['id'], 'data': [start, end]}
+                        self.sc[h] = {'id': r[0]['id'], 'wid': wid, 'mid': mid}
                 elif (num > 1):
-                    start, end, merge = None, None, []
+                    start, end, wmold, merge = None, None, set(), []
                     for n in r: merge.append(n['id'])
                     merge.sort()
                     r.append(self.sc['bk'][i])
-                    for n in r:                      
+                    for n in r:
+                        if 'weekId' in n:
+                            wmold.add((n['weekId'],  n['monthId']))    
                         if start: 
                             if  start > n['sessionStart']: 
                                 start = n['sessionStart']
@@ -2737,15 +2747,19 @@ class Database:
                             end = n['sessionEnd']
                     wid = self.insertOrUpdate('weeks', c, (week,), select_WC, insert_WC)
                     mid = self.insertOrUpdate('months', c, (month,), select_MC, insert_MC)
+                    wmold.discard((wid, mid))
+                    if len(wmold)>0:
+                        self.wmold = self.wmold.union(wmold)
+                        self.wmnew.add((wid, mid))
                     row = [wid, mid, start, end]
                     c.execute(insert_SC, row)
                     sid = self.get_last_insert_id(c)
-                    for h in self.sc['bk'][i]['ids']: self.sc[h] = {'id': sid}
+                    for h in self.sc['bk'][i]['ids']:
+                        self.sc[h] = {'id': sid, 'wid': wid, 'mid': mid}
                     for m in merge:
                         for h, n in self.sc.iteritems():
-                            if h!='bk':
-                                if n['id'] == m:
-                                    self.sc[h] = {'id': sid}
+                            if h!='bk' and n['id'] == m:
+                                self.sc[h] = {'id': sid, 'wid': wid, 'mid': mid}
                         c.execute(update_SC_TC,(sid, m))
                         c.execute(update_SC_CC,(sid, m))
                         c.execute(update_SC_T, (sid, m))
@@ -2761,18 +2775,13 @@ class Database:
                     row = [wid, mid, start, end]
                     c.execute(insert_SC, row)
                     sid = self.get_last_insert_id(c)
-                    for h in self.sc['bk'][i]['ids']: self.sc[h] = {'id': sid}
+                    for h in self.sc['bk'][i]['ids']:
+                        self.sc[h] = {'id': sid, 'wid': wid, 'mid': mid}
             self.commit()
     
     def storeCashCache(self, hid, pids, startTime, gtid, gametype, pdata, heroes, hero, doinsert = False):
-        """Update cached sessions. If no record exists, do an insert"""
-               
-        select_CC    = self.sql.query['select_CC'].replace('%s', self.sql.query['placeholder'])
-        update_CC    = self.sql.query['update_CC'].replace('%s', self.sql.query['placeholder'])
-        insert_CC    = self.sql.query['insert_CC'].replace('%s', self.sql.query['placeholder'])
-        delete_CC    = self.sql.query['delete_CC'].replace('%s', self.sql.query['placeholder'])
+        """Update cached cash sessions. If no record exists, do an insert"""      
         THRESHOLD    = timedelta(seconds=int(self.sessionTimeout * 60))
-       
         if gametype['type']=='ring' and pdata:
             for p, pid in pids.iteritems():
                 hp = {}
@@ -2827,6 +2836,10 @@ class Database:
                     self.cc[k].append(hp)
         
         if doinsert:
+            select_CC    = self.sql.query['select_CC'].replace('%s', self.sql.query['placeholder'])
+            update_CC    = self.sql.query['update_CC'].replace('%s', self.sql.query['placeholder'])
+            insert_CC    = self.sql.query['insert_CC'].replace('%s', self.sql.query['placeholder'])
+            delete_CC    = self.sql.query['delete_CC'].replace('%s', self.sql.query['placeholder'])
             c = self.get_cursor()
             for k, cashplayer in self.cc.iteritems():
                 for session in cashplayer:
@@ -2892,13 +2905,7 @@ class Database:
             self.commit()
             
     def storeTourCache(self, hid, pids, startTime, tid, gametype, pdata, heroes, hero, doinsert = False):
-        update_TC = self.sql.query['update_TC']
-        update_TC = update_TC.replace('%s', self.sql.query['placeholder'])
-        insert_TC = self.sql.query['insert_TC']
-        insert_TC = insert_TC.replace('%s', self.sql.query['placeholder'])
-        select_TC = self.sql.query['select_TC']
-        select_TC = select_TC.replace('%s', self.sql.query['placeholder'])
-        
+        """Update cached tour sessions. If no record exists, do an insert"""   
         if gametype['type']=='tour' and pdata:
             for p in pdata:
                 k = (tid
@@ -2928,6 +2935,13 @@ class Database:
                     self.tc[k]['endTime']    = startTime
                 
         if doinsert:
+            update_TC = self.sql.query['update_TC']
+            update_TC = update_TC.replace('%s', self.sql.query['placeholder'])
+            insert_TC = self.sql.query['insert_TC']
+            insert_TC = insert_TC.replace('%s', self.sql.query['placeholder'])
+            select_TC = self.sql.query['select_TC']
+            select_TC = select_TC.replace('%s', self.sql.query['placeholder'])
+            
             inserts = []
             c = self.get_cursor()
             for k, tc in self.tc.iteritems():
@@ -2978,47 +2992,7 @@ class Database:
             self.commit()
     
     def storeCardsCache(self, hid, pids, startTime, gid, ttid, gametype, siteId, pdata, sdata, heroes, tz_name, doinsert):
-        """Update cached statistics. If update fails because no record exists, do an insert."""
-        update_cardscache = self.sql.query['update_cardscache']
-        update_cardscache = update_cardscache.replace('%s', self.sql.query['placeholder'])
-        insert_cardscache = self.sql.query['insert_cardscache']
-        insert_cardscache = insert_cardscache.replace('%s', self.sql.query['placeholder'])
-        select_cardscache_ring = self.sql.query['select_cardscache_ring']
-        select_cardscache_ring = select_cardscache_ring.replace('%s', self.sql.query['placeholder'])
-        select_cardscache_tour = self.sql.query['select_cardscache_tour']
-        select_cardscache_tour = select_cardscache_tour.replace('%s', self.sql.query['placeholder'])
-        
-        select_WC     = self.sql.query['select_WC'].replace('%s', self.sql.query['placeholder'])
-        select_MC     = self.sql.query['select_MC'].replace('%s', self.sql.query['placeholder'])
-        insert_WC     = self.sql.query['insert_WC'].replace('%s', self.sql.query['placeholder'])
-        insert_MC     = self.sql.query['insert_MC'].replace('%s', self.sql.query['placeholder'])
-        
-        if tz_name in pytz.common_timezones:
-            if self.backend == self.SQLITE:
-                naive = datetime.strptime(startTime, '%Y-%m-%d %H:%M:%S')
-            else:
-                naive = startTime.replace(tzinfo=None)
-            utc_start = pytz.utc.localize(naive)
-            tz = pytz.timezone(tz_name)
-            loc_tz = utc_start.astimezone(tz).strftime('%z')
-            offset = timedelta(hours=int(loc_tz[:-2]), minutes=int(loc_tz[0]+loc_tz[-2:]))
-            local = naive + offset
-            monthStart = datetime(local.year, local.month, 1)
-            weekdate   = datetime(local.year, local.month, local.day)
-            weekStart  = weekdate - timedelta(days=weekdate.weekday())
-        else:
-            if strftime('%Z') == 'UTC':
-                local = startTime
-                loc_tz = '0'
-            else:
-                tz_dt = datetime.today() - datetime.utcnow()
-                loc_tz = tz_dt.seconds/3600 - 24
-                offset = timedelta(hours=int(loc_tz))
-                local = startTime + offset
-                monthStart = datetime(local.year, local.month, 1)
-            weekdate   = datetime(local.year, local.month, local.day)
-            weekStart  = weekdate - timedelta(days=weekdate.weekday())
-
+        """Update cached cards statistics. If update fails because no record exists, do an insert."""
         tourneyTypeId, gametypeId = None, None
         if gametype['type']=='ring':
             gametypeId = gid
@@ -3031,8 +3005,7 @@ class Database:
                 for hs in info:
                     (pid, streetId, boardId, hiLo, rankId, start_cards) = (hs[1], hs[2], hs[3], hs[4], hs[5], pdata[p]['startCards'])
                     if streetId > 0: start_cards = 170
-                    k =   (weekStart
-                          ,monthStart
+                    k =   (hid
                           ,gametypeId
                           ,tourneyTypeId
                           ,pids[p]
@@ -3044,85 +3017,63 @@ class Database:
                           )
                     pdata[p]['hands'] = 1
                     line = [int(pdata[p][s]) for s in CACHE_KEYS]
-    
-                    startCards = self.dcbulk.get(k)
+                    self.dcbulk[k] = line
+
+        if doinsert:
+            update_cardscache = self.sql.query['update_cardscache']
+            update_cardscache = update_cardscache.replace('%s', self.sql.query['placeholder'])
+            insert_cardscache = self.sql.query['insert_cardscache']
+            insert_cardscache = insert_cardscache.replace('%s', self.sql.query['placeholder'])
+            select_cardscache_ring = self.sql.query['select_cardscache_ring']
+            select_cardscache_ring = select_cardscache_ring.replace('%s', self.sql.query['placeholder'])
+            select_cardscache_tour = self.sql.query['select_cardscache_tour']
+            select_cardscache_tour = select_cardscache_tour.replace('%s', self.sql.query['placeholder'])
+            
+            select_WC     = self.sql.query['select_WC'].replace('%s', self.sql.query['placeholder'])
+            select_MC     = self.sql.query['select_MC'].replace('%s', self.sql.query['placeholder'])
+            insert_WC     = self.sql.query['insert_WC'].replace('%s', self.sql.query['placeholder'])
+            insert_MC     = self.sql.query['insert_MC'].replace('%s', self.sql.query['placeholder'])
+            
+            dccache, inserts = {}, []
+            for k, l in self.dcbulk.iteritems():
+                sc = self.sc.get(k[0])
+                if sc != None:
+                    n = (sc['wid'], sc['mid'], k[1], k[2], k[3], k[4], k[5], k[6], k[7], k[8])         
+                    startCards = dccache.get(n)
                     # Add line to the old line in the hudcache.
                     if startCards is not None:
-                        for idx,val in enumerate(line):
-                            self.dcbulk[k][idx] += val
+                        for idx,val in enumerate(l):
+                            dccache[n][idx] += val
                     else:
-                        self.dcbulk[k] = line
-                
-        if doinsert:
-            inserts = []
+                        dccache[n] = l
+
             c = self.get_cursor()
-            for k, item in self.dcbulk.iteritems():
-                wid = self.insertOrUpdate('weeks', c, (k[0],), select_WC, insert_WC)
-                mid = self.insertOrUpdate('months', c, (k[1],), select_MC, insert_MC)
-                
-                if k[2]:
-                    q = select_cardscache_ring
-                    row = [wid, mid] + [k[2]] + list(k[-6:])
-                else:
-                    q = select_cardscache_tour
-                    row = [wid, mid] + list(k[-7:])
-                c.execute(q, row)
-                result = c.fetchone()
-                if result:
-                    id = result[0]
-                    update = item + [id]
-                    c.execute(update_cardscache, update)                 
-                else:
-                    insert = [wid, mid] + list(k[-8:]) + item
-                    inserts.append(insert)
+            for k, item in dccache.iteritems():
+                garbageWeekMonths = (k[0], k[1]) in self.wmnew or (k[0], k[1]) in self.wmold
+                garbageTourneyTypes = k[2] in self.ttnew or k[2] in self.ttold
+                if not garbageWeekMonths and not garbageTourneyTypes:
+                    if k[2]:
+                        q = select_cardscache_ring
+                        row = list(k[:3]) + list(k[-6:])
+                    else:
+                        q = select_cardscache_tour
+                        row = list(k[:2]) + list(k[-7:])
+                    c.execute(q, row)
+                    result = c.fetchone()
+                    if result:
+                        id = result[0]
+                        update = item + [id]
+                        c.execute(update_cardscache, update)                 
+                    else:
+                        insert = list(k) + item
+                        inserts.append(insert)
                 
             if inserts:
                 c.executemany(insert_cardscache, inserts)
                 self.commit()
             
     def storePositionsCache(self, hid, pids, startTime, gid, ttid, gametype, siteId, pdata, heroes, tz_name, doinsert):
-        """Update cached statistics. If update fails because no record exists, do an insert."""
-        update_positionscache = self.sql.query['update_positionscache']
-        update_positionscache = update_positionscache.replace('%s', self.sql.query['placeholder'])
-        insert_positionscache = self.sql.query['insert_positionscache']
-        insert_positionscache = insert_positionscache.replace('%s', self.sql.query['placeholder'])
-        
-        select_positionscache_ring = self.sql.query['select_positionscache_ring']
-        select_positionscache_ring = select_positionscache_ring.replace('%s', self.sql.query['placeholder'])
-        select_positionscache_tour = self.sql.query['select_positionscache_tour']
-        select_positionscache_tour = select_positionscache_tour.replace('%s', self.sql.query['placeholder'])
-        
-        select_WC     = self.sql.query['select_WC'].replace('%s', self.sql.query['placeholder'])
-        select_MC     = self.sql.query['select_MC'].replace('%s', self.sql.query['placeholder'])
-        insert_WC     = self.sql.query['insert_WC'].replace('%s', self.sql.query['placeholder'])
-        insert_MC     = self.sql.query['insert_MC'].replace('%s', self.sql.query['placeholder'])
-        
-        if tz_name in pytz.common_timezones:
-            if self.backend == self.SQLITE:
-                naive = datetime.strptime(startTime, '%Y-%m-%d %H:%M:%S')
-            else:
-                naive = startTime.replace(tzinfo=None)
-            utc_start = pytz.utc.localize(naive)
-            tz = pytz.timezone(tz_name)
-            loc_tz = utc_start.astimezone(tz).strftime('%z')
-            offset = timedelta(hours=int(loc_tz[:-2]), minutes=int(loc_tz[0]+loc_tz[-2:]))
-            local = naive + offset
-            monthStart = datetime(local.year, local.month, 1)
-            weekdate   = datetime(local.year, local.month, local.day)
-            weekStart  = weekdate - timedelta(days=weekdate.weekday())
-        else:
-            if strftime('%Z') == 'UTC':
-                local = startTime
-                loc_tz = '0'
-            else:
-                tz_dt = datetime.today() - datetime.utcnow()
-                loc_tz = tz_dt.seconds/3600 - 24
-                offset = timedelta(hours=int(loc_tz))
-                local = startTime + offset
-            monthStart = datetime(local.year, local.month, 1)
-            weekdate   = datetime(local.year, local.month, local.day)
-            weekStart  = weekdate - timedelta(days=weekdate.weekday())
-        
+        """Update cached position statistics. If update fails because no record exists, do an insert."""
         tourneyTypeId, gametypeId = None, None
         if gametype['type']=='ring':
             gametypeId = gid
@@ -3134,8 +3085,7 @@ class Database:
                 position = str(pdata[p]['position'])[0]
             else:
                 position = 'N'
-            k =   (weekStart
-                  ,monthStart
+            k =   (hid
                   ,gametypeId
                   ,tourneyTypeId
                   ,pids[p]
@@ -3144,38 +3094,58 @@ class Database:
                   )
             pdata[p]['hands'] = 1
             line = [int(pdata[p][s]) for s in CACHE_KEYS]
-                
-            positions = self.pcbulk.get(k)
-            # Add line to the old line in the hudcache.
-            if positions is not None:
-                for idx,val in enumerate(line):
-                    self.pcbulk[k][idx] += val
-            else:
-                self.pcbulk[k] = line
+            self.pcbulk[k] = line
                 
         if doinsert:
-            inserts = []
+            update_positionscache = self.sql.query['update_positionscache']
+            update_positionscache = update_positionscache.replace('%s', self.sql.query['placeholder'])
+            insert_positionscache = self.sql.query['insert_positionscache']
+            insert_positionscache = insert_positionscache.replace('%s', self.sql.query['placeholder'])
+            
+            select_positionscache_ring = self.sql.query['select_positionscache_ring']
+            select_positionscache_ring = select_positionscache_ring.replace('%s', self.sql.query['placeholder'])
+            select_positionscache_tour = self.sql.query['select_positionscache_tour']
+            select_positionscache_tour = select_positionscache_tour.replace('%s', self.sql.query['placeholder'])
+            
+            select_WC     = self.sql.query['select_WC'].replace('%s', self.sql.query['placeholder'])
+            select_MC     = self.sql.query['select_MC'].replace('%s', self.sql.query['placeholder'])
+            insert_WC     = self.sql.query['insert_WC'].replace('%s', self.sql.query['placeholder'])
+            insert_MC     = self.sql.query['insert_MC'].replace('%s', self.sql.query['placeholder'])
+                
+            pccache, inserts = {}, []
+            for k, l in self.pcbulk.iteritems():
+                sc = self.sc.get(k[0])
+                if sc != None:
+                    n = (sc['wid'], sc['mid'], k[1], k[2], k[3], k[4], k[5])         
+                    positions = pccache.get(n)
+                    # Add line to the old line in the hudcache.
+                    if positions is not None:
+                        for idx,val in enumerate(l):
+                            pccache[n][idx] += val
+                    else:
+                        pccache[n] = l
+            
             c = self.get_cursor()
-            for k, item in self.pcbulk.iteritems():
-                wid = self.insertOrUpdate('weeks', c, (k[0],), select_WC, insert_WC)
-                mid = self.insertOrUpdate('months', c, (k[1],), select_MC, insert_MC)
-                
-                if k[2]:
-                    q = select_positionscache_ring
-                    row = [wid, mid] + [k[2]] + list(k[-3:])
-                else:
-                    q = select_positionscache_tour
-                    row = [wid, mid] + list(k[-4:])
-                
-                c.execute(q, row)
-                result = c.fetchone()
-                if result:
-                    id = result[0]
-                    update = item + [id]
-                    c.execute(update_positionscache, update)
-                else:
-                    insert = [wid, mid] + list(k[-5:]) + item
-                    inserts.append(insert)
+            for k, item in pccache.iteritems():
+                garbageWeekMonths = (k[0], k[1]) in self.wmnew or (k[0], k[1]) in self.wmold
+                garbageTourneyTypes = k[2] in self.ttnew or k[2] in self.ttold
+                if not garbageWeekMonths and not garbageTourneyTypes:
+                    if k[2]:
+                        q = select_positionscache_ring
+                        row = list(k[:3]) + list(k[-3:])
+                    else:
+                        q = select_positionscache_tour
+                        row = list(k[:2]) + list(k[-4:])
+                    
+                    c.execute(q, row)
+                    result = c.fetchone()
+                    if result:
+                        id = result[0]
+                        update = item + [id]
+                        c.execute(update_positionscache, update)
+                    else:
+                        insert = list(k) + item
+                        inserts.append(insert)
                 
             if inserts:
                 c.executemany(insert_positionscache, inserts)
@@ -3468,90 +3438,111 @@ class Database:
         return ttid
     
     def cleanUpTourneyTypes(self):
-        if self.build_full_hudcache:
-            tables = ('HudCache',)
-        else:
-            tables = ('CardsCache', 'PositionsCache')
-        select = self.sql.query['selectTourneyWithTypeId'].replace('%s', self.sql.query['placeholder'])
-        delete = self.sql.query['deleteTourneyTypeId'].replace('%s', self.sql.query['placeholder'])
-        cursor = self.get_cursor()
-        for ttid in self.ttold:
-            for t in tables:
-                statement = 'clear%sTourneyType' % t
-                clear  = self.sql.query[statement].replace('%s', self.sql.query['placeholder'])
-                cursor.execute(clear, (ttid,))
-            self.commit()
-            cursor.execute(select, (ttid,))
-            result=cursor.fetchone()
-            if not result:
-                cursor.execute(delete, (ttid,))
-                self.commit()
-        for ttid in self.ttnew:
-            for t in tables:
-                statement = 'clear%sTourneyType' % t
-                clear  = self.sql.query[statement].replace('%s', self.sql.query['placeholder'])
-                cursor.execute(clear, (ttid,))
-            self.commit()
         if self.ttold:
+            if self.callHud and self.cacheSessions:
+                tables = ('HudCache','CardsCache', 'PositionsCache')
+            elif self.callHud:
+                tables = ('HudCache',)
+            elif self.cacheSessions:
+                tables = ('CardsCache', 'PositionsCache')
+            select = self.sql.query['selectTourneyWithTypeId'].replace('%s', self.sql.query['placeholder'])
+            delete = self.sql.query['deleteTourneyTypeId'].replace('%s', self.sql.query['placeholder'])
+            cursor = self.get_cursor()
+            for ttid in self.ttold:
+                for t in tables:
+                    statement = 'clear%sTourneyType' % t
+                    clear  = self.sql.query[statement].replace('%s', self.sql.query['placeholder'])
+                    cursor.execute(clear, (ttid,))
+                self.commit()
+                cursor.execute(select, (ttid,))
+                result=cursor.fetchone()
+                if not result:
+                    cursor.execute(delete, (ttid,))
+                    self.commit()
+            for ttid in self.ttnew:
+                for t in tables:
+                    statement = 'clear%sTourneyType' % t
+                    clear  = self.sql.query[statement].replace('%s', self.sql.query['placeholder'])
+                    cursor.execute(clear, (ttid,))
+                self.commit()
             for t in tables:
                 statement = 'fetchNew%sTourneyTypeIds' % t
                 fetch  = self.sql.query[statement].replace('%s', self.sql.query['placeholder'])
                 cursor.execute(fetch)
                 for id in cursor.fetchall():
                     self.rebuild_cache(None, None, t, id[0])
+                
                     
-    def cleanUpWeeksMonths(self, wmold, wmnew):
-        selectWeekId = self.sql.query['selectSessionWithWeekId'].replace('%s', self.sql.query['placeholder'])
-        selectMonthId = self.sql.query['selectSessionWithMonthId'].replace('%s', self.sql.query['placeholder'])
-        deleteWeekId = self.sql.query['deleteWeekId'].replace('%s', self.sql.query['placeholder'])
-        deleteMonthId = self.sql.query['deleteMonthId'].replace('%s', self.sql.query['placeholder'])
-        cursor = self.get_cursor()
-        weeks, months, wmids = set(), set(), set()
-        for (wid, mid) in wmold:
-            for t in ('CardsCache', 'PositionsCache'):
-                statement = 'clear%sWeeksMonths' % t
-                clear  = self.sql.query[statement].replace('%s', self.sql.query['placeholder'])
-                cursor.execute(clear, (wid, mid))
-            self.commit()
-            weeks.add(wid)
-            months.add(mid)
-        
-        for wid in weeks:
-            cursor.execute(selectWeekId, (wid,))
-            result=cursor.fetchone()
-            if not result:
-                cursor.execute(deleteWeekId, (wid,))
-                self.commit()
-                
-        for mid in months:
-            cursor.execute(selectMonthId, (mid,))
-            result=cursor.fetchone()
-            if not result:
-                cursor.execute(deleteMonthId, (mid,))
-                self.commit()
-                
-        for (wid, mid) in wmnew:
-            for t in ('CardsCache', 'PositionsCache'):
-                statement = 'clear%sWeeksMonths' % t
-                clear  = self.sql.query[statement].replace('%s', self.sql.query['placeholder'])
-                cursor.execute(clear, (wid, mid))
-            self.commit()
-                
-        if wmold:
-            for t in ('CardsCache', 'PositionsCache'):
-                statement = 'fetchNew%sWeeksMonths' % t
-                fetch  = self.sql.query[statement].replace('%s', self.sql.query['placeholder'])
-                cursor.execute(fetch)
-                for (wid, mid) in cursor.fetchall():
-                    wmids.add((wid, mid))         
-            for wmid in wmids:
+    def cleanUpWeeksMonths(self):
+        if self.cacheSessions and self.wmold:
+            selectWeekId = self.sql.query['selectSessionWithWeekId'].replace('%s', self.sql.query['placeholder'])
+            selectMonthId = self.sql.query['selectSessionWithMonthId'].replace('%s', self.sql.query['placeholder'])
+            deleteWeekId = self.sql.query['deleteWeekId'].replace('%s', self.sql.query['placeholder'])
+            deleteMonthId = self.sql.query['deleteMonthId'].replace('%s', self.sql.query['placeholder'])
+            cursor = self.get_cursor()
+            weeks, months, wmids = set(), set(), set()
+            for (wid, mid) in self.wmold:
                 for t in ('CardsCache', 'PositionsCache'):
-                    self.rebuild_cache(None, None, t, None, wmid)
-        self.commit()
+                    statement = 'clear%sWeeksMonths' % t
+                    clear  = self.sql.query[statement].replace('%s', self.sql.query['placeholder'])
+                    cursor.execute(clear, (wid, mid))
+                self.commit()
+                weeks.add(wid)
+                months.add(mid)
+            
+            for wid in weeks:
+                cursor.execute(selectWeekId, (wid,))
+                result=cursor.fetchone()
+                if not result:
+                    cursor.execute(deleteWeekId, (wid,))
+                    self.commit()
+                    
+            for mid in months:
+                cursor.execute(selectMonthId, (mid,))
+                result=cursor.fetchone()
+                if not result:
+                    cursor.execute(deleteMonthId, (mid,))
+                    self.commit()
+                    
+            for (wid, mid) in self.wmnew:
+                for t in ('CardsCache', 'PositionsCache'):
+                    statement = 'clear%sWeeksMonths' % t
+                    clear  = self.sql.query[statement].replace('%s', self.sql.query['placeholder'])
+                    cursor.execute(clear, (wid, mid))
+                self.commit()
+                    
+            if self.wmold:
+                for t in ('CardsCache', 'PositionsCache'):
+                    statement = 'fetchNew%sWeeksMonths' % t
+                    fetch  = self.sql.query[statement].replace('%s', self.sql.query['placeholder'])
+                    cursor.execute(fetch)
+                    for (wid, mid) in cursor.fetchall():
+                        wmids.add((wid, mid))         
+                for wmid in wmids:
+                    for t in ('CardsCache', 'PositionsCache'):
+                        self.rebuild_cache(None, None, t, None, wmid)
+            self.commit()
+            
+    def rebuild_caches(self):
+        if self.callHud and self.cacheSessions:
+            tables = ('HudCache','CardsCache', 'PositionsCache')
+        elif self.cacheSessions:
+            tables = ('CardsCache', 'PositionsCache')
+        else:
+            tables = ('HudCache',)
+        for t in tables:
+            self.rebuild_cache(None, None, t)
                 
-    def resetttclean(self):
+    def resetClean(self):
         self.ttold = set()
         self.ttnew = set()
+        self.wmold = set()
+        self.wmnew = set()
+        
+    def cleanRequired(self):
+        if self.ttold or self.wmold:
+            return True
+        return False
     
     def getSqlTourneyIDs(self, hand):
         if(self.tcache == None):
