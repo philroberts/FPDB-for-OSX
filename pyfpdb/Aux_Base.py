@@ -23,7 +23,8 @@ for clarity
 #    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
 ########################################################################
-
+import L10n
+_ = L10n.get_translation()
 #    to do
 
 #    Standard Library modules
@@ -37,6 +38,7 @@ import gobject
 
 #   FPDB
 import Card
+
 
 # This holds all card images in a nice lookup table. One instance is
 # populated on the first run of Aux_Window.get_card_images() and all
