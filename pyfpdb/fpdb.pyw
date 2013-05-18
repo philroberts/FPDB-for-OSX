@@ -86,7 +86,7 @@ try:
     VERSION = subprocess.Popen(["git", "describe", "--tags", "--dirty"], stdout=subprocess.PIPE).communicate()[0]
     VERSION = VERSION[:-1]
 except:
-    VERSION = "0.39.991"
+    VERSION = "0.39.992"
 
 
 class fpdb:
