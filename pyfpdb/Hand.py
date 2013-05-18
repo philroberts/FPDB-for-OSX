@@ -338,18 +338,20 @@ class Hand(object):
             db.storeTourCache(self.dbid_hands, self.dbid_pids, self.startTime, self.tourneyId, self.gametype, self.handsplayers, heroes, self.hero, doinsert)
             
     def updateCardsCache(self, db, tz, doinsert = False):
-        """ Function to update the HandsCache"""
-        heroes = []
-        if self.hero in self.dbid_pids: 
-            heroes = [self.dbid_pids[self.hero]]
-        db.storeCardsCache(self.dbid_hands, self.dbid_pids, self.startTime, self.dbid_gt, self.tourneyTypeId, self.gametype, self.siteId, self.handsplayers, self.handsstove, heroes, tz, doinsert)
+        """ Function to update the CardsCache"""
+        if self.cacheSessions:
+            heroes = []
+            if self.hero in self.dbid_pids: 
+                heroes = [self.dbid_pids[self.hero]]
+            db.storeCardsCache(self.dbid_hands, self.dbid_pids, self.startTime, self.dbid_gt, self.tourneyTypeId, self.gametype, self.siteId, self.handsplayers, self.handsstove, heroes, tz, doinsert)
                 
     def updatePositionsCache(self, db, tz, doinsert = False):
         """ Function to update the PositionsCache"""
-        heroes = []
-        if self.hero in self.dbid_pids: 
-            heroes = [self.dbid_pids[self.hero]]
-        db.storePositionsCache(self.dbid_hands, self.dbid_pids, self.startTime, self.dbid_gt, self.tourneyTypeId, self.gametype, self.siteId, self.handsplayers, heroes, tz, doinsert)
+        if self.cacheSessions:
+            heroes = []
+            if self.hero in self.dbid_pids: 
+                heroes = [self.dbid_pids[self.hero]]
+            db.storePositionsCache(self.dbid_hands, self.dbid_pids, self.startTime, self.dbid_gt, self.tourneyTypeId, self.gametype, self.siteId, self.handsplayers, heroes, tz, doinsert)
 
     def select(self, db, handId):
         """ Function to create Hand object from database """
@@ -406,7 +408,7 @@ class Hand(object):
                 #print "DEBUG: cardlist: %s" % cardlist
                 # FIXME?: shown/dealt/mucked correct for the next method calls?
                 self.addHoleCards('THIRD',   row['name'], open=[cardlist[2]], closed=cardlist[0:2], shown=False, dealt=True)
-                self.addHoleCards('FOURTH',  row['name'], open=[cardlist[3]], closed=[cardlist[0:3]], shown=False, mucked=False)
+                self.addHoleCards('FOURTH',  row['name'], open=[cardlist[3]], closed=cardlist[0:3], shown=False, mucked=False)
                 self.addHoleCards('FIFTH',   row['name'], open=[cardlist[4]], closed=cardlist[0:4], shown=False, mucked=False)
                 self.addHoleCards('SIXTH',   row['name'], open=[cardlist[5]], closed=cardlist[0:5], shown=False, mucked=False)
                 self.addHoleCards('SEVENTH', row['name'], open=[cardlist[6]], closed=cardlist[0:6], shown=False, mucked=False)
