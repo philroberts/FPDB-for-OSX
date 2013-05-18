@@ -1067,8 +1067,9 @@ class fpdb:
         #If the db-version is out of date, don't validate the config 
         # otherwise the end user gets bombarded with false messages
         # about every site not existing
-        if not self.db.wrongDbVersion:
-            self.validate_config()
+        if hasattr(self.db, 'wrongDbVersion'):
+            if not self.db.wrongDbVersion:
+                self.validate_config()
 
     def obtain_global_lock(self, source):
         ret = self.lock.acquire(source=source)  # will return false if lock is already held
