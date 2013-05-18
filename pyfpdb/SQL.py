@@ -3612,11 +3612,14 @@ class Sql:
         
         self.query['addCardsCacheCompundIndex'] = """CREATE UNIQUE INDEX CardsCache_Compound_idx ON CardsCache(weekId, monthId, gametypeId, tourneyTypeId, playerId, streetId, boardId, hiLo, startCards, rankId)"""
         self.query['addPositionsCacheCompundIndex'] = """CREATE UNIQUE INDEX PositionsCache_Compound_idx ON PositionsCache(weekId, monthId, gametypeId, tourneyTypeId, playerId, activeSeats, position)"""
-        
+
+        # (left(file, 255)) is not valid syntax on postgres psycopg2 on windows (postgres v8.4)
+        # error thrown is HINT:  "No function matches the given name and argument types. You might need to add explicit type casts."
+        # so we will just create the index with the full filename.
         if db_server == 'mysql':
             self.query['addFilesIndex'] = """CREATE UNIQUE INDEX index_file ON Files (file(255))"""
         elif db_server == 'postgresql':
-            self.query['addFilesIndex'] = """CREATE UNIQUE INDEX index_file ON Files (left(file, 255))"""
+            self.query['addFilesIndex'] = """CREATE UNIQUE INDEX index_file ON Files (file)"""
         elif db_server == 'sqlite':
             self.query['addFilesIndex'] = """CREATE UNIQUE INDEX index_file ON Files (file)"""
             
