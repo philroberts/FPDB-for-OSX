@@ -1136,9 +1136,9 @@ class Database:
         else:
             h_seats_min, h_seats_max = 0, 10
             print "bad h_seats_style value:", h_seats_style
-        #log.info("opp seats style %s %d %d hero seats style %s %d %d"
-        #         % (seats_style, seats_min, seats_max
-        #           ,h_seats_style, h_seats_min, h_seats_max) )
+        log.info("opp seats style %s %d %d hero seats style %s %d %d"
+                 % (seats_style, seats_min, seats_max
+                   ,h_seats_style, h_seats_min, h_seats_max) )
 
         if hud_style == 'S' or h_hud_style == 'S':
             self.get_stats_from_hand_session(hand, stat_dict, hero_id
