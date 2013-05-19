@@ -214,7 +214,7 @@ class fpdb:
         dia = gtk.AboutDialog()
         dia.set_name("Free Poker Database (FPDB)")
         dia.set_version(VERSION)
-        dia.set_copyright(_("Copyright 2008-2011. See contributors.txt for details"))
+        dia.set_copyright(_("Copyright 2008-2013. See contributors.txt for details"))
         dia.set_comments(_("You are free to change, and distribute original or changed versions of fpdb within the rules set out by the license"))
         dia.set_license(_("Please see the help screen for license information"))
         dia.set_website("http://fpdb.sourceforge.net/")
@@ -523,6 +523,9 @@ class fpdb:
             elif response == gtk.RESPONSE_NO:
                 self.release_global_lock()
                 print _('User cancelled recreating tables')
+        else:
+                self.warning_box(_("Cannot open Database Maintenance window because other windows have been opened. Re-start fpdb to use this option."))
+
     #end def dia_recreate_tables
 
     def dia_recreate_hudcache(self, widget, data=None):
@@ -574,8 +577,10 @@ class fpdb:
                 print _('User cancelled rebuilding hud cache')
 
             self.dia_confirm.destroy()
+            self.release_global_lock()
+        else:
+            self.warning_box(_("Cannot open Database Maintenance window because other windows have been opened. Re-start fpdb to use this option."))
 
-        self.release_global_lock()
 
     def dia_rebuild_indexes(self, widget, data=None):
         if self.obtain_global_lock("dia_rebuild_indexes"):
@@ -586,15 +591,16 @@ class fpdb:
                                                  message_format=_("Confirm rebuilding database indexes"))
             diastring = _("Please confirm that you want to rebuild the database indexes.")
             self.dia_confirm.format_secondary_text(diastring)
+            lbl = gtk.Label()
+            self.dia_confirm.vbox.add(lbl)
+            lbl.show()
             # disable windowclose, do not want the the underlying processing interrupted mid-process
             self.dia_confirm.set_deletable(False)
 
             response = self.dia_confirm.run()
             if response == gtk.RESPONSE_YES:
-                #FIXME these progress messages do not seem to work in *nix
-                lbl = gtk.Label(_(" Rebuilding Indexes ... "))
-                self.dia_confirm.vbox.add(lbl)
-                lbl.show()
+                
+                lbl.set_text(_(" Rebuilding Indexes ... "))
                 while gtk.events_pending():
                     gtk.main_iteration_do(False)
                 self.db.rebuild_indexes()
@@ -612,8 +618,9 @@ class fpdb:
                 print _('User cancelled rebuilding db indexes')
 
             self.dia_confirm.destroy()
-
-        self.release_global_lock()
+            self.release_global_lock()
+        else:
+            self.warning_box(_("Cannot open Database Maintenance window because other windows have been opened. Re-start fpdb to use this option."))
 
     def dia_logs(self, widget, data=None):
         """opens the log viewer window"""
