@@ -884,10 +884,10 @@ class fpdb:
                   <menuitem action="tourneyviewer"/>
                 </menu>
                 <menu action="maintenance">
+                  <menuitem action="databasestats"/>
                   <menuitem action="createtabs"/>
                   <menuitem action="rebuildhudcache"/>
                   <menuitem action="rebuildindexes"/>
-                  <menuitem action="databasestats"/>
                   <menuitem action="dumptofile"/>
                 </menu>
                 <menu action="help">
