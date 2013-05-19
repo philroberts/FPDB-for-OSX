@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-#Copyright 2008-2011 Steffen Schaumburg
+#Copyright 2008-2013 Steffen Schaumburg
 #This program is free software: you can redistribute it and/or modify
 #it under the terms of the GNU Affero General Public License as published by
 #the Free Software Foundation, version 3 of the License.
@@ -214,7 +214,7 @@ class fpdb:
         dia = gtk.AboutDialog()
         dia.set_name("Free Poker Database (FPDB)")
         dia.set_version(VERSION)
-        dia.set_copyright(_("Copyright 2008-2013. See contributors.txt for details"))
+        dia.set_copyright("Copyright 2008-2013. See contributors.txt for details")   #do not translate copyright message
         dia.set_comments(_("You are free to change, and distribute original or changed versions of fpdb within the rules set out by the license"))
         dia.set_license(_("Please see the help screen for license information"))
         dia.set_website("http://fpdb.sourceforge.net/")
@@ -884,7 +884,6 @@ class fpdb:
                   <menuitem action="tourneyviewer"/>
                 </menu>
                 <menu action="maintenance">
-                  <menuitem action="maintaindbs"/>
                   <menuitem action="createtabs"/>
                   <menuitem action="rebuildhudcache"/>
                   <menuitem action="rebuildindexes"/>
