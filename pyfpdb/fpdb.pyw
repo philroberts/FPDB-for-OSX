@@ -515,16 +515,12 @@ class fpdb:
             dia_confirm.destroy()
             if response == gtk.RESPONSE_YES:
                 self.db.recreate_tables()
-                # find any guibulkimport/guiautoimport windows and clear player cache:
-                for t in self.threads:
-                    if isinstance(t, GuiBulkImport.GuiBulkImport) or isinstance(t, GuiAutoImport.GuiAutoImport):
-                        t.importer.database.resetPlayerIDs()
                 self.release_global_lock()
             elif response == gtk.RESPONSE_NO:
                 self.release_global_lock()
                 print _('User cancelled recreating tables')
         else:
-                self.warning_box(_("Cannot open Database Maintenance window because other windows have been opened. Re-start fpdb to use this option."))
+            self.warning_box(_("Cannot open Database Maintenance window because other windows have been opened. Re-start fpdb to use this option."))
 
     #end def dia_recreate_tables
 
@@ -654,8 +650,9 @@ class fpdb:
                 gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
                 (gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT, gtk.STOCK_SAVE, gtk.RESPONSE_ACCEPT))
         dia.set_deletable(False)
+        dia.resize(750,550)
         label = gtk.Label(_("Please select which sites you play on and enter your usernames."))
-        dia.vbox.add(label)
+        dia.vbox.pack_start(label, expand=False, padding=5)
         
         self.load_profile()
         site_names = self.config.site_ids
@@ -667,14 +664,17 @@ class fpdb:
             except KeyError:
                 pass
         
-        label = gtk.Label(" ")
-        dia.vbox.add(label)
-        
         column_headers=[_("Site"), _("Detect"), _("Screen Name"), _("Hand History Path"), _(""), _("Tournament Summary Path"), _("")]  # todo _("HUD")
         #HUD column will contain a button that shows favseat and HUD locations. Make it possible to load screenshot to arrange HUD windowlets.
+
         table = gtk.Table(rows=len(available_site_names)+1, columns=len(column_headers), homogeneous=False)
-        dia.vbox.add(table)
-        
+
+        scrolling_frame = gtk.ScrolledWindow(hadjustment=None, vadjustment=None)
+        scrolling_frame.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        scrolling_frame.show()
+        scrolling_frame.add_with_viewport(table)
+        dia.vbox.pack_end(scrolling_frame, expand=True, padding=0)
+                
         for header_number in range (0, len(column_headers)):
             label = gtk.Label(column_headers[header_number])
             table.attach(label, header_number, header_number+1, 0, 1)
