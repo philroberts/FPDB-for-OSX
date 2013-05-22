@@ -2,7 +2,7 @@
 
 rem  .bat script to run fpdb
 
-rem    Copyright 2007-2012, Gerko de Roo
+rem    Copyright 2007-2013, Gerko de Roo
 
 rem   This program is free software: you can redistribute it and/or modify
 rem   it under the terms of the GNU Affero General Public License as published by
@@ -16,6 +16,56 @@ rem
 rem   You should have received a copy of the GNU Affero General Public License
 rem   along with this program. If not, see <http://www.gnu.org/licenses/>.
 rem   In the "official" distribution you can find the license in agpl-3.0.txt.
+
+rem   force UAC elevation - apparently the pixbuf regeneration isn't working
+rem   for some unknown reason.  Let's get admin rights now.
+rem
+rem   getting admin for bat files is non-trivial.
+rem   Matt at stackoverflow has published this, thanks Matt
+rem   http://stackoverflow.com/questions/7044985/how-can-i-auto-elevate-my-batch-file-so-that-it-requests-from-uac-admin-rights
+rem
+
+:::::::::::::::::::::::::::::::::::::::::
+:: Automatically check & get admin rights
+:::::::::::::::::::::::::::::::::::::::::
+@echo off
+CLS 
+ECHO.
+ECHO =============================
+ECHO Running Admin shell
+ECHO =============================
+
+:checkPrivileges 
+NET FILE 1>NUL 2>NUL
+if '%errorlevel%' == '0' ( goto gotPrivileges ) else ( goto getPrivileges ) 
+
+:getPrivileges 
+if '%1'=='ELEV' (shift & goto gotPrivileges)  
+ECHO. 
+ECHO **************************************
+ECHO Invoking UAC for Privilege Escalation 
+ECHO **************************************
+
+setlocal DisableDelayedExpansion
+set "batchPath=%~0"
+setlocal EnableDelayedExpansion
+ECHO Set UAC = CreateObject^("Shell.Application"^) > "%temp%\OEgetPrivileges.vbs" 
+ECHO UAC.ShellExecute "!batchPath!", "ELEV", "", "runas", 1 >> "%temp%\OEgetPrivileges.vbs" 
+"%temp%\OEgetPrivileges.vbs" 
+exit /B 
+
+:gotPrivileges 
+::::::::::::::::::::::::::::
+:START
+::::::::::::::::::::::::::::
+setlocal & pushd .
+
+rem   ******************************************************************
+rem   ** fpdb stuff begins now
+rem   ******************************************************************
+
+rem after UAC escalation, we need to cd to the folder containing this script
+cd %~dp0
 
 cd pyfpdb
 
