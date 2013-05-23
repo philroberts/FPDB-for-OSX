@@ -311,7 +311,8 @@ class Hand(object):
     
     def insertHandsActions(self, db, doinsert = False, printtest = False):
         """ Function to inserts HandsActions into database"""
-        db.storeHandsActions(self.dbid_hands, self.dbid_pids, self.handsactions, doinsert, printtest)
+        if self.saveActions:
+            db.storeHandsActions(self.dbid_hands, self.dbid_pids, self.handsactions, doinsert, printtest)
     
     def insertHandsStove(self, db, doinsert = False):
         """ Function to inserts HandsStove into database"""
