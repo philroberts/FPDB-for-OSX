@@ -105,7 +105,7 @@ class Fulltilt(HandHistoryConverter):
                                          (\s(?P<SHOOTOUT>Shootout))?
                                          (\s(?P<SNG>Sit\s&\sGo))?
                                          (\s(?P<GUARANTEE>Guarantee))?
-                                         (\s\((?P<TURBO>Turbo)\))?))
+                                         (\s\((?P<TURBO>(Sup(er)?\s)?Turbo)\))?))
                                     ''' % substitutions, re.MULTILINE|re.VERBOSE)
     re_Button       = re.compile('^The button is in seat #(?P<BUTTON>\d+)', re.MULTILINE)
     re_PlayerInfo   = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.{2,15}) \([%(LS)s]?(?P<CASH>[%(NUM)s]+)\)(?P<SITOUT>, is sitting out)?$' % substitutions, re.MULTILINE)
@@ -317,7 +317,7 @@ class Fulltilt(HandHistoryConverter):
             if hand.gametype['base'] == 'stud':
                 hand.maxseats = 8
             elif hand.gametype['base'] == 'draw':
-                hand.maxseats = 8
+                hand.maxseats = 6
             else:
                 hand.maxseats = 9
         #print hand.maxseats
@@ -352,7 +352,10 @@ class Fulltilt(HandHistoryConverter):
                 hand.buyinCurrency="NA"  
                  
             if n.group('TURBO') is not None :
-                hand.speed = "Turbo"
+                if n.group('TURBO')=='Turbo':
+                    hand.speed = "Turbo"
+                elif 'Sup' in n.group('TURBO'):
+                    hand.speed = "Sup Turbo"
             if n.group('SPECIAL') is not None :
                 special = n.group('SPECIAL')
                 if special == "Rebuy":

@@ -3408,7 +3408,7 @@ class Database:
             ttid = resultDict["id"]
             for ev in expectedValues:
                 val = getattr(obj, ev[0])
-                if (not val or val=='NA') and resultDict[ev[1]]:#DB has this value but object doesnt, so update object
+                if (not val or val=='NA' or (ev[0]=='maxseats'and val>resultDict[ev[1]])) and resultDict[ev[1]]:#DB has this value but object doesnt, so update object
                     setattr(obj, ev[0], resultDict[ev[1]])
                 elif val and (resultDict[ev[1]] != val):#object has this value but DB doesnt, so update DB
                     updateDb=True

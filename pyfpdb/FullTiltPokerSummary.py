@@ -79,7 +79,7 @@ class FullTiltPokerSummary(TourneySummary):
                         \((?P<TOURNO>[0-9]+)\)
                         (\s+)?(\sMatch\s\d\s)?
                         (?P<GAME>Hold\'em|Irish|Courchevel\sHi|Razz|RAZZ|5(-|\s)Card\sStud(\sHi)?|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Stud\sH/L|Stud\sHi|Omaha|(5\sCard\s)?Omaha\sHi|Omaha\sHi/Lo|Omaha\sH/L|2\-7\sSingle\sDraw|Badugi|Triple\sDraw\s2\-7\sLowball|2\-7\sTriple\sDraw|5\sCard\sDraw|\d+\-Game\sMixed|HORSE|HA|HEROS|HO|HOE|HORSE|HOSE|OA|OE|SE)\s+
-                        ((?P<LIMIT>No\sLimit|Limit|LIMIT|Pot\sLimit)\s+)?(\(.+?\)\s+)?
+                        ((?P<LIMIT>No\sLimit|Limit|LIMIT|Pot\sLimit)\s+)?(\((?P<TURBO>(Sup(er)?\s)?Turbo)(,\s(((?P<MAX>\d+)\sHanded)|(?P<HU>Heads\sUp)))\)\s+)?
                         (Buy-In:\s[%(LS)s]?(?P<BUYIN>[%(NUM)s]+)(\sFTP|\sT\$|\sPlay\sChips)?(\s\+\s[%(LS)s]?(?P<FEE>[%(NUM)s]+)(\sFTP|\sT\$|\sPlay\sChips)?)?\s+)?
                         (Knockout\sBounty:\s[%(LS)s](?P<KOBOUNTY>[%(NUM)s]+)\s+)?
                         ((?P<PNAMEBOUNTIES>.{2,15})\sreceived\s(?P<PBOUNTIES>\d+)\sKnockout\sBounty\sAwards?\s+)?
@@ -135,6 +135,15 @@ class FullTiltPokerSummary(TourneySummary):
             self.buyin = int(100*Decimal(self.clearMoneyString(mg['BUYIN'])))
         if mg['FEE'] != None:
             self.fee   = int(100*Decimal(self.clearMoneyString(mg['FEE'])))
+        if mg['MAX'] != None:
+            self.maxseats = int(mg['MAX'])
+        if mg['HU'] != None:
+            self.maxseats = 2
+        if mg['TURBO'] != None:
+            if mg['TURBO']=='Turbo':
+                self.speed = "Turbo"
+            elif 'Sup' in mg['TURBO']:
+                self.speed = "Sup Turbo"
         if 'PRIZEPOOL' in mg:
             if mg['PRIZEPOOL'] != None: self.prizepool = int(Decimal(self.clearMoneyString(mg['PRIZEPOOL'])))
         if 'ENTRIES'   in mg:
