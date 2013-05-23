@@ -1185,14 +1185,19 @@ class Database:
                ,hero_id, stylekey, agg_bb_mult, agg_bb_mult, gametypeId, seats_min, seats_max  # hero params
                ,hero_id, h_stylekey, h_agg_bb_mult, h_agg_bb_mult, gametypeId, h_seats_min, h_seats_max)    # villain params
 
-        #print "get stats: hud style =", hud_style, "query =", query, "subs =", subs
+        log.info("""get stats: hud style = %s query = %s, hand = %s, 
+                 ,hero_id = %s, stylekey = %s, agg_bb_mult = %s, agg_bb_mult = %s, gametypeId = %s, seats_min = %s, seats_max  = %s
+                 ,hero_id = %s, h_stylekey = %s, h_agg_bb_mult = %s, h_agg_bb_mult = %s, gametypeId = %s, h_seats_min = %s, h_seats_max = %s""" % 
+                 ( hud_style, query, hand
+               ,hero_id, stylekey, agg_bb_mult, agg_bb_mult, gametypeId, seats_min, seats_max 
+               ,hero_id, h_stylekey, h_agg_bb_mult, h_agg_bb_mult, gametypeId, h_seats_min, h_seats_max))
         stime = time()
         c = self.connection.cursor()
 
         # Now get the stats
         c.execute(self.sql.query[query], subs)
         ptime = time() - stime
-        #log.info("HudCache query get_stats_from_hand_aggregated took %.3f seconds" % ptime)
+        log.info("HudCache query get_stats_from_hand_aggregated took %.3f seconds" % ptime)
         colnames = [desc[0] for desc in c.description]
         for row in c.fetchall():
             playerid = row[0]
