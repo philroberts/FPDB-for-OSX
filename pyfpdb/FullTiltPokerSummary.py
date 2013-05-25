@@ -76,10 +76,11 @@ class FullTiltPokerSummary(TourneySummary):
     re_Identify = re.compile(u'Full\sTilt\sPoker\.fr\sTournament|Full\sTilt\sPoker\sTournament\sSummary')
     re_TourNo = re.compile("\#(?P<TOURNO>[0-9]+),")
     re_TourneyInfo = re.compile(u"""
+                        (?P<SNG>Sit\s&\sGo\s+)?(\(.+\)\s+)?
                         \((?P<TOURNO>[0-9]+)\)
                         (\s+)?(\sMatch\s\d\s)?
                         (?P<GAME>Hold\'em|Irish|Courchevel\sHi|Razz|RAZZ|5(-|\s)Card\sStud(\sHi)?|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Stud\sH/L|Stud\sHi|Omaha|(5\sCard\s)?Omaha\sHi|Omaha\sHi/Lo|Omaha\sH/L|2\-7\sSingle\sDraw|Badugi|Triple\sDraw\s2\-7\sLowball|2\-7\sTriple\sDraw|5\sCard\sDraw|\d+\-Game\sMixed|HORSE|HA|HEROS|HO|HOE|HORSE|HOSE|OA|OE|SE)\s+
-                        ((?P<LIMIT>No\sLimit|Limit|LIMIT|Pot\sLimit)\s+)?(\((?P<TURBO>(Sup(er)?\s)?Turbo)(,\s(((?P<MAX>\d+)\sHanded)|(?P<HU>Heads\sUp)))\)\s+)?
+                        ((?P<LIMIT>No\sLimit|Limit|LIMIT|Pot\sLimit)\s+)?(\((?P<TABLEATTRIBUTES>.+)\)\s+)?
                         (Buy-In:\s[%(LS)s]?(?P<BUYIN>[%(NUM)s]+)(\sFTP|\sT\$|\sPlay\sChips)?(\s\+\s[%(LS)s]?(?P<FEE>[%(NUM)s]+)(\sFTP|\sT\$|\sPlay\sChips)?)?\s+)?
                         (Knockout\sBounty:\s[%(LS)s](?P<KOBOUNTY>[%(NUM)s]+)\s+)?
                         ((?P<PNAMEBOUNTIES>.{2,15})\sreceived\s(?P<PBOUNTIES>\d+)\sKnockout\sBounty\sAwards?\s+)?
@@ -100,7 +101,8 @@ class FullTiltPokerSummary(TourneySummary):
                                """ % substitutions ,re.VERBOSE|re.MULTILINE|re.DOTALL)
 
     re_Currency = re.compile(u"""(?P<CURRENCY>[%(LS)s]|FPP|FTP|T\$|Play\sChips)""" % substitutions)
-
+    re_Max      = re.compile("((?P<MAX>\d+)\sHanded)|(?P<HU>Heads\sUp)", re.MULTILINE)
+    re_Speed    = re.compile("(?P<SPEED>(Turbo|Super\sTurbo|Escalator))", re.MULTILINE)
     re_Player = re.compile(u"""(?P<RANK>[\d]+):\s(?P<NAME>[^,\r\n]{2,15})(,\s(?P<CURRENCY>[%(LS)s])?(?P<WINNINGS>[.\d]+)(\s(?P<CURRENCY1>FTP|T\$|Play\sChips))?)?(,\s(?P<TICKET>Step\s(?P<LEVEL>\d)\sTicket))?""" % substitutions)
     re_Finished = re.compile(u"""(?P<NAME>[^,\r\n]{2,15}) finished in (?P<RANK>[\d]+)\S\S place""")
 
@@ -134,16 +136,9 @@ class FullTiltPokerSummary(TourneySummary):
         if mg['BUYIN'] != None:
             self.buyin = int(100*Decimal(self.clearMoneyString(mg['BUYIN'])))
         if mg['FEE'] != None:
-            self.fee   = int(100*Decimal(self.clearMoneyString(mg['FEE'])))
-        if mg['MAX'] != None:
-            self.maxseats = int(mg['MAX'])
-        if mg['HU'] != None:
-            self.maxseats = 2
-        if mg['TURBO'] != None:
-            if mg['TURBO']=='Turbo':
-                self.speed = "Turbo"
-            elif 'Sup' in mg['TURBO']:
-                self.speed = "Sup Turbo"
+            self.fee   = int(100*Decimal(self.clearMoneyString(mg['FEE'])))                
+        if mg['SNG'] != None:
+            self.isSng = True
         if 'PRIZEPOOL' in mg:
             if mg['PRIZEPOOL'] != None: self.prizepool = int(Decimal(self.clearMoneyString(mg['PRIZEPOOL'])))
         if 'ENTRIES'   in mg:
@@ -163,6 +158,21 @@ class FullTiltPokerSummary(TourneySummary):
             addOnCounts[mg['P1NAME']] = int(mg['PADDONS'])
         if 'PBOUNTIES' in mg and mg['PBOUNTIES'] != None:
             koCounts[mg['PNAMEBOUNTIES']] = int(mg['PBOUNTIES'])
+            
+        if mg['TABLEATTRIBUTES'] != None:
+            # search for keywords "max" and "heads up"
+            max_found = self.re_Max.search(mg['TABLEATTRIBUTES'])
+            if max_found:
+                if max_found.group('MAX') != None:
+                    self.maxseats = int(max_found.group('MAX'))
+                elif max_found.group('HU') != None:
+                    self.maxseats = 2
+            speed_found = self.re_Speed.search(mg['TABLEATTRIBUTES'])
+            if speed_found:
+                if speed_found.group('SPEED')=='Super Turbo':
+                    self.speed = 'Hyper'
+                else:
+                    self.speed = speed_found.group('SPEED')            
         
         datetimestr = ""
         if mg['YEAR'] == None:
