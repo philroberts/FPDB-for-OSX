@@ -1,0 +1,28 @@
+Full Tilt Poker Game #32709588390: Table SDF (6 max) - CAP NL Hold'em - $0.01/$0.02 - 18:38:07 UTC - 2013/05/24 [14:38:07 ET - 2013/05/24]
+Seat 1: Hero ($0.60)
+Seat 2: Player0 ($0.70)
+Seat 3: Player1 ($0), is sitting out
+Seat 4: Player2 ($1.75)
+Player2 posts the small blind of $0.01
+Hero posts the big blind of $0.02
+The button is in seat #4
+*** HOLE CARDS ***
+Dealt to Hero [Tc 2d]
+Player1 adds $1.20
+Player1 has returned
+Player2 calls $0.01
+Hero checks
+*** FLOP *** [Td Qc Js] (Total Pot: $0.04, 2 Players)
+Hero checks
+Player2 bets $0.04
+Hero folds
+Uncalled bet of $0.04 returned to Player2
+Player2 mucks
+Player2 wins the pot ($0.04)
+*** SUMMARY ***
+Total pot $0.04 | Rake $0
+Board: [Td Qc Js]
+Seat 1: Hero (big blind) folded on the Flop
+Seat 2: Player0 is sitting out
+Seat 3: Player1 is sitting out
+Seat 4: Player2 (small blind) collected ($0.04), mucked
