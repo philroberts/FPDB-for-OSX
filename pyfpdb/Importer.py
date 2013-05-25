@@ -228,7 +228,9 @@ class Importer:
             #print "addImportDirectory: checking files in", dir
             for file in os.listdir(dir):
                 filename = os.path.join(dir, file)
-                if (time() - os.stat(filename).st_mtime)<= 300:
+                if (time() - os.stat(filename).st_mtime)<= 43200: # look all files modded in the last 12 hours
+                                                                    # need long time because FTP in Win does not
+                                                                    # update the timestamp on the HH during session
                     self.addImportFile(filename, "auto")
         else:
             log.warning(_("Attempted to add non-directory '%s' as an import directory") % str(dir))
@@ -358,9 +360,11 @@ class Importer:
     def runUpdated(self):
         """Check for new files in monitored directories"""
         for site in self.dirlist:
+            print "site ", site
             self.addImportDirectory(self.dirlist[site][0], False, site, self.dirlist[site][1])
 
         for f in self.filelist:
+            print "f ", f
             if os.path.exists(f):
                 stat_info = os.stat(f)
                 if f in self.updatedsize: # we should be able to assume that if we're in size, we're in time as well
