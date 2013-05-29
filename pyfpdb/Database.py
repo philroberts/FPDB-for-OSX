@@ -1138,9 +1138,6 @@ class Database:
         else:
             h_seats_min, h_seats_max = 0, 10
             print "bad h_seats_style value:", h_seats_style
-        log.info("opp seats style %s %d %d hero seats style %s %d %d"
-                 % (seats_style, seats_min, seats_max
-                   ,h_seats_style, h_seats_min, h_seats_max) )
 
         if hud_style == 'S' or h_hud_style == 'S':
             self.get_stats_from_hand_session(hand, stat_dict, hero_id
@@ -1185,12 +1182,6 @@ class Database:
                ,hero_id, stylekey, agg_bb_mult, agg_bb_mult, gametypeId, seats_min, seats_max  # hero params
                ,hero_id, h_stylekey, h_agg_bb_mult, h_agg_bb_mult, gametypeId, h_seats_min, h_seats_max)    # villain params
 
-        log.info("""get stats: hud style = %s query = %s, hand = %s, 
-                 ,hero_id = %s, stylekey = %s, agg_bb_mult = %s, agg_bb_mult = %s, gametypeId = %s, seats_min = %s, seats_max  = %s
-                 ,hero_id = %s, h_stylekey = %s, h_agg_bb_mult = %s, h_agg_bb_mult = %s, gametypeId = %s, h_seats_min = %s, h_seats_max = %s""" % 
-                 ( hud_style, query, hand
-               ,hero_id, stylekey, agg_bb_mult, agg_bb_mult, gametypeId, seats_min, seats_max 
-               ,hero_id, h_stylekey, h_agg_bb_mult, h_agg_bb_mult, gametypeId, h_seats_min, h_seats_max))
         stime = time()
         c = self.connection.cursor()
 
@@ -2051,7 +2042,7 @@ class Database:
                                                      # make sure at least two values in list
                                                      # so that tuple generation creates doesn't use
                                                      # () or (1,) style
-        if h_start is None and v_start is None:
+        if not h_start and not v_start:
             self.hero_ids = None
         else:
             for site in self.config.get_supported_sites():
@@ -2063,9 +2054,9 @@ class Database:
                     if p_id:
                         self.hero_ids[site_id] = int(p_id)
                         
-            if h_start is None:
+            if not h_start:
                 h_start = self.hero_hudstart_def
-            if v_start is None:
+            if not v_start:
                 v_start = self.villain_hudstart_def
                 
         if not ttid and not wmid:
@@ -2087,7 +2078,8 @@ class Database:
             rebuild_sql_cash = self.sql.query['rebuildCache'].replace('%s', self.sql.query['placeholder'])
             rebuild_sql_cash = rebuild_sql_cash.replace('<tourney_join_clause>', "")
             rebuild_sql_cash = rebuild_sql_cash.replace('<where_clause>', where)
-            rebuild_sql_cash = self.replace_statscache('ring', table, rebuild_sql_cash)     
+            rebuild_sql_cash = self.replace_statscache('ring', table, rebuild_sql_cash)
+            #print rebuild_sql_cash 
             self.get_cursor().execute(rebuild_sql_cash)
             self.commit()
             #print _("Rebuild cache(cash) took %.1f seconds") % (time() - stime,)
@@ -2110,6 +2102,7 @@ class Database:
             INNER JOIN Tourneys t ON (t.id = tp.tourneyId)""")
         rebuild_sql_tourney = rebuild_sql_tourney.replace('<where_clause>', where)
         rebuild_sql_tourney = self.replace_statscache('tour', table, rebuild_sql_tourney)
+        #print rebuild_sql_tourney
         self.get_cursor().execute(rebuild_sql_tourney)
         self.commit()
         #print _("Rebuild hudcache took %.1f seconds") % (time() - stime,)
