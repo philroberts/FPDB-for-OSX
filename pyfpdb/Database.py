@@ -2106,8 +2106,7 @@ class Database:
                     + "       and h.startTime > '" + h_start + "'))" \
                     + "   AND hp.tourneysPlayersId >= 0)"
         rebuild_sql_tourney = self.sql.query['rebuildCache'].replace('%s', self.sql.query['placeholder'])
-        rebuild_sql_tourney = rebuild_sql_tourney.replace('<tourney_join_clause>', """INNER JOIN TourneysPlayers tp ON (tp.id = hp.tourneysPlayersId)
-            INNER JOIN Tourneys t ON (t.id = tp.tourneyId)""")
+        rebuild_sql_tourney = rebuild_sql_tourney.replace('<tourney_join_clause>', """INNER JOIN Tourneys t ON (t.id = h.tourneyId)""")
         rebuild_sql_tourney = rebuild_sql_tourney.replace('<where_clause>', where)
         rebuild_sql_tourney = self.replace_statscache('tour', table, rebuild_sql_tourney)
         self.get_cursor().execute(rebuild_sql_tourney)
