@@ -86,7 +86,7 @@ try:
     VERSION = subprocess.Popen(["git", "describe", "--tags", "--dirty"], stdout=subprocess.PIPE).communicate()[0]
     VERSION = VERSION[:-1]
 except:
-    VERSION = "0.39.992"
+    VERSION = "0.39.993"
 
 
 class fpdb:
@@ -515,6 +515,10 @@ class fpdb:
             dia_confirm.destroy()
             if response == gtk.RESPONSE_YES:
                 self.db.recreate_tables()
+                # find any guibulkimport/guiautoimport windows and clear cache:
+                for t in self.threads:
+                    if isinstance(t, GuiBulkImport.GuiBulkImport) or isinstance(t, GuiAutoImport.GuiAutoImport):
+                        t.importer.database.resetCache()
                 self.release_global_lock()
             elif response == gtk.RESPONSE_NO:
                 self.release_global_lock()
