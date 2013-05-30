@@ -360,11 +360,9 @@ class Importer:
     def runUpdated(self):
         """Check for new files in monitored directories"""
         for site in self.dirlist:
-            print "site ", site
             self.addImportDirectory(self.dirlist[site][0], False, site, self.dirlist[site][1])
 
         for f in self.filelist:
-            print "f ", f
             if os.path.exists(f):
                 stat_info = os.stat(f)
                 if f in self.updatedsize: # we should be able to assume that if we're in size, we're in time as well
