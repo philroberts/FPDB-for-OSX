@@ -132,12 +132,12 @@ class Fulltilt(HandHistoryConverter):
                                     (?P<PARTIAL>\(partial\))?\s
                                  ''' % substitutions, re.MULTILINE|re.VERBOSE)
     re_Cancelled = re.compile("Hand\s\#[0-9]+\shas\sbeen\scanceled?")
-    re_TourneyExtraInfo  = re.compile('''(((?P<CURRENCY>[%(LS)s])?(?P<BUYIN>[%(NUM)s]+)?(\s*\+\s*[%(LS)s]?(?P<FEE>[%(NUM)s]+))?
+    re_TourneyExtraInfo  = re.compile('''((?P<CURRENCY>[%(LS)s])?(?P<BUYIN>[%(NUM)s]+)?(\s*\+\s*[%(LS)s]?(?P<FEE>[%(NUM)s]+))?
                                          (\s(?P<SPECIAL>(Play\sMoney|Freeroll|KO|Heads\sUp|Heads\-Up|Head\'s\sUp|Matrix\s\dx|Rebuy|Madness)))?
                                          (\s(?P<SHOOTOUT>Shootout))?
                                          (\s(?P<SNG>Sit\s&\sGo))?
-                                         (\s(?P<GUARANTEE>Guarantee))?
-                                         (\s\((?P<TURBO>(Turbo|Super\sTurbo|Escalator))\))?))
+                                         (\s(?P<GUARANTEE>[%(LS)s]?(?P<GUARANTEEAMT>[%(NUM)s]+)\s+)?Guarantee)?
+                                         (\s\((?P<TURBO>(Turbo|Super\sTurbo|Escalator))\))?)
                                     ''' % substitutions, re.MULTILINE|re.VERBOSE)
     re_Button       = re.compile('^The button is in seat #(?P<BUTTON>\d+)', re.MULTILINE)
     re_PlayerInfo   = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.{2,15}) \([%(LS)s]?(?P<CASH>[%(NUM)s]+)\)(?P<SITOUT>, is sitting out)?$' % substitutions, re.MULTILINE)

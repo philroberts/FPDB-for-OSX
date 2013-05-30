@@ -70,13 +70,13 @@ class FullTiltPokerSummary(TourneySummary):
                      'LEGAL_ISO' : "USD|EUR|GBP|CAD|FPP|FTP",      # legal ISO currency codes
                             'LS' : u"\$|\xe2\x82\xac|\u20ac|", # legal currency symbols - Euro(cp1252, utf-8)
                            'TAB' : u"-\u2013'\s\da-zA-Z#_\.",      # legal characters for tablename
-                           'NUM' : u".,\d",                    # legal characters in number format
+                           'NUM' : u".,\dKM",                    # legal characters in number format
                     }
 
     re_Identify = re.compile(u'Full\sTilt\sPoker\.fr\sTournament|Full\sTilt\sPoker\sTournament\sSummary')
     re_TourNo = re.compile("\#(?P<TOURNO>[0-9]+),")
     re_TourneyInfo = re.compile(u"""
-                        (?P<SNG>Sit\s&\sGo\s+)?(\(.+\)\s+)?
+                        (?P<TOURNAMENT>.+)?(\(.+\)\s+)?
                         \((?P<TOURNO>[0-9]+)\)
                         (\s+)?(\sMatch\s\d\s)?
                         (?P<GAME>Hold\'em|Irish|Courchevel\sHi|Razz|RAZZ|5(-|\s)Card\sStud(\sHi)?|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Stud\sH/L|Stud\sHi|Omaha|(5\sCard\s)?Omaha\sHi|Omaha\sHi/Lo|Omaha\sH/L|2\-7\sSingle\sDraw|Badugi|Triple\sDraw\s2\-7\sLowball|2\-7\sTriple\sDraw|5\sCard\sDraw|\d+\-Game\sMixed|HORSE|HA|HEROS|HO|HOE|HORSE|HOSE|OA|OE|SE)\s+
@@ -99,6 +99,13 @@ class FullTiltPokerSummary(TourneySummary):
                         (Target\sTournament\s.+\s+)?
                         Tournament\sstarted:\s(?P<DATETIME>((?P<Y>[\d]{4})\/(?P<M>[\d]{2})\/(?P<D>[\d]+)\s+(?P<H>[\d]+):(?P<MIN>[\d]+):(?P<S>[\d]+)\s??(?P<TZ>[A-Z]+)\s|\w+,\s(?P<MONTH>\w+)\s(?P<DAY>\d+),\s(?P<YEAR>[\d]{4})\s(?P<HOUR>\d+):(?P<MIN2>\d+)))
                                """ % substitutions ,re.VERBOSE|re.MULTILINE|re.DOTALL)
+    
+    re_TourneyExtraInfo = re.compile('''((\s(?P<SPEED>(Turbo|Super\sTurbo|Escalator))?
+                                         (\s(?P<SPECIAL>(Play\sMoney|Freeroll|KO|Heads\sUp|Heads\-Up|Head\'s\sUp|Matrix\s\dx|Rebuy|Madness)))?
+                                         (\s(?P<SHOOTOUT>Shootout))?
+                                         (\s(?P<SNG>Sit\s&\sGo))?
+                                         (\s(?P<GUARANTEE>[%(LS)s]?(?P<GUARANTEEAMT>[%(NUM)s]+)\s+)?Guarantee))?)
+                                    ''' % substitutions, re.MULTILINE|re.VERBOSE)
 
     re_Currency = re.compile(u"""(?P<CURRENCY>[%(LS)s]|FPP|FTP|T\$|Play\sChips)""" % substitutions)
     re_Max      = re.compile("((?P<MAX>\d+)\sHanded)|(?P<HU>Heads\sUp)", re.MULTILINE)
@@ -159,6 +166,11 @@ class FullTiltPokerSummary(TourneySummary):
         if 'PBOUNTIES' in mg and mg['PBOUNTIES'] != None:
             koCounts[mg['PNAMEBOUNTIES']] = int(mg['PBOUNTIES'])
             
+        if mg['TOURNAMENT'] != None:
+            n = self.re_TourneyExtraInfo.search(mg['TOURNAMENT'])
+            if n.group('SNG') is not None:
+                self.isSng = True
+            
         if mg['TABLEATTRIBUTES'] != None:
             # search for keywords "max" and "heads up"
             max_found = self.re_Max.search(mg['TABLEATTRIBUTES'])
@@ -172,7 +184,7 @@ class FullTiltPokerSummary(TourneySummary):
                 if speed_found.group('SPEED')=='Super Turbo':
                     self.speed = 'Hyper'
                 else:
-                    self.speed = speed_found.group('SPEED')            
+                    self.speed = speed_found.group('SPEED')
         
         datetimestr = ""
         if mg['YEAR'] == None:
