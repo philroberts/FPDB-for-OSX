@@ -223,8 +223,8 @@ class HUD_main(object):
                 aux_disabled_sites.append(i)
 
         while 1:    # wait for a new hand number on stdin
-            time.sleep(0.075) # pause an arbitrary amount of time
-                            # This throttles thru-put to about 8 or 10
+            time.sleep(0.45) # pause an arbitrary amount of time
+                            # This throttles thru-put to about 2 or 3
                             # hands per second.  Otherwise, the downstream
                             # code can become flooded and errors start to
                             # occur due to stat_dict being overwritten before
