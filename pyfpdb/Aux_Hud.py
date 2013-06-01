@@ -246,7 +246,8 @@ class Simple_table_mw(Aux_Base.Seat_Window):
 
         self.move(self.hud.table.x + self.aw.xshift, self.hud.table.y + self.aw.yshift)
                 
-        self.menu.show_all() 
+        eb.show_all()
+        #self.menu.show_all() do not attempt to show self.menu !! show its' eb container instead
         #self.show_all() do not do this, it creates oversize eventbox in windows pygtk2.24
         #self.hud.table.topify(self) does not serve any useful purpose, it seems
 
@@ -261,6 +262,7 @@ class Simple_table_mw(Aux_Base.Seat_Window):
         for item, cb in menu_item_build_list:
             this_item = gtk.MenuItem(item)
             menu.append(this_item)
+            this_item.show()
             if cb is not None:
                 this_item.connect("activate", cb)
                      

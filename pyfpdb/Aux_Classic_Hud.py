@@ -180,21 +180,25 @@ class Classic_table_mw(Aux_Hud.Simple_table_mw):
 
         killitem = gtk.MenuItem(_('Restart This HUD'))
         menu.append(killitem)
+        killitem.show()
         killitem.connect("activate", self.kill)
 
 
         saveitem = gtk.MenuItem(_('Save HUD Layout'))
         menu.append(saveitem)
+        saveitem.show()
         saveitem.connect("activate", self.save_current_layouts)
 
         aggitem = gtk.MenuItem(_('Show Player Stats for'))
         menu.append(aggitem)
+        aggitem.show()
         aggMenu = gtk.Menu()
         aggitem.set_submenu(aggMenu)
 
         def build_aggmenu(legend, cb_params, attrname):
             item = gtk.CheckMenuItem(legend)
             aggMenu.append(item)
+            item.show()
             if   "aggBB" in attrname: item.connect("activate", self.set_aggregation, cb_params)
             elif "seatsStyle" in attrname: item.connect("activate", self.set_seats_style, cb_params)
             elif "hudStyle" in attrname: item.connect("activate", self.set_hud_style, cb_params)
@@ -202,52 +206,67 @@ class Classic_table_mw(Aux_Hud.Simple_table_mw):
                     
         # set agg_bb_mult to 1 to stop aggregation
         build_aggmenu(_('For This Blind Level Only'),('P', 1), 'h_aggBBmultItem1')
-        aggMenu.append(gtk.MenuItem(_('For Multiple Blind Levels:')))
+        legend = gtk.MenuItem(_('For Multiple Blind Levels:'))
+        aggMenu.append(legend)
+        legend.show()
         build_aggmenu((_('%s to %s * Current Blinds') % ("  0.5", "2.0")),('P',2), 'h_aggBBmultItem2')
         build_aggmenu((_('%s to %s * Current Blinds') % ("  0.33", "3.0")),('P',3), 'h_aggBBmultItem3')
         build_aggmenu((_('%s to %s * Current Blinds') % ("  0.1", "10.0")),('P',10), 'h_aggBBmultItem10')
         build_aggmenu(("  " + _('All Levels')),('P',10000), 'h_aggBBmultItem10000')
-        
-        aggMenu.append(gtk.MenuItem(_('Number of Seats:')))
+
+        legend = gtk.MenuItem(_('Number of Seats:'))
+        aggMenu.append(legend)
+        legend.show()
         build_aggmenu(("  " + _('Any Number')),('P','A'), 'h_seatsStyleOptionA')
         build_aggmenu(("  " + _('Custom')),('P','C'), 'h_seatsStyleOptionC')
         build_aggmenu(("  " + _('Exact')),('P','E'), 'h_seatsStyleOptionE')
 
-        aggMenu.append(gtk.MenuItem(_('Since:')))
+        legend = gtk.MenuItem(_('Since:'))
+        aggMenu.append(legend)
+        legend.show()
         build_aggmenu(("  " + _('All Time')),('P','A'), 'h_hudStyleOptionA')
         build_aggmenu(("  " + _('Session')),('P','S'), 'h_hudStyleOptionS')
         build_aggmenu(("  " + _('%s Days') % (self.hud_params['h_hud_days'])),('P','T'), 'h_hudStyleOptionT')
  
         aggitem = gtk.MenuItem(_('Show Opponent Stats for'))
         menu.append(aggitem)
+        aggitem.show()
         aggMenu = gtk.Menu()
         aggitem.set_submenu(aggMenu)
         
         build_aggmenu(_('For This Blind Level Only'),('O', 1), 'aggBBmultItem1')
-        aggMenu.append(gtk.MenuItem(_('For Multiple Blind Levels:')))
+        legend = gtk.MenuItem(_('For Multiple Blind Levels:'))
+        aggMenu.append(legend)
+        legend.show()
         build_aggmenu((_('%s to %s * Current Blinds') % ("  0.5", "2.0")),('O',2), 'aggBBmultItem2')
         build_aggmenu((_('%s to %s * Current Blinds') % ("  0.33", "3.0")),('O',3), 'aggBBmultItem3')
         build_aggmenu((_('%s to %s * Current Blinds') % ("  0.1", "10.0")),('O',10), 'aggBBmultItem10')
         build_aggmenu(("  " + _('All Levels')),('O',10000), 'aggBBmultItem10000')
         
-        aggMenu.append(gtk.MenuItem(_('Number of Seats:')))
+        legend = gtk.MenuItem(_('Number of Seats:'))
+        aggMenu.append(legend)
+        legend.show()
         build_aggmenu(("  " + _('Any Number')),('O','A'), 'seatsStyleOptionA')
         build_aggmenu(("  " + _('Custom')),('O','C'), 'seatsStyleOptionC')
         build_aggmenu(("  " + _('Exact')),('O','E'), 'seatsStyleOptionE')
 
-        aggMenu.append(gtk.MenuItem(_('Since:')))
+        legend = gtk.MenuItem(_('Since:'))
+        aggMenu.append(legend)
+        legend.show()
         build_aggmenu(("  " + _('All Time')),('O','A'), 'hudStyleOptionA')
         build_aggmenu(("  " + _('Session')),('O','S'), 'hudStyleOptionS')
         build_aggmenu(("  " + _('%s Days') % (self.hud_params['hud_days'])),('O','T'), 'hudStyleOptionT')
         
         item5 = gtk.MenuItem(_('Set max seats'))
         menu.append(item5)
+        item5.show()
         maxSeatsMenu = gtk.Menu()
         item5.set_submenu(maxSeatsMenu)
         for i in (sorted(self.hud.layout_set.layout)):
             item = gtk.MenuItem('%d-max' % i)
             item.ms = i
             maxSeatsMenu.append(item)
+            item.show()
             item.connect("activate", self.change_max_seats)
             setattr(self, 'maxSeatsMenuItem%d' % (i - 1), item)
 
