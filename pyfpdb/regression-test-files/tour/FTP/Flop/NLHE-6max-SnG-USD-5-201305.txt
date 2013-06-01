@@ -1,0 +1,700 @@
+Full Tilt Poker Game #32654487081: $5 Sit & Go (Super Turbo) (253843023), Table 1 - NL Hold'em - 15/30 - 19:02:47 ET - 2013/05/14
+Seat 1: Player0 (300)
+Seat 2: Player1 (300)
+Seat 3: Player2 (300)
+Seat 4: Player3 (300)
+Seat 5: Player4 (300)
+Seat 6: Hero (300)
+Player0 posts the small blind of 15
+Player1 posts the big blind of 30
+The button is in seat #6
+*** HOLE CARDS ***
+Dealt to Hero [3c Kh]
+Player2 folds
+Player3 folds
+Player4 folds
+Hero folds
+Player0 raises to 300, and is all in
+Player1 calls 270, and is all in
+Player0 shows [Th 5h]
+Player1 shows [5c Ah]
+*** FLOP *** [Kc Td 8s] (Total Pot: 600, 2 Players, 2 All-In)
+*** TURN *** [Kc Td 8s] [6c] (Total Pot: 600, 2 Players, 2 All-In)
+*** RIVER *** [Kc Td 8s 6c] [Qs] (Total Pot: 600, 2 Players, 2 All-In)
+Player0 shows a pair of Tens
+Player1 shows Ace King high
+Player0 wins the pot (600) with a pair of Tens
+*** SUMMARY ***
+Total pot 600 | Rake 0
+Board: [Kc Td 8s 6c Qs]
+Seat 1: Player0 (small blind) showed [Th 5h] and won (600) with a pair of Tens
+Seat 2: Player1 (big blind) showed [5c Ah] and lost with Ace King high
+Seat 3: Player2 didn't bet (folded)
+Seat 4: Player3 didn't bet (folded)
+Seat 5: Player4 didn't bet (folded)
+Seat 6: Hero (button) didn't bet (folded)
+
+
+
+Full Tilt Poker Game #32654488918: $5 Sit & Go (Super Turbo) (253843023), Table 1 - NL Hold'em - 15/30 - 19:03:11 ET - 2013/05/14
+Seat 1: Player0 (600)
+Seat 3: Player2 (300)
+Seat 4: Player3 (300)
+Seat 5: Player4 (300)
+Seat 6: Hero (300)
+Player2 posts the big blind of 30
+The button is in seat #1
+*** HOLE CARDS ***
+Dealt to Hero [2d Jh]
+Player3 folds
+Player4 folds
+Hero folds
+Player0 raises to 600, and is all in
+Player2 calls 270, and is all in
+Player0 shows [Tc Qd]
+Player2 shows [As Jd]
+Uncalled bet of 300 returned to Player0
+*** FLOP *** [2s 5h 3s] (Total Pot: 600, 2 Players, 1 All-In)
+*** TURN *** [2s 5h 3s] [4s] (Total Pot: 600, 2 Players, 1 All-In)
+*** RIVER *** [2s 5h 3s 4s] [Qh] (Total Pot: 600, 2 Players, 1 All-In)
+Player0 shows a pair of Queens
+Player2 shows a straight, Five high
+Player2 wins the pot (600) with a straight, Five high
+*** SUMMARY ***
+Total pot 600 | Rake 0
+Board: [2s 5h 3s 4s Qh]
+Seat 1: Player0 (button) showed [Tc Qd] and lost with a pair of Queens
+Seat 3: Player2 (big blind) showed [As Jd] and won (600) with a straight, Five high
+Seat 4: Player3 didn't bet (folded)
+Seat 5: Player4 didn't bet (folded)
+Seat 6: Hero didn't bet (folded)
+
+
+
+Full Tilt Poker Game #32654490656: $5 Sit & Go (Super Turbo) (253843023), Table 1 - NL Hold'em - 15/30 - 19:03:36 ET - 2013/05/14
+Seat 1: Player0 (300)
+Seat 3: Player2 (600)
+Seat 4: Player3 (300)
+Seat 5: Player4 (300)
+Seat 6: Hero (300)
+Player2 posts the small blind of 15
+Player3 posts the big blind of 30
+The button is in seat #2
+*** HOLE CARDS ***
+Dealt to Hero [7s Td]
+Player4 folds
+Hero folds
+Player0 folds
+Player2 raises to 600, and is all in
+Player3 folds
+Uncalled bet of 570 returned to Player2
+Player2 mucks
+Player2 wins the pot (60)
+*** SUMMARY ***
+Total pot 60 | Rake 0
+Seat 1: Player0 didn't bet (folded)
+Seat 3: Player2 (small blind) collected (60), mucked
+Seat 4: Player3 (big blind) folded before the Flop
+Seat 5: Player4 didn't bet (folded)
+Seat 6: Hero didn't bet (folded)
+
+
+
+Full Tilt Poker Game #32654492187: $5 Sit & Go (Super Turbo) (253843023), Table 1 - NL Hold'em - 15/30 - 19:03:58 ET - 2013/05/14
+Seat 1: Player0 (300)
+Seat 3: Player2 (630)
+Seat 4: Player3 (270)
+Seat 5: Player4 (300)
+Seat 6: Hero (300)
+Player3 posts the small blind of 15
+Player4 posts the big blind of 30
+The button is in seat #3
+*** HOLE CARDS ***
+Dealt to Hero [3c 9s]
+Hero folds
+Player0 folds
+Player2 folds
+Player3 calls 15
+Player4 checks
+*** FLOP *** [7c 2h 9h] (Total Pot: 60, 2 Players)
+Player3 bets 30
+Player4 calls 30
+*** TURN *** [7c 2h 9h] [2d] (Total Pot: 120, 2 Players)
+Player3 bets 30
+Player4 calls 30
+*** RIVER *** [7c 2h 9h 2d] [6d] (Total Pot: 180, 2 Players)
+Player3 bets 45
+Player4 raises to 90
+Player3 folds
+Uncalled bet of 45 returned to Player4
+Player4 mucks
+Player4 wins the pot (270)
+*** SUMMARY ***
+Total pot 270 | Rake 0
+Board: [7c 2h 9h 2d 6d]
+Seat 1: Player0 didn't bet (folded)
+Seat 3: Player2 (button) didn't bet (folded)
+Seat 4: Player3 (small blind) folded on the River
+Seat 5: Player4 (big blind) collected (270), mucked
+Seat 6: Hero didn't bet (folded)
+
+
+
+Full Tilt Poker Game #32654494861: $5 Sit & Go (Super Turbo) (253843023), Table 1 - NL Hold'em - 15/30 - 19:04:36 ET - 2013/05/14
+Seat 1: Player0 (300)
+Seat 3: Player2 (630)
+Seat 4: Player3 (135)
+Seat 5: Player4 (435)
+Seat 6: Hero (300)
+Player4 posts the small blind of 15
+Hero posts the big blind of 30
+The button is in seat #4
+*** HOLE CARDS ***
+Dealt to Hero [5s 4s]
+Player0 folds
+Player2 folds
+Player3 raises to 135, and is all in
+Player4 raises to 240
+Hero folds
+Player4 shows [6d 6s]
+Player3 shows [9h 2h]
+Uncalled bet of 105 returned to Player4
+*** FLOP *** [Ts Ac 3c] (Total Pot: 300, 2 Players, 1 All-In)
+*** TURN *** [Ts Ac 3c] [2s] (Total Pot: 300, 2 Players, 1 All-In)
+*** RIVER *** [Ts Ac 3c 2s] [9c] (Total Pot: 300, 2 Players, 1 All-In)
+Player4 shows a pair of Sixes
+Player3 shows two pair, Nines and Twos
+Player3 wins the pot (300) with two pair, Nines and Twos
+*** SUMMARY ***
+Total pot 300 | Rake 0
+Board: [Ts Ac 3c 2s 9c]
+Seat 1: Player0 didn't bet (folded)
+Seat 3: Player2 didn't bet (folded)
+Seat 4: Player3 (button) showed [9h 2h] and won (300) with two pair, Nines and Twos
+Seat 5: Player4 (small blind) showed [6d 6s] and lost with a pair of Sixes
+Seat 6: Hero (big blind) folded before the Flop
+
+
+
+Full Tilt Poker Game #32654496569: $5 Sit & Go (Super Turbo) (253843023), Table 1 - NL Hold'em - 15/30 - 19:05:00 ET - 2013/05/14
+Seat 1: Player0 (300)
+Seat 3: Player2 (630)
+Seat 4: Player3 (300)
+Seat 5: Player4 (300)
+Seat 6: Hero (270)
+Hero posts the small blind of 15
+Player0 posts the big blind of 30
+The button is in seat #5
+*** HOLE CARDS ***
+Dealt to Hero [4h 7d]
+Player2 folds
+Player3 has been disconnected
+Player3 has 15 seconds left to act
+Player3 has timed out
+Player3 folds
+Player3 is sitting out
+Player4 folds
+Hero folds
+Uncalled bet of 15 returned to Player0
+Player0 mucks
+Player0 wins the pot (30)
+*** SUMMARY ***
+Total pot 30 | Rake 0
+Seat 1: Player0 (big blind) collected (30), mucked
+Seat 3: Player2 didn't bet (folded)
+Seat 4: Player3 didn't bet (folded)
+Seat 5: Player4 (button) didn't bet (folded)
+Seat 6: Hero (small blind) folded before the Flop
+
+
+
+Full Tilt Poker Game #32654499088: $5 Sit & Go (Super Turbo) (253843023), Table 1 - NL Hold'em - 15/30 - 19:05:34 ET - 2013/05/14
+Seat 1: Player0 (315)
+Seat 3: Player2 (630)
+Seat 4: Player3 (300), is sitting out
+Seat 5: Player4 (300)
+Seat 6: Hero (255)
+Player0 posts the small blind of 15
+Player2 posts the big blind of 30
+The button is in seat #6
+*** HOLE CARDS ***
+Dealt to Hero [4c Qd]
+Player3 folds
+Player4 folds
+Hero folds
+Player0 folds
+Uncalled bet of 15 returned to Player2
+Player2 mucks
+Player2 wins the pot (30)
+*** SUMMARY ***
+Total pot 30 | Rake 0
+Seat 1: Player0 (small blind) folded before the Flop
+Seat 3: Player2 (big blind) collected (30), mucked
+Seat 4: Player3 didn't bet (folded)
+Seat 5: Player4 didn't bet (folded)
+Seat 6: Hero (button) didn't bet (folded)
+
+
+
+Full Tilt Poker Game #32654499970: $5 Sit & Go (Super Turbo) (253843023), Table 1 - NL Hold'em - 20/40 - 19:05:47 ET - 2013/05/14
+Seat 1: Player0 (300)
+Seat 3: Player2 (645)
+Seat 4: Player3 (300), is sitting out
+Seat 5: Player4 (300)
+Seat 6: Hero (255)
+Player2 posts the small blind of 20
+Player3 posts the big blind of 40
+The button is in seat #1
+*** HOLE CARDS ***
+Dealt to Hero [6h Qs]
+Player4 folds
+Hero folds
+Player0 folds
+Player2 raises to 645, and is all in
+Player3 folds
+Uncalled bet of 605 returned to Player2
+Player2 mucks
+Player2 wins the pot (80)
+*** SUMMARY ***
+Total pot 80 | Rake 0
+Seat 1: Player0 (button) didn't bet (folded)
+Seat 3: Player2 (small blind) collected (80), mucked
+Seat 4: Player3 (big blind) folded before the Flop
+Seat 5: Player4 didn't bet (folded)
+Seat 6: Hero didn't bet (folded)
+
+
+
+Full Tilt Poker Game #32654501521: $5 Sit & Go (Super Turbo) (253843023), Table 1 - NL Hold'em - 20/40 - 19:06:08 ET - 2013/05/14
+Seat 1: Player0 (300)
+Seat 3: Player2 (685)
+Seat 4: Player3 (260), is sitting out
+Seat 5: Player4 (300)
+Seat 6: Hero (255)
+Player3 posts the small blind of 20
+Player4 posts the big blind of 40
+The button is in seat #3
+*** HOLE CARDS ***
+Dealt to Hero [Js Kc]
+Hero raises to 255, and is all in
+Player0 folds
+Player2 folds
+Player3 folds
+Player4 folds
+Uncalled bet of 215 returned to Hero
+Hero mucks
+Hero wins the pot (100)
+*** SUMMARY ***
+Total pot 100 | Rake 0
+Seat 1: Player0 didn't bet (folded)
+Seat 3: Player2 (button) didn't bet (folded)
+Seat 4: Player3 (small blind) folded before the Flop
+Seat 5: Player4 (big blind) folded before the Flop
+Seat 6: Hero collected (100), mucked
+
+
+
+Full Tilt Poker Game #32654502459: $5 Sit & Go (Super Turbo) (253843023), Table 1 - NL Hold'em - 20/40 - 19:06:23 ET - 2013/05/14
+Seat 1: Player0 (300)
+Seat 3: Player2 (685)
+Seat 4: Player3 (240), is sitting out
+Seat 5: Player4 (260)
+Seat 6: Hero (315)
+Player4 posts the small blind of 20
+Hero posts the big blind of 40
+The button is in seat #4
+*** HOLE CARDS ***
+Dealt to Hero [Td Ah]
+Player0 folds
+Player2 folds
+Player3 folds
+Player4 folds
+Uncalled bet of 20 returned to Hero
+Hero mucks
+Hero wins the pot (40)
+*** SUMMARY ***
+Total pot 40 | Rake 0
+Seat 1: Player0 didn't bet (folded)
+Seat 3: Player2 didn't bet (folded)
+Seat 4: Player3 (button) didn't bet (folded)
+Seat 5: Player4 (small blind) folded before the Flop
+Seat 6: Hero (big blind) collected (40), mucked
+
+
+
+Full Tilt Poker Game #32654503206: $5 Sit & Go (Super Turbo) (253843023), Table 1 - NL Hold'em - 20/40 - 19:06:32 ET - 2013/05/14
+Seat 1: Player0 (300)
+Seat 3: Player2 (685)
+Seat 4: Player3 (240), is sitting out
+Seat 5: Player4 (240)
+Seat 6: Hero (335)
+Hero posts the small blind of 20
+Player0 posts the big blind of 40
+The button is in seat #5
+*** HOLE CARDS ***
+Dealt to Hero [Qc 5d]
+Player2 folds
+Player3 folds
+Player4 folds
+Hero folds
+Uncalled bet of 20 returned to Player0
+Player0 mucks
+Player0 wins the pot (40)
+*** SUMMARY ***
+Total pot 40 | Rake 0
+Seat 1: Player0 (big blind) collected (40), mucked
+Seat 3: Player2 didn't bet (folded)
+Seat 4: Player3 didn't bet (folded)
+Seat 5: Player4 (button) didn't bet (folded)
+Seat 6: Hero (small blind) folded before the Flop
+
+
+
+Full Tilt Poker Game #32654504357: $5 Sit & Go (Super Turbo) (253843023), Table 1 - NL Hold'em - 20/40 - 19:06:49 ET - 2013/05/14
+Seat 1: Player0 (320)
+Seat 3: Player2 (685)
+Seat 4: Player3 (240), is sitting out
+Seat 5: Player4 (240)
+Seat 6: Hero (315)
+Player0 posts the small blind of 20
+Player2 posts the big blind of 40
+The button is in seat #6
+*** HOLE CARDS ***
+Dealt to Hero [As Jh]
+Player3 folds
+Player4 raises to 240, and is all in
+Hero raises to 315, and is all in
+Player0 folds
+Player2 folds
+Hero shows [As Jh]
+Player4 shows [8c 8h]
+Uncalled bet of 75 returned to Hero
+*** FLOP *** [8d 3d Js] (Total Pot: 540, 2 Players, 1 All-In)
+*** TURN *** [8d 3d Js] [9d] (Total Pot: 540, 2 Players, 1 All-In)
+*** RIVER *** [8d 3d Js 9d] [3c] (Total Pot: 540, 2 Players, 1 All-In)
+Hero shows two pair, Jacks and Threes
+Player4 shows a full house, Eights full of Threes
+Player4 wins the pot (540) with a full house, Eights full of Threes
+*** SUMMARY ***
+Total pot 540 | Rake 0
+Board: [8d 3d Js 9d 3c]
+Seat 1: Player0 (small blind) folded before the Flop
+Seat 3: Player2 (big blind) folded before the Flop
+Seat 4: Player3 didn't bet (folded)
+Seat 5: Player4 showed [8c 8h] and won (540) with a full house, Eights full of Threes
+Seat 6: Hero (button) showed [As Jh] and lost with two pair, Jacks and Threes
+
+
+
+Full Tilt Poker Game #32654506193: $5 Sit & Go (Super Turbo) (253843023), Table 1 - NL Hold'em - 20/40 - 19:07:15 ET - 2013/05/14
+Seat 1: Player0 (300)
+Seat 3: Player2 (645)
+Seat 4: Player3 (240), is sitting out
+Seat 5: Player4 (540)
+Seat 6: Hero (75)
+Player2 posts the small blind of 20
+Player3 posts the big blind of 40
+The button is in seat #1
+*** HOLE CARDS ***
+Dealt to Hero [4c 4d]
+Player4 folds
+Hero raises to 75, and is all in
+Player0 raises to 300, and is all in
+Player2 folds
+Player3 folds
+Player0 shows [Kh 9h]
+Hero shows [4c 4d]
+Uncalled bet of 225 returned to Player0
+*** FLOP *** [8d 3s 7d] (Total Pot: 210, 2 Players, 1 All-In)
+*** TURN *** [8d 3s 7d] [Jc] (Total Pot: 210, 2 Players, 1 All-In)
+*** RIVER *** [8d 3s 7d Jc] [8h] (Total Pot: 210, 2 Players, 1 All-In)
+Player0 shows a pair of Eights
+Hero shows two pair, Eights and Fours
+Hero wins the pot (210) with two pair, Eights and Fours
+*** SUMMARY ***
+Total pot 210 | Rake 0
+Board: [8d 3s 7d Jc 8h]
+Seat 1: Player0 (button) showed [Kh 9h] and lost with a pair of Eights
+Seat 3: Player2 (small blind) folded before the Flop
+Seat 4: Player3 (big blind) folded before the Flop
+Seat 5: Player4 didn't bet (folded)
+Seat 6: Hero showed [4c 4d] and won (210) with two pair, Eights and Fours
+
+
+
+Full Tilt Poker Game #32654508102: $5 Sit & Go (Super Turbo) (253843023), Table 1 - NL Hold'em - 20/40 - 19:07:41 ET - 2013/05/14
+Seat 1: Player0 (225)
+Seat 3: Player2 (625)
+Seat 4: Player3 (200), is sitting out
+Seat 5: Player4 (540)
+Seat 6: Hero (210)
+Player3 posts the small blind of 20
+Player4 posts the big blind of 40
+The button is in seat #3
+*** HOLE CARDS ***
+Dealt to Hero [Qc Kc]
+Hero raises to 210, and is all in
+Player0 folds
+Player2 folds
+Player3 folds
+Player4 calls 170
+Hero shows [Qc Kc]
+Player4 shows [Td Qd]
+*** FLOP *** [Th 9s Kd] (Total Pot: 440, 2 Players, 1 All-In)
+*** TURN *** [Th 9s Kd] [2d] (Total Pot: 440, 2 Players, 1 All-In)
+*** RIVER *** [Th 9s Kd 2d] [7c] (Total Pot: 440, 2 Players, 1 All-In)
+Hero shows a pair of Kings
+Player4 shows a pair of Tens
+Hero wins the pot (440) with a pair of Kings
+*** SUMMARY ***
+Total pot 440 | Rake 0
+Board: [Th 9s Kd 2d 7c]
+Seat 1: Player0 didn't bet (folded)
+Seat 3: Player2 (button) didn't bet (folded)
+Seat 4: Player3 (small blind) folded before the Flop
+Seat 5: Player4 (big blind) showed [Td Qd] and lost with a pair of Tens
+Seat 6: Hero showed [Qc Kc] and won (440) with a pair of Kings
+
+
+
+Full Tilt Poker Game #32654509607: $5 Sit & Go (Super Turbo) (253843023), Table 1 - NL Hold'em - 20/40 - 19:08:04 ET - 2013/05/14
+Seat 1: Player0 (225)
+Seat 3: Player2 (625)
+Seat 4: Player3 (180), is sitting out
+Seat 5: Player4 (330)
+Seat 6: Hero (440)
+Player4 posts the small blind of 20
+Hero posts the big blind of 40
+The button is in seat #4
+*** HOLE CARDS ***
+Dealt to Hero [Qh Ah]
+Player0 has 15 seconds left to act
+Player0 folds
+Player2 has 15 seconds left to act
+Player2 folds
+Player3 folds
+Player4 has 15 seconds left to act
+Player4 raises to 330, and is all in
+Hero calls 290
+Player4 shows [3d Ad]
+Hero shows [Qh Ah]
+*** FLOP *** [Ts 7d 6d] (Total Pot: 660, 2 Players, 1 All-In)
+*** TURN *** [Ts 7d 6d] [9s] (Total Pot: 660, 2 Players, 1 All-In)
+*** RIVER *** [Ts 7d 6d 9s] [Ks] (Total Pot: 660, 2 Players, 1 All-In)
+Player4 shows Ace King high
+Hero shows Ace King high
+Hero wins the pot (660) with Ace King high
+*** SUMMARY ***
+Total pot 660 | Rake 0
+Board: [Ts 7d 6d 9s Ks]
+Seat 1: Player0 didn't bet (folded)
+Seat 3: Player2 didn't bet (folded)
+Seat 4: Player3 (button) didn't bet (folded)
+Seat 5: Player4 (small blind) showed [3d Ad] and lost with Ace King high
+Seat 6: Hero (big blind) showed [Qh Ah] and won (660) with Ace King high
+
+
+
+Full Tilt Poker Game #32654513118: $5 Sit & Go (Super Turbo) (253843023), Table 1 - NL Hold'em - 25/50 - 19:08:51 ET - 2013/05/14
+Seat 1: Player0 (225)
+Seat 3: Player2 (625)
+Seat 4: Player3 (180), is sitting out
+Seat 6: Hero (770)
+Hero posts the small blind of 25
+Player0 posts the big blind of 50
+The button is in seat #5
+*** HOLE CARDS ***
+Dealt to Hero [8d 8c]
+Player2 folds
+Player3 folds
+Hero raises to 770, and is all in
+Player0 calls 175, and is all in
+Hero shows [8d 8c]
+Player0 shows [Kd Jd]
+Uncalled bet of 545 returned to Hero
+*** FLOP *** [Kc 4s 9c] (Total Pot: 450, 2 Players, 1 All-In)
+*** TURN *** [Kc 4s 9c] [9s] (Total Pot: 450, 2 Players, 1 All-In)
+*** RIVER *** [Kc 4s 9c 9s] [9h] (Total Pot: 450, 2 Players, 1 All-In)
+Hero shows a full house, Nines full of Eights
+Player0 shows a full house, Nines full of Kings
+Player0 wins the pot (450) with a full house, Nines full of Kings
+*** SUMMARY ***
+Total pot 450 | Rake 0
+Board: [Kc 4s 9c 9s 9h]
+Seat 1: Player0 (big blind) showed [Kd Jd] and won (450) with a full house, Nines full of Kings
+Seat 3: Player2 didn't bet (folded)
+Seat 4: Player3 didn't bet (folded)
+Seat 6: Hero (small blind) showed [8d 8c] and lost with a full house, Nines full of Eights
+
+
+
+Full Tilt Poker Game #32654515008: $5 Sit & Go (Super Turbo) (253843023), Table 1 - NL Hold'em - 25/50 - 19:09:17 ET - 2013/05/14
+Seat 1: Player0 (450)
+Seat 3: Player2 (625)
+Seat 4: Player3 (180), is sitting out
+Seat 6: Hero (545)
+Player0 posts the small blind of 25
+Player2 posts the big blind of 50
+The button is in seat #6
+*** HOLE CARDS ***
+Dealt to Hero [3s 4s]
+Player3 folds
+Hero folds
+Player0 raises to 450, and is all in
+Player2 has 15 seconds left to act
+Player2 folds
+Uncalled bet of 400 returned to Player0
+Player0 mucks
+Player0 wins the pot (100)
+*** SUMMARY ***
+Total pot 100 | Rake 0
+Seat 1: Player0 (small blind) collected (100), mucked
+Seat 3: Player2 (big blind) folded before the Flop
+Seat 4: Player3 didn't bet (folded)
+Seat 6: Hero (button) didn't bet (folded)
+
+
+
+Full Tilt Poker Game #32654516957: $5 Sit & Go (Super Turbo) (253843023), Table 1 - NL Hold'em - 25/50 - 19:09:44 ET - 2013/05/14
+Seat 1: Player0 (500)
+Seat 3: Player2 (575)
+Seat 4: Player3 (180), is sitting out
+Seat 6: Hero (545)
+Player2 posts the small blind of 25
+Player3 posts the big blind of 50
+The button is in seat #1
+*** HOLE CARDS ***
+Dealt to Hero [8d 4d]
+Hero folds
+Player0 folds
+Player2 raises to 575, and is all in
+Player3 folds
+Uncalled bet of 525 returned to Player2
+Player2 mucks
+Player2 wins the pot (100)
+*** SUMMARY ***
+Total pot 100 | Rake 0
+Seat 1: Player0 (button) didn't bet (folded)
+Seat 3: Player2 (small blind) collected (100), mucked
+Seat 4: Player3 (big blind) folded before the Flop
+Seat 6: Hero didn't bet (folded)
+
+
+
+Full Tilt Poker Game #32654518196: $5 Sit & Go (Super Turbo) (253843023), Table 1 - NL Hold'em - 25/50 - 19:10:02 ET - 2013/05/14
+Seat 1: Player0 (500)
+Seat 3: Player2 (625)
+Seat 4: Player3 (130), is sitting out
+Seat 6: Hero (545)
+Player3 posts the small blind of 25
+Hero posts the big blind of 50
+The button is in seat #3
+*** HOLE CARDS ***
+Dealt to Hero [7c 5d]
+Player0 raises to 500, and is all in
+Player2 folds
+Player3 folds
+Hero folds
+Uncalled bet of 450 returned to Player0
+Player0 mucks
+Player0 wins the pot (125)
+*** SUMMARY ***
+Total pot 125 | Rake 0
+Seat 1: Player0 collected (125), mucked
+Seat 3: Player2 (button) didn't bet (folded)
+Seat 4: Player3 (small blind) folded before the Flop
+Seat 6: Hero (big blind) folded before the Flop
+
+
+
+Full Tilt Poker Game #32654519236: $5 Sit & Go (Super Turbo) (253843023), Table 1 - NL Hold'em - 25/50 - 19:10:16 ET - 2013/05/14
+Seat 1: Player0 (575)
+Seat 3: Player2 (625)
+Seat 4: Player3 (105), is sitting out
+Seat 6: Hero (495)
+Hero posts the small blind of 25
+Player0 posts the big blind of 50
+The button is in seat #4
+*** HOLE CARDS ***
+Dealt to Hero [8c Qd]
+Player2 folds
+Player3 folds
+Hero raises to 495, and is all in
+Player0 folds
+Uncalled bet of 445 returned to Hero
+Hero mucks
+Hero wins the pot (100)
+*** SUMMARY ***
+Total pot 100 | Rake 0
+Seat 1: Player0 (big blind) folded before the Flop
+Seat 3: Player2 didn't bet (folded)
+Seat 4: Player3 (button) didn't bet (folded)
+Seat 6: Hero (small blind) collected (100), mucked
+
+
+
+Full Tilt Poker Game #32654520456: $5 Sit & Go (Super Turbo) (253843023), Table 1 - NL Hold'em - 25/50 - 19:10:33 ET - 2013/05/14
+Seat 1: Player0 (525)
+Seat 3: Player2 (625)
+Seat 4: Player3 (105), is sitting out
+Seat 6: Hero (545)
+Player0 posts the small blind of 25
+Player2 posts the big blind of 50
+The button is in seat #6
+*** HOLE CARDS ***
+Dealt to Hero [Ah 3d]
+Player3 folds
+Hero raises to 545, and is all in
+Player0 calls 500, and is all in
+Player2 folds
+Hero shows [Ah 3d]
+Player0 shows [As Ks]
+Uncalled bet of 20 returned to Hero
+*** FLOP *** [6h 6c 6d] (Total Pot: 1,100, 2 Players, 1 All-In)
+*** TURN *** [6h 6c 6d] [Jc] (Total Pot: 1,100, 2 Players, 1 All-In)
+*** RIVER *** [6h 6c 6d Jc] [4h] (Total Pot: 1,100, 2 Players, 1 All-In)
+Hero shows three of a kind, Sixes
+Player0 shows three of a kind, Sixes
+Player0 wins the pot (1,100) with three of a kind, Sixes
+*** SUMMARY ***
+Total pot 1,100 | Rake 0
+Board: [6h 6c 6d Jc 4h]
+Seat 1: Player0 (small blind) showed [As Ks] and won (1,100) with three of a kind, Sixes
+Seat 3: Player2 (big blind) folded before the Flop
+Seat 4: Player3 didn't bet (folded)
+Seat 6: Hero (button) showed [Ah 3d] and lost with three of a kind, Sixes
+
+
+
+Full Tilt Poker Game #32654522144: $5 Sit & Go (Super Turbo) (253843023), Table 1 - NL Hold'em - 25/50 - 19:10:57 ET - 2013/05/14
+Seat 1: Player0 (1,100)
+Seat 3: Player2 (575)
+Seat 4: Player3 (105), is sitting out
+Seat 6: Hero (20)
+Player2 posts the small blind of 25
+Player3 posts the big blind of 50
+The button is in seat #1
+*** HOLE CARDS ***
+Dealt to Hero [Qh 3s]
+Hero calls 20, and is all in
+Player0 folds
+Player2 raises to 575, and is all in
+Player3 folds
+Player2 shows [5s 5c]
+Hero shows [Qh 3s]
+Uncalled bet of 525 returned to Player2
+*** FLOP *** [8d 4s 5h] (Total Pot: 120, 2 Players, 1 All-In)
+*** TURN *** [8d 4s 5h] [6s] (Total Pot: 120, 2 Players, 1 All-In)
+*** RIVER *** [8d 4s 5h 6s] [3h] (Total Pot: 120, 2 Players, 1 All-In)
+Player2 wins the side pot (60)
+Player2 shows three of a kind, Fives
+Hero shows a pair of Threes
+Player2 wins the main pot (60) with three of a kind, Fives
+*** SUMMARY ***
+Total pot 120 Main pot 60. Side pot 60. | Rake 0
+Board: [8d 4s 5h 6s 3h]
+Seat 1: Player0 (button) didn't bet (folded)
+Seat 3: Player2 (small blind) showed [5s 5c] and won (120) with three of a kind, Fives
+Seat 4: Player3 (big blind) folded before the Flop
+Seat 6: Hero showed [Qh 3s] and lost with a pair of Threes
+
