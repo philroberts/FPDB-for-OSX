@@ -221,9 +221,9 @@ class OnGame(HandHistoryConverter):
         if 'BB' in mg:
             info['bb'] = self.clearMoneyString(mg['BB'])
         if 'Strobe' in mg['TABLE']:
-            info['zoom'] = True
+            info['fast'] = True
         else:
-            info['zoom'] = False
+            info['fast'] = False
 
         if info['limitType'] == 'fl' and info['bb'] is not None:
             if info['type'] == 'ring':
@@ -308,6 +308,9 @@ class OnGame(HandHistoryConverter):
                 hand.maxseats = int(info[key])
             if key == 'BUTTON':
                 hand.buttonpos = info[key]
+        
+        if hand.gametype['fast']:
+            hand.isFast = True
 
     def readPlayerStacks(self, hand):
         #log.debug("readplayerstacks: re is '%s'" % self.re_PlayerInfo)

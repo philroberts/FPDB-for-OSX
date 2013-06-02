@@ -231,11 +231,17 @@ class PokerStars(HandHistoryConverter):
         if 'MIXED' in mg:
             if mg['MIXED'] is not None: info['mix'] = self.mixes[mg['MIXED']]
         if 'Zoom' in mg['TITLE']:
-            info['zoom'] = True
+            info['fast'] = True
         else:
-            info['zoom'] = False
+            info['fast'] = False
+        if 'Home' in mg['TITLE']:
+            info['homeGame'] = True
+        else:
+            info['homeGame'] = False
         if 'CAP' in mg and mg['CAP'] is not None:
-            info['cap'] = mg['CAPAMT']
+            info['buyinType'] = 'cap'
+        else:
+            info['buyinType'] = 'regular'
                 
         if 'TOURNO' in mg and mg['TOURNO'] is None:
             info['type'] = 'ring'
@@ -338,9 +344,9 @@ class PokerStars(HandHistoryConverter):
                             hand.buyin = int(Decimal(info['BIAMT']))
                             hand.fee = 0
                     if 'Zoom' in info['TITLE']:
-                        hand.isZoom = True
+                        hand.isFast = True
                     else:
-                        hand.isZoom = False
+                        hand.isFast = False
             if key == 'LEVEL':
                 hand.level = info[key]
 
@@ -354,6 +360,9 @@ class PokerStars(HandHistoryConverter):
                 hand.buttonpos = info[key]
             if key == 'MAX' and info[key] != None:
                 hand.maxseats = int(info[key])
+                
+        if 'Zoom' in self.in_path:
+            (hand.gametype['fast'], hand.isFast) = (True, True)
                 
         if self.re_Cancelled.search(hand.handText):
             raise FpdbHandPartial(_("Hand '%s' was cancelled.") % hand.handid)

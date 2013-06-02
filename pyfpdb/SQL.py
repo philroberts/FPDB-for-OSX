@@ -302,8 +302,10 @@ class Sql:
                         bigBet bigint NOT NULL,
                         maxSeats TINYINT NOT NULL,
                         ante INT NOT NULL,
-                        cap INT NOT NULL,
-                        zoom BOOLEAN)
+                        buyinType varchar(9) NOT NULL,
+                        fast BOOLEAN,
+                        newToGame BOOLEAN,
+                        homeGame BOOLEAN)
                         ENGINE=INNODB"""
         elif db_server == 'postgresql':
             self.query['createGametypesTable'] = """CREATE TABLE Gametypes (
@@ -322,8 +324,10 @@ class Sql:
                         bigBet bigint NOT NULL,
                         maxSeats SMALLINT NOT NULL,
                         ante INT NOT NULL,
-                        cap int NOT NULL,
-                        zoom BOOLEAN)"""
+                        buyinType varchar(9) NOT NULL,
+                        fast BOOLEAN,
+                        newToGame BOOLEAN,
+                        homeGame BOOLEAN)"""
         elif db_server == 'sqlite':
             self.query['createGametypesTable'] = """CREATE TABLE Gametypes (
                         id INTEGER PRIMARY KEY NOT NULL,
@@ -341,8 +345,10 @@ class Sql:
                         bigBet INTEGER NOT NULL,
                         maxSeats INT NOT NULL,
                         ante INT NOT NULL,
-                        cap int NOT NULL,
-                        zoom BOOLEAN,
+                        buyinType TEXT NOT NULL,
+                        fast INT,
+                        newToGame INT,
+                        homeGame INT
                         FOREIGN KEY(siteId) REFERENCES Sites(id) ON DELETE CASCADE)"""
 
 
@@ -600,7 +606,7 @@ class Sql:
                         speed varchar(10),
                         shootout BOOLEAN,
                         matrix BOOLEAN,
-                        zoom BOOLEAN,
+                        fast BOOLEAN,
                         sng BOOLEAN,
                         satellite BOOLEAN,
                         doubleOrNothing BOOLEAN,
@@ -632,7 +638,7 @@ class Sql:
                         speed varchar(10),
                         shootout BOOLEAN,
                         matrix BOOLEAN,
-                        zoom BOOLEAN,
+                        fast BOOLEAN,
                         sng BOOLEAN,
                         satellite BOOLEAN,
                         doubleOrNothing BOOLEAN,
@@ -663,7 +669,7 @@ class Sql:
                         speed TEXT,
                         shootout BOOLEAN,
                         matrix BOOLEAN,
-                        zoom BOOLEAN,
+                        fast BOOLEAN,
                         sng BOOLEAN,
                         satellite BOOLEAN,
                         doubleOrNothing BOOLEAN,
@@ -8406,14 +8412,16 @@ class Sql:
                                            AND   bigBlind=%s
                                            AND   maxSeats=%s
                                            AND   ante=%s
-                                           AND   cap=%s
-                                           AND   zoom=%s
+                                           AND   buyinType=%s
+                                           AND   fast=%s
+                                           AND   newToGame=%s
+                                           AND   homeGame=%s
         """ #TODO: seems odd to have limitType variable in this query
 
         self.query['insertGameTypes'] = """INSERT INTO Gametypes
                                               (siteId, currency, type, base, category, limitType, hiLo, mix, 
-                                               smallBlind, bigBlind, smallBet, bigBet, maxSeats, ante, cap, zoom)
-                                           VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
+                                               smallBlind, bigBlind, smallBet, bigBet, maxSeats, ante, buyinType, fast, newToGame, homeGame)
+                                           VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
 
         self.query['isAlreadyInDB'] = """SELECT id FROM Hands 
                                          WHERE gametypeId=%s AND siteHandNo=%s AND heroSeat=%s
@@ -8437,7 +8445,7 @@ class Sql:
                                                               tt.speed,
                                                               tt.shootout,
                                                               tt.matrix,
-                                                              tt.zoom
+                                                              tt.fast
                                                     FROM TourneyTypes tt 
                                                     INNER JOIN Tourneys t ON (t.tourneyTypeId = tt.id) 
                                                     WHERE t.siteTourneyNo=%s AND tt.siteId=%s
@@ -8462,12 +8470,12 @@ class Sql:
                                             AND speed=%s
                                             AND shootout=%s
                                             AND matrix=%s
-                                            AND zoom=%s
+                                            AND fast=%s
         """
 
         self.query['insertTourneyType'] = """INSERT INTO TourneyTypes
                                                   (siteId, currency, buyin, fee, category, limitType, maxSeats, sng, knockout, koBounty,
-                                                   rebuy, rebuyCost, addOn, addOnCost, speed, shootout, matrix, zoom)
+                                                   rebuy, rebuyCost, addOn, addOnCost, speed, shootout, matrix, fast)
                                               VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
         """
         

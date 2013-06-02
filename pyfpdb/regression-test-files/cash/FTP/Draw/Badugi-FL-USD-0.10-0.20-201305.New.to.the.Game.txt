@@ -1,0 +1,60 @@
+Full Tilt Poker Game #32617272179: Table Clackers (New to the Game) - FL Badugi - $0.10/$0.20 - 10:18:16 ET - 2013/05/08
+Seat 1: Player0 ($0.92)
+Seat 2: Player1 ($2.15)
+Seat 3: Player2 ($5.80)
+Seat 4: Player3 ($3.85)
+Seat 5: Player4 ($9.80)
+Seat 6: Player5 ($3.76)
+Seat 7: Hero ($5)
+Seat 8: Player6 ($0.24)
+Player4 posts the small blind of $0.05
+Player5 is sitting out
+Hero posts the big blind of $0.10
+The button is in seat #4
+*** HOLE CARDS ***
+Dealt to Hero [7s 4s 7h 5c]
+Player6 folds
+Player0 has 20 seconds left to act
+Player0 folds
+Player1 folds
+Player2 raises to $0.20
+Player3 folds
+Player4 folds
+Hero calls $0.10
+*** FIRST DRAW *** (Total Pot: $0.45, 2 Players)
+Hero discards 1 card [7s]
+Player2 discards 2 cards
+Dealt to Hero [4s 7h 5c] [2h]
+Player2 is dealt 2 cards
+Hero checks
+Player2 checks
+*** SECOND DRAW *** (Total Pot: $0.45, 2 Players)
+Player5 has returned
+Hero discards 1 card [7h]
+Player2 discards 1 card
+Dealt to Hero [4s 5c 2h] [Qs]
+Player2 is dealt 1 card
+Hero checks
+Player2 bets $0.20
+Hero calls $0.20
+*** THIRD DRAW *** (Total Pot: $0.85, 2 Players)
+Hero discards 1 card [Qs]
+Player2 discards 1 card
+Dealt to Hero [4s 5c 2h] [Js]
+Player2 is dealt 1 card
+Hero checks
+Player2 checks
+*** SHOW DOWN ***
+Player2 shows [7d 2c Ah Jd] a 3-Card: 7, 2, A
+Hero shows [5c 4s 2h Js] a 3-Card: 5, 4, 2
+Hero wins the pot ($0.81) with a 3-Card: 5, 4, 2
+*** SUMMARY ***
+Total pot $0.85 | Rake $0.04
+Seat 1: Player0 folded before the Draw (didn't bet)
+Seat 2: Player1 folded before the Draw (didn't bet)
+Seat 3: Player2 showed [7d 2c Ah Jd] and lost with a 3-Card: 7, 2, A
+Seat 4: Player3 (button) folded before the Draw (didn't bet)
+Seat 5: Player4 (small blind) folded before the Draw
+Seat 6: Player5 is sitting out
+Seat 7: Hero (big blind) showed [5c 4s 2h Js] and won ($0.81) with a 3-Card: 5, 4, 2
+Seat 8: Player6 folded before the Draw (didn't bet)

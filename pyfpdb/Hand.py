@@ -101,7 +101,7 @@ class Hand(object):
         self.koBounty = 0
         self.isMatrix = False
         self.isShootout = False
-        self.isZoom = False
+        self.isFast = False
         self.added = None
         self.addedCurrency = None
         self.tourneyComment = None
@@ -262,7 +262,8 @@ class Hand(object):
                             int(Decimal(self.gametype['sb'])*100), int(Decimal(self.gametype['bb'])*100),
                             int(Decimal(self.gametype['bb'])*100), int(Decimal(self.gametype['bb'])*200),
                             int(self.gametype['maxSeats']), int(self.gametype['ante']*100),
-                            int(Decimal(self.gametype['cap'])*100), self.gametype['zoom'])
+                            self.gametype['buyinType'], self.gametype['fast'], 
+                            self.gametype['newToGame'], self.gametype['homeGame'])
         # Note: the above data is calculated in db.getGameTypeId
         #       Only being calculated above so we can grab the testdata
         if self.tourNo!=None:

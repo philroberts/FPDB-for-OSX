@@ -146,6 +146,7 @@ class Fulltilt(HandHistoryConverter):
     re_Mixed        = re.compile(r'\s\-\s(?P<MIXED>7\-Game|8\-Game|9\-Game|10\-Game|HA|HEROS|HO|HOE|HORSE|HOSE|OA|OE|SE)\s\-\s', re.VERBOSE)
     re_Max          = re.compile("(?P<MAX>\d+)( max)?", re.MULTILINE)
     re_HeadsUp      = re.compile("heads up", re.MULTILINE)
+    re_buyinType    = re.compile("(?P<BUYINTYPE>deep|shallow)", re.MULTILINE)
     # NB: if we ever match "Full Tilt Poker" we should also match "FullTiltPoker", which PT Stud erroneously exports.
     re_DateTime     = re.compile("""((?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)\s(?P<TZ>\w+)\s-\s(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})|(?P<H2>[0-9]+):(?P<MIN2>[0-9]+)\s(?P<TZ2>\w+)\s-\s\w+\,\s(?P<M2>\w+)\s(?P<D2>\d+)\,\s(?P<Y2>[0-9]{4}))(?P<PARTIAL>\s\(partial\))?""", re.MULTILINE)
 
@@ -304,7 +305,7 @@ class Fulltilt(HandHistoryConverter):
         hand.tablename = m.group('TABLE')
         
         if hand.tablename in self.Rush_Tables:
-            hand.gametype['zoom'] = True
+            hand.isFast, hand.gametype['fast'] = True, True
 
         if m.group('DATETIME'):
             # This section of code should match either a single date (which is ET) or
@@ -333,6 +334,9 @@ class Fulltilt(HandHistoryConverter):
         
         if self.re_Cancelled.search(hand.handText):
             raise FpdbHandPartial(_("Hand '%s' was cancelled.") % m.group('HID'))
+        
+        if m.group('CAP'):
+            hand.gametype['buyinType'] = 'cap'
 
         if m.group('TABLEATTRIBUTES'):
             # search for keywords "max" and "heads up"
@@ -341,6 +345,11 @@ class Fulltilt(HandHistoryConverter):
                 hand.maxseats = int(max_found.group('MAX'))
             elif self.re_HeadsUp.search(m.group('TABLEATTRIBUTES')):
                 hand.maxseats = 2
+            buyin_type = self.re_buyinType.search(m.group('TABLEATTRIBUTES'))
+            if buyin_type:
+                hand.gametype['buyinType'] = buyin_type.group('BUYINTYPE')
+            if 'New to the Game' in m.group('TABLEATTRIBUTES'):
+                hand.gametype['newToGame'] = True
             # otherwise use some sensible defaults based on gametype
         if not hand.maxseats:
             if hand.gametype['base'] == 'stud':
@@ -365,6 +374,8 @@ class Fulltilt(HandHistoryConverter):
                     hand.speed = n.group('TURBO')
             if n.group('SNG') is not None:
                 hand.isSng = True
+            if 'Rush' in m.group('TOURNAMENT'):
+                hand.isFast, hand.gametype['fast'] = True, True
                 
             hand.buyin = 0
             hand.fee=0

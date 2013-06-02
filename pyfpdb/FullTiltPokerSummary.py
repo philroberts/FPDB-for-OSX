@@ -144,8 +144,6 @@ class FullTiltPokerSummary(TourneySummary):
             self.buyin = int(100*Decimal(self.clearMoneyString(mg['BUYIN'])))
         if mg['FEE'] != None:
             self.fee   = int(100*Decimal(self.clearMoneyString(mg['FEE'])))                
-        if mg['SNG'] != None:
-            self.isSng = True
         if 'PRIZEPOOL' in mg:
             if mg['PRIZEPOOL'] != None: self.prizepool = int(Decimal(self.clearMoneyString(mg['PRIZEPOOL'])))
         if 'ENTRIES'   in mg:
@@ -170,6 +168,8 @@ class FullTiltPokerSummary(TourneySummary):
             n = self.re_TourneyExtraInfo.search(mg['TOURNAMENT'])
             if n.group('SNG') is not None:
                 self.isSng = True
+            if "Rush" in mg['TOURNAMENT']:
+                self.isFast = True
             
         if mg['TABLEATTRIBUTES'] != None:
             # search for keywords "max" and "heads up"

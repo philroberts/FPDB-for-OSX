@@ -1,0 +1,58 @@
+Full Tilt Poker Game #30005838066: $4 + $0.40 Rush On Demand (233183652), Table 5 - 20/40 - No Limit Hold'em - 21:14:44 ET - 2011/04/19
+Seat 1: Player0 (2,840)
+Seat 2: Player1 (1,865)
+Seat 3: Player2 (1,880)
+Seat 4: Hero (2,000)
+Seat 5: Player3 (1,940)
+Seat 6: Player4 (1,670)
+Seat 7: Player5 (1,610)
+Seat 8: Player6 (3,760)
+Seat 9: Player7 (4,300)
+Player1 posts the small blind of 20
+Player2 posts the big blind of 40
+The button is in seat #1
+*** HOLE CARDS ***
+Dealt to Hero [2c As]
+Hero folds
+Player3 calls 40
+Player4 folds
+Player5 folds
+Player6 folds
+Player7 calls 40
+Player0 has 8 seconds left to act
+Player0 raises to 320
+Player1 folds
+Player2 calls 280
+Player3 calls 280
+Player7 calls 280
+*** FLOP *** [2d Jh 3c]
+Player2 checks
+Player3 checks
+Player7 checks
+Player0 bets 520
+Player2 calls 520
+Player3 folds
+Player7 folds
+*** TURN *** [2d Jh 3c] [3s]
+Player2 checks
+Player0 bets 1,080
+Player2 calls 1,040, and is all in
+Player0 shows [Ac Qh]
+Player2 shows [Jd Js]
+Uncalled bet of 40 returned to Player0
+*** RIVER *** [2d Jh 3c 3s] [Tc]
+Player0 shows a pair of Threes
+Player2 shows a full house, Jacks full of Threes
+Player2 wins the pot (4,420) with a full house, Jacks full of Threes
+*** SUMMARY ***
+Total pot 4,420 | Rake 0
+Board: [2d Jh 3c 3s Tc]
+Seat 1: Player0 (button) showed [Ac Qh] and lost with a pair of Threes
+Seat 2: Player1 (small blind) folded before the Flop
+Seat 3: Player2 (big blind) showed [Jd Js] and won (4,420) with a full house, Jacks full of Threes
+Seat 4: Hero didn't bet (folded)
+Seat 5: Player3 folded on the Flop
+Seat 6: Player4 didn't bet (folded)
+Seat 7: Player5 didn't bet (folded)
+Seat 8: Player6 didn't bet (folded)
+Seat 9: Player7 folded on the Flop

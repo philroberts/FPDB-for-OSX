@@ -1,0 +1,24 @@
+PokerStars Home Game Hand #74655014750: {chipchipchip}  Hold'em No Limit (1/2) - 2012/01/28 20:58:29 ET
+Table 'test_hu' 9-max (Play Money) Seat #5 is the button
+Seat 4: Player0 (400 in chips) 
+Seat 5: Hero (150 in chips) 
+Hero: posts small blind 1
+Player0: posts big blind 2
+*** HOLE CARDS ***
+Dealt to Hero [4d Jd]
+Hero: calls 1
+Player0: checks 
+*** FLOP *** [Qs Ah Ks]
+Player0: checks 
+Hero said, "hey"
+Hero: checks 
+*** TURN *** [Qs Ah Ks] [8s]
+Player0: bets 2
+Hero: folds 
+Uncalled bet (2) returned to Player0
+Player0 collected 4 from pot
+*** SUMMARY ***
+Total pot 4 | Rake 0 
+Board [Qs Ah Ks 8s]
+Seat 4: Player0 (big blind) collected (4)
+Seat 5: Hero (button) (small blind) folded on the Turn

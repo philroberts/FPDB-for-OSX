@@ -77,7 +77,7 @@ except ImportError:
     use_numpy = False
 
 
-DB_VERSION = 187
+DB_VERSION = 188
 
 # Variance created as sqlite has a bunch of undefined aggregate functions.
 
@@ -3304,13 +3304,13 @@ class Database:
         hilo = Card.games[game['category']][2]
             
         gtinfo = (siteid, game['type'], game['category'], game['limitType'], game['currency'],
-                  game['mix'], int(Decimal(game['sb'])*100), int(Decimal(game['bb'])*100),
-                  game['maxSeats'], int(game['ante']*100), int(Decimal(game['cap'])*100), game['zoom'])
+                  game['mix'], int(Decimal(game['sb'])*100), int(Decimal(game['bb'])*100), game['maxSeats'],
+                  int(game['ante']*100), game['buyinType'], game['fast'], game['newToGame'], game['homeGame'])
         
         gtinsert = (siteid, game['currency'], game['type'], game['base'], game['category'], game['limitType'], hilo,
                     game['mix'], int(Decimal(game['sb'])*100), int(Decimal(game['bb'])*100),
                     int(Decimal(game['bb'])*100), int(Decimal(game['bb'])*200), game['maxSeats'], int(game['ante']*100),
-                    int(Decimal(game['cap'])*100), game['zoom'])
+                    game['buyinType'], game['fast'], game['newToGame'], game['homeGame'])
         
         result = self.gtcache[(gtinfo, gtinsert)]
         # NOTE: Using the LambdaDict does the same thing as:
@@ -3390,17 +3390,18 @@ class Database:
             if self.backend == self.PGSQL:
                 expectedValues = (('buyin', 'buyin'), ('fee', 'fee'), ('buyinCurrency', 'currency'),('isSng', 'sng'), ('maxseats', 'maxseats')
                              , ('isKO', 'knockout'), ('koBounty', 'kobounty'), ('isRebuy', 'rebuy'), ('rebuyCost', 'rebuycost')
-                             , ('isAddOn', 'addon'), ('addOnCost','addoncost'), ('speed', 'speed'), ('isShootout', 'shootout'), ('isMatrix', 'matrix'))
+                             , ('isAddOn', 'addon'), ('addOnCost','addoncost'), ('speed', 'speed'), ('isShootout', 'shootout')
+                             , ('isMatrix', 'matrix'), ('isFast', 'fast'))
             else:
                 expectedValues = (('buyin', 'buyin'), ('fee', 'fee'), ('buyinCurrency', 'currency'),('isSng', 'sng'), ('maxseats', 'maxSeats')
                              , ('isKO', 'knockout'), ('koBounty', 'koBounty'), ('isRebuy', 'rebuy'), ('rebuyCost', 'rebuyCost')
                              , ('isAddOn', 'addOn'), ('addOnCost','addOnCost'), ('speed', 'speed'), ('isShootout', 'shootout') 
-                             ,('isMatrix', 'matrix'), ('isZoom', 'zoom'))
+                             ,('isMatrix', 'matrix'), ('isFast', 'fast'))
             resultDict = dict(zip(columnNames, result))
             ttid = resultDict["id"]
             for ev in expectedValues:
                 val = getattr(obj, ev[0])
-                if (not val or val=='NA' or (ev[0]=='maxseats'and val>resultDict[ev[1]])) and resultDict[ev[1]]:#DB has this value but object doesnt, so update object
+                if (not val or val=='NA' or (ev[0]=='maxseats' and val>resultDict[ev[1]])) and resultDict[ev[1]]:#DB has this value but object doesnt, so update object
                     setattr(obj, ev[0], resultDict[ev[1]])
                 elif val and (resultDict[ev[1]] != val):#object has this value but DB doesnt, so update DB
                     updateDb=True
@@ -3412,7 +3413,7 @@ class Database:
                 category = obj.gametype['category']
             row = (obj.siteId, obj.buyinCurrency, obj.buyin, obj.fee, category,
                    obj.gametype['limitType'], obj.maxseats, obj.isSng, obj.isKO, obj.koBounty,
-                   obj.isRebuy, obj.rebuyCost, obj.isAddOn, obj.addOnCost, obj.speed, obj.isShootout, obj.isMatrix, obj.isZoom)
+                   obj.isRebuy, obj.rebuyCost, obj.isAddOn, obj.addOnCost, obj.speed, obj.isShootout, obj.isMatrix, obj.isFast)
             cursor.execute (self.sql.query['getTourneyTypeId'].replace('%s', self.sql.query['placeholder']), row)
             tmp=cursor.fetchone()
             try:
