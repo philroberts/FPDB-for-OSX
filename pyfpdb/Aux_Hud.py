@@ -240,9 +240,8 @@ class Simple_table_mw(Aux_Base.Seat_Window):
         self.add(eb)
         eb.add(lab)
 
-        self.menu = gtk.Menu()
-        self.create_menu_items(self.menu)
-        eb.connect_object("button-press-event", self.button_press_cb, self.menu)
+
+        eb.connect_object("button-press-event", self.button_press_cb, self)
 
         self.move(self.hud.table.x + self.aw.xshift, self.hud.table.y + self.aw.yshift)
                 
@@ -252,27 +251,14 @@ class Simple_table_mw(Aux_Base.Seat_Window):
         #self.hud.table.topify(self) does not serve any useful purpose, it seems
 
 
-    def create_menu_items(self, menu):
-        #a gtk.menu item is passed in and returned
-        
-        menu_item_build_list = ( ('Kill This HUD', self.kill),
-                        ('Save HUD Layout', self.save_current_layouts), 
-                        ('Show Player Stats', None) )
-        
-        for item, cb in menu_item_build_list:
-            this_item = gtk.MenuItem(item)
-            menu.append(this_item)
-            this_item.show()
-            if cb is not None:
-                this_item.connect("activate", cb)
-                     
-        return menu
                      
     def button_press_cb(self, widget, event, *args):
         """Handle button clicks in the FPDB main menu event box."""
 
         if event.button == 3:   # right button event does nothing for now
-            widget.popup(None, None, None, event.button, event.time)
+            print "x"
+            a=Popup_menu(self)
+            print a
  
 #    button 2 is not handled here because it is the pupup window
 
@@ -296,3 +282,46 @@ class Simple_table_mw(Aux_Base.Seat_Window):
 
     def kill(self, event):
         self.hud.parent.kill_hud(event, self.hud.table.key)
+
+class Popup_menu(gtk.Window):
+
+    def __init__(self, parent):
+            super(Popup_menu, self).__init__()
+            self.set_position(gtk.WIN_POS_MOUSE)
+            self.set_transient_for(parent)
+            self.set_destroy_with_parent(True)
+            menu = gtk.Menu()
+            self.create_menu_items(menu)
+            eb = gtk.EventBox()
+            eb.connect_object("button-press-event", self.button_press_cb, menu)
+            lab = gtk.Label("hello world")
+            self.add(eb)
+            eb.add(lab)
+            menu.show()
+            eb.show()
+            self.show()
+        #    pass
+        #self.menu = gtk.Menu()
+        #self.create_menu_items(self.menu)
+
+
+    def create_menu_items(self, menu):
+        #a gtk.menu item is passed in and returned
+        
+        menu_item_build_list = ( ('Kill This HUD', None),
+                        #('Save HUD Layout', self.save_current_layouts), 
+                        ('Show Player Stats', None) )
+        
+        for item, cb in menu_item_build_list:
+            this_item = gtk.MenuItem(item)
+            menu.append(this_item)
+            this_item.show()
+            if cb is not None:
+                this_item.connect("activate", cb)
+                     
+        return menu
+    def button_press_cb(self, widget, event, *args):
+        """Handle button clicks in the FPDB main menu event box."""
+
+        if event.button == 3:   # right button event does nothing for now
+            widget.popup(None, None, None, event.button, event.time)
