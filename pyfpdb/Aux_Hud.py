@@ -349,6 +349,7 @@ class Simple_table_popup_menu(gtk.Window):
 #hero ndays spinbox
         adjustment = gtk.Adjustment(value=self.parentwin.hud.hud_params['h_hud_days'],lower=1, upper=9999, step_incr=1)
         hero_ndays_spin = gtk.SpinButton(adjustment, climb_rate=1, digits=0)
+        hero_ndays_spin.connect("value-changed", self.change_spin_field_value, 'h_hud_days')
         vbox.pack_start(hero_ndays_spin)
         hero_ndays_spin.show()
 
@@ -366,7 +367,6 @@ class Simple_table_popup_menu(gtk.Window):
         lab.show(), eb3.show()
 
 #villain_stat_range
-
         vsr_combo = gtk.combo_box_new_text()
         vbox.pack_start(vsr_combo)
         self.build_combo_and_set_active(vsr_combo, 'hud_style', stat_range_combo_dict)
@@ -375,13 +375,13 @@ class Simple_table_popup_menu(gtk.Window):
 #villain ndays spinbox
         adjustment = gtk.Adjustment(value=self.parentwin.hud.hud_params['hud_days'],lower=1, upper=9999, step_incr=1)
         vndays_spin = gtk.SpinButton(adjustment, climb_rate=1, digits=0)
+        vndays_spin.connect("value-changed", self.change_spin_field_value, 'hud_days')
         vbox.pack_start(vndays_spin)
         vndays_spin.show()
 
 #villain multiplier combo
         vmu_combo = gtk.combo_box_new_text()
         vbox.pack_start(vmu_combo)
-        print "kjh ", self.parentwin.hud.hud_params['agg_bb_mult']
         self.build_combo_and_set_active(vmu_combo, 'agg_bb_mult', multiplier_combo_dict)
         vmu_combo.show()
 
@@ -414,3 +414,7 @@ class Simple_table_popup_menu(gtk.Window):
     def change_combo_field_value(self, widget, field, combo_dict):
         sel = widget.get_active()
         self.parentwin.hud.hud_params[field] = combo_dict[sel][1]
+                
+    def change_spin_field_value(self, widget, field):
+        print "weeee", widget.get_value()
+        self.parentwin.hud.hud_params[field] = widget.get_value()

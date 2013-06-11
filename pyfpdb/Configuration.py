@@ -611,14 +611,10 @@ class HudUI:
         #
         if node.hasAttribute('stat_range'): self.hud_style = node.getAttribute('stat_range')
         if node.hasAttribute('stat_days'): self.hud_days = node.getAttribute('stat_days')
-        if node.hasAttribute('aggregate_ring_game_stats'): self.aggregate_ring = string_to_bool(node.getAttribute('aggregate_ring_game_stats'))
-        if node.hasAttribute('aggregate_tourney_stats'): self.aggregate_tour = string_to_bool(node.getAttribute('aggregate_tourney_stats'))
         if node.hasAttribute('aggregation_level_multiplier'): self.agg_bb_mult = node.getAttribute('aggregation_level_multiplier')
         #
         if node.hasAttribute('hero_stat_range'): self.h_hud_style = node.getAttribute('hero_stat_range')
         if node.hasAttribute('hero_stat_days'): self.h_hud_days = node.getAttribute('hero_stat_days')
-        if node.hasAttribute('aggregate_hero_ring_game_stats'): self.h_aggregate_ring = string_to_bool(node.getAttribute('aggregate_hero_ring_game_stats'))
-        if node.hasAttribute('aggregate_hero_tourney_stats'): self.h_aggregate_tour = string_to_bool(node.getAttribute('aggregate_hero_tourney_stats'))
         if node.hasAttribute('hero_aggregation_level_multiplier'): self.h_agg_bb_mult = node.getAttribute('hero_aggregation_level_multiplier')
 
 
@@ -1379,12 +1375,6 @@ class Config:
         try:    hui['hud_days']        = int(self.ui.hud_days)
         except: hui['hud_days']        = 90
 
-        try:    hui['aggregate_ring']   = self.ui.aggregate_ring
-        except: hui['aggregate_ring']   = False
-
-        try:    hui['aggregate_tour']   = self.ui.aggregate_tour
-        except: hui['aggregate_tour']   = True
-
         try:    hui['agg_bb_mult']    = int(self.ui.agg_bb_mult)
         except: hui['agg_bb_mult']    = 1
 
@@ -1401,12 +1391,6 @@ class Config:
 
         try:    hui['h_hud_days']     = int(self.ui.h_hud_days)
         except: hui['h_hud_days']     = 30
-
-        try:    hui['h_aggregate_ring'] = self.ui.h_aggregate_ring
-        except: hui['h_aggregate_ring'] = False
-
-        try:    hui['h_aggregate_tour'] = self.ui.h_aggregate_tour
-        except: hui['h_aggregate_tour'] = True
 
         try:    hui['h_agg_bb_mult']    = int(self.ui.h_agg_bb_mult)
         except: hui['h_agg_bb_mult']    = 1

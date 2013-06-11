@@ -1073,7 +1073,7 @@ class Database:
            self.date_ndays_ago    date n days ago
            self.h_date_ndays_ago  date n days ago for hero (different n)
         """
-
+        print "hud_days, h_hud_days ", hud_days, h_hud_days
         self.hand_1day_ago = 1
         c = self.get_cursor()
         c.execute(self.sql.query['get_hand_1day_ago'])
@@ -1090,6 +1090,7 @@ class Database:
         self.date_ndays_ago = "d%02d%02d%02d" % (now.year - 2000, now.month, now.day)
         
         d = timedelta(days=h_hud_days, hours=tz_day_start_offset)
+        print "d ", d, h_hud_days
         now = datetime.utcnow() - d
         self.h_date_ndays_ago = "d%02d%02d%02d" % (now.year - 2000, now.month, now.day)
 
@@ -1162,6 +1163,7 @@ class Database:
 
         if h_hud_style == 'T':
             h_stylekey = self.h_date_ndays_ago
+            print self.h_date_ndays_ago
         elif h_hud_style == 'A':
             h_stylekey = '0000000'  # all stylekey values should be higher than this
         elif h_hud_style == 'S':
