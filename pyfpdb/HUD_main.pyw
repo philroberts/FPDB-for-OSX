@@ -180,6 +180,7 @@ class HUD_main(object):
             self.hud_dict[temp_key].hud_params['h_agg_bb_mult'] = 1
         elif type == "ring" and self.hud_params['h_aggregate_ring'] == False:
             self.hud_dict[temp_key].hud_params['h_agg_bb_mult'] = 1
+        self.hud_dict[temp_key].hud_params['new_max_seats'] = None
         # sqlcoder: I forget why these are set to true (aren't they ignored from now on?)
         # but I think it's needed:
         self.hud_params['aggregate_ring'] = True
