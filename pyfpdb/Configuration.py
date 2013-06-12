@@ -609,13 +609,17 @@ class HudUI:
         if node.hasAttribute('deck_type'): self.deck_type = node.getAttribute('deck_type')
         if node.hasAttribute('card_back'): self.card_back = node.getAttribute('card_back')
         #
-        if node.hasAttribute('stat_range'): self.hud_style = node.getAttribute('stat_range')
+        if node.hasAttribute('stat_range'): self.stat_range = node.getAttribute('stat_range')
         if node.hasAttribute('stat_days'): self.hud_days = node.getAttribute('stat_days')
         if node.hasAttribute('aggregation_level_multiplier'): self.agg_bb_mult = node.getAttribute('aggregation_level_multiplier')
+        if node.hasAttribute('seats_style'): self.seats_style = node.getAttribute('seats_style')
+        if node.hasAttribute('seats_cust_nums'): self.seats_cust_nums = node.getAttribute('seats_cust_nums')
         #
-        if node.hasAttribute('hero_stat_range'): self.h_hud_style = node.getAttribute('hero_stat_range')
+        if node.hasAttribute('hero_stat_range'): self.h_stat_range = node.getAttribute('hero_stat_range')
         if node.hasAttribute('hero_stat_days'): self.h_hud_days = node.getAttribute('hero_stat_days')
         if node.hasAttribute('hero_aggregation_level_multiplier'): self.h_agg_bb_mult = node.getAttribute('hero_aggregation_level_multiplier')
+        if node.hasAttribute('hero_seats_style'): self.h_seats_style = node.getAttribute('hero_seats_style')
+        if node.hasAttribute('hero_seats_cust_nums'): self.h_seats_cust_nums = node.getAttribute('hero_seats_cust_nums')
 
 
     def __str__(self):
@@ -1369,8 +1373,8 @@ class Config:
         try:    hui['card_back']      = unicode(self.ui.card_back)
         except: hui['card_back']        = u'back04'
                 
-        try:    hui['hud_style']        = self.ui.hud_style
-        except: hui['hud_style']        = 'A'  # default is show stats for All-time, also S(session) and T(ime)
+        try:    hui['stat_range']        = self.ui.stat_range
+        except: hui['stat_range']        = 'A'  # default is show stats for All-time, also S(session) and T(ime)
 
         try:    hui['hud_days']        = int(self.ui.hud_days)
         except: hui['hud_days']        = 90
@@ -1386,8 +1390,8 @@ class Config:
 
         # Hero specific
 
-        try:    hui['h_hud_style']    = self.ui.h_hud_style
-        except: hui['h_hud_style']    = 'S'
+        try:    hui['h_stat_range']    = self.ui.h_stat_range
+        except: hui['h_stat_range']    = 'S'
 
         try:    hui['h_hud_days']     = int(self.ui.h_hud_days)
         except: hui['h_hud_days']     = 30
