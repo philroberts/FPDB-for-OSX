@@ -613,13 +613,15 @@ class HudUI:
         if node.hasAttribute('stat_days'): self.hud_days = node.getAttribute('stat_days')
         if node.hasAttribute('aggregation_level_multiplier'): self.agg_bb_mult = node.getAttribute('aggregation_level_multiplier')
         if node.hasAttribute('seats_style'): self.seats_style = node.getAttribute('seats_style')
-        if node.hasAttribute('seats_cust_nums'): self.seats_cust_nums = node.getAttribute('seats_cust_nums')
+        if node.hasAttribute('seats_cust_nums_low'): self.seats_cust_nums_low = node.getAttribute('seats_cust_nums_low')
+        if node.hasAttribute('seats_cust_nums_high'): self.seats_cust_nums_high = node.getAttribute('seats_cust_nums_high')
         #
         if node.hasAttribute('hero_stat_range'): self.h_stat_range = node.getAttribute('hero_stat_range')
         if node.hasAttribute('hero_stat_days'): self.h_hud_days = node.getAttribute('hero_stat_days')
         if node.hasAttribute('hero_aggregation_level_multiplier'): self.h_agg_bb_mult = node.getAttribute('hero_aggregation_level_multiplier')
         if node.hasAttribute('hero_seats_style'): self.h_seats_style = node.getAttribute('hero_seats_style')
-        if node.hasAttribute('hero_seats_cust_nums'): self.h_seats_cust_nums = node.getAttribute('hero_seats_cust_nums')
+        if node.hasAttribute('hero_seats_cust_nums_low'): self.h_seats_cust_nums_low = node.getAttribute('hero_seats_cust_nums_low')
+        if node.hasAttribute('hero_seats_cust_nums_high'): self.h_seats_cust_nums_high = node.getAttribute('hero_seats_cust_nums_high')
 
 
     def __str__(self):
@@ -1385,9 +1387,11 @@ class Config:
         try:    hui['seats_style']    = self.ui.seats_style
         except: hui['seats_style']    = 'A'  # A / C / E, use A(ll) / C(ustom) / E(xact) seat numbers
 
-        try:    hui['seats_cust_nums']    = self.ui.seats_cust_nums
-        except: hui['seats_cust_nums']    = ['n/a', 'n/a', (2,2), (3,4), (3,5), (4,6), (5,7), (6,8), (7,9), (8,10), (8,10)]
-
+        try:    hui['seats_cust_nums_low']    = int(self.ui.seats_cust_nums_low)
+        except: hui['seats_cust_nums_low']    = 1
+        try:    hui['seats_cust_nums_high']    = int(self.ui.seats_cust_nums_high)
+        except: hui['seats_cust_nums_high']    = 10
+          
         # Hero specific
 
         try:    hui['h_stat_range']    = self.ui.h_stat_range
@@ -1402,9 +1406,10 @@ class Config:
         try:    hui['h_seats_style']    = self.ui.h_seats_style
         except: hui['h_seats_style']    = 'A'  # A / C / E, use A(ll) / C(ustom) / E(xact) seat numbers
 
-        try:    hui['h_seats_cust_nums']    = self.ui.h_seats_cust_nums
-        except: hui['h_seats_cust_nums']    = ['n/a', 'n/a', (2,2), (3,4), (3,5), (4,6), (5,7), (6,8), (7,9), (8,10), (8,10)]
-
+        try:    hui['h_seats_cust_nums_low']    = int(self.ui.h_seats_cust_nums_low)
+        except: hui['h_seats_cust_nums_low']    = 1
+        try:    hui['h_seats_cust_nums_high']    = int(self.ui.h_seats_cust_nums_high)
+        except: hui['h_seats_cust_nums_high']    = 10
         return hui
 
 

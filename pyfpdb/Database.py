@@ -1100,9 +1100,9 @@ class Database:
     
     def get_stats_from_hand( self, hand, type   # type is "ring" or "tour"
                            , hud_params = {'hud_style':'A', 'agg_bb_mult':1000
-                                          ,'seats_style':'A', 'seats_cust_nums':['n/a', 'n/a', (2,2), (3,4), (3,5), (4,6), (5,7), (6,8), (7,9), (8,10), (8,10)]
+                                          ,'seats_style':'A', 'seats_cust_nums_low':1, 'seats_cust_nums_high':10 
                                           ,'h_hud_style':'S', 'h_agg_bb_mult':1000
-                                          ,'h_seats_style':'A', 'h_seats_cust_nums':['n/a', 'n/a', (2,2), (3,4), (3,5), (4,6), (5,7), (6,8), (7,9), (8,10), (8,10)]
+                                          ,'h_seats_style':'A', 'h_seats_cust_nums_low':1, 'h_seats_cust_nums_high':10 
                                           }
                            , hero_id = -1
                            , num_seats = 6
@@ -1110,18 +1110,20 @@ class Database:
         stat_range   = hud_params['stat_range']
         agg_bb_mult = hud_params['agg_bb_mult']
         seats_style = hud_params['seats_style']
-        seats_cust_nums = hud_params['seats_cust_nums']
+        seats_cust_nums_low = hud_params['seats_cust_nums_low']
+        seats_cust_nums_high = hud_params['seats_cust_nums_high']
         h_stat_range   = hud_params['h_stat_range']
         h_agg_bb_mult = hud_params['h_agg_bb_mult']
         h_seats_style = hud_params['h_seats_style']
-        h_seats_cust_nums = hud_params['h_seats_cust_nums']
+        h_seats_cust_nums_low = hud_params['h_seats_cust_nums_low']
+        h_seats_cust_nums_high = hud_params['h_seats_cust_nums_high']
 
         stat_dict = {}
 
         if seats_style == 'A':
             seats_min, seats_max = 0, 10
         elif seats_style == 'C':
-            seats_min, seats_max = seats_cust_nums[num_seats][0], seats_cust_nums[num_seats][1]
+            seats_min, seats_max = seats_cust_nums_low, seats_cust_nums_high
         elif seats_style == 'E':
             seats_min, seats_max = num_seats, num_seats
         else:
@@ -1131,7 +1133,7 @@ class Database:
         if h_seats_style == 'A':
             h_seats_min, h_seats_max = 0, 10
         elif h_seats_style == 'C':
-            h_seats_min, h_seats_max = h_seats_cust_nums[num_seats][0], h_seats_cust_nums[num_seats][1]
+            h_seats_min, h_seats_max = h_seats_cust_nums_low, h_seats_cust_nums_high
         elif h_seats_style == 'E':
             h_seats_min, h_seats_max = num_seats, num_seats
         else:
