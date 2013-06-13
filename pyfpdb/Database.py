@@ -1163,7 +1163,6 @@ class Database:
 
         if h_stat_range == 'T':
             h_stylekey = self.h_date_ndays_ago
-            print self.h_date_ndays_ago
         elif h_stat_range == 'A':
             h_stylekey = '0000000'  # all stylekey values should be higher than this
         elif h_stat_range == 'S':

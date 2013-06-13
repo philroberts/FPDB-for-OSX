@@ -217,7 +217,7 @@ class Simple_eb(gtk.EventBox): pass
 class Simple_label(gtk.Label): pass
 
 class Simple_table_mw(Aux_Base.Seat_Window):
-    """Create a default table hud main window with a menu."""
+    """Create a default table hud menu label"""
 #    This is a recreation of the table main window from the default HUD
 #    in the old Hud.py. This has the menu options from that hud. 
 
@@ -249,8 +249,9 @@ class Simple_table_mw(Aux_Base.Seat_Window):
         eb.connect_object("button-press-event", self.button_press_cb, self)
 
         self.move(self.hud.table.x + self.aw.xshift, self.hud.table.y + self.aw.yshift)
-                
-        eb.show_all()
+
+        lab.show(), eb.show()
+        self.show()
         #self.menu.show_all() do not attempt to show self.menu !! show its' eb container instead
         #self.show_all() do not do this, it creates oversize eventbox in windows pygtk2.24
         #self.hud.table.topify(self) does not serve any useful purpose, it seems
@@ -298,11 +299,6 @@ class Simple_table_popup_menu(gtk.Window):
         self.connect("delete_event", self.delete_event)
         self.connect("destroy", self.delete_event)
 
-        grid = gtk.Table(1,3)
-        self.add(grid)
-        vbox1=gtk.VBox(homogeneous=False, spacing=3)
-        vbox2=gtk.VBox(homogeneous=False, spacing=3)
-        vbox3=gtk.VBox(homogeneous=False, spacing=3)
 #combobox statrange
         stat_range_combo_dict = {} #[position][screentext, field value]
         stat_range_combo_dict[0] = ((_('Since:')+" "+_('All Time')), "A")
@@ -311,7 +307,7 @@ class Simple_table_popup_menu(gtk.Window):
 #combobox seatsstyle
         seats_style_combo_dict = {} #[position][screentext, field value]
         seats_style_combo_dict[0] = ((_('Number of Seats:')+" "+_('Any Number')), "A")
-        seats_style_combo_dict[1] = ((_('Number of Seats:')+" "+_('Custom'+" - - >")), "C")
+        seats_style_combo_dict[1] = ((_('Number of Seats:')+" "+_('Custom')), "C")
         seats_style_combo_dict[2] = ((_('Number of Seats:')+" "+_('Exact')), "E")
 #combobox multiplier
         multiplier_combo_dict = {}
@@ -320,139 +316,53 @@ class Simple_table_popup_menu(gtk.Window):
         multiplier_combo_dict[2] = ((_('%s to %s * Current Blinds') % ("  0.33", "3")), 3)
         multiplier_combo_dict[3] = ((_('%s to %s * Current Blinds') % ("  0.1", "10")), 10)
         multiplier_combo_dict[4] = (_('All Levels'), 10000)
-        
-
-        kill_button = gtk.Button(_('Restart This HUD'))
-        image = gtk.Image()
-        image.set_from_stock(gtk.STOCK_REFRESH, gtk.ICON_SIZE_BUTTON)
-        kill_button.set_image(image)
-        kill_button.set_alignment(0, 0)   
-        kill_button.connect("clicked", self.callback, "kill")
-        vbox1.pack_start(kill_button)
-        kill_button.show()
-        
-        save_button = gtk.Button(_('Save HUD Layout'))
-        image = gtk.Image()
-        image.set_from_stock(gtk.STOCK_SAVE, gtk.ICON_SIZE_BUTTON)
-        save_button.set_image(image)
-        save_button.set_alignment(0, 0)
-        save_button.connect("clicked", self.callback, "save")
-        vbox1.pack_start(save_button)
-        save_button.show()
-
-        close_button = gtk.Button(_('Close'))
-        image = gtk.Image()
-        image.set_from_stock(gtk.STOCK_CLOSE, gtk.ICON_SIZE_BUTTON)
-        close_button.set_image(image)
-        close_button.set_alignment(0, 0)
-        close_button.connect("clicked", self.callback, "close")
-        vbox1.pack_start(close_button)
-        close_button.show()
-
-#label
-        eb = gtk.EventBox()
-        lab = gtk.Label(_('Set max seats'))
-        eb.add(lab)
-        vbox1.pack_start(eb)
-        lab.show(), eb.show()
-                                    
-#    ComboBox - set max seats
-        cb_max_combo = gtk.combo_box_new_text()
-        vbox1.pack_start(cb_max_combo)
+#ComboBox - set max seats
         cb_max_dict = {} #[position][screentext, field value]
         cb_max_dict[0] = (_('Select layout'),None)
         pos = 1
         for i in (sorted(self.parentwin.hud.layout_set.layout)):
             cb_max_dict[pos]= (('%d-max' % i), i)
             pos+=1
-        self.build_combo_and_set_active(cb_max_combo, 'new_max_seats', cb_max_dict)
-        cb_max_combo.show()
-        
-#label
-        eb = gtk.EventBox()
-        lab = gtk.Label(_('Show Player Stats for'))
-        eb.add(lab)
-        vbox2.pack_start(eb)
-        lab.show(), eb.show()
-        
-#hero multiplier combo
-        hmu_combo = gtk.combo_box_new_text()
-        vbox2.pack_start(hmu_combo)
-        self.build_combo_and_set_active(hmu_combo, 'h_agg_bb_mult', multiplier_combo_dict)
-        hmu_combo.show()
 
-#hero seats style combo + spinners
+        grid = gtk.Table(1,3)
+        self.add(grid)
+        vbox1=gtk.VBox(homogeneous=False, spacing=3)
+        vbox2=gtk.VBox(homogeneous=False, spacing=3)
+        vbox3=gtk.VBox(homogeneous=False, spacing=3)
+        
+        vbox1.pack_start(self.build_button(_('Restart This HUD'), gtk.STOCK_REFRESH, "kill"))
+        vbox1.pack_start(self.build_button(_('Save HUD Layout'), gtk.STOCK_SAVE, "save"))
+        vbox1.pack_start(self.build_button(_('Close'), gtk.STOCK_CLOSE, "close"))
+        vbox1.pack_start(self.build_label(_('Set max seats')))
+        vbox1.pack_start(self.build_combo_and_set_active('new_max_seats', cb_max_dict))
+        
+        vbox2.pack_start(self.build_label(_('Show Player Stats for')))
+        vbox2.pack_start(self.build_combo_and_set_active('h_agg_bb_mult', multiplier_combo_dict))
+        vbox2.pack_start(self.build_combo_and_set_active('h_seats_style', seats_style_combo_dict))
         hbox=gtk.HBox(homogeneous=False, spacing=3)
-        hss_combo = gtk.combo_box_new_text()
-        vbox2.add(hbox)
-        self.build_combo_and_set_active(hss_combo, 'h_seats_style', seats_style_combo_dict)
-        hbox.pack_start(hss_combo)
-        hss_combo.show()
-        
-        adjustment = gtk.Adjustment(value=self.parentwin.hud.hud_params['h_seats_cust_nums_low'],lower=1, upper=9, step_incr=1)
-        spin = gtk.SpinButton(adjustment, climb_rate=1, digits=0)
-        spin.connect("value-changed", self.change_spin_field_value, 'h_seats_cust_nums_low')
-        hbox.pack_start(spin)
-        spin.show()
-        eb = gtk.EventBox()
-        lab = gtk.Label(_(' to '))
-        eb.add(lab)
-        hbox.pack_start(eb)
-        lab.show(), eb.show()
-        adjustment = gtk.Adjustment(value=self.parentwin.hud.hud_params['h_seats_cust_nums_high'],lower=2, upper=10, step_incr=1)
-        spin = gtk.SpinButton(adjustment, climb_rate=1, digits=0)
-        spin.connect("value-changed", self.change_spin_field_value, 'h_seats_cust_nums_high')
-        hbox.pack_start(spin)
-        spin.show()
-        
-        hbox.show()
-
-#hero_stat_range + spinbox
+        hbox.pack_start(self.build_label(_('Custom')))
+        hbox.pack_start(self.build_spinner('h_seats_cust_nums_low',1,9))
+        hbox.pack_start(self.build_label(_('To')))
+        hbox.pack_start(self.build_spinner('h_seats_cust_nums_high',2,10))
+        vbox2.add(hbox), hbox.show()
         hbox=gtk.HBox(homogeneous=False, spacing=3)
-        vbox2.add(hbox)
-        hsr_combo = gtk.combo_box_new_text()
-        hbox.pack_start(hsr_combo)
-        self.build_combo_and_set_active(hsr_combo, 'h_stat_range', stat_range_combo_dict)
-        hsr_combo.show()
-        adjustment = gtk.Adjustment(value=self.parentwin.hud.hud_params['h_hud_days'],lower=1, upper=9999, step_incr=1)
-        hero_ndays_spin = gtk.SpinButton(adjustment, climb_rate=1, digits=0)
-        hero_ndays_spin.connect("value-changed", self.change_spin_field_value, 'h_hud_days')
-        hbox.pack_start(hero_ndays_spin)
-        hero_ndays_spin.show()
-        hbox.show()
+        hbox.pack_start(self.build_combo_and_set_active('h_stat_range', stat_range_combo_dict))
+        hbox.pack_start(self.build_spinner('h_hud_days',1,9999))
+        vbox2.add(hbox), hbox.show()
 
-#label
-        eb = gtk.EventBox()
-        lab = gtk.Label(_('Show Opponent Stats for'))
-        eb.add(lab)
-        vbox3.pack_start(eb)
-        lab.show(), eb.show()
-
-#villain multiplier combo
-        vmu_combo = gtk.combo_box_new_text()
-        vbox3.pack_start(vmu_combo)
-        self.build_combo_and_set_active(vmu_combo, 'agg_bb_mult', multiplier_combo_dict)
-        vmu_combo.show()
-
-#villain seats style combo
-        vss_combo = gtk.combo_box_new_text()
-        vbox3.pack_start(vss_combo)
-        self.build_combo_and_set_active(vss_combo, 'seats_style', seats_style_combo_dict)
-        vss_combo.show()
-
-#villain_seats_style
-        vsr_combo = gtk.combo_box_new_text()
-        vbox3.pack_start(vsr_combo)
-        self.build_combo_and_set_active(vsr_combo, 'stat_range', stat_range_combo_dict)
-        vsr_combo.show()
-
-#villain ndays spinbox
-        adjustment = gtk.Adjustment(value=self.parentwin.hud.hud_params['hud_days'],lower=1, upper=9999, step_incr=1)
-        vndays_spin = gtk.SpinButton(adjustment, climb_rate=1, digits=0)
-        vndays_spin.connect("value-changed", self.change_spin_field_value, 'hud_days')
-        vbox3.pack_start(vndays_spin)
-        vndays_spin.show()
-
+        vbox3.pack_start(self.build_label(_('Show Opponent Stats for')))
+        vbox3.pack_start(self.build_combo_and_set_active('agg_bb_mult', multiplier_combo_dict))
+        vbox3.pack_start(self.build_combo_and_set_active('seats_style', seats_style_combo_dict))
+        hbox=gtk.HBox(homogeneous=False, spacing=3)
+        hbox.pack_start(self.build_label(_('Custom')))
+        hbox.pack_start(self.build_spinner('seats_cust_nums_low',1,9))
+        hbox.pack_start(self.build_label(_('To')))
+        hbox.pack_start(self.build_spinner('seats_cust_nums_high',2,10))
+        vbox3.add(hbox), hbox.show()
+        hbox=gtk.HBox(homogeneous=False, spacing=3)
+        hbox.pack_start(self.build_combo_and_set_active('stat_range', stat_range_combo_dict))
+        hbox.pack_start(self.build_spinner('hud_days',1,9999))
+        vbox3.add(hbox), hbox.show()
 
         grid.attach(vbox1, 0, 1, 0, 1)
         grid.attach(vbox2, 1, 2, 0, 1)
@@ -481,13 +391,40 @@ class Simple_table_popup_menu(gtk.Window):
         if data == "close":
             self.delete_event(widget)
             return True
-            
-    def build_combo_and_set_active(self, widget, field, combo_dict):
+
+    def build_button(self, labeltext, buttonimage, cbkeyword):
+        button = gtk.Button(labeltext)
+        image = gtk.Image()
+        image.set_from_stock(buttonimage, gtk.ICON_SIZE_BUTTON)
+        button.set_image(image)
+        button.set_alignment(0, 0)   
+        button.connect("clicked", self.callback, cbkeyword)
+        button.show()
+        return button
+
+    def build_label(self, labeltext):
+        eb = gtk.EventBox()
+        lab = gtk.Label(labeltext)
+        eb.add(lab)
+        lab.show(), eb.show()
+        return eb
+        
+    def build_spinner(self, field, low, high):
+        adjustment = gtk.Adjustment(value=self.parentwin.hud.hud_params[field],lower=low, upper=high, step_incr=1)
+        spinner = gtk.SpinButton(adjustment, climb_rate=1, digits=0)
+        spinner.connect("value-changed", self.change_spin_field_value, field)
+        spinner.show()
+        return spinner
+
+    def build_combo_and_set_active(self, field, combo_dict):
+        widget = gtk.combo_box_new_text()
         for pos in combo_dict:
             widget.append_text(combo_dict[pos][0])
             if combo_dict[pos][1] == self.parentwin.hud.hud_params[field]:
                 widget.set_active(pos)
         widget.connect("changed", self.change_combo_field_value, field, combo_dict)
+        widget.show()
+        return widget
                 
     def change_combo_field_value(self, widget, field, combo_dict):
         sel = widget.get_active()

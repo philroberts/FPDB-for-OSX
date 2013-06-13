@@ -113,13 +113,16 @@
     stat_days="90"
     aggregation_level_multiplier="3"
     seats_style="A"
-    seats_cust_nums="[9,10]"
+    seats_cust_nums_low="6"
+    seats_cust_nums_high="10"
+    
 
     hero_stat_range="A" 
     hero_stat_days="30"
     hero_aggregation_level_multiplier="1"
     hero_seats_style="E"
-    hero_seats_cust_nums="[9,10]"
+    hero_seats_cust_nums_low="6"
+    hero_seats_cust_nums_high="10"
     
     label="FPDBmenu"
     
