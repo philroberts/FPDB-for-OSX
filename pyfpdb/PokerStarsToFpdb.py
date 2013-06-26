@@ -119,7 +119,7 @@ class PokerStars(HandHistoryConverter):
           (?P<GAME>Hold\'em|HOLD\'EM|Razz|RAZZ|7\sCard\sStud|7\sCARD\sSTUD|7\sCard\sStud\sHi/Lo|7\sCARD\sSTUD\sHI/LO|Omaha|OMAHA|Omaha\sHi/Lo|OMAHA\sHI/LO|Badugi|Triple\sDraw\s2\-7\sLowball|Single\sDraw\s2\-7\sLowball|5\sCard\sDraw|5\sCard\sOmaha(\sHi/Lo)?|Courchevel(\sHi/Lo)?)\s
           (?P<LIMIT>No\sLimit|NO\sLIMIT|Limit|LIMIT|Pot\sLimit|POT\sLIMIT|Pot\sLimit\sPre\-Flop,\sNo\sLimit\sPost\-Flop)\)?,?\s
           (-\s)?
-          (Match.*)?                  #TODO: waiting for reply from user as to what this means
+          (?P<SHOOTOUT>Match.*)?
           (Level\s(?P<LEVEL>[IVXLC]+)\s)?
           \(?                            # open paren of the stakes
           (?P<CURRENCY>%(LS)s|)?
@@ -347,9 +347,14 @@ class PokerStars(HandHistoryConverter):
                         hand.isFast = True
                     else:
                         hand.isFast = False
+                    if 'Home' in info['TITLE']:
+                        hand.isHomeGame = True
+                    else:
+                        hand.isHomeGame = False
             if key == 'LEVEL':
-                hand.level = info[key]
-
+                hand.level = info[key]       
+            if key == 'SHOOTOUT' and info[key] != None:
+                hand.isShootout = True
             if key == 'TABLE':
                 tablesplit = re.split(" ", info[key])
                 if hand.tourNo != None and len(tablesplit)>1:

@@ -1,0 +1,4181 @@
+﻿PokerStars Home Game Hand #99631756108: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Triple Draw 2-7 Lowball Limit) - Match Round I, Level I (20/40) - 2013/06/05 23:30:00 ET
+Table '743144019 1' 2-max Seat #1 is the button
+Seat 1: Player0 (1500 in chips) 
+Seat 2: Hero (1500 in chips) 
+Player0: posts small blind 10
+Hero: posts big blind 20
+*** DEALING HANDS ***
+Dealt to Hero [4s 3c As Ad 3d]
+Player0: folds 
+Uncalled bet (10) returned to Hero
+Hero collected 20 from pot
+*** SUMMARY ***
+Total pot 20 | Rake 0 
+Seat 1: Player0 (button) (small blind) folded before the Draw
+Seat 2: Hero (big blind) collected (20)
+
+
+
+PokerStars Home Game Hand #99631761623: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Triple Draw 2-7 Lowball Limit) - Match Round I, Level I (20/40) - 2013/06/05 23:30:20 ET
+Table '743144019 1' 2-max Seat #2 is the button
+Seat 1: Player0 (1490 in chips) 
+Seat 2: Hero (1510 in chips) 
+Hero: posts small blind 10
+Player0: posts big blind 20
+*** DEALING HANDS ***
+Dealt to Hero [4c 9c 9h 6h 5d]
+Hero: calls 10
+Player0: checks 
+*** FIRST DRAW ***
+Player0: discards 3 cards
+Hero: discards 2 cards [9c 9h]
+Dealt to Hero [4c 6h 5d] [5h Td]
+Player0: checks 
+Hero: bets 20
+Player0: calls 20
+*** SECOND DRAW ***
+Player0: discards 2 cards
+Hero: discards 2 cards [Td 5d]
+Dealt to Hero [4c 6h 5h] [4s 2h]
+Player0: checks 
+Hero: bets 40
+Player0: folds 
+Uncalled bet (40) returned to Hero
+Hero collected 80 from pot
+*** SUMMARY ***
+Total pot 80 | Rake 0 
+Seat 1: Player0 (big blind) folded after the 2nd Draw
+Seat 2: Hero (button) (small blind) collected (80)
+
+
+
+PokerStars Home Game Hand #99631780767: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Triple Draw 2-7 Lowball Limit) - Match Round I, Level I (20/40) - 2013/06/05 23:31:28 ET
+Table '743144019 1' 2-max Seat #1 is the button
+Seat 1: Player0 (1450 in chips) 
+Seat 2: Hero (1550 in chips) 
+Player0: posts small blind 10
+Hero: posts big blind 20
+*** DEALING HANDS ***
+Dealt to Hero [4c 2h 2s 3s 6h]
+Player0: raises 20 to 40
+Hero: raises 20 to 60
+Player0: calls 20
+*** FIRST DRAW ***
+Hero: discards 1 card [2s]
+Dealt to Hero [4c 2h 3s 6h] [Qd]
+Player0: discards 3 cards
+Hero: bets 20
+Player0: calls 20
+*** SECOND DRAW ***
+Hero: discards 1 card [Qd]
+Dealt to Hero [4c 2h 3s 6h] [7d]
+Player0: discards 3 cards
+Hero: bets 40
+Player0: folds 
+Uncalled bet (40) returned to Hero
+Hero collected 160 from pot
+*** SUMMARY ***
+Total pot 160 | Rake 0 
+Seat 1: Player0 (button) (small blind) folded after the 2nd Draw
+Seat 2: Hero (big blind) collected (160)
+
+
+
+PokerStars Home Game Hand #99631792117: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Triple Draw 2-7 Lowball Limit) - Match Round I, Level I (20/40) - 2013/06/05 23:32:08 ET
+Table '743144019 1' 2-max Seat #2 is the button
+Seat 1: Player0 (1370 in chips) 
+Seat 2: Hero (1630 in chips) 
+Hero: posts small blind 10
+Player0: posts big blind 20
+*** DEALING HANDS ***
+Dealt to Hero [Ts Qs Qc 7d 8h]
+Hero: folds 
+Uncalled bet (10) returned to Player0
+Player0 collected 20 from pot
+Player0: doesn't show hand 
+*** SUMMARY ***
+Total pot 20 | Rake 0 
+Seat 1: Player0 (big blind) collected (20)
+Seat 2: Hero (button) (small blind) folded before the Draw
+
+
+
+PokerStars Home Game Hand #99631796935: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Triple Draw 2-7 Lowball Limit) - Match Round I, Level I (20/40) - 2013/06/05 23:32:25 ET
+Table '743144019 1' 2-max Seat #1 is the button
+Seat 1: Player0 (1380 in chips) 
+Seat 2: Hero (1620 in chips) 
+Player0: posts small blind 10
+Hero: posts big blind 20
+*** DEALING HANDS ***
+Dealt to Hero [9h 7c Qd 2h Qc]
+Player0: raises 20 to 40
+Hero: calls 20
+*** FIRST DRAW ***
+Hero: discards 2 cards [Qd Qc]
+Dealt to Hero [9h 7c 2h] [Ks 2d]
+Player0: discards 1 card
+Hero: checks 
+Player0: bets 20
+Hero: folds 
+Uncalled bet (20) returned to Player0
+Player0 collected 80 from pot
+Player0: doesn't show hand 
+*** SUMMARY ***
+Total pot 80 | Rake 0 
+Seat 1: Player0 (button) (small blind) collected (80)
+Seat 2: Hero (big blind) folded after the 1st Draw
+
+
+
+PokerStars Home Game Hand #99631807251: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Triple Draw 2-7 Lowball Limit) - Match Round I, Level I (20/40) - 2013/06/05 23:33:02 ET
+Table '743144019 1' 2-max Seat #2 is the button
+Seat 1: Player0 (1420 in chips) 
+Seat 2: Hero (1580 in chips) 
+Hero: posts small blind 10
+Player0: posts big blind 20
+*** DEALING HANDS ***
+Dealt to Hero [4d 2c 4c 5d Jc]
+Hero: raises 20 to 40
+Player0: calls 20
+*** FIRST DRAW ***
+Player0: discards 2 cards
+Hero: discards 2 cards [4c Jc]
+Dealt to Hero [4d 2c 5d] [Kh Ah]
+Player0: checks 
+Hero: checks 
+*** SECOND DRAW ***
+Player0: discards 1 card
+Hero: discards 2 cards [Kh Ah]
+Dealt to Hero [4d 2c 5d] [3h Tc]
+Player0: checks 
+Hero: bets 40
+Player0: calls 40
+*** THIRD DRAW ***
+Player0: discards 1 card
+Hero: stands pat on [4d 2c 5d 3h Tc]
+Player0: checks 
+Hero: checks 
+*** SHOW DOWN ***
+Player0: shows [7s 8s 6c Qh 4h] (Lo: Q,8,7,6,4)
+Hero: shows [4d 2c 3h 5d Tc] (Lo: T,5,4,3,2)
+Hero collected 160 from pot
+*** SUMMARY ***
+Total pot 160 | Rake 0 
+Seat 1: Player0 (big blind) showed [7s 8s 6c Qh 4h] and lost with Lo: Q,8,7,6,4
+Seat 2: Hero (button) (small blind) showed [4d 2c 3h 5d Tc] and won (160) with Lo: T,5,4,3,2
+
+
+
+PokerStars Home Game Hand #99631820624: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Triple Draw 2-7 Lowball Limit) - Match Round I, Level I (20/40) - 2013/06/05 23:33:50 ET
+Table '743144019 1' 2-max Seat #1 is the button
+Seat 1: Player0 (1340 in chips) 
+Seat 2: Hero (1660 in chips) 
+Player0: posts small blind 10
+Hero: posts big blind 20
+*** DEALING HANDS ***
+Dealt to Hero [Jc Ks 4s 9h Ah]
+Player0: raises 20 to 40
+Hero said, "first showdown!"
+Player0 said, "yes"
+Hero: folds 
+Uncalled bet (20) returned to Player0
+Player0 collected 40 from pot
+Player0: doesn't show hand 
+*** SUMMARY ***
+Total pot 40 | Rake 0 
+Seat 1: Player0 (button) (small blind) collected (40)
+Seat 2: Hero (big blind) folded before the Draw
+
+
+
+PokerStars Home Game Hand #99631825279: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Triple Draw 2-7 Lowball Limit) - Match Round I, Level I (20/40) - 2013/06/05 23:34:06 ET
+Table '743144019 1' 2-max Seat #2 is the button
+Seat 1: Player0 (1360 in chips) 
+Seat 2: Hero (1640 in chips) 
+Hero: posts small blind 10
+Player0: posts big blind 20
+*** DEALING HANDS ***
+Dealt to Hero [Jh Ah Qc 5s Ts]
+Hero: folds 
+Uncalled bet (10) returned to Player0
+Player0 collected 20 from pot
+Player0: doesn't show hand 
+*** SUMMARY ***
+Total pot 20 | Rake 0 
+Seat 1: Player0 (big blind) collected (20)
+Seat 2: Hero (button) (small blind) folded before the Draw
+
+
+
+PokerStars Home Game Hand #99631828753: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Triple Draw 2-7 Lowball Limit) - Match Round I, Level I (20/40) - 2013/06/05 23:34:18 ET
+Table '743144019 1' 2-max Seat #1 is the button
+Seat 1: Player0 (1370 in chips) 
+Seat 2: Hero (1630 in chips) 
+Player0: posts small blind 10
+Hero: posts big blind 20
+*** DEALING HANDS ***
+Dealt to Hero [Ks 4s 5h 5s 4c]
+Player0: raises 20 to 40
+Hero: folds 
+Uncalled bet (20) returned to Player0
+Player0 collected 40 from pot
+Player0: doesn't show hand 
+*** SUMMARY ***
+Total pot 40 | Rake 0 
+Seat 1: Player0 (button) (small blind) collected (40)
+Seat 2: Hero (big blind) folded before the Draw
+
+
+
+PokerStars Home Game Hand #99631832645: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Triple Draw 2-7 Lowball Limit) - Match Round I, Level I (20/40) - 2013/06/05 23:34:32 ET
+Table '743144019 1' 2-max Seat #2 is the button
+Seat 1: Player0 (1390 in chips) 
+Seat 2: Hero (1610 in chips) 
+Hero: posts small blind 10
+Player0: posts big blind 20
+*** DEALING HANDS ***
+Dealt to Hero [Kc Kh Ac 5h 3d]
+Hero: calls 10
+Player0: checks 
+*** FIRST DRAW ***
+Player0: discards 3 cards
+Hero: discards 3 cards [Kc Kh Ac]
+Dealt to Hero [5h 3d] [Qc 7s Js]
+Player0: bets 20
+Hero: calls 20
+*** SECOND DRAW ***
+Player0: discards 1 card
+Hero: discards 2 cards [Qc Js]
+Dealt to Hero [5h 3d 7s] [9s 9h]
+Player0: bets 40
+Hero: calls 40
+*** THIRD DRAW ***
+Player0: discards 1 card
+Hero: discards 1 card [9h]
+Dealt to Hero [5h 3d 7s 9s] [6d]
+Player0: checks 
+Hero: bets 40
+Player0: calls 40
+*** SHOW DOWN ***
+Hero: shows [9s 7s 6d 5h 3d] (Lo: 9,7,6,5,3)
+Player0: mucks hand 
+Hero collected 240 from pot
+*** SUMMARY ***
+Total pot 240 | Rake 0 
+Seat 1: Player0 (big blind) mucked [Th 8d 9d 4h 3c]
+Seat 2: Hero (button) (small blind) showed [9s 7s 6d 5h 3d] and won (240) with Lo: 9,7,6,5,3
+
+
+
+PokerStars Home Game Hand #99631845223: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Triple Draw 2-7 Lowball Limit) - Match Round I, Level I (20/40) - 2013/06/05 23:35:17 ET
+Table '743144019 1' 2-max Seat #1 is the button
+Seat 1: Player0 (1270 in chips) 
+Seat 2: Hero (1730 in chips) 
+Player0: posts small blind 10
+Hero: posts big blind 20
+*** DEALING HANDS ***
+Dealt to Hero [8d 6s 6h 3h 2h]
+Player0: raises 20 to 40
+Hero: raises 20 to 60
+Player0: calls 20
+*** FIRST DRAW ***
+Hero: discards 1 card [6h]
+Dealt to Hero [8d 6s 3h 2h] [2c]
+Player0: discards 3 cards
+Hero: bets 20
+Player0: calls 20
+*** SECOND DRAW ***
+Hero: discards 1 card [2h]
+Dealt to Hero [8d 6s 3h 2c] [4c]
+Player0: discards 2 cards
+Hero: checks 
+Player0: checks 
+*** THIRD DRAW ***
+Hero: stands pat on [8d 6s 3h 2c 4c]
+Player0: discards 1 card
+Hero: bets 40
+Player0: folds 
+Uncalled bet (40) returned to Hero
+Hero collected 160 from pot
+*** SUMMARY ***
+Total pot 160 | Rake 0 
+Seat 1: Player0 (button) (small blind) folded after the 3rd Draw
+Seat 2: Hero (big blind) collected (160)
+
+
+
+PokerStars Home Game Hand #99631857260: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Triple Draw 2-7 Lowball Limit) - Match Round I, Level I (20/40) - 2013/06/05 23:36:00 ET
+Table '743144019 1' 2-max Seat #2 is the button
+Seat 1: Player0 (1190 in chips) 
+Seat 2: Hero (1810 in chips) 
+Hero: posts small blind 10
+Player0: posts big blind 20
+*** DEALING HANDS ***
+Dealt to Hero [9h Qc 8d Qd 5c]
+Hero: folds 
+Uncalled bet (10) returned to Player0
+Player0 collected 20 from pot
+Player0: doesn't show hand 
+*** SUMMARY ***
+Total pot 20 | Rake 0 
+Seat 1: Player0 (big blind) collected (20)
+Seat 2: Hero (button) (small blind) folded before the Draw
+
+
+
+PokerStars Home Game Hand #99631861052: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Triple Draw 2-7 Lowball Limit) - Match Round I, Level I (20/40) - 2013/06/05 23:36:13 ET
+Table '743144019 1' 2-max Seat #1 is the button
+Seat 1: Player0 (1200 in chips) 
+Seat 2: Hero (1800 in chips) 
+Player0: posts small blind 10
+Hero: posts big blind 20
+*** DEALING HANDS ***
+Dealt to Hero [9s 3h Qd Js 8h]
+Player0: raises 20 to 40
+Hero: calls 20
+*** FIRST DRAW ***
+Hero: discards 2 cards [Qd Js]
+Dealt to Hero [9s 3h 8h] [4d Ad]
+Player0: discards 1 card
+Hero: checks 
+Player0: bets 20
+Hero: calls 20
+*** SECOND DRAW ***
+Hero: discards 1 card [Ad]
+Dealt to Hero [9s 3h 8h 4d] [Ah]
+Player0: stands pat 
+Hero: checks 
+Player0: bets 40
+Hero: calls 40
+*** THIRD DRAW ***
+Hero: discards 1 card [Ah]
+Dealt to Hero [9s 3h 8h 4d] [9d]
+Player0: stands pat 
+Hero: checks 
+Player0: bets 40
+Hero: folds 
+Uncalled bet (40) returned to Player0
+Player0 collected 200 from pot
+Player0: doesn't show hand 
+*** SUMMARY ***
+Total pot 200 | Rake 0 
+Seat 1: Player0 (button) (small blind) collected (200)
+Seat 2: Hero (big blind) folded after the 3rd Draw
+
+
+
+PokerStars Home Game Hand #99631872979: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Triple Draw 2-7 Lowball Limit) - Match Round I, Level I (20/40) - 2013/06/05 23:36:55 ET
+Table '743144019 1' 2-max Seat #2 is the button
+Seat 1: Player0 (1300 in chips) 
+Seat 2: Hero (1700 in chips) 
+Hero: posts small blind 10
+Player0: posts big blind 20
+*** DEALING HANDS ***
+Dealt to Hero [5d Ad Qs 4h 2h]
+Hero: raises 20 to 40
+Player0: calls 20
+*** FIRST DRAW ***
+Player0: discards 2 cards
+Hero: discards 2 cards [Ad Qs]
+Dealt to Hero [5d 4h 2h] [Ks 8d]
+Player0: bets 20
+Hero: calls 20
+*** SECOND DRAW ***
+Player0: stands pat 
+Hero: discards 1 card [Ks]
+Dealt to Hero [5d 4h 2h 8d] [8c]
+Player0: bets 40
+Hero: calls 40
+*** THIRD DRAW ***
+Player0: stands pat 
+Hero: discards 1 card [8c]
+Dealt to Hero [5d 4h 2h 8d] [9d]
+Player0: checks 
+Hero said, "U HAVE THE NUTZ"
+Hero: checks 
+*** SHOW DOWN ***
+Player0: shows [9s 8h 6s 5c Tc] (Lo: T,9,8,6,5)
+Hero: shows [5d 9d 8d 4h 2h] (Lo: 9,8,5,4,2)
+Hero collected 200 from pot
+Player0 said, "hhehehehe"
+Hero said, "ooo"
+*** SUMMARY ***
+Total pot 200 | Rake 0 
+Seat 1: Player0 (big blind) showed [9s 8h 6s 5c Tc] and lost with Lo: T,9,8,6,5
+Seat 2: Hero (button) (small blind) showed [5d 9d 8d 4h 2h] and won (200) with Lo: 9,8,5,4,2
+
+
+
+PokerStars Home Game Hand #99631885598: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Triple Draw 2-7 Lowball Limit) - Match Round I, Level I (20/40) - 2013/06/05 23:37:40 ET
+Table '743144019 1' 2-max Seat #1 is the button
+Seat 1: Player0 (1200 in chips) 
+Seat 2: Hero (1800 in chips) 
+Player0: posts small blind 10
+Hero: posts big blind 20
+*** DEALING HANDS ***
+Dealt to Hero [9c Th Td 6s 8h]
+Player0: raises 20 to 40
+Hero: calls 20
+*** FIRST DRAW ***
+Hero: discards 2 cards [Th Td]
+Dealt to Hero [9c 6s 8h] [7s 6c]
+Player0: discards 2 cards
+Hero: checks 
+Player0: bets 20
+Hero: raises 20 to 40
+Player0: calls 20
+*** SECOND DRAW ***
+Hero: discards 1 card [6s]
+Dealt to Hero [9c 8h 7s 6c] [Jc]
+Player0: discards 1 card
+Hero: checks 
+Player0: checks 
+*** THIRD DRAW ***
+Hero: discards 1 card [Jc]
+Dealt to Hero [9c 8h 7s 6c] [3d]
+Player0: discards 1 card
+Hero: bets 40
+Player0: folds 
+Uncalled bet (40) returned to Hero
+Hero collected 160 from pot
+*** SUMMARY ***
+Total pot 160 | Rake 0 
+Seat 1: Player0 (button) (small blind) folded after the 3rd Draw
+Seat 2: Hero (big blind) collected (160)
+
+
+
+PokerStars Home Game Hand #99631900246: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Triple Draw 2-7 Lowball Limit) - Match Round I, Level I (20/40) - 2013/06/05 23:38:33 ET
+Table '743144019 1' 2-max Seat #2 is the button
+Seat 1: Player0 (1120 in chips) 
+Seat 2: Hero (1880 in chips) 
+Hero: posts small blind 10
+Player0: posts big blind 20
+*** DEALING HANDS ***
+Dealt to Hero [Kh Kc 5c 2d 5d]
+Hero: folds 
+Uncalled bet (10) returned to Player0
+Player0 collected 20 from pot
+Player0: doesn't show hand 
+*** SUMMARY ***
+Total pot 20 | Rake 0 
+Seat 1: Player0 (big blind) collected (20)
+Seat 2: Hero (button) (small blind) folded before the Draw
+
+
+
+PokerStars Home Game Hand #99631903994: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Triple Draw 2-7 Lowball Limit) - Match Round I, Level I (20/40) - 2013/06/05 23:38:46 ET
+Table '743144019 1' 2-max Seat #1 is the button
+Seat 1: Player0 (1130 in chips) 
+Seat 2: Hero (1870 in chips) 
+Player0: posts small blind 10
+Hero: posts big blind 20
+*** DEALING HANDS ***
+Dealt to Hero [Kh As Kd 8h 2d]
+Player0: raises 20 to 40
+Hero: calls 20
+*** FIRST DRAW ***
+Hero: discards 5 cards [Kh As Kd 8h 2d]
+Dealt to Hero [6h Td 2c 5h 3s]
+Player0: discards 2 cards
+Hero: checks 
+Player0: bets 20
+Hero: calls 20
+*** SECOND DRAW ***
+Hero: discards 1 card [Td]
+Dealt to Hero [6h 2c 5h 3s] [Tc]
+Player0: stands pat 
+Hero: checks 
+Player0: bets 40
+Hero: calls 40
+*** THIRD DRAW ***
+Hero: stands pat on [6h 2c 5h 3s Tc]
+Player0: stands pat 
+Hero: checks 
+Player0: checks 
+*** SHOW DOWN ***
+Hero: shows [6h Tc 2c 5h 3s] (Lo: T,6,5,3,2)
+Player0: shows [2s 8d Ts 3c 6s] (Lo: T,8,6,3,2)
+Hero collected 200 from pot
+*** SUMMARY ***
+Total pot 200 | Rake 0 
+Seat 1: Player0 (button) (small blind) showed [2s 8d Ts 3c 6s] and lost with Lo: T,8,6,3,2
+Seat 2: Hero (big blind) showed [6h Tc 2c 5h 3s] and won (200) with Lo: T,6,5,3,2
+
+
+
+PokerStars Home Game Hand #99631918599: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Triple Draw 2-7 Lowball Limit) - Match Round I, Level I (20/40) - 2013/06/05 23:39:38 ET
+Table '743144019 1' 2-max Seat #2 is the button
+Seat 1: Player0 (1030 in chips) 
+Seat 2: Hero (1970 in chips) 
+Hero: posts small blind 10
+Player0: posts big blind 20
+*** DEALING HANDS ***
+Dealt to Hero [Tc 8d 3h 3s 6h]
+Hero: calls 10
+Player0: checks 
+*** FIRST DRAW ***
+Player0: discards 1 card
+Hero: discards 2 cards [Tc 3h]
+Dealt to Hero [8d 3s 6h] [2s 4s]
+Player0: bets 20
+Hero: raises 20 to 40
+Player0: calls 20
+*** SECOND DRAW ***
+Player0: discards 1 card
+Hero: stands pat on [8d 3s 6h 2s 4s]
+Player0: checks 
+Hero: bets 40
+Player0: calls 40
+*** THIRD DRAW ***
+Player0: discards 1 card
+Hero: stands pat on [8d 3s 6h 2s 4s]
+Player0: checks 
+Hero: bets 40
+Player0: calls 40
+*** SHOW DOWN ***
+Hero: shows [2s 8d 4s 3s 6h] (Lo: 8,6,4,3,2)
+Player0: mucks hand 
+Hero collected 280 from pot
+*** SUMMARY ***
+Total pot 280 | Rake 0 
+Seat 1: Player0 (big blind) mucked [3d 9d Ah 6s 2h]
+Seat 2: Hero (button) (small blind) showed [2s 8d 4s 3s 6h] and won (280) with Lo: 8,6,4,3,2
+
+
+
+PokerStars Home Game Hand #99631934052: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Hold'em Limit) - Match Round I, Level II (20/40) - 2013/06/05 23:40:34 ET
+Table '743144019 1' 2-max Seat #1 is the button
+Seat 1: Player0 (890 in chips) 
+Seat 2: Hero (2110 in chips) 
+Player0: posts small blind 10
+Hero: posts big blind 20
+*** HOLE CARDS ***
+Dealt to Hero [9c 8s]
+Player0: raises 20 to 40
+Player0 said, "phew"
+Player0 said, "lol"
+Hero said, "LOL"
+Hero: calls 20
+*** FLOP *** [8c Qs 4h]
+Player0 said, "2-7 donkey here"
+Hero: checks 
+Player0: bets 20
+Hero: calls 20
+*** TURN *** [8c Qs 4h] [2d]
+Hero: checks 
+Player0: bets 40
+Hero: calls 40
+*** RIVER *** [8c Qs 4h 2d] [3d]
+Hero: checks 
+Player0: checks 
+*** SHOW DOWN ***
+Hero: shows [9c 8s] (a pair of Eights)
+Player0: mucks hand 
+Hero collected 200 from pot
+*** SUMMARY ***
+Total pot 200 | Rake 0 
+Board [8c Qs 4h 2d 3d]
+Seat 1: Player0 (button) (small blind) mucked [6h 4s]
+Seat 2: Hero (big blind) showed [9c 8s] and won (200) with a pair of Eights
+
+
+
+PokerStars Home Game Hand #99631945308: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Hold'em Limit) - Match Round I, Level II (20/40) - 2013/06/05 23:41:15 ET
+Table '743144019 1' 2-max Seat #2 is the button
+Seat 1: Player0 (790 in chips) 
+Seat 2: Hero (2210 in chips) 
+Hero: posts small blind 10
+Player0: posts big blind 20
+*** HOLE CARDS ***
+Dealt to Hero [Td Ah]
+Hero: raises 20 to 40
+Player0: calls 20
+*** FLOP *** [Jh 3s Jd]
+Player0: checks 
+Hero: checks 
+*** TURN *** [Jh 3s Jd] [4h]
+Player0: bets 40
+Hero: folds 
+Uncalled bet (40) returned to Player0
+Player0 collected 80 from pot
+Player0: doesn't show hand 
+*** SUMMARY ***
+Total pot 80 | Rake 0 
+Board [Jh 3s Jd 4h]
+Seat 1: Player0 (big blind) collected (80)
+Seat 2: Hero (button) (small blind) folded on the Turn
+
+
+
+PokerStars Home Game Hand #99631950697: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Hold'em Limit) - Match Round I, Level II (20/40) - 2013/06/05 23:41:35 ET
+Table '743144019 1' 2-max Seat #1 is the button
+Seat 1: Player0 (830 in chips) 
+Seat 2: Hero (2170 in chips) 
+Player0: posts small blind 10
+Hero: posts big blind 20
+*** HOLE CARDS ***
+Dealt to Hero [Ac Kd]
+Player0: raises 20 to 40
+Hero: raises 20 to 60
+Player0 said, "need razz to make my funds back"
+Player0: calls 20
+*** FLOP *** [2d 6d Js]
+Hero said, "RAZZLE DAZZLE"
+Hero: checks 
+Player0: checks 
+*** TURN *** [2d 6d Js] [3s]
+Hero: checks 
+Player0: checks 
+*** RIVER *** [2d 6d Js 3s] [Qd]
+Hero: checks 
+Player0: checks 
+*** SHOW DOWN ***
+Hero: shows [Ac Kd] (high card Ace)
+Player0: mucks hand 
+Hero collected 120 from pot
+*** SUMMARY ***
+Total pot 120 | Rake 0 
+Board [2d 6d Js 3s Qd]
+Seat 1: Player0 (button) (small blind) mucked [Ts 5d]
+Seat 2: Hero (big blind) showed [Ac Kd] and won (120) with high card Ace
+
+
+
+PokerStars Home Game Hand #99631959044: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Hold'em Limit) - Match Round I, Level II (20/40) - 2013/06/05 23:42:05 ET
+Table '743144019 1' 2-max Seat #2 is the button
+Seat 1: Player0 (770 in chips) 
+Seat 2: Hero (2230 in chips) 
+Hero: posts small blind 10
+Player0: posts big blind 20
+*** HOLE CARDS ***
+Dealt to Hero [8d 3d]
+Hero said, "i might lose power, gonna find an outlet"
+Hero: calls 10
+Player0: checks 
+*** FLOP *** [6h 7c 4s]
+Player0: bets 20
+Hero: folds 
+Uncalled bet (20) returned to Player0
+Player0 said, "k"
+Player0 collected 40 from pot
+Player0: doesn't show hand 
+*** SUMMARY ***
+Total pot 40 | Rake 0 
+Board [6h 7c 4s]
+Seat 1: Player0 (big blind) collected (40)
+Seat 2: Hero (button) (small blind) folded on the Flop
+
+
+
+PokerStars Home Game Hand #99631964702: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Hold'em Limit) - Match Round I, Level II (20/40) - 2013/06/05 23:42:26 ET
+Table '743144019 1' 2-max Seat #1 is the button
+Seat 1: Player0 (790 in chips) 
+Seat 2: Hero (2210 in chips) 
+Player0: posts small blind 10
+Hero: posts big blind 20
+*** HOLE CARDS ***
+Dealt to Hero [As 3d]
+Player0: raises 20 to 40
+Hero: calls 20
+*** FLOP *** [Ah Td 2c]
+Hero: bets 20
+Player0: calls 20
+*** TURN *** [Ah Td 2c] [8d]
+Hero: bets 40
+Player0: folds 
+Uncalled bet (40) returned to Hero
+Hero collected 120 from pot
+*** SUMMARY ***
+Total pot 120 | Rake 0 
+Board [Ah Td 2c 8d]
+Seat 1: Player0 (button) (small blind) folded on the Turn
+Seat 2: Hero (big blind) collected (120)
+
+
+
+PokerStars Home Game Hand #99631978141: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Hold'em Limit) - Match Round I, Level II (20/40) - 2013/06/05 23:43:15 ET
+Table '743144019 1' 2-max Seat #2 is the button
+Seat 1: Player0 (730 in chips) 
+Seat 2: Hero (2270 in chips) 
+Hero: posts small blind 10
+Player0: posts big blind 20
+*** HOLE CARDS ***
+Dealt to Hero [6h As]
+Hero: raises 20 to 40
+Player0: calls 20
+*** FLOP *** [Qd 9d Ah]
+Player0: checks 
+Hero: bets 20
+Player0: calls 20
+*** TURN *** [Qd 9d Ah] [Ac]
+Player0: checks 
+Hero: bets 40
+Player0: calls 40
+*** RIVER *** [Qd 9d Ah Ac] [Kd]
+Player0: checks 
+Hero: bets 40
+Player0: folds 
+Uncalled bet (40) returned to Hero
+Hero collected 200 from pot
+*** SUMMARY ***
+Total pot 200 | Rake 0 
+Board [Qd 9d Ah Ac Kd]
+Seat 1: Player0 (big blind) folded on the River
+Seat 2: Hero (button) (small blind) collected (200)
+
+
+
+PokerStars Home Game Hand #99631988355: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Hold'em Limit) - Match Round I, Level II (20/40) - 2013/06/05 23:43:53 ET
+Table '743144019 1' 2-max Seat #1 is the button
+Seat 1: Player0 (630 in chips) 
+Seat 2: Hero (2370 in chips) 
+Player0: posts small blind 10
+Hero: posts big blind 20
+*** HOLE CARDS ***
+Dealt to Hero [8c Jh]
+Hero said, "this is brutal!"
+Player0: raises 20 to 40
+Hero: calls 20
+*** FLOP *** [Qc Tc 8d]
+Hero: checks 
+Player0: bets 20
+Hero: calls 20
+*** TURN *** [Qc Tc 8d] [6s]
+Hero: checks 
+Player0: checks 
+*** RIVER *** [Qc Tc 8d 6s] [Kh]
+Hero: checks 
+Player0: checks 
+*** SHOW DOWN ***
+Hero: shows [8c Jh] (a pair of Eights)
+Player0: mucks hand 
+Hero collected 120 from pot
+Player0 said, "getting spanked"
+*** SUMMARY ***
+Total pot 120 | Rake 0 
+Board [Qc Tc 8d 6s Kh]
+Seat 1: Player0 (button) (small blind) mucked [7d 7c]
+Seat 2: Hero (big blind) showed [8c Jh] and won (120) with a pair of Eights
+
+
+
+PokerStars Home Game Hand #99631994485: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Hold'em Limit) - Match Round I, Level II (20/40) - 2013/06/05 23:44:16 ET
+Table '743144019 1' 2-max Seat #2 is the button
+Seat 1: Player0 (570 in chips) 
+Seat 2: Hero (2430 in chips) 
+Hero: posts small blind 10
+Player0: posts big blind 20
+*** HOLE CARDS ***
+Dealt to Hero [3d 5c]
+Hero: calls 10
+Player0: checks 
+*** FLOP *** [Tc Ts Qh]
+Player0: checks 
+Hero: checks 
+*** TURN *** [Tc Ts Qh] [Jd]
+Player0: checks 
+Hero: checks 
+*** RIVER *** [Tc Ts Qh Jd] [5s]
+Player0: bets 40
+Hero: calls 40
+*** SHOW DOWN ***
+Player0: shows [8c 6d] (a pair of Tens)
+Hero: shows [3d 5c] (two pair, Tens and Fives)
+Hero collected 120 from pot
+*** SUMMARY ***
+Total pot 120 | Rake 0 
+Board [Tc Ts Qh Jd 5s]
+Seat 1: Player0 (big blind) showed [8c 6d] and lost with a pair of Tens
+Seat 2: Hero (button) (small blind) showed [3d 5c] and won (120) with two pair, Tens and Fives
+
+
+
+PokerStars Home Game Hand #99632003010: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Hold'em Limit) - Match Round I, Level II (20/40) - 2013/06/05 23:44:47 ET
+Table '743144019 1' 2-max Seat #1 is the button
+Seat 1: Player0 (510 in chips) 
+Seat 2: Hero (2490 in chips) 
+Player0: posts small blind 10
+Hero: posts big blind 20
+*** HOLE CARDS ***
+Dealt to Hero [2c Kd]
+Player0: raises 20 to 40
+Hero: calls 20
+*** FLOP *** [Js Kc 2s]
+Hero: checks 
+Player0: bets 20
+Hero: raises 20 to 40
+Player0: folds 
+Uncalled bet (20) returned to Hero
+Hero collected 120 from pot
+*** SUMMARY ***
+Total pot 120 | Rake 0 
+Board [Js Kc 2s]
+Seat 1: Player0 (button) (small blind) folded on the Flop
+Seat 2: Hero (big blind) collected (120)
+
+
+
+PokerStars Home Game Hand #99632007281: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Hold'em Limit) - Match Round I, Level II (20/40) - 2013/06/05 23:45:02 ET
+Table '743144019 1' 2-max Seat #2 is the button
+Seat 1: Player0 (450 in chips) 
+Seat 2: Hero (2550 in chips) 
+Hero: posts small blind 10
+Player0: posts big blind 20
+*** HOLE CARDS ***
+Dealt to Hero [4c Qc]
+Hero: calls 10
+Player0: raises 20 to 40
+Hero: calls 20
+*** FLOP *** [Qs Jd Jc]
+Player0: bets 20
+Hero: calls 20
+*** TURN *** [Qs Jd Jc] [Ad]
+Player0: bets 40
+Hero: calls 40
+*** RIVER *** [Qs Jd Jc Ad] [8s]
+Player0: bets 40
+Hero: calls 40
+*** SHOW DOWN ***
+Player0: shows [As 5d] (two pair, Aces and Jacks)
+Player0 said, "suck outtt"
+Hero: mucks hand 
+Player0 collected 280 from pot
+Hero said, "ugg"
+*** SUMMARY ***
+Total pot 280 | Rake 0 
+Board [Qs Jd Jc Ad 8s]
+Seat 1: Player0 (big blind) showed [As 5d] and won (280) with two pair, Aces and Jacks
+Seat 2: Hero (button) (small blind) mucked [4c Qc]
+
+
+
+PokerStars Home Game Hand #99632020952: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Hold'em Limit) - Match Round I, Level II (20/40) - 2013/06/05 23:45:53 ET
+Table '743144019 1' 2-max Seat #1 is the button
+Seat 1: Player0 (590 in chips) 
+Seat 2: Hero (2410 in chips) 
+Player0: posts small blind 10
+Hero: posts big blind 20
+*** HOLE CARDS ***
+Dealt to Hero [3h 6c]
+Player0: raises 20 to 40
+Hero: calls 20
+*** FLOP *** [3d Qs 4c]
+Hero said, "haha, black dude just came up to me and asked how to play real money poker online"
+Hero: checks 
+Player0: bets 20
+Player0 said, "hahah"
+Hero said, "he's like hey many are you playing poker?"
+Hero: calls 20
+*** TURN *** [3d Qs 4c] [5h]
+Hero said, "i was like yeah, but play money"
+Hero: checks 
+Player0: checks 
+*** RIVER *** [3d Qs 4c 5h] [8s]
+Hero: checks 
+Player0: checks 
+*** SHOW DOWN ***
+Hero: shows [3h 6c] (a pair of Threes)
+Player0: mucks hand 
+Hero collected 120 from pot
+Hero said, "but i told him to check out Bovada"
+*** SUMMARY ***
+Total pot 120 | Rake 0 
+Board [3d Qs 4c 5h 8s]
+Seat 1: Player0 (button) (small blind) mucked [Kd Jd]
+Seat 2: Hero (big blind) showed [3h 6c] and won (120) with a pair of Threes
+
+
+
+PokerStars Home Game Hand #99632033467: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Hold'em Limit) - Match Round I, Level II (20/40) - 2013/06/05 23:46:39 ET
+Table '743144019 1' 2-max Seat #2 is the button
+Seat 1: Player0 (530 in chips) 
+Seat 2: Hero (2470 in chips) 
+Hero: posts small blind 10
+Player0: posts big blind 20
+*** HOLE CARDS ***
+Dealt to Hero [Qs 5c]
+Hero: folds 
+Uncalled bet (10) returned to Player0
+Player0 collected 20 from pot
+Player0: shows [Kh Kc] (a pair of Kings)
+Hero said, "lol"
+*** SUMMARY ***
+Total pot 20 | Rake 0 
+Seat 1: Player0 (big blind) collected (20)
+Seat 2: Hero (button) (small blind) folded before Flop
+
+
+
+PokerStars Home Game Hand #99632036593: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Hold'em Limit) - Match Round I, Level II (20/40) - 2013/06/05 23:46:50 ET
+Table '743144019 1' 2-max Seat #1 is the button
+Seat 1: Player0 (540 in chips) 
+Seat 2: Hero (2460 in chips) 
+Player0: posts small blind 10
+Hero: posts big blind 20
+*** HOLE CARDS ***
+Dealt to Hero [9c 4h]
+Hero said, "can't catch a break!"
+Player0: raises 20 to 40
+Hero: calls 20
+*** FLOP *** [8d Ks 7c]
+Hero: checks 
+Player0: bets 20
+Hero: folds 
+Uncalled bet (20) returned to Player0
+Player0 collected 80 from pot
+Player0: doesn't show hand 
+*** SUMMARY ***
+Total pot 80 | Rake 0 
+Board [8d Ks 7c]
+Seat 1: Player0 (button) (small blind) collected (80)
+Seat 2: Hero (big blind) folded on the Flop
+
+
+
+PokerStars Home Game Hand #99632041103: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Hold'em Limit) - Match Round I, Level II (20/40) - 2013/06/05 23:47:07 ET
+Table '743144019 1' 2-max Seat #2 is the button
+Seat 1: Player0 (580 in chips) 
+Seat 2: Hero (2420 in chips) 
+Hero: posts small blind 10
+Player0: posts big blind 20
+*** HOLE CARDS ***
+Dealt to Hero [8h Kd]
+Hero: raises 20 to 40
+Player0: calls 20
+*** FLOP *** [7c Qh Ad]
+Player0: checks 
+Hero: checks 
+*** TURN *** [7c Qh Ad] [Tc]
+Player0: bets 40
+Hero: folds 
+Uncalled bet (40) returned to Player0
+Player0 collected 80 from pot
+Player0: doesn't show hand 
+*** SUMMARY ***
+Total pot 80 | Rake 0 
+Board [7c Qh Ad Tc]
+Seat 1: Player0 (big blind) collected (80)
+Seat 2: Hero (button) (small blind) folded on the Turn
+
+
+
+PokerStars Home Game Hand #99632045912: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Hold'em Limit) - Match Round I, Level II (20/40) - 2013/06/05 23:47:25 ET
+Table '743144019 1' 2-max Seat #1 is the button
+Seat 1: Player0 (620 in chips) 
+Seat 2: Hero (2380 in chips) 
+Player0: posts small blind 10
+Hero: posts big blind 20
+*** HOLE CARDS ***
+Dealt to Hero [5s Jc]
+Player0: raises 20 to 40
+Hero: calls 20
+*** FLOP *** [2c 9h 9s]
+Hero said, "this hold'em .... not good for me"
+Hero: checks 
+Player0: bets 20
+Hero: folds 
+Uncalled bet (20) returned to Player0
+Player0 collected 80 from pot
+Player0: doesn't show hand 
+*** SUMMARY ***
+Total pot 80 | Rake 0 
+Board [2c 9h 9s]
+Seat 1: Player0 (button) (small blind) collected (80)
+Seat 2: Hero (big blind) folded on the Flop
+
+
+
+PokerStars Home Game Hand #99632050831: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Hold'em Limit) - Match Round I, Level II (20/40) - 2013/06/05 23:47:43 ET
+Table '743144019 1' 2-max Seat #2 is the button
+Seat 1: Player0 (660 in chips) 
+Seat 2: Hero (2340 in chips) 
+Hero: posts small blind 10
+Player0: posts big blind 20
+*** HOLE CARDS ***
+Dealt to Hero [Kh 2h]
+Hero: calls 10
+Player0: checks 
+*** FLOP *** [3h Ad 7d]
+Player0: bets 20
+Hero: calls 20
+*** TURN *** [3h Ad 7d] [5h]
+Player0: bets 40
+Hero: calls 40
+*** RIVER *** [3h Ad 7d 5h] [Jh]
+Player0: checks 
+Hero: bets 40
+Player0: calls 40
+*** SHOW DOWN ***
+Hero: shows [Kh 2h] (a flush, King high)
+Player0: mucks hand 
+Hero collected 240 from pot
+*** SUMMARY ***
+Total pot 240 | Rake 0 
+Board [3h Ad 7d 5h Jh]
+Seat 1: Player0 (big blind) mucked [7c 8s]
+Seat 2: Hero (button) (small blind) showed [Kh 2h] and won (240) with a flush, King high
+
+
+
+PokerStars Home Game Hand #99632056965: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Hold'em Limit) - Match Round I, Level II (20/40) - 2013/06/05 23:48:06 ET
+Table '743144019 1' 2-max Seat #1 is the button
+Seat 1: Player0 (540 in chips) 
+Seat 2: Hero (2460 in chips) 
+Player0: posts small blind 10
+Hero: posts big blind 20
+*** HOLE CARDS ***
+Dealt to Hero [9s 4c]
+Player0: raises 20 to 40
+Hero: folds 
+Uncalled bet (20) returned to Player0
+Player0 collected 40 from pot
+*** SUMMARY ***
+Total pot 40 | Rake 0 
+Seat 1: Player0 (button) (small blind) collected (40)
+Seat 2: Hero (big blind) folded before Flop
+
+
+
+PokerStars Home Game Hand #99632060346: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Hold'em Limit) - Match Round I, Level II (20/40) - 2013/06/05 23:48:19 ET
+Table '743144019 1' 2-max Seat #2 is the button
+Seat 1: Player0 (560 in chips) 
+Seat 2: Hero (2440 in chips) 
+Hero: posts small blind 10
+Player0: posts big blind 20
+*** HOLE CARDS ***
+Dealt to Hero [6s Js]
+Hero: calls 10
+Player0: checks 
+*** FLOP *** [2s 6c Jc]
+Player0: checks 
+Hero: bets 20
+Player0: raises 20 to 40
+Hero: raises 20 to 60
+Player0: calls 20
+*** TURN *** [2s 6c Jc] [3d]
+Player0: checks 
+Hero: bets 40
+Player0: calls 40
+*** RIVER *** [2s 6c Jc 3d] [Ah]
+Player0: checks 
+Hero: bets 40
+Player0: calls 40
+*** SHOW DOWN ***
+Hero: shows [6s Js] (two pair, Jacks and Sixes)
+Player0: mucks hand 
+Hero collected 320 from pot
+Player0 said, "ah nh"
+Player0 said, "had a bad feeling"
+*** SUMMARY ***
+Total pot 320 | Rake 0 
+Board [2s 6c Jc 3d Ah]
+Seat 1: Player0 (big blind) mucked [Jh 4h]
+Seat 2: Hero (button) (small blind) showed [6s Js] and won (320) with two pair, Jacks and Sixes
+
+
+
+PokerStars Home Game Hand #99632067594: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Hold'em Limit) - Match Round I, Level II (20/40) - 2013/06/05 23:48:45 ET
+Table '743144019 1' 2-max Seat #1 is the button
+Seat 1: Player0 (400 in chips) 
+Seat 2: Hero (2600 in chips) 
+Player0: posts small blind 10
+Hero: posts big blind 20
+*** HOLE CARDS ***
+Dealt to Hero [2s 9d]
+Player0: raises 20 to 40
+Hero: folds 
+Uncalled bet (20) returned to Player0
+Player0 collected 40 from pot
+Player0: doesn't show hand 
+*** SUMMARY ***
+Total pot 40 | Rake 0 
+Seat 1: Player0 (button) (small blind) collected (40)
+Seat 2: Hero (big blind) folded before Flop
+
+
+
+PokerStars Home Game Hand #99632070290: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Hold'em Limit) - Match Round I, Level II (20/40) - 2013/06/05 23:48:56 ET
+Table '743144019 1' 2-max Seat #2 is the button
+Seat 1: Player0 (420 in chips) 
+Seat 2: Hero (2580 in chips) 
+Hero: posts small blind 10
+Player0: posts big blind 20
+*** HOLE CARDS ***
+Dealt to Hero [7h 9s]
+Hero: calls 10
+Player0: checks 
+*** FLOP *** [9h Kd 2c]
+Player0: checks 
+Hero: bets 20
+Player0: folds 
+Uncalled bet (20) returned to Hero
+Hero collected 40 from pot
+*** SUMMARY ***
+Total pot 40 | Rake 0 
+Board [9h Kd 2c]
+Seat 1: Player0 (big blind) folded on the Flop
+Seat 2: Hero (button) (small blind) collected (40)
+
+
+
+PokerStars Home Game Hand #99632075125: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Hold'em Limit) - Match Round I, Level II (20/40) - 2013/06/05 23:49:13 ET
+Table '743144019 1' 2-max Seat #1 is the button
+Seat 1: Player0 (400 in chips) 
+Seat 2: Hero (2600 in chips) 
+Player0: posts small blind 10
+Hero: posts big blind 20
+*** HOLE CARDS ***
+Dealt to Hero [Kc 7c]
+Player0: raises 20 to 40
+Hero: calls 20
+*** FLOP *** [4s 4d 3c]
+Hero: checks 
+Player0: bets 20
+Hero: folds 
+Uncalled bet (20) returned to Player0
+Player0 collected 80 from pot
+*** SUMMARY ***
+Total pot 80 | Rake 0 
+Board [4s 4d 3c]
+Seat 1: Player0 (button) (small blind) collected (80)
+Seat 2: Hero (big blind) folded on the Flop
+
+
+
+PokerStars Home Game Hand #99632079060: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Hold'em Limit) - Match Round I, Level II (20/40) - 2013/06/05 23:49:28 ET
+Table '743144019 1' 2-max Seat #2 is the button
+Seat 1: Player0 (440 in chips) 
+Seat 2: Hero (2560 in chips) 
+Hero: posts small blind 10
+Player0: posts big blind 20
+*** HOLE CARDS ***
+Dealt to Hero [6c Qd]
+Hero: folds 
+Uncalled bet (10) returned to Player0
+Player0 collected 20 from pot
+*** SUMMARY ***
+Total pot 20 | Rake 0 
+Seat 1: Player0 (big blind) collected (20)
+Seat 2: Hero (button) (small blind) folded before Flop
+
+
+
+PokerStars Home Game Hand #99632081597: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Hold'em Limit) - Match Round I, Level II (20/40) - 2013/06/05 23:49:38 ET
+Table '743144019 1' 2-max Seat #1 is the button
+Seat 1: Player0 (450 in chips) 
+Seat 2: Hero (2550 in chips) 
+Player0: posts small blind 10
+Hero: posts big blind 20
+*** HOLE CARDS ***
+Dealt to Hero [Qh 8h]
+Player0: raises 20 to 40
+Hero: calls 20
+*** FLOP *** [Ks Qc 7d]
+Hero: checks 
+Player0: bets 20
+Hero: raises 20 to 40
+Player0: folds 
+Uncalled bet (20) returned to Hero
+Hero collected 120 from pot
+*** SUMMARY ***
+Total pot 120 | Rake 0 
+Board [Ks Qc 7d]
+Seat 1: Player0 (button) (small blind) folded on the Flop
+Seat 2: Hero (big blind) collected (120)
+
+
+
+PokerStars Home Game Hand #99632086340: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Hold'em Limit) - Match Round I, Level II (20/40) - 2013/06/05 23:49:56 ET
+Table '743144019 1' 2-max Seat #2 is the button
+Seat 1: Player0 (390 in chips) 
+Seat 2: Hero (2610 in chips) 
+Hero: posts small blind 10
+Player0: posts big blind 20
+*** HOLE CARDS ***
+Dealt to Hero [Tc Qs]
+Hero: calls 10
+Player0: raises 20 to 40
+Hero: calls 20
+*** FLOP *** [Ac 4h 8h]
+Player0: bets 20
+Hero: folds 
+Uncalled bet (20) returned to Player0
+Player0 collected 80 from pot
+*** SUMMARY ***
+Total pot 80 | Rake 0 
+Board [Ac 4h 8h]
+Seat 1: Player0 (big blind) collected (80)
+Seat 2: Hero (button) (small blind) folded on the Flop
+
+
+
+PokerStars Home Game Hand #99632091481: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Omaha Hi/Lo Limit) - Match Round I, Level III (30/60) - 2013/06/05 23:50:15 ET
+Table '743144019 1' 2-max Seat #1 is the button
+Seat 1: Player0 (430 in chips) 
+Seat 2: Hero (2570 in chips) 
+Player0: posts small blind 15
+Hero: posts big blind 30
+*** HOLE CARDS ***
+Dealt to Hero [4h Jc Ks 9d]
+Hero said, "oh ****"
+Player0: raises 30 to 60
+Player0 said, "oooo"
+Player0 said, "i feel a comeback"
+Hero: calls 30
+*** FLOP *** [Kd Jd 7c]
+Hero: bets 30
+Player0: calls 30
+*** TURN *** [Kd Jd 7c] [9h]
+Hero: bets 60
+Player0: calls 60
+*** RIVER *** [Kd Jd 7c 9h] [3c]
+Hero: bets 60
+Player0: calls 60
+*** SHOW DOWN ***
+Hero: shows [4h Jc Ks 9d] (HI: two pair, Kings and Jacks)
+Player0: mucks hand 
+Hero said, "LOL"
+Hero collected 420 from pot
+No low hand qualified
+Player0 said, "9 doesnt count as low?"
+*** SUMMARY ***
+Total pot 420 | Rake 0 
+Board [Kd Jd 7c 9h 3c]
+Seat 1: Player0 (button) (small blind) mucked [Jh 8c Ad 6h]
+Seat 2: Hero (big blind) showed [4h Jc Ks 9d] and won (420) with HI: two pair, Kings and Jacks
+
+
+
+PokerStars Home Game Hand #99632104898: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Omaha Hi/Lo Limit) - Match Round I, Level III (30/60) - 2013/06/05 23:51:07 ET
+Table '743144019 1' 2-max Seat #2 is the button
+Seat 1: Player0 (220 in chips) 
+Seat 2: Hero (2780 in chips) 
+Hero: posts small blind 15
+Player0: posts big blind 30
+*** HOLE CARDS ***
+Dealt to Hero [Qd 5c Ts 9c]
+Player0 said, "fk"
+Hero: calls 15
+Player0 said, "woulda lost nayay i think"
+Player0: raises 30 to 60
+Player0 said, "FK"
+Hero: calls 30
+*** FLOP *** [6h 7h 8h]
+Player0: bets 30
+Hero: raises 30 to 60
+Player0: raises 30 to 90
+Hero: raises 30 to 120
+Betting is capped
+Player0: calls 30
+*** TURN *** [6h 7h 8h] [3c]
+Player0: bets 40 and is all-in
+Player0 said, "NUTS"
+Hero: calls 40
+*** RIVER *** [6h 7h 8h 3c] [Qc]
+*** SHOW DOWN ***
+Player0: shows [2h Jd Ah 6c] (HI: a flush, Ace high; LO: 7,6,3,2,A)
+Hero: shows [Qd 5c Ts 9c] (HI: a straight, Six to Ten)
+Player0 collected 220 from pot
+Player0 collected 220 from pot
+*** SUMMARY ***
+Total pot 440 | Rake 0 
+Board [6h 7h 8h 3c Qc]
+Seat 1: Player0 (big blind) showed [2h Jd Ah 6c] and won (440) with HI: a flush, Ace high; LO: 7,6,3,2,A
+Seat 2: Hero (button) (small blind) showed [Qd 5c Ts 9c] and lost with HI: a straight, Six to Ten
+
+
+
+PokerStars Home Game Hand #99632117757: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Omaha Hi/Lo Limit) - Match Round I, Level III (30/60) - 2013/06/05 23:51:56 ET
+Table '743144019 1' 2-max Seat #1 is the button
+Seat 1: Player0 (440 in chips) 
+Seat 2: Hero (2560 in chips) 
+Player0: posts small blind 15
+Hero: posts big blind 30
+*** HOLE CARDS ***
+Dealt to Hero [4c 9d Jd 4d]
+Hero said, "UGGDFSDFF"
+Player0: raises 30 to 60
+Hero: calls 30
+*** FLOP *** [Kh 5c 5d]
+Player0 said, "lol"
+Hero: checks 
+Player0: bets 30
+Hero: folds 
+Uncalled bet (30) returned to Player0
+Player0 collected 120 from pot
+Player0: doesn't show hand 
+*** SUMMARY ***
+Total pot 120 | Rake 0 
+Board [Kh 5c 5d]
+Seat 1: Player0 (button) (small blind) collected (120)
+Seat 2: Hero (big blind) folded on the Flop
+
+
+
+PokerStars Home Game Hand #99632123504: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Omaha Hi/Lo Limit) - Match Round I, Level III (30/60) - 2013/06/05 23:52:17 ET
+Table '743144019 1' 2-max Seat #2 is the button
+Seat 1: Player0 (500 in chips) 
+Seat 2: Hero (2500 in chips) 
+Hero: posts small blind 15
+Player0: posts big blind 30
+*** HOLE CARDS ***
+Dealt to Hero [Ac 4h 6s Js]
+Hero: raises 30 to 60
+Player0: raises 30 to 90
+Hero: calls 30
+*** FLOP *** [4c 8c 9h]
+Player0: bets 30
+Hero: calls 30
+*** TURN *** [4c 8c 9h] [3d]
+Player0: bets 60
+Hero: raises 60 to 120
+Player0: calls 60
+*** RIVER *** [4c 8c 9h 3d] [Qc]
+Player0: checks 
+Hero: checks 
+*** SHOW DOWN ***
+Player0: shows [5h 8h Jc 4s] (HI: two pair, Eights and Fours)
+Hero: shows [Ac 4h 6s Js] (HI: a pair of Fours; LO: 8,6,4,3,A)
+Player0 collected 240 from pot
+Hero collected 240 from pot
+*** SUMMARY ***
+Total pot 480 | Rake 0 
+Board [4c 8c 9h 3d Qc]
+Seat 1: Player0 (big blind) showed [5h 8h Jc 4s] and won (240) with HI: two pair, Eights and Fours
+Seat 2: Hero (button) (small blind) showed [Ac 4h 6s Js] and won (240) with HI: a pair of Fours; LO: 8,6,4,3,A
+
+
+
+PokerStars Home Game Hand #99632136884: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Omaha Hi/Lo Limit) - Match Round I, Level III (30/60) - 2013/06/05 23:53:06 ET
+Table '743144019 1' 2-max Seat #1 is the button
+Seat 1: Player0 (500 in chips) 
+Seat 2: Hero (2500 in chips) 
+Player0: posts small blind 15
+Hero: posts big blind 30
+*** HOLE CARDS ***
+Dealt to Hero [Jd 3s 3c 5d]
+Player0: raises 30 to 60
+Hero: calls 30
+*** FLOP *** [2d 7c 8s]
+Hero: bets 30
+Player0: raises 30 to 60
+Hero: raises 30 to 90
+Player0: raises 30 to 120
+Betting is capped
+Hero: calls 30
+*** TURN *** [2d 7c 8s] [Jh]
+Hero: checks 
+Player0: checks 
+*** RIVER *** [2d 7c 8s Jh] [5h]
+Hero: bets 60
+Player0: raises 60 to 120
+Hero: raises 60 to 180
+Player0: raises 60 to 240
+Betting is capped
+Hero: calls 60
+*** SHOW DOWN ***
+Player0: shows [Jc 4h Td 6d] (HI: a straight, Four to Eight; LO: 7,6,5,4,2)
+Hero: mucks hand 
+Player0 said, "oh snap"
+Player0 collected 420 from pot
+Player0 collected 420 from pot
+Hero said, "UGUGUGU"
+*** SUMMARY ***
+Total pot 840 | Rake 0 
+Board [2d 7c 8s Jh 5h]
+Seat 1: Player0 (button) (small blind) showed [Jc 4h Td 6d] and won (840) with HI: a straight, Four to Eight; LO: 7,6,5,4,2
+Seat 2: Hero (big blind) mucked [Jd 3s 3c 5d]
+
+
+
+PokerStars Home Game Hand #99632147987: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Omaha Hi/Lo Limit) - Match Round I, Level III (30/60) - 2013/06/05 23:53:47 ET
+Table '743144019 1' 2-max Seat #2 is the button
+Seat 1: Player0 (920 in chips) 
+Seat 2: Hero (2080 in chips) 
+Hero: posts small blind 15
+Player0: posts big blind 30
+*** HOLE CARDS ***
+Dealt to Hero [3s Ah 6h 4s]
+Hero said, "oh grcdsafdsa"
+Hero: calls 15
+Player0: raises 30 to 60
+Hero: calls 30
+*** FLOP *** [7d Tc Js]
+Player0: bets 30
+Hero said, "ToOO COMPLEZ"
+Hero: folds 
+Uncalled bet (30) returned to Player0
+Player0 collected 120 from pot
+*** SUMMARY ***
+Total pot 120 | Rake 0 
+Board [7d Tc Js]
+Seat 1: Player0 (big blind) collected (120)
+Seat 2: Hero (button) (small blind) folded on the Flop
+
+
+
+PokerStars Home Game Hand #99632156072: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Omaha Hi/Lo Limit) - Match Round I, Level III (30/60) - 2013/06/05 23:54:18 ET
+Table '743144019 1' 2-max Seat #1 is the button
+Seat 1: Player0 (980 in chips) 
+Seat 2: Hero (2020 in chips) 
+Player0: posts small blind 15
+Hero: posts big blind 30
+*** HOLE CARDS ***
+Dealt to Hero [Ks 7h 5d 7s]
+Player0: raises 30 to 60
+Hero: calls 30
+*** FLOP *** [5h 5s 7c]
+Hero: checks 
+Player0: bets 30
+Hero: raises 30 to 60
+Player0: calls 30
+*** TURN *** [5h 5s 7c] [8c]
+Hero: bets 60
+Player0: calls 60
+*** RIVER *** [5h 5s 7c 8c] [Qd]
+Hero: bets 60
+Player0: calls 60
+*** SHOW DOWN ***
+Hero: shows [Ks 7h 5d 7s] (HI: a full house, Sevens full of Fives)
+Player0: mucks hand 
+Player0 said, "nh"
+Hero collected 480 from pot
+No low hand qualified
+Hero said, "ty"
+*** SUMMARY ***
+Total pot 480 | Rake 0 
+Board [5h 5s 7c 8c Qd]
+Seat 1: Player0 (button) (small blind) mucked [Kc Qh 7d 8h]
+Seat 2: Hero (big blind) showed [Ks 7h 5d 7s] and won (480) with HI: a full house, Sevens full of Fives
+
+
+
+PokerStars Home Game Hand #99632163358: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Omaha Hi/Lo Limit) - Match Round I, Level III (30/60) - 2013/06/05 23:54:46 ET
+Table '743144019 1' 2-max Seat #2 is the button
+Seat 1: Player0 (740 in chips) 
+Seat 2: Hero (2260 in chips) 
+Hero: posts small blind 15
+Player0: posts big blind 30
+*** HOLE CARDS ***
+Dealt to Hero [Th Ac 4d 5c]
+Hero: raises 30 to 60
+Player0: raises 30 to 90
+Hero: raises 30 to 120
+Betting is capped
+Player0: calls 30
+*** FLOP *** [8h Jd 9c]
+Player0: bets 30
+Hero: folds 
+Uncalled bet (30) returned to Player0
+Player0 collected 240 from pot
+Player0: doesn't show hand 
+*** SUMMARY ***
+Total pot 240 | Rake 0 
+Board [8h Jd 9c]
+Seat 1: Player0 (big blind) collected (240)
+Seat 2: Hero (button) (small blind) folded on the Flop
+
+
+
+PokerStars Home Game Hand #99632168867: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Omaha Hi/Lo Limit) - Match Round I, Level III (30/60) - 2013/06/05 23:55:07 ET
+Table '743144019 1' 2-max Seat #1 is the button
+Seat 1: Player0 (860 in chips) 
+Seat 2: Hero (2140 in chips) 
+Player0: posts small blind 15
+Hero: posts big blind 30
+*** HOLE CARDS ***
+Dealt to Hero [Js Jc 7h 8h]
+Player0: raises 30 to 60
+Hero: raises 30 to 90
+Player0: calls 30
+*** FLOP *** [5s 8d 4d]
+Hero: checks 
+Player0: bets 30
+Hero: calls 30
+*** TURN *** [5s 8d 4d] [6h]
+Hero: bets 60
+Player0: raises 60 to 120
+Hero: calls 60
+*** RIVER *** [5s 8d 4d 6h] [Ah]
+Hero: checks 
+Player0: bets 60
+Hero: calls 60
+*** SHOW DOWN ***
+Player0: shows [5c Jd Qh 7c] (HI: a straight, Four to Eight; LO: 7,6,5,4,A)
+Hero: shows [Js Jc 7h 8h] (HI: a straight, Four to Eight; LO: 8,7,5,4,A)
+Hero collected 150 from pot
+Player0 collected 150 from pot
+Player0 collected 300 from pot
+*** SUMMARY ***
+Total pot 600 | Rake 0 
+Board [5s 8d 4d 6h Ah]
+Seat 1: Player0 (button) (small blind) showed [5c Jd Qh 7c] and won (450) with HI: a straight, Four to Eight; LO: 7,6,5,4,A
+Seat 2: Hero (big blind) showed [Js Jc 7h 8h] and won (150) with HI: a straight, Four to Eight; LO: 8,7,5,4,A
+
+
+
+PokerStars Home Game Hand #99632176630: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Omaha Hi/Lo Limit) - Match Round I, Level III (30/60) - 2013/06/05 23:55:41 ET
+Table '743144019 1' 2-max Seat #2 is the button
+Seat 1: Player0 (1010 in chips) 
+Seat 2: Hero (1990 in chips) 
+Hero: posts small blind 15
+Player0: posts big blind 30
+*** HOLE CARDS ***
+Dealt to Hero [3s 2s Ts 8c]
+Hero said, "UG. got quartered"
+Hero: calls 15
+Player0: checks 
+*** FLOP *** [6c 7d Ah]
+Player0: bets 30
+Hero: calls 30
+*** TURN *** [6c 7d Ah] [2h]
+Player0: bets 60
+Hero: folds 
+Uncalled bet (60) returned to Player0
+Player0 collected 120 from pot
+Player0: doesn't show hand 
+*** SUMMARY ***
+Total pot 120 | Rake 0 
+Board [6c 7d Ah 2h]
+Seat 1: Player0 (big blind) collected (120)
+Seat 2: Hero (button) (small blind) folded on the Turn
+
+
+
+PokerStars Home Game Hand #99632184281: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Omaha Hi/Lo Limit) - Match Round I, Level III (30/60) - 2013/06/05 23:56:16 ET
+Table '743144019 1' 2-max Seat #1 is the button
+Seat 1: Player0 (1070 in chips) 
+Seat 2: Hero (1930 in chips) 
+Player0: posts small blind 15
+Hero: posts big blind 30
+*** HOLE CARDS ***
+Dealt to Hero [Jh 5s 8c Kd]
+Player0: raises 30 to 60
+Hero: calls 30
+*** FLOP *** [4c Td 8s]
+Hero: bets 30
+Player0: calls 30
+*** TURN *** [4c Td 8s] [6d]
+Hero: bets 60
+Player0: calls 60
+*** RIVER *** [4c Td 8s 6d] [7s]
+Hero: bets 60
+Player0: calls 60
+*** SHOW DOWN ***
+Hero: shows [Jh 5s 8c Kd] (HI: a straight, Four to Eight; LO: 8,7,6,5,4)
+Player0: shows [2d Qc Kh 7c] (HI: a pair of Sevens; LO: 8,7,6,4,2)
+Hero collected 210 from pot
+Player0 collected 210 from pot
+*** SUMMARY ***
+Total pot 420 | Rake 0 
+Board [4c Td 8s 6d 7s]
+Seat 1: Player0 (button) (small blind) showed [2d Qc Kh 7c] and won (210) with HI: a pair of Sevens; LO: 8,7,6,4,2
+Seat 2: Hero (big blind) showed [Jh 5s 8c Kd] and won (210) with HI: a straight, Four to Eight; LO: 8,7,6,5,4
+
+
+
+PokerStars Home Game Hand #99632193358: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Omaha Hi/Lo Limit) - Match Round I, Level III (30/60) - 2013/06/05 23:56:59 ET
+Table '743144019 1' 2-max Seat #2 is the button
+Seat 1: Player0 (1070 in chips) 
+Seat 2: Hero (1930 in chips) 
+Hero: posts small blind 15
+Player0: posts big blind 30
+*** HOLE CARDS ***
+Dealt to Hero [2c Qh 4d 5s]
+Hero: calls 15
+Player0: raises 30 to 60
+Hero: calls 30
+*** FLOP *** [Ad 4h Ac]
+Player0: bets 30
+Hero: calls 30
+*** TURN *** [Ad 4h Ac] [6s]
+Player0: bets 60
+Hero: calls 60
+*** RIVER *** [Ad 4h Ac 6s] [8s]
+Player0: bets 60
+Hero: raises 60 to 120
+Player0: calls 60
+*** SHOW DOWN ***
+Hero: shows [2c Qh 4d 5s] (HI: two pair, Aces and Fours; LO: 6,5,4,2,A)
+Player0: shows [9h 3d 2h 7d] (HI: a pair of Aces; LO: 6,4,3,2,A)
+Hero collected 270 from pot
+Player0 collected 270 from pot
+*** SUMMARY ***
+Total pot 540 | Rake 0 
+Board [Ad 4h Ac 6s 8s]
+Seat 1: Player0 (big blind) showed [9h 3d 2h 7d] and won (270) with HI: a pair of Aces; LO: 6,4,3,2,A
+Seat 2: Hero (button) (small blind) showed [2c Qh 4d 5s] and won (270) with HI: two pair, Aces and Fours; LO: 6,5,4,2,A
+
+
+
+PokerStars Home Game Hand #99632198674: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Omaha Hi/Lo Limit) - Match Round I, Level III (30/60) - 2013/06/05 23:57:25 ET
+Table '743144019 1' 2-max Seat #1 is the button
+Seat 1: Player0 (1070 in chips) 
+Seat 2: Hero (1930 in chips) 
+Player0: posts small blind 15
+Hero: posts big blind 30
+*** HOLE CARDS ***
+Dealt to Hero [9d 7d Js 3d]
+Player0: raises 30 to 60
+Hero: calls 30
+*** FLOP *** [4s Kc Qd]
+Hero: checks 
+Player0: bets 30
+Hero: folds 
+Uncalled bet (30) returned to Player0
+Player0 collected 120 from pot
+Player0: doesn't show hand 
+*** SUMMARY ***
+Total pot 120 | Rake 0 
+Board [4s Kc Qd]
+Seat 1: Player0 (button) (small blind) collected (120)
+Seat 2: Hero (big blind) folded on the Flop
+
+
+
+PokerStars Home Game Hand #99632205357: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Omaha Hi/Lo Limit) - Match Round I, Level III (30/60) - 2013/06/05 23:57:56 ET
+Table '743144019 1' 2-max Seat #2 is the button
+Seat 1: Player0 (1130 in chips) 
+Seat 2: Hero (1870 in chips) 
+Hero: posts small blind 15
+Player0: posts big blind 30
+*** HOLE CARDS ***
+Dealt to Hero [Jd 7s 2d 9c]
+Hero: calls 15
+Player0: checks 
+*** FLOP *** [3h Ks 3d]
+Player0: checks 
+Hero: checks 
+*** TURN *** [3h Ks 3d] [9d]
+Player0: bets 60
+Hero: calls 60
+*** RIVER *** [3h Ks 3d 9d] [As]
+Player0: checks 
+Hero: checks 
+*** SHOW DOWN ***
+Player0: shows [Tc 4c Qc 7d] (HI: a pair of Threes)
+Hero: shows [Jd 7s 2d 9c] (HI: two pair, Nines and Threes)
+Hero collected 180 from pot
+No low hand qualified
+*** SUMMARY ***
+Total pot 180 | Rake 0 
+Board [3h Ks 3d 9d As]
+Seat 1: Player0 (big blind) showed [Tc 4c Qc 7d] and lost with HI: a pair of Threes
+Seat 2: Hero (button) (small blind) showed [Jd 7s 2d 9c] and won (180) with HI: two pair, Nines and Threes
+
+
+
+PokerStars Home Game Hand #99632211443: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Omaha Hi/Lo Limit) - Match Round I, Level III (30/60) - 2013/06/05 23:58:24 ET
+Table '743144019 1' 2-max Seat #1 is the button
+Seat 1: Player0 (1040 in chips) 
+Seat 2: Hero (1960 in chips) 
+Player0: posts small blind 15
+Hero: posts big blind 30
+*** HOLE CARDS ***
+Dealt to Hero [2s Tc Jd 8s]
+Player0: raises 30 to 60
+Hero: calls 30
+*** FLOP *** [3s 6s Kd]
+Hero: bets 30
+Player0: calls 30
+*** TURN *** [3s 6s Kd] [Ad]
+Hero: bets 60
+Player0: calls 60
+*** RIVER *** [3s 6s Kd Ad] [4s]
+Hero: bets 60
+Player0: calls 60
+*** SHOW DOWN ***
+Hero: shows [2s Tc Jd 8s] (HI: a flush, Eight high; LO: 8,4,3,2,A)
+Player0: shows [7h 5h Qs 3d] (HI: a straight, Three to Seven; LO: 6,5,4,3,A)
+Hero collected 210 from pot
+Player0 collected 210 from pot
+*** SUMMARY ***
+Total pot 420 | Rake 0 
+Board [3s 6s Kd Ad 4s]
+Seat 1: Player0 (button) (small blind) showed [7h 5h Qs 3d] and won (210) with HI: a straight, Three to Seven; LO: 6,5,4,3,A
+Seat 2: Hero (big blind) showed [2s Tc Jd 8s] and won (210) with HI: a flush, Eight high; LO: 8,4,3,2,A
+
+
+
+PokerStars Home Game Hand #99632217757: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Omaha Hi/Lo Limit) - Match Round I, Level III (30/60) - 2013/06/05 23:58:54 ET
+Table '743144019 1' 2-max Seat #2 is the button
+Seat 1: Player0 (1040 in chips) 
+Seat 2: Hero (1960 in chips) 
+Hero: posts small blind 15
+Player0: posts big blind 30
+*** HOLE CARDS ***
+Dealt to Hero [7c 4h 8c Ks]
+Hero: calls 15
+Player0: checks 
+*** FLOP *** [5c 9s 7d]
+Player0: bets 30
+Hero: calls 30
+*** TURN *** [5c 9s 7d] [2d]
+Player0: bets 60
+Hero: calls 60
+*** RIVER *** [5c 9s 7d 2d] [9c]
+Player0: checks 
+Hero: checks 
+*** SHOW DOWN ***
+Player0: shows [6c Tc 3d 2c] (HI: two pair, Nines and Deuces; LO: 7,6,5,3,2)
+Hero: shows [7c 4h 8c Ks] (HI: two pair, Nines and Sevens; LO: 8,7,5,4,2)
+Hero collected 120 from pot
+Player0 collected 120 from pot
+*** SUMMARY ***
+Total pot 240 | Rake 0 
+Board [5c 9s 7d 2d 9c]
+Seat 1: Player0 (big blind) showed [6c Tc 3d 2c] and won (120) with HI: two pair, Nines and Deuces; LO: 7,6,5,3,2
+Seat 2: Hero (button) (small blind) showed [7c 4h 8c Ks] and won (120) with HI: two pair, Nines and Sevens; LO: 8,7,5,4,2
+
+
+
+PokerStars Home Game Hand #99632227134: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Omaha Hi/Lo Limit) - Match Round I, Level III (30/60) - 2013/06/05 23:59:38 ET
+Table '743144019 1' 2-max Seat #1 is the button
+Seat 1: Player0 (1040 in chips) 
+Seat 2: Hero (1960 in chips) 
+Player0: posts small blind 15
+Hero: posts big blind 30
+*** HOLE CARDS ***
+Dealt to Hero [5d 6c 8h 7s]
+Player0: raises 30 to 60
+Hero: calls 30
+*** FLOP *** [5h 4h 4s]
+Hero: checks 
+Player0: bets 30
+Hero: calls 30
+*** TURN *** [5h 4h 4s] [2d]
+Hero: bets 60
+Player0: calls 60
+*** RIVER *** [5h 4h 4s 2d] [Qd]
+Hero: bets 60
+Player0: calls 60
+*** SHOW DOWN ***
+Hero: shows [5d 6c 8h 7s] (HI: two pair, Fives and Fours; LO: 7,6,5,4,2)
+Player0: shows [8s Th 3h 7c] (HI: a pair of Fours; LO: 7,5,4,3,2)
+Hero collected 210 from pot
+Player0 collected 210 from pot
+*** SUMMARY ***
+Total pot 420 | Rake 0 
+Board [5h 4h 4s 2d Qd]
+Seat 1: Player0 (button) (small blind) showed [8s Th 3h 7c] and won (210) with HI: a pair of Fours; LO: 7,5,4,3,2
+Seat 2: Hero (big blind) showed [5d 6c 8h 7s] and won (210) with HI: two pair, Fives and Fours; LO: 7,6,5,4,2
+
+
+
+PokerStars Home Game Hand #99632234066: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Razz Limit) - Match Round I, Level IV (30/60) - 2013/06/06 0:00:10 ET
+Table '743144019 1' 2-max
+Seat 1: Player0 (1040 in chips) 
+Seat 2: Hero (1960 in chips) 
+Hero: posts the ante 6
+Player0: posts the ante 6
+*** 3rd STREET ***
+Dealt to Player0 [Jc]
+Dealt to Hero [5d Jh Qc]
+Player0 said, "LOL"
+Hero said, "lol"
+Hero said, "what is this"
+Hero said, "RAZZ"
+Hero: brings in for 9
+Player0: calls 9
+*** 4th STREET ***
+Dealt to Player0 [Jc] [5s]
+Dealt to Hero [5d Jh Qc] [4s]
+Player0: bets 30
+Hero: calls 30
+*** 5th STREET ***
+Dealt to Player0 [Jc 5s] [6d]
+Dealt to Hero [5d Jh Qc 4s] [2s]
+Player0: bets 60
+Hero: calls 60
+*** 6th STREET ***
+Dealt to Player0 [Jc 5s 6d] [9d]
+Dealt to Hero [5d Jh Qc 4s 2s] [2d]
+Player0: bets 60
+Hero: calls 60
+*** RIVER ***
+Dealt to Hero [5d Jh Qc 4s 2s 2d] [6c]
+Player0 said, "haha"
+Player0: bets 60
+Hero: calls 60
+*** SHOW DOWN ***
+Player0: shows [7c Ts Jc 5s 6d 9d 2c] (Lo: 9,7,6,5,2)
+Player0 said, "RAZZZZ"
+Hero: mucks hand 
+Player0 collected 450 from pot
+*** SUMMARY ***
+Total pot 450 | Rake 0 
+Seat 1: Player0 showed [7c Ts Jc 5s 6d 9d 2c] and won (450) with Lo: 9,7,6,5,2
+Seat 2: Hero mucked [5d Jh Qc 4s 2s 2d 6c]
+
+
+
+PokerStars Home Game Hand #99632249227: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Razz Limit) - Match Round I, Level IV (30/60) - 2013/06/06 0:01:14 ET
+Table '743144019 1' 2-max
+Seat 1: Player0 (1265 in chips) 
+Seat 2: Hero (1735 in chips) 
+Hero: posts the ante 6
+Player0: posts the ante 6
+*** 3rd STREET ***
+Dealt to Player0 [Qh]
+Dealt to Hero [Ah As 8d]
+Player0: brings in for 9
+Hero: folds 
+Uncalled bet (9) returned to Player0
+Player0 collected 12 from pot
+Player0: doesn't show hand 
+*** SUMMARY ***
+Total pot 12 | Rake 0 
+Seat 1: Player0 collected (12)
+Seat 2: Hero folded on the 3rd Street (didn't bet)
+
+
+
+PokerStars Home Game Hand #99632252455: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Razz Limit) - Match Round I, Level IV (30/60) - 2013/06/06 0:01:28 ET
+Table '743144019 1' 2-max
+Seat 1: Player0 (1271 in chips) 
+Seat 2: Hero (1729 in chips) 
+Hero: posts the ante 6
+Player0: posts the ante 6
+*** 3rd STREET ***
+Dealt to Player0 [Jc]
+Dealt to Hero [5s Jh Qd]
+Hero: brings in for 9
+Player0: folds 
+Uncalled bet (9) returned to Hero
+Hero collected 12 from pot
+*** SUMMARY ***
+Total pot 12 | Rake 0 
+Seat 1: Player0 folded on the 3rd Street (didn't bet)
+Seat 2: Hero collected (12)
+
+
+
+PokerStars Home Game Hand #99632255544: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Razz Limit) - Match Round I, Level IV (30/60) - 2013/06/06 0:01:40 ET
+Table '743144019 1' 2-max
+Seat 1: Player0 (1265 in chips) 
+Seat 2: Hero (1735 in chips) 
+Hero: posts the ante 6
+Player0: posts the ante 6
+*** 3rd STREET ***
+Dealt to Player0 [8s]
+Dealt to Hero [Ad 2h 3s]
+Player0: bets 30
+Hero: raises 30 to 60
+Player0: calls 30
+*** 4th STREET ***
+Dealt to Player0 [8s] [7c]
+Dealt to Hero [Ad 2h 3s] [5s]
+Hero: checks 
+Player0: checks 
+*** 5th STREET ***
+Dealt to Player0 [8s 7c] [5c]
+Dealt to Hero [Ad 2h 3s 5s] [6d]
+Hero: bets 60
+Player0: calls 60
+*** 6th STREET ***
+Dealt to Player0 [8s 7c 5c] [Jh]
+Dealt to Hero [Ad 2h 3s 5s 6d] [9s]
+Hero: bets 60
+Player0: calls 60
+*** RIVER ***
+Dealt to Hero [Ad 2h 3s 5s 6d 9s] [7h]
+Hero: bets 60
+Player0: calls 60
+*** SHOW DOWN ***
+Hero: shows [Ad 2h 3s 5s 6d 9s 7h] (Lo: 6,5,3,2,A)
+Player0: mucks hand 
+Player0 said, "damn"
+Hero said, "SUCK IN DAT"
+Hero collected 492 from pot
+Player0 said, "nh"
+*** SUMMARY ***
+Total pot 492 | Rake 0 
+Seat 1: Player0 mucked [Ts 2c 8s 7c 5c Jh 2d]
+Seat 2: Hero showed [Ad 2h 3s 5s 6d 9s 7h] and won (492) with Lo: 6,5,3,2,A
+
+
+
+PokerStars Home Game Hand #99632264504: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Razz Limit) - Match Round I, Level IV (30/60) - 2013/06/06 0:02:15 ET
+Table '743144019 1' 2-max
+Seat 1: Player0 (1019 in chips) 
+Seat 2: Hero (1981 in chips) 
+Hero: posts the ante 6
+Player0: posts the ante 6
+*** 3rd STREET ***
+Dealt to Player0 [4h]
+Dealt to Hero [6s 4d Ad]
+Hero said, "thy"
+Player0: bets 30
+Hero: raises 30 to 60
+Player0: calls 30
+*** 4th STREET ***
+Dealt to Player0 [4h] [6d]
+Dealt to Hero [6s 4d Ad] [8c]
+Player0: bets 30
+Hero: calls 30
+*** 5th STREET ***
+Dealt to Player0 [4h 6d] [7d]
+Dealt to Hero [6s 4d Ad 8c] [Th]
+Player0: bets 60
+Hero: calls 60
+*** 6th STREET ***
+Dealt to Player0 [4h 6d 7d] [3c]
+Dealt to Hero [6s 4d Ad 8c Th] [3h]
+Player0: bets 60
+Hero: calls 60
+*** RIVER ***
+Dealt to Hero [6s 4d Ad 8c Th 3h] [2s]
+Player0: bets 60
+Hero: raises 60 to 120
+Player0 said, "ugh"
+Player0: calls 60
+*** SHOW DOWN ***
+Hero: shows [6s 4d Ad 8c Th 3h 2s] (Lo: 6,4,3,2,A)
+Player0: mucks hand 
+Hero said, "NUTZ"
+Hero collected 672 from pot
+Hero said, "lol"
+Hero said, "suckout"
+*** SUMMARY ***
+Total pot 672 | Rake 0 
+Seat 1: Player0 mucked [7s 2d 4h 6d 7d 3c 8d]
+Seat 2: Hero showed [6s 4d Ad 8c Th 3h 2s] and won (672) with Lo: 6,4,3,2,A
+
+
+
+PokerStars Home Game Hand #99632279315: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Razz Limit) - Match Round I, Level IV (30/60) - 2013/06/06 0:03:12 ET
+Table '743144019 1' 2-max
+Seat 1: Player0 (683 in chips) 
+Seat 2: Hero (2317 in chips) 
+Hero: posts the ante 6
+Player0: posts the ante 6
+*** 3rd STREET ***
+Dealt to Player0 [7c]
+Dealt to Hero [Ah 9h 8c]
+Hero: brings in for 9
+Player0: raises 21 to 30
+Hero: folds 
+Uncalled bet (21) returned to Player0
+Player0 collected 30 from pot
+Player0 said, "rzzzzz'"
+*** SUMMARY ***
+Total pot 30 | Rake 0 
+Seat 1: Player0 collected (30)
+Seat 2: Hero folded on the 3rd Street
+
+
+
+PokerStars Home Game Hand #99632283654: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Razz Limit) - Match Round I, Level IV (30/60) - 2013/06/06 0:03:29 ET
+Table '743144019 1' 2-max
+Seat 1: Player0 (698 in chips) 
+Seat 2: Hero (2302 in chips) 
+Hero: posts the ante 6
+Player0: posts the ante 6
+*** 3rd STREET ***
+Dealt to Player0 [6c]
+Dealt to Hero [6s 8h 9c]
+Hero: brings in for 9
+Player0: raises 21 to 30
+Hero: calls 21
+*** 4th STREET ***
+Dealt to Player0 [6c] [5d]
+Dealt to Hero [6s 8h 9c] [5s]
+Player0: bets 30
+Hero: folds 
+Uncalled bet (30) returned to Player0
+Player0 collected 72 from pot
+Player0: doesn't show hand 
+*** SUMMARY ***
+Total pot 72 | Rake 0 
+Seat 1: Player0 collected (72)
+Seat 2: Hero folded on the 4th Street
+
+
+
+PokerStars Home Game Hand #99632288552: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Razz Limit) - Match Round I, Level IV (30/60) - 2013/06/06 0:03:47 ET
+Table '743144019 1' 2-max
+Seat 1: Player0 (734 in chips) 
+Seat 2: Hero (2266 in chips) 
+Hero: posts the ante 6
+Player0: posts the ante 6
+*** 3rd STREET ***
+Dealt to Player0 [Tc]
+Dealt to Hero [8s Jd 2d]
+Player0: bets 30
+Hero: raises 30 to 60
+Player0: calls 30
+*** 4th STREET ***
+Dealt to Player0 [Tc] [Ks]
+Dealt to Hero [8s Jd 2d] [2c]
+Player0: checks 
+Hero: checks 
+*** 5th STREET ***
+Dealt to Player0 [Tc Ks] [6d]
+Dealt to Hero [8s Jd 2d 2c] [Kh]
+Player0: bets 60
+Hero: folds 
+Uncalled bet (60) returned to Player0
+Player0 collected 132 from pot
+Player0: doesn't show hand 
+*** SUMMARY ***
+Total pot 132 | Rake 0 
+Seat 1: Player0 collected (132)
+Seat 2: Hero folded on the 5th Street
+
+
+
+PokerStars Home Game Hand #99632295759: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Razz Limit) - Match Round I, Level IV (30/60) - 2013/06/06 0:04:15 ET
+Table '743144019 1' 2-max
+Seat 1: Player0 (800 in chips) 
+Seat 2: Hero (2200 in chips) 
+Hero: posts the ante 6
+Player0: posts the ante 6
+*** 3rd STREET ***
+Dealt to Player0 [8s]
+Dealt to Hero [3h 8h Kh]
+Hero: brings in for 9
+Player0: raises 21 to 30
+Hero: folds 
+Uncalled bet (21) returned to Player0
+Player0 collected 30 from pot
+Player0: doesn't show hand 
+*** SUMMARY ***
+Total pot 30 | Rake 0 
+Seat 1: Player0 collected (30)
+Seat 2: Hero folded on the 3rd Street
+
+
+
+PokerStars Home Game Hand #99632301451: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Razz Limit) - Match Round I, Level IV (30/60) - 2013/06/06 0:04:36 ET
+Table '743144019 1' 2-max
+Seat 1: Player0 (815 in chips) 
+Seat 2: Hero (2185 in chips) 
+Hero: posts the ante 6
+Player0: posts the ante 6
+*** 3rd STREET ***
+Dealt to Player0 [8c]
+Dealt to Hero [Kc Qd 6c]
+Player0: bets 30
+Hero: raises 30 to 60
+Player0: raises 30 to 90
+Hero: calls 30
+*** 4th STREET ***
+Dealt to Player0 [8c] [Jc]
+Dealt to Hero [Kc Qd 6c] [5s]
+Hero: checks 
+Player0: checks 
+*** 5th STREET ***
+Dealt to Player0 [8c Jc] [As]
+Dealt to Hero [Kc Qd 6c 5s] [Js]
+Hero: checks 
+Player0: bets 60
+Hero: folds 
+Uncalled bet (60) returned to Player0
+Player0 collected 192 from pot
+Player0: doesn't show hand 
+*** SUMMARY ***
+Total pot 192 | Rake 0 
+Seat 1: Player0 collected (192)
+Seat 2: Hero folded on the 5th Street
+
+
+
+PokerStars Home Game Hand #99632307247: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Razz Limit) - Match Round I, Level IV (30/60) - 2013/06/06 0:04:59 ET
+Table '743144019 1' 2-max
+Seat 1: Player0 (911 in chips) 
+Seat 2: Hero (2089 in chips) 
+Hero: posts the ante 6
+Player0: posts the ante 6
+*** 3rd STREET ***
+Dealt to Player0 [Th]
+Dealt to Hero [Qd 5c 9c]
+Player0: brings in for 9
+Hero: calls 9
+*** 4th STREET ***
+Dealt to Player0 [Th] [Jd]
+Dealt to Hero [Qd 5c 9c] [Ah]
+Hero: checks 
+Player0: checks 
+*** 5th STREET ***
+Dealt to Player0 [Th Jd] [Qs]
+Dealt to Hero [Qd 5c 9c Ah] [9s]
+Player0: checks 
+Hero: checks 
+*** 6th STREET ***
+Dealt to Player0 [Th Jd Qs] [3d]
+Dealt to Hero [Qd 5c 9c Ah 9s] [3c]
+Player0: checks 
+Hero: bets 60
+Player0: calls 60
+*** RIVER ***
+Dealt to Hero [Qd 5c 9c Ah 9s 3c] [As]
+Player0: checks 
+Hero: checks 
+*** SHOW DOWN ***
+Hero: shows [Qd 5c 9c Ah 9s 3c As] (Lo: Q,9,5,3,A)
+Player0: shows [5h 9h Th Jd Qs 3d Kh] (Lo: J,T,9,5,3)
+Player0 collected 150 from pot
+*** SUMMARY ***
+Total pot 150 | Rake 0 
+Seat 1: Player0 showed [5h 9h Th Jd Qs 3d Kh] and won (150) with Lo: J,T,9,5,3
+Seat 2: Hero showed [Qd 5c 9c Ah 9s 3c As] and lost with Lo: Q,9,5,3,A
+
+
+
+PokerStars Home Game Hand #99632317467: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Razz Limit) - Match Round I, Level IV (30/60) - 2013/06/06 0:05:37 ET
+Table '743144019 1' 2-max
+Seat 1: Player0 (986 in chips) 
+Seat 2: Hero (2014 in chips) 
+Hero: posts the ante 6
+Player0: posts the ante 6
+*** 3rd STREET ***
+Dealt to Player0 [8s]
+Dealt to Hero [9s Qc 8c]
+Player0: bets 30
+Hero: calls 30
+*** 4th STREET ***
+Dealt to Player0 [8s] [6d]
+Dealt to Hero [9s Qc 8c] [5s]
+Hero: checks 
+Player0: checks 
+*** 5th STREET ***
+Dealt to Player0 [8s 6d] [Ah]
+Dealt to Hero [9s Qc 8c 5s] [6h]
+Player0: bets 60
+Hero: calls 60
+*** 6th STREET ***
+Dealt to Player0 [8s 6d Ah] [7d]
+Dealt to Hero [9s Qc 8c 5s 6h] [4c]
+Hero: bets 60
+Player0: calls 60
+*** RIVER ***
+Dealt to Hero [9s Qc 8c 5s 6h 4c] [7c]
+Hero: bets 60
+Player0: calls 60
+*** SHOW DOWN ***
+Hero: shows [9s Qc 8c 5s 6h 4c 7c] (Lo: 8,7,6,5,4)
+Player0: shows [6s 4d 8s 6d Ah 7d 9d] (Lo: 8,7,6,4,A)
+Player0 collected 432 from pot
+*** SUMMARY ***
+Total pot 432 | Rake 0 
+Seat 1: Player0 showed [6s 4d 8s 6d Ah 7d 9d] and won (432) with Lo: 8,7,6,4,A
+Seat 2: Hero showed [9s Qc 8c 5s 6h 4c 7c] and lost with Lo: 8,7,6,5,4
+
+
+
+PokerStars Home Game Hand #99632330569: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Razz Limit) - Match Round I, Level IV (30/60) - 2013/06/06 0:06:27 ET
+Table '743144019 1' 2-max
+Seat 1: Player0 (1202 in chips) 
+Seat 2: Hero (1798 in chips) 
+Hero: posts the ante 6
+Player0: posts the ante 6
+*** 3rd STREET ***
+Dealt to Player0 [Kc]
+Dealt to Hero [4c 4s Th]
+Player0: brings in for 9
+Hero: calls 9
+*** 4th STREET ***
+Dealt to Player0 [Kc] [5d]
+Dealt to Hero [4c 4s Th] [2d]
+Hero: checks 
+Player0: checks 
+*** 5th STREET ***
+Dealt to Player0 [Kc 5d] [9s]
+Dealt to Hero [4c 4s Th 2d] [Kd]
+Player0: checks 
+Hero: checks 
+*** 6th STREET ***
+Dealt to Player0 [Kc 5d 9s] [Kh]
+Dealt to Hero [4c 4s Th 2d Kd] [3c]
+Hero: checks 
+Player0: checks 
+*** RIVER ***
+Dealt to Hero [4c 4s Th 2d Kd 3c] [2h]
+Hero: checks 
+Player0: bets 60
+Hero: calls 60
+*** SHOW DOWN ***
+Player0: shows [Td Qh Kc 5d 9s Kh Ad] (Lo: Q,T,9,5,A)
+Hero: mucks hand 
+Player0 collected 150 from pot
+*** SUMMARY ***
+Total pot 150 | Rake 0 
+Seat 1: Player0 showed [Td Qh Kc 5d 9s Kh Ad] and won (150) with Lo: Q,T,9,5,A
+Seat 2: Hero mucked [4c 4s Th 2d Kd 3c 2h]
+
+
+
+PokerStars Home Game Hand #99632342829: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Razz Limit) - Match Round I, Level IV (30/60) - 2013/06/06 0:07:14 ET
+Table '743144019 1' 2-max
+Seat 1: Player0 (1277 in chips) 
+Seat 2: Hero (1723 in chips) 
+Hero: posts the ante 6
+Player0: posts the ante 6
+*** 3rd STREET ***
+Dealt to Player0 [8d]
+Dealt to Hero [6s 7s 3c]
+Hero said, "don't call it a comeback"
+Player0: brings in for 9
+Hero: calls 9
+*** 4th STREET ***
+Dealt to Player0 [8d] [4d]
+Dealt to Hero [6s 7s 3c] [4h]
+Hero: bets 30
+Player0: calls 30
+*** 5th STREET ***
+Dealt to Player0 [8d 4d] [Js]
+Dealt to Hero [6s 7s 3c 4h] [Jc]
+Hero: bets 60
+Player0: calls 60
+*** 6th STREET ***
+Dealt to Player0 [8d 4d Js] [Ks]
+Dealt to Hero [6s 7s 3c 4h Jc] [Jh]
+Player0: checks 
+Hero: bets 60
+Player0: calls 60
+*** RIVER ***
+Dealt to Hero [6s 7s 3c 4h Jc Jh] [9d]
+Player0: checks 
+Hero: bets 60
+Player0: folds 
+Uncalled bet (60) returned to Hero
+Hero collected 330 from pot
+*** SUMMARY ***
+Total pot 330 | Rake 0 
+Seat 1: Player0 folded on the River
+Seat 2: Hero collected (330)
+
+
+
+PokerStars Home Game Hand #99632356819: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Razz Limit) - Match Round I, Level IV (30/60) - 2013/06/06 0:08:07 ET
+Table '743144019 1' 2-max
+Seat 1: Player0 (1112 in chips) 
+Seat 2: Hero (1888 in chips) 
+Hero: posts the ante 6
+Player0: posts the ante 6
+*** 3rd STREET ***
+Dealt to Player0 [6h]
+Dealt to Hero [Ah Td As]
+Player0: brings in for 9
+Hero: calls 9
+*** 4th STREET ***
+Dealt to Player0 [6h] [6d]
+Dealt to Hero [Ah Td As] [Th]
+Hero: checks 
+Player0: checks 
+*** 5th STREET ***
+Dealt to Player0 [6h 6d] [Kc]
+Dealt to Hero [Ah Td As Th] [Jh]
+Hero: checks 
+Player0: checks 
+*** 6th STREET ***
+Dealt to Player0 [6h 6d Kc] [4c]
+Dealt to Hero [Ah Td As Th Jh] [2c]
+Hero: checks 
+Player0: checks 
+*** RIVER ***
+Dealt to Hero [Ah Td As Th Jh 2c] [8h]
+Hero: checks 
+Player0: checks 
+*** SHOW DOWN ***
+Hero: shows [Ah Td As Th Jh 2c 8h] (Lo: J,T,8,2,A)
+Player0: shows [5c Js 6h 6d Kc 4c 8d] (Lo: J,8,6,5,4)
+Player0 collected 30 from pot
+*** SUMMARY ***
+Total pot 30 | Rake 0 
+Seat 1: Player0 showed [5c Js 6h 6d Kc 4c 8d] and won (30) with Lo: J,8,6,5,4
+Seat 2: Hero showed [Ah Td As Th Jh 2c 8h] and lost with Lo: J,T,8,2,A
+
+
+
+PokerStars Home Game Hand #99632365500: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Razz Limit) - Match Round I, Level IV (30/60) - 2013/06/06 0:08:40 ET
+Table '743144019 1' 2-max
+Seat 1: Player0 (1127 in chips) 
+Seat 2: Hero (1873 in chips) 
+Hero: posts the ante 6
+Player0: posts the ante 6
+*** 3rd STREET ***
+Dealt to Player0 [Qd]
+Dealt to Hero [4c Kc 3h]
+Player0: brings in for 9
+Hero: calls 9
+*** 4th STREET ***
+Dealt to Player0 [Qd] [3d]
+Dealt to Hero [4c Kc 3h] [Qc]
+Player0: bets 30
+Hero: folds 
+Uncalled bet (30) returned to Player0
+Player0 collected 30 from pot
+Player0: doesn't show hand 
+*** SUMMARY ***
+Total pot 30 | Rake 0 
+Seat 1: Player0 collected (30)
+Seat 2: Hero folded on the 4th Street
+
+
+
+PokerStars Home Game Hand #99632371894: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Razz Limit) - Match Round I, Level IV (30/60) - 2013/06/06 0:09:05 ET
+Table '743144019 1' 2-max
+Seat 1: Player0 (1142 in chips) 
+Seat 2: Hero (1858 in chips) 
+Hero: posts the ante 6
+Player0: posts the ante 6
+*** 3rd STREET ***
+Dealt to Player0 [2c]
+Dealt to Hero [Jd As Ah]
+Player0: bets 30
+Hero: calls 30
+*** 4th STREET ***
+Dealt to Player0 [2c] [7s]
+Dealt to Hero [Jd As Ah] [2h]
+Hero: checks 
+Player0: bets 30
+Hero: calls 30
+*** 5th STREET ***
+Dealt to Player0 [2c 7s] [9c]
+Dealt to Hero [Jd As Ah 2h] [8h]
+Hero: checks 
+Player0: bets 60
+Hero: folds 
+Uncalled bet (60) returned to Player0
+Player0 collected 132 from pot
+Player0: doesn't show hand 
+*** SUMMARY ***
+Total pot 132 | Rake 0 
+Seat 1: Player0 collected (132)
+Seat 2: Hero folded on the 5th Street
+
+
+
+PokerStars Home Game Hand #99632379168: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Razz Limit) - Match Round I, Level IV (30/60) - 2013/06/06 0:09:33 ET
+Table '743144019 1' 2-max
+Seat 1: Player0 (1208 in chips) 
+Seat 2: Hero (1792 in chips) 
+Hero: posts the ante 6
+Player0: posts the ante 6
+*** 3rd STREET ***
+Dealt to Player0 [Ks]
+Dealt to Hero [Tc 5c 7d]
+Player0: brings in for 9
+Hero: calls 9
+*** 4th STREET ***
+Dealt to Player0 [Ks] [3s]
+Dealt to Hero [Tc 5c 7d] [7h]
+Player0: bets 30
+Hero: calls 30
+*** 5th STREET ***
+Dealt to Player0 [Ks 3s] [Kh]
+Dealt to Hero [Tc 5c 7d 7h] [Ac]
+Hero: bets 60
+Player0: folds 
+Uncalled bet (60) returned to Hero
+Hero collected 90 from pot
+Hero said, "I SEE UR PAIR OF KK"
+Player0 said, "hehehe"
+*** SUMMARY ***
+Total pot 90 | Rake 0 
+Seat 1: Player0 folded on the 5th Street
+Seat 2: Hero collected (90)
+
+
+
+PokerStars Home Game Hand #99632386106: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Razz Limit) - Match Round I, Level IV (30/60) - 2013/06/06 0:10:00 ET
+Table '743144019 1' 2-max
+Seat 1: Player0 (1163 in chips) 
+Seat 2: Hero (1837 in chips) 
+Hero: posts the ante 6
+Player0: posts the ante 6
+*** 3rd STREET ***
+Dealt to Player0 [9s]
+Dealt to Hero [8h Jc 2s]
+Player0: bets 30
+Hero: raises 30 to 60
+Player0: calls 30
+*** 4th STREET ***
+Dealt to Player0 [9s] [3h]
+Dealt to Hero [8h Jc 2s] [9d]
+Hero: bets 30
+Player0: calls 30
+*** 5th STREET ***
+Dealt to Player0 [9s 3h] [Qh]
+Dealt to Hero [8h Jc 2s 9d] [7h]
+Hero: bets 60
+Player0: calls 60
+*** 6th STREET ***
+Dealt to Player0 [9s 3h Qh] [2d]
+Dealt to Hero [8h Jc 2s 9d 7h] [Ad]
+Hero: bets 60
+Player0: calls 60
+*** RIVER ***
+Dealt to Hero [8h Jc 2s 9d 7h Ad] [Js]
+Hero: bets 60
+Player0: folds 
+Uncalled bet (60) returned to Hero
+Hero collected 432 from pot
+*** SUMMARY ***
+Total pot 432 | Rake 0 
+Seat 1: Player0 folded on the River
+Seat 2: Hero collected (432)
+
+
+
+PokerStars Home Game Hand #99632401924: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (7 Card Stud Limit) - Match Round I, Level V (40/80) - 2013/06/06 0:11:01 ET
+Table '743144019 1' 2-max
+Seat 1: Player0 (947 in chips) 
+Seat 2: Hero (2053 in chips) 
+Hero: posts the ante 8
+Player0: posts the ante 8
+*** 3rd STREET ***
+Dealt to Player0 [7h]
+Dealt to Hero [Ks 4d Qh]
+Player0: brings in for 12
+Hero said, "LIMIT STUD"
+Hero: raises 28 to 40
+Player0: folds 
+Uncalled bet (28) returned to Hero
+Hero collected 40 from pot
+Player0 said, "hmm"
+*** SUMMARY ***
+Total pot 40 | Rake 0 
+Seat 1: Player0 folded on the 3rd Street
+Seat 2: Hero collected (40)
+
+
+
+PokerStars Home Game Hand #99632409357: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (7 Card Stud Limit) - Match Round I, Level V (40/80) - 2013/06/06 0:11:30 ET
+Table '743144019 1' 2-max
+Seat 1: Player0 (927 in chips) 
+Seat 2: Hero (2073 in chips) 
+Hero: posts the ante 8
+Player0: posts the ante 8
+*** 3rd STREET ***
+Dealt to Player0 [4c]
+Dealt to Hero [2d Kc As]
+Player0: brings in for 12
+Hero: raises 28 to 40
+Player0: folds 
+Uncalled bet (28) returned to Hero
+Hero collected 40 from pot
+*** SUMMARY ***
+Total pot 40 | Rake 0 
+Seat 1: Player0 folded on the 3rd Street
+Seat 2: Hero collected (40)
+
+
+
+PokerStars Home Game Hand #99632413441: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (7 Card Stud Limit) - Match Round I, Level V (40/80) - 2013/06/06 0:11:46 ET
+Table '743144019 1' 2-max
+Seat 1: Player0 (907 in chips) 
+Seat 2: Hero (2093 in chips) 
+Hero: posts the ante 8
+Player0: posts the ante 8
+*** 3rd STREET ***
+Dealt to Player0 [2s]
+Dealt to Hero [Jc 3d 7h]
+Player0: bets 40
+Hero: calls 40
+*** 4th STREET ***
+Dealt to Player0 [2s] [6d]
+Dealt to Hero [Jc 3d 7h] [8h]
+Hero: checks 
+Player0: bets 40
+Hero: calls 40
+*** 5th STREET ***
+Dealt to Player0 [2s 6d] [Tc]
+Dealt to Hero [Jc 3d 7h 8h] [Qc]
+Hero: checks 
+Player0: bets 80
+Hero: folds 
+Uncalled bet (80) returned to Player0
+Player0 collected 176 from pot
+Player0: doesn't show hand 
+*** SUMMARY ***
+Total pot 176 | Rake 0 
+Seat 1: Player0 collected (176)
+Seat 2: Hero folded on the 5th Street
+
+
+
+PokerStars Home Game Hand #99632420135: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (7 Card Stud Limit) - Match Round I, Level V (40/80) - 2013/06/06 0:12:12 ET
+Table '743144019 1' 2-max
+Seat 1: Player0 (995 in chips) 
+Seat 2: Hero (2005 in chips) 
+Hero: posts the ante 8
+Player0: posts the ante 8
+*** 3rd STREET ***
+Dealt to Player0 [Jh]
+Dealt to Hero [8s Tc As]
+Player0: bets 40
+Hero: calls 40
+*** 4th STREET ***
+Dealt to Player0 [Jh] [4h]
+Dealt to Hero [8s Tc As] [Ts]
+Hero: checks 
+Player0: bets 40
+Hero: calls 40
+*** 5th STREET ***
+Dealt to Player0 [Jh 4h] [3d]
+Dealt to Hero [8s Tc As Ts] [3h]
+Hero: checks 
+Player0: bets 80
+Hero: raises 80 to 160
+Player0: calls 80
+*** 6th STREET ***
+Dealt to Player0 [Jh 4h 3d] [6d]
+Dealt to Hero [8s Tc As Ts 3h] [9d]
+Hero: checks 
+Player0: checks 
+*** RIVER ***
+Dealt to Hero [8s Tc As Ts 3h 9d] [Qd]
+Hero: checks 
+Player0: bets 80
+Hero: calls 80
+*** SHOW DOWN ***
+Player0: shows [8h Js Jh 4h 3d 6d 7c] (a pair of Jacks)
+Hero: mucks hand 
+Player0 collected 656 from pot
+*** SUMMARY ***
+Total pot 656 | Rake 0 
+Seat 1: Player0 showed [8h Js Jh 4h 3d 6d 7c] and won (656) with a pair of Jacks
+Seat 2: Hero mucked [8s Tc As Ts 3h 9d Qd]
+
+
+
+PokerStars Home Game Hand #99632434393: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (7 Card Stud Limit) - Match Round I, Level V (40/80) - 2013/06/06 0:13:08 ET
+Table '743144019 1' 2-max
+Seat 1: Player0 (1323 in chips) 
+Seat 2: Hero (1677 in chips) 
+Hero: posts the ante 8
+Player0: posts the ante 8
+*** 3rd STREET ***
+Dealt to Player0 [Jd]
+Dealt to Hero [Th Tc 3h]
+Hero said, "dag"
+Hero: bets 40
+Player0: raises 40 to 80
+Hero: calls 40
+*** 4th STREET ***
+Dealt to Player0 [Jd] [8c]
+Dealt to Hero [Th Tc 3h] [4s]
+Player0: bets 40
+Hero: calls 40
+*** 5th STREET ***
+Dealt to Player0 [Jd 8c] [2c]
+Dealt to Hero [Th Tc 3h 4s] [9h]
+Player0: bets 80
+Hero: calls 80
+*** 6th STREET ***
+Dealt to Player0 [Jd 8c 2c] [2h]
+Dealt to Hero [Th Tc 3h 4s 9h] [Qh]
+Player0: bets 80
+Hero: calls 80
+*** RIVER ***
+Dealt to Hero [Th Tc 3h 4s 9h Qh] [4d]
+Player0: checks 
+Hero: bets 80
+Player0: calls 80
+*** SHOW DOWN ***
+Hero: shows [Th Tc 3h 4s 9h Qh 4d] (two pair, Tens and Fours)
+Player0: mucks hand 
+Hero collected 736 from pot
+Hero said, "hidddden]"
+*** SUMMARY ***
+Total pot 736 | Rake 0 
+Seat 1: Player0 mucked [Qc Kh Jd 8c 2c 2h Ad]
+Seat 2: Hero showed [Th Tc 3h 4s 9h Qh 4d] and won (736) with two pair, Tens and Fours
+
+
+
+PokerStars Home Game Hand #99632454074: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (7 Card Stud Limit) - Match Round I, Level V (40/80) - 2013/06/06 0:14:25 ET
+Table '743144019 1' 2-max
+Seat 1: Player0 (955 in chips) 
+Seat 2: Hero (2045 in chips) 
+Hero: posts the ante 8
+Player0: posts the ante 8
+*** 3rd STREET ***
+Dealt to Player0 [5s]
+Dealt to Hero [5h 7h Ks]
+Player0: bets 40
+Hero: calls 40
+*** 4th STREET ***
+Dealt to Player0 [5s] [Ac]
+Dealt to Hero [5h 7h Ks] [Qd]
+Player0: bets 40
+Hero: calls 40
+*** 5th STREET ***
+Dealt to Player0 [5s Ac] [3s]
+Dealt to Hero [5h 7h Ks Qd] [Jh]
+Player0: bets 80
+Hero: calls 80
+*** 6th STREET ***
+Dealt to Player0 [5s Ac 3s] [Ad]
+Dealt to Hero [5h 7h Ks Qd Jh] [4h]
+Player0: bets 80
+Hero: calls 80
+*** RIVER ***
+Dealt to Hero [5h 7h Ks Qd Jh 4h] [Qs]
+Player0: bets 80
+Hero: folds 
+Uncalled bet (80) returned to Player0
+Player0 collected 496 from pot
+Player0: doesn't show hand 
+*** SUMMARY ***
+Total pot 496 | Rake 0 
+Seat 1: Player0 collected (496)
+Seat 2: Hero folded on the River
+
+
+
+PokerStars Home Game Hand #99632465300: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (7 Card Stud Limit) - Match Round I, Level V (40/80) - 2013/06/06 0:15:10 ET
+Table '743144019 1' 2-max
+Seat 1: Player0 (1203 in chips) 
+Seat 2: Hero (1797 in chips) 
+Hero: posts the ante 8
+Player0: posts the ante 8
+*** 3rd STREET ***
+Dealt to Player0 [6h]
+Dealt to Hero [9c 9h Ks]
+Player0: bets 40
+Hero: raises 40 to 80
+Player0: calls 40
+*** 4th STREET ***
+Dealt to Player0 [6h] [9s]
+Dealt to Hero [9c 9h Ks] [6c]
+Hero: bets 40
+Player0: calls 40
+*** 5th STREET ***
+Dealt to Player0 [6h 9s] [7d]
+Dealt to Hero [9c 9h Ks 6c] [3s]
+Hero: checks 
+Player0: checks 
+*** 6th STREET ***
+Dealt to Player0 [6h 9s 7d] [3d]
+Dealt to Hero [9c 9h Ks 6c 3s] [Ah]
+Hero: checks 
+Player0: checks 
+*** RIVER ***
+Dealt to Hero [9c 9h Ks 6c 3s Ah] [Qd]
+Hero: checks 
+Player0: bets 80
+Hero: calls 80
+*** SHOW DOWN ***
+Player0: shows [Kc 8c 6h 9s 7d 3d 8h] (a pair of Eights)
+Hero: shows [9c 9h Ks 6c 3s Ah Qd] (a pair of Nines)
+Hero collected 416 from pot
+*** SUMMARY ***
+Total pot 416 | Rake 0 
+Seat 1: Player0 showed [Kc 8c 6h 9s 7d 3d 8h] and lost with a pair of Eights
+Seat 2: Hero showed [9c 9h Ks 6c 3s Ah Qd] and won (416) with a pair of Nines
+
+
+
+PokerStars Home Game Hand #99632474329: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (7 Card Stud Limit) - Match Round I, Level V (40/80) - 2013/06/06 0:15:45 ET
+Table '743144019 1' 2-max
+Seat 1: Player0 (995 in chips) 
+Seat 2: Hero (2005 in chips) 
+Hero: posts the ante 8
+Player0: posts the ante 8
+*** 3rd STREET ***
+Dealt to Player0 [Qs]
+Dealt to Hero [Js As Jh]
+Hero: bets 40
+Player0: raises 40 to 80
+Hero: raises 40 to 120
+Player0: calls 40
+*** 4th STREET ***
+Dealt to Player0 [Qs] [4c]
+Dealt to Hero [Js As Jh] [4s]
+Player0: checks 
+Hero: bets 40
+Player0: calls 40
+*** 5th STREET ***
+Dealt to Player0 [Qs 4c] [8s]
+Dealt to Hero [Js As Jh 4s] [4h]
+Hero: bets 80
+Player0: folds 
+Uncalled bet (80) returned to Hero
+Hero collected 336 from pot
+*** SUMMARY ***
+Total pot 336 | Rake 0 
+Seat 1: Player0 folded on the 5th Street
+Seat 2: Hero collected (336)
+
+
+
+PokerStars Home Game Hand #99632480552: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (7 Card Stud Limit) - Match Round I, Level V (40/80) - 2013/06/06 0:16:10 ET
+Table '743144019 1' 2-max
+Seat 1: Player0 (827 in chips) 
+Seat 2: Hero (2173 in chips) 
+Hero: posts the ante 8
+Player0: posts the ante 8
+*** 3rd STREET ***
+Dealt to Player0 [5h]
+Dealt to Hero [Jh Td As]
+Player0: bets 40
+Hero: calls 40
+*** 4th STREET ***
+Dealt to Player0 [5h] [9h]
+Dealt to Hero [Jh Td As] [Qs]
+Hero: bets 40
+Player0: calls 40
+*** 5th STREET ***
+Dealt to Player0 [5h 9h] [5s]
+Dealt to Hero [Jh Td As Qs] [5d]
+Player0: checks 
+Hero: bets 80
+Player0: calls 80
+*** 6th STREET ***
+Dealt to Player0 [5h 9h 5s] [8s]
+Dealt to Hero [Jh Td As Qs 5d] [6c]
+Player0: checks 
+Hero: checks 
+*** RIVER ***
+Dealt to Hero [Jh Td As Qs 5d 6c] [Kh]
+Player0: bets 80
+Hero: raises 80 to 160
+Player0: raises 80 to 240
+Hero: calls 80
+*** SHOW DOWN ***
+Player0: shows [3c 6h 5h 9h 5s 8s 7h] (a straight, Five to Nine)
+Hero: shows [Jh Td As Qs 5d 6c Kh] (a straight, Ten to Ace)
+Hero collected 816 from pot
+*** SUMMARY ***
+Total pot 816 | Rake 0 
+Seat 1: Player0 showed [3c 6h 5h 9h 5s 8s 7h] and lost with a straight, Five to Nine
+Seat 2: Hero showed [Jh Td As Qs 5d 6c Kh] and won (816) with a straight, Ten to Ace
+
+
+
+PokerStars Home Game Hand #99632489947: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (7 Card Stud Limit) - Match Round I, Level V (40/80) - 2013/06/06 0:16:47 ET
+Table '743144019 1' 2-max
+Seat 1: Player0 (419 in chips) 
+Seat 2: Hero (2581 in chips) 
+Hero: posts the ante 8
+Player0: posts the ante 8
+*** 3rd STREET ***
+Dealt to Player0 [As]
+Dealt to Hero [6c Ac 2d]
+Player0 said, "dan"
+Hero: brings in for 12
+Player0: raises 28 to 40
+Hero said, "rough"
+Hero: calls 28
+*** 4th STREET ***
+Dealt to Player0 [As] [3d]
+Dealt to Hero [6c Ac 2d] [4d]
+Player0: bets 40
+Hero: calls 40
+*** 5th STREET ***
+Dealt to Player0 [As 3d] [3c]
+Dealt to Hero [6c Ac 2d 4d] [Jc]
+Player0: bets 80
+Hero: folds 
+Uncalled bet (80) returned to Player0
+Player0 collected 176 from pot
+Player0: doesn't show hand 
+*** SUMMARY ***
+Total pot 176 | Rake 0 
+Seat 1: Player0 collected (176)
+Seat 2: Hero folded on the 5th Street
+
+
+
+PokerStars Home Game Hand #99632498288: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (7 Card Stud Limit) - Match Round I, Level V (40/80) - 2013/06/06 0:17:20 ET
+Table '743144019 1' 2-max
+Seat 1: Player0 (507 in chips) 
+Seat 2: Hero (2493 in chips) 
+Hero: posts the ante 8
+Player0: posts the ante 8
+*** 3rd STREET ***
+Dealt to Player0 [9h]
+Dealt to Hero [9s 9c 7s]
+Hero: bets 40
+Player0: calls 40
+*** 4th STREET ***
+Dealt to Player0 [9h] [4h]
+Dealt to Hero [9s 9c 7s] [2d]
+Player0: checks 
+Hero: checks 
+*** 5th STREET ***
+Dealt to Player0 [9h 4h] [8h]
+Dealt to Hero [9s 9c 7s 2d] [Ts]
+Hero: checks 
+Player0: bets 80
+Hero: folds 
+Uncalled bet (80) returned to Player0
+Player0 collected 96 from pot
+Player0: doesn't show hand 
+*** SUMMARY ***
+Total pot 96 | Rake 0 
+Seat 1: Player0 collected (96)
+Seat 2: Hero folded on the 5th Street
+
+
+
+PokerStars Home Game Hand #99632503941: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (7 Card Stud Limit) - Match Round I, Level V (40/80) - 2013/06/06 0:17:42 ET
+Table '743144019 1' 2-max
+Seat 1: Player0 (555 in chips) 
+Seat 2: Hero (2445 in chips) 
+Hero: posts the ante 8
+Player0: posts the ante 8
+*** 3rd STREET ***
+Dealt to Player0 [2h]
+Dealt to Hero [9s Ac 2c]
+Hero: brings in for 12
+Player0: raises 28 to 40
+Hero: calls 28
+*** 4th STREET ***
+Dealt to Player0 [2h] [3s]
+Dealt to Hero [9s Ac 2c] [9c]
+Hero: bets 40
+Player0: folds 
+Uncalled bet (40) returned to Hero
+Hero collected 96 from pot
+*** SUMMARY ***
+Total pot 96 | Rake 0 
+Seat 1: Player0 folded on the 4th Street
+Seat 2: Hero collected (96)
+
+
+
+PokerStars Home Game Hand #99632512109: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (7 Card Stud Limit) - Match Round I, Level V (40/80) - 2013/06/06 0:18:14 ET
+Table '743144019 1' 2-max
+Seat 1: Player0 (507 in chips) 
+Seat 2: Hero (2493 in chips) 
+Hero: posts the ante 8
+Player0: posts the ante 8
+*** 3rd STREET ***
+Dealt to Player0 [Qd]
+Dealt to Hero [4d 5c Kd]
+Player0: bets 40
+Hero: calls 40
+*** 4th STREET ***
+Dealt to Player0 [Qd] [Jd]
+Dealt to Hero [4d 5c Kd] [Kc]
+Pair on board - a double bet is allowed
+Hero: bets 80
+Player0: calls 80
+*** 5th STREET ***
+Dealt to Player0 [Qd Jd] [Qh]
+Dealt to Hero [4d 5c Kd Kc] [9c]
+Hero: bets 80
+Player0: raises 80 to 160
+Hero: calls 80
+*** 6th STREET ***
+Dealt to Player0 [Qd Jd Qh] [4h]
+Dealt to Hero [4d 5c Kd Kc 9c] [Ts]
+Hero: checks 
+Player0: bets 80
+Hero: calls 80
+*** RIVER ***
+Dealt to Hero [4d 5c Kd Kc 9c Ts] [Tc]
+Hero: checks 
+Player0: bets 80
+Hero said, "i'll donk call this one"
+Hero: calls 80
+*** SHOW DOWN ***
+Player0: shows [3s Qc Qd Jd Qh 4h 9d] (three of a kind, Queens)
+Hero: mucks hand 
+Player0 collected 896 from pot
+*** SUMMARY ***
+Total pot 896 | Rake 0 
+Seat 1: Player0 showed [3s Qc Qd Jd Qh 4h 9d] and won (896) with three of a kind, Queens
+Seat 2: Hero mucked [4d 5c Kd Kc 9c Ts Tc]
+
+
+
+PokerStars Home Game Hand #99632530077: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (7 Card Stud Limit) - Match Round I, Level V (40/80) - 2013/06/06 0:19:26 ET
+Table '743144019 1' 2-max
+Seat 1: Player0 (955 in chips) 
+Seat 2: Hero (2045 in chips) 
+Hero: posts the ante 8
+Player0: posts the ante 8
+*** 3rd STREET ***
+Dealt to Player0 [3h]
+Dealt to Hero [6s 2s Td]
+Player0: bets 40
+Hero: folds 
+Uncalled bet (40) returned to Player0
+Player0 collected 16 from pot
+Player0: doesn't show hand 
+*** SUMMARY ***
+Total pot 16 | Rake 0 
+Seat 1: Player0 collected (16)
+Seat 2: Hero folded on the 3rd Street (didn't bet)
+
+
+
+PokerStars Home Game Hand #99632532719: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (7 Card Stud Limit) - Match Round I, Level V (40/80) - 2013/06/06 0:19:36 ET
+Table '743144019 1' 2-max
+Seat 1: Player0 (963 in chips) 
+Seat 2: Hero (2037 in chips) 
+Hero: posts the ante 8
+Player0: posts the ante 8
+*** 3rd STREET ***
+Dealt to Player0 [4s]
+Dealt to Hero [8h 7d 3h]
+Hero: brings in for 12
+Player0: raises 28 to 40
+Hero: calls 28
+*** 4th STREET ***
+Dealt to Player0 [4s] [5c]
+Dealt to Hero [8h 7d 3h] [9s]
+Hero: checks 
+Player0: bets 40
+Hero: folds 
+Uncalled bet (40) returned to Player0
+Player0 collected 96 from pot
+Player0: doesn't show hand 
+*** SUMMARY ***
+Total pot 96 | Rake 0 
+Seat 1: Player0 collected (96)
+Seat 2: Hero folded on the 4th Street
+
+
+
+PokerStars Home Game Hand #99632538256: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (7 Card Stud Limit) - Match Round I, Level V (40/80) - 2013/06/06 0:19:58 ET
+Table '743144019 1' 2-max
+Seat 1: Player0 (1011 in chips) 
+Seat 2: Hero (1989 in chips) 
+Hero: posts the ante 8
+Player0: posts the ante 8
+*** 3rd STREET ***
+Dealt to Player0 [7c]
+Dealt to Hero [5d 5c 4d]
+Hero: bets 40
+Player0: folds 
+Uncalled bet (40) returned to Hero
+Hero collected 16 from pot
+*** SUMMARY ***
+Total pot 16 | Rake 0 
+Seat 1: Player0 folded on the 3rd Street (didn't bet)
+Seat 2: Hero collected (16)
+
+
+
+PokerStars Home Game Hand #99632542467: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (7 Card Stud Hi/Lo Limit) - Match Round I, Level VI (40/80) - 2013/06/06 0:20:15 ET
+Table '743144019 1' 2-max
+Seat 1: Player0 (1003 in chips) 
+Seat 2: Hero (1997 in chips) 
+Hero: posts the ante 8
+Player0: posts the ante 8
+*** 3rd STREET ***
+Dealt to Player0 [9s]
+Dealt to Hero [8d Ts 2h]
+Player0 said, "lol"
+Hero: bets 40
+Player0: folds 
+Uncalled bet (40) returned to Hero
+Hero collected 16 from pot
+*** SUMMARY ***
+Total pot 16 | Rake 0 
+Seat 1: Player0 folded on the 3rd Street (didn't bet)
+Seat 2: Hero collected (16)
+
+
+
+PokerStars Home Game Hand #99632546700: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (7 Card Stud Hi/Lo Limit) - Match Round I, Level VI (40/80) - 2013/06/06 0:20:31 ET
+Table '743144019 1' 2-max
+Seat 1: Player0 (995 in chips) 
+Seat 2: Hero (2005 in chips) 
+Hero: posts the ante 8
+Player0: posts the ante 8
+*** 3rd STREET ***
+Dealt to Player0 [8c]
+Dealt to Hero [7s 8s 3s]
+Hero said, "like i have any fking clue how to play tis game"
+Player0 said, "lol"
+Hero said, "at least it's not badugi i suppose"
+Hero: bets 40
+Player0: calls 40
+*** 4th STREET ***
+Dealt to Player0 [8c] [Ac]
+Dealt to Hero [7s 8s 3s] [Tc]
+Player0: checks 
+Hero: checks 
+*** 5th STREET ***
+Dealt to Player0 [8c Ac] [Jd]
+Dealt to Hero [7s 8s 3s Tc] [Qs]
+Player0: bets 80
+Hero: folds 
+Uncalled bet (80) returned to Player0
+Player0 collected 96 from pot
+Player0: doesn't show hand 
+*** SUMMARY ***
+Total pot 96 | Rake 0 
+Seat 1: Player0 collected (96)
+Seat 2: Hero folded on the 5th Street
+
+
+
+PokerStars Home Game Hand #99632554838: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (7 Card Stud Hi/Lo Limit) - Match Round I, Level VI (40/80) - 2013/06/06 0:21:04 ET
+Table '743144019 1' 2-max
+Seat 1: Player0 (1043 in chips) 
+Seat 2: Hero (1957 in chips) 
+Hero: posts the ante 8
+Player0: posts the ante 8
+*** 3rd STREET ***
+Dealt to Player0 [Th]
+Dealt to Hero [9c Jc 4h]
+Hero: brings in for 12
+Player0: raises 28 to 40
+Hero: calls 28
+*** 4th STREET ***
+Dealt to Player0 [Th] [Ts]
+Dealt to Hero [9c Jc 4h] [2d]
+Player0: bets 40
+Hero: calls 40
+*** 5th STREET ***
+Dealt to Player0 [Th Ts] [Ad]
+Dealt to Hero [9c Jc 4h 2d] [Td]
+Player0: bets 80
+Hero: folds 
+Uncalled bet (80) returned to Player0
+Player0 collected 176 from pot
+Player0: doesn't show hand 
+*** SUMMARY ***
+Total pot 176 | Rake 0 
+Seat 1: Player0 collected (176)
+Seat 2: Hero folded on the 5th Street
+
+
+
+PokerStars Home Game Hand #99632561862: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (7 Card Stud Hi/Lo Limit) - Match Round I, Level VI (40/80) - 2013/06/06 0:21:31 ET
+Table '743144019 1' 2-max
+Seat 1: Player0 (1131 in chips) 
+Seat 2: Hero (1869 in chips) 
+Hero: posts the ante 8
+Player0: posts the ante 8
+*** 3rd STREET ***
+Dealt to Player0 [9d]
+Dealt to Hero [6h 5s 6c]
+Hero: brings in for 12
+Player0: calls 12
+*** 4th STREET ***
+Dealt to Player0 [9d] [9c]
+Dealt to Hero [6h 5s 6c] [2s]
+Player0: bets 40
+Hero: calls 40
+*** 5th STREET ***
+Dealt to Player0 [9d 9c] [Ac]
+Dealt to Hero [6h 5s 6c 2s] [2h]
+Player0: bets 80
+Hero: raises 80 to 160
+Player0: calls 80
+*** 6th STREET ***
+Dealt to Player0 [9d 9c Ac] [3h]
+Dealt to Hero [6h 5s 6c 2s 2h] [9s]
+Player0: checks 
+Hero: bets 80
+Player0: calls 80
+*** RIVER ***
+Dealt to Hero [6h 5s 6c 2s 2h 9s] [6d]
+Player0: bets 80
+Hero: raises 80 to 160
+Player0: calls 80
+*** SHOW DOWN ***
+Hero: shows [6h 5s 6c 2s 2h 9s 6d] (HI: a full house, Sixes full of Deuces)
+Player0: mucks hand 
+Hero collected 920 from pot
+No low hand qualified
+*** SUMMARY ***
+Total pot 920 | Rake 0 
+Seat 1: Player0 mucked [4h Jh 9d 9c Ac 3h 8s]
+Seat 2: Hero showed [6h 5s 6c 2s 2h 9s 6d] and won (920) with HI: a full house, Sixes full of Deuces
+
+
+
+PokerStars Home Game Hand #99632574289: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (7 Card Stud Hi/Lo Limit) - Match Round I, Level VI (40/80) - 2013/06/06 0:22:21 ET
+Table '743144019 1' 2-max
+Seat 1: Player0 (671 in chips) 
+Seat 2: Hero (2329 in chips) 
+Hero: posts the ante 8
+Player0: posts the ante 8
+*** 3rd STREET ***
+Dealt to Player0 [Ah]
+Dealt to Hero [6c As 8s]
+Player0 said, "i forot 9 wasnt low"
+Player0 said, "****"
+Hero said, "jajajajaja"
+Hero: bets 40
+Player0: raises 40 to 80
+Hero: calls 40
+*** 4th STREET ***
+Dealt to Player0 [Ah] [9s]
+Dealt to Hero [6c As 8s] [4s]
+Player0: bets 40
+Hero: raises 40 to 80
+Player0: calls 40
+*** 5th STREET ***
+Dealt to Player0 [Ah 9s] [2c]
+Dealt to Hero [6c As 8s 4s] [5c]
+Player0: checks 
+Hero: bets 80
+Player0: calls 80
+*** 6th STREET ***
+Dealt to Player0 [Ah 9s 2c] [6d]
+Dealt to Hero [6c As 8s 4s 5c] [Jh]
+Player0: checks 
+Hero: checks 
+*** RIVER ***
+Dealt to Hero [6c As 8s 4s 5c Jh] [8h]
+Player0: bets 80
+Hero: calls 80
+*** SHOW DOWN ***
+Player0: shows [4d 3c Ah 9s 2c 6d 8c] (HI: high card Ace; LO: 6,4,3,2,A)
+Hero: shows [6c As 8s 4s 5c Jh 8h] (HI: a pair of Eights; LO: 8,6,5,4,A)
+Hero collected 328 from pot
+Player0 collected 328 from pot
+*** SUMMARY ***
+Total pot 656 | Rake 0 
+Seat 1: Player0 showed [4d 3c Ah 9s 2c 6d 8c] and won (328) with HI: high card Ace; LO: 6,4,3,2,A
+Seat 2: Hero showed [6c As 8s 4s 5c Jh 8h] and won (328) with HI: a pair of Eights; LO: 8,6,5,4,A
+
+
+
+PokerStars Home Game Hand #99632586956: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (7 Card Stud Hi/Lo Limit) - Match Round I, Level VI (40/80) - 2013/06/06 0:23:13 ET
+Table '743144019 1' 2-max
+Seat 1: Player0 (671 in chips) 
+Seat 2: Hero (2329 in chips) 
+Hero: posts the ante 8
+Player0: posts the ante 8
+*** 3rd STREET ***
+Dealt to Player0 [5c]
+Dealt to Hero [9s Js Td]
+Player0: bets 40
+Hero: calls 40
+*** 4th STREET ***
+Dealt to Player0 [5c] [3c]
+Dealt to Hero [9s Js Td] [Tc]
+Hero: checks 
+Player0: checks 
+*** 5th STREET ***
+Dealt to Player0 [5c 3c] [2d]
+Dealt to Hero [9s Js Td Tc] [Ac]
+Hero: checks 
+Player0: checks 
+*** 6th STREET ***
+Dealt to Player0 [5c 3c 2d] [Ts]
+Dealt to Hero [9s Js Td Tc Ac] [7s]
+Hero: checks 
+Player0: checks 
+*** RIVER ***
+Dealt to Hero [9s Js Td Tc Ac 7s] [Kh]
+Hero: checks 
+Player0: checks 
+*** SHOW DOWN ***
+Hero: shows [9s Js Td Tc Ac 7s Kh] (HI: a pair of Tens)
+Player0: mucks hand 
+Hero collected 96 from pot
+No low hand qualified
+*** SUMMARY ***
+Total pot 96 | Rake 0 
+Seat 1: Player0 mucked [5s Jh 5c 3c 2d Ts Ks]
+Seat 2: Hero showed [9s Js Td Tc Ac 7s Kh] and won (96) with HI: a pair of Tens
+
+
+
+PokerStars Home Game Hand #99632597104: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (7 Card Stud Hi/Lo Limit) - Match Round I, Level VI (40/80) - 2013/06/06 0:23:53 ET
+Table '743144019 1' 2-max
+Seat 1: Player0 (623 in chips) 
+Seat 2: Hero (2377 in chips) 
+Hero: posts the ante 8
+Player0: posts the ante 8
+*** 3rd STREET ***
+Dealt to Player0 [Jh]
+Dealt to Hero [Td 3h Ks]
+Player0: brings in for 12
+Hero: calls 12
+*** 4th STREET ***
+Dealt to Player0 [Jh] [Ac]
+Dealt to Hero [Td 3h Ks] [Qd]
+Player0: bets 40
+Hero: calls 40
+*** 5th STREET ***
+Dealt to Player0 [Jh Ac] [2s]
+Dealt to Hero [Td 3h Ks Qd] [4c]
+Player0: checks 
+Hero: checks 
+*** 6th STREET ***
+Dealt to Player0 [Jh Ac 2s] [7c]
+Dealt to Hero [Td 3h Ks Qd 4c] [As]
+Hero: checks 
+Player0: checks 
+*** RIVER ***
+Dealt to Hero [Td 3h Ks Qd 4c As] [Tc]
+Hero: checks 
+Player0: checks 
+*** SHOW DOWN ***
+Hero: shows [Td 3h Ks Qd 4c As Tc] (HI: a pair of Tens)
+Player0: mucks hand 
+Hero collected 120 from pot
+No low hand qualified
+*** SUMMARY ***
+Total pot 120 | Rake 0 
+Seat 1: Player0 mucked [6d Qs Jh Ac 2s 7c 2c]
+Seat 2: Hero showed [Td 3h Ks Qd 4c As Tc] and won (120) with HI: a pair of Tens
+
+
+
+PokerStars Home Game Hand #99632607069: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (7 Card Stud Hi/Lo Limit) - Match Round I, Level VI (40/80) - 2013/06/06 0:24:34 ET
+Table '743144019 1' 2-max
+Seat 1: Player0 (563 in chips) 
+Seat 2: Hero (2437 in chips) 
+Hero: posts the ante 8
+Player0: posts the ante 8
+*** 3rd STREET ***
+Dealt to Player0 [3d]
+Dealt to Hero [Kh 3s Td]
+Player0: bets 40
+Hero: calls 40
+*** 4th STREET ***
+Dealt to Player0 [3d] [2d]
+Dealt to Hero [Kh 3s Td] [Qh]
+Hero: bets 40
+Player0: raises 40 to 80
+Hero: calls 40
+*** 5th STREET ***
+Dealt to Player0 [3d 2d] [5s]
+Dealt to Hero [Kh 3s Td Qh] [5c]
+Hero: checks 
+Player0: bets 80
+Hero: folds 
+Uncalled bet (80) returned to Player0
+Player0 collected 256 from pot
+Player0: shows [Ad Ah 3d 2d 5s] (HI: a pair of Aces)
+*** SUMMARY ***
+Total pot 256 | Rake 0 
+Seat 1: Player0 collected (256)
+Seat 2: Hero folded on the 5th Street
+
+
+
+PokerStars Home Game Hand #99632613652: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (7 Card Stud Hi/Lo Limit) - Match Round I, Level VI (40/80) - 2013/06/06 0:25:00 ET
+Table '743144019 1' 2-max
+Seat 1: Player0 (691 in chips) 
+Seat 2: Hero (2309 in chips) 
+Hero: posts the ante 8
+Player0: posts the ante 8
+*** 3rd STREET ***
+Dealt to Player0 [5h]
+Dealt to Hero [8d 7h 4d]
+Hero: brings in for 12
+Player0: calls 12
+*** 4th STREET ***
+Dealt to Player0 [5h] [4h]
+Dealt to Hero [8d 7h 4d] [6c]
+Hero: bets 40
+Player0: calls 40
+*** 5th STREET ***
+Dealt to Player0 [5h 4h] [3s]
+Dealt to Hero [8d 7h 4d 6c] [2s]
+Hero: bets 80
+Player0: folds 
+Uncalled bet (80) returned to Hero
+Hero collected 120 from pot
+*** SUMMARY ***
+Total pot 120 | Rake 0 
+Seat 1: Player0 folded on the 5th Street
+Seat 2: Hero collected (120)
+
+
+
+PokerStars Home Game Hand #99632621936: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (7 Card Stud Hi/Lo Limit) - Match Round I, Level VI (40/80) - 2013/06/06 0:25:33 ET
+Table '743144019 1' 2-max
+Seat 1: Player0 (631 in chips) 
+Seat 2: Hero (2369 in chips) 
+Hero: posts the ante 8
+Player0: posts the ante 8
+*** 3rd STREET ***
+Dealt to Player0 [Jd]
+Dealt to Hero [9d 3h Qd]
+Player0: brings in for 12
+Hero: calls 12
+*** 4th STREET ***
+Dealt to Player0 [Jd] [2c]
+Dealt to Hero [9d 3h Qd] [Kc]
+Hero: checks 
+Player0: checks 
+*** 5th STREET ***
+Dealt to Player0 [Jd 2c] [7d]
+Dealt to Hero [9d 3h Qd Kc] [Jc]
+Hero: bets 80
+Player0: folds 
+Uncalled bet (80) returned to Hero
+Hero collected 40 from pot
+*** SUMMARY ***
+Total pot 40 | Rake 0 
+Seat 1: Player0 folded on the 5th Street
+Seat 2: Hero collected (40)
+
+
+
+PokerStars Home Game Hand #99632627755: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (7 Card Stud Hi/Lo Limit) - Match Round I, Level VI (40/80) - 2013/06/06 0:25:57 ET
+Table '743144019 1' 2-max
+Seat 1: Player0 (611 in chips) 
+Seat 2: Hero (2389 in chips) 
+Hero: posts the ante 8
+Player0: posts the ante 8
+*** 3rd STREET ***
+Dealt to Player0 [8s]
+Dealt to Hero [Jh 5d 8h]
+Hero: brings in for 12
+Player0: calls 12
+*** 4th STREET ***
+Dealt to Player0 [8s] [Ks]
+Dealt to Hero [Jh 5d 8h] [2s]
+Player0: bets 40
+Hero: folds 
+Uncalled bet (40) returned to Player0
+Player0 collected 40 from pot
+Player0: doesn't show hand 
+*** SUMMARY ***
+Total pot 40 | Rake 0 
+Seat 1: Player0 collected (40)
+Seat 2: Hero folded on the 4th Street
+
+
+
+PokerStars Home Game Hand #99632632938: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (7 Card Stud Hi/Lo Limit) - Match Round I, Level VI (40/80) - 2013/06/06 0:26:17 ET
+Table '743144019 1' 2-max
+Seat 1: Player0 (631 in chips) 
+Seat 2: Hero (2369 in chips) 
+Hero: posts the ante 8
+Player0: posts the ante 8
+*** 3rd STREET ***
+Dealt to Player0 [Qc]
+Dealt to Hero [3d 8c 9d]
+Hero: brings in for 12
+Player0: raises 28 to 40
+Hero: calls 28
+*** 4th STREET ***
+Dealt to Player0 [Qc] [3c]
+Dealt to Hero [3d 8c 9d] [Kd]
+Hero: bets 40
+Player0: calls 40
+*** 5th STREET ***
+Dealt to Player0 [Qc 3c] [Qd]
+Dealt to Hero [3d 8c 9d Kd] [Ah]
+Player0: checks 
+Hero: checks 
+*** 6th STREET ***
+Dealt to Player0 [Qc 3c Qd] [Tc]
+Dealt to Hero [3d 8c 9d Kd Ah] [7d]
+Player0: bets 80
+Hero: calls 80
+*** RIVER ***
+Dealt to Hero [3d 8c 9d Kd Ah 7d] [Jc]
+Player0: bets 80
+Hero: folds 
+Uncalled bet (80) returned to Player0
+Player0 collected 336 from pot
+Player0: doesn't show hand 
+*** SUMMARY ***
+Total pot 336 | Rake 0 
+Seat 1: Player0 collected (336)
+Seat 2: Hero folded on the River
+
+
+
+PokerStars Home Game Hand #99632640469: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (7 Card Stud Hi/Lo Limit) - Match Round I, Level VI (40/80) - 2013/06/06 0:26:48 ET
+Table '743144019 1' 2-max
+Seat 1: Player0 (799 in chips) 
+Seat 2: Hero (2201 in chips) 
+Hero: posts the ante 8
+Player0: posts the ante 8
+*** 3rd STREET ***
+Dealt to Player0 [Ah]
+Dealt to Hero [7h 4d 6s]
+Hero: brings in for 12
+Player0: raises 28 to 40
+Hero: calls 28
+*** 4th STREET ***
+Dealt to Player0 [Ah] [8c]
+Dealt to Hero [7h 4d 6s] [9h]
+Player0: bets 40
+Hero: calls 40
+*** 5th STREET ***
+Dealt to Player0 [Ah 8c] [Jc]
+Dealt to Hero [7h 4d 6s 9h] [5h]
+Player0: bets 80
+Hero: calls 80
+*** 6th STREET ***
+Dealt to Player0 [Ah 8c Jc] [Tc]
+Dealt to Hero [7h 4d 6s 9h 5h] [5s]
+Hero: checks 
+Player0: bets 80
+Hero: calls 80
+*** RIVER ***
+Dealt to Hero [7h 4d 6s 9h 5h 5s] [As]
+Hero: bets 80
+Player0: calls 80
+*** SHOW DOWN ***
+Hero: shows [7h 4d 6s 9h 5h 5s As] (HI: a pair of Fives; LO: 7,6,5,4,A)
+Player0: shows [6d 4c Ah 8c Jc Tc 2s] (HI: high card Ace; LO: 8,6,4,2,A)
+Hero collected 328 from pot
+Hero collected 328 from pot
+Hero said, "wwwooo"
+*** SUMMARY ***
+Total pot 656 | Rake 0 
+Seat 1: Player0 showed [6d 4c Ah 8c Jc Tc 2s] and lost with HI: high card Ace; LO: 8,6,4,2,A
+Seat 2: Hero showed [7h 4d 6s 9h 5h 5s As] and won (656) with HI: a pair of Fives; LO: 7,6,5,4,A
+
+
+
+PokerStars Home Game Hand #99632651588: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (7 Card Stud Hi/Lo Limit) - Match Round I, Level VI (40/80) - 2013/06/06 0:27:33 ET
+Table '743144019 1' 2-max
+Seat 1: Player0 (471 in chips) 
+Seat 2: Hero (2529 in chips) 
+Hero: posts the ante 8
+Player0: posts the ante 8
+*** 3rd STREET ***
+Dealt to Player0 [Kc]
+Dealt to Hero [Jd Qc 5s]
+Hero: brings in for 12
+Player0 said, "u were ahead on turn tho"
+Player0 said, "cause low wasnt there for me yet"
+Player0: raises 28 to 40
+Hero said, "didn't think my 55 would hold for the hi"
+Player0 said, "tho i had many outs"
+Hero: calls 28
+*** 4th STREET ***
+Dealt to Player0 [Kc] [7s]
+Dealt to Hero [Jd Qc 5s] [9h]
+Player0 said, "right"
+Player0: bets 40
+Hero: folds 
+Uncalled bet (40) returned to Player0
+Player0 collected 96 from pot
+Player0: doesn't show hand 
+*** SUMMARY ***
+Total pot 96 | Rake 0 
+Seat 1: Player0 collected (96)
+Seat 2: Hero folded on the 4th Street
+
+
+
+PokerStars Home Game Hand #99632662237: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (7 Card Stud Hi/Lo Limit) - Match Round I, Level VI (40/80) - 2013/06/06 0:28:17 ET
+Table '743144019 1' 2-max
+Seat 1: Player0 (519 in chips) 
+Seat 2: Hero (2481 in chips) 
+Hero: posts the ante 8
+Player0: posts the ante 8
+*** 3rd STREET ***
+Dealt to Player0 [5h]
+Dealt to Hero [9c 4d 7c]
+Player0: bets 40
+Hero: calls 40
+*** 4th STREET ***
+Dealt to Player0 [5h] [Kc]
+Dealt to Hero [9c 4d 7c] [Qs]
+Player0: bets 40
+Hero: folds 
+Uncalled bet (40) returned to Player0
+Player0 collected 96 from pot
+Player0: doesn't show hand 
+*** SUMMARY ***
+Total pot 96 | Rake 0 
+Seat 1: Player0 collected (96)
+Seat 2: Hero folded on the 4th Street
+
+
+
+PokerStars Home Game Hand #99632667085: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (7 Card Stud Hi/Lo Limit) - Match Round I, Level VI (40/80) - 2013/06/06 0:28:36 ET
+Table '743144019 1' 2-max
+Seat 1: Player0 (567 in chips) 
+Seat 2: Hero (2433 in chips) 
+Hero: posts the ante 8
+Player0: posts the ante 8
+*** 3rd STREET ***
+Dealt to Player0 [Jd]
+Dealt to Hero [4s Jc 9h]
+Hero: brings in for 12
+Player0: raises 28 to 40
+Hero: folds 
+Uncalled bet (28) returned to Player0
+Player0 collected 40 from pot
+Player0 said, "i like this game actually"
+*** SUMMARY ***
+Total pot 40 | Rake 0 
+Seat 1: Player0 collected (40)
+Seat 2: Hero folded on the 3rd Street
+
+
+
+PokerStars Home Game Hand #99632670986: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (7 Card Stud Hi/Lo Limit) - Match Round I, Level VI (40/80) - 2013/06/06 0:28:52 ET
+Table '743144019 1' 2-max
+Seat 1: Player0 (587 in chips) 
+Seat 2: Hero (2413 in chips) 
+Hero: posts the ante 8
+Player0: posts the ante 8
+*** 3rd STREET ***
+Dealt to Player0 [Jc]
+Dealt to Hero [7s 5s Js]
+Player0: bets 40
+Hero said, "not as bad as i feared"
+Hero: calls 40
+*** 4th STREET ***
+Dealt to Player0 [Jc] [9d]
+Dealt to Hero [7s 5s Js] [2c]
+Player0: bets 40
+Hero: calls 40
+*** 5th STREET ***
+Dealt to Player0 [Jc 9d] [8s]
+Dealt to Hero [7s 5s Js 2c] [Td]
+Hero: checks 
+Player0: bets 80
+Hero: folds 
+Uncalled bet (80) returned to Player0
+Player0 collected 176 from pot
+Player0: doesn't show hand 
+*** SUMMARY ***
+Total pot 176 | Rake 0 
+Seat 1: Player0 collected (176)
+Seat 2: Hero folded on the 5th Street
+
+
+
+PokerStars Home Game Hand #99632681709: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (7 Card Stud Hi/Lo Limit) - Match Round I, Level VI (40/80) - 2013/06/06 0:29:36 ET
+Table '743144019 1' 2-max
+Seat 1: Player0 (675 in chips) 
+Seat 2: Hero (2325 in chips) 
+Hero: posts the ante 8
+Player0: posts the ante 8
+*** 3rd STREET ***
+Dealt to Player0 [8h]
+Dealt to Hero [Tc 4d 2s]
+Hero: brings in for 12
+Player0: raises 28 to 40
+Hero: calls 28
+*** 4th STREET ***
+Dealt to Player0 [8h] [9s]
+Dealt to Hero [Tc 4d 2s] [6h]
+Player0: bets 40
+Hero: calls 40
+*** 5th STREET ***
+Dealt to Player0 [8h 9s] [Jh]
+Dealt to Hero [Tc 4d 2s 6h] [As]
+Hero: checks 
+Player0: checks 
+*** 6th STREET ***
+Dealt to Player0 [8h 9s Jh] [6d]
+Dealt to Hero [Tc 4d 2s 6h As] [Ad]
+Hero: checks 
+Player0: checks 
+*** RIVER ***
+Dealt to Hero [Tc 4d 2s 6h As Ad] [5c]
+Hero: bets 80
+Player0: folds 
+Uncalled bet (80) returned to Hero
+Hero collected 176 from pot
+*** SUMMARY ***
+Total pot 176 | Rake 0 
+Seat 1: Player0 folded on the River
+Seat 2: Hero collected (176)
+
+
+
+PokerStars Home Game Hand #99632692350: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Hold'em No Limit) - Match Round I, Level VII (15/30) - 2013/06/06 0:30:18 ET
+Table '743144019 1' 2-max Seat #2 is the button
+Seat 1: Player0 (587 in chips) 
+Seat 2: Hero (2413 in chips) 
+Hero: posts small blind 15
+Player0: posts big blind 30
+*** HOLE CARDS ***
+Dealt to Hero [6d Qh]
+Hero said, "SO BORING"
+Player0 said, "hah"
+Hero said, "NLHE"
+Hero: calls 15
+Player0: raises 90 to 120
+Hero said, "is this the first NL game?"
+Hero: calls 90
+*** FLOP *** [Kc 2h Td]
+Player0: bets 135
+Hero: folds 
+Uncalled bet (135) returned to Player0
+Player0 said, "yes"
+Player0 collected 240 from pot
+Player0: doesn't show hand 
+*** SUMMARY ***
+Total pot 240 | Rake 0 
+Board [Kc 2h Td]
+Seat 1: Player0 (big blind) collected (240)
+Seat 2: Hero (button) (small blind) folded on the Flop
+
+
+
+PokerStars Home Game Hand #99632701107: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Hold'em No Limit) - Match Round I, Level VII (15/30) - 2013/06/06 0:30:54 ET
+Table '743144019 1' 2-max Seat #1 is the button
+Seat 1: Player0 (707 in chips) 
+Seat 2: Hero (2293 in chips) 
+Player0: posts small blind 15
+Hero: posts big blind 30
+*** HOLE CARDS ***
+Dealt to Hero [3s Th]
+Player0: raises 60 to 90
+Hero: folds 
+Uncalled bet (60) returned to Player0
+Player0 collected 60 from pot
+Player0: doesn't show hand 
+*** SUMMARY ***
+Total pot 60 | Rake 0 
+Seat 1: Player0 (button) (small blind) collected (60)
+Seat 2: Hero (big blind) folded before Flop
+
+
+
+PokerStars Home Game Hand #99632703935: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Hold'em No Limit) - Match Round I, Level VII (15/30) - 2013/06/06 0:31:06 ET
+Table '743144019 1' 2-max Seat #2 is the button
+Seat 1: Player0 (737 in chips) 
+Seat 2: Hero (2263 in chips) 
+Hero: posts small blind 15
+Player0: posts big blind 30
+*** HOLE CARDS ***
+Dealt to Hero [7d 9d]
+Hero: raises 60 to 90
+Player0: raises 155 to 245
+Hero: folds 
+Uncalled bet (155) returned to Player0
+Player0 collected 180 from pot
+Player0: doesn't show hand 
+*** SUMMARY ***
+Total pot 180 | Rake 0 
+Seat 1: Player0 (big blind) collected (180)
+Seat 2: Hero (button) (small blind) folded before Flop
+
+
+
+PokerStars Home Game Hand #99632710034: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Hold'em No Limit) - Match Round I, Level VII (15/30) - 2013/06/06 0:31:30 ET
+Table '743144019 1' 2-max Seat #1 is the button
+Seat 1: Player0 (827 in chips) 
+Seat 2: Hero (2173 in chips) 
+Player0: posts small blind 15
+Hero: posts big blind 30
+*** HOLE CARDS ***
+Dealt to Hero [4h 4c]
+Player0: raises 60 to 90
+Hero said, "Hair Apparently"
+Hero: raises 90 to 180
+Player0: folds 
+Uncalled bet (90) returned to Hero
+Hero collected 180 from pot
+*** SUMMARY ***
+Total pot 180 | Rake 0 
+Seat 1: Player0 (button) (small blind) folded before Flop
+Seat 2: Hero (big blind) collected (180)
+
+
+
+PokerStars Home Game Hand #99632714061: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Hold'em No Limit) - Match Round I, Level VII (15/30) - 2013/06/06 0:31:46 ET
+Table '743144019 1' 2-max Seat #2 is the button
+Seat 1: Player0 (737 in chips) 
+Seat 2: Hero (2263 in chips) 
+Hero: posts small blind 15
+Player0: posts big blind 30
+*** HOLE CARDS ***
+Dealt to Hero [8d 3s]
+Hero: folds 
+Uncalled bet (15) returned to Player0
+Player0 collected 30 from pot
+Player0: doesn't show hand 
+*** SUMMARY ***
+Total pot 30 | Rake 0 
+Seat 1: Player0 (big blind) collected (30)
+Seat 2: Hero (button) (small blind) folded before Flop
+
+
+
+PokerStars Home Game Hand #99632717091: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Hold'em No Limit) - Match Round I, Level VII (15/30) - 2013/06/06 0:31:58 ET
+Table '743144019 1' 2-max Seat #1 is the button
+Seat 1: Player0 (752 in chips) 
+Seat 2: Hero (2248 in chips) 
+Player0: posts small blind 15
+Hero: posts big blind 30
+*** HOLE CARDS ***
+Dealt to Hero [7s 8c]
+Player0: raises 60 to 90
+Hero said, "I think we get to play NL Single Draw 2-7"
+Hero said, "next"
+Hero: calls 60
+*** FLOP *** [Ts Js 6s]
+Hero said, "love that game"
+Hero: checks 
+Player0: bets 90
+Hero: calls 90
+*** TURN *** [Ts Js 6s] [4h]
+Player0 said, "never played"
+Hero: checks 
+Hero said, "that's such a Phil Ivey game"
+Player0: bets 211
+Hero: folds 
+Uncalled bet (211) returned to Player0
+Player0 collected 360 from pot
+Player0: shows [3h 5h] (high card Jack)
+*** SUMMARY ***
+Total pot 360 | Rake 0 
+Board [Ts Js 6s 4h]
+Seat 1: Player0 (button) (small blind) collected (360)
+Seat 2: Hero (big blind) folded on the Turn
+
+
+
+PokerStars Home Game Hand #99632731250: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Hold'em No Limit) - Match Round I, Level VII (15/30) - 2013/06/06 0:32:56 ET
+Table '743144019 1' 2-max Seat #2 is the button
+Seat 1: Player0 (932 in chips) 
+Seat 2: Hero (2068 in chips) 
+Hero: posts small blind 15
+Player0: posts big blind 30
+*** HOLE CARDS ***
+Dealt to Hero [4h 2c]
+Hero said, "nice"
+Hero: folds 
+Uncalled bet (15) returned to Player0
+Player0 collected 30 from pot
+Player0: doesn't show hand 
+*** SUMMARY ***
+Total pot 30 | Rake 0 
+Seat 1: Player0 (big blind) collected (30)
+Seat 2: Hero (button) (small blind) folded before Flop
+
+
+
+PokerStars Home Game Hand #99632734535: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Hold'em No Limit) - Match Round I, Level VII (15/30) - 2013/06/06 0:33:09 ET
+Table '743144019 1' 2-max Seat #1 is the button
+Seat 1: Player0 (947 in chips) 
+Seat 2: Hero (2053 in chips) 
+Player0: posts small blind 15
+Hero: posts big blind 30
+*** HOLE CARDS ***
+Dealt to Hero [6s 8s]
+Player0: raises 60 to 90
+Hero: calls 60
+*** FLOP *** [4d Ad 6h]
+Hero: checks 
+Player0: bets 111
+Hero: folds 
+Uncalled bet (111) returned to Player0
+Player0 collected 180 from pot
+Player0: doesn't show hand 
+*** SUMMARY ***
+Total pot 180 | Rake 0 
+Board [4d Ad 6h]
+Seat 1: Player0 (button) (small blind) collected (180)
+Seat 2: Hero (big blind) folded on the Flop
+
+
+
+PokerStars Home Game Hand #99632740484: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Hold'em No Limit) - Match Round I, Level VII (15/30) - 2013/06/06 0:33:34 ET
+Table '743144019 1' 2-max Seat #2 is the button
+Seat 1: Player0 (1037 in chips) 
+Seat 2: Hero (1963 in chips) 
+Hero: posts small blind 15
+Player0: posts big blind 30
+*** HOLE CARDS ***
+Dealt to Hero [Kd 8d]
+Hero: calls 15
+Player0: checks 
+*** FLOP *** [9d 6h 4d]
+Player0: checks 
+Hero: bets 120
+Player0: folds 
+Uncalled bet (120) returned to Hero
+Hero collected 60 from pot
+*** SUMMARY ***
+Total pot 60 | Rake 0 
+Board [9d 6h 4d]
+Seat 1: Player0 (big blind) folded on the Flop
+Seat 2: Hero (button) (small blind) collected (60)
+
+
+
+PokerStars Home Game Hand #99632745331: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Hold'em No Limit) - Match Round I, Level VII (15/30) - 2013/06/06 0:33:54 ET
+Table '743144019 1' 2-max Seat #1 is the button
+Seat 1: Player0 (1007 in chips) 
+Seat 2: Hero (1993 in chips) 
+Player0: posts small blind 15
+Hero: posts big blind 30
+*** HOLE CARDS ***
+Dealt to Hero [Ts 8d]
+Player0: raises 60 to 90
+Hero: folds 
+Uncalled bet (60) returned to Player0
+Player0 collected 60 from pot
+Player0: doesn't show hand 
+*** SUMMARY ***
+Total pot 60 | Rake 0 
+Seat 1: Player0 (button) (small blind) collected (60)
+Seat 2: Hero (big blind) folded before Flop
+
+
+
+PokerStars Home Game Hand #99632748017: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Hold'em No Limit) - Match Round I, Level VII (15/30) - 2013/06/06 0:34:05 ET
+Table '743144019 1' 2-max Seat #2 is the button
+Seat 1: Player0 (1037 in chips) 
+Seat 2: Hero (1963 in chips) 
+Hero: posts small blind 15
+Player0: posts big blind 30
+*** HOLE CARDS ***
+Dealt to Hero [8h 5h]
+Hero: calls 15
+Player0: checks 
+*** FLOP *** [2s 4c Kc]
+Player0: bets 60
+Hero: folds 
+Uncalled bet (60) returned to Player0
+Player0 collected 60 from pot
+Player0: doesn't show hand 
+*** SUMMARY ***
+Total pot 60 | Rake 0 
+Board [2s 4c Kc]
+Seat 1: Player0 (big blind) collected (60)
+Seat 2: Hero (button) (small blind) folded on the Flop
+
+
+
+PokerStars Home Game Hand #99632751682: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Hold'em No Limit) - Match Round I, Level VII (15/30) - 2013/06/06 0:34:20 ET
+Table '743144019 1' 2-max Seat #1 is the button
+Seat 1: Player0 (1067 in chips) 
+Seat 2: Hero (1933 in chips) 
+Player0: posts small blind 15
+Hero: posts big blind 30
+*** HOLE CARDS ***
+Dealt to Hero [3d 5d]
+Player0: calls 15
+Hero: raises 60 to 90
+Player0: calls 60
+*** FLOP *** [4c Tc 8h]
+Hero: checks 
+Player0: bets 111
+Hero: folds 
+Uncalled bet (111) returned to Player0
+Player0 collected 180 from pot
+Player0: doesn't show hand 
+*** SUMMARY ***
+Total pot 180 | Rake 0 
+Board [4c Tc 8h]
+Seat 1: Player0 (button) (small blind) collected (180)
+Seat 2: Hero (big blind) folded on the Flop
+
+
+
+PokerStars Home Game Hand #99632758219: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Hold'em No Limit) - Match Round I, Level VII (15/30) - 2013/06/06 0:34:47 ET
+Table '743144019 1' 2-max Seat #2 is the button
+Seat 1: Player0 (1157 in chips) 
+Seat 2: Hero (1843 in chips) 
+Hero: posts small blind 15
+Player0: posts big blind 30
+*** HOLE CARDS ***
+Dealt to Hero [8d Kc]
+Hero: calls 15
+Player0: raises 120 to 150
+Hero: folds 
+Uncalled bet (120) returned to Player0
+Player0 collected 60 from pot
+Player0: doesn't show hand 
+*** SUMMARY ***
+Total pot 60 | Rake 0 
+Seat 1: Player0 (big blind) collected (60)
+Seat 2: Hero (button) (small blind) folded before Flop
+
+
+
+PokerStars Home Game Hand #99632761857: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Hold'em No Limit) - Match Round I, Level VII (15/30) - 2013/06/06 0:35:02 ET
+Table '743144019 1' 2-max Seat #1 is the button
+Seat 1: Player0 (1187 in chips) 
+Seat 2: Hero (1813 in chips) 
+Player0: posts small blind 15
+Hero: posts big blind 30
+*** HOLE CARDS ***
+Dealt to Hero [7h Jc]
+Player0: calls 15
+Hero: checks 
+*** FLOP *** [9c 2c Td]
+Hero: checks 
+Player0: bets 60
+Hero: folds 
+Uncalled bet (60) returned to Player0
+Player0 collected 60 from pot
+Player0: doesn't show hand 
+*** SUMMARY ***
+Total pot 60 | Rake 0 
+Board [9c 2c Td]
+Seat 1: Player0 (button) (small blind) collected (60)
+Seat 2: Hero (big blind) folded on the Flop
+
+
+
+PokerStars Home Game Hand #99632765962: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Hold'em No Limit) - Match Round I, Level VII (15/30) - 2013/06/06 0:35:19 ET
+Table '743144019 1' 2-max Seat #2 is the button
+Seat 1: Player0 (1217 in chips) 
+Seat 2: Hero (1783 in chips) 
+Hero: posts small blind 15
+Player0: posts big blind 30
+*** HOLE CARDS ***
+Dealt to Hero [7h 7c]
+Hero: calls 15
+Player0: checks 
+*** FLOP *** [7d 5s 3s]
+Player0: checks 
+Hero: bets 60
+Player0: folds 
+Uncalled bet (60) returned to Hero
+Hero collected 60 from pot
+Hero: shows [7h 7c] (three of a kind, Sevens)
+*** SUMMARY ***
+Total pot 60 | Rake 0 
+Board [7d 5s 3s]
+Seat 1: Player0 (big blind) folded on the Flop
+Seat 2: Hero (button) (small blind) collected (60)
+
+
+
+PokerStars Home Game Hand #99632770186: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Hold'em No Limit) - Match Round I, Level VII (15/30) - 2013/06/06 0:35:37 ET
+Table '743144019 1' 2-max Seat #1 is the button
+Seat 1: Player0 (1187 in chips) 
+Seat 2: Hero (1813 in chips) 
+Player0: posts small blind 15
+Hero: posts big blind 30
+Player0 said, "nh"
+*** HOLE CARDS ***
+Dealt to Hero [8h Qd]
+Player0: raises 60 to 90
+Hero: folds 
+Uncalled bet (60) returned to Player0
+Player0 collected 60 from pot
+Player0: doesn't show hand 
+*** SUMMARY ***
+Total pot 60 | Rake 0 
+Seat 1: Player0 (button) (small blind) collected (60)
+Seat 2: Hero (big blind) folded before Flop
+
+
+
+PokerStars Home Game Hand #99632772785: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Hold'em No Limit) - Match Round I, Level VII (15/30) - 2013/06/06 0:35:48 ET
+Table '743144019 1' 2-max Seat #2 is the button
+Seat 1: Player0 (1217 in chips) 
+Seat 2: Hero (1783 in chips) 
+Hero: posts small blind 15
+Player0: posts big blind 30
+*** HOLE CARDS ***
+Dealt to Hero [4s 4h]
+Hero: raises 60 to 90
+Player0: calls 60
+*** FLOP *** [Jc 8s 3h]
+Player0: checks 
+Hero: bets 111
+Player0: folds 
+Uncalled bet (111) returned to Hero
+Hero collected 180 from pot
+*** SUMMARY ***
+Total pot 180 | Rake 0 
+Board [Jc 8s 3h]
+Seat 1: Player0 (big blind) folded on the Flop
+Seat 2: Hero (button) (small blind) collected (180)
+
+
+
+PokerStars Home Game Hand #99632778747: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Hold'em No Limit) - Match Round I, Level VII (15/30) - 2013/06/06 0:36:12 ET
+Table '743144019 1' 2-max Seat #1 is the button
+Seat 1: Player0 (1127 in chips) 
+Seat 2: Hero (1873 in chips) 
+Player0: posts small blind 15
+Hero: posts big blind 30
+*** HOLE CARDS ***
+Dealt to Hero [6h Ks]
+Hero said, "like my betsizing>"
+Player0: raises 60 to 90
+Player0 said, "yes"
+Player0 said, "lol"
+Hero: folds 
+Uncalled bet (60) returned to Player0
+Player0 collected 60 from pot
+Player0: doesn't show hand 
+*** SUMMARY ***
+Total pot 60 | Rake 0 
+Seat 1: Player0 (button) (small blind) collected (60)
+Seat 2: Hero (big blind) folded before Flop
+
+
+
+PokerStars Home Game Hand #99632782179: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Hold'em No Limit) - Match Round I, Level VII (15/30) - 2013/06/06 0:36:27 ET
+Table '743144019 1' 2-max Seat #2 is the button
+Seat 1: Player0 (1157 in chips) 
+Seat 2: Hero (1843 in chips) 
+Hero: posts small blind 15
+Player0: posts big blind 30
+*** HOLE CARDS ***
+Dealt to Hero [2c Qs]
+Hero is disconnected 
+Hero is connected 
+Hero: calls 15
+Hero said, "whew"
+Player0: raises 120 to 150
+Hero: folds 
+Uncalled bet (120) returned to Player0
+Player0 collected 60 from pot
+*** SUMMARY ***
+Total pot 60 | Rake 0 
+Seat 1: Player0 (big blind) collected (60)
+Seat 2: Hero (button) (small blind) folded before Flop
+
+
+
+PokerStars Home Game Hand #99632797758: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Hold'em No Limit) - Match Round I, Level VII (15/30) - 2013/06/06 0:37:32 ET
+Table '743144019 1' 2-max Seat #1 is the button
+Seat 1: Player0 (1187 in chips) 
+Seat 2: Hero (1813 in chips) 
+Player0: posts small blind 15
+Hero: posts big blind 30
+*** HOLE CARDS ***
+Dealt to Hero [9h Th]
+Player0: raises 60 to 90
+Hero: raises 90 to 180
+Player0: folds 
+Uncalled bet (90) returned to Hero
+Hero collected 180 from pot
+*** SUMMARY ***
+Total pot 180 | Rake 0 
+Seat 1: Player0 (button) (small blind) folded before Flop
+Seat 2: Hero (big blind) collected (180)
+
+
+
+PokerStars Home Game Hand #99632802095: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Hold'em No Limit) - Match Round I, Level VII (15/30) - 2013/06/06 0:37:50 ET
+Table '743144019 1' 2-max Seat #2 is the button
+Seat 1: Player0 (1097 in chips) 
+Seat 2: Hero (1903 in chips) 
+Hero: posts small blind 15
+Player0: posts big blind 30
+*** HOLE CARDS ***
+Dealt to Hero [4h 7h]
+Hero: calls 15
+Player0: checks 
+*** FLOP *** [Ah 7s Qh]
+Player0: checks 
+Hero: bets 112
+Player0 said, "hehe"
+Player0: folds 
+Uncalled bet (112) returned to Hero
+Hero collected 60 from pot
+Hero said, "that's a tell"
+*** SUMMARY ***
+Total pot 60 | Rake 0 
+Board [Ah 7s Qh]
+Seat 1: Player0 (big blind) folded on the Flop
+Seat 2: Hero (button) (small blind) collected (60)
+
+
+
+PokerStars Home Game Hand #99632808822: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Hold'em No Limit) - Match Round I, Level VII (15/30) - 2013/06/06 0:38:19 ET
+Table '743144019 1' 2-max Seat #1 is the button
+Seat 1: Player0 (1067 in chips) 
+Seat 2: Hero (1933 in chips) 
+Player0: posts small blind 15
+Hero: posts big blind 30
+*** HOLE CARDS ***
+Dealt to Hero [9c Td]
+Hero said, "confidence"
+Player0: raises 30 to 60
+Hero: raises 30 to 90
+Player0: calls 30
+*** FLOP *** [Kd Jd As]
+Hero: checks 
+Player0: checks 
+*** TURN *** [Kd Jd As] [7h]
+Hero: checks 
+Player0: checks 
+*** RIVER *** [Kd Jd As 7h] [5s]
+Hero: checks 
+Player0: bets 150
+Hero: folds 
+Uncalled bet (150) returned to Player0
+Player0 collected 180 from pot
+*** SUMMARY ***
+Total pot 180 | Rake 0 
+Board [Kd Jd As 7h 5s]
+Seat 1: Player0 (button) (small blind) collected (180)
+Seat 2: Hero (big blind) folded on the River
+
+
+
+PokerStars Home Game Hand #99632821558: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Hold'em No Limit) - Match Round I, Level VII (15/30) - 2013/06/06 0:39:13 ET
+Table '743144019 1' 2-max Seat #2 is the button
+Seat 1: Player0 (1157 in chips) 
+Seat 2: Hero (1843 in chips) 
+Hero: posts small blind 15
+Player0: posts big blind 30
+*** HOLE CARDS ***
+Dealt to Hero [2h Jh]
+Hero: raises 83 to 113
+Player0: folds 
+Uncalled bet (83) returned to Hero
+Hero collected 60 from pot
+*** SUMMARY ***
+Total pot 60 | Rake 0 
+Seat 1: Player0 (big blind) folded before Flop
+Seat 2: Hero (button) (small blind) collected (60)
+
+
+
+PokerStars Home Game Hand #99632829167: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Hold'em No Limit) - Match Round I, Level VII (15/30) - 2013/06/06 0:39:44 ET
+Table '743144019 1' 2-max Seat #1 is the button
+Seat 1: Player0 (1127 in chips) 
+Seat 2: Hero (1873 in chips) 
+Player0: posts small blind 15
+Hero: posts big blind 30
+*** HOLE CARDS ***
+Dealt to Hero [5d 9d]
+Player0: raises 30 to 60
+Hero: raises 120 to 180
+Player0: folds 
+Uncalled bet (120) returned to Hero
+Hero collected 120 from pot
+*** SUMMARY ***
+Total pot 120 | Rake 0 
+Seat 1: Player0 (button) (small blind) folded before Flop
+Seat 2: Hero (big blind) collected (120)
+
+
+
+PokerStars Home Game Hand #99632835084: {Dazzle's Room} Tournament #743144019, 100+9 8-Game (Omaha Pot Limit) - Match Round I, Level VIII (15/30) - 2013/06/06 0:40:10 ET
+Table '743144019 1' 2-max Seat #2 is the button
+Seat 1: Player0 (1067 in chips) 
+Seat 2: Hero (1933 in chips) 
+Hero: posts small blind 15
+Player0: posts big blind 30
+*** HOLE CARDS ***
+Dealt to Hero [Jd Js 7s Ts]
+Hero said, "ooo"
+Hero said, "action game"
+Hero: raises 60 to 90
+Player0: calls 60
+*** FLOP *** [9c 3s Jc]
+Player0 said, "yes"
+Player0: checks 
+Hero: bets 180
+Hero said, "pot it"
+Player0: raises 540 to 720
+Player0 said, "lol"
+Hero: raises 1123 to 1843 and is all-in
+Player0: calls 257 and is all-in
+Uncalled bet (866) returned to Hero
+Player0 said, "gl"
+Player0 said, "oh wow"
+*** TURN *** [9c 3s Jc] [Ah]
+*** RIVER *** [9c 3s Jc Ah] [6d]
+*** SHOW DOWN ***
+Player0: shows [Ac Tc Kc 6s] (two pair, Aces and Sixes)
+Hero: shows [Jd Js 7s Ts] (three of a kind, Jacks)
+Hero collected 2134 from pot
+Player0 finished the tournament in 2nd place
+Hero wins the tournament and receives 200.00 - congratulations!
+*** SUMMARY ***
+Total pot 2134 | Rake 0 
+Board [9c 3s Jc Ah 6d]
+Seat 1: Player0 (big blind) showed [Ac Tc Kc 6s] and lost with two pair, Aces and Sixes
+Seat 2: Hero (button) (small blind) showed [Jd Js 7s Ts] and won (2134) with three of a kind, Jacks
+
+
+

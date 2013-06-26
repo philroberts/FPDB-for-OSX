@@ -1,0 +1,46 @@
+Full Tilt Poker Game #31824158608: $9,000 KO Guarantee (247044470), Table 13 - 10/20 - No Limit Hold'em - 10:00:59 CT - 2013/01/06 [11:00:59 ET - 2013/01/06]
+Seat 1: Player0 (3,000)
+Seat 2: Hero (3,000)
+Seat 4: Player1 (3,000)
+Seat 5: Player2 (3,000)
+Seat 6: Player3 (3,000)
+Seat 7: Player4 (3,000)
+Seat 8: Player5 (3,000)
+Seat 9: Player6 (3,000)
+Player0 posts the small blind of 10
+Hero posts the big blind of 20
+The button is in seat #9
+*** HOLE CARDS ***
+Dealt to Hero [7d Jh]
+Player1 has 15 seconds left to act
+Player1 has timed out
+Player1 folds
+Player1 is sitting out
+Player2 has 15 seconds left to act
+Player2 folds
+Player3 folds
+Player4 folds
+Player5 has 15 seconds left to act
+Player5 folds
+Player6 raises to 50
+Player0 calls 40
+Hero folds
+*** FLOP *** [7c 6h 4s] (Total Pot: 120, 2 Players)
+Player0 checks
+Player6 bets 78
+Player0 folds
+Uncalled bet of 78 returned to Player6
+Player1 has returned
+Player6 mucks
+Player6 wins the pot (120)
+*** SUMMARY ***
+Total pot 120 | Rake 0
+Board: [7c 6h 4s]
+Seat 1: Player0 (small blind) folded on the Flop
+Seat 2: Hero (big blind) folded before the Flop
+Seat 4: Player1 didn't bet (folded)
+Seat 5: Player2 didn't bet (folded)
+Seat 6: Player3 didn't bet (folded)
+Seat 7: Player4 didn't bet (folded)
+Seat 8: Player5 didn't bet (folded)
+Seat 9: Player6 (button) collected (120), mucked

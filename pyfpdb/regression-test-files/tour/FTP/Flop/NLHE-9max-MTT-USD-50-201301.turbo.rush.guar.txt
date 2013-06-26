@@ -1,0 +1,41 @@
+Full Tilt Poker Game #31961022314: Turbo $8K Guarantee (Rush) (248046653), Table 13 - 80/160 - No Limit Hold'em - 14:15:26 CT - 2013/01/24 [15:15:26 ET - 2013/01/24]
+Seats: 9
+Seat 1: Player0 (7,945)
+Seat 2: Player1 (9,185)
+Seat 3: Player2 (4,296)
+Seat 4: Player3 (4,842)
+Seat 5: Player4 (3,940)
+Seat 6: Player5 (3,634)
+Seat 7: Player6 (9,548)
+Seat 8: Hero (3,000)
+Seat 9: Player7 (385)
+Player1 posts the small blind of 80
+Player2 posts the big blind of 160
+The button is in seat #1
+*** HOLE CARDS ***
+Dealt to Hero [5c 7s]
+Player3 folds
+Player4 has 8 seconds left to act
+Player4 folds
+Player5 raises to 320
+Player6 folds
+Hero folds
+Player7 folds
+Player0 folds
+Player1 folds
+Player2 folds
+Uncalled bet of 160 returned to Player5
+Player5 mucks
+Player5 wins the pot (400)
+*** SUMMARY ***
+Total pot 400 | Rake 0
+Seat 1: Player0 (button) didn't bet (folded)
+Seat 2: Player1 (small blind) folded before the Flop
+Seat 3: Player2 (big blind) folded before the Flop
+Seat 4: Player3 didn't bet (folded)
+Seat 5: Player4 didn't bet (folded)
+Seat 6: Player5 collected (400), mucked
+Seat 7: Player6 didn't bet (folded)
+Seat 8: Hero didn't bet (folded)
+Seat 9: Player7 didn't bet (folded)
+

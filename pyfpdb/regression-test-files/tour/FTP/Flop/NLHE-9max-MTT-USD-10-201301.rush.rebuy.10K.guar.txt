@@ -1,0 +1,53 @@
+Full Tilt Poker Game #31823949512: $10,000 Rush Guar (Rebuy) (247042894), Table 6 - 15/30 - No Limit Hold'em - 09:31:00 CT - 2013/01/06 [10:31:00 ET - 2013/01/06]
+Seats: 9
+Seat 1: Player0 (3,000)
+Seat 2: Player1 (3,000)
+Seat 3: Player2 (1,500)
+Seat 4: Player3 (1,500)
+Seat 5: Player4 (1,500)
+Seat 6: Player5 (3,000)
+Seat 7: Player6 (1,500)
+Seat 8: Hero (3,000)
+Seat 9: Player7 (3,000)
+Player0 posts the small blind of 15
+Player1 posts the big blind of 30
+The button is in seat #9
+*** HOLE CARDS ***
+Dealt to Hero [Ac Td]
+Player2 folds
+Player3 has 8 seconds left to act
+Player3 folds
+Player4 folds
+Player5 folds
+Player6 has 8 seconds left to act
+Player6 raises to 60
+Hero calls 60
+Player7 folds
+Player0 folds
+Player1 folds
+*** FLOP *** [2s Ah 7s] (Total Pot: 165, 2 Players)
+Player6 bets 90
+Hero calls 90
+*** TURN *** [2s Ah 7s] [3c] (Total Pot: 345, 2 Players)
+Player6 has 15 seconds left to act
+Player6 bets 240
+Hero calls 240
+*** RIVER *** [2s Ah 7s 3c] [4h] (Total Pot: 825, 2 Players)
+Player6 bets 1,110, and is all in
+Hero has 15 seconds left to act
+Hero folds
+Uncalled bet of 1,110 returned to Player6
+Player6 mucks
+Player6 wins the pot (825)
+*** SUMMARY ***
+Total pot 825 | Rake 0
+Board: [2s Ah 7s 3c 4h]
+Seat 1: Player0 (small blind) folded before the Flop
+Seat 2: Player1 (big blind) folded before the Flop
+Seat 3: Player2 didn't bet (folded)
+Seat 4: Player3 didn't bet (folded)
+Seat 5: Player4 didn't bet (folded)
+Seat 6: Player5 didn't bet (folded)
+Seat 7: Player6 collected (825), mucked
+Seat 8: Hero folded on the River
+Seat 9: Player7 (button) didn't bet (folded)

@@ -102,9 +102,28 @@ class Hand(object):
         self.isMatrix = False
         self.isShootout = False
         self.isFast = False
+        self.stack = "Regular"
+        self.isStep = False
+        self.stepNo = 0
+        self.isChance = False
+        self.chanceCount = 0
+        self.isMultiEntry = False
+        self.isReEntry = False
+        self.isHomeGame = False
+        self.isNewToGame = False
+        self.isFifty50 = False
+        self.isTime = False
+        self.timeAmt = False
+        self.isSatellite = False
+        self.isDoubleOrNothing = False
+        self.isCashOut = False
+        self.isOnDemand = False
+        self.isFlighted = False
+        self.isGuarantee = False
+        self.guaranteeAmt = 0
         self.added = None
         self.addedCurrency = None
-        self.tourneyComment = None
+        self.entryId = 1
 
         self.seating = []
         self.players = []
@@ -195,7 +214,6 @@ class Hand(object):
                  (_("KO BOUNTY"), self.koBounty),
                  (_("IS MATRIX"), self.isMatrix),
                  (_("IS SHOOTOUT"), self.isShootout),
-                 (_("TOURNEY COMMENT"), self.tourneyComment),
         )
 
         structs = ( (_("PLAYERS"), self.players),
