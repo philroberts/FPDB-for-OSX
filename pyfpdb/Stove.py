@@ -21,6 +21,7 @@ import pokereval
 SUITS = ['h', 'd', 's', 'c']
 
 CONNECTORS = ['32', '43', '54', '65', '76', '87', '98', 'T9', 'JT', 'QJ', 'KQ', 'AK']
+CARDS = ['2','3','4','5','6','7','8','9','T','J','Q','K','A']
 
 ANY = 0
 SUITED = 1
@@ -151,13 +152,14 @@ class SumEV:
         win_pct = 100 * (float(self.n_wins) / float(self.n_hands))
         lose_pct = 100 * (float(self.n_losses) / float(self.n_hands))
         tie_pct = 100 * (float(self.n_ties) / float(self.n_hands))
+        equity = win_pct + tie_pct / 2.
         self.output = """
 Enumerated %d possible plays.
 Your hand: (%s %s)
 Against the range: %s
-  Win       Lose       Tie
- %5.2f%%    %5.2f%%    %5.2f%%
-""" % (self.n_hands, hand.c1, hand.c2, cards_from_range(h_range), win_pct, lose_pct, tie_pct)
+Equity       Win         Lose         Tie
+%5.2f%%    %5.2f%%    %5.2f%%    %5.2f%%
+""" % (self.n_hands, hand.c1, hand.c2, cards_from_range(h_range), equity, win_pct, lose_pct, tie_pct)
 
         print self.output
 
@@ -168,34 +170,49 @@ Against the range: %s
 def expand_hands(abbrev, hand, board):
     selection = -1
     known_cards = set()
-    known_cards.update(set([hand.c2, hand.c2]))
+    known_cards.update(set([hand.c1, hand.c2]))
     known_cards.update(set([board.b1, board.b2, board.b3, board.b4, board.b5]))
 
     re.search('[2-9TJQKA]{2}(s|o)',abbrev)
 
-    if re.search('^[2-9TJQKA]{2}(s|o)$',abbrev): #AKs or AKo
+    if re.search('^[2-9TJQKA]{2}(s|o)?$',abbrev): #AKs, AKo or AK
         return standard_expand(abbrev, hand, known_cards)
-    elif re.search('^[2-9TJQKA]{2}(s|o)\+$',abbrev): #76s+ or 76o+
+    elif re.search('^[2-9TJQKA]{2}(s|o)?\+$',abbrev): #76s+ or 76o+
         return iterative_expand(abbrev, hand, known_cards)
+#     elif re.search('^[2-9TJQKA]{2}', abbrev): #AK or KK
+#         return standard_expand(abbrev, hand, known_cards)
     #elif: AhXh
     #elif: Ah6h+A
 
 def iterative_expand(abbrev, hand, known_cards):
     r1 = abbrev[0]
     r2 = abbrev[1]
-
+    c1 = CARDS.index(r1)
+    c2 = CARDS.index(r2)
     h_range = []
     considered = set()
-
-    idx = CONNECTORS.index('%s%s' % (r1, r2))
-
-    ltr = abbrev[2]
-
-    h_range = []
-    for h in CONNECTORS[idx:]:
-        abr = "%s%s" % (h, ltr)
-        h_range += standard_expand(abr, hand, known_cards)
-
+    if r1 == r2: #pocket pair
+        for c in CARDS[c1:]:
+            h_range += standard_expand(c+c, hand, known_cards)
+            
+    else:
+        c_hi = max(c1,c2)
+        c_low = min(c1,c2)
+        if len(abbrev.strip('+')) == 3:
+            ltr = abbrev[2]
+        else:
+            ltr = ''
+        for idx, c in enumerate(CARDS[c_hi:]):
+            h_range += standard_expand(c+CARDS[c_low+idx]+ltr, hand, known_cards)
+#     idx = CONNECTORS.index('%s%s' % (r1, r2))
+# 
+#     ltr = abbrev[2]
+# 
+#     
+#     for h in CONNECTORS[idx:]:
+#         abr = "%s%s" % (h, ltr)
+#         h_range += standard_expand(abr, hand, known_cards)
+# 
     return h_range
 
 

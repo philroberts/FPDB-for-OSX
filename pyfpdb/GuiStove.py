@@ -79,7 +79,7 @@ class GuiStove():
         return response
 
 
-    def get_active_text(combobox):
+    def get_active_text(self, combobox):
         model = combobox.get_model()
         active = combobox.get_active()
         if active < 0:
@@ -168,20 +168,20 @@ Against the range: {
         # Input Frame
         table = gtk.Table(4, 5, True)
         label = gtk.Label(_("Board:"))
-        board = gtk.Entry()
-        board.connect("changed", self.set_board_flop, board)
+        self.board = gtk.Entry()
+        #self.board.connect("changed", self.set_board_flop, self.board)
 
         btn1 = gtk.Button()
         btn1.set_image(gtk.image_new_from_stock(gtk.STOCK_INDEX, gtk.ICON_SIZE_BUTTON))
         #btn.connect('clicked', self._some_function, arg)
         table.attach(label, 0, 1, 0, 1, xoptions=gtk.SHRINK, yoptions=gtk.SHRINK)
-        table.attach(board, 1, 2, 0, 1, xoptions=gtk.SHRINK, yoptions=gtk.SHRINK)
+        table.attach(self.board, 1, 2, 0, 1, xoptions=gtk.SHRINK, yoptions=gtk.SHRINK)
         table.attach(btn1, 2, 3, 0, 1, xoptions=gtk.SHRINK, yoptions=gtk.SHRINK)
 
 
         label = gtk.Label(_("Player1:"))
-        board = gtk.Entry()
-        board.connect("changed", self.set_hero_cards_flop, board)
+        self.p1_board = gtk.Entry()
+        #self.p1_board.connect("changed", self.set_hero_cards_flop, self.p1_board)
         btn2 = gtk.Button()
         btn2.set_image(gtk.image_new_from_stock(gtk.STOCK_INDEX, gtk.ICON_SIZE_BUTTON))
         #btn.connect('clicked', self._some_function, arg)
@@ -189,14 +189,14 @@ Against the range: {
         btn3.set_image(gtk.image_new_from_stock(gtk.STOCK_INDEX, gtk.ICON_SIZE_BUTTON))
         #btn.connect('clicked', self._some_function, arg)
         table.attach(label, 0, 1, 1, 2, xoptions=gtk.SHRINK, yoptions=gtk.SHRINK)
-        table.attach(board, 1, 2, 1, 2, xoptions=gtk.SHRINK, yoptions=gtk.SHRINK)
+        table.attach(self.p1_board, 1, 2, 1, 2, xoptions=gtk.SHRINK, yoptions=gtk.SHRINK)
         table.attach(btn2, 2, 3, 1, 2, xoptions=gtk.SHRINK, yoptions=gtk.SHRINK)
         table.attach(btn3, 3, 4, 1, 2, xoptions=gtk.SHRINK, yoptions=gtk.SHRINK)
 
 
         label = gtk.Label(_("Player2:"))
-        board = gtk.Entry()
-        board.connect("changed", self.set_villain_cards_flop, board)
+        self.p2_board = gtk.Entry()
+        #self.p2_board.connect("changed", self.set_villain_cards_flop, self.p2_board)
         btn4 = gtk.Button()
         btn4.set_image(gtk.image_new_from_stock(gtk.STOCK_INDEX, gtk.ICON_SIZE_BUTTON))
         #btn.connect('clicked', self._some_function, arg)
@@ -204,7 +204,7 @@ Against the range: {
         btn5.set_image(gtk.image_new_from_stock(gtk.STOCK_INDEX, gtk.ICON_SIZE_BUTTON))
         #btn.connect('clicked', self._some_function, arg)
         table.attach(label, 0, 1, 2, 3, xoptions=gtk.SHRINK, yoptions=gtk.SHRINK)
-        table.attach(board, 1, 2, 2, 3, xoptions=gtk.SHRINK, yoptions=gtk.SHRINK)
+        table.attach(self.p2_board, 1, 2, 2, 3, xoptions=gtk.SHRINK, yoptions=gtk.SHRINK)
         table.attach(btn4, 2, 3, 2, 3, xoptions=gtk.SHRINK, yoptions=gtk.SHRINK)
         table.attach(btn5, 3, 4, 2, 3, xoptions=gtk.SHRINK, yoptions=gtk.SHRINK)
         
@@ -231,9 +231,12 @@ Against the range: {
 
     def update_flop_output_pane(self, caller, widget):
         print (_("DEBUG:") + " " + _("called") + " update_flop_output_pane")
-        self.stove.set_board_string(self.boardtext)
-        self.stove.set_hero_cards_string(self.herorange)
-        self.stove.set_villain_range_string(self.villainrange)
+#         self.stove.set_board_string(self.boardtext)
+#         self.stove.set_hero_cards_string(self.herorange)
+#         self.stove.set_villain_range_string(self.villainrange)
+        self.stove.set_board_string(self.board.get_text())
+        self.stove.set_hero_cards_string(self.p1_board.get_text())
+        self.stove.set_villain_range_string(self.p2_board.get_text())
         print (_("DEBUG:") + ("odds_for_range"))
         self.ev = Stove.odds_for_range(self.stove)
         print (_("DEBUG:") + " " + ("set_output_label"))
