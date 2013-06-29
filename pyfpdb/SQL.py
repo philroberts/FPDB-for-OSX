@@ -4099,8 +4099,8 @@ class Sql:
                            cast(hp2.foldToStreet3CBDone as <signed>integer)         AS f_cb_3,
                            cast(hp2.foldToStreet4CBChance as <signed>integer)       AS f_cb_opp_4,
                            cast(hp2.foldToStreet4CBDone as <signed>integer)         AS f_cb_4,
-                           cast(hp2.totalProfit as <signed>integer)                 AS net,
-                           cast(gt.bigblind as <signed>integer)                     AS bigblind,
+                           cast(hp2.totalProfit as <signed>bigint)                  AS net,
+                           cast(gt.bigblind as <signed>bigint)                      AS bigblind,
                            cast(hp2.street1CheckCallRaiseChance as <signed>integer) AS ccr_opp_1,
                            cast(hp2.street1CheckCallDone as <signed>integer)        AS cc_1,
                            cast(hp2.street1CheckRaiseDone as <signed>integer)       AS cr_1,
@@ -4234,8 +4234,8 @@ class Sql:
                            cast(hp2.foldToStreet3CBDone as <signed>integer)         AS f_cb_3,
                            cast(hp2.foldToStreet4CBChance as <signed>integer)       AS f_cb_opp_4,
                            cast(hp2.foldToStreet4CBDone as <signed>integer)         AS f_cb_4,
-                           cast(hp2.totalProfit as <signed>integer)                 AS net,
-                           cast(gt.bigblind as <signed>integer)                     AS bigblind,
+                           cast(hp2.totalProfit as <signed>bigint)                  AS net,
+                           cast(gt.bigblind as <signed>bigint)                      AS bigblind,
                            cast(hp2.street1CheckCallRaiseChance as <signed>integer) AS ccr_opp_1,
                            cast(hp2.street1CheckCallDone as <signed>integer)        AS cc_1,
                            cast(hp2.street1CheckRaiseDone as <signed>integer)       AS cr_1,
@@ -5095,7 +5095,7 @@ class Sql:
                             ,p.name                                                                 AS playerName
                             ,COUNT(1)                                                               AS tourneyCount
                             ,SUM(CASE WHEN tp.rank > 0 THEN 0 ELSE 1 END)                           AS unknownRank
-                            ,(CAST(SUM(CASE WHEN winnings > 0 THEN 1 ELSE 0 END) AS SIGNED)/CAST(COUNT(1) AS SIGNED))*100                 AS itm
+                            ,(CAST(SUM(CASE WHEN winnings > 0 THEN 1 ELSE 0 END) AS SIGNED BIGINT)/CAST(COUNT(1) AS SIGNED BIGINT))*100                 AS itm
                             ,SUM(CASE WHEN rank = 1 THEN 1 ELSE 0 END)                              AS _1st
                             ,SUM(CASE WHEN rank = 2 THEN 1 ELSE 0 END)                              AS _2nd
                             ,SUM(CASE WHEN rank = 3 THEN 1 ELSE 0 END)                              AS _3rd
@@ -5105,8 +5105,8 @@ class Sql:
                                    ELSE (tt.buyIn+tt.fee)/100.0
                                  END)                                                               AS spent
                             ,ROUND(
-                                (CAST(SUM(tp.winnings - tt.buyin - tt.fee) AS SIGNED)/
-                                CAST(SUM(tt.buyin+tt.fee) AS SIGNED))* 100.0
+                                (CAST(SUM(tp.winnings - tt.buyin - tt.fee) AS SIGNED BIGINT)/
+                                CAST(SUM(tt.buyin+tt.fee) AS SIGNED BIGINT))* 100.0
                              ,2)                                                                    AS roi
                             ,SUM(tp.winnings-(tt.buyin+tt.fee))/100.0/(COUNT(1)-SUM(CASE WHEN tp.rank > 0 THEN 0 ELSE 1 END)) AS profitPerTourney
                       from TourneysPlayers tp
@@ -5138,7 +5138,7 @@ class Sql:
                             ,p.name                                                                 AS "playerName"
                             ,COUNT(1)                                                               AS "tourneyCount"
                             ,SUM(CASE WHEN tp.rank > 0 THEN 0 ELSE 1 END)                           AS "unknownRank"
-                            ,(CAST(SUM(CASE WHEN winnings > 0 THEN 1 ELSE 0 END) AS REAL)/CAST(COUNT(1) AS REAL))*100                 AS itm
+                            ,(CAST(SUM(CASE WHEN winnings > 0 THEN 1 ELSE 0 END) AS BIGINT)/CAST(COUNT(1) AS BIGINT))*100                 AS itm
                             ,SUM(CASE WHEN rank = 1 THEN 1 ELSE 0 END)                              AS "_1st"
                             ,SUM(CASE WHEN rank = 2 THEN 1 ELSE 0 END)                              AS "_2nd"
                             ,SUM(CASE WHEN rank = 3 THEN 1 ELSE 0 END)                              AS "_3rd"
@@ -5148,8 +5148,8 @@ class Sql:
                                    ELSE (tt.buyIn+tt.fee)/100.0
                                  END)                                                               AS "spent"
                             ,ROUND(
-                                (CAST(SUM(tp.winnings - tt.buyin - tt.fee) AS INTEGER)/
-                                CAST(SUM(tt.buyin+tt.fee) AS INTEGER))* 100.0
+                                (CAST(SUM(tp.winnings - tt.buyin - tt.fee) AS BIGINT)/
+                                CAST(SUM(tt.buyin+tt.fee) AS BIGINT))* 100.0
                              ,2)                                                                    AS "roi"
                             ,SUM(tp.winnings-(tt.buyin+tt.fee))/100.0
                              /(COUNT(1)-SUM(CASE WHEN tp.rank > 0 THEN 0 ELSE 0 END))               AS "profitPerTourney"
@@ -6533,7 +6533,232 @@ class Sql:
                 <where_clause>
                 GROUP BY <group>
 """
-        else: # postgresql or sqlite
+        elif db_server == 'postgresql':
+            self.query['rebuildCache'] = """
+                INSERT INTO <insert>
+                ,hands
+                ,played
+                ,wonWhenSeenStreet1
+                ,wonWhenSeenStreet2
+                ,wonWhenSeenStreet3
+                ,wonWhenSeenStreet4
+                ,wonAtSD
+                ,street0VPIChance
+                ,street0VPI
+                ,street0AggrChance
+                ,street0Aggr
+                ,street0CalledRaiseChance
+                ,street0CalledRaiseDone
+                ,street0_3BChance
+                ,street0_3BDone
+                ,street0_4BChance
+                ,street0_4BDone
+                ,street0_C4BChance
+                ,street0_C4BDone
+                ,street0_FoldTo3BChance
+                ,street0_FoldTo3BDone
+                ,street0_FoldTo4BChance
+                ,street0_FoldTo4BDone
+                ,street0_SqueezeChance
+                ,street0_SqueezeDone
+                ,raiseToStealChance
+                ,raiseToStealDone
+                ,success_Steal
+                ,street1Seen
+                ,street2Seen
+                ,street3Seen
+                ,street4Seen
+                ,sawShowdown
+                ,street1Aggr
+                ,street2Aggr
+                ,street3Aggr
+                ,street4Aggr
+                ,otherRaisedStreet0
+                ,otherRaisedStreet1
+                ,otherRaisedStreet2
+                ,otherRaisedStreet3
+                ,otherRaisedStreet4
+                ,foldToOtherRaisedStreet0
+                ,foldToOtherRaisedStreet1
+                ,foldToOtherRaisedStreet2
+                ,foldToOtherRaisedStreet3
+                ,foldToOtherRaisedStreet4
+                ,raiseFirstInChance
+                ,raisedFirstIn
+                ,foldBbToStealChance
+                ,foldedBbToSteal
+                ,foldSbToStealChance
+                ,foldedSbToSteal
+                ,street1CBChance
+                ,street1CBDone
+                ,street2CBChance
+                ,street2CBDone
+                ,street3CBChance
+                ,street3CBDone
+                ,street4CBChance
+                ,street4CBDone
+                ,foldToStreet1CBChance
+                ,foldToStreet1CBDone
+                ,foldToStreet2CBChance
+                ,foldToStreet2CBDone
+                ,foldToStreet3CBChance
+                ,foldToStreet3CBDone
+                ,foldToStreet4CBChance
+                ,foldToStreet4CBDone
+                ,totalProfit
+                ,rake
+                ,rakeDealt
+                ,rakeContributed
+                ,rakeWeighted
+                ,showdownWinnings
+                ,nonShowdownWinnings
+                ,allInEV
+                ,BBwon
+                ,vsHero
+                ,street1CheckCallRaiseChance
+                ,street1CheckCallDone
+                ,street1CheckRaiseDone
+                ,street2CheckCallRaiseChance
+                ,street2CheckCallDone
+                ,street2CheckRaiseDone
+                ,street3CheckCallRaiseChance
+                ,street3CheckCallDone
+                ,street3CheckRaiseDone
+                ,street4CheckCallRaiseChance
+                ,street4CheckCallDone
+                ,street4CheckRaiseDone
+                ,street0Calls
+                ,street1Calls
+                ,street2Calls
+                ,street3Calls
+                ,street4Calls
+                ,street0Bets
+                ,street1Bets
+                ,street2Bets
+                ,street3Bets
+                ,street4Bets
+                ,street0Raises
+                ,street1Raises
+                ,street2Raises
+                ,street3Raises
+                ,street4Raises
+                )
+                SELECT <select>
+                      ,count(1)
+                      ,sum(CAST(played as integer))
+                      ,sum(CAST(wonWhenSeenStreet1 as integer))
+                      ,sum(CAST(wonWhenSeenStreet2 as integer))
+                      ,sum(CAST(wonWhenSeenStreet3 as integer))
+                      ,sum(CAST(wonWhenSeenStreet4 as integer))
+                      ,sum(CAST(wonAtSD as integer))
+                      ,sum(CAST(street0VPIChance as integer))
+                      ,sum(CAST(street0VPI as integer))
+                      ,sum(CAST(street0AggrChance as integer))
+                      ,sum(CAST(street0Aggr as integer))
+                      ,sum(CAST(street0CalledRaiseChance as integer))
+                      ,sum(CAST(street0CalledRaiseDone as integer))
+                      ,sum(CAST(street0_3BChance as integer))
+                      ,sum(CAST(street0_3BDone as integer))
+                      ,sum(CAST(street0_4BChance as integer))
+                      ,sum(CAST(street0_4BDone as integer))
+                      ,sum(CAST(street0_C4BChance as integer))
+                      ,sum(CAST(street0_C4BDone as integer))
+                      ,sum(CAST(street0_FoldTo3BChance as integer))
+                      ,sum(CAST(street0_FoldTo3BDone as integer))
+                      ,sum(CAST(street0_FoldTo4BChance as integer))
+                      ,sum(CAST(street0_FoldTo4BDone as integer))
+                      ,sum(CAST(street0_SqueezeChance as integer))
+                      ,sum(CAST(street0_SqueezeDone as integer))
+                      ,sum(CAST(raiseToStealChance as integer))
+                      ,sum(CAST(raiseToStealDone as integer))
+                      ,sum(CAST(success_Steal as integer))
+                      ,sum(CAST(street1Seen as integer))
+                      ,sum(CAST(street2Seen as integer))
+                      ,sum(CAST(street3Seen as integer))
+                      ,sum(CAST(street4Seen as integer))
+                      ,sum(CAST(sawShowdown as integer))
+                      ,sum(CAST(street1Aggr as integer))
+                      ,sum(CAST(street2Aggr as integer))
+                      ,sum(CAST(street3Aggr as integer))
+                      ,sum(CAST(street4Aggr as integer))
+                      ,sum(CAST(otherRaisedStreet0 as integer))
+                      ,sum(CAST(otherRaisedStreet1 as integer))
+                      ,sum(CAST(otherRaisedStreet2 as integer))
+                      ,sum(CAST(otherRaisedStreet3 as integer))
+                      ,sum(CAST(otherRaisedStreet4 as integer))
+                      ,sum(CAST(foldToOtherRaisedStreet0 as integer))
+                      ,sum(CAST(foldToOtherRaisedStreet1 as integer))
+                      ,sum(CAST(foldToOtherRaisedStreet2 as integer))
+                      ,sum(CAST(foldToOtherRaisedStreet3 as integer))
+                      ,sum(CAST(foldToOtherRaisedStreet4 as integer))
+                      ,sum(CAST(raiseFirstInChance as integer))
+                      ,sum(CAST(raisedFirstIn as integer))
+                      ,sum(CAST(foldBbToStealChance as integer))
+                      ,sum(CAST(foldedBbToSteal as integer))
+                      ,sum(CAST(foldSbToStealChance as integer))
+                      ,sum(CAST(foldedSbToSteal as integer))
+                      ,sum(CAST(street1CBChance as integer))
+                      ,sum(CAST(street1CBDone as integer))
+                      ,sum(CAST(street2CBChance as integer))
+                      ,sum(CAST(street2CBDone as integer))
+                      ,sum(CAST(street3CBChance as integer))
+                      ,sum(CAST(street3CBDone as integer))
+                      ,sum(CAST(street4CBChance as integer))
+                      ,sum(CAST(street4CBDone as integer))
+                      ,sum(CAST(foldToStreet1CBChance as integer))
+                      ,sum(CAST(foldToStreet1CBDone as integer))
+                      ,sum(CAST(foldToStreet2CBChance as integer))
+                      ,sum(CAST(foldToStreet2CBDone as integer))
+                      ,sum(CAST(foldToStreet3CBChance as integer))
+                      ,sum(CAST(foldToStreet3CBDone as integer))
+                      ,sum(CAST(foldToStreet4CBChance as integer))
+                      ,sum(CAST(foldToStreet4CBDone as integer))
+                      ,sum(CAST(totalProfit as bigint))
+                      ,sum(CAST(rake as bigint))
+                      ,sum(CAST(rakeDealt as bigint))
+                      ,sum(CAST(rakeContributed as bigint))
+                      ,sum(CAST(rakeWeighted as bigint))
+                      ,sum(CAST(showdownWinnings as bigint))
+                      ,sum(CAST(nonShowdownWinnings as bigint))
+                      ,sum(CAST(allInEV as bigint))
+                      ,sum(CAST(BBwon as bigint))
+                      ,sum(CAST(vsHero as bigint))
+                      ,sum(CAST(street1CheckCallRaiseChance as integer))
+                      ,sum(CAST(street1CheckCallDone as integer))
+                      ,sum(CAST(street1CheckRaiseDone as integer))
+                      ,sum(CAST(street2CheckCallRaiseChance as integer))
+                      ,sum(CAST(street2CheckCallDone as integer))
+                      ,sum(CAST(street2CheckRaiseDone as integer))
+                      ,sum(CAST(street3CheckCallRaiseChance as integer))
+                      ,sum(CAST(street3CheckCallDone as integer))
+                      ,sum(CAST(street3CheckRaiseDone as integer))
+                      ,sum(CAST(street4CheckCallRaiseChance as integer))
+                      ,sum(CAST(street4CheckCallDone as integer))
+                      ,sum(CAST(street4CheckRaiseDone as integer))
+                      ,sum(CAST(street0Calls as integer))
+                      ,sum(CAST(street1Calls as integer))
+                      ,sum(CAST(street2Calls as integer))
+                      ,sum(CAST(street3Calls as integer))
+                      ,sum(CAST(street4Calls as integer))
+                      ,sum(CAST(street0Bets as integer))
+                      ,sum(CAST(street1Bets as integer))
+                      ,sum(CAST(street2Bets as integer))
+                      ,sum(CAST(street3Bets as integer))
+                      ,sum(CAST(street4Bets as integer))
+                      ,sum(CAST(hp.street0Raises as integer))
+                      ,sum(CAST(hp.street1Raises as integer))
+                      ,sum(CAST(hp.street2Raises as integer))
+                      ,sum(CAST(hp.street3Raises as integer))
+                      ,sum(CAST(hp.street4Raises as integer))
+                FROM Hands h
+                INNER JOIN HandsPlayers hp ON (h.id = hp.handId<hero_join>)
+                INNER JOIN Gametypes g ON (h.gametypeId = g.id)
+                <sessions_join_clause>
+                <tourney_join_clause>
+                <where_clause>
+                GROUP BY <group>
+"""
+        elif db_server == 'sqlite':
             self.query['rebuildCache'] = """
                 INSERT INTO <insert>
                 ,hands
