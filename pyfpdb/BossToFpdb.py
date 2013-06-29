@@ -184,7 +184,10 @@ class Boss(HandHistoryConverter):
             if key == 'HID':
                 hand.handid = info[key]
             if key == 'TABLE':
-                hand.tablename = info[key]
+                if hand.gametype['type'] == 'tour':
+                    hand.tablename = '1'
+                else:
+                    hand.tablename = info[key]
             if key == 'BUTTON':
                 hand.buttonpos = info[key]
             if key == 'LEVEL':

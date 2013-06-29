@@ -173,6 +173,9 @@ class Everest(HandHistoryConverter):
             hand.buyin = 0
             hand.fee = 0
             hand.buyinCurrency="NA"
+            tablesplit = re.split("-", self.info['TABLENAME'])
+            if len(tablesplit)>1:
+                hand.tablename = tablesplit[1]
         if 'SB' in mg:
             sb = self.clearMoneyString(mg['SB'])
             hand.gametype['sb'] = sb

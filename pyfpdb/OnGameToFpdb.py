@@ -93,7 +93,7 @@ class OnGame(HandHistoryConverter):
     re_HandInfo = re.compile(u"""
             \*{5}\sHistory\sfor\shand\s(?P<HID>[-A-Z\d]+)(?P<TOUR>\s\(TOURNAMENT:(\s\"(?P<NAME>.+?)\",)?\s(?P<TID>[-A-Z\d]+)?(?P<BUY>,\sbuy-in:\s(?P<BUYINCUR>[%(LS)s]?)(?P<BUYIN>[%(NUM)s]+))?\))?\s\*{5}\s?
             Start\shand:\s(?P<DATETIME>.+?)\s?
-            Table:\s(\[SPEED\]\s)?(?P<TABLE>.+?)\s\[\d+\]\s\( 
+            Table:\s(\[SPEED\]\s)?(?P<TABLE>.+?)\s\[(?P<TABLENO>\d+)\]\s\( 
             (
             (?P<LIMIT>NO_LIMIT|Limit|LIMIT|Pot\sLimit|POT_LIMIT)\s
             (?P<GAME>TEXAS_HOLDEM|OMAHA_HI|OMAHA_HI_LO|SEVEN_CARD_STUD|SEVEN_CARD_STUD_HI_LO|RAZZ|FIVE_CARD_DRAW)\s
@@ -302,7 +302,9 @@ class OnGame(HandHistoryConverter):
                         hand.buyinCurrency = 'FREE'
                 else:
                     hand.buyinCurrency = 'NA'
-            if key == 'TABLE':
+            if key == 'TABLE' and not info['TOUR']:
+                hand.tablename = info[key]
+            if key == 'TABLENO' and info['TOUR']:
                 hand.tablename = info[key]
             if key == 'MAX':
                 hand.maxseats = int(info[key])
@@ -481,7 +483,7 @@ class OnGame(HandHistoryConverter):
         "Returns string to search in windows titles"
         regex = table_name
         if type=="tour":
-            regex = "%s %s" %(tournament, table_number)
+            regex = "%s" % table_number
         log.info("OnGame.getTableTitleRe: table_name='%s' tournament='%s' table_number='%s'" % (table_name, tournament, table_number))
         log.info("OnGame.getTableTitleRe: returns: '%s'" % (regex))
         return regex
