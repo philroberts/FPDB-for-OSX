@@ -113,7 +113,7 @@ class Hand(object):
         self.isNewToGame = False
         self.isFifty50 = False
         self.isTime = False
-        self.timeAmt = False
+        self.timeAmt = 0
         self.isSatellite = False
         self.isDoubleOrNothing = False
         self.isCashOut = False
