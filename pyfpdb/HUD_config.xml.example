@@ -70,16 +70,6 @@
         - defaults to 90
         - value not used by default as it depends on stat_range setting
 
-    aggregate_ring_game_stats :
-        - True/False
-        - if set to True, opponents stats include other blind levels during ring games
-        - defaults to False
-
-    aggregate_tourney_stats :
-        - True/False
-        - if set to True, opponents stats include other blind levels during tourneys
-        - defaults to True
-
     aggregation_level_multiplier :
         - float value
         - defines how many blind levels are included in stats displayed in HUD
@@ -109,16 +99,6 @@
         - defaults to 30
         - value not used by default as it depends on hero_stat_range setting
 
-    aggregate_hero_ring_game_stats :
-        - True/False
-        - if set to True, hero's stats are calculated over multiple blind levels
-        - defaults to False
-
-    aggregate_hero_tourney_stats :
-        - True/False
-        - if set to True, hero's stats are calculated over multiple blind levels
-        - defaults to False
-
     hero_aggregation_level_multiplier :
         - float value
         - defines how many blind levels are included in stats displayed in HUD
@@ -131,16 +111,19 @@
     <hud_ui
     stat_range="A"
     stat_days="90"
-    aggregate_ring_game_stats="False"
-    aggregate_tourney_stats="True"
     aggregation_level_multiplier="3"
+    seats_style="A"
+    seats_cust_nums_low="6"
+    seats_cust_nums_high="10"
+    
 
     hero_stat_range="A" 
     hero_stat_days="30"
-    aggregate_hero_ring_game_stats="False"
-    aggregate_hero_tourney_stats="False"
     hero_aggregation_level_multiplier="1"
-
+    hero_seats_style="E"
+    hero_seats_cust_nums_low="6"
+    hero_seats_cust_nums_high="10"
+    
     label="FPDBmenu"
     
     card_ht="39"

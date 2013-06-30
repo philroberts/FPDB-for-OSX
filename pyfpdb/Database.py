@@ -1073,7 +1073,6 @@ class Database:
            self.date_ndays_ago    date n days ago
            self.h_date_ndays_ago  date n days ago for hero (different n)
         """
-
         self.hand_1day_ago = 1
         c = self.get_cursor()
         c.execute(self.sql.query['get_hand_1day_ago'])
@@ -1101,28 +1100,30 @@ class Database:
     
     def get_stats_from_hand( self, hand, type   # type is "ring" or "tour"
                            , hud_params = {'hud_style':'A', 'agg_bb_mult':1000
-                                          ,'seats_style':'A', 'seats_cust_nums':['n/a', 'n/a', (2,2), (3,4), (3,5), (4,6), (5,7), (6,8), (7,9), (8,10), (8,10)]
+                                          ,'seats_style':'A', 'seats_cust_nums_low':1, 'seats_cust_nums_high':10 
                                           ,'h_hud_style':'S', 'h_agg_bb_mult':1000
-                                          ,'h_seats_style':'A', 'h_seats_cust_nums':['n/a', 'n/a', (2,2), (3,4), (3,5), (4,6), (5,7), (6,8), (7,9), (8,10), (8,10)]
+                                          ,'h_seats_style':'A', 'h_seats_cust_nums_low':1, 'h_seats_cust_nums_high':10 
                                           }
                            , hero_id = -1
                            , num_seats = 6
                            ):
-        hud_style   = hud_params['hud_style']
+        stat_range   = hud_params['stat_range']
         agg_bb_mult = hud_params['agg_bb_mult']
         seats_style = hud_params['seats_style']
-        seats_cust_nums = hud_params['seats_cust_nums']
-        h_hud_style   = hud_params['h_hud_style']
+        seats_cust_nums_low = hud_params['seats_cust_nums_low']
+        seats_cust_nums_high = hud_params['seats_cust_nums_high']
+        h_stat_range   = hud_params['h_stat_range']
         h_agg_bb_mult = hud_params['h_agg_bb_mult']
         h_seats_style = hud_params['h_seats_style']
-        h_seats_cust_nums = hud_params['h_seats_cust_nums']
+        h_seats_cust_nums_low = hud_params['h_seats_cust_nums_low']
+        h_seats_cust_nums_high = hud_params['h_seats_cust_nums_high']
 
         stat_dict = {}
 
         if seats_style == 'A':
             seats_min, seats_max = 0, 10
         elif seats_style == 'C':
-            seats_min, seats_max = seats_cust_nums[num_seats][0], seats_cust_nums[num_seats][1]
+            seats_min, seats_max = seats_cust_nums_low, seats_cust_nums_high
         elif seats_style == 'E':
             seats_min, seats_max = num_seats, num_seats
         else:
@@ -1132,45 +1133,45 @@ class Database:
         if h_seats_style == 'A':
             h_seats_min, h_seats_max = 0, 10
         elif h_seats_style == 'C':
-            h_seats_min, h_seats_max = h_seats_cust_nums[num_seats][0], h_seats_cust_nums[num_seats][1]
+            h_seats_min, h_seats_max = h_seats_cust_nums_low, h_seats_cust_nums_high
         elif h_seats_style == 'E':
             h_seats_min, h_seats_max = num_seats, num_seats
         else:
             h_seats_min, h_seats_max = 0, 10
             print "bad h_seats_style value:", h_seats_style
 
-        if hud_style == 'S' or h_hud_style == 'S':
+        if stat_range == 'S' or h_stat_range == 'S':
             self.get_stats_from_hand_session(hand, stat_dict, hero_id
-                                            ,hud_style, seats_min, seats_max
-                                            ,h_hud_style, h_seats_min, h_seats_max)
+                                            ,stat_range, seats_min, seats_max
+                                            ,h_stat_range, h_seats_min, h_seats_max)
 
-            if hud_style == 'S' and h_hud_style == 'S':
+            if stat_range == 'S' and h_stat_range == 'S':
                 return stat_dict
 
-        if hud_style == 'T':
+        if stat_range == 'T':
             stylekey = self.date_ndays_ago
-        elif hud_style == 'A':
+        elif stat_range == 'A':
             stylekey = '0000000'  # all stylekey values should be higher than this
-        elif hud_style == 'S':
+        elif stat_range == 'S':
             stylekey = 'zzzzzzz'  # all stylekey values should be lower than this
         else:
             stylekey = '0000000'
-            log.info('hud_style: %s' % hud_style)
+            log.info('stat_range: %s' % stat_range)
 
-        #elif hud_style == 'H':
+        #elif stat_range == 'H':
         #    stylekey = date_nhands_ago  needs array by player here ...
 
-        if h_hud_style == 'T':
+        if h_stat_range == 'T':
             h_stylekey = self.h_date_ndays_ago
-        elif h_hud_style == 'A':
+        elif h_stat_range == 'A':
             h_stylekey = '0000000'  # all stylekey values should be higher than this
-        elif h_hud_style == 'S':
+        elif h_stat_range == 'S':
             h_stylekey = 'zzzzzzz'  # all stylekey values should be lower than this
         else:
             h_stylekey = '00000000'
-            log.info('h_hud_style: %s' % h_hud_style)
+            log.info('h_stat_range: %s' % h_stat_range)
 
-        #elif h_hud_style == 'H':
+        #elif h_stat_range == 'H':
         #    h_stylekey = date_nhands_ago  needs array by player here ...
 
         # lookup gametypeId from hand
@@ -1192,7 +1193,7 @@ class Database:
         colnames = [desc[0] for desc in c.description]
         for row in c.fetchall():
             playerid = row[0]
-            if (playerid == hero_id and h_hud_style != 'S') or (playerid != hero_id and hud_style != 'S'):
+            if (playerid == hero_id and h_stat_range != 'S') or (playerid != hero_id and stat_range != 'S'):
                 t_dict = {}
                 for name, val in zip(colnames, row):
                     t_dict[name.lower()] = val
@@ -1202,13 +1203,13 @@ class Database:
 
     # uses query on handsplayers instead of hudcache to get stats on just this session
     def get_stats_from_hand_session(self, hand, stat_dict, hero_id
-                                   ,hud_style, seats_min, seats_max
-                                   ,h_hud_style, h_seats_min, h_seats_max):
+                                   ,stat_range, seats_min, seats_max
+                                   ,h_stat_range, h_seats_min, h_seats_max):
         """Get stats for just this session (currently defined as any play in the last 24 hours - to
            be improved at some point ...)
-           h_hud_style and hud_style params indicate whether to get stats for hero and/or others
-           - only fetch heroes stats if h_hud_style == 'S',
-             and only fetch others stats if hud_style == 'S'
+           h_stat_range and stat_range params indicate whether to get stats for hero and/or others
+           - only fetch heroes stats if h_stat_range == 'S',
+             and only fetch others stats if stat_range == 'S'
            seats_min/max params give seats limits, only include stats if between these values
         """
 
@@ -1235,7 +1236,7 @@ class Database:
             while row:
                 playerid = row[0]
                 seats = row[1]
-                if (playerid == hero_id and h_hud_style == 'S') or (playerid != hero_id and hud_style == 'S'):
+                if (playerid == hero_id and h_stat_range == 'S') or (playerid != hero_id and stat_range == 'S'):
                     for name, val in zip(colnames, row):
                         if not playerid in stat_dict:
                             stat_dict[playerid] = {}

@@ -169,24 +169,8 @@ class HUD_main(object):
         self.hud_dict[temp_key].max = max
         
         table.hud = self.hud_dict[temp_key]
-        
-        # set agg_bb_mult so that aggregate_tour and aggregate_ring can be ignored,
-        # agg_bb_mult == 1 means no aggregation after these if statements:
-        if type == "tour" and self.hud_params['aggregate_tour'] == False:
-            self.hud_dict[temp_key].hud_params['agg_bb_mult'] = 1
-        elif type == "ring" and self.hud_params['aggregate_ring'] == False:
-            self.hud_dict[temp_key].hud_params['agg_bb_mult'] = 1
-        if type == "tour" and self.hud_params['h_aggregate_tour'] == False:
-            self.hud_dict[temp_key].hud_params['h_agg_bb_mult'] = 1
-        elif type == "ring" and self.hud_params['h_aggregate_ring'] == False:
-            self.hud_dict[temp_key].hud_params['h_agg_bb_mult'] = 1
-        # sqlcoder: I forget why these are set to true (aren't they ignored from now on?)
-        # but I think it's needed:
-        self.hud_params['aggregate_ring'] = True
-        self.hud_params['h_aggregate_ring'] = True
-        # so maybe the tour ones should be set as well? does this fix the bug I see mentioned?
-        self.hud_params['aggregate_tour'] = True
-        self.hud_params['h_aggregate_tour'] = True
+    
+        self.hud_dict[temp_key].hud_params['new_max_seats'] = None #trigger for seat layout change
         #fixme - passing self.db_connection into another thread
         # is probably pointless.
         [aw.update_data(new_hand_id, self.db_connection) for aw in self.hud_dict[temp_key].aux_windows]
