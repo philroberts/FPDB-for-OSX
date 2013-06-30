@@ -348,7 +348,7 @@ class Sql:
                         buyinType TEXT NOT NULL,
                         fast INT,
                         newToGame INT,
-                        homeGame INT
+                        homeGame INT,
                         FOREIGN KEY(siteId) REFERENCES Sites(id) ON DELETE CASCADE)"""
 
 
