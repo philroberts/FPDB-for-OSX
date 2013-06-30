@@ -585,7 +585,7 @@ or None if we fail to get the info """
             givenTZ = timezone('America/Bogota')
         elif givenTimezone in ('EET', 'EEST'): # Eastern European Time
             givenTZ = timezone('Europe/Bucharest')
-        elif givenTimezone in ('MSK', 'MESZ', 'MSKS'): # Moscow Standard Time
+        elif givenTimezone in ('MSK', 'MESZ', 'MSKS', 'GST'): # Moscow Standard Time
             givenTZ = timezone('Europe/Moscow')
         elif givenTimezone in ('YEKT','YEKST'):
             givenTZ = timezone('Asia/Yekaterinburg')
