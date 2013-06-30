@@ -1,0 +1,597 @@
+***** History for hand T5-330030241-1 (TOURNAMENT: "PL Omaha HL", R-186-1481, buy-in: $1.20) *****
+Start hand: Fri Jun 28 18:54:24 GST 2013
+Table: Table #3 [330030241] (POT_LIMIT OMAHA_HI_LO 10/20, Chips)
+User: Lakesdie
+Button: seat 2
+Players in round: 5 (8)
+Seat 2: Afro_Fyr (2000)
+Seat 5: Lakesdie (2000)
+Seat 6: zlnalea (2000)
+Seat 7: tsop13 (2000)
+Seat 9: AApoKK (2000)
+Lakesdie posts small blind (10)
+zlnalea posts big blind (20)
+---
+Dealing pocket cards
+Dealing to Lakesdie: [As, 7d, 3s, 7c]
+tsop13 calls 20
+AApoKK calls 20
+Afro_Fyr folds
+Lakesdie folds
+zlnalea checks
+--- Dealing flop [5d, Qs, 8h]
+zlnalea checks
+tsop13 checks
+AApoKK checks
+--- Dealing turn [8d]
+zlnalea bets 20
+tsop13 raises 60 to 60
+AApoKK calls 60
+zlnalea calls 40
+--- Dealing river [4d]
+zlnalea checks
+tsop13 checks
+AApoKK checks
+---
+Summary:
+Main pot: 250 won by tsop13 (125 High), tsop13 (125 Low)
+Rake taken: $0
+Seat 2: Afro_Fyr (2000)
+Seat 5: Lakesdie (1990), net: -10
+Seat 6: zlnalea (1920), net: -80, [4c, 9s, Ks, 9c] (TWO_PAIR NINE, EIGHT)
+Seat 7: tsop13 (2170), net: +170, [9h, 7h, 8s, 3d] (THREE_OF_A_KIND EIGHT)
+Seat 9: AApoKK (1920), net: -80
+***** End of hand T5-330030241-1 *****
+***** History for hand T5-330030241-2 (TOURNAMENT: "PL Omaha HL", R-186-1481, buy-in: $1.20) *****
+Start hand: Fri Jun 28 19:02:08 GST 2013
+Table: Table #3 [330030241] (POT_LIMIT OMAHA_HI_LO 10/20, Chips)
+User: Lakesdie
+Button: seat 5
+Players in round: 5 (8)
+Seat 2: Afro_Fyr (2000)
+Seat 5: Lakesdie (1990)
+Seat 6: zlnalea (1920)
+Seat 7: tsop13 (2170)
+Seat 9: AApoKK (1920)
+zlnalea posts small blind (10)
+tsop13 posts big blind (20)
+---
+Dealing pocket cards
+Dealing to Lakesdie: [Qd, Jc, Qh, 4d]
+AApoKK calls 20
+Afro_Fyr calls 20
+Lakesdie folds
+zlnalea calls 10
+tsop13 checks
+--- Dealing flop [Tc, 3s, 9d]
+zlnalea checks
+tsop13 checks
+AApoKK checks
+Afro_Fyr checks
+--- Dealing turn [2d]
+zlnalea checks
+tsop13 checks
+AApoKK checks
+Afro_Fyr checks
+--- Dealing river [Qc]
+zlnalea checks
+tsop13 bets 60
+AApoKK folds
+Afro_Fyr calls 60
+zlnalea folds
+---
+Summary:
+Main pot: 200 won by tsop13 (200)
+Rake taken: $0
+Seat 2: Afro_Fyr (1920), net: -80
+Seat 5: Lakesdie (1990)
+Seat 6: zlnalea (1900), net: -20
+Seat 7: tsop13 (2290), net: +120, [Js, Kd, 5d, 3c] (STRAIGHT KING)
+Seat 9: AApoKK (1900), net: -20
+***** End of hand T5-330030241-2 *****
+***** History for hand T5-330030241-3 (TOURNAMENT: "PL Omaha HL", R-186-1481, buy-in: $1.20) *****
+Start hand: Fri Jun 28 19:03:52 GST 2013
+Table: Table #3 [330030241] (POT_LIMIT OMAHA_HI_LO 10/20, Chips)
+User: Lakesdie
+Button: seat 6
+Players in round: 8 (8)
+Seat 1: KREST 78 (2065)
+Seat 2: Afro_Fyr (1920)
+Seat 3: footpooljay1 (3700)
+Seat 4: LLIOPOXXX (2405)
+Seat 5: Lakesdie (1990)
+Seat 6: zlnalea (1900)
+Seat 7: tsop13 (2290)
+Seat 9: AApoKK (1900)
+tsop13 posts small blind (10)
+AApoKK posts big blind (20)
+---
+Dealing pocket cards
+Dealing to Lakesdie: [9s, 3h, Tc, 9d]
+KREST 78 raises 60 to 60
+Afro_Fyr folds
+footpooljay1 calls 60
+LLIOPOXXX calls 60
+Lakesdie folds
+zlnalea calls 60
+tsop13 folds
+AApoKK calls 40
+--- Dealing flop [7h, 2c, 8h]
+AApoKK checks
+KREST 78 bets 100
+footpooljay1 folds
+LLIOPOXXX raises 230 to 230
+zlnalea calls 230
+AApoKK calls 230
+KREST 78 raises 1360 to 1460
+LLIOPOXXX calls 1230
+zlnalea folds
+AApoKK calls 1230
+--- Dealing turn [3s]
+AApoKK bets 380 [all in]
+KREST 78 raises 545 to 545 [all in]
+LLIOPOXXX calls 545
+--- Dealing river [6c]
+---
+Summary:
+Main pot: 6060 won by KREST 78 (3030 High), AApoKK (3030 Low)
+Side pot 1: 330 won by KREST 78 (165 High), LLIOPOXXX (165 Low)
+Rake taken: $0
+Seat 1: KREST 78 (3195), net: +1130, [8s, 8c, Jd, 6d] (THREE_OF_A_KIND EIGHT)
+Seat 2: Afro_Fyr (1920)
+Seat 3: footpooljay1 (3640), net: -60
+Seat 4: LLIOPOXXX (505), net: -1900, [Qh, Td, Ah, 7d] (PAIR SEVEN)
+Seat 5: Lakesdie (1990)
+Seat 6: zlnalea (1610), net: -290
+Seat 7: tsop13 (2280), net: -10
+Seat 9: AApoKK (3030), net: +1130, [Ad, 4h, Ks, Kd] (PAIR KING)
+***** End of hand T5-330030241-3 *****
+***** History for hand T5-330030241-4 (TOURNAMENT: "PL Omaha HL", R-186-1481, buy-in: $1.20) *****
+Start hand: Fri Jun 28 19:05:10 GST 2013
+Table: Table #3 [330030241] (POT_LIMIT OMAHA_HI_LO 10/20, Chips)
+User: Lakesdie
+Button: seat 7
+Players in round: 8 (8)
+Seat 1: KREST 78 (3195)
+Seat 2: Afro_Fyr (1920)
+Seat 3: footpooljay1 (3640)
+Seat 4: LLIOPOXXX (505)
+Seat 5: Lakesdie (1990)
+Seat 6: zlnalea (1610)
+Seat 7: tsop13 (2280)
+Seat 9: AApoKK (3030)
+AApoKK posts small blind (10)
+KREST 78 posts big blind (20)
+---
+Dealing pocket cards
+Dealing to Lakesdie: [9h, Th, 6c, 4h]
+Afro_Fyr folds
+footpooljay1 calls 20
+LLIOPOXXX calls 20
+Lakesdie folds
+zlnalea calls 20
+tsop13 calls 20
+AApoKK calls 10
+KREST 78 checks
+--- Dealing flop [3s, 6s, Kh]
+AApoKK checks
+KREST 78 checks
+footpooljay1 checks
+LLIOPOXXX checks
+zlnalea checks
+tsop13 checks
+--- Dealing turn [8h]
+AApoKK bets 120
+KREST 78 calls 120
+footpooljay1 calls 120
+LLIOPOXXX calls 120
+zlnalea calls 120
+tsop13 folds
+--- Dealing river [Kd]
+AApoKK bets 720
+KREST 78 folds
+footpooljay1 calls 720
+LLIOPOXXX folds
+zlnalea calls 720
+---
+Summary:
+Main pot: 2880 won by footpooljay1 (1440 High), AApoKK (1440 Low)
+Rake taken: $0
+Seat 1: KREST 78 (3055), net: -140
+Seat 2: Afro_Fyr (1920)
+Seat 3: footpooljay1 (4220), net: +580, [8d, 8c, 2d, Qc] (FULL_HOUSE EIGHT, KING)
+Seat 4: LLIOPOXXX (365), net: -140
+Seat 5: Lakesdie (1990)
+Seat 6: zlnalea (750), net: -860
+Seat 7: tsop13 (2260), net: -20
+Seat 9: AApoKK (3610), net: +580, [4s, 2h, Ah, 2s] (TWO_PAIR KING, TWO)
+***** End of hand T5-330030241-4 *****
+***** History for hand T5-330030241-5 (TOURNAMENT: "PL Omaha HL", R-186-1481, buy-in: $1.20) *****
+Start hand: Fri Jun 28 19:07:44 GST 2013
+Table: Table #3 [330030241] (POT_LIMIT OMAHA_HI_LO 10/20, Chips)
+User: Lakesdie
+Button: seat 9
+Players in round: 8 (8)
+Seat 1: KREST 78 (3055)
+Seat 2: Afro_Fyr (1920)
+Seat 3: footpooljay1 (4220)
+Seat 4: LLIOPOXXX (365)
+Seat 5: Lakesdie (1990)
+Seat 6: zlnalea (750)
+Seat 7: tsop13 (2260)
+Seat 9: AApoKK (3610)
+KREST 78 posts small blind (10)
+Afro_Fyr posts big blind (20)
+---
+Dealing pocket cards
+Dealing to Lakesdie: [As, Ac, Ah, 7h]
+footpooljay1 folds
+LLIOPOXXX folds
+Lakesdie raises 40 to 40
+zlnalea calls 40
+tsop13 folds
+AApoKK calls 40
+KREST 78 calls 30
+Afro_Fyr calls 20
+--- Dealing flop [Qc, 8c, 5s]
+KREST 78 checks
+Afro_Fyr checks
+Lakesdie checks
+zlnalea checks
+AApoKK checks
+--- Dealing turn [Ts]
+KREST 78 checks
+Afro_Fyr checks
+Lakesdie checks
+zlnalea checks
+AApoKK checks
+--- Dealing river [Jh]
+KREST 78 bets 100
+Afro_Fyr folds
+Lakesdie folds
+zlnalea raises 500 to 500
+AApoKK folds
+KREST 78 calls 400
+---
+Summary:
+Main pot: 1200 won by zlnalea (1200)
+Rake taken: $0
+Seat 1: KREST 78 (2515), net: -540
+Seat 2: Afro_Fyr (1880), net: -40
+Seat 3: footpooljay1 (4220)
+Seat 4: LLIOPOXXX (365)
+Seat 5: Lakesdie (1950), net: -40
+Seat 6: zlnalea (1410), net: +660, [Kd, 8d, Js, Ad] (STRAIGHT ACE)
+Seat 7: tsop13 (2260)
+Seat 9: AApoKK (3570), net: -40
+***** End of hand T5-330030241-5 *****
+***** History for hand T5-330030241-6 (TOURNAMENT: "PL Omaha HL", R-186-1481, buy-in: $1.20) *****
+Start hand: Fri Jun 28 19:09:23 GST 2013
+Table: Table #3 [330030241] (POT_LIMIT OMAHA_HI_LO 10/20, Chips)
+User: Lakesdie
+Button: seat 1
+Players in round: 8 (8)
+Seat 1: KREST 78 (2515)
+Seat 2: Afro_Fyr (1880)
+Seat 3: footpooljay1 (4220)
+Seat 4: LLIOPOXXX (365)
+Seat 5: Lakesdie (1950)
+Seat 6: zlnalea (1410)
+Seat 7: tsop13 (2260)
+Seat 9: AApoKK (3570)
+Afro_Fyr posts small blind (10)
+footpooljay1 posts big blind (20)
+---
+Dealing pocket cards
+Dealing to Lakesdie: [Ad, As, 2s, 3d]
+LLIOPOXXX folds
+Lakesdie raises 40 to 40
+zlnalea raises 60 to 60
+tsop13 folds
+AApoKK calls 60
+KREST 78 calls 60
+Afro_Fyr folds
+footpooljay1 calls 40
+Lakesdie raises 85 to 125
+zlnalea calls 65
+AApoKK calls 65
+KREST 78 calls 65
+footpooljay1 folds
+--- Dealing flop [Td, 9s, Jd]
+Lakesdie bets 570
+zlnalea raises 1285 to 1285 [all in]
+AApoKK folds
+KREST 78 folds
+Lakesdie calls 715
+--- Dealing turn [8s]
+--- Dealing river [5s]
+---
+Summary:
+Main pot: 3140 won by Lakesdie (3140)
+Rake taken: $0
+Seat 1: KREST 78 (2390), net: -125
+Seat 2: Afro_Fyr (1870), net: -10
+Seat 3: footpooljay1 (4160), net: -60
+Seat 4: LLIOPOXXX (365)
+Seat 5: Lakesdie (3680), net: +1730, [Ad, As, 2s, 3d] (FLUSH ACE)
+Seat 6: zlnalea (0), net: -1410, [Qs, 7h, 8c, 2d] (STRAIGHT QUEEN)
+Seat 7: tsop13 (2260)
+Seat 9: AApoKK (3445), net: -125
+***** End of hand T5-330030241-6 *****
+***** History for hand T5-330030241-7 (TOURNAMENT: "PL Omaha HL", R-186-1481, buy-in: $1.20) *****
+Start hand: Fri Jun 28 19:11:26 GST 2013
+Table: Table #3 [330030241] (POT_LIMIT OMAHA_HI_LO 10/20, Chips)
+User: Lakesdie
+Button: seat 2
+Players in round: 7 (8)
+Seat 1: KREST 78 (2390)
+Seat 2: Afro_Fyr (1870)
+Seat 3: footpooljay1 (4160)
+Seat 4: LLIOPOXXX (365)
+Seat 5: Lakesdie (3680)
+Seat 7: tsop13 (2260)
+Seat 9: AApoKK (3445)
+footpooljay1 posts small blind (10)
+LLIOPOXXX posts big blind (20)
+---
+Dealing pocket cards
+Dealing to Lakesdie: [4h, 4d, 8h, 8d]
+Lakesdie folds
+tsop13 folds
+AApoKK calls 20
+KREST 78 raises 90 to 90
+Afro_Fyr calls 90
+footpooljay1 folds
+LLIOPOXXX calls 70
+AApoKK calls 70
+--- Dealing flop [Kc, 3s, 9s]
+LLIOPOXXX checks
+AApoKK checks
+KREST 78 checks
+Afro_Fyr checks
+--- Dealing turn [5c]
+LLIOPOXXX bets 275 [all in]
+AApoKK folds
+KREST 78 calls 275
+Afro_Fyr calls 275
+--- Dealing river [9c]
+KREST 78 checks
+Afro_Fyr checks
+---
+Summary:
+Main pot: 1195 won by LLIOPOXXX (1195)
+Rake taken: $0
+Seat 1: KREST 78 (2025), net: -365
+Seat 2: Afro_Fyr (1505), net: -365
+Seat 3: footpooljay1 (4150), net: -10
+Seat 4: LLIOPOXXX (1195), net: +830, [Th, Qs, Kh, 6c] (TWO_PAIR KING, NINE)
+Seat 5: Lakesdie (3680)
+Seat 7: tsop13 (2260)
+Seat 9: AApoKK (3355), net: -90
+***** End of hand T5-330030241-7 *****
+***** History for hand T5-330030241-8 (TOURNAMENT: "PL Omaha HL", R-186-1481, buy-in: $1.20) *****
+Start hand: Fri Jun 28 19:12:39 GST 2013
+Table: Table #3 [330030241] (POT_LIMIT OMAHA_HI_LO 10/20, Chips)
+User: Lakesdie
+Button: seat 3
+Players in round: 7 (8)
+Seat 1: KREST 78 (2025)
+Seat 2: Afro_Fyr (1505)
+Seat 3: footpooljay1 (4150)
+Seat 4: LLIOPOXXX (1195)
+Seat 5: Lakesdie (3680)
+Seat 7: tsop13 (2260)
+Seat 9: AApoKK (3355)
+LLIOPOXXX posts small blind (10)
+Lakesdie posts big blind (20)
+---
+Dealing pocket cards
+Dealing to Lakesdie: [4s, 2s, 9h, 6d]
+tsop13 raises 50 to 50
+AApoKK calls 50
+KREST 78 calls 50
+Afro_Fyr folds
+footpooljay1 folds
+LLIOPOXXX calls 40
+Lakesdie folds
+--- Dealing flop [5s, 8s, 6s]
+LLIOPOXXX checks
+tsop13 bets 175
+AApoKK folds
+KREST 78 folds
+LLIOPOXXX folds
+---
+Summary:
+Main pot: 220 won by tsop13 (220)
+Rake taken: $0
+Seat 1: KREST 78 (1975), net: -50
+Seat 2: Afro_Fyr (1505)
+Seat 3: footpooljay1 (4150)
+Seat 4: LLIOPOXXX (1145), net: -50
+Seat 5: Lakesdie (3660), net: -20
+Seat 7: tsop13 (2430), net: +170
+Seat 9: AApoKK (3305), net: -50
+***** End of hand T5-330030241-8 *****
+***** History for hand T5-330030241-9 (TOURNAMENT: "PL Omaha HL", R-186-1481, buy-in: $1.20) *****
+Start hand: Fri Jun 28 19:13:34 GST 2013
+Table: Table #3 [330030241] (POT_LIMIT OMAHA_HI_LO 15/30, Chips)
+User: Lakesdie
+Button: seat 4
+Players in round: 7 (8)
+Seat 1: KREST 78 (1975)
+Seat 2: Afro_Fyr (1505)
+Seat 3: footpooljay1 (4150)
+Seat 4: LLIOPOXXX (1145)
+Seat 5: Lakesdie (3660)
+Seat 7: tsop13 (2430)
+Seat 9: AApoKK (3305)
+Lakesdie posts small blind (15)
+tsop13 posts big blind (30)
+---
+Dealing pocket cards
+Dealing to Lakesdie: [Js, Kh, Qd, Ks]
+AApoKK calls 30
+KREST 78 raises 120 to 120
+Afro_Fyr folds
+footpooljay1 folds
+LLIOPOXXX calls 120
+Lakesdie calls 105
+tsop13 folds
+AApoKK calls 90
+--- Dealing flop [Kd, 6h, 4h]
+Lakesdie bets 375
+AApoKK folds
+KREST 78 raises 1635 to 1635
+LLIOPOXXX calls 1025 [all in]
+Lakesdie raises 3165 to 3540 [all in]
+KREST 78 calls 220 [all in]
+--- Dealing turn [3c]
+--- Dealing river [3h]
+---
+Summary:
+Main pot: 3585 won by Lakesdie (1793 High), KREST 78 (896 Low), LLIOPOXXX (896 Low)
+Side pot 1: 1660 won by Lakesdie (830 High), KREST 78 (830 Low)
+Rake taken: $0
+Seat 1: KREST 78 (1726), net: -249, [Jc, Ac, 7d, 5h] (STRAIGHT SEVEN)
+Seat 2: Afro_Fyr (1505)
+Seat 3: footpooljay1 (4150)
+Seat 4: LLIOPOXXX (896), net: -249, [7c, Qc, Ad, 5d] (STRAIGHT SEVEN)
+Seat 5: Lakesdie (4308), net: +648, [Js, Kh, Qd, Ks] (FULL_HOUSE KING, THREE)
+Seat 7: tsop13 (2400), net: -30
+Seat 9: AApoKK (3185), net: -120
+***** End of hand T5-330030241-9 *****
+***** History for hand T5-330030241-10 (TOURNAMENT: "PL Omaha HL", R-186-1481, buy-in: $1.20) *****
+Start hand: Fri Jun 28 19:14:51 GST 2013
+Table: Table #3 [330030241] (POT_LIMIT OMAHA_HI_LO 15/30, Chips)
+User: Lakesdie
+Button: seat 5
+Players in round: 7 (8)
+Seat 1: KREST 78 (1726)
+Seat 2: Afro_Fyr (1505)
+Seat 3: footpooljay1 (4150)
+Seat 4: LLIOPOXXX (896)
+Seat 5: Lakesdie (4308)
+Seat 7: tsop13 (2400)
+Seat 9: AApoKK (3185)
+tsop13 posts small blind (15)
+AApoKK posts big blind (30)
+---
+Dealing pocket cards
+Dealing to Lakesdie: [5h, 3h, Qc, 8d]
+KREST 78 raises 105 to 105
+Afro_Fyr calls 105
+footpooljay1 folds
+LLIOPOXXX folds
+Lakesdie folds
+tsop13 folds
+AApoKK folds
+--- Dealing flop [Qh, Js, 9c]
+KREST 78 checks
+Afro_Fyr bets 255
+KREST 78 folds
+---
+Summary:
+Main pot: 255 won by Afro_Fyr (255)
+Rake taken: $0
+Seat 1: KREST 78 (1621), net: -105
+Seat 2: Afro_Fyr (1655), net: +150
+Seat 3: footpooljay1 (4150)
+Seat 4: LLIOPOXXX (896)
+Seat 5: Lakesdie (4308)
+Seat 7: tsop13 (2385), net: -15
+Seat 9: AApoKK (3155), net: -30
+***** End of hand T5-330030241-10 *****
+***** History for hand T5-330030241-11 (TOURNAMENT: "PL Omaha HL", R-186-1481, buy-in: $1.20) *****
+Start hand: Fri Jun 28 19:15:26 GST 2013
+Table: Table #3 [330030241] (POT_LIMIT OMAHA_HI_LO 15/30, Chips)
+User: Lakesdie
+Button: seat 7
+Players in round: 7 (8)
+Seat 1: KREST 78 (1621)
+Seat 2: Afro_Fyr (1655)
+Seat 3: footpooljay1 (4150)
+Seat 4: LLIOPOXXX (896)
+Seat 5: Lakesdie (4308)
+Seat 7: tsop13 (2385)
+Seat 9: AApoKK (3155)
+AApoKK posts small blind (15)
+KREST 78 posts big blind (30)
+---
+Dealing pocket cards
+Dealing to Lakesdie: [5d, Ad, 4c, 6h]
+Afro_Fyr folds
+footpooljay1 raises 105 to 105
+LLIOPOXXX folds
+Lakesdie raises 210 to 210
+tsop13 folds
+AApoKK folds
+KREST 78 raises 720 to 750
+footpooljay1 raises 2370 to 2475
+Lakesdie raises 4098 to 4308 [all in]
+KREST 78 calls 871 [all in]
+footpooljay1 calls 1675 [all in]
+--- Dealing flop [8h, Kd, 9h]
+--- Dealing turn [Th]
+--- Dealing river [5h]
+---
+Summary:
+Main pot: 4878 won by KREST 78 (4878)
+Side pot 1: 5058 won by footpooljay1 (5058)
+Rake taken: $0
+Seat 1: KREST 78 (4878), net: +3257, [Jc, Td, 7c, Ah] (STRAIGHT JACK)
+Seat 2: Afro_Fyr (1655)
+Seat 3: footpooljay1 (5058), net: +908, [As, Ac, 4d, 5c] (PAIR ACE)
+Seat 4: LLIOPOXXX (896)
+Seat 5: Lakesdie (158), net: -4150, [5d, Ad, 4c, 6h] (PAIR FIVE)
+Seat 7: tsop13 (2385)
+Seat 9: AApoKK (3140), net: -15
+***** End of hand T5-330030241-11 *****
+***** History for hand T5-330030241-12 (TOURNAMENT: "PL Omaha HL", R-186-1481, buy-in: $1.20) *****
+Start hand: Fri Jun 28 19:16:31 GST 2013
+Table: Table #3 [330030241] (POT_LIMIT OMAHA_HI_LO 15/30, Chips)
+User: Lakesdie
+Button: seat 9
+Players in round: 6 (8)
+Seat 1: KREST 78 (4878)
+Seat 2: Afro_Fyr (1655)
+Seat 3: footpooljay1 (5058)
+Seat 5: Lakesdie (158)
+Seat 7: tsop13 (2385)
+Seat 9: AApoKK (3140)
+KREST 78 posts small blind (15)
+Afro_Fyr posts big blind (30)
+---
+Dealing pocket cards
+Dealing to Lakesdie: [Ts, 8d, Ah, 3h]
+footpooljay1 raises 60 to 60
+Lakesdie raises 158 to 158 [all in]
+tsop13 calls 158
+AApoKK folds
+KREST 78 calls 143
+Afro_Fyr calls 128
+footpooljay1 calls 98
+--- Dealing flop [9h, Kc, 8c]
+KREST 78 bets 150
+Afro_Fyr calls 150
+footpooljay1 calls 150
+tsop13 folds
+--- Dealing turn [Th]
+KREST 78 checks
+Afro_Fyr checks
+footpooljay1 checks
+--- Dealing river [7s]
+KREST 78 checks
+Afro_Fyr checks
+footpooljay1 checks
+---
+Summary:
+Main pot: 790 won by KREST 78 (790)
+Side pot 1: 450 won by KREST 78 (450)
+Rake taken: $0
+Seat 1: KREST 78 (5810), net: +932, [Qc, 7h, 6c, 6h] (STRAIGHT TEN)
+Seat 2: Afro_Fyr (1347), net: -308
+Seat 3: footpooljay1 (4750), net: -308, [9c, Ac, 3s, 2d] (PAIR NINE)
+Seat 5: Lakesdie (0), net: -158
+Seat 7: tsop13 (2227), net: -158
+Seat 9: AApoKK (3140)
+***** End of hand T5-330030241-12 *****

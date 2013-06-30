@@ -1,0 +1,36 @@
+PokerStars Hand #1337: Omaha Pot Limit ($0.50/$1.00 USD) - 2012/04/12 23:00:00 ET
+Table 'SomeLie V' 6-max Seat #1 is the button
+Seat 1: plr1 ($214.42 in chips) 
+Seat 3: plr3 ($146.25 in chips) 
+Seat 4: plr4 ($388.38 in chips) 
+Seat 5: plr5 ($138.24 in chips) 
+Seat 6: plr6 ($38.26 in chips) 
+plr3: posts small blind $0.50
+plr4: posts big blind $1
+*** HOLE CARDS ***
+plr5: raises $1 to $2
+plr6: folds 
+plr1: raises $4.50 to $6.50
+plr3: calls $6
+plr4: folds 
+plr5: raises $20.50 to $27
+plr1: folds 
+plr3: calls $20.50
+*** FLOP *** [Kc 2s Jc]
+plr3: bets $58.73
+plr5: raises $52.51 to $111.24 and is all-in
+plr3: calls $52.51
+*** TURN *** [Kc 2s Jc] [Qd]
+*** RIVER *** [Kc 2s Jc Qd] [6h]
+*** SHOW DOWN ***
+plr3: shows [Kd Qc Jh 9h] (two pair, Kings and Queens)
+plr5: shows [Ah As]
+plr3 collected $281.18 from pot
+*** SUMMARY ***
+Total pot $283.98 | Rake $2.80 
+Board [Kc 2s Jc Qd 6h]
+Seat 1: plr1 (button) folded before Flop
+Seat 3: plr3 (small blind) showed [Kd Qc Jh 9h] and won ($281.18) with two pair, Kings and Queens
+Seat 4: plr4 (big blind) folded before Flop
+Seat 5: plr5 mucked [Ah As]
+Seat 6: plr6 folded before Flop (didn't bet)

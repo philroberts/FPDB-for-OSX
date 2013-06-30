@@ -1,0 +1,908 @@
+Full Tilt Poker Game #31493005896: $26 Super Turbo Matrix (244669447), Match 4 - 15/30 - No Limit Hold'em - 09:20:06 EET - 2012/11/23 [02:20:06 ET - 2012/11/23]
+Seat 1: Player1 (300)
+Seat 2: Player3 (300)
+Seat 3: Player2 (300)
+Seat 4: Player4 (300)
+Seat 5: Player0 (300)
+Seat 6: Hero (300)
+Player1 posts the small blind of 15
+Player3 posts the big blind of 30
+The button is in seat #6
+*** HOLE CARDS ***
+Dealt to Hero [Ts 3h]
+Player2 folds
+Player4 raises to 300, and is all in
+Player0 folds
+Hero folds
+Player1 folds
+Player3 folds
+Uncalled bet of 270 returned to Player4
+*** SUMMARY ***
+Total pot 75 | Rake 0
+Seat 1: Player1 (small blind) folded before the Flop
+Seat 2: Player3 (big blind) folded before the Flop
+Seat 3: Player2 didn't bet (folded)
+Seat 4: Player4 collected (75), mucked
+Seat 5: Player0 didn't bet (folded)
+Seat 6: Hero (button) didn't bet (folded)
+
+
+
+Full Tilt Poker Game #31493006615: $26 Super Turbo Matrix (244669447), Match 4 - 15/30 - No Limit Hold'em - 09:20:19 EET - 2012/11/23 [02:20:19 ET - 2012/11/23]
+Seat 1: Player1 (285)
+Seat 2: Player3 (270)
+Seat 3: Player2 (300)
+Seat 4: Player4 (345)
+Seat 5: Player0 (300)
+Seat 6: Hero (300)
+Player3 posts the small blind of 15
+Player2 posts the big blind of 30
+The button is in seat #1
+*** HOLE CARDS ***
+Dealt to Hero [Kc As]
+Player4 folds
+Player0 raises to 300, and is all in
+Hero calls 300, and is all in
+Player1 folds
+Player3 folds
+Player2 folds
+Player0 shows [Ah 3h]
+Hero shows [Kc As]
+*** FLOP *** [Td 7d Ks] (Total Pot: 645, 2 Players, 2 All-In)
+*** TURN *** [Td 7d Ks] [4c] (Total Pot: 645, 2 Players, 2 All-In)
+*** RIVER *** [Td 7d Ks 4c] [9c] (Total Pot: 645, 2 Players, 2 All-In)
+Player0 shows Ace King high
+Hero shows a pair of Kings
+Hero wins the pot (645) with a pair of Kings
+*** SUMMARY ***
+Total pot 645 | Rake 0
+Board: [Td 7d Ks 4c 9c]
+Seat 1: Player1 (button) didn't bet (folded)
+Seat 2: Player3 (small blind) folded before the Flop
+Seat 3: Player2 (big blind) folded before the Flop
+Seat 4: Player4 didn't bet (folded)
+Seat 5: Player0 showed [Ah 3h] and lost with Ace King high
+Seat 6: Hero showed [Kc As] and won (645) with a pair of Kings
+
+
+
+Full Tilt Poker Game #31493007789: $26 Super Turbo Matrix (244669447), Match 4 - 15/30 - No Limit Hold'em - 09:20:42 EET - 2012/11/23 [02:20:42 ET - 2012/11/23]
+Seat 1: Player1 (285)
+Seat 2: Player3 (255)
+Seat 3: Player2 (270)
+Seat 4: Player4 (345)
+Seat 6: Hero (645)
+Player2 posts the small blind of 15
+Player4 posts the big blind of 30
+The button is in seat #2
+*** HOLE CARDS ***
+Dealt to Hero [2s Js]
+Hero folds
+Player1 has 15 seconds left to act
+Player1 folds
+Player3 folds
+Player2 folds
+Uncalled bet of 15 returned to Player4
+Player4 mucks
+Player4 wins the pot (30)
+*** SUMMARY ***
+Total pot 30 | Rake 0
+Seat 1: Player1 didn't bet (folded)
+Seat 2: Player3 (button) didn't bet (folded)
+Seat 3: Player2 (small blind) folded before the Flop
+Seat 4: Player4 (big blind) collected (30), mucked
+Seat 6: Hero didn't bet (folded)
+
+
+
+Full Tilt Poker Game #31493008842: $26 Super Turbo Matrix (244669447), Match 4 - 15/30 - No Limit Hold'em - 09:21:03 EET - 2012/11/23 [02:21:03 ET - 2012/11/23]
+*** SUMMARY ***
+Total pot 30 | Rake 0
+Seat 1: Player1 didn't bet (folded)
+Seat 2: Player3 didn't bet (folded)
+Seat 3: Player2 (button) didn't bet (folded)
+Seat 4: Player4 (small blind) folded before the Flop
+Seat 6: Hero (big blind) collected (30), mucked
+
+
+
+Full Tilt Poker Game #31493009417: $26 Super Turbo Matrix (244669447), Match 4 - 15/30 - No Limit Hold'em - 09:21:15 EET - 2012/11/23 [02:21:15 ET - 2012/11/23]
+Seat 1: Player1 (285)
+Seat 2: Player3 (255)
+Seat 3: Player2 (255)
+Seat 4: Player4 (345)
+Seat 6: Hero (660)
+Hero posts the small blind of 15
+Player1 posts the big blind of 30
+The button is in seat #4
+Hero has been disconnected
+*** HOLE CARDS ***
+Dealt to Hero [2c 8s]
+Player3 folds
+Player2 folds
+Player4 folds
+Hero has reconnected
+Hero folds
+Uncalled bet of 15 returned to Player1
+Player1 mucks
+*** SUMMARY ***
+Total pot 30 | Rake 0
+Seat 1: Player1 (big blind) collected (30), mucked
+Seat 2: Player3 didn't bet (folded)
+Seat 3: Player2 didn't bet (folded)
+Seat 4: Player4 (button) didn't bet (folded)
+Seat 6: Hero (small blind) folded before the Flop
+
+
+
+Full Tilt Poker Game #31493010164: $26 Super Turbo Matrix (244669447), Match 4 - 15/30 - No Limit Hold'em - 09:21:30 EET - 2012/11/23 [02:21:30 ET - 2012/11/23]
+Seat 1: Player1 (300)
+Seat 2: Player3 (255)
+Seat 3: Player2 (255)
+Seat 4: Player4 (345)
+Seat 6: Hero (645)
+Player1 posts the small blind of 15
+Player3 posts the big blind of 30
+The button is in seat #6
+*** HOLE CARDS ***
+Dealt to Hero [4c 9c]
+Player2 folds
+Player4 has 15 seconds left to act
+Player4 folds
+Hero folds
+Player1 folds
+Uncalled bet of 15 returned to Player3
+Player3 mucks
+Player3 wins the pot (30)
+*** SUMMARY ***
+Total pot 30 | Rake 0
+Seat 1: Player1 (small blind) folded before the Flop
+Seat 2: Player3 (big blind) collected (30), mucked
+Seat 3: Player2 didn't bet (folded)
+Seat 4: Player4 didn't bet (folded)
+Seat 6: Hero (button) didn't bet (folded)
+
+
+
+Full Tilt Poker Game #31493011429: $26 Super Turbo Matrix (244669447), Match 4 - 15/30 - No Limit Hold'em - 09:21:55 EET - 2012/11/23 [02:21:55 ET - 2012/11/23]
+Seat 1: Player1 (285)
+Seat 2: Player3 (270)
+Seat 3: Player2 (255)
+Seat 4: Player4 (345)
+Seat 6: Hero (645)
+Player3 posts the small blind of 15
+Player2 posts the big blind of 30
+The button is in seat #1
+*** HOLE CARDS ***
+Dealt to Hero [Jd Kh]
+Player4 folds
+Hero raises to 645, and is all in
+Player1 folds
+Player3 folds
+Player2 folds
+Uncalled bet of 615 returned to Hero
+Hero mucks
+*** SUMMARY ***
+Total pot 75 | Rake 0
+Seat 1: Player1 (button) didn't bet (folded)
+Seat 2: Player3 (small blind) folded before the Flop
+Seat 3: Player2 (big blind) folded before the Flop
+Seat 4: Player4 didn't bet (folded)
+Seat 6: Hero collected (75), mucked
+
+
+
+Full Tilt Poker Game #31493012123: $26 Super Turbo Matrix (244669447), Match 4 - 15/30 - No Limit Hold'em - 09:22:09 EET - 2012/11/23 [02:22:09 ET - 2012/11/23]
+Seat 1: Player1 (285)
+Seat 2: Player3 (255)
+Seat 3: Player2 (225)
+Seat 4: Player4 (345)
+Seat 6: Hero (690)
+Player2 posts the small blind of 15
+Player4 posts the big blind of 30
+The button is in seat #2
+*** HOLE CARDS ***
+Dealt to Hero [Qc Kh]
+Hero raises to 690, and is all in
+Player1 folds
+Player3 folds
+Player2 folds
+Player4 folds
+Uncalled bet of 660 returned to Hero
+Hero mucks
+Hero wins the pot (75)
+*** SUMMARY ***
+Total pot 75 | Rake 0
+Seat 1: Player1 didn't bet (folded)
+Seat 2: Player3 (button) didn't bet (folded)
+Seat 3: Player2 (small blind) folded before the Flop
+Seat 4: Player4 (big blind) folded before the Flop
+Seat 6: Hero collected (75), mucked
+
+
+
+Full Tilt Poker Game #31493013144: $26 Super Turbo Matrix (244669447), Match 4 - 15/30 - No Limit Hold'em - 09:22:29 EET - 2012/11/23 [02:22:29 ET - 2012/11/23]
+Seat 1: Player1 (285)
+Seat 2: Player3 (255)
+Seat 3: Player2 (210)
+Seat 4: Player4 (315)
+Seat 6: Hero (735)
+Player4 posts the small blind of 15
+Hero posts the big blind of 30
+The button is in seat #3
+*** HOLE CARDS ***
+Dealt to Hero [6d 4h]
+Player1 folds
+Player3 folds
+Player2 folds
+Player4 folds
+Uncalled bet of 15 returned to Hero
+Hero mucks
+Hero wins the pot (30)
+*** SUMMARY ***
+Total pot 30 | Rake 0
+Seat 1: Player1 didn't bet (folded)
+Seat 2: Player3 didn't bet (folded)
+Seat 3: Player2 (button) didn't bet (folded)
+Seat 4: Player4 (small blind) folded before the Flop
+Seat 6: Hero (big blind) collected (30), mucked
+
+
+
+Full Tilt Poker Game #31493013667: $26 Super Turbo Matrix (244669447), Match 4 - 15/30 - No Limit Hold'em - 09:22:40 EET - 2012/11/23 [02:22:40 ET - 2012/11/23]
+Seat 1: Player1 (285)
+Seat 2: Player3 (255)
+Seat 3: Player2 (210)
+Seat 4: Player4 (300)
+Seat 6: Hero (750)
+Hero posts the small blind of 15
+Player1 posts the big blind of 30
+The button is in seat #4
+*** HOLE CARDS ***
+Dealt to Hero [Jh 9s]
+Player3 folds
+Player2 raises to 210, and is all in
+Player4 has 15 seconds left to act
+Player4 folds
+Hero folds
+Player1 folds
+Uncalled bet of 180 returned to Player2
+Player2 mucks
+*** SUMMARY ***
+Total pot 75 | Rake 0
+Seat 1: Player1 (big blind) folded before the Flop
+Seat 2: Player3 didn't bet (folded)
+Seat 3: Player2 collected (75), mucked
+Seat 4: Player4 (button) didn't bet (folded)
+Seat 6: Hero (small blind) folded before the Flop
+
+
+
+Full Tilt Poker Game #31493014981: $26 Super Turbo Matrix (244669447), Match 4 - 20/40 - No Limit Hold'em - 09:23:06 EET - 2012/11/23 [02:23:06 ET - 2012/11/23]
+Seat 1: Player1 (255)
+Seat 2: Player3 (255)
+Seat 3: Player2 (255)
+Seat 4: Player4 (300)
+Seat 6: Hero (735)
+Player1 posts the small blind of 20
+Player3 posts the big blind of 40
+The button is in seat #6
+*** HOLE CARDS ***
+Dealt to Hero [Kc 3c]
+Player2 folds
+Player4 has 15 seconds left to act
+Player4 folds
+Hero folds
+Player1 folds
+Uncalled bet of 20 returned to Player3
+Player3 mucks
+Player3 wins the pot (40)
+*** SUMMARY ***
+Total pot 40 | Rake 0
+Seat 1: Player1 (small blind) folded before the Flop
+Seat 2: Player3 (big blind) collected (40), mucked
+Seat 3: Player2 didn't bet (folded)
+Seat 4: Player4 didn't bet (folded)
+Seat 6: Hero (button) didn't bet (folded)
+
+
+
+Full Tilt Poker Game #31493016288: $26 Super Turbo Matrix (244669447), Match 4 - 20/40 - No Limit Hold'em - 09:23:32 EET - 2012/11/23 [02:23:32 ET - 2012/11/23]
+Seat 1: Player1 (235)
+Seat 2: Player3 (275)
+Seat 3: Player2 (255)
+Seat 4: Player4 (300)
+Seat 6: Hero (735)
+Player3 posts the small blind of 20
+Player2 posts the big blind of 40
+The button is in seat #1
+*** HOLE CARDS ***
+Dealt to Hero [3h 4s]
+Player4 raises to 300, and is all in
+Hero folds
+Player1 folds
+Player3 has 15 seconds left to act
+Player3 folds
+Player2 has 15 seconds left to act
+Player2 folds
+Uncalled bet of 260 returned to Player4
+Player4 mucks
+Player4 wins the pot (100)
+*** SUMMARY ***
+Total pot 100 | Rake 0
+Seat 1: Player1 (button) didn't bet (folded)
+Seat 2: Player3 (small blind) folded before the Flop
+Seat 3: Player2 (big blind) folded before the Flop
+Seat 4: Player4 collected (100), mucked
+Seat 6: Hero didn't bet (folded)
+
+
+
+Full Tilt Poker Game #31493017879: $26 Super Turbo Matrix (244669447), Match 4 - 20/40 - No Limit Hold'em - 09:24:05 EET - 2012/11/23 [02:24:05 ET - 2012/11/23]
+Seat 1: Player1 (235)
+Seat 2: Player3 (255)
+Seat 3: Player2 (215)
+Seat 4: Player4 (360)
+Seat 6: Hero (735)
+Player2 posts the small blind of 20
+Player4 posts the big blind of 40
+The button is in seat #2
+*** HOLE CARDS ***
+Dealt to Hero [Kh Qs]
+Hero folds
+Player1 folds
+Player3 folds
+Player2 raises to 215, and is all in
+Player4 calls 175
+Player2 shows [2d Kc]
+Player4 shows [As 7h]
+*** FLOP *** [6c 7s 5d] (Total Pot: 430, 2 Players, 1 All-In)
+*** TURN *** [6c 7s 5d] [Ac] (Total Pot: 430, 2 Players, 1 All-In)
+*** RIVER *** [6c 7s 5d Ac] [Tc] (Total Pot: 430, 2 Players, 1 All-In)
+Player2 shows Ace King high
+Player4 shows two pair, Aces and Sevens
+Player4 wins the pot (430) with two pair, Aces and Sevens
+*** SUMMARY ***
+Total pot 430 | Rake 0
+Board: [6c 7s 5d Ac Tc]
+Seat 1: Player1 didn't bet (folded)
+Seat 2: Player3 (button) didn't bet (folded)
+Seat 3: Player2 (small blind) showed [2d Kc] and lost with Ace King high
+Seat 4: Player4 (big blind) showed [As 7h] and won (430) with two pair, Aces and Sevens
+Seat 6: Hero didn't bet (folded)
+
+
+
+Full Tilt Poker Game #31493019396: $26 Super Turbo Matrix (244669447), Match 4 - 20/40 - No Limit Hold'em - 09:24:34 EET - 2012/11/23 [02:24:34 ET - 2012/11/23]
+Seat 1: Player1 (235)
+Seat 2: Player3 (255)
+Seat 4: Player4 (575)
+Seat 6: Hero (735)
+Player4 posts the small blind of 20
+Hero posts the big blind of 40
+The button is in seat #3
+*** HOLE CARDS ***
+Dealt to Hero [4h 7s]
+Player1 folds
+Player3 folds
+Player4 raises to 575, and is all in
+Hero folds
+Uncalled bet of 535 returned to Player4
+Player4 mucks
+Player4 wins the pot (80)
+*** SUMMARY ***
+Total pot 80 | Rake 0
+Seat 1: Player1 didn't bet (folded)
+Seat 2: Player3 didn't bet (folded)
+Seat 4: Player4 (small blind) collected (80), mucked
+Seat 6: Hero (big blind) folded before the Flop
+
+
+
+Full Tilt Poker Game #31493020183: $26 Super Turbo Matrix (244669447), Match 4 - 20/40 - No Limit Hold'em - 09:24:50 EET - 2012/11/23 [02:24:50 ET - 2012/11/23]
+Seat 1: Player1 (235)
+Seat 2: Player3 (255)
+Seat 4: Player4 (615)
+Seat 6: Hero (695)
+Hero posts the small blind of 20
+Player1 posts the big blind of 40
+The button is in seat #4
+*** HOLE CARDS ***
+Dealt to Hero [7h 9c]
+Player3 raises to 255, and is all in
+Player4 folds
+Hero folds
+Player1 calls 195, and is all in
+Player3 shows [Kc Qs]
+Player1 shows [Kd Ac]
+Uncalled bet of 20 returned to Player3
+*** FLOP *** [2c Td Js] (Total Pot: 490, 2 Players, 1 All-In)
+*** TURN *** [2c Td Js] [Jc] (Total Pot: 490, 2 Players, 1 All-In)
+*** RIVER *** [2c Td Js Jc] [Jh] (Total Pot: 490, 2 Players, 1 All-In)
+Player3 shows three of a kind, Jacks
+Player1 shows three of a kind, Jacks
+Player1 wins the pot (490) with three of a kind, Jacks
+*** SUMMARY ***
+Total pot 490 | Rake 0
+Board: [2c Td Js Jc Jh]
+Seat 1: Player1 (big blind) showed [Kd Ac] and won (490) with three of a kind, Jacks
+Seat 2: Player3 showed [Kc Qs] and lost with three of a kind, Jacks
+Seat 4: Player4 (button) didn't bet (folded)
+Seat 6: Hero (small blind) folded before the Flop
+
+
+
+Full Tilt Poker Game #31493021235: $26 Super Turbo Matrix (244669447), Match 4 - 20/40 - No Limit Hold'em - 09:25:13 EET - 2012/11/23 [02:25:13 ET - 2012/11/23]
+Seat 1: Player1 (490)
+Seat 2: Player3 (20)
+Seat 4: Player4 (615)
+Seat 6: Hero (675)
+Player1 posts the small blind of 20
+Player3 posts the big blind of 20, and is all in
+The button is in seat #6
+*** HOLE CARDS ***
+Dealt to Hero [8s 5h]
+Player4 raises to 615, and is all in
+Hero folds
+Player1 calls 470, and is all in
+Player4 shows [Ac Qc]
+Player1 shows [Ah Kh]
+Player3 shows [6s 2d]
+Uncalled bet of 125 returned to Player4
+*** FLOP *** [2s Td Qh] (Total Pot: 1,000, 3 Players, 2 All-In)
+*** TURN *** [2s Td Qh] [Jd] (Total Pot: 1,000, 3 Players, 2 All-In)
+*** RIVER *** [2s Td Qh Jd] [7s] (Total Pot: 1,000, 3 Players, 2 All-In)
+Player4 shows a pair of Queens
+Player1 shows a straight, Ace high
+Player1 wins the side pot (940) with a straight, Ace high
+Player3 shows a pair of Twos
+Player1 wins the main pot (60) with a straight, Ace high
+*** SUMMARY ***
+Total pot 1,000 Main pot 60. Side pot 940. | Rake 0
+Board: [2s Td Qh Jd 7s]
+Seat 1: Player1 (small blind) showed [Ah Kh] and won (1,000) with a straight, Ace high
+Seat 2: Player3 (big blind) showed [6s 2d] and lost with a pair of Twos
+Seat 4: Player4 showed [Ac Qc] and lost with a pair of Queens
+Seat 6: Hero (button) didn't bet (folded)
+
+
+
+Full Tilt Poker Game #31493022176: $26 Super Turbo Matrix (244669447), Match 4 - 20/40 - No Limit Hold'em - 09:25:30 EET - 2012/11/23 [02:25:30 ET - 2012/11/23]
+Seat 1: Player1 (1,000)
+Seat 4: Player4 (125)
+Seat 6: Hero (675)
+Player4 posts the big blind of 40
+The button is in seat #1
+*** HOLE CARDS ***
+Dealt to Hero [Jc 6c]
+Hero folds
+Player1 raises to 80
+Player4 raises to 125, and is all in
+Player1 calls 45
+Player4 shows [5d 5s]
+Player1 shows [7d 7s]
+*** FLOP *** [3h 9h 6s] (Total Pot: 250, 2 Players, 1 All-In)
+*** TURN *** [3h 9h 6s] [Tc] (Total Pot: 250, 2 Players, 1 All-In)
+*** SUMMARY ***
+Total pot 250 | Rake 0
+Board: [3h 9h 6s Tc 2c]
+Seat 1: Player1 (button) showed [7d 7s] and won (250) with a pair of Sevens
+Seat 4: Player4 (big blind) showed [5d 5s] and lost with a pair of Fives
+Seat 6: Hero didn't bet (folded)
+
+
+
+Full Tilt Poker Game #31493023121: $26 Super Turbo Matrix (244669447), Match 4 - 20/40 - No Limit Hold'em - 09:25:49 EET - 2012/11/23 [02:25:49 ET - 2012/11/23]
+Seat 1: Player1 (1,125)
+Seat 6: Hero (675)
+Player1 posts the small blind of 20
+Hero posts the big blind of 40
+The button is in seat #1
+*** HOLE CARDS ***
+Dealt to Hero [9h Tc]
+Hero has been disconnected
+Hero has reconnected
+Player1 folds
+Uncalled bet of 20 returned to Hero
+Hero mucks
+Hero wins the pot (40)
+*** SUMMARY ***
+Total pot 40 | Rake 0
+Seat 1: Player1 (small blind) folded before the Flop
+Seat 6: Hero (big blind) collected (40), mucked
+
+
+
+Full Tilt Poker Game #31493023540: $26 Super Turbo Matrix (244669447), Match 4 - 20/40 - No Limit Hold'em - 09:25:57 EET - 2012/11/23 [02:25:57 ET - 2012/11/23]
+Seat 1: Player1 (1,105)
+Seat 6: Hero (695)
+Hero posts the small blind of 20
+Player1 posts the big blind of 40
+The button is in seat #6
+*** HOLE CARDS ***
+Dealt to Hero [3s Ad]
+Hero has 15 seconds left to act
+Hero folds
+Uncalled bet of 20 returned to Player1
+Player1 mucks
+Player1 wins the pot (40)
+*** SUMMARY ***
+Total pot 40 | Rake 0
+Seat 1: Player1 (big blind) collected (40), mucked
+Seat 6: Hero (small blind) folded before the Flop
+
+
+
+Full Tilt Poker Game #31493024137: $26 Super Turbo Matrix (244669447), Match 4 - 25/50 - No Limit Hold'em - 09:26:09 EET - 2012/11/23 [02:26:09 ET - 2012/11/23]
+Seat 1: Player1 (1,125)
+Seat 6: Hero (675)
+Player1 posts the small blind of 25
+Hero posts the big blind of 50
+The button is in seat #1
+*** HOLE CARDS ***
+Dealt to Hero [Ad 2h]
+Player1 folds
+Uncalled bet of 25 returned to Hero
+Hero mucks
+Hero wins the pot (50)
+*** SUMMARY ***
+Total pot 50 | Rake 0
+Seat 1: Player1 (small blind) folded before the Flop
+Seat 6: Hero (big blind) collected (50), mucked
+
+
+
+Full Tilt Poker Game #31493024442: $26 Super Turbo Matrix (244669447), Match 4 - 25/50 - No Limit Hold'em - 09:26:16 EET - 2012/11/23 [02:26:16 ET - 2012/11/23]
+Seat 1: Player1 (1,100)
+Seat 6: Hero (700)
+Hero posts the small blind of 25
+Player1 posts the big blind of 50
+The button is in seat #6
+*** HOLE CARDS ***
+Dealt to Hero [6c 9h]
+Hero folds
+Uncalled bet of 25 returned to Player1
+Player1 mucks
+*** SUMMARY ***
+Total pot 50 | Rake 0
+Seat 1: Player1 (big blind) collected (50), mucked
+Seat 6: Hero (small blind) folded before the Flop
+
+
+
+Full Tilt Poker Game #31493024793: $26 Super Turbo Matrix (244669447), Match 4 - 25/50 - No Limit Hold'em - 09:26:23 EET - 2012/11/23 [02:26:23 ET - 2012/11/23]
+Seat 1: Player1 (1,125)
+Seat 6: Hero (675)
+Player1 posts the small blind of 25
+Hero posts the big blind of 50
+The button is in seat #1
+*** HOLE CARDS ***
+Dealt to Hero [2s 4h]
+Player1 raises to 250
+Hero folds
+Uncalled bet of 200 returned to Player1
+Player1 mucks
+Player1 wins the pot (100)
+*** SUMMARY ***
+Total pot 100 | Rake 0
+Seat 1: Player1 (small blind) collected (100), mucked
+Seat 6: Hero (big blind) folded before the Flop
+
+
+
+Full Tilt Poker Game #31493025374: $26 Super Turbo Matrix (244669447), Match 4 - 25/50 - No Limit Hold'em - 09:26:34 EET - 2012/11/23 [02:26:34 ET - 2012/11/23]
+Seat 1: Player1 (1,175)
+Seat 6: Hero (625)
+Hero posts the small blind of 25
+Player1 posts the big blind of 50
+The button is in seat #6
+*** HOLE CARDS ***
+Dealt to Hero [Jd 5c]
+Hero folds
+Uncalled bet of 25 returned to Player1
+Player1 mucks
+Player1 wins the pot (50)
+*** SUMMARY ***
+Total pot 50 | Rake 0
+Seat 1: Player1 (big blind) collected (50), mucked
+Seat 6: Hero (small blind) folded before the Flop
+
+
+
+Full Tilt Poker Game #31493025761: $26 Super Turbo Matrix (244669447), Match 4 - 25/50 - No Limit Hold'em - 09:26:42 EET - 2012/11/23 [02:26:42 ET - 2012/11/23]
+Seat 1: Player1 (1,200)
+Seat 6: Hero (600)
+Player1 posts the small blind of 25
+Hero posts the big blind of 50
+The button is in seat #1
+*** HOLE CARDS ***
+Dealt to Hero [2s Kd]
+Player1 has 15 seconds left to act
+Player1 folds
+Uncalled bet of 25 returned to Hero
+Hero mucks
+Hero wins the pot (50)
+*** SUMMARY ***
+Total pot 50 | Rake 0
+Seat 1: Player1 (small blind) folded before the Flop
+Seat 6: Hero (big blind) collected (50), mucked
+
+
+
+Full Tilt Poker Game #31493026508: $26 Super Turbo Matrix (244669447), Match 4 - 25/50 - No Limit Hold'em - 09:26:57 EET - 2012/11/23 [02:26:57 ET - 2012/11/23]
+Seat 1: Player1 (1,175)
+Seat 6: Hero (625)
+Hero posts the small blind of 25
+Player1 posts the big blind of 50
+The button is in seat #6
+*** HOLE CARDS ***
+Dealt to Hero [7s 5c]
+Hero folds
+Uncalled bet of 25 returned to Player1
+Player1 mucks
+Player1 wins the pot (50)
+*** SUMMARY ***
+Total pot 50 | Rake 0
+Seat 1: Player1 (big blind) collected (50), mucked
+Seat 6: Hero (small blind) folded before the Flop
+
+
+
+Full Tilt Poker Game #31493026904: $26 Super Turbo Matrix (244669447), Match 4 - 25/50 - No Limit Hold'em - 09:27:06 EET - 2012/11/23 [02:27:06 ET - 2012/11/23]
+Seat 1: Player1 (1,200)
+Seat 6: Hero (600)
+Player1 posts the small blind of 25
+Hero posts the big blind of 50
+The button is in seat #1
+*** HOLE CARDS ***
+Dealt to Hero [Jh 5h]
+Player1 folds
+Uncalled bet of 25 returned to Hero
+Hero mucks
+Hero wins the pot (50)
+*** SUMMARY ***
+Total pot 50 | Rake 0
+Seat 1: Player1 (small blind) folded before the Flop
+Seat 6: Hero (big blind) collected (50), mucked
+
+
+
+Full Tilt Poker Game #31493027247: $26 Super Turbo Matrix (244669447), Match 4 - 25/50 - No Limit Hold'em - 09:27:12 EET - 2012/11/23 [02:27:12 ET - 2012/11/23]
+Seat 1: Player1 (1,175)
+Seat 6: Hero (625)
+Hero posts the small blind of 25
+Player1 posts the big blind of 50
+The button is in seat #6
+*** HOLE CARDS ***
+Dealt to Hero [4h Tc]
+Hero folds
+Uncalled bet of 25 returned to Player1
+Player1 mucks
+Player1 wins the pot (50)
+*** SUMMARY ***
+Total pot 50 | Rake 0
+Seat 1: Player1 (big blind) collected (50), mucked
+Seat 6: Hero (small blind) folded before the Flop
+
+
+
+Full Tilt Poker Game #31493027639: $26 Super Turbo Matrix (244669447), Match 4 - 25/50 - No Limit Hold'em - 09:27:20 EET - 2012/11/23 [02:27:20 ET - 2012/11/23]
+Seat 1: Player1 (1,200)
+Seat 6: Hero (600)
+Player1 posts the small blind of 25
+Hero posts the big blind of 50
+The button is in seat #1
+*** HOLE CARDS ***
+Dealt to Hero [8d 2h]
+Player1 folds
+Uncalled bet of 25 returned to Hero
+Hero mucks
+Hero wins the pot (50)
+*** SUMMARY ***
+Total pot 50 | Rake 0
+Seat 1: Player1 (small blind) folded before the Flop
+Seat 6: Hero (big blind) collected (50), mucked
+
+
+
+Full Tilt Poker Game #31493028017: $26 Super Turbo Matrix (244669447), Match 4 - 25/50 - No Limit Hold'em - 09:27:28 EET - 2012/11/23 [02:27:28 ET - 2012/11/23]
+Seat 1: Player1 (1,175)
+Seat 6: Hero (625)
+Hero posts the small blind of 25
+Player1 posts the big blind of 50
+The button is in seat #6
+*** HOLE CARDS ***
+Dealt to Hero [5h Qs]
+Hero folds
+Uncalled bet of 25 returned to Player1
+Player1 mucks
+Player1 wins the pot (50)
+*** SUMMARY ***
+Total pot 50 | Rake 0
+Seat 1: Player1 (big blind) collected (50), mucked
+Seat 6: Hero (small blind) folded before the Flop
+
+
+
+Full Tilt Poker Game #31493028437: $26 Super Turbo Matrix (244669447), Match 4 - 25/50 - No Limit Hold'em - 09:27:35 EET - 2012/11/23 [02:27:35 ET - 2012/11/23]
+Seat 1: Player1 (1,200)
+Seat 6: Hero (600)
+Player1 posts the small blind of 25
+Hero posts the big blind of 50
+The button is in seat #1
+*** HOLE CARDS ***
+Dealt to Hero [8d Js]
+Player1 raises to 250
+Hero folds
+Uncalled bet of 200 returned to Player1
+Player1 mucks
+*** SUMMARY ***
+Total pot 100 | Rake 0
+Seat 1: Player1 (small blind) collected (100), mucked
+Seat 6: Hero (big blind) folded before the Flop
+
+
+
+Full Tilt Poker Game #31493029047: $26 Super Turbo Matrix (244669447), Match 4 - 25/50 - No Limit Hold'em - 09:27:47 EET - 2012/11/23 [02:27:47 ET - 2012/11/23]
+Seat 1: Player1 (1,250)
+Seat 6: Hero (550)
+Hero posts the small blind of 25
+Player1 posts the big blind of 50
+The button is in seat #6
+*** HOLE CARDS ***
+Dealt to Hero [6s 7h]
+Hero raises to 200
+Player1 folds
+Uncalled bet of 150 returned to Hero
+Hero mucks
+Hero wins the pot (100)
+*** SUMMARY ***
+Total pot 100 | Rake 0
+Seat 1: Player1 (big blind) folded before the Flop
+Seat 6: Hero (small blind) collected (100), mucked
+
+
+
+Full Tilt Poker Game #31493029725: $26 Super Turbo Matrix (244669447), Match 4 - 25/50 - No Limit Hold'em - 09:28:01 EET - 2012/11/23 [02:28:01 ET - 2012/11/23]
+Seat 1: Player1 (1,200)
+Seat 6: Hero (600)
+Player1 posts the small blind of 25
+Hero posts the big blind of 50
+The button is in seat #1
+*** HOLE CARDS ***
+Dealt to Hero [Kd Qh]
+Player1 folds
+Uncalled bet of 25 returned to Hero
+Hero mucks
+Hero wins the pot (50)
+*** SUMMARY ***
+Total pot 50 | Rake 0
+Seat 1: Player1 (small blind) folded before the Flop
+Seat 6: Hero (big blind) collected (50), mucked
+
+
+
+Full Tilt Poker Game #31493030126: $26 Super Turbo Matrix (244669447), Match 4 - 25/50 - No Limit Hold'em - 09:28:09 EET - 2012/11/23 [02:28:09 ET - 2012/11/23]
+Seat 1: Player1 (1,175)
+Seat 6: Hero (625)
+Hero posts the small blind of 25
+Player1 posts the big blind of 50
+The button is in seat #6
+*** HOLE CARDS ***
+Dealt to Hero [3s 8s]
+Hero has 15 seconds left to act
+Hero has been disconnected
+Hero folds
+Hero has reconnected
+Uncalled bet of 25 returned to Player1
+*** SUMMARY ***
+Total pot 50 | Rake 0
+Seat 1: Player1 (big blind) collected (50), mucked
+Seat 6: Hero (small blind) folded before the Flop
+
+
+
+Full Tilt Poker Game #31493031208: $26 Super Turbo Matrix (244669447), Match 4 - 25/50 - No Limit Hold'em - 09:28:31 EET - 2012/11/23 [02:28:31 ET - 2012/11/23]
+Seat 1: Player1 (1,200)
+Seat 6: Hero (600)
+Player1 posts the small blind of 25
+Hero posts the big blind of 50
+The button is in seat #1
+*** HOLE CARDS ***
+Dealt to Hero [8s 8h]
+*** SUMMARY ***
+Total pot 50 | Rake 0
+Seat 1: Player1 (small blind) folded before the Flop
+Seat 6: Hero (big blind) collected (50), mucked
+
+
+
+Full Tilt Poker Game #31493031605: $26 Super Turbo Matrix (244669447), Match 4 - 25/50 - No Limit Hold'em - 09:28:38 EET - 2012/11/23 [02:28:38 ET - 2012/11/23]
+Seat 1: Player1 (1,175)
+Seat 6: Hero (625)
+Hero posts the small blind of 25
+Player1 posts the big blind of 50
+The button is in seat #6
+*** HOLE CARDS ***
+Dealt to Hero [Kc 3h]
+Hero has reconnected
+Hero folds
+Uncalled bet of 25 returned to Player1
+Player1 mucks
+Player1 wins the pot (50)
+*** SUMMARY ***
+Total pot 50 | Rake 0
+Seat 1: Player1 (big blind) collected (50), mucked
+Seat 6: Hero (small blind) folded before the Flop
+
+
+
+Full Tilt Poker Game #31493032076: $26 Super Turbo Matrix (244669447), Match 4 - 25/50 - No Limit Hold'em - 09:28:48 EET - 2012/11/23 [02:28:48 ET - 2012/11/23]
+Seat 1: Player1 (1,200)
+Seat 6: Hero (600)
+Player1 posts the small blind of 25
+Hero posts the big blind of 50
+The button is in seat #1
+*** HOLE CARDS ***
+Dealt to Hero [Ac Kd]
+Player1 raises to 1,200, and is all in
+Hero calls 550, and is all in
+Player1 shows [9d Kc]
+Hero shows [Ac Kd]
+Uncalled bet of 600 returned to Player1
+*** FLOP *** [Ad 2c 8d] (Total Pot: 1,200, 2 Players, 1 All-In)
+*** TURN *** [Ad 2c 8d] [9c] (Total Pot: 1,200, 2 Players, 1 All-In)
+*** RIVER *** [Ad 2c 8d 9c] [Qh] (Total Pot: 1,200, 2 Players, 1 All-In)
+Player1 shows a pair of Nines
+Hero shows a pair of Aces
+Hero wins the pot (1,200) with a pair of Aces
+*** SUMMARY ***
+Total pot 1,200 | Rake 0
+Board: [Ad 2c 8d 9c Qh]
+Seat 1: Player1 (small blind) showed [9d Kc] and lost with a pair of Nines
+Seat 6: Hero (big blind) showed [Ac Kd] and won (1,200) with a pair of Aces
+
+
+
+Full Tilt Poker Game #31493033197: $26 Super Turbo Matrix (244669447), Match 4 - 30/60 - No Limit Hold'em - 09:29:09 EET - 2012/11/23 [02:29:09 ET - 2012/11/23]
+Seat 1: Player1 (600)
+Seat 6: Hero (1,200)
+Hero posts the small blind of 30
+Player1 posts the big blind of 60
+The button is in seat #6
+*** HOLE CARDS ***
+Dealt to Hero [9s Ts]
+Hero folds
+*** SUMMARY ***
+Total pot 60 | Rake 0
+Seat 1: Player1 (big blind) collected (60), mucked
+Seat 6: Hero (small blind) folded before the Flop
+
+
+
+Full Tilt Poker Game #31493033732: $26 Super Turbo Matrix (244669447), Match 4 - 30/60 - No Limit Hold'em - 09:29:20 EET - 2012/11/23 [02:29:20 ET - 2012/11/23]
+Seat 1: Player1 (630)
+Seat 6: Hero (1,170)
+Player1 posts the small blind of 30
+Hero posts the big blind of 60
+The button is in seat #1
+*** HOLE CARDS ***
+Dealt to Hero [Js Kh]
+Player1 raises to 630, and is all in
+Hero calls 570
+Player1 shows [Ks 3c]
+Hero shows [Js Kh]
+*** FLOP *** [7s 4h Td] (Total Pot: 1,260, 2 Players, 1 All-In)
+*** TURN *** [7s 4h Td] [8s] (Total Pot: 1,260, 2 Players, 1 All-In)
+*** RIVER *** [7s 4h Td 8s] [9d] (Total Pot: 1,260, 2 Players, 1 All-In)
+Player1 shows King Ten high
+Hero shows a straight, Jack high
+Hero wins the pot (1,260) with a straight, Jack high
+*** SUMMARY ***
+Total pot 1,260 | Rake 0
+Board: [7s 4h Td 8s 9d]
+Seat 1: Player1 (small blind) showed [Ks 3c] and lost with King Ten high
+Seat 6: Hero (big blind) showed [Js Kh] and won (1,260) with a straight, Jack high
+
+
+

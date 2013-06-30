@@ -302,8 +302,10 @@ class Sql:
                         bigBet bigint NOT NULL,
                         maxSeats TINYINT NOT NULL,
                         ante INT NOT NULL,
-                        cap INT NOT NULL,
-                        zoom BOOLEAN)
+                        buyinType varchar(9) NOT NULL,
+                        fast BOOLEAN,
+                        newToGame BOOLEAN,
+                        homeGame BOOLEAN)
                         ENGINE=INNODB"""
         elif db_server == 'postgresql':
             self.query['createGametypesTable'] = """CREATE TABLE Gametypes (
@@ -322,8 +324,10 @@ class Sql:
                         bigBet bigint NOT NULL,
                         maxSeats SMALLINT NOT NULL,
                         ante INT NOT NULL,
-                        cap int NOT NULL,
-                        zoom BOOLEAN)"""
+                        buyinType varchar(9) NOT NULL,
+                        fast BOOLEAN,
+                        newToGame BOOLEAN,
+                        homeGame BOOLEAN)"""
         elif db_server == 'sqlite':
             self.query['createGametypesTable'] = """CREATE TABLE Gametypes (
                         id INTEGER PRIMARY KEY NOT NULL,
@@ -341,8 +345,10 @@ class Sql:
                         bigBet INTEGER NOT NULL,
                         maxSeats INT NOT NULL,
                         ante INT NOT NULL,
-                        cap int NOT NULL,
-                        zoom BOOLEAN,
+                        buyinType TEXT NOT NULL,
+                        fast INT,
+                        newToGame INT,
+                        homeGame INT
                         FOREIGN KEY(siteId) REFERENCES Sites(id) ON DELETE CASCADE)"""
 
 
@@ -572,7 +578,7 @@ class Sql:
                             boardcard5 INT)"""
 
 
-        ################################
+     ################################
         # Create TourneyTypes
         ################################
 
@@ -586,6 +592,7 @@ class Sql:
                         category varchar(9) NOT NULL,
                         limitType char(2) NOT NULL,
                         buyInChips BIGINT,
+                        stack varchar(8),
                         maxSeats INT,
                         rebuy BOOLEAN,
                         rebuyCost BIGINT,
@@ -597,16 +604,29 @@ class Sql:
                         addOnChips BIGINT,
                         knockout BOOLEAN,
                         koBounty BIGINT,
+                        step BOOLEAN,
+                        stepNo INT,
+                        chance BOOLEAN,
+                        chanceCount INT,
                         speed varchar(10),
                         shootout BOOLEAN,
                         matrix BOOLEAN,
-                        zoom BOOLEAN,
+                        multiEntry BOOLEAN,
+                        reEntry BOOLEAN,
+                        fast BOOLEAN, 
+                        newToGame BOOLEAN,
+                        homeGame BOOLEAN,
                         sng BOOLEAN,
+                        fifty50 BOOLEAN,
+                        time BOOLEAN,
+                        timeAmt INT,
                         satellite BOOLEAN,
                         doubleOrNothing BOOLEAN,
-                        guarantee BIGINT,
-                        added BIGINT,
-                        addedCurrency VARCHAR(4))
+                        cashOut BOOLEAN,
+                        onDemand BOOLEAN,
+                        flighted BOOLEAN,
+                        guarantee BOOLEAN,
+                        guaranteeAmt BIGINT)
                         ENGINE=INNODB"""
         elif db_server == 'postgresql':
             self.query['createTourneyTypesTable'] = """CREATE TABLE TourneyTypes (
@@ -618,6 +638,7 @@ class Sql:
                         category varchar(9),
                         limitType char(2),
                         buyInChips BIGINT,
+                        stack varchar(8),
                         maxSeats INT,
                         rebuy BOOLEAN,
                         rebuyCost BIGINT,
@@ -629,16 +650,29 @@ class Sql:
                         addOnChips BIGINT,
                         knockout BOOLEAN,
                         koBounty BIGINT,
+                        step BOOLEAN,
+                        stepNo INT,
+                        chance BOOLEAN,
+                        chanceCount INT,
                         speed varchar(10),
                         shootout BOOLEAN,
                         matrix BOOLEAN,
-                        zoom BOOLEAN,
+                        multiEntry BOOLEAN,
+                        reEntry BOOLEAN,
+                        fast BOOLEAN,
+                        newToGame BOOLEAN,
+                        homeGame BOOLEAN,
                         sng BOOLEAN,
+                        fifty50 BOOLEAN,
+                        time BOOLEAN,
+                        timeAmt INT,
                         satellite BOOLEAN,
                         doubleOrNothing BOOLEAN,
-                        guarantee BIGINT,
-                        added BIGINT,
-                        addedCurrency VARCHAR(4))"""
+                        cashOut BOOLEAN,
+                        onDemand BOOLEAN,
+                        flighted BOOLEAN,
+                        guarantee BOOLEAN,
+                        guaranteeAmt BIGINT)"""
         elif db_server == 'sqlite':
             self.query['createTourneyTypesTable'] = """CREATE TABLE TourneyTypes (
                         id INTEGER PRIMARY KEY,
@@ -649,6 +683,7 @@ class Sql:
                         category TEXT,
                         limitType TEXT,
                         buyInChips INT,
+                        stack VARCHAR(8),
                         maxSeats INT,
                         rebuy BOOLEAN,
                         rebuyCost INT,
@@ -660,16 +695,29 @@ class Sql:
                         addOnChips INT,
                         knockout BOOLEAN,
                         koBounty INT,
+                        step BOOLEAN,
+                        stepNo INT,
+                        chance BOOLEAN,
+                        chanceCount INT,
                         speed TEXT,
                         shootout BOOLEAN,
                         matrix BOOLEAN,
-                        zoom BOOLEAN,
+                        multiEntry BOOLEAN,
+                        reEntry BOOLEAN,
+                        fast BOOLEAN,
+                        newToGame BOOLEAN,
+                        homeGame BOOLEAN,
                         sng BOOLEAN,
+                        fifty50 BOOLEAN,
+                        time BOOLEAN,
+                        timeAmt INT,
                         satellite BOOLEAN,
                         doubleOrNothing BOOLEAN,
-                        guarantee INT,
-                        added INT,
-                        addedCurrency VARCHAR(4))"""
+                        cashOut BOOLEAN,
+                        onDemand BOOLEAN,
+                        flighted BOOLEAN,
+                        guarantee BOOLEAN,
+                        guaranteeAmt INT)"""
 
         ################################
         # Create Tourneys
@@ -685,10 +733,11 @@ class Sql:
                         prizepool BIGINT,
                         startTime DATETIME,
                         endTime DATETIME,
-                        tourneyName varchar(40),
-                        matrixIdProcessed TINYINT UNSIGNED DEFAULT 0,    /* Mask use : 1=Positionnal Winnings|2=Match1|4=Match2|...|pow(2,n)=Matchn */
+                        tourneyName TEXT,
                         totalRebuyCount INT,
                         totalAddOnCount INT,
+                        added BIGINT,
+                        addedCurrency VARCHAR(4),
                         comment TEXT,
                         commentTs DATETIME)
                         ENGINE=INNODB"""
@@ -702,10 +751,11 @@ class Sql:
                         prizepool BIGINT,
                         startTime timestamp without time zone,
                         endTime timestamp without time zone,
-                        tourneyName varchar(40),
-                        matrixIdProcessed SMALLINT DEFAULT 0,    /* Mask use : 1=Positionnal Winnings|2=Match1|4=Match2|...|pow(2,n)=Matchn */
+                        tourneyName TEXT,
                         totalRebuyCount INT,
                         totalAddOnCount INT,
+                        added BIGINT,
+                        addedCurrency VARCHAR(4),
                         comment TEXT,
                         commentTs timestamp without time zone)"""
         elif db_server == 'sqlite':
@@ -719,9 +769,10 @@ class Sql:
                         startTime REAL,
                         endTime REAL,
                         tourneyName TEXT,
-                        matrixIdProcessed INT UNSIGNED DEFAULT 0,    /* Mask use : 1=Positionnal Winnings|2=Match1|4=Match2|...|pow(2,n)=Matchn */
                         totalRebuyCount INT,
                         totalAddOnCount INT,
+                        added INT,
+                        addedCurrency VARCHAR(4),
                         comment TEXT,
                         commentTs REAL)"""
                         
@@ -1207,7 +1258,7 @@ class Sql:
                         """
 
 
-        ################################
+     ################################
         # Create TourneysPlayers
         ################################
 
@@ -1216,6 +1267,7 @@ class Sql:
                         id BIGINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
                         tourneyId INT UNSIGNED NOT NULL, FOREIGN KEY (tourneyId) REFERENCES Tourneys(id),
                         playerId INT UNSIGNED NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
+                        entryId INT,
                         rank INT,
                         winnings BIGINT,
                         winningsCurrency VARCHAR(4),
@@ -1230,6 +1282,7 @@ class Sql:
                         id BIGSERIAL, PRIMARY KEY (id),
                         tourneyId INT, FOREIGN KEY (tourneyId) REFERENCES Tourneys(id),
                         playerId INT, FOREIGN KEY (playerId) REFERENCES Players(id),
+                        entryId INT,
                         rank INT,
                         winnings BIGINT,
                         winningsCurrency VARCHAR(4),
@@ -1243,6 +1296,7 @@ class Sql:
                         id INTEGER PRIMARY KEY,
                         tourneyId INT,
                         playerId INT,
+                        entryId INT,
                         rank INT,
                         winnings INT,
                         winningsCurrency VARCHAR(4),
@@ -3523,11 +3577,11 @@ class Sql:
             self.query['addPlayersIndex'] = """CREATE UNIQUE INDEX name ON Players (name, siteId)"""
 
         if db_server == 'mysql':
-            self.query['addTPlayersIndex'] = """ALTER TABLE TourneysPlayers ADD UNIQUE INDEX _tourneyId(tourneyId, playerId)"""
+            self.query['addTPlayersIndex'] = """ALTER TABLE TourneysPlayers ADD UNIQUE INDEX _tourneyId(tourneyId, playerId, entryId)"""
         elif db_server == 'postgresql':
-            self.query['addTPlayersIndex'] = """CREATE UNIQUE INDEX tourneyId ON TourneysPlayers (tourneyId, playerId)"""
+            self.query['addTPlayersIndex'] = """CREATE UNIQUE INDEX tourneyId ON TourneysPlayers (tourneyId, playerId, entryId)"""
         elif db_server == 'sqlite':
-            self.query['addTPlayersIndex'] = """CREATE UNIQUE INDEX tourneyId ON TourneysPlayers (tourneyId, playerId)"""
+            self.query['addTPlayersIndex'] = """CREATE UNIQUE INDEX tourneyId ON TourneysPlayers (tourneyId, playerId, entryId)"""
             
         if db_server == 'mysql':
             self.query['addStartCardsIndex'] = """ALTER TABLE StartCards ADD UNIQUE INDEX cards_idx (category, rank)"""
@@ -4045,8 +4099,8 @@ class Sql:
                            cast(hp2.foldToStreet3CBDone as <signed>integer)         AS f_cb_3,
                            cast(hp2.foldToStreet4CBChance as <signed>integer)       AS f_cb_opp_4,
                            cast(hp2.foldToStreet4CBDone as <signed>integer)         AS f_cb_4,
-                           cast(hp2.totalProfit as <signed>integer)                 AS net,
-                           cast(gt.bigblind as <signed>integer)                     AS bigblind,
+                           cast(hp2.totalProfit as <signed>bigint)                  AS net,
+                           cast(gt.bigblind as <signed>bigint)                      AS bigblind,
                            cast(hp2.street1CheckCallRaiseChance as <signed>integer) AS ccr_opp_1,
                            cast(hp2.street1CheckCallDone as <signed>integer)        AS cc_1,
                            cast(hp2.street1CheckRaiseDone as <signed>integer)       AS cr_1,
@@ -4180,8 +4234,8 @@ class Sql:
                            cast(hp2.foldToStreet3CBDone as <signed>integer)         AS f_cb_3,
                            cast(hp2.foldToStreet4CBChance as <signed>integer)       AS f_cb_opp_4,
                            cast(hp2.foldToStreet4CBDone as <signed>integer)         AS f_cb_4,
-                           cast(hp2.totalProfit as <signed>integer)                 AS net,
-                           cast(gt.bigblind as <signed>integer)                     AS bigblind,
+                           cast(hp2.totalProfit as <signed>bigint)                  AS net,
+                           cast(gt.bigblind as <signed>bigint)                      AS bigblind,
                            cast(hp2.street1CheckCallRaiseChance as <signed>integer) AS ccr_opp_1,
                            cast(hp2.street1CheckCallDone as <signed>integer)        AS cc_1,
                            cast(hp2.street1CheckRaiseDone as <signed>integer)       AS cr_1,
@@ -5041,7 +5095,7 @@ class Sql:
                             ,p.name                                                                 AS playerName
                             ,COUNT(1)                                                               AS tourneyCount
                             ,SUM(CASE WHEN tp.rank > 0 THEN 0 ELSE 1 END)                           AS unknownRank
-                            ,(CAST(SUM(CASE WHEN winnings > 0 THEN 1 ELSE 0 END) AS SIGNED)/CAST(COUNT(1) AS SIGNED))*100                 AS itm
+                            ,(CAST(SUM(CASE WHEN winnings > 0 THEN 1 ELSE 0 END) AS SIGNED BIGINT)/CAST(COUNT(1) AS SIGNED BIGINT))*100                 AS itm
                             ,SUM(CASE WHEN rank = 1 THEN 1 ELSE 0 END)                              AS _1st
                             ,SUM(CASE WHEN rank = 2 THEN 1 ELSE 0 END)                              AS _2nd
                             ,SUM(CASE WHEN rank = 3 THEN 1 ELSE 0 END)                              AS _3rd
@@ -5051,8 +5105,8 @@ class Sql:
                                    ELSE (tt.buyIn+tt.fee)/100.0
                                  END)                                                               AS spent
                             ,ROUND(
-                                (CAST(SUM(tp.winnings - tt.buyin - tt.fee) AS SIGNED)/
-                                CAST(SUM(tt.buyin+tt.fee) AS SIGNED))* 100.0
+                                (CAST(SUM(tp.winnings - tt.buyin - tt.fee) AS SIGNED BIGINT)/
+                                CAST(SUM(tt.buyin+tt.fee) AS SIGNED BIGINT))* 100.0
                              ,2)                                                                    AS roi
                             ,SUM(tp.winnings-(tt.buyin+tt.fee))/100.0/(COUNT(1)-SUM(CASE WHEN tp.rank > 0 THEN 0 ELSE 1 END)) AS profitPerTourney
                       from TourneysPlayers tp
@@ -5084,7 +5138,7 @@ class Sql:
                             ,p.name                                                                 AS "playerName"
                             ,COUNT(1)                                                               AS "tourneyCount"
                             ,SUM(CASE WHEN tp.rank > 0 THEN 0 ELSE 1 END)                           AS "unknownRank"
-                            ,(CAST(SUM(CASE WHEN winnings > 0 THEN 1 ELSE 0 END) AS REAL)/CAST(COUNT(1) AS REAL))*100                 AS itm
+                            ,(CAST(SUM(CASE WHEN winnings > 0 THEN 1 ELSE 0 END) AS BIGINT)/CAST(COUNT(1) AS BIGINT))*100                 AS itm
                             ,SUM(CASE WHEN rank = 1 THEN 1 ELSE 0 END)                              AS "_1st"
                             ,SUM(CASE WHEN rank = 2 THEN 1 ELSE 0 END)                              AS "_2nd"
                             ,SUM(CASE WHEN rank = 3 THEN 1 ELSE 0 END)                              AS "_3rd"
@@ -5094,8 +5148,8 @@ class Sql:
                                    ELSE (tt.buyIn+tt.fee)/100.0
                                  END)                                                               AS "spent"
                             ,ROUND(
-                                (CAST(SUM(tp.winnings - tt.buyin - tt.fee) AS INTEGER)/
-                                CAST(SUM(tt.buyin+tt.fee) AS INTEGER))* 100.0
+                                (CAST(SUM(tp.winnings - tt.buyin - tt.fee) AS BIGINT)/
+                                CAST(SUM(tt.buyin+tt.fee) AS BIGINT))* 100.0
                              ,2)                                                                    AS "roi"
                             ,SUM(tp.winnings-(tt.buyin+tt.fee))/100.0
                              /(COUNT(1)-SUM(CASE WHEN tp.rank > 0 THEN 0 ELSE 0 END))               AS "profitPerTourney"
@@ -6479,7 +6533,232 @@ class Sql:
                 <where_clause>
                 GROUP BY <group>
 """
-        else: # postgresql or sqlite
+        elif db_server == 'postgresql':
+            self.query['rebuildCache'] = """
+                INSERT INTO <insert>
+                ,hands
+                ,played
+                ,wonWhenSeenStreet1
+                ,wonWhenSeenStreet2
+                ,wonWhenSeenStreet3
+                ,wonWhenSeenStreet4
+                ,wonAtSD
+                ,street0VPIChance
+                ,street0VPI
+                ,street0AggrChance
+                ,street0Aggr
+                ,street0CalledRaiseChance
+                ,street0CalledRaiseDone
+                ,street0_3BChance
+                ,street0_3BDone
+                ,street0_4BChance
+                ,street0_4BDone
+                ,street0_C4BChance
+                ,street0_C4BDone
+                ,street0_FoldTo3BChance
+                ,street0_FoldTo3BDone
+                ,street0_FoldTo4BChance
+                ,street0_FoldTo4BDone
+                ,street0_SqueezeChance
+                ,street0_SqueezeDone
+                ,raiseToStealChance
+                ,raiseToStealDone
+                ,success_Steal
+                ,street1Seen
+                ,street2Seen
+                ,street3Seen
+                ,street4Seen
+                ,sawShowdown
+                ,street1Aggr
+                ,street2Aggr
+                ,street3Aggr
+                ,street4Aggr
+                ,otherRaisedStreet0
+                ,otherRaisedStreet1
+                ,otherRaisedStreet2
+                ,otherRaisedStreet3
+                ,otherRaisedStreet4
+                ,foldToOtherRaisedStreet0
+                ,foldToOtherRaisedStreet1
+                ,foldToOtherRaisedStreet2
+                ,foldToOtherRaisedStreet3
+                ,foldToOtherRaisedStreet4
+                ,raiseFirstInChance
+                ,raisedFirstIn
+                ,foldBbToStealChance
+                ,foldedBbToSteal
+                ,foldSbToStealChance
+                ,foldedSbToSteal
+                ,street1CBChance
+                ,street1CBDone
+                ,street2CBChance
+                ,street2CBDone
+                ,street3CBChance
+                ,street3CBDone
+                ,street4CBChance
+                ,street4CBDone
+                ,foldToStreet1CBChance
+                ,foldToStreet1CBDone
+                ,foldToStreet2CBChance
+                ,foldToStreet2CBDone
+                ,foldToStreet3CBChance
+                ,foldToStreet3CBDone
+                ,foldToStreet4CBChance
+                ,foldToStreet4CBDone
+                ,totalProfit
+                ,rake
+                ,rakeDealt
+                ,rakeContributed
+                ,rakeWeighted
+                ,showdownWinnings
+                ,nonShowdownWinnings
+                ,allInEV
+                ,BBwon
+                ,vsHero
+                ,street1CheckCallRaiseChance
+                ,street1CheckCallDone
+                ,street1CheckRaiseDone
+                ,street2CheckCallRaiseChance
+                ,street2CheckCallDone
+                ,street2CheckRaiseDone
+                ,street3CheckCallRaiseChance
+                ,street3CheckCallDone
+                ,street3CheckRaiseDone
+                ,street4CheckCallRaiseChance
+                ,street4CheckCallDone
+                ,street4CheckRaiseDone
+                ,street0Calls
+                ,street1Calls
+                ,street2Calls
+                ,street3Calls
+                ,street4Calls
+                ,street0Bets
+                ,street1Bets
+                ,street2Bets
+                ,street3Bets
+                ,street4Bets
+                ,street0Raises
+                ,street1Raises
+                ,street2Raises
+                ,street3Raises
+                ,street4Raises
+                )
+                SELECT <select>
+                      ,count(1)
+                      ,sum(CAST(played as integer))
+                      ,sum(CAST(wonWhenSeenStreet1 as integer))
+                      ,sum(CAST(wonWhenSeenStreet2 as integer))
+                      ,sum(CAST(wonWhenSeenStreet3 as integer))
+                      ,sum(CAST(wonWhenSeenStreet4 as integer))
+                      ,sum(CAST(wonAtSD as integer))
+                      ,sum(CAST(street0VPIChance as integer))
+                      ,sum(CAST(street0VPI as integer))
+                      ,sum(CAST(street0AggrChance as integer))
+                      ,sum(CAST(street0Aggr as integer))
+                      ,sum(CAST(street0CalledRaiseChance as integer))
+                      ,sum(CAST(street0CalledRaiseDone as integer))
+                      ,sum(CAST(street0_3BChance as integer))
+                      ,sum(CAST(street0_3BDone as integer))
+                      ,sum(CAST(street0_4BChance as integer))
+                      ,sum(CAST(street0_4BDone as integer))
+                      ,sum(CAST(street0_C4BChance as integer))
+                      ,sum(CAST(street0_C4BDone as integer))
+                      ,sum(CAST(street0_FoldTo3BChance as integer))
+                      ,sum(CAST(street0_FoldTo3BDone as integer))
+                      ,sum(CAST(street0_FoldTo4BChance as integer))
+                      ,sum(CAST(street0_FoldTo4BDone as integer))
+                      ,sum(CAST(street0_SqueezeChance as integer))
+                      ,sum(CAST(street0_SqueezeDone as integer))
+                      ,sum(CAST(raiseToStealChance as integer))
+                      ,sum(CAST(raiseToStealDone as integer))
+                      ,sum(CAST(success_Steal as integer))
+                      ,sum(CAST(street1Seen as integer))
+                      ,sum(CAST(street2Seen as integer))
+                      ,sum(CAST(street3Seen as integer))
+                      ,sum(CAST(street4Seen as integer))
+                      ,sum(CAST(sawShowdown as integer))
+                      ,sum(CAST(street1Aggr as integer))
+                      ,sum(CAST(street2Aggr as integer))
+                      ,sum(CAST(street3Aggr as integer))
+                      ,sum(CAST(street4Aggr as integer))
+                      ,sum(CAST(otherRaisedStreet0 as integer))
+                      ,sum(CAST(otherRaisedStreet1 as integer))
+                      ,sum(CAST(otherRaisedStreet2 as integer))
+                      ,sum(CAST(otherRaisedStreet3 as integer))
+                      ,sum(CAST(otherRaisedStreet4 as integer))
+                      ,sum(CAST(foldToOtherRaisedStreet0 as integer))
+                      ,sum(CAST(foldToOtherRaisedStreet1 as integer))
+                      ,sum(CAST(foldToOtherRaisedStreet2 as integer))
+                      ,sum(CAST(foldToOtherRaisedStreet3 as integer))
+                      ,sum(CAST(foldToOtherRaisedStreet4 as integer))
+                      ,sum(CAST(raiseFirstInChance as integer))
+                      ,sum(CAST(raisedFirstIn as integer))
+                      ,sum(CAST(foldBbToStealChance as integer))
+                      ,sum(CAST(foldedBbToSteal as integer))
+                      ,sum(CAST(foldSbToStealChance as integer))
+                      ,sum(CAST(foldedSbToSteal as integer))
+                      ,sum(CAST(street1CBChance as integer))
+                      ,sum(CAST(street1CBDone as integer))
+                      ,sum(CAST(street2CBChance as integer))
+                      ,sum(CAST(street2CBDone as integer))
+                      ,sum(CAST(street3CBChance as integer))
+                      ,sum(CAST(street3CBDone as integer))
+                      ,sum(CAST(street4CBChance as integer))
+                      ,sum(CAST(street4CBDone as integer))
+                      ,sum(CAST(foldToStreet1CBChance as integer))
+                      ,sum(CAST(foldToStreet1CBDone as integer))
+                      ,sum(CAST(foldToStreet2CBChance as integer))
+                      ,sum(CAST(foldToStreet2CBDone as integer))
+                      ,sum(CAST(foldToStreet3CBChance as integer))
+                      ,sum(CAST(foldToStreet3CBDone as integer))
+                      ,sum(CAST(foldToStreet4CBChance as integer))
+                      ,sum(CAST(foldToStreet4CBDone as integer))
+                      ,sum(CAST(totalProfit as bigint))
+                      ,sum(CAST(rake as bigint))
+                      ,sum(CAST(rakeDealt as bigint))
+                      ,sum(CAST(rakeContributed as bigint))
+                      ,sum(CAST(rakeWeighted as bigint))
+                      ,sum(CAST(showdownWinnings as bigint))
+                      ,sum(CAST(nonShowdownWinnings as bigint))
+                      ,sum(CAST(allInEV as bigint))
+                      ,sum(CAST(BBwon as bigint))
+                      ,sum(CAST(vsHero as bigint))
+                      ,sum(CAST(street1CheckCallRaiseChance as integer))
+                      ,sum(CAST(street1CheckCallDone as integer))
+                      ,sum(CAST(street1CheckRaiseDone as integer))
+                      ,sum(CAST(street2CheckCallRaiseChance as integer))
+                      ,sum(CAST(street2CheckCallDone as integer))
+                      ,sum(CAST(street2CheckRaiseDone as integer))
+                      ,sum(CAST(street3CheckCallRaiseChance as integer))
+                      ,sum(CAST(street3CheckCallDone as integer))
+                      ,sum(CAST(street3CheckRaiseDone as integer))
+                      ,sum(CAST(street4CheckCallRaiseChance as integer))
+                      ,sum(CAST(street4CheckCallDone as integer))
+                      ,sum(CAST(street4CheckRaiseDone as integer))
+                      ,sum(CAST(street0Calls as integer))
+                      ,sum(CAST(street1Calls as integer))
+                      ,sum(CAST(street2Calls as integer))
+                      ,sum(CAST(street3Calls as integer))
+                      ,sum(CAST(street4Calls as integer))
+                      ,sum(CAST(street0Bets as integer))
+                      ,sum(CAST(street1Bets as integer))
+                      ,sum(CAST(street2Bets as integer))
+                      ,sum(CAST(street3Bets as integer))
+                      ,sum(CAST(street4Bets as integer))
+                      ,sum(CAST(hp.street0Raises as integer))
+                      ,sum(CAST(hp.street1Raises as integer))
+                      ,sum(CAST(hp.street2Raises as integer))
+                      ,sum(CAST(hp.street3Raises as integer))
+                      ,sum(CAST(hp.street4Raises as integer))
+                FROM Hands h
+                INNER JOIN HandsPlayers hp ON (h.id = hp.handId<hero_join>)
+                INNER JOIN Gametypes g ON (h.gametypeId = g.id)
+                <sessions_join_clause>
+                <tourney_join_clause>
+                <where_clause>
+                GROUP BY <group>
+"""
+        elif db_server == 'sqlite':
             self.query['rebuildCache'] = """
                 INSERT INTO <insert>
                 ,hands
@@ -8406,14 +8685,16 @@ class Sql:
                                            AND   bigBlind=%s
                                            AND   maxSeats=%s
                                            AND   ante=%s
-                                           AND   cap=%s
-                                           AND   zoom=%s
+                                           AND   buyinType=%s
+                                           AND   fast=%s
+                                           AND   newToGame=%s
+                                           AND   homeGame=%s
         """ #TODO: seems odd to have limitType variable in this query
 
         self.query['insertGameTypes'] = """INSERT INTO Gametypes
                                               (siteId, currency, type, base, category, limitType, hiLo, mix, 
-                                               smallBlind, bigBlind, smallBet, bigBet, maxSeats, ante, cap, zoom)
-                                           VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
+                                               smallBlind, bigBlind, smallBet, bigBet, maxSeats, ante, buyinType, fast, newToGame, homeGame)
+                                           VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
 
         self.query['isAlreadyInDB'] = """SELECT id FROM Hands 
                                          WHERE gametypeId=%s AND siteHandNo=%s AND heroSeat=%s
@@ -8437,7 +8718,26 @@ class Sql:
                                                               tt.speed,
                                                               tt.shootout,
                                                               tt.matrix,
-                                                              tt.zoom
+                                                              tt.fast,
+                                                              tt.stack, 
+                                                              tt.step,
+                                                              tt.stepNo,
+                                                              tt.chance,
+                                                              tt.chanceCount,
+                                                              tt.multiEntry,
+                                                              tt.reEntry,
+                                                              tt.homeGame,
+                                                              tt.newToGame,
+                                                              tt.fifty50,
+                                                              tt.time,
+                                                              tt.timeAmt,
+                                                              tt.satellite,
+                                                              tt.doubleOrNothing,
+                                                              tt.cashOut,
+                                                              tt.onDemand,
+                                                              tt.flighted,
+                                                              tt.guarantee,
+                                                              tt.guaranteeAmt
                                                     FROM TourneyTypes tt 
                                                     INNER JOIN Tourneys t ON (t.tourneyTypeId = tt.id) 
                                                     WHERE t.siteTourneyNo=%s AND tt.siteId=%s
@@ -8462,13 +8762,36 @@ class Sql:
                                             AND speed=%s
                                             AND shootout=%s
                                             AND matrix=%s
-                                            AND zoom=%s
+                                            AND fast=%s
+                                            AND stack=%s
+                                            AND step=%s
+                                            AND stepNo=%s
+                                            AND chance=%s
+                                            AND chanceCount=%s
+                                            AND multiEntry=%s
+                                            AND reEntry=%s
+                                            AND homeGame=%s
+                                            AND newToGame=%s
+                                            AND fifty50=%s
+                                            AND time=%s
+                                            AND timeAmt=%s
+                                            AND satellite=%s
+                                            AND doubleOrNothing=%s
+                                            AND cashOut=%s
+                                            AND onDemand=%s
+                                            AND flighted=%s
+                                            AND guarantee=%s
+                                            AND guaranteeAmt=%s
         """
 
         self.query['insertTourneyType'] = """INSERT INTO TourneyTypes
                                                   (siteId, currency, buyin, fee, category, limitType, maxSeats, sng, knockout, koBounty,
-                                                   rebuy, rebuyCost, addOn, addOnCost, speed, shootout, matrix, zoom)
-                                              VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                                                   rebuy, rebuyCost, addOn, addOnCost, speed, shootout, matrix, fast,
+                                                   stack, step, stepNo, chance, chanceCount, multiEntry, reEntry, homeGame, newToGame,
+                                                   fifty50, time, timeAmt, satellite, doubleOrNothing, cashOut, onDemand, flighted, guarantee, guaranteeAmt
+                                                   )
+                                              VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
+                                                      %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
         """
         
         if db_server == 'sqlite':  
@@ -8530,9 +8853,9 @@ class Sql:
         
         self.query['insertTourney'] = """INSERT INTO Tourneys
                                             (tourneyTypeId, sessionId, siteTourneyNo, entries, prizepool,
-                                             startTime, endTime, tourneyName, matrixIdProcessed,
-                                             totalRebuyCount, totalAddOnCount)
-                                        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                                             startTime, endTime, tourneyName, totalRebuyCount, totalAddOnCount,
+                                             added, addedCurrency)
+                                        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
         """
         
         self.query['updateTourney'] = """UPDATE Tourneys
@@ -8541,22 +8864,23 @@ class Sql:
                                                  startTime = %s,
                                                  endTime = %s,
                                                  tourneyName = %s,
-                                                 matrixIdProcessed = %s,
                                                  totalRebuyCount = %s,
                                                  totalAddOnCount = %s,
                                                  comment = %s,
-                                                 commentTs = %s
+                                                 commentTs = %s,
+                                                 added = %s,
+                                                 addedCurrency = %s
                                         WHERE id=%s
         """
         
         self.query['getTourneysPlayersByIds'] = """SELECT *
                                                 FROM TourneysPlayers
-                                                WHERE tourneyId=%s AND playerId+0=%s            
+                                                WHERE tourneyId=%s AND playerId=%s AND entryId=%s
         """
         
-        self.query['getTourneysPlayersByTourney'] = """SELECT playerId
+        self.query['getTourneysPlayersByTourney'] = """SELECT playerId, entryId
                                                        FROM TourneysPlayers
-                                                       WHERE tourneyId=%s            
+                                                       WHERE tourneyId=%s
         """
 
         self.query['updateTourneysPlayer'] = """UPDATE TourneysPlayers
@@ -8572,6 +8896,7 @@ class Sql:
         self.query['insertTourneysPlayer'] = """insert into TourneysPlayers(
                                                     tourneyId,
                                                     playerId,
+                                                    entryId,
                                                     rank,
                                                     winnings,
                                                     winningsCurrency,
@@ -8579,8 +8904,8 @@ class Sql:
                                                     addOnCount,
                                                     koCount
                                                 )
-                                                values (%s, %s, %s, %s, %s, %s,
-                                                        %s, %s)
+                                                values (%s, %s, %s, %s, %s, 
+                                                        %s, %s, %s, %s)
         """
 
         self.query['selectHandsPlayersWithWrongTTypeId'] = """SELECT id

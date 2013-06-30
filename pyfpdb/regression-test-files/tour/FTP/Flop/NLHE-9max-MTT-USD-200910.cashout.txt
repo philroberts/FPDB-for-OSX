@@ -1,0 +1,54 @@
+Full Tilt Poker Game #15353130698: $2,500 Guarantee (Cashout) (112570793), Table 65 - 15/30 - No Limit Hold'em - 10:45:05 ET - 2009/10/15
+Seat 1: Player0 (3,545)
+Seat 2: Player1 (4,475)
+Seat 3: Player2 (2,685)
+Seat 4: Player3 (2,655)
+Seat 5: Player4 (3,460)
+Seat 6: Player5 (2,955)
+Seat 7: Hero (3,720)
+Seat 9: Player6 (3,315)
+Hero posts the small blind of 15
+Player6 posts the big blind of 30
+The button is in seat #6
+*** HOLE CARDS ***
+Dealt to Hero [Kh Kd]
+Player0 folds
+Player1 has 15 seconds left to act
+Player1 folds
+Player2 has 15 seconds left to act
+Player2 folds
+Player3 folds
+Player4 folds
+Player5 raises to 90
+juarnes sits down
+juarnes adds 2,660
+Hero raises to 300
+Player6 folds
+Player5 calls 210
+*** FLOP *** [Td 4c 2s]
+Hero bets 630
+Player5 calls 630
+*** TURN *** [Td 4c 2s] [6d]
+Hero bets 2,790, and is all in
+Player5 has 15 seconds left to act
+Player5 has requested TIME
+Player5: im so sorry
+Player5 calls 2,025, and is all in
+Hero shows [Kh Kd]
+Player5 shows [3c 5s]
+Uncalled bet of 765 returned to Hero
+*** RIVER *** [Td 4c 2s 6d] [6h]
+Hero shows two pair, Kings and Sixes
+Player5 shows a straight, Six high
+Player5 wins the pot (5,940) with a straight, Six high
+*** SUMMARY ***
+Total pot 5,940 | Rake 0
+Board: [Td 4c 2s 6d 6h]
+Seat 1: Player0 didn't bet (folded)
+Seat 2: Player1 didn't bet (folded)
+Seat 3: Player2 didn't bet (folded)
+Seat 4: Player3 didn't bet (folded)
+Seat 5: Player4 didn't bet (folded)
+Seat 6: Player5 (button) showed [3c 5s] and won (5,940) with a straight, Six high
+Seat 7: Hero (small blind) showed [Kh Kd] and lost with two pair, Kings and Sixes
+Seat 9: Player6 (big blind) folded before the Flop

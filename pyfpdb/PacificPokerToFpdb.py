@@ -109,7 +109,7 @@ class PacificPoker(HandHistoryConverter):
 
     re_HandInfo     = re.compile("""
           ^(
-            (Table\s(?P<TABLE>[-\ \#a-zA-Z\d]+)\s)
+            (Table\s(?P<TABLE>[-\ \#a-zA-Z\d]+?)\s)
             |
             (Tournament\s\#(?P<TOURNO>\d+)\s
               (
@@ -124,6 +124,7 @@ class PacificPoker(HandHistoryConverter):
               \s-\sTable\s\#(?P<TABLEID>\d+)\s
             )
            )
+          ((?P<MAX>\d+)\sMax\s)?
           (\(Real\sMoney\))?
           (?P<PLAY>\(Practice\sPlay\))?
           \\n
@@ -294,6 +295,8 @@ class PacificPoker(HandHistoryConverter):
                 hand.tablename = info[key]
             if key == 'BUTTON':
                 hand.buttonpos = info[key]
+            if key == 'MAX' and info['MAX'] != None:
+                hand.maxseats = int(info[key])
 
             if key == 'PLAY' and info['PLAY'] is not None:
                 #hand.currency = 'play' # overrides previously set value

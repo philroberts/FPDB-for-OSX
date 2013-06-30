@@ -93,7 +93,7 @@ class OnGame(HandHistoryConverter):
     re_HandInfo = re.compile(u"""
             \*{5}\sHistory\sfor\shand\s(?P<HID>[-A-Z\d]+)(?P<TOUR>\s\(TOURNAMENT:(\s\"(?P<NAME>.+?)\",)?\s(?P<TID>[-A-Z\d]+)?(?P<BUY>,\sbuy-in:\s(?P<BUYINCUR>[%(LS)s]?)(?P<BUYIN>[%(NUM)s]+))?\))?\s\*{5}\s?
             Start\shand:\s(?P<DATETIME>.+?)\s?
-            Table:\s(\[SPEED\]\s)?(?P<TABLE>.+?)\s\[\d+\]\s\( 
+            Table:\s(\[SPEED\]\s)?(?P<TABLE>.+?)\s\[(?P<TABLENO>\d+)\]\s\( 
             (
             (?P<LIMIT>NO_LIMIT|Limit|LIMIT|Pot\sLimit|POT_LIMIT)\s
             (?P<GAME>TEXAS_HOLDEM|OMAHA_HI|OMAHA_HI_LO|SEVEN_CARD_STUD|SEVEN_CARD_STUD_HI_LO|RAZZ|FIVE_CARD_DRAW)\s
@@ -154,7 +154,7 @@ class OnGame(HandHistoryConverter):
             #Side pot 1: $3.26 won by maac_5 ($3.10)
             #Main pot: $2.87 won by maac_5 ($1.37), sagi34 ($1.36)
             self.re_Pot = re.compile('(Main|Side)\spot(\s\d+)?:\s.*won\sby(?P<POT>.*$)', re.MULTILINE)
-            self.re_CollectPot = re.compile('\s(?P<PNAME>.+?)\s\((%(CUR)s)?(?P<POT>[%(NUM)s]+)\)' % self.substitutions)
+            self.re_CollectPot = re.compile('\s(?P<PNAME>.+?)\s\((%(CUR)s)?(?P<POT>[%(NUM)s]+)(\s(High|Low))?\)' % self.substitutions)
             #Seat 5: mleo17 ($3.40), net: +$2.57, [Jd, Qd] (TWO_PAIR QUEEN, JACK)
             self.re_ShownCards = re.compile("^Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(.*\), net:.* \[(?P<CARDS>.*)\].*" % self.substitutions, re.MULTILINE)
             self.re_sitsOut    = re.compile('%(PLYR)s sits out' % self.substitutions, re.MULTILINE)
@@ -221,9 +221,9 @@ class OnGame(HandHistoryConverter):
         if 'BB' in mg:
             info['bb'] = self.clearMoneyString(mg['BB'])
         if 'Strobe' in mg['TABLE']:
-            info['zoom'] = True
+            info['fast'] = True
         else:
-            info['zoom'] = False
+            info['fast'] = False
 
         if info['limitType'] == 'fl' and info['bb'] is not None:
             if info['type'] == 'ring':
@@ -302,12 +302,17 @@ class OnGame(HandHistoryConverter):
                         hand.buyinCurrency = 'FREE'
                 else:
                     hand.buyinCurrency = 'NA'
-            if key == 'TABLE':
+            if key == 'TABLE' and not info['TOUR']:
+                hand.tablename = info[key]
+            if key == 'TABLENO' and info['TOUR']:
                 hand.tablename = info[key]
             if key == 'MAX':
                 hand.maxseats = int(info[key])
             if key == 'BUTTON':
                 hand.buttonpos = info[key]
+        
+        if hand.gametype['fast']:
+            hand.isFast = True
 
     def readPlayerStacks(self, hand):
         #log.debug("readplayerstacks: re is '%s'" % self.re_PlayerInfo)
@@ -478,7 +483,7 @@ class OnGame(HandHistoryConverter):
         "Returns string to search in windows titles"
         regex = table_name
         if type=="tour":
-            regex = "%s %s" %(tournament, table_number)
+            regex = "%s" % table_number
         log.info("OnGame.getTableTitleRe: table_name='%s' tournament='%s' table_number='%s'" % (table_name, tournament, table_number))
         log.info("OnGame.getTableTitleRe: returns: '%s'" % (regex))
         return regex

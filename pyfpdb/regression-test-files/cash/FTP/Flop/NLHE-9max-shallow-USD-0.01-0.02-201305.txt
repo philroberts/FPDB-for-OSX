@@ -1,0 +1,36 @@
+Full Tilt Poker Game #32709486011: Table Roll (shallow) - NL Hold'em - $0.01/$0.02 - 18:21:24 UTC - 2013/05/24 [14:21:24 ET - 2013/05/24]
+Seat 1: Player0 ($0.40)
+Seat 2: Player1 ($0.04), is sitting out
+Seat 3: Player2 ($0.98)
+Seat 4: Hero ($0.40)
+Seat 5: Player3 ($1.26)
+Seat 7: Player4 ($0.30)
+Seat 8: Player5 ($0.40)
+Player2 posts the small blind of $0.01
+Hero posts the big blind of $0.02
+Player5 posts $0.02
+The button is in seat #1
+*** HOLE CARDS ***
+Dealt to Hero [Ks Ah]
+Player3 folds
+Player4 folds
+Player5 checks
+Player0 folds
+Player2 calls $0.01
+Hero raises to $0.40, and is all in
+Player5 folds
+Player3 stands up
+Player2 has 15 seconds left to act
+Player2 folds
+Uncalled bet of $0.38 returned to Hero
+Hero mucks
+Hero wins the pot ($0.06)
+*** SUMMARY ***
+Total pot $0.06 | Rake $0
+Seat 1: Player0 (button) didn't bet (folded)
+Seat 2: Player1 is sitting out
+Seat 3: Player2 (small blind) folded before the Flop
+Seat 4: Hero (big blind) collected ($0.06), mucked
+Seat 5: Player3 didn't bet (folded)
+Seat 7: Player4 didn't bet (folded)
+Seat 8: Player5 folded before the Flop

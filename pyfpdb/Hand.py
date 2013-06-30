@@ -101,10 +101,29 @@ class Hand(object):
         self.koBounty = 0
         self.isMatrix = False
         self.isShootout = False
-        self.isZoom = False
+        self.isFast = False
+        self.stack = "Regular"
+        self.isStep = False
+        self.stepNo = 0
+        self.isChance = False
+        self.chanceCount = 0
+        self.isMultiEntry = False
+        self.isReEntry = False
+        self.isHomeGame = False
+        self.isNewToGame = False
+        self.isFifty50 = False
+        self.isTime = False
+        self.timeAmt = False
+        self.isSatellite = False
+        self.isDoubleOrNothing = False
+        self.isCashOut = False
+        self.isOnDemand = False
+        self.isFlighted = False
+        self.isGuarantee = False
+        self.guaranteeAmt = 0
         self.added = None
         self.addedCurrency = None
-        self.tourneyComment = None
+        self.entryId = 1
 
         self.seating = []
         self.players = []
@@ -195,7 +214,6 @@ class Hand(object):
                  (_("KO BOUNTY"), self.koBounty),
                  (_("IS MATRIX"), self.isMatrix),
                  (_("IS SHOOTOUT"), self.isShootout),
-                 (_("TOURNEY COMMENT"), self.tourneyComment),
         )
 
         structs = ( (_("PLAYERS"), self.players),
@@ -262,7 +280,8 @@ class Hand(object):
                             int(Decimal(self.gametype['sb'])*100), int(Decimal(self.gametype['bb'])*100),
                             int(Decimal(self.gametype['bb'])*100), int(Decimal(self.gametype['bb'])*200),
                             int(self.gametype['maxSeats']), int(self.gametype['ante']*100),
-                            int(Decimal(self.gametype['cap'])*100), self.gametype['zoom'])
+                            self.gametype['buyinType'], self.gametype['fast'], 
+                            self.gametype['newToGame'], self.gametype['homeGame'])
         # Note: the above data is calculated in db.getGameTypeId
         #       Only being calculated above so we can grab the testdata
         if self.tourNo!=None:
@@ -1141,7 +1160,7 @@ class HoldemOmahaHand(Hand):
     def join_holecards(self, player, asList=False):
         """With asList = True it returns the set cards for a player including down cards if they aren't know"""
         hcs = [u'0x', u'0x', u'0x', u'0x', u'0x']
-
+        holeNo = Card.games[self.gametype['category']][5][0][1]
         for street in self.holeStreets:
             if player in self.holecards[street].keys():
                 if len(self.holecards[street][player][1])==1: continue
@@ -1149,13 +1168,11 @@ class HoldemOmahaHand(Hand):
                     hcs[i] = self.holecards[street][player][1][i]
                     hcs[i] = upper(hcs[i][0:1])+hcs[i][1:2]
                 try:
-                    idx = 2
                     for i in (2,3,4):
                         hcs[i] = self.holecards[street][player][1][i]
                         hcs[i] = upper(hcs[i][0:1])+hcs[i][1:2]
-                        idx += 1
                 except IndexError:
-                    hcs = hcs[0:idx]
+                    hcs = hcs[0:holeNo]
                     pass
 
         if asList == False:

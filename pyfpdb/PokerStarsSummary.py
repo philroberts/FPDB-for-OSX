@@ -180,6 +180,9 @@ class PokerStarsSummary(TourneySummary):
         elif not mg['CURRENCY']:      self.buyinCurrency="play"
         if self.buyin == 0:           self.buyinCurrency="FREE"
         self.currency = self.buyinCurrency
+        
+        if 'Zoom' in self.in_path:
+            self.isFast = True
 
         m = self.re_Player.finditer(self.summaryText)
         for a in m:

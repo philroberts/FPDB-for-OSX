@@ -235,8 +235,10 @@ HandHistoryConverter: '%(sitename)s'
             # See if gametype is supported.
             if 'mix' not in gametype: gametype['mix'] = 'none'
             if 'ante' not in gametype: gametype['ante'] = 0
-            if 'zoom' not in gametype: gametype['zoom'] = False
-            if 'cap' not in gametype: gametype['cap'] = 0
+            if 'buyinType' not in gametype: gametype['buyinType'] = 'regular'
+            if 'fast' not in gametype: gametype['fast'] = False
+            if 'newToGame' not in gametype: gametype['newToGame'] = False
+            if 'homeGame' not in gametype: gametype['homeGame'] = False
             type = gametype['type']
             base = gametype['base']
             limit = gametype['limitType']
@@ -583,7 +585,7 @@ or None if we fail to get the info """
             givenTZ = timezone('America/Bogota')
         elif givenTimezone in ('EET', 'EEST'): # Eastern European Time
             givenTZ = timezone('Europe/Bucharest')
-        elif givenTimezone in ('MSK', 'MESZ', 'MSKS'): # Moscow Standard Time
+        elif givenTimezone in ('MSK', 'MESZ', 'MSKS', 'GST'): # Moscow Standard Time
             givenTZ = timezone('Europe/Moscow')
         elif givenTimezone in ('YEKT','YEKST'):
             givenTZ = timezone('Asia/Yekaterinburg')

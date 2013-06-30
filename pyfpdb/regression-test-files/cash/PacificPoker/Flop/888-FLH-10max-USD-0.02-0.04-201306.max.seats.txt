@@ -1,0 +1,40 @@
+#Game No : 409513120
+***** Cassava Hand History for Game 409513120 *****
+$0.01/$0.02 Blinds Fix Limit Holdem - *** 03 06 2013 20:18:54
+Table Manzanillo 10 Max (Real Money)
+Seat 3 is the button
+Total number of players : 10
+Seat 1: Player0 ( $0.67 )
+Seat 2: Player1 ( $1.69 )
+Seat 3: Player2 ( $2.05 )
+Seat 4: Player3 ( $0.90 )
+Seat 5: Hero ( $1 )
+Seat 6: Player5 ( $3.11 )
+Seat 7: Player6 ( $0.70 )
+Seat 8: Player7 ( $0.78 )
+Seat 9: Player8 ( $0.61 )
+Seat 10: Player9 ( $0.48 )
+Player3 posts small blind [$0.01]
+Hero posts big blind [$0.02]
+Player8 posts big blind [$0.02]
+** Dealing down cards **
+Dealt to Hero [ Jc, 8d ]
+Player5 folds
+Player6 raises [$0.04]
+Player7 folds
+Player8 folds
+Player9 folds
+Player0 folds
+Player1 folds
+Player2 folds
+Player3 calls [$0.03]
+Hero calls [$0.02]
+** Dealing flop ** [ 5c, 5s, 3c ]
+Player3 checks
+Hero checks
+Player6 bets [$0.02]
+Player3 folds
+Hero folds
+** Summary **
+Player6 did not show his hand
+Player6 collected [ $0.14 ]

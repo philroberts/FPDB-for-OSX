@@ -119,7 +119,7 @@ class PokerStars(HandHistoryConverter):
           (?P<GAME>Hold\'em|HOLD\'EM|Razz|RAZZ|7\sCard\sStud|7\sCARD\sSTUD|7\sCard\sStud\sHi/Lo|7\sCARD\sSTUD\sHI/LO|Omaha|OMAHA|Omaha\sHi/Lo|OMAHA\sHI/LO|Badugi|Triple\sDraw\s2\-7\sLowball|Single\sDraw\s2\-7\sLowball|5\sCard\sDraw|5\sCard\sOmaha(\sHi/Lo)?|Courchevel(\sHi/Lo)?)\s
           (?P<LIMIT>No\sLimit|NO\sLIMIT|Limit|LIMIT|Pot\sLimit|POT\sLIMIT|Pot\sLimit\sPre\-Flop,\sNo\sLimit\sPost\-Flop)\)?,?\s
           (-\s)?
-          (Match.*)?                  #TODO: waiting for reply from user as to what this means
+          (?P<SHOOTOUT>Match.*)?
           (Level\s(?P<LEVEL>[IVXLC]+)\s)?
           \(?                            # open paren of the stakes
           (?P<CURRENCY>%(LS)s|)?
@@ -231,11 +231,17 @@ class PokerStars(HandHistoryConverter):
         if 'MIXED' in mg:
             if mg['MIXED'] is not None: info['mix'] = self.mixes[mg['MIXED']]
         if 'Zoom' in mg['TITLE']:
-            info['zoom'] = True
+            info['fast'] = True
         else:
-            info['zoom'] = False
+            info['fast'] = False
+        if 'Home' in mg['TITLE']:
+            info['homeGame'] = True
+        else:
+            info['homeGame'] = False
         if 'CAP' in mg and mg['CAP'] is not None:
-            info['cap'] = mg['CAPAMT']
+            info['buyinType'] = 'cap'
+        else:
+            info['buyinType'] = 'regular'
                 
         if 'TOURNO' in mg and mg['TOURNO'] is None:
             info['type'] = 'ring'
@@ -338,12 +344,17 @@ class PokerStars(HandHistoryConverter):
                             hand.buyin = int(Decimal(info['BIAMT']))
                             hand.fee = 0
                     if 'Zoom' in info['TITLE']:
-                        hand.isZoom = True
+                        hand.isFast = True
                     else:
-                        hand.isZoom = False
+                        hand.isFast = False
+                    if 'Home' in info['TITLE']:
+                        hand.isHomeGame = True
+                    else:
+                        hand.isHomeGame = False
             if key == 'LEVEL':
-                hand.level = info[key]
-
+                hand.level = info[key]       
+            if key == 'SHOOTOUT' and info[key] != None:
+                hand.isShootout = True
             if key == 'TABLE':
                 tablesplit = re.split(" ", info[key])
                 if hand.tourNo != None and len(tablesplit)>1:
@@ -354,6 +365,9 @@ class PokerStars(HandHistoryConverter):
                 hand.buttonpos = info[key]
             if key == 'MAX' and info[key] != None:
                 hand.maxseats = int(info[key])
+                
+        if 'Zoom' in self.in_path:
+            (hand.gametype['fast'], hand.isFast) = (True, True)
                 
         if self.re_Cancelled.search(hand.handText):
             raise FpdbHandPartial(_("Hand '%s' was cancelled.") % hand.handid)

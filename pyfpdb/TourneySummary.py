@@ -29,7 +29,7 @@ import os
 import os.path
 from decimal_wrapper import Decimal
 import operator
-import time,datetime
+import time, datetime
 from copy import deepcopy
 from Exceptions import *
 import codecs
@@ -56,76 +56,87 @@ class TourneySummary(object):
                'Cake':17, 'Entraction':18, 'BetOnline':19, 'Microgaming':20, 'Bovada':21, 'Enet':22}
 
 
-    def __init__(self, db, config, siteName, summaryText, in_path = '-', builtFrom = "HHC"):
-        self.db                 = db
-        self.config             = config
-        self.siteName           = siteName
-        self.siteId             = None
+    def __init__(self, db, config, siteName, summaryText, in_path='-', builtFrom="HHC"):
+        self.db = db
+        self.config = config
+        self.siteName = siteName
+        self.siteId = None
         if siteName in self.SITEIDS:
             self.siteId = self.SITEIDS[siteName]
-        self.in_path            = in_path
+        self.in_path = in_path
         
-        self.summaryText        = summaryText
-        self.tourneyName        = None
-        self.tourneyTypeId      = None
-        self.tourneyId          = None
-        self.startTime          = None
-        self.endTime            = None
-        self.tourNo             = None
-        self.currency           = None
-        self.buyinCurrency      = None
-        self.buyin              = 0
-        self.fee                = 0
-        self.hero               = None
-        self.maxseats           = 0
-        self.entries            = 0
-        self.speed              = "Normal"
-        self.prizepool          = 0  # Make it a dict in order to deal (eventually later) with non-money winnings : {'MONEY' : amount, 'OTHER' : Value ??}
-        self.buyInChips         = 0
-        self.mixed              = None
-        self.isRebuy            = False
-        self.isAddOn            = False
-        self.isKO               = False
-        self.isMatrix           = False
-        self.isShootout         = False
-        self.isZoom             = False
-        self.matrixMatchId      = None  # For Matrix tourneys : 1-4 => match tables (traditionnal), 0 => Positional winnings info
-        self.matrixIdProcessed  = None
-        self.subTourneyBuyin    = None
-        self.subTourneyFee      = None
-        self.rebuyChips         = None
-        self.addOnChips         = None
-        self.rebuyCost          = 0
-        self.addOnCost          = 0
-        self.totalRebuyCount    = None
-        self.totalAddOnCount    = None
-        self.koBounty           = 0
-        self.tourneyComment     = None
-        self.players            = []
-        self.isSng              = False
-        self.isSatellite        = False
-        self.isDoubleOrNothing  = False
-        self.guarantee          = None
-        self.added              = None
-        self.addedCurrency      = None
-        self.gametype           = {'category':None, 'limitType':None, 'mix':'none'}
-        self.comment            = None
-        self.commentTs          = None
+        self.summaryText = summaryText
+        self.tourneyName = None
+        self.tourneyTypeId = None
+        self.tourneyId = None
+        self.startTime = None
+        self.endTime = None
+        self.tourNo = None
+        self.currency = None
+        self.buyinCurrency = None
+        self.buyin = 0
+        self.fee = 0
+        self.hero = None
+        self.maxseats = 0
+        self.entries = 0
+        self.speed = "Normal"
+        self.prizepool = 0  # Make it a dict in order to deal (eventually later) with non-money winnings : {'MONEY' : amount, 'OTHER' : Value ??}
+        self.buyInChips = 0
+        self.mixed = None
+        self.isRebuy = False
+        self.isAddOn = False
+        self.isKO = False
+        self.isMatrix = False
+        self.isShootout = False
+        self.isFast = False
+        self.rebuyChips = None
+        self.addOnChips = None
+        self.rebuyCost = 0
+        self.addOnCost = 0
+        self.totalRebuyCount = None
+        self.totalAddOnCount = None
+        self.koBounty = 0
+        self.isSng = False
+        self.stack = "Regular"
+        self.isStep = False
+        self.stepNo = 0
+        self.isChance = False
+        self.chanceCount = 0
+        self.isMultiEntry = False
+        self.isReEntry = False
+        self.isHomeGame = False
+        self.isNewToGame = False
+        self.isFifty50 = False
+        self.isTime = False
+        self.timeAmt = False
+        self.isSatellite = False
+        self.isDoubleOrNothing = False
+        self.isCashOut = False
+        self.isOnDemand = False
+        self.isFlighted = False
+        self.isGuarantee = False
+        self.guaranteeAmt = 0
+        self.added = None
+        self.addedCurrency = None
+        self.gametype = {'category':None, 'limitType':None, 'mix':'none'}
+        self.players = {}
+        self.comment = None
+        self.commentTs = None
 
         # Collections indexed by player names
-        self.playerIds          = {}
+        self.playerIds = {}
         self.tourneysPlayersIds = {}
-        self.ranks              = {}
-        self.winnings           = {}
-        self.winningsCurrency   = {}
-        self.rebuyCounts        = {}
-        self.addOnCounts        = {}
-        self.koCounts           = {}
+        self.ranks = {}
+        self.winnings = {}
+        self.winningsCurrency = {}
+        self.rebuyCounts = {}
+        self.addOnCounts = {}
+        self.koCounts = {}
 
         # currency symbol for this summary
         self.sym = None
         
-        if builtFrom=="IMAP":
+        if builtFrom == "IMAP":
             # Fix line endings?
             pass
         if self.db == None:
@@ -136,7 +147,7 @@ class TourneySummary(object):
 
     def __str__(self):
         #TODO : Update
-        vars = ( (_("SITE"), self.siteName),
+        vars = ((_("SITE"), self.siteName),
                  (_("START TIME"), self.startTime),
                  (_("END TIME"), self.endTime),
                  (_("TOURNEY NAME"), self.tourneyName),
@@ -157,11 +168,7 @@ class TourneySummary(object):
                  (_("ADDON"), self.isAddOn),
                  (_("KO"), self.isKO),
                  (_("MATRIX"), self.isMatrix),
-                 (_("MATRIX ID PROCESSED"), self.matrixIdProcessed),
                  (_("SHOOTOUT"), self.isShootout),
-                 (_("MATRIX MATCH ID"), self.matrixMatchId),
-                 (_("SUB TOURNEY BUY IN"), self.subTourneyBuyin),
-                 (_("SUB TOURNEY FEE"), self.subTourneyFee),
                  (_("REBUY CHIPS"), self.rebuyChips),
                  (_("ADDON CHIPS"), self.addOnChips),
                  (_("REBUY COST"), self.rebuyCost),
@@ -169,7 +176,6 @@ class TourneySummary(object):
                  (_("TOTAL REBUYS"), self.totalRebuyCount),
                  (_("TOTAL ADDONS"), self.totalAddOnCount),
                  (_("KO BOUNTY"), self.koBounty),
-                 (_("TOURNEY COMMENT"), self.tourneyComment),
                  (_("SNG"), self.isSng),
                  (_("SATELLITE"), self.isSatellite),
                  (_("DOUBLE OR NOTHING"), self.isDoubleOrNothing),
@@ -180,10 +186,10 @@ class TourneySummary(object):
                  (_("COMMENT TIMESTAMP"), self.commentTs)
         )
  
-        structs = ( (_("PLAYER IDS"), self.playerIds),
+        structs = ((_("PLAYER IDS"), self.playerIds),
                     (_("PLAYERS"), self.players),
                     (_("TOURNEYS PLAYERS IDS"), self.tourneysPlayersIds),
-                    (_("RANKS"), self.ranks),                    
+                    (_("RANKS"), self.ranks),
                     (_("WINNINGS"), self.winnings),
                     (_("WINNINGS CURRENCY"), self.winningsCurrency),
                     (_("COUNT REBUYS"), self.rebuyCounts),
@@ -214,7 +220,7 @@ class TourneySummary(object):
         money = money.strip(u'€&euro;\u20ac$ ')
         return HandHistoryConverter.clearMoneyString(money)
     
-    def insertOrUpdate(self, printtest = False):
+    def insertOrUpdate(self, printtest=False):
         # First : check all needed info is filled in the object, especially for the initial select
 
         # Notes on DB Insert
@@ -226,7 +232,7 @@ class TourneySummary(object):
         # Note: If the TourneyNo could be a unique id .... this would really be a relief to deal with matrix matches ==> Ask on the IRC / Ask Fulltilt ??
         self.db.set_printdata(printtest)
         
-        self.playerIds = self.db.getSqlPlayerIDs(self.players, self.siteId, None)
+        self.playerIds = self.db.getSqlPlayerIDs(self.players.keys(), self.siteId, None)
         #for player in self.players:
         #    id=self.db.get_player_id(self.config, self.siteName, player)
         #    if not id:
@@ -234,7 +240,7 @@ class TourneySummary(object):
         #    self.playerIds.update({player:id})
         
         #print "TS.insert players",self.players,"playerIds",self.playerIds
-        self.dbid_pids=self.playerIds #TODO:rename this field in Hand so this silly renaming can be removed
+        self.dbid_pids = self.playerIds #TODO:rename this field in Hand so this silly renaming can be removed
         
         #print "TS.self before starting insert",self
         self.tourneyTypeId = self.db.createOrUpdateTourneyType(self)
@@ -255,7 +261,7 @@ class TourneySummary(object):
         return (stored, duplicates, partial, errors, ttime)
 
 
-    def addPlayer(self, rank, name, winnings, winningsCurrency, rebuyCount, addOnCount, koCount):
+    def addPlayer(self, rank, name, winnings, winningsCurrency, rebuyCount, addOnCount, koCount, entryId=1):
         """\
 Adds a player to the tourney, and initialises data structures indexed by player.
 rank        (int) indicating the finishing rank (can be -1 if unknown)
@@ -263,56 +269,48 @@ name        (string) player name
 winnings    (int) the money the player ended the tourney with (can be 0, or -1 if unknown)
 """
         log.debug("addPlayer: rank:%s - name : '%s' - Winnings (%s)" % (rank, name, winnings))
-        if name in self.players:
+        if self.players.get(name) != None:
+            entries = self.players[name][-1]
+            self.players[name].append(entries + 1)
             if rank:
-                if rank > self.ranks[name]:
-                    self.ranks[name] = rank
-                self.winnings[name] += winnings
-                self.winningsCurrency.update( { name : winningsCurrency } )
-            self.rebuyCounts[name] += 1
+                self.ranks[name].append(rank)
+                self.winnings[name].append(winnings)
+                self.winningsCurrency[name].append(winningsCurrency)
+            else:
+                self.ranks[name].append(None)
+                self.winnings[name].append(0)
+                self.winningsCurrency[name].append(None)
+            self.rebuyCounts[name].append(0)
+            self.addOnCounts[name].append(0)
+            self.koCounts[name].append(0)
         else:
-            self.players.append(name)
+            self.players[name] = [entryId]
             if rank:
-                self.ranks.update( { name : rank } )
-                self.winnings.update( { name : winnings } )
-                self.winningsCurrency.update( { name : winningsCurrency } )
+                self.ranks.update({ name : [rank] })
+                self.winnings.update({ name : [winnings] })
+                self.winningsCurrency.update({ name : [winningsCurrency] })
             else:
-                self.ranks.update( { name : None } )
-                self.winnings.update( { name : 0 } )
-                self.winningsCurrency.update( { name : None } )
+                self.ranks.update({ name : [None] })
+                self.winnings.update({ name : [0] })
+                self.winningsCurrency.update({ name : [None] })
             if rebuyCount:
-                self.rebuyCounts.update( {name: rebuyCount } )
+                self.rebuyCounts.update({name: [rebuyCount] })
             else:
-                self.rebuyCounts.update( {name: 0 } )
+                self.rebuyCounts.update({name: [0] })
             
             if addOnCount:
-                self.addOnCounts.update( {name: addOnCount } )
+                self.addOnCounts.update({name: [addOnCount] })
             else:
-                self.addOnCounts.update( {name: 0 } )
+                self.addOnCounts.update({name: [0] })
             
             if koCount:
-                self.koCounts.update( {name : koCount } )
+                self.koCounts.update({name : [koCount] })
             else:
-                self.koCounts.update( {name: 0 } )
+                self.koCounts.update({name: [0] })
     #end def addPlayer
 
-    def incrementPlayerWinnings(self, name, additionnalWinnings):
-        log.debug("incrementPlayerWinnings: name : '%s' - Add Winnings (%s)" % (name, additionnalWinnings))
-        oldWins = 0
-        if self.winnings.has_key(name):
-            oldWins = self.winnings[name]
-        else:
-            self.players.append([-1, name, 0])
-            
-        self.winnings[name] = oldWins + Decimal(additionnalWinnings)
-
-    def checkPlayerExists(self,player):
-        if player not in [p[1] for p in self.players]:
-            log.error(_("TourneySummary: Tried to add info for unknown player: '%s'") % player)
-            raise FpdbParseError
-
     def writeSummary(self, fh=sys.__stdout__):
-        print >>fh, "Override me"
+        print >> fh, "Override me"
 
     def printSummary(self):
         self.writeSummary(sys.stdout)
@@ -329,9 +327,9 @@ winnings    (int) the money the player ended the tourney with (can be 0, or -1 i
                 in_fh.close()
                 break
             except UnicodeDecodeError, e:
-                log.warning("TS.readFile: '%s' : '%s'" % (filename,e))
+                log.warning("TS.readFile: '%s' : '%s'" % (filename, e))
             except UnicodeError, e:
-                log.warning("TS.readFile: '%s' : '%s'" % (filename,e))
+                log.warning("TS.readFile: '%s' : '%s'" % (filename, e))
 
         return whole_file
 

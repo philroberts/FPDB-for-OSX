@@ -56,7 +56,6 @@ class Importer:
         self.filelist   = {}
         self.dirlist    = {}
         self.siteIds    = {}
-        self.addToDirList = {}
         self.removeFromFileList = {} # to remove deleted files
         self.monitor    = False
         self.updatedsize = {}
@@ -216,7 +215,7 @@ class Importer:
     #Only one import directory per site supported.
     #dirlist is a hash of lists:
     #dirlist{ 'PokerStars' => ["/path/to/import/", "filtername"] }
-    def addImportDirectory(self,dir,monitor=False, site="default", filter="passthrough"):
+    def addImportDirectory(self,dir,monitor=False, site=("default","hh"), filter="passthrough"):
         #gets called by GuiAutoImport.
         #This should really be using os.walk
         #http://docs.python.org/library/os.html
@@ -359,8 +358,8 @@ class Importer:
     #Run import on updated files, then store latest update time. Called from GuiAutoImport.py
     def runUpdated(self):
         """Check for new files in monitored directories"""
-        for site in self.dirlist:
-            self.addImportDirectory(self.dirlist[site][0], False, site, self.dirlist[site][1])
+        for (site,type) in self.dirlist:
+            self.addImportDirectory(self.dirlist[(site,type)][0], False, (site,type), self.dirlist[(site,type)][1])
 
         for f in self.filelist:
             if os.path.exists(f):
@@ -392,13 +391,10 @@ class Importer:
             else:
                 self.removeFromFileList[f] = True
 
-        self.addToDirList = filter(lambda x: self.addImportDirectory(x, True, self.addToDirList[x][0], self.addToDirList[x][1]), self.addToDirList)
-
         for file in self.removeFromFileList:
             if file in self.filelist:
                 del self.filelist[file]
 
-        self.addToDirList = {}
         self.removeFromFileList = {}
         self.database.rollback()
         self.runPostImport()
@@ -406,9 +402,6 @@ class Importer:
     def _import_hh_file(self, fpdbfile):
         """Function for actual import of a hh file
             This is now an internal function that should not be called directly."""
-        #if os.path.isdir(fpdbfile.path):
-        #    self.addToDirList[file] = [site] + [filter]
-        #    return (0,0,0,0,0)
 
         (stored, duplicates, partial, errors, ttime) = (0, 0, 0, 0, time())
 

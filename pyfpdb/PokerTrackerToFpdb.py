@@ -363,7 +363,7 @@ class PokerTracker(HandHistoryConverter):
                             hand.buyin = int(100*Decimal(info['BIAMT']))
                             hand.fee = int(100*Decimal(info['BIRAKE']))
             if key == 'TABLE':
-                if hand.gametype['type'] == 'tour' and self.sitename == 'Merge':
+                if hand.gametype['type'] == 'tour':
                     hand.tablename = '0'
                 else:
                     hand.tablename = re.split(",", info[key])[0]

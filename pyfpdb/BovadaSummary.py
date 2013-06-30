@@ -122,7 +122,7 @@ class BovadaSummary(TourneySummary):
                     
                     if info['TOURNAME'] is not None:
                         tourneyNameFull = info['TOURNAME'] + ' - ' + info['BIAMT'] + '+' + info['BIRAKE']
-                        self.tourneyName = tourneyNameFull[:40] 
+                        self.tourneyName = tourneyNameFull
                         
                         if 'TOURNAME' in info and 'Rebuy' in info['TOURNAME']:
                             self.isAddOn, self.isRebuy = True, True

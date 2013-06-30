@@ -1,0 +1,22 @@
+﻿PokerStars Hand #99150131499: Tournament #734703906, $2.00+$0.20 USD Hold'em No Limit - Match Round II, Level I (10/20) - 2013/05/26 21:19:14 WET [2013/05/26 16:19:14 ET]
+Table '734703906 41' 4-max Seat #1 is the button
+Seat 1: Player0 (1500 in chips) 
+Seat 2: Player1 (1500 in chips) 
+Seat 3: Player2 (1500 in chips) 
+Seat 4: Hero (1500 in chips) 
+Player1: posts small blind 10
+Player2: posts big blind 20
+*** HOLE CARDS ***
+Dealt to Hero [Ts 8d]
+Hero: folds 
+Player0: folds 
+Player1: folds 
+Uncalled bet (10) returned to Player2
+Player2 collected 20 from pot
+*** SUMMARY ***
+Total pot 20 | Rake 0 
+Seat 1: Player0 (button) folded before Flop (didn't bet)
+Seat 2: Player1 (small blind) folded before Flop
+Seat 3: Player2 (big blind) collected (20)
+Seat 4: Hero folded before Flop (didn't bet)
+

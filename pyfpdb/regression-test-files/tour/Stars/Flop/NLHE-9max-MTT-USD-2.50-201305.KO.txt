@@ -1,0 +1,52 @@
+﻿PokerStars Hand #99145265150: Tournament #734695129, $2.00+$0.50+$0.20 USD Hold'em No Limit - Level I (10/20) - 2013/05/26 19:59:48 WET [2013/05/26 14:59:48 ET]
+Table '734695129 21' 9-max Seat #1 is the button
+Seat 1: Player0 (3000 in chips) 
+Seat 2: Player1 (3000 in chips) 
+Seat 3: Hero (3000 in chips) is sitting out
+Seat 4: Player2 (3000 in chips) 
+Seat 5: Player3 (3000 in chips) 
+Seat 6: Player4 (3000 in chips) 
+Seat 7: Player5 (3000 in chips) 
+Seat 8: Player6 (3000 in chips) 
+Seat 9: Player7 (3000 in chips) 
+Player1: posts small blind 10
+Hero: posts big blind 20
+*** HOLE CARDS ***
+Dealt to Hero [3d 9s]
+Player2: calls 20
+Player3: folds 
+Player4: folds 
+Player5: calls 20
+Player6: folds 
+Player7: folds 
+Player0: folds 
+Player1: calls 10
+Hero: folds 
+*** FLOP *** [Ac 4h 6d]
+Player1: checks 
+Player2: bets 80
+Player5: calls 80
+Player1: folds 
+*** TURN *** [Ac 4h 6d] [Kd]
+Player2: bets 100
+Player5: calls 100
+*** RIVER *** [Ac 4h 6d Kd] [7d]
+Player2: bets 200
+Player5: calls 200
+*** SHOW DOWN ***
+Player2: shows [5h As] (a pair of Aces)
+Player5: shows [5c Ad] (a pair of Aces)
+Player2 collected 420 from pot
+Player5 collected 420 from pot
+*** SUMMARY ***
+Total pot 840 | Rake 0 
+Board [Ac 4h 6d Kd 7d]
+Seat 1: Player0 (button) folded before Flop (didn't bet)
+Seat 2: Player1 (small blind) folded on the Flop
+Seat 3: Hero (big blind) folded before Flop
+Seat 4: Player2 showed [5h As] and won (420) with a pair of Aces
+Seat 5: Player3 folded before Flop (didn't bet)
+Seat 6: Player4 folded before Flop (didn't bet)
+Seat 7: Player5 showed [5c Ad] and won (420) with a pair of Aces
+Seat 8: Player6 folded before Flop (didn't bet)
+Seat 9: Player7 folded before Flop (didn't bet)

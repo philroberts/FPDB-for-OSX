@@ -1,0 +1,26 @@
+Full Tilt Poker Game #32709541402: Table Niebuhr (6 max, deep) - NL Hold'em - $0.01/$0.02 - 18:30:23 UTC - 2013/05/24 [14:30:23 ET - 2013/05/24]
+Seat 1: Player0 ($5.56)
+Seat 2: Player1 ($5.03)
+Seat 3: Hero ($1.50)
+Seat 6: Player2 ($3.51), is sitting out
+Player1 posts the small blind of $0.01
+Hero posts the big blind of $0.02
+The button is in seat #1
+*** HOLE CARDS ***
+Dealt to Hero [Kc 3s]
+Player0 folds
+Player1 calls $0.01
+Hero checks
+*** FLOP *** [8h 2d 6h] (Total Pot: $0.04, 2 Players)
+Player1 bets $0.02
+Hero folds
+Uncalled bet of $0.02 returned to Player1
+Player1 mucks
+Player1 wins the pot ($0.04)
+*** SUMMARY ***
+Total pot $0.04 | Rake $0
+Board: [8h 2d 6h]
+Seat 1: Player0 (button) didn't bet (folded)
+Seat 2: Player1 (small blind) collected ($0.04), mucked
+Seat 3: Hero (big blind) folded on the Flop
+Seat 6: Player2 is sitting out

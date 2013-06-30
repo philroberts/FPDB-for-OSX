@@ -248,7 +248,7 @@ class iPoker(HandHistoryConverter):
                             #         first hand in a file, there is no way for auto-import to
                             #         gather the info unless it reads the entire file every time.
             self.tinfo['tourNo'] = mg['TABLE'].split(',')[-1].strip().split(' ')[0]
-            self.tablename = mg['TABLE'].split(',')[0].strip()
+            self.tablename = '1'
             if not mg['CURRENCY'] or mg['CURRENCY']=='fun':
                 self.tinfo['buyinCurrency'] = 'play'
             else:
@@ -574,7 +574,9 @@ class iPoker(HandHistoryConverter):
         log.info("iPoker getTableTitleRe: table_name='%s' tournament='%s' table_number='%s'" % (table_name, tournament, table_number))
         regex = "%s" % (table_name)
         if tournament:
-            regex = "%s" % (table_number)
+            regex = "%s" % (tournament)
+        elif table_name.find('(No DP),') != -1:
+            regex = table_name.split('(No DP),')[0]
         elif table_name.find(',') != -1:
             regex = table_name.split(',')[0]
         else:
