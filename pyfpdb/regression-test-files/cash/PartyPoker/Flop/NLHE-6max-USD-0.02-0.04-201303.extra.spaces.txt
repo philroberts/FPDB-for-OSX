@@ -1,0 +1,37 @@
+Game #12827330772 starts.
+#Game No : 12827330772
+***** Hand History for Game 12827330772 *****
+$5  USD  NL  Texas Hold'em - Sunday, March 31, 09:30:36 CEST 2013
+Table Supersonic (Real Money)
+Seat 1 is the button
+Total number of players : 6 / 6
+Seat 1: Player0 ( $9.08  USD )
+Seat 2: Hero ( $2.70  USD )
+Seat 3: Player2 ( $2.50  USD )
+Seat 4: Player3 ( $2.74  USD )
+Seat 5: Player4 ( $5.11  USD )
+Seat 6: Player5 ( $15.27  USD )
+Hero posts small blind [$0.02  USD].
+Player2 posts big blind [$0.04  USD].
+** Dealing down cards **
+Dealt to Hero [ 9c , 2s ]
+Player3 folds
+Hero Forward Folds
+Player4 raises [$0.08  USD].
+Player5 folds
+Player0 folds
+Hero folds
+Player2 calls [$0.04  USD].
+** Dealing Flop ** [ 7s, 5h, Ah ]
+Player2 checks
+Player4 checks
+** Dealing Turn ** [ 2h ]
+Player2 checks
+Player4 bets [$0.04  USD].
+Player2 calls [$0.04  USD].
+** Dealing River ** [ Tc ]
+Player2 checks
+Player4 bets [$0.04  USD].
+Player2 calls [$0.04  USD].
+Player2 doesn't show  [ 5c , 4h ]  a pair of Fives
+Player4 wins $0.33  USD from the main pot with a pair of Aces.

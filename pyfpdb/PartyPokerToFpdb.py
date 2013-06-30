@@ -94,7 +94,7 @@ class PartyPoker(HandHistoryConverter):
             ((?P<CURRENCY>[%(LS)s]))?\s*
             (
              ([%(LS)s]?(?P<SB>[%(NUM)s]+)/[%(LS)s]?(?P<BB>[%(NUM)s]+)\s*(?:%(LEGAL_ISO)s)?\s+((?P<LIMIT3>NL|PL|FL|)\s+)?)|
-             ((?P<CASHBI>[%(NUM)s]+)\s(?:%(LEGAL_ISO)s)?\s*)(?P<LIMIT2>(NL|PL|FL|))?\s*
+             ((?P<CASHBI>[%(NUM)s]+)\s*(?:%(LEGAL_ISO)s)?\s*)(?P<LIMIT2>(NL|PL|FL|))?\s*
             )
             (Tourney\s*)?
             (?P<GAME>(Texas\sHold\'em|Omaha\sHi-Lo|Omaha|7\sCard\sStud\sHi-Lo|7\sCard\sStud|Double\sHold\'em))\s*
@@ -171,16 +171,16 @@ class PartyPoker(HandHistoryConverter):
                 'BRAX' : u"\[\(\)\]"
                     }
             self.re_PostSB = re.compile(
-                r"%(PLYR)s posts small blind [%(BRAX)s]?%(CUR_SYM)s(?P<SB>[.,0-9]+) ?%(CUR)s[%(BRAX)s]?\."
+                r"%(PLYR)s posts small blind [%(BRAX)s]?%(CUR_SYM)s(?P<SB>[.,0-9]+)\s*%(CUR)s[%(BRAX)s]?\."
                 %  subst, re.MULTILINE)
             self.re_PostBB = re.compile(
-                r"%(PLYR)s posts big blind [%(BRAX)s]?%(CUR_SYM)s(?P<BB>[.,0-9]+) ?%(CUR)s[%(BRAX)s]?\."
+                r"%(PLYR)s posts big blind [%(BRAX)s]?%(CUR_SYM)s(?P<BB>[.,0-9]+)\s*%(CUR)s[%(BRAX)s]?\."
                 %  subst, re.MULTILINE)
             self.re_PostDead = re.compile(
-                r"%(PLYR)s posts big blind \+ dead [%(BRAX)s]?%(CUR_SYM)s?(?P<BBNDEAD>[.,0-9]+) ?%(CUR_SYM)s?[%(BRAX)s]?\." %  subst,
+                r"%(PLYR)s posts big blind \+ dead [%(BRAX)s]?%(CUR_SYM)s?(?P<BBNDEAD>[.,0-9]+)\s*%(CUR_SYM)s?[%(BRAX)s]?\." %  subst,
                 re.MULTILINE)
             self.re_Antes = re.compile(
-                r"%(PLYR)s posts ante [%(BRAX)s]?%(CUR_SYM)s(?P<ANTE>[.,0-9]+) ?%(CUR)s[%(BRAX)s]?" %  subst,
+                r"%(PLYR)s posts ante [%(BRAX)s]?%(CUR_SYM)s(?P<ANTE>[.,0-9]+)\s*%(CUR)s[%(BRAX)s]?" %  subst,
                 re.MULTILINE)
             self.re_HeroCards = re.compile(
                 r"Dealt to %(PLYR)s \[\s*(?P<NEWCARDS>.+)\s*\]" % subst,
