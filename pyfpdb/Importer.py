@@ -249,12 +249,12 @@ class Importer:
         (totstored, totdups, totpartial, toterrors) = self.importFiles(None)
 
         # Tidying up after import
-        if 'dropHudCache' in self.settings and self.settings['dropHudCache'] == 'drop':
-            log.info(_("rebuild_caches"))
-            self.database.rebuild_caches()
-        else:
-            log.info(_("runPostImport"))
-            self.runPostImport()
+        #if 'dropHudCache' in self.settings and self.settings['dropHudCache'] == 'drop':
+        #    log.info(_("rebuild_caches"))
+        #    self.database.rebuild_caches()
+        #else:
+        #    log.info(_("runPostImport"))
+        self.runPostImport()
         self.database.analyzeDB()
         endtime = time()
         return (totstored, totdups, totpartial, toterrors, endtime-starttime)
