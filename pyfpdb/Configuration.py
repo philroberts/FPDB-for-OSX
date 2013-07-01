@@ -55,7 +55,7 @@ import ConfigParser
 #  out of date.
 # The CONFIG_VERSION should be incremented __ONLY__ if the add_missing_elements()
 #  method cannot update existing standard configurations
-CONFIG_VERSION = 81
+CONFIG_VERSION = 83
 
 #
 # Setup constants

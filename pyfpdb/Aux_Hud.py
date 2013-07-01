@@ -251,7 +251,7 @@ class Simple_table_mw(Aux_Base.Seat_Window):
         self.move(self.hud.table.x + self.aw.xshift, self.hud.table.y + self.aw.yshift)
 
         lab.show(), eb.show()
-        self.show()
+        #self.show()
         #self.menu.show_all() do not attempt to show self.menu !! show its' eb container instead
         #self.show_all() do not do this, it creates oversize eventbox in windows pygtk2.24
         #self.hud.table.topify(self) does not serve any useful purpose, it seems
@@ -318,7 +318,7 @@ class Simple_table_popup_menu(gtk.Window):
         multiplier_combo_dict[4] = (_('All Levels'), 10000)
 #ComboBox - set max seats
         cb_max_dict = {} #[position][screentext, field value]
-        cb_max_dict[0] = (_('Select layout'),None)
+        cb_max_dict[0] = (_('Force layout'+'...'),None)
         pos = 1
         for i in (sorted(self.parentwin.hud.layout_set.layout)):
             cb_max_dict[pos]= (('%d-max' % i), i)
@@ -333,7 +333,7 @@ class Simple_table_popup_menu(gtk.Window):
         vbox1.pack_start(self.build_button(_('Restart This HUD'), gtk.STOCK_REFRESH, "kill"))
         vbox1.pack_start(self.build_button(_('Save HUD Layout'), gtk.STOCK_SAVE, "save"))
         vbox1.pack_start(self.build_button(_('Close'), gtk.STOCK_CLOSE, "close"))
-        vbox1.pack_start(self.build_label(_('Set max seats')))
+        vbox1.pack_start(self.build_label(_('')))
         vbox1.pack_start(self.build_combo_and_set_active('new_max_seats', cb_max_dict))
         
         vbox2.pack_start(self.build_label(_('Show Player Stats for')))
@@ -341,13 +341,16 @@ class Simple_table_popup_menu(gtk.Window):
         vbox2.pack_start(self.build_combo_and_set_active('h_seats_style', seats_style_combo_dict))
         hbox=gtk.HBox(homogeneous=False, spacing=3)
         hbox.pack_start(self.build_label(_('Custom')))
-        hbox.pack_start(self.build_spinner('h_seats_cust_nums_low',1,9))
+        self.h_nums_low_spinner = self.build_spinner('h_seats_cust_nums_low',1,9)
+        hbox.pack_start(self.h_nums_low_spinner)
         hbox.pack_start(self.build_label(_('To')))
-        hbox.pack_start(self.build_spinner('h_seats_cust_nums_high',2,10))
+        self.h_nums_high_spinner = self.build_spinner('h_seats_cust_nums_high',2,10)
+        hbox.pack_start(self.h_nums_high_spinner)
         vbox2.add(hbox), hbox.show()
         hbox=gtk.HBox(homogeneous=False, spacing=3)
         hbox.pack_start(self.build_combo_and_set_active('h_stat_range', stat_range_combo_dict))
-        hbox.pack_start(self.build_spinner('h_hud_days',1,9999))
+        self.h_hud_days_spinner = self.build_spinner('h_hud_days',1,9999)
+        hbox.pack_start(self.h_hud_days_spinner)
         vbox2.add(hbox), hbox.show()
 
         vbox3.pack_start(self.build_label(_('Show Opponent Stats for')))
@@ -355,14 +358,19 @@ class Simple_table_popup_menu(gtk.Window):
         vbox3.pack_start(self.build_combo_and_set_active('seats_style', seats_style_combo_dict))
         hbox=gtk.HBox(homogeneous=False, spacing=3)
         hbox.pack_start(self.build_label(_('Custom')))
-        hbox.pack_start(self.build_spinner('seats_cust_nums_low',1,9))
+        self.nums_low_spinner = self.build_spinner('seats_cust_nums_low',1,9)
+        hbox.pack_start(self.nums_low_spinner)
         hbox.pack_start(self.build_label(_('To')))
-        hbox.pack_start(self.build_spinner('seats_cust_nums_high',2,10))
+        self.nums_high_spinner = self.build_spinner('seats_cust_nums_high',2,10)
+        hbox.pack_start(self.nums_high_spinner)
         vbox3.add(hbox), hbox.show()
         hbox=gtk.HBox(homogeneous=False, spacing=3)
         hbox.pack_start(self.build_combo_and_set_active('stat_range', stat_range_combo_dict))
-        hbox.pack_start(self.build_spinner('hud_days',1,9999))
+        self.hud_days_spinner = self.build_spinner('hud_days',1,9999)
+        hbox.pack_start(self.hud_days_spinner)
         vbox3.add(hbox), hbox.show()
+
+        self.set_spinners_active()
 
         grid.attach(vbox1, 0, 1, 0, 1)
         grid.attach(vbox2, 1, 2, 0, 1)
@@ -429,6 +437,29 @@ class Simple_table_popup_menu(gtk.Window):
     def change_combo_field_value(self, widget, field, combo_dict):
         sel = widget.get_active()
         self.parentwin.hud.hud_params[field] = combo_dict[sel][1]
+        self.set_spinners_active()
                 
     def change_spin_field_value(self, widget, field):
         self.parentwin.hud.hud_params[field] = widget.get_value()
+
+    def set_spinners_active(self):
+        if self.parentwin.hud.hud_params['h_stat_range'] == "T":
+            self.h_hud_days_spinner.set_sensitive(True)
+        else:
+            self.h_hud_days_spinner.set_sensitive(False)
+        if self.parentwin.hud.hud_params['stat_range'] == "T":
+            self.hud_days_spinner.set_sensitive(True)
+        else:
+            self.hud_days_spinner.set_sensitive(False)
+        if self.parentwin.hud.hud_params['h_seats_style'] == "C":
+            self.h_nums_low_spinner.set_sensitive(True)
+            self.h_nums_high_spinner.set_sensitive(True)
+        else:
+            self.h_nums_low_spinner.set_sensitive(False)
+            self.h_nums_high_spinner.set_sensitive(False)
+        if self.parentwin.hud.hud_params['seats_style'] == "C":
+            self.nums_low_spinner.set_sensitive(True)
+            self.nums_high_spinner.set_sensitive(True)
+        else:
+            self.nums_low_spinner.set_sensitive(False)
+            self.nums_high_spinner.set_sensitive(False)

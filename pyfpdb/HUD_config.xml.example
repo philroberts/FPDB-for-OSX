@@ -5,7 +5,7 @@
     <!-- config_wrap_len  is preferred max line length in this file, -1 means no max
          day_start        is time that logical day starts, e.g. 5 means that any play
                           between 00:00 and 04:59:59 counts as being on the previous day -->
-    <general version="81"
+    <general version="83"
              config_wrap_len="-1"
              day_start="5"
              ui_language="system"
@@ -79,7 +79,7 @@
           times the current level are included in the stats displayed in the HUD
         - e.g. if current big blind is 50, stats for blind levels from big blind
           of 16.7 (50 divided by 3) to big blind of 150 (50 times 3) are included
-
+        - To include all levels, use a value of "10000"
 
     The following values define how hero's stats are done, the first 2 determine
     the time period stats are displayed for, the next 3 determine what blind levels
@@ -107,6 +107,7 @@
         - defaults to 1, meaning only stats from current blind level are included
         - e.g. if set to 3 and current big blind is 50, stats for blind levels from
           16.7 (50 divided by 3) to big blind of 150 (50 times 3) are included
+        - To include all levels, use a value of "10000"
 -->
     <hud_ui
     stat_range="A"
@@ -120,7 +121,7 @@
     hero_stat_range="A" 
     hero_stat_days="30"
     hero_aggregation_level_multiplier="1"
-    hero_seats_style="E"
+    hero_seats_style="A"
     hero_seats_cust_nums_low="6"
     hero_seats_cust_nums_high="10"
     
