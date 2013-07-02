@@ -82,8 +82,8 @@ class GuiBulkImport():
                 self.importer.setMode('bulk')
                 cb_model = self.cb_dropindexes.get_model()
                 cb_index = self.cb_dropindexes.get_active()
-                cb_hmodel = self.cb_drophudcache.get_model()
-                cb_hindex = self.cb_drophudcache.get_active()
+#                 cb_hmodel = self.cb_drophudcache.get_model()
+#                 cb_hindex = self.cb_drophudcache.get_active()
 
                 #self.lab_info.set_markup('<span foreground="blue">Importing ...</span>') # uses pango markup!
 
@@ -91,11 +91,14 @@ class GuiBulkImport():
                     self.importer.setDropIndexes(cb_model[cb_index][0])
                 else:
                     self.importer.setDropIndexes("auto")
-                if cb_hindex:
-                    self.importer.setDropHudCache(cb_hmodel[cb_hindex][0])
-                else:
-                    self.importer.setDropHudCache("auto")
-                sitename = self.cbfilter.get_model()[self.cbfilter.get_active()][0]
+
+#                 if cb_hindex:
+#                     self.importer.setDropHudCache(cb_hmodel[cb_hindex][0])
+#                 else:
+#                     self.importer.setDropHudCache("auto")
+                #sitename = self.cbfilter.get_model()[self.cbfilter.get_active()][0]
+                sitename = 'auto'
+
                 #self.importer.setFailOnError(self.chk_fail.get_active())
                 if self.is_archive.get_active():
                     if sitename == "PokerStars":
@@ -131,9 +134,9 @@ class GuiBulkImport():
                     self.cb_dropindexes.set_sensitive(True)
                     self.cb_dropindexes.set_active(0)
                     self.lab_drop.set_sensitive(True)
-                    self.cb_drophudcache.set_sensitive(True)
-                    self.cb_drophudcache.set_active(0)
-                    self.lab_hdrop.set_sensitive(True)
+#                     self.cb_drophudcache.set_sensitive(True)
+#                     self.cb_drophudcache.set_active(0)
+#                    self.lab_hdrop.set_sensitive(True)
 
                 self.progressbar.set_text(_("Import Complete"))
                 self.progressbar.set_fraction(0)
@@ -289,23 +292,23 @@ class GuiBulkImport():
         self.lab_threads.set_sensitive(False) # grey out
         self.cbfilter.show()
 
-#    label - drop hudcache
-        self.lab_hdrop = gtk.Label(_("Drop HudCache:"))
-        self.table.attach(self.lab_hdrop, 3, 4, 2, 3, xpadding=0, ypadding=0,
-                          yoptions=gtk.SHRINK)
-        self.lab_hdrop.show()
-        self.lab_hdrop.set_justify(gtk.JUSTIFY_RIGHT)
-        self.lab_hdrop.set_alignment(1.0, 0.5)
-
-#    ComboBox - drop hudcache
-        self.cb_drophudcache = gtk.combo_box_new_text()
-        self.cb_drophudcache.append_text(_('auto'))
-        self.cb_drophudcache.append_text(_("don't drop"))
-        self.cb_drophudcache.append_text(_('drop'))
-        self.cb_drophudcache.set_active(0)
-        self.table.attach(self.cb_drophudcache, 4, 5, 2, 3, xpadding=10,
-                          ypadding=0, yoptions=gtk.SHRINK)
-        self.cb_drophudcache.show()
+# #    label - drop hudcache
+#         self.lab_hdrop = gtk.Label(_("Drop HudCache:"))
+#         self.table.attach(self.lab_hdrop, 3, 4, 2, 3, xpadding=0, ypadding=0,
+#                           yoptions=gtk.SHRINK)
+#         self.lab_hdrop.show()
+#         self.lab_hdrop.set_justify(gtk.JUSTIFY_RIGHT)
+#         self.lab_hdrop.set_alignment(1.0, 0.5)
+# 
+# #    ComboBox - drop hudcache
+#         self.cb_drophudcache = gtk.combo_box_new_text()
+#         self.cb_drophudcache.append_text(_('auto'))
+#         self.cb_drophudcache.append_text(_("don't drop"))
+#         self.cb_drophudcache.append_text(_('drop'))
+#         self.cb_drophudcache.set_active(0)
+#         self.table.attach(self.cb_drophudcache, 4, 5, 2, 3, xpadding=10,
+#                           ypadding=0, yoptions=gtk.SHRINK)
+#         self.cb_drophudcache.show()
 
 #    button - Import
         self.load_button = gtk.Button(_('_Bulk Import'))  # todo: rename variables to import too
@@ -343,9 +346,9 @@ class GuiBulkImport():
             self.cb_dropindexes.set_active(2)
             self.cb_dropindexes.set_sensitive(False)
             self.lab_drop.set_sensitive(False)
-            self.cb_drophudcache.set_active(2)
-            self.cb_drophudcache.set_sensitive(False)
-            self.lab_hdrop.set_sensitive(False)
+#             self.cb_drophudcache.set_active(2)
+#             self.cb_drophudcache.set_sensitive(False)
+#            self.lab_hdrop.set_sensitive(False)
 
 def main(argv=None):
     """main can also be called in the python interpreter, by supplying the command line as the argument."""
