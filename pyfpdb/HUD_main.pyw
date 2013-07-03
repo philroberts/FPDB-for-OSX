@@ -39,6 +39,8 @@ import logging
 
 #    pyGTK modules
 import gtk
+## Horrible hack to Get Icons shown on the windows theme buttons
+gtk.Settings.set_long_property(gtk.settings_get_default(), "gtk-button-images", gtk.TRUE, "main")
 import gobject
 
 #    FreePokerTools modules
