@@ -111,6 +111,7 @@ def site_alias(alias):
                 "Pkr"            : "Pkr",
                 "PKR"            : "Pkr",
                 "PokerStars"     : "PokerStars",
+                "SealsWithClubs" : "SealsWithClubs",
                 "Stars"          : "PokerStars",
                 "PT"             : "PokerTracker",
                 "PokerTracker"   : "PokerTracker",
