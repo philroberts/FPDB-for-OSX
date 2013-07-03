@@ -39,6 +39,8 @@ import logging
 import pygtk
 pygtk.require('2.0')
 import gtk
+## Horrible hack to Get Icons shown on the windows theme buttons
+gtk.Settings.set_long_property(gtk.settings_get_default(), "gtk-button-images", gtk.TRUE, "main")
 import pango
 
 import interlocks
@@ -86,7 +88,7 @@ try:
     VERSION = subprocess.Popen(["git", "describe", "--tags", "--dirty"], stdout=subprocess.PIPE).communicate()[0]
     VERSION = VERSION[:-1]
 except:
-    VERSION = "0.39.994"
+    VERSION = "0.39.995"
 
 
 class fpdb:

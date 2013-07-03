@@ -34,7 +34,7 @@ Py2exe script for fpdb.
 #- You will frequently get messages about missing .dll files.just assume other
 #  person will have them? we have copyright issues including some dll's
 #- If it works, you'll have a new dir  fpdb-version  which should
-#  contain 2 dirs; gfx and pyfpdb and run_fpdb.bat
+#  contain 2 dirs; gfx and pyfpdb and two bat files : run_fpdb.bat and install_fpdb.bat
 
 #  See walkthrough in packaging directory for versions used
 #  Very useful guide here : http://www.no-ack.org/2010/09/complete-guide-to-py2exe-for-pygtk.html
@@ -190,6 +190,7 @@ copy_tree (pydir+r'locale', os.path.join(r'dist', 'locale'))
 # create distribution folder and populate with gfx + bat
 copy_tree (gfxdir, os.path.join(distdir, 'gfx'))
 copy_file (packagedir+'run_fpdb.bat', distdir)
+copy_file (packagedir+'install_fpdb.bat', distdir)
 
 print "*** Renaming dist folder as pyfpdb folder ***"
 dest = os.path.join(distdir, 'pyfpdb')
