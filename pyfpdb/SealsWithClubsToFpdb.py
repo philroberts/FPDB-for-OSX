@@ -98,7 +98,7 @@ class SealsWithClubs(HandHistoryConverter):
 
     # Static regexes
     re_GameInfo = re.compile(ur"""Hand\s*\#(?P<HID>\d+)-\d+\s*-\s*(?P<DATETIME>[\-:\d ]+)\s*
-                         Game:\s*(?P<LIMIT>NL)\s*(?P<GAME>Hold'em)\s*\(\d+\s*-\s*(?P<BUYIN>\d+)\)\s*-\s*Blinds\s*(?P<SB>\d+)/(?P<BB>\d+)\s*
+                         Game:\s*(?P<LIMIT>NL)\s*(?P<GAME>Hold'em)\s*\(\d+\s*-\s*(?P<BUYIN>\d+)\)\s*-\s*Blinds\s*(?P<SB>[\d\.]+)/(?P<BB>[\d.]+)\s*
                          Site:\s+Seals\s+With\s+Clubs\s*""",re.VERBOSE)
 
     re_PlayerInfo   = re.compile(ur"""
@@ -127,7 +127,7 @@ class SealsWithClubs(HandHistoryConverter):
     re_HeroCards        = re.compile(r"^Dealt to %(PLYR)s(?: \[(?P<OLDCARDS>.+?)\])?( \[(?P<NEWCARDS>.+?)\])" % substitutions, re.MULTILINE)
     re_Action           = re.compile(r"""
                         ^%(PLYR)s(?P<ATYPE>\sbets|\schecks|\sraises|\scalls|\sfolds|\sdiscards|\sstands\spat)
-                        \s+(to\s+)?(?P<BET>[.\d]+)?"""
+                        (\s+(to\s+)?(?P<BET>[.\d]+)?\s*)?( \(All-in\))?$"""
                          %  substitutions, re.MULTILINE|re.VERBOSE)
     re_ShowdownAction   = re.compile(r"^%s shows \[(?P<CARDS>.*)\]" % substitutions['PLYR'], re.MULTILINE)
     re_sitsOut          = re.compile("^%s sits out" %  substitutions['PLYR'], re.MULTILINE)
@@ -140,6 +140,10 @@ class SealsWithClubs(HandHistoryConverter):
     #re_RankOther        = re.compile(u"^%(PLYR)s finished the tournament in (?P<RANK>[0-9]+)(st|nd|rd|th) place$" %  substitutions, re.MULTILINE)
     re_Cancelled        = re.compile('Hand\scancelled', re.MULTILINE)
     re_Rake             = re.compile('Rake\s+\((?P<RAKE>[.\d]+)\)')
+    
+    re_Flop             = re.compile('\*\* Flop \*\*')
+    re_Turn             = re.compile('\*\* Turn \*\*')
+    re_River            = re.compile('\*\* River \*\*')
 
     def compilePlayerRegexs(self,  hand):
         pass
@@ -217,7 +221,7 @@ class SealsWithClubs(HandHistoryConverter):
         info.update(m.groupdict())
         info.update(m2.groupdict())
 
-        #log.debug("readHandInfo: %s" % info)
+        #log.info("readHandInfo: %s" % info)
         for key in info:
             if key == 'DATETIME':
                 #2013-01-31 05:55:42
@@ -300,7 +304,7 @@ class SealsWithClubs(HandHistoryConverter):
             #print "button not found"
 
     def readPlayerStacks(self, hand):
-        log.debug("readPlayerStacks")
+        log.info("readPlayerStacks")
         m = self.re_PlayerInfo.finditer(hand.handText)
         #print self.re_PlayerInfo.pattern
         #print hand.handText
@@ -314,6 +318,9 @@ class SealsWithClubs(HandHistoryConverter):
 
         # PREFLOP = ** Dealing down cards **
         # This re fails if,  say, river is missing; then we don't get the ** that starts the river.
+        
+        
+        
         if hand.gametype['base'] in ("hold"):
             m =  re.search(
                         r"(\*\* Hole Cards \*\*(?P<PREFLOP>.+(?=\*\* (FIRST\s)?Flop \*\*)|.+))"
@@ -326,22 +333,31 @@ class SealsWithClubs(HandHistoryConverter):
                         r"(\*\*\* SECOND FLOP \*\*\*(?P<FLOP2> \[\S\S \S\S \S\S\].+(?=\*\*\* SECOND TURN \*\*\*)|.+))?"
                         r"(\*\*\* SECOND TURN \*\*\* \[\S\S \S\S \S\S] (?P<TURN2>\[\S\S\].+(?=\*\*\* SECOND RIVER \*\*\*)|.+))?"
                         r"(\*\*\* SECOND RIVER \*\*\* \[\S\S \S\S \S\S \S\S] (?P<RIVER2>\[\S\S\].+))?", hand.handText,re.DOTALL)
+        
+        # some hand histories on swc are missing a flop
+        if (self.re_Turn.search(hand.handText) and not self.re_Flop.search(hand.handText)):
+            raise FpdbParseError
+        if (self.re_River.search(hand.handText) and not self.re_Turn.search(hand.handText)):
+            raise FpdbParseError
+        
             
-        #print "markingStreets"
-        #print "PREFLOP"
-        #print m.group('PREFLOP')
-        #print "FLOP"
-        #print m.group('FLOP')
-        #print "TURN"
-        #print m.group('TURN')
-        #print "RIVER"
-        #print m.group('RIVER')
+        
+        print "markingStreets"
+        print "PREFLOP"
+        print m.group('PREFLOP')
+        print "FLOP"
+        print m.group('FLOP')
+        print "TURN"
+        print m.group('TURN')
+        print "RIVER"
+        print m.group('RIVER')
         hand.addStreets(m)
 
     def readCommunityCards(self, hand, street): # street has been matched by markStreets, so exists in this hand
+        print "DEBUG!", street
         if street in ('FLOP','TURN','RIVER'):   # a list of streets which get dealt community cards (i.e. all but PREFLOP)
-            #print "DEBUG readCommunityCards:", street, hand.streets.group(street)
             m = self.re_Board.search(hand.streets[street])
+            print "DEBUG readCommunityCards:", street, m.group('CARDS')
             hand.setCommunityCards(street, m.group('CARDS').split(' '))
         if street in ('FLOP1', 'TURN1', 'RIVER1', 'FLOP2', 'TURN2', 'RIVER2'):
             m = self.re_Board.search(hand.streets[street])
@@ -349,16 +365,16 @@ class SealsWithClubs(HandHistoryConverter):
             hand.runItTimes = 2
 
     def readAntes(self, hand):
-        log.debug(_("reading antes"))
+        log.info(_("reading antes"))
         m = self.re_Antes.finditer(hand.handText)
         for player in m:
-            #~ logging.debug("hand.addAnte(%s,%s)" %(player.group('PNAME'), player.group('ANTE')))
+            log.info("hand.addAnte(%s,%s)" %(player.group('PNAME'), player.group('ANTE')))
             hand.addAnte(player.group('PNAME'), player.group('ANTE'))
     
     def readBringIn(self, hand):
         m = self.re_BringIn.search(hand.handText,re.DOTALL)
         if m:
-            #~ logging.debug("readBringIn: %s for %s" %(m.group('PNAME'),  m.group('BRINGIN')))
+            log.info("readBringIn: %s for %s" %(m.group('PNAME'),  m.group('BRINGIN')))
             hand.addBringIn(m.group('PNAME'),  m.group('BRINGIN'))
         
     def readBlinds(self, hand):
@@ -417,7 +433,7 @@ class SealsWithClubs(HandHistoryConverter):
         m = self.re_Action.finditer(hand.streets[street])
         for action in m:
             acts = action.groupdict()
-            #print "DEBUG: acts: %s" %acts
+            print "DEBUG: acts: %s" %acts
             if action.group('ATYPE') == ' folds':
                 hand.addFold( street, action.group('PNAME'))
             elif action.group('ATYPE') == ' checks':
@@ -458,13 +474,13 @@ class SealsWithClubs(HandHistoryConverter):
 
     def readCollectPot(self,hand):
         i=0
-        print hand.handid
+        print "handid" + str(hand.handid)
         #print "collecting pot"
         #print hand.handText
         if hand.runItTimes==0:
             #print "here"
             for m in self.re_CollectPot.finditer(hand.handText):
-                print (m.group('PNAME'),m.group('POT'))
+                print ("collecting",m.group('PNAME'),m.group('POT'))
                 hand.addCollectPot(player=m.group('PNAME'),pot=m.group('POT'))
                 i+=1
         if i==0:
@@ -486,7 +502,7 @@ class SealsWithClubs(HandHistoryConverter):
                 if m.group('SHOWED') == "showed": shown = True
                 elif m.group('SHOWED') == "mucked": mucked = True
 
-                #print "DEBUG: hand.addShownCards(%s, %s, %s, %s)" %(cards, m.group('PNAME'), shown, mucked)
+                print "DEBUG: hand.addShownCards(%s, %s, %s, %s)" %(cards, m.group('PNAME'), shown, mucked)
                 hand.addShownCards(cards=cards, player=m.group('PNAME'), shown=shown, mucked=mucked, string=string)
 
     @staticmethod
