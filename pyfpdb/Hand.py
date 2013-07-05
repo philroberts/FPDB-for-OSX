@@ -55,7 +55,7 @@ class Hand(object):
 
 
     def __init__(self, config, sitename, gametype, handText, builtFrom = "HHC"):
-        #log.info( _("Hand.init(): handText is ") + str(handText) )
+        #log.debug( _("Hand.init(): handText is ") + str(handText) )
         self.config = config
         self.saveActions = self.config.get_import_parameters().get('saveActions')
         self.callHud    = self.config.get_import_parameters().get("callFpdbHud")
@@ -246,7 +246,7 @@ class Hand(object):
             shown   whether they were revealed at showdown
             mucked  whether they were mucked at showdown
             dealt   whether they were seen in a 'dealt to' line """
-        log.info("Hand.addHoleCards open+closed: %s, player: %s, shown: %s, mucked: %s, dealt: %s"
+        log.debug("Hand.addHoleCards open+closed: %s, player: %s, shown: %s, mucked: %s, dealt: %s"
             % (open + closed, player, shown, mucked, dealt))
         self.checkPlayerExists(player, 'addHoleCards')
 
@@ -300,7 +300,7 @@ class Hand(object):
         
     def getHandId(self, db, id):
         if db.isDuplicate(self.dbid_gt, self.hands['siteHandNo'], self.hands['heroSeat']):
-            #log.info(_("Hand.insert(): hid #: %s is a duplicate") % hh['siteHandNo'])
+            #log.debug(_("Hand.insert(): hid #: %s is a duplicate") % hh['siteHandNo'])
             self.is_duplicate = True  # i.e. don't update hudcache
             next = id
             raise FpdbHandDuplicate(self.hands['siteHandNo'])
@@ -506,7 +506,7 @@ class Hand(object):
             bet = str(row['bet'])
             street = self.allStreets[int(street)+1]
             discards = row['cardsdiscarded']
-            log.info("Hand.select():: name: '%s' street: '%s' act: '%s' bet: '%s'" %(name, street, act, bet))
+            log.debug("Hand.select():: name: '%s' street: '%s' act: '%s' bet: '%s'" %(name, street, act, bet))
             if   act == 1: # Ante
                 self.addAnte(name, bet)
             elif act == 2: # Small Blind
@@ -553,7 +553,7 @@ class Hand(object):
             chips   (string) the chips the player has at the start of the hand (can be None)
             position     (string) indicating the position of the player (S,B, 0-7) (optional, not needed on Hand import from Handhistory).
             If a player has None chips he won't be added."""
-        log.info("addPlayer: %s %s (%s)" % (seat, name, chips))
+        log.debug("addPlayer: %s %s (%s)" % (seat, name, chips))
         if chips is not None:
             chips = chips.replace(u',', u'') #some sites have commas
             self.players.append([seat, name, chips, position]) #removed most likely unused 0s from list and added position... former list: [seat, name, chips, 0, 0]
@@ -571,7 +571,7 @@ class Hand(object):
         # go through m and initialise actions to empty list for each street.
         if match:
             self.streets.update(match.groupdict())
-            log.info("markStreets:\n"+ str(self.streets))
+            log.debug("markStreets:\n"+ str(self.streets))
         else:
             tmp = self.handText[0:100]
             self.cancelled = True
@@ -590,7 +590,7 @@ class Hand(object):
             self.player_exists_cache.add(player)
 
     def setCommunityCards(self, street, cards):
-        log.info("setCommunityCards %s %s" %(street,  cards))
+        log.debug("setCommunityCards %s %s" %(street,  cards))
         self.board[street] = [self.card(c) for c in cards]
 #        print "DEBUG: self.board: %s" % self.board
 
@@ -619,7 +619,7 @@ class Hand(object):
             self._addRaise(street, player, C, Rb, Rt)
 
     def addAnte(self, player, ante):
-        log.info("%s %s antes %s" % ('BLINDSANTES', player, ante))
+        log.debug("%s %s antes %s" % ('BLINDSANTES', player, ante))
         if player is not None:
             ante = ante.replace(u',', u'') #some sites have commas
             self.checkPlayerExists(player, 'addAnte')
@@ -642,7 +642,7 @@ class Hand(object):
         # Player in the big blind posts
         #   - this is a call of 1 sb and a raise to 1 bb
         #
-        log.info("addBlind: %s posts %s, %s" % (player, blindtype, amount))
+        log.debug("addBlind: %s posts %s, %s" % (player, blindtype, amount))
         if player is not None:
             self.checkPlayerExists(player, 'addBlind')
             amount = amount.replace(u',', u'') #some sites have commas
@@ -682,7 +682,7 @@ class Hand(object):
     def addCall(self, street, player=None, amount=None):
         if amount is not None:
             amount = amount.replace(u',', u'') #some sites have commas
-        log.info(_("%s %s calls %s") %(street, player, amount))
+        log.debug(_("%s %s calls %s") %(street, player, amount))
         # Potentially calculate the amount of the call if not supplied
         # corner cases include if player would be all in
         if amount is not None:
@@ -700,7 +700,7 @@ class Hand(object):
     def addCallTo(self, street, player=None, amountTo=None):
         if amountTo:
             amountTo = amountTo.replace(u',', u'') #some sites have commas
-        #log.info(_("%s %s calls %s") %(street, player, amount))
+        #log.debug(_("%s %s calls %s") %(street, player, amount))
         # Potentially calculate the amount of the callTo if not supplied
         # corner cases include if player would be all in
         if amountTo is not None:
@@ -769,7 +769,7 @@ class Hand(object):
         self._addRaise(street, player, C, Rb, Rt)
 
     def _addRaise(self, street, player, C, Rb, Rt, action = 'raises'):
-        log.info(_("%s %s raise %s") %(street, player, Rt))
+        log.debug(_("%s %s raise %s") %(street, player, Rt))
         self.bets[street][player].append(C + Rb)
         self.stacks[player] -= (C + Rb)
         act = (player, action, Rb, Rt, C, self.stacks[player]==0)
@@ -780,7 +780,7 @@ class Hand(object):
 
 
     def addBet(self, street, player, amount):
-        log.info(_("%s %s bets %s") %(street, player, amount))
+        log.debug(_("%s %s bets %s") %(street, player, amount))
         amount = amount.replace(u',', u'') #some sites have commas
         amount = Decimal(amount)
         self.checkPlayerExists(player, 'addBet')
@@ -803,7 +803,7 @@ class Hand(object):
 
 
     def addFold(self, street, player):
-        log.info(_("%s %s folds") % (street, player))
+        log.debug(_("%s %s folds") % (street, player))
         self.checkPlayerExists(player, 'addFold')
         self.folded.add(player)
         self.pot.addFold(player)
@@ -818,7 +818,7 @@ class Hand(object):
 
 
     def discardDrawHoleCards(self, cards, player, street):
-        log.info("discardDrawHoleCards '%s' '%s' '%s'" % (cards, player, street))
+        log.debug("discardDrawHoleCards '%s' '%s' '%s'" % (cards, player, street))
         self.discards[street][player] = set([cards])
 
 
@@ -833,7 +833,7 @@ class Hand(object):
 
 
     def addCollectPot(self,player, pot):
-        log.info("%s collected %s" % (player, pot))
+        log.debug("%s collected %s" % (player, pot))
         self.checkPlayerExists(player, 'addCollectPot')
         self.collected = self.collected + [[player, pot]]
         if player not in self.collectees:
@@ -845,7 +845,7 @@ class Hand(object):
     def addShownCards(self, cards, player, holeandboard=None, shown=True, mucked=False, string=None):
         """ For when a player shows cards for any reason (for showdown or out of choice).
             Card ranks will be uppercased """
-        log.info("addShownCards %s hole=%s all=%s" % (player, cards,  holeandboard))
+        log.debug("addShownCards %s hole=%s all=%s" % (player, cards,  holeandboard))
         if cards is not None:
             self.addHoleCards(cards,player,shown, mucked)
             if string is not None:
@@ -930,7 +930,7 @@ class Hand(object):
               "cp"  : "Cap Pot Limit"
              }
 
-        log.info("gametype: %s" %(self.gametype))
+        log.debug("gametype: %s" %(self.gametype))
         retstring = "%s %s" %(gs[self.gametype['category']], ls[self.gametype['limitType']])
         return retstring
 
@@ -942,7 +942,7 @@ class Hand(object):
         self.writeHand(sys.stdout)
 
     def actionString(self, act, street=None):
-        log.info("Hand.actionString(act=%s, street=%s)" % (act, street))
+        log.debug("Hand.actionString(act=%s, street=%s)" % (act, street))
         
         if act[1] == 'folds':
             return ("%s: folds " %(act[0]))
@@ -1065,7 +1065,7 @@ class HoldemOmahaHand(Hand):
         self.config = config
         if gametype['base'] != 'hold':
             pass # or indeed don't pass and complain instead
-        log.info("HoldemOmahaHand")
+        log.debug("HoldemOmahaHand")
         self.allStreets = ['BLINDSANTES', 'PREFLOP','FLOP','TURN','RIVER']
         self.holeStreets = ['PREFLOP']
         if gametype['category']=='irish':
@@ -1103,7 +1103,7 @@ class HoldemOmahaHand(Hand):
             hhc.readHeroCards(self)
             hhc.readShowdownActions(self)
             # Read actions in street order
-            print "debugging there"
+            #print "debugging there"
             for street, text in self.streets.iteritems():
                 if text and (street is not "PREFLOP"): #TODO: the except PREFLOP shouldn't be necessary, but regression-test-files/cash/Everleaf/Flop/NLHE-10max-USD-0.01-0.02-201008.2Way.All-in.pre.txt fails without it
                     print(street)
@@ -1124,7 +1124,7 @@ class HoldemOmahaHand(Hand):
             #print "\nHand:\n"+str(self)
         elif builtFrom == "DB":
             # Creator expected to call hhc.select(hid) to fill out object
-            log.info("HoldemOmahaHand.__init__: " + _("DEBUG:") + " " +_("HoldemOmaha hand initialised for %s") % "select()")
+            log.debug("HoldemOmahaHand.__init__: " + _("DEBUG:") + " " +_("HoldemOmaha hand initialised for %s") % "select()")
             self.maxseats = 10
         else:
             log.warning("HoldemOmahaHand.__init__: " + _("Neither HHC nor DB+handID provided"))
@@ -1284,13 +1284,13 @@ class HoldemOmahaHand(Hand):
         super(HoldemOmahaHand, self).writeHand(fh)
 
         players_who_act_preflop = set(([x[0] for x in self.actions['PREFLOP']]+[x[0] for x in self.actions['BLINDSANTES']]))
-        log.info(self.actions['PREFLOP'])
+        log.debug(self.actions['PREFLOP'])
         for player in [x for x in self.players if x[1] in players_who_act_preflop]:
             #Only print stacks of players who do something preflop
             print >>fh, ("Seat %s: %s ($%.2f in chips) " %(player[0], player[1], float(player[2])))
 
         if self.actions['BLINDSANTES']:
-            log.info(self.actions['BLINDSANTES'])
+            log.debug(self.actions['BLINDSANTES'])
             for act in self.actions['BLINDSANTES']:
                 print >>fh, self.actionString(act)
 
@@ -1614,7 +1614,7 @@ class StudHand(Hand):
             for street in self.actionStreets:
                 if street == 'BLINDSANTES': continue # OMG--sometime someone folds in the ante round
                 if self.streets[street]:
-                    log.info(street + self.streets[street])
+                    log.debug(street + self.streets[street])
                     hhc.readAction(self, street)
                     self.pot.markTotal(street)
             hhc.readCollectPot(self)
@@ -1660,7 +1660,7 @@ class StudHand(Hand):
         open  list of card bigrams e.g. ['2h','Jc'], dealt face up
         closed    likewise, but known only to player
         """
-        log.info("addPlayerCards %s, o%s x%s" % (player,  open, closed))
+        log.debug("addPlayerCards %s, o%s x%s" % (player,  open, closed))
         self.checkPlayerExists(player, 'addPlayerCards')
         self.holecards[street][player] = (open, closed)
 
@@ -1671,7 +1671,7 @@ class StudHand(Hand):
         """\
         Add a complete on [street] by [player] to [amountTo]
         """
-        log.info(_("%s %s completes %s") % (street, player, amountTo))
+        log.debug(_("%s %s completes %s") % (street, player, amountTo))
         amountTo = amountTo.replace(u',', u'') #some sites have commas
         self.checkPlayerExists(player, 'addComplete')
         Bp = self.lastBet[street]
@@ -1693,7 +1693,7 @@ class StudHand(Hand):
                 street = 'SECOND'
             else:
                 street = 'THIRD'
-            log.info(_("Bringin: %s, %s") % (player , bringin))
+            log.debug(_("Bringin: %s, %s") % (player , bringin))
             bringin = bringin.replace(u',', u'') #some sites have commas
             self.checkPlayerExists(player, 'addBringIn')
             bringin = Decimal(bringin)

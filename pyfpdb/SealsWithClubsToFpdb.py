@@ -108,7 +108,7 @@ class SealsWithClubs(HandHistoryConverter):
         (?P<SITOUT>-\s*waiting)?""" % substitutions, 
         re.MULTILINE|re.VERBOSE)
 
-    re_HandInfo = re.compile(ur"""^Table:\s*(?P<TABLE>.*(?P<MAX>\d+)max.*)""",re.MULTILINE|re.VERBOSE)
+    re_HandInfo = re.compile(ur"""^Table:\s*(?P<TABLE>.*((?P<MAX>\d+)max)?.*)""",re.MULTILINE|re.VERBOSE)
 
     re_Identify     = re.compile(u"Site:\s*Seals\s*With\s*Clubs")
     re_SplitHands   = re.compile('(?:\s?\n){2,}')
@@ -221,7 +221,7 @@ class SealsWithClubs(HandHistoryConverter):
         info.update(m.groupdict())
         info.update(m2.groupdict())
 
-        #log.info("readHandInfo: %s" % info)
+        #log.debug("readHandInfo: %s" % info)
         for key in info:
             if key == 'DATETIME':
                 #2013-01-31 05:55:42
@@ -240,9 +240,9 @@ class SealsWithClubs(HandHistoryConverter):
                 hand.tourNo = info[key]
             if key == 'BUYIN':
                 if hand.tourNo!=None:
-                    print "DEBUG: info['BUYIN']: %s" % info['BUYIN']
-                    print "DEBUG: info['BIAMT']: %s" % info['BIAMT']
-                    print "DEBUG: info['BIRAKE']: %s" % info['BIRAKE']
+                    #print "DEBUG: info['BUYIN']: %s" % info['BUYIN']
+                    #print "DEBUG: info['BIAMT']: %s" % info['BIAMT']
+                    #print "DEBUG: info['BIRAKE']: %s" % info['BIRAKE']
                     
                     if info[key] == 'Freeroll':
                         hand.buyin = 0
@@ -300,11 +300,11 @@ class SealsWithClubs(HandHistoryConverter):
             hand.buttonpos = int(m.group('BUTTON'));
             #print "button found: " + m.group('BUTTON')
         else:
-            log.info('readButton: ' + _('not found'))
+            log.debug('readButton: ' + _('not found'))
             #print "button not found"
 
     def readPlayerStacks(self, hand):
-        log.info("readPlayerStacks")
+        log.debug("readPlayerStacks")
         m = self.re_PlayerInfo.finditer(hand.handText)
         #print self.re_PlayerInfo.pattern
         #print hand.handText
@@ -340,24 +340,26 @@ class SealsWithClubs(HandHistoryConverter):
         if (self.re_River.search(hand.handText) and not self.re_Turn.search(hand.handText)):
             raise FpdbParseError
         
-            
+        # some hand histories on swc don't have hole cards either
+        if not m:
+            raise FpdbParseError
         
-        print "markingStreets"
-        print "PREFLOP"
-        print m.group('PREFLOP')
-        print "FLOP"
-        print m.group('FLOP')
-        print "TURN"
-        print m.group('TURN')
-        print "RIVER"
-        print m.group('RIVER')
+        #print "markingStreets"
+        #print "PREFLOP"
+        #print m.group('PREFLOP')
+        #print "FLOP"
+        #print m.group('FLOP')
+        #print "TURN"
+        #print m.group('TURN')
+        #print "RIVER"
+        #print m.group('RIVER')
         hand.addStreets(m)
 
     def readCommunityCards(self, hand, street): # street has been matched by markStreets, so exists in this hand
-        print "DEBUG!", street
+        #print "DEBUG!", street
         if street in ('FLOP','TURN','RIVER'):   # a list of streets which get dealt community cards (i.e. all but PREFLOP)
             m = self.re_Board.search(hand.streets[street])
-            print "DEBUG readCommunityCards:", street, m.group('CARDS')
+            #print "DEBUG readCommunityCards:", street, m.group('CARDS')
             hand.setCommunityCards(street, m.group('CARDS').split(' '))
         if street in ('FLOP1', 'TURN1', 'RIVER1', 'FLOP2', 'TURN2', 'RIVER2'):
             m = self.re_Board.search(hand.streets[street])
@@ -365,16 +367,16 @@ class SealsWithClubs(HandHistoryConverter):
             hand.runItTimes = 2
 
     def readAntes(self, hand):
-        log.info(_("reading antes"))
+        log.debug(_("reading antes"))
         m = self.re_Antes.finditer(hand.handText)
         for player in m:
-            log.info("hand.addAnte(%s,%s)" %(player.group('PNAME'), player.group('ANTE')))
+            log.debug("hand.addAnte(%s,%s)" %(player.group('PNAME'), player.group('ANTE')))
             hand.addAnte(player.group('PNAME'), player.group('ANTE'))
     
     def readBringIn(self, hand):
         m = self.re_BringIn.search(hand.handText,re.DOTALL)
         if m:
-            log.info("readBringIn: %s for %s" %(m.group('PNAME'),  m.group('BRINGIN')))
+            log.debug("readBringIn: %s for %s" %(m.group('PNAME'),  m.group('BRINGIN')))
             hand.addBringIn(m.group('PNAME'),  m.group('BRINGIN'))
         
     def readBlinds(self, hand):
@@ -433,7 +435,7 @@ class SealsWithClubs(HandHistoryConverter):
         m = self.re_Action.finditer(hand.streets[street])
         for action in m:
             acts = action.groupdict()
-            print "DEBUG: acts: %s" %acts
+            #print "DEBUG: acts: %s" %acts
             if action.group('ATYPE') == ' folds':
                 hand.addFold( street, action.group('PNAME'))
             elif action.group('ATYPE') == ' checks':
@@ -502,7 +504,7 @@ class SealsWithClubs(HandHistoryConverter):
                 if m.group('SHOWED') == "showed": shown = True
                 elif m.group('SHOWED') == "mucked": mucked = True
 
-                print "DEBUG: hand.addShownCards(%s, %s, %s, %s)" %(cards, m.group('PNAME'), shown, mucked)
+                #print "DEBUG: hand.addShownCards(%s, %s, %s, %s)" %(cards, m.group('PNAME'), shown, mucked)
                 hand.addShownCards(cards=cards, player=m.group('PNAME'), shown=shown, mucked=mucked, string=string)
 
     @staticmethod
@@ -511,8 +513,8 @@ class SealsWithClubs(HandHistoryConverter):
         regex = re.escape(str(table_name))
         if type=="tour":
             regex = re.escape(str(tournament)) + ".* (Table|Tisch) " + re.escape(str(table_number))
-        log.info("Stars.getTableTitleRe: table_name='%s' tournament='%s' table_number='%s'" % (table_name, tournament, table_number))
-        log.info("Stars.getTableTitleRe: returns: '%s'" % (regex))
+        log.debug("Stars.getTableTitleRe: table_name='%s' tournament='%s' table_number='%s'" % (table_name, tournament, table_number))
+        log.debug("Stars.getTableTitleRe: returns: '%s'" % (regex))
         return regex
 
     def getRake(self, hand):
