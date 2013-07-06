@@ -476,13 +476,13 @@ class SealsWithClubs(HandHistoryConverter):
 
     def readCollectPot(self,hand):
         i=0
-        print "handid" + str(hand.handid)
+        #print "handid" + str(hand.handid)
         #print "collecting pot"
         #print hand.handText
         if hand.runItTimes==0:
             #print "here"
             for m in self.re_CollectPot.finditer(hand.handText):
-                print ("collecting",m.group('PNAME'),m.group('POT'))
+                #print ("collecting",m.group('PNAME'),m.group('POT'))
                 hand.addCollectPot(player=m.group('PNAME'),pot=m.group('POT'))
                 i+=1
         if i==0:
