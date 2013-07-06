@@ -1,0 +1,4506 @@
+Hand #8854896-126 - 2013-06-22 02:04:25
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: Urqell (200)
+Seat 2: habing (200) - waiting for big blind
+Seat 3: Degnr8Gamblr (732.06)
+Seat 4: sctt11 (217.64)
+Seat 5: ungod (329.67)
+Seat 6: moneybacon13 (234.96)
+Degnr8Gamblr has the dealer button
+sctt11 posts small blind 1
+ungod posts big blind 2
+Urqell posts big blind 2
+** Hole Cards **
+moneybacon13 folds
+Urqell checks
+Degnr8Gamblr calls 2
+sctt11 calls 1
+ungod checks
+** Flop ** [6s Qh 8d]
+sctt11 checks
+ungod checks
+Urqell bets 5
+Degnr8Gamblr raises to 20
+sctt11 folds
+ungod folds
+Urqell calls 15
+** Turn ** [3h]
+Urqell checks
+Degnr8Gamblr bets 42
+Urqell calls 42
+** River ** [Ah]
+Urqell bets 36
+Degnr8Gamblr calls 36
+** Pot Show Down ** [6s Qh 8d 3h Ah]
+Urqell shows [Qs Tc] (a Pair of Queens +AT8)
+Degnr8Gamblr shows [Td Qc] (a Pair of Queens +AT8)
+Urqell splits Pot (100) with a Pair
+Degnr8Gamblr splits Pot (100) with a Pair
+Rake (4)
+
+
+
+Hand #8855022-127 - 2013-06-22 02:06:47
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: Urqell (200)
+Seat 2: habing (200) - waiting for big blind
+Seat 3: Degnr8Gamblr (732.06)
+Seat 4: sctt11 (215.64)
+Seat 5: ungod (327.67)
+Seat 6: moneybacon13 (234.96)
+sctt11 has the dealer button
+ungod posts small blind 1
+moneybacon13 posts big blind 2
+** Hole Cards **
+Urqell raises to 6
+Degnr8Gamblr folds
+sctt11 folds
+ungod folds
+moneybacon13 folds
+Urqell refunded 4
+Urqell wins Pot (5)
+Rake (0)
+
+
+
+Hand #8855048-128 - 2013-06-22 02:07:19
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: Urqell (203)
+Seat 2: habing (200) - waiting for big blind
+Seat 3: Degnr8Gamblr (732.06)
+Seat 4: sctt11 (215.64)
+Seat 5: ungod (326.67)
+Seat 6: moneybacon13 (232.96)
+ungod has the dealer button
+moneybacon13 posts small blind 1
+Urqell posts big blind 2
+** Hole Cards **
+Degnr8Gamblr folds
+sctt11 folds
+ungod folds
+moneybacon13 folds
+Urqell refunded 1
+Urqell wins Pot (2)
+Rake (0)
+
+
+
+Hand #8855072-129 - 2013-06-22 02:07:43
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: Urqell (204)
+Seat 2: habing (200) - waiting for big blind
+Seat 3: Degnr8Gamblr (732.06)
+Seat 4: sctt11 (215.64)
+Seat 5: ungod (326.67)
+Seat 6: moneybacon13 (231.96)
+moneybacon13 has the dealer button
+Urqell posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [5s Qh]
+Degnr8Gamblr folds
+sctt11 folds
+ungod raises to 6
+moneybacon13 folds
+Urqell calls 5
+habing folds
+habing adds 2 chips
+** Flop ** [Ad 5d 2c]
+Urqell checks
+ungod checks
+** Turn ** [2s]
+Urqell checks
+ungod checks
+** River ** [Kd]
+Urqell bets 11
+ungod calls 11
+** Pot Show Down ** [Ad 5d 2c 2s Kd]
+Urqell shows [9h Js] (a Pair of Deuces +AKJ)
+ungod shows [Kh Qc] (Two Pair, Kings and Deuces +A)
+ungod wins Pot (35.10) with Two Pair
+Rake (0.90)
+
+
+
+Hand #8855174-130 - 2013-06-22 02:09:41
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: Urqell (187)
+Seat 2: habing (200)
+Seat 3: Degnr8Gamblr (732.06)
+Seat 4: sctt11 (215.64)
+Seat 5: ungod (344.77)
+Seat 6: moneybacon13 (231.96)
+Urqell has the dealer button
+habing posts small blind 1
+Degnr8Gamblr posts big blind 2
+** Hole Cards **
+Dealt to habing [3s 2s]
+sctt11 folds
+ungod folds
+moneybacon13 folds
+Urqell raises to 6
+habing folds
+habing adds 1 chips
+Degnr8Gamblr calls 4
+** Flop ** [Qd 5h 9h]
+Degnr8Gamblr checks
+Urqell checks
+** Turn ** [Kh]
+Degnr8Gamblr bets 20
+Urqell calls 20
+** River ** [6h]
+Degnr8Gamblr checks
+Urqell checks
+** Pot Show Down ** [Qd 5h 9h Kh 6h]
+Urqell shows [3h 7h] (a Flush, King high +9765)
+Degnr8Gamblr shows [Td Js] (a Straight, Nine to King)
+Urqell wins Pot (51.68) with a Flush
+Rake (1.32)
+
+
+
+Hand #8855235-131 - 2013-06-22 02:11:12
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: Urqell (212.68)
+Seat 2: habing (200)
+Seat 3: Degnr8Gamblr (706.06)
+Seat 4: sctt11 (215.64)
+Seat 5: ungod (344.77)
+Seat 6: moneybacon13 (231.96)
+habing has the dealer button
+Degnr8Gamblr posts small blind 1
+sctt11 posts big blind 2
+** Hole Cards **
+Dealt to habing [4c 5d]
+ungod folds
+moneybacon13 raises to 6
+Urqell calls 6
+habing folds
+Degnr8Gamblr calls 5
+sctt11 calls 4
+** Flop ** [Ad 2h 6s]
+Degnr8Gamblr checks
+sctt11 checks
+moneybacon13 checks
+Urqell checks
+** Turn ** [Ts]
+Degnr8Gamblr checks
+sctt11 checks
+moneybacon13 bets 16
+Urqell folds
+Degnr8Gamblr folds
+sctt11 folds
+moneybacon13 refunded 16
+moneybacon13 wins Pot (23.40)
+Rake (0.60)
+
+
+
+Hand #8855320-132 - 2013-06-22 02:12:48
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: Urqell (206.68)
+Seat 2: habing (200)
+Seat 3: Degnr8Gamblr (700.06)
+Seat 4: sctt11 (209.64)
+Seat 5: ungod (344.77)
+Seat 6: moneybacon13 (249.36)
+Degnr8Gamblr has the dealer button
+sctt11 posts small blind 1
+ungod posts big blind 2
+** Hole Cards **
+Dealt to habing [Qs 8s]
+moneybacon13 folds
+Urqell folds
+habing raises to 6
+Degnr8Gamblr folds
+sctt11 folds
+ungod folds
+habing refunded 4
+habing wins Pot (5)
+Rake (0)
+
+
+
+Hand #8855352-133 - 2013-06-22 02:13:26
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: Urqell (206.68)
+Seat 2: habing (203)
+Seat 3: Degnr8Gamblr (700.06)
+Seat 4: sctt11 (208.64)
+Seat 5: ungod (342.77)
+Seat 6: moneybacon13 (249.36)
+sctt11 has the dealer button
+ungod posts small blind 1
+moneybacon13 posts big blind 2
+** Hole Cards **
+Dealt to habing [Jh Qc]
+Urqell folds
+habing raises to 6
+Degnr8Gamblr folds
+sctt11 calls 6
+ungod calls 5
+sctt11 folds
+ungod refunded 12
+ungod wins Pot (19.50)
+Rake (0.50)
+
+
+
+Hand #8855400-134 - 2013-06-22 02:14:31
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: Urqell (206.68)
+Seat 2: habing (200) - sitting out
+Seat 3: Degnr8Gamblr (700.06)
+Seat 4: sctt11 (202.64)
+Seat 5: ungod (356.27)
+Seat 6: moneybacon13 (247.36)
+ungod has the dealer button
+moneybacon13 posts small blind 1
+Urqell posts big blind 2
+** Hole Cards **
+Degnr8Gamblr folds
+sctt11 folds
+ungod raises to 6
+moneybacon13 folds
+Urqell folds
+ungod refunded 4
+ungod wins Pot (5)
+Rake (0)
+
+
+
+Hand #8855427-135 - 2013-06-22 02:14:59
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: Urqell (204.68)
+Seat 2: habing (200)
+Seat 3: Degnr8Gamblr (700.06)
+Seat 4: sctt11 (202.64)
+Seat 5: ungod (359.27)
+Seat 6: moneybacon13 (246.36)
+moneybacon13 has the dealer button
+Urqell posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [4h 7d]
+Degnr8Gamblr folds
+sctt11 folds
+ungod folds
+moneybacon13 folds
+Urqell raises to 7
+habing folds
+Urqell refunded 5
+habing adds 2 chips
+Urqell wins Pot (4)
+Rake (0)
+
+
+
+Hand #8855461-136 - 2013-06-22 02:15:36
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: Urqell (206.68)
+Seat 2: habing (200)
+Seat 3: Degnr8Gamblr (700.06)
+Seat 4: sctt11 (202.64)
+Seat 5: ungod (359.27)
+Seat 6: moneybacon13 (246.36)
+Urqell has the dealer button
+habing posts small blind 1
+Degnr8Gamblr posts big blind 2
+** Hole Cards **
+Dealt to habing [5h 2d]
+sctt11 folds
+ungod folds
+moneybacon13 raises to 6
+Urqell calls 6
+habing folds
+habing adds 1 chips
+Degnr8Gamblr calls 4
+** Flop ** [2h Td 4s]
+Degnr8Gamblr checks
+moneybacon13 checks
+Urqell bets 13.15
+Degnr8Gamblr folds
+moneybacon13 calls 13.15
+** Turn ** [5s]
+moneybacon13 checks
+Urqell bets 44
+moneybacon13 raises to 94
+Urqell folds
+moneybacon13 refunded 50
+moneybacon13 wins Pot (129.97)
+Rake (3.33)
+
+
+
+Hand #8855538-137 - 2013-06-22 02:17:17
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: Urqell (143.53)
+Seat 2: habing (200)
+Seat 3: Degnr8Gamblr (694.06)
+Seat 4: mrdonkeyking (200)
+Seat 5: ungod (359.27)
+Seat 6: moneybacon13 (313.18)
+habing has the dealer button
+Degnr8Gamblr posts small blind 1
+mrdonkeyking posts big blind 2
+** Hole Cards **
+Dealt to habing [Jh 5c]
+ungod folds
+moneybacon13 folds
+Urqell raises to 7
+habing folds
+Degnr8Gamblr calls 6
+mrdonkeyking calls 5
+** Flop ** [2c 4d 2d]
+Degnr8Gamblr checks
+mrdonkeyking checks
+Urqell bets 15
+Degnr8Gamblr folds
+mrdonkeyking folds
+Urqell refunded 15
+Urqell wins Pot (20.48)
+Rake (0.52)
+
+
+
+Hand #8855586-138 - 2013-06-22 02:18:09
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: Urqell (157.01)
+Seat 2: habing (200)
+Seat 3: Degnr8Gamblr (687.06)
+Seat 4: mrdonkeyking (193)
+Seat 5: ungod (359.27)
+Seat 6: moneybacon13 (313.18)
+Degnr8Gamblr has the dealer button
+mrdonkeyking posts small blind 1
+ungod posts big blind 2
+** Hole Cards **
+Dealt to habing [As 7d]
+moneybacon13 folds
+Urqell raises to 7
+habing folds
+Degnr8Gamblr folds
+mrdonkeyking calls 6
+ungod folds
+** Flop ** [3h Ad Qs]
+mrdonkeyking checks
+Urqell checks
+** Turn ** [8c]
+mrdonkeyking bets 10
+Urqell folds
+mrdonkeyking refunded 10
+mrdonkeyking wins Pot (15.60)
+Rake (0.40)
+
+
+
+Hand #8855628-139 - 2013-06-22 02:19:01
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: Urqell (150.01)
+Seat 2: habing (200)
+Seat 3: Degnr8Gamblr (687.06)
+Seat 4: mrdonkeyking (201.60)
+Seat 5: ungod (357.27)
+Seat 6: moneybacon13 (313.18)
+mrdonkeyking has the dealer button
+ungod posts small blind 1
+moneybacon13 posts big blind 2
+** Hole Cards **
+Dealt to habing [Tc 4h]
+Urqell raises to 8
+habing folds
+Degnr8Gamblr calls 8
+mrdonkeyking folds
+ungod raises to 30
+moneybacon13 folds
+Urqell calls 22
+Degnr8Gamblr calls 22
+** Flop ** [2h Qd Kh]
+ungod checks
+Urqell bets 65
+Degnr8Gamblr raises to 130
+ungod folds
+Urqell calls 55.01 (All-in)
+Degnr8Gamblr refunded 9.99
+** Turn ** [Ad]
+** River ** [9h]
+** Pot Show Down ** [2h Qd Kh Ad 9h]
+Urqell shows [9d 2s] (Two Pair, Nines and Deuces +A)
+Degnr8Gamblr shows [Jh Qh] (a Flush, King high +QJ92)
+Degnr8Gamblr wins Pot (328.02) with a Flush
+Rake (4)
+
+
+
+Hand #8855689-140 - 2013-06-22 02:20:13
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: Urqell (0) - sitting out
+Seat 2: habing (200)
+Seat 3: Degnr8Gamblr (865.07)
+Seat 4: mrdonkeyking (201.60)
+Seat 5: ungod (327.27)
+Seat 6: moneybacon13 (311.18)
+ungod has the dealer button
+moneybacon13 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ac Qd]
+Degnr8Gamblr folds
+mrdonkeyking folds
+ungod raises to 6
+moneybacon13 folds
+habing raises to 22
+ungod calls 16
+** Flop ** [8h 5s 6d]
+habing bets 20
+ungod folds
+habing refunded 20
+habing wins Pot (43.88)
+Rake (1.12)
+
+
+
+Hand #8855726-141 - 2013-06-22 02:20:59
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 2: habing (221.88)
+Seat 3: Degnr8Gamblr (865.07)
+Seat 4: mrdonkeyking (201.60)
+Seat 5: ungod (305.27)
+Seat 6: moneybacon13 (310.18)
+moneybacon13 has the dealer button
+habing posts small blind 1
+Degnr8Gamblr posts big blind 2
+** Hole Cards **
+Dealt to habing [5c Td]
+mrdonkeyking raises to 6
+ungod folds
+moneybacon13 folds
+habing folds
+Degnr8Gamblr folds
+mrdonkeyking refunded 4
+mrdonkeyking wins Pot (5)
+Rake (0)
+
+
+
+Hand #8855752-142 - 2013-06-22 02:21:30
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 2: habing (220.88)
+Seat 3: Degnr8Gamblr (863.07)
+Seat 4: mrdonkeyking (204.60)
+Seat 5: ungod (305.27)
+Seat 6: moneybacon13 (310.18)
+habing has the dealer button
+Degnr8Gamblr posts small blind 1
+mrdonkeyking posts big blind 2
+** Hole Cards **
+Dealt to habing [3h 7d]
+ungod folds
+moneybacon13 folds
+habing folds
+Degnr8Gamblr folds
+mrdonkeyking refunded 1
+mrdonkeyking wins Pot (2)
+Rake (0)
+
+
+
+Hand #8855776-143 - 2013-06-22 02:21:56
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 2: habing (220.88)
+Seat 3: Degnr8Gamblr (862.07)
+Seat 4: mrdonkeyking (205.60)
+Seat 5: ungod (305.27)
+Seat 6: moneybacon13 (310.18)
+Degnr8Gamblr has the dealer button
+mrdonkeyking posts small blind 1
+ungod posts big blind 2
+** Hole Cards **
+Dealt to habing [Jd 2c]
+moneybacon13 folds
+habing folds
+Degnr8Gamblr raises to 6
+mrdonkeyking folds
+ungod calls 4
+** Flop ** [Js 6h Th]
+ungod checks
+Degnr8Gamblr checks
+** Turn ** [9d]
+ungod checks
+Degnr8Gamblr checks
+** River ** [Ac]
+ungod checks
+Degnr8Gamblr checks
+** Pot Show Down ** [Js 6h Th 9d Ac]
+Degnr8Gamblr shows [Kc 7c] (High Card Ace +KJT9)
+ungod shows [Ts Qd] (a Pair of Tens +AQJ)
+ungod wins Pot (12.68) with a Pair
+Rake (0.32)
+
+
+
+Hand #8855818-144 - 2013-06-22 02:22:57
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (200) - waiting for big blind
+Seat 2: habing (220.88)
+Seat 3: Degnr8Gamblr (856.07)
+Seat 4: mrdonkeyking (204.60)
+Seat 5: ungod (311.95)
+Seat 6: moneybacon13 (310.18)
+mrdonkeyking has the dealer button
+ungod posts small blind 1
+moneybacon13 posts big blind 2
+** Hole Cards **
+Dealt to habing [3d 8c]
+habing has timed out
+habing folds
+Degnr8Gamblr raises to 6
+mrdonkeyking folds
+ungod folds
+moneybacon13 raises to 18
+Degnr8Gamblr folds
+moneybacon13 refunded 12
+moneybacon13 wins Pot (13)
+Rake (0)
+
+
+
+Hand #8855866-145 - 2013-06-22 02:24:00
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (200) - waiting for big blind
+Seat 2: habing (220.88) - sitting out
+Seat 3: Degnr8Gamblr (850.07)
+Seat 4: mrdonkeyking (204.60)
+Seat 5: ungod (310.95)
+Seat 6: moneybacon13 (317.18)
+ungod has the dealer button
+moneybacon13 posts small blind 1
+sleepyknees posts big blind 2
+** Hole Cards **
+Degnr8Gamblr raises to 6
+mrdonkeyking folds
+ungod folds
+moneybacon13 folds
+sleepyknees folds
+Degnr8Gamblr refunded 4
+sleepyknees adds 2 chips
+Degnr8Gamblr wins Pot (5)
+Rake (0)
+
+
+
+Hand #8855893-146 - 2013-06-22 02:24:42
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (200)
+Seat 2: habing (220.88) - sitting out
+Seat 3: Degnr8Gamblr (853.07)
+Seat 4: mrdonkeyking (204.60)
+Seat 5: ungod (310.95)
+Seat 6: moneybacon13 (316.18)
+moneybacon13 has the dealer button
+sleepyknees posts small blind 1
+Degnr8Gamblr posts big blind 2
+** Hole Cards **
+mrdonkeyking folds
+ungod folds
+moneybacon13 raises to 6
+sleepyknees folds
+sleepyknees adds 1 chips
+Degnr8Gamblr calls 4
+** Flop ** [Kc 5h 3d]
+Degnr8Gamblr bets 8
+moneybacon13 raises to 24
+Degnr8Gamblr calls 16
+** Turn ** [Qd]
+Degnr8Gamblr checks
+moneybacon13 bets 40
+Degnr8Gamblr calls 40
+** River ** [2d]
+Degnr8Gamblr checks
+moneybacon13 bets 88
+Degnr8Gamblr raises to 783.07 (All-in)
+moneybacon13 calls 158.18 (All-in)
+Degnr8Gamblr refunded 536.89
+** Pot Show Down ** [Kc 5h 3d Qd 2d]
+Degnr8Gamblr shows [5c 5d] (Three of a Kind, Fives +KQ)
+moneybacon13 shows [4d 6d] (a Flush, Queen high +6432)
+moneybacon13 wins Pot (629.36) with a Flush
+Rake (4)
+
+
+
+Hand #8855986-147 - 2013-06-22 02:26:55
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (200)
+Seat 2: habing (220.88)
+Seat 3: Degnr8Gamblr (536.89)
+Seat 4: mrdonkeyking (204.60)
+Seat 5: ungod (310.95)
+Seat 6: moneybacon13 (629.36)
+sleepyknees has the dealer button
+Degnr8Gamblr posts small blind 1
+mrdonkeyking posts big blind 2
+** Hole Cards **
+ungod folds
+moneybacon13 folds
+sleepyknees raises to 4
+Degnr8Gamblr folds
+mrdonkeyking folds
+sleepyknees refunded 2
+sleepyknees wins Pot (5)
+Rake (0)
+
+
+
+Hand #8856005-148 - 2013-06-22 02:27:25
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (203)
+Seat 2: habing (220.88)
+Seat 3: Degnr8Gamblr (535.89)
+Seat 4: mrdonkeyking (202.60)
+Seat 5: ungod (310.95)
+Seat 6: moneybacon13 (629.36)
+Degnr8Gamblr has the dealer button
+mrdonkeyking posts small blind 1
+ungod posts big blind 2
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ks Kd]
+moneybacon13 raises to 8
+sleepyknees folds
+habing raises to 32
+Degnr8Gamblr folds
+mrdonkeyking folds
+ungod folds
+moneybacon13 folds
+habing refunded 24
+habing wins Pot (19)
+Rake (0)
+
+
+
+Hand #8856041-149 - 2013-06-22 02:28:10
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (203)
+Seat 2: habing (231.88)
+Seat 3: Degnr8Gamblr (535.89)
+Seat 4: mrdonkeyking (201.60)
+Seat 5: ungod (308.95)
+Seat 6: moneybacon13 (621.36)
+mrdonkeyking has the dealer button
+ungod posts small blind 1
+moneybacon13 posts big blind 2
+** Hole Cards **
+Dealt to habing [Th Jc]
+sleepyknees folds
+habing folds
+Degnr8Gamblr raises to 6
+mrdonkeyking calls 6
+ungod folds
+moneybacon13 folds
+** Flop ** [4h 9c 6s]
+Degnr8Gamblr checks
+mrdonkeyking bets 8
+Degnr8Gamblr folds
+mrdonkeyking refunded 8
+mrdonkeyking wins Pot (14.63)
+Rake (0.37)
+
+
+
+Hand #8856084-150 - 2013-06-22 02:29:09
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (203)
+Seat 2: habing (231.88)
+Seat 3: Degnr8Gamblr (529.89)
+Seat 4: mrdonkeyking (210.23)
+Seat 5: ungod (307.95)
+Seat 6: moneybacon13 (619.36)
+ungod has the dealer button
+moneybacon13 posts small blind 1
+sleepyknees posts big blind 2
+** Hole Cards **
+Dealt to habing [Jh Jd]
+habing raises to 6
+Degnr8Gamblr folds
+mrdonkeyking folds
+ungod calls 6
+moneybacon13 folds
+sleepyknees folds
+** Flop ** [Kh 4s 3c]
+habing bets 8
+ungod calls 8
+** Turn ** [8c]
+habing checks
+ungod bets 6
+habing calls 6
+** River ** [6c]
+habing checks
+ungod checks
+** Pot Show Down ** [Kh 4s 3c 8c 6c]
+habing shows [Jh Jd] (a Pair of Jacks +K86)
+ungod shows [Ts Ks] (a Pair of Kings +T86)
+ungod wins Pot (41.93) with a Pair
+Rake (1.07)
+
+
+
+Hand #8856124-151 - 2013-06-22 02:30:18
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (201)
+Seat 2: habing (211.88)
+Seat 3: Degnr8Gamblr (529.89)
+Seat 4: mrdonkeyking (210.23)
+Seat 5: ungod (329.88)
+Seat 6: moneybacon13 (618.36)
+moneybacon13 has the dealer button
+sleepyknees posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Th 7h]
+Degnr8Gamblr folds
+mrdonkeyking folds
+ungod folds
+moneybacon13 folds
+sleepyknees folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8856136-152 - 2013-06-22 02:30:43
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (200)
+Seat 2: habing (212.88)
+Seat 3: Degnr8Gamblr (529.89)
+Seat 4: mrdonkeyking (210.23)
+Seat 5: ungod (329.88)
+Seat 6: moneybacon13 (618.36)
+sleepyknees has the dealer button
+habing posts small blind 1
+Degnr8Gamblr posts big blind 2
+** Hole Cards **
+Dealt to habing [3c 9d]
+mrdonkeyking folds
+ungod folds
+moneybacon13 folds
+sleepyknees raises to 4
+habing folds
+Degnr8Gamblr calls 2
+** Flop ** [8c Qd Qs]
+Degnr8Gamblr checks
+sleepyknees bets 5
+Degnr8Gamblr folds
+sleepyknees refunded 5
+sleepyknees wins Pot (8.78)
+Rake (0.22)
+
+
+
+Hand #8856167-153 - 2013-06-22 02:31:37
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (204.78)
+Seat 2: habing (211.88)
+Seat 3: Degnr8Gamblr (525.89)
+Seat 4: mrdonkeyking (210.23)
+Seat 5: ungod (329.88)
+Seat 6: moneybacon13 (618.36)
+habing has the dealer button
+Degnr8Gamblr posts small blind 1
+mrdonkeyking posts big blind 2
+** Hole Cards **
+Dealt to habing [5c 9h]
+ungod folds
+moneybacon13 folds
+sleepyknees folds
+habing folds
+Degnr8Gamblr calls 1
+mrdonkeyking checks
+** Flop ** [6c 8h Jh]
+Degnr8Gamblr checks
+mrdonkeyking checks
+** Turn ** [8d]
+Degnr8Gamblr bets 4
+mrdonkeyking folds
+Degnr8Gamblr refunded 4
+Degnr8Gamblr wins Pot (3.90)
+Rake (0.10)
+
+
+
+Hand #8856212-154 - 2013-06-22 02:32:43
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (204.78)
+Seat 2: habing (211.88)
+Seat 3: Degnr8Gamblr (527.79)
+Seat 4: mrdonkeyking (208.23)
+Seat 5: ungod (329.88)
+Seat 6: moneybacon13 (618.36)
+Degnr8Gamblr has the dealer button
+mrdonkeyking posts small blind 1
+ungod posts big blind 2
+** Hole Cards **
+Dealt to habing [4c 2s]
+moneybacon13 folds
+sleepyknees folds
+habing folds
+Degnr8Gamblr raises to 8
+mrdonkeyking folds
+ungod calls 6
+** Flop ** [9s Ac 4h]
+ungod bets 16
+Degnr8Gamblr raises to 32
+ungod calls 16
+** Turn ** [6s]
+ungod checks
+Degnr8Gamblr bets 75
+ungod folds
+Degnr8Gamblr refunded 75
+Degnr8Gamblr wins Pot (78.98)
+Rake (2.02)
+
+
+
+Hand #8856279-155 - 2013-06-22 02:34:07
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (204.78)
+Seat 2: habing (211.88)
+Seat 3: Degnr8Gamblr (566.77)
+Seat 4: mrdonkeyking (207.23)
+Seat 5: ungod (289.88)
+Seat 6: moneybacon13 (618.36)
+mrdonkeyking has the dealer button
+ungod posts small blind 1
+moneybacon13 posts big blind 2
+** Hole Cards **
+Dealt to habing [Qc Jh]
+sleepyknees folds
+habing raises to 6
+Degnr8Gamblr folds
+mrdonkeyking raises to 18
+ungod folds
+moneybacon13 folds
+habing folds
+mrdonkeyking refunded 12
+mrdonkeyking wins Pot (15)
+Rake (0)
+
+
+
+Hand #8856311-156 - 2013-06-22 02:34:44
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (204.78)
+Seat 2: habing (205.88)
+Seat 3: Degnr8Gamblr (566.77)
+Seat 4: mrdonkeyking (216.23)
+Seat 5: ungod (288.88)
+Seat 6: moneybacon13 (616.36)
+ungod has the dealer button
+moneybacon13 posts small blind 1
+sleepyknees posts big blind 2
+** Hole Cards **
+Dealt to habing [9s Js]
+habing raises to 6
+Degnr8Gamblr folds
+mrdonkeyking folds
+ungod folds
+moneybacon13 folds
+sleepyknees folds
+habing refunded 4
+habing wins Pot (5)
+Rake (0)
+
+
+
+Hand #8856342-157 - 2013-06-22 02:35:27
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (202.78)
+Seat 2: habing (208.88)
+Seat 3: Degnr8Gamblr (566.77)
+Seat 4: mrdonkeyking (216.23)
+Seat 5: ungod (288.88)
+Seat 6: moneybacon13 (615.36)
+moneybacon13 has the dealer button
+sleepyknees posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [9s Jd]
+Degnr8Gamblr folds
+mrdonkeyking folds
+ungod raises to 6
+moneybacon13 calls 6
+sleepyknees raises to 26
+habing folds
+ungod folds
+moneybacon13 folds
+sleepyknees refunded 20
+sleepyknees wins Pot (20)
+Rake (0)
+
+
+
+Hand #8856397-158 - 2013-06-22 02:36:25
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (216.78)
+Seat 2: habing (206.88)
+Seat 3: Degnr8Gamblr (566.77)
+Seat 4: mrdonkeyking (216.23)
+Seat 5: ungod (282.88)
+Seat 6: moneybacon13 (609.36)
+sleepyknees has the dealer button
+habing posts small blind 1
+Degnr8Gamblr posts big blind 2
+** Hole Cards **
+Dealt to habing [6s 7c]
+mrdonkeyking folds
+ungod folds
+moneybacon13 folds
+sleepyknees folds
+habing folds
+Degnr8Gamblr refunded 1
+Degnr8Gamblr wins Pot (2)
+Rake (0)
+
+
+
+Hand #8856414-159 - 2013-06-22 02:36:49
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (216.78)
+Seat 2: habing (205.88)
+Seat 3: Degnr8Gamblr (567.77)
+Seat 4: mrdonkeyking (216.23)
+Seat 5: ungod (282.88)
+Seat 6: moneybacon13 (609.36)
+habing has the dealer button
+Degnr8Gamblr posts small blind 1
+mrdonkeyking posts big blind 2
+** Hole Cards **
+Dealt to habing [Ad Qc]
+ungod folds
+moneybacon13 has timed out
+moneybacon13 folds
+sleepyknees folds
+habing raises to 4
+Degnr8Gamblr raises to 14
+mrdonkeyking folds
+habing calls 10
+** Flop ** [8c Th 9s]
+Degnr8Gamblr bets 34
+habing folds
+Degnr8Gamblr refunded 34
+habing adds 8.12 chips
+Degnr8Gamblr wins Pot (29.25)
+Rake (0.75)
+
+
+
+Hand #8856472-160 - 2013-06-22 02:38:01
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (216.78)
+Seat 2: habing (200)
+Seat 3: Degnr8Gamblr (583.02)
+Seat 4: mrdonkeyking (214.23)
+Seat 5: ungod (282.88)
+Seat 6: moneybacon13 (609.36)
+Degnr8Gamblr has the dealer button
+mrdonkeyking posts small blind 1
+ungod posts big blind 2
+** Hole Cards **
+Dealt to habing [2h 6h]
+moneybacon13 folds
+sleepyknees folds
+habing folds
+Degnr8Gamblr folds
+mrdonkeyking raises to 4
+ungod folds
+mrdonkeyking refunded 2
+mrdonkeyking wins Pot (4)
+Rake (0)
+
+
+
+Hand #8856501-161 - 2013-06-22 02:38:37
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (216.78)
+Seat 2: habing (200)
+Seat 3: Degnr8Gamblr (583.02)
+Seat 4: mrdonkeyking (216.23)
+Seat 5: ungod (280.88)
+Seat 6: moneybacon13 (609.36)
+mrdonkeyking has the dealer button
+ungod posts small blind 1
+moneybacon13 posts big blind 2
+** Hole Cards **
+Dealt to habing [6s 4c]
+sleepyknees folds
+habing folds
+Degnr8Gamblr folds
+mrdonkeyking raises to 6
+ungod calls 5
+moneybacon13 folds
+** Flop ** [2c 3s Ah]
+ungod checks
+mrdonkeyking bets 10
+ungod folds
+mrdonkeyking refunded 10
+mrdonkeyking wins Pot (13.65)
+Rake (0.35)
+
+
+
+Hand #8856550-162 - 2013-06-22 02:39:46
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (216.78)
+Seat 2: habing (200)
+Seat 3: Degnr8Gamblr (583.02)
+Seat 4: mrdonkeyking (223.88)
+Seat 5: ungod (274.88)
+Seat 6: moneybacon13 (607.36)
+ungod has the dealer button
+moneybacon13 posts small blind 1
+sleepyknees posts big blind 2
+** Hole Cards **
+Dealt to habing [As 2h]
+habing folds
+Degnr8Gamblr folds
+mrdonkeyking folds
+ungod folds
+moneybacon13 raises to 6
+sleepyknees folds
+moneybacon13 refunded 4
+moneybacon13 wins Pot (4)
+Rake (0)
+
+
+
+Hand #8856579-163 - 2013-06-22 02:40:22
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (214.78)
+Seat 2: habing (200)
+Seat 3: Degnr8Gamblr (583.02)
+Seat 4: mrdonkeyking (223.88)
+Seat 5: ungod (274.88)
+Seat 6: moneybacon13 (609.36)
+moneybacon13 has the dealer button
+sleepyknees posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Kh As]
+Degnr8Gamblr folds
+mrdonkeyking folds
+ungod folds
+moneybacon13 folds
+sleepyknees raises to 6
+habing raises to 18.40
+sleepyknees folds
+habing refunded 12.40
+habing wins Pot (12)
+Rake (0)
+
+
+
+Hand #8856611-164 - 2013-06-22 02:41:05
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (208.78)
+Seat 2: habing (206)
+Seat 3: Degnr8Gamblr (583.02)
+Seat 4: mrdonkeyking (223.88)
+Seat 5: ungod (274.88)
+Seat 6: moneybacon13 (609.36)
+sleepyknees has the dealer button
+habing posts small blind 1
+Degnr8Gamblr posts big blind 2
+** Hole Cards **
+Dealt to habing [Qd 3c]
+mrdonkeyking folds
+ungod raises to 8
+moneybacon13 folds
+sleepyknees folds
+habing folds
+Degnr8Gamblr folds
+ungod refunded 6
+ungod wins Pot (5)
+Rake (0)
+
+
+
+Hand #8856633-165 - 2013-06-22 02:41:41
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (208.78)
+Seat 2: habing (205)
+Seat 3: Degnr8Gamblr (581.02)
+Seat 4: mrdonkeyking (223.88)
+Seat 5: ungod (277.88)
+Seat 6: moneybacon13 (609.36)
+habing has the dealer button
+Degnr8Gamblr posts small blind 1
+mrdonkeyking posts big blind 2
+** Hole Cards **
+Dealt to habing [Ac Qc]
+ungod folds
+moneybacon13 folds
+sleepyknees folds
+habing raises to 4
+Degnr8Gamblr folds
+mrdonkeyking raises to 12
+habing calls 8
+** Flop ** [9c 5c 2h]
+mrdonkeyking bets 18
+habing raises to 51.20
+mrdonkeyking folds
+habing refunded 33.20
+habing wins Pot (59.48)
+Rake (1.52)
+
+
+
+Hand #8856697-166 - 2013-06-22 02:43:20
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (208.78)
+Seat 2: habing (234.48)
+Seat 3: Degnr8Gamblr (580.02)
+Seat 4: mrdonkeyking (193.88)
+Seat 5: ungod (277.88)
+Seat 6: moneybacon13 (609.36)
+Degnr8Gamblr has the dealer button
+mrdonkeyking posts small blind 1
+ungod posts big blind 2
+** Hole Cards **
+Dealt to habing [7h 2h]
+moneybacon13 raises to 6
+sleepyknees folds
+habing folds
+Degnr8Gamblr folds
+mrdonkeyking folds
+ungod raises to 16
+moneybacon13 calls 10
+** Flop ** [8d Ah Ts]
+ungod bets 26
+moneybacon13 folds
+ungod refunded 26
+ungod wins Pot (32.18)
+Rake (0.82)
+
+
+
+Hand #8856735-167 - 2013-06-22 02:44:28
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (208.78)
+Seat 2: habing (234.48)
+Seat 3: Degnr8Gamblr (580.02)
+Seat 4: mrdonkeyking (192.88)
+Seat 5: ungod (294.06)
+Seat 6: moneybacon13 (593.36)
+mrdonkeyking has the dealer button
+ungod posts small blind 1
+moneybacon13 posts big blind 2
+** Hole Cards **
+Dealt to habing [Ac 3h]
+sleepyknees folds
+habing folds
+Degnr8Gamblr folds
+mrdonkeyking raises to 6
+ungod calls 5
+moneybacon13 folds
+** Flop ** [4c 7c 2c]
+ungod bets 6
+mrdonkeyking raises to 18
+ungod folds
+mrdonkeyking refunded 12
+mrdonkeyking wins Pot (25.35)
+Rake (0.65)
+
+
+
+Hand #8856777-168 - 2013-06-22 02:45:33
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (208.78)
+Seat 2: habing (234.48)
+Seat 3: Degnr8Gamblr (580.02)
+Seat 4: mrdonkeyking (206.23)
+Seat 5: ungod (282.06)
+Seat 6: moneybacon13 (591.36)
+ungod has the dealer button
+moneybacon13 posts small blind 1
+sleepyknees posts big blind 2
+** Hole Cards **
+Dealt to habing [9c 5s]
+habing folds
+Degnr8Gamblr calls 2
+mrdonkeyking folds
+ungod folds
+moneybacon13 folds
+sleepyknees checks
+** Flop ** [Tc Td 7d]
+sleepyknees checks
+Degnr8Gamblr bets 4
+sleepyknees calls 4
+** Turn ** [Qc]
+sleepyknees checks
+Degnr8Gamblr bets 10
+sleepyknees folds
+Degnr8Gamblr refunded 10
+Degnr8Gamblr wins Pot (12.68)
+Rake (0.32)
+
+
+
+Hand #8856832-169 - 2013-06-22 02:47:15
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (202.78)
+Seat 2: habing (234.48)
+Seat 3: Degnr8Gamblr (586.70)
+Seat 4: mrdonkeyking (206.23)
+Seat 5: ungod (282.06)
+Seat 6: moneybacon13 (590.36)
+moneybacon13 has the dealer button
+sleepyknees posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Jh 9c]
+Degnr8Gamblr calls 2
+mrdonkeyking folds
+ungod folds
+moneybacon13 folds
+sleepyknees folds
+habing checks
+** Flop ** [8d Ks 6c]
+habing checks
+Degnr8Gamblr bets 2
+habing folds
+Degnr8Gamblr refunded 2
+Degnr8Gamblr wins Pot (4.88)
+Rake (0.12)
+
+
+
+Hand #8856861-170 - 2013-06-22 02:48:02
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (201.78)
+Seat 2: habing (232.48)
+Seat 3: Degnr8Gamblr (589.58)
+Seat 4: mrdonkeyking (206.23)
+Seat 5: ungod (282.06)
+Seat 6: moneybacon13 (590.36)
+sleepyknees has the dealer button
+habing posts small blind 1
+Degnr8Gamblr posts big blind 2
+** Hole Cards **
+Dealt to habing [6h 7h]
+mrdonkeyking raises to 6
+ungod has timed out
+ungod folds
+moneybacon13 folds
+sleepyknees calls 6
+habing folds
+Degnr8Gamblr calls 4
+** Flop ** [As Kd Tc]
+Degnr8Gamblr checks
+mrdonkeyking bets 2
+sleepyknees folds
+sleepyknees adds 4.22 chips
+Degnr8Gamblr folds
+mrdonkeyking refunded 2
+mrdonkeyking wins Pot (18.53)
+Rake (0.47)
+
+
+
+Hand #8856902-171 - 2013-06-22 02:49:18
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (200)
+Seat 2: habing (231.48)
+Seat 3: Degnr8Gamblr (583.58)
+Seat 4: mrdonkeyking (218.76)
+Seat 5: ungod (282.06)
+Seat 6: moneybacon13 (590.36)
+habing has the dealer button
+Degnr8Gamblr posts small blind 1
+mrdonkeyking posts big blind 2
+** Hole Cards **
+Dealt to habing [6c Kd]
+ungod folds
+moneybacon13 folds
+sleepyknees folds
+habing raises to 4
+Degnr8Gamblr folds
+mrdonkeyking folds
+habing refunded 2
+habing wins Pot (5)
+Rake (0)
+
+
+
+Hand #8856921-172 - 2013-06-22 02:49:56
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (200)
+Seat 2: habing (234.48)
+Seat 3: Degnr8Gamblr (582.58)
+Seat 4: mrdonkeyking (216.76)
+Seat 5: ungod (282.06)
+Seat 6: moneybacon13 (590.36)
+Degnr8Gamblr has the dealer button
+mrdonkeyking posts small blind 1
+ungod posts big blind 2
+** Hole Cards **
+Dealt to habing [4s 7h]
+moneybacon13 folds
+sleepyknees folds
+habing folds
+Degnr8Gamblr calls 2
+mrdonkeyking calls 1
+ungod raises to 6
+Degnr8Gamblr calls 4
+mrdonkeyking folds
+** Flop ** [6s 3s 4h]
+ungod bets 10
+Degnr8Gamblr folds
+ungod refunded 10
+ungod wins Pot (13.65)
+Rake (0.35)
+
+
+
+Hand #8856945-173 - 2013-06-22 02:50:46
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (200)
+Seat 2: habing (234.48)
+Seat 3: Degnr8Gamblr (576.58)
+Seat 4: mrdonkeyking (214.76)
+Seat 5: ungod (289.71)
+Seat 6: moneybacon13 (590.36)
+mrdonkeyking has the dealer button
+ungod posts small blind 1
+moneybacon13 posts big blind 2
+** Hole Cards **
+Dealt to habing [Ad Th]
+sleepyknees folds
+habing raises to 6
+Degnr8Gamblr folds
+mrdonkeyking calls 6
+ungod calls 5
+moneybacon13 folds
+** Flop ** [6h Kd Kc]
+ungod checks
+habing bets 11.60
+mrdonkeyking folds
+ungod folds
+habing refunded 11.60
+habing wins Pot (19.50)
+Rake (0.50)
+
+
+
+Hand #8856983-174 - 2013-06-22 02:51:57
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (200)
+Seat 2: habing (247.98)
+Seat 3: Degnr8Gamblr (576.58)
+Seat 4: mrdonkeyking (208.76)
+Seat 5: ungod (283.71)
+Seat 6: moneybacon13 (588.36)
+ungod has the dealer button
+moneybacon13 posts small blind 1
+sleepyknees posts big blind 2
+** Hole Cards **
+Dealt to habing [5s 2s]
+habing folds
+Degnr8Gamblr raises to 8
+mrdonkeyking folds
+ungod folds
+moneybacon13 folds
+sleepyknees folds
+Degnr8Gamblr refunded 6
+sleepyknees adds 2 chips
+Degnr8Gamblr wins Pot (5)
+Rake (0)
+
+
+
+Hand #8857002-175 - 2013-06-22 02:52:25
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (200)
+Seat 2: habing (247.98)
+Seat 3: Degnr8Gamblr (579.58)
+Seat 4: mrdonkeyking (208.76)
+Seat 5: ungod (283.71)
+Seat 6: moneybacon13 (587.36)
+moneybacon13 has the dealer button
+sleepyknees posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ah 7h]
+Degnr8Gamblr folds
+mrdonkeyking folds
+ungod folds
+moneybacon13 folds
+sleepyknees folds
+habing refunded 1
+sleepyknees adds 1 chips
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8857019-176 - 2013-06-22 02:52:57
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (200)
+Seat 2: habing (248.98)
+Seat 3: Degnr8Gamblr (579.58)
+Seat 4: mrdonkeyking (208.76)
+Seat 5: ungod (283.71)
+Seat 6: moneybacon13 (587.36)
+sleepyknees has the dealer button
+habing posts small blind 1
+Degnr8Gamblr posts big blind 2
+** Hole Cards **
+Dealt to habing [4c 5h]
+mrdonkeyking folds
+ungod folds
+moneybacon13 folds
+sleepyknees raises to 4
+habing folds
+Degnr8Gamblr raises to 14
+sleepyknees folds
+Degnr8Gamblr refunded 10
+sleepyknees adds 4 chips
+Degnr8Gamblr wins Pot (9)
+Rake (0)
+
+
+
+Hand #8857044-177 - 2013-06-22 02:53:33
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (200)
+Seat 2: habing (247.98)
+Seat 3: Degnr8Gamblr (584.58)
+Seat 4: mrdonkeyking (208.76)
+Seat 5: ungod (283.71)
+Seat 6: moneybacon13 (587.36)
+habing has the dealer button
+Degnr8Gamblr posts small blind 1
+mrdonkeyking posts big blind 2
+** Hole Cards **
+Dealt to habing [9d 6s]
+ungod raises to 6
+moneybacon13 folds
+sleepyknees folds
+habing folds
+Degnr8Gamblr folds
+mrdonkeyking folds
+ungod refunded 4
+ungod wins Pot (5)
+Rake (0)
+
+
+
+Hand #8857066-178 - 2013-06-22 02:54:11
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (200)
+Seat 2: habing (247.98)
+Seat 3: Degnr8Gamblr (583.58)
+Seat 4: mrdonkeyking (206.76)
+Seat 5: ungod (286.71)
+Seat 6: moneybacon13 (587.36)
+Degnr8Gamblr has the dealer button
+mrdonkeyking posts small blind 1
+ungod posts big blind 2
+** Hole Cards **
+Dealt to habing [6d 3d]
+moneybacon13 folds
+sleepyknees folds
+habing folds
+Degnr8Gamblr raises to 8
+mrdonkeyking folds
+ungod calls 6
+** Flop ** [7c Ah 6c]
+ungod checks
+Degnr8Gamblr checks
+** Turn ** [9c]
+ungod checks
+Degnr8Gamblr bets 18
+ungod folds
+Degnr8Gamblr refunded 18
+Degnr8Gamblr wins Pot (16.58)
+Rake (0.42)
+
+
+
+Hand #8857112-179 - 2013-06-22 02:55:31
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (200)
+Seat 2: habing (247.98)
+Seat 3: Degnr8Gamblr (592.16)
+Seat 4: mrdonkeyking (205.76)
+Seat 5: ungod (278.71)
+Seat 6: moneybacon13 (587.36)
+mrdonkeyking has the dealer button
+ungod posts small blind 1
+moneybacon13 posts big blind 2
+** Hole Cards **
+Dealt to habing [Tc 3h]
+sleepyknees folds
+habing folds
+Degnr8Gamblr raises to 6
+mrdonkeyking folds
+ungod raises to 18
+moneybacon13 folds
+Degnr8Gamblr folds
+ungod refunded 12
+ungod wins Pot (14)
+Rake (0)
+
+
+
+Hand #8857153-180 - 2013-06-22 02:56:36
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (200)
+Seat 2: habing (247.98)
+Seat 3: Degnr8Gamblr (586.16)
+Seat 4: mrdonkeyking (205.76)
+Seat 5: ungod (286.71)
+Seat 6: moneybacon13 (585.36)
+ungod has the dealer button
+moneybacon13 posts small blind 1
+sleepyknees posts big blind 2
+** Hole Cards **
+Dealt to habing [5c 9h]
+habing folds
+Degnr8Gamblr folds
+mrdonkeyking folds
+ungod raises to 6
+moneybacon13 raises to 18
+sleepyknees folds
+sleepyknees adds 2 chips
+ungod calls 12
+** Flop ** [Qc 3c 6c]
+moneybacon13 checks
+ungod checks
+** Turn ** [Kd]
+moneybacon13 checks
+ungod checks
+** River ** [2d]
+moneybacon13 checks
+ungod bets 30
+moneybacon13 calls 30
+** Pot Show Down ** [Qc 3c 6c Kd 2d]
+ungod shows [2h 2c] (Three of a Kind, Deuces +KQ)
+moneybacon13 shows [Qs Ad] (a Pair of Queens +AK6)
+ungod wins Pot (95.55) with Three of a Kind
+Rake (2.45)
+
+
+
+Hand #8857191-181 - 2013-06-22 02:57:44
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (200)
+Seat 2: habing (247.98)
+Seat 3: Degnr8Gamblr (586.16)
+Seat 4: mrdonkeyking (205.76)
+Seat 5: ungod (334.26)
+Seat 6: moneybacon13 (537.36)
+moneybacon13 has the dealer button
+sleepyknees posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [6c 6s]
+Degnr8Gamblr calls 2
+mrdonkeyking folds
+ungod folds
+moneybacon13 folds
+sleepyknees folds
+sleepyknees adds 1 chips
+habing checks
+** Flop ** [7h Jd 7d]
+habing checks
+Degnr8Gamblr bets 4
+habing folds
+Degnr8Gamblr refunded 4
+Degnr8Gamblr wins Pot (4.88)
+Rake (0.12)
+
+
+
+Hand #8857222-182 - 2013-06-22 02:58:31
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (200)
+Seat 2: habing (245.98)
+Seat 3: Degnr8Gamblr (589.04)
+Seat 4: mrdonkeyking (205.76)
+Seat 5: ungod (334.26)
+Seat 6: moneybacon13 (537.36)
+sleepyknees has the dealer button
+habing posts small blind 1
+Degnr8Gamblr posts big blind 2
+** Hole Cards **
+Dealt to habing [Ah 9c]
+mrdonkeyking folds
+ungod raises to 6
+moneybacon13 folds
+sleepyknees folds
+habing folds
+Degnr8Gamblr calls 4
+** Flop ** [9h 4h 3s]
+Degnr8Gamblr bets 8
+ungod calls 8
+** Turn ** [Ts]
+Degnr8Gamblr bets 18
+ungod calls 18
+** River ** [2s]
+Degnr8Gamblr checks
+ungod bets 44
+Degnr8Gamblr folds
+ungod refunded 44
+ungod wins Pot (63.38)
+Rake (1.62)
+
+
+
+Hand #8857271-183 - 2013-06-22 03:00:21
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (200)
+Seat 2: habing (244.98)
+Seat 3: Degnr8Gamblr (557.04)
+Seat 4: mrdonkeyking (205.76)
+Seat 5: ungod (365.64)
+Seat 6: moneybacon13 (537.36)
+habing has the dealer button
+Degnr8Gamblr posts small blind 1
+mrdonkeyking posts big blind 2
+** Hole Cards **
+Dealt to habing [6h As]
+ungod raises to 6
+moneybacon13 folds
+sleepyknees folds
+habing folds
+Degnr8Gamblr folds
+mrdonkeyking folds
+ungod refunded 4
+ungod wins Pot (5)
+Rake (0)
+
+
+
+Hand #8857309-184 - 2013-06-22 03:00:56
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (200)
+Seat 2: habing (244.98)
+Seat 3: Degnr8Gamblr (556.04)
+Seat 4: mrdonkeyking (203.76)
+Seat 5: ungod (368.64)
+Seat 6: moneybacon13 (537.36) - sitting out
+Degnr8Gamblr has the dealer button
+mrdonkeyking posts small blind 1
+ungod posts big blind 2
+** Hole Cards **
+Dealt to habing [9s 6s]
+sleepyknees folds
+habing folds
+Degnr8Gamblr raises to 6
+mrdonkeyking calls 5
+ungod calls 4
+** Flop ** [Ac 4d Jh]
+mrdonkeyking checks
+ungod checks
+Degnr8Gamblr folds
+** Turn ** [8d]
+mrdonkeyking bets 2
+ungod folds
+mrdonkeyking refunded 2
+mrdonkeyking wins Pot (17.55)
+Rake (0.45)
+
+
+
+Hand #8857340-185 - 2013-06-22 03:01:52
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (200)
+Seat 2: habing (244.98)
+Seat 4: mrdonkeyking (215.31)
+Seat 5: ungod (362.64)
+mrdonkeyking has the dealer button
+ungod posts small blind 1
+sleepyknees posts big blind 2
+** Hole Cards **
+Dealt to habing [Kd 5s]
+habing folds
+mrdonkeyking raises to 4
+ungod folds
+sleepyknees folds
+mrdonkeyking refunded 2
+sleepyknees adds 2 chips
+mrdonkeyking wins Pot (5)
+Rake (0)
+
+
+
+Hand #8857358-186 - 2013-06-22 03:02:16
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (200)
+Seat 2: habing (244.98)
+Seat 4: mrdonkeyking (218.31)
+Seat 5: ungod (361.64)
+ungod has the dealer button
+sleepyknees posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [2d Ac]
+mrdonkeyking folds
+ungod raises to 6
+sleepyknees folds
+sleepyknees adds 1 chips
+habing folds
+ungod refunded 4
+ungod wins Pot (5)
+Rake (0)
+
+
+
+Hand #8857378-187 - 2013-06-22 03:02:42
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (200)
+Seat 2: habing (242.98)
+Seat 4: mrdonkeyking (218.31)
+Seat 5: ungod (364.64)
+sleepyknees has the dealer button
+habing posts small blind 1
+mrdonkeyking posts big blind 2
+** Hole Cards **
+Dealt to habing [2h Td]
+ungod folds
+sleepyknees raises to 4
+habing folds
+mrdonkeyking raises to 35
+sleepyknees folds
+mrdonkeyking refunded 31
+sleepyknees adds 4 chips
+mrdonkeyking wins Pot (9)
+Rake (0)
+
+
+
+Hand #8857402-188 - 2013-06-22 03:03:26
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (200)
+Seat 2: habing (241.98)
+Seat 3: forfunbitch (200)
+Seat 4: mrdonkeyking (223.31)
+Seat 5: ungod (364.64)
+habing has the dealer button
+mrdonkeyking posts small blind 1
+ungod posts big blind 2
+** Hole Cards **
+Dealt to habing [6d 3h]
+sleepyknees folds
+habing folds
+mrdonkeyking folds
+ungod refunded 1
+ungod wins Pot (2)
+Rake (0)
+
+
+
+Hand #8857413-189 - 2013-06-22 03:03:50
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (200)
+Seat 2: habing (241.98)
+Seat 3: forfunbitch (200)
+Seat 4: mrdonkeyking (222.31)
+Seat 5: ungod (365.64)
+mrdonkeyking has the dealer button
+ungod posts small blind 1
+sleepyknees posts big blind 2
+forfunbitch posts big blind 2
+** Hole Cards **
+Dealt to habing [Qh 7h]
+habing calls 2
+forfunbitch checks
+mrdonkeyking calls 2
+ungod folds
+sleepyknees checks
+** Flop ** [7s Jc 6h]
+sleepyknees checks
+habing bets 6.80
+forfunbitch folds
+forfunbitch adds 2 chips
+mrdonkeyking folds
+sleepyknees folds
+habing refunded 6.80
+sleepyknees adds 2 chips
+habing wins Pot (8.78)
+Rake (0.22)
+
+
+
+Hand #8857451-190 - 2013-06-22 03:04:53
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (200)
+Seat 2: habing (248.76)
+Seat 3: forfunbitch (200)
+Seat 4: mrdonkeyking (220.31)
+Seat 5: ungod (364.64)
+ungod has the dealer button
+sleepyknees posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Kd Ad]
+forfunbitch raises to 8
+mrdonkeyking calls 8
+ungod folds
+sleepyknees folds
+sleepyknees adds 1 chips
+habing raises to 32
+forfunbitch raises to 200 (All-in)
+mrdonkeyking folds
+habing calls 168
+** Flop ** [6h 4c 5h]
+** Turn ** [2h]
+** River ** [Ah]
+** Pot Show Down ** [6h 4c 5h 2h Ah]
+habing shows [Kd Ad] (a Pair of Aces +K65)
+forfunbitch shows [Ts Tc] (a Pair of Tens +A65)
+habing wins Pot (405) with a Pair
+Rake (4)
+forfunbitch adds 200 chips
+
+
+
+Hand #8857485-191 - 2013-06-22 03:05:53
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (200)
+Seat 2: habing (453.76)
+Seat 3: forfunbitch (200)
+Seat 4: mrdonkeyking (212.31)
+Seat 5: ungod (364.64)
+sleepyknees has the dealer button
+habing posts small blind 1
+forfunbitch posts big blind 2
+** Hole Cards **
+Dealt to habing [4d 2s]
+mrdonkeyking raises to 7
+ungod folds
+sleepyknees folds
+habing folds
+forfunbitch calls 5
+** Flop ** [6s 9c 8c]
+forfunbitch bets 10
+mrdonkeyking folds
+forfunbitch refunded 10
+forfunbitch wins Pot (14.63)
+Rake (0.37)
+
+
+
+Hand #8857511-192 - 2013-06-22 03:06:40
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (200)
+Seat 2: habing (452.76)
+Seat 3: forfunbitch (207.63)
+Seat 4: mrdonkeyking (205.31)
+Seat 5: ungod (364.64)
+habing has the dealer button
+forfunbitch posts small blind 1
+mrdonkeyking posts big blind 2
+** Hole Cards **
+Dealt to habing [6h Td]
+ungod folds
+sleepyknees folds
+habing folds
+forfunbitch calls 1
+mrdonkeyking checks
+** Flop ** [8s Qh 3c]
+forfunbitch bets 4
+mrdonkeyking calls 4
+** Turn ** [2d]
+forfunbitch bets 4
+mrdonkeyking calls 4
+** River ** [Th]
+forfunbitch bets 8
+mrdonkeyking folds
+forfunbitch refunded 8
+forfunbitch wins Pot (19.50)
+Rake (0.50)
+
+
+
+Hand #8857554-193 - 2013-06-22 03:07:44
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (200)
+Seat 2: habing (452.76)
+Seat 3: forfunbitch (217.13)
+Seat 4: mrdonkeyking (195.31)
+Seat 5: ungod (364.64)
+forfunbitch has the dealer button
+mrdonkeyking posts small blind 1
+ungod posts big blind 2
+** Hole Cards **
+Dealt to habing [Ts Qs]
+sleepyknees raises to 6
+habing calls 6
+forfunbitch calls 6
+mrdonkeyking folds
+ungod folds
+** Flop ** [Td 2c Ks]
+sleepyknees checks
+habing bets 13.60
+forfunbitch calls 13.60
+sleepyknees folds
+sleepyknees adds 6 chips
+** Turn ** [6h]
+habing checks
+forfunbitch bets 20
+habing calls 20
+** River ** [Qc]
+habing bets 61.20
+forfunbitch calls 61.20
+** Pot Show Down ** [Td 2c Ks 6h Qc]
+habing shows [Ts Qs] (Two Pair, Queens and Tens +K)
+forfunbitch shows [6d 2d] (Two Pair, Sixes and Deuces +K)
+habing wins Pot (206.60) with Two Pair
+Rake (4)
+forfunbitch adds 83.67 chips
+
+
+
+Hand #8857628-194 - 2013-06-22 03:09:37
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (200)
+Seat 2: habing (558.56)
+Seat 3: forfunbitch (200)
+Seat 4: mrdonkeyking (194.31)
+Seat 5: ungod (362.64)
+mrdonkeyking has the dealer button
+ungod posts small blind 1
+sleepyknees posts big blind 2
+** Hole Cards **
+Dealt to habing [Th 2d]
+habing folds
+forfunbitch calls 2
+mrdonkeyking raises to 8
+ungod calls 7
+sleepyknees folds
+sleepyknees adds 2 chips
+forfunbitch calls 6
+** Flop ** [8c 6c 9c]
+ungod checks
+forfunbitch bets 6
+mrdonkeyking folds
+ungod calls 6
+** Turn ** [6d]
+ungod checks
+forfunbitch bets 8
+ungod calls 8
+** River ** [2h]
+ungod checks
+forfunbitch bets 12
+ungod raises to 34
+forfunbitch folds
+ungod refunded 22
+forfunbitch adds 34 chips
+ungod wins Pot (76.05)
+Rake (1.95)
+ungod shows [7s 3s]
+
+
+
+Hand #8857675-195 - 2013-06-22 03:11:00
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (200)
+Seat 2: habing (558.56)
+Seat 3: forfunbitch (200)
+Seat 4: mrdonkeyking (186.31)
+Seat 5: ungod (404.69)
+ungod has the dealer button
+sleepyknees posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [3s 4d]
+forfunbitch calls 2
+mrdonkeyking raises to 7
+ungod folds
+sleepyknees folds
+sleepyknees adds 1 chips
+habing folds
+forfunbitch calls 5
+** Flop ** [7c 3c Jc]
+forfunbitch bets 8
+mrdonkeyking raises to 16
+forfunbitch folds
+mrdonkeyking refunded 8
+forfunbitch adds 15 chips
+mrdonkeyking wins Pot (32.18)
+Rake (0.82)
+
+
+
+Hand #8857717-196 - 2013-06-22 03:12:08
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (200)
+Seat 2: habing (556.56)
+Seat 3: forfunbitch (200)
+Seat 4: mrdonkeyking (203.49)
+Seat 5: ungod (404.69)
+sleepyknees has the dealer button
+habing posts small blind 1
+forfunbitch posts big blind 2
+** Hole Cards **
+Dealt to habing [Kd 9d]
+mrdonkeyking folds
+ungod raises to 6
+sleepyknees folds
+habing folds
+forfunbitch calls 4
+** Flop ** [As 3d Kh]
+forfunbitch checks
+ungod bets 10
+forfunbitch folds
+ungod refunded 10
+forfunbitch adds 6 chips
+ungod wins Pot (12.68)
+Rake (0.32)
+
+
+
+Hand #8857748-197 - 2013-06-22 03:13:02
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (200)
+Seat 2: habing (555.56)
+Seat 3: forfunbitch (200)
+Seat 4: mrdonkeyking (203.49)
+Seat 5: ungod (411.37)
+habing has the dealer button
+forfunbitch posts small blind 1
+mrdonkeyking posts big blind 2
+** Hole Cards **
+Dealt to habing [Jd Ks]
+ungod raises to 6
+sleepyknees calls 6
+habing folds
+forfunbitch calls 5
+mrdonkeyking calls 4
+** Flop ** [Js 6s Qs]
+forfunbitch bets 15
+mrdonkeyking folds
+ungod folds
+sleepyknees calls 15
+** Turn ** [8c]
+forfunbitch bets 20
+sleepyknees calls 20
+** River ** [9s]
+forfunbitch checks
+sleepyknees checks
+** Pot Show Down ** [Js 6s Qs 8c 9s]
+sleepyknees shows [Ad Qd] (a Pair of Queens +AJ9)
+forfunbitch shows [Qh 3d] (a Pair of Queens +J98)
+sleepyknees wins Pot (91.65) with a Pair
+Rake (2.35)
+forfunbitch adds 41 chips
+
+
+
+Hand #8857816-198 - 2013-06-22 03:14:59
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (250.65)
+Seat 2: habing (555.56)
+Seat 3: forfunbitch (200)
+Seat 4: mrdonkeyking (197.49)
+Seat 5: ungod (405.37)
+forfunbitch has the dealer button
+mrdonkeyking posts small blind 1
+ungod posts big blind 2
+** Hole Cards **
+Dealt to habing [9c Th]
+sleepyknees folds
+habing folds
+forfunbitch calls 2
+mrdonkeyking folds
+ungod raises to 6
+forfunbitch calls 4
+** Flop ** [2d 8c 7s]
+ungod checks
+forfunbitch bets 6
+ungod calls 6
+** Turn ** [6h]
+ungod checks
+forfunbitch bets 10
+ungod calls 10
+** River ** [9d]
+ungod checks
+forfunbitch bets 20
+ungod folds
+forfunbitch refunded 20
+forfunbitch wins Pot (43.88)
+Rake (1.12)
+
+
+
+Hand #8857846-199 - 2013-06-22 03:16:00
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (250.65)
+Seat 2: habing (555.56)
+Seat 3: forfunbitch (221.88)
+Seat 4: mrdonkeyking (196.49)
+Seat 5: ungod (383.37)
+mrdonkeyking has the dealer button
+ungod posts small blind 1
+sleepyknees posts big blind 2
+** Hole Cards **
+Dealt to habing [8d 6d]
+habing folds
+forfunbitch calls 2
+mrdonkeyking calls 2
+ungod folds
+sleepyknees raises to 12
+forfunbitch calls 10
+mrdonkeyking folds
+** Flop ** [Ac Kh Js]
+sleepyknees bets 18
+forfunbitch raises to 209.88 (All-in)
+sleepyknees folds
+forfunbitch refunded 191.88
+forfunbitch wins Pot (61.43)
+Rake (1.57)
+
+
+
+Hand #8857874-200 - 2013-06-22 03:17:01
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (220.65)
+Seat 2: habing (555.56)
+Seat 3: forfunbitch (253.31)
+Seat 4: mrdonkeyking (194.49)
+Seat 5: ungod (382.37)
+ungod has the dealer button
+sleepyknees posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ac 2c]
+forfunbitch calls 2
+mrdonkeyking folds
+ungod folds
+sleepyknees folds
+habing raises to 10
+forfunbitch calls 8
+** Flop ** [Ad Jh 9s]
+habing bets 12.80
+forfunbitch folds
+habing refunded 12.80
+habing wins Pot (20.48)
+Rake (0.52)
+
+
+
+Hand #8857898-201 - 2013-06-22 03:17:54
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (219.65)
+Seat 2: habing (566.04)
+Seat 3: forfunbitch (243.31)
+Seat 4: mrdonkeyking (194.49)
+Seat 5: ungod (382.37)
+Seat 6: Tos5 (200) - waiting for big blind
+sleepyknees has the dealer button
+habing posts small blind 1
+forfunbitch posts big blind 2
+** Hole Cards **
+Dealt to habing [Jd 4h]
+mrdonkeyking folds
+ungod raises to 6
+sleepyknees folds
+habing folds
+forfunbitch raises to 18
+ungod calls 12
+** Flop ** [Ts 3c 7d]
+forfunbitch bets 20
+ungod calls 20
+** Turn ** [9s]
+forfunbitch bets 30
+ungod calls 30
+** River ** [2d]
+forfunbitch bets 50
+ungod folds
+forfunbitch refunded 50
+forfunbitch wins Pot (133.58)
+Rake (3.42)
+
+
+
+Hand #8857935-202 - 2013-06-22 03:19:09
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (219.65)
+Seat 2: habing (565.04)
+Seat 3: forfunbitch (308.89)
+Seat 4: mrdonkeyking (194.49)
+Seat 5: ungod (314.37)
+Seat 6: Tos5 (200) - waiting for big blind
+habing has the dealer button
+forfunbitch posts small blind 1
+mrdonkeyking posts big blind 2
+** Hole Cards **
+Dealt to habing [8s Jc]
+ungod folds
+sleepyknees folds
+habing raises to 4
+forfunbitch calls 3
+mrdonkeyking folds
+** Flop ** [3s 3d Qs]
+forfunbitch checks
+habing bets 5.60
+forfunbitch calls 5.60
+** Turn ** [Td]
+forfunbitch checks
+habing checks
+** River ** [Ac]
+forfunbitch bets 8
+habing folds
+forfunbitch refunded 8
+forfunbitch wins Pot (20.67)
+Rake (0.53)
+
+
+
+Hand #8857969-203 - 2013-06-22 03:20:19
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (219.65)
+Seat 2: habing (555.44)
+Seat 3: forfunbitch (319.96)
+Seat 4: mrdonkeyking (192.49)
+Seat 5: ungod (314.37)
+Seat 6: Tos5 (200) - waiting for big blind
+forfunbitch has the dealer button
+mrdonkeyking posts small blind 1
+ungod posts big blind 2
+** Hole Cards **
+Dealt to habing [Ad 7s]
+sleepyknees folds
+habing folds
+forfunbitch raises to 8
+mrdonkeyking folds
+ungod folds
+forfunbitch refunded 6
+forfunbitch wins Pot (5)
+Rake (0)
+
+
+
+Hand #8857986-204 - 2013-06-22 03:20:49
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (219.65)
+Seat 2: habing (555.44)
+Seat 3: forfunbitch (322.96)
+Seat 4: mrdonkeyking (191.49)
+Seat 5: ungod (312.37)
+Seat 6: Tos5 (200) - waiting for big blind
+mrdonkeyking has the dealer button
+ungod posts small blind 1
+Tos5 posts big blind 2
+** Hole Cards **
+Dealt to habing [Kc Qh]
+sleepyknees folds
+habing raises to 6
+forfunbitch calls 6
+mrdonkeyking folds
+ungod folds
+Tos5 calls 4
+** Flop ** [6s Qc 2s]
+Tos5 checks
+habing bets 14.80
+forfunbitch folds
+Tos5 calls 14.80
+** Turn ** [5s]
+Tos5 checks
+habing bets 37.60
+Tos5 calls 37.60
+** River ** [3h]
+Tos5 checks
+habing bets 27.20
+Tos5 calls 27.20
+** Pot Show Down ** [6s Qc 2s 5s 3h]
+habing shows [Kc Qh] (a Pair of Queens +K65)
+Tos5 shows [5c 4c] (a Straight, Deuce to Six)
+Tos5 wins Pot (174.20) with a Straight
+Rake (4)
+
+
+
+Hand #8858038-205 - 2013-06-22 03:22:25
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (219.65)
+Seat 2: habing (469.84)
+Seat 3: forfunbitch (316.96)
+Seat 4: mrdonkeyking (191.49)
+Seat 5: ungod (311.37)
+Seat 6: Tos5 (288.60)
+ungod has the dealer button
+Tos5 posts small blind 1
+sleepyknees posts big blind 2
+** Hole Cards **
+Dealt to habing [6d 7c]
+habing folds
+forfunbitch calls 2
+mrdonkeyking folds
+ungod folds
+Tos5 folds
+sleepyknees checks
+** Flop ** [9d 7h Js]
+sleepyknees checks
+forfunbitch bets 6
+sleepyknees folds
+forfunbitch refunded 6
+forfunbitch wins Pot (4.88)
+Rake (0.12)
+
+
+
+Hand #8858061-206 - 2013-06-22 03:23:04
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (217.65)
+Seat 2: habing (469.84)
+Seat 3: forfunbitch (319.84)
+Seat 4: mrdonkeyking (191.49)
+Seat 5: ungod (311.37)
+Seat 6: Tos5 (287.60)
+Tos5 has the dealer button
+sleepyknees posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ac 3s]
+forfunbitch calls 2
+mrdonkeyking folds
+ungod folds
+Tos5 folds
+sleepyknees folds
+habing checks
+** Flop ** [Qs 5s 5h]
+habing checks
+forfunbitch bets 4
+habing folds
+forfunbitch refunded 4
+forfunbitch wins Pot (4.88)
+Rake (0.12)
+
+
+
+Hand #8858096-207 - 2013-06-22 03:23:57
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (216.65)
+Seat 2: habing (467.84)
+Seat 3: forfunbitch (322.72)
+Seat 4: mrdonkeyking (191.49)
+Seat 5: ungod (311.37)
+Seat 6: Tos5 (287.60)
+sleepyknees has the dealer button
+habing posts small blind 1
+forfunbitch posts big blind 2
+** Hole Cards **
+Dealt to habing [5c Th]
+mrdonkeyking folds
+ungod folds
+Tos5 folds
+sleepyknees raises to 6
+habing folds
+forfunbitch calls 4
+** Flop ** [Jd 9s 8s]
+forfunbitch bets 10
+sleepyknees raises to 30
+forfunbitch folds
+sleepyknees refunded 20
+sleepyknees wins Pot (32.18)
+Rake (0.82)
+
+
+
+Hand #8858144-208 - 2013-06-22 03:25:17
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (232.83)
+Seat 2: habing (466.84)
+Seat 3: forfunbitch (306.72)
+Seat 4: mrdonkeyking (191.49)
+Seat 5: ungod (311.37)
+Seat 6: Tos5 (287.60)
+habing has the dealer button
+forfunbitch posts small blind 1
+mrdonkeyking posts big blind 2
+** Hole Cards **
+Dealt to habing [4c Js]
+ungod folds
+Tos5 folds
+sleepyknees folds
+habing raises to 4
+forfunbitch calls 3
+mrdonkeyking raises to 12
+habing folds
+forfunbitch calls 8
+** Flop ** [6h 5c Th]
+forfunbitch bets 10
+mrdonkeyking calls 10
+** Turn ** [As]
+forfunbitch bets 20
+mrdonkeyking calls 20
+** River ** [Jh]
+forfunbitch bets 60
+mrdonkeyking calls 60
+** Pot Show Down ** [6h 5c Th As Jh]
+forfunbitch shows [3d 7s] (High Card Ace +JT76)
+mrdonkeyking shows [Ah Jd] (Two Pair, Aces and Jacks +T)
+mrdonkeyking wins Pot (204) with Two Pair
+Rake (4)
+
+
+
+Hand #8858186-209 - 2013-06-22 03:26:47
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (232.83)
+Seat 2: habing (462.84)
+Seat 3: forfunbitch (204.72)
+Seat 4: mrdonkeyking (293.49)
+Seat 5: ungod (311.37)
+Seat 6: Tos5 (287.60)
+forfunbitch has the dealer button
+mrdonkeyking posts small blind 1
+ungod posts big blind 2
+** Hole Cards **
+Dealt to habing [7c 4s]
+Tos5 calls 2
+sleepyknees folds
+habing folds
+forfunbitch raises to 8
+mrdonkeyking folds
+ungod calls 6
+Tos5 calls 6
+** Flop ** [2h Ac 4d]
+ungod checks
+Tos5 checks
+forfunbitch checks
+** Turn ** [3h]
+ungod checks
+Tos5 bets 18
+forfunbitch folds
+forfunbitch adds 3.28 chips
+ungod folds
+Tos5 refunded 18
+Tos5 wins Pot (24.38)
+Rake (0.62)
+
+
+
+Hand #8858238-210 - 2013-06-22 03:28:17
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (232.83)
+Seat 2: habing (462.84)
+Seat 3: forfunbitch (200)
+Seat 4: mrdonkeyking (292.49)
+Seat 5: ungod (303.37)
+Seat 6: Tos5 (303.98)
+mrdonkeyking has the dealer button
+ungod posts small blind 1
+Tos5 posts big blind 2
+** Hole Cards **
+Dealt to habing [Qs 9c]
+sleepyknees raises to 6
+habing folds
+forfunbitch calls 6
+mrdonkeyking folds
+ungod folds
+Tos5 folds
+** Flop ** [Jh 6s 3h]
+sleepyknees checks
+forfunbitch bets 10
+sleepyknees folds
+forfunbitch refunded 10
+forfunbitch wins Pot (14.63)
+Rake (0.37)
+
+
+
+Hand #8858262-211 - 2013-06-22 03:29:06
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (226.83)
+Seat 2: habing (462.84)
+Seat 3: forfunbitch (208.63)
+Seat 4: mrdonkeyking (292.49)
+Seat 5: ungod (302.37)
+Seat 6: Tos5 (301.98)
+ungod has the dealer button
+Tos5 posts small blind 1
+sleepyknees posts big blind 2
+** Hole Cards **
+Dealt to habing [2c 9c]
+habing folds
+forfunbitch raises to 4
+mrdonkeyking folds
+ungod raises to 8
+Tos5 folds
+sleepyknees folds
+forfunbitch calls 4
+** Flop ** [2d Ad 8s]
+forfunbitch bets 10
+ungod calls 10
+** Turn ** [Ac]
+forfunbitch bets 20
+ungod calls 20
+** River ** [Qc]
+forfunbitch bets 20
+ungod folds
+forfunbitch refunded 20
+forfunbitch wins Pot (77.03)
+Rake (1.97)
+
+
+
+Hand #8858301-212 - 2013-06-22 03:30:24
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (224.83)
+Seat 2: habing (462.84)
+Seat 3: forfunbitch (247.66)
+Seat 4: mrdonkeyking (292.49)
+Seat 5: ungod (264.37)
+Seat 6: Tos5 (300.98)
+Tos5 has the dealer button
+sleepyknees posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Qs Kc]
+forfunbitch calls 2
+mrdonkeyking folds
+ungod folds
+Tos5 folds
+sleepyknees folds
+habing raises to 10
+forfunbitch calls 8
+** Flop ** [2s 6s 8c]
+habing bets 11.60
+forfunbitch folds
+habing refunded 11.60
+habing wins Pot (20.48)
+Rake (0.52)
+
+
+
+Hand #8858329-213 - 2013-06-22 03:31:17
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (223.83)
+Seat 2: habing (473.32)
+Seat 3: forfunbitch (237.66)
+Seat 4: mrdonkeyking (292.49)
+Seat 5: ungod (264.37)
+Seat 6: Tos5 (300.98)
+sleepyknees has the dealer button
+habing posts small blind 1
+forfunbitch posts big blind 2
+** Hole Cards **
+Dealt to habing [3d 9d]
+mrdonkeyking folds
+ungod folds
+Tos5 folds
+sleepyknees raises to 6
+habing folds
+forfunbitch calls 4
+** Flop ** [4d 2s Kd]
+forfunbitch bets 8
+sleepyknees folds
+forfunbitch refunded 8
+forfunbitch wins Pot (12.68)
+Rake (0.32)
+
+
+
+Hand #8858361-214 - 2013-06-22 03:32:05
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (217.83)
+Seat 2: habing (472.32)
+Seat 3: forfunbitch (244.34)
+Seat 4: mrdonkeyking (292.49)
+Seat 5: ungod (264.37)
+Seat 6: Tos5 (300.98)
+habing has the dealer button
+forfunbitch posts small blind 1
+mrdonkeyking posts big blind 2
+** Hole Cards **
+Dealt to habing [As 3c]
+ungod folds
+Tos5 folds
+sleepyknees raises to 6
+habing folds
+forfunbitch calls 5
+mrdonkeyking folds
+** Flop ** [4h Tc 7c]
+forfunbitch checks
+sleepyknees checks
+** Turn ** [2h]
+forfunbitch checks
+sleepyknees checks
+** River ** [2d]
+forfunbitch bets 10
+sleepyknees folds
+forfunbitch refunded 10
+forfunbitch wins Pot (13.65)
+Rake (0.35)
+
+
+
+Hand #8858398-215 - 2013-06-22 03:33:32
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (211.83)
+Seat 2: habing (472.32)
+Seat 3: forfunbitch (251.99)
+Seat 4: mrdonkeyking (290.49)
+Seat 5: ungod (264.37)
+Seat 6: Tos5 (300.98)
+forfunbitch has the dealer button
+mrdonkeyking posts small blind 1
+ungod posts big blind 2
+** Hole Cards **
+Dealt to habing [Ad 4c]
+Tos5 folds
+sleepyknees folds
+habing folds
+forfunbitch calls 2
+mrdonkeyking folds
+ungod checks
+** Flop ** [5d Jd 8h]
+ungod checks
+forfunbitch bets 4
+ungod folds
+forfunbitch refunded 4
+forfunbitch wins Pot (4.88)
+Rake (0.12)
+
+
+
+Hand #8858436-216 - 2013-06-22 03:34:45
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (211.83)
+Seat 2: habing (472.32)
+Seat 3: forfunbitch (254.87)
+Seat 4: mrdonkeyking (289.49)
+Seat 5: ungod (262.37)
+Seat 6: Tos5 (300.98)
+mrdonkeyking has the dealer button
+ungod posts small blind 1
+Tos5 posts big blind 2
+** Hole Cards **
+Dealt to habing [Kh Qc]
+sleepyknees folds
+habing raises to 6
+forfunbitch folds
+mrdonkeyking calls 6
+ungod folds
+Tos5 calls 4
+** Flop ** [4s 7c 7s]
+Tos5 checks
+habing checks
+mrdonkeyking checks
+** Turn ** [Ts]
+Tos5 checks
+habing checks
+mrdonkeyking checks
+** River ** [Tc]
+Tos5 bets 20
+habing folds
+mrdonkeyking folds
+Tos5 refunded 20
+Tos5 wins Pot (18.53)
+Rake (0.47)
+
+
+
+Hand #8858465-217 - 2013-06-22 03:35:57
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (211.83)
+Seat 2: habing (466.32)
+Seat 3: forfunbitch (254.87)
+Seat 4: mrdonkeyking (283.49)
+Seat 5: ungod (261.37)
+Seat 6: Tos5 (313.51)
+ungod has the dealer button
+Tos5 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Qs 9d]
+forfunbitch raises to 8
+mrdonkeyking folds
+ungod folds
+Tos5 calls 7
+habing folds
+** Flop ** [8c 2s 2h]
+Tos5 checks
+forfunbitch bets 8
+Tos5 raises to 22
+forfunbitch calls 14
+** Turn ** [Th]
+Tos5 bets 42
+forfunbitch calls 42
+** River ** [Ts]
+Tos5 checks
+forfunbitch bets 30
+Tos5 calls 30
+** Pot Show Down ** [8c 2s 2h Th Ts]
+forfunbitch shows [5s 5d] (Two Pair, Tens and Fives +8)
+Tos5 shows [3h 3c] (Two Pair, Tens and Threes +8)
+forfunbitch wins Pot (202) with Two Pair
+Rake (4)
+
+
+
+Hand #8858517-218 - 2013-06-22 03:37:27
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (211.83) - sitting out
+Seat 2: habing (464.32)
+Seat 3: forfunbitch (354.87)
+Seat 4: mrdonkeyking (283.49)
+Seat 5: ungod (261.37)
+Seat 6: Tos5 (211.51)
+Tos5 has the dealer button
+habing posts small blind 1
+forfunbitch posts big blind 2
+** Hole Cards **
+Dealt to habing [7h 3c]
+mrdonkeyking raises to 7
+ungod folds
+Tos5 folds
+habing folds
+forfunbitch calls 5
+** Flop ** [Kc 3s 5c]
+forfunbitch bets 8
+mrdonkeyking raises to 24
+forfunbitch folds
+mrdonkeyking refunded 16
+mrdonkeyking wins Pot (30.23)
+Rake (0.77)
+
+
+
+Hand #8858539-219 - 2013-06-22 03:38:11
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (211.83) - sitting out
+Seat 2: habing (463.32)
+Seat 3: forfunbitch (339.87)
+Seat 4: mrdonkeyking (298.72)
+Seat 5: ungod (261.37)
+Seat 6: Tos5 (211.51)
+habing has the dealer button
+forfunbitch posts small blind 1
+mrdonkeyking posts big blind 2
+** Hole Cards **
+Dealt to habing [2d Ks]
+ungod raises to 6
+Tos5 calls 6
+habing folds
+forfunbitch folds
+mrdonkeyking raises to 18
+ungod calls 12
+Tos5 calls 12
+** Flop ** [8h 8d Qs]
+mrdonkeyking bets 25
+ungod folds
+Tos5 calls 25
+** Turn ** [Ac]
+mrdonkeyking checks
+Tos5 checks
+** River ** [7h]
+mrdonkeyking bets 80
+Tos5 calls 80
+** Pot Show Down ** [8h 8d Qs Ac 7h]
+mrdonkeyking shows [Kh As] (Two Pair, Aces and Eights +K)
+Tos5 shows [Js Qh] (Two Pair, Queens and Eights +A)
+mrdonkeyking wins Pot (261) with Two Pair
+Rake (4)
+
+
+
+Hand #8858576-220 - 2013-06-22 03:39:31
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (211.83) - sitting out
+Seat 2: habing (463.32)
+Seat 3: forfunbitch (338.87)
+Seat 4: mrdonkeyking (436.72)
+Seat 5: ungod (243.37)
+Seat 6: Tos5 (88.51)
+forfunbitch has the dealer button
+mrdonkeyking posts small blind 1
+ungod posts big blind 2
+** Hole Cards **
+Dealt to habing [Ac Ks]
+Tos5 folds
+Tos5 adds 111.49 chips
+habing raises to 6
+forfunbitch calls 6
+mrdonkeyking folds
+ungod calls 4
+** Flop ** [9s Ad 7s]
+ungod checks
+habing bets 16.40
+forfunbitch folds
+ungod folds
+habing refunded 16.40
+habing wins Pot (18.53)
+Rake (0.47)
+
+
+
+Hand #8858593-221 - 2013-06-22 03:40:18
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (211.83) - sitting out
+Seat 2: habing (475.85)
+Seat 3: forfunbitch (332.87)
+Seat 4: mrdonkeyking (435.72)
+Seat 5: ungod (237.37)
+Seat 6: Tos5 (200)
+mrdonkeyking has the dealer button
+ungod posts small blind 1
+Tos5 posts big blind 2
+** Hole Cards **
+Dealt to habing [6d Jd]
+habing folds
+forfunbitch raises to 6
+mrdonkeyking folds
+ungod folds
+Tos5 calls 4
+** Flop ** [7d 2d 3h]
+Tos5 checks
+forfunbitch bets 6
+Tos5 raises to 14
+forfunbitch calls 8
+** Turn ** [As]
+Tos5 checks
+forfunbitch bets 10
+Tos5 calls 10
+** River ** [4c]
+Tos5 checks
+forfunbitch checks
+** Pot Show Down ** [7d 2d 3h As 4c]
+forfunbitch shows [Qd Qc] (a Pair of Queens +A74)
+Tos5 shows [7s Kc] (a Pair of Sevens +AK4)
+forfunbitch wins Pot (59.48) with a Pair
+Rake (1.52)
+
+
+
+Hand #8858621-222 - 2013-06-22 03:41:16
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (211.83) - sitting out
+Seat 2: habing (475.85)
+Seat 3: forfunbitch (362.35)
+Seat 4: mrdonkeyking (435.72)
+Seat 5: ungod (236.37)
+Seat 6: Tos5 (170)
+ungod has the dealer button
+Tos5 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [4s Ts]
+forfunbitch calls 2
+mrdonkeyking raises to 8
+ungod calls 8
+Tos5 calls 7
+habing folds
+forfunbitch calls 6
+** Flop ** [9c 7d Qs]
+Tos5 checks
+forfunbitch bets 8
+mrdonkeyking calls 8
+ungod folds
+Tos5 folds
+** Turn ** [3c]
+forfunbitch bets 20
+mrdonkeyking raises to 40
+forfunbitch calls 20
+** River ** [5d]
+forfunbitch bets 20
+mrdonkeyking raises to 75
+forfunbitch calls 55
+** Pot Show Down ** [9c 7d Qs 3c 5d]
+forfunbitch shows [Qh 7h] (Two Pair, Queens and Sevens +9)
+mrdonkeyking shows [Kc Ks] (a Pair of Kings +Q97)
+forfunbitch wins Pot (276) with Two Pair
+Rake (4)
+
+
+
+Hand #8858652-223 - 2013-06-22 03:42:29
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (211.83) - sitting out
+Seat 2: habing (473.85)
+Seat 3: forfunbitch (507.35)
+Seat 4: mrdonkeyking (304.72)
+Seat 5: ungod (228.37)
+Seat 6: Tos5 (162)
+Tos5 has the dealer button
+habing posts small blind 1
+forfunbitch posts big blind 2
+** Hole Cards **
+Dealt to habing [As 2h]
+mrdonkeyking folds
+ungod folds
+Tos5 calls 2
+habing folds
+forfunbitch checks
+** Flop ** [Jh 6d 6s]
+forfunbitch checks
+Tos5 checks
+** Turn ** [Tc]
+forfunbitch checks
+Tos5 checks
+** River ** [3s]
+forfunbitch checks
+Tos5 checks
+** Pot Show Down ** [Jh 6d 6s Tc 3s]
+forfunbitch shows [8d Kh] (a Pair of Sixes +KJT)
+Tos5 shows [8s 7d] (a Pair of Sixes +JT8)
+forfunbitch wins Pot (4.88) with a Pair
+Rake (0.12)
+
+
+
+Hand #8858669-224 - 2013-06-22 03:43:09
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (211.83) - sitting out
+Seat 2: habing (472.85)
+Seat 3: forfunbitch (510.23)
+Seat 4: mrdonkeyking (304.72)
+Seat 5: ungod (228.37)
+Seat 6: Tos5 (160)
+habing has the dealer button
+forfunbitch posts small blind 1
+mrdonkeyking posts big blind 2
+** Hole Cards **
+Dealt to habing [8h 3d]
+ungod folds
+Tos5 calls 2
+habing folds
+forfunbitch calls 1
+mrdonkeyking checks
+** Flop ** [Kh 2d 5s]
+forfunbitch checks
+mrdonkeyking checks
+Tos5 checks
+** Turn ** [Kd]
+forfunbitch checks
+mrdonkeyking checks
+Tos5 bets 4
+forfunbitch folds
+mrdonkeyking folds
+Tos5 refunded 4
+Tos5 wins Pot (5.85)
+Rake (0.15)
+
+
+
+Hand #8858697-225 - 2013-06-22 03:44:05
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (211.83) - sitting out
+Seat 2: habing (472.85)
+Seat 3: forfunbitch (508.23)
+Seat 4: mrdonkeyking (302.72)
+Seat 6: Tos5 (163.85)
+forfunbitch has the dealer button
+mrdonkeyking posts small blind 1
+Tos5 posts big blind 2
+** Hole Cards **
+Dealt to habing [Ks 9d]
+habing folds
+forfunbitch calls 2
+mrdonkeyking folds
+Tos5 checks
+** Flop ** [Jh 9c Th]
+Tos5 checks
+forfunbitch bets 8
+Tos5 calls 8
+** Turn ** [As]
+Tos5 checks
+forfunbitch bets 8
+Tos5 calls 8
+** River ** [Kd]
+Tos5 checks
+forfunbitch checks
+** Pot Show Down ** [Jh 9c Th As Kd]
+forfunbitch shows [Td 8s] (a Pair of Tens +AKJ)
+Tos5 shows [3d Qs] (a Straight, Ten to Ace)
+Tos5 wins Pot (36.08) with a Straight
+Rake (0.92)
+
+
+
+Hand #8858717-226 - 2013-06-22 03:44:53
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (211.83)
+Seat 2: habing (472.85)
+Seat 3: forfunbitch (490.23)
+Seat 4: mrdonkeyking (301.72)
+Seat 6: Tos5 (181.93)
+mrdonkeyking has the dealer button
+Tos5 posts small blind 1
+sleepyknees posts big blind 2
+** Hole Cards **
+Dealt to habing [Jd 4c]
+habing folds
+forfunbitch calls 2
+mrdonkeyking folds
+Tos5 folds
+sleepyknees checks
+** Flop ** [6d Jh 4d]
+sleepyknees checks
+forfunbitch checks
+** Turn ** [8h]
+sleepyknees checks
+forfunbitch checks
+** River ** [9s]
+sleepyknees checks
+forfunbitch checks
+** Pot Show Down ** [6d Jh 4d 8h 9s]
+sleepyknees shows [Kc 3h] (High Card King +J986)
+forfunbitch shows [Qh 9h] (a Pair of Nines +QJ8)
+forfunbitch wins Pot (4.88) with a Pair
+Rake (0.12)
+
+
+
+Hand #8858743-227 - 2013-06-22 03:45:51
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (209.83)
+Seat 2: habing (472.85)
+Seat 3: forfunbitch (493.11)
+Seat 4: mrdonkeyking (301.72)
+Seat 6: Tos5 (180.93)
+Tos5 has the dealer button
+sleepyknees posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [3s 5c]
+forfunbitch calls 2
+mrdonkeyking raises to 8
+Tos5 calls 8
+sleepyknees folds
+habing folds
+forfunbitch calls 6
+** Flop ** [Td 8s 2d]
+forfunbitch bets 8
+mrdonkeyking folds
+Tos5 raises to 22
+forfunbitch calls 14
+** Turn ** [Kd]
+forfunbitch checks
+Tos5 bets 42
+forfunbitch folds
+Tos5 refunded 42
+Tos5 wins Pot (69.23)
+Rake (1.77)
+
+
+
+Hand #8858772-228 - 2013-06-22 03:47:07
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (208.83)
+Seat 2: habing (470.85)
+Seat 3: forfunbitch (463.11)
+Seat 4: mrdonkeyking (293.72)
+Seat 6: Tos5 (220.16)
+sleepyknees has the dealer button
+habing posts small blind 1
+forfunbitch posts big blind 2
+** Hole Cards **
+Dealt to habing [6h 8c]
+mrdonkeyking folds
+Tos5 folds
+sleepyknees folds
+habing folds
+forfunbitch refunded 1
+forfunbitch wins Pot (2)
+Rake (0)
+
+
+
+Hand #8858785-229 - 2013-06-22 03:47:33
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (208.83)
+Seat 2: habing (469.85)
+Seat 3: forfunbitch (464.11)
+Seat 4: mrdonkeyking (293.72)
+Seat 6: Tos5 (220.16)
+habing has the dealer button
+forfunbitch posts small blind 1
+mrdonkeyking posts big blind 2
+** Hole Cards **
+Dealt to habing [3s Kh]
+Tos5 folds
+sleepyknees folds
+habing raises to 4
+forfunbitch calls 3
+mrdonkeyking folds
+** Flop ** [4s 9d Qs]
+forfunbitch checks
+habing checks
+** Turn ** [2h]
+forfunbitch checks
+habing checks
+** River ** [Ks]
+forfunbitch checks
+habing bets 6.80
+forfunbitch raises to 13.60
+habing folds
+forfunbitch refunded 6.80
+forfunbitch wins Pot (23.01)
+Rake (0.59)
+
+
+
+Hand #8858814-230 - 2013-06-22 03:48:47
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (208.83)
+Seat 2: habing (459.05)
+Seat 3: forfunbitch (476.32)
+Seat 4: mrdonkeyking (291.72)
+Seat 6: Tos5 (220.16)
+forfunbitch has the dealer button
+mrdonkeyking posts small blind 1
+Tos5 posts big blind 2
+** Hole Cards **
+Dealt to habing [8c Ts]
+sleepyknees folds
+habing folds
+forfunbitch calls 2
+mrdonkeyking raises to 12
+Tos5 folds
+forfunbitch calls 10
+** Flop ** [Th Td 2c]
+mrdonkeyking bets 18
+forfunbitch calls 18
+** Turn ** [9s]
+mrdonkeyking checks
+forfunbitch checks
+** River ** [Qd]
+mrdonkeyking bets 60
+forfunbitch folds
+mrdonkeyking refunded 60
+mrdonkeyking wins Pot (60.45)
+Rake (1.55)
+
+
+
+Hand #8858854-231 - 2013-06-22 03:50:21
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (208.83)
+Seat 2: habing (459.05)
+Seat 3: forfunbitch (446.32)
+Seat 4: mrdonkeyking (322.17)
+Seat 6: Tos5 (218.16)
+mrdonkeyking has the dealer button
+Tos5 posts small blind 1
+sleepyknees posts big blind 2
+** Hole Cards **
+Dealt to habing [Td 4s]
+habing folds
+forfunbitch raises to 6
+mrdonkeyking folds
+Tos5 calls 5
+sleepyknees folds
+** Flop ** [As Js Th]
+Tos5 checks
+forfunbitch bets 8
+Tos5 calls 8
+** Turn ** [Kc]
+Tos5 checks
+forfunbitch checks
+** River ** [2h]
+Tos5 bets 15
+forfunbitch folds
+Tos5 refunded 15
+Tos5 wins Pot (29.25)
+Rake (0.75)
+
+
+
+Hand #8858877-232 - 2013-06-22 03:51:20
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (206.83)
+Seat 2: habing (459.05)
+Seat 3: forfunbitch (432.32)
+Seat 4: mrdonkeyking (322.17)
+Seat 6: Tos5 (233.41)
+Tos5 has the dealer button
+sleepyknees posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [6d 9h]
+forfunbitch calls 2
+mrdonkeyking raises to 8
+Tos5 folds
+sleepyknees folds
+habing folds
+forfunbitch calls 6
+** Flop ** [6c Ah 9c]
+forfunbitch checks
+mrdonkeyking bets 10
+forfunbitch folds
+mrdonkeyking refunded 10
+mrdonkeyking wins Pot (18.53)
+Rake (0.47)
+
+
+
+Hand #8858894-233 - 2013-06-22 03:51:59
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (205.83)
+Seat 2: habing (457.05)
+Seat 3: forfunbitch (424.32)
+Seat 4: mrdonkeyking (332.70)
+Seat 6: Tos5 (233.41)
+sleepyknees has the dealer button
+habing posts small blind 1
+forfunbitch posts big blind 2
+** Hole Cards **
+Dealt to habing [7s Jd]
+mrdonkeyking raises to 8
+Tos5 folds
+sleepyknees folds
+habing folds
+forfunbitch calls 6
+** Flop ** [4s Ts Ac]
+forfunbitch checks
+mrdonkeyking bets 14
+forfunbitch folds
+mrdonkeyking refunded 14
+mrdonkeyking wins Pot (16.58)
+Rake (0.42)
+
+
+
+Hand #8858919-234 - 2013-06-22 03:52:53
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (205.83)
+Seat 2: habing (456.05)
+Seat 3: forfunbitch (416.32)
+Seat 4: mrdonkeyking (341.28)
+Seat 6: Tos5 (233.41)
+habing has the dealer button
+forfunbitch posts small blind 1
+mrdonkeyking posts big blind 2
+** Hole Cards **
+Dealt to habing [Qc 4h]
+Tos5 folds
+sleepyknees folds
+habing raises to 4
+forfunbitch calls 3
+mrdonkeyking calls 2
+** Flop ** [Jd 6d 4c]
+forfunbitch checks
+mrdonkeyking bets 8
+habing folds
+forfunbitch folds
+mrdonkeyking refunded 8
+mrdonkeyking wins Pot (11.70)
+Rake (0.30)
+
+
+
+Hand #8858939-235 - 2013-06-22 03:53:49
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (205.83)
+Seat 2: habing (452.05)
+Seat 3: forfunbitch (412.32)
+Seat 4: mrdonkeyking (348.98)
+Seat 6: Tos5 (233.41)
+forfunbitch has the dealer button
+mrdonkeyking posts small blind 1
+Tos5 posts big blind 2
+** Hole Cards **
+Dealt to habing [Ad 7h]
+sleepyknees folds
+habing raises to 6
+forfunbitch calls 6
+mrdonkeyking folds
+Tos5 folds
+** Flop ** [9h 8c 9c]
+habing checks
+forfunbitch checks
+** Turn ** [8s]
+habing checks
+forfunbitch checks
+** River ** [7d]
+habing checks
+forfunbitch checks
+** Pot Show Down ** [9h 8c 9c 8s 7d]
+habing shows [Ad 7h] (Two Pair, Nines and Eights +A)
+forfunbitch shows [Kh Jc] (Two Pair, Nines and Eights +K)
+habing wins Pot (14.63) with Two Pair
+Rake (0.37)
+
+
+
+Hand #8858961-236 - 2013-06-22 03:54:58
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (205.83)
+Seat 2: habing (460.68)
+Seat 3: forfunbitch (406.32)
+Seat 4: mrdonkeyking (347.98)
+Seat 6: Tos5 (231.41)
+mrdonkeyking has the dealer button
+Tos5 posts small blind 1
+sleepyknees posts big blind 2
+** Hole Cards **
+Dealt to habing [4h 2s]
+habing folds
+forfunbitch raises to 8
+mrdonkeyking folds
+Tos5 folds
+sleepyknees folds
+forfunbitch refunded 6
+forfunbitch wins Pot (5)
+Rake (0)
+
+
+
+Hand #8858973-237 - 2013-06-22 03:55:26
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (203.83)
+Seat 2: habing (460.68)
+Seat 3: forfunbitch (409.32)
+Seat 4: mrdonkeyking (347.98)
+Seat 6: Tos5 (230.41)
+Tos5 has the dealer button
+sleepyknees posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Qh 4s]
+forfunbitch raises to 6
+mrdonkeyking folds
+Tos5 calls 6
+sleepyknees folds
+habing folds
+** Flop ** [6s 6c 5s]
+forfunbitch bets 8
+Tos5 calls 8
+** Turn ** [Js]
+forfunbitch checks
+Tos5 bets 22
+forfunbitch folds
+Tos5 refunded 22
+Tos5 wins Pot (30.23)
+Rake (0.77)
+
+
+
+Hand #8858997-238 - 2013-06-22 03:56:23
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (202.83)
+Seat 2: habing (458.68)
+Seat 3: forfunbitch (395.32)
+Seat 4: mrdonkeyking (347.98)
+Seat 6: Tos5 (246.64)
+sleepyknees has the dealer button
+habing posts small blind 1
+forfunbitch posts big blind 2
+** Hole Cards **
+Dealt to habing [3s 4h]
+mrdonkeyking folds
+Tos5 folds
+sleepyknees raises to 6
+habing folds
+forfunbitch calls 4
+** Flop ** [Ts 3c 7s]
+forfunbitch checks
+sleepyknees bets 9
+forfunbitch folds
+sleepyknees refunded 9
+sleepyknees wins Pot (12.68)
+Rake (0.32)
+
+
+
+Hand #8859022-239 - 2013-06-22 03:57:16
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (209.51)
+Seat 2: habing (457.68)
+Seat 3: forfunbitch (389.32)
+Seat 4: mrdonkeyking (347.98)
+Seat 6: Tos5 (246.64)
+habing has the dealer button
+forfunbitch posts small blind 1
+mrdonkeyking posts big blind 2
+** Hole Cards **
+Dealt to habing [4c 9d]
+Tos5 folds
+sleepyknees folds
+habing folds
+forfunbitch calls 1
+mrdonkeyking checks
+** Flop ** [4s 8s 6h]
+forfunbitch bets 8
+mrdonkeyking folds
+forfunbitch refunded 8
+forfunbitch wins Pot (3.90)
+Rake (0.10)
+
+
+
+Hand #8859034-240 - 2013-06-22 03:57:49
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (209.51)
+Seat 2: habing (457.68)
+Seat 3: forfunbitch (391.22)
+Seat 4: mrdonkeyking (345.98)
+Seat 5: coinbytare (200)
+Seat 6: Tos5 (246.64)
+forfunbitch has the dealer button
+mrdonkeyking posts small blind 1
+coinbytare posts big blind 2
+** Hole Cards **
+Dealt to habing [9s 9d]
+Tos5 folds
+sleepyknees folds
+habing raises to 6
+forfunbitch calls 6
+mrdonkeyking folds
+coinbytare raises to 25
+habing calls 19
+forfunbitch calls 19
+** Flop ** [5c 7d Th]
+coinbytare bets 60
+habing folds
+forfunbitch folds
+coinbytare refunded 60
+coinbytare wins Pot (74.10)
+Rake (1.90)
+
+
+
+Hand #8859055-241 - 2013-06-22 03:59:03
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (209.51)
+Seat 2: habing (432.68)
+Seat 3: forfunbitch (366.22)
+Seat 4: mrdonkeyking (344.98)
+Seat 5: coinbytare (249.10)
+Seat 6: Tos5 (246.64)
+mrdonkeyking has the dealer button
+coinbytare posts small blind 1
+Tos5 posts big blind 2
+** Hole Cards **
+Dealt to habing [9s Ac]
+sleepyknees folds
+habing folds
+forfunbitch folds
+mrdonkeyking raises to 5
+coinbytare folds
+Tos5 calls 3
+** Flop ** [Qs Ks 2c]
+Tos5 checks
+mrdonkeyking bets 9
+Tos5 calls 9
+** Turn ** [Js]
+Tos5 checks
+mrdonkeyking bets 30
+Tos5 calls 30
+** River ** [Ah]
+Tos5 checks
+mrdonkeyking folds
+Tos5 wins Pot (86.78)
+Rake (2.22)
+
+
+
+Hand #8859089-242 - 2013-06-22 04:00:12
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (209.51)
+Seat 2: habing (432.68)
+Seat 3: forfunbitch (366.22)
+Seat 4: mrdonkeyking (300.98)
+Seat 5: coinbytare (248.10)
+Seat 6: Tos5 (289.42)
+coinbytare has the dealer button
+Tos5 posts small blind 1
+sleepyknees posts big blind 2
+** Hole Cards **
+Dealt to habing [Ts 2s]
+habing folds
+forfunbitch calls 2
+mrdonkeyking calls 2
+coinbytare folds
+Tos5 folds
+sleepyknees raises to 12
+forfunbitch folds
+mrdonkeyking folds
+sleepyknees refunded 10
+sleepyknees wins Pot (7)
+Rake (0)
+
+
+
+Hand #8859121-243 - 2013-06-22 04:00:58
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (214.51)
+Seat 2: habing (432.68)
+Seat 3: forfunbitch (364.22)
+Seat 4: mrdonkeyking (298.98)
+Seat 5: coinbytare (248.10)
+Seat 6: Tos5 (288.42)
+Tos5 has the dealer button
+sleepyknees posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Qc 2s]
+forfunbitch raises to 6
+mrdonkeyking folds
+coinbytare calls 6
+Tos5 folds
+sleepyknees folds
+habing folds
+** Flop ** [8s 2d 6d]
+forfunbitch bets 10
+coinbytare calls 10
+** Turn ** [3h]
+forfunbitch bets 10
+coinbytare calls 10
+** River ** [Jh]
+forfunbitch bets 10
+coinbytare raises to 40
+forfunbitch folds
+coinbytare refunded 30
+coinbytare wins Pot (73.13)
+Rake (1.87)
+
+
+
+Hand #8859197-244 - 2013-06-22 04:02:37
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (213.51)
+Seat 2: habing (430.68)
+Seat 3: forfunbitch (328.22)
+Seat 4: mrdonkeyking (298.98)
+Seat 5: coinbytare (285.23)
+Seat 6: Tos5 (288.42)
+sleepyknees has the dealer button
+habing posts small blind 1
+mrdonkeyking posts big blind 2
+** Hole Cards **
+Dealt to habing [Ad 3s]
+coinbytare folds
+Tos5 folds
+sleepyknees raises to 4
+habing folds
+mrdonkeyking folds
+sleepyknees refunded 2
+sleepyknees wins Pot (5)
+Rake (0)
+
+
+
+Hand #8859223-245 - 2013-06-22 04:03:10
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (216.51)
+Seat 2: habing (429.68)
+Seat 3: forfunbitch (328.22) - sitting out
+Seat 4: mrdonkeyking (296.98)
+Seat 5: coinbytare (285.23)
+Seat 6: Tos5 (288.42)
+habing has the dealer button
+mrdonkeyking posts small blind 1
+coinbytare posts big blind 2
+** Hole Cards **
+Dealt to habing [2s 8h]
+Tos5 folds
+sleepyknees raises to 6
+habing folds
+mrdonkeyking calls 5
+coinbytare calls 4
+** Flop ** [3s 5h 6s]
+mrdonkeyking bets 12
+coinbytare raises to 40
+sleepyknees folds
+mrdonkeyking folds
+coinbytare refunded 28
+coinbytare wins Pot (40.95)
+Rake (1.05)
+coinbytare shows [4d 2h]
+
+
+
+Hand #8859286-246 - 2013-06-22 04:04:48
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (210.51)
+Seat 2: habing (429.68)
+Seat 3: forfunbitch (328.22)
+Seat 4: mrdonkeyking (278.98)
+Seat 5: coinbytare (308.18)
+Seat 6: Tos5 (288.42)
+mrdonkeyking has the dealer button
+coinbytare posts small blind 1
+Tos5 posts big blind 2
+forfunbitch posts small & big blind 3
+** Hole Cards **
+Dealt to habing [8s 3h]
+sleepyknees folds
+habing folds
+forfunbitch raises to 8
+mrdonkeyking folds
+coinbytare folds
+Tos5 calls 6
+** Flop ** [Ad 7d Jh]
+Tos5 checks
+forfunbitch checks
+** Turn ** [Kh]
+Tos5 checks
+forfunbitch bets 6
+Tos5 raises to 15
+forfunbitch calls 9
+** River ** [2c]
+Tos5 bets 60
+forfunbitch calls 60
+** Pot Show Down ** [Ad 7d Jh Kh 2c]
+forfunbitch shows [Js As] (Two Pair, Aces and Jacks +K)
+Tos5 shows [Tc Qh] (a Straight, Ten to Ace)
+Tos5 wins Pot (164) with a Straight
+Rake (4)
+
+
+
+Hand #8859343-247 - 2013-06-22 04:06:11
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (210.51)
+Seat 2: habing (429.68)
+Seat 3: forfunbitch (244.22)
+Seat 4: mrdonkeyking (278.98)
+Seat 5: coinbytare (307.18)
+Seat 6: Tos5 (369.42)
+coinbytare has the dealer button
+Tos5 posts small blind 1
+sleepyknees posts big blind 2
+** Hole Cards **
+Dealt to habing [Ts Qs]
+habing raises to 6
+forfunbitch folds
+mrdonkeyking folds
+coinbytare calls 6
+Tos5 folds
+sleepyknees folds
+** Flop ** [6s 8h 5s]
+habing bets 11.20
+coinbytare raises to 35
+habing calls 23.80
+** Turn ** [Td]
+habing checks
+coinbytare bets 65
+habing calls 65
+** River ** [Ah]
+habing checks
+coinbytare checks
+** Pot Show Down ** [6s 8h 5s Td Ah]
+habing shows [Ts Qs] (a Pair of Tens +AQ8)
+coinbytare shows [4s 6c] (a Pair of Sixes +AT8)
+habing wins Pot (211) with a Pair
+Rake (4)
+
+
+
+Hand #8859401-248 - 2013-06-22 04:07:51
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (208.51)
+Seat 2: habing (534.68)
+Seat 3: forfunbitch (244.22)
+Seat 4: mrdonkeyking (278.98)
+Seat 5: coinbytare (201.18)
+Seat 6: Tos5 (368.42)
+Tos5 has the dealer button
+sleepyknees posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [5h 6d]
+forfunbitch folds
+mrdonkeyking folds
+coinbytare raises to 6
+Tos5 folds
+sleepyknees folds
+habing folds
+coinbytare refunded 4
+coinbytare wins Pot (5)
+Rake (0)
+
+
+
+Hand #8859425-249 - 2013-06-22 04:08:29
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (207.51)
+Seat 2: habing (532.68)
+Seat 3: forfunbitch (244.22)
+Seat 4: mrdonkeyking (278.98)
+Seat 5: coinbytare (204.18)
+Seat 6: Tos5 (368.42)
+sleepyknees has the dealer button
+habing posts small blind 1
+forfunbitch posts big blind 2
+** Hole Cards **
+Dealt to habing [Th 8h]
+mrdonkeyking folds
+coinbytare calls 2
+Tos5 raises to 6
+sleepyknees folds
+habing folds
+forfunbitch calls 4
+coinbytare calls 4
+** Flop ** [3c As Td]
+forfunbitch checks
+coinbytare checks
+Tos5 bets 12
+forfunbitch folds
+coinbytare calls 12
+** Turn ** [Jd]
+coinbytare checks
+Tos5 bets 25
+coinbytare calls 25
+** River ** [6c]
+coinbytare folds
+Tos5 wins Pot (90.68)
+Rake (2.32)
+
+
+
+Hand #8859482-250 - 2013-06-22 04:09:57
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (207.51)
+Seat 2: habing (531.68)
+Seat 3: forfunbitch (238.22)
+Seat 4: mrdonkeyking (278.98)
+Seat 5: coinbytare (161.18)
+Seat 6: Tos5 (416.10)
+habing has the dealer button
+forfunbitch posts small blind 1
+mrdonkeyking posts big blind 2
+** Hole Cards **
+Dealt to habing [Jd Qs]
+coinbytare folds
+Tos5 folds
+coinbytare adds 38.82 chips
+sleepyknees raises to 6
+habing folds
+forfunbitch calls 5
+mrdonkeyking folds
+** Flop ** [Jc 4h 3d]
+forfunbitch bets 8
+sleepyknees calls 8
+** Turn ** [7c]
+forfunbitch checks
+sleepyknees checks
+** River ** [9c]
+forfunbitch bets 10
+sleepyknees folds
+forfunbitch refunded 10
+sleepyknees adds 6.49 chips
+forfunbitch wins Pot (29.25)
+Rake (0.75)
+
+
+
+Hand #8859531-251 - 2013-06-22 04:11:25
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (200)
+Seat 2: habing (531.68)
+Seat 3: forfunbitch (253.47)
+Seat 4: mrdonkeyking (276.98)
+Seat 5: coinbytare (200)
+Seat 6: Tos5 (416.10)
+forfunbitch has the dealer button
+mrdonkeyking posts small blind 1
+coinbytare posts big blind 2
+** Hole Cards **
+Dealt to habing [7c 5h]
+Tos5 folds
+sleepyknees folds
+habing folds
+forfunbitch folds
+mrdonkeyking folds
+coinbytare refunded 1
+coinbytare wins Pot (2)
+Rake (0)
+
+
+
+Hand #8859548-252 - 2013-06-22 04:11:48
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (200)
+Seat 2: habing (531.68)
+Seat 3: forfunbitch (253.47)
+Seat 4: mrdonkeyking (275.98)
+Seat 5: coinbytare (201)
+Seat 6: Tos5 (416.10)
+mrdonkeyking has the dealer button
+coinbytare posts small blind 1
+Tos5 posts big blind 2
+** Hole Cards **
+Dealt to habing [Ah 6c]
+sleepyknees folds
+habing folds
+forfunbitch raises to 10
+mrdonkeyking raises to 35
+coinbytare calls 34
+Tos5 folds
+forfunbitch raises to 253.47 (All-in)
+mrdonkeyking calls 218.47
+coinbytare calls 166 (All-in)
+** Flop ** [8s Kh Kd]
+** Turn ** [8c]
+** River ** [Jd]
+** Side Pot 1 Show Down ** [8s Kh Kd 8c Jd]
+forfunbitch shows [7c 7h] (Two Pair, Kings and Eights +J)
+mrdonkeyking shows [Ks Kc] (Four of a Kind, Kings +J)
+mrdonkeyking wins Side Pot 1 (104.94) with Four of a Kind
+Rake (0)
+** Main Pot Show Down ** [8s Kh Kd 8c Jd]
+coinbytare shows [Jc As] (Two Pair, Kings and Jacks +A)
+mrdonkeyking wins Main Pot (601) with Four of a Kind
+Rake (4)
+
+
+
+Hand #8859580-253 - 2013-06-22 04:12:50
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (200)
+Seat 2: habing (531.68)
+Seat 3: forfunbitch (0) - sitting out
+Seat 4: mrdonkeyking (728.45)
+Seat 5: coinbytare (0) - sitting out
+Seat 6: Tos5 (414.10)
+Tos5 has the dealer button
+sleepyknees posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Jh Qd]
+coinbytare adds 200 chips
+mrdonkeyking raises to 6
+Tos5 calls 6
+sleepyknees folds
+sleepyknees adds 1 chips
+forfunbitch adds 137.52 chips
+habing folds
+** Flop ** [Jc Qs Ah]
+mrdonkeyking bets 10
+Tos5 folds
+mrdonkeyking refunded 10
+mrdonkeyking wins Pot (14.63)
+Rake (0.37)
+
+
+
+Hand #8859609-254 - 2013-06-22 04:13:48
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (200)
+Seat 2: habing (529.68)
+Seat 3: forfunbitch (137.52)
+Seat 4: mrdonkeyking (737.08)
+Seat 5: coinbytare (200)
+Seat 6: Tos5 (408.10)
+sleepyknees has the dealer button
+habing posts small blind 1
+forfunbitch posts big blind 2
+** Hole Cards **
+Dealt to habing [Th 2c]
+mrdonkeyking folds
+coinbytare raises to 6
+Tos5 folds
+sleepyknees folds
+habing folds
+forfunbitch calls 4
+** Flop ** [Kc Ad 5s]
+forfunbitch checks
+coinbytare bets 12
+forfunbitch folds
+coinbytare refunded 12
+coinbytare wins Pot (12.68)
+Rake (0.32)
+
+
+
+Hand #8859631-255 - 2013-06-22 04:14:32
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (200)
+Seat 2: habing (528.68)
+Seat 3: forfunbitch (131.52)
+Seat 4: mrdonkeyking (737.08)
+Seat 5: coinbytare (206.68)
+Seat 6: Tos5 (408.10)
+habing has the dealer button
+forfunbitch posts small blind 1
+mrdonkeyking posts big blind 2
+** Hole Cards **
+Dealt to habing [7c Kd]
+coinbytare folds
+Tos5 folds
+sleepyknees raises to 6
+habing folds
+forfunbitch raises to 10
+mrdonkeyking folds
+sleepyknees raises to 36
+forfunbitch raises to 131.52 (All-in)
+sleepyknees calls 95.52
+** Flop ** [4c 2d 8c]
+** Turn ** [Qs]
+** River ** [6h]
+** Pot Show Down ** [4c 2d 8c Qs 6h]
+sleepyknees shows [Jc Js] (a Pair of Jacks +Q86)
+forfunbitch shows [As 9s] (High Card Ace +Q986)
+sleepyknees wins Pot (261.04) with a Pair
+Rake (4)
+
+
+
+Hand #8859666-256 - 2013-06-22 04:15:34
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (329.52)
+Seat 2: habing (528.68)
+Seat 3: forfunbitch (0) - sitting out
+Seat 4: mrdonkeyking (735.08)
+Seat 5: coinbytare (206.68)
+Seat 6: Tos5 (408.10)
+mrdonkeyking has the dealer button
+coinbytare posts small blind 1
+Tos5 posts big blind 2
+** Hole Cards **
+Dealt to habing [Ad 8s]
+sleepyknees folds
+habing raises to 6
+mrdonkeyking calls 6
+coinbytare calls 5
+Tos5 folds
+** Flop ** [Kc Qh Th]
+coinbytare checks
+habing checks
+mrdonkeyking bets 2
+coinbytare calls 2
+habing folds
+** Turn ** [4s]
+coinbytare checks
+mrdonkeyking bets 30
+coinbytare folds
+mrdonkeyking refunded 30
+mrdonkeyking wins Pot (23.40)
+Rake (0.60)
+
+
+
+Hand #8859712-257 - 2013-06-22 04:16:42
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (329.52)
+Seat 2: habing (522.68)
+Seat 4: mrdonkeyking (750.48)
+Seat 5: coinbytare (198.68)
+coinbytare has the dealer button
+sleepyknees posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Qd 3h]
+mrdonkeyking folds
+coinbytare raises to 6
+sleepyknees folds
+habing folds
+coinbytare refunded 4
+coinbytare wins Pot (5)
+Rake (0)
+
+
+
+Hand #8859727-258 - 2013-06-22 04:17:06
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (328.52)
+Seat 2: habing (520.68)
+Seat 4: mrdonkeyking (750.48)
+Seat 5: coinbytare (201.68)
+sleepyknees has the dealer button
+habing posts small blind 1
+mrdonkeyking posts big blind 2
+** Hole Cards **
+Dealt to habing [3d 5c]
+coinbytare raises to 6
+sleepyknees folds
+habing folds
+mrdonkeyking folds
+coinbytare refunded 4
+coinbytare wins Pot (5)
+Rake (0)
+
+
+
+Hand #8859762-259 - 2013-06-22 04:17:53
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (328.52)
+Seat 2: habing (519.68)
+Seat 4: mrdonkeyking (748.48)
+Seat 5: coinbytare (204.68)
+habing has the dealer button
+mrdonkeyking posts small blind 1
+coinbytare posts big blind 2
+** Hole Cards **
+Dealt to habing [9d 7c]
+sleepyknees raises to 6
+habing folds
+mrdonkeyking folds
+coinbytare calls 4
+** Flop ** [9c 3c 5c]
+coinbytare checks
+sleepyknees bets 10
+coinbytare folds
+sleepyknees refunded 10
+sleepyknees wins Pot (12.68)
+Rake (0.32)
+
+
+
+Hand #8859802-260 - 2013-06-22 04:18:55
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (335.20)
+Seat 2: habing (519.68)
+Seat 5: coinbytare (198.68)
+coinbytare has the dealer button
+sleepyknees posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [3h As]
+coinbytare raises to 8
+sleepyknees folds
+habing folds
+coinbytare refunded 6
+coinbytare wins Pot (5)
+Rake (0)
+
+
+
+Hand #8859818-261 - 2013-06-22 04:19:20
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (334.20)
+Seat 2: habing (517.68)
+Seat 5: coinbytare (201.68)
+sleepyknees has the dealer button
+habing posts small blind 1
+coinbytare posts big blind 2
+** Hole Cards **
+Dealt to habing [5c Th]
+sleepyknees raises to 4
+habing folds
+coinbytare folds
+sleepyknees refunded 2
+sleepyknees wins Pot (5)
+Rake (0)
+
+
+
+Hand #8859839-262 - 2013-06-22 04:19:45
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (337.20)
+Seat 2: habing (516.68)
+Seat 5: coinbytare (199.68)
+habing has the dealer button
+coinbytare posts small blind 1
+sleepyknees posts big blind 2
+** Hole Cards **
+Dealt to habing [Kc Qd]
+habing raises to 6
+coinbytare calls 5
+sleepyknees folds
+** Flop ** [Th As 5c]
+coinbytare checks
+habing bets 8
+coinbytare folds
+habing refunded 8
+habing wins Pot (13.65)
+Rake (0.35)
+
+
+
+Hand #8859859-263 - 2013-06-22 04:20:24
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (335.20)
+Seat 2: habing (524.33)
+Seat 5: coinbytare (193.68)
+coinbytare has the dealer button
+sleepyknees posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [6d 2c]
+coinbytare calls 2
+sleepyknees folds
+habing checks
+** Flop ** [3h 6s Jh]
+habing bets 4
+coinbytare raises to 8
+habing folds
+coinbytare refunded 4
+coinbytare wins Pot (12.68)
+Rake (0.32)
+
+
+
+Hand #8859888-264 - 2013-06-22 04:21:15
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (334.20)
+Seat 2: habing (518.33)
+Seat 5: coinbytare (200.36)
+sleepyknees has the dealer button
+habing posts small blind 1
+coinbytare posts big blind 2
+** Hole Cards **
+Dealt to habing [Ad Kh]
+sleepyknees raises to 4
+habing raises to 16.80
+coinbytare folds
+sleepyknees folds
+habing refunded 12.80
+habing wins Pot (10)
+Rake (0)
+
+
+
+Hand #8859906-265 - 2013-06-22 04:21:39
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (330.20)
+Seat 2: habing (524.33)
+Seat 5: coinbytare (198.36)
+habing has the dealer button
+coinbytare posts small blind 1
+sleepyknees posts big blind 2
+** Hole Cards **
+Dealt to habing [As 4s]
+habing raises to 4
+coinbytare folds
+sleepyknees folds
+habing refunded 2
+habing wins Pot (5)
+Rake (0)
+
+
+
+Hand #8859923-266 - 2013-06-22 04:22:05
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (328.20)
+Seat 2: habing (527.33)
+Seat 5: coinbytare (197.36)
+coinbytare has the dealer button
+sleepyknees posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Jh 7d]
+coinbytare folds
+sleepyknees raises to 6
+habing has timed out
+habing folds
+sleepyknees refunded 4
+sleepyknees wins Pot (4)
+Rake (0)
+
+
+
+Hand #8859945-267 - 2013-06-22 04:22:53
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (330.20)
+Seat 2: habing (525.33) - sitting out
+Seat 5: coinbytare (197.36)
+sleepyknees has the dealer button
+sleepyknees posts small blind 1
+coinbytare posts big blind 2
+** Hole Cards **
+sleepyknees raises to 4
+coinbytare folds
+sleepyknees refunded 2
+sleepyknees wins Pot (4)
+Rake (0)
+coinbytare adds 4.64 chips
+
+
+
+Hand #8859951-268 - 2013-06-22 04:23:12
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: sleepyknees (332.20)
+Seat 2: habing (525.33) - sitting out
+Seat 5: coinbytare (200)
+coinbytare has the dealer button
+coinbytare posts small blind 1
+sleepyknees posts big blind 2
+** Hole Cards **
+coinbytare folds
+sleepyknees refunded 1
+sleepyknees wins Pot (2)
+Rake (0)

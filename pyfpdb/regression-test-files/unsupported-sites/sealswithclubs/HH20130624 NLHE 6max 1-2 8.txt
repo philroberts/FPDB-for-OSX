@@ -1,0 +1,2964 @@
+Hand #8964188-1 - 2013-06-24 13:46:27
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: cbemjem (200) - waiting for big blind
+Seat 6: habing (200) - waiting for big blind
+habing has the dealer button
+habing posts small blind 1
+cbemjem posts big blind 2
+** Hole Cards **
+Dealt to habing [6d 3s]
+habing folds
+cbemjem refunded 1
+habing adds 1 chips
+cbemjem wins Pot (2)
+Rake (0)
+
+
+
+Hand #8964196-2 - 2013-06-24 13:46:39
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: cbemjem (201)
+Seat 6: habing (200)
+cbemjem has the dealer button
+cbemjem posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [6c Kd]
+cbemjem folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8964202-3 - 2013-06-24 13:46:52
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: cbemjem (200)
+Seat 6: habing (201)
+habing has the dealer button
+habing posts small blind 1
+cbemjem posts big blind 2
+** Hole Cards **
+Dealt to habing [Kc 9d]
+habing raises to 4
+cbemjem has timed out
+cbemjem folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8964244-1 - 2013-06-24 13:48:13
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: cbemjem (198)
+Seat 6: habing (203)
+cbemjem has the dealer button
+cbemjem posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Jc As]
+cbemjem calls 1
+habing raises to 6
+cbemjem calls 4
+** Flop ** [8s 8c Ah]
+habing bets 8
+cbemjem calls 8
+** Turn ** [Kc]
+habing bets 20
+cbemjem folds
+habing refunded 20
+habing wins Pot (27.30)
+Rake (0.70)
+
+
+
+Hand #8964267-2 - 2013-06-24 13:49:00
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: cbemjem (184)
+Seat 6: habing (216.30)
+habing has the dealer button
+habing posts small blind 1
+cbemjem posts big blind 2
+** Hole Cards **
+Dealt to habing [2h 5h]
+habing raises to 4
+cbemjem folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8964283-3 - 2013-06-24 13:49:29
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: cbemjem (182)
+Seat 6: habing (218.30)
+cbemjem has the dealer button
+cbemjem posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Jd 8s]
+cbemjem folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8964416-1 - 2013-06-24 13:54:08
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (200) - waiting for big blind
+Seat 6: habing (219.30)
+habing has the dealer button
+habing posts small blind 1
+caishendao posts big blind 2
+** Hole Cards **
+Dealt to habing [Td 3c]
+habing folds
+caishendao refunded 1
+caishendao wins Pot (2)
+Rake (0)
+
+
+
+Hand #8964430-2 - 2013-06-24 13:54:36
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (201)
+Seat 6: habing (218.30)
+caishendao has the dealer button
+caishendao posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Qd 2h]
+caishendao calls 1
+habing checks
+** Flop ** [2d 4d Td]
+habing checks
+caishendao checks
+** Turn ** [Kh]
+habing checks
+caishendao checks
+** River ** [8d]
+habing bets 6.80
+caishendao calls 6.80
+** Pot Show Down ** [2d 4d Td Kh 8d]
+caishendao shows [8c Jd] (a Flush, Jack high +T842)
+habing shows [Qd 2h] (a Flush, Queen high +T842)
+habing wins Pot (17.16) with a Flush
+Rake (0.44)
+
+
+
+Hand #8964456-3 - 2013-06-24 13:55:19
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (192.20)
+Seat 6: habing (226.66)
+habing has the dealer button
+habing posts small blind 1
+caishendao posts big blind 2
+** Hole Cards **
+Dealt to habing [7s 5h]
+habing folds
+caishendao refunded 1
+caishendao wins Pot (2)
+Rake (0)
+
+
+
+Hand #8964458-4 - 2013-06-24 13:55:30
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (193.20)
+Seat 6: habing (225.66)
+caishendao has the dealer button
+caishendao posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [8s Qh]
+caishendao calls 1
+habing raises to 8
+caishendao folds
+habing refunded 6
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8964467-5 - 2013-06-24 13:55:49
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (191.20)
+Seat 6: habing (227.66)
+habing has the dealer button
+habing posts small blind 1
+caishendao posts big blind 2
+** Hole Cards **
+Dealt to habing [Tc 4s]
+habing folds
+caishendao refunded 1
+caishendao wins Pot (2)
+Rake (0)
+
+
+
+Hand #8964476-6 - 2013-06-24 13:56:00
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (192.20)
+Seat 6: habing (226.66)
+caishendao has the dealer button
+caishendao posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [8h Th]
+caishendao calls 1
+habing raises to 10
+caishendao folds
+habing refunded 8
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8964485-7 - 2013-06-24 13:56:21
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (190.20)
+Seat 6: habing (228.66)
+habing has the dealer button
+habing posts small blind 1
+caishendao posts big blind 2
+** Hole Cards **
+Dealt to habing [5h 2d]
+habing folds
+caishendao refunded 1
+caishendao wins Pot (2)
+Rake (0)
+
+
+
+Hand #8964497-8 - 2013-06-24 13:56:35
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (191.20)
+Seat 6: habing (227.66)
+caishendao has the dealer button
+caishendao posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ks 9d]
+caishendao raises to 4
+habing calls 2
+** Flop ** [4s 2h 2s]
+habing checks
+caishendao bets 6
+habing folds
+caishendao refunded 6
+caishendao wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #8964512-9 - 2013-06-24 13:57:01
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (195)
+Seat 6: habing (223.66)
+habing has the dealer button
+habing posts small blind 1
+caishendao posts big blind 2
+** Hole Cards **
+Dealt to habing [Ac Tc]
+habing raises to 6
+caishendao folds
+habing refunded 4
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8964520-10 - 2013-06-24 13:57:15
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (193)
+Seat 6: habing (225.66)
+caishendao has the dealer button
+caishendao posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [5c 4c]
+caishendao folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8964530-11 - 2013-06-24 13:57:28
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (192)
+Seat 6: habing (226.66)
+habing has the dealer button
+habing posts small blind 1
+caishendao posts big blind 2
+** Hole Cards **
+Dealt to habing [7d Qs]
+habing raises to 4
+caishendao calls 2
+** Flop ** [Ad 3c 8h]
+caishendao checks
+habing bets 4.40
+caishendao calls 4.40
+** Turn ** [9h]
+caishendao checks
+habing checks
+** River ** [Tc]
+caishendao bets 12
+habing folds
+caishendao refunded 12
+caishendao wins Pot (16.38)
+Rake (0.42)
+
+
+
+Hand #8964552-12 - 2013-06-24 13:58:14
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (199.98)
+Seat 6: habing (218.26)
+caishendao has the dealer button
+caishendao posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [2h Ks]
+caishendao raises to 4
+habing folds
+caishendao refunded 2
+caishendao wins Pot (4)
+Rake (0)
+
+
+
+Hand #8964560-13 - 2013-06-24 13:58:31
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (201.98)
+Seat 6: habing (216.26)
+habing has the dealer button
+habing posts small blind 1
+caishendao posts big blind 2
+** Hole Cards **
+Dealt to habing [Ad Tc]
+habing raises to 4
+caishendao calls 2
+** Flop ** [4d 3c Ts]
+caishendao checks
+habing bets 8
+caishendao folds
+habing refunded 8
+habing wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #8964586-14 - 2013-06-24 13:59:15
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (197.98)
+Seat 6: habing (220.06)
+caishendao has the dealer button
+caishendao posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [4h 9d]
+caishendao folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8964590-15 - 2013-06-24 13:59:29
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (196.98)
+Seat 6: habing (221.06)
+habing has the dealer button
+habing posts small blind 1
+caishendao posts big blind 2
+** Hole Cards **
+Dealt to habing [7c 4d]
+habing folds
+caishendao refunded 1
+caishendao wins Pot (2)
+Rake (0)
+
+
+
+Hand #8964595-16 - 2013-06-24 13:59:41
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (197.98)
+Seat 6: habing (220.06)
+caishendao has the dealer button
+caishendao posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Qd 7s]
+caishendao folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8964608-17 - 2013-06-24 14:00:03
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (196.98)
+Seat 6: habing (221.06)
+habing has the dealer button
+habing posts small blind 1
+caishendao posts big blind 2
+** Hole Cards **
+Dealt to habing [4s 9s]
+habing folds
+caishendao refunded 1
+caishendao wins Pot (2)
+Rake (0)
+
+
+
+Hand #8964614-18 - 2013-06-24 14:00:15
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (197.98)
+Seat 6: habing (220.06)
+caishendao has the dealer button
+caishendao posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [3s 3c]
+caishendao calls 1
+habing checks
+** Flop ** [9d 9h Tc]
+habing checks
+caishendao checks
+** Turn ** [Jc]
+habing checks
+caishendao checks
+** River ** [Kh]
+habing checks
+caishendao checks
+** Pot Show Down ** [9d 9h Tc Jc Kh]
+caishendao shows [5s 7h] (a Pair of Nines +KJT)
+habing shows [3s 3c] (Two Pair, Nines and Threes +K)
+habing wins Pot (3.90) with Two Pair
+Rake (0.10)
+
+
+
+Hand #8964658-19 - 2013-06-24 14:01:04
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (195.98)
+Seat 6: habing (221.96)
+habing has the dealer button
+habing posts small blind 1
+caishendao posts big blind 2
+** Hole Cards **
+Dealt to habing [7d Th]
+habing folds
+caishendao refunded 1
+caishendao wins Pot (2)
+Rake (0)
+
+
+
+Hand #8964669-20 - 2013-06-24 14:01:16
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (196.98)
+Seat 6: habing (220.96)
+caishendao has the dealer button
+caishendao posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [2c 9s]
+caishendao folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8964674-21 - 2013-06-24 14:01:27
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (195.98)
+Seat 6: habing (221.96)
+habing has the dealer button
+habing posts small blind 1
+caishendao posts big blind 2
+** Hole Cards **
+Dealt to habing [4h Ad]
+habing raises to 4
+caishendao folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8964689-22 - 2013-06-24 14:01:44
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (193.98)
+Seat 6: habing (223.96)
+caishendao has the dealer button
+caishendao posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Qh 9h]
+caishendao folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8964700-23 - 2013-06-24 14:01:59
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (192.98)
+Seat 6: habing (224.96)
+habing has the dealer button
+habing posts small blind 1
+caishendao posts big blind 2
+** Hole Cards **
+Dealt to habing [2s Td]
+habing folds
+caishendao refunded 1
+caishendao wins Pot (2)
+Rake (0)
+
+
+
+Hand #8964710-24 - 2013-06-24 14:02:10
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (193.98)
+Seat 6: habing (223.96)
+caishendao has the dealer button
+caishendao posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [7c Th]
+caishendao folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8964720-25 - 2013-06-24 14:02:21
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (192.98)
+Seat 6: habing (224.96)
+habing has the dealer button
+habing posts small blind 1
+caishendao posts big blind 2
+** Hole Cards **
+Dealt to habing [3h 3c]
+habing raises to 4
+caishendao folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8964727-26 - 2013-06-24 14:02:35
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (190.98)
+Seat 6: habing (226.96)
+caishendao has the dealer button
+caishendao posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Tc 4d]
+caishendao folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8964741-27 - 2013-06-24 14:02:50
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (189.98)
+Seat 6: habing (227.96)
+habing has the dealer button
+habing posts small blind 1
+caishendao posts big blind 2
+** Hole Cards **
+Dealt to habing [9d 3d]
+habing raises to 4
+caishendao raises to 18
+habing folds
+caishendao refunded 14
+caishendao wins Pot (8)
+Rake (0)
+
+
+
+Hand #8964766-28 - 2013-06-24 14:03:20
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (193.98)
+Seat 6: habing (223.96)
+caishendao has the dealer button
+caishendao posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ac 3d]
+caishendao folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8964775-29 - 2013-06-24 14:03:33
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (192.98)
+Seat 6: habing (224.96)
+habing has the dealer button
+habing posts small blind 1
+caishendao posts big blind 2
+** Hole Cards **
+Dealt to habing [Jc Jh]
+habing raises to 4
+caishendao folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8964785-30 - 2013-06-24 14:03:47
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (190.98)
+Seat 6: habing (226.96)
+caishendao has the dealer button
+caishendao posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ac 7c]
+caishendao folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8964794-31 - 2013-06-24 14:03:59
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (189.98)
+Seat 6: habing (227.96)
+habing has the dealer button
+habing posts small blind 1
+caishendao posts big blind 2
+** Hole Cards **
+Dealt to habing [Ah 3d]
+habing raises to 4
+caishendao calls 2
+** Flop ** [Ks Js 7d]
+caishendao checks
+habing checks
+** Turn ** [Qh]
+caishendao checks
+habing checks
+** River ** [Th]
+caishendao checks
+habing bets 6.80
+caishendao folds
+habing refunded 6.80
+habing wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #8964846-32 - 2013-06-24 14:05:03
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (185.98)
+Seat 6: habing (231.76)
+caishendao has the dealer button
+caishendao posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Qd Ah]
+caishendao folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8964860-33 - 2013-06-24 14:05:24
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (184.98)
+Seat 6: habing (232.76)
+habing has the dealer button
+habing posts small blind 1
+caishendao posts big blind 2
+** Hole Cards **
+Dealt to habing [3s 3c]
+habing raises to 4
+caishendao calls 2
+** Flop ** [5h 7h 7d]
+caishendao checks
+habing checks
+** Turn ** [Ah]
+caishendao bets 6
+habing folds
+caishendao refunded 6
+caishendao wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #8964898-34 - 2013-06-24 14:06:01
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (188.78)
+Seat 6: habing (228.76)
+caishendao has the dealer button
+caishendao posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [2d 4c]
+caishendao folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8964906-35 - 2013-06-24 14:06:15
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (187.78)
+Seat 6: habing (229.76)
+habing has the dealer button
+habing posts small blind 1
+caishendao posts big blind 2
+** Hole Cards **
+Dealt to habing [8h Js]
+habing raises to 6
+caishendao folds
+habing refunded 4
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8964923-36 - 2013-06-24 14:06:33
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (185.78)
+Seat 6: habing (231.76)
+caishendao has the dealer button
+caishendao posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Qd 8s]
+caishendao calls 1
+habing checks
+** Flop ** [Ah Tc Qs]
+habing checks
+caishendao checks
+** Turn ** [4c]
+habing checks
+caishendao checks
+** River ** [8d]
+habing bets 4.40
+caishendao folds
+habing refunded 4.40
+habing wins Pot (3.90)
+Rake (0.10)
+
+
+
+Hand #8964958-37 - 2013-06-24 14:07:20
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (183.78)
+Seat 6: habing (233.66)
+habing has the dealer button
+habing posts small blind 1
+caishendao posts big blind 2
+** Hole Cards **
+Dealt to habing [2s 3s]
+habing raises to 4
+caishendao calls 2
+** Flop ** [Qs 4h 2h]
+caishendao checks
+habing checks
+** Turn ** [Ts]
+caishendao bets 6
+habing calls 6
+** River ** [Ac]
+caishendao bets 14
+habing folds
+caishendao refunded 14
+caishendao wins Pot (19.50)
+Rake (0.50)
+
+
+
+Hand #8964998-38 - 2013-06-24 14:08:16
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (193.28)
+Seat 6: habing (223.66)
+caishendao has the dealer button
+caishendao posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ac 3c]
+caishendao folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8965006-39 - 2013-06-24 14:08:28
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (192.28)
+Seat 6: habing (224.66)
+habing has the dealer button
+habing posts small blind 1
+caishendao posts big blind 2
+** Hole Cards **
+Dealt to habing [9s 3h]
+habing folds
+caishendao refunded 1
+caishendao wins Pot (2)
+Rake (0)
+
+
+
+Hand #8965014-40 - 2013-06-24 14:08:39
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (193.28)
+Seat 6: habing (223.66)
+caishendao has the dealer button
+caishendao posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ks Ah]
+caishendao raises to 4
+habing raises to 16.40
+caishendao folds
+habing refunded 12.40
+habing wins Pot (8)
+Rake (0)
+
+
+
+Hand #8965033-41 - 2013-06-24 14:09:07
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (189.28)
+Seat 6: habing (227.66)
+habing has the dealer button
+habing posts small blind 1
+caishendao posts big blind 2
+** Hole Cards **
+Dealt to habing [Tc 5h]
+habing folds
+caishendao refunded 1
+caishendao wins Pot (2)
+Rake (0)
+
+
+
+Hand #8965042-42 - 2013-06-24 14:09:24
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (190.28)
+Seat 6: habing (226.66)
+caishendao has the dealer button
+caishendao posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ad As]
+caishendao raises to 4
+habing raises to 16.80
+caishendao folds
+habing refunded 12.80
+habing wins Pot (8)
+Rake (0)
+
+
+
+Hand #8965061-43 - 2013-06-24 14:09:50
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (186.28)
+Seat 6: habing (230.66)
+habing has the dealer button
+habing posts small blind 1
+caishendao posts big blind 2
+** Hole Cards **
+Dealt to habing [3d Th]
+habing folds
+caishendao refunded 1
+caishendao wins Pot (2)
+Rake (0)
+
+
+
+Hand #8965073-44 - 2013-06-24 14:10:02
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (187.28)
+Seat 6: habing (229.66)
+caishendao has the dealer button
+caishendao posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [4h 5s]
+caishendao folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8965078-45 - 2013-06-24 14:10:13
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (186.28)
+Seat 6: habing (230.66)
+habing has the dealer button
+habing posts small blind 1
+caishendao posts big blind 2
+** Hole Cards **
+Dealt to habing [4s 2h]
+habing folds
+caishendao refunded 1
+caishendao wins Pot (2)
+Rake (0)
+
+
+
+Hand #8965090-46 - 2013-06-24 14:10:26
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (187.28)
+Seat 6: habing (229.66)
+caishendao has the dealer button
+caishendao posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Qc 5h]
+caishendao calls 1
+habing checks
+** Flop ** [3s Jh Kh]
+habing checks
+caishendao checks
+** Turn ** [3d]
+habing checks
+caishendao checks
+** River ** [Qs]
+habing checks
+caishendao bets 4
+habing calls 4
+** Pot Show Down ** [3s Jh Kh 3d Qs]
+caishendao shows [Qd 7h] (Two Pair, Queens and Threes +K)
+habing shows [Qc 5h] (Two Pair, Queens and Threes +K)
+caishendao splits Pot (5.85) with Two Pair
+habing splits Pot (5.85) with Two Pair
+Rake (0.30)
+
+
+
+Hand #8965138-47 - 2013-06-24 14:11:34
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (187.13)
+Seat 6: habing (229.51)
+habing has the dealer button
+habing posts small blind 1
+caishendao posts big blind 2
+** Hole Cards **
+Dealt to habing [Ts Ah]
+habing raises to 4
+caishendao folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8965154-48 - 2013-06-24 14:11:59
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (185.13)
+Seat 6: habing (231.51)
+caishendao has the dealer button
+caishendao posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [8s Tc]
+caishendao raises to 4
+habing folds
+caishendao refunded 2
+caishendao wins Pot (4)
+Rake (0)
+
+
+
+Hand #8965163-49 - 2013-06-24 14:12:13
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (187.13)
+Seat 6: habing (229.51)
+habing has the dealer button
+habing posts small blind 1
+caishendao posts big blind 2
+** Hole Cards **
+Dealt to habing [6c 2h]
+habing folds
+caishendao refunded 1
+caishendao wins Pot (2)
+Rake (0)
+
+
+
+Hand #8965185-50 - 2013-06-24 14:12:38
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (188.13)
+Seat 6: habing (228.51)
+caishendao has the dealer button
+caishendao posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [As Qh]
+caishendao raises to 4
+habing raises to 16.40
+caishendao folds
+habing refunded 12.40
+habing wins Pot (8)
+Rake (0)
+
+
+
+Hand #8965199-51 - 2013-06-24 14:12:59
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (184.13)
+Seat 6: habing (232.51)
+habing has the dealer button
+habing posts small blind 1
+caishendao posts big blind 2
+** Hole Cards **
+Dealt to habing [6d Kd]
+habing raises to 4
+caishendao calls 2
+** Flop ** [4s 8d 9c]
+caishendao checks
+habing checks
+** Turn ** [Qh]
+caishendao bets 6
+habing folds
+caishendao refunded 6
+caishendao wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #8965221-52 - 2013-06-24 14:13:38
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (187.93)
+Seat 6: habing (228.51)
+caishendao has the dealer button
+caishendao posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [5c Ts]
+caishendao raises to 4
+habing folds
+caishendao refunded 2
+caishendao wins Pot (4)
+Rake (0)
+
+
+
+Hand #8965236-53 - 2013-06-24 14:13:54
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (189.93)
+Seat 6: habing (226.51)
+habing has the dealer button
+habing posts small blind 1
+caishendao posts big blind 2
+** Hole Cards **
+Dealt to habing [6c Td]
+habing raises to 4
+caishendao calls 2
+** Flop ** [8h 7s 3d]
+caishendao checks
+habing bets 4.40
+caishendao calls 4.40
+** Turn ** [9h]
+caishendao checks
+habing bets 13.60
+caishendao folds
+habing refunded 13.60
+habing wins Pot (16.38)
+Rake (0.42)
+
+
+
+Hand #8965264-54 - 2013-06-24 14:14:43
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (181.53)
+Seat 6: habing (234.49)
+caishendao has the dealer button
+caishendao posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ac 5s]
+caishendao folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8965273-55 - 2013-06-24 14:14:55
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (180.53)
+Seat 6: habing (235.49)
+habing has the dealer button
+habing posts small blind 1
+caishendao posts big blind 2
+** Hole Cards **
+Dealt to habing [9s Tc]
+habing raises to 4
+caishendao calls 2
+** Flop ** [5s 3h 9h]
+caishendao checks
+habing bets 4.40
+caishendao folds
+habing refunded 4.40
+habing wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #8965293-56 - 2013-06-24 14:15:16
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (176.53)
+Seat 6: habing (239.29)
+caishendao has the dealer button
+caishendao posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [4s Ac]
+caishendao raises to 4
+habing calls 2
+** Flop ** [9s Qs Ks]
+habing checks
+caishendao bets 6
+habing folds
+caishendao refunded 6
+caishendao wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #8965314-57 - 2013-06-24 14:15:44
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (180.33)
+Seat 6: habing (235.29)
+habing has the dealer button
+habing posts small blind 1
+caishendao posts big blind 2
+** Hole Cards **
+Dealt to habing [Qc Kc]
+habing raises to 4
+caishendao calls 2
+** Flop ** [9s 6c 3d]
+caishendao checks
+habing bets 4.40
+caishendao raises to 16.80
+habing calls 12.40
+** Turn ** [4s]
+caishendao checks
+habing checks
+** River ** [Kd]
+caishendao checks
+habing bets 38.40
+caishendao folds
+habing refunded 38.40
+habing wins Pot (40.56)
+Rake (1.04)
+
+
+
+Hand #8965362-58 - 2013-06-24 14:17:06
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (159.53)
+Seat 6: habing (255.05)
+caishendao has the dealer button
+caishendao posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Js 8s]
+caishendao raises to 4
+habing calls 2
+** Flop ** [Qd Kc 2s]
+habing checks
+caishendao checks
+** Turn ** [4h]
+habing checks
+caishendao checks
+** River ** [3s]
+habing checks
+caishendao bets 6
+habing folds
+caishendao refunded 6
+caishendao wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #8965407-59 - 2013-06-24 14:18:17
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (163.33)
+Seat 6: habing (251.05)
+habing has the dealer button
+habing posts small blind 1
+caishendao posts big blind 2
+** Hole Cards **
+Dealt to habing [Jc Ks]
+habing raises to 4
+caishendao folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8965416-60 - 2013-06-24 14:18:34
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (161.33)
+Seat 6: habing (253.05)
+caishendao has the dealer button
+caishendao posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [9s 8c]
+caishendao calls 1
+habing checks
+** Flop ** [3h 9c Ah]
+habing checks
+caishendao checks
+** Turn ** [Qd]
+habing checks
+caishendao checks
+** River ** [2s]
+habing checks
+caishendao checks
+** Pot Show Down ** [3h 9c Ah Qd 2s]
+caishendao shows [7d 5c] (High Card Ace +Q975)
+habing shows [9s 8c] (a Pair of Nines +AQ8)
+habing wins Pot (3.90) with a Pair
+Rake (0.10)
+
+
+
+Hand #8965446-61 - 2013-06-24 14:19:19
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (159.33)
+Seat 6: habing (254.95)
+habing has the dealer button
+habing posts small blind 1
+caishendao posts big blind 2
+** Hole Cards **
+Dealt to habing [6d 7h]
+habing raises to 4
+caishendao calls 2
+** Flop ** [As 3c Jc]
+caishendao checks
+habing checks
+** Turn ** [6c]
+caishendao bets 6
+habing folds
+caishendao refunded 6
+caishendao wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #8965464-62 - 2013-06-24 14:19:43
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (163.13)
+Seat 6: habing (250.95)
+caishendao has the dealer button
+caishendao posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Kd 3d]
+caishendao folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8965471-63 - 2013-06-24 14:19:54
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (162.13)
+Seat 6: habing (251.95)
+habing has the dealer button
+habing posts small blind 1
+caishendao posts big blind 2
+** Hole Cards **
+Dealt to habing [As Js]
+habing raises to 4
+caishendao folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8965480-64 - 2013-06-24 14:20:07
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (160.13)
+Seat 6: habing (253.95)
+caishendao has the dealer button
+caishendao posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [7h Tc]
+caishendao raises to 4
+habing folds
+caishendao refunded 2
+caishendao wins Pot (4)
+Rake (0)
+
+
+
+Hand #8965489-65 - 2013-06-24 14:20:24
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (162.13)
+Seat 6: habing (251.95)
+habing has the dealer button
+habing posts small blind 1
+caishendao posts big blind 2
+** Hole Cards **
+Dealt to habing [Ts 4d]
+habing folds
+caishendao refunded 1
+caishendao wins Pot (2)
+Rake (0)
+
+
+
+Hand #8965498-66 - 2013-06-24 14:20:35
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (163.13)
+Seat 6: habing (250.95)
+caishendao has the dealer button
+caishendao posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [9h 3c]
+caishendao folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8965509-67 - 2013-06-24 14:20:49
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (162.13)
+Seat 6: habing (251.95)
+habing has the dealer button
+habing posts small blind 1
+caishendao posts big blind 2
+** Hole Cards **
+Dealt to habing [4h 4c]
+habing raises to 4
+caishendao calls 2
+** Flop ** [8s 5s Kc]
+caishendao checks
+habing checks
+** Turn ** [Kh]
+caishendao bets 6
+habing folds
+caishendao refunded 6
+caishendao wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #8965533-68 - 2013-06-24 14:21:30
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (165.93)
+Seat 6: habing (247.95)
+caishendao has the dealer button
+caishendao posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Jh Ks]
+caishendao raises to 4
+habing calls 2
+** Flop ** [2s 3h 9h]
+habing checks
+caishendao bets 6
+habing folds
+caishendao refunded 6
+caishendao wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #8965552-69 - 2013-06-24 14:22:01
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (169.73)
+Seat 6: habing (243.95)
+habing has the dealer button
+habing posts small blind 1
+caishendao posts big blind 2
+** Hole Cards **
+Dealt to habing [5d Th]
+habing raises to 4
+caishendao calls 2
+** Flop ** [Qd Tc Jh]
+caishendao checks
+habing checks
+** Turn ** [Ac]
+caishendao bets 6
+habing folds
+caishendao refunded 6
+caishendao wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #8965567-70 - 2013-06-24 14:22:26
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (173.53)
+Seat 6: habing (239.95)
+caishendao has the dealer button
+caishendao posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ad Tc]
+caishendao folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8965575-71 - 2013-06-24 14:22:42
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (172.53)
+Seat 6: habing (240.95)
+habing has the dealer button
+habing posts small blind 1
+caishendao posts big blind 2
+** Hole Cards **
+Dealt to habing [Tc Kh]
+habing raises to 4
+caishendao folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8965589-72 - 2013-06-24 14:22:58
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (170.53)
+Seat 6: habing (242.95)
+caishendao has the dealer button
+caishendao posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ac 5d]
+caishendao raises to 4
+habing calls 2
+** Flop ** [6d 5c Ks]
+habing checks
+caishendao bets 6
+habing folds
+caishendao refunded 6
+caishendao wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #8965606-73 - 2013-06-24 14:23:30
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (174.33)
+Seat 6: habing (238.95)
+habing has the dealer button
+habing posts small blind 1
+caishendao posts big blind 2
+** Hole Cards **
+Dealt to habing [8d 5s]
+habing folds
+caishendao refunded 1
+caishendao wins Pot (2)
+Rake (0)
+
+
+
+Hand #8965616-74 - 2013-06-24 14:23:49
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (175.33)
+Seat 6: habing (237.95)
+caishendao has the dealer button
+caishendao posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ts 4c]
+caishendao folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8965722-1 - 2013-06-24 14:26:46
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (181.13)
+Seat 6: habing (231.95)
+caishendao has the dealer button
+caishendao posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [8c Ac]
+caishendao raises to 4
+habing raises to 15.60
+caishendao folds
+habing refunded 11.60
+habing wins Pot (8)
+Rake (0)
+
+
+
+Hand #8965734-2 - 2013-06-24 14:27:11
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (177.13)
+Seat 6: habing (235.95)
+habing has the dealer button
+habing posts small blind 1
+caishendao posts big blind 2
+** Hole Cards **
+Dealt to habing [6s Js]
+habing raises to 4
+caishendao calls 2
+** Flop ** [6c 4s Td]
+caishendao checks
+habing bets 4.40
+caishendao calls 4.40
+** Turn ** [3h]
+caishendao checks
+habing checks
+** River ** [2d]
+caishendao bets 12
+habing calls 12
+** Pot Show Down ** [6c 4s Td 3h 2d]
+caishendao shows [Jh Qh] (High Card Queen +JT64)
+habing shows [6s Js] (a Pair of Sixes +JT4)
+habing wins Pot (39.78) with a Pair
+Rake (1.02)
+
+
+
+Hand #8965770-3 - 2013-06-24 14:28:05
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (156.73)
+Seat 6: habing (255.33)
+caishendao has the dealer button
+caishendao posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Qh Jd]
+caishendao raises to 4
+habing calls 2
+** Flop ** [Qd Th 5s]
+habing checks
+caishendao bets 6
+habing calls 6
+** Turn ** [4c]
+habing checks
+caishendao checks
+** River ** [8d]
+habing checks
+caishendao checks
+** Pot Show Down ** [Qd Th 5s 4c 8d]
+caishendao shows [5h 6d] (a Pair of Fives +QT8)
+habing shows [Qh Jd] (a Pair of Queens +JT8)
+habing wins Pot (19.50) with a Pair
+Rake (0.50)
+
+
+
+Hand #8965802-4 - 2013-06-24 14:29:06
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (146.73)
+Seat 6: habing (264.83)
+habing has the dealer button
+habing posts small blind 1
+caishendao posts big blind 2
+** Hole Cards **
+Dealt to habing [Kd 8c]
+habing raises to 4
+caishendao calls 2
+** Flop ** [8h 2c As]
+caishendao checks
+habing bets 4.40
+caishendao folds
+habing refunded 4.40
+habing wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #8965818-5 - 2013-06-24 14:29:29
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (142.73)
+Seat 6: habing (268.63)
+caishendao has the dealer button
+caishendao posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Js 8s]
+caishendao folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8965824-6 - 2013-06-24 14:29:40
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (141.73)
+Seat 6: habing (269.63)
+habing has the dealer button
+habing posts small blind 1
+caishendao posts big blind 2
+** Hole Cards **
+Dealt to habing [3d Kd]
+habing raises to 4
+caishendao folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8965834-7 - 2013-06-24 14:29:55
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (139.73)
+Seat 6: habing (271.63)
+caishendao has the dealer button
+caishendao posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [3d 4h]
+caishendao folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8965838-8 - 2013-06-24 14:30:06
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (138.73)
+Seat 6: habing (272.63)
+habing has the dealer button
+habing posts small blind 1
+caishendao posts big blind 2
+** Hole Cards **
+Dealt to habing [Td 3h]
+habing folds
+caishendao refunded 1
+caishendao wins Pot (2)
+Rake (0)
+
+
+
+Hand #8965845-9 - 2013-06-24 14:30:18
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (139.73)
+Seat 6: habing (271.63)
+caishendao has the dealer button
+caishendao posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Jc 9c]
+caishendao raises to 4
+habing raises to 16.80
+caishendao folds
+habing refunded 12.80
+habing wins Pot (8)
+Rake (0)
+
+
+
+Hand #8965864-10 - 2013-06-24 14:30:50
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (135.73)
+Seat 6: habing (275.63)
+habing has the dealer button
+habing posts small blind 1
+caishendao posts big blind 2
+** Hole Cards **
+Dealt to habing [5s 7h]
+habing folds
+caishendao refunded 1
+caishendao wins Pot (2)
+Rake (0)
+
+
+
+Hand #8965872-11 - 2013-06-24 14:31:01
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (136.73)
+Seat 6: habing (274.63)
+caishendao has the dealer button
+caishendao posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [5c 8s]
+caishendao raises to 4
+habing folds
+caishendao refunded 2
+caishendao wins Pot (4)
+Rake (0)
+
+
+
+Hand #8965883-12 - 2013-06-24 14:31:17
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (138.73)
+Seat 6: habing (272.63)
+habing has the dealer button
+habing posts small blind 1
+caishendao posts big blind 2
+** Hole Cards **
+Dealt to habing [7d 5s]
+habing folds
+caishendao refunded 1
+caishendao wins Pot (2)
+Rake (0)
+
+
+
+Hand #8965892-13 - 2013-06-24 14:31:29
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (139.73)
+Seat 6: habing (271.63)
+caishendao has the dealer button
+caishendao posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [4h 6h]
+caishendao calls 1
+habing checks
+** Flop ** [2c 2s Qs]
+habing checks
+caishendao checks
+** Turn ** [3c]
+habing checks
+caishendao bets 4
+habing folds
+caishendao refunded 4
+caishendao wins Pot (3.90)
+Rake (0.10)
+
+
+
+Hand #8965918-14 - 2013-06-24 14:32:11
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (141.63)
+Seat 6: habing (269.63)
+habing has the dealer button
+habing posts small blind 1
+caishendao posts big blind 2
+** Hole Cards **
+Dealt to habing [5d 6d]
+habing raises to 4
+caishendao calls 2
+** Flop ** [2c 6c Qh]
+caishendao checks
+habing bets 5.60
+caishendao folds
+habing refunded 5.60
+habing wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #8965939-15 - 2013-06-24 14:32:49
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (137.63)
+Seat 2: wolverine69 (200)
+Seat 6: habing (273.43)
+caishendao has the dealer button
+caishendao posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ac Ts]
+caishendao folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8965943-16 - 2013-06-24 14:33:01
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (136.63)
+Seat 2: wolverine69 (200)
+Seat 6: habing (274.43)
+habing has the dealer button
+caishendao posts small blind 1
+wolverine69 posts big blind 2
+** Hole Cards **
+Dealt to habing [Th 9c]
+habing raises to 4
+caishendao calls 3
+wolverine69 folds
+** Flop ** [4c Kc Qh]
+caishendao checks
+habing checks
+** Turn ** [2d]
+caishendao checks
+habing checks
+** River ** [Ks]
+caishendao bets 6
+habing folds
+caishendao refunded 6
+caishendao wins Pot (9.75)
+Rake (0.25)
+
+
+
+Hand #8965979-17 - 2013-06-24 14:34:01
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (142.38)
+Seat 2: wolverine69 (198)
+Seat 6: habing (270.43)
+caishendao has the dealer button
+wolverine69 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Qc 5c]
+caishendao raises to 4
+wolverine69 folds
+habing folds
+caishendao refunded 2
+caishendao wins Pot (5)
+Rake (0)
+
+
+
+Hand #8965995-18 - 2013-06-24 14:34:26
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (145.38)
+Seat 2: wolverine69 (197)
+Seat 6: habing (268.43)
+wolverine69 has the dealer button
+habing posts small blind 1
+caishendao posts big blind 2
+** Hole Cards **
+Dealt to habing [5h 7d]
+wolverine69 folds
+habing folds
+caishendao refunded 1
+caishendao wins Pot (2)
+Rake (0)
+
+
+
+Hand #8966002-19 - 2013-06-24 14:34:39
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (146.38)
+Seat 2: wolverine69 (197)
+Seat 6: habing (267.43)
+habing has the dealer button
+caishendao posts small blind 1
+wolverine69 posts big blind 2
+** Hole Cards **
+Dealt to habing [As Td]
+habing raises to 4
+caishendao folds
+wolverine69 calls 2
+** Flop ** [Js Tc 8s]
+wolverine69 checks
+habing bets 6.80
+wolverine69 folds
+habing refunded 6.80
+habing wins Pot (8.78)
+Rake (0.22)
+
+
+
+Hand #8966018-20 - 2013-06-24 14:35:03
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (145.38)
+Seat 2: wolverine69 (193)
+Seat 6: habing (272.21)
+caishendao has the dealer button
+wolverine69 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [5s Qd]
+caishendao raises to 4
+wolverine69 folds
+habing folds
+caishendao refunded 2
+caishendao wins Pot (5)
+Rake (0)
+
+
+
+Hand #8966032-21 - 2013-06-24 14:35:19
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (148.38)
+Seat 2: wolverine69 (192)
+Seat 6: habing (270.21)
+wolverine69 has the dealer button
+habing posts small blind 1
+caishendao posts big blind 2
+** Hole Cards **
+Dealt to habing [Qs 6h]
+wolverine69 folds
+habing raises to 6
+caishendao calls 4
+** Flop ** [Ts 3s 7d]
+habing checks
+caishendao checks
+** Turn ** [Ad]
+habing checks
+caishendao bets 8
+habing folds
+caishendao refunded 8
+caishendao wins Pot (11.70)
+Rake (0.30)
+
+
+
+Hand #8966052-22 - 2013-06-24 14:35:55
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (154.08)
+Seat 2: wolverine69 (192)
+Seat 6: habing (264.21)
+habing has the dealer button
+caishendao posts small blind 1
+wolverine69 posts big blind 2
+** Hole Cards **
+Dealt to habing [4d 7h]
+habing folds
+caishendao calls 1
+wolverine69 checks
+** Flop ** [9s 6c Qc]
+caishendao bets 4
+wolverine69 calls 4
+** Turn ** [Qd]
+caishendao bets 8
+wolverine69 calls 8
+** River ** [Jh]
+caishendao checks
+wolverine69 checks
+** Pot Show Down ** [9s 6c Qc Qd Jh]
+caishendao shows [9h 4h] (Two Pair, Queens and Nines +J)
+wolverine69 shows [Js Tc] (Two Pair, Queens and Jacks +T)
+wolverine69 wins Pot (27.30) with Two Pair
+Rake (0.70)
+
+
+
+Hand #8966092-23 - 2013-06-24 14:36:59
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (140.08)
+Seat 2: wolverine69 (205.30)
+Seat 6: habing (264.21)
+caishendao has the dealer button
+wolverine69 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [5c 8c]
+caishendao folds
+wolverine69 calls 1
+habing checks
+** Flop ** [4h 9s 3c]
+wolverine69 checks
+habing bets 2
+wolverine69 folds
+habing refunded 2
+habing wins Pot (3.90)
+Rake (0.10)
+
+
+
+Hand #8966121-24 - 2013-06-24 14:37:51
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (140.08)
+Seat 2: wolverine69 (203.30)
+Seat 6: habing (266.11)
+wolverine69 has the dealer button
+habing posts small blind 1
+caishendao posts big blind 2
+** Hole Cards **
+Dealt to habing [5d Ks]
+wolverine69 raises to 6
+habing folds
+caishendao calls 4
+** Flop ** [9d 4h 8d]
+caishendao checks
+wolverine69 bets 4
+caishendao raises to 16
+wolverine69 calls 12
+** Turn ** [2s]
+caishendao bets 38
+wolverine69 folds
+caishendao refunded 38
+caishendao wins Pot (43.88)
+Rake (1.12)
+
+
+
+Hand #8966147-25 - 2013-06-24 14:38:37
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (161.96)
+Seat 2: wolverine69 (181.30)
+Seat 6: habing (265.11)
+habing has the dealer button
+caishendao posts small blind 1
+wolverine69 posts big blind 2
+** Hole Cards **
+Dealt to habing [Jh 8d]
+habing raises to 4
+caishendao folds
+wolverine69 folds
+habing refunded 2
+habing wins Pot (5)
+Rake (0)
+
+
+
+Hand #8966158-26 - 2013-06-24 14:38:55
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (160.96)
+Seat 2: wolverine69 (179.30)
+Seat 6: habing (268.11)
+caishendao has the dealer button
+wolverine69 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ac Qh]
+caishendao raises to 4
+wolverine69 folds
+habing raises to 16.80
+caishendao folds
+habing refunded 12.80
+habing wins Pot (9)
+Rake (0)
+
+
+
+Hand #8966176-27 - 2013-06-24 14:39:17
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (156.96)
+Seat 2: wolverine69 (178.30)
+Seat 6: habing (273.11)
+wolverine69 has the dealer button
+habing posts small blind 1
+caishendao posts big blind 2
+** Hole Cards **
+Dealt to habing [Qd 5c]
+wolverine69 raises to 8
+habing folds
+caishendao folds
+wolverine69 refunded 6
+wolverine69 wins Pot (5)
+Rake (0)
+
+
+
+Hand #8966187-28 - 2013-06-24 14:39:34
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (154.96)
+Seat 2: wolverine69 (181.30)
+Seat 6: habing (272.11)
+habing has the dealer button
+caishendao posts small blind 1
+wolverine69 posts big blind 2
+** Hole Cards **
+Dealt to habing [Qc Jh]
+habing raises to 4
+caishendao calls 3
+wolverine69 calls 2
+** Flop ** [6h 4h Tc]
+caishendao checks
+wolverine69 checks
+habing bets 5.60
+caishendao calls 5.60
+wolverine69 calls 5.60
+** Turn ** [Ks]
+caishendao checks
+wolverine69 checks
+habing bets 14.80
+caishendao folds
+wolverine69 calls 14.80
+** River ** [7c]
+wolverine69 checks
+habing checks
+** Pot Show Down ** [6h 4h Tc Ks 7c]
+wolverine69 shows [7d 8h] (a Pair of Sevens +KT8)
+habing shows [Qc Jh] (High Card King +QJT7)
+wolverine69 wins Pot (56.94) with a Pair
+Rake (1.46)
+
+
+
+Hand #8966226-29 - 2013-06-24 14:40:36
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (145.36)
+Seat 2: wolverine69 (213.84)
+Seat 6: habing (247.71)
+caishendao has the dealer button
+wolverine69 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [5d Kh]
+caishendao folds
+wolverine69 folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8966237-30 - 2013-06-24 14:40:52
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (145.36)
+Seat 2: wolverine69 (212.84)
+Seat 6: habing (248.71)
+wolverine69 has the dealer button
+habing posts small blind 1
+caishendao posts big blind 2
+** Hole Cards **
+Dealt to habing [Ac 3s]
+wolverine69 raises to 8
+habing folds
+caishendao folds
+wolverine69 refunded 6
+wolverine69 wins Pot (5)
+Rake (0)
+
+
+
+Hand #8966253-31 - 2013-06-24 14:41:20
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (143.36)
+Seat 2: wolverine69 (215.84)
+Seat 6: habing (247.71)
+habing has the dealer button
+caishendao posts small blind 1
+wolverine69 posts big blind 2
+** Hole Cards **
+Dealt to habing [9s Qh]
+habing raises to 4
+caishendao folds
+wolverine69 calls 2
+** Flop ** [Kh As Kc]
+wolverine69 checks
+habing checks
+** Turn ** [9c]
+wolverine69 checks
+habing checks
+** River ** [8d]
+wolverine69 checks
+habing checks
+** Pot Show Down ** [Kh As Kc 9c 8d]
+wolverine69 shows [8s 4s] (Two Pair, Kings and Eights +A)
+habing shows [9s Qh] (Two Pair, Kings and Nines +A)
+habing wins Pot (8.78) with Two Pair
+Rake (0.22)
+
+
+
+Hand #8966284-32 - 2013-06-24 14:42:09
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (142.36)
+Seat 2: wolverine69 (211.84)
+Seat 6: habing (252.49)
+caishendao has the dealer button
+wolverine69 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Jh 9c]
+caishendao folds
+wolverine69 folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8966298-33 - 2013-06-24 14:42:27
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (142.36)
+Seat 2: wolverine69 (210.84)
+Seat 6: habing (253.49)
+wolverine69 has the dealer button
+habing posts small blind 1
+caishendao posts big blind 2
+** Hole Cards **
+Dealt to habing [4d Th]
+wolverine69 raises to 8
+habing folds
+caishendao folds
+wolverine69 refunded 6
+wolverine69 wins Pot (5)
+Rake (0)
+
+
+
+Hand #8966309-34 - 2013-06-24 14:42:45
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (140.36) - sitting out
+Seat 2: wolverine69 (213.84)
+Seat 6: habing (252.49)
+habing has the dealer button
+habing posts small blind 1
+wolverine69 posts big blind 2
+** Hole Cards **
+Dealt to habing [Ac 6h]
+habing raises to 4
+wolverine69 folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8966319-35 - 2013-06-24 14:42:57
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (140.36) - sitting out
+Seat 2: wolverine69 (211.84)
+Seat 6: habing (254.49)
+wolverine69 has the dealer button
+wolverine69 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [8h 4s]
+wolverine69 raises to 6
+habing folds
+wolverine69 refunded 4
+wolverine69 wins Pot (4)
+Rake (0)
+
+
+
+Hand #8966327-36 - 2013-06-24 14:43:12
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (140.36) - sitting out
+Seat 2: wolverine69 (213.84)
+Seat 6: habing (252.49)
+habing has the dealer button
+habing posts small blind 1
+wolverine69 posts big blind 2
+** Hole Cards **
+Dealt to habing [Td Kd]
+habing raises to 4
+wolverine69 calls 2
+** Flop ** [Qc 3h 4c]
+wolverine69 checks
+habing bets 4.40
+wolverine69 folds
+habing refunded 4.40
+habing wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #8966341-37 - 2013-06-24 14:43:37
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (140.36) - sitting out
+Seat 2: wolverine69 (209.84)
+Seat 6: habing (256.29)
+wolverine69 has the dealer button
+wolverine69 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ad Ks]
+wolverine69 raises to 8
+habing raises to 24.40
+wolverine69 calls 16.40
+** Flop ** [5h 7s Qd]
+habing bets 21.20
+wolverine69 calls 21.20
+** Turn ** [5s]
+habing bets 40.40
+wolverine69 calls 40.40
+** River ** [6d]
+habing checks
+wolverine69 checks
+** Pot Show Down ** [5h 7s Qd 5s 6d]
+wolverine69 shows [Jh Jc] (Two Pair, Jacks and Fives +Q)
+habing shows [Ad Ks] (a Pair of Fives +AKQ)
+wolverine69 wins Pot (168) with Two Pair
+Rake (4)
+habing adds 29.71 chips
+
+
+
+Hand #8966373-38 - 2013-06-24 14:44:27
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (140.36) - sitting out
+Seat 2: wolverine69 (291.84)
+Seat 6: habing (200)
+habing has the dealer button
+habing posts small blind 1
+wolverine69 posts big blind 2
+** Hole Cards **
+Dealt to habing [9s Ac]
+habing raises to 6
+wolverine69 calls 4
+** Flop ** [Js 8s 9c]
+wolverine69 checks
+habing bets 6.40
+wolverine69 folds
+habing refunded 6.40
+habing wins Pot (11.70)
+Rake (0.30)
+
+
+
+Hand #8966397-39 - 2013-06-24 14:45:04
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (140.36) - sitting out
+Seat 2: wolverine69 (285.84)
+Seat 6: habing (205.70)
+wolverine69 has the dealer button
+wolverine69 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ts 7s]
+wolverine69 folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8966400-40 - 2013-06-24 14:45:16
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (140.36) - sitting out
+Seat 2: wolverine69 (284.84)
+Seat 6: habing (206.70)
+habing has the dealer button
+habing posts small blind 1
+wolverine69 posts big blind 2
+** Hole Cards **
+Dealt to habing [Qc 6c]
+habing raises to 4
+wolverine69 folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8966420-41 - 2013-06-24 14:45:41
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (140.36) - sitting out
+Seat 2: wolverine69 (282.84)
+Seat 6: habing (208.70)
+wolverine69 has the dealer button
+wolverine69 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [7c Qc]
+wolverine69 folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8966428-42 - 2013-06-24 14:45:53
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (140.36) - sitting out
+Seat 2: wolverine69 (281.84)
+Seat 6: habing (209.70)
+habing has the dealer button
+habing posts small blind 1
+wolverine69 posts big blind 2
+** Hole Cards **
+Dealt to habing [6d 9c]
+habing raises to 4
+wolverine69 folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8966436-43 - 2013-06-24 14:46:07
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (140.36) - sitting out
+Seat 2: wolverine69 (279.84)
+Seat 6: habing (211.70)
+wolverine69 has the dealer button
+wolverine69 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [9d Th]
+wolverine69 raises to 6
+habing folds
+wolverine69 refunded 4
+wolverine69 wins Pot (4)
+Rake (0)
+
+
+
+Hand #8966448-44 - 2013-06-24 14:46:24
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (140.36) - sitting out
+Seat 2: wolverine69 (281.84)
+Seat 6: habing (209.70)
+habing has the dealer button
+habing posts small blind 1
+wolverine69 posts big blind 2
+** Hole Cards **
+Dealt to habing [5d 9c]
+habing folds
+wolverine69 refunded 1
+wolverine69 wins Pot (2)
+Rake (0)
+
+
+
+Hand #8966453-45 - 2013-06-24 14:46:37
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (140.36) - sitting out
+Seat 2: wolverine69 (282.84)
+Seat 6: habing (208.70)
+wolverine69 has the dealer button
+wolverine69 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [6c Qs]
+wolverine69 folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8966462-46 - 2013-06-24 14:46:49
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (140.36) - sitting out
+Seat 2: wolverine69 (281.84)
+Seat 6: habing (209.70)
+habing has the dealer button
+habing posts small blind 1
+wolverine69 posts big blind 2
+** Hole Cards **
+Dealt to habing [Qs 6s]
+habing raises to 4
+wolverine69 raises to 10
+habing folds
+wolverine69 refunded 6
+wolverine69 wins Pot (8)
+Rake (0)
+
+
+
+Hand #8966482-47 - 2013-06-24 14:47:27
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (140.36) - sitting out
+Seat 2: wolverine69 (285.84)
+Seat 6: habing (205.70)
+wolverine69 has the dealer button
+wolverine69 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Qc 9h]
+wolverine69 folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8966489-48 - 2013-06-24 14:47:38
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (140.36) - sitting out
+Seat 2: wolverine69 (284.84)
+Seat 6: habing (206.70)
+habing has the dealer button
+habing posts small blind 1
+wolverine69 posts big blind 2
+** Hole Cards **
+Dealt to habing [3h 5s]
+habing folds
+wolverine69 refunded 1
+wolverine69 wins Pot (2)
+Rake (0)
+
+
+
+Hand #8966496-49 - 2013-06-24 14:47:51
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (140.36) - sitting out
+Seat 2: wolverine69 (285.84)
+Seat 6: habing (205.70)
+wolverine69 has the dealer button
+wolverine69 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [7h 8s]
+wolverine69 folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8966501-50 - 2013-06-24 14:48:02
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (140.36) - sitting out
+Seat 2: wolverine69 (284.84)
+Seat 6: habing (206.70)
+habing has the dealer button
+habing posts small blind 1
+wolverine69 posts big blind 2
+** Hole Cards **
+Dealt to habing [Qh 4s]
+habing raises to 4
+wolverine69 raises to 10
+habing folds
+wolverine69 refunded 6
+wolverine69 wins Pot (8)
+Rake (0)
+
+
+
+Hand #8966508-51 - 2013-06-24 14:48:21
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (140.36) - sitting out
+Seat 2: wolverine69 (288.84)
+Seat 6: habing (202.70)
+wolverine69 has the dealer button
+wolverine69 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [5d 3c]
+wolverine69 raises to 6
+habing folds
+wolverine69 refunded 4
+wolverine69 wins Pot (4)
+Rake (0)
+
+
+
+Hand #8966522-52 - 2013-06-24 14:48:48
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (140.36) - sitting out
+Seat 2: wolverine69 (290.84)
+Seat 6: habing (200.70)
+habing has the dealer button
+habing posts small blind 1
+wolverine69 posts big blind 2
+** Hole Cards **
+Dealt to habing [7d Qh]
+habing raises to 4
+wolverine69 raises to 8
+habing calls 4
+** Flop ** [5d Jh Qc]
+wolverine69 checks
+habing bets 11.20
+wolverine69 calls 11.20
+** Turn ** [4h]
+wolverine69 checks
+habing bets 28.40
+wolverine69 raises to 69
+habing folds
+wolverine69 refunded 40.60
+habing adds 46.90 chips
+wolverine69 wins Pot (92.82)
+Rake (2.38)
+
+
+
+Hand #8966563-53 - 2013-06-24 14:50:11
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (140.36) - sitting out
+Seat 2: wolverine69 (336.06)
+Seat 6: habing (200)
+wolverine69 has the dealer button
+wolverine69 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [5s 2h]
+wolverine69 folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8966570-54 - 2013-06-24 14:50:22
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (140.36) - sitting out
+Seat 2: wolverine69 (335.06)
+Seat 6: habing (201)
+habing has the dealer button
+habing posts small blind 1
+wolverine69 posts big blind 2
+** Hole Cards **
+Dealt to habing [9h Ts]
+habing raises to 4
+wolverine69 raises to 8
+habing calls 4
+** Flop ** [2c 9c Ks]
+wolverine69 checks
+habing checks
+** Turn ** [4c]
+wolverine69 bets 19
+habing folds
+wolverine69 refunded 19
+habing adds 7 chips
+wolverine69 wins Pot (15.60)
+Rake (0.40)
+
+
+
+Hand #8966589-55 - 2013-06-24 14:50:57
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (140.36) - sitting out
+Seat 2: wolverine69 (342.66)
+Seat 6: habing (200)
+wolverine69 has the dealer button
+wolverine69 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Qs 4s]
+wolverine69 folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8966594-56 - 2013-06-24 14:51:10
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (140.36) - sitting out
+Seat 2: wolverine69 (341.66)
+Seat 6: habing (201)
+habing has the dealer button
+habing posts small blind 1
+wolverine69 posts big blind 2
+** Hole Cards **
+Dealt to habing [3d 8c]
+habing folds
+wolverine69 refunded 1
+wolverine69 wins Pot (2)
+Rake (0)
+
+
+
+Hand #8966599-57 - 2013-06-24 14:51:25
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: caishendao (140.36) - sitting out
+Seat 2: wolverine69 (342.66)
+Seat 6: habing (200)
+wolverine69 has the dealer button
+wolverine69 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Qc 5c]
+wolverine69 raises to 8
+habing folds
+wolverine69 refunded 6
+habing adds 2 chips
+wolverine69 wins Pot (4)
+Rake (0)
+
+
+
+Hand #8966608-58 - 2013-06-24 14:51:46
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 2: wolverine69 (344.66)
+Seat 6: habing (200)
+habing has the dealer button
+habing posts small blind 1
+wolverine69 posts big blind 2
+** Hole Cards **
+Dealt to habing [2s 6s]
+habing raises to 4
+wolverine69 folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)

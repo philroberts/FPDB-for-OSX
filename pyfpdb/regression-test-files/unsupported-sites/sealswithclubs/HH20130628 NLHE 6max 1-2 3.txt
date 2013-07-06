@@ -1,0 +1,1684 @@
+Hand #9142653-1 - 2013-06-28 02:52:34
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (200) - waiting for big blind
+Seat 4: habing (200) - waiting for big blind
+habing has the dealer button
+habing posts small blind 1
+graven29 posts big blind 2
+** Hole Cards **
+Dealt to habing [4c Jd]
+habing folds
+graven29 refunded 1
+habing adds 1 chips
+graven29 wins Pot (2)
+Rake (0)
+
+
+
+Hand #9142669-2 - 2013-06-28 02:52:56
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (201)
+Seat 4: habing (200)
+graven29 has the dealer button
+graven29 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ah 4h]
+graven29 raises to 6
+habing raises to 20.80
+graven29 folds
+habing refunded 14.80
+habing wins Pot (12)
+Rake (0)
+
+
+
+Hand #9142689-3 - 2013-06-28 02:53:33
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (195)
+Seat 4: habing (206)
+habing has the dealer button
+habing posts small blind 1
+graven29 posts big blind 2
+** Hole Cards **
+Dealt to habing [9h Ac]
+habing raises to 4
+graven29 folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #9142708-4 - 2013-06-28 02:53:59
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (193)
+Seat 4: habing (208)
+graven29 has the dealer button
+graven29 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [2s Ah]
+graven29 raises to 6
+habing folds
+graven29 refunded 4
+graven29 wins Pot (4)
+Rake (0)
+
+
+
+Hand #9142733-5 - 2013-06-28 02:54:36
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (195)
+Seat 4: habing (206)
+habing has the dealer button
+habing posts small blind 1
+graven29 posts big blind 2
+** Hole Cards **
+Dealt to habing [Qh 5s]
+habing raises to 4
+graven29 raises to 12
+habing folds
+graven29 refunded 8
+graven29 wins Pot (8)
+Rake (0)
+
+
+
+Hand #9142749-6 - 2013-06-28 02:55:01
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (199)
+Seat 4: habing (202)
+graven29 has the dealer button
+graven29 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [6c 4c]
+graven29 folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #9142756-7 - 2013-06-28 02:55:13
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (198)
+Seat 4: habing (203)
+habing has the dealer button
+habing posts small blind 1
+graven29 posts big blind 2
+** Hole Cards **
+Dealt to habing [7h 4c]
+habing folds
+graven29 refunded 1
+graven29 wins Pot (2)
+Rake (0)
+
+
+
+Hand #9142767-8 - 2013-06-28 02:55:28
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (199)
+Seat 4: habing (202)
+graven29 has the dealer button
+graven29 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [7s Qc]
+graven29 raises to 6
+habing folds
+graven29 refunded 4
+graven29 wins Pot (4)
+Rake (0)
+
+
+
+Hand #9142786-9 - 2013-06-28 02:55:58
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (201)
+Seat 4: habing (200)
+habing has the dealer button
+habing posts small blind 1
+graven29 posts big blind 2
+** Hole Cards **
+Dealt to habing [8d Jd]
+habing raises to 4
+graven29 raises to 12
+habing calls 8
+** Flop ** [4c 8c Ts]
+graven29 bets 16
+habing calls 16
+** Turn ** [8h]
+graven29 checks
+habing bets 31.60
+graven29 folds
+habing refunded 31.60
+habing wins Pot (54.60)
+Rake (1.40)
+
+
+
+Hand #9142817-10 - 2013-06-28 02:57:05
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (173)
+Seat 4: habing (226.60)
+graven29 has the dealer button
+graven29 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ad 3s]
+graven29 raises to 6
+habing folds
+graven29 refunded 4
+graven29 wins Pot (4)
+Rake (0)
+
+
+
+Hand #9142836-11 - 2013-06-28 02:57:41
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (175)
+Seat 4: habing (224.60)
+habing has the dealer button
+habing posts small blind 1
+graven29 posts big blind 2
+** Hole Cards **
+Dealt to habing [7h Qh]
+habing raises to 4
+graven29 raises to 12
+habing calls 8
+** Flop ** [7s 8c 7d]
+graven29 bets 16
+habing calls 16
+** Turn ** [2d]
+graven29 checks
+habing bets 25.20
+graven29 calls 25.20
+** River ** [3d]
+graven29 checks
+habing bets 171.40 (All-in)
+graven29 folds
+habing refunded 171.40
+habing wins Pot (103.74)
+Rake (2.66)
+
+
+
+Hand #9142885-12 - 2013-06-28 02:59:28
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (121.80)
+Seat 4: habing (275.14)
+graven29 has the dealer button
+graven29 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Th 7c]
+graven29 raises to 6
+habing folds
+graven29 refunded 4
+graven29 wins Pot (4)
+Rake (0)
+
+
+
+Hand #9142894-13 - 2013-06-28 02:59:51
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (123.80)
+Seat 4: habing (273.14)
+habing has the dealer button
+habing posts small blind 1
+graven29 posts big blind 2
+** Hole Cards **
+Dealt to habing [4c 2h]
+habing folds
+graven29 refunded 1
+graven29 wins Pot (2)
+Rake (0)
+
+
+
+Hand #9142898-14 - 2013-06-28 03:00:08
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (124.80)
+Seat 4: habing (272.14)
+graven29 has the dealer button
+graven29 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Jd 9h]
+graven29 raises to 6
+habing calls 4
+** Flop ** [4h 2s Qd]
+habing bets 6.80
+graven29 calls 6.80
+** Turn ** [7h]
+habing checks
+graven29 bets 16
+habing folds
+graven29 refunded 16
+graven29 wins Pot (24.96)
+Rake (0.64)
+
+
+
+Hand #9142945-15 - 2013-06-28 03:01:15
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (136.96)
+Seat 4: habing (259.34)
+habing has the dealer button
+habing posts small blind 1
+graven29 posts big blind 2
+** Hole Cards **
+Dealt to habing [Qd Qc]
+habing raises to 4
+graven29 raises to 12
+habing raises to 26
+graven29 raises to 136.96 (All-in)
+habing calls 110.96
+** Flop ** [2h 3d 7h]
+** Turn ** [7d]
+** River ** [9h]
+** Pot Show Down ** [2h 3d 7h 7d 9h]
+graven29 shows [Kd Ad] (a Pair of Sevens +AK9)
+habing shows [Qd Qc] (Two Pair, Queens and Sevens +9)
+habing wins Pot (269.92) with Two Pair
+Rake (4)
+graven29 adds 200 chips
+
+
+
+Hand #9142982-1 - 2013-06-28 03:02:29
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (200)
+Seat 4: habing (392.30)
+graven29 has the dealer button
+graven29 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Js 5h]
+graven29 folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #9142993-2 - 2013-06-28 03:02:45
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (199)
+Seat 4: habing (393.30)
+habing has the dealer button
+habing posts small blind 1
+graven29 posts big blind 2
+** Hole Cards **
+Dealt to habing [Ks 7h]
+habing raises to 4
+graven29 raises to 12
+habing folds
+graven29 refunded 8
+graven29 wins Pot (8)
+Rake (0)
+
+
+
+Hand #9143013-3 - 2013-06-28 03:03:11
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (203)
+Seat 4: habing (389.30)
+graven29 has the dealer button
+graven29 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [2d 3d]
+graven29 folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #9143019-4 - 2013-06-28 03:03:26
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (202)
+Seat 4: habing (390.30)
+habing has the dealer button
+habing posts small blind 1
+graven29 posts big blind 2
+** Hole Cards **
+Dealt to habing [Jh 6c]
+habing folds
+graven29 refunded 1
+graven29 wins Pot (2)
+Rake (0)
+
+
+
+Hand #9143032-5 - 2013-06-28 03:03:40
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (203)
+Seat 4: habing (389.30)
+graven29 has the dealer button
+graven29 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [5c Kh]
+graven29 folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #9143048-6 - 2013-06-28 03:04:08
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (202)
+Seat 4: habing (390.30)
+habing has the dealer button
+habing posts small blind 1
+graven29 posts big blind 2
+** Hole Cards **
+Dealt to habing [8h 5c]
+habing folds
+graven29 refunded 1
+graven29 wins Pot (2)
+Rake (0)
+
+
+
+Hand #9143058-7 - 2013-06-28 03:04:23
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (203)
+Seat 4: habing (389.30)
+graven29 has the dealer button
+graven29 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [9c 6s]
+graven29 raises to 6
+habing folds
+graven29 refunded 4
+graven29 wins Pot (4)
+Rake (0)
+
+
+
+Hand #9143076-8 - 2013-06-28 03:04:52
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (205)
+Seat 4: habing (387.30)
+habing has the dealer button
+habing posts small blind 1
+graven29 posts big blind 2
+** Hole Cards **
+Dealt to habing [Jc 7h]
+habing raises to 4
+graven29 folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #9143092-9 - 2013-06-28 03:05:18
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (203)
+Seat 4: habing (389.30)
+graven29 has the dealer button
+graven29 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Kd Tc]
+graven29 folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #9143104-10 - 2013-06-28 03:05:36
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (202)
+Seat 4: habing (390.30)
+habing has the dealer button
+habing posts small blind 1
+graven29 posts big blind 2
+** Hole Cards **
+Dealt to habing [Td 3h]
+habing folds
+graven29 refunded 1
+graven29 wins Pot (2)
+Rake (0)
+
+
+
+Hand #9143125-11 - 2013-06-28 03:05:55
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (203)
+Seat 4: habing (389.30)
+graven29 has the dealer button
+graven29 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [9c 4h]
+graven29 raises to 6
+habing folds
+graven29 refunded 4
+graven29 wins Pot (4)
+Rake (0)
+
+
+
+Hand #9143135-12 - 2013-06-28 03:06:15
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (205)
+Seat 4: habing (387.30)
+habing has the dealer button
+habing posts small blind 1
+graven29 posts big blind 2
+** Hole Cards **
+Dealt to habing [Kh 5s]
+habing raises to 4
+graven29 calls 2
+** Flop ** [3d Js 9h]
+graven29 bets 6
+habing folds
+graven29 refunded 6
+graven29 wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #9143150-13 - 2013-06-28 03:06:40
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (208.80)
+Seat 4: habing (383.30)
+graven29 has the dealer button
+graven29 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [3s 3c]
+graven29 raises to 6
+habing calls 4
+** Flop ** [9c 2c As]
+habing checks
+graven29 bets 4
+habing folds
+graven29 refunded 4
+graven29 wins Pot (11.70)
+Rake (0.30)
+
+
+
+Hand #9143175-14 - 2013-06-28 03:07:20
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (214.50)
+Seat 4: habing (377.30)
+habing has the dealer button
+habing posts small blind 1
+graven29 posts big blind 2
+** Hole Cards **
+Dealt to habing [5d 5c]
+habing raises to 4
+graven29 folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #9143193-15 - 2013-06-28 03:07:49
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (212.50)
+Seat 4: habing (379.30)
+graven29 has the dealer button
+graven29 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Qh 3s]
+graven29 folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #9143200-16 - 2013-06-28 03:08:03
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (211.50)
+Seat 4: habing (380.30)
+habing has the dealer button
+habing posts small blind 1
+graven29 posts big blind 2
+** Hole Cards **
+Dealt to habing [Qs 3d]
+habing raises to 4
+graven29 folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #9143211-17 - 2013-06-28 03:08:27
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (209.50)
+Seat 4: habing (382.30)
+graven29 has the dealer button
+graven29 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Kh 9d]
+graven29 raises to 6
+habing calls 4
+** Flop ** [Kc Jh Td]
+habing checks
+graven29 checks
+** Turn ** [Th]
+habing bets 6.80
+graven29 calls 6.80
+** River ** [Ks]
+habing bets 19.20
+graven29 folds
+habing refunded 19.20
+habing wins Pot (24.96)
+Rake (0.64)
+
+
+
+Hand #9143245-18 - 2013-06-28 03:09:29
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (196.70)
+Seat 4: habing (394.46)
+habing has the dealer button
+habing posts small blind 1
+graven29 posts big blind 2
+** Hole Cards **
+Dealt to habing [Ac As]
+habing raises to 4
+graven29 raises to 12
+habing raises to 26
+graven29 calls 14
+** Flop ** [Th Jd 2s]
+graven29 checks
+habing bets 32.80
+graven29 calls 32.80
+** Turn ** [3s]
+graven29 checks
+habing bets 335.66 (All-in)
+graven29 calls 137.90 (All-in)
+habing refunded 197.76
+** River ** [2c]
+** Pot Show Down ** [Th Jd 2s 3s 2c]
+graven29 shows [Qc Kd] (a Pair of Deuces +KQJ)
+habing shows [Ac As] (Two Pair, Aces and Deuces +J)
+habing wins Pot (389.40) with Two Pair
+Rake (4)
+
+
+
+Hand #9144025-1 - 2013-06-28 03:37:58
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (200) - waiting for big blind
+Seat 4: habing (587.16)
+graven29 has the dealer button
+graven29 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [4h Jd]
+graven29 raises to 6
+habing folds
+graven29 refunded 4
+graven29 wins Pot (4)
+Rake (0)
+
+
+
+Hand #9144041-2 - 2013-06-28 03:38:33
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (202)
+Seat 4: habing (585.16)
+habing has the dealer button
+habing posts small blind 1
+graven29 posts big blind 2
+** Hole Cards **
+Dealt to habing [Qc 2h]
+habing raises to 4
+graven29 raises to 12
+habing folds
+graven29 refunded 8
+graven29 wins Pot (8)
+Rake (0)
+
+
+
+Hand #9144056-3 - 2013-06-28 03:39:02
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (206)
+Seat 4: habing (581.16)
+graven29 has the dealer button
+graven29 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Kh Ac]
+graven29 raises to 6
+habing raises to 20.40
+graven29 calls 14.40
+** Flop ** [Jd 9s 5d]
+habing bets 20
+graven29 calls 20
+** Turn ** [Td]
+habing checks
+graven29 bets 44
+habing folds
+graven29 refunded 44
+graven29 wins Pot (78.78)
+Rake (2.02)
+
+
+
+Hand #9144072-4 - 2013-06-28 03:39:47
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (244.38)
+Seat 4: habing (540.76)
+habing has the dealer button
+habing posts small blind 1
+graven29 posts big blind 2
+** Hole Cards **
+Dealt to habing [4c Kh]
+habing raises to 4
+graven29 calls 2
+** Flop ** [Qd 9d 8d]
+graven29 checks
+habing checks
+** Turn ** [4d]
+graven29 checks
+habing checks
+** River ** [Ac]
+graven29 checks
+habing checks
+** Pot Show Down ** [Qd 9d 8d 4d Ac]
+graven29 shows [Jc 9h] (a Pair of Nines +AQJ)
+habing shows [4c Kh] (a Pair of Fours +AKQ)
+graven29 wins Pot (7.80) with a Pair
+Rake (0.20)
+
+
+
+Hand #9144096-5 - 2013-06-28 03:40:34
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (248.18)
+Seat 4: habing (536.76)
+graven29 has the dealer button
+graven29 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Td 8h]
+graven29 raises to 6
+habing folds
+graven29 refunded 4
+graven29 wins Pot (4)
+Rake (0)
+
+
+
+Hand #9144111-6 - 2013-06-28 03:41:16
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (250.18)
+Seat 4: habing (534.76)
+habing has the dealer button
+habing posts small blind 1
+graven29 posts big blind 2
+** Hole Cards **
+Dealt to habing [7d Qd]
+habing raises to 4
+graven29 folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #9144117-7 - 2013-06-28 03:41:31
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (248.18)
+Seat 4: habing (536.76)
+graven29 has the dealer button
+graven29 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ks Qs]
+graven29 raises to 6
+habing raises to 20.80
+graven29 folds
+habing refunded 14.80
+habing wins Pot (12)
+Rake (0)
+
+
+
+Hand #9144143-8 - 2013-06-28 03:42:18
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (242.18)
+Seat 4: habing (542.76)
+habing has the dealer button
+habing posts small blind 1
+graven29 posts big blind 2
+** Hole Cards **
+Dealt to habing [2h Jh]
+habing raises to 4
+graven29 raises to 12
+habing folds
+graven29 refunded 8
+graven29 wins Pot (8)
+Rake (0)
+
+
+
+Hand #9144158-9 - 2013-06-28 03:42:59
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (246.18)
+Seat 4: habing (538.76)
+graven29 has the dealer button
+graven29 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [4s Td]
+graven29 raises to 6
+habing folds
+graven29 refunded 4
+graven29 wins Pot (4)
+Rake (0)
+
+
+
+Hand #9144170-10 - 2013-06-28 03:43:18
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (248.18)
+Seat 4: habing (536.76)
+habing has the dealer button
+habing posts small blind 1
+graven29 posts big blind 2
+** Hole Cards **
+Dealt to habing [8h 5d]
+habing folds
+graven29 refunded 1
+graven29 wins Pot (2)
+Rake (0)
+
+
+
+Hand #9144179-11 - 2013-06-28 03:43:35
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (249.18)
+Seat 4: habing (535.76)
+graven29 has the dealer button
+graven29 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ad Qs]
+graven29 raises to 6
+habing raises to 20.80
+graven29 calls 14.80
+** Flop ** [6h 6c 5d]
+habing checks
+graven29 checks
+** Turn ** [9d]
+habing checks
+graven29 checks
+** River ** [Kh]
+habing checks
+graven29 checks
+** Pot Show Down ** [6h 6c 5d 9d Kh]
+graven29 shows [Qh 3h] (a Pair of Sixes +KQ9)
+habing shows [Ad Qs] (a Pair of Sixes +AKQ)
+habing wins Pot (40.56) with a Pair
+Rake (1.04)
+
+
+
+Hand #9144216-12 - 2013-06-28 03:45:07
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (228.38)
+Seat 4: habing (555.52)
+habing has the dealer button
+habing posts small blind 1
+graven29 posts big blind 2
+** Hole Cards **
+Dealt to habing [4h 8s]
+habing folds
+graven29 refunded 1
+graven29 wins Pot (2)
+Rake (0)
+
+
+
+Hand #9144227-13 - 2013-06-28 03:45:26
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (229.38)
+Seat 4: habing (554.52)
+graven29 has the dealer button
+graven29 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Kc 5s]
+graven29 raises to 6
+habing folds
+graven29 refunded 4
+graven29 wins Pot (4)
+Rake (0)
+
+
+
+Hand #9144243-14 - 2013-06-28 03:46:00
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (231.38)
+Seat 4: habing (552.52)
+habing has the dealer button
+habing posts small blind 1
+graven29 posts big blind 2
+** Hole Cards **
+Dealt to habing [Ah 8d]
+habing raises to 4
+graven29 raises to 12
+habing calls 8
+** Flop ** [3s Kd 4c]
+graven29 bets 14
+habing folds
+graven29 refunded 14
+graven29 wins Pot (23.40)
+Rake (0.60)
+
+
+
+Hand #9144262-15 - 2013-06-28 03:46:48
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (242.78)
+Seat 4: habing (540.52)
+graven29 has the dealer button
+graven29 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Jh 8c]
+graven29 raises to 6
+habing calls 4
+** Flop ** [5h Ks Qs]
+habing checks
+graven29 checks
+** Turn ** [Ah]
+habing checks
+graven29 checks
+** River ** [Kd]
+habing checks
+graven29 checks
+** Pot Show Down ** [5h Ks Qs Ah Kd]
+graven29 shows [6s 9d] (a Pair of Kings +AQ9)
+habing shows [Jh 8c] (a Pair of Kings +AQJ)
+habing wins Pot (11.70) with a Pair
+Rake (0.30)
+
+
+
+Hand #9144284-16 - 2013-06-28 03:47:36
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (236.78)
+Seat 4: habing (546.22)
+habing has the dealer button
+habing posts small blind 1
+graven29 posts big blind 2
+** Hole Cards **
+Dealt to habing [Tc 2d]
+habing folds
+graven29 refunded 1
+graven29 wins Pot (2)
+Rake (0)
+
+
+
+Hand #9144293-17 - 2013-06-28 03:47:52
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (237.78)
+Seat 4: habing (545.22)
+graven29 has the dealer button
+graven29 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [8s Td]
+graven29 raises to 6
+habing folds
+graven29 refunded 4
+graven29 wins Pot (4)
+Rake (0)
+
+
+
+Hand #9144303-18 - 2013-06-28 03:48:13
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (239.78)
+Seat 4: habing (543.22)
+habing has the dealer button
+habing posts small blind 1
+graven29 posts big blind 2
+** Hole Cards **
+Dealt to habing [2d Ah]
+habing raises to 4
+graven29 calls 2
+** Flop ** [As 3d Qd]
+graven29 checks
+habing bets 4.40
+graven29 raises to 8.80
+habing raises to 13.20
+graven29 calls 4.40
+** Turn ** [4c]
+graven29 checks
+habing checks
+** River ** [Ks]
+graven29 checks
+habing checks
+** Pot Show Down ** [As 3d Qd 4c Ks]
+graven29 shows [Ac 8c] (a Pair of Aces +KQ8)
+habing shows [2d Ah] (a Pair of Aces +KQ4)
+graven29 wins Pot (33.54) with a Pair
+Rake (0.86)
+
+
+
+Hand #9144333-19 - 2013-06-28 03:49:12
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (256.12)
+Seat 4: habing (526.02)
+graven29 has the dealer button
+graven29 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Th 9h]
+graven29 raises to 6
+habing calls 4
+** Flop ** [Qh 4h 5d]
+habing checks
+graven29 checks
+** Turn ** [Ad]
+habing bets 6.80
+graven29 folds
+habing refunded 6.80
+habing wins Pot (11.70)
+Rake (0.30)
+
+
+
+Hand #9144355-20 - 2013-06-28 03:50:05
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (250.12)
+Seat 4: habing (531.72)
+habing has the dealer button
+habing posts small blind 1
+graven29 posts big blind 2
+** Hole Cards **
+Dealt to habing [Jd Ts]
+habing raises to 4
+graven29 raises to 12
+habing folds
+graven29 refunded 8
+graven29 wins Pot (8)
+Rake (0)
+
+
+
+Hand #9144371-21 - 2013-06-28 03:50:32
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (254.12)
+Seat 4: habing (527.72)
+graven29 has the dealer button
+graven29 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Tc 6s]
+graven29 raises to 6
+habing folds
+graven29 refunded 4
+graven29 wins Pot (4)
+Rake (0)
+
+
+
+Hand #9144386-22 - 2013-06-28 03:50:54
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (256.12)
+Seat 4: habing (525.72)
+habing has the dealer button
+habing posts small blind 1
+graven29 posts big blind 2
+** Hole Cards **
+Dealt to habing [3h Ah]
+habing raises to 4
+graven29 raises to 10
+habing calls 6
+** Flop ** [Th Kd Qs]
+graven29 bets 12
+habing folds
+graven29 refunded 12
+graven29 wins Pot (19.50)
+Rake (0.50)
+
+
+
+Hand #9144408-23 - 2013-06-28 03:51:33
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (265.62)
+Seat 4: habing (515.72)
+graven29 has the dealer button
+graven29 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Tc 5s]
+graven29 raises to 6
+habing folds
+graven29 refunded 4
+graven29 wins Pot (4)
+Rake (0)
+
+
+
+Hand #9144418-24 - 2013-06-28 03:51:54
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (267.62)
+Seat 4: habing (513.72)
+habing has the dealer button
+habing posts small blind 1
+graven29 posts big blind 2
+** Hole Cards **
+Dealt to habing [6d Tc]
+habing raises to 4
+graven29 calls 2
+** Flop ** [7d 9c 6h]
+graven29 checks
+habing bets 5.60
+graven29 folds
+habing refunded 5.60
+habing wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #9144438-25 - 2013-06-28 03:52:27
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (263.62)
+Seat 4: habing (517.52)
+graven29 has the dealer button
+graven29 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [4d Kd]
+graven29 folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #9144444-26 - 2013-06-28 03:52:47
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (262.62)
+Seat 4: habing (518.52)
+habing has the dealer button
+habing posts small blind 1
+graven29 posts big blind 2
+** Hole Cards **
+Dealt to habing [Ah 2d]
+habing raises to 6
+graven29 folds
+habing refunded 4
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #9144452-27 - 2013-06-28 03:53:02
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (260.62)
+Seat 4: habing (520.52)
+graven29 has the dealer button
+graven29 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Jd 5c]
+graven29 raises to 6
+habing folds
+graven29 refunded 4
+graven29 wins Pot (4)
+Rake (0)
+
+
+
+Hand #9144462-28 - 2013-06-28 03:53:23
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (262.62)
+Seat 4: habing (518.52)
+habing has the dealer button
+habing posts small blind 1
+graven29 posts big blind 2
+** Hole Cards **
+Dealt to habing [8d Tc]
+habing raises to 4
+graven29 folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #9144469-29 - 2013-06-28 03:53:39
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (260.62)
+Seat 4: habing (520.52)
+graven29 has the dealer button
+graven29 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [7s 8s]
+graven29 raises to 6
+habing raises to 20.40
+graven29 folds
+habing refunded 14.40
+habing wins Pot (12)
+Rake (0)
+
+
+
+Hand #9144478-30 - 2013-06-28 03:54:06
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (254.62)
+Seat 4: habing (526.52)
+habing has the dealer button
+habing posts small blind 1
+graven29 posts big blind 2
+** Hole Cards **
+Dealt to habing [Ad 6d]
+habing raises to 6
+graven29 raises to 14
+habing calls 8
+** Flop ** [7s 9d Kc]
+graven29 bets 12
+habing calls 12
+** Turn ** [5d]
+graven29 checks
+habing bets 34
+graven29 calls 34
+** River ** [7c]
+graven29 checks
+habing checks
+** Pot Show Down ** [7s 9d Kc 5d 7c]
+graven29 shows [Qc Ts] (a Pair of Sevens +KQT)
+habing shows [Ad 6d] (a Pair of Sevens +AK9)
+habing wins Pot (117) with a Pair
+Rake (3)
+
+
+
+Hand #9144501-31 - 2013-06-28 03:54:52
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (194.62)
+Seat 4: habing (583.52)
+graven29 has the dealer button
+graven29 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Th 2d]
+graven29 raises to 6
+habing folds
+graven29 refunded 4
+graven29 wins Pot (4)
+Rake (0)
+
+
+
+Hand #9144510-32 - 2013-06-28 03:55:14
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (196.62)
+Seat 4: habing (581.52)
+habing has the dealer button
+habing posts small blind 1
+graven29 posts big blind 2
+** Hole Cards **
+Dealt to habing [6d 7h]
+habing raises to 4
+graven29 raises to 10
+habing folds
+graven29 refunded 6
+graven29 wins Pot (8)
+Rake (0)
+
+
+
+Hand #9144520-33 - 2013-06-28 03:55:38
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (200.62)
+Seat 4: habing (577.52)
+graven29 has the dealer button
+graven29 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ad 8d]
+graven29 raises to 6
+habing raises to 22
+graven29 folds
+habing refunded 16
+habing wins Pot (12)
+Rake (0)
+
+
+
+Hand #9144532-34 - 2013-06-28 03:56:13
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (194.62)
+Seat 4: habing (583.52)
+habing has the dealer button
+habing posts small blind 1
+graven29 posts big blind 2
+** Hole Cards **
+Dealt to habing [3d Jd]
+habing raises to 4
+graven29 raises to 12
+habing folds
+graven29 refunded 8
+graven29 wins Pot (8)
+Rake (0)
+
+
+
+Hand #9144550-35 - 2013-06-28 03:56:55
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (198.62)
+Seat 4: habing (579.52)
+graven29 has the dealer button
+graven29 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [5h 6s]
+graven29 raises to 6
+habing folds
+graven29 refunded 4
+graven29 wins Pot (4)
+Rake (0)
+
+
+
+Hand #9144561-36 - 2013-06-28 03:57:23
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (200.62)
+Seat 4: habing (577.52)
+habing has the dealer button
+habing posts small blind 1
+graven29 posts big blind 2
+** Hole Cards **
+Dealt to habing [9c Kc]
+habing raises to 4
+graven29 raises to 8
+habing calls 4
+** Flop ** [6d 8s 7h]
+graven29 checks
+habing bets 8.80
+graven29 folds
+habing refunded 8.80
+habing wins Pot (15.60)
+Rake (0.40)
+
+
+
+Hand #9144582-37 - 2013-06-28 03:58:16
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (192.62)
+Seat 4: habing (585.12)
+graven29 has the dealer button
+graven29 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ad Ts]
+graven29 raises to 6
+habing raises to 20.80
+graven29 calls 14.80
+** Flop ** [Qh 7s 9h]
+habing checks
+graven29 bets 16
+habing folds
+graven29 refunded 16
+graven29 wins Pot (40.56)
+Rake (1.04)
+
+
+
+Hand #9144598-38 - 2013-06-28 03:59:05
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (212.38)
+Seat 4: habing (564.32)
+habing has the dealer button
+habing posts small blind 1
+graven29 posts big blind 2
+** Hole Cards **
+Dealt to habing [Ah 7h]
+habing raises to 4
+graven29 calls 2
+** Flop ** [Th Ac 3h]
+graven29 checks
+habing bets 5.60
+graven29 folds
+habing refunded 5.60
+habing wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #9144610-39 - 2013-06-28 03:59:35
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (208.38)
+Seat 4: habing (568.12)
+graven29 has the dealer button
+graven29 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [4h Kh]
+graven29 raises to 6
+habing raises to 22
+graven29 folds
+habing refunded 16
+habing wins Pot (12)
+Rake (0)
+
+
+
+Hand #9144626-40 - 2013-06-28 04:00:06
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (202.38)
+Seat 4: habing (574.12)
+habing has the dealer button
+habing posts small blind 1
+graven29 posts big blind 2
+** Hole Cards **
+Dealt to habing [8d 9d]
+habing raises to 4
+graven29 folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #9144637-41 - 2013-06-28 04:00:29
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (200.38)
+Seat 4: habing (576.12)
+graven29 has the dealer button
+graven29 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Kc Qs]
+graven29 raises to 6
+habing raises to 22
+graven29 calls 16
+** Flop ** [9d 7s 8c]
+habing bets 22
+graven29 calls 22
+** Turn ** [Kh]
+habing bets 41.20
+graven29 calls 41.20
+** River ** [Qc]
+habing bets 490.92 (All-in)
+graven29 calls 115.18 (All-in)
+habing refunded 375.74
+** Pot Show Down ** [9d 7s 8c Kh Qc]
+graven29 shows [Qd Jh] (a Pair of Queens +KJ9)
+habing shows [Kc Qs] (Two Pair, Kings and Queens +9)
+habing wins Pot (396.76) with Two Pair
+Rake (4)
+graven29 adds 200 chips
+
+
+
+Hand #9144671-1 - 2013-06-28 04:01:41
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (200)
+Seat 4: habing (772.50)
+habing has the dealer button
+habing posts small blind 1
+graven29 posts big blind 2
+** Hole Cards **
+Dealt to habing [3d Td]
+habing raises to 4
+graven29 raises to 12
+habing folds
+graven29 refunded 8
+graven29 wins Pot (8)
+Rake (0)
+
+
+
+Hand #9144689-2 - 2013-06-28 04:02:18
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (204)
+Seat 4: habing (768.50)
+graven29 has the dealer button
+graven29 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Qs 6c]
+graven29 raises to 6
+habing folds
+graven29 refunded 4
+graven29 wins Pot (4)
+Rake (0)
+
+
+
+Hand #9144701-3 - 2013-06-28 04:02:37
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (206)
+Seat 4: habing (766.50)
+habing has the dealer button
+habing posts small blind 1
+graven29 posts big blind 2
+** Hole Cards **
+Dealt to habing [Ad 8h]
+habing raises to 4
+graven29 raises to 10
+habing calls 6
+** Flop ** [Ac Ts 7d]
+graven29 bets 6
+habing calls 6
+** Turn ** [8c]
+graven29 bets 28
+habing raises to 56
+graven29 raises to 188
+habing raises to 320
+graven29 calls 2 (All-in)
+habing refunded 130
+** River ** [9s]
+** Pot Show Down ** [Ac Ts 7d 8c 9s]
+graven29 shows [Jd 9d] (a Straight, Seven to Jack)
+habing shows [Ad 8h] (Two Pair, Aces and Eights +T)
+graven29 wins Pot (408) with a Straight
+Rake (4)
+
+
+
+Hand #9144727-4 - 2013-06-28 04:03:34
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: graven29 (408)
+Seat 4: habing (560.50)
+graven29 has the dealer button
+graven29 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Jc 9h]
+graven29 raises to 4
+habing calls 2
+** Flop ** [Jd Ah 7c]
+habing checks
+graven29 checks
+** Turn ** [Kc]
+habing checks
+graven29 checks
+** River ** [Kh]
+habing checks
+graven29 bets 6
+habing calls 6
+** Pot Show Down ** [Jd Ah 7c Kc Kh]
+graven29 shows [5c Ks] (Three of a Kind, Kings +AJ)
+habing shows [Jc 9h] (Two Pair, Kings and Jacks +A)
+graven29 wins Pot (19.50) with Three of a Kind
+Rake (0.50)

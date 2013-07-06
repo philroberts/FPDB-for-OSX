@@ -1,0 +1,791 @@
+Hand #9141328-1 - 2013-06-28 02:13:42
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #9
+Seat 5: unworncoma (200) - waiting for big blind
+Seat 6: habing (200) - waiting for big blind
+unworncoma has the dealer button
+unworncoma posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [7h 4c]
+unworncoma folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #9141347-2 - 2013-06-28 02:14:01
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #9
+Seat 5: unworncoma (199)
+Seat 6: habing (201)
+habing has the dealer button
+habing posts small blind 1
+unworncoma posts big blind 2
+** Hole Cards **
+Dealt to habing [As 3h]
+habing raises to 4
+unworncoma calls 2
+** Flop ** [6d Qc 8d]
+unworncoma checks
+habing checks
+** Turn ** [Jh]
+unworncoma bets 6
+habing folds
+unworncoma refunded 6
+habing adds 3 chips
+unworncoma wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #9141378-3 - 2013-06-28 02:14:52
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #9
+Seat 4: userghost (69.85)
+Seat 5: unworncoma (202.80)
+Seat 6: habing (200)
+unworncoma has the dealer button
+habing posts small blind 1
+userghost posts big blind 2
+** Hole Cards **
+Dealt to habing [7c Td]
+unworncoma raises to 6
+habing folds
+habing adds 1 chips
+userghost calls 4
+** Flop ** [Tc 2h 6h]
+userghost checks
+unworncoma bets 8
+userghost folds
+unworncoma refunded 8
+unworncoma wins Pot (12.68)
+Rake (0.32)
+
+
+
+Hand #9141395-4 - 2013-06-28 02:15:19
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #9
+Seat 4: userghost (63.85)
+Seat 5: unworncoma (209.48)
+Seat 6: habing (200)
+habing has the dealer button
+userghost posts small blind 1
+unworncoma posts big blind 2
+** Hole Cards **
+Dealt to habing [5s Qc]
+habing raises to 4
+userghost calls 3
+unworncoma calls 2
+** Flop ** [Jd Kd Qs]
+userghost bets 2
+unworncoma folds
+habing calls 2
+** Turn ** [Ah]
+userghost bets 2
+habing folds
+userghost refunded 2
+habing adds 6 chips
+userghost wins Pot (15.60)
+Rake (0.40)
+
+
+
+Hand #9141424-5 - 2013-06-28 02:15:58
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #9
+Seat 4: userghost (73.45)
+Seat 5: unworncoma (205.48)
+Seat 6: habing (200)
+userghost has the dealer button
+unworncoma posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [3c 7s]
+userghost calls 2
+unworncoma folds
+habing checks
+** Flop ** [9c Ks Ts]
+habing checks
+userghost bets 2
+habing folds
+userghost refunded 2
+habing adds 2 chips
+userghost wins Pot (4.88)
+Rake (0.12)
+
+
+
+Hand #9141447-6 - 2013-06-28 02:16:35
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #9
+Seat 4: userghost (76.33)
+Seat 5: unworncoma (204.48)
+Seat 6: habing (200)
+unworncoma has the dealer button
+habing posts small blind 1
+userghost posts big blind 2
+** Hole Cards **
+Dealt to habing [Ad 6d]
+unworncoma raises to 6
+habing raises to 20.80
+userghost raises to 76.33 (All-in)
+unworncoma folds
+habing folds
+userghost refunded 55.53
+habing adds 20.80 chips
+userghost wins Pot (47.60)
+Rake (0)
+
+
+
+Hand #9141465-7 - 2013-06-28 02:17:02
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #9
+Seat 4: userghost (103.13)
+Seat 5: unworncoma (198.48)
+Seat 6: habing (200)
+habing has the dealer button
+userghost posts small blind 1
+unworncoma posts big blind 2
+** Hole Cards **
+Dealt to habing [8c 9s]
+habing raises to 4
+userghost calls 3
+unworncoma calls 2
+** Flop ** [2s 4d Kh]
+userghost checks
+unworncoma checks
+habing bets 6.80
+userghost calls 6.80
+unworncoma raises to 21.60
+habing folds
+habing adds 10.80 chips
+userghost calls 14.80
+** Turn ** [Jc]
+userghost checks
+unworncoma checks
+** River ** [Ad]
+userghost checks
+unworncoma checks
+** Pot Show Down ** [2s 4d Kh Jc Ad]
+userghost shows [8h Th] (High Card Ace +KJT8)
+unworncoma shows [3h 4c] (a Pair of Fours +AKJ)
+unworncoma wins Pot (60.45) with a Pair
+Rake (1.55)
+
+
+
+Hand #9141519-8 - 2013-06-28 02:18:40
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #9
+Seat 4: userghost (77.53)
+Seat 5: unworncoma (233.33)
+Seat 6: habing (200)
+userghost has the dealer button
+unworncoma posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [6h 2d]
+userghost calls 2
+unworncoma calls 1
+habing checks
+** Flop ** [8s Kh 5h]
+unworncoma checks
+habing checks
+userghost checks
+** Turn ** [Qs]
+unworncoma checks
+habing checks
+userghost bets 2
+unworncoma folds
+habing folds
+userghost refunded 2
+habing adds 2 chips
+userghost wins Pot (5.85)
+Rake (0.15)
+
+
+
+Hand #9141550-9 - 2013-06-28 02:19:33
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #9
+Seat 4: userghost (81.38)
+Seat 5: unworncoma (231.33)
+Seat 6: habing (200)
+unworncoma has the dealer button
+habing posts small blind 1
+userghost posts big blind 2
+** Hole Cards **
+Dealt to habing [Th 5s]
+unworncoma folds
+habing folds
+userghost refunded 1
+habing adds 1 chips
+userghost wins Pot (2)
+Rake (0)
+
+
+
+Hand #9141558-10 - 2013-06-28 02:19:46
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #9
+Seat 4: userghost (82.38)
+Seat 5: unworncoma (231.33)
+Seat 6: habing (200)
+habing has the dealer button
+userghost posts small blind 1
+unworncoma posts big blind 2
+** Hole Cards **
+Dealt to habing [5d As]
+habing raises to 6
+userghost calls 5
+unworncoma folds
+** Flop ** [Jh 8s 9c]
+userghost checks
+habing checks
+** Turn ** [5h]
+userghost checks
+habing checks
+** River ** [Ah]
+userghost checks
+habing bets 10.40
+userghost raises to 20.80
+habing calls 10.40
+** Pot Show Down ** [Jh 8s 9c 5h Ah]
+userghost shows [6h 5c] (a Pair of Fives +AJ9)
+habing shows [5d As] (Two Pair, Aces and Fives +J)
+habing wins Pot (54.21) with Two Pair
+Rake (1.39)
+
+
+
+Hand #9141586-11 - 2013-06-28 02:20:45
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #9
+Seat 4: userghost (55.58)
+Seat 5: unworncoma (229.33)
+Seat 6: habing (227.41)
+userghost has the dealer button
+unworncoma posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [5d 5h]
+userghost calls 2
+unworncoma calls 1
+habing raises to 227.41 (All-in)
+userghost folds
+unworncoma folds
+habing refunded 225.41
+habing wins Pot (6)
+Rake (0)
+
+
+
+Hand #9141596-12 - 2013-06-28 02:21:08
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #9
+Seat 4: userghost (53.58)
+Seat 5: unworncoma (227.33)
+Seat 6: habing (231.41)
+unworncoma has the dealer button
+habing posts small blind 1
+userghost posts big blind 2
+** Hole Cards **
+Dealt to habing [Ks 4d]
+unworncoma folds
+habing raises to 6
+userghost calls 4
+** Flop ** [3h 5d 2h]
+habing checks
+userghost checks
+** Turn ** [4s]
+habing checks
+userghost checks
+** River ** [Qc]
+habing checks
+userghost bets 11
+habing folds
+userghost refunded 11
+userghost wins Pot (11.70)
+Rake (0.30)
+
+
+
+Hand #9141629-13 - 2013-06-28 02:21:51
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #9
+Seat 4: userghost (59.28)
+Seat 5: unworncoma (227.33)
+Seat 6: habing (225.41)
+habing has the dealer button
+userghost posts small blind 1
+unworncoma posts big blind 2
+** Hole Cards **
+Dealt to habing [7h Js]
+habing raises to 4
+userghost calls 3
+unworncoma raises to 16
+habing folds
+userghost calls 12
+** Flop ** [7s 2c Kd]
+userghost bets 43.28 (All-in)
+unworncoma folds
+userghost refunded 43.28
+userghost wins Pot (35.10)
+Rake (0.90)
+
+
+
+Hand #9141666-14 - 2013-06-28 02:22:48
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #9
+Seat 4: userghost (78.38)
+Seat 5: unworncoma (211.33)
+Seat 6: habing (221.41)
+userghost has the dealer button
+unworncoma posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [7h 7s]
+userghost calls 2
+unworncoma calls 1
+habing raises to 11.20
+userghost folds
+unworncoma calls 9.20
+** Flop ** [7c 4d 7d]
+unworncoma bets 18
+habing calls 18
+** Turn ** [Qs]
+unworncoma checks
+habing bets 38.80
+unworncoma folds
+habing refunded 38.80
+habing wins Pot (58.89)
+Rake (1.51)
+
+
+
+Hand #9141697-15 - 2013-06-28 02:23:49
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #9
+Seat 4: userghost (76.38)
+Seat 5: unworncoma (182.13)
+Seat 6: habing (251.10)
+unworncoma has the dealer button
+habing posts small blind 1
+userghost posts big blind 2
+** Hole Cards **
+Dealt to habing [Tc Ac]
+unworncoma folds
+habing raises to 6
+userghost calls 4
+** Flop ** [4h 6d Ad]
+habing bets 8
+userghost folds
+habing refunded 8
+habing wins Pot (11.70)
+Rake (0.30)
+
+
+
+Hand #9141724-16 - 2013-06-28 02:24:31
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #9
+Seat 4: userghost (70.38)
+Seat 5: unworncoma (182.13)
+Seat 6: habing (256.80)
+habing has the dealer button
+userghost posts small blind 1
+unworncoma posts big blind 2
+** Hole Cards **
+Dealt to habing [8d Qs]
+habing raises to 4
+userghost calls 3
+unworncoma calls 2
+** Flop ** [Qc Kc Jh]
+userghost bets 2
+unworncoma folds
+habing calls 2
+** Turn ** [6d]
+userghost bets 2
+habing calls 2
+** River ** [3d]
+userghost bets 2
+habing calls 2
+** Pot Show Down ** [Qc Kc Jh 6d 3d]
+userghost shows [9s 6c] (a Pair of Sixes +KQJ)
+habing shows [8d Qs] (a Pair of Queens +KJ8)
+habing wins Pot (23.40) with a Pair
+Rake (0.60)
+
+
+
+Hand #9141747-17 - 2013-06-28 02:25:22
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #9
+Seat 4: userghost (60.38)
+Seat 5: unworncoma (178.13)
+Seat 6: habing (270.20)
+userghost has the dealer button
+unworncoma posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [8h 4h]
+userghost folds
+unworncoma raises to 6
+habing folds
+unworncoma refunded 4
+unworncoma wins Pot (4)
+Rake (0)
+
+
+
+Hand #9141759-18 - 2013-06-28 02:25:40
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #9
+Seat 4: userghost (60.38)
+Seat 5: unworncoma (180.13)
+Seat 6: habing (268.20)
+unworncoma has the dealer button
+habing posts small blind 1
+userghost posts big blind 2
+** Hole Cards **
+Dealt to habing [7c 5h]
+unworncoma raises to 6
+habing folds
+userghost raises to 10
+unworncoma calls 4
+** Flop ** [Qc 3c 2c]
+userghost bets 50.38 (All-in)
+unworncoma folds
+userghost refunded 50.38
+userghost wins Pot (20.48)
+Rake (0.52)
+
+
+
+Hand #9141774-19 - 2013-06-28 02:26:10
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #9
+Seat 4: userghost (70.86)
+Seat 5: unworncoma (170.13)
+Seat 6: habing (267.20)
+habing has the dealer button
+userghost posts small blind 1
+unworncoma posts big blind 2
+** Hole Cards **
+Dealt to habing [4c 4s]
+habing raises to 4
+userghost raises to 20
+unworncoma calls 18
+habing has timed out
+habing folds
+** Flop ** [7s Kc 4h]
+userghost bets 50.86 (All-in)
+unworncoma calls 50.86
+** Turn ** [Td]
+** River ** [Ts]
+** Pot Show Down ** [7s Kc 4h Td Ts]
+userghost shows [Qs As] (a Pair of Tens +AKQ)
+unworncoma shows [7h 7d] (a Full House, Sevens full of Tens)
+unworncoma wins Pot (142.08) with a Full House
+Rake (3.64)
+
+
+
+Hand #9141812-20 - 2013-06-28 02:27:13
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #9
+Seat 4: userghost (0) - sitting out
+Seat 5: unworncoma (241.35)
+Seat 6: habing (263.20)
+unworncoma has the dealer button
+unworncoma posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [6s As]
+unworncoma folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #9141818-21 - 2013-06-28 02:27:24
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #9
+Seat 5: unworncoma (240.35)
+Seat 6: habing (264.20)
+habing has the dealer button
+habing posts small blind 1
+unworncoma posts big blind 2
+** Hole Cards **
+Dealt to habing [Qc Td]
+habing raises to 4
+unworncoma calls 2
+** Flop ** [8h Jd 8s]
+unworncoma checks
+habing bets 5.60
+unworncoma folds
+habing refunded 5.60
+habing wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #9141853-22 - 2013-06-28 02:28:17
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #9
+Seat 5: unworncoma (236.35)
+Seat 6: habing (268)
+unworncoma has the dealer button
+unworncoma posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [6c Tc]
+unworncoma raises to 6
+habing folds
+unworncoma refunded 4
+unworncoma wins Pot (4)
+Rake (0)
+
+
+
+Hand #9141863-23 - 2013-06-28 02:28:39
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #9
+Seat 5: unworncoma (238.35)
+Seat 6: habing (266)
+habing has the dealer button
+habing posts small blind 1
+unworncoma posts big blind 2
+** Hole Cards **
+Dealt to habing [Ad 3s]
+habing raises to 4
+unworncoma raises to 12
+habing folds
+unworncoma refunded 8
+unworncoma wins Pot (8)
+Rake (0)
+
+
+
+Hand #9141879-24 - 2013-06-28 02:29:04
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #9
+Seat 5: unworncoma (242.35)
+Seat 6: habing (262)
+unworncoma has the dealer button
+unworncoma posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [3d Jh]
+unworncoma folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #9141885-25 - 2013-06-28 02:29:17
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #9
+Seat 5: unworncoma (241.35)
+Seat 6: habing (263)
+habing has the dealer button
+habing posts small blind 1
+unworncoma posts big blind 2
+** Hole Cards **
+Dealt to habing [9d Qs]
+habing raises to 4
+unworncoma raises to 12
+habing folds
+unworncoma refunded 8
+unworncoma wins Pot (8)
+Rake (0)
+
+
+
+Hand #9141904-26 - 2013-06-28 02:29:47
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #9
+Seat 5: unworncoma (245.35)
+Seat 6: habing (259)
+unworncoma has the dealer button
+unworncoma posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [6d 7h]
+unworncoma raises to 6
+habing folds
+unworncoma refunded 4
+unworncoma wins Pot (4)
+Rake (0)
+
+
+
+Hand #9141916-27 - 2013-06-28 02:30:02
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #9
+Seat 5: unworncoma (247.35)
+Seat 6: habing (257)
+habing has the dealer button
+habing posts small blind 1
+unworncoma posts big blind 2
+** Hole Cards **
+Dealt to habing [Jc Ts]
+habing raises to 4
+unworncoma has timed out
+unworncoma folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #9141934-28 - 2013-06-28 02:30:41
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #9
+Seat 5: unworncoma (245.35)
+Seat 6: habing (259)
+unworncoma has the dealer button
+unworncoma posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [5c Kd]
+unworncoma raises to 6
+habing folds
+unworncoma refunded 4
+unworncoma wins Pot (4)
+Rake (0)
+
+
+
+Hand #9141945-29 - 2013-06-28 02:30:56
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #9
+Seat 5: unworncoma (247.35)
+Seat 6: habing (257)
+habing has the dealer button
+habing posts small blind 1
+unworncoma posts big blind 2
+** Hole Cards **
+Dealt to habing [6d Ah]
+habing raises to 4
+unworncoma raises to 12
+habing calls 8
+** Flop ** [Qd 2c 7s]
+unworncoma bets 15
+habing raises to 30
+unworncoma folds
+habing refunded 15
+habing wins Pot (52.65)
+Rake (1.35)
+
+
+
+Hand #9141977-30 - 2013-06-28 02:31:47
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #9
+Seat 5: unworncoma (220.35)
+Seat 6: habing (282.65)
+unworncoma has the dealer button
+unworncoma posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Js 8d]
+unworncoma raises to 6
+habing folds
+unworncoma refunded 4
+unworncoma wins Pot (4)
+Rake (0)
+
+
+
+Hand #9141987-31 - 2013-06-28 02:32:02
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #9
+Seat 5: unworncoma (222.35)
+Seat 6: habing (280.65)
+habing has the dealer button
+habing posts small blind 1
+unworncoma posts big blind 2
+** Hole Cards **
+Dealt to habing [3s 9d]
+habing folds
+unworncoma refunded 1
+unworncoma wins Pot (2)
+Rake (0)
+
+
+
+Hand #9141992-32 - 2013-06-28 02:32:14
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #9
+Seat 5: unworncoma (223.35)
+Seat 6: habing (279.65)
+unworncoma has the dealer button
+unworncoma posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Td 3d]
+unworncoma raises to 6
+habing folds
+unworncoma refunded 4
+unworncoma wins Pot (4)
+Rake (0)
+
+
+
+Hand #9142008-33 - 2013-06-28 02:32:31
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #9
+Seat 5: unworncoma (225.35)
+Seat 6: habing (277.65)
+habing has the dealer button
+habing posts small blind 1
+unworncoma posts big blind 2
+** Hole Cards **
+Dealt to habing [Td 3d]
+habing raises to 4
+unworncoma calls 2
+** Flop ** [2s Ts 9c]
+unworncoma folds
+habing wins Pot (7.80)
+Rake (0.20)

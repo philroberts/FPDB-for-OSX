@@ -1,0 +1,4256 @@
+Hand #9142049-1 - 2013-06-28 02:33:52
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 4: RayLewis (200) - waiting for big blind
+Seat 6: habing (200) - waiting for big blind
+RayLewis has the dealer button
+RayLewis posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [7s Kd]
+RayLewis raises to 8
+habing folds
+RayLewis refunded 6
+habing adds 2 chips
+RayLewis wins Pot (4)
+Rake (0)
+
+
+
+Hand #9142061-2 - 2013-06-28 02:34:08
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 4: RayLewis (202)
+Seat 6: habing (200)
+habing has the dealer button
+habing posts small blind 1
+RayLewis posts big blind 2
+** Hole Cards **
+Dealt to habing [Ad Jc]
+habing raises to 4
+RayLewis folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #9142411-1 - 2013-06-28 02:45:09
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (200) - waiting for big blind
+Seat 6: habing (202)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Qd Qh]
+freethepoker folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #9142415-2 - 2013-06-28 02:45:21
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (199)
+Seat 6: habing (203)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [4c 7h]
+habing folds
+freethepoker refunded 1
+freethepoker wins Pot (2)
+Rake (0)
+
+
+
+Hand #9142427-3 - 2013-06-28 02:45:35
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (200)
+Seat 6: habing (202)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [3c Jc]
+freethepoker folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #9142430-4 - 2013-06-28 02:45:46
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (199)
+Seat 6: habing (203)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [Jc 3d]
+habing raises to 4
+freethepoker folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #9142445-5 - 2013-06-28 02:46:08
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (197)
+Seat 6: habing (205)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [6h 8h]
+freethepoker raises to 6
+habing folds
+freethepoker refunded 4
+freethepoker wins Pot (4)
+Rake (0)
+
+
+
+Hand #9142453-6 - 2013-06-28 02:46:29
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (199)
+Seat 6: habing (203)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [Ts Qd]
+habing raises to 4
+freethepoker folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #9142464-7 - 2013-06-28 02:46:43
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (197)
+Seat 6: habing (205)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [2d 4d]
+freethepoker raises to 6
+habing folds
+freethepoker refunded 4
+freethepoker wins Pot (4)
+Rake (0)
+
+
+
+Hand #9142471-8 - 2013-06-28 02:46:55
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (199)
+Seat 6: habing (203)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [5h 6s]
+habing raises to 4
+freethepoker calls 2
+** Flop ** [8c 2c 6d]
+freethepoker checks
+habing bets 4.40
+freethepoker folds
+habing refunded 4.40
+habing wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #9142489-9 - 2013-06-28 02:47:29
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (195)
+Seat 6: habing (206.80)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [8c Qc]
+freethepoker folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #9142493-10 - 2013-06-28 02:47:39
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (194)
+Seat 6: habing (207.80)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [Th Qc]
+habing raises to 4
+freethepoker folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #9142507-11 - 2013-06-28 02:47:59
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (192)
+Seat 6: habing (209.80)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Kh 4s]
+freethepoker folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #9142514-12 - 2013-06-28 02:48:11
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (191)
+Seat 6: habing (210.80)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [2s 6s]
+habing raises to 4
+freethepoker folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #9142521-13 - 2013-06-28 02:48:25
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (189)
+Seat 6: habing (212.80)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Js 8s]
+freethepoker raises to 6
+habing calls 4
+** Flop ** [Kd Qd 7h]
+habing checks
+freethepoker bets 8
+habing folds
+freethepoker refunded 8
+freethepoker wins Pot (11.70)
+Rake (0.30)
+
+
+
+Hand #9142540-14 - 2013-06-28 02:49:00
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (194.70)
+Seat 6: habing (206.80)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [As 7c]
+habing raises to 4
+freethepoker folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #9142547-15 - 2013-06-28 02:49:14
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (192.70)
+Seat 6: habing (208.80)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Jd 8d]
+freethepoker raises to 6
+habing calls 4
+** Flop ** [6c 6d 5d]
+habing checks
+freethepoker bets 10
+habing calls 10
+** Turn ** [3c]
+habing checks
+freethepoker bets 16
+habing raises to 41.60
+freethepoker raises to 89.20
+habing calls 47.60
+** River ** [Qs]
+habing checks
+freethepoker bets 87.50 (All-in)
+habing folds
+freethepoker refunded 87.50
+habing adds 96.40 chips
+freethepoker wins Pot (206.40)
+Rake (4)
+
+
+
+Hand #9142582-16 - 2013-06-28 02:50:21
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (293.90)
+Seat 6: habing (200)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [Ad Kd]
+habing raises to 4
+freethepoker folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #9142590-17 - 2013-06-28 02:50:35
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (291.90)
+Seat 6: habing (202)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [9c 2s]
+freethepoker raises to 6
+habing folds
+freethepoker refunded 4
+freethepoker wins Pot (4)
+Rake (0)
+
+
+
+Hand #9142597-18 - 2013-06-28 02:50:48
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (293.90)
+Seat 6: habing (200)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [Qc 8c]
+habing raises to 4
+freethepoker calls 2
+** Flop ** [Td 2s Qd]
+freethepoker bets 6
+habing calls 6
+** Turn ** [Qh]
+freethepoker bets 12
+habing calls 12
+** River ** [4c]
+freethepoker bets 20
+habing calls 20
+** Pot Show Down ** [Td 2s Qd Qh 4c]
+freethepoker shows [Kd Th] (Two Pair, Queens and Tens +K)
+habing shows [Qc 8c] (Three of a Kind, Queens +T8)
+habing wins Pot (81.90) with Three of a Kind
+Rake (2.10)
+
+
+
+Hand #9142628-19 - 2013-06-28 02:51:52
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (251.90)
+Seat 6: habing (239.90)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [7d 6c]
+freethepoker raises to 6
+habing folds
+freethepoker refunded 4
+freethepoker wins Pot (4)
+Rake (0)
+
+
+
+Hand #9142635-20 - 2013-06-28 02:52:05
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (253.90)
+Seat 6: habing (237.90)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [6s 4s]
+habing raises to 4
+freethepoker folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #9142643-21 - 2013-06-28 02:52:19
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (251.90)
+Seat 6: habing (239.90)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Jh 3h]
+freethepoker folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #9142651-22 - 2013-06-28 02:52:31
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (250.90)
+Seat 6: habing (240.90)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [Jc Jh]
+habing raises to 4
+freethepoker folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #9142663-23 - 2013-06-28 02:52:53
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (248.90)
+Seat 6: habing (242.90)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [3c Kd]
+freethepoker raises to 6
+habing folds
+freethepoker refunded 4
+freethepoker wins Pot (4)
+Rake (0)
+
+
+
+Hand #9142674-24 - 2013-06-28 02:53:10
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (250.90)
+Seat 6: habing (240.90)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [Jd Ac]
+habing raises to 4
+freethepoker folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #9142684-25 - 2013-06-28 02:53:24
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (248.90)
+Seat 6: habing (242.90)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [5s 4d]
+freethepoker raises to 6
+habing folds
+freethepoker refunded 4
+freethepoker wins Pot (4)
+Rake (0)
+
+
+
+Hand #9142697-26 - 2013-06-28 02:53:44
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (250.90)
+Seat 6: habing (240.90)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [6h 3s]
+habing folds
+freethepoker refunded 1
+freethepoker wins Pot (2)
+Rake (0)
+
+
+
+Hand #9142707-27 - 2013-06-28 02:53:57
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (251.90)
+Seat 6: habing (239.90)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [2d As]
+freethepoker folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #9142720-28 - 2013-06-28 02:54:08
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (250.90)
+Seat 6: habing (240.90)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [Tc Ad]
+habing raises to 4
+freethepoker folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #9142724-29 - 2013-06-28 02:54:21
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (248.90)
+Seat 6: habing (242.90)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [9c Jc]
+freethepoker folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #9142729-30 - 2013-06-28 02:54:32
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (247.90)
+Seat 6: habing (243.90)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [5d 4c]
+habing folds
+freethepoker refunded 1
+freethepoker wins Pot (2)
+Rake (0)
+
+
+
+Hand #9142739-31 - 2013-06-28 02:54:45
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (248.90)
+Seat 6: habing (242.90)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [2h 5c]
+freethepoker raises to 6
+habing folds
+freethepoker refunded 4
+freethepoker wins Pot (4)
+Rake (0)
+
+
+
+Hand #9142751-32 - 2013-06-28 02:55:02
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (250.90)
+Seat 6: habing (240.90)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [9s 3h]
+habing folds
+freethepoker refunded 1
+freethepoker wins Pot (2)
+Rake (0)
+
+
+
+Hand #9142759-33 - 2013-06-28 02:55:18
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (251.90)
+Seat 6: habing (239.90)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [2d Ks]
+freethepoker folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #9142769-34 - 2013-06-28 02:55:32
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (250.90)
+Seat 6: habing (240.90)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [7h 7c]
+habing raises to 4
+freethepoker raises to 10
+habing calls 6
+** Flop ** [Qs 8d 3c]
+freethepoker checks
+habing bets 10.40
+freethepoker calls 10.40
+** Turn ** [5c]
+freethepoker checks
+habing checks
+** River ** [3h]
+freethepoker bets 16
+habing calls 16
+** Pot Show Down ** [Qs 8d 3c 5c 3h]
+freethepoker shows [Ah Qc] (Two Pair, Queens and Threes +A)
+habing shows [7h 7c] (Two Pair, Sevens and Threes +Q)
+freethepoker wins Pot (70.98) with Two Pair
+Rake (1.82)
+
+
+
+Hand #9142800-35 - 2013-06-28 02:56:30
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (285.48)
+Seat 6: habing (204.50)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [5h Kh]
+freethepoker folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #9142806-36 - 2013-06-28 02:56:42
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (284.48)
+Seat 6: habing (205.50)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [8c 8h]
+habing raises to 4
+freethepoker calls 2
+** Flop ** [2c Ks Ac]
+freethepoker checks
+habing checks
+** Turn ** [Qc]
+freethepoker checks
+habing checks
+** River ** [Kd]
+freethepoker checks
+habing checks
+** Pot Show Down ** [2c Ks Ac Qc Kd]
+freethepoker shows [9h Jh] (a Pair of Kings +AQJ)
+habing shows [8c 8h] (Two Pair, Kings and Eights +A)
+habing wins Pot (7.80) with Two Pair
+Rake (0.20)
+
+
+
+Hand #9142831-37 - 2013-06-28 02:57:37
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (280.48)
+Seat 6: habing (209.30)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [8s 6h]
+freethepoker raises to 6
+habing folds
+freethepoker refunded 4
+freethepoker wins Pot (4)
+Rake (0)
+
+
+
+Hand #9142841-38 - 2013-06-28 02:57:56
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (282.48)
+Seat 6: habing (207.30)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [4h 2s]
+habing folds
+freethepoker refunded 1
+freethepoker wins Pot (2)
+Rake (0)
+
+
+
+Hand #9142847-39 - 2013-06-28 02:58:13
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (283.48)
+Seat 6: habing (206.30)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ah 5d]
+freethepoker raises to 6
+habing calls 4
+** Flop ** [5c Jc 4d]
+habing checks
+freethepoker bets 10
+habing folds
+freethepoker refunded 10
+freethepoker wins Pot (11.70)
+Rake (0.30)
+
+
+
+Hand #9142867-40 - 2013-06-28 02:58:43
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (289.18)
+Seat 6: habing (200.30)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [6s 5h]
+habing has timed out
+habing folds
+freethepoker refunded 1
+habing adds 0.70 chips
+freethepoker wins Pot (2)
+Rake (0)
+
+
+
+Hand #9142877-41 - 2013-06-28 02:59:16
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (290.18)
+Seat 6: habing (200)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Kd Th]
+freethepoker raises to 6
+habing calls 4
+** Flop ** [4s Jh 9h]
+habing checks
+freethepoker checks
+** Turn ** [2c]
+habing checks
+freethepoker checks
+** River ** [Jc]
+habing bets 7.60
+freethepoker folds
+habing refunded 7.60
+habing wins Pot (11.70)
+Rake (0.30)
+
+
+
+Hand #9142903-42 - 2013-06-28 03:00:16
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (284.18)
+Seat 6: habing (205.70)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [4c 7h]
+habing folds
+freethepoker refunded 1
+freethepoker wins Pot (2)
+Rake (0)
+
+
+
+Hand #9142907-43 - 2013-06-28 03:00:27
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (285.18)
+Seat 6: habing (204.70)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [9h Th]
+freethepoker raises to 6
+habing raises to 20.80
+freethepoker folds
+habing refunded 14.80
+habing wins Pot (12)
+Rake (0)
+
+
+
+Hand #9142932-44 - 2013-06-28 03:01:01
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (279.18)
+Seat 6: habing (210.70)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [3d 6c]
+habing folds
+freethepoker refunded 1
+freethepoker wins Pot (2)
+Rake (0)
+
+
+
+Hand #9142942-45 - 2013-06-28 03:01:12
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (280.18)
+Seat 6: habing (209.70)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [7d 7s]
+freethepoker raises to 6
+habing raises to 20.80
+freethepoker folds
+habing refunded 14.80
+habing wins Pot (12)
+Rake (0)
+
+
+
+Hand #9142967-46 - 2013-06-28 03:02:00
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (274.18)
+Seat 6: habing (215.70)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [Qc As]
+habing raises to 4
+freethepoker folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #9142976-47 - 2013-06-28 03:02:19
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (272.18)
+Seat 6: habing (217.70)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [8s 2h]
+freethepoker folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #9142985-48 - 2013-06-28 03:02:31
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (271.18)
+Seat 6: habing (218.70)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [5c 8d]
+habing folds
+freethepoker refunded 1
+freethepoker wins Pot (2)
+Rake (0)
+
+
+
+Hand #9142995-49 - 2013-06-28 03:02:48
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (272.18)
+Seat 6: habing (217.70)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Qc 6c]
+freethepoker raises to 6
+habing folds
+freethepoker refunded 4
+freethepoker wins Pot (4)
+Rake (0)
+
+
+
+Hand #9143008-50 - 2013-06-28 03:03:04
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (274.18)
+Seat 6: habing (215.70)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [6d 2d]
+habing raises to 4
+freethepoker folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #9143026-51 - 2013-06-28 03:03:33
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (272.18)
+Seat 6: habing (217.70)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [3s 4h]
+freethepoker raises to 4
+habing folds
+freethepoker refunded 2
+freethepoker wins Pot (4)
+Rake (0)
+
+
+
+Hand #9143035-52 - 2013-06-28 03:03:48
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (274.18)
+Seat 6: habing (215.70)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [6s 6c]
+habing raises to 4
+freethepoker raises to 10
+habing calls 6
+** Flop ** [2s Qd 9s]
+freethepoker bets 14
+habing folds
+freethepoker refunded 14
+freethepoker wins Pot (19.50)
+Rake (0.50)
+
+
+
+Hand #9143057-53 - 2013-06-28 03:04:22
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (283.68)
+Seat 6: habing (205.70)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [9s 7s]
+freethepoker folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #9143068-54 - 2013-06-28 03:04:32
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (282.68)
+Seat 6: habing (206.70)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [Ad 6d]
+habing raises to 4
+freethepoker calls 2
+** Flop ** [3h 7c 5d]
+freethepoker checks
+habing bets 5.60
+freethepoker calls 5.60
+** Turn ** [Kh]
+freethepoker checks
+habing checks
+** River ** [As]
+freethepoker bets 8
+habing calls 8
+** Pot Show Down ** [3h 7c 5d Kh As]
+freethepoker shows [3d 7d] (Two Pair, Sevens and Threes +A)
+habing shows [Ad 6d] (a Pair of Aces +K76)
+freethepoker wins Pot (34.32) with Two Pair
+Rake (0.88)
+habing adds 10.90 chips
+
+
+
+Hand #9143101-55 - 2013-06-28 03:05:29
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (299.40)
+Seat 6: habing (200)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [3s 6h]
+freethepoker folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #9143108-56 - 2013-06-28 03:05:39
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (298.40)
+Seat 6: habing (201)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [Ks Qh]
+habing raises to 4
+freethepoker folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #9143127-57 - 2013-06-28 03:05:56
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (296.40)
+Seat 6: habing (203)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Jd Qd]
+freethepoker folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #9143129-58 - 2013-06-28 03:06:06
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (295.40)
+Seat 6: habing (204)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [Ad Td]
+habing raises to 4
+freethepoker calls 2
+** Flop ** [7h 2s 4c]
+freethepoker checks
+habing bets 5.20
+freethepoker folds
+habing refunded 5.20
+habing wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #9143149-59 - 2013-06-28 03:06:39
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (291.40)
+Seat 6: habing (207.80)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ad Qh]
+freethepoker raises to 4
+habing raises to 15.60
+freethepoker folds
+habing refunded 11.60
+habing wins Pot (8)
+Rake (0)
+
+
+
+Hand #9143167-60 - 2013-06-28 03:07:09
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (287.40)
+Seat 6: habing (211.80)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [Kc Ts]
+habing raises to 4
+freethepoker folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #9143176-61 - 2013-06-28 03:07:23
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (285.40)
+Seat 6: habing (213.80)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [6d 4s]
+freethepoker folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #9143183-62 - 2013-06-28 03:07:34
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (284.40)
+Seat 6: habing (214.80)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [6c 3h]
+habing folds
+freethepoker refunded 1
+freethepoker wins Pot (2)
+Rake (0)
+
+
+
+Hand #9143191-63 - 2013-06-28 03:07:47
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (285.40)
+Seat 6: habing (213.80)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [6d 8d]
+freethepoker raises to 4
+habing calls 2
+** Flop ** [6s 2c Tc]
+habing checks
+freethepoker bets 4
+habing calls 4
+** Turn ** [4c]
+habing checks
+freethepoker bets 8
+habing calls 8
+** River ** [7d]
+habing checks
+freethepoker bets 14
+habing folds
+freethepoker refunded 14
+habing adds 2.20 chips
+freethepoker wins Pot (31.20)
+Rake (0.80)
+
+
+
+Hand #9143227-64 - 2013-06-28 03:08:57
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (300.60)
+Seat 6: habing (200)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [9h Jh]
+habing raises to 4
+freethepoker calls 2
+** Flop ** [4d As 7c]
+freethepoker checks
+habing bets 5.60
+freethepoker raises to 15.20
+habing folds
+freethepoker refunded 9.60
+habing adds 9.60 chips
+freethepoker wins Pot (18.72)
+Rake (0.48)
+
+
+
+Hand #9143247-65 - 2013-06-28 03:09:32
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (309.72)
+Seat 6: habing (200)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [8h Kd]
+freethepoker folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #9143253-66 - 2013-06-28 03:09:42
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (308.72)
+Seat 6: habing (201)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [4c 3s]
+habing folds
+freethepoker refunded 1
+freethepoker wins Pot (2)
+Rake (0)
+
+
+
+Hand #9143259-67 - 2013-06-28 03:09:54
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (309.72)
+Seat 6: habing (200)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [2s 4s]
+freethepoker folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #9143265-68 - 2013-06-28 03:10:04
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (308.72)
+Seat 6: habing (201)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [Ac 3c]
+habing raises to 4
+freethepoker folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #9143278-69 - 2013-06-28 03:10:23
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (306.72)
+Seat 6: habing (203)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Jh Qh]
+freethepoker raises to 4
+habing raises to 16.80
+freethepoker folds
+habing refunded 12.80
+habing wins Pot (8)
+Rake (0)
+
+
+
+Hand #9143287-70 - 2013-06-28 03:10:46
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (302.72)
+Seat 6: habing (207)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [Qc 3s]
+habing raises to 4
+freethepoker calls 2
+** Flop ** [7h Jd 7d]
+freethepoker checks
+habing checks
+** Turn ** [4c]
+freethepoker checks
+habing bets 4.40
+freethepoker folds
+habing refunded 4.40
+habing wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #9143303-71 - 2013-06-28 03:11:19
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (298.72)
+Seat 6: habing (210.80)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [5c Jd]
+freethepoker raises to 4
+habing folds
+freethepoker refunded 2
+freethepoker wins Pot (4)
+Rake (0)
+
+
+
+Hand #9143313-72 - 2013-06-28 03:11:33
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (300.72)
+Seat 6: habing (208.80)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [Th 9h]
+habing raises to 4
+freethepoker folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #9143325-73 - 2013-06-28 03:11:55
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (298.72)
+Seat 6: habing (210.80)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [9d Qh]
+freethepoker raises to 4
+habing calls 2
+** Flop ** [6s 9h Tc]
+habing checks
+freethepoker checks
+** Turn ** [Kd]
+habing checks
+freethepoker bets 4
+habing folds
+freethepoker refunded 4
+freethepoker wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #9143347-74 - 2013-06-28 03:12:37
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (302.52)
+Seat 6: habing (206.80)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [Ac Js]
+habing raises to 4
+freethepoker folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #9143353-75 - 2013-06-28 03:12:52
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (300.52)
+Seat 6: habing (208.80)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [4h Qs]
+freethepoker raises to 4
+habing folds
+freethepoker refunded 2
+freethepoker wins Pot (4)
+Rake (0)
+
+
+
+Hand #9143367-76 - 2013-06-28 03:13:12
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (302.52)
+Seat 6: habing (206.80)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [Jd Ks]
+habing raises to 4
+freethepoker calls 2
+** Flop ** [Ah As Td]
+freethepoker checks
+habing checks
+** Turn ** [Qc]
+freethepoker checks
+habing bets 5.60
+freethepoker folds
+habing refunded 5.60
+habing wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #9143388-77 - 2013-06-28 03:13:50
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (298.52)
+Seat 6: habing (210.60)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Qc 4h]
+freethepoker raises to 4
+habing folds
+freethepoker refunded 2
+freethepoker wins Pot (4)
+Rake (0)
+
+
+
+Hand #9143396-78 - 2013-06-28 03:14:02
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (300.52)
+Seat 6: habing (208.60)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [Ts Kc]
+habing raises to 4
+freethepoker calls 2
+** Flop ** [3d 2d 7s]
+freethepoker bets 6
+habing raises to 19.20
+freethepoker folds
+habing refunded 13.20
+habing wins Pot (19.50)
+Rake (0.50)
+
+
+
+Hand #9143419-79 - 2013-06-28 03:14:50
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (290.52)
+Seat 6: habing (218.10)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [6d Kc]
+freethepoker folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #9143429-80 - 2013-06-28 03:15:02
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (289.52)
+Seat 6: habing (219.10)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [6d 4h]
+habing folds
+freethepoker refunded 1
+freethepoker wins Pot (2)
+Rake (0)
+
+
+
+Hand #9143437-81 - 2013-06-28 03:15:15
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (290.52)
+Seat 6: habing (218.10)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Tc 5c]
+freethepoker folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #9143443-82 - 2013-06-28 03:15:27
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (289.52)
+Seat 6: habing (219.10)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [9s Th]
+habing raises to 4
+freethepoker calls 2
+** Flop ** [3c Ks Ts]
+freethepoker checks
+habing bets 4.40
+freethepoker calls 4.40
+** Turn ** [5d]
+freethepoker checks
+habing checks
+** River ** [9d]
+freethepoker checks
+habing bets 12.80
+freethepoker raises to 29.60
+habing folds
+freethepoker refunded 16.80
+habing adds 2.10 chips
+freethepoker wins Pot (41.34)
+Rake (1.06)
+
+
+
+Hand #9143479-83 - 2013-06-28 03:16:32
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (309.66)
+Seat 6: habing (200)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Jc Ts]
+freethepoker raises to 6
+habing calls 4
+** Flop ** [Ah 3s Ks]
+habing checks
+freethepoker bets 10
+habing folds
+freethepoker refunded 10
+habing adds 6 chips
+freethepoker wins Pot (11.70)
+Rake (0.30)
+
+
+
+Hand #9143492-84 - 2013-06-28 03:17:00
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (315.36)
+Seat 6: habing (200)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [8s Kd]
+habing raises to 4
+freethepoker raises to 10
+habing calls 6
+** Flop ** [Ac 8h 4s]
+freethepoker bets 12
+habing calls 12
+** Turn ** [Jh]
+freethepoker bets 26
+habing folds
+freethepoker refunded 26
+habing adds 22 chips
+freethepoker wins Pot (42.90)
+Rake (1.10)
+
+
+
+Hand #9143513-85 - 2013-06-28 03:17:43
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (336.26)
+Seat 6: habing (200)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [4s Qd]
+freethepoker raises to 4
+habing folds
+freethepoker refunded 2
+habing adds 2 chips
+freethepoker wins Pot (4)
+Rake (0)
+
+
+
+Hand #9143518-86 - 2013-06-28 03:17:56
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (338.26)
+Seat 6: habing (200)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [6d 7d]
+habing raises to 4
+freethepoker folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #9143525-87 - 2013-06-28 03:18:09
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (336.26)
+Seat 6: habing (202)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [4c 6h]
+freethepoker raises to 4
+habing folds
+freethepoker refunded 2
+freethepoker wins Pot (4)
+Rake (0)
+
+
+
+Hand #9143533-88 - 2013-06-28 03:18:24
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (338.26)
+Seat 6: habing (200)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [9s 2c]
+habing folds
+freethepoker refunded 1
+habing adds 1 chips
+freethepoker wins Pot (2)
+Rake (0)
+
+
+
+Hand #9143539-89 - 2013-06-28 03:18:35
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (339.26)
+Seat 6: habing (200)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [8d 5d]
+freethepoker raises to 4
+habing folds
+freethepoker refunded 2
+habing adds 2 chips
+freethepoker wins Pot (4)
+Rake (0)
+
+
+
+Hand #9143549-90 - 2013-06-28 03:18:50
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (341.26)
+Seat 6: habing (200)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [3c Ah]
+habing raises to 4
+freethepoker folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #9143562-91 - 2013-06-28 03:19:18
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (339.26)
+Seat 6: habing (202)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Jc 8s]
+freethepoker folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #9143574-92 - 2013-06-28 03:19:33
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (338.26)
+Seat 6: habing (203)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [4d 2h]
+habing folds
+freethepoker refunded 1
+freethepoker wins Pot (2)
+Rake (0)
+
+
+
+Hand #9143579-93 - 2013-06-28 03:19:44
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (339.26)
+Seat 6: habing (202)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [5c 7d]
+freethepoker raises to 4
+habing folds
+freethepoker refunded 2
+freethepoker wins Pot (4)
+Rake (0)
+
+
+
+Hand #9143585-94 - 2013-06-28 03:19:57
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (341.26)
+Seat 6: habing (200)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [4h 6h]
+habing raises to 4
+freethepoker calls 2
+** Flop ** [As Jh 9h]
+freethepoker checks
+habing bets 4.40
+freethepoker folds
+habing refunded 4.40
+habing wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #9143599-95 - 2013-06-28 03:20:30
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (337.26)
+Seat 6: habing (203.80)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [3s 8d]
+freethepoker raises to 4
+habing folds
+freethepoker refunded 2
+freethepoker wins Pot (4)
+Rake (0)
+
+
+
+Hand #9143611-96 - 2013-06-28 03:20:54
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (339.26)
+Seat 6: habing (201.80)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [2c 9c]
+habing raises to 4
+freethepoker folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #9143622-97 - 2013-06-28 03:21:10
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (337.26)
+Seat 6: habing (203.80)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Kh Qs]
+freethepoker folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #9143626-98 - 2013-06-28 03:21:21
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (336.26)
+Seat 6: habing (204.80)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [2c 7h]
+habing folds
+freethepoker refunded 1
+freethepoker wins Pot (2)
+Rake (0)
+
+
+
+Hand #9143633-99 - 2013-06-28 03:21:33
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (337.26)
+Seat 6: habing (203.80)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [7h 9c]
+freethepoker folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #9143639-100 - 2013-06-28 03:21:46
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (336.26)
+Seat 6: habing (204.80)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [3s Jh]
+habing raises to 4
+freethepoker folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #9143647-101 - 2013-06-28 03:22:00
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (334.26)
+Seat 6: habing (206.80)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [8h 9d]
+freethepoker raises to 4
+habing calls 2
+** Flop ** [9s Ah Qs]
+habing checks
+freethepoker bets 6
+habing folds
+freethepoker refunded 6
+freethepoker wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #9143663-102 - 2013-06-28 03:22:36
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (338.06)
+Seat 6: habing (202.80)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [As 6c]
+habing raises to 4
+freethepoker folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #9143670-103 - 2013-06-28 03:22:52
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (336.06)
+Seat 6: habing (204.80)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [6d Qd]
+freethepoker raises to 4
+habing calls 2
+** Flop ** [Qh Kc 6c]
+habing checks
+freethepoker bets 6
+habing raises to 22.80
+freethepoker folds
+habing refunded 16.80
+habing wins Pot (19.50)
+Rake (0.50)
+
+
+
+Hand #9143687-104 - 2013-06-28 03:23:39
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (326.06)
+Seat 6: habing (214.30)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [Ah 3d]
+habing raises to 4
+freethepoker calls 2
+** Flop ** [3s 9h 4h]
+freethepoker checks
+habing checks
+** Turn ** [8d]
+freethepoker checks
+habing checks
+** River ** [2d]
+freethepoker checks
+habing checks
+** Pot Show Down ** [3s 9h 4h 8d 2d]
+freethepoker shows [Qh 7h] (High Card Queen +9874)
+habing shows [Ah 3d] (a Pair of Threes +A98)
+habing wins Pot (7.80) with a Pair
+Rake (0.20)
+
+
+
+Hand #9143703-105 - 2013-06-28 03:24:24
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (322.06)
+Seat 6: habing (218.10)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [7c Ks]
+freethepoker raises to 4
+habing calls 2
+** Flop ** [8d Ah 3c]
+habing checks
+freethepoker bets 6
+habing folds
+freethepoker refunded 6
+freethepoker wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #9143715-106 - 2013-06-28 03:24:57
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (325.86)
+Seat 6: habing (214.10)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [Tc Qd]
+habing raises to 4
+freethepoker calls 2
+** Flop ** [Ac 6d Ts]
+freethepoker checks
+habing bets 5.60
+freethepoker folds
+habing refunded 5.60
+habing wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #9143724-107 - 2013-06-28 03:25:23
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (321.86)
+Seat 6: habing (217.90)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [9s 7s]
+freethepoker raises to 4
+habing calls 2
+** Flop ** [5h Kc 4h]
+habing bets 4.40
+freethepoker folds
+habing refunded 4.40
+habing wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #9143734-108 - 2013-06-28 03:25:44
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (317.86)
+Seat 6: habing (221.70)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [4c Ad]
+habing raises to 4
+freethepoker calls 2
+** Flop ** [Ah 9d 8h]
+freethepoker checks
+habing bets 4.40
+freethepoker calls 4.40
+** Turn ** [7c]
+freethepoker checks
+habing bets 12.80
+freethepoker calls 12.80
+** River ** [3h]
+freethepoker bets 14
+habing calls 14
+** Pot Show Down ** [Ah 9d 8h 7c 3h]
+freethepoker shows [2c Ac] (a Pair of Aces +987)
+habing shows [4c Ad] (a Pair of Aces +987)
+freethepoker splits Pot (34.32) with a Pair
+habing splits Pot (34.32) with a Pair
+Rake (1.76)
+
+
+
+Hand #9143750-109 - 2013-06-28 03:26:36
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (316.98)
+Seat 6: habing (220.82)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Td Jh]
+freethepoker raises to 4
+habing calls 2
+** Flop ** [3s 9s 8c]
+habing checks
+freethepoker bets 6
+habing raises to 21.60
+freethepoker raises to 49.20
+habing calls 27.60
+** Turn ** [8s]
+habing checks
+freethepoker checks
+** River ** [Ac]
+habing checks
+freethepoker checks
+** Pot Show Down ** [3s 9s 8c 8s Ac]
+freethepoker shows [7h Ks] (a Pair of Eights +AK9)
+habing shows [Td Jh] (a Pair of Eights +AJT)
+freethepoker wins Pot (103.74) with a Pair
+Rake (2.66)
+habing adds 32.38 chips
+
+
+
+Hand #9143779-110 - 2013-06-28 03:27:55
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (367.52)
+Seat 6: habing (200)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [8h Kc]
+habing raises to 4
+freethepoker folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #9143787-111 - 2013-06-28 03:28:09
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (365.52)
+Seat 6: habing (202)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Th 4c]
+freethepoker folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #9143790-112 - 2013-06-28 03:28:19
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (364.52)
+Seat 6: habing (203)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [As 4d]
+habing raises to 4
+freethepoker calls 2
+** Flop ** [Ks 6c 7c]
+freethepoker checks
+habing checks
+** Turn ** [6s]
+freethepoker bets 4
+habing calls 4
+** River ** [Kc]
+freethepoker bets 10
+habing calls 10
+** Pot Show Down ** [Ks 6c 7c 6s Kc]
+freethepoker shows [Jd 6d] (a Full House, Sixes full of Kings)
+habing shows [As 4d] (Two Pair, Kings and Sixes +A)
+freethepoker wins Pot (35.10) with a Full House
+Rake (0.90)
+habing adds 15 chips
+
+
+
+Hand #9143805-113 - 2013-06-28 03:29:04
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (381.62)
+Seat 6: habing (200)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [2d Ac]
+freethepoker raises to 4
+habing calls 2
+** Flop ** [5h Jd 4c]
+habing checks
+freethepoker bets 4
+habing calls 4
+** Turn ** [9h]
+habing checks
+freethepoker bets 8
+habing folds
+freethepoker refunded 8
+habing adds 8 chips
+freethepoker wins Pot (15.60)
+Rake (0.40)
+
+
+
+Hand #9143819-114 - 2013-06-28 03:29:44
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (389.22)
+Seat 6: habing (200)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [2s 2c]
+habing raises to 4
+freethepoker folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #9143827-115 - 2013-06-28 03:29:58
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (387.22)
+Seat 6: habing (202)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [4h 6s]
+freethepoker raises to 4
+habing folds
+freethepoker refunded 2
+freethepoker wins Pot (4)
+Rake (0)
+
+
+
+Hand #9143836-116 - 2013-06-28 03:30:16
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (389.22)
+Seat 6: habing (200)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [6h Qc]
+habing raises to 4
+freethepoker calls 2
+** Flop ** [6c Tc Th]
+freethepoker checks
+habing bets 4.40
+freethepoker folds
+habing refunded 4.40
+habing wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #9143845-117 - 2013-06-28 03:30:38
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (385.22)
+Seat 6: habing (203.80)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [3s As]
+freethepoker raises to 4
+habing raises to 15.60
+freethepoker folds
+habing refunded 11.60
+habing wins Pot (8)
+Rake (0)
+
+
+
+Hand #9143855-118 - 2013-06-28 03:31:01
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (381.22)
+Seat 6: habing (207.80)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [8h 3d]
+habing folds
+freethepoker refunded 1
+freethepoker wins Pot (2)
+Rake (0)
+
+
+
+Hand #9143859-119 - 2013-06-28 03:31:13
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (382.22)
+Seat 6: habing (206.80)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [8d 6s]
+freethepoker folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #9143863-120 - 2013-06-28 03:31:23
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (381.22)
+Seat 6: habing (207.80)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [Tc Qd]
+habing raises to 4
+freethepoker folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #9143865-121 - 2013-06-28 03:31:35
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (379.22)
+Seat 6: habing (209.80)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [5d 4d]
+freethepoker raises to 4
+habing calls 2
+** Flop ** [5s 6s 7h]
+habing checks
+freethepoker checks
+** Turn ** [6h]
+habing checks
+freethepoker checks
+** River ** [Qc]
+habing checks
+freethepoker checks
+** Pot Show Down ** [5s 6s 7h 6h Qc]
+freethepoker shows [2h Kd] (a Pair of Sixes +KQ7)
+habing shows [5d 4d] (Two Pair, Sixes and Fives +Q)
+habing wins Pot (7.80) with Two Pair
+Rake (0.20)
+
+
+
+Hand #9143881-122 - 2013-06-28 03:32:18
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (375.22)
+Seat 6: habing (213.60)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [5s Th]
+habing folds
+freethepoker refunded 1
+freethepoker wins Pot (2)
+Rake (0)
+
+
+
+Hand #9143884-123 - 2013-06-28 03:32:33
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (376.22)
+Seat 6: habing (212.60)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Qh Td]
+freethepoker raises to 4
+habing calls 2
+** Flop ** [5d 6c Kd]
+habing checks
+freethepoker bets 6
+habing calls 6
+** Turn ** [Ac]
+habing checks
+freethepoker checks
+** River ** [Jd]
+habing bets 16.40
+freethepoker folds
+habing refunded 16.40
+habing wins Pot (19.50)
+Rake (0.50)
+
+
+
+Hand #9143907-124 - 2013-06-28 03:33:35
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (366.22)
+Seat 6: habing (222.10)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [5h 8h]
+habing raises to 4
+freethepoker folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #9143911-125 - 2013-06-28 03:33:48
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (364.22)
+Seat 6: habing (224.10)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Qs 2c]
+freethepoker raises to 4
+habing folds
+freethepoker refunded 2
+freethepoker wins Pot (4)
+Rake (0)
+
+
+
+Hand #9143919-126 - 2013-06-28 03:33:59
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (366.22)
+Seat 6: habing (222.10)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [Qh As]
+habing raises to 4
+freethepoker folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #9143928-127 - 2013-06-28 03:34:13
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (364.22)
+Seat 6: habing (224.10)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Qh Kd]
+freethepoker raises to 4
+habing raises to 15.60
+freethepoker folds
+habing refunded 11.60
+habing wins Pot (8)
+Rake (0)
+
+
+
+Hand #9143936-128 - 2013-06-28 03:34:41
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (360.22)
+Seat 6: habing (228.10)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [2c Tc]
+habing raises to 4
+freethepoker calls 2
+** Flop ** [9s 3c 7c]
+freethepoker checks
+habing bets 4.40
+freethepoker folds
+habing refunded 4.40
+habing wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #9143952-129 - 2013-06-28 03:35:10
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (356.22)
+Seat 6: habing (231.90)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [9s 2h]
+freethepoker raises to 4
+habing folds
+freethepoker refunded 2
+freethepoker wins Pot (4)
+Rake (0)
+
+
+
+Hand #9143958-130 - 2013-06-28 03:35:27
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (358.22)
+Seat 6: habing (229.90)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [6d 6s]
+habing raises to 4
+freethepoker folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #9143963-131 - 2013-06-28 03:35:41
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (356.22)
+Seat 6: habing (231.90)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Jh 5h]
+freethepoker folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #9143972-132 - 2013-06-28 03:35:51
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (355.22)
+Seat 6: habing (232.90)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [8h 2c]
+habing folds
+freethepoker refunded 1
+freethepoker wins Pot (2)
+Rake (0)
+
+
+
+Hand #9143981-133 - 2013-06-28 03:36:14
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (356.22)
+Seat 6: habing (231.90)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [4h Js]
+freethepoker raises to 4
+habing folds
+freethepoker refunded 2
+freethepoker wins Pot (4)
+Rake (0)
+
+
+
+Hand #9143989-134 - 2013-06-28 03:36:30
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (358.22)
+Seat 6: habing (229.90)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [Ac Qh]
+habing raises to 4
+freethepoker folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #9143997-135 - 2013-06-28 03:36:47
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (356.22)
+Seat 6: habing (231.90)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Td As]
+freethepoker folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #9144003-136 - 2013-06-28 03:36:59
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (355.22)
+Seat 6: habing (232.90)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [Tc As]
+habing raises to 4
+freethepoker folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #9144008-137 - 2013-06-28 03:37:15
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (353.22)
+Seat 6: habing (234.90)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [3d 7s]
+freethepoker raises to 4
+habing folds
+freethepoker refunded 2
+freethepoker wins Pot (4)
+Rake (0)
+
+
+
+Hand #9144020-138 - 2013-06-28 03:37:41
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (355.22)
+Seat 6: habing (232.90)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [2h 2c]
+habing raises to 4
+freethepoker folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #9144030-139 - 2013-06-28 03:38:10
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (353.22)
+Seat 3: Gigalew (40)
+Seat 6: habing (234.90)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [6c 9c]
+freethepoker raises to 4
+habing raises to 6
+freethepoker raises to 12
+habing calls 6
+** Flop ** [2c Qd Qh]
+habing checks
+freethepoker checks
+** Turn ** [Ts]
+habing checks
+freethepoker bets 14
+habing folds
+freethepoker refunded 14
+freethepoker wins Pot (23.40)
+Rake (0.60)
+
+
+
+Hand #9144054-140 - 2013-06-28 03:38:59
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (364.62)
+Seat 3: Gigalew (40)
+Seat 6: habing (222.90)
+habing has the dealer button
+freethepoker posts small blind 1
+Gigalew posts big blind 2
+** Hole Cards **
+Dealt to habing [4d Qc]
+habing raises to 4
+freethepoker folds
+Gigalew calls 2
+** Flop ** [Kc 3c 8d]
+Gigalew checks
+habing bets 4.40
+Gigalew calls 4.40
+** Turn ** [4s]
+Gigalew checks
+habing checks
+** River ** [8h]
+Gigalew bets 2
+habing folds
+Gigalew refunded 2
+Gigalew wins Pot (17.36)
+Rake (0.44)
+
+
+
+Hand #9144076-141 - 2013-06-28 03:39:50
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (363.62)
+Seat 3: Gigalew (48.96)
+Seat 6: habing (214.50)
+freethepoker has the dealer button
+Gigalew posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [8h Th]
+freethepoker raises to 6
+Gigalew folds
+habing calls 4
+** Flop ** [6s Qc 9c]
+habing bets 8
+freethepoker folds
+habing refunded 8
+habing wins Pot (12.68)
+Rake (0.32)
+
+
+
+Hand #9144091-142 - 2013-06-28 03:40:20
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (357.62)
+Seat 3: Gigalew (47.96)
+Seat 6: habing (221.18)
+Gigalew has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [Tc 8d]
+Gigalew folds
+habing raises to 6
+freethepoker calls 4
+** Flop ** [Kd Kh 7h]
+habing checks
+freethepoker bets 10
+habing folds
+freethepoker refunded 10
+freethepoker wins Pot (11.70)
+Rake (0.30)
+
+
+
+Hand #9144108-143 - 2013-06-28 03:41:13
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (363.32)
+Seat 3: Gigalew (47.96)
+Seat 6: habing (215.18)
+habing has the dealer button
+freethepoker posts small blind 1
+Gigalew posts big blind 2
+** Hole Cards **
+Dealt to habing [7c 8h]
+habing raises to 4
+freethepoker folds
+Gigalew folds
+habing refunded 2
+habing wins Pot (5)
+Rake (0)
+
+
+
+Hand #9144120-144 - 2013-06-28 03:41:34
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (362.32)
+Seat 3: Gigalew (45.96)
+Seat 6: habing (218.18)
+freethepoker has the dealer button
+Gigalew posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Td 5d]
+freethepoker raises to 6
+Gigalew folds
+habing folds
+freethepoker refunded 4
+freethepoker wins Pot (5)
+Rake (0)
+
+
+
+Hand #9144130-145 - 2013-06-28 03:41:50
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (365.32)
+Seat 3: Gigalew (44.96)
+Seat 6: habing (216.18)
+Gigalew has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [6s 6c]
+Gigalew calls 2
+habing raises to 11.20
+freethepoker folds
+Gigalew folds
+habing refunded 9.20
+habing wins Pot (6)
+Rake (0)
+
+
+
+Hand #9144141-146 - 2013-06-28 03:42:14
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (363.32)
+Seat 3: Gigalew (42.96)
+Seat 6: habing (220.18)
+habing has the dealer button
+freethepoker posts small blind 1
+Gigalew posts big blind 2
+** Hole Cards **
+Dealt to habing [Ac 9c]
+habing raises to 4
+freethepoker raises to 14
+Gigalew calls 12
+habing calls 10
+** Flop ** [Ah 6h Ts]
+freethepoker checks
+Gigalew checks
+habing bets 28.80
+freethepoker folds
+Gigalew folds
+habing refunded 28.80
+habing wins Pot (40.95)
+Rake (1.05)
+
+
+
+Hand #9144168-147 - 2013-06-28 03:43:16
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (349.32)
+Seat 3: Gigalew (28.96)
+Seat 6: habing (247.13)
+freethepoker has the dealer button
+Gigalew posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Qc Ac]
+freethepoker raises to 6
+Gigalew calls 5
+habing raises to 26.40
+freethepoker folds
+Gigalew calls 20.40
+** Flop ** [8h Ad Kc]
+Gigalew checks
+habing bets 8
+Gigalew calls 2.56 (All-in)
+habing refunded 5.44
+** Turn ** [Jh]
+** River ** [9s]
+** Pot Show Down ** [8h Ad Kc Jh 9s]
+Gigalew shows [Ts 8s] (a Pair of Eights +AKJ)
+habing shows [Qc Ac] (a Pair of Aces +KQJ)
+habing wins Pot (62.33) with a Pair
+Rake (1.59)
+
+
+
+Hand #9144191-148 - 2013-06-28 03:44:08
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (343.32)
+Seat 3: Gigalew (0) - sitting out
+Seat 6: habing (280.50)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [Kc Ac]
+habing raises to 4
+freethepoker folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #9144207-149 - 2013-06-28 03:44:46
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (341.32)
+Seat 6: habing (282.50)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Js 3c]
+freethepoker raises to 4
+habing folds
+freethepoker refunded 2
+freethepoker wins Pot (4)
+Rake (0)
+
+
+
+Hand #9144215-150 - 2013-06-28 03:45:06
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (343.32)
+Seat 6: habing (280.50)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [8d Ah]
+habing raises to 4
+freethepoker calls 2
+** Flop ** [As Kh Qc]
+freethepoker checks
+habing bets 5.60
+freethepoker folds
+habing refunded 5.60
+habing wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #9144233-151 - 2013-06-28 03:45:39
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (339.32)
+Seat 6: habing (284.30)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [8c Kc]
+freethepoker folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #9144238-152 - 2013-06-28 03:45:52
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (338.32)
+Seat 6: habing (285.30)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [Ad 4h]
+habing raises to 4
+freethepoker raises to 12
+habing folds
+freethepoker refunded 8
+freethepoker wins Pot (8)
+Rake (0)
+
+
+
+Hand #9144246-153 - 2013-06-28 03:46:09
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (342.32)
+Seat 6: habing (281.30)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Jh Qc]
+freethepoker raises to 4
+habing calls 2
+** Flop ** [5d Tc Jc]
+habing checks
+freethepoker bets 6
+habing calls 6
+** Turn ** [Th]
+habing checks
+freethepoker bets 12
+habing calls 12
+** River ** [6s]
+habing checks
+freethepoker bets 16
+habing calls 16
+** Pot Show Down ** [5d Tc Jc Th 6s]
+freethepoker shows [Ad Ts] (Three of a Kind, Tens +AJ)
+habing shows [Jh Qc] (Two Pair, Jacks and Tens +Q)
+freethepoker wins Pot (74.10) with Three of a Kind
+Rake (1.90)
+
+
+
+Hand #9144279-154 - 2013-06-28 03:47:26
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (378.42)
+Seat 6: habing (243.30)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [9c 8c]
+habing raises to 4
+freethepoker folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #9144289-155 - 2013-06-28 03:47:40
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (376.42)
+Seat 6: habing (245.30)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [5s 7h]
+freethepoker raises to 4
+habing folds
+freethepoker refunded 2
+freethepoker wins Pot (4)
+Rake (0)
+
+
+
+Hand #9144296-156 - 2013-06-28 03:47:55
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (378.42)
+Seat 6: habing (243.30)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [6d 6s]
+habing raises to 4
+freethepoker folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #9144301-157 - 2013-06-28 03:48:09
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (376.42)
+Seat 6: habing (245.30)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Jd 5c]
+freethepoker raises to 4
+habing folds
+freethepoker refunded 2
+freethepoker wins Pot (4)
+Rake (0)
+
+
+
+Hand #9144308-158 - 2013-06-28 03:48:21
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (378.42)
+Seat 6: habing (243.30)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [9s As]
+habing raises to 4
+freethepoker folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #9144314-159 - 2013-06-28 03:48:35
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (376.42)
+Seat 6: habing (245.30)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [3d 7c]
+freethepoker raises to 4
+habing folds
+freethepoker refunded 2
+freethepoker wins Pot (4)
+Rake (0)
+
+
+
+Hand #9144321-160 - 2013-06-28 03:48:49
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (378.42)
+Seat 6: habing (243.30)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [2c 5d]
+habing folds
+freethepoker refunded 1
+freethepoker wins Pot (2)
+Rake (0)
+
+
+
+Hand #9144327-161 - 2013-06-28 03:49:02
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (379.42)
+Seat 6: habing (242.30)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [7s 2s]
+freethepoker raises to 4
+habing folds
+freethepoker refunded 2
+freethepoker wins Pot (4)
+Rake (0)
+
+
+
+Hand #9144339-162 - 2013-06-28 03:49:18
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (381.42)
+Seat 6: habing (240.30)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [Th 2h]
+habing raises to 4
+freethepoker calls 2
+** Flop ** [Kd 2d Qh]
+freethepoker bets 6
+habing raises to 20.40
+freethepoker folds
+habing refunded 14.40
+habing wins Pot (19.50)
+Rake (0.50)
+
+
+
+Hand #9144351-163 - 2013-06-28 03:49:56
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (371.42)
+Seat 6: habing (249.80)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [2h 2d]
+freethepoker raises to 4
+habing calls 2
+** Flop ** [7c 4s Ad]
+habing checks
+freethepoker checks
+** Turn ** [7d]
+habing checks
+freethepoker bets 4
+habing folds
+freethepoker refunded 4
+freethepoker wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #9144374-164 - 2013-06-28 03:50:38
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (375.22)
+Seat 6: habing (245.80)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [2d 7s]
+habing folds
+freethepoker refunded 1
+freethepoker wins Pot (2)
+Rake (0)
+
+
+
+Hand #9144381-165 - 2013-06-28 03:50:49
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (376.22)
+Seat 6: habing (244.80)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [8d 3s]
+freethepoker folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #9144388-166 - 2013-06-28 03:51:03
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (375.22)
+Seat 6: habing (245.80)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [Ac 9s]
+habing raises to 4
+freethepoker folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #9144399-167 - 2013-06-28 03:51:17
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (373.22)
+Seat 6: habing (247.80)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [6d 3h]
+freethepoker raises to 4
+habing folds
+freethepoker refunded 2
+freethepoker wins Pot (4)
+Rake (0)
+
+
+
+Hand #9144406-168 - 2013-06-28 03:51:33
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (375.22)
+Seat 6: habing (245.80)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [8d 5c]
+habing folds
+freethepoker refunded 1
+freethepoker wins Pot (2)
+Rake (0)
+
+
+
+Hand #9144413-169 - 2013-06-28 03:51:43
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (376.22)
+Seat 6: habing (244.80)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [As 3s]
+freethepoker folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #9144419-170 - 2013-06-28 03:51:57
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (375.22)
+Seat 6: habing (245.80)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [9d 2h]
+habing folds
+freethepoker refunded 1
+freethepoker wins Pot (2)
+Rake (0)
+
+
+
+Hand #9144425-171 - 2013-06-28 03:52:08
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (376.22)
+Seat 6: habing (244.80)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [2s 5h]
+freethepoker raises to 4
+habing folds
+freethepoker refunded 2
+freethepoker wins Pot (4)
+Rake (0)
+
+
+
+Hand #9144430-172 - 2013-06-28 03:52:21
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (378.22)
+Seat 6: habing (242.80)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [3d Js]
+habing raises to 4
+freethepoker folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #9144441-173 - 2013-06-28 03:52:42
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (376.22)
+Seat 6: habing (244.80)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ah 8h]
+freethepoker raises to 4
+habing raises to 16.80
+freethepoker calls 12.80
+** Flop ** [Tc Td Qd]
+habing checks
+freethepoker bets 24
+habing folds
+freethepoker refunded 24
+freethepoker wins Pot (32.76)
+Rake (0.84)
+
+
+
+Hand #9144465-174 - 2013-06-28 03:53:33
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (392.18)
+Seat 6: habing (228)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [4c As]
+habing raises to 4
+freethepoker calls 2
+** Flop ** [5c 9s 6h]
+freethepoker checks
+habing checks
+** Turn ** [6s]
+freethepoker checks
+habing checks
+** River ** [Jc]
+freethepoker checks
+habing checks
+** Pot Show Down ** [5c 9s 6h 6s Jc]
+freethepoker shows [Kh 3h] (a Pair of Sixes +KJ9)
+habing shows [4c As] (a Pair of Sixes +AJ9)
+habing wins Pot (7.80) with a Pair
+Rake (0.20)
+
+
+
+Hand #9144484-175 - 2013-06-28 03:54:20
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (388.18)
+Seat 6: habing (231.80)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Kd Jc]
+freethepoker folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #9144490-176 - 2013-06-28 03:54:31
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (387.18)
+Seat 6: habing (232.80)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [4d 2c]
+habing folds
+freethepoker refunded 1
+freethepoker wins Pot (2)
+Rake (0)
+
+
+
+Hand #9144498-177 - 2013-06-28 03:54:44
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (388.18)
+Seat 6: habing (231.80)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [9c 6h]
+freethepoker folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #9144503-178 - 2013-06-28 03:54:54
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (387.18)
+Seat 6: habing (232.80)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [5c 6h]
+habing raises to 4
+freethepoker calls 2
+** Flop ** [3d 8s 3h]
+freethepoker checks
+habing checks
+** Turn ** [Js]
+freethepoker bets 6
+habing folds
+freethepoker refunded 6
+freethepoker wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #9144521-179 - 2013-06-28 03:55:40
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (390.98)
+Seat 6: habing (228.80)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [7d Th]
+freethepoker folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #9144525-180 - 2013-06-28 03:55:50
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (389.98)
+Seat 6: habing (229.80)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [5c Jd]
+habing raises to 4
+freethepoker calls 2
+** Flop ** [9s 4s Tc]
+freethepoker checks
+habing checks
+** Turn ** [6s]
+freethepoker checks
+habing checks
+** River ** [Kc]
+freethepoker checks
+habing checks
+** Pot Show Down ** [9s 4s Tc 6s Kc]
+freethepoker shows [7h Kh] (a Pair of Kings +T97)
+habing shows [5c Jd] (High Card King +JT96)
+freethepoker wins Pot (7.80) with a Pair
+Rake (0.20)
+
+
+
+Hand #9144547-181 - 2013-06-28 03:56:49
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (393.78)
+Seat 6: habing (225.80)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [5h Jh]
+freethepoker raises to 4
+habing calls 2
+** Flop ** [3c 8h 4d]
+habing checks
+freethepoker bets 6
+habing raises to 20.40
+freethepoker folds
+habing refunded 14.40
+habing wins Pot (19.50)
+Rake (0.50)
+
+
+
+Hand #9144568-182 - 2013-06-28 03:57:42
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (383.78)
+Seat 6: habing (235.30)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [7d 2d]
+habing raises to 4
+freethepoker calls 2
+** Flop ** [6c 4c 7s]
+freethepoker checks
+habing bets 6.80
+freethepoker folds
+habing refunded 6.80
+habing wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #9144578-183 - 2013-06-28 03:58:09
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (379.78)
+Seat 6: habing (239.10)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [6h Qd]
+freethepoker raises to 4
+habing calls 2
+** Flop ** [Qs 3c 2d]
+habing checks
+freethepoker bets 6
+habing raises to 20.40
+freethepoker raises to 50.79
+habing calls 30.39
+** Turn ** [2s]
+habing checks
+freethepoker bets 56
+habing calls 56
+** River ** [9h]
+habing checks
+freethepoker checks
+** Pot Show Down ** [Qs 3c 2d 2s 9h]
+freethepoker shows [Ad 7c] (a Pair of Deuces +AQ9)
+habing shows [6h Qd] (Two Pair, Queens and Deuces +9)
+habing wins Pot (217.58) with Two Pair
+Rake (4)
+
+
+
+Hand #9144599-184 - 2013-06-28 03:59:10
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (268.99)
+Seat 6: habing (345.89)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [Ts 9h]
+habing raises to 4
+freethepoker folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #9144606-185 - 2013-06-28 03:59:23
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (266.99)
+Seat 6: habing (347.89)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [5h Tc]
+freethepoker raises to 4
+habing folds
+freethepoker refunded 2
+freethepoker wins Pot (4)
+Rake (0)
+
+
+
+Hand #9144611-186 - 2013-06-28 03:59:36
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (268.99)
+Seat 6: habing (345.89)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [Qs 6d]
+habing raises to 4
+freethepoker folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #9144618-187 - 2013-06-28 03:59:49
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (266.99)
+Seat 6: habing (347.89)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [6d 9h]
+freethepoker folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #9144623-188 - 2013-06-28 03:59:59
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (265.99)
+Seat 6: habing (348.89)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [5d 2h]
+habing folds
+freethepoker refunded 1
+freethepoker wins Pot (2)
+Rake (0)
+
+
+
+Hand #9144627-189 - 2013-06-28 04:00:09
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (266.99)
+Seat 6: habing (347.89)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [5h 9c]
+freethepoker raises to 4
+habing folds
+freethepoker refunded 2
+freethepoker wins Pot (4)
+Rake (0)
+
+
+
+Hand #9144634-190 - 2013-06-28 04:00:22
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (268.99)
+Seat 6: habing (345.89)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [2d 8c]
+habing folds
+freethepoker refunded 1
+freethepoker wins Pot (2)
+Rake (0)
+
+
+
+Hand #9144638-191 - 2013-06-28 04:00:33
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (269.99)
+Seat 6: habing (344.89)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [7s Ac]
+freethepoker raises to 4
+habing calls 2
+** Flop ** [Qd 5h 2c]
+habing checks
+freethepoker bets 8
+habing calls 8
+** Turn ** [2h]
+habing checks
+freethepoker bets 14
+habing folds
+freethepoker refunded 14
+freethepoker wins Pot (23.40)
+Rake (0.60)
+
+
+
+Hand #9144669-192 - 2013-06-28 04:01:39
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (281.39)
+Seat 6: habing (332.89)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [3d 2s]
+habing folds
+freethepoker refunded 1
+freethepoker wins Pot (2)
+Rake (0)
+
+
+
+Hand #9144674-193 - 2013-06-28 04:01:50
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (282.39)
+Seat 6: habing (331.89)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [3s 2d]
+freethepoker raises to 4
+habing folds
+freethepoker refunded 2
+freethepoker wins Pot (4)
+Rake (0)
+
+
+
+Hand #9144692-194 - 2013-06-28 04:02:20
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (284.39)
+Seat 6: habing (329.89)
+habing has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [Qs 4h]
+habing raises to 4
+freethepoker folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #9144710-195 - 2013-06-28 04:02:57
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (282.39)
+Seat 3: vettefever88 (200) - waiting for big blind
+Seat 6: habing (331.89)
+freethepoker has the dealer button
+freethepoker posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [4s 3s]
+freethepoker folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #9144717-196 - 2013-06-28 04:03:08
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (281.39)
+Seat 3: vettefever88 (200) - waiting for big blind
+Seat 6: habing (332.89)
+habing has the dealer button
+freethepoker posts small blind 1
+vettefever88 posts big blind 2
+** Hole Cards **
+Dealt to habing [3d Td]
+habing raises to 4
+freethepoker folds
+vettefever88 calls 2
+** Flop ** [Kh 6d 4c]
+vettefever88 checks
+habing checks
+** Turn ** [Tc]
+vettefever88 checks
+habing checks
+** River ** [Ad]
+vettefever88 bets 30
+habing folds
+vettefever88 refunded 30
+vettefever88 wins Pot (8.78)
+Rake (0.22)
+
+
+
+Hand #9144730-197 - 2013-06-28 04:03:37
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (280.39)
+Seat 3: vettefever88 (204.78)
+Seat 6: habing (328.89)
+freethepoker has the dealer button
+vettefever88 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Jh 8d]
+freethepoker raises to 6
+vettefever88 calls 5
+habing folds
+** Flop ** [2d 3d Kh]
+vettefever88 checks
+freethepoker bets 10
+vettefever88 folds
+freethepoker refunded 10
+freethepoker wins Pot (13.65)
+Rake (0.35)
+
+
+
+Hand #9144754-198 - 2013-06-28 04:04:18
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (288.04)
+Seat 3: vettefever88 (198.78)
+Seat 6: habing (326.89)
+vettefever88 has the dealer button
+habing posts small blind 1
+freethepoker posts big blind 2
+** Hole Cards **
+Dealt to habing [8h 9c]
+vettefever88 folds
+habing raises to 6
+freethepoker folds
+habing refunded 4
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #9144766-199 - 2013-06-28 04:04:37
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (286.04)
+Seat 3: vettefever88 (198.78)
+Seat 6: habing (328.89)
+habing has the dealer button
+freethepoker posts small blind 1
+vettefever88 posts big blind 2
+** Hole Cards **
+Dealt to habing [7s 5c]
+habing folds
+freethepoker folds
+vettefever88 refunded 1
+vettefever88 wins Pot (2)
+Rake (0)
+
+
+
+Hand #9144779-200 - 2013-06-28 04:05:05
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: freethepoker (285.04)
+Seat 3: vettefever88 (199.78)
+Seat 6: habing (328.89)
+freethepoker has the dealer button
+vettefever88 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [9d 5d]
+freethepoker folds
+vettefever88 calls 1
+habing checks
+** Flop ** [Qs 6s 7s]
+vettefever88 checks
+habing checks
+** Turn ** [Jh]
+vettefever88 checks
+habing checks
+** River ** [7h]
+vettefever88 checks
+habing checks
+** Pot Show Down ** [Qs 6s 7s Jh 7h]
+vettefever88 shows [6c Th] (Two Pair, Sevens and Sixes +Q)
+habing shows [9d 5d] (a Pair of Sevens +QJ9)
+vettefever88 wins Pot (3.90) with Two Pair
+Rake (0.10)

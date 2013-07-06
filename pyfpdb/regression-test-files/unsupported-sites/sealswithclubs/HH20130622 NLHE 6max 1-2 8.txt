@@ -1,0 +1,6020 @@
+Hand #8858055-1 - 2013-06-22 03:22:56
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 2: slowah (200) - waiting for big blind
+Seat 6: habing (200) - waiting for big blind
+slowah has the dealer button
+slowah posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Js Kh]
+slowah raises to 4
+habing calls 2
+** Flop ** [7c 2s 3h]
+habing checks
+slowah bets 6
+habing calls 6
+** Turn ** [5c]
+habing checks
+slowah checks
+** River ** [2c]
+habing checks
+slowah checks
+** Pot Show Down ** [7c 2s 3h 5c 2c]
+slowah shows [3d 6s] (Two Pair, Threes and Deuces +7)
+habing shows [Js Kh] (a Pair of Deuces +KJ7)
+slowah wins Pot (19.50) with Two Pair
+Rake (0.50)
+habing adds 10 chips
+
+
+
+Hand #8858089-2 - 2013-06-22 03:23:48
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 2: slowah (209.50)
+Seat 6: habing (200)
+habing has the dealer button
+habing posts small blind 1
+slowah posts big blind 2
+** Hole Cards **
+Dealt to habing [6h 8d]
+habing folds
+slowah refunded 1
+habing adds 1 chips
+slowah wins Pot (2)
+Rake (0)
+
+
+
+Hand #8858097-3 - 2013-06-22 03:24:03
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 2: slowah (210.50)
+Seat 6: habing (200)
+slowah has the dealer button
+slowah posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [8h 2h]
+slowah raises to 6
+habing folds
+slowah refunded 4
+habing adds 2 chips
+slowah wins Pot (4)
+Rake (0)
+
+
+
+Hand #8858112-4 - 2013-06-22 03:24:27
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 2: slowah (212.50)
+Seat 6: habing (200)
+habing has the dealer button
+habing posts small blind 1
+slowah posts big blind 2
+** Hole Cards **
+Dealt to habing [5d Ad]
+habing raises to 4
+slowah folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8858120-5 - 2013-06-22 03:24:39
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 2: slowah (210.50)
+Seat 6: habing (202)
+slowah has the dealer button
+slowah posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [3c Qc]
+slowah raises to 6
+habing folds
+slowah refunded 4
+slowah wins Pot (4)
+Rake (0)
+
+
+
+Hand #8858129-6 - 2013-06-22 03:24:57
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 2: slowah (212.50)
+Seat 6: habing (200)
+habing has the dealer button
+habing posts small blind 1
+slowah posts big blind 2
+** Hole Cards **
+Dealt to habing [Qc 5s]
+habing raises to 4
+slowah calls 2
+** Flop ** [Qh Td 8d]
+slowah checks
+habing bets 6
+slowah raises to 14
+habing calls 8
+** Turn ** [8s]
+slowah bets 22
+habing calls 22
+** River ** [9h]
+slowah checks
+habing checks
+** Pot Show Down ** [Qh Td 8d 8s 9h]
+slowah shows [Qd 7d] (Two Pair, Queens and Eights +T)
+habing shows [Qc 5s] (Two Pair, Queens and Eights +T)
+slowah splits Pot (39) with Two Pair
+habing splits Pot (39) with Two Pair
+Rake (2)
+habing adds 1 chips
+
+
+
+Hand #8858159-7 - 2013-06-22 03:25:55
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 2: slowah (211.50)
+Seat 6: habing (200)
+slowah has the dealer button
+slowah posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [6c Ac]
+slowah raises to 6
+habing calls 4
+** Flop ** [3h Ah 8d]
+habing checks
+slowah bets 8
+habing raises to 24
+slowah folds
+habing refunded 16
+habing wins Pot (27.30)
+Rake (0.70)
+
+
+
+Hand #8858180-8 - 2013-06-22 03:26:34
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 2: slowah (197.50)
+Seat 6: habing (213.30)
+habing has the dealer button
+habing posts small blind 1
+slowah posts big blind 2
+** Hole Cards **
+Dealt to habing [8c 7c]
+habing raises to 4
+slowah calls 2
+** Flop ** [Ad 2c 4c]
+slowah checks
+habing bets 6
+slowah folds
+habing refunded 6
+habing wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #8858198-9 - 2013-06-22 03:27:06
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 2: slowah (193.50)
+Seat 3: SlipSlapSLAM (200)
+Seat 6: habing (217.10)
+slowah has the dealer button
+slowah posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Qd Qs]
+slowah raises to 6
+habing raises to 20.80
+slowah calls 14.80
+** Flop ** [Kd 9s 8h]
+habing checks
+slowah checks
+** Turn ** [6h]
+habing checks
+slowah checks
+** River ** [7h]
+habing checks
+slowah bets 20
+habing folds
+slowah refunded 20
+habing adds 3.70 chips
+slowah wins Pot (40.56)
+Rake (1.04)
+
+
+
+Hand #8858228-10 - 2013-06-22 03:28:06
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 2: slowah (213.26)
+Seat 3: SlipSlapSLAM (200)
+Seat 6: habing (200)
+habing has the dealer button
+slowah posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [8h 8c]
+habing raises to 6
+slowah calls 5
+SlipSlapSLAM folds
+** Flop ** [4h Tc 9s]
+slowah checks
+habing checks
+** Turn ** [Td]
+slowah checks
+habing bets 10
+slowah calls 10
+** River ** [2s]
+slowah checks
+habing checks
+** Pot Show Down ** [4h Tc 9s Td 2s]
+slowah shows [5d 5c] (Two Pair, Tens and Fives +9)
+habing shows [8h 8c] (Two Pair, Tens and Eights +9)
+habing wins Pot (33.15) with Two Pair
+Rake (0.85)
+
+
+
+Hand #8858251-11 - 2013-06-22 03:28:47
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 2: slowah (197.26)
+Seat 3: SlipSlapSLAM (198)
+Seat 6: habing (217.15)
+slowah has the dealer button
+SlipSlapSLAM posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [As Qh]
+slowah folds
+SlipSlapSLAM folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8858260-12 - 2013-06-22 03:29:04
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 2: slowah (197.26)
+Seat 3: SlipSlapSLAM (197)
+Seat 6: habing (218.15)
+SlipSlapSLAM has the dealer button
+habing posts small blind 1
+slowah posts big blind 2
+** Hole Cards **
+Dealt to habing [5s 4h]
+SlipSlapSLAM folds
+habing folds
+slowah refunded 1
+slowah wins Pot (2)
+Rake (0)
+
+
+
+Hand #8858275-13 - 2013-06-22 03:29:25
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 2: slowah (198.26)
+Seat 3: SlipSlapSLAM (197)
+Seat 6: habing (217.15)
+habing has the dealer button
+slowah posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [8d 3d]
+habing folds
+slowah raises to 6
+SlipSlapSLAM raises to 18
+slowah calls 12
+** Flop ** [Th 9c 3c]
+slowah checks
+SlipSlapSLAM bets 22
+slowah raises to 180.26 (All-in)
+SlipSlapSLAM folds
+slowah refunded 158.26
+SlipSlapSLAM adds 43 chips
+slowah wins Pot (78)
+Rake (2)
+
+
+
+Hand #8858314-14 - 2013-06-22 03:30:48
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 2: slowah (236.26)
+Seat 3: SlipSlapSLAM (200)
+Seat 6: habing (217.15)
+slowah has the dealer button
+SlipSlapSLAM posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [2c Qc]
+slowah folds
+SlipSlapSLAM raises to 6
+habing calls 4
+** Flop ** [Ks 7c 8h]
+SlipSlapSLAM bets 8
+habing folds
+SlipSlapSLAM refunded 8
+SlipSlapSLAM wins Pot (11.70)
+Rake (0.30)
+
+
+
+Hand #8858334-15 - 2013-06-22 03:31:22
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 2: slowah (236.26)
+Seat 3: SlipSlapSLAM (205.70)
+Seat 6: habing (211.15)
+SlipSlapSLAM has the dealer button
+habing posts small blind 1
+slowah posts big blind 2
+** Hole Cards **
+Dealt to habing [5c 2d]
+SlipSlapSLAM folds
+habing folds
+slowah refunded 1
+slowah wins Pot (2)
+Rake (0)
+
+
+
+Hand #8858343-16 - 2013-06-22 03:31:34
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 2: slowah (237.26)
+Seat 3: SlipSlapSLAM (205.70)
+Seat 6: habing (210.15)
+habing has the dealer button
+slowah posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [8c Qh]
+habing raises to 4
+slowah folds
+SlipSlapSLAM calls 2
+** Flop ** [Ks 2h Jc]
+SlipSlapSLAM bets 8
+habing folds
+SlipSlapSLAM refunded 8
+SlipSlapSLAM wins Pot (8.78)
+Rake (0.22)
+
+
+
+Hand #8858362-17 - 2013-06-22 03:32:06
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 2: slowah (236.26)
+Seat 3: SlipSlapSLAM (210.48)
+Seat 6: habing (206.15)
+slowah has the dealer button
+SlipSlapSLAM posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ah 8c]
+slowah raises to 6
+SlipSlapSLAM raises to 18
+habing folds
+slowah calls 12
+** Flop ** [7s 3h 8h]
+SlipSlapSLAM checks
+slowah checks
+** Turn ** [Tc]
+SlipSlapSLAM checks
+slowah bets 20
+SlipSlapSLAM folds
+slowah refunded 20
+slowah wins Pot (37.05)
+Rake (0.95)
+
+
+
+Hand #8858385-18 - 2013-06-22 03:33:00
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 2: slowah (255.31)
+Seat 3: SlipSlapSLAM (192.48)
+Seat 6: habing (204.15)
+SlipSlapSLAM has the dealer button
+habing posts small blind 1
+slowah posts big blind 2
+** Hole Cards **
+Dealt to habing [As Qc]
+SlipSlapSLAM folds
+SlipSlapSLAM adds 7.52 chips
+habing raises to 6
+slowah calls 4
+** Flop ** [Jh 7c Kh]
+habing bets 6.80
+slowah calls 6.80
+** Turn ** [Ks]
+habing checks
+slowah bets 16
+habing calls 16
+** River ** [3h]
+habing checks
+slowah bets 24
+habing folds
+slowah refunded 24
+habing adds 24.65 chips
+slowah wins Pot (56.16)
+Rake (1.44)
+
+
+
+Hand #8858409-19 - 2013-06-22 03:33:49
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 2: slowah (282.67)
+Seat 3: SlipSlapSLAM (200)
+Seat 6: habing (200)
+habing has the dealer button
+slowah posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [Jh Kc]
+habing raises to 4
+slowah folds
+SlipSlapSLAM folds
+habing refunded 2
+habing wins Pot (5)
+Rake (0)
+
+
+
+Hand #8858420-20 - 2013-06-22 03:34:12
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 2: slowah (281.67)
+Seat 3: SlipSlapSLAM (198)
+Seat 6: habing (203)
+slowah has the dealer button
+SlipSlapSLAM posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [5c 9s]
+slowah folds
+SlipSlapSLAM raises to 6
+habing folds
+SlipSlapSLAM refunded 4
+SlipSlapSLAM wins Pot (4)
+Rake (0)
+
+
+
+Hand #8858430-21 - 2013-06-22 03:34:29
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 2: slowah (281.67)
+Seat 3: SlipSlapSLAM (200)
+Seat 6: habing (201)
+SlipSlapSLAM has the dealer button
+habing posts small blind 1
+slowah posts big blind 2
+** Hole Cards **
+Dealt to habing [2s 5s]
+SlipSlapSLAM raises to 6
+habing folds
+slowah calls 4
+** Flop ** [8h 5c Tc]
+slowah checks
+SlipSlapSLAM bets 10
+slowah calls 10
+** Turn ** [2d]
+slowah checks
+SlipSlapSLAM bets 26
+slowah folds
+SlipSlapSLAM refunded 26
+SlipSlapSLAM wins Pot (32.18)
+Rake (0.82)
+
+
+
+Hand #8858451-22 - 2013-06-22 03:35:24
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 2: slowah (265.67)
+Seat 3: SlipSlapSLAM (216.18)
+Seat 6: habing (200)
+habing has the dealer button
+slowah posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [Jc Th]
+habing raises to 4
+slowah folds
+SlipSlapSLAM calls 2
+** Flop ** [7d 3h 9c]
+SlipSlapSLAM bets 8
+habing folds
+SlipSlapSLAM refunded 8
+habing adds 4 chips
+SlipSlapSLAM wins Pot (8.78)
+Rake (0.22)
+
+
+
+Hand #8858464-23 - 2013-06-22 03:35:56
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 2: slowah (264.67)
+Seat 3: SlipSlapSLAM (220.96)
+Seat 6: habing (200)
+slowah has the dealer button
+SlipSlapSLAM posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [8s Qh]
+slowah folds
+SlipSlapSLAM folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8858472-24 - 2013-06-22 03:36:08
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 2: slowah (264.67)
+Seat 3: SlipSlapSLAM (219.96)
+Seat 6: habing (201)
+SlipSlapSLAM has the dealer button
+habing posts small blind 1
+slowah posts big blind 2
+** Hole Cards **
+Dealt to habing [Kh Qd]
+SlipSlapSLAM raises to 6
+habing calls 5
+slowah calls 4
+** Flop ** [4c 5c 5d]
+habing checks
+slowah checks
+SlipSlapSLAM checks
+** Turn ** [3c]
+habing checks
+slowah checks
+SlipSlapSLAM checks
+** River ** [Td]
+habing checks
+slowah checks
+SlipSlapSLAM bets 6
+habing folds
+habing adds 5 chips
+slowah folds
+SlipSlapSLAM refunded 6
+SlipSlapSLAM wins Pot (17.55)
+Rake (0.45)
+
+
+
+Hand #8858501-25 - 2013-06-22 03:36:58
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 2: slowah (258.67)
+Seat 3: SlipSlapSLAM (231.51)
+Seat 6: habing (200)
+habing has the dealer button
+slowah posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [5h 7s]
+habing folds
+slowah folds
+SlipSlapSLAM refunded 1
+SlipSlapSLAM wins Pot (2)
+Rake (0)
+
+
+
+Hand #8858514-26 - 2013-06-22 03:37:17
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 2: slowah (257.67)
+Seat 3: SlipSlapSLAM (232.51)
+Seat 6: habing (200)
+slowah has the dealer button
+SlipSlapSLAM posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [4h Jh]
+slowah raises to 6
+SlipSlapSLAM folds
+habing folds
+slowah refunded 4
+habing adds 2 chips
+slowah wins Pot (5)
+Rake (0)
+
+
+
+Hand #8858523-27 - 2013-06-22 03:37:38
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 2: slowah (260.67)
+Seat 3: SlipSlapSLAM (231.51)
+Seat 6: habing (200)
+SlipSlapSLAM has the dealer button
+SlipSlapSLAM posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Qs Qd]
+SlipSlapSLAM raises to 6
+habing raises to 18
+SlipSlapSLAM calls 12
+** Flop ** [3d Jc 8d]
+habing bets 19.20
+SlipSlapSLAM folds
+habing refunded 19.20
+habing wins Pot (35.10)
+Rake (0.90)
+
+
+
+Hand #8858538-28 - 2013-06-22 03:38:09
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (213.51)
+Seat 6: habing (217.10)
+habing has the dealer button
+habing posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [8c Jh]
+habing raises to 4
+SlipSlapSLAM calls 2
+** Flop ** [Kd Th 9c]
+SlipSlapSLAM checks
+habing bets 5.60
+SlipSlapSLAM folds
+habing refunded 5.60
+habing wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #8858549-29 - 2013-06-22 03:38:32
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (209.51)
+Seat 6: habing (220.90)
+SlipSlapSLAM has the dealer button
+SlipSlapSLAM posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [4h Tc]
+SlipSlapSLAM folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8858555-30 - 2013-06-22 03:38:45
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (208.51)
+Seat 6: habing (221.90)
+habing has the dealer button
+habing posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [Td 8h]
+habing raises to 4
+SlipSlapSLAM folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8858564-31 - 2013-06-22 03:39:02
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (206.51)
+Seat 6: habing (223.90)
+SlipSlapSLAM has the dealer button
+SlipSlapSLAM posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ah Td]
+SlipSlapSLAM raises to 6
+habing calls 4
+** Flop ** [Qs Th Kd]
+habing checks
+SlipSlapSLAM checks
+** Turn ** [2h]
+habing checks
+SlipSlapSLAM checks
+** River ** [3s]
+habing bets 2
+SlipSlapSLAM calls 2
+** Pot Show Down ** [Qs Th Kd 2h 3s]
+SlipSlapSLAM shows [Qh 7c] (a Pair of Queens +KT7)
+habing shows [Ah Td] (a Pair of Tens +AKQ)
+SlipSlapSLAM wins Pot (15.60) with a Pair
+Rake (0.40)
+
+
+
+Hand #8858581-32 - 2013-06-22 03:39:42
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (214.11)
+Seat 6: habing (215.90)
+habing has the dealer button
+habing posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [6c Jc]
+habing raises to 4
+SlipSlapSLAM raises to 8
+habing calls 4
+** Flop ** [3h 3c 9h]
+SlipSlapSLAM checks
+habing checks
+** Turn ** [Ah]
+SlipSlapSLAM bets 10
+habing folds
+SlipSlapSLAM refunded 10
+SlipSlapSLAM wins Pot (15.60)
+Rake (0.40)
+
+
+
+Hand #8858598-33 - 2013-06-22 03:40:22
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (221.71)
+Seat 6: habing (207.90)
+SlipSlapSLAM has the dealer button
+SlipSlapSLAM posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [2c 6d]
+SlipSlapSLAM raises to 6
+habing folds
+SlipSlapSLAM refunded 4
+SlipSlapSLAM wins Pot (4)
+Rake (0)
+
+
+
+Hand #8858609-34 - 2013-06-22 03:40:48
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: mrhollis1 (200)
+Seat 3: SlipSlapSLAM (223.71)
+Seat 6: habing (205.90)
+habing has the dealer button
+habing posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [4h 6c]
+habing folds
+SlipSlapSLAM refunded 1
+SlipSlapSLAM wins Pot (2)
+Rake (0)
+
+
+
+Hand #8858613-35 - 2013-06-22 03:41:01
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: mrhollis1 (200)
+Seat 3: SlipSlapSLAM (224.71)
+Seat 6: habing (204.90)
+SlipSlapSLAM has the dealer button
+habing posts small blind 1
+mrhollis1 posts big blind 2
+** Hole Cards **
+Dealt to habing [Qd 5d]
+SlipSlapSLAM raises to 6
+habing folds
+mrhollis1 calls 4
+** Flop ** [7c 7h 8c]
+mrhollis1 checks
+SlipSlapSLAM bets 10
+mrhollis1 raises to 20
+SlipSlapSLAM folds
+mrhollis1 refunded 10
+mrhollis1 wins Pot (32.18)
+Rake (0.82)
+
+
+
+Hand #8858632-36 - 2013-06-22 03:41:45
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: mrhollis1 (216.18)
+Seat 3: SlipSlapSLAM (208.71)
+Seat 6: habing (203.90)
+habing has the dealer button
+mrhollis1 posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [9c 9d]
+habing raises to 6
+mrhollis1 calls 5
+SlipSlapSLAM folds
+** Flop ** [8c 7d 4h]
+mrhollis1 bets 11
+habing raises to 36
+mrhollis1 raises to 61
+habing folds
+mrhollis1 refunded 25
+habing adds 38.10 chips
+mrhollis1 wins Pot (83.85)
+Rake (2.15)
+
+
+
+Hand #8858650-37 - 2013-06-22 03:42:24
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: mrhollis1 (258.03)
+Seat 3: SlipSlapSLAM (206.71)
+Seat 6: habing (200)
+mrhollis1 has the dealer button
+SlipSlapSLAM posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ad Qs]
+mrhollis1 folds
+SlipSlapSLAM raises to 6
+habing raises to 18.40
+SlipSlapSLAM folds
+habing refunded 12.40
+habing wins Pot (12)
+Rake (0)
+
+
+
+Hand #8858671-38 - 2013-06-22 03:43:11
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: mrhollis1 (258.03)
+Seat 3: SlipSlapSLAM (200.71)
+Seat 6: habing (206)
+SlipSlapSLAM has the dealer button
+habing posts small blind 1
+mrhollis1 posts big blind 2
+** Hole Cards **
+Dealt to habing [4c 6c]
+SlipSlapSLAM folds
+habing folds
+mrhollis1 refunded 1
+mrhollis1 wins Pot (2)
+Rake (0)
+
+
+
+Hand #8858678-39 - 2013-06-22 03:43:27
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: mrhollis1 (259.03)
+Seat 3: SlipSlapSLAM (200.71)
+Seat 6: habing (205)
+habing has the dealer button
+mrhollis1 posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [7c 7s]
+habing raises to 6
+mrhollis1 folds
+SlipSlapSLAM raises to 18
+habing calls 12
+** Flop ** [7d Ah 4h]
+SlipSlapSLAM bets 28
+habing calls 28
+** Turn ** [5h]
+SlipSlapSLAM bets 60
+habing raises to 159 (All-in)
+SlipSlapSLAM calls 94.71 (All-in)
+habing refunded 4.29
+** River ** [Td]
+** Pot Show Down ** [7d Ah 4h 5h Td]
+SlipSlapSLAM shows [5d 5c] (Three of a Kind, Fives +AT)
+habing shows [7c 7s] (Three of a Kind, Sevens +AT)
+habing wins Pot (398.42) with Three of a Kind
+Rake (4)
+SlipSlapSLAM adds 200 chips
+
+
+
+Hand #8858708-40 - 2013-06-22 03:44:39
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: mrhollis1 (258.03)
+Seat 3: SlipSlapSLAM (200)
+Seat 6: habing (402.71)
+mrhollis1 has the dealer button
+SlipSlapSLAM posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Kd 9d]
+mrhollis1 calls 2
+SlipSlapSLAM calls 1
+habing checks
+** Flop ** [8h Jd 3s]
+SlipSlapSLAM bets 4
+habing folds
+mrhollis1 folds
+SlipSlapSLAM refunded 4
+SlipSlapSLAM wins Pot (5.85)
+Rake (0.15)
+
+
+
+Hand #8858728-41 - 2013-06-22 03:45:16
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: mrhollis1 (256.03)
+Seat 3: SlipSlapSLAM (203.85)
+Seat 6: habing (400.71)
+SlipSlapSLAM has the dealer button
+habing posts small blind 1
+mrhollis1 posts big blind 2
+** Hole Cards **
+Dealt to habing [8s 7s]
+SlipSlapSLAM folds
+habing raises to 6
+mrhollis1 calls 4
+** Flop ** [Ad 4h Ks]
+habing checks
+mrhollis1 bets 9
+habing folds
+mrhollis1 refunded 9
+mrhollis1 wins Pot (11.70)
+Rake (0.30)
+
+
+
+Hand #8858741-42 - 2013-06-22 03:45:40
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: mrhollis1 (261.73)
+Seat 3: SlipSlapSLAM (203.85)
+Seat 6: habing (394.71)
+habing has the dealer button
+mrhollis1 posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [4d Jd]
+habing raises to 4
+mrhollis1 calls 3
+SlipSlapSLAM folds
+** Flop ** [5d 8c 5c]
+mrhollis1 checks
+habing bets 6
+mrhollis1 calls 6
+** Turn ** [5h]
+mrhollis1 checks
+habing checks
+** River ** [6d]
+mrhollis1 bets 16
+habing folds
+mrhollis1 refunded 16
+mrhollis1 wins Pot (21.45)
+Rake (0.55)
+
+
+
+Hand #8858760-43 - 2013-06-22 03:46:32
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: mrhollis1 (273.18)
+Seat 3: SlipSlapSLAM (201.85)
+Seat 6: habing (384.71)
+mrhollis1 has the dealer button
+SlipSlapSLAM posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [2s 3h]
+mrhollis1 calls 2
+SlipSlapSLAM folds
+habing checks
+** Flop ** [4c 9c 7s]
+habing checks
+mrhollis1 bets 5
+habing folds
+mrhollis1 refunded 5
+mrhollis1 wins Pot (4.88)
+Rake (0.12)
+
+
+
+Hand #8858778-44 - 2013-06-22 03:47:12
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: mrhollis1 (276.06)
+Seat 3: SlipSlapSLAM (200.85)
+Seat 6: habing (382.71)
+SlipSlapSLAM has the dealer button
+habing posts small blind 1
+mrhollis1 posts big blind 2
+** Hole Cards **
+Dealt to habing [8s 4s]
+SlipSlapSLAM folds
+habing folds
+mrhollis1 refunded 1
+mrhollis1 wins Pot (2)
+Rake (0)
+
+
+
+Hand #8858786-45 - 2013-06-22 03:47:33
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: mrhollis1 (277.06)
+Seat 3: SlipSlapSLAM (200.85)
+Seat 6: habing (381.71)
+habing has the dealer button
+mrhollis1 posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [7d Jh]
+habing raises to 4
+mrhollis1 raises to 6
+SlipSlapSLAM folds
+habing calls 2
+** Flop ** [4d 5s 2d]
+mrhollis1 bets 7
+habing folds
+mrhollis1 refunded 7
+mrhollis1 wins Pot (13.65)
+Rake (0.35)
+
+
+
+Hand #8858802-46 - 2013-06-22 03:48:13
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: mrhollis1 (284.71)
+Seat 3: SlipSlapSLAM (198.85)
+Seat 6: habing (375.71)
+mrhollis1 has the dealer button
+SlipSlapSLAM posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ac 2h]
+mrhollis1 folds
+SlipSlapSLAM raises to 6
+habing calls 4
+** Flop ** [7d 3c 2d]
+SlipSlapSLAM checks
+habing bets 8
+SlipSlapSLAM calls 8
+** Turn ** [4s]
+SlipSlapSLAM checks
+habing checks
+** River ** [9d]
+SlipSlapSLAM checks
+habing checks
+** Pot Show Down ** [7d 3c 2d 4s 9d]
+SlipSlapSLAM shows [2c Tc] (a Pair of Deuces +T97)
+habing shows [Ac 2h] (a Pair of Deuces +A97)
+habing wins Pot (27.30) with a Pair
+Rake (0.70)
+SlipSlapSLAM adds 15.15 chips
+
+
+
+Hand #8858819-47 - 2013-06-22 03:48:57
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: mrhollis1 (284.71)
+Seat 3: SlipSlapSLAM (200)
+Seat 6: habing (389.01)
+SlipSlapSLAM has the dealer button
+SlipSlapSLAM posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [2d 4h]
+SlipSlapSLAM calls 1
+habing checks
+** Flop ** [8h 5s 8c]
+habing bets 4
+SlipSlapSLAM folds
+habing refunded 4
+habing wins Pot (3.90)
+Rake (0.10)
+
+
+
+Hand #8858832-48 - 2013-06-22 03:49:21
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: mrhollis1 (284.71) - sitting out
+Seat 3: SlipSlapSLAM (198)
+Seat 6: habing (390.91)
+habing has the dealer button
+habing posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [5c 6d]
+habing folds
+SlipSlapSLAM refunded 1
+SlipSlapSLAM wins Pot (2)
+Rake (0)
+
+
+
+Hand #8858839-49 - 2013-06-22 03:49:36
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: mrhollis1 (284.71) - sitting out
+Seat 3: SlipSlapSLAM (199)
+Seat 6: habing (389.91)
+SlipSlapSLAM has the dealer button
+SlipSlapSLAM posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [8s 2d]
+SlipSlapSLAM calls 1
+habing checks
+** Flop ** [6h 2c Qc]
+habing bets 4
+SlipSlapSLAM folds
+habing refunded 4
+habing wins Pot (3.90)
+Rake (0.10)
+
+
+
+Hand #8858849-50 - 2013-06-22 03:50:09
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: mrhollis1 (284.71)
+Seat 3: SlipSlapSLAM (197)
+Seat 6: habing (391.81)
+habing has the dealer button
+habing posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [4c Qh]
+habing raises to 4
+SlipSlapSLAM folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8858853-51 - 2013-06-22 03:50:21
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: mrhollis1 (284.71)
+Seat 3: SlipSlapSLAM (195)
+Seat 6: habing (393.81)
+SlipSlapSLAM has the dealer button
+habing posts small blind 1
+mrhollis1 posts big blind 2
+** Hole Cards **
+Dealt to habing [Td Jd]
+SlipSlapSLAM folds
+habing raises to 6
+mrhollis1 calls 4
+** Flop ** [Qd Js 6c]
+habing bets 8
+mrhollis1 calls 8
+** Turn ** [3h]
+habing checks
+mrhollis1 bets 20
+habing calls 20
+** River ** [Jc]
+habing checks
+mrhollis1 checks
+** Pot Show Down ** [Qd Js 6c 3h Jc]
+mrhollis1 shows [6d Qs] (Two Pair, Queens and Jacks +6)
+habing shows [Td Jd] (Three of a Kind, Jacks +QT)
+habing wins Pot (66.30) with Three of a Kind
+Rake (1.70)
+
+
+
+Hand #8858870-52 - 2013-06-22 03:50:58
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: mrhollis1 (250.71)
+Seat 3: SlipSlapSLAM (195)
+Seat 6: habing (426.11)
+habing has the dealer button
+mrhollis1 posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [9d Ac]
+habing raises to 6
+mrhollis1 folds
+SlipSlapSLAM folds
+habing refunded 4
+habing wins Pot (5)
+Rake (0)
+SlipSlapSLAM adds 7 chips
+
+
+
+Hand #8858875-53 - 2013-06-22 03:51:14
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: mrhollis1 (249.71)
+Seat 3: SlipSlapSLAM (200)
+Seat 6: habing (429.11)
+mrhollis1 has the dealer button
+SlipSlapSLAM posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [5c Ts]
+mrhollis1 calls 2
+SlipSlapSLAM raises to 12
+habing folds
+mrhollis1 folds
+SlipSlapSLAM refunded 10
+SlipSlapSLAM wins Pot (6)
+Rake (0)
+
+
+
+Hand #8858886-54 - 2013-06-22 03:51:41
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: mrhollis1 (247.71)
+Seat 3: SlipSlapSLAM (204)
+Seat 6: habing (427.11)
+SlipSlapSLAM has the dealer button
+habing posts small blind 1
+mrhollis1 posts big blind 2
+** Hole Cards **
+Dealt to habing [7d Kh]
+SlipSlapSLAM folds
+habing raises to 6
+mrhollis1 calls 4
+** Flop ** [6h 5s 8h]
+habing bets 8
+mrhollis1 calls 8
+** Turn ** [Jh]
+habing bets 18.40
+mrhollis1 calls 18.40
+** River ** [Jc]
+habing bets 39.20
+mrhollis1 calls 39.20
+** Pot Show Down ** [6h 5s 8h Jh Jc]
+mrhollis1 shows [8s Kc] (Two Pair, Jacks and Eights +K)
+habing shows [7d Kh] (a Pair of Jacks +K87)
+mrhollis1 wins Pot (139.62) with Two Pair
+Rake (3.58)
+
+
+
+Hand #8858906-55 - 2013-06-22 03:52:29
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: mrhollis1 (315.73)
+Seat 3: SlipSlapSLAM (204)
+Seat 6: habing (355.51)
+habing has the dealer button
+mrhollis1 posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [Kc Ts]
+habing raises to 6
+mrhollis1 calls 5
+SlipSlapSLAM calls 4
+** Flop ** [9s 7c Ah]
+mrhollis1 checks
+SlipSlapSLAM checks
+habing bets 8
+mrhollis1 folds
+SlipSlapSLAM calls 8
+** Turn ** [8c]
+SlipSlapSLAM checks
+habing checks
+** River ** [4c]
+SlipSlapSLAM bets 12
+habing folds
+SlipSlapSLAM refunded 12
+SlipSlapSLAM wins Pot (33.15)
+Rake (0.85)
+
+
+
+Hand #8858931-56 - 2013-06-22 03:53:33
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: mrhollis1 (309.73)
+Seat 3: SlipSlapSLAM (223.15)
+Seat 6: habing (341.51)
+mrhollis1 has the dealer button
+SlipSlapSLAM posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Qd Ks]
+mrhollis1 calls 2
+SlipSlapSLAM calls 1
+habing raises to 12
+mrhollis1 calls 10
+SlipSlapSLAM folds
+** Flop ** [7h 7s Td]
+habing bets 14
+mrhollis1 calls 14
+** Turn ** [Qh]
+habing bets 44.40
+mrhollis1 folds
+habing refunded 44.40
+habing wins Pot (52.65)
+Rake (1.35)
+
+
+
+Hand #8858951-57 - 2013-06-22 03:54:35
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: mrhollis1 (283.73)
+Seat 3: SlipSlapSLAM (221.15)
+Seat 6: habing (368.16)
+SlipSlapSLAM has the dealer button
+habing posts small blind 1
+mrhollis1 posts big blind 2
+** Hole Cards **
+Dealt to habing [Js 8h]
+SlipSlapSLAM folds
+habing raises to 6
+mrhollis1 calls 4
+** Flop ** [Jh Ah 8s]
+habing bets 10.40
+mrhollis1 folds
+habing refunded 10.40
+habing wins Pot (11.70)
+Rake (0.30)
+
+
+
+Hand #8858964-58 - 2013-06-22 03:55:03
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: mrhollis1 (277.73)
+Seat 3: SlipSlapSLAM (221.15)
+Seat 6: habing (373.86)
+habing has the dealer button
+mrhollis1 posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [4s 2s]
+habing raises to 4
+mrhollis1 calls 3
+SlipSlapSLAM raises to 24
+habing folds
+mrhollis1 calls 20
+** Flop ** [2d Qh 3h]
+mrhollis1 bets 13
+SlipSlapSLAM calls 13
+** Turn ** [6d]
+mrhollis1 bets 19
+SlipSlapSLAM calls 19
+** River ** [Ks]
+mrhollis1 bets 57
+SlipSlapSLAM calls 57
+** Pot Show Down ** [2d Qh 3h 6d Ks]
+mrhollis1 shows [Ad 4c] (High Card Ace +KQ64)
+SlipSlapSLAM shows [9c 9d] (a Pair of Nines +KQ6)
+SlipSlapSLAM wins Pot (226) with a Pair
+Rake (4)
+
+
+
+Hand #8858999-59 - 2013-06-22 03:56:27
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: mrhollis1 (164.73)
+Seat 3: SlipSlapSLAM (334.15)
+Seat 6: habing (369.86)
+mrhollis1 has the dealer button
+SlipSlapSLAM posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [5c 7h]
+mrhollis1 calls 2
+SlipSlapSLAM calls 1
+habing checks
+** Flop ** [Kd 7c Ks]
+SlipSlapSLAM checks
+habing bets 4.40
+mrhollis1 folds
+SlipSlapSLAM calls 4.40
+** Turn ** [8d]
+SlipSlapSLAM checks
+habing checks
+** River ** [8s]
+SlipSlapSLAM bets 12
+habing folds
+SlipSlapSLAM refunded 12
+SlipSlapSLAM wins Pot (14.43)
+Rake (0.37)
+
+
+
+Hand #8859032-60 - 2013-06-22 03:57:49
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: mrhollis1 (162.73)
+Seat 3: SlipSlapSLAM (342.18)
+Seat 6: habing (363.46)
+SlipSlapSLAM has the dealer button
+habing posts small blind 1
+mrhollis1 posts big blind 2
+** Hole Cards **
+Dealt to habing [6s 7d]
+SlipSlapSLAM folds
+habing folds
+mrhollis1 refunded 1
+mrhollis1 wins Pot (2)
+Rake (0)
+mrhollis1 adds 36.27 chips
+
+
+
+Hand #8859041-61 - 2013-06-22 03:58:11
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: mrhollis1 (200)
+Seat 3: SlipSlapSLAM (342.18)
+Seat 6: habing (362.46)
+habing has the dealer button
+mrhollis1 posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [Kh 2d]
+habing raises to 6
+mrhollis1 folds
+SlipSlapSLAM folds
+habing refunded 4
+habing wins Pot (5)
+Rake (0)
+
+
+
+Hand #8859046-62 - 2013-06-22 03:58:32
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: mrhollis1 (199)
+Seat 3: SlipSlapSLAM (340.18)
+Seat 6: habing (365.46)
+mrhollis1 has the dealer button
+SlipSlapSLAM posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [8h 4h]
+mrhollis1 has timed out
+mrhollis1 folds
+SlipSlapSLAM folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8859056-63 - 2013-06-22 03:59:06
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: mrhollis1 (199) - sitting out
+Seat 3: SlipSlapSLAM (339.18)
+Seat 6: habing (366.46)
+SlipSlapSLAM has the dealer button
+SlipSlapSLAM posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [6c Kh]
+SlipSlapSLAM folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8859063-64 - 2013-06-22 03:59:19
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: mrhollis1 (199) - sitting out
+Seat 3: SlipSlapSLAM (338.18)
+Seat 6: habing (367.46)
+habing has the dealer button
+habing posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [3s 8h]
+habing folds
+SlipSlapSLAM refunded 1
+SlipSlapSLAM wins Pot (2)
+Rake (0)
+
+
+
+Hand #8859070-65 - 2013-06-22 03:59:34
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: mrhollis1 (199) - sitting out
+Seat 3: SlipSlapSLAM (339.18)
+Seat 4: WorldPeace (200) - waiting for big blind
+Seat 6: habing (366.46)
+SlipSlapSLAM has the dealer button
+SlipSlapSLAM posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [6h 3c]
+SlipSlapSLAM calls 1
+habing checks
+** Flop ** [3d Kd Js]
+habing checks
+SlipSlapSLAM bets 2
+habing folds
+SlipSlapSLAM refunded 2
+SlipSlapSLAM wins Pot (3.90)
+Rake (0.10)
+
+
+
+Hand #8859084-66 - 2013-06-22 04:00:03
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: mrhollis1 (199) - sitting out
+Seat 3: SlipSlapSLAM (341.08)
+Seat 4: WorldPeace (200) - waiting for big blind
+Seat 6: habing (364.46)
+habing has the dealer button
+SlipSlapSLAM posts small blind 1
+WorldPeace posts big blind 2
+** Hole Cards **
+Dealt to habing [5d 2h]
+habing folds
+SlipSlapSLAM calls 1
+WorldPeace raises to 6
+SlipSlapSLAM calls 4
+** Flop ** [9d Kc Ks]
+SlipSlapSLAM bets 2
+WorldPeace raises to 8
+SlipSlapSLAM folds
+WorldPeace refunded 6
+WorldPeace wins Pot (15.60)
+Rake (0.40)
+
+
+
+Hand #8859115-67 - 2013-06-22 04:00:49
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: mrhollis1 (199) - sitting out
+Seat 3: SlipSlapSLAM (333.08)
+Seat 4: WorldPeace (207.60)
+Seat 6: habing (364.46)
+SlipSlapSLAM has the dealer button
+WorldPeace posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [5c Tc]
+SlipSlapSLAM folds
+WorldPeace folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8859132-68 - 2013-06-22 04:01:11
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: mrhollis1 (199)
+Seat 3: SlipSlapSLAM (333.08)
+Seat 4: WorldPeace (206.60)
+Seat 6: habing (365.46)
+WorldPeace has the dealer button
+habing posts small blind 1
+mrhollis1 posts big blind 2
+** Hole Cards **
+Dealt to habing [4c Ah]
+SlipSlapSLAM folds
+WorldPeace folds
+habing raises to 6
+mrhollis1 calls 4
+** Flop ** [3c 7h 2d]
+habing checks
+mrhollis1 bets 12
+habing folds
+mrhollis1 refunded 12
+mrhollis1 wins Pot (11.70)
+Rake (0.30)
+
+
+
+Hand #8859170-69 - 2013-06-22 04:01:59
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: mrhollis1 (204.70)
+Seat 3: SlipSlapSLAM (333.08)
+Seat 4: WorldPeace (206.60)
+Seat 6: habing (359.46)
+habing has the dealer button
+mrhollis1 posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [4d 9h]
+WorldPeace raises to 6
+habing folds
+mrhollis1 calls 5
+SlipSlapSLAM folds
+** Flop ** [Ah 8s Ks]
+mrhollis1 bets 7
+WorldPeace calls 7
+** Turn ** [Th]
+mrhollis1 checks
+WorldPeace bets 12
+mrhollis1 folds
+WorldPeace refunded 12
+WorldPeace wins Pot (27.30)
+Rake (0.70)
+
+
+
+Hand #8859204-70 - 2013-06-22 04:02:49
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: mrhollis1 (191.70)
+Seat 3: SlipSlapSLAM (331.08)
+Seat 4: WorldPeace (220.90)
+Seat 6: habing (359.46)
+mrhollis1 has the dealer button
+SlipSlapSLAM posts small blind 1
+WorldPeace posts big blind 2
+** Hole Cards **
+Dealt to habing [Jd 3c]
+habing folds
+mrhollis1 calls 2
+SlipSlapSLAM calls 1
+WorldPeace checks
+** Flop ** [5d Kd 7s]
+SlipSlapSLAM checks
+WorldPeace checks
+mrhollis1 bets 6
+SlipSlapSLAM folds
+WorldPeace folds
+mrhollis1 refunded 6
+mrhollis1 wins Pot (5.85)
+Rake (0.15)
+
+
+
+Hand #8859246-71 - 2013-06-22 04:03:39
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: mrhollis1 (195.55)
+Seat 3: SlipSlapSLAM (329.08)
+Seat 4: WorldPeace (218.90)
+Seat 6: habing (359.46)
+SlipSlapSLAM has the dealer button
+WorldPeace posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [5s 9c]
+mrhollis1 calls 2
+SlipSlapSLAM calls 2
+WorldPeace folds
+habing checks
+** Flop ** [Ah 8c Kc]
+habing checks
+mrhollis1 bets 7
+SlipSlapSLAM folds
+habing folds
+mrhollis1 refunded 7
+mrhollis1 wins Pot (6.83)
+Rake (0.17)
+
+
+
+Hand #8859273-72 - 2013-06-22 04:04:24
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: mrhollis1 (200.38)
+Seat 3: SlipSlapSLAM (327.08)
+Seat 4: WorldPeace (217.90)
+Seat 6: habing (357.46)
+WorldPeace has the dealer button
+habing posts small blind 1
+mrhollis1 posts big blind 2
+** Hole Cards **
+Dealt to habing [2h 8c]
+SlipSlapSLAM folds
+WorldPeace raises to 6
+habing folds
+mrhollis1 calls 4
+** Flop ** [Tc Qc Kh]
+mrhollis1 bets 10
+WorldPeace folds
+mrhollis1 refunded 10
+mrhollis1 wins Pot (12.68)
+Rake (0.32)
+
+
+
+Hand #8859315-73 - 2013-06-22 04:05:26
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: mrhollis1 (207.06)
+Seat 3: SlipSlapSLAM (327.08)
+Seat 4: WorldPeace (211.90)
+Seat 6: habing (356.46)
+habing has the dealer button
+mrhollis1 posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [Ah 9d]
+WorldPeace folds
+habing raises to 4
+mrhollis1 calls 3
+SlipSlapSLAM raises to 12
+habing folds
+mrhollis1 calls 8
+** Flop ** [Kc 4d 6s]
+mrhollis1 bets 7
+SlipSlapSLAM raises to 16
+mrhollis1 calls 9
+** Turn ** [2s]
+mrhollis1 checks
+SlipSlapSLAM checks
+** River ** [Ts]
+mrhollis1 bets 15
+SlipSlapSLAM folds
+mrhollis1 refunded 15
+mrhollis1 wins Pot (58.50)
+Rake (1.50)
+
+
+
+Hand #8859387-74 - 2013-06-22 04:07:27
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: mrhollis1 (237.56)
+Seat 3: SlipSlapSLAM (299.08)
+Seat 4: WorldPeace (211.90)
+Seat 6: habing (352.46)
+mrhollis1 has the dealer button
+SlipSlapSLAM posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [As Jh]
+mrhollis1 calls 2
+SlipSlapSLAM calls 1
+habing raises to 12.40
+mrhollis1 folds
+SlipSlapSLAM folds
+habing refunded 10.40
+habing wins Pot (6)
+Rake (0)
+
+
+
+Hand #8859412-75 - 2013-06-22 04:08:04
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: mrhollis1 (235.56)
+Seat 3: SlipSlapSLAM (297.08)
+Seat 4: WorldPeace (211.90) - sitting out
+Seat 6: habing (356.46)
+SlipSlapSLAM has the dealer button
+habing posts small blind 1
+mrhollis1 posts big blind 2
+** Hole Cards **
+Dealt to habing [6h 6d]
+SlipSlapSLAM folds
+habing raises to 6
+mrhollis1 calls 4
+** Flop ** [9h Kd 6c]
+habing bets 8
+mrhollis1 calls 8
+** Turn ** [Qs]
+habing bets 24.80
+mrhollis1 folds
+habing refunded 24.80
+habing wins Pot (27.30)
+Rake (0.70)
+
+
+
+Hand #8859437-76 - 2013-06-22 04:08:43
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: mrhollis1 (221.56)
+Seat 3: SlipSlapSLAM (297.08)
+Seat 4: WorldPeace (211.90) - sitting out
+Seat 6: habing (369.76)
+habing has the dealer button
+mrhollis1 posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [8h Qs]
+habing raises to 4
+mrhollis1 folds
+SlipSlapSLAM raises to 12
+habing calls 8
+** Flop ** [7s 3c 6c]
+SlipSlapSLAM checks
+habing checks
+** Turn ** [3d]
+SlipSlapSLAM checks
+habing checks
+** River ** [Ts]
+SlipSlapSLAM checks
+habing checks
+** Pot Show Down ** [7s 3c 6c 3d Ts]
+SlipSlapSLAM shows [6d Kd] (Two Pair, Sixes and Threes +K)
+habing shows [8h Qs] (a Pair of Threes +QT8)
+SlipSlapSLAM wins Pot (24.38) with Two Pair
+Rake (0.62)
+
+
+
+Hand #8859481-77 - 2013-06-22 04:09:57
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: mrhollis1 (220.56)
+Seat 3: SlipSlapSLAM (309.46)
+Seat 4: WorldPeace (211.90)
+Seat 6: habing (357.76)
+mrhollis1 has the dealer button
+SlipSlapSLAM posts small blind 1
+WorldPeace posts big blind 2
+** Hole Cards **
+Dealt to habing [Jd 4c]
+habing folds
+mrhollis1 has timed out
+mrhollis1 folds
+SlipSlapSLAM folds
+WorldPeace refunded 1
+WorldPeace wins Pot (2)
+Rake (0)
+
+
+
+Hand #8859511-78 - 2013-06-22 04:10:52
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: mrhollis1 (220.56) - sitting out
+Seat 3: SlipSlapSLAM (308.46)
+Seat 4: WorldPeace (212.90)
+Seat 6: habing (357.76)
+SlipSlapSLAM has the dealer button
+WorldPeace posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [3d 9h]
+SlipSlapSLAM folds
+WorldPeace folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8859520-79 - 2013-06-22 04:11:03
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: mrhollis1 (220.56) - sitting out
+Seat 3: SlipSlapSLAM (308.46)
+Seat 4: WorldPeace (211.90)
+Seat 6: habing (358.76)
+WorldPeace has the dealer button
+habing posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [Qc Ad]
+WorldPeace folds
+habing raises to 6
+SlipSlapSLAM folds
+habing refunded 4
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8859529-80 - 2013-06-22 04:11:22
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: mrhollis1 (220.56) - sitting out
+Seat 3: SlipSlapSLAM (306.46)
+Seat 4: WorldPeace (211.90)
+Seat 6: habing (360.76)
+habing has the dealer button
+SlipSlapSLAM posts small blind 1
+WorldPeace posts big blind 2
+** Hole Cards **
+Dealt to habing [4c Jd]
+habing folds
+SlipSlapSLAM calls 1
+WorldPeace checks
+** Flop ** [5h 3d Td]
+SlipSlapSLAM bets 2
+WorldPeace folds
+SlipSlapSLAM refunded 2
+SlipSlapSLAM wins Pot (3.90)
+Rake (0.10)
+
+
+
+Hand #8859552-81 - 2013-06-22 04:11:53
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: mrhollis1 (220.56) - sitting out
+Seat 3: SlipSlapSLAM (308.36)
+Seat 4: WorldPeace (209.90)
+Seat 6: habing (360.76)
+SlipSlapSLAM has the dealer button
+WorldPeace posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [7h 8h]
+SlipSlapSLAM raises to 6
+WorldPeace folds
+habing calls 4
+** Flop ** [5s 4h Jd]
+habing bets 8
+SlipSlapSLAM calls 8
+** Turn ** [Ts]
+habing checks
+SlipSlapSLAM checks
+** River ** [6d]
+habing bets 38.80
+SlipSlapSLAM folds
+habing refunded 38.80
+habing wins Pot (28.28)
+Rake (0.72)
+
+
+
+Hand #8859579-82 - 2013-06-22 04:12:40
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: mrhollis1 (220.56) - sitting out
+Seat 3: SlipSlapSLAM (294.36)
+Seat 4: WorldPeace (208.90)
+Seat 6: habing (375.04)
+WorldPeace has the dealer button
+habing posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [Qs 8h]
+WorldPeace folds
+habing raises to 6
+SlipSlapSLAM folds
+habing refunded 4
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8859589-83 - 2013-06-22 04:13:09
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: mrhollis1 (220.56) - sitting out
+Seat 3: SlipSlapSLAM (292.36)
+Seat 4: WorldPeace (208.90)
+Seat 6: habing (377.04)
+habing has the dealer button
+SlipSlapSLAM posts small blind 1
+WorldPeace posts big blind 2
+** Hole Cards **
+Dealt to habing [9s 5h]
+habing folds
+SlipSlapSLAM calls 1
+WorldPeace checks
+** Flop ** [Th 8h 4h]
+SlipSlapSLAM bets 2
+WorldPeace calls 2
+** Turn ** [Ad]
+SlipSlapSLAM bets 2
+WorldPeace calls 2
+** River ** [7c]
+SlipSlapSLAM bets 4
+WorldPeace folds
+SlipSlapSLAM refunded 4
+SlipSlapSLAM wins Pot (11.70)
+Rake (0.30)
+
+
+
+Hand #8859620-84 - 2013-06-22 04:14:05
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: mrhollis1 (220.56) - sitting out
+Seat 3: SlipSlapSLAM (298.06)
+Seat 4: WorldPeace (202.90)
+Seat 6: habing (377.04)
+SlipSlapSLAM has the dealer button
+WorldPeace posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Qs Th]
+SlipSlapSLAM calls 2
+WorldPeace folds
+habing raises to 10
+SlipSlapSLAM calls 8
+** Flop ** [6s 7s 6h]
+habing checks
+SlipSlapSLAM checks
+** Turn ** [Ts]
+habing bets 14
+SlipSlapSLAM calls 14
+** River ** [4c]
+habing bets 26
+SlipSlapSLAM folds
+habing refunded 26
+habing wins Pot (47.78)
+Rake (1.22)
+
+
+
+Hand #8859677-85 - 2013-06-22 04:15:52
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: mrhollis1 (220.56) - sitting out
+Seat 3: SlipSlapSLAM (274.06)
+Seat 4: WorldPeace (201.90)
+Seat 6: habing (400.82)
+WorldPeace has the dealer button
+habing posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [Js 7s]
+WorldPeace raises to 6
+habing folds
+SlipSlapSLAM folds
+WorldPeace refunded 4
+WorldPeace wins Pot (5)
+Rake (0)
+
+
+
+Hand #8859694-86 - 2013-06-22 04:16:16
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: mrhollis1 (220.56) - sitting out
+Seat 3: SlipSlapSLAM (272.06)
+Seat 4: WorldPeace (204.90)
+Seat 6: habing (399.82)
+habing has the dealer button
+SlipSlapSLAM posts small blind 1
+WorldPeace posts big blind 2
+** Hole Cards **
+Dealt to habing [As Ks]
+habing raises to 4
+SlipSlapSLAM folds
+WorldPeace folds
+habing refunded 2
+habing wins Pot (5)
+Rake (0)
+
+
+
+Hand #8859706-87 - 2013-06-22 04:16:37
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: mrhollis1 (220.56) - sitting out
+Seat 3: SlipSlapSLAM (271.06)
+Seat 4: WorldPeace (202.90)
+Seat 6: habing (402.82)
+SlipSlapSLAM has the dealer button
+WorldPeace posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [8c 7s]
+SlipSlapSLAM folds
+WorldPeace folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8859717-88 - 2013-06-22 04:16:50
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: mrhollis1 (220.56) - sitting out
+Seat 3: SlipSlapSLAM (271.06)
+Seat 4: WorldPeace (201.90)
+Seat 6: habing (403.82)
+WorldPeace has the dealer button
+habing posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [6s 8s]
+WorldPeace raises to 6
+habing folds
+SlipSlapSLAM folds
+WorldPeace refunded 4
+WorldPeace wins Pot (5)
+Rake (0)
+
+
+
+Hand #8859742-89 - 2013-06-22 04:17:26
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: mrhollis1 (220.56)
+Seat 3: SlipSlapSLAM (269.06)
+Seat 4: WorldPeace (204.90)
+Seat 6: habing (402.82)
+habing has the dealer button
+habing posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [4s 4h]
+habing raises to 4
+SlipSlapSLAM folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8859758-90 - 2013-06-22 04:17:48
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: mrhollis1 (220.56)
+Seat 3: SlipSlapSLAM (267.06)
+Seat 6: habing (404.82)
+SlipSlapSLAM has the dealer button
+habing posts small blind 1
+mrhollis1 posts big blind 2
+** Hole Cards **
+Dealt to habing [6d 9c]
+SlipSlapSLAM folds
+habing folds
+mrhollis1 refunded 1
+mrhollis1 wins Pot (2)
+Rake (0)
+
+
+
+Hand #8859768-91 - 2013-06-22 04:18:02
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: mrhollis1 (221.56)
+Seat 3: SlipSlapSLAM (267.06)
+Seat 6: habing (403.82)
+habing has the dealer button
+mrhollis1 posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [8d 8s]
+habing raises to 4
+mrhollis1 calls 3
+SlipSlapSLAM calls 2
+** Flop ** [Ad 6s Jd]
+mrhollis1 checks
+SlipSlapSLAM checks
+habing checks
+** Turn ** [2s]
+mrhollis1 bets 9
+SlipSlapSLAM folds
+habing folds
+mrhollis1 refunded 9
+mrhollis1 wins Pot (11.70)
+Rake (0.30)
+
+
+
+Hand #8859792-92 - 2013-06-22 04:18:43
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: mrhollis1 (229.26)
+Seat 3: SlipSlapSLAM (263.06)
+Seat 6: habing (399.82)
+mrhollis1 has the dealer button
+SlipSlapSLAM posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [6s Jd]
+mrhollis1 folds
+SlipSlapSLAM raises to 6
+habing folds
+SlipSlapSLAM refunded 4
+SlipSlapSLAM wins Pot (4)
+Rake (0)
+
+
+
+Hand #8859805-93 - 2013-06-22 04:19:06
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: mrhollis1 (229.26)
+Seat 3: SlipSlapSLAM (265.06)
+Seat 6: habing (397.82)
+SlipSlapSLAM has the dealer button
+habing posts small blind 1
+mrhollis1 posts big blind 2
+** Hole Cards **
+Dealt to habing [Ad 6s]
+SlipSlapSLAM folds
+habing raises to 6
+mrhollis1 calls 4
+** Flop ** [Qd 7h Jd]
+habing checks
+mrhollis1 checks
+** Turn ** [6c]
+habing checks
+mrhollis1 checks
+** River ** [2c]
+habing checks
+mrhollis1 checks
+** Pot Show Down ** [Qd 7h Jd 6c 2c]
+mrhollis1 shows [Tc Kd] (High Card King +QJT7)
+habing shows [Ad 6s] (a Pair of Sixes +AQJ)
+habing wins Pot (11.70) with a Pair
+Rake (0.30)
+
+
+
+Hand #8859853-94 - 2013-06-22 04:20:13
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: mrhollis1 (223.26)
+Seat 3: SlipSlapSLAM (265.06)
+Seat 6: habing (403.52)
+habing has the dealer button
+mrhollis1 posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [Qc 3c]
+habing raises to 4
+mrhollis1 calls 3
+SlipSlapSLAM raises to 16
+habing folds
+mrhollis1 folds
+SlipSlapSLAM refunded 12
+SlipSlapSLAM wins Pot (12)
+Rake (0)
+
+
+
+Hand #8859871-95 - 2013-06-22 04:20:42
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: mrhollis1 (219.26)
+Seat 3: SlipSlapSLAM (273.06)
+Seat 6: habing (399.52)
+mrhollis1 has the dealer button
+SlipSlapSLAM posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [6h 8d]
+mrhollis1 calls 2
+SlipSlapSLAM calls 1
+habing checks
+** Flop ** [2d 3c 4d]
+SlipSlapSLAM bets 2
+habing folds
+mrhollis1 calls 2
+** Turn ** [Kh]
+SlipSlapSLAM bets 4
+mrhollis1 calls 4
+** River ** [9s]
+SlipSlapSLAM bets 25
+mrhollis1 folds
+SlipSlapSLAM refunded 25
+SlipSlapSLAM wins Pot (17.55)
+Rake (0.45)
+
+
+
+Hand #8859903-96 - 2013-06-22 04:21:35
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: mrhollis1 (211.26)
+Seat 3: SlipSlapSLAM (282.61)
+Seat 6: habing (397.52)
+SlipSlapSLAM has the dealer button
+habing posts small blind 1
+mrhollis1 posts big blind 2
+** Hole Cards **
+Dealt to habing [7c Td]
+SlipSlapSLAM raises to 6
+habing folds
+mrhollis1 calls 4
+** Flop ** [Ad Ac 6s]
+mrhollis1 checks
+SlipSlapSLAM bets 2
+mrhollis1 calls 2
+** Turn ** [4s]
+mrhollis1 bets 4
+SlipSlapSLAM raises to 12
+mrhollis1 calls 8
+** River ** [4c]
+mrhollis1 bets 10
+SlipSlapSLAM calls 10
+** Pot Show Down ** [Ad Ac 6s 4s 4c]
+mrhollis1 shows [5c 2c] (Two Pair, Aces and Fours +6)
+SlipSlapSLAM shows [Kc Jd] (Two Pair, Aces and Fours +K)
+SlipSlapSLAM wins Pot (59.48) with Two Pair
+Rake (1.52)
+
+
+
+Hand #8859934-97 - 2013-06-22 04:22:36
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: mrhollis1 (181.26)
+Seat 3: SlipSlapSLAM (312.09)
+Seat 6: habing (396.52)
+habing has the dealer button
+mrhollis1 posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [Qd Jd]
+habing raises to 4
+mrhollis1 calls 3
+SlipSlapSLAM folds
+** Flop ** [9s Tc 8c]
+mrhollis1 bets 5
+habing has timed out
+habing folds
+mrhollis1 refunded 5
+mrhollis1 wins Pot (9.75)
+Rake (0.25)
+
+
+
+Hand #8859965-98 - 2013-06-22 04:23:39
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: mrhollis1 (187.01)
+Seat 3: SlipSlapSLAM (310.09)
+Seat 6: habing (392.52) - sitting out
+mrhollis1 has the dealer button
+mrhollis1 posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+mrhollis1 raises to 5
+SlipSlapSLAM folds
+mrhollis1 refunded 3
+mrhollis1 wins Pot (4)
+Rake (0)
+
+
+
+Hand #8859982-1 - 2013-06-22 04:24:10
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (308.09)
+Seat 6: habing (392.52)
+SlipSlapSLAM has the dealer button
+SlipSlapSLAM posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Kd 3s]
+SlipSlapSLAM folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8859992-2 - 2013-06-22 04:24:25
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (307.09)
+Seat 6: habing (393.52)
+habing has the dealer button
+habing posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [4d Jd]
+habing raises to 4
+SlipSlapSLAM folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8860002-3 - 2013-06-22 04:24:53
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (305.09)
+Seat 6: habing (395.52)
+SlipSlapSLAM has the dealer button
+SlipSlapSLAM posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [5s 3d]
+SlipSlapSLAM calls 1
+habing checks
+** Flop ** [7h Kh Th]
+habing checks
+SlipSlapSLAM bets 2
+habing folds
+SlipSlapSLAM refunded 2
+SlipSlapSLAM wins Pot (3.90)
+Rake (0.10)
+
+
+
+Hand #8860017-4 - 2013-06-22 04:25:22
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (306.99)
+Seat 6: habing (393.52)
+habing has the dealer button
+habing posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [Kc 7d]
+habing raises to 4
+SlipSlapSLAM calls 2
+** Flop ** [Kh 8d Qh]
+SlipSlapSLAM checks
+habing bets 6
+SlipSlapSLAM folds
+habing refunded 6
+habing wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #8860034-5 - 2013-06-22 04:26:04
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (302.99)
+Seat 6: habing (397.32)
+SlipSlapSLAM has the dealer button
+SlipSlapSLAM posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Td 9c]
+SlipSlapSLAM folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8860043-6 - 2013-06-22 04:26:15
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (301.99)
+Seat 6: habing (398.32)
+habing has the dealer button
+habing posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [7s Ad]
+habing has timed out
+habing folds
+SlipSlapSLAM refunded 1
+SlipSlapSLAM wins Pot (2)
+Rake (0)
+
+
+
+Hand #8860149-1 - 2013-06-22 04:30:57
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (302.99)
+Seat 6: habing (397.32)
+SlipSlapSLAM has the dealer button
+SlipSlapSLAM posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [9s 4h]
+SlipSlapSLAM folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8860158-2 - 2013-06-22 04:31:16
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (301.99)
+Seat 6: habing (398.32)
+habing has the dealer button
+habing posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [Kh 4c]
+habing raises to 4
+SlipSlapSLAM raises to 12
+habing folds
+SlipSlapSLAM refunded 8
+SlipSlapSLAM wins Pot (8)
+Rake (0)
+
+
+
+Hand #8860171-3 - 2013-06-22 04:31:42
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (305.99)
+Seat 6: habing (394.32)
+SlipSlapSLAM has the dealer button
+SlipSlapSLAM posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [2s 3h]
+SlipSlapSLAM raises to 6
+habing folds
+SlipSlapSLAM refunded 4
+SlipSlapSLAM wins Pot (4)
+Rake (0)
+
+
+
+Hand #8860178-4 - 2013-06-22 04:32:03
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (307.99)
+Seat 4: Mamma (200)
+Seat 6: habing (392.32)
+habing has the dealer button
+SlipSlapSLAM posts small blind 1
+Mamma posts big blind 2
+** Hole Cards **
+Dealt to habing [Ts 3d]
+habing folds
+SlipSlapSLAM folds
+Mamma refunded 1
+Mamma wins Pot (2)
+Rake (0)
+
+
+
+Hand #8860184-5 - 2013-06-22 04:32:21
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (306.99)
+Seat 4: Mamma (201)
+Seat 6: habing (392.32)
+SlipSlapSLAM has the dealer button
+Mamma posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ks Jd]
+SlipSlapSLAM folds
+Mamma folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8860192-6 - 2013-06-22 04:32:38
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (306.99)
+Seat 4: Mamma (200)
+Seat 6: habing (393.32)
+Mamma has the dealer button
+habing posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [7c Qd]
+Mamma raises to 4
+habing folds
+SlipSlapSLAM raises to 12
+Mamma calls 8
+** Flop ** [5h Qc 2c]
+SlipSlapSLAM checks
+Mamma bets 10
+SlipSlapSLAM calls 10
+** Turn ** [4c]
+SlipSlapSLAM checks
+Mamma bets 26
+SlipSlapSLAM calls 26
+** River ** [9c]
+SlipSlapSLAM checks
+Mamma checks
+** Pot Show Down ** [5h Qc 2c 4c 9c]
+SlipSlapSLAM shows [Jc 5c] (a Flush, Queen high +J954)
+Mamma shows [Qh Qs] (Three of a Kind, Queens +95)
+SlipSlapSLAM wins Pot (94.58) with a Flush
+Rake (2.42)
+
+
+
+Hand #8860218-7 - 2013-06-22 04:33:58
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (353.57)
+Seat 4: Mamma (152)
+Seat 6: habing (392.32)
+habing has the dealer button
+SlipSlapSLAM posts small blind 1
+Mamma posts big blind 2
+** Hole Cards **
+Dealt to habing [Ad Td]
+habing raises to 4
+SlipSlapSLAM folds
+Mamma raises to 8
+habing calls 4
+** Flop ** [8c 6c 3s]
+Mamma checks
+habing checks
+** Turn ** [5s]
+Mamma bets 8
+habing folds
+Mamma refunded 8
+Mamma wins Pot (16.58)
+Rake (0.42)
+
+
+
+Hand #8860234-8 - 2013-06-22 04:34:46
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (352.57)
+Seat 4: Mamma (160.58)
+Seat 6: habing (384.32)
+SlipSlapSLAM has the dealer button
+Mamma posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [4h 8c]
+SlipSlapSLAM folds
+Mamma raises to 6
+habing folds
+Mamma refunded 4
+Mamma wins Pot (4)
+Rake (0)
+
+
+
+Hand #8860243-9 - 2013-06-22 04:35:05
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (352.57)
+Seat 4: Mamma (162.58)
+Seat 6: habing (382.32)
+Mamma has the dealer button
+habing posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [Ad Jd]
+Mamma folds
+habing raises to 6
+SlipSlapSLAM folds
+habing refunded 4
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8860253-10 - 2013-06-22 04:35:26
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (350.57)
+Seat 4: Mamma (162.58)
+Seat 6: habing (384.32)
+habing has the dealer button
+SlipSlapSLAM posts small blind 1
+Mamma posts big blind 2
+** Hole Cards **
+Dealt to habing [5s 3s]
+habing raises to 4
+SlipSlapSLAM folds
+Mamma raises to 10
+habing folds
+Mamma refunded 6
+Mamma wins Pot (9)
+Rake (0)
+
+
+
+Hand #8860262-11 - 2013-06-22 04:35:51
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (349.57)
+Seat 4: Mamma (167.58)
+Seat 6: habing (380.32)
+SlipSlapSLAM has the dealer button
+Mamma posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [2h 4c]
+SlipSlapSLAM calls 2
+Mamma folds
+habing checks
+** Flop ** [Ac Th 9h]
+habing checks
+SlipSlapSLAM bets 4
+habing folds
+SlipSlapSLAM refunded 4
+SlipSlapSLAM wins Pot (4.88)
+Rake (0.12)
+
+
+
+Hand #8860273-12 - 2013-06-22 04:36:29
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (352.45)
+Seat 4: Mamma (166.58)
+Seat 6: habing (378.32)
+Mamma has the dealer button
+habing posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [5c 4s]
+Mamma raises to 4
+habing folds
+SlipSlapSLAM calls 2
+** Flop ** [2h 6c 5h]
+SlipSlapSLAM checks
+Mamma bets 6
+SlipSlapSLAM calls 6
+** Turn ** [Qh]
+SlipSlapSLAM bets 12
+Mamma raises to 24
+SlipSlapSLAM folds
+Mamma refunded 12
+Mamma wins Pot (43.88)
+Rake (1.12)
+
+
+
+Hand #8860294-13 - 2013-06-22 04:37:24
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (330.45)
+Seat 4: Mamma (188.46)
+Seat 6: habing (377.32)
+habing has the dealer button
+SlipSlapSLAM posts small blind 1
+Mamma posts big blind 2
+** Hole Cards **
+Dealt to habing [5h 7s]
+habing folds
+SlipSlapSLAM folds
+Mamma refunded 1
+Mamma wins Pot (2)
+Rake (0)
+
+
+
+Hand #8860299-14 - 2013-06-22 04:37:37
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (329.45)
+Seat 4: Mamma (189.46)
+Seat 6: habing (377.32)
+SlipSlapSLAM has the dealer button
+Mamma posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [9c Js]
+SlipSlapSLAM raises to 6
+Mamma raises to 14
+habing folds
+SlipSlapSLAM calls 8
+** Flop ** [2d 8s Ad]
+Mamma bets 12
+SlipSlapSLAM calls 12
+** Turn ** [8d]
+Mamma checks
+SlipSlapSLAM checks
+** River ** [2h]
+Mamma bets 36
+SlipSlapSLAM raises to 72
+Mamma calls 36
+** Pot Show Down ** [2d 8s Ad 8d 2h]
+SlipSlapSLAM shows [2s 7h] (a Full House, Deuces full of Eights)
+Mamma shows [Ah Jd] (Two Pair, Aces and Eights +J)
+SlipSlapSLAM wins Pot (194) with a Full House
+Rake (4)
+
+
+
+Hand #8860321-15 - 2013-06-22 04:39:01
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (425.45)
+Seat 4: Mamma (91.46)
+Seat 6: habing (375.32)
+Mamma has the dealer button
+habing posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [Jc 3c]
+Mamma folds
+habing folds
+SlipSlapSLAM refunded 1
+SlipSlapSLAM wins Pot (2)
+Rake (0)
+
+
+
+Hand #8860329-16 - 2013-06-22 04:39:27
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (426.45)
+Seat 4: Mamma (91.46)
+Seat 6: habing (374.32)
+habing has the dealer button
+SlipSlapSLAM posts small blind 1
+Mamma posts big blind 2
+** Hole Cards **
+Dealt to habing [9h Ts]
+habing raises to 4
+SlipSlapSLAM folds
+Mamma calls 2
+** Flop ** [2h 7h 6c]
+Mamma checks
+habing bets 5.60
+Mamma calls 5.60
+** Turn ** [9s]
+Mamma checks
+habing bets 15.20
+Mamma raises to 30.40
+habing raises to 364.72 (All-in)
+Mamma calls 51.46 (All-in)
+habing refunded 282.86
+** River ** [Tc]
+** Pot Show Down ** [2h 7h 6c 9s Tc]
+Mamma shows [7s 6h] (Two Pair, Sevens and Sixes +T)
+habing shows [9h Ts] (Two Pair, Tens and Nines +7)
+habing wins Pot (179.92) with Two Pair
+Rake (4)
+
+
+
+Hand #8860350-17 - 2013-06-22 04:40:31
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (425.45)
+Seat 4: Mamma (0) - sitting out
+Seat 6: habing (462.78)
+SlipSlapSLAM has the dealer button
+SlipSlapSLAM posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Kc Kh]
+SlipSlapSLAM folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8860356-18 - 2013-06-22 04:40:47
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (424.45)
+Seat 6: habing (463.78)
+habing has the dealer button
+habing posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [5s As]
+habing raises to 4
+SlipSlapSLAM raises to 12
+habing calls 8
+** Flop ** [2h 5d 4h]
+SlipSlapSLAM checks
+habing bets 17.60
+SlipSlapSLAM folds
+habing refunded 17.60
+habing wins Pot (23.40)
+Rake (0.60)
+
+
+
+Hand #8860536-1 - 2013-06-22 04:48:26
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (412.45)
+Seat 6: habing (475.18)
+SlipSlapSLAM has the dealer button
+SlipSlapSLAM posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [6s 3c]
+SlipSlapSLAM calls 1
+habing checks
+** Flop ** [9s Td As]
+habing checks
+SlipSlapSLAM bets 2
+habing folds
+SlipSlapSLAM refunded 2
+SlipSlapSLAM wins Pot (3.90)
+Rake (0.10)
+SlipSlapSLAM shows [Ac Ad]
+
+
+
+Hand #8860561-2 - 2013-06-22 04:49:20
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (414.35)
+Seat 6: habing (473.18)
+habing has the dealer button
+habing posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [Kd 3c]
+habing raises to 4
+SlipSlapSLAM folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8860571-3 - 2013-06-22 04:49:56
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (412.35)
+Seat 6: habing (475.18)
+SlipSlapSLAM has the dealer button
+SlipSlapSLAM posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [7c 9s]
+SlipSlapSLAM folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8860576-4 - 2013-06-22 04:50:07
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (411.35)
+Seat 6: habing (476.18)
+habing has the dealer button
+habing posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [Kd 6h]
+habing raises to 4
+SlipSlapSLAM folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8860585-5 - 2013-06-22 04:50:29
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (409.35)
+Seat 6: habing (478.18)
+SlipSlapSLAM has the dealer button
+SlipSlapSLAM posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [9s Qd]
+SlipSlapSLAM folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8860590-6 - 2013-06-22 04:50:41
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (408.35)
+Seat 6: habing (479.18)
+habing has the dealer button
+habing posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [7h 3h]
+habing raises to 4
+SlipSlapSLAM folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8860596-7 - 2013-06-22 04:50:57
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (406.35)
+Seat 6: habing (481.18)
+SlipSlapSLAM has the dealer button
+SlipSlapSLAM posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Js Kd]
+SlipSlapSLAM folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8860601-8 - 2013-06-22 04:51:09
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (405.35)
+Seat 6: habing (482.18)
+habing has the dealer button
+habing posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [4c 4h]
+habing raises to 4
+SlipSlapSLAM folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8860608-9 - 2013-06-22 04:51:27
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (403.35)
+Seat 6: habing (484.18)
+SlipSlapSLAM has the dealer button
+SlipSlapSLAM posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [2d 5s]
+SlipSlapSLAM folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8860615-10 - 2013-06-22 04:51:39
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (402.35)
+Seat 6: habing (485.18)
+habing has the dealer button
+habing posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [Qd Ts]
+habing raises to 4
+SlipSlapSLAM folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8860620-11 - 2013-06-22 04:51:52
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (400.35)
+Seat 6: habing (487.18)
+SlipSlapSLAM has the dealer button
+SlipSlapSLAM posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Kd 4h]
+SlipSlapSLAM calls 1
+habing checks
+** Flop ** [8c Jc Ks]
+habing bets 4
+SlipSlapSLAM folds
+habing refunded 4
+habing wins Pot (3.90)
+Rake (0.10)
+
+
+
+Hand #8860640-12 - 2013-06-22 04:52:21
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (398.35)
+Seat 6: habing (489.08)
+habing has the dealer button
+habing posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [7d 8c]
+habing raises to 4
+SlipSlapSLAM calls 2
+** Flop ** [Th Kh 6h]
+SlipSlapSLAM bets 6
+habing folds
+SlipSlapSLAM refunded 6
+SlipSlapSLAM wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #8860654-13 - 2013-06-22 04:52:49
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (402.15)
+Seat 6: habing (485.08)
+SlipSlapSLAM has the dealer button
+SlipSlapSLAM posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [5s Kd]
+SlipSlapSLAM folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8860662-14 - 2013-06-22 04:53:01
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (401.15)
+Seat 6: habing (486.08)
+habing has the dealer button
+habing posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [4s 5h]
+habing folds
+SlipSlapSLAM refunded 1
+SlipSlapSLAM wins Pot (2)
+Rake (0)
+
+
+
+Hand #8860679-15 - 2013-06-22 04:53:28
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (402.15)
+Seat 6: habing (485.08)
+SlipSlapSLAM has the dealer button
+SlipSlapSLAM posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Jd 6s]
+SlipSlapSLAM folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8860688-16 - 2013-06-22 04:53:44
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (401.15)
+Seat 6: habing (486.08)
+habing has the dealer button
+habing posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [7h 5c]
+habing folds
+SlipSlapSLAM refunded 1
+SlipSlapSLAM wins Pot (2)
+Rake (0)
+SlipSlapSLAM shows [Kd As]
+
+
+
+Hand #8860697-17 - 2013-06-22 04:54:01
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (402.15)
+Seat 6: habing (485.08)
+SlipSlapSLAM has the dealer button
+SlipSlapSLAM posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Tc Qc]
+SlipSlapSLAM raises to 6
+habing calls 4
+** Flop ** [3h 3d 5h]
+habing checks
+SlipSlapSLAM checks
+** Turn ** [3s]
+habing checks
+SlipSlapSLAM checks
+** River ** [6d]
+habing checks
+SlipSlapSLAM checks
+** Pot Show Down ** [3h 3d 5h 3s 6d]
+SlipSlapSLAM shows [8c As] (Three of a Kind, Threes +A8)
+habing shows [Tc Qc] (Three of a Kind, Threes +QT)
+SlipSlapSLAM wins Pot (11.70) with Three of a Kind
+Rake (0.30)
+
+
+
+Hand #8860716-18 - 2013-06-22 04:54:46
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (407.85)
+Seat 6: habing (479.08)
+habing has the dealer button
+habing posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [5d 5h]
+habing raises to 4
+SlipSlapSLAM raises to 12
+habing calls 8
+** Flop ** [7c 2d Th]
+SlipSlapSLAM bets 14
+habing folds
+SlipSlapSLAM refunded 14
+SlipSlapSLAM wins Pot (23.40)
+Rake (0.60)
+
+
+
+Hand #8860732-19 - 2013-06-22 04:55:33
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (419.25)
+Seat 6: habing (467.08)
+SlipSlapSLAM has the dealer button
+SlipSlapSLAM posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [3d 4h]
+SlipSlapSLAM folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8860738-20 - 2013-06-22 04:55:45
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (418.25)
+Seat 6: habing (468.08)
+habing has the dealer button
+habing posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [5d 7s]
+habing folds
+SlipSlapSLAM refunded 1
+SlipSlapSLAM wins Pot (2)
+Rake (0)
+
+
+
+Hand #8860742-21 - 2013-06-22 04:56:01
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (419.25)
+Seat 6: habing (467.08)
+SlipSlapSLAM has the dealer button
+SlipSlapSLAM posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Jc 9s]
+SlipSlapSLAM raises to 6
+habing calls 4
+** Flop ** [Qs Js 7c]
+habing checks
+SlipSlapSLAM checks
+** Turn ** [Ac]
+habing checks
+SlipSlapSLAM checks
+** River ** [3s]
+habing checks
+SlipSlapSLAM checks
+** Pot Show Down ** [Qs Js 7c Ac 3s]
+SlipSlapSLAM shows [Jh 2s] (a Pair of Jacks +AQ7)
+habing shows [Jc 9s] (a Pair of Jacks +AQ9)
+habing wins Pot (11.70) with a Pair
+Rake (0.30)
+
+
+
+Hand #8860759-22 - 2013-06-22 04:56:34
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (413.25)
+Seat 6: habing (472.78)
+habing has the dealer button
+habing posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [Jd 9h]
+habing raises to 4
+SlipSlapSLAM folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8860770-23 - 2013-06-22 04:56:58
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (411.25)
+Seat 6: habing (474.78)
+SlipSlapSLAM has the dealer button
+SlipSlapSLAM posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [9c 4h]
+SlipSlapSLAM calls 1
+habing checks
+** Flop ** [4d Ah 8s]
+habing checks
+SlipSlapSLAM checks
+** Turn ** [Tc]
+habing checks
+SlipSlapSLAM checks
+** River ** [5h]
+habing checks
+SlipSlapSLAM checks
+** Pot Show Down ** [4d Ah 8s Tc 5h]
+SlipSlapSLAM shows [Kc 7c] (High Card Ace +KT87)
+habing shows [9c 4h] (a Pair of Fours +AT9)
+habing wins Pot (3.90) with a Pair
+Rake (0.10)
+
+
+
+Hand #8860789-24 - 2013-06-22 04:57:36
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (409.25)
+Seat 6: habing (476.68)
+habing has the dealer button
+habing posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [9c 5c]
+habing raises to 4
+SlipSlapSLAM calls 2
+** Flop ** [7c 4h Tc]
+SlipSlapSLAM checks
+habing bets 6
+SlipSlapSLAM folds
+habing refunded 6
+habing wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #8860804-25 - 2013-06-22 04:58:17
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (405.25)
+Seat 6: habing (480.48)
+SlipSlapSLAM has the dealer button
+SlipSlapSLAM posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Qh Tc]
+SlipSlapSLAM folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8860807-26 - 2013-06-22 04:58:29
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (404.25)
+Seat 6: habing (481.48)
+habing has the dealer button
+habing posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [Kh Ad]
+habing raises to 4
+SlipSlapSLAM folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8860813-27 - 2013-06-22 04:58:42
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (402.25)
+Seat 6: habing (483.48)
+SlipSlapSLAM has the dealer button
+SlipSlapSLAM posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [4s 9h]
+SlipSlapSLAM folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8860820-28 - 2013-06-22 04:58:52
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (401.25)
+Seat 6: habing (484.48)
+habing has the dealer button
+habing posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [2c 8s]
+habing folds
+SlipSlapSLAM refunded 1
+SlipSlapSLAM wins Pot (2)
+Rake (0)
+
+
+
+Hand #8860825-29 - 2013-06-22 04:59:05
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (402.25)
+Seat 6: habing (483.48)
+SlipSlapSLAM has the dealer button
+SlipSlapSLAM posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [7h 4c]
+SlipSlapSLAM calls 1
+habing checks
+** Flop ** [Tc Qc 9h]
+habing checks
+SlipSlapSLAM bets 2
+habing folds
+SlipSlapSLAM refunded 2
+SlipSlapSLAM wins Pot (3.90)
+Rake (0.10)
+
+
+
+Hand #8860846-30 - 2013-06-22 04:59:44
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (404.15)
+Seat 6: habing (481.48)
+habing has the dealer button
+habing posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [Jh 8d]
+habing raises to 4
+SlipSlapSLAM calls 2
+** Flop ** [9c 4s 5s]
+SlipSlapSLAM bets 6
+habing folds
+SlipSlapSLAM refunded 6
+SlipSlapSLAM wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #8860857-31 - 2013-06-22 05:00:16
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (407.95)
+Seat 6: habing (477.48)
+SlipSlapSLAM has the dealer button
+SlipSlapSLAM posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [6h 2c]
+SlipSlapSLAM raises to 6
+habing folds
+SlipSlapSLAM refunded 4
+SlipSlapSLAM wins Pot (4)
+Rake (0)
+
+
+
+Hand #8860879-32 - 2013-06-22 05:00:47
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (409.95)
+Seat 6: habing (475.48)
+habing has the dealer button
+habing posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [5h Ah]
+habing raises to 4
+SlipSlapSLAM calls 2
+** Flop ** [4c 2h 8h]
+SlipSlapSLAM checks
+habing bets 6.80
+SlipSlapSLAM folds
+habing refunded 6.80
+habing wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #8860892-33 - 2013-06-22 05:01:21
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (405.95)
+Seat 6: habing (479.28)
+SlipSlapSLAM has the dealer button
+SlipSlapSLAM posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Th Jc]
+SlipSlapSLAM folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8860905-34 - 2013-06-22 05:01:32
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (404.95)
+Seat 6: habing (480.28)
+habing has the dealer button
+habing posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [7s 8h]
+habing raises to 4
+SlipSlapSLAM raises to 12
+habing folds
+SlipSlapSLAM refunded 8
+SlipSlapSLAM wins Pot (8)
+Rake (0)
+SlipSlapSLAM shows [Qc Qs]
+
+
+
+Hand #8860915-35 - 2013-06-22 05:02:00
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (408.95)
+Seat 6: habing (476.28)
+SlipSlapSLAM has the dealer button
+SlipSlapSLAM posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [As 5h]
+SlipSlapSLAM calls 1
+habing checks
+** Flop ** [3h Kc 3s]
+habing checks
+SlipSlapSLAM checks
+** Turn ** [Kh]
+habing checks
+SlipSlapSLAM checks
+** River ** [3c]
+habing checks
+SlipSlapSLAM bets 8
+habing calls 8
+** Pot Show Down ** [3h Kc 3s Kh 3c]
+SlipSlapSLAM shows [Jh Qc] (a Full House, Threes full of Kings)
+habing shows [As 5h] (a Full House, Threes full of Kings)
+SlipSlapSLAM splits Pot (9.75) with a Full House
+habing splits Pot (9.75) with a Full House
+Rake (0.50)
+
+
+
+Hand #8860947-36 - 2013-06-22 05:03:00
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (408.70)
+Seat 6: habing (476.03)
+habing has the dealer button
+habing posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [5s Qd]
+habing folds
+SlipSlapSLAM refunded 1
+SlipSlapSLAM wins Pot (2)
+Rake (0)
+SlipSlapSLAM shows [Ts Th]
+
+
+
+Hand #8860956-37 - 2013-06-22 05:03:19
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (409.70)
+Seat 6: habing (475.03)
+SlipSlapSLAM has the dealer button
+SlipSlapSLAM posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [7s Ad]
+SlipSlapSLAM raises to 6
+habing calls 4
+** Flop ** [2s 8d 8c]
+habing checks
+SlipSlapSLAM checks
+** Turn ** [5d]
+habing checks
+SlipSlapSLAM bets 2
+habing calls 2
+** River ** [Tc]
+habing checks
+SlipSlapSLAM bets 6
+habing folds
+SlipSlapSLAM refunded 6
+SlipSlapSLAM wins Pot (15.60)
+Rake (0.40)
+
+
+
+Hand #8860995-38 - 2013-06-22 05:04:37
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (417.30)
+Seat 6: habing (467.03)
+habing has the dealer button
+habing posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [9d 7d]
+habing raises to 4
+SlipSlapSLAM folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8861005-39 - 2013-06-22 05:04:57
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (415.30)
+Seat 6: habing (469.03)
+SlipSlapSLAM has the dealer button
+SlipSlapSLAM posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Kc Qc]
+SlipSlapSLAM folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8861017-40 - 2013-06-22 05:05:15
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (414.30)
+Seat 6: habing (470.03)
+habing has the dealer button
+habing posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [Jh 6s]
+habing raises to 4
+SlipSlapSLAM folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8861027-41 - 2013-06-22 05:05:30
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (412.30)
+Seat 6: habing (472.03)
+SlipSlapSLAM has the dealer button
+SlipSlapSLAM posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [6h 8h]
+SlipSlapSLAM calls 1
+habing checks
+** Flop ** [7d 3h 6d]
+habing checks
+SlipSlapSLAM checks
+** Turn ** [2h]
+habing bets 4
+SlipSlapSLAM folds
+habing refunded 4
+habing wins Pot (3.90)
+Rake (0.10)
+
+
+
+Hand #8861043-42 - 2013-06-22 05:06:05
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (410.30)
+Seat 6: habing (473.93)
+habing has the dealer button
+habing posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [5h 9s]
+habing folds
+SlipSlapSLAM refunded 1
+SlipSlapSLAM wins Pot (2)
+Rake (0)
+
+
+
+Hand #8861047-43 - 2013-06-22 05:06:23
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (411.30)
+Seat 6: habing (472.93)
+SlipSlapSLAM has the dealer button
+SlipSlapSLAM posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [3d Jd]
+SlipSlapSLAM calls 1
+habing checks
+** Flop ** [Th 5h Ts]
+habing bets 2
+SlipSlapSLAM folds
+habing refunded 2
+habing wins Pot (3.90)
+Rake (0.10)
+
+
+
+Hand #8861062-44 - 2013-06-22 05:06:53
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (409.30)
+Seat 6: habing (474.83)
+habing has the dealer button
+habing posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [2h Ad]
+habing raises to 4
+SlipSlapSLAM raises to 12
+habing folds
+SlipSlapSLAM refunded 8
+SlipSlapSLAM wins Pot (8)
+Rake (0)
+
+
+
+Hand #8861076-45 - 2013-06-22 05:07:20
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (413.30)
+Seat 6: habing (470.83)
+SlipSlapSLAM has the dealer button
+SlipSlapSLAM posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [2c 8h]
+SlipSlapSLAM calls 1
+habing checks
+** Flop ** [2s Qs Ts]
+habing checks
+SlipSlapSLAM bets 2
+habing folds
+SlipSlapSLAM refunded 2
+SlipSlapSLAM wins Pot (3.90)
+Rake (0.10)
+
+
+
+Hand #8861091-46 - 2013-06-22 05:07:50
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (415.20)
+Seat 6: habing (468.83)
+habing has the dealer button
+habing posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [As Th]
+habing raises to 4
+SlipSlapSLAM raises to 12
+habing calls 8
+** Flop ** [Ah Kd 2c]
+SlipSlapSLAM checks
+habing bets 19.60
+SlipSlapSLAM calls 19.60
+** Turn ** [6h]
+SlipSlapSLAM checks
+habing bets 53.20
+SlipSlapSLAM calls 53.20
+** River ** [Td]
+SlipSlapSLAM checks
+habing bets 144
+SlipSlapSLAM folds
+habing refunded 144
+habing wins Pot (165.60)
+Rake (4)
+
+
+
+Hand #8861137-47 - 2013-06-22 05:09:38
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (330.40)
+Seat 6: habing (549.63)
+SlipSlapSLAM has the dealer button
+SlipSlapSLAM posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [8h 8d]
+SlipSlapSLAM folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8861142-48 - 2013-06-22 05:09:48
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (329.40)
+Seat 6: habing (550.63)
+habing has the dealer button
+habing posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [7h 2c]
+habing folds
+SlipSlapSLAM refunded 1
+SlipSlapSLAM wins Pot (2)
+Rake (0)
+
+
+
+Hand #8861151-49 - 2013-06-22 05:10:03
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (330.40)
+Seat 6: habing (549.63)
+SlipSlapSLAM has the dealer button
+SlipSlapSLAM posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Qs Jd]
+SlipSlapSLAM calls 1
+habing raises to 10
+SlipSlapSLAM folds
+habing refunded 8
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8861163-50 - 2013-06-22 05:10:27
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (328.40)
+Seat 6: habing (551.63)
+habing has the dealer button
+habing posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [3d 5d]
+habing raises to 4
+SlipSlapSLAM folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8861172-51 - 2013-06-22 05:10:41
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (326.40)
+Seat 6: habing (553.63)
+SlipSlapSLAM has the dealer button
+SlipSlapSLAM posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Qd 7d]
+SlipSlapSLAM raises to 6
+habing calls 4
+** Flop ** [3h 9s 3c]
+habing checks
+SlipSlapSLAM checks
+** Turn ** [Ad]
+habing checks
+SlipSlapSLAM checks
+** River ** [4s]
+habing bets 6.80
+SlipSlapSLAM folds
+habing refunded 6.80
+habing wins Pot (11.70)
+Rake (0.30)
+
+
+
+Hand #8861198-52 - 2013-06-22 05:11:25
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (320.40)
+Seat 6: habing (559.33)
+habing has the dealer button
+habing posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [Th Qs]
+habing raises to 4
+SlipSlapSLAM folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8861214-53 - 2013-06-22 05:11:50
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (318.40)
+Seat 6: habing (561.33)
+SlipSlapSLAM has the dealer button
+SlipSlapSLAM posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Qc 4h]
+SlipSlapSLAM folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8861224-54 - 2013-06-22 05:12:07
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (317.40)
+Seat 6: habing (562.33)
+habing has the dealer button
+habing posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [Jd 7s]
+habing raises to 4
+SlipSlapSLAM folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8861232-55 - 2013-06-22 05:12:21
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (315.40)
+Seat 6: habing (564.33)
+SlipSlapSLAM has the dealer button
+SlipSlapSLAM posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [2h 9s]
+SlipSlapSLAM folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8861238-56 - 2013-06-22 05:12:32
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (314.40)
+Seat 6: habing (565.33)
+habing has the dealer button
+habing posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [9d 6c]
+habing folds
+SlipSlapSLAM refunded 1
+SlipSlapSLAM wins Pot (2)
+Rake (0)
+
+
+
+Hand #8861248-57 - 2013-06-22 05:12:47
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (315.40)
+Seat 6: habing (564.33)
+SlipSlapSLAM has the dealer button
+SlipSlapSLAM posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [5s 6h]
+SlipSlapSLAM calls 1
+habing checks
+** Flop ** [2d Kc Ks]
+habing checks
+SlipSlapSLAM bets 2
+habing folds
+SlipSlapSLAM refunded 2
+SlipSlapSLAM wins Pot (3.90)
+Rake (0.10)
+
+
+
+Hand #8861277-58 - 2013-06-22 05:13:34
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (317.30)
+Seat 6: habing (562.33)
+habing has the dealer button
+habing posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [5c 2d]
+habing folds
+SlipSlapSLAM refunded 1
+SlipSlapSLAM wins Pot (2)
+Rake (0)
+
+
+
+Hand #8861287-59 - 2013-06-22 05:13:49
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (318.30)
+Seat 6: habing (561.33)
+SlipSlapSLAM has the dealer button
+SlipSlapSLAM posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [2c 4c]
+SlipSlapSLAM folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8861292-60 - 2013-06-22 05:14:00
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (317.30)
+Seat 6: habing (562.33)
+habing has the dealer button
+habing posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [3d 7d]
+habing raises to 4
+SlipSlapSLAM folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8861302-61 - 2013-06-22 05:14:15
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (315.30)
+Seat 6: habing (564.33)
+SlipSlapSLAM has the dealer button
+SlipSlapSLAM posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [6d Jc]
+SlipSlapSLAM calls 1
+habing checks
+** Flop ** [Ac 2c 5s]
+habing bets 2
+SlipSlapSLAM calls 2
+** Turn ** [7s]
+habing checks
+SlipSlapSLAM bets 6
+habing folds
+SlipSlapSLAM refunded 6
+SlipSlapSLAM wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #8861327-62 - 2013-06-22 05:15:05
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (319.10)
+Seat 6: habing (560.33)
+habing has the dealer button
+habing posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [3d As]
+habing raises to 4
+SlipSlapSLAM folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8861334-63 - 2013-06-22 05:15:17
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (317.10)
+Seat 6: habing (562.33)
+SlipSlapSLAM has the dealer button
+SlipSlapSLAM posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [2d 7h]
+SlipSlapSLAM raises to 4
+habing folds
+SlipSlapSLAM refunded 2
+SlipSlapSLAM wins Pot (4)
+Rake (0)
+
+
+
+Hand #8861344-64 - 2013-06-22 05:15:33
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (319.10)
+Seat 6: habing (560.33)
+habing has the dealer button
+habing posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [2c Ac]
+habing raises to 4
+SlipSlapSLAM raises to 12
+habing calls 8
+** Flop ** [Kh Qd Ks]
+SlipSlapSLAM bets 14
+habing folds
+SlipSlapSLAM refunded 14
+SlipSlapSLAM wins Pot (23.40)
+Rake (0.60)
+
+
+
+Hand #8861365-65 - 2013-06-22 05:16:08
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (330.50)
+Seat 6: habing (548.33)
+SlipSlapSLAM has the dealer button
+SlipSlapSLAM posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [7s Jd]
+SlipSlapSLAM folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8861372-66 - 2013-06-22 05:16:19
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (329.50)
+Seat 6: habing (549.33)
+habing has the dealer button
+habing posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [9c 6d]
+habing folds
+SlipSlapSLAM refunded 1
+SlipSlapSLAM wins Pot (2)
+Rake (0)
+
+
+
+Hand #8861384-67 - 2013-06-22 05:16:36
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (330.50)
+Seat 6: habing (548.33)
+SlipSlapSLAM has the dealer button
+SlipSlapSLAM posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [As Jc]
+SlipSlapSLAM has timed out
+SlipSlapSLAM folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8861406-68 - 2013-06-22 05:17:09
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (329.50)
+Seat 6: habing (549.33)
+habing has the dealer button
+habing posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [9c Ad]
+habing raises to 4
+SlipSlapSLAM folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8861416-69 - 2013-06-22 05:17:28
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (327.50)
+Seat 6: habing (551.33)
+SlipSlapSLAM has the dealer button
+SlipSlapSLAM posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ac 9h]
+SlipSlapSLAM folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8861424-70 - 2013-06-22 05:17:40
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (326.50)
+Seat 6: habing (552.33)
+habing has the dealer button
+habing posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [Jh 6d]
+habing folds
+SlipSlapSLAM refunded 1
+SlipSlapSLAM wins Pot (2)
+Rake (0)
+
+
+
+Hand #8861436-71 - 2013-06-22 05:17:57
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (327.50)
+Seat 6: habing (551.33)
+SlipSlapSLAM has the dealer button
+SlipSlapSLAM posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [2h 7d]
+SlipSlapSLAM folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8861441-72 - 2013-06-22 05:18:08
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (326.50)
+Seat 6: habing (552.33)
+habing has the dealer button
+habing posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [Ac 3h]
+habing raises to 4
+SlipSlapSLAM folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8861446-73 - 2013-06-22 05:18:21
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (324.50)
+Seat 6: habing (554.33)
+SlipSlapSLAM has the dealer button
+SlipSlapSLAM posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [9h As]
+SlipSlapSLAM calls 1
+habing raises to 10
+SlipSlapSLAM folds
+habing refunded 8
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8861457-74 - 2013-06-22 05:18:40
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (322.50)
+Seat 6: habing (556.33)
+habing has the dealer button
+habing posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [3d Th]
+habing folds
+SlipSlapSLAM refunded 1
+SlipSlapSLAM wins Pot (2)
+Rake (0)
+
+
+
+Hand #8861464-75 - 2013-06-22 05:18:54
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (323.50)
+Seat 6: habing (555.33)
+SlipSlapSLAM has the dealer button
+SlipSlapSLAM posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Th Kd]
+SlipSlapSLAM folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8861471-76 - 2013-06-22 05:19:05
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (322.50)
+Seat 6: habing (556.33)
+habing has the dealer button
+habing posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [4c 2d]
+habing folds
+SlipSlapSLAM refunded 1
+SlipSlapSLAM wins Pot (2)
+Rake (0)
+
+
+
+Hand #8861481-77 - 2013-06-22 05:19:19
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (323.50)
+Seat 6: habing (555.33)
+SlipSlapSLAM has the dealer button
+SlipSlapSLAM posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [8h 5s]
+SlipSlapSLAM folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8861491-78 - 2013-06-22 05:19:38
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (322.50)
+Seat 6: habing (556.33)
+habing has the dealer button
+habing posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [5h Ah]
+habing raises to 4
+SlipSlapSLAM calls 2
+** Flop ** [Ac 6h Tc]
+SlipSlapSLAM bets 2
+habing raises to 7.60
+SlipSlapSLAM calls 5.60
+** Turn ** [6d]
+SlipSlapSLAM checks
+habing bets 18.80
+SlipSlapSLAM calls 18.80
+** River ** [Ks]
+SlipSlapSLAM checks
+habing checks
+** Pot Show Down ** [Ac 6h Tc 6d Ks]
+SlipSlapSLAM shows [As 8s] (Two Pair, Aces and Sixes +K)
+habing shows [5h Ah] (Two Pair, Aces and Sixes +K)
+SlipSlapSLAM splits Pot (29.64) with Two Pair
+habing splits Pot (29.64) with Two Pair
+Rake (1.52)
+
+
+
+Hand #8861517-79 - 2013-06-22 05:20:44
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (321.74)
+Seat 6: habing (555.57)
+SlipSlapSLAM has the dealer button
+SlipSlapSLAM posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [6s 8d]
+SlipSlapSLAM calls 1
+habing checks
+** Flop ** [7c 4c Th]
+habing checks
+SlipSlapSLAM bets 2
+habing raises to 10
+SlipSlapSLAM folds
+habing refunded 8
+habing wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #8861536-80 - 2013-06-22 05:21:22
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (317.74)
+Seat 6: habing (559.37)
+habing has the dealer button
+habing posts small blind 1
+SlipSlapSLAM posts big blind 2
+** Hole Cards **
+Dealt to habing [9s Js]
+habing raises to 4
+SlipSlapSLAM raises to 12
+habing calls 8
+** Flop ** [9c 2d Jc]
+SlipSlapSLAM bets 10
+habing raises to 32
+SlipSlapSLAM folds
+habing refunded 22
+habing wins Pot (42.90)
+Rake (1.10)
+
+
+
+Hand #8861555-81 - 2013-06-22 05:22:17
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: SlipSlapSLAM (295.74)
+Seat 6: habing (580.27)
+SlipSlapSLAM has the dealer button
+SlipSlapSLAM posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [7d Jc]
+SlipSlapSLAM folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8879334-1 - 2013-06-22 17:09:50
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: bigmooky (120) - waiting for big blind
+Seat 6: habing (200) - waiting for big blind
+bigmooky has the dealer button
+bigmooky posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Th Kc]
+bigmooky calls 1
+habing raises to 8
+bigmooky folds
+habing refunded 6
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8879356-2 - 2013-06-22 17:10:20
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: bigmooky (118)
+Seat 6: habing (202)
+habing has the dealer button
+habing posts small blind 1
+bigmooky posts big blind 2
+** Hole Cards **
+Dealt to habing [Td Qs]
+habing raises to 6
+bigmooky calls 4
+** Flop ** [3s 3d Qc]
+bigmooky checks
+habing bets 8
+bigmooky raises to 18
+habing calls 10
+** Turn ** [5d]
+bigmooky bets 31.09
+habing raises to 178 (All-in)
+bigmooky folds
+habing refunded 146.91
+habing wins Pot (107.43)
+Rake (2.75)
+
+
+
+Hand #8879394-3 - 2013-06-22 17:11:09
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: bigmooky (62.91)
+Seat 6: habing (254.34)
+bigmooky has the dealer button
+bigmooky posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Qc 2c]
+bigmooky raises to 6
+habing folds
+bigmooky refunded 4
+bigmooky wins Pot (4)
+Rake (0)
+
+
+
+Hand #8879404-4 - 2013-06-22 17:11:22
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: bigmooky (64.91)
+Seat 6: habing (252.34)
+habing has the dealer button
+habing posts small blind 1
+bigmooky posts big blind 2
+** Hole Cards **
+Dealt to habing [9d Qd]
+habing raises to 4
+bigmooky folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8879413-5 - 2013-06-22 17:11:36
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: bigmooky (62.91)
+Seat 6: habing (254.34)
+bigmooky has the dealer button
+bigmooky posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Jd 3d]
+bigmooky folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8879426-6 - 2013-06-22 17:11:47
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: bigmooky (61.91)
+Seat 6: habing (255.34)
+habing has the dealer button
+habing posts small blind 1
+bigmooky posts big blind 2
+** Hole Cards **
+Dealt to habing [3c Qs]
+habing raises to 4
+bigmooky folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8879437-7 - 2013-06-22 17:12:06
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: bigmooky (59.91)
+Seat 6: habing (257.34)
+bigmooky has the dealer button
+bigmooky posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [2d 7c]
+bigmooky raises to 6
+habing folds
+bigmooky refunded 4
+bigmooky wins Pot (4)
+Rake (0)
+
+
+
+Hand #8879458-8 - 2013-06-22 17:12:31
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: bigmooky (61.91)
+Seat 6: habing (255.34)
+habing has the dealer button
+habing posts small blind 1
+bigmooky posts big blind 2
+** Hole Cards **
+Dealt to habing [4h Jh]
+habing raises to 4
+bigmooky calls 2
+** Flop ** [7d As 9h]
+bigmooky checks
+habing bets 4.40
+bigmooky folds
+habing refunded 4.40
+habing wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #8879488-9 - 2013-06-22 17:13:19
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (200) - waiting for big blind
+Seat 3: bigmooky (57.91)
+Seat 6: habing (259.14)
+bigmooky has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [3d 7h]
+bigmooky folds
+habing folds
+ty4drawing refunded 1
+ty4drawing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8879499-10 - 2013-06-22 17:13:37
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (201)
+Seat 3: bigmooky (57.91)
+Seat 6: habing (258.14)
+habing has the dealer button
+ty4drawing posts small blind 1
+bigmooky posts big blind 2
+** Hole Cards **
+Dealt to habing [4s As]
+habing raises to 6
+ty4drawing folds
+bigmooky folds
+habing refunded 4
+habing wins Pot (5)
+Rake (0)
+
+
+
+Hand #8879519-11 - 2013-06-22 17:13:59
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (200)
+Seat 3: bigmooky (55.91)
+Seat 6: habing (261.14)
+ty4drawing has the dealer button
+bigmooky posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [5s Td]
+ty4drawing folds
+bigmooky raises to 6
+habing folds
+bigmooky refunded 4
+bigmooky wins Pot (4)
+Rake (0)
+
+
+
+Hand #8879536-12 - 2013-06-22 17:14:23
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (200)
+Seat 3: bigmooky (57.91)
+Seat 6: habing (259.14)
+bigmooky has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [9d 4c]
+bigmooky folds
+habing folds
+ty4drawing refunded 1
+ty4drawing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8879559-13 - 2013-06-22 17:14:55
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (201)
+Seat 3: bigmooky (57.91)
+Seat 6: habing (258.14)
+habing has the dealer button
+ty4drawing posts small blind 1
+bigmooky posts big blind 2
+** Hole Cards **
+Dealt to habing [Qc 8s]
+habing raises to 4
+ty4drawing folds
+bigmooky raises to 10
+habing folds
+bigmooky refunded 6
+bigmooky wins Pot (9)
+Rake (0)
+
+
+
+Hand #8879579-14 - 2013-06-22 17:15:18
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (200)
+Seat 3: bigmooky (62.91)
+Seat 6: habing (254.14)
+ty4drawing has the dealer button
+bigmooky posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Qh Ad]
+ty4drawing folds
+bigmooky folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8879594-15 - 2013-06-22 17:15:32
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (200)
+Seat 3: bigmooky (61.91)
+Seat 6: habing (255.14)
+bigmooky has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ts 2s]
+bigmooky folds
+habing folds
+ty4drawing refunded 1
+ty4drawing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8879603-16 - 2013-06-22 17:15:48
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (201)
+Seat 3: bigmooky (61.91)
+Seat 6: habing (254.14)
+habing has the dealer button
+ty4drawing posts small blind 1
+bigmooky posts big blind 2
+** Hole Cards **
+Dealt to habing [Qd 8d]
+habing raises to 6
+ty4drawing folds
+bigmooky has timed out
+bigmooky folds
+habing refunded 4
+habing wins Pot (5)
+Rake (0)
+
+
+
+Hand #8879631-17 - 2013-06-22 17:16:27
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (200)
+Seat 3: bigmooky (59.91) - sitting out
+Seat 6: habing (257.14)
+ty4drawing has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [5d 4s]
+ty4drawing raises to 4
+habing folds
+ty4drawing refunded 2
+ty4drawing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8879641-18 - 2013-06-22 17:16:43
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (202)
+Seat 3: bigmooky (59.91) - sitting out
+Seat 6: habing (255.14)
+habing has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [Jh Jc]
+habing raises to 4
+ty4drawing folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8879657-19 - 2013-06-22 17:17:02
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (200)
+Seat 3: bigmooky (59.91)
+Seat 6: habing (257.14)
+ty4drawing has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Js 8h]
+ty4drawing raises to 4
+habing calls 2
+** Flop ** [Jc 6c 3h]
+habing checks
+ty4drawing checks
+** Turn ** [7s]
+habing checks
+ty4drawing bets 6
+habing calls 6
+** River ** [5d]
+habing checks
+ty4drawing checks
+** Pot Show Down ** [Jc 6c 3h 7s 5d]
+ty4drawing shows [8c 7h] (a Pair of Sevens +J86)
+habing shows [Js 8h] (a Pair of Jacks +876)
+habing wins Pot (19.50) with a Pair
+Rake (0.50)
+
+
+
+Hand #8879680-20 - 2013-06-22 17:17:45
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (190)
+Seat 3: bigmooky (59.91)
+Seat 6: habing (266.64)
+habing has the dealer button
+ty4drawing posts small blind 1
+bigmooky posts big blind 2
+** Hole Cards **
+Dealt to habing [6s 5c]
+habing folds
+ty4drawing folds
+bigmooky refunded 1
+bigmooky wins Pot (2)
+Rake (0)
+
+
+
+Hand #8879689-21 - 2013-06-22 17:18:00
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (189)
+Seat 3: bigmooky (60.91)
+Seat 4: Mmtahoc (200) - waiting for big blind
+Seat 6: habing (266.64)
+ty4drawing has the dealer button
+bigmooky posts small blind 1
+Mmtahoc posts big blind 2
+** Hole Cards **
+Dealt to habing [As 3h]
+habing folds
+ty4drawing folds
+bigmooky calls 1
+Mmtahoc checks
+** Flop ** [Th Kh 6d]
+bigmooky checks
+Mmtahoc bets 2
+bigmooky folds
+Mmtahoc refunded 2
+Mmtahoc wins Pot (3.90)
+Rake (0.10)
+
+
+
+Hand #8879711-22 - 2013-06-22 17:18:49
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (189)
+Seat 3: bigmooky (58.91)
+Seat 4: Mmtahoc (201.90)
+Seat 6: habing (266.64)
+bigmooky has the dealer button
+Mmtahoc posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Kh 4h]
+ty4drawing folds
+bigmooky folds
+Mmtahoc folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8879721-23 - 2013-06-22 17:19:12
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (189)
+Seat 3: bigmooky (58.91)
+Seat 4: Mmtahoc (200.90)
+Seat 6: habing (267.64)
+Mmtahoc has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [2c Ah]
+bigmooky raises to 6
+Mmtahoc folds
+habing folds
+ty4drawing calls 4
+** Flop ** [Kc 5d 9s]
+ty4drawing checks
+bigmooky bets 10.27
+ty4drawing calls 10.27
+** Turn ** [4s]
+ty4drawing checks
+bigmooky checks
+** River ** [6d]
+ty4drawing checks
+bigmooky checks
+** Pot Show Down ** [Kc 5d 9s 4s 6d]
+ty4drawing shows [Qh Tc] (High Card King +QT96)
+bigmooky shows [Jd Jh] (a Pair of Jacks +K96)
+bigmooky wins Pot (32.71) with a Pair
+Rake (0.83)
+
+
+
+Hand #8879757-24 - 2013-06-22 17:20:10
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (172.73)
+Seat 3: bigmooky (75.35)
+Seat 4: Mmtahoc (200.90)
+Seat 6: habing (266.64)
+habing has the dealer button
+ty4drawing posts small blind 1
+bigmooky posts big blind 2
+** Hole Cards **
+Dealt to habing [3s 7d]
+Mmtahoc folds
+habing folds
+ty4drawing folds
+bigmooky refunded 1
+bigmooky wins Pot (2)
+Rake (0)
+
+
+
+Hand #8879772-25 - 2013-06-22 17:20:28
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (171.73)
+Seat 3: bigmooky (76.35)
+Seat 4: Mmtahoc (200.90)
+Seat 6: habing (266.64)
+ty4drawing has the dealer button
+bigmooky posts small blind 1
+Mmtahoc posts big blind 2
+** Hole Cards **
+Dealt to habing [5d 7s]
+habing folds
+ty4drawing raises to 6
+bigmooky folds
+Mmtahoc folds
+ty4drawing refunded 4
+Mmtahoc adds 1.10 chips
+ty4drawing wins Pot (5)
+Rake (0)
+
+
+
+Hand #8879795-26 - 2013-06-22 17:21:13
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (174.73)
+Seat 3: bigmooky (75.35)
+Seat 4: Mmtahoc (200)
+Seat 6: habing (266.64)
+bigmooky has the dealer button
+Mmtahoc posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [3c Tc]
+ty4drawing raises to 6
+bigmooky folds
+Mmtahoc folds
+Mmtahoc adds 1 chips
+habing folds
+ty4drawing refunded 4
+ty4drawing wins Pot (5)
+Rake (0)
+
+
+
+Hand #8879816-27 - 2013-06-22 17:21:52
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (177.73)
+Seat 3: bigmooky (75.35)
+Seat 4: Mmtahoc (200)
+Seat 6: habing (264.64)
+Mmtahoc has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [As 9h]
+bigmooky folds
+Mmtahoc folds
+habing raises to 6
+ty4drawing calls 4
+** Flop ** [Qd 4c 7h]
+habing checks
+ty4drawing checks
+** Turn ** [7d]
+habing checks
+ty4drawing checks
+** River ** [Kh]
+habing checks
+ty4drawing checks
+** Pot Show Down ** [Qd 4c 7h 7d Kh]
+ty4drawing shows [6s Ac] (a Pair of Sevens +AKQ)
+habing shows [As 9h] (a Pair of Sevens +AKQ)
+ty4drawing splits Pot (5.85) with a Pair
+habing splits Pot (5.85) with a Pair
+Rake (0.30)
+
+
+
+Hand #8879846-28 - 2013-06-22 17:22:50
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (177.58)
+Seat 3: bigmooky (75.35)
+Seat 4: Mmtahoc (200)
+Seat 6: habing (264.49)
+habing has the dealer button
+ty4drawing posts small blind 1
+bigmooky posts big blind 2
+** Hole Cards **
+Dealt to habing [Ks Ac]
+Mmtahoc folds
+habing raises to 6
+ty4drawing calls 5
+bigmooky calls 4
+** Flop ** [9d 9c Ad]
+ty4drawing checks
+bigmooky bets 10
+habing calls 10
+ty4drawing folds
+** Turn ** [Jh]
+bigmooky bets 59.35 (All-in)
+habing calls 59.35
+** River ** [5s]
+** Pot Show Down ** [9d 9c Ad Jh 5s]
+bigmooky shows [8d Ah] (Two Pair, Aces and Nines +J)
+habing shows [Ks Ac] (Two Pair, Aces and Nines +K)
+habing wins Pot (152.79) with Two Pair
+Rake (3.91)
+
+
+
+Hand #8879874-29 - 2013-06-22 17:23:36
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (171.58)
+Seat 3: bigmooky (0) - sitting out
+Seat 4: Mmtahoc (200)
+Seat 6: habing (341.93)
+ty4drawing has the dealer button
+Mmtahoc posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [2h Ac]
+ty4drawing raises to 4
+Mmtahoc folds
+Mmtahoc adds 1 chips
+bigmooky adds 120 chips
+habing folds
+ty4drawing refunded 2
+ty4drawing wins Pot (5)
+Rake (0)
+
+
+
+Hand #8879887-30 - 2013-06-22 17:24:07
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (174.58)
+Seat 3: bigmooky (120)
+Seat 4: Mmtahoc (200)
+Seat 6: habing (339.93)
+Mmtahoc has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+bigmooky posts small blind 1
+** Hole Cards **
+Dealt to habing [Ts 3c]
+bigmooky folds
+Mmtahoc calls 2
+habing folds
+ty4drawing checks
+** Flop ** [5d 2d 8s]
+ty4drawing checks
+Mmtahoc bets 4
+ty4drawing calls 4
+** Turn ** [As]
+ty4drawing checks
+Mmtahoc bets 10
+ty4drawing folds
+Mmtahoc refunded 10
+ty4drawing adds 31.42 chips
+Mmtahoc wins Pot (13.65)
+Rake (0.35)
+
+
+
+Hand #8879922-31 - 2013-06-22 17:24:52
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (200)
+Seat 3: bigmooky (119)
+Seat 4: Mmtahoc (207.65)
+Seat 6: habing (338.93)
+habing has the dealer button
+ty4drawing posts small blind 1
+bigmooky posts big blind 2
+** Hole Cards **
+Dealt to habing [8d 9s]
+Mmtahoc folds
+habing raises to 4
+ty4drawing folds
+bigmooky folds
+habing refunded 2
+habing wins Pot (5)
+Rake (0)
+
+
+
+Hand #8879931-32 - 2013-06-22 17:25:14
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (199)
+Seat 3: bigmooky (117)
+Seat 4: Mmtahoc (207.65)
+Seat 6: habing (341.93)
+ty4drawing has the dealer button
+bigmooky posts small blind 1
+Mmtahoc posts big blind 2
+** Hole Cards **
+Dealt to habing [8d 8s]
+habing raises to 6
+ty4drawing folds
+bigmooky calls 5
+Mmtahoc raises to 18
+habing calls 12
+bigmooky folds
+** Flop ** [4d 9c 8c]
+Mmtahoc bets 24
+habing raises to 56.40
+Mmtahoc raises to 179.31
+habing raises to 302.22
+Mmtahoc calls 10.34 (All-in)
+habing refunded 112.57
+** Turn ** [2s]
+** River ** [5h]
+** Pot Show Down ** [4d 9c 8c 2s 5h]
+Mmtahoc shows [Kh Kc] (a Pair of Kings +985)
+habing shows [8d 8s] (Three of a Kind, Eights +95)
+habing wins Pot (417.30) with Three of a Kind
+Rake (4)
+Mmtahoc adds 200 chips
+
+
+
+Hand #8879962-33 - 2013-06-22 17:26:14
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (199)
+Seat 2: martin_lvnv (200) - waiting for big blind
+Seat 3: bigmooky (111)
+Seat 4: Mmtahoc (200)
+Seat 5: testing86753 (80) - waiting for big blind
+Seat 6: habing (551.58)
+bigmooky has the dealer button
+Mmtahoc posts small blind 1
+testing86753 posts big blind 2
+** Hole Cards **
+Dealt to habing [5c 7s]
+habing folds
+ty4drawing calls 2
+bigmooky folds
+Mmtahoc folds
+Mmtahoc adds 1 chips
+testing86753 checks
+** Flop ** [Ts 4d 2d]
+testing86753 bets 3.50
+ty4drawing raises to 11
+testing86753 folds
+ty4drawing refunded 7.50
+ty4drawing wins Pot (11.70)
+Rake (0.30)
+
+
+
+Hand #8879974-34 - 2013-06-22 17:26:46
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (205.20)
+Seat 2: martin_lvnv (200) - waiting for big blind
+Seat 3: bigmooky (111)
+Seat 4: Mmtahoc (200)
+Seat 5: testing86753 (74.50)
+Seat 6: habing (551.58)
+Mmtahoc has the dealer button
+testing86753 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Jc Kd]
+ty4drawing folds
+bigmooky folds
+Mmtahoc raises to 4
+testing86753 folds
+habing calls 2
+** Flop ** [Th 2h 7c]
+habing checks
+Mmtahoc bets 5
+habing folds
+Mmtahoc refunded 5
+Mmtahoc wins Pot (8.78)
+Rake (0.22)
+
+
+
+Hand #8879996-35 - 2013-06-22 17:27:21
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (205.20)
+Seat 2: martin_lvnv (200) - waiting for big blind
+Seat 3: bigmooky (111)
+Seat 4: Mmtahoc (204.78)
+Seat 5: testing86753 (73.50)
+Seat 6: habing (547.58)
+testing86753 has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [Js 3c]
+bigmooky calls 2
+Mmtahoc folds
+testing86753 calls 2
+habing folds
+ty4drawing checks
+** Flop ** [2d Kc 3d]
+ty4drawing checks
+bigmooky checks
+testing86753 bets 4.50
+ty4drawing folds
+bigmooky folds
+testing86753 refunded 4.50
+testing86753 wins Pot (6.83)
+Rake (0.17)
+
+
+
+Hand #8880027-36 - 2013-06-22 17:28:26
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (203.20)
+Seat 2: martin_lvnv (200) - waiting for big blind
+Seat 3: bigmooky (109)
+Seat 4: Mmtahoc (204.78)
+Seat 5: testing86753 (78.33)
+Seat 6: habing (546.58)
+habing has the dealer button
+ty4drawing posts small blind 1
+martin_lvnv posts big blind 2
+** Hole Cards **
+Dealt to habing [As 5s]
+bigmooky calls 2
+Mmtahoc folds
+testing86753 calls 2
+habing calls 2
+ty4drawing calls 1
+martin_lvnv checks
+** Flop ** [6h Kc 2s]
+ty4drawing checks
+martin_lvnv checks
+bigmooky checks
+testing86753 checks
+habing checks
+** Turn ** [4d]
+ty4drawing checks
+martin_lvnv checks
+bigmooky checks
+testing86753 checks
+habing checks
+** River ** [Jc]
+ty4drawing checks
+martin_lvnv checks
+bigmooky checks
+testing86753 checks
+habing checks
+** Pot Show Down ** [6h Kc 2s 4d Jc]
+ty4drawing shows [9d Js] (a Pair of Jacks +K96)
+martin_lvnv shows [Qd 5d] (High Card King +QJ65)
+bigmooky shows [3s 3d] (a Pair of Threes +KJ6)
+testing86753 shows [3c Ac] (High Card Ace +KJ64)
+habing shows [As 5s] (High Card Ace +KJ65)
+ty4drawing wins Pot (9.75) with a Pair
+Rake (0.25)
+
+
+
+Hand #8880072-37 - 2013-06-22 17:30:06
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (210.95)
+Seat 2: martin_lvnv (198)
+Seat 3: bigmooky (107)
+Seat 4: Mmtahoc (204.78)
+Seat 5: testing86753 (76.33)
+Seat 6: habing (544.58)
+ty4drawing has the dealer button
+martin_lvnv posts small blind 1
+bigmooky posts big blind 2
+** Hole Cards **
+Dealt to habing [4h 8c]
+Mmtahoc folds
+testing86753 folds
+habing folds
+ty4drawing folds
+martin_lvnv folds
+bigmooky refunded 1
+bigmooky wins Pot (2)
+Rake (0)
+
+
+
+Hand #8880088-38 - 2013-06-22 17:30:37
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (210.95)
+Seat 2: martin_lvnv (197)
+Seat 3: bigmooky (108)
+Seat 4: Mmtahoc (204.78)
+Seat 5: testing86753 (76.33)
+Seat 6: habing (544.58)
+martin_lvnv has the dealer button
+bigmooky posts small blind 1
+Mmtahoc posts big blind 2
+** Hole Cards **
+Dealt to habing [7h Td]
+testing86753 raises to 7
+habing folds
+ty4drawing folds
+martin_lvnv has timed out
+martin_lvnv folds
+bigmooky folds
+Mmtahoc folds
+testing86753 refunded 5
+testing86753 wins Pot (5)
+Rake (0)
+
+
+
+Hand #8880109-39 - 2013-06-22 17:31:25
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (210.95)
+Seat 2: martin_lvnv (197) - sitting out
+Seat 3: bigmooky (107)
+Seat 4: Mmtahoc (202.78)
+Seat 5: testing86753 (79.33)
+Seat 6: habing (544.58)
+bigmooky has the dealer button
+Mmtahoc posts small blind 1
+testing86753 posts big blind 2
+** Hole Cards **
+Dealt to habing [2c Ks]
+habing folds
+ty4drawing folds
+bigmooky folds
+Mmtahoc raises to 6
+testing86753 folds
+Mmtahoc refunded 4
+Mmtahoc wins Pot (4)
+Rake (0)
+
+
+
+Hand #8880121-40 - 2013-06-22 17:31:54
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (210.95)
+Seat 2: martin_lvnv (197)
+Seat 3: bigmooky (107)
+Seat 4: Mmtahoc (204.78)
+Seat 5: testing86753 (77.33)
+Seat 6: habing (544.58)
+Mmtahoc has the dealer button
+testing86753 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [4c 6c]
+ty4drawing folds
+martin_lvnv folds
+bigmooky has timed out
+bigmooky folds
+Mmtahoc folds
+testing86753 raises to 6
+habing calls 4
+** Flop ** [3h Kc Jc]
+testing86753 bets 6
+habing calls 6
+** Turn ** [Qc]
+testing86753 checks
+habing bets 19.20
+testing86753 folds
+habing refunded 19.20
+habing wins Pot (23.40)
+Rake (0.60)
+
+
+
+Hand #8880159-41 - 2013-06-22 17:33:18
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (210.95)
+Seat 2: martin_lvnv (197)
+Seat 3: bigmooky (107)
+Seat 4: Mmtahoc (204.78)
+Seat 5: testing86753 (65.33)
+Seat 6: habing (555.98)
+testing86753 has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ad 6s]
+martin_lvnv folds
+bigmooky folds
+Mmtahoc folds
+testing86753 folds
+habing raises to 4
+ty4drawing folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8880179-42 - 2013-06-22 17:34:04
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (208.95)
+Seat 2: martin_lvnv (197)
+Seat 3: bigmooky (107)
+Seat 4: Mmtahoc (204.78)
+Seat 5: testing86753 (65.33)
+Seat 6: habing (557.98)
+habing has the dealer button
+ty4drawing posts small blind 1
+martin_lvnv posts big blind 2
+** Hole Cards **
+Dealt to habing [Jd 2c]
+bigmooky folds
+Mmtahoc folds
+testing86753 folds
+habing folds
+ty4drawing raises to 6
+martin_lvnv calls 4
+** Flop ** [Td 3d 6d]
+ty4drawing bets 8
+martin_lvnv folds
+ty4drawing refunded 8
+ty4drawing wins Pot (11.70)
+Rake (0.30)
+
+
+
+Hand #8880214-43 - 2013-06-22 17:35:04
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (214.65)
+Seat 2: martin_lvnv (191)
+Seat 3: bigmooky (107)
+Seat 4: Mmtahoc (204.78)
+Seat 5: testing86753 (65.33)
+Seat 6: habing (557.98)
+ty4drawing has the dealer button
+martin_lvnv posts small blind 1
+bigmooky posts big blind 2
+** Hole Cards **
+Dealt to habing [Qs Ac]
+Mmtahoc folds
+testing86753 folds
+habing raises to 6
+ty4drawing folds
+martin_lvnv calls 5
+bigmooky has timed out
+bigmooky folds
+** Flop ** [Ah Tc Kc]
+martin_lvnv checks
+habing bets 10.40
+martin_lvnv folds
+habing refunded 10.40
+habing wins Pot (13.65)
+Rake (0.35)
+
+
+
+Hand #8880248-44 - 2013-06-22 17:36:18
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (214.65)
+Seat 2: martin_lvnv (185)
+Seat 3: bigmooky (105) - sitting out
+Seat 4: Mmtahoc (204.78)
+Seat 5: testing86753 (65.33)
+Seat 6: habing (565.63)
+martin_lvnv has the dealer button
+Mmtahoc posts small blind 1
+testing86753 posts big blind 2
+** Hole Cards **
+Dealt to habing [Js 2d]
+habing folds
+ty4drawing folds
+martin_lvnv folds
+Mmtahoc folds
+testing86753 refunded 1
+testing86753 wins Pot (2)
+Rake (0)
+
+
+
+Hand #8880259-45 - 2013-06-22 17:36:35
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (214.65)
+Seat 2: martin_lvnv (185)
+Seat 3: bigmooky (105) - sitting out
+Seat 4: Mmtahoc (203.78)
+Seat 5: testing86753 (66.33)
+Seat 6: habing (565.63)
+Mmtahoc has the dealer button
+testing86753 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Qs 6s]
+ty4drawing folds
+martin_lvnv folds
+Mmtahoc folds
+testing86753 raises to 6
+habing calls 4
+** Flop ** [Th 5c Ac]
+testing86753 bets 8
+habing folds
+testing86753 refunded 8
+testing86753 wins Pot (11.70)
+Rake (0.30)
+
+
+
+Hand #8880277-46 - 2013-06-22 17:37:12
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (214.65)
+Seat 2: martin_lvnv (185)
+Seat 3: bigmooky (105) - sitting out
+Seat 4: Mmtahoc (203.78)
+Seat 5: testing86753 (72.03)
+Seat 6: habing (559.63)
+testing86753 has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [2c Qh]
+martin_lvnv calls 2
+Mmtahoc folds
+testing86753 raises to 9
+habing folds
+ty4drawing calls 7
+martin_lvnv calls 7
+** Flop ** [Kh Qd 7d]
+ty4drawing checks
+martin_lvnv checks
+testing86753 checks
+** Turn ** [As]
+ty4drawing checks
+martin_lvnv checks
+testing86753 checks
+** River ** [8h]
+ty4drawing checks
+martin_lvnv checks
+testing86753 checks
+** Pot Show Down ** [Kh Qd 7d As 8h]
+ty4drawing shows [Ks Js] (a Pair of Kings +AQJ)
+martin_lvnv shows [4s 4d] (a Pair of Fours +AKQ)
+testing86753 shows [5d 5s] (a Pair of Fives +AKQ)
+ty4drawing wins Pot (27.30) with a Pair
+Rake (0.70)
+
+
+
+Hand #8880317-47 - 2013-06-22 17:38:32
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (232.95)
+Seat 2: martin_lvnv (176)
+Seat 3: bigmooky (105)
+Seat 4: Mmtahoc (203.78)
+Seat 5: testing86753 (63.03)
+Seat 6: habing (558.63)
+habing has the dealer button
+ty4drawing posts small blind 1
+martin_lvnv posts big blind 2
+bigmooky posts small blind 1
+** Hole Cards **
+Dealt to habing [3c 8d]
+bigmooky has timed out
+bigmooky folds
+Mmtahoc raises to 6
+testing86753 folds
+habing folds
+ty4drawing folds
+martin_lvnv raises to 22
+Mmtahoc folds
+martin_lvnv refunded 16
+Mmtahoc adds 2.22 chips
+martin_lvnv wins Pot (14)
+Rake (0)
+
+
+
+Hand #8880352-48 - 2013-06-22 17:39:36
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (231.95)
+Seat 2: martin_lvnv (184)
+Seat 3: bigmooky (104)
+Seat 4: Mmtahoc (200)
+Seat 5: testing86753 (63.03)
+Seat 6: habing (558.63)
+ty4drawing has the dealer button
+martin_lvnv posts small blind 1
+bigmooky posts big blind 2
+** Hole Cards **
+Dealt to habing [9h 5h]
+Mmtahoc folds
+testing86753 folds
+habing folds
+ty4drawing raises to 6
+martin_lvnv folds
+bigmooky has timed out
+bigmooky folds
+ty4drawing refunded 4
+ty4drawing wins Pot (5)
+Rake (0)
+
+
+
+Hand #8880369-49 - 2013-06-22 17:40:16
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (234.95)
+Seat 2: martin_lvnv (183)
+Seat 3: bigmooky (102)
+Seat 4: Mmtahoc (200)
+Seat 5: testing86753 (63.03)
+Seat 6: habing (558.63)
+martin_lvnv has the dealer button
+bigmooky posts small blind 1
+Mmtahoc posts big blind 2
+** Hole Cards **
+Dealt to habing [8d As]
+testing86753 folds
+habing raises to 6
+ty4drawing folds
+martin_lvnv calls 6
+bigmooky folds
+Mmtahoc calls 4
+** Flop ** [7c 8h Qd]
+Mmtahoc checks
+habing checks
+martin_lvnv checks
+** Turn ** [Ah]
+Mmtahoc checks
+habing bets 14
+martin_lvnv folds
+Mmtahoc folds
+habing refunded 14
+Mmtahoc adds 6 chips
+habing wins Pot (18.53)
+Rake (0.47)
+
+
+
+Hand #8880402-50 - 2013-06-22 17:41:22
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (234.95)
+Seat 2: martin_lvnv (177)
+Seat 3: bigmooky (101)
+Seat 4: Mmtahoc (200)
+Seat 5: testing86753 (63.03)
+Seat 6: habing (571.16)
+bigmooky has the dealer button
+Mmtahoc posts small blind 1
+testing86753 posts big blind 2
+** Hole Cards **
+Dealt to habing [Ac 8h]
+habing folds
+ty4drawing folds
+martin_lvnv folds
+bigmooky raises to 6
+Mmtahoc folds
+Mmtahoc adds 1 chips
+testing86753 folds
+bigmooky refunded 4
+bigmooky wins Pot (5)
+Rake (0)

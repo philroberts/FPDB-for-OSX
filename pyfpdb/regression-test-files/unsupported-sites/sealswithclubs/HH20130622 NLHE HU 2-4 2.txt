@@ -1,0 +1,4392 @@
+Hand #8862741-1 - 2013-06-22 06:13:30
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (400) - waiting for big blind
+Seat 2: NickWebZilla (400)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [6s Qc]
+NickWebZilla raises to 12
+habing folds
+NickWebZilla refunded 8
+habing adds 4 chips
+NickWebZilla wins Pot (8)
+Rake (0)
+
+
+
+Hand #8862748-2 - 2013-06-22 06:13:47
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (400)
+Seat 2: NickWebZilla (404)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [2d 7h]
+habing folds
+NickWebZilla refunded 2
+habing adds 2 chips
+NickWebZilla wins Pot (4)
+Rake (0)
+
+
+
+Hand #8862752-3 - 2013-06-22 06:13:57
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (400)
+Seat 2: NickWebZilla (406)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [Ah 3h]
+NickWebZilla folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8862756-4 - 2013-06-22 06:14:09
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (402)
+Seat 2: NickWebZilla (404)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [5d 5s]
+habing raises to 8
+NickWebZilla folds
+habing refunded 4
+habing wins Pot (8)
+Rake (0)
+
+
+
+Hand #8862764-5 - 2013-06-22 06:14:25
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (406)
+Seat 2: NickWebZilla (400)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [6c 3d]
+NickWebZilla raises to 12
+habing folds
+NickWebZilla refunded 8
+NickWebZilla wins Pot (8)
+Rake (0)
+
+
+
+Hand #8862768-6 - 2013-06-22 06:14:36
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (402)
+Seat 2: NickWebZilla (404)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [8d Th]
+habing raises to 8
+NickWebZilla calls 4
+** Flop ** [Ks Qd Ad]
+NickWebZilla checks
+habing checks
+** Turn ** [Jd]
+NickWebZilla checks
+habing checks
+** River ** [4d]
+NickWebZilla checks
+habing bets 4
+NickWebZilla calls 4
+** Pot Show Down ** [Ks Qd Ad Jd 4d]
+habing shows [8d Th] (a Flush, Ace high +QJ84)
+NickWebZilla shows [2h 2d] (a Flush, Ace high +QJ42)
+habing wins Pot (23.40) with a Flush
+Rake (0.60)
+
+
+
+Hand #8862785-7 - 2013-06-22 06:15:18
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (413.40)
+Seat 2: NickWebZilla (392)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [Js Qd]
+NickWebZilla folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8862789-8 - 2013-06-22 06:15:30
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (415.40)
+Seat 2: NickWebZilla (390)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [7c Tc]
+habing raises to 12
+NickWebZilla folds
+habing refunded 8
+habing wins Pot (8)
+Rake (0)
+
+
+
+Hand #8862800-9 - 2013-06-22 06:15:46
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (419.40)
+Seat 2: NickWebZilla (386)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [Ac 9c]
+NickWebZilla folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8862803-10 - 2013-06-22 06:15:58
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (421.40)
+Seat 2: NickWebZilla (384)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [As 4c]
+habing raises to 8
+NickWebZilla calls 4
+** Flop ** [Js Ks 2s]
+NickWebZilla checks
+habing bets 11.20
+NickWebZilla folds
+habing refunded 11.20
+habing wins Pot (15.60)
+Rake (0.40)
+
+
+
+Hand #8862812-11 - 2013-06-22 06:16:23
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (429)
+Seat 2: NickWebZilla (376)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [9c 2h]
+NickWebZilla folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8862821-12 - 2013-06-22 06:16:38
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (431)
+Seat 2: NickWebZilla (374)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [8d Js]
+habing raises to 8
+NickWebZilla raises to 24
+habing folds
+NickWebZilla refunded 16
+NickWebZilla wins Pot (16)
+Rake (0)
+
+
+
+Hand #8862824-13 - 2013-06-22 06:16:55
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (423)
+Seat 2: NickWebZilla (382)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [5c 6s]
+NickWebZilla folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8862830-14 - 2013-06-22 06:17:06
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (425)
+Seat 2: NickWebZilla (380)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [Qs 6s]
+habing raises to 8
+NickWebZilla calls 4
+** Flop ** [9h Jh 5s]
+NickWebZilla checks
+habing checks
+** Turn ** [6d]
+NickWebZilla checks
+habing checks
+** River ** [9s]
+NickWebZilla checks
+habing bets 4
+NickWebZilla calls 4
+** Pot Show Down ** [9h Jh 5s 6d 9s]
+habing shows [Qs 6s] (Two Pair, Nines and Sixes +Q)
+NickWebZilla shows [3h As] (a Pair of Nines +AJ6)
+habing wins Pot (23.40) with Two Pair
+Rake (0.60)
+
+
+
+Hand #8862847-15 - 2013-06-22 06:18:03
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (436.40)
+Seat 2: NickWebZilla (368)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [Ad 5h]
+NickWebZilla raises to 12
+habing calls 8
+** Flop ** [4s Kd 8h]
+habing checks
+NickWebZilla bets 16
+habing calls 16
+** Turn ** [Kc]
+habing checks
+NickWebZilla checks
+** River ** [Tc]
+habing checks
+NickWebZilla bets 32
+habing folds
+NickWebZilla refunded 32
+NickWebZilla wins Pot (54.60)
+Rake (1.40)
+
+
+
+Hand #8862861-16 - 2013-06-22 06:18:48
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (408.40)
+Seat 2: NickWebZilla (394.60)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [3h 7h]
+habing raises to 8
+NickWebZilla calls 4
+** Flop ** [Tc 9h 2h]
+NickWebZilla checks
+habing bets 12
+NickWebZilla folds
+habing refunded 12
+habing wins Pot (15.60)
+Rake (0.40)
+
+
+
+Hand #8862869-17 - 2013-06-22 06:19:18
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (416)
+Seat 2: NickWebZilla (386.60)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [Js Qh]
+NickWebZilla folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8865611-1 - 2013-06-22 09:04:08
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (400) - waiting for big blind
+Seat 2: NickWebZilla (400)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [7s 5c]
+NickWebZilla raises to 12
+habing folds
+NickWebZilla refunded 8
+habing adds 4 chips
+NickWebZilla wins Pot (8)
+Rake (0)
+
+
+
+Hand #8865616-2 - 2013-06-22 09:04:24
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (400)
+Seat 2: NickWebZilla (404)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [5s As]
+habing raises to 12
+NickWebZilla calls 8
+** Flop ** [Jc 4d 4s]
+NickWebZilla bets 12
+habing calls 12
+** Turn ** [Qc]
+NickWebZilla bets 24
+habing folds
+NickWebZilla refunded 24
+habing adds 24 chips
+NickWebZilla wins Pot (46.80)
+Rake (1.20)
+
+
+
+Hand #8865631-3 - 2013-06-22 09:05:13
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (400)
+Seat 2: NickWebZilla (426.80)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [As Tc]
+NickWebZilla folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8865639-4 - 2013-06-22 09:05:40
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (402)
+Seat 2: NickWebZilla (424.80)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [Qc 9s]
+habing raises to 8
+NickWebZilla folds
+habing refunded 4
+habing wins Pot (8)
+Rake (0)
+
+
+
+Hand #8865644-5 - 2013-06-22 09:05:57
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (406)
+Seat 2: NickWebZilla (420.80)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [Ks Qh]
+NickWebZilla folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8865648-6 - 2013-06-22 09:06:07
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (408)
+Seat 2: NickWebZilla (418.80)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [6s Qs]
+habing raises to 8
+NickWebZilla calls 4
+** Flop ** [2c Tc Ks]
+NickWebZilla checks
+habing bets 8
+NickWebZilla calls 8
+** Turn ** [Jh]
+NickWebZilla checks
+habing checks
+** River ** [4d]
+NickWebZilla checks
+habing checks
+** Pot Show Down ** [2c Tc Ks Jh 4d]
+habing shows [6s Qs] (High Card King +QJT6)
+NickWebZilla shows [9h Td] (a Pair of Tens +KJ9)
+NickWebZilla wins Pot (31.20) with a Pair
+Rake (0.80)
+habing adds 8 chips
+
+
+
+Hand #8865660-7 - 2013-06-22 09:06:49
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (400)
+Seat 2: NickWebZilla (434)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [Ks Td]
+NickWebZilla folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8865664-8 - 2013-06-22 09:07:00
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (402)
+Seat 2: NickWebZilla (432)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [3s 7d]
+habing folds
+NickWebZilla refunded 2
+NickWebZilla wins Pot (4)
+Rake (0)
+
+
+
+Hand #8865671-9 - 2013-06-22 09:07:18
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (400)
+Seat 2: NickWebZilla (434)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [Tc Kh]
+NickWebZilla raises to 12
+habing calls 8
+** Flop ** [3s 5h 7c]
+habing checks
+NickWebZilla bets 16
+habing calls 16
+** Turn ** [9s]
+habing checks
+NickWebZilla checks
+** River ** [5s]
+habing bets 32.80
+NickWebZilla calls 32.80
+** Pot Show Down ** [3s 5h 7c 9s 5s]
+habing shows [Tc Kh] (a Pair of Fives +KT9)
+NickWebZilla shows [Td 7s] (Two Pair, Sevens and Fives +T)
+NickWebZilla wins Pot (118.56) with Two Pair
+Rake (3.04)
+habing adds 60.80 chips
+
+
+
+Hand #8865678-10 - 2013-06-22 09:07:54
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (400)
+Seat 2: NickWebZilla (491.76)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [4h Ts]
+habing folds
+NickWebZilla refunded 2
+habing adds 2 chips
+NickWebZilla wins Pot (4)
+Rake (0)
+
+
+
+Hand #8865689-11 - 2013-06-22 09:08:17
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (400)
+Seat 2: NickWebZilla (493.76)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [8c 8d]
+NickWebZilla folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8865692-12 - 2013-06-22 09:08:29
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (402)
+Seat 2: NickWebZilla (491.76)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [2d 6s]
+habing folds
+NickWebZilla refunded 2
+NickWebZilla wins Pot (4)
+Rake (0)
+
+
+
+Hand #8865701-13 - 2013-06-22 09:08:54
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (400)
+Seat 2: NickWebZilla (493.76)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [Td Qs]
+NickWebZilla folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8865703-14 - 2013-06-22 09:09:03
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (402)
+Seat 2: NickWebZilla (491.76)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [6c Tc]
+habing raises to 8
+NickWebZilla folds
+habing refunded 4
+habing wins Pot (8)
+Rake (0)
+
+
+
+Hand #8865710-15 - 2013-06-22 09:09:28
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (406)
+Seat 2: NickWebZilla (487.76)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [Ad 8c]
+NickWebZilla raises to 12
+habing calls 8
+** Flop ** [Jh 9h Kd]
+habing checks
+NickWebZilla bets 12
+habing folds
+NickWebZilla refunded 12
+habing adds 6 chips
+NickWebZilla wins Pot (23.40)
+Rake (0.60)
+
+
+
+Hand #8865716-16 - 2013-06-22 09:09:52
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (400)
+Seat 2: NickWebZilla (499.16)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [4s 6d]
+habing folds
+NickWebZilla refunded 2
+habing adds 2 chips
+NickWebZilla wins Pot (4)
+Rake (0)
+
+
+
+Hand #8865720-17 - 2013-06-22 09:10:03
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (400)
+Seat 2: NickWebZilla (501.16)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [Ks 3s]
+NickWebZilla folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8865725-18 - 2013-06-22 09:10:14
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (402)
+Seat 2: NickWebZilla (499.16)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [Tc 3s]
+habing folds
+NickWebZilla refunded 2
+NickWebZilla wins Pot (4)
+Rake (0)
+
+
+
+Hand #8865728-19 - 2013-06-22 09:10:25
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (400)
+Seat 2: NickWebZilla (501.16)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [Kh Ks]
+NickWebZilla raises to 12
+habing raises to 41.60
+NickWebZilla folds
+habing refunded 29.60
+habing wins Pot (24)
+Rake (0)
+
+
+
+Hand #8865740-20 - 2013-06-22 09:10:49
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (412)
+Seat 2: NickWebZilla (489.16)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [7s 5d]
+habing raises to 8
+NickWebZilla raises to 28
+habing folds
+NickWebZilla refunded 20
+NickWebZilla wins Pot (16)
+Rake (0)
+
+
+
+Hand #8865746-21 - 2013-06-22 09:11:06
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (404)
+Seat 2: NickWebZilla (497.16)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [Jh Td]
+NickWebZilla folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8865748-22 - 2013-06-22 09:11:16
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (406)
+Seat 2: NickWebZilla (495.16)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [6c 8c]
+habing raises to 8
+NickWebZilla calls 4
+** Flop ** [7s Td 6d]
+NickWebZilla checks
+habing bets 11.20
+NickWebZilla raises to 34.40
+habing folds
+NickWebZilla refunded 23.20
+habing adds 13.20 chips
+NickWebZilla wins Pot (37.44)
+Rake (0.96)
+
+
+
+Hand #8865756-23 - 2013-06-22 09:11:45
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (400)
+Seat 2: NickWebZilla (513.40)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [8h Ad]
+NickWebZilla raises to 12
+habing calls 8
+** Flop ** [Kh Qc 9s]
+habing checks
+NickWebZilla checks
+** Turn ** [As]
+habing bets 15.20
+NickWebZilla calls 15.20
+** River ** [4s]
+habing bets 40.80
+NickWebZilla folds
+habing refunded 40.80
+habing wins Pot (53.04)
+Rake (1.36)
+
+
+
+Hand #8865766-24 - 2013-06-22 09:12:18
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (425.84)
+Seat 2: NickWebZilla (486.20)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [3h Td]
+habing folds
+NickWebZilla refunded 2
+NickWebZilla wins Pot (4)
+Rake (0)
+
+
+
+Hand #8865771-25 - 2013-06-22 09:12:30
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (423.84)
+Seat 2: NickWebZilla (488.20)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [8d Qh]
+NickWebZilla folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8865777-26 - 2013-06-22 09:12:39
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (425.84)
+Seat 2: NickWebZilla (486.20)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [5c 9c]
+habing raises to 8
+NickWebZilla raises to 32
+habing folds
+NickWebZilla refunded 24
+NickWebZilla wins Pot (16)
+Rake (0)
+
+
+
+Hand #8865784-27 - 2013-06-22 09:12:57
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (417.84)
+Seat 2: NickWebZilla (494.20)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [5c Kc]
+NickWebZilla folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8865790-28 - 2013-06-22 09:13:07
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (419.84)
+Seat 2: NickWebZilla (492.20)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [Ac Kc]
+habing raises to 8
+NickWebZilla raises to 28
+habing raises to 72
+NickWebZilla folds
+habing refunded 44
+habing wins Pot (56)
+Rake (0)
+
+
+
+Hand #8865796-29 - 2013-06-22 09:13:31
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (447.84)
+Seat 2: NickWebZilla (464.20)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [2c 3h]
+NickWebZilla raises to 12
+habing folds
+NickWebZilla refunded 8
+NickWebZilla wins Pot (8)
+Rake (0)
+
+
+
+Hand #8865815-30 - 2013-06-22 09:14:07
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (443.84)
+Seat 2: NickWebZilla (468.20)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [5h 9h]
+habing raises to 8
+NickWebZilla folds
+habing refunded 4
+habing wins Pot (8)
+Rake (0)
+
+
+
+Hand #8865823-31 - 2013-06-22 09:14:23
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (447.84)
+Seat 2: NickWebZilla (464.20)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [8s 7c]
+NickWebZilla raises to 12
+habing folds
+NickWebZilla refunded 8
+NickWebZilla wins Pot (8)
+Rake (0)
+
+
+
+Hand #8865828-32 - 2013-06-22 09:14:35
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (443.84)
+Seat 2: NickWebZilla (468.20)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [5h Ac]
+habing raises to 8
+NickWebZilla folds
+habing refunded 4
+habing wins Pot (8)
+Rake (0)
+
+
+
+Hand #8865834-33 - 2013-06-22 09:14:48
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (447.84)
+Seat 2: NickWebZilla (464.20)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [As Ah]
+NickWebZilla raises to 12
+habing raises to 41.60
+NickWebZilla calls 29.60
+** Flop ** [5s Qs 5d]
+habing bets 46.40
+NickWebZilla calls 46.40
+** Turn ** [2s]
+habing bets 98.40
+NickWebZilla raises to 376.20 (All-in)
+habing calls 261.44 (All-in)
+NickWebZilla refunded 16.36
+** River ** [Qc]
+** Pot Show Down ** [5s Qs 5d 2s Qc]
+habing shows [As Ah] (Two Pair, Aces and Queens +5)
+NickWebZilla shows [7s Ks] (a Flush, King high +Q752)
+NickWebZilla wins Pot (888.68) with a Flush
+Rake (7)
+habing adds 400 chips
+
+
+
+Hand #8865852-34 - 2013-06-22 09:15:34
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (400)
+Seat 2: NickWebZilla (905.04)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [8s 5c]
+habing folds
+NickWebZilla refunded 2
+habing adds 2 chips
+NickWebZilla wins Pot (4)
+Rake (0)
+
+
+
+Hand #8865858-35 - 2013-06-22 09:15:48
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (400)
+Seat 2: NickWebZilla (907.04)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [Qh 8d]
+NickWebZilla raises to 12
+habing calls 8
+** Flop ** [7s Qs Ad]
+habing checks
+NickWebZilla checks
+** Turn ** [Ks]
+habing checks
+NickWebZilla checks
+** River ** [3c]
+habing checks
+NickWebZilla checks
+** Pot Show Down ** [7s Qs Ad Ks 3c]
+habing shows [Qh 8d] (a Pair of Queens +AK8)
+NickWebZilla shows [7d 5h] (a Pair of Sevens +AKQ)
+habing wins Pot (23.40) with a Pair
+Rake (0.60)
+
+
+
+Hand #8865873-36 - 2013-06-22 09:16:28
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (411.40)
+Seat 2: NickWebZilla (895.04)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [2h 7d]
+habing folds
+NickWebZilla refunded 2
+NickWebZilla wins Pot (4)
+Rake (0)
+
+
+
+Hand #8865878-37 - 2013-06-22 09:16:38
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (409.40)
+Seat 2: NickWebZilla (897.04)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [7d Tc]
+NickWebZilla raises to 12
+habing folds
+NickWebZilla refunded 8
+NickWebZilla wins Pot (8)
+Rake (0)
+
+
+
+Hand #8865886-38 - 2013-06-22 09:17:00
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (405.40)
+Seat 2: NickWebZilla (901.04)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [Th 6c]
+habing raises to 8
+NickWebZilla calls 4
+** Flop ** [Jh 9d Jc]
+NickWebZilla checks
+habing bets 8
+NickWebZilla calls 8
+** Turn ** [7c]
+NickWebZilla checks
+habing bets 20.80
+NickWebZilla raises to 66
+habing folds
+NickWebZilla refunded 45.20
+habing adds 31.40 chips
+NickWebZilla wins Pot (71.76)
+Rake (1.84)
+
+
+
+Hand #8865903-39 - 2013-06-22 09:17:45
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (400)
+Seat 2: NickWebZilla (936)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [Js Ad]
+NickWebZilla raises to 12
+habing raises to 41.60
+NickWebZilla folds
+habing refunded 29.60
+habing wins Pot (24)
+Rake (0)
+
+
+
+Hand #8865914-40 - 2013-06-22 09:18:03
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (412)
+Seat 2: NickWebZilla (924)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [3s 9d]
+habing folds
+NickWebZilla refunded 2
+NickWebZilla wins Pot (4)
+Rake (0)
+
+
+
+Hand #8865916-41 - 2013-06-22 09:18:16
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (410)
+Seat 2: NickWebZilla (926)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [9h Qh]
+NickWebZilla raises to 12
+habing calls 8
+** Flop ** [2c Ah 3d]
+habing checks
+NickWebZilla bets 16
+habing raises to 48.80
+NickWebZilla folds
+habing refunded 32.80
+habing wins Pot (54.60)
+Rake (1.40)
+
+
+
+Hand #8865926-42 - 2013-06-22 09:18:47
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (436.60)
+Seat 2: NickWebZilla (898)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [Jd 7h]
+habing raises to 8
+NickWebZilla raises to 24
+habing folds
+NickWebZilla refunded 16
+NickWebZilla wins Pot (16)
+Rake (0)
+
+
+
+Hand #8865935-43 - 2013-06-22 09:19:07
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (428.60)
+Seat 2: NickWebZilla (906)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [Ks Qs]
+NickWebZilla folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8865941-44 - 2013-06-22 09:19:19
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (430.60)
+Seat 2: NickWebZilla (904)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [Kd 3s]
+habing raises to 8
+NickWebZilla calls 4
+** Flop ** [7d 9c As]
+NickWebZilla checks
+habing bets 8.80
+NickWebZilla folds
+habing refunded 8.80
+habing wins Pot (15.60)
+Rake (0.40)
+
+
+
+Hand #8865953-45 - 2013-06-22 09:19:55
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (438.20)
+Seat 2: NickWebZilla (896)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [8c 5d]
+NickWebZilla raises to 12
+habing folds
+NickWebZilla refunded 8
+NickWebZilla wins Pot (8)
+Rake (0)
+
+
+
+Hand #8865956-46 - 2013-06-22 09:20:08
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (434.20)
+Seat 2: NickWebZilla (900)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [4s 8c]
+habing folds
+NickWebZilla refunded 2
+NickWebZilla wins Pot (4)
+Rake (0)
+
+
+
+Hand #8865960-47 - 2013-06-22 09:20:20
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (432.20)
+Seat 2: NickWebZilla (902)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [Jc 3c]
+NickWebZilla raises to 12
+habing folds
+NickWebZilla refunded 8
+NickWebZilla wins Pot (8)
+Rake (0)
+
+
+
+Hand #8865963-48 - 2013-06-22 09:20:35
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (428.20)
+Seat 2: NickWebZilla (906)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [3d 3c]
+habing raises to 8
+NickWebZilla folds
+habing refunded 4
+habing wins Pot (8)
+Rake (0)
+
+
+
+Hand #8865972-49 - 2013-06-22 09:20:51
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (432.20)
+Seat 2: NickWebZilla (902)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [8h Jd]
+NickWebZilla folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8865979-50 - 2013-06-22 09:21:01
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (434.20)
+Seat 2: NickWebZilla (900)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [3s 9c]
+habing folds
+NickWebZilla refunded 2
+NickWebZilla wins Pot (4)
+Rake (0)
+
+
+
+Hand #8865985-51 - 2013-06-22 09:21:12
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (432.20)
+Seat 2: NickWebZilla (902)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [7s 8h]
+NickWebZilla raises to 12
+habing folds
+NickWebZilla refunded 8
+NickWebZilla wins Pot (8)
+Rake (0)
+
+
+
+Hand #8865988-52 - 2013-06-22 09:21:24
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (428.20)
+Seat 2: NickWebZilla (906)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [7d 3c]
+habing folds
+NickWebZilla refunded 2
+NickWebZilla wins Pot (4)
+Rake (0)
+
+
+
+Hand #8865991-53 - 2013-06-22 09:21:36
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (426.20)
+Seat 2: NickWebZilla (908)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [Ks Kd]
+NickWebZilla raises to 12
+habing raises to 41.60
+NickWebZilla folds
+habing refunded 29.60
+habing wins Pot (24)
+Rake (0)
+
+
+
+Hand #8865997-54 - 2013-06-22 09:21:53
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (438.20)
+Seat 2: NickWebZilla (896)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [4s 2s]
+habing raises to 8
+NickWebZilla calls 4
+** Flop ** [5h 7s 6d]
+NickWebZilla checks
+habing bets 8.80
+NickWebZilla raises to 29.60
+habing folds
+NickWebZilla refunded 20.80
+NickWebZilla wins Pot (32.76)
+Rake (0.84)
+
+
+
+Hand #8866010-55 - 2013-06-22 09:22:33
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (421.40)
+Seat 2: NickWebZilla (911.96)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [5h 6s]
+NickWebZilla raises to 12
+habing folds
+NickWebZilla refunded 8
+NickWebZilla wins Pot (8)
+Rake (0)
+
+
+
+Hand #8866014-56 - 2013-06-22 09:22:44
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (417.40)
+Seat 2: NickWebZilla (915.96)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [5h Jd]
+habing raises to 8
+NickWebZilla raises to 24
+habing folds
+NickWebZilla refunded 16
+NickWebZilla wins Pot (16)
+Rake (0)
+
+
+
+Hand #8866023-57 - 2013-06-22 09:23:15
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (409.40)
+Seat 2: NickWebZilla (923.96)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [Kh Jh]
+NickWebZilla raises to 12
+habing raises to 41.60
+NickWebZilla calls 29.60
+** Flop ** [5d 8d 3s]
+habing bets 42.40
+NickWebZilla calls 42.40
+** Turn ** [4c]
+habing bets 81.60
+NickWebZilla calls 81.60
+** River ** [3d]
+habing checks
+NickWebZilla checks
+** Pot Show Down ** [5d 8d 3s 4c 3d]
+habing shows [Kh Jh] (a Pair of Threes +KJ8)
+NickWebZilla shows [Ac Jd] (a Pair of Threes +AJ8)
+NickWebZilla wins Pot (324.20) with a Pair
+Rake (7)
+habing adds 156.20 chips
+
+
+
+Hand #8866048-58 - 2013-06-22 09:24:37
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (400)
+Seat 2: NickWebZilla (1082.56)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [4h 5s]
+habing folds
+NickWebZilla refunded 2
+habing adds 2 chips
+NickWebZilla wins Pot (4)
+Rake (0)
+
+
+
+Hand #8866053-59 - 2013-06-22 09:24:50
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (400)
+Seat 2: NickWebZilla (1084.56)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [8h 2c]
+NickWebZilla raises to 12
+habing folds
+NickWebZilla refunded 8
+habing adds 4 chips
+NickWebZilla wins Pot (8)
+Rake (0)
+
+
+
+Hand #8866061-60 - 2013-06-22 09:25:17
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (400)
+Seat 2: NickWebZilla (1088.56)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [3c Ts]
+habing folds
+NickWebZilla refunded 2
+habing adds 2 chips
+NickWebZilla wins Pot (4)
+Rake (0)
+
+
+
+Hand #8866064-61 - 2013-06-22 09:25:31
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (400)
+Seat 2: NickWebZilla (1090.56)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [8d Th]
+NickWebZilla folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8866067-62 - 2013-06-22 09:25:41
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (402)
+Seat 2: NickWebZilla (1088.56)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [2d Kc]
+habing raises to 8
+NickWebZilla folds
+habing refunded 4
+habing wins Pot (8)
+Rake (0)
+
+
+
+Hand #8866069-63 - 2013-06-22 09:25:53
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (406)
+Seat 2: NickWebZilla (1084.56)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [5c 6s]
+NickWebZilla raises to 12
+habing folds
+NickWebZilla refunded 8
+NickWebZilla wins Pot (8)
+Rake (0)
+
+
+
+Hand #8866076-64 - 2013-06-22 09:26:07
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (402)
+Seat 2: NickWebZilla (1088.56)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [5h 9h]
+habing raises to 8
+NickWebZilla folds
+habing refunded 4
+habing wins Pot (8)
+Rake (0)
+
+
+
+Hand #8866082-65 - 2013-06-22 09:26:21
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (406)
+Seat 2: NickWebZilla (1084.56)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [7d Ah]
+NickWebZilla raises to 12
+habing calls 8
+** Flop ** [7h Js 7s]
+habing checks
+NickWebZilla checks
+** Turn ** [5d]
+habing bets 18.40
+NickWebZilla calls 18.40
+** River ** [2c]
+habing bets 44.80
+NickWebZilla folds
+habing refunded 44.80
+habing wins Pot (59.28)
+Rake (1.52)
+
+
+
+Hand #8866094-66 - 2013-06-22 09:27:13
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (434.88)
+Seat 2: NickWebZilla (1054.16)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [Th Kc]
+habing raises to 8
+NickWebZilla raises to 24
+habing calls 16
+** Flop ** [Td Ah 9d]
+NickWebZilla checks
+habing checks
+** Turn ** [2c]
+NickWebZilla checks
+habing checks
+** River ** [5h]
+NickWebZilla bets 24
+habing calls 24
+** Pot Show Down ** [Td Ah 9d 2c 5h]
+habing shows [Th Kc] (a Pair of Tens +AK9)
+NickWebZilla shows [Kh Kd] (a Pair of Kings +AT9)
+NickWebZilla wins Pot (93.60) with a Pair
+Rake (2.40)
+habing adds 13.12 chips
+
+
+
+Hand #8866105-67 - 2013-06-22 09:27:52
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (400)
+Seat 2: NickWebZilla (1099.76)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [Td 5c]
+NickWebZilla raises to 12
+habing folds
+NickWebZilla refunded 8
+habing adds 4 chips
+NickWebZilla wins Pot (8)
+Rake (0)
+
+
+
+Hand #8866110-68 - 2013-06-22 09:28:05
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (400)
+Seat 2: NickWebZilla (1103.76)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [Qs 5h]
+habing raises to 8
+NickWebZilla calls 4
+** Flop ** [8h Js 6d]
+NickWebZilla checks
+habing checks
+** Turn ** [Td]
+NickWebZilla bets 4
+habing folds
+NickWebZilla refunded 4
+habing adds 8 chips
+NickWebZilla wins Pot (15.60)
+Rake (0.40)
+
+
+
+Hand #8866124-69 - 2013-06-22 09:28:35
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (400)
+Seat 2: NickWebZilla (1111.36)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [8h Qh]
+NickWebZilla raises to 12
+habing calls 8
+** Flop ** [3d Kc Ks]
+habing checks
+NickWebZilla bets 16
+habing folds
+NickWebZilla refunded 16
+habing adds 12 chips
+NickWebZilla wins Pot (23.40)
+Rake (0.60)
+
+
+
+Hand #8866131-70 - 2013-06-22 09:29:05
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (400)
+Seat 2: NickWebZilla (1122.76)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [Qd Jc]
+habing raises to 8
+NickWebZilla calls 4
+** Flop ** [6s 2s 9d]
+NickWebZilla checks
+habing bets 11.20
+NickWebZilla folds
+habing refunded 11.20
+habing wins Pot (15.60)
+Rake (0.40)
+
+
+
+Hand #8866138-71 - 2013-06-22 09:29:28
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (407.60)
+Seat 2: NickWebZilla (1114.76)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [Tc 8h]
+NickWebZilla raises to 12
+habing folds
+NickWebZilla refunded 8
+NickWebZilla wins Pot (8)
+Rake (0)
+
+
+
+Hand #8866143-72 - 2013-06-22 09:29:42
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (403.60)
+Seat 2: NickWebZilla (1118.76)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [9c Ad]
+habing raises to 8
+NickWebZilla folds
+habing refunded 4
+habing wins Pot (8)
+Rake (0)
+
+
+
+Hand #8866148-73 - 2013-06-22 09:30:00
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (407.60)
+Seat 2: NickWebZilla (1114.76)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [Th 8s]
+NickWebZilla raises to 12
+habing folds
+NickWebZilla refunded 8
+NickWebZilla wins Pot (8)
+Rake (0)
+
+
+
+Hand #8866155-74 - 2013-06-22 09:30:17
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (403.60)
+Seat 2: NickWebZilla (1118.76)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [7d 6d]
+habing raises to 8
+NickWebZilla calls 4
+** Flop ** [Jc 5s 3c]
+NickWebZilla checks
+habing bets 8
+NickWebZilla raises to 32
+habing folds
+NickWebZilla refunded 24
+habing adds 12.40 chips
+NickWebZilla wins Pot (31.20)
+Rake (0.80)
+
+
+
+Hand #8866172-75 - 2013-06-22 09:31:20
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (400)
+Seat 2: NickWebZilla (1133.96)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [2h Jc]
+Dealt to habing [2h Jc]
+NickWebZilla raises to 12
+habing folds
+NickWebZilla refunded 8
+habing adds 4 chips
+NickWebZilla wins Pot (8)
+Rake (0)
+
+
+
+Hand #8866175-76 - 2013-06-22 09:31:40
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (400)
+Seat 2: NickWebZilla (1137.96)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [Jd Tc]
+habing raises to 8
+NickWebZilla raises to 24
+habing folds
+NickWebZilla refunded 16
+habing adds 8 chips
+NickWebZilla wins Pot (16)
+Rake (0)
+
+
+
+Hand #8866182-77 - 2013-06-22 09:32:02
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (400)
+Seat 2: NickWebZilla (1145.96)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [2h Ts]
+NickWebZilla raises to 12
+habing folds
+NickWebZilla refunded 8
+habing adds 4 chips
+NickWebZilla wins Pot (8)
+Rake (0)
+
+
+
+Hand #8866186-78 - 2013-06-22 09:32:32
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (400)
+Seat 2: NickWebZilla (1149.96)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [5c 9d]
+habing folds
+NickWebZilla refunded 2
+habing adds 2 chips
+NickWebZilla wins Pot (4)
+Rake (0)
+
+
+
+Hand #8866193-79 - 2013-06-22 09:32:43
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (400)
+Seat 2: NickWebZilla (1151.96)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [Qh 9h]
+NickWebZilla folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8866194-80 - 2013-06-22 09:32:53
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (402)
+Seat 2: NickWebZilla (1149.96)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [Jc 6h]
+habing folds
+NickWebZilla refunded 2
+NickWebZilla wins Pot (4)
+Rake (0)
+
+
+
+Hand #8866196-81 - 2013-06-22 09:33:04
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (400)
+Seat 2: NickWebZilla (1151.96)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [Ts 9d]
+NickWebZilla raises to 12
+habing calls 8
+** Flop ** [Td 4c 6c]
+habing checks
+NickWebZilla bets 16
+habing raises to 48.80
+NickWebZilla calls 32.80
+** Turn ** [5s]
+habing bets 83.20
+NickWebZilla raises to 1091.16 (All-in)
+habing calls 256 (All-in)
+NickWebZilla refunded 751.96
+** River ** [3c]
+** Pot Show Down ** [Td 4c 6c 5s 3c]
+habing shows [Ts 9d] (a Pair of Tens +965)
+NickWebZilla shows [Th Kd] (a Pair of Tens +K65)
+NickWebZilla wins Pot (793) with a Pair
+Rake (7)
+habing adds 400 chips
+
+
+
+Hand #8866215-82 - 2013-06-22 09:34:12
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (400)
+Seat 2: NickWebZilla (1544.96)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [8c 9s]
+habing raises to 8
+NickWebZilla raises to 24
+habing folds
+NickWebZilla refunded 16
+habing adds 8 chips
+NickWebZilla wins Pot (16)
+Rake (0)
+
+
+
+Hand #8866220-83 - 2013-06-22 09:34:30
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (400)
+Seat 2: NickWebZilla (1552.96)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [4h 3d]
+NickWebZilla raises to 12
+habing folds
+NickWebZilla refunded 8
+habing adds 4 chips
+NickWebZilla wins Pot (8)
+Rake (0)
+
+
+
+Hand #8866224-84 - 2013-06-22 09:34:43
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (400)
+Seat 2: NickWebZilla (1556.96)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [3h 5d]
+habing folds
+NickWebZilla refunded 2
+habing adds 2 chips
+NickWebZilla wins Pot (4)
+Rake (0)
+
+
+
+Hand #8866228-85 - 2013-06-22 09:34:57
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (400)
+Seat 2: NickWebZilla (1558.96)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [5d 4d]
+NickWebZilla raises to 12
+habing folds
+NickWebZilla refunded 8
+habing adds 4 chips
+NickWebZilla wins Pot (8)
+Rake (0)
+
+
+
+Hand #8866232-86 - 2013-06-22 09:35:13
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (400)
+Seat 2: NickWebZilla (1562.96)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [Jd 2d]
+habing raises to 8
+NickWebZilla raises to 24
+habing folds
+NickWebZilla refunded 16
+habing adds 8 chips
+NickWebZilla wins Pot (16)
+Rake (0)
+
+
+
+Hand #8866236-87 - 2013-06-22 09:35:34
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (400)
+Seat 2: NickWebZilla (1570.96)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [2c 2h]
+NickWebZilla raises to 12
+habing calls 8
+** Flop ** [4h 9c 5c]
+habing checks
+NickWebZilla bets 16
+habing folds
+NickWebZilla refunded 16
+habing adds 12 chips
+NickWebZilla wins Pot (23.40)
+Rake (0.60)
+
+
+
+Hand #8866243-88 - 2013-06-22 09:36:05
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (400)
+Seat 2: NickWebZilla (1582.36)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [4d Td]
+habing raises to 8
+NickWebZilla folds
+habing refunded 4
+habing wins Pot (8)
+Rake (0)
+
+
+
+Hand #8866246-89 - 2013-06-22 09:36:18
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (404)
+Seat 2: NickWebZilla (1578.36)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [6d 4h]
+NickWebZilla raises to 12
+habing folds
+NickWebZilla refunded 8
+NickWebZilla wins Pot (8)
+Rake (0)
+
+
+
+Hand #8866253-90 - 2013-06-22 09:36:40
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (400)
+Seat 2: NickWebZilla (1582.36)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [9c Ts]
+habing raises to 8
+NickWebZilla raises to 24
+habing folds
+NickWebZilla refunded 16
+habing adds 8 chips
+NickWebZilla wins Pot (16)
+Rake (0)
+
+
+
+Hand #8866260-91 - 2013-06-22 09:37:08
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (400)
+Seat 2: NickWebZilla (1590.36)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [Th 2s]
+NickWebZilla raises to 12
+habing folds
+NickWebZilla refunded 8
+habing adds 4 chips
+NickWebZilla wins Pot (8)
+Rake (0)
+
+
+
+Hand #8866263-92 - 2013-06-22 09:37:25
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (400)
+Seat 2: NickWebZilla (1594.36)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [3h 4d]
+habing folds
+NickWebZilla refunded 2
+habing adds 2 chips
+NickWebZilla wins Pot (4)
+Rake (0)
+
+
+
+Hand #8866266-93 - 2013-06-22 09:37:48
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (400)
+Seat 2: NickWebZilla (1596.36)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [4h Ts]
+NickWebZilla raises to 12
+habing folds
+NickWebZilla refunded 8
+habing adds 4 chips
+NickWebZilla wins Pot (8)
+Rake (0)
+
+
+
+Hand #8866269-94 - 2013-06-22 09:38:01
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (400)
+Seat 2: NickWebZilla (1600.36)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [Ah Kh]
+habing raises to 8
+NickWebZilla raises to 24
+habing raises to 72
+NickWebZilla folds
+habing refunded 48
+habing wins Pot (48)
+Rake (0)
+
+
+
+Hand #8866277-95 - 2013-06-22 09:38:39
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (424)
+Seat 2: NickWebZilla (1576.36)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [Qs 7c]
+NickWebZilla raises to 12
+habing folds
+NickWebZilla refunded 8
+NickWebZilla wins Pot (8)
+Rake (0)
+
+
+
+Hand #8866281-96 - 2013-06-22 09:38:53
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (420)
+Seat 2: NickWebZilla (1580.36)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [3d 5h]
+habing folds
+NickWebZilla refunded 2
+NickWebZilla wins Pot (4)
+Rake (0)
+
+
+
+Hand #8866285-97 - 2013-06-22 09:39:03
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (418)
+Seat 2: NickWebZilla (1582.36)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [3s Ad]
+NickWebZilla raises to 12
+habing calls 8
+** Flop ** [7s Ks Ac]
+habing checks
+NickWebZilla bets 16
+habing raises to 51.20
+NickWebZilla calls 35.20
+** Turn ** [2c]
+habing bets 84
+NickWebZilla raises to 1519.16 (All-in)
+habing calls 270.80 (All-in)
+NickWebZilla refunded 1164.36
+** River ** [Ah]
+** Pot Show Down ** [7s Ks Ac 2c Ah]
+habing shows [3s Ad] (Three of a Kind, Aces +K7)
+NickWebZilla shows [Kh 7c] (Two Pair, Aces and Kings +7)
+habing wins Pot (829) with Three of a Kind
+Rake (7)
+
+
+
+Hand #8866299-98 - 2013-06-22 09:39:55
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (829)
+Seat 2: NickWebZilla (1164.36)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [Kh Ah]
+habing raises to 12
+NickWebZilla raises to 40
+habing raises to 104
+NickWebZilla folds
+habing refunded 64
+habing wins Pot (80)
+Rake (0)
+
+
+
+Hand #8866304-99 - 2013-06-22 09:40:22
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (869)
+Seat 2: NickWebZilla (1124.36)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [Js 9c]
+NickWebZilla raises to 12
+habing calls 8
+** Flop ** [2d 9s 3d]
+habing checks
+NickWebZilla bets 16
+habing raises to 52.80
+NickWebZilla calls 36.80
+** Turn ** [Qs]
+habing bets 84
+NickWebZilla calls 84
+** River ** [4d]
+habing bets 204
+NickWebZilla raises to 975.56 (All-in)
+habing folds
+NickWebZilla refunded 771.56
+NickWebZilla wins Pot (698.60)
+Rake (7)
+
+
+
+Hand #8866322-100 - 2013-06-22 09:41:27
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (516.20)
+Seat 2: NickWebZilla (1470.16)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [6d 5h]
+habing folds
+NickWebZilla refunded 2
+NickWebZilla wins Pot (4)
+Rake (0)
+
+
+
+Hand #8866329-101 - 2013-06-22 09:41:38
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (514.20)
+Seat 2: NickWebZilla (1472.16)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [4c Ts]
+NickWebZilla raises to 12
+habing folds
+NickWebZilla refunded 8
+NickWebZilla wins Pot (8)
+Rake (0)
+
+
+
+Hand #8866332-102 - 2013-06-22 09:41:49
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (510.20)
+Seat 2: NickWebZilla (1476.16)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [2c 5s]
+habing folds
+NickWebZilla refunded 2
+NickWebZilla wins Pot (4)
+Rake (0)
+
+
+
+Hand #8866334-103 - 2013-06-22 09:41:59
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (508.20)
+Seat 2: NickWebZilla (1478.16)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [Tc Ah]
+NickWebZilla raises to 12
+habing raises to 41.60
+NickWebZilla folds
+habing refunded 29.60
+habing wins Pot (24)
+Rake (0)
+
+
+
+Hand #8866340-104 - 2013-06-22 09:42:18
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (520.20)
+Seat 2: NickWebZilla (1466.16)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [2s Td]
+habing folds
+NickWebZilla refunded 2
+NickWebZilla wins Pot (4)
+Rake (0)
+
+
+
+Hand #8866343-105 - 2013-06-22 09:42:30
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (518.20)
+Seat 2: NickWebZilla (1468.16)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [6c As]
+NickWebZilla raises to 12
+habing calls 8
+** Flop ** [Kh Th 7c]
+habing checks
+NickWebZilla bets 16
+habing folds
+NickWebZilla refunded 16
+NickWebZilla wins Pot (23.40)
+Rake (0.60)
+
+
+
+Hand #8866349-106 - 2013-06-22 09:42:51
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (506.20)
+Seat 2: NickWebZilla (1479.56)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [3c Qs]
+habing raises to 8
+NickWebZilla folds
+habing refunded 4
+habing wins Pot (8)
+Rake (0)
+
+
+
+Hand #8866356-107 - 2013-06-22 09:43:12
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (510.20)
+Seat 2: NickWebZilla (1475.56)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [4h 5d]
+NickWebZilla raises to 12
+habing folds
+NickWebZilla refunded 8
+NickWebZilla wins Pot (8)
+Rake (0)
+
+
+
+Hand #8866358-108 - 2013-06-22 09:43:26
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (506.20)
+Seat 2: NickWebZilla (1479.56)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [2d 3s]
+habing folds
+NickWebZilla refunded 2
+NickWebZilla wins Pot (4)
+Rake (0)
+
+
+
+Hand #8866362-109 - 2013-06-22 09:43:37
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (504.20)
+Seat 2: NickWebZilla (1481.56)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [4h 9s]
+NickWebZilla folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8866364-110 - 2013-06-22 09:43:49
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (506.20)
+Seat 2: NickWebZilla (1479.56)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [6s Ts]
+habing raises to 8
+NickWebZilla raises to 28
+habing folds
+NickWebZilla refunded 20
+NickWebZilla wins Pot (16)
+Rake (0)
+
+
+
+Hand #8866369-111 - 2013-06-22 09:44:08
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (498.20)
+Seat 2: NickWebZilla (1487.56)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [4s 4d]
+NickWebZilla folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8866371-112 - 2013-06-22 09:44:19
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (500.20)
+Seat 2: NickWebZilla (1485.56)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [6d 8h]
+habing raises to 8
+NickWebZilla folds
+habing refunded 4
+habing wins Pot (8)
+Rake (0)
+
+
+
+Hand #8866378-113 - 2013-06-22 09:44:34
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (504.20)
+Seat 2: NickWebZilla (1481.56)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [Ts 2c]
+NickWebZilla raises to 12
+habing folds
+NickWebZilla refunded 8
+NickWebZilla wins Pot (8)
+Rake (0)
+
+
+
+Hand #8866385-114 - 2013-06-22 09:44:54
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (500.20)
+Seat 2: NickWebZilla (1485.56)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [Kc 4c]
+habing raises to 8
+NickWebZilla raises to 28
+habing folds
+NickWebZilla refunded 20
+NickWebZilla wins Pot (16)
+Rake (0)
+
+
+
+Hand #8866392-115 - 2013-06-22 09:45:22
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (492.20)
+Seat 2: NickWebZilla (1493.56)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [2s 9h]
+NickWebZilla raises to 12
+habing folds
+NickWebZilla refunded 8
+NickWebZilla wins Pot (8)
+Rake (0)
+
+
+
+Hand #8866399-116 - 2013-06-22 09:45:42
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (488.20)
+Seat 2: NickWebZilla (1497.56)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [5s 9h]
+habing folds
+NickWebZilla refunded 2
+NickWebZilla wins Pot (4)
+Rake (0)
+
+
+
+Hand #8866402-117 - 2013-06-22 09:45:52
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (486.20)
+Seat 2: NickWebZilla (1499.56)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [4d Js]
+NickWebZilla folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8866405-118 - 2013-06-22 09:46:03
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (488.20)
+Seat 2: NickWebZilla (1497.56)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [7h 6d]
+habing raises to 8
+NickWebZilla folds
+habing refunded 4
+habing wins Pot (8)
+Rake (0)
+
+
+
+Hand #8866407-119 - 2013-06-22 09:46:16
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (492.20)
+Seat 2: NickWebZilla (1493.56)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [Kd 8c]
+NickWebZilla raises to 12
+habing calls 8
+** Flop ** [Ac 8d Qd]
+habing checks
+NickWebZilla checks
+** Turn ** [Kc]
+habing checks
+NickWebZilla checks
+** River ** [7s]
+habing bets 40
+NickWebZilla folds
+habing refunded 40
+habing wins Pot (23.40)
+Rake (0.60)
+
+
+
+Hand #8866419-120 - 2013-06-22 09:47:13
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (503.60)
+Seat 2: NickWebZilla (1481.56)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [5d Jh]
+habing raises to 8
+NickWebZilla folds
+habing refunded 4
+habing wins Pot (8)
+Rake (0)
+
+
+
+Hand #8866423-121 - 2013-06-22 09:47:26
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (507.60)
+Seat 2: NickWebZilla (1477.56)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [7d 9h]
+NickWebZilla raises to 12
+habing folds
+NickWebZilla refunded 8
+NickWebZilla wins Pot (8)
+Rake (0)
+
+
+
+Hand #8866428-122 - 2013-06-22 09:47:39
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (503.60)
+Seat 2: NickWebZilla (1481.56)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [Jh Qs]
+habing raises to 8
+NickWebZilla calls 4
+** Flop ** [8h Td 8d]
+NickWebZilla bets 12
+habing raises to 36
+NickWebZilla calls 24
+** Turn ** [9d]
+NickWebZilla checks
+habing bets 68
+NickWebZilla calls 68
+** River ** [4h]
+NickWebZilla checks
+habing bets 4
+NickWebZilla calls 4
+** Pot Show Down ** [8h Td 8d 9d 4h]
+habing shows [Jh Qs] (a Straight, Eight to Queen)
+NickWebZilla shows [3c 8c] (Three of a Kind, Eights +T9)
+habing wins Pot (226.20) with a Straight
+Rake (5.80)
+
+
+
+Hand #8866439-123 - 2013-06-22 09:48:37
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (613.80)
+Seat 2: NickWebZilla (1365.56)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [6s 3s]
+NickWebZilla raises to 12
+habing folds
+NickWebZilla refunded 8
+NickWebZilla wins Pot (8)
+Rake (0)
+
+
+
+Hand #8866445-124 - 2013-06-22 09:48:50
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (609.80)
+Seat 2: NickWebZilla (1369.56)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [2d Js]
+habing raises to 8
+NickWebZilla raises to 32
+habing folds
+NickWebZilla refunded 24
+NickWebZilla wins Pot (16)
+Rake (0)
+
+
+
+Hand #8866449-125 - 2013-06-22 09:49:14
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (601.80)
+Seat 2: NickWebZilla (1377.56)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [8c Kd]
+NickWebZilla folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8866452-126 - 2013-06-22 09:49:27
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (603.80)
+Seat 2: NickWebZilla (1375.56)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [Ac 3s]
+habing raises to 8
+NickWebZilla calls 4
+** Flop ** [2c 6h 3c]
+NickWebZilla bets 12
+habing calls 12
+** Turn ** [2d]
+NickWebZilla bets 24
+habing calls 24
+** River ** [Kd]
+NickWebZilla checks
+habing checks
+** Pot Show Down ** [2c 6h 3c 2d Kd]
+habing shows [Ac 3s] (Two Pair, Threes and Deuces +A)
+NickWebZilla shows [3h 5s] (Two Pair, Threes and Deuces +K)
+habing wins Pot (85.80) with Two Pair
+Rake (2.20)
+
+
+
+Hand #8866465-127 - 2013-06-22 09:50:16
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (645.60)
+Seat 2: NickWebZilla (1331.56)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [Qh 6c]
+NickWebZilla raises to 12
+habing folds
+NickWebZilla refunded 8
+NickWebZilla wins Pot (8)
+Rake (0)
+
+
+
+Hand #8866469-128 - 2013-06-22 09:50:30
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (641.60)
+Seat 2: NickWebZilla (1335.56)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [3c Kh]
+habing raises to 8
+NickWebZilla calls 4
+** Flop ** [5d Kd Ac]
+NickWebZilla checks
+habing checks
+** Turn ** [7s]
+NickWebZilla bets 12
+habing calls 12
+** River ** [Qs]
+NickWebZilla bets 32
+habing folds
+NickWebZilla refunded 32
+NickWebZilla wins Pot (39)
+Rake (1)
+
+
+
+Hand #8866476-129 - 2013-06-22 09:51:04
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (621.60)
+Seat 2: NickWebZilla (1354.56)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [3c 5d]
+NickWebZilla raises to 12
+habing folds
+NickWebZilla refunded 8
+NickWebZilla wins Pot (8)
+Rake (0)
+
+
+
+Hand #8866481-130 - 2013-06-22 09:51:17
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (617.60)
+Seat 2: NickWebZilla (1358.56)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [Jh Kc]
+habing raises to 8
+NickWebZilla raises to 28
+habing calls 20
+** Flop ** [5h 9c 6c]
+NickWebZilla bets 40
+habing folds
+NickWebZilla refunded 40
+NickWebZilla wins Pot (54.60)
+Rake (1.40)
+
+
+
+Hand #8866487-131 - 2013-06-22 09:51:54
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (589.60)
+Seat 2: NickWebZilla (1385.16)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [7h 9c]
+NickWebZilla raises to 12
+habing folds
+NickWebZilla refunded 8
+NickWebZilla wins Pot (8)
+Rake (0)
+
+
+
+Hand #8866493-132 - 2013-06-22 09:52:06
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (585.60)
+Seat 2: NickWebZilla (1389.16)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [Kc Tc]
+habing raises to 8
+NickWebZilla raises to 28
+habing calls 20
+** Flop ** [Js Jd Ks]
+NickWebZilla checks
+habing bets 30.40
+NickWebZilla calls 30.40
+** Turn ** [2d]
+NickWebZilla checks
+habing checks
+** River ** [5h]
+NickWebZilla bets 72
+habing calls 72
+** Pot Show Down ** [Js Jd Ks 2d 5h]
+habing shows [Kc Tc] (Two Pair, Kings and Jacks +T)
+NickWebZilla shows [5d 5c] (a Full House, Fives full of Jacks)
+NickWebZilla wins Pot (254.28) with a Full House
+Rake (6.52)
+
+
+
+Hand #8866508-133 - 2013-06-22 09:53:01
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (455.20)
+Seat 2: NickWebZilla (1513.04)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [Jc 7c]
+NickWebZilla folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8866512-134 - 2013-06-22 09:53:13
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (457.20)
+Seat 2: NickWebZilla (1511.04)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [7c 6h]
+habing folds
+NickWebZilla refunded 2
+NickWebZilla wins Pot (4)
+Rake (0)
+
+
+
+Hand #8866515-135 - 2013-06-22 09:53:26
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (455.20)
+Seat 2: NickWebZilla (1513.04)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [Kh Td]
+NickWebZilla raises to 12
+habing calls 8
+** Flop ** [Ah 8s 6c]
+habing checks
+NickWebZilla bets 20
+habing raises to 40
+NickWebZilla folds
+habing refunded 20
+habing wins Pot (62.40)
+Rake (1.60)
+
+
+
+Hand #8866524-136 - 2013-06-22 09:53:56
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (485.60)
+Seat 2: NickWebZilla (1481.04)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [7h 2s]
+habing folds
+NickWebZilla refunded 2
+NickWebZilla wins Pot (4)
+Rake (0)
+
+
+
+Hand #8866526-137 - 2013-06-22 09:54:06
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (483.60)
+Seat 2: NickWebZilla (1483.04)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [Jh Ks]
+NickWebZilla raises to 12
+habing calls 8
+** Flop ** [2s Th 5h]
+habing checks
+NickWebZilla checks
+** Turn ** [3h]
+habing bets 16
+NickWebZilla folds
+habing refunded 16
+habing wins Pot (23.40)
+Rake (0.60)
+
+
+
+Hand #8866534-138 - 2013-06-22 09:54:44
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (495)
+Seat 2: NickWebZilla (1471.04)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [9c Qd]
+habing raises to 8
+NickWebZilla folds
+habing refunded 4
+habing wins Pot (8)
+Rake (0)
+
+
+
+Hand #8866536-139 - 2013-06-22 09:54:56
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (499)
+Seat 2: NickWebZilla (1467.04)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [7s 2c]
+NickWebZilla folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8866541-140 - 2013-06-22 09:55:06
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (501)
+Seat 2: NickWebZilla (1465.04)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [Ts Jh]
+habing raises to 8
+NickWebZilla folds
+habing refunded 4
+habing wins Pot (8)
+Rake (0)
+
+
+
+Hand #8866546-141 - 2013-06-22 09:55:22
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (505)
+Seat 2: NickWebZilla (1461.04)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [5s 2d]
+NickWebZilla raises to 12
+habing folds
+NickWebZilla refunded 8
+NickWebZilla wins Pot (8)
+Rake (0)
+
+
+
+Hand #8866550-142 - 2013-06-22 09:55:34
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (501)
+Seat 2: NickWebZilla (1465.04)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [9d 4d]
+habing raises to 8
+NickWebZilla calls 4
+** Flop ** [8c 5c 2c]
+NickWebZilla checks
+habing checks
+** Turn ** [7c]
+NickWebZilla checks
+habing checks
+** River ** [Ah]
+NickWebZilla checks
+habing checks
+** Pot Show Down ** [8c 5c 2c 7c Ah]
+habing shows [9d 4d] (High Card Ace +9875)
+NickWebZilla shows [Ts 4s] (High Card Ace +T875)
+NickWebZilla wins Pot (15.60) with High Card
+Rake (0.40)
+
+
+
+Hand #8866562-143 - 2013-06-22 09:56:16
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (493)
+Seat 2: NickWebZilla (1472.64)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [8s Ts]
+NickWebZilla raises to 12
+habing raises to 41.60
+NickWebZilla calls 29.60
+** Flop ** [2s 6h Js]
+habing bets 40
+NickWebZilla folds
+habing refunded 40
+habing wins Pot (81.12)
+Rake (2.08)
+
+
+
+Hand #8866573-144 - 2013-06-22 09:56:51
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (532.52)
+Seat 2: NickWebZilla (1431.04)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [Td Qs]
+habing raises to 8
+NickWebZilla calls 4
+** Flop ** [Ac 6h Qd]
+NickWebZilla checks
+habing checks
+** Turn ** [Ts]
+NickWebZilla bets 16
+habing raises to 32
+NickWebZilla calls 16
+** River ** [Ks]
+NickWebZilla checks
+habing checks
+** Pot Show Down ** [Ac 6h Qd Ts Ks]
+habing shows [Td Qs] (Two Pair, Queens and Tens +A)
+NickWebZilla shows [8s 9c] (High Card Ace +KQT9)
+habing wins Pot (78) with Two Pair
+Rake (2)
+
+
+
+Hand #8866586-145 - 2013-06-22 09:57:43
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (570.52)
+Seat 2: NickWebZilla (1391.04)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [2c Kh]
+NickWebZilla raises to 12
+habing folds
+NickWebZilla refunded 8
+NickWebZilla wins Pot (8)
+Rake (0)
+
+
+
+Hand #8866592-146 - 2013-06-22 09:57:55
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (566.52)
+Seat 2: NickWebZilla (1395.04)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [Ts 5s]
+habing raises to 8
+NickWebZilla raises to 28
+habing folds
+NickWebZilla refunded 20
+NickWebZilla wins Pot (16)
+Rake (0)
+
+
+
+Hand #8866602-147 - 2013-06-22 09:58:16
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (558.52)
+Seat 2: NickWebZilla (1403.04)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [4s 8s]
+NickWebZilla raises to 12
+habing folds
+NickWebZilla refunded 8
+NickWebZilla wins Pot (8)
+Rake (0)
+
+
+
+Hand #8866607-148 - 2013-06-22 09:58:29
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (554.52)
+Seat 2: NickWebZilla (1407.04)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [5h 3h]
+habing raises to 8
+NickWebZilla raises to 24
+habing folds
+NickWebZilla refunded 16
+NickWebZilla wins Pot (16)
+Rake (0)
+
+
+
+Hand #8866617-149 - 2013-06-22 09:58:53
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (546.52)
+Seat 2: NickWebZilla (1415.04)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [Kh 6c]
+NickWebZilla raises to 12
+habing folds
+NickWebZilla refunded 8
+NickWebZilla wins Pot (8)
+Rake (0)
+
+
+
+Hand #8866621-150 - 2013-06-22 09:59:05
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (542.52)
+Seat 2: NickWebZilla (1419.04)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [Ac 7d]
+habing raises to 8
+NickWebZilla raises to 24
+habing folds
+NickWebZilla refunded 16
+NickWebZilla wins Pot (16)
+Rake (0)
+
+
+
+Hand #8866629-151 - 2013-06-22 09:59:31
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (534.52)
+Seat 2: NickWebZilla (1427.04)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [7h Qc]
+NickWebZilla raises to 12
+habing folds
+NickWebZilla refunded 8
+NickWebZilla wins Pot (8)
+Rake (0)
+
+
+
+Hand #8866634-152 - 2013-06-22 09:59:44
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (530.52)
+Seat 2: NickWebZilla (1431.04)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [3s As]
+habing raises to 8
+NickWebZilla raises to 24
+habing calls 16
+** Flop ** [Th 3d Tc]
+NickWebZilla bets 32
+habing calls 32
+** Turn ** [7s]
+NickWebZilla checks
+habing bets 41.60
+NickWebZilla calls 41.60
+** River ** [2d]
+NickWebZilla checks
+habing checks
+** Pot Show Down ** [Th 3d Tc 7s 2d]
+habing shows [3s As] (Two Pair, Tens and Threes +A)
+NickWebZilla shows [6h 6d] (Two Pair, Tens and Sixes +7)
+NickWebZilla wins Pot (190.32) with Two Pair
+Rake (4.88)
+
+
+
+Hand #8866659-153 - 2013-06-22 10:00:31
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (432.92)
+Seat 2: NickWebZilla (1523.76)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [7d Qd]
+NickWebZilla raises to 12
+habing calls 8
+** Flop ** [Kc 2d Tc]
+habing checks
+NickWebZilla bets 16
+habing folds
+NickWebZilla refunded 16
+NickWebZilla wins Pot (23.40)
+Rake (0.60)
+
+
+
+Hand #8866669-154 - 2013-06-22 10:00:56
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (420.92)
+Seat 2: NickWebZilla (1535.16)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [5h Kc]
+habing raises to 8
+NickWebZilla folds
+habing refunded 4
+habing wins Pot (8)
+Rake (0)
+
+
+
+Hand #8866678-155 - 2013-06-22 10:01:12
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (424.92)
+Seat 2: NickWebZilla (1531.16)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [2d 5d]
+NickWebZilla raises to 12
+habing folds
+NickWebZilla refunded 8
+NickWebZilla wins Pot (8)
+Rake (0)
+
+
+
+Hand #8866689-156 - 2013-06-22 10:01:25
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (420.92)
+Seat 2: NickWebZilla (1535.16)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [Qs Tc]
+habing raises to 8
+NickWebZilla folds
+habing refunded 4
+habing wins Pot (8)
+Rake (0)
+
+
+
+Hand #8866692-157 - 2013-06-22 10:01:37
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (424.92)
+Seat 2: NickWebZilla (1531.16)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [Kc 9c]
+NickWebZilla raises to 12
+habing calls 8
+** Flop ** [Ad Qs Jd]
+habing checks
+NickWebZilla bets 16
+habing calls 16
+** Turn ** [6h]
+habing checks
+NickWebZilla bets 36
+habing folds
+NickWebZilla refunded 36
+habing adds 3.08 chips
+NickWebZilla wins Pot (54.60)
+Rake (1.40)
+
+
+
+Hand #8866707-158 - 2013-06-22 10:02:09
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (400)
+Seat 2: NickWebZilla (1557.76)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [Qd 5d]
+habing raises to 8
+NickWebZilla raises to 24
+habing folds
+NickWebZilla refunded 16
+habing adds 8 chips
+NickWebZilla wins Pot (16)
+Rake (0)
+
+
+
+Hand #8866719-159 - 2013-06-22 10:02:27
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (400)
+Seat 2: NickWebZilla (1565.76)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [Ad 8c]
+NickWebZilla raises to 12
+habing calls 8
+** Flop ** [7h 4d 8h]
+habing checks
+NickWebZilla bets 16
+habing raises to 51.20
+NickWebZilla calls 35.20
+** Turn ** [Ks]
+habing bets 81.60
+NickWebZilla raises to 1502.56 (All-in)
+habing calls 255.20 (All-in)
+NickWebZilla refunded 1165.76
+** River ** [Qh]
+** Pot Show Down ** [7h 4d 8h Ks Qh]
+habing shows [Ad 8c] (a Pair of Eights +AKQ)
+NickWebZilla shows [Kd 7s] (Two Pair, Kings and Sevens +Q)
+NickWebZilla wins Pot (793) with Two Pair
+Rake (7)
+habing adds 400 chips
+
+
+
+Hand #8866736-160 - 2013-06-22 10:03:08
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (400)
+Seat 2: NickWebZilla (1958.76)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [Qc 5c]
+habing raises to 8
+NickWebZilla folds
+habing refunded 4
+habing wins Pot (8)
+Rake (0)
+
+
+
+Hand #8866743-161 - 2013-06-22 10:03:21
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (404)
+Seat 2: NickWebZilla (1954.76)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [Ts Ad]
+NickWebZilla raises to 12
+habing raises to 41.60
+NickWebZilla folds
+habing refunded 29.60
+habing wins Pot (24)
+Rake (0)
+
+
+
+Hand #8866753-162 - 2013-06-22 10:03:37
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (416)
+Seat 2: NickWebZilla (1942.76)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [2c Ts]
+habing folds
+NickWebZilla refunded 2
+NickWebZilla wins Pot (4)
+Rake (0)
+
+
+
+Hand #8866756-163 - 2013-06-22 10:03:47
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (414)
+Seat 2: NickWebZilla (1944.76)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [9s 4s]
+NickWebZilla raises to 12
+habing folds
+NickWebZilla refunded 8
+NickWebZilla wins Pot (8)
+Rake (0)
+
+
+
+Hand #8866763-164 - 2013-06-22 10:03:58
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (410)
+Seat 2: NickWebZilla (1948.76)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [2h As]
+habing raises to 8
+NickWebZilla raises to 28
+habing folds
+NickWebZilla refunded 20
+NickWebZilla wins Pot (16)
+Rake (0)
+
+
+
+Hand #8866771-165 - 2013-06-22 10:04:21
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (402)
+Seat 2: NickWebZilla (1956.76)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [As 6s]
+NickWebZilla folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8866777-166 - 2013-06-22 10:04:30
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (404)
+Seat 2: NickWebZilla (1954.76)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [7h 7c]
+habing raises to 8
+NickWebZilla folds
+habing refunded 4
+habing wins Pot (8)
+Rake (0)
+
+
+
+Hand #8866781-167 - 2013-06-22 10:04:42
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (408)
+Seat 2: NickWebZilla (1950.76)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [3c 5d]
+NickWebZilla raises to 12
+habing folds
+NickWebZilla refunded 8
+NickWebZilla wins Pot (8)
+Rake (0)
+
+
+
+Hand #8866790-168 - 2013-06-22 10:04:55
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (404)
+Seat 2: NickWebZilla (1954.76)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [Kh Tc]
+habing raises to 8
+NickWebZilla folds
+habing refunded 4
+habing wins Pot (8)
+Rake (0)
+
+
+
+Hand #8866796-169 - 2013-06-22 10:05:07
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (408)
+Seat 2: NickWebZilla (1950.76)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [8d 2d]
+NickWebZilla raises to 12
+habing folds
+NickWebZilla refunded 8
+NickWebZilla wins Pot (8)
+Rake (0)
+
+
+
+Hand #8866800-170 - 2013-06-22 10:05:18
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (404)
+Seat 2: NickWebZilla (1954.76)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [8d Tc]
+habing raises to 8
+NickWebZilla raises to 24
+habing folds
+NickWebZilla refunded 16
+habing adds 4 chips
+NickWebZilla wins Pot (16)
+Rake (0)
+
+
+
+Hand #8866808-171 - 2013-06-22 10:05:36
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (400)
+Seat 2: NickWebZilla (1962.76)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [8s 4d]
+NickWebZilla calls 2
+habing checks
+** Flop ** [2s Qs As]
+habing bets 4
+NickWebZilla calls 4
+** Turn ** [5d]
+habing checks
+NickWebZilla checks
+** River ** [9d]
+habing checks
+NickWebZilla checks
+** Pot Show Down ** [2s Qs As 5d 9d]
+habing shows [8s 4d] (High Card Ace +Q985)
+NickWebZilla shows [Jd 4h] (High Card Ace +QJ95)
+NickWebZilla wins Pot (15.60) with High Card
+Rake (0.40)
+habing adds 8 chips
+
+
+
+Hand #8866821-172 - 2013-06-22 10:06:10
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (400)
+Seat 2: NickWebZilla (1970.36)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [9h 8d]
+habing raises to 8
+NickWebZilla folds
+habing refunded 4
+habing wins Pot (8)
+Rake (0)
+
+
+
+Hand #8866827-173 - 2013-06-22 10:06:22
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (404)
+Seat 2: NickWebZilla (1966.36)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [2s Ad]
+NickWebZilla raises to 12
+habing folds
+NickWebZilla refunded 8
+NickWebZilla wins Pot (8)
+Rake (0)
+
+
+
+Hand #8866831-174 - 2013-06-22 10:06:39
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (400)
+Seat 2: NickWebZilla (1970.36)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [7h Js]
+habing raises to 8
+NickWebZilla folds
+habing refunded 4
+habing wins Pot (8)
+Rake (0)
+
+
+
+Hand #8866837-175 - 2013-06-22 10:06:51
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (404)
+Seat 2: NickWebZilla (1966.36)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [4c 9d]
+NickWebZilla raises to 12
+habing folds
+NickWebZilla refunded 8
+NickWebZilla wins Pot (8)
+Rake (0)
+
+
+
+Hand #8866840-176 - 2013-06-22 10:07:02
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (400)
+Seat 2: NickWebZilla (1970.36)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [7c 3d]
+habing folds
+NickWebZilla refunded 2
+habing adds 2 chips
+NickWebZilla wins Pot (4)
+Rake (0)
+
+
+
+Hand #8866846-177 - 2013-06-22 10:07:13
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (400)
+Seat 2: NickWebZilla (1972.36)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [5c 5h]
+NickWebZilla raises to 12
+habing raises to 41.60
+NickWebZilla calls 29.60
+** Flop ** [4h Kh 2s]
+habing bets 40
+NickWebZilla calls 40
+** Turn ** [Tc]
+habing checks
+NickWebZilla checks
+** River ** [7c]
+habing checks
+NickWebZilla checks
+** Pot Show Down ** [4h Kh 2s Tc 7c]
+habing shows [5c 5h] (a Pair of Fives +KT7)
+NickWebZilla shows [3h 3c] (a Pair of Threes +KT7)
+habing wins Pot (159.12) with a Pair
+Rake (4.08)
+
+
+
+Hand #8866866-178 - 2013-06-22 10:08:03
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (477.52)
+Seat 2: NickWebZilla (1890.76)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [3s 5s]
+habing raises to 8
+NickWebZilla folds
+habing refunded 4
+habing wins Pot (8)
+Rake (0)
+
+
+
+Hand #8866871-179 - 2013-06-22 10:08:15
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (481.52)
+Seat 2: NickWebZilla (1886.76)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [Qs 2d]
+NickWebZilla raises to 12
+habing folds
+NickWebZilla refunded 8
+NickWebZilla wins Pot (8)
+Rake (0)
+
+
+
+Hand #8866879-180 - 2013-06-22 10:08:29
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (477.52)
+Seat 2: NickWebZilla (1890.76)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [4c 2c]
+habing raises to 8
+NickWebZilla raises to 24
+habing folds
+NickWebZilla refunded 16
+NickWebZilla wins Pot (16)
+Rake (0)
+
+
+
+Hand #8866884-181 - 2013-06-22 10:08:43
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (469.52)
+Seat 2: NickWebZilla (1898.76)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [5d Th]
+NickWebZilla raises to 12
+habing folds
+NickWebZilla refunded 8
+NickWebZilla wins Pot (8)
+Rake (0)
+
+
+
+Hand #8866888-182 - 2013-06-22 10:08:56
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (465.52)
+Seat 2: NickWebZilla (1902.76)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [5c Ah]
+habing raises to 8
+NickWebZilla calls 4
+** Flop ** [9c 7c 8c]
+NickWebZilla checks
+habing checks
+** Turn ** [4c]
+NickWebZilla checks
+habing checks
+** River ** [2d]
+NickWebZilla checks
+habing bets 18.40
+NickWebZilla folds
+habing refunded 18.40
+habing wins Pot (15.60)
+Rake (0.40)
+
+
+
+Hand #8866901-183 - 2013-06-22 10:09:29
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (473.12)
+Seat 2: NickWebZilla (1894.76)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [5c Qs]
+NickWebZilla raises to 12
+habing folds
+NickWebZilla refunded 8
+NickWebZilla wins Pot (8)
+Rake (0)
+
+
+
+Hand #8866906-184 - 2013-06-22 10:09:41
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (469.12)
+Seat 2: NickWebZilla (1898.76)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [8d 7h]
+habing raises to 8
+NickWebZilla raises to 24
+habing folds
+NickWebZilla refunded 16
+NickWebZilla wins Pot (16)
+Rake (0)
+
+
+
+Hand #8866912-185 - 2013-06-22 10:09:56
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (461.12)
+Seat 2: NickWebZilla (1906.76)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [3c 2c]
+NickWebZilla raises to 12
+habing folds
+NickWebZilla refunded 8
+NickWebZilla wins Pot (8)
+Rake (0)
+
+
+
+Hand #8866919-186 - 2013-06-22 10:10:08
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (457.12)
+Seat 2: NickWebZilla (1910.76)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [Ad 2d]
+habing raises to 8
+NickWebZilla folds
+habing refunded 4
+habing wins Pot (8)
+Rake (0)
+
+
+
+Hand #8866924-187 - 2013-06-22 10:10:23
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (461.12)
+Seat 2: NickWebZilla (1906.76)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [5c 4s]
+NickWebZilla raises to 12
+habing folds
+NickWebZilla refunded 8
+NickWebZilla wins Pot (8)
+Rake (0)
+
+
+
+Hand #8866933-188 - 2013-06-22 10:10:35
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (457.12)
+Seat 2: NickWebZilla (1910.76)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [6h Ts]
+habing raises to 8
+NickWebZilla raises to 24
+habing folds
+NickWebZilla refunded 16
+NickWebZilla wins Pot (16)
+Rake (0)
+
+
+
+Hand #8866940-189 - 2013-06-22 10:10:54
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (449.12)
+Seat 2: NickWebZilla (1918.76)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [5d Ah]
+NickWebZilla raises to 12
+habing calls 8
+** Flop ** [Jc 7h Js]
+habing checks
+NickWebZilla bets 20
+habing folds
+NickWebZilla refunded 20
+NickWebZilla wins Pot (23.40)
+Rake (0.60)
+
+
+
+Hand #8866953-190 - 2013-06-22 10:11:22
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (437.12)
+Seat 2: NickWebZilla (1930.16)
+habing has the dealer button
+habing posts small blind 2
+NickWebZilla posts big blind 4
+** Hole Cards **
+Dealt to habing [Ks 8s]
+habing raises to 8
+NickWebZilla folds
+habing refunded 4
+habing wins Pot (8)
+Rake (0)
+
+
+
+Hand #8866959-191 - 2013-06-22 10:11:34
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #2
+Seat 1: habing (441.12)
+Seat 2: NickWebZilla (1926.16)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [Jd Qs]
+NickWebZilla raises to 12
+habing calls 8
+** Flop ** [Kd 7d Td]
+habing checks
+NickWebZilla bets 16
+habing calls 16
+** Turn ** [As]
+habing checks
+NickWebZilla bets 30
+habing raises to 114.40
+NickWebZilla raises to 1898.16 (All-in)
+habing calls 298.72 (All-in)
+NickWebZilla refunded 1485.04
+** River ** [2d]
+** Pot Show Down ** [Kd 7d Td As 2d]
+habing shows [Jd Qs] (a Flush, King high +JT72)
+NickWebZilla shows [Ad 9d] (a Flush, Ace high +KT97)
+NickWebZilla wins Pot (875.24) with a Flush
+Rake (7)

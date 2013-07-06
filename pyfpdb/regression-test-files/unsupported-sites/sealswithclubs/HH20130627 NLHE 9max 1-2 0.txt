@@ -1,0 +1,2222 @@
+Hand #9113529-6 - 2013-06-27 15:22:06
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 4: slaraka (30)
+Seat 5: zbailey83 (219)
+Seat 6: habing (200) - waiting for big blind
+zbailey83 has the dealer button
+zbailey83 posts small blind 1
+slaraka posts big blind 2
+** Hole Cards **
+zbailey83 calls 1
+slaraka raises to 4
+zbailey83 calls 2
+** Flop ** [4s 7c 8h]
+slaraka bets 3
+zbailey83 folds
+slaraka refunded 3
+slaraka wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #9113542-7 - 2013-06-27 15:22:35
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 4: slaraka (33.80)
+Seat 5: zbailey83 (215)
+Seat 6: habing (200) - waiting for big blind
+slaraka has the dealer button
+zbailey83 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Kd 7h]
+slaraka folds
+zbailey83 calls 1
+habing raises to 11.20
+zbailey83 folds
+habing refunded 9.20
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #9113555-8 - 2013-06-27 15:23:04
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 5: zbailey83 (213)
+Seat 6: habing (202)
+zbailey83 has the dealer button
+zbailey83 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [6h 9c]
+zbailey83 raises to 6
+habing folds
+zbailey83 refunded 4
+zbailey83 wins Pot (4)
+Rake (0)
+
+
+
+Hand #9113559-9 - 2013-06-27 15:23:19
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 5: zbailey83 (215)
+Seat 6: habing (200)
+habing has the dealer button
+habing posts small blind 1
+zbailey83 posts big blind 2
+** Hole Cards **
+Dealt to habing [As Ah]
+habing raises to 6
+zbailey83 calls 4
+** Flop ** [Td 2c 5s]
+zbailey83 checks
+habing bets 8
+zbailey83 folds
+habing refunded 8
+habing wins Pot (11.70)
+Rake (0.30)
+
+
+
+Hand #9113572-10 - 2013-06-27 15:23:42
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 5: zbailey83 (209)
+Seat 6: habing (205.70)
+zbailey83 has the dealer button
+zbailey83 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Kh Jd]
+zbailey83 raises to 4
+habing calls 2
+** Flop ** [3s Th 5h]
+habing checks
+zbailey83 bets 6
+habing calls 6
+** Turn ** [2c]
+habing checks
+zbailey83 bets 15
+habing folds
+zbailey83 refunded 15
+habing adds 4.30 chips
+zbailey83 wins Pot (19.50)
+Rake (0.50)
+
+
+
+Hand #9113588-11 - 2013-06-27 15:24:23
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 5: zbailey83 (218.50)
+Seat 6: habing (200)
+habing has the dealer button
+habing posts small blind 1
+zbailey83 posts big blind 2
+** Hole Cards **
+Dealt to habing [Js 9d]
+habing raises to 4
+zbailey83 folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #9113595-12 - 2013-06-27 15:24:37
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 5: zbailey83 (216.50)
+Seat 6: habing (202)
+zbailey83 has the dealer button
+zbailey83 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [8h Jc]
+zbailey83 raises to 4
+habing calls 2
+** Flop ** [Kd 5s 4s]
+habing checks
+zbailey83 bets 4
+habing raises to 11.20
+zbailey83 folds
+habing refunded 7.20
+habing wins Pot (15.60)
+Rake (0.40)
+
+
+
+Hand #9113608-13 - 2013-06-27 15:25:13
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 5: zbailey83 (208.50)
+Seat 6: habing (209.60)
+habing has the dealer button
+habing posts small blind 1
+zbailey83 posts big blind 2
+** Hole Cards **
+Dealt to habing [Ac Jh]
+habing raises to 6
+zbailey83 folds
+habing refunded 4
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #9113615-14 - 2013-06-27 15:25:27
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 5: zbailey83 (206.50)
+Seat 6: habing (211.60)
+zbailey83 has the dealer button
+zbailey83 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [9d Ks]
+zbailey83 raises to 4
+habing calls 2
+** Flop ** [4h Kc 7c]
+habing checks
+zbailey83 checks
+** Turn ** [9c]
+habing bets 6.80
+zbailey83 folds
+habing refunded 6.80
+habing wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #9113637-15 - 2013-06-27 15:26:17
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 5: zbailey83 (202.50)
+Seat 6: habing (215.40)
+Seat 9: Grundle (200) - waiting for big blind
+habing has the dealer button
+habing posts small blind 1
+zbailey83 posts big blind 2
+** Hole Cards **
+Dealt to habing [4s 5d]
+habing folds
+zbailey83 refunded 1
+zbailey83 wins Pot (2)
+Rake (0)
+
+
+
+Hand #9113645-16 - 2013-06-27 15:26:29
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 5: zbailey83 (203.50)
+Seat 6: habing (214.40)
+Seat 9: Grundle (200) - waiting for big blind
+zbailey83 has the dealer button
+habing posts small blind 1
+Grundle posts big blind 2
+** Hole Cards **
+Dealt to habing [Ts 8h]
+zbailey83 raises to 4
+habing calls 3
+Grundle folds
+Grundle adds 2 chips
+** Flop ** [7c 5h Td]
+habing checks
+zbailey83 bets 6
+habing raises to 20.40
+zbailey83 raises to 199.50 (All-in)
+habing folds
+zbailey83 refunded 179.10
+habing adds 10 chips
+zbailey83 wins Pot (49.53)
+Rake (1.27)
+
+
+
+Hand #9113673-17 - 2013-06-27 15:27:43
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 5: zbailey83 (228.63)
+Seat 6: habing (200)
+Seat 9: Grundle (200)
+habing has the dealer button
+habing posts small blind 1
+Grundle posts big blind 2
+** Hole Cards **
+Dealt to habing [Th 7s]
+habing raises to 4
+Grundle folds
+habing refunded 2
+Grundle adds 2 chips
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #9113682-18 - 2013-06-27 15:28:03
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 5: zbailey83 (228.63) - sitting out
+Seat 6: habing (202)
+Seat 9: Grundle (200)
+Grundle has the dealer button
+Grundle posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [2d 9s]
+Grundle folds
+habing refunded 1
+Grundle adds 1 chips
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #9113690-19 - 2013-06-27 15:28:23
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 6: habing (203)
+Seat 9: Grundle (200)
+habing has the dealer button
+habing posts small blind 1
+Grundle posts big blind 2
+** Hole Cards **
+Dealt to habing [Qh Qc]
+habing raises to 6
+Grundle folds
+habing refunded 4
+Grundle adds 2 chips
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #9113702-20 - 2013-06-27 15:28:51
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 6: habing (205)
+Seat 9: Grundle (200)
+Grundle has the dealer button
+Grundle posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ad 9h]
+Grundle raises to 4
+habing calls 2
+** Flop ** [6h 2d Jd]
+habing checks
+Grundle bets 5
+habing calls 5
+** Turn ** [Td]
+habing checks
+Grundle bets 14
+habing calls 14
+** River ** [8s]
+habing checks
+Grundle checks
+** Pot Show Down ** [6h 2d Jd Td 8s]
+habing shows [Ad 9h] (High Card Ace +JT98)
+Grundle shows [8d As] (a Pair of Eights +AJT)
+Grundle wins Pot (44.85) with a Pair
+Rake (1.15)
+habing adds 18 chips
+
+
+
+Hand #9113723-21 - 2013-06-27 15:29:51
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 6: habing (200)
+Seat 9: Grundle (221.85)
+habing has the dealer button
+habing posts small blind 1
+Grundle posts big blind 2
+** Hole Cards **
+Dealt to habing [Ad Kd]
+habing raises to 6
+Grundle calls 4
+** Flop ** [9h 7h 5s]
+Grundle checks
+habing bets 6.80
+Grundle raises to 21
+habing folds
+Grundle refunded 14.20
+habing adds 12.80 chips
+Grundle wins Pot (24.96)
+Rake (0.64)
+
+
+
+Hand #9113742-22 - 2013-06-27 15:30:48
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 6: habing (200)
+Seat 9: Grundle (234.01)
+Grundle has the dealer button
+Grundle posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Td 2c]
+Grundle raises to 4
+habing folds
+Grundle refunded 2
+habing adds 2 chips
+Grundle wins Pot (4)
+Rake (0)
+
+
+
+Hand #9113755-23 - 2013-06-27 15:31:17
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 6: habing (200)
+Seat 9: Grundle (236.01)
+habing has the dealer button
+habing posts small blind 1
+Grundle posts big blind 2
+** Hole Cards **
+Dealt to habing [Tc 5h]
+habing folds
+Grundle refunded 1
+habing adds 1 chips
+Grundle wins Pot (2)
+Rake (0)
+
+
+
+Hand #9113759-24 - 2013-06-27 15:31:29
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 6: habing (200)
+Seat 9: Grundle (237.01)
+Grundle has the dealer button
+Grundle posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [7s Ts]
+Grundle raises to 4
+habing calls 2
+** Flop ** [6s As 3h]
+habing checks
+Grundle bets 5
+habing calls 5
+** Turn ** [6c]
+habing checks
+Grundle checks
+** River ** [Th]
+habing checks
+Grundle bets 14
+habing calls 14
+** Pot Show Down ** [6s As 3h 6c Th]
+habing shows [7s Ts] (Two Pair, Tens and Sixes +A)
+Grundle shows [7d Ac] (Two Pair, Aces and Sixes +T)
+Grundle wins Pot (44.85) with Two Pair
+Rake (1.15)
+habing adds 23 chips
+
+
+
+Hand #9113788-25 - 2013-06-27 15:32:46
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 6: habing (200)
+Seat 9: Grundle (258.86)
+habing has the dealer button
+habing posts small blind 1
+Grundle posts big blind 2
+** Hole Cards **
+Dealt to habing [9h 7d]
+habing folds
+Grundle refunded 1
+habing adds 1 chips
+Grundle wins Pot (2)
+Rake (0)
+
+
+
+Hand #9113795-26 - 2013-06-27 15:32:57
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 6: habing (200)
+Seat 9: Grundle (259.86)
+Grundle has the dealer button
+Grundle posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ac 9h]
+Grundle raises to 4
+habing calls 2
+** Flop ** [As Kd 4d]
+habing checks
+Grundle bets 5
+habing raises to 18.40
+Grundle calls 13.40
+** Turn ** [9s]
+habing bets 29.20
+Grundle folds
+habing refunded 29.20
+habing wins Pot (43.68)
+Rake (1.12)
+
+
+
+Hand #9113817-27 - 2013-06-27 15:33:42
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 6: habing (221.28)
+Seat 9: Grundle (237.46)
+habing has the dealer button
+habing posts small blind 1
+Grundle posts big blind 2
+** Hole Cards **
+Dealt to habing [3d 7d]
+habing folds
+Grundle refunded 1
+Grundle wins Pot (2)
+Rake (0)
+
+
+
+Hand #9113830-28 - 2013-06-27 15:33:58
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 6: habing (220.28)
+Seat 9: Grundle (238.46)
+Grundle has the dealer button
+Grundle posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [7c 9h]
+Grundle raises to 4
+habing folds
+Grundle refunded 2
+Grundle wins Pot (4)
+Rake (0)
+
+
+
+Hand #9113838-29 - 2013-06-27 15:34:10
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 6: habing (218.28)
+Seat 9: Grundle (240.46)
+habing has the dealer button
+habing posts small blind 1
+Grundle posts big blind 2
+** Hole Cards **
+Dealt to habing [Th Tc]
+habing raises to 4
+Grundle calls 2
+** Flop ** [2d 7d 2s]
+Grundle checks
+habing bets 5.60
+Grundle folds
+habing refunded 5.60
+habing wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #9113854-30 - 2013-06-27 15:34:54
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 6: habing (222.08)
+Seat 9: Grundle (236.46)
+Grundle has the dealer button
+Grundle posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [5s As]
+Grundle raises to 4
+habing calls 2
+** Flop ** [6s 6h Ac]
+habing checks
+Grundle bets 5
+habing raises to 19.60
+Grundle folds
+habing refunded 14.60
+habing wins Pot (17.55)
+Rake (0.45)
+
+
+
+Hand #9113874-31 - 2013-06-27 15:35:29
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 2: intljs (40)
+Seat 6: habing (230.63)
+Seat 9: Grundle (227.46)
+habing has the dealer button
+Grundle posts small blind 1
+intljs posts big blind 2
+** Hole Cards **
+Dealt to habing [9d 5h]
+habing folds
+Grundle raises to 6
+intljs folds
+Grundle refunded 4
+Grundle wins Pot (4)
+Rake (0)
+
+
+
+Hand #9113887-32 - 2013-06-27 15:35:53
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 2: intljs (38)
+Seat 6: habing (230.63)
+Seat 9: Grundle (229.46)
+Grundle has the dealer button
+intljs posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Tc 6h]
+Grundle raises to 4
+intljs folds
+habing folds
+Grundle refunded 2
+Grundle wins Pot (5)
+Rake (0)
+
+
+
+Hand #9113902-33 - 2013-06-27 15:36:21
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 2: intljs (37)
+Seat 6: habing (228.63)
+Seat 9: Grundle (232.46)
+intljs has the dealer button
+habing posts small blind 1
+Grundle posts big blind 2
+** Hole Cards **
+Dealt to habing [5s 9d]
+intljs calls 2
+habing folds
+Grundle checks
+** Flop ** [3c Qh 9c]
+Grundle checks
+intljs checks
+** Turn ** [Jd]
+Grundle checks
+intljs bets 2
+Grundle folds
+intljs refunded 2
+intljs wins Pot (4.88)
+Rake (0.12)
+
+
+
+Hand #9113913-34 - 2013-06-27 15:37:02
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 2: intljs (39.88)
+Seat 6: habing (227.63)
+Seat 9: Grundle (230.46)
+habing has the dealer button
+Grundle posts small blind 1
+intljs posts big blind 2
+** Hole Cards **
+Dealt to habing [9h Kd]
+habing raises to 6
+Grundle folds
+intljs folds
+habing refunded 4
+habing wins Pot (5)
+Rake (0)
+
+
+
+Hand #9113932-35 - 2013-06-27 15:37:36
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 2: intljs (37.88)
+Seat 6: habing (230.63)
+Seat 9: Grundle (229.46)
+Grundle has the dealer button
+intljs posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Jh Kh]
+Grundle folds
+intljs folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #9113941-36 - 2013-06-27 15:37:59
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 2: intljs (36.88)
+Seat 6: habing (231.63)
+Seat 9: Grundle (229.46)
+intljs has the dealer button
+habing posts small blind 1
+Grundle posts big blind 2
+** Hole Cards **
+Dealt to habing [Jh Ts]
+intljs calls 2
+habing folds
+Grundle raises to 10
+intljs calls 8
+** Flop ** [Kd Td 3s]
+Grundle bets 12
+intljs raises to 26.88 (All-in)
+Grundle calls 14.88
+** Turn ** [5h]
+** River ** [Qs]
+** Pot Show Down ** [Kd Td 3s 5h Qs]
+intljs shows [Jd Ad] (a Straight, Ten to Ace)
+Grundle shows [Th Kc] (Two Pair, Kings and Tens +Q)
+intljs wins Pot (72.90) with a Straight
+Rake (1.86)
+Grundle adds 7.42 chips
+
+
+
+Hand #9113973-37 - 2013-06-27 15:38:51
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 2: intljs (72.90)
+Seat 6: habing (230.63)
+Seat 9: Grundle (200)
+habing has the dealer button
+Grundle posts small blind 1
+intljs posts big blind 2
+** Hole Cards **
+Dealt to habing [4h 7c]
+habing folds
+Grundle raises to 6
+intljs calls 4
+** Flop ** [9h Ah 8s]
+Grundle bets 8
+intljs calls 8
+** Turn ** [3c]
+Grundle checks
+intljs checks
+** River ** [Th]
+Grundle checks
+intljs bets 58.90 (All-in)
+Grundle folds
+intljs refunded 58.90
+Grundle adds 14 chips
+intljs wins Pot (27.30)
+Rake (0.70)
+
+
+
+Hand #9114019-38 - 2013-06-27 15:40:22
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 2: intljs (86.20)
+Seat 6: habing (230.63)
+Seat 9: Grundle (200)
+Grundle has the dealer button
+intljs posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Jc Jd]
+Grundle raises to 4
+intljs folds
+habing raises to 16.80
+Grundle folds
+habing refunded 12.80
+Grundle adds 4 chips
+habing wins Pot (9)
+Rake (0)
+
+
+
+Hand #9114059-41 - 2013-06-27 15:41:45
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: ibitcoins (200)
+Seat 6: habing (241.63)
+Seat 9: Grundle (200)
+habing has the dealer button
+Grundle posts small blind 1
+ibitcoins posts big blind 2
+** Hole Cards **
+Dealt to habing [Td 7d]
+habing raises to 6
+Grundle folds
+Grundle adds 1 chips
+ibitcoins folds
+habing refunded 4
+habing wins Pot (5)
+Rake (0)
+
+
+
+Hand #9114068-42 - 2013-06-27 15:42:02
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: ibitcoins (198)
+Seat 6: habing (244.63)
+Seat 9: Grundle (200)
+Grundle has the dealer button
+ibitcoins posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Td 8h]
+Grundle raises to 4
+ibitcoins calls 3
+habing folds
+** Flop ** [3h Ad 2s]
+ibitcoins checks
+Grundle bets 6
+ibitcoins folds
+Grundle refunded 6
+Grundle wins Pot (9.75)
+Rake (0.25)
+
+
+
+Hand #9114088-43 - 2013-06-27 15:42:37
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: ibitcoins (194)
+Seat 6: habing (242.63)
+Seat 9: Grundle (205.75)
+ibitcoins has the dealer button
+habing posts small blind 1
+Grundle posts big blind 2
+** Hole Cards **
+Dealt to habing [Qs 8c]
+ibitcoins folds
+habing raises to 4
+Grundle calls 2
+** Flop ** [6d Tc Ac]
+habing checks
+Grundle bets 5
+habing folds
+Grundle refunded 5
+Grundle wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #9114109-44 - 2013-06-27 15:43:30
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: ibitcoins (194)
+Seat 6: habing (238.63)
+Seat 9: Grundle (209.55)
+habing has the dealer button
+Grundle posts small blind 1
+ibitcoins posts big blind 2
+** Hole Cards **
+Dealt to habing [8h 4s]
+habing folds
+Grundle folds
+ibitcoins refunded 1
+ibitcoins wins Pot (2)
+Rake (0)
+
+
+
+Hand #9114120-45 - 2013-06-27 15:43:44
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: ibitcoins (195)
+Seat 6: habing (238.63)
+Seat 9: Grundle (208.55)
+Grundle has the dealer button
+ibitcoins posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ks 5c]
+Grundle folds
+ibitcoins raises to 4
+habing calls 2
+** Flop ** [4h Qs 4c]
+ibitcoins checks
+habing checks
+** Turn ** [5h]
+ibitcoins bets 2
+habing calls 2
+** River ** [Kc]
+ibitcoins bets 2
+habing raises to 14
+ibitcoins calls 12
+** Pot Show Down ** [4h Qs 4c 5h Kc]
+ibitcoins shows [Qh Ts] (Two Pair, Queens and Fours +K)
+habing shows [Ks 5c] (Two Pair, Kings and Fives +Q)
+habing wins Pot (39) with Two Pair
+Rake (1)
+
+
+
+Hand #9114144-46 - 2013-06-27 15:44:40
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: ibitcoins (175)
+Seat 6: habing (257.63)
+Seat 9: Grundle (208.55)
+ibitcoins has the dealer button
+habing posts small blind 1
+Grundle posts big blind 2
+** Hole Cards **
+Dealt to habing [Ks Jh]
+ibitcoins folds
+habing raises to 6
+Grundle raises to 18
+habing folds
+Grundle refunded 12
+Grundle wins Pot (12)
+Rake (0)
+
+
+
+Hand #9114158-47 - 2013-06-27 15:45:16
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: ibitcoins (175)
+Seat 6: habing (251.63)
+Seat 9: Grundle (214.55)
+habing has the dealer button
+Grundle posts small blind 1
+ibitcoins posts big blind 2
+** Hole Cards **
+Dealt to habing [8d 9h]
+habing raises to 4
+Grundle raises to 14
+ibitcoins folds
+habing folds
+Grundle refunded 10
+Grundle wins Pot (10)
+Rake (0)
+
+
+
+Hand #9114181-48 - 2013-06-27 15:45:57
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: ibitcoins (173)
+Seat 6: habing (247.63)
+Seat 9: Grundle (220.55)
+Grundle has the dealer button
+ibitcoins posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [3d Kc]
+Grundle raises to 6
+ibitcoins folds
+habing folds
+Grundle refunded 4
+Grundle wins Pot (5)
+Rake (0)
+
+
+
+Hand #9114193-49 - 2013-06-27 15:46:19
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: ibitcoins (172)
+Seat 6: habing (245.63)
+Seat 9: Grundle (223.55)
+ibitcoins has the dealer button
+habing posts small blind 1
+Grundle posts big blind 2
+** Hole Cards **
+Dealt to habing [6c Jc]
+ibitcoins calls 2
+habing folds
+Grundle checks
+** Flop ** [9c Ah 3s]
+Grundle bets 4
+ibitcoins calls 4
+** Turn ** [4c]
+Grundle checks
+ibitcoins bets 4
+Grundle folds
+ibitcoins refunded 4
+ibitcoins wins Pot (12.68)
+Rake (0.32)
+
+
+
+Hand #9114214-50 - 2013-06-27 15:47:11
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: ibitcoins (178.68)
+Seat 2: ungod (40)
+Seat 6: habing (244.63)
+Seat 9: Grundle (217.55)
+habing has the dealer button
+Grundle posts small blind 1
+ibitcoins posts big blind 2
+ungod posts big blind 2
+** Hole Cards **
+Dealt to habing [Ad 6c]
+ungod checks
+habing raises to 8
+Grundle folds
+ibitcoins calls 6
+ungod folds
+** Flop ** [Js 6h Td]
+ibitcoins checks
+habing checks
+** Turn ** [2c]
+ibitcoins checks
+habing checks
+** River ** [Qs]
+ibitcoins checks
+habing checks
+** Pot Show Down ** [Js 6h Td 2c Qs]
+ibitcoins shows [2h Ac] (a Pair of Deuces +AQJ)
+habing shows [Ad 6c] (a Pair of Sixes +AQJ)
+habing wins Pot (18.53) with a Pair
+Rake (0.47)
+
+
+
+Hand #9114249-51 - 2013-06-27 15:48:19
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: ibitcoins (170.68)
+Seat 2: ungod (38)
+Seat 5: Soporatus (80)
+Seat 6: habing (255.16)
+Seat 9: Grundle (216.55)
+Grundle has the dealer button
+ibitcoins posts small blind 1
+ungod posts big blind 2
+Soporatus posts big blind 2
+** Hole Cards **
+Dealt to habing [Ad Ah]
+Soporatus checks
+habing raises to 8
+Grundle folds
+ibitcoins folds
+ungod folds
+Soporatus folds
+habing refunded 6
+habing wins Pot (7)
+Rake (0)
+
+
+
+Hand #9114270-52 - 2013-06-27 15:48:54
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: ibitcoins (169.68)
+Seat 2: ungod (36)
+Seat 5: Soporatus (78)
+Seat 6: habing (260.16)
+Seat 9: Grundle (216.55)
+ibitcoins has the dealer button
+ungod posts small blind 1
+Soporatus posts big blind 2
+** Hole Cards **
+Dealt to habing [9s 5h]
+habing folds
+Grundle folds
+ibitcoins calls 2
+ungod folds
+Soporatus checks
+** Flop ** [5s 4s Kh]
+Soporatus checks
+ibitcoins bets 4
+Soporatus folds
+ibitcoins refunded 4
+ibitcoins wins Pot (4.88)
+Rake (0.12)
+
+
+
+Hand #9114289-53 - 2013-06-27 15:49:37
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: ibitcoins (172.56)
+Seat 2: ungod (35)
+Seat 5: Soporatus (76)
+Seat 6: habing (260.16)
+Seat 9: Grundle (216.55)
+ungod has the dealer button
+Soporatus posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Js Ac]
+Grundle folds
+ibitcoins folds
+ungod folds
+Soporatus calls 1
+habing raises to 10
+Soporatus folds
+habing refunded 8
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #9114313-54 - 2013-06-27 15:50:28
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: ibitcoins (172.56)
+Seat 2: ungod (35)
+Seat 5: Soporatus (74)
+Seat 6: habing (262.16)
+Seat 9: Grundle (216.55)
+Soporatus has the dealer button
+habing posts small blind 1
+Grundle posts big blind 2
+** Hole Cards **
+Dealt to habing [Qd 9h]
+ibitcoins raises to 4
+ungod folds
+Soporatus calls 4
+habing folds
+Grundle folds
+** Flop ** [8d 9s 2s]
+ibitcoins bets 6
+Soporatus calls 6
+** Turn ** [3s]
+ibitcoins checks
+Soporatus checks
+** River ** [3c]
+ibitcoins checks
+Soporatus checks
+** Pot Show Down ** [8d 9s 2s 3s 3c]
+ibitcoins shows [Kd As] (a Pair of Threes +AK9)
+Soporatus shows [Qc Tc] (a Pair of Threes +QT9)
+ibitcoins wins Pot (22.43) with a Pair
+Rake (0.57)
+
+
+
+Hand #9114345-55 - 2013-06-27 15:51:37
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: ibitcoins (184.99)
+Seat 2: ungod (35)
+Seat 3: Sweeny-Tom (80) - waiting for big blind
+Seat 5: Soporatus (64)
+Seat 6: habing (261.16)
+Seat 9: Grundle (214.55)
+habing has the dealer button
+Grundle posts small blind 1
+ibitcoins posts big blind 2
+** Hole Cards **
+Dealt to habing [8d 8c]
+ungod folds
+Soporatus calls 2
+habing raises to 8.80
+Grundle calls 7.80
+ibitcoins folds
+Soporatus folds
+** Flop ** [9c Qs Jd]
+Grundle checks
+habing checks
+** Turn ** [Ah]
+Grundle bets 16
+habing folds
+Grundle refunded 16
+Grundle wins Pot (21.06)
+Rake (0.54)
+
+
+
+Hand #9114390-56 - 2013-06-27 15:53:00
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: ibitcoins (182.99)
+Seat 2: ungod (35)
+Seat 3: Sweeny-Tom (80) - waiting for big blind
+Seat 6: habing (252.36)
+Seat 9: Grundle (226.81)
+Grundle has the dealer button
+ibitcoins posts small blind 1
+ungod posts big blind 2
+** Hole Cards **
+Dealt to habing [Kh Ks]
+habing raises to 6
+Grundle raises to 18
+ibitcoins folds
+ungod folds
+habing raises to 44.40
+Grundle folds
+habing refunded 26.40
+habing wins Pot (39)
+Rake (0)
+
+
+
+Hand #9114419-57 - 2013-06-27 15:53:55
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: ibitcoins (181.99)
+Seat 2: ungod (33)
+Seat 3: Sweeny-Tom (80) - waiting for big blind
+Seat 6: habing (273.36)
+Seat 9: Grundle (208.81)
+ibitcoins has the dealer button
+ungod posts small blind 1
+Sweeny-Tom posts big blind 2
+** Hole Cards **
+Dealt to habing [4c Jd]
+habing folds
+Grundle folds
+ibitcoins folds
+ungod folds
+Sweeny-Tom refunded 1
+Sweeny-Tom wins Pot (2)
+Rake (0)
+
+
+
+Hand #9114434-58 - 2013-06-27 15:54:26
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: ibitcoins (181.99)
+Seat 2: ungod (32)
+Seat 3: Sweeny-Tom (81)
+Seat 6: habing (273.36)
+Seat 9: Grundle (208.81)
+ungod has the dealer button
+Sweeny-Tom posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [3h Js]
+Grundle folds
+ibitcoins folds
+ungod calls 2
+Sweeny-Tom raises to 7
+habing folds
+ungod calls 5
+** Flop ** [Ks Kc Th]
+Sweeny-Tom checks
+ungod checks
+** Turn ** [6c]
+Sweeny-Tom checks
+ungod checks
+** River ** [Ah]
+Sweeny-Tom bets 8
+ungod folds
+Sweeny-Tom refunded 8
+Sweeny-Tom wins Pot (15.60)
+Rake (0.40)
+
+
+
+Hand #9114486-59 - 2013-06-27 15:55:43
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: ibitcoins (181.99)
+Seat 2: ungod (25)
+Seat 3: Sweeny-Tom (89.60)
+Seat 6: habing (271.36)
+Sweeny-Tom has the dealer button
+habing posts small blind 1
+ibitcoins posts big blind 2
+** Hole Cards **
+Dealt to habing [8d 9c]
+ungod calls 2
+Sweeny-Tom folds
+habing folds
+ibitcoins checks
+** Flop ** [4d Ks Qc]
+ibitcoins checks
+ungod bets 4
+ibitcoins folds
+ungod refunded 4
+ungod wins Pot (4.88)
+Rake (0.12)
+
+
+
+Hand #9114506-60 - 2013-06-27 15:56:21
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: ibitcoins (179.99)
+Seat 2: ungod (27.88)
+Seat 3: Sweeny-Tom (89.60)
+Seat 6: habing (270.36)
+habing has the dealer button
+ibitcoins posts small blind 1
+ungod posts big blind 2
+** Hole Cards **
+Dealt to habing [7s 2s]
+Sweeny-Tom calls 2
+habing folds
+ibitcoins calls 1
+ungod checks
+** Flop ** [Tc Ad 3h]
+ibitcoins bets 6
+ungod folds
+Sweeny-Tom folds
+ibitcoins refunded 6
+ibitcoins wins Pot (5.85)
+Rake (0.15)
+
+
+
+Hand #9114526-61 - 2013-06-27 15:56:54
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: ibitcoins (183.84)
+Seat 2: ungod (25.88)
+Seat 3: Sweeny-Tom (87.60)
+Seat 6: habing (270.36)
+ibitcoins has the dealer button
+ungod posts small blind 1
+Sweeny-Tom posts big blind 2
+** Hole Cards **
+Dealt to habing [Jd Jc]
+habing raises to 6
+ibitcoins calls 6
+ungod folds
+Sweeny-Tom folds
+** Flop ** [4s Th Qh]
+habing bets 10
+ibitcoins calls 10
+** Turn ** [5h]
+habing checks
+ibitcoins bets 10
+habing calls 10
+** River ** [3s]
+habing checks
+ibitcoins bets 20
+habing calls 20
+** Pot Show Down ** [4s Th Qh 5h 3s]
+ibitcoins shows [Qc Ts] (Two Pair, Queens and Tens +5)
+habing shows [Jd Jc] (a Pair of Jacks +QT5)
+ibitcoins wins Pot (92.63) with Two Pair
+Rake (2.37)
+
+
+
+Hand #9114560-62 - 2013-06-27 15:57:50
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: ibitcoins (230.47)
+Seat 2: ungod (24.88)
+Seat 3: Sweeny-Tom (85.60)
+Seat 6: habing (224.36)
+ungod has the dealer button
+Sweeny-Tom posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Kc 6c]
+ibitcoins calls 2
+ungod folds
+Sweeny-Tom folds
+habing checks
+** Flop ** [Tc Th 2d]
+habing checks
+ibitcoins checks
+** Turn ** [Kd]
+habing bets 4.40
+ibitcoins calls 4.40
+** River ** [9s]
+habing checks
+ibitcoins bets 8
+habing calls 8
+** Pot Show Down ** [Tc Th 2d Kd 9s]
+ibitcoins shows [Ks Qd] (Two Pair, Kings and Tens +Q)
+habing shows [Kc 6c] (Two Pair, Kings and Tens +9)
+ibitcoins wins Pot (29.06) with Two Pair
+Rake (0.74)
+
+
+
+Hand #9114611-63 - 2013-06-27 15:58:55
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: ibitcoins (245.13)
+Seat 2: ungod (24.88)
+Seat 3: Sweeny-Tom (84.60)
+Seat 6: habing (209.96)
+Sweeny-Tom has the dealer button
+habing posts small blind 1
+ibitcoins posts big blind 2
+** Hole Cards **
+Dealt to habing [Td Ad]
+ungod folds
+Sweeny-Tom folds
+habing raises to 6
+ibitcoins folds
+habing refunded 4
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #9114633-64 - 2013-06-27 15:59:29
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: ibitcoins (243.13)
+Seat 2: ungod (24.88)
+Seat 3: Sweeny-Tom (84.60)
+Seat 4: bearsworth (200)
+Seat 6: habing (211.96)
+Seat 9: dave23 (200)
+habing has the dealer button
+ibitcoins posts small blind 1
+ungod posts big blind 2
+bearsworth posts big blind 2
+** Hole Cards **
+Dealt to habing [4h Js]
+Sweeny-Tom raises to 6
+bearsworth calls 4
+habing folds
+ibitcoins folds
+ungod calls 4
+** Flop ** [Ah 5d Qh]
+ungod checks
+Sweeny-Tom bets 10
+bearsworth raises to 36
+ungod folds
+Sweeny-Tom folds
+bearsworth refunded 26
+bearsworth wins Pot (38.03)
+Rake (0.97)
+
+
+
+Hand #9114670-65 - 2013-06-27 16:00:19
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: ibitcoins (242.13)
+Seat 2: ungod (18.88)
+Seat 3: Sweeny-Tom (68.60)
+Seat 4: bearsworth (222.03)
+Seat 6: habing (211.96)
+Seat 9: dave23 (200)
+ibitcoins has the dealer button
+ungod posts small blind 1
+Sweeny-Tom posts big blind 2
+dave23 posts big blind 2
+** Hole Cards **
+Dealt to habing [7h Ts]
+bearsworth calls 2
+habing folds
+dave23 checks
+ibitcoins folds
+ungod folds
+Sweeny-Tom checks
+** Flop ** [Js 5d 8c]
+Sweeny-Tom checks
+bearsworth checks
+dave23 bets 6
+Sweeny-Tom folds
+bearsworth calls 6
+** Turn ** [3c]
+bearsworth checks
+dave23 bets 13
+bearsworth folds
+dave23 refunded 13
+dave23 wins Pot (18.53)
+Rake (0.47)
+
+
+
+Hand #9114756-66 - 2013-06-27 16:01:31
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: ibitcoins (242.13)
+Seat 2: ungod (17.88)
+Seat 3: Sweeny-Tom (66.60)
+Seat 4: bearsworth (214.03)
+Seat 6: habing (211.96)
+Seat 9: dave23 (210.53)
+ungod has the dealer button
+Sweeny-Tom posts small blind 1
+bearsworth posts big blind 2
+** Hole Cards **
+Dealt to habing [9d Jd]
+habing folds
+dave23 folds
+ibitcoins folds
+ungod folds
+Sweeny-Tom calls 1
+bearsworth checks
+** Flop ** [Td Js Jc]
+Sweeny-Tom checks
+bearsworth bets 10
+Sweeny-Tom folds
+bearsworth refunded 10
+bearsworth wins Pot (3.90)
+Rake (0.10)
+
+
+
+Hand #9114816-67 - 2013-06-27 16:02:31
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: ibitcoins (242.13)
+Seat 2: ungod (17.88)
+Seat 3: Sweeny-Tom (64.60)
+Seat 4: bearsworth (215.93)
+Seat 6: habing (211.96)
+Seat 9: dave23 (210.53)
+Sweeny-Tom has the dealer button
+bearsworth posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Jc Qh]
+dave23 folds
+ibitcoins has timed out
+ibitcoins folds
+ungod folds
+Sweeny-Tom raises to 6
+bearsworth folds
+habing calls 4
+** Flop ** [Jh Kd 9c]
+habing checks
+Sweeny-Tom bets 6
+habing calls 6
+** Turn ** [Jd]
+habing checks
+Sweeny-Tom checks
+** River ** [Ts]
+habing checks
+Sweeny-Tom bets 12
+habing calls 12
+** Pot Show Down ** [Jh Kd 9c Jd Ts]
+Sweeny-Tom shows [As Qd] (a Straight, Ten to Ace)
+habing shows [Jc Qh] (a Straight, Nine to King)
+Sweeny-Tom wins Pot (47.78) with a Straight
+Rake (1.22)
+habing adds 12.04 chips
+
+
+
+Hand #9114918-68 - 2013-06-27 16:04:17
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: ibitcoins (242.13)
+Seat 2: ungod (17.88)
+Seat 3: Sweeny-Tom (88.38)
+Seat 4: bearsworth (214.93)
+Seat 6: habing (200)
+Seat 9: dave23 (210.53)
+bearsworth has the dealer button
+habing posts small blind 1
+dave23 posts big blind 2
+** Hole Cards **
+Dealt to habing [8d 3d]
+ibitcoins folds
+ungod folds
+Sweeny-Tom folds
+bearsworth calls 2
+habing folds
+habing adds 1 chips
+dave23 checks
+** Flop ** [As Td Kc]
+dave23 bets 3
+bearsworth raises to 56.38
+dave23 folds
+bearsworth refunded 53.38
+bearsworth wins Pot (10.73)
+Rake (0.27)
+
+
+
+Hand #9114970-69 - 2013-06-27 16:05:17
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: ibitcoins (242.13)
+Seat 2: ungod (17.88)
+Seat 3: Sweeny-Tom (88.38)
+Seat 4: bearsworth (220.66)
+Seat 6: habing (200)
+Seat 9: dave23 (205.53)
+habing has the dealer button
+dave23 posts small blind 1
+ibitcoins posts big blind 2
+** Hole Cards **
+Dealt to habing [4c Kc]
+ungod folds
+Sweeny-Tom folds
+bearsworth calls 2
+habing raises to 8
+dave23 folds
+ibitcoins calls 6
+bearsworth calls 6
+** Flop ** [7d Tc 9c]
+ibitcoins bets 14
+bearsworth raises to 84.20
+habing folds
+habing adds 8 chips
+ibitcoins calls 70.20
+** Turn ** [2d]
+ibitcoins bets 149.93 (All-in)
+bearsworth calls 128.46 (All-in)
+ibitcoins refunded 21.47
+** River ** [5c]
+** Pot Show Down ** [7d Tc 9c 2d 5c]
+ibitcoins shows [5d Td] (Two Pair, Tens and Fives +9)
+bearsworth shows [Qh Th] (a Pair of Tens +Q97)
+ibitcoins wins Pot (446.32) with Two Pair
+Rake (4)
+
+
+
+Hand #9115035-70 - 2013-06-27 16:06:26
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: ibitcoins (467.79)
+Seat 2: ungod (17.88)
+Seat 3: Sweeny-Tom (88.38)
+Seat 4: bearsworth (0) - sitting out
+Seat 5: wonderboy (40) - waiting for big blind
+Seat 6: habing (200)
+Seat 9: dave23 (204.53)
+dave23 has the dealer button
+ibitcoins posts small blind 1
+ungod posts big blind 2
+** Hole Cards **
+Dealt to habing [Kc 6s]
+Sweeny-Tom folds
+habing folds
+dave23 has timed out
+dave23 folds
+ibitcoins calls 1
+ungod checks
+** Flop ** [Jc 7c Jd]
+ibitcoins checks
+ungod checks
+** Turn ** [Ac]
+ibitcoins checks
+ungod checks
+** River ** [6c]
+ibitcoins checks
+ungod checks
+** Pot Show Down ** [Jc 7c Jd Ac 6c]
+ibitcoins shows [3d 3h] (Two Pair, Jacks and Threes +A)
+ungod shows [9s 2d] (a Pair of Jacks +A97)
+ibitcoins wins Pot (3.90) with Two Pair
+Rake (0.10)
+
+
+
+Hand #9115105-71 - 2013-06-27 16:07:43
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: ibitcoins (469.69)
+Seat 2: ungod (15.88)
+Seat 3: Sweeny-Tom (88.38)
+Seat 4: FeedMeBits (200) - waiting for big blind
+Seat 5: wonderboy (40) - waiting for big blind
+Seat 6: habing (200)
+Seat 9: dave23 (204.53) - sitting out
+ibitcoins has the dealer button
+ungod posts small blind 1
+Sweeny-Tom posts big blind 2
+** Hole Cards **
+Dealt to habing [Ad Qh]
+habing raises to 6
+ibitcoins folds
+ungod folds
+Sweeny-Tom calls 4
+** Flop ** [9s 8s Th]
+Sweeny-Tom checks
+habing checks
+** Turn ** [Qc]
+Sweeny-Tom checks
+habing checks
+** River ** [3d]
+Sweeny-Tom checks
+habing bets 4
+Sweeny-Tom raises to 12
+habing folds
+Sweeny-Tom refunded 8
+habing adds 10 chips
+Sweeny-Tom wins Pot (20.48)
+Rake (0.52)
+
+
+
+Hand #9115163-72 - 2013-06-27 16:08:53
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 2: ungod (14.88)
+Seat 3: Sweeny-Tom (98.86)
+Seat 4: FeedMeBits (200) - waiting for big blind
+Seat 5: wonderboy (40) - waiting for big blind
+Seat 6: habing (200)
+Seat 9: dave23 (204.53) - sitting out
+ungod has the dealer button
+Sweeny-Tom posts small blind 1
+FeedMeBits posts big blind 2
+** Hole Cards **
+Dealt to habing [7c 7h]
+habing raises to 6
+ungod calls 6
+Sweeny-Tom calls 5
+FeedMeBits folds
+FeedMeBits adds 2 chips
+** Flop ** [2h 5d 7d]
+Sweeny-Tom checks
+habing bets 15.20
+ungod calls 8.88 (All-in)
+Sweeny-Tom folds
+habing refunded 6.32
+** Turn ** [Ks]
+** River ** [3h]
+** Pot Show Down ** [2h 5d 7d Ks 3h]
+ungod shows [Th Kh] (a Pair of Kings +T75)
+habing shows [7c 7h] (Three of a Kind, Sevens +K5)
+habing wins Pot (36.82) with Three of a Kind
+Rake (0.94)
+ungod adds 40 chips
+
+
+
+Hand #9115214-73 - 2013-06-27 16:09:49
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 2: ungod (40)
+Seat 3: Sweeny-Tom (92.86)
+Seat 4: FeedMeBits (200)
+Seat 5: wonderboy (40) - waiting for big blind
+Seat 6: habing (221.94)
+Seat 9: dave23 (204.53) - sitting out
+Sweeny-Tom has the dealer button
+FeedMeBits posts small blind 1
+wonderboy posts big blind 2
+** Hole Cards **
+Dealt to habing [4h 9h]
+habing folds
+ungod folds
+Sweeny-Tom raises to 6
+FeedMeBits folds
+FeedMeBits adds 1 chips
+wonderboy folds
+Sweeny-Tom refunded 4
+Sweeny-Tom wins Pot (5)
+Rake (0)
+
+
+
+Hand #9115235-74 - 2013-06-27 16:10:16
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 2: ungod (40)
+Seat 3: Sweeny-Tom (95.86)
+Seat 4: FeedMeBits (200)
+Seat 5: wonderboy (38)
+Seat 6: habing (221.94)
+Seat 9: dave23 (204.53)
+FeedMeBits has the dealer button
+wonderboy posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ts As]
+dave23 folds
+ungod folds
+Sweeny-Tom folds
+FeedMeBits folds
+wonderboy raises to 4
+habing raises to 14.40
+wonderboy raises to 38 (All-in)
+habing calls 23.60
+** Flop ** [9d 3s Kh]
+** Turn ** [7d]
+** River ** [Qc]
+** Pot Show Down ** [9d 3s Kh 7d Qc]
+wonderboy shows [Ah 7h] (a Pair of Sevens +AKQ)
+habing shows [Ts As] (High Card Ace +KQT9)
+wonderboy wins Pot (74.10) with a Pair
+Rake (1.90)
+habing adds 16.06 chips
+
+
+
+Hand #9115283-75 - 2013-06-27 16:11:16
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 2: ungod (40)
+Seat 3: Sweeny-Tom (95.86)
+Seat 4: FeedMeBits (200)
+Seat 5: wonderboy (74.10)
+Seat 6: habing (200)
+Seat 9: dave23 (204.53)
+wonderboy has the dealer button
+habing posts small blind 1
+dave23 posts big blind 2
+** Hole Cards **
+Dealt to habing [2s Ts]
+ungod folds
+Sweeny-Tom folds
+FeedMeBits folds
+wonderboy folds
+habing folds
+dave23 refunded 1
+habing adds 1 chips
+dave23 wins Pot (2)
+Rake (0)
+
+
+
+Hand #9115302-76 - 2013-06-27 16:11:37
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 2: ungod (40)
+Seat 3: Sweeny-Tom (95.86)
+Seat 4: FeedMeBits (200)
+Seat 5: wonderboy (74.10)
+Seat 6: habing (200)
+Seat 9: dave23 (205.53)
+habing has the dealer button
+dave23 posts small blind 1
+ungod posts big blind 2
+** Hole Cards **
+Dealt to habing [Kd Jc]
+Sweeny-Tom folds
+FeedMeBits folds
+wonderboy raises to 6
+habing folds
+dave23 folds
+ungod calls 4
+** Flop ** [9c 8h 3c]
+ungod checks
+wonderboy bets 10
+ungod raises to 34 (All-in)
+wonderboy calls 24
+** Turn ** [Ah]
+** River ** [4s]
+** Pot Show Down ** [9c 8h 3c Ah 4s]
+ungod shows [Ts Td] (a Pair of Tens +A98)
+wonderboy shows [Kh Ks] (a Pair of Kings +A98)
+wonderboy wins Pot (78.98) with a Pair
+Rake (2.02)
+
+
+
+Hand #9115345-77 - 2013-06-27 16:12:36
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 2: ungod (0) - sitting out
+Seat 3: Sweeny-Tom (95.86)
+Seat 4: FeedMeBits (200)
+Seat 5: wonderboy (113.08)
+Seat 6: habing (200)
+Seat 9: dave23 (204.53)
+dave23 has the dealer button
+Sweeny-Tom posts small blind 1
+FeedMeBits posts big blind 2
+** Hole Cards **
+Dealt to habing [6d 4d]
+wonderboy folds
+habing folds
+dave23 has timed out
+dave23 folds
+Sweeny-Tom calls 1
+ungod adds 40 chips
+FeedMeBits checks
+** Flop ** [2d 3h 3s]
+Sweeny-Tom checks
+FeedMeBits checks
+** Turn ** [Th]
+Sweeny-Tom bets 4
+FeedMeBits calls 4
+** River ** [6c]
+Sweeny-Tom checks
+FeedMeBits bets 8
+Sweeny-Tom folds
+FeedMeBits refunded 8
+FeedMeBits wins Pot (11.70)
+Rake (0.30)
+
+
+
+Hand #9115407-78 - 2013-06-27 16:14:04
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 2: ungod (40)
+Seat 3: Sweeny-Tom (89.86)
+Seat 4: FeedMeBits (205.70)
+Seat 5: wonderboy (113.08)
+Seat 6: habing (200)
+Seat 9: dave23 (204.53)
+Sweeny-Tom has the dealer button
+FeedMeBits posts small blind 1
+wonderboy posts big blind 2
+ungod posts small blind 1
+** Hole Cards **
+Dealt to habing [Jd 8s]
+habing folds
+dave23 folds
+ungod folds
+Sweeny-Tom folds
+FeedMeBits folds
+wonderboy refunded 1
+wonderboy wins Pot (3)
+Rake (0)
+
+
+
+Hand #9115430-79 - 2013-06-27 16:14:33
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 2: ungod (39)
+Seat 3: Sweeny-Tom (89.86)
+Seat 4: FeedMeBits (204.70)
+Seat 5: wonderboy (115.08)
+Seat 6: habing (200)
+Seat 9: dave23 (204.53)
+FeedMeBits has the dealer button
+wonderboy posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [9s 6s]
+dave23 folds
+ungod raises to 6
+Sweeny-Tom folds
+FeedMeBits folds
+wonderboy folds
+habing folds
+ungod refunded 4
+habing adds 2 chips
+ungod wins Pot (5)
+Rake (0)
+
+
+
+Hand #9115449-80 - 2013-06-27 16:15:00
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 2: ungod (42)
+Seat 3: Sweeny-Tom (89.86)
+Seat 4: FeedMeBits (204.70)
+Seat 5: wonderboy (114.08)
+Seat 6: habing (200)
+Seat 9: dave23 (204.53)
+wonderboy has the dealer button
+habing posts small blind 1
+dave23 posts big blind 2
+** Hole Cards **
+Dealt to habing [2d 3h]
+ungod raises to 6
+Sweeny-Tom folds
+FeedMeBits folds
+wonderboy folds
+habing folds
+habing adds 1 chips
+dave23 calls 4
+** Flop ** [9h 2h Jc]
+dave23 checks
+ungod checks
+** Turn ** [Js]
+dave23 checks
+ungod checks
+** River ** [4s]
+dave23 bets 2
+ungod calls 2
+** Pot Show Down ** [9h 2h Jc Js 4s]
+ungod shows [8d Ad] (a Pair of Jacks +A98)
+dave23 shows [Qh 4h] (Two Pair, Jacks and Fours +Q)
+dave23 wins Pot (16.58) with Two Pair
+Rake (0.42)
+
+
+
+Hand #9115486-81 - 2013-06-27 16:15:52
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 2: ungod (34)
+Seat 3: Sweeny-Tom (89.86)
+Seat 4: FeedMeBits (204.70)
+Seat 5: wonderboy (114.08)
+Seat 6: habing (200)
+Seat 9: dave23 (213.11)
+habing has the dealer button
+dave23 posts small blind 1
+ungod posts big blind 2
+** Hole Cards **
+Dealt to habing [2d 8h]
+Sweeny-Tom folds
+FeedMeBits folds
+wonderboy folds
+habing folds
+dave23 folds
+ungod refunded 1
+ungod wins Pot (2)
+Rake (0)
+
+
+
+Hand #9115503-82 - 2013-06-27 16:16:18
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 2: ungod (35)
+Seat 3: Sweeny-Tom (89.86)
+Seat 4: FeedMeBits (204.70)
+Seat 5: wonderboy (114.08)
+Seat 6: habing (200)
+Seat 9: dave23 (212.11)
+dave23 has the dealer button
+ungod posts small blind 1
+Sweeny-Tom posts big blind 2
+** Hole Cards **
+Dealt to habing [2d 6h]
+FeedMeBits folds
+wonderboy folds
+habing folds
+dave23 folds
+ungod folds
+Sweeny-Tom refunded 1
+Sweeny-Tom wins Pot (2)
+Rake (0)
+
+
+
+Hand #9115522-83 - 2013-06-27 16:16:41
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 2: ungod (34)
+Seat 3: Sweeny-Tom (90.86)
+Seat 4: FeedMeBits (204.70)
+Seat 5: wonderboy (114.08)
+Seat 6: habing (200)
+Seat 9: dave23 (212.11)
+ungod has the dealer button
+Sweeny-Tom posts small blind 1
+FeedMeBits posts big blind 2
+** Hole Cards **
+Dealt to habing [3c 6h]
+wonderboy folds
+habing folds
+dave23 folds
+ungod raises to 6
+Sweeny-Tom calls 5
+FeedMeBits folds
+** Flop ** [3s Td Qs]
+Sweeny-Tom bets 7
+ungod raises to 14
+Sweeny-Tom calls 7
+** Turn ** [7d]
+Sweeny-Tom bets 42
+ungod calls 14 (All-in)
+Sweeny-Tom refunded 28
+** River ** [5d]
+** Pot Show Down ** [3s Td Qs 7d 5d]
+ungod shows [9d 9s] (a Pair of Nines +QT7)
+Sweeny-Tom shows [Ts Kd] (a Pair of Tens +KQ7)
+Sweeny-Tom wins Pot (68.25) with a Pair
+Rake (1.75)
+
+
+
+Hand #9115563-84 - 2013-06-27 16:17:50
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 2: ungod (0) - sitting out
+Seat 3: Sweeny-Tom (125.11)
+Seat 4: FeedMeBits (202.70)
+Seat 5: wonderboy (114.08)
+Seat 6: habing (200)
+Seat 9: dave23 (212.11)
+Sweeny-Tom has the dealer button
+FeedMeBits posts small blind 1
+wonderboy posts big blind 2
+** Hole Cards **
+Dealt to habing [Ks 6c]
+habing folds
+dave23 folds
+Sweeny-Tom folds
+FeedMeBits calls 1
+wonderboy checks
+** Flop ** [2s 8h 6s]
+FeedMeBits checks
+wonderboy bets 4
+FeedMeBits folds
+wonderboy refunded 4
+wonderboy wins Pot (3.90)
+Rake (0.10)
+
+
+
+Hand #9115597-85 - 2013-06-27 16:18:30
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 3: Sweeny-Tom (125.11)
+Seat 4: FeedMeBits (200.70)
+Seat 5: wonderboy (115.98)
+Seat 6: habing (200)
+Seat 9: dave23 (212.11)
+FeedMeBits has the dealer button
+wonderboy posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Js 9s]
+dave23 calls 2
+Sweeny-Tom raises to 8
+FeedMeBits calls 8
+wonderboy folds
+habing calls 6
+dave23 calls 6
+** Flop ** [5c 8d 6h]
+habing checks
+dave23 checks
+Sweeny-Tom checks
+FeedMeBits bets 28
+habing folds
+habing adds 8 chips
+dave23 folds
+Sweeny-Tom folds
+FeedMeBits refunded 28
+FeedMeBits wins Pot (32.18)
+Rake (0.82)
+
+
+
+Hand #9115643-86 - 2013-06-27 16:20:02
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 3: Sweeny-Tom (117.11)
+Seat 4: FeedMeBits (224.88)
+Seat 5: wonderboy (114.98)
+Seat 6: habing (200)
+Seat 9: dave23 (204.11)
+wonderboy has the dealer button
+habing posts small blind 1
+dave23 posts big blind 2
+** Hole Cards **
+Dealt to habing [Jc 5c]
+Sweeny-Tom folds
+FeedMeBits folds
+wonderboy folds
+habing folds
+dave23 refunded 1
+habing adds 1 chips
+dave23 wins Pot (2)
+Rake (0)
+
+
+
+Hand #9115667-87 - 2013-06-27 16:20:35
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 3: Sweeny-Tom (117.11)
+Seat 4: FeedMeBits (224.88)
+Seat 5: wonderboy (114.98)
+Seat 6: habing (200)
+Seat 9: dave23 (205.11)
+habing has the dealer button
+dave23 posts small blind 1
+Sweeny-Tom posts big blind 2
+** Hole Cards **
+Dealt to habing [Qc 6s]
+FeedMeBits folds
+wonderboy folds
+habing folds
+dave23 calls 1
+Sweeny-Tom raises to 8
+dave23 folds
+Sweeny-Tom refunded 6
+Sweeny-Tom wins Pot (4)
+Rake (0)
+
+
+
+Hand #9115690-88 - 2013-06-27 16:21:16
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 3: Sweeny-Tom (119.11)
+Seat 4: FeedMeBits (224.88)
+Seat 5: wonderboy (114.98)
+Seat 6: habing (200)
+Seat 9: dave23 (203.11)
+dave23 has the dealer button
+Sweeny-Tom posts small blind 1
+FeedMeBits posts big blind 2
+** Hole Cards **
+Dealt to habing [9h 4d]
+wonderboy folds
+habing folds
+dave23 folds
+Sweeny-Tom raises to 6
+FeedMeBits folds
+Sweeny-Tom refunded 4
+Sweeny-Tom wins Pot (4)
+Rake (0)

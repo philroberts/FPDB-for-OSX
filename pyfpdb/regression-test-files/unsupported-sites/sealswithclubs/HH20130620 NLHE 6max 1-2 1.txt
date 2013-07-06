@@ -1,0 +1,1434 @@
+Hand #8781008-191 - 2013-06-20 16:09:16
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 2: mrhollis1 (456.80)
+Seat 3: graven29 (199.25)
+Seat 4: sneakystrong (200)
+Seat 5: rxdeath (126.03)
+Seat 6: barnabyjones (319.31)
+barnabyjones has the dealer button
+mrhollis1 posts small blind 1
+graven29 posts big blind 2
+rxdeath posts big blind 2
+** Hole Cards **
+sneakystrong folds
+rxdeath checks
+barnabyjones folds
+mrhollis1 raises to 7
+graven29 folds
+rxdeath folds
+mrhollis1 refunded 5
+mrhollis1 wins Pot (6)
+Rake (0)
+
+
+
+Hand #8781034-192 - 2013-06-20 16:09:54
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 2: mrhollis1 (460.80)
+Seat 3: graven29 (197.25)
+Seat 4: sneakystrong (200)
+Seat 5: rxdeath (124.03)
+Seat 6: barnabyjones (319.31)
+mrhollis1 has the dealer button
+graven29 posts small blind 1
+sneakystrong posts big blind 2
+** Hole Cards **
+rxdeath calls 2
+barnabyjones raises to 9
+mrhollis1 folds
+graven29 folds
+sneakystrong calls 7
+rxdeath calls 7
+** Flop ** [Jd 6s 8s]
+sneakystrong checks
+rxdeath bets 10
+barnabyjones folds
+sneakystrong folds
+rxdeath refunded 10
+rxdeath wins Pot (27.30)
+Rake (0.70)
+
+
+
+Hand #8781090-193 - 2013-06-20 16:10:58
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 2: mrhollis1 (460.80)
+Seat 3: graven29 (196.25)
+Seat 4: sneakystrong (191)
+Seat 5: rxdeath (142.33)
+Seat 6: barnabyjones (310.31)
+graven29 has the dealer button
+sneakystrong posts small blind 1
+rxdeath posts big blind 2
+** Hole Cards **
+barnabyjones folds
+mrhollis1 folds
+graven29 folds
+sneakystrong folds
+rxdeath refunded 1
+sneakystrong adds 10 chips
+rxdeath wins Pot (2)
+Rake (0)
+
+
+
+Hand #8781111-194 - 2013-06-20 16:11:24
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 2: mrhollis1 (460.80)
+Seat 3: graven29 (196.25)
+Seat 4: sneakystrong (200)
+Seat 5: rxdeath (143.33)
+Seat 6: barnabyjones (310.31)
+sneakystrong has the dealer button
+rxdeath posts small blind 1
+barnabyjones posts big blind 2
+** Hole Cards **
+mrhollis1 folds
+graven29 folds
+sneakystrong folds
+rxdeath folds
+barnabyjones refunded 1
+barnabyjones wins Pot (2)
+Rake (0)
+
+
+
+Hand #8781143-195 - 2013-06-20 16:11:55
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 2: mrhollis1 (460.80)
+Seat 3: graven29 (196.25)
+Seat 4: sneakystrong (200)
+Seat 5: rxdeath (142.33)
+Seat 6: barnabyjones (311.31)
+rxdeath has the dealer button
+barnabyjones posts small blind 1
+mrhollis1 posts big blind 2
+** Hole Cards **
+graven29 folds
+sneakystrong folds
+rxdeath folds
+barnabyjones folds
+mrhollis1 refunded 1
+mrhollis1 wins Pot (2)
+Rake (0)
+
+
+
+Hand #8781172-196 - 2013-06-20 16:12:26
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 2: mrhollis1 (461.80)
+Seat 3: graven29 (196.25)
+Seat 4: sneakystrong (200)
+Seat 5: rxdeath (142.33)
+Seat 6: barnabyjones (310.31)
+barnabyjones has the dealer button
+graven29 posts small blind 1
+sneakystrong posts big blind 2
+** Hole Cards **
+rxdeath has timed out
+rxdeath folds
+barnabyjones raises to 6
+graven29 folds
+sneakystrong calls 4
+** Flop ** [Qh 5s Js]
+sneakystrong checks
+barnabyjones checks
+** Turn ** [3s]
+sneakystrong checks
+barnabyjones checks
+** River ** [3h]
+sneakystrong checks
+barnabyjones checks
+** Pot Show Down ** [Qh 5s Js 3s 3h]
+sneakystrong shows [Kh Tc] (a Pair of Threes +KQJ)
+barnabyjones shows [Ac 8c] (a Pair of Threes +AQJ)
+barnabyjones wins Pot (12.68) with a Pair
+Rake (0.32)
+sneakystrong adds 6 chips
+
+
+
+Hand #8781220-197 - 2013-06-20 16:13:29
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 2: mrhollis1 (461.80)
+Seat 3: graven29 (195.25)
+Seat 4: sneakystrong (200)
+Seat 5: rxdeath (142.33)
+Seat 6: barnabyjones (316.99)
+graven29 has the dealer button
+sneakystrong posts small blind 1
+rxdeath posts big blind 2
+mrhollis1 posts small blind 1
+** Hole Cards **
+barnabyjones folds
+mrhollis1 raises to 8
+graven29 folds
+sneakystrong calls 7
+rxdeath folds
+** Flop ** [8d 6h Ah]
+sneakystrong checks
+mrhollis1 bets 9
+sneakystrong calls 9
+** Turn ** [Jc]
+sneakystrong checks
+mrhollis1 bets 9
+sneakystrong raises to 33
+mrhollis1 folds
+sneakystrong refunded 24
+sneakystrong wins Pot (53.63)
+Rake (1.37)
+
+
+
+Hand #8781281-198 - 2013-06-20 16:14:50
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 2: mrhollis1 (434.80)
+Seat 3: graven29 (195.25)
+Seat 4: sneakystrong (227.63)
+Seat 5: rxdeath (140.33)
+Seat 6: barnabyjones (316.99)
+sneakystrong has the dealer button
+rxdeath posts small blind 1
+barnabyjones posts big blind 2
+** Hole Cards **
+mrhollis1 folds
+graven29 has timed out
+graven29 folds
+sneakystrong folds
+rxdeath calls 1
+barnabyjones checks
+** Flop ** [Jc Kd 2h]
+rxdeath checks
+barnabyjones bets 2
+rxdeath folds
+barnabyjones refunded 2
+barnabyjones wins Pot (3.90)
+Rake (0.10)
+
+
+
+Hand #8781326-199 - 2013-06-20 16:15:48
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 2: mrhollis1 (434.80)
+Seat 3: graven29 (195.25)
+Seat 4: sneakystrong (227.63)
+Seat 5: rxdeath (138.33)
+Seat 6: barnabyjones (318.89)
+rxdeath has the dealer button
+barnabyjones posts small blind 1
+mrhollis1 posts big blind 2
+** Hole Cards **
+graven29 folds
+sneakystrong folds
+rxdeath folds
+barnabyjones folds
+mrhollis1 refunded 1
+mrhollis1 wins Pot (2)
+Rake (0)
+
+
+
+Hand #8781353-200 - 2013-06-20 16:16:26
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 2: mrhollis1 (435.80)
+Seat 3: graven29 (195.25)
+Seat 4: sneakystrong (227.63)
+Seat 5: rxdeath (138.33)
+Seat 6: barnabyjones (317.89)
+barnabyjones has the dealer button
+mrhollis1 posts small blind 1
+graven29 posts big blind 2
+** Hole Cards **
+sneakystrong folds
+rxdeath folds
+barnabyjones raises to 7
+mrhollis1 folds
+graven29 calls 5
+** Flop ** [8d Qc 4s]
+graven29 checks
+barnabyjones bets 15
+graven29 calls 15
+** Turn ** [4d]
+graven29 checks
+barnabyjones checks
+** River ** [Ad]
+graven29 checks
+barnabyjones checks
+** Pot Show Down ** [8d Qc 4s 4d Ad]
+graven29 shows [9c 9s] (Two Pair, Nines and Fours +A)
+barnabyjones shows [Jd Jh] (Two Pair, Jacks and Fours +A)
+barnabyjones wins Pot (43.88) with Two Pair
+Rake (1.12)
+
+
+
+Hand #8781413-201 - 2013-06-20 16:17:39
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 2: mrhollis1 (434.80)
+Seat 3: graven29 (173.25)
+Seat 4: sneakystrong (227.63)
+Seat 5: rxdeath (138.33)
+Seat 6: barnabyjones (339.77)
+mrhollis1 has the dealer button
+graven29 posts small blind 1
+sneakystrong posts big blind 2
+** Hole Cards **
+rxdeath has timed out
+rxdeath folds
+barnabyjones folds
+mrhollis1 folds
+graven29 raises to 6
+sneakystrong calls 4
+** Flop ** [Ks 3d Qh]
+graven29 bets 8
+sneakystrong folds
+graven29 refunded 8
+graven29 wins Pot (11.70)
+Rake (0.30)
+
+
+
+Hand #8781449-202 - 2013-06-20 16:18:35
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: malthusian (200) - waiting for big blind
+Seat 2: mrhollis1 (434.80)
+Seat 3: graven29 (178.95)
+Seat 4: sneakystrong (221.63)
+Seat 5: rxdeath (138.33) - sitting out
+Seat 6: barnabyjones (339.77)
+graven29 has the dealer button
+sneakystrong posts small blind 1
+barnabyjones posts big blind 2
+** Hole Cards **
+mrhollis1 calls 2
+graven29 folds
+sneakystrong folds
+barnabyjones checks
+** Flop ** [Ah Jc 5c]
+barnabyjones checks
+mrhollis1 checks
+** Turn ** [5h]
+barnabyjones checks
+mrhollis1 bets 4
+barnabyjones folds
+mrhollis1 refunded 4
+mrhollis1 wins Pot (4.88)
+Rake (0.12)
+
+
+
+Hand #8781487-203 - 2013-06-20 16:19:25
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: malthusian (200) - waiting for big blind
+Seat 2: mrhollis1 (437.68)
+Seat 3: graven29 (178.95)
+Seat 4: sneakystrong (220.63)
+Seat 5: rxdeath (138.33) - sitting out
+Seat 6: barnabyjones (337.77)
+sneakystrong has the dealer button
+barnabyjones posts small blind 1
+malthusian posts big blind 2
+** Hole Cards **
+mrhollis1 folds
+graven29 folds
+sneakystrong folds
+barnabyjones folds
+malthusian refunded 1
+malthusian wins Pot (2)
+Rake (0)
+
+
+
+Hand #8781503-204 - 2013-06-20 16:19:45
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: malthusian (201)
+Seat 2: mrhollis1 (437.68)
+Seat 3: graven29 (178.95)
+Seat 4: sneakystrong (220.63)
+Seat 5: rxdeath (138.33) - sitting out
+Seat 6: barnabyjones (336.77)
+barnabyjones has the dealer button
+malthusian posts small blind 1
+mrhollis1 posts big blind 2
+** Hole Cards **
+graven29 folds
+sneakystrong folds
+barnabyjones folds
+malthusian folds
+mrhollis1 refunded 1
+mrhollis1 wins Pot (2)
+Rake (0)
+
+
+
+Hand #8781518-205 - 2013-06-20 16:20:04
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: malthusian (200)
+Seat 2: mrhollis1 (438.68)
+Seat 3: graven29 (178.95)
+Seat 4: sneakystrong (220.63)
+Seat 5: rxdeath (138.33) - sitting out
+Seat 6: barnabyjones (336.77)
+malthusian has the dealer button
+mrhollis1 posts small blind 1
+graven29 posts big blind 2
+** Hole Cards **
+sneakystrong folds
+barnabyjones raises to 6
+malthusian calls 6
+mrhollis1 calls 5
+graven29 folds
+** Flop ** [8s 6s 5c]
+mrhollis1 bets 20
+barnabyjones folds
+malthusian folds
+mrhollis1 refunded 20
+malthusian adds 6 chips
+mrhollis1 wins Pot (19.50)
+Rake (0.50)
+
+
+
+Hand #8781553-206 - 2013-06-20 16:20:58
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: malthusian (200)
+Seat 2: mrhollis1 (452.18)
+Seat 3: graven29 (176.95)
+Seat 4: sneakystrong (220.63)
+Seat 5: rxdeath (138.33) - sitting out
+Seat 6: barnabyjones (330.77)
+mrhollis1 has the dealer button
+graven29 posts small blind 1
+sneakystrong posts big blind 2
+** Hole Cards **
+barnabyjones folds
+malthusian folds
+mrhollis1 folds
+graven29 raises to 6
+sneakystrong folds
+graven29 refunded 4
+graven29 wins Pot (4)
+Rake (0)
+
+
+
+Hand #8781579-207 - 2013-06-20 16:21:34
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: malthusian (200)
+Seat 2: mrhollis1 (452.18)
+Seat 3: graven29 (178.95)
+Seat 4: sneakystrong (218.63)
+Seat 5: rxdeath (138.33) - sitting out
+Seat 6: barnabyjones (330.77)
+graven29 has the dealer button
+sneakystrong posts small blind 1
+barnabyjones posts big blind 2
+** Hole Cards **
+malthusian raises to 6
+mrhollis1 calls 6
+graven29 folds
+sneakystrong calls 5
+barnabyjones folds
+** Flop ** [4c 7d 3c]
+sneakystrong checks
+malthusian checks
+mrhollis1 checks
+** Turn ** [Jh]
+sneakystrong checks
+malthusian checks
+mrhollis1 bets 10
+sneakystrong folds
+malthusian folds
+mrhollis1 refunded 10
+malthusian adds 6 chips
+mrhollis1 wins Pot (19.50)
+Rake (0.50)
+
+
+
+Hand #8781619-208 - 2013-06-20 16:22:43
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: malthusian (200)
+Seat 2: mrhollis1 (465.68)
+Seat 3: graven29 (178.95)
+Seat 4: sneakystrong (212.63)
+Seat 5: rxdeath (138.33)
+Seat 6: barnabyjones (328.77)
+sneakystrong has the dealer button
+barnabyjones posts small blind 1
+malthusian posts big blind 2
+** Hole Cards **
+mrhollis1 folds
+graven29 raises to 6
+sneakystrong folds
+barnabyjones folds
+malthusian folds
+graven29 refunded 4
+malthusian adds 2 chips
+graven29 wins Pot (5)
+Rake (0)
+
+
+
+Hand #8781645-209 - 2013-06-20 16:23:18
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: malthusian (200)
+Seat 2: mrhollis1 (465.68)
+Seat 3: graven29 (181.95)
+Seat 4: sneakystrong (212.63)
+Seat 5: rxdeath (138.33)
+Seat 6: barnabyjones (327.77)
+barnabyjones has the dealer button
+malthusian posts small blind 1
+mrhollis1 posts big blind 2
+rxdeath posts big blind 2
+** Hole Cards **
+graven29 folds
+sneakystrong folds
+rxdeath checks
+barnabyjones folds
+malthusian calls 1
+mrhollis1 checks
+** Flop ** [Qc Th Ac]
+malthusian checks
+mrhollis1 checks
+rxdeath bets 2
+malthusian folds
+malthusian adds 2 chips
+mrhollis1 calls 2
+** Turn ** [4h]
+mrhollis1 checks
+rxdeath bets 5
+mrhollis1 calls 5
+** River ** [3d]
+mrhollis1 checks
+rxdeath checks
+** Pot Show Down ** [Qc Th Ac 4h 3d]
+mrhollis1 shows [8c 5c] (High Card Ace +QT85)
+rxdeath shows [2c 9c] (High Card Ace +QT94)
+rxdeath wins Pot (19.50) with High Card
+Rake (0.50)
+
+
+
+Hand #8781694-210 - 2013-06-20 16:24:39
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: malthusian (200)
+Seat 2: mrhollis1 (456.68)
+Seat 3: graven29 (181.95)
+Seat 4: sneakystrong (212.63)
+Seat 5: rxdeath (148.83)
+Seat 6: barnabyjones (327.77)
+malthusian has the dealer button
+mrhollis1 posts small blind 1
+graven29 posts big blind 2
+** Hole Cards **
+sneakystrong raises to 6
+rxdeath raises to 10
+barnabyjones folds
+malthusian folds
+mrhollis1 folds
+graven29 calls 8
+sneakystrong calls 4
+** Flop ** [6h Qc Ad]
+graven29 checks
+sneakystrong checks
+rxdeath bets 20
+graven29 calls 20
+sneakystrong folds
+** Turn ** [Kd]
+graven29 checks
+rxdeath bets 60
+graven29 folds
+rxdeath refunded 60
+rxdeath wins Pot (69.23)
+Rake (1.77)
+
+
+
+Hand #8781730-211 - 2013-06-20 16:25:36
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: malthusian (200)
+Seat 2: mrhollis1 (455.68)
+Seat 3: graven29 (151.95)
+Seat 4: sneakystrong (202.63)
+Seat 5: rxdeath (188.06)
+Seat 6: barnabyjones (327.77)
+mrhollis1 has the dealer button
+graven29 posts small blind 1
+sneakystrong posts big blind 2
+** Hole Cards **
+rxdeath calls 2
+barnabyjones calls 2
+malthusian folds
+mrhollis1 calls 2
+graven29 raises to 15
+sneakystrong folds
+rxdeath folds
+barnabyjones folds
+mrhollis1 folds
+graven29 refunded 13
+graven29 wins Pot (10)
+Rake (0)
+
+
+
+Hand #8781775-212 - 2013-06-20 16:26:31
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: malthusian (200)
+Seat 2: mrhollis1 (453.68)
+Seat 3: graven29 (159.95)
+Seat 4: sneakystrong (200.63)
+Seat 5: rxdeath (186.06)
+Seat 6: barnabyjones (325.77)
+graven29 has the dealer button
+sneakystrong posts small blind 1
+rxdeath posts big blind 2
+** Hole Cards **
+barnabyjones folds
+malthusian folds
+mrhollis1 folds
+graven29 folds
+sneakystrong folds
+rxdeath refunded 1
+sneakystrong adds 0.37 chips
+rxdeath wins Pot (2)
+Rake (0)
+
+
+
+Hand #8781791-213 - 2013-06-20 16:26:55
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: malthusian (200)
+Seat 2: mrhollis1 (453.68)
+Seat 3: graven29 (159.95)
+Seat 4: sneakystrong (200)
+Seat 5: rxdeath (187.06)
+Seat 6: barnabyjones (325.77)
+sneakystrong has the dealer button
+rxdeath posts small blind 1
+barnabyjones posts big blind 2
+** Hole Cards **
+malthusian folds
+mrhollis1 calls 2
+graven29 raises to 8
+sneakystrong folds
+rxdeath folds
+barnabyjones folds
+mrhollis1 folds
+graven29 refunded 6
+graven29 wins Pot (7)
+Rake (0)
+
+
+
+Hand #8781819-214 - 2013-06-20 16:27:34
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: malthusian (200)
+Seat 2: mrhollis1 (451.68)
+Seat 3: graven29 (164.95)
+Seat 4: sneakystrong (200)
+Seat 5: rxdeath (186.06)
+Seat 6: barnabyjones (323.77)
+rxdeath has the dealer button
+barnabyjones posts small blind 1
+malthusian posts big blind 2
+** Hole Cards **
+mrhollis1 calls 2
+graven29 folds
+sneakystrong folds
+rxdeath calls 2
+barnabyjones calls 1
+malthusian checks
+** Flop ** [6c Jc 7d]
+barnabyjones checks
+malthusian checks
+mrhollis1 checks
+rxdeath bets 7
+barnabyjones calls 7
+malthusian folds
+malthusian adds 2 chips
+mrhollis1 folds
+** Turn ** [Qc]
+barnabyjones checks
+rxdeath bets 20
+barnabyjones folds
+rxdeath refunded 20
+rxdeath wins Pot (21.45)
+Rake (0.55)
+
+
+
+Hand #8781863-215 - 2013-06-20 16:28:53
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: malthusian (200)
+Seat 2: mrhollis1 (449.68)
+Seat 3: graven29 (164.95)
+Seat 4: sneakystrong (200)
+Seat 5: rxdeath (198.51)
+Seat 6: barnabyjones (314.77)
+barnabyjones has the dealer button
+malthusian posts small blind 1
+mrhollis1 posts big blind 2
+** Hole Cards **
+graven29 raises to 6
+sneakystrong raises to 18
+rxdeath folds
+barnabyjones folds
+malthusian folds
+malthusian adds 1 chips
+mrhollis1 folds
+graven29 calls 12
+** Flop ** [9d 8h 4s]
+graven29 checks
+sneakystrong bets 22
+graven29 calls 22
+** Turn ** [2h]
+graven29 checks
+sneakystrong checks
+** River ** [8d]
+graven29 checks
+sneakystrong checks
+** Pot Show Down ** [9d 8h 4s 2h 8d]
+graven29 shows [4c Ah] (Two Pair, Eights and Fours +A)
+sneakystrong shows [Qh Ac] (a Pair of Eights +AQ9)
+graven29 wins Pot (80.93) with Two Pair
+Rake (2.07)
+
+
+
+Hand #8781895-216 - 2013-06-20 16:29:51
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: malthusian (200)
+Seat 2: mrhollis1 (447.68)
+Seat 3: graven29 (205.88)
+Seat 4: sneakystrong (160)
+Seat 5: rxdeath (198.51)
+Seat 6: barnabyjones (314.77)
+malthusian has the dealer button
+mrhollis1 posts small blind 1
+graven29 posts big blind 2
+** Hole Cards **
+sneakystrong raises to 6
+rxdeath calls 6
+barnabyjones folds
+malthusian folds
+mrhollis1 folds
+graven29 folds
+** Flop ** [8d 2c 4h]
+sneakystrong bets 10
+rxdeath has timed out
+rxdeath folds
+sneakystrong refunded 10
+sneakystrong wins Pot (14.63)
+Rake (0.37)
+
+
+
+Hand #8781948-217 - 2013-06-20 16:31:10
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: malthusian (200)
+Seat 2: mrhollis1 (446.68)
+Seat 3: graven29 (203.88)
+Seat 4: sneakystrong (168.63)
+Seat 5: rxdeath (192.51) - sitting out
+Seat 6: barnabyjones (314.77)
+mrhollis1 has the dealer button
+graven29 posts small blind 1
+sneakystrong posts big blind 2
+** Hole Cards **
+barnabyjones folds
+malthusian folds
+mrhollis1 calls 2
+graven29 calls 1
+sneakystrong raises to 12
+mrhollis1 folds
+graven29 calls 10
+** Flop ** [9c Kc Jh]
+graven29 checks
+sneakystrong bets 14
+graven29 folds
+sneakystrong refunded 14
+sneakystrong wins Pot (25.35)
+Rake (0.65)
+
+
+
+Hand #8781980-218 - 2013-06-20 16:32:05
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: malthusian (200)
+Seat 2: mrhollis1 (444.68)
+Seat 3: graven29 (191.88)
+Seat 4: sneakystrong (181.98)
+Seat 5: rxdeath (192.51) - sitting out
+Seat 6: barnabyjones (314.77)
+graven29 has the dealer button
+sneakystrong posts small blind 1
+barnabyjones posts big blind 2
+** Hole Cards **
+malthusian raises to 6
+mrhollis1 folds
+graven29 folds
+sneakystrong folds
+barnabyjones folds
+malthusian refunded 4
+malthusian wins Pot (5)
+Rake (0)
+
+
+
+Hand #8782005-219 - 2013-06-20 16:32:43
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: malthusian (203)
+Seat 2: mrhollis1 (444.68)
+Seat 3: graven29 (191.88)
+Seat 4: sneakystrong (180.98)
+Seat 5: rxdeath (192.51) - sitting out
+Seat 6: barnabyjones (312.77)
+sneakystrong has the dealer button
+barnabyjones posts small blind 1
+mrhollis1 posts big blind 2
+** Hole Cards **
+graven29 raises to 6
+sneakystrong folds
+barnabyjones folds
+mrhollis1 folds
+graven29 refunded 4
+graven29 wins Pot (5)
+Rake (0)
+
+
+
+Hand #8782033-220 - 2013-06-20 16:33:15
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: broomcorn (202.20) - waiting for big blind
+Seat 2: mrhollis1 (442.68)
+Seat 3: graven29 (194.88)
+Seat 4: sneakystrong (180.98)
+Seat 5: rxdeath (192.51) - sitting out
+Seat 6: barnabyjones (311.77)
+barnabyjones has the dealer button
+mrhollis1 posts small blind 1
+graven29 posts big blind 2
+** Hole Cards **
+sneakystrong raises to 6
+barnabyjones folds
+mrhollis1 folds
+graven29 folds
+sneakystrong refunded 4
+sneakystrong wins Pot (5)
+Rake (0)
+
+
+
+Hand #8782060-221 - 2013-06-20 16:33:47
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: broomcorn (202.20) - waiting for big blind
+Seat 2: mrhollis1 (441.68)
+Seat 3: graven29 (192.88)
+Seat 4: sneakystrong (183.98)
+Seat 5: rxdeath (192.51) - sitting out
+Seat 6: barnabyjones (311.77)
+mrhollis1 has the dealer button
+graven29 posts small blind 1
+sneakystrong posts big blind 2
+** Hole Cards **
+barnabyjones folds
+mrhollis1 calls 2
+graven29 raises to 8
+sneakystrong folds
+mrhollis1 folds
+graven29 refunded 6
+graven29 wins Pot (6)
+Rake (0)
+
+
+
+Hand #8782083-222 - 2013-06-20 16:34:24
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: broomcorn (202.20) - waiting for big blind
+Seat 2: mrhollis1 (439.68)
+Seat 3: graven29 (196.88)
+Seat 4: sneakystrong (181.98)
+Seat 5: rxdeath (192.51) - sitting out
+Seat 6: barnabyjones (311.77)
+graven29 has the dealer button
+sneakystrong posts small blind 1
+barnabyjones posts big blind 2
+** Hole Cards **
+mrhollis1 folds
+graven29 raises to 6
+sneakystrong folds
+barnabyjones folds
+graven29 refunded 4
+graven29 wins Pot (5)
+Rake (0)
+
+
+
+Hand #8782107-223 - 2013-06-20 16:34:56
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: broomcorn (202.20) - waiting for big blind
+Seat 2: mrhollis1 (439.68)
+Seat 3: graven29 (199.88)
+Seat 4: sneakystrong (180.98)
+Seat 5: rxdeath (192.51) - sitting out
+Seat 6: barnabyjones (309.77)
+sneakystrong has the dealer button
+barnabyjones posts small blind 1
+broomcorn posts big blind 2
+** Hole Cards **
+mrhollis1 calls 2
+graven29 raises to 10
+sneakystrong folds
+barnabyjones folds
+broomcorn calls 8
+mrhollis1 folds
+** Flop ** [6h 4d Ks]
+broomcorn checks
+graven29 checks
+** Turn ** [8d]
+broomcorn bets 16
+graven29 folds
+broomcorn refunded 16
+broomcorn wins Pot (22.43)
+Rake (0.57)
+
+
+
+Hand #8782143-224 - 2013-06-20 16:35:50
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: broomcorn (214.63)
+Seat 2: mrhollis1 (437.68)
+Seat 3: graven29 (189.88)
+Seat 4: sneakystrong (180.98)
+Seat 5: rxdeath (192.51) - sitting out
+Seat 6: barnabyjones (308.77)
+barnabyjones has the dealer button
+broomcorn posts small blind 1
+mrhollis1 posts big blind 2
+** Hole Cards **
+graven29 raises to 6
+sneakystrong folds
+barnabyjones folds
+broomcorn folds
+mrhollis1 calls 4
+** Flop ** [5h 6d Ac]
+mrhollis1 checks
+graven29 bets 8
+mrhollis1 folds
+graven29 refunded 8
+graven29 wins Pot (12.68)
+Rake (0.32)
+
+
+
+Hand #8782178-225 - 2013-06-20 16:36:34
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: broomcorn (213.63)
+Seat 2: mrhollis1 (431.68)
+Seat 3: graven29 (196.56)
+Seat 4: sneakystrong (180.98)
+Seat 5: rxdeath (192.51) - sitting out
+Seat 6: barnabyjones (308.77)
+broomcorn has the dealer button
+mrhollis1 posts small blind 1
+graven29 posts big blind 2
+** Hole Cards **
+sneakystrong folds
+barnabyjones folds
+broomcorn folds
+mrhollis1 calls 1
+graven29 checks
+** Flop ** [9s 2d 9d]
+mrhollis1 bets 4
+graven29 calls 4
+** Turn ** [Qs]
+mrhollis1 bets 6
+graven29 calls 6
+** River ** [Qd]
+mrhollis1 bets 12
+graven29 folds
+mrhollis1 refunded 12
+mrhollis1 wins Pot (23.40)
+Rake (0.60)
+
+
+
+Hand #8782231-226 - 2013-06-20 16:37:50
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: broomcorn (213.63)
+Seat 2: mrhollis1 (443.08)
+Seat 3: graven29 (184.56)
+Seat 4: sneakystrong (180.98)
+Seat 6: barnabyjones (308.77)
+mrhollis1 has the dealer button
+graven29 posts small blind 1
+sneakystrong posts big blind 2
+** Hole Cards **
+barnabyjones folds
+broomcorn folds
+mrhollis1 folds
+graven29 raises to 6
+sneakystrong folds
+graven29 refunded 4
+graven29 wins Pot (4)
+Rake (0)
+
+
+
+Hand #8782244-227 - 2013-06-20 16:38:11
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: broomcorn (213.63)
+Seat 2: mrhollis1 (443.08)
+Seat 3: graven29 (186.56)
+Seat 4: sneakystrong (178.98)
+Seat 6: barnabyjones (308.77)
+graven29 has the dealer button
+sneakystrong posts small blind 1
+barnabyjones posts big blind 2
+** Hole Cards **
+broomcorn folds
+mrhollis1 calls 2
+graven29 raises to 10
+sneakystrong folds
+barnabyjones folds
+mrhollis1 calls 8
+** Flop ** [Tc 2s 3s]
+mrhollis1 checks
+graven29 bets 12
+mrhollis1 folds
+graven29 refunded 12
+graven29 wins Pot (22.43)
+Rake (0.57)
+
+
+
+Hand #8782269-228 - 2013-06-20 16:38:59
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: broomcorn (213.63)
+Seat 2: mrhollis1 (433.08)
+Seat 3: graven29 (198.99)
+Seat 4: sneakystrong (177.98)
+Seat 5: BILPO (150)
+Seat 6: barnabyjones (306.77)
+sneakystrong has the dealer button
+barnabyjones posts small blind 1
+broomcorn posts big blind 2
+** Hole Cards **
+mrhollis1 folds
+graven29 raises to 4
+sneakystrong calls 4
+barnabyjones folds
+broomcorn folds
+** Flop ** [8d Th 7c]
+graven29 bets 6
+sneakystrong calls 6
+** Turn ** [4c]
+graven29 bets 12
+sneakystrong calls 12
+** River ** [Ah]
+graven29 bets 20
+sneakystrong folds
+graven29 refunded 20
+graven29 wins Pot (45.83)
+Rake (1.17)
+
+
+
+Hand #8782312-229 - 2013-06-20 16:40:00
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: broomcorn (211.63)
+Seat 2: mrhollis1 (433.08)
+Seat 3: graven29 (222.82)
+Seat 4: sneakystrong (155.98)
+Seat 5: BILPO (150)
+Seat 6: barnabyjones (305.77)
+barnabyjones has the dealer button
+broomcorn posts small blind 1
+mrhollis1 posts big blind 2
+BILPO posts big blind 2
+** Hole Cards **
+graven29 folds
+sneakystrong folds
+BILPO checks
+barnabyjones folds
+broomcorn calls 1
+mrhollis1 raises to 6
+BILPO folds
+broomcorn calls 4
+** Flop ** [Kd Ah 9h]
+broomcorn checks
+mrhollis1 bets 10
+broomcorn folds
+mrhollis1 refunded 10
+mrhollis1 wins Pot (13.65)
+Rake (0.35)
+
+
+
+Hand #8782368-230 - 2013-06-20 16:41:21
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: broomcorn (205.63)
+Seat 2: mrhollis1 (440.73)
+Seat 3: graven29 (222.82)
+Seat 4: sneakystrong (155.98)
+Seat 5: BILPO (148)
+Seat 6: barnabyjones (305.77)
+broomcorn has the dealer button
+mrhollis1 posts small blind 1
+graven29 posts big blind 2
+** Hole Cards **
+sneakystrong folds
+BILPO folds
+barnabyjones folds
+broomcorn folds
+mrhollis1 raises to 5
+graven29 calls 3
+** Flop ** [3d 7s Qc]
+mrhollis1 bets 10
+graven29 calls 10
+** Turn ** [Ah]
+mrhollis1 checks
+graven29 bets 20
+mrhollis1 raises to 89
+graven29 raises to 207.82 (All-in)
+mrhollis1 calls 118.82
+** River ** [8s]
+** Pot Show Down ** [3d 7s Qc Ah 8s]
+mrhollis1 shows [As 7d] (Two Pair, Aces and Sevens +Q)
+graven29 shows [Ad Td] (a Pair of Aces +QT8)
+mrhollis1 wins Pot (441.64) with Two Pair
+Rake (4)
+
+
+
+Hand #8782429-231 - 2013-06-20 16:42:50
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: broomcorn (205.63)
+Seat 2: mrhollis1 (659.55)
+Seat 4: sneakystrong (155.98)
+Seat 5: BILPO (148)
+Seat 6: barnabyjones (305.77)
+mrhollis1 has the dealer button
+sneakystrong posts small blind 1
+BILPO posts big blind 2
+** Hole Cards **
+barnabyjones raises to 4
+broomcorn folds
+mrhollis1 folds
+sneakystrong folds
+BILPO calls 2
+** Flop ** [Td Qs 6s]
+BILPO checks
+barnabyjones bets 4
+BILPO calls 4
+** Turn ** [4s]
+BILPO checks
+barnabyjones bets 8
+BILPO calls 8
+** River ** [5c]
+BILPO checks
+barnabyjones bets 20
+BILPO folds
+barnabyjones refunded 20
+barnabyjones wins Pot (32.18)
+Rake (0.82)
+
+
+
+Hand #8782474-232 - 2013-06-20 16:44:02
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: broomcorn (205.63)
+Seat 2: mrhollis1 (659.55)
+Seat 4: sneakystrong (154.98)
+Seat 5: BILPO (132)
+Seat 6: barnabyjones (321.95)
+sneakystrong has the dealer button
+BILPO posts small blind 1
+barnabyjones posts big blind 2
+** Hole Cards **
+broomcorn folds
+mrhollis1 folds
+sneakystrong folds
+BILPO calls 1
+barnabyjones raises to 6
+BILPO folds
+barnabyjones refunded 4
+barnabyjones wins Pot (4)
+Rake (0)
+
+
+
+Hand #8782505-233 - 2013-06-20 16:44:47
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: broomcorn (205.63)
+Seat 2: mrhollis1 (659.55)
+Seat 3: lipton36 (200) - waiting for big blind
+Seat 4: sneakystrong (154.98)
+Seat 5: BILPO (130)
+Seat 6: barnabyjones (323.95)
+BILPO has the dealer button
+barnabyjones posts small blind 1
+broomcorn posts big blind 2
+** Hole Cards **
+mrhollis1 calls 2
+sneakystrong raises to 8
+BILPO folds
+barnabyjones folds
+broomcorn folds
+mrhollis1 calls 6
+** Flop ** [Kc Jh 7h]
+mrhollis1 checks
+sneakystrong bets 12
+mrhollis1 folds
+sneakystrong refunded 12
+sneakystrong wins Pot (18.53)
+Rake (0.47)
+
+
+
+Hand #8782536-234 - 2013-06-20 16:45:32
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: broomcorn (203.63)
+Seat 2: mrhollis1 (651.55)
+Seat 3: lipton36 (200) - waiting for big blind
+Seat 4: sneakystrong (165.51)
+Seat 5: BILPO (130)
+Seat 6: barnabyjones (322.95)
+barnabyjones has the dealer button
+broomcorn posts small blind 1
+mrhollis1 posts big blind 2
+** Hole Cards **
+sneakystrong folds
+BILPO folds
+barnabyjones folds
+broomcorn folds
+mrhollis1 refunded 1
+mrhollis1 wins Pot (2)
+Rake (0)
+
+
+
+Hand #8782550-235 - 2013-06-20 16:45:52
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: broomcorn (202.63)
+Seat 2: mrhollis1 (652.55)
+Seat 3: lipton36 (200) - waiting for big blind
+Seat 4: sneakystrong (165.51)
+Seat 5: BILPO (130)
+Seat 6: barnabyjones (322.95)
+broomcorn has the dealer button
+mrhollis1 posts small blind 1
+lipton36 posts big blind 2
+** Hole Cards **
+sneakystrong raises to 6
+BILPO calls 6
+barnabyjones folds
+broomcorn folds
+mrhollis1 calls 5
+lipton36 folds
+lipton36 adds 2 chips
+** Flop ** [4s Td 4h]
+mrhollis1 checks
+sneakystrong bets 8
+BILPO raises to 24
+mrhollis1 folds
+sneakystrong raises to 40
+BILPO raises to 124 (All-in)
+sneakystrong calls 84
+** Turn ** [Kd]
+** River ** [9s]
+** Pot Show Down ** [4s Td 4h Kd 9s]
+sneakystrong shows [Ah Qh] (a Pair of Fours +AKQ)
+BILPO shows [As Tc] (Two Pair, Tens and Fours +A)
+BILPO wins Pot (264) with Two Pair
+Rake (4)
+
+
+
+Hand #8782608-236 - 2013-06-20 16:47:31
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: broomcorn (202.63)
+Seat 2: mrhollis1 (646.55)
+Seat 3: lipton36 (200)
+Seat 4: sneakystrong (35.51)
+Seat 5: BILPO (264)
+Seat 6: barnabyjones (322.95)
+mrhollis1 has the dealer button
+lipton36 posts small blind 1
+sneakystrong posts big blind 2
+** Hole Cards **
+BILPO folds
+barnabyjones folds
+broomcorn folds
+mrhollis1 calls 2
+lipton36 folds
+lipton36 adds 1 chips
+sneakystrong raises to 35.51 (All-in)
+mrhollis1 calls 33.51
+** Flop ** [4s Js Qs]
+** Turn ** [9c]
+** River ** [Qh]
+** Pot Show Down ** [4s Js Qs 9c Qh]
+mrhollis1 shows [5d Ah] (a Pair of Queens +AJ9)
+sneakystrong shows [Ks 7h] (a Pair of Queens +KJ9)
+mrhollis1 wins Pot (70.22) with a Pair
+Rake (1.80)
+
+
+
+Hand #8782638-237 - 2013-06-20 16:48:23
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: broomcorn (202.63)
+Seat 2: mrhollis1 (681.26)
+Seat 3: lipton36 (200)
+Seat 4: sneakystrong (0) - sitting out
+Seat 5: BILPO (264)
+Seat 6: barnabyjones (322.95)
+lipton36 has the dealer button
+BILPO posts small blind 1
+barnabyjones posts big blind 2
+** Hole Cards **
+broomcorn raises to 6
+mrhollis1 calls 6
+lipton36 raises to 20
+BILPO folds
+barnabyjones folds
+broomcorn folds
+broomcorn adds 3.37 chips
+mrhollis1 folds
+lipton36 refunded 14
+lipton36 wins Pot (21)
+Rake (0)
+
+
+
+Hand #8782661-238 - 2013-06-20 16:49:03
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: broomcorn (200)
+Seat 2: mrhollis1 (675.26)
+Seat 3: lipton36 (215)
+Seat 4: testing86753 (40) - waiting for big blind
+Seat 5: BILPO (263)
+Seat 6: barnabyjones (320.95)
+BILPO has the dealer button
+barnabyjones posts small blind 1
+broomcorn posts big blind 2
+** Hole Cards **
+mrhollis1 calls 2
+lipton36 folds
+BILPO folds
+barnabyjones calls 1
+broomcorn checks
+** Flop ** [8s 7h Ad]
+barnabyjones checks
+broomcorn checks
+mrhollis1 bets 6
+barnabyjones folds
+broomcorn calls 6
+** Turn ** [Td]
+broomcorn checks
+mrhollis1 checks
+** River ** [3c]
+broomcorn bets 20
+mrhollis1 folds
+broomcorn refunded 20
+broomcorn wins Pot (17.55)
+Rake (0.45)

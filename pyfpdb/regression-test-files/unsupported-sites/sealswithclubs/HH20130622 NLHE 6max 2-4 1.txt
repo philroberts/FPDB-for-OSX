@@ -1,0 +1,2247 @@
+Hand #8858030-1 - 2013-06-22 03:22:10
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 1: mrhollis1 (400) - waiting for big blind
+Seat 4: habing (400) - waiting for big blind
+habing has the dealer button
+habing posts small blind 2
+mrhollis1 posts big blind 4
+** Hole Cards **
+Dealt to habing [Jc 3h]
+habing folds
+mrhollis1 refunded 2
+habing adds 2 chips
+mrhollis1 wins Pot (4)
+Rake (0)
+
+
+
+Hand #8858041-2 - 2013-06-22 03:22:26
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 1: mrhollis1 (402)
+Seat 4: habing (400)
+mrhollis1 has the dealer button
+mrhollis1 posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [Qh Ts]
+mrhollis1 calls 2
+habing raises to 20
+mrhollis1 calls 16
+** Flop ** [8s Ac 8c]
+habing checks
+mrhollis1 checks
+** Turn ** [Js]
+habing bets 20.80
+mrhollis1 calls 20.80
+** River ** [7s]
+habing checks
+mrhollis1 bets 80
+habing folds
+mrhollis1 refunded 80
+habing adds 40.80 chips
+mrhollis1 wins Pot (79.56)
+Rake (2.04)
+
+
+
+Hand #8858069-3 - 2013-06-22 03:23:13
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 1: mrhollis1 (440.76)
+Seat 4: habing (400)
+habing has the dealer button
+habing posts small blind 2
+mrhollis1 posts big blind 4
+** Hole Cards **
+Dealt to habing [Td Kc]
+habing raises to 8
+mrhollis1 raises to 20
+habing calls 12
+** Flop ** [2c 8d 6c]
+mrhollis1 bets 40
+habing folds
+mrhollis1 refunded 40
+habing adds 20 chips
+mrhollis1 wins Pot (39)
+Rake (1)
+
+
+
+Hand #8858085-4 - 2013-06-22 03:23:37
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 1: mrhollis1 (459.76)
+Seat 4: habing (400)
+mrhollis1 has the dealer button
+mrhollis1 posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [5s 5d]
+mrhollis1 calls 2
+habing raises to 20
+mrhollis1 folds
+habing refunded 16
+habing wins Pot (8)
+Rake (0)
+
+
+
+Hand #8858092-5 - 2013-06-22 03:23:54
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 1: mrhollis1 (455.76)
+Seat 4: habing (404)
+habing has the dealer button
+habing posts small blind 2
+mrhollis1 posts big blind 4
+** Hole Cards **
+Dealt to habing [8d 4d]
+habing raises to 8
+mrhollis1 calls 4
+** Flop ** [6s 2s Jc]
+mrhollis1 checks
+habing bets 8.80
+mrhollis1 calls 8.80
+** Turn ** [Ah]
+mrhollis1 bets 17
+habing folds
+mrhollis1 refunded 17
+habing adds 12.80 chips
+mrhollis1 wins Pot (32.76)
+Rake (0.84)
+
+
+
+Hand #8858111-6 - 2013-06-22 03:24:24
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 1: mrhollis1 (471.72)
+Seat 4: habing (400)
+mrhollis1 has the dealer button
+mrhollis1 posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [Tc Kd]
+mrhollis1 raises to 8
+habing calls 4
+** Flop ** [Jh Ts 4d]
+habing checks
+mrhollis1 bets 12
+habing calls 12
+** Turn ** [9d]
+habing checks
+mrhollis1 checks
+** River ** [Jd]
+habing bets 30.40
+mrhollis1 calls 30.40
+** Pot Show Down ** [Jh Ts 4d 9d Jd]
+mrhollis1 shows [Kc 8c] (a Pair of Jacks +KT9)
+habing shows [Tc Kd] (Two Pair, Jacks and Tens +K)
+habing wins Pot (98.28) with Two Pair
+Rake (2.52)
+
+
+
+Hand #8858134-7 - 2013-06-22 03:25:03
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 1: mrhollis1 (421.32)
+Seat 4: habing (447.88)
+habing has the dealer button
+habing posts small blind 2
+mrhollis1 posts big blind 4
+** Hole Cards **
+Dealt to habing [6s 6h]
+habing raises to 8
+mrhollis1 calls 4
+** Flop ** [4d Qd Jc]
+mrhollis1 bets 8
+habing raises to 28
+mrhollis1 calls 20
+** Turn ** [7h]
+mrhollis1 bets 18
+habing calls 18
+** River ** [4s]
+mrhollis1 bets 27
+habing calls 27
+** Pot Show Down ** [4d Qd Jc 7h 4s]
+mrhollis1 shows [Qs 5h] (Two Pair, Queens and Fours +J)
+habing shows [6s 6h] (Two Pair, Sixes and Fours +Q)
+mrhollis1 wins Pot (157.95) with Two Pair
+Rake (4.05)
+habing adds 33.12 chips
+
+
+
+Hand #8858155-8 - 2013-06-22 03:25:50
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 1: mrhollis1 (498.27)
+Seat 4: habing (400)
+mrhollis1 has the dealer button
+mrhollis1 posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [As Kc]
+mrhollis1 calls 2
+habing raises to 20
+mrhollis1 folds
+habing refunded 16
+habing wins Pot (8)
+Rake (0)
+
+
+
+Hand #8858163-9 - 2013-06-22 03:26:06
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 1: mrhollis1 (494.27)
+Seat 4: habing (404)
+habing has the dealer button
+habing posts small blind 2
+mrhollis1 posts big blind 4
+** Hole Cards **
+Dealt to habing [3h 5h]
+habing raises to 8
+mrhollis1 calls 4
+** Flop ** [9c As Ah]
+mrhollis1 checks
+habing bets 12
+mrhollis1 folds
+habing refunded 12
+habing wins Pot (15.60)
+Rake (0.40)
+
+
+
+Hand #8858178-10 - 2013-06-22 03:26:32
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 1: mrhollis1 (486.27)
+Seat 4: habing (411.60)
+mrhollis1 has the dealer button
+mrhollis1 posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [Th Kd]
+mrhollis1 calls 2
+habing raises to 20
+mrhollis1 calls 16
+** Flop ** [Qd 7s 4h]
+habing bets 20
+mrhollis1 folds
+habing refunded 20
+habing wins Pot (39)
+Rake (1)
+
+
+
+Hand #8858193-11 - 2013-06-22 03:26:58
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 1: mrhollis1 (466.27)
+Seat 4: habing (430.60)
+habing has the dealer button
+habing posts small blind 2
+mrhollis1 posts big blind 4
+** Hole Cards **
+Dealt to habing [Jh 3d]
+habing raises to 8
+mrhollis1 calls 4
+** Flop ** [Td 5c 2c]
+mrhollis1 checks
+habing checks
+** Turn ** [9d]
+mrhollis1 bets 12
+habing folds
+mrhollis1 refunded 12
+mrhollis1 wins Pot (15.60)
+Rake (0.40)
+
+
+
+Hand #8858211-12 - 2013-06-22 03:27:34
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 1: mrhollis1 (473.87)
+Seat 4: habing (422.60)
+mrhollis1 has the dealer button
+mrhollis1 posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [Kh Qc]
+mrhollis1 calls 2
+habing raises to 20
+mrhollis1 folds
+habing refunded 16
+habing wins Pot (8)
+Rake (0)
+
+
+
+Hand #8858220-13 - 2013-06-22 03:27:57
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 1: mrhollis1 (469.87)
+Seat 4: habing (426.60)
+habing has the dealer button
+habing posts small blind 2
+mrhollis1 posts big blind 4
+** Hole Cards **
+Dealt to habing [3s 8c]
+habing folds
+mrhollis1 refunded 2
+mrhollis1 wins Pot (4)
+Rake (0)
+
+
+
+Hand #8858230-14 - 2013-06-22 03:28:08
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 1: mrhollis1 (471.87)
+Seat 4: habing (424.60)
+mrhollis1 has the dealer button
+mrhollis1 posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [9s 6s]
+mrhollis1 raises to 10
+habing folds
+mrhollis1 refunded 6
+mrhollis1 wins Pot (8)
+Rake (0)
+
+
+
+Hand #8858241-15 - 2013-06-22 03:28:23
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 1: mrhollis1 (475.87)
+Seat 4: habing (420.60)
+habing has the dealer button
+habing posts small blind 2
+mrhollis1 posts big blind 4
+** Hole Cards **
+Dealt to habing [Jc 4c]
+habing raises to 8
+mrhollis1 calls 4
+** Flop ** [9h 6c 2h]
+mrhollis1 bets 12
+habing folds
+mrhollis1 refunded 12
+mrhollis1 wins Pot (15.60)
+Rake (0.40)
+
+
+
+Hand #8858249-16 - 2013-06-22 03:28:41
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 1: mrhollis1 (483.47)
+Seat 4: habing (412.60)
+mrhollis1 has the dealer button
+mrhollis1 posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [Jc Ks]
+mrhollis1 calls 2
+habing raises to 20
+mrhollis1 calls 16
+** Flop ** [4c 5d 9d]
+habing bets 23.20
+mrhollis1 calls 23.20
+** Turn ** [2s]
+habing bets 40.80
+mrhollis1 calls 40.80
+** River ** [2d]
+habing checks
+mrhollis1 checks
+** Pot Show Down ** [4c 5d 9d 2s 2d]
+mrhollis1 shows [9h Js] (Two Pair, Nines and Deuces +J)
+habing shows [Jc Ks] (a Pair of Deuces +KJ9)
+mrhollis1 wins Pot (163.80) with Two Pair
+Rake (4.20)
+habing adds 71.40 chips
+
+
+
+Hand #8858270-17 - 2013-06-22 03:29:16
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 1: mrhollis1 (563.27)
+Seat 4: habing (400)
+habing has the dealer button
+habing posts small blind 2
+mrhollis1 posts big blind 4
+** Hole Cards **
+Dealt to habing [2s Td]
+habing folds
+mrhollis1 refunded 2
+habing adds 2 chips
+mrhollis1 wins Pot (4)
+Rake (0)
+
+
+
+Hand #8858278-18 - 2013-06-22 03:29:33
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 1: mrhollis1 (565.27)
+Seat 4: habing (400)
+mrhollis1 has the dealer button
+mrhollis1 posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [Ad 4s]
+mrhollis1 raises to 8
+habing calls 4
+** Flop ** [5c 4c 3d]
+habing checks
+mrhollis1 bets 12
+habing calls 12
+** Turn ** [Jh]
+habing checks
+mrhollis1 bets 29
+habing calls 29
+** River ** [Th]
+habing checks
+mrhollis1 bets 72
+habing calls 72
+** Pot Show Down ** [5c 4c 3d Jh Th]
+mrhollis1 shows [Td 6h] (a Pair of Tens +J65)
+habing shows [Ad 4s] (a Pair of Fours +AJT)
+mrhollis1 wins Pot (235.95) with a Pair
+Rake (6.05)
+habing adds 121 chips
+
+
+
+Hand #8858300-19 - 2013-06-22 03:30:23
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 1: mrhollis1 (680.22)
+Seat 4: habing (400)
+habing has the dealer button
+habing posts small blind 2
+mrhollis1 posts big blind 4
+** Hole Cards **
+Dealt to habing [Ts 6d]
+habing raises to 8
+mrhollis1 calls 4
+** Flop ** [Kh 9s Td]
+mrhollis1 bets 8
+habing calls 8
+** Turn ** [2d]
+mrhollis1 bets 8
+habing calls 8
+** River ** [Jd]
+mrhollis1 checks
+habing checks
+** Pot Show Down ** [Kh 9s Td 2d Jd]
+mrhollis1 shows [Qh 6h] (a Straight, Nine to King)
+habing shows [Ts 6d] (a Pair of Tens +KJ9)
+mrhollis1 wins Pot (46.80) with a Straight
+Rake (1.20)
+habing adds 24 chips
+
+
+
+Hand #8858320-20 - 2013-06-22 03:31:01
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 1: mrhollis1 (703.02)
+Seat 4: habing (400)
+mrhollis1 has the dealer button
+mrhollis1 posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [9d 8c]
+mrhollis1 calls 2
+habing checks
+** Flop ** [Kh 5d 7c]
+habing bets 8
+mrhollis1 folds
+habing refunded 8
+habing wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #8858332-21 - 2013-06-22 03:31:19
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 1: mrhollis1 (699.02)
+Seat 4: habing (403.80)
+habing has the dealer button
+habing posts small blind 2
+mrhollis1 posts big blind 4
+** Hole Cards **
+Dealt to habing [3d Jd]
+habing raises to 8
+mrhollis1 calls 4
+** Flop ** [7h 4s 8s]
+mrhollis1 checks
+habing checks
+** Turn ** [7s]
+mrhollis1 bets 12
+habing folds
+mrhollis1 refunded 12
+habing adds 4.20 chips
+mrhollis1 wins Pot (15.60)
+Rake (0.40)
+
+
+
+Hand #8858350-22 - 2013-06-22 03:31:44
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 1: mrhollis1 (706.62)
+Seat 4: habing (400)
+mrhollis1 has the dealer button
+mrhollis1 posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [2c Js]
+mrhollis1 calls 2
+habing checks
+** Flop ** [8d Jc 9h]
+habing checks
+mrhollis1 checks
+** Turn ** [8s]
+habing bets 8
+mrhollis1 folds
+habing refunded 8
+habing wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #8858359-23 - 2013-06-22 03:32:04
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 1: mrhollis1 (702.62)
+Seat 4: habing (403.80)
+habing has the dealer button
+habing posts small blind 2
+mrhollis1 posts big blind 4
+** Hole Cards **
+Dealt to habing [3s 4h]
+habing folds
+mrhollis1 refunded 2
+mrhollis1 wins Pot (4)
+Rake (0)
+
+
+
+Hand #8858364-24 - 2013-06-22 03:32:14
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 1: mrhollis1 (704.62)
+Seat 4: habing (401.80)
+mrhollis1 has the dealer button
+mrhollis1 posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [2h Kh]
+mrhollis1 raises to 8
+habing calls 4
+** Flop ** [As Tc 7h]
+habing checks
+mrhollis1 bets 12
+habing folds
+mrhollis1 refunded 12
+habing adds 6.20 chips
+mrhollis1 wins Pot (15.60)
+Rake (0.40)
+
+
+
+Hand #8858376-25 - 2013-06-22 03:32:39
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 1: mrhollis1 (712.22)
+Seat 4: habing (400)
+habing has the dealer button
+habing posts small blind 2
+mrhollis1 posts big blind 4
+** Hole Cards **
+Dealt to habing [8c Ah]
+habing raises to 8
+mrhollis1 raises to 12
+habing calls 4
+** Flop ** [2h Jd 3d]
+mrhollis1 bets 18
+habing folds
+mrhollis1 refunded 18
+habing adds 12 chips
+mrhollis1 wins Pot (23.40)
+Rake (0.60)
+
+
+
+Hand #8858387-26 - 2013-06-22 03:33:01
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 1: mrhollis1 (723.62)
+Seat 4: habing (400)
+mrhollis1 has the dealer button
+mrhollis1 posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [8s 5d]
+mrhollis1 calls 2
+habing checks
+** Flop ** [Tc Jh Qd]
+habing checks
+mrhollis1 bets 6
+habing folds
+mrhollis1 refunded 6
+habing adds 4 chips
+mrhollis1 wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #8858395-27 - 2013-06-22 03:33:23
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 1: mrhollis1 (727.42)
+Seat 4: habing (400)
+habing has the dealer button
+habing posts small blind 2
+mrhollis1 posts big blind 4
+** Hole Cards **
+Dealt to habing [Qh 2c]
+habing raises to 8
+mrhollis1 calls 4
+** Flop ** [8d 8c 5h]
+mrhollis1 checks
+habing checks
+** Turn ** [3c]
+mrhollis1 checks
+habing checks
+** River ** [Qs]
+mrhollis1 bets 4
+habing raises to 22.40
+mrhollis1 calls 18.40
+** Pot Show Down ** [8d 8c 5h 3c Qs]
+mrhollis1 shows [9d Qc] (Two Pair, Queens and Eights +9)
+habing shows [Qh 2c] (Two Pair, Queens and Eights +5)
+mrhollis1 wins Pot (59.28) with Two Pair
+Rake (1.52)
+habing adds 30.40 chips
+
+
+
+Hand #8858417-28 - 2013-06-22 03:34:04
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 1: mrhollis1 (756.30)
+Seat 4: habing (400)
+mrhollis1 has the dealer button
+mrhollis1 posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [5d Qh]
+mrhollis1 calls 2
+habing checks
+** Flop ** [As 5s Js]
+habing checks
+mrhollis1 bets 6
+habing folds
+mrhollis1 refunded 6
+habing adds 4 chips
+mrhollis1 wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #8858429-29 - 2013-06-22 03:34:29
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 1: mrhollis1 (760.10)
+Seat 4: habing (400)
+habing has the dealer button
+habing posts small blind 2
+mrhollis1 posts big blind 4
+** Hole Cards **
+Dealt to habing [3d Qd]
+habing raises to 8
+mrhollis1 raises to 12
+habing calls 4
+** Flop ** [Kd 6d 4s]
+mrhollis1 bets 12
+habing calls 12
+** Turn ** [2c]
+mrhollis1 checks
+habing bets 32.80
+mrhollis1 folds
+habing refunded 32.80
+habing wins Pot (46.80)
+Rake (1.20)
+
+
+
+Hand #8865314-1 - 2013-06-22 08:42:42
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 3: SkySky19 (400) - waiting for big blind
+Seat 4: habing (400) - waiting for big blind
+SkySky19 has the dealer button
+SkySky19 posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [9c 4d]
+SkySky19 calls 2
+habing checks
+** Flop ** [3h Ac 8d]
+habing bets 4
+SkySky19 folds
+habing refunded 4
+habing wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #8865323-2 - 2013-06-22 08:43:14
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 3: SkySky19 (396)
+Seat 4: habing (403.80)
+habing has the dealer button
+habing posts small blind 2
+SkySky19 posts big blind 4
+** Hole Cards **
+Dealt to habing [4h 6c]
+habing folds
+SkySky19 refunded 2
+SkySky19 wins Pot (4)
+Rake (0)
+
+
+
+Hand #8865326-3 - 2013-06-22 08:43:32
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 3: SkySky19 (398)
+Seat 4: habing (401.80)
+SkySky19 has the dealer button
+SkySky19 posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [Qs 6d]
+SkySky19 folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8865329-4 - 2013-06-22 08:43:44
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 3: SkySky19 (396)
+Seat 4: habing (403.80)
+habing has the dealer button
+habing posts small blind 2
+SkySky19 posts big blind 4
+** Hole Cards **
+Dealt to habing [3d 8h]
+habing folds
+SkySky19 refunded 2
+SkySky19 wins Pot (4)
+Rake (0)
+
+
+
+Hand #8865334-5 - 2013-06-22 08:43:57
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 3: SkySky19 (398)
+Seat 4: habing (401.80)
+SkySky19 has the dealer button
+SkySky19 posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [Qh 3s]
+SkySky19 calls 2
+habing checks
+** Flop ** [5c 8h 9d]
+habing bets 4
+SkySky19 calls 4
+** Turn ** [4c]
+habing checks
+SkySky19 checks
+** River ** [8d]
+habing checks
+SkySky19 bets 4
+habing folds
+SkySky19 refunded 4
+habing adds 6.20 chips
+SkySky19 wins Pot (15.60)
+Rake (0.40)
+
+
+
+Hand #8865348-6 - 2013-06-22 08:45:05
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 3: SkySky19 (405.60)
+Seat 4: habing (400)
+habing has the dealer button
+habing posts small blind 2
+SkySky19 posts big blind 4
+** Hole Cards **
+Dealt to habing [Kc 9d]
+habing raises to 8
+SkySky19 folds
+habing refunded 4
+habing wins Pot (8)
+Rake (0)
+
+
+
+Hand #8865351-7 - 2013-06-22 08:45:21
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 3: SkySky19 (401.60)
+Seat 4: habing (404)
+SkySky19 has the dealer button
+SkySky19 posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [5d 2s]
+SkySky19 calls 2
+habing checks
+** Flop ** [6h Kh 3h]
+habing bets 4
+SkySky19 folds
+habing refunded 4
+habing wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #8865359-8 - 2013-06-22 08:45:49
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 3: SkySky19 (397.60)
+Seat 4: habing (407.80)
+habing has the dealer button
+habing posts small blind 2
+SkySky19 posts big blind 4
+** Hole Cards **
+Dealt to habing [Ts 8c]
+habing raises to 8
+SkySky19 folds
+habing refunded 4
+habing wins Pot (8)
+Rake (0)
+
+
+
+Hand #8865363-9 - 2013-06-22 08:46:06
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 3: SkySky19 (393.60)
+Seat 4: habing (411.80)
+SkySky19 has the dealer button
+SkySky19 posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [Ac Kd]
+SkySky19 calls 2
+habing raises to 20
+SkySky19 calls 16
+** Flop ** [9h Qs 8h]
+habing bets 18.40
+SkySky19 folds
+habing refunded 18.40
+habing wins Pot (39)
+Rake (1)
+
+
+
+Hand #8865372-10 - 2013-06-22 08:46:49
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 3: SkySky19 (373.60)
+Seat 4: habing (430.80)
+habing has the dealer button
+habing posts small blind 2
+SkySky19 posts big blind 4
+** Hole Cards **
+Dealt to habing [Td 5s]
+habing raises to 8
+SkySky19 folds
+habing refunded 4
+habing wins Pot (8)
+Rake (0)
+
+
+
+Hand #8865377-11 - 2013-06-22 08:47:10
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 3: SkySky19 (369.60)
+Seat 4: habing (434.80)
+SkySky19 has the dealer button
+SkySky19 posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [7s Kd]
+SkySky19 calls 2
+habing raises to 20
+SkySky19 calls 16
+** Flop ** [9h As 3d]
+habing checks
+SkySky19 checks
+** Turn ** [9c]
+habing checks
+SkySky19 bets 12
+habing folds
+SkySky19 refunded 12
+SkySky19 wins Pot (39)
+Rake (1)
+
+
+
+Hand #8865386-12 - 2013-06-22 08:48:07
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 3: SkySky19 (388.60)
+Seat 4: habing (414.80)
+habing has the dealer button
+habing posts small blind 2
+SkySky19 posts big blind 4
+** Hole Cards **
+Dealt to habing [5d Qc]
+habing raises to 8
+SkySky19 raises to 12
+habing calls 4
+** Flop ** [Qs 9s 7h]
+SkySky19 bets 12
+habing calls 12
+** Turn ** [Td]
+SkySky19 bets 4
+habing raises to 32
+SkySky19 calls 28
+** River ** [Kc]
+SkySky19 checks
+habing checks
+** Pot Show Down ** [Qs 9s 7h Td Kc]
+SkySky19 shows [6h 9h] (a Pair of Nines +KQT)
+habing shows [5d Qc] (a Pair of Queens +KT9)
+habing wins Pot (109.20) with a Pair
+Rake (2.80)
+
+
+
+Hand #8865402-13 - 2013-06-22 08:49:18
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 3: SkySky19 (332.60)
+Seat 4: habing (468)
+SkySky19 has the dealer button
+SkySky19 posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [4d 8d]
+SkySky19 raises to 8
+habing folds
+SkySky19 refunded 4
+SkySky19 wins Pot (8)
+Rake (0)
+
+
+
+Hand #8865406-14 - 2013-06-22 08:49:40
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 3: SkySky19 (336.60)
+Seat 4: habing (464)
+habing has the dealer button
+habing posts small blind 2
+SkySky19 posts big blind 4
+** Hole Cards **
+Dealt to habing [9d As]
+habing raises to 8
+SkySky19 folds
+habing refunded 4
+habing wins Pot (8)
+Rake (0)
+
+
+
+Hand #8865412-15 - 2013-06-22 08:50:10
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 3: SkySky19 (332.60)
+Seat 4: habing (468)
+SkySky19 has the dealer button
+SkySky19 posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [3h Jc]
+SkySky19 raises to 8
+habing folds
+SkySky19 refunded 4
+SkySky19 wins Pot (8)
+Rake (0)
+
+
+
+Hand #8865418-16 - 2013-06-22 08:50:33
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 3: SkySky19 (336.60)
+Seat 4: habing (464)
+habing has the dealer button
+habing posts small blind 2
+SkySky19 posts big blind 4
+** Hole Cards **
+Dealt to habing [4h 9c]
+habing folds
+SkySky19 refunded 2
+SkySky19 wins Pot (4)
+Rake (0)
+
+
+
+Hand #8865421-17 - 2013-06-22 08:50:46
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 3: SkySky19 (338.60)
+Seat 4: habing (462)
+Seat 6: RunnerUp (400) - waiting for big blind
+SkySky19 has the dealer button
+habing posts small blind 2
+RunnerUp posts big blind 4
+** Hole Cards **
+Dealt to habing [7s Qc]
+SkySky19 calls 4
+habing raises to 20
+RunnerUp folds
+RunnerUp adds 4 chips
+SkySky19 calls 16
+** Flop ** [3c 4h 2c]
+habing checks
+SkySky19 bets 4
+habing folds
+SkySky19 refunded 4
+SkySky19 wins Pot (42.90)
+Rake (1.10)
+
+
+
+Hand #8865429-18 - 2013-06-22 08:51:25
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 1: theyellowman (400) - waiting for big blind
+Seat 3: SkySky19 (361.50)
+Seat 4: habing (442)
+Seat 6: RunnerUp (400)
+habing has the dealer button
+RunnerUp posts small blind 2
+theyellowman posts big blind 4
+** Hole Cards **
+Dealt to habing [6s Kh]
+SkySky19 raises to 8
+habing folds
+RunnerUp calls 6
+theyellowman calls 4
+** Flop ** [6c 4c Ks]
+RunnerUp checks
+theyellowman checks
+SkySky19 checks
+** Turn ** [4s]
+RunnerUp bets 20
+theyellowman folds
+SkySky19 folds
+RunnerUp refunded 20
+RunnerUp wins Pot (23.40)
+Rake (0.60)
+
+
+
+Hand #8865444-19 - 2013-06-22 08:52:31
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 1: theyellowman (392)
+Seat 3: SkySky19 (353.50)
+Seat 4: habing (442)
+Seat 6: RunnerUp (415.40)
+RunnerUp has the dealer button
+theyellowman posts small blind 2
+SkySky19 posts big blind 4
+** Hole Cards **
+Dealt to habing [Ac 3h]
+habing folds
+RunnerUp raises to 12
+theyellowman folds
+SkySky19 folds
+RunnerUp refunded 8
+RunnerUp wins Pot (10)
+Rake (0)
+
+
+
+Hand #8865450-20 - 2013-06-22 08:52:58
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 1: theyellowman (390)
+Seat 3: SkySky19 (349.50)
+Seat 4: habing (442)
+Seat 6: RunnerUp (421.40)
+theyellowman has the dealer button
+SkySky19 posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [9d 3d]
+RunnerUp raises to 12
+theyellowman folds
+SkySky19 calls 10
+habing folds
+** Flop ** [Qc 6d 3h]
+SkySky19 checks
+RunnerUp bets 20
+SkySky19 folds
+RunnerUp refunded 20
+RunnerUp wins Pot (27.30)
+Rake (0.70)
+
+
+
+Hand #8865464-21 - 2013-06-22 08:53:45
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 1: theyellowman (390)
+Seat 3: SkySky19 (337.50)
+Seat 4: habing (438)
+Seat 6: RunnerUp (436.70)
+SkySky19 has the dealer button
+habing posts small blind 2
+RunnerUp posts big blind 4
+** Hole Cards **
+Dealt to habing [8c Qs]
+theyellowman folds
+SkySky19 calls 4
+habing folds
+RunnerUp checks
+** Flop ** [Ah Qh Jh]
+RunnerUp checks
+SkySky19 bets 4
+RunnerUp folds
+SkySky19 refunded 4
+SkySky19 wins Pot (9.75)
+Rake (0.25)
+
+
+
+Hand #8865472-22 - 2013-06-22 08:54:42
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 1: theyellowman (390)
+Seat 3: SkySky19 (343.25)
+Seat 4: habing (436)
+Seat 6: RunnerUp (432.70)
+habing has the dealer button
+RunnerUp posts small blind 2
+theyellowman posts big blind 4
+** Hole Cards **
+Dealt to habing [Td 7h]
+SkySky19 raises to 8
+habing folds
+RunnerUp folds
+theyellowman calls 4
+** Flop ** [Kd 5d Qs]
+theyellowman checks
+SkySky19 bets 4
+theyellowman calls 4
+** Turn ** [9c]
+theyellowman checks
+SkySky19 checks
+** River ** [6s]
+theyellowman bets 20
+SkySky19 calls 20
+** Pot Show Down ** [Kd 5d Qs 9c 6s]
+theyellowman shows [9h Ks] (Two Pair, Kings and Nines +Q)
+SkySky19 shows [4h Ac] (High Card Ace +KQ96)
+theyellowman wins Pot (64.35) with Two Pair
+Rake (1.65)
+
+
+
+Hand #8865488-23 - 2013-06-22 08:56:07
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 1: theyellowman (422.35)
+Seat 3: SkySky19 (311.25)
+Seat 4: habing (436)
+Seat 5: ownmatusow (400) - waiting for big blind
+Seat 6: RunnerUp (430.70)
+RunnerUp has the dealer button
+theyellowman posts small blind 2
+SkySky19 posts big blind 4
+** Hole Cards **
+Dealt to habing [6h Tc]
+habing folds
+RunnerUp folds
+theyellowman folds
+SkySky19 refunded 2
+SkySky19 wins Pot (4)
+Rake (0)
+
+
+
+Hand #8865492-24 - 2013-06-22 08:56:27
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 1: theyellowman (420.35)
+Seat 3: SkySky19 (313.25)
+Seat 4: habing (436)
+Seat 5: ownmatusow (400) - waiting for big blind
+Seat 6: RunnerUp (430.70)
+theyellowman has the dealer button
+SkySky19 posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [2d 7h]
+RunnerUp raises to 12
+theyellowman folds
+SkySky19 folds
+habing folds
+RunnerUp refunded 8
+RunnerUp wins Pot (10)
+Rake (0)
+
+
+
+Hand #8865499-25 - 2013-06-22 08:57:04
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 1: theyellowman (420.35)
+Seat 3: SkySky19 (311.25)
+Seat 4: habing (432)
+Seat 5: ownmatusow (400) - waiting for big blind
+Seat 6: RunnerUp (436.70)
+SkySky19 has the dealer button
+habing posts small blind 2
+ownmatusow posts big blind 4
+** Hole Cards **
+Dealt to habing [6c 9h]
+RunnerUp folds
+theyellowman folds
+SkySky19 calls 4
+habing folds
+ownmatusow checks
+** Flop ** [2s 4s Ks]
+ownmatusow checks
+SkySky19 checks
+** Turn ** [7s]
+ownmatusow checks
+SkySky19 checks
+** River ** [Kd]
+ownmatusow checks
+SkySky19 checks
+** Pot Show Down ** [2s 4s Ks 7s Kd]
+SkySky19 shows [8h Th] (a Pair of Kings +T87)
+ownmatusow shows [4h 6d] (Two Pair, Kings and Fours +7)
+ownmatusow wins Pot (9.75) with Two Pair
+Rake (0.25)
+
+
+
+Hand #8865510-26 - 2013-06-22 08:57:53
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 1: theyellowman (420.35)
+Seat 3: SkySky19 (307.25)
+Seat 4: habing (430)
+Seat 5: ownmatusow (405.75)
+Seat 6: RunnerUp (436.70)
+habing has the dealer button
+ownmatusow posts small blind 2
+RunnerUp posts big blind 4
+** Hole Cards **
+Dealt to habing [5c 8s]
+theyellowman folds
+SkySky19 calls 4
+habing folds
+ownmatusow calls 2
+RunnerUp checks
+** Flop ** [As 5h Js]
+ownmatusow checks
+RunnerUp checks
+SkySky19 checks
+** Turn ** [6h]
+ownmatusow checks
+RunnerUp checks
+SkySky19 checks
+** River ** [3c]
+ownmatusow checks
+RunnerUp bets 12
+SkySky19 calls 12
+ownmatusow folds
+** Pot Show Down ** [As 5h Js 6h 3c]
+SkySky19 shows [5s 4d] (a Pair of Fives +AJ6)
+RunnerUp shows [Ad 3s] (Two Pair, Aces and Threes +J)
+RunnerUp wins Pot (35.10) with Two Pair
+Rake (0.90)
+
+
+
+Hand #8865524-27 - 2013-06-22 08:59:00
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 1: theyellowman (420.35)
+Seat 3: SkySky19 (291.25)
+Seat 4: habing (430)
+Seat 5: ownmatusow (401.75)
+Seat 6: RunnerUp (455.80)
+ownmatusow has the dealer button
+** Flop ** [3h Kd 2d]
+RunnerUp checks
+theyellowman checks
+SkySky19 checks
+ownmatusow checks
+** Turn ** [4d]
+RunnerUp bets 16
+theyellowman folds
+SkySky19 folds
+ownmatusow folds
+RunnerUp refunded 16
+RunnerUp wins Pot (15.60)
+Rake (0.40)
+
+
+
+Hand #8865551-28 - 2013-06-22 09:00:46
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 1: theyellowman (416.35)
+Seat 3: SkySky19 (287.25)
+Seat 4: habing (430) - sitting out
+Seat 5: ownmatusow (397.75)
+Seat 6: RunnerUp (467.40)
+RunnerUp has the dealer button
+theyellowman posts small blind 2
+SkySky19 posts big blind 4
+** Hole Cards **
+ownmatusow folds
+RunnerUp raises to 12
+theyellowman calls 10
+SkySky19 calls 8
+** Flop ** [5s 4c Ts]
+theyellowman checks
+SkySky19 checks
+RunnerUp checks
+** Turn ** [Ad]
+theyellowman checks
+SkySky19 bets 4
+RunnerUp calls 4
+theyellowman calls 4
+** River ** [Jh]
+theyellowman checks
+SkySky19 checks
+RunnerUp bets 20
+theyellowman folds
+SkySky19 calls 20
+** Pot Show Down ** [5s 4c Ts Ad Jh]
+SkySky19 shows [8h Ac] (a Pair of Aces +JT8)
+RunnerUp shows [8c As] (a Pair of Aces +JT8)
+SkySky19 splits Pot (42.90) with a Pair
+RunnerUp splits Pot (42.90) with a Pair
+Rake (2.20)
+
+
+
+Hand #8865594-29 - 2013-06-22 09:03:08
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 1: theyellowman (400.35)
+Seat 3: SkySky19 (294.15)
+Seat 4: habing (430)
+Seat 5: ownmatusow (397.75)
+Seat 6: RunnerUp (474.30)
+theyellowman has the dealer button
+SkySky19 posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [2c 8s]
+ownmatusow folds
+RunnerUp raises to 12
+theyellowman folds
+SkySky19 calls 10
+habing folds
+** Flop ** [4d 4c As]
+SkySky19 checks
+RunnerUp checks
+** Turn ** [Ts]
+SkySky19 checks
+RunnerUp bets 20
+SkySky19 folds
+RunnerUp refunded 20
+RunnerUp wins Pot (27.30)
+Rake (0.70)
+
+
+
+Hand #8865620-30 - 2013-06-22 09:04:33
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 1: theyellowman (400.35)
+Seat 3: SkySky19 (282.15)
+Seat 4: habing (426)
+Seat 5: ownmatusow (397.75)
+Seat 6: RunnerUp (489.60)
+SkySky19 has the dealer button
+habing posts small blind 2
+ownmatusow posts big blind 4
+** Hole Cards **
+Dealt to habing [6h 4h]
+RunnerUp folds
+theyellowman folds
+SkySky19 raises to 8
+habing folds
+ownmatusow raises to 24
+SkySky19 calls 16
+** Flop ** [Th 6d 3s]
+ownmatusow bets 32
+SkySky19 folds
+ownmatusow refunded 32
+ownmatusow wins Pot (48.75)
+Rake (1.25)
+
+
+
+Hand #8865642-31 - 2013-06-22 09:05:51
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 1: theyellowman (400.35)
+Seat 3: SkySky19 (258.15)
+Seat 4: habing (424)
+Seat 5: ownmatusow (422.50)
+Seat 6: RunnerUp (489.60)
+habing has the dealer button
+ownmatusow posts small blind 2
+RunnerUp posts big blind 4
+** Hole Cards **
+Dealt to habing [4s Tc]
+theyellowman raises to 12
+SkySky19 calls 12
+habing folds
+ownmatusow folds
+RunnerUp folds
+** Flop ** [Jc Td Ac]
+theyellowman checks
+SkySky19 bets 4
+theyellowman calls 4
+** Turn ** [9h]
+theyellowman checks
+SkySky19 bets 4
+theyellowman calls 4
+** River ** [Qc]
+theyellowman checks
+SkySky19 bets 4
+theyellowman raises to 50
+SkySky19 raises to 96
+theyellowman calls 46
+** Pot Show Down ** [Jc Td Ac 9h Qc]
+theyellowman shows [Kh Kd] (a Straight, Ten to Ace)
+SkySky19 shows [7s 8h] (a Straight, Eight to Queen)
+theyellowman wins Pot (232.05) with a Straight
+Rake (5.95)
+
+
+
+Hand #8865672-32 - 2013-06-22 09:07:21
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 1: theyellowman (516.40)
+Seat 3: SkySky19 (142.15)
+Seat 4: habing (424)
+Seat 5: ownmatusow (420.50)
+Seat 6: RunnerUp (485.60)
+ownmatusow has the dealer button
+RunnerUp posts small blind 2
+theyellowman posts big blind 4
+** Hole Cards **
+Dealt to habing [Qc Ac]
+SkySky19 raises to 8
+habing raises to 32
+ownmatusow folds
+RunnerUp folds
+theyellowman folds
+SkySky19 folds
+habing refunded 24
+habing wins Pot (22)
+Rake (0)
+
+
+
+Hand #8865694-33 - 2013-06-22 09:08:35
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 1: theyellowman (512.40)
+Seat 3: SkySky19 (134.15)
+Seat 4: habing (438)
+Seat 5: ownmatusow (420.50)
+Seat 6: RunnerUp (483.60)
+RunnerUp has the dealer button
+theyellowman posts small blind 2
+SkySky19 posts big blind 4
+** Hole Cards **
+Dealt to habing [8h 9c]
+habing folds
+ownmatusow raises to 12
+RunnerUp folds
+theyellowman folds
+SkySky19 has timed out
+SkySky19 folds
+ownmatusow refunded 8
+ownmatusow wins Pot (10)
+Rake (0)
+
+
+
+Hand #8865709-34 - 2013-06-22 09:09:27
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 1: theyellowman (510.40)
+Seat 3: SkySky19 (130.15) - sitting out
+Seat 4: habing (438)
+Seat 5: ownmatusow (426.50)
+Seat 6: RunnerUp (483.60)
+theyellowman has the dealer button
+habing posts small blind 2
+ownmatusow posts big blind 4
+** Hole Cards **
+Dealt to habing [2c Jh]
+RunnerUp raises to 12
+theyellowman folds
+habing folds
+ownmatusow calls 8
+** Flop ** [3d 9h 6d]
+ownmatusow checks
+RunnerUp checks
+** Turn ** [6c]
+ownmatusow checks
+RunnerUp checks
+** River ** [7d]
+ownmatusow bets 20
+RunnerUp calls 20
+** Pot Show Down ** [3d 9h 6d 6c 7d]
+ownmatusow shows [6h 7h] (a Full House, Sixes full of Sevens)
+RunnerUp shows [Qs Ac] (a Pair of Sixes +AQ9)
+ownmatusow wins Pot (64.35) with a Full House
+Rake (1.65)
+
+
+
+Hand #8865739-35 - 2013-06-22 09:10:47
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 1: theyellowman (510.40)
+Seat 3: SkySky19 (130.15) - sitting out
+Seat 4: habing (436)
+Seat 5: ownmatusow (458.85)
+Seat 6: RunnerUp (451.60)
+habing has the dealer button
+ownmatusow posts small blind 2
+RunnerUp posts big blind 4
+** Hole Cards **
+Dealt to habing [9s 3c]
+theyellowman folds
+habing folds
+ownmatusow calls 2
+RunnerUp raises to 16
+ownmatusow folds
+RunnerUp refunded 12
+RunnerUp wins Pot (8)
+Rake (0)
+
+
+
+Hand #8865747-36 - 2013-06-22 09:11:08
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 1: theyellowman (510.40)
+Seat 3: SkySky19 (130.15) - sitting out
+Seat 4: habing (436)
+Seat 5: ownmatusow (454.85)
+Seat 6: RunnerUp (455.60)
+ownmatusow has the dealer button
+RunnerUp posts small blind 2
+theyellowman posts big blind 4
+** Hole Cards **
+Dealt to habing [Kh As]
+habing raises to 12
+ownmatusow folds
+RunnerUp calls 10
+theyellowman folds
+** Flop ** [Kd Qh 5s]
+RunnerUp checks
+habing bets 23.20
+RunnerUp raises to 70.40
+habing calls 47.20
+** Turn ** [Ah]
+RunnerUp bets 96
+habing raises to 353.60 (All-in)
+RunnerUp folds
+habing refunded 257.60
+RunnerUp adds 122.80 chips
+habing wins Pot (352.80)
+Rake (8)
+
+
+
+Hand #8865762-37 - 2013-06-22 09:12:05
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 1: theyellowman (506.40)
+Seat 4: habing (610.40)
+Seat 5: ownmatusow (454.85)
+Seat 6: RunnerUp (400)
+RunnerUp has the dealer button
+theyellowman posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [Qs Ts]
+ownmatusow calls 4
+RunnerUp folds
+theyellowman calls 2
+habing raises to 24
+ownmatusow folds
+theyellowman folds
+habing refunded 20
+habing wins Pot (12)
+Rake (0)
+
+
+
+Hand #8865773-38 - 2013-06-22 09:12:33
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 1: theyellowman (502.40)
+Seat 4: habing (618.40)
+Seat 5: ownmatusow (450.85)
+Seat 6: RunnerUp (400)
+theyellowman has the dealer button
+habing posts small blind 2
+ownmatusow posts big blind 4
+** Hole Cards **
+Dealt to habing [Ts 6h]
+RunnerUp folds
+theyellowman folds
+habing folds
+ownmatusow refunded 2
+ownmatusow wins Pot (4)
+Rake (0)
+
+
+
+Hand #8865783-39 - 2013-06-22 09:12:55
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 1: theyellowman (502.40)
+Seat 4: habing (616.40)
+Seat 5: ownmatusow (452.85)
+Seat 6: RunnerUp (400)
+habing has the dealer button
+ownmatusow posts small blind 2
+RunnerUp posts big blind 4
+** Hole Cards **
+Dealt to habing [8h 4h]
+theyellowman folds
+habing raises to 8
+ownmatusow folds
+RunnerUp folds
+habing refunded 4
+RunnerUp adds 4 chips
+habing wins Pot (10)
+Rake (0)
+
+
+
+Hand #8865791-40 - 2013-06-22 09:13:12
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 1: theyellowman (502.40)
+Seat 4: habing (622.40)
+Seat 5: ownmatusow (450.85)
+Seat 6: RunnerUp (400)
+ownmatusow has the dealer button
+RunnerUp posts small blind 2
+theyellowman posts big blind 4
+** Hole Cards **
+Dealt to habing [9c 2d]
+habing folds
+ownmatusow raises to 12
+RunnerUp folds
+RunnerUp adds 2 chips
+theyellowman folds
+ownmatusow refunded 8
+ownmatusow wins Pot (10)
+Rake (0)
+
+
+
+Hand #8865800-41 - 2013-06-22 09:13:35
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 1: theyellowman (498.40)
+Seat 4: habing (622.40)
+Seat 5: ownmatusow (456.85)
+Seat 6: RunnerUp (400)
+RunnerUp has the dealer button
+theyellowman posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [6c 4c]
+ownmatusow folds
+RunnerUp folds
+theyellowman folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8865808-42 - 2013-06-22 09:13:53
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 1: theyellowman (496.40)
+Seat 4: habing (624.40)
+Seat 5: ownmatusow (456.85)
+Seat 6: RunnerUp (400)
+theyellowman has the dealer button
+habing posts small blind 2
+ownmatusow posts big blind 4
+** Hole Cards **
+Dealt to habing [2s Jh]
+RunnerUp folds
+theyellowman folds
+habing folds
+ownmatusow refunded 2
+ownmatusow wins Pot (4)
+Rake (0)
+
+
+
+Hand #8865817-43 - 2013-06-22 09:14:14
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 1: theyellowman (496.40)
+Seat 4: habing (622.40)
+Seat 5: ownmatusow (458.85)
+Seat 6: RunnerUp (400)
+habing has the dealer button
+ownmatusow posts small blind 2
+RunnerUp posts big blind 4
+** Hole Cards **
+Dealt to habing [Td Qh]
+theyellowman folds
+habing raises to 12
+ownmatusow folds
+RunnerUp folds
+habing refunded 8
+RunnerUp adds 4 chips
+habing wins Pot (10)
+Rake (0)
+
+
+
+Hand #8865829-44 - 2013-06-22 09:14:36
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 1: theyellowman (496.40)
+Seat 4: habing (628.40)
+Seat 5: ownmatusow (456.85)
+Seat 6: RunnerUp (400)
+ownmatusow has the dealer button
+RunnerUp posts small blind 2
+theyellowman posts big blind 4
+** Hole Cards **
+Dealt to habing [7c Js]
+habing folds
+ownmatusow folds
+RunnerUp raises to 12
+theyellowman folds
+RunnerUp refunded 8
+RunnerUp wins Pot (8)
+Rake (0)
+
+
+
+Hand #8865839-45 - 2013-06-22 09:14:54
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 1: theyellowman (492.40)
+Seat 4: habing (628.40)
+Seat 5: ownmatusow (456.85)
+Seat 6: RunnerUp (404)
+RunnerUp has the dealer button
+theyellowman posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [Ad 5h]
+ownmatusow folds
+RunnerUp folds
+theyellowman folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8865845-46 - 2013-06-22 09:15:13
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 1: theyellowman (490.40)
+Seat 4: habing (630.40)
+Seat 5: ownmatusow (456.85)
+Seat 6: RunnerUp (404)
+theyellowman has the dealer button
+habing posts small blind 2
+ownmatusow posts big blind 4
+** Hole Cards **
+Dealt to habing [9s 7d]
+RunnerUp folds
+theyellowman folds
+habing folds
+ownmatusow refunded 2
+ownmatusow wins Pot (4)
+Rake (0)
+
+
+
+Hand #8865859-47 - 2013-06-22 09:15:49
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 1: theyellowman (490.40)
+Seat 4: habing (628.40)
+Seat 5: ownmatusow (458.85)
+Seat 6: RunnerUp (404)
+habing has the dealer button
+ownmatusow posts small blind 2
+RunnerUp posts big blind 4
+** Hole Cards **
+Dealt to habing [5h 8h]
+theyellowman folds
+habing raises to 8
+ownmatusow calls 6
+RunnerUp folds
+** Flop ** [Qc Kc 8c]
+ownmatusow checks
+habing bets 16
+ownmatusow folds
+habing refunded 16
+habing wins Pot (19.50)
+Rake (0.50)
+
+
+
+Hand #8865870-48 - 2013-06-22 09:16:23
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 1: theyellowman (490.40)
+Seat 4: habing (639.90)
+Seat 5: ownmatusow (450.85)
+Seat 6: RunnerUp (400)
+ownmatusow has the dealer button
+RunnerUp posts small blind 2
+theyellowman posts big blind 4
+** Hole Cards **
+Dealt to habing [Js 8h]
+habing raises to 12
+ownmatusow folds
+RunnerUp folds
+RunnerUp adds 2 chips
+theyellowman calls 8
+** Flop ** [4d 2h 5h]
+theyellowman checks
+habing bets 16
+theyellowman folds
+habing refunded 16
+habing wins Pot (25.35)
+Rake (0.65)
+
+
+
+Hand #8865892-49 - 2013-06-22 09:17:14
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 4: habing (653.25)
+Seat 5: ownmatusow (450.85)
+Seat 6: RunnerUp (400)
+RunnerUp has the dealer button
+habing posts small blind 2
+ownmatusow posts big blind 4
+** Hole Cards **
+Dealt to habing [Qh Ah]
+RunnerUp folds
+habing raises to 12
+ownmatusow folds
+habing refunded 8
+habing wins Pot (8)
+Rake (0)
+
+
+
+Hand #8865900-50 - 2013-06-22 09:17:35
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 4: habing (657.25)
+Seat 5: ownmatusow (446.85)
+Seat 6: RunnerUp (400)
+habing has the dealer button
+ownmatusow posts small blind 2
+RunnerUp posts big blind 4
+** Hole Cards **
+Dealt to habing [9d Jd]
+habing raises to 12
+ownmatusow folds
+RunnerUp raises to 36
+habing calls 24
+** Flop ** [Qc Qs Js]
+RunnerUp bets 44
+habing calls 44
+** Turn ** [2c]
+RunnerUp checks
+habing checks
+** River ** [9s]
+RunnerUp checks
+habing checks
+** Pot Show Down ** [Qc Qs Js 2c 9s]
+habing shows [9d Jd] (Two Pair, Queens and Jacks +9)
+RunnerUp shows [9h Tc] (Two Pair, Queens and Nines +J)
+habing wins Pot (157.95) with Two Pair
+Rake (4.05)
+RunnerUp adds 80 chips
+
+
+
+Hand #8865922-51 - 2013-06-22 09:18:31
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 4: habing (735.20)
+Seat 6: RunnerUp (400)
+RunnerUp has the dealer button
+RunnerUp posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [Ah Kh]
+RunnerUp raises to 12
+habing raises to 41.60
+RunnerUp calls 29.60
+** Flop ** [3s 4d 2d]
+habing bets 41.60
+RunnerUp folds
+habing refunded 41.60
+RunnerUp adds 41.60 chips
+habing wins Pot (81.12)
+Rake (2.08)
+
+
+
+Hand #8865933-52 - 2013-06-22 09:19:04
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 4: habing (774.72)
+Seat 6: RunnerUp (400)
+habing has the dealer button
+habing posts small blind 2
+RunnerUp posts big blind 4
+** Hole Cards **
+Dealt to habing [6d 2c]
+habing folds
+RunnerUp refunded 2
+RunnerUp wins Pot (4)
+Rake (0)
+
+
+
+Hand #8865937-53 - 2013-06-22 09:19:14
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 4: habing (772.72)
+Seat 6: RunnerUp (402)
+RunnerUp has the dealer button
+RunnerUp posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [2c 4h]
+RunnerUp raises to 12
+habing folds
+RunnerUp refunded 8
+RunnerUp wins Pot (8)
+Rake (0)
+
+
+
+Hand #8865943-54 - 2013-06-22 09:19:27
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 4: habing (768.72)
+Seat 6: RunnerUp (406)
+habing has the dealer button
+habing posts small blind 2
+RunnerUp posts big blind 4
+** Hole Cards **
+Dealt to habing [9d 9h]
+habing raises to 8
+RunnerUp calls 4
+** Flop ** [2s Kh 7h]
+RunnerUp checks
+habing bets 8.80
+RunnerUp calls 8.80
+** Turn ** [6s]
+RunnerUp checks
+habing bets 23.20
+RunnerUp raises to 70.40
+habing calls 47.20
+** River ** [5d]
+RunnerUp bets 145
+habing calls 145
+** Pot Show Down ** [2s Kh 7h 6s 5d]
+habing shows [9d 9h] (a Pair of Nines +K76)
+RunnerUp shows [Ts 8c] (High Card King +T876)
+habing wins Pot (456.40) with a Pair
+Rake (8)
+RunnerUp adds 226.20 chips
+
+
+
+Hand #8865961-55 - 2013-06-22 09:20:27
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 4: habing (992.92)
+Seat 6: RunnerUp (400)
+RunnerUp has the dealer button
+RunnerUp posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [8d 9c]
+RunnerUp raises to 12
+habing folds
+RunnerUp refunded 8
+RunnerUp wins Pot (8)
+Rake (0)
+
+
+
+Hand #8865968-56 - 2013-06-22 09:20:41
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 4: habing (988.92)
+Seat 6: RunnerUp (404)
+habing has the dealer button
+habing posts small blind 2
+RunnerUp posts big blind 4
+** Hole Cards **
+Dealt to habing [Ad 9d]
+habing raises to 8
+RunnerUp folds
+habing refunded 4
+habing wins Pot (8)
+Rake (0)
+
+
+
+Hand #8865973-57 - 2013-06-22 09:20:53
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 4: habing (992.92)
+Seat 6: RunnerUp (400)
+RunnerUp has the dealer button
+RunnerUp posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [8c 9d]
+RunnerUp raises to 12
+habing folds
+RunnerUp refunded 8
+RunnerUp wins Pot (8)
+Rake (0)
+
+
+
+Hand #8865982-58 - 2013-06-22 09:21:07
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 4: habing (988.92)
+Seat 6: RunnerUp (404)
+habing has the dealer button
+habing posts small blind 2
+RunnerUp posts big blind 4
+** Hole Cards **
+Dealt to habing [Kd 2s]
+habing raises to 8
+RunnerUp folds
+habing refunded 4
+habing wins Pot (8)
+Rake (0)
+
+
+
+Hand #8865986-59 - 2013-06-22 09:21:19
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 4: habing (992.92)
+Seat 6: RunnerUp (400)
+RunnerUp has the dealer button
+RunnerUp posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [Ah 4d]
+RunnerUp raises to 12
+habing calls 8
+** Flop ** [Ac 3h 6h]
+habing checks
+RunnerUp bets 16
+habing raises to 51.20
+RunnerUp folds
+habing refunded 35.20
+RunnerUp adds 28 chips
+habing wins Pot (54.60)
+Rake (1.40)
+
+
+
+Hand #8866434-1 - 2013-06-22 09:48:16
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 3: mrmader (80) - waiting for big blind
+Seat 4: habing (1019.52)
+mrmader has the dealer button
+mrmader posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [4d Tc]
+mrmader calls 2
+habing checks
+** Flop ** [Kc Js Ac]
+habing checks
+mrmader bets 4
+habing folds
+mrmader refunded 4
+mrmader wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #8866441-2 - 2013-06-22 09:48:41
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #1
+Seat 3: mrmader (83.80)
+Seat 4: habing (1015.52)
+habing has the dealer button
+habing posts small blind 2
+mrmader posts big blind 4
+** Hole Cards **
+Dealt to habing [7d Ad]
+habing raises to 1015.52 (All-in)
+mrmader calls 79.80 (All-in)
+habing refunded 931.72
+** Flop ** [6s 7s 3c]
+** Turn ** [7h]
+** River ** [Ac]
+** Pot Show Down ** [6s 7s 3c 7h Ac]
+mrmader shows [Th Qd] (a Pair of Sevens +AQT)
+habing shows [7d Ad] (a Full House, Sevens full of Aces)
+habing wins Pot (163.41) with a Full House
+Rake (4.19)

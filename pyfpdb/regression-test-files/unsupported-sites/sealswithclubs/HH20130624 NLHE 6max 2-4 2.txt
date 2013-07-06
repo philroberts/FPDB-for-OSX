@@ -1,0 +1,2209 @@
+Hand #8962832-67 - 2013-06-24 13:04:31
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #2
+Seat 3: CCUUURRRRSSE (390.50)
+Seat 4: inuge285 (464.95)
+Seat 5: dykastdnb (404.75)
+Seat 6: habing (400) - waiting for big blind
+inuge285 has the dealer button
+dykastdnb posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [Ks As]
+CCUUURRRRSSE raises to 12
+inuge285 folds
+dykastdnb folds
+habing raises to 44
+CCUUURRRRSSE calls 32
+** Flop ** [9d 9s 5d]
+habing bets 41.60
+CCUUURRRRSSE raises to 83.20
+habing raises to 356 (All-in)
+CCUUURRRRSSE folds
+habing refunded 272.80
+habing wins Pot (249.99)
+Rake (6.41)
+
+
+
+Hand #8962871-68 - 2013-06-24 13:05:28
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #2
+Seat 3: CCUUURRRRSSE (263.30)
+Seat 4: inuge285 (464.95)
+Seat 5: dykastdnb (402.75)
+Seat 6: habing (522.79)
+dykastdnb has the dealer button
+habing posts small blind 2
+CCUUURRRRSSE posts big blind 4
+** Hole Cards **
+Dealt to habing [Tc 9d]
+inuge285 folds
+dykastdnb calls 4
+habing folds
+CCUUURRRRSSE checks
+** Flop ** [9s 8s Qh]
+CCUUURRRRSSE bets 4
+dykastdnb calls 4
+** Turn ** [9h]
+CCUUURRRRSSE bets 12
+dykastdnb folds
+CCUUURRRRSSE refunded 12
+CCUUURRRRSSE wins Pot (17.55)
+Rake (0.45)
+
+
+
+Hand #8962915-69 - 2013-06-24 13:06:37
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #2
+Seat 3: CCUUURRRRSSE (272.85)
+Seat 4: inuge285 (464.95)
+Seat 5: dykastdnb (394.75)
+Seat 6: habing (520.79)
+habing has the dealer button
+CCUUURRRRSSE posts small blind 2
+inuge285 posts big blind 4
+** Hole Cards **
+Dealt to habing [2d 8d]
+dykastdnb folds
+habing raises to 8
+CCUUURRRRSSE folds
+inuge285 calls 4
+** Flop ** [5s 8c Th]
+inuge285 checks
+habing bets 13.60
+inuge285 folds
+habing refunded 13.60
+habing wins Pot (17.55)
+Rake (0.45)
+
+
+
+Hand #8962937-70 - 2013-06-24 13:07:13
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #2
+Seat 3: CCUUURRRRSSE (270.85)
+Seat 4: inuge285 (456.95)
+Seat 6: habing (530.34)
+CCUUURRRRSSE has the dealer button
+inuge285 posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [Th 2d]
+CCUUURRRRSSE raises to 12
+inuge285 folds
+habing folds
+CCUUURRRRSSE refunded 8
+CCUUURRRRSSE wins Pot (10)
+Rake (0)
+
+
+
+Hand #8962951-71 - 2013-06-24 13:07:28
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #2
+Seat 3: CCUUURRRRSSE (276.85)
+Seat 4: inuge285 (454.95)
+Seat 6: habing (526.34)
+inuge285 has the dealer button
+habing posts small blind 2
+CCUUURRRRSSE posts big blind 4
+** Hole Cards **
+Dealt to habing [Jc Js]
+inuge285 calls 4
+habing raises to 15.20
+CCUUURRRRSSE folds
+inuge285 calls 11.20
+** Flop ** [Jd 4s 5s]
+habing checks
+inuge285 checks
+** Turn ** [Ah]
+habing checks
+inuge285 checks
+** River ** [Ks]
+habing bets 23.20
+inuge285 calls 23.20
+** Pot Show Down ** [Jd 4s 5s Ah Ks]
+inuge285 shows [3h Ad] (a Pair of Aces +KJ5)
+habing shows [Jc Js] (Three of a Kind, Jacks +AK)
+habing wins Pot (78.78) with Three of a Kind
+Rake (2.02)
+
+
+
+Hand #8962992-72 - 2013-06-24 13:08:21
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #2
+Seat 2: mrhollis1 (400)
+Seat 3: CCUUURRRRSSE (272.85)
+Seat 4: inuge285 (416.55)
+Seat 6: habing (566.72)
+habing has the dealer button
+CCUUURRRRSSE posts small blind 2
+inuge285 posts big blind 4
+** Hole Cards **
+Dealt to habing [2s Ts]
+habing raises to 8
+CCUUURRRRSSE folds
+inuge285 calls 4
+** Flop ** [3h Jd 7s]
+inuge285 checks
+habing bets 8.80
+inuge285 folds
+habing refunded 8.80
+habing wins Pot (17.55)
+Rake (0.45)
+
+
+
+Hand #8963008-73 - 2013-06-24 13:08:46
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #2
+Seat 2: mrhollis1 (400)
+Seat 3: CCUUURRRRSSE (270.85)
+Seat 4: inuge285 (408.55)
+Seat 6: habing (576.27)
+CCUUURRRRSSE has the dealer button
+inuge285 posts small blind 2
+habing posts big blind 4
+mrhollis1 posts big blind 4
+** Hole Cards **
+Dealt to habing [7d Jh]
+mrhollis1 checks
+CCUUURRRRSSE raises to 16
+inuge285 folds
+habing folds
+mrhollis1 has timed out
+mrhollis1 folds
+CCUUURRRRSSE refunded 12
+CCUUURRRRSSE wins Pot (14)
+Rake (0)
+CCUUURRRRSSE adds 119.15 chips
+
+
+
+Hand #8963054-74 - 2013-06-24 13:09:59
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #2
+Seat 1: datmonkeydoe (400)
+Seat 2: mrhollis1 (396) - sitting out
+Seat 3: CCUUURRRRSSE (400)
+Seat 4: inuge285 (406.55)
+Seat 6: habing (572.27)
+inuge285 has the dealer button
+habing posts small blind 2
+datmonkeydoe posts big blind 4
+** Hole Cards **
+Dealt to habing [2d 3d]
+CCUUURRRRSSE folds
+inuge285 raises to 8
+habing folds
+datmonkeydoe calls 4
+** Flop ** [7c Jd Qs]
+datmonkeydoe checks
+inuge285 checks
+** Turn ** [9c]
+datmonkeydoe checks
+inuge285 bets 8
+datmonkeydoe folds
+inuge285 refunded 8
+inuge285 wins Pot (17.55)
+Rake (0.45)
+
+
+
+Hand #8963087-75 - 2013-06-24 13:10:46
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #2
+Seat 1: datmonkeydoe (392)
+Seat 2: mrhollis1 (396) - sitting out
+Seat 3: CCUUURRRRSSE (400)
+Seat 4: inuge285 (416.10)
+Seat 6: habing (570.27)
+habing has the dealer button
+datmonkeydoe posts small blind 2
+CCUUURRRRSSE posts big blind 4
+** Hole Cards **
+Dealt to habing [3s 8s]
+inuge285 calls 4
+habing folds
+datmonkeydoe calls 2
+CCUUURRRRSSE raises to 20
+inuge285 calls 16
+datmonkeydoe folds
+** Flop ** [2c Ac Js]
+CCUUURRRRSSE bets 16
+inuge285 calls 16
+** Turn ** [8h]
+CCUUURRRRSSE bets 36
+inuge285 raises to 80
+CCUUURRRRSSE calls 44
+** River ** [7h]
+CCUUURRRRSSE checks
+inuge285 bets 80
+CCUUURRRRSSE calls 80
+** Pot Show Down ** [2c Ac Js 8h 7h]
+CCUUURRRRSSE shows [Jh 9d] (a Pair of Jacks +A98)
+inuge285 shows [8d 8c] (Three of a Kind, Eights +AJ)
+inuge285 wins Pot (388) with Three of a Kind
+Rake (8)
+CCUUURRRRSSE adds 196 chips
+
+
+
+Hand #8963138-76 - 2013-06-24 13:12:10
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #2
+Seat 1: datmonkeydoe (388)
+Seat 2: mrhollis1 (396) - sitting out
+Seat 3: CCUUURRRRSSE (400)
+Seat 4: inuge285 (608.10)
+Seat 6: habing (570.27)
+datmonkeydoe has the dealer button
+CCUUURRRRSSE posts small blind 2
+inuge285 posts big blind 4
+** Hole Cards **
+Dealt to habing [3c 7d]
+habing folds
+datmonkeydoe folds
+CCUUURRRRSSE raises to 12
+inuge285 folds
+CCUUURRRRSSE refunded 8
+CCUUURRRRSSE wins Pot (8)
+Rake (0)
+
+
+
+Hand #8963155-77 - 2013-06-24 13:12:30
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #2
+Seat 1: datmonkeydoe (388)
+Seat 2: mrhollis1 (396) - sitting out
+Seat 3: CCUUURRRRSSE (404)
+Seat 4: inuge285 (604.10)
+Seat 6: habing (570.27)
+CCUUURRRRSSE has the dealer button
+inuge285 posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [7h 3h]
+datmonkeydoe folds
+CCUUURRRRSSE raises to 8
+inuge285 calls 6
+habing folds
+** Flop ** [5s 5d 2d]
+inuge285 checks
+CCUUURRRRSSE bets 12
+inuge285 calls 12
+** Turn ** [8h]
+inuge285 checks
+CCUUURRRRSSE bets 28
+inuge285 folds
+CCUUURRRRSSE refunded 28
+CCUUURRRRSSE wins Pot (42.90)
+Rake (1.10)
+
+
+
+Hand #8963183-78 - 2013-06-24 13:13:10
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #2
+Seat 1: datmonkeydoe (388)
+Seat 2: mrhollis1 (396) - sitting out
+Seat 3: CCUUURRRRSSE (426.90)
+Seat 4: inuge285 (584.10)
+Seat 6: habing (566.27)
+inuge285 has the dealer button
+habing posts small blind 2
+datmonkeydoe posts big blind 4
+** Hole Cards **
+Dealt to habing [3c Tc]
+CCUUURRRRSSE raises to 12
+inuge285 calls 12
+habing folds
+datmonkeydoe folds
+** Flop ** [5s 6h Th]
+CCUUURRRRSSE bets 16
+inuge285 calls 16
+** Turn ** [Js]
+CCUUURRRRSSE bets 24
+inuge285 calls 24
+** River ** [7c]
+CCUUURRRRSSE bets 50
+inuge285 calls 50
+** Pot Show Down ** [5s 6h Th Js 7c]
+CCUUURRRRSSE shows [2h As] (High Card Ace +JT76)
+inuge285 shows [Kh Jd] (a Pair of Jacks +KT7)
+inuge285 wins Pot (204.75) with a Pair
+Rake (5.25)
+CCUUURRRRSSE adds 75.10 chips
+
+
+
+Hand #8963219-79 - 2013-06-24 13:14:08
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #2
+Seat 1: datmonkeydoe (384)
+Seat 2: mrhollis1 (396) - sitting out
+Seat 3: CCUUURRRRSSE (400)
+Seat 4: inuge285 (686.85)
+Seat 6: habing (564.27)
+habing has the dealer button
+datmonkeydoe posts small blind 2
+CCUUURRRRSSE posts big blind 4
+** Hole Cards **
+Dealt to habing [7s Jd]
+inuge285 folds
+habing raises to 8
+datmonkeydoe raises to 12
+CCUUURRRRSSE raises to 16
+habing folds
+datmonkeydoe calls 4
+** Flop ** [9h Ts Tc]
+datmonkeydoe bets 50
+CCUUURRRRSSE raises to 384 (All-in)
+datmonkeydoe folds
+CCUUURRRRSSE refunded 334
+CCUUURRRRSSE wins Pot (136.50)
+Rake (3.50)
+
+
+
+Hand #8963249-80 - 2013-06-24 13:15:03
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #2
+Seat 1: datmonkeydoe (318)
+Seat 2: mrhollis1 (396) - sitting out
+Seat 3: CCUUURRRRSSE (470.50)
+Seat 4: inuge285 (686.85)
+Seat 6: habing (556.27)
+datmonkeydoe has the dealer button
+CCUUURRRRSSE posts small blind 2
+inuge285 posts big blind 4
+** Hole Cards **
+Dealt to habing [Ah 9d]
+habing raises to 12
+datmonkeydoe raises to 20
+CCUUURRRRSSE raises to 48
+inuge285 folds
+habing folds
+datmonkeydoe calls 28
+** Flop ** [4d 4s Qd]
+CCUUURRRRSSE bets 36
+datmonkeydoe calls 36
+** Turn ** [Js]
+CCUUURRRRSSE bets 72
+datmonkeydoe raises to 144
+CCUUURRRRSSE folds
+datmonkeydoe refunded 72
+CCUUURRRRSSE adds 85.50 chips
+datmonkeydoe wins Pot (320)
+Rake (8)
+
+
+
+Hand #8963276-81 - 2013-06-24 13:15:58
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #2
+Seat 1: datmonkeydoe (482)
+Seat 2: mrhollis1 (396) - sitting out
+Seat 3: CCUUURRRRSSE (400)
+Seat 4: inuge285 (682.85)
+Seat 6: habing (544.27)
+CCUUURRRRSSE has the dealer button
+inuge285 posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [3s Qs]
+datmonkeydoe calls 4
+CCUUURRRRSSE raises to 16
+inuge285 folds
+habing folds
+datmonkeydoe calls 12
+** Flop ** [Tc Th Kh]
+datmonkeydoe checks
+CCUUURRRRSSE bets 12
+datmonkeydoe folds
+CCUUURRRRSSE refunded 12
+CCUUURRRRSSE wins Pot (37.05)
+Rake (0.95)
+
+
+
+Hand #8963301-82 - 2013-06-24 13:16:40
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #2
+Seat 1: datmonkeydoe (466)
+Seat 2: mrhollis1 (396) - sitting out
+Seat 3: CCUUURRRRSSE (421.05)
+Seat 4: inuge285 (680.85)
+Seat 6: habing (540.27)
+inuge285 has the dealer button
+habing posts small blind 2
+datmonkeydoe posts big blind 4
+** Hole Cards **
+Dealt to habing [4d 2h]
+CCUUURRRRSSE raises to 12
+inuge285 folds
+habing folds
+datmonkeydoe folds
+CCUUURRRRSSE refunded 8
+CCUUURRRRSSE wins Pot (10)
+Rake (0)
+
+
+
+Hand #8963312-83 - 2013-06-24 13:17:00
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #2
+Seat 1: datmonkeydoe (462)
+Seat 2: mrhollis1 (396) - sitting out
+Seat 3: CCUUURRRRSSE (427.05)
+Seat 4: inuge285 (680.85)
+Seat 5: lasenorita (80) - waiting for big blind
+Seat 6: habing (538.27)
+habing has the dealer button
+datmonkeydoe posts small blind 2
+CCUUURRRRSSE posts big blind 4
+** Hole Cards **
+Dealt to habing [9h 6c]
+inuge285 calls 4
+habing folds
+datmonkeydoe raises to 8
+CCUUURRRRSSE raises to 16
+inuge285 calls 12
+datmonkeydoe raises to 24
+CCUUURRRRSSE raises to 32
+inuge285 calls 16
+datmonkeydoe calls 8
+** Flop ** [9c Kc Kd]
+datmonkeydoe bets 52
+CCUUURRRRSSE raises to 120
+inuge285 folds
+datmonkeydoe calls 68
+** Turn ** [Js]
+datmonkeydoe bets 100
+CCUUURRRRSSE raises to 275.05 (All-in)
+datmonkeydoe calls 175.05
+** River ** [2s]
+** Pot Show Down ** [9c Kc Kd Js 2s]
+datmonkeydoe shows [7h Ah] (a Pair of Kings +AJ9)
+CCUUURRRRSSE shows [Kh 8s] (Three of a Kind, Kings +J9)
+CCUUURRRRSSE wins Pot (878.10) with Three of a Kind
+Rake (8)
+
+
+
+Hand #8963379-84 - 2013-06-24 13:19:16
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #2
+Seat 1: datmonkeydoe (34.95)
+Seat 3: CCUUURRRRSSE (878.10)
+Seat 4: inuge285 (648.85)
+Seat 5: lasenorita (80) - waiting for big blind
+Seat 6: habing (538.27)
+datmonkeydoe has the dealer button
+CCUUURRRRSSE posts small blind 2
+inuge285 posts big blind 4
+** Hole Cards **
+Dealt to habing [4c 7d]
+habing folds
+datmonkeydoe folds
+CCUUURRRRSSE raises to 16
+inuge285 calls 12
+** Flop ** [Kh Ks 9s]
+CCUUURRRRSSE bets 16
+inuge285 folds
+CCUUURRRRSSE refunded 16
+CCUUURRRRSSE wins Pot (31.20)
+Rake (0.80)
+
+
+
+Hand #8963396-85 - 2013-06-24 13:19:44
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #2
+Seat 1: datmonkeydoe (34.95)
+Seat 3: CCUUURRRRSSE (893.30)
+Seat 4: inuge285 (632.85)
+Seat 5: lasenorita (80) - waiting for big blind
+Seat 6: habing (538.27)
+CCUUURRRRSSE has the dealer button
+inuge285 posts small blind 2
+lasenorita posts big blind 4
+** Hole Cards **
+Dealt to habing [Kc 5d]
+habing folds
+datmonkeydoe folds
+CCUUURRRRSSE raises to 8
+inuge285 folds
+lasenorita folds
+CCUUURRRRSSE refunded 4
+CCUUURRRRSSE wins Pot (10)
+Rake (0)
+
+
+
+Hand #8963414-86 - 2013-06-24 13:20:18
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #2
+Seat 1: datmonkeydoe (34.95)
+Seat 3: CCUUURRRRSSE (899.30)
+Seat 4: inuge285 (630.85)
+Seat 5: lasenorita (76)
+Seat 6: habing (538.27)
+inuge285 has the dealer button
+lasenorita posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [Qc Ad]
+datmonkeydoe raises to 8
+CCUUURRRRSSE folds
+inuge285 folds
+lasenorita folds
+habing raises to 538.27 (All-in)
+datmonkeydoe calls 26.95 (All-in)
+habing refunded 503.32
+** Flop ** [7s 9h 8c]
+** Turn ** [2h]
+** River ** [Qs]
+** Pot Show Down ** [7s 9h 8c 2h Qs]
+datmonkeydoe shows [Ts Kh] (High Card King +QT98)
+habing shows [Qc Ad] (a Pair of Queens +A98)
+habing wins Pot (70.11) with a Pair
+Rake (1.79)
+
+
+
+Hand #8963433-87 - 2013-06-24 13:21:02
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #2
+Seat 1: datmonkeydoe (0) - sitting out
+Seat 3: CCUUURRRRSSE (899.30)
+Seat 4: inuge285 (630.85)
+Seat 5: lasenorita (74)
+Seat 6: habing (573.43)
+lasenorita has the dealer button
+habing posts small blind 2
+CCUUURRRRSSE posts big blind 4
+** Hole Cards **
+Dealt to habing [Tc 7c]
+inuge285 calls 4
+lasenorita folds
+habing calls 2
+CCUUURRRRSSE raises to 28
+inuge285 calls 24
+habing folds
+** Flop ** [Td Js 4h]
+CCUUURRRRSSE bets 44
+inuge285 folds
+CCUUURRRRSSE refunded 44
+CCUUURRRRSSE wins Pot (58.50)
+Rake (1.50)
+
+
+
+Hand #8963456-88 - 2013-06-24 13:21:58
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #2
+Seat 1: datmonkeydoe (0) - sitting out
+Seat 3: CCUUURRRRSSE (929.80)
+Seat 4: inuge285 (602.85)
+Seat 5: lasenorita (74)
+Seat 6: habing (569.43)
+habing has the dealer button
+CCUUURRRRSSE posts small blind 2
+inuge285 posts big blind 4
+** Hole Cards **
+Dealt to habing [Qd 9c]
+lasenorita folds
+habing raises to 8
+datmonkeydoe adds 80 chips
+CCUUURRRRSSE raises to 24
+inuge285 folds
+habing folds
+CCUUURRRRSSE refunded 16
+CCUUURRRRSSE wins Pot (20)
+Rake (0)
+
+
+
+Hand #8963472-89 - 2013-06-24 13:22:32
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #2
+Seat 1: datmonkeydoe (80)
+Seat 3: CCUUURRRRSSE (941.80)
+Seat 4: inuge285 (598.85)
+Seat 5: lasenorita (74)
+Seat 6: habing (561.43)
+CCUUURRRRSSE has the dealer button
+inuge285 posts small blind 2
+lasenorita posts big blind 4
+datmonkeydoe posts small & big blind 6
+** Hole Cards **
+Dealt to habing [Qc 4s]
+habing folds
+datmonkeydoe checks
+CCUUURRRRSSE folds
+inuge285 calls 2
+lasenorita checks
+** Flop ** [Ah 2c 9c]
+inuge285 checks
+lasenorita checks
+datmonkeydoe folds
+datmonkeydoe adds 6 chips
+** Turn ** [2d]
+inuge285 bets 8
+lasenorita calls 8
+** River ** [Th]
+inuge285 bets 20
+lasenorita raises to 62 (All-in)
+inuge285 calls 42
+** Pot Show Down ** [Ah 2c 9c 2d Th]
+inuge285 shows [Jc Ad] (Two Pair, Aces and Deuces +J)
+lasenorita shows [2s 4d] (Three of a Kind, Deuces +AT)
+lasenorita wins Pot (150.15) with Three of a Kind
+Rake (3.85)
+
+
+
+Hand #8963528-91 - 2013-06-24 13:24:52
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #2
+Seat 1: datmonkeydoe (316)
+Seat 2: AreUMine (400) - waiting for big blind
+Seat 3: CCUUURRRRSSE (970.22)
+Seat 4: inuge285 (520.85)
+Seat 5: lasenorita (146.15)
+Seat 6: habing (543.83) - sitting out
+lasenorita has the dealer button
+datmonkeydoe posts small blind 2
+AreUMine posts big blind 4
+** Hole Cards **
+CCUUURRRRSSE raises to 12
+inuge285 calls 12
+lasenorita folds
+datmonkeydoe folds
+AreUMine folds
+AreUMine adds 4 chips
+** Flop ** [4d 6c 8c]
+CCUUURRRRSSE bets 12
+inuge285 calls 12
+** Turn ** [As]
+CCUUURRRRSSE bets 16
+inuge285 calls 16
+** River ** [Jh]
+CCUUURRRRSSE bets 25
+inuge285 calls 25
+** Pot Show Down ** [4d 6c 8c As Jh]
+CCUUURRRRSSE shows [Qd 5c] (High Card Ace +QJ86)
+inuge285 shows [Kc Qh] (High Card Ace +KQJ8)
+inuge285 wins Pot (132.60) with High Card
+Rake (3.40)
+
+
+
+Hand #8963552-92 - 2013-06-24 13:25:45
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #2
+Seat 1: datmonkeydoe (314)
+Seat 2: AreUMine (400)
+Seat 3: CCUUURRRRSSE (905.22)
+Seat 4: inuge285 (588.45)
+Seat 5: lasenorita (146.15)
+Seat 6: habing (543.83)
+datmonkeydoe has the dealer button
+AreUMine posts small blind 2
+CCUUURRRRSSE posts big blind 4
+habing posts small blind 2
+** Hole Cards **
+Dealt to habing [Jh 6s]
+inuge285 calls 4
+lasenorita folds
+habing folds
+datmonkeydoe calls 4
+AreUMine folds
+AreUMine adds 2 chips
+CCUUURRRRSSE checks
+** Flop ** [4s 2d 9h]
+CCUUURRRRSSE checks
+inuge285 checks
+datmonkeydoe checks
+** Turn ** [3c]
+CCUUURRRRSSE bets 4
+inuge285 folds
+datmonkeydoe calls 4
+** River ** [2s]
+CCUUURRRRSSE bets 4
+datmonkeydoe folds
+CCUUURRRRSSE refunded 4
+CCUUURRRRSSE wins Pot (23.40)
+Rake (0.60)
+
+
+
+Hand #8963576-93 - 2013-06-24 13:26:49
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #2
+Seat 1: datmonkeydoe (306)
+Seat 2: AreUMine (400)
+Seat 3: CCUUURRRRSSE (920.62)
+Seat 4: inuge285 (584.45)
+Seat 5: lasenorita (146.15)
+Seat 6: habing (541.83)
+AreUMine has the dealer button
+CCUUURRRRSSE posts small blind 2
+inuge285 posts big blind 4
+** Hole Cards **
+Dealt to habing [9s 7h]
+lasenorita folds
+habing folds
+datmonkeydoe calls 4
+AreUMine folds
+CCUUURRRRSSE raises to 20
+inuge285 folds
+datmonkeydoe folds
+CCUUURRRRSSE refunded 16
+CCUUURRRRSSE wins Pot (12)
+Rake (0)
+
+
+
+Hand #8963586-94 - 2013-06-24 13:27:17
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #2
+Seat 1: datmonkeydoe (302)
+Seat 2: AreUMine (400)
+Seat 3: CCUUURRRRSSE (928.62)
+Seat 4: inuge285 (580.45)
+Seat 5: lasenorita (146.15)
+Seat 6: habing (541.83)
+CCUUURRRRSSE has the dealer button
+inuge285 posts small blind 2
+lasenorita posts big blind 4
+** Hole Cards **
+Dealt to habing [5d 7s]
+habing folds
+datmonkeydoe calls 4
+AreUMine folds
+CCUUURRRRSSE raises to 20
+inuge285 calls 18
+lasenorita folds
+datmonkeydoe calls 16
+** Flop ** [3d 2h 6d]
+inuge285 checks
+datmonkeydoe checks
+CCUUURRRRSSE bets 24
+inuge285 folds
+datmonkeydoe calls 24
+** Turn ** [6c]
+datmonkeydoe checks
+CCUUURRRRSSE checks
+** River ** [8c]
+datmonkeydoe checks
+CCUUURRRRSSE checks
+** Pot Show Down ** [3d 2h 6d 6c 8c]
+datmonkeydoe shows [Kd Qd] (a Pair of Sixes +KQ8)
+CCUUURRRRSSE shows [Ah Jc] (a Pair of Sixes +AJ8)
+CCUUURRRRSSE wins Pot (109.20) with a Pair
+Rake (2.80)
+
+
+
+Hand #8963623-95 - 2013-06-24 13:28:42
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #2
+Seat 1: datmonkeydoe (258)
+Seat 2: AreUMine (400)
+Seat 3: CCUUURRRRSSE (993.82)
+Seat 4: inuge285 (560.45)
+Seat 5: lasenorita (142.15)
+Seat 6: habing (541.83)
+inuge285 has the dealer button
+lasenorita posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [Td 4s]
+datmonkeydoe calls 4
+AreUMine folds
+CCUUURRRRSSE raises to 20
+inuge285 folds
+lasenorita folds
+habing folds
+datmonkeydoe calls 16
+** Flop ** [Qs 3d 5h]
+datmonkeydoe checks
+CCUUURRRRSSE bets 16
+datmonkeydoe calls 16
+** Turn ** [Tc]
+datmonkeydoe checks
+CCUUURRRRSSE bets 32
+datmonkeydoe folds
+CCUUURRRRSSE refunded 32
+CCUUURRRRSSE wins Pot (76.05)
+Rake (1.95)
+
+
+
+Hand #8963656-96 - 2013-06-24 13:29:48
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #2
+Seat 1: datmonkeydoe (222)
+Seat 2: AreUMine (400)
+Seat 3: CCUUURRRRSSE (1033.87)
+Seat 4: inuge285 (560.45)
+Seat 5: lasenorita (140.15)
+Seat 6: habing (537.83)
+lasenorita has the dealer button
+habing posts small blind 2
+datmonkeydoe posts big blind 4
+** Hole Cards **
+Dealt to habing [3d 8h]
+AreUMine folds
+CCUUURRRRSSE raises to 12
+inuge285 calls 12
+lasenorita folds
+habing folds
+datmonkeydoe raises to 20
+CCUUURRRRSSE calls 8
+inuge285 calls 8
+** Flop ** [4h 6s Qc]
+datmonkeydoe checks
+CCUUURRRRSSE bets 24
+inuge285 calls 24
+datmonkeydoe raises to 48
+CCUUURRRRSSE folds
+inuge285 raises to 540.45 (All-in)
+datmonkeydoe calls 154 (All-in)
+inuge285 refunded 338.45
+** Turn ** [8s]
+** River ** [6d]
+** Pot Show Down ** [4h 6s Qc 8s 6d]
+datmonkeydoe shows [Td Tc] (Two Pair, Tens and Sixes +Q)
+inuge285 shows [Qh Jc] (Two Pair, Queens and Sixes +J)
+inuge285 wins Pot (482) with Two Pair
+Rake (8)
+
+
+
+Hand #8963683-97 - 2013-06-24 13:30:48
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #2
+Seat 1: datmonkeydoe (0) - sitting out
+Seat 2: AreUMine (400)
+Seat 3: CCUUURRRRSSE (989.87)
+Seat 4: inuge285 (820.45)
+Seat 5: lasenorita (140.15)
+Seat 6: habing (535.83)
+habing has the dealer button
+AreUMine posts small blind 2
+CCUUURRRRSSE posts big blind 4
+** Hole Cards **
+Dealt to habing [Kc Jh]
+inuge285 calls 4
+lasenorita calls 4
+habing raises to 20
+AreUMine folds
+AreUMine adds 2 chips
+CCUUURRRRSSE calls 16
+inuge285 calls 16
+lasenorita calls 16
+** Flop ** [6s 4d 6h]
+CCUUURRRRSSE bets 48
+inuge285 folds
+lasenorita folds
+habing folds
+CCUUURRRRSSE refunded 48
+CCUUURRRRSSE wins Pot (79.95)
+Rake (2.05)
+
+
+
+Hand #8963718-98 - 2013-06-24 13:31:49
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #2
+Seat 1: datmonkeydoe (0) - sitting out
+Seat 2: AreUMine (400)
+Seat 3: CCUUURRRRSSE (1049.82)
+Seat 4: inuge285 (800.45)
+Seat 5: lasenorita (120.15)
+Seat 6: habing (515.83)
+AreUMine has the dealer button
+CCUUURRRRSSE posts small blind 2
+inuge285 posts big blind 4
+** Hole Cards **
+Dealt to habing [6h Th]
+lasenorita folds
+habing folds
+AreUMine folds
+CCUUURRRRSSE has timed out
+CCUUURRRRSSE folds
+inuge285 refunded 2
+inuge285 wins Pot (4)
+Rake (0)
+
+
+
+Hand #8963740-99 - 2013-06-24 13:32:31
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #2
+Seat 1: datmonkeydoe (0) - sitting out
+Seat 2: AreUMine (400)
+Seat 3: CCUUURRRRSSE (1047.82) - sitting out
+Seat 4: inuge285 (802.45)
+Seat 5: lasenorita (120.15)
+Seat 6: habing (515.83)
+inuge285 has the dealer button
+lasenorita posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [9d 7h]
+AreUMine raises to 12
+inuge285 folds
+lasenorita folds
+habing folds
+AreUMine refunded 8
+AreUMine wins Pot (10)
+Rake (0)
+lasenorita adds 281.85 chips
+
+
+
+Hand #8963753-100 - 2013-06-24 13:32:53
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #2
+Seat 1: datmonkeydoe (0) - sitting out
+Seat 2: AreUMine (406)
+Seat 3: CCUUURRRRSSE (1047.82)
+Seat 4: inuge285 (802.45)
+Seat 5: lasenorita (400)
+Seat 6: habing (511.83)
+lasenorita has the dealer button
+habing posts small blind 2
+AreUMine posts big blind 4
+** Hole Cards **
+Dealt to habing [6s 9d]
+CCUUURRRRSSE raises to 16
+inuge285 folds
+lasenorita calls 16
+habing folds
+AreUMine calls 12
+** Flop ** [9s 2d 6d]
+AreUMine checks
+CCUUURRRRSSE bets 16
+lasenorita calls 16
+AreUMine raises to 390 (All-in)
+CCUUURRRRSSE folds
+lasenorita folds
+AreUMine refunded 374
+AreUMine wins Pot (95.55)
+Rake (2.45)
+
+
+
+Hand #8963780-101 - 2013-06-24 13:33:55
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #2
+Seat 1: datmonkeydoe (0) - sitting out
+Seat 2: AreUMine (469.55)
+Seat 3: CCUUURRRRSSE (1015.82)
+Seat 4: inuge285 (802.45)
+Seat 5: lasenorita (368)
+Seat 6: habing (509.83)
+habing has the dealer button
+AreUMine posts small blind 2
+CCUUURRRRSSE posts big blind 4
+** Hole Cards **
+Dealt to habing [9d Qd]
+inuge285 calls 4
+lasenorita calls 4
+habing raises to 22.40
+AreUMine folds
+CCUUURRRRSSE calls 18.40
+inuge285 calls 18.40
+lasenorita calls 18.40
+** Flop ** [4d 4c Kd]
+CCUUURRRRSSE bets 28
+inuge285 folds
+lasenorita calls 28
+habing calls 28
+** Turn ** [8d]
+CCUUURRRRSSE checks
+lasenorita checks
+habing bets 121.60
+CCUUURRRRSSE folds
+lasenorita folds
+habing refunded 121.60
+habing wins Pot (171.21)
+Rake (4.39)
+
+
+
+Hand #8963814-102 - 2013-06-24 13:35:04
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #2
+Seat 1: datmonkeydoe (0) - sitting out
+Seat 2: AreUMine (467.55)
+Seat 3: CCUUURRRRSSE (965.42)
+Seat 4: inuge285 (780.05)
+Seat 5: lasenorita (317.60)
+Seat 6: habing (630.64)
+AreUMine has the dealer button
+CCUUURRRRSSE posts small blind 2
+inuge285 posts big blind 4
+** Hole Cards **
+Dealt to habing [Ah Qs]
+lasenorita folds
+habing raises to 12
+AreUMine folds
+CCUUURRRRSSE folds
+inuge285 folds
+habing refunded 8
+habing wins Pot (10)
+Rake (0)
+
+
+
+Hand #8963828-103 - 2013-06-24 13:35:26
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #2
+Seat 1: datmonkeydoe (0) - sitting out
+Seat 2: AreUMine (467.55)
+Seat 3: CCUUURRRRSSE (963.42)
+Seat 4: inuge285 (776.05)
+Seat 5: lasenorita (317.60)
+Seat 6: habing (636.64)
+CCUUURRRRSSE has the dealer button
+inuge285 posts small blind 2
+lasenorita posts big blind 4
+** Hole Cards **
+Dealt to habing [Js 4h]
+habing folds
+AreUMine folds
+CCUUURRRRSSE raises to 12
+inuge285 folds
+lasenorita calls 8
+** Flop ** [8h 3h 6h]
+lasenorita checks
+CCUUURRRRSSE bets 12
+lasenorita calls 12
+** Turn ** [7s]
+lasenorita checks
+CCUUURRRRSSE checks
+** River ** [Ah]
+lasenorita checks
+CCUUURRRRSSE bets 12
+lasenorita raises to 32
+CCUUURRRRSSE folds
+lasenorita refunded 20
+lasenorita wins Pot (72.15)
+Rake (1.85)
+
+
+
+Hand #8963860-104 - 2013-06-24 13:36:43
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #2
+Seat 1: datmonkeydoe (0) - sitting out
+Seat 2: AreUMine (467.55)
+Seat 3: CCUUURRRRSSE (927.42)
+Seat 4: inuge285 (774.05)
+Seat 5: lasenorita (353.75)
+Seat 6: habing (636.64)
+inuge285 has the dealer button
+lasenorita posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [Qs Jc]
+AreUMine folds
+CCUUURRRRSSE raises to 12
+inuge285 folds
+lasenorita folds
+habing folds
+CCUUURRRRSSE refunded 8
+CCUUURRRRSSE wins Pot (10)
+Rake (0)
+
+
+
+Hand #8963871-105 - 2013-06-24 13:37:10
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #2
+Seat 1: datmonkeydoe (0) - sitting out
+Seat 2: AreUMine (467.55)
+Seat 3: CCUUURRRRSSE (933.42)
+Seat 4: inuge285 (774.05)
+Seat 5: lasenorita (351.75)
+Seat 6: habing (632.64)
+lasenorita has the dealer button
+habing posts small blind 2
+AreUMine posts big blind 4
+** Hole Cards **
+Dealt to habing [3c 9c]
+CCUUURRRRSSE folds
+inuge285 raises to 12
+lasenorita folds
+habing folds
+AreUMine folds
+inuge285 refunded 8
+inuge285 wins Pot (10)
+Rake (0)
+
+
+
+Hand #8963883-106 - 2013-06-24 13:37:36
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #2
+Seat 1: datmonkeydoe (0) - sitting out
+Seat 2: AreUMine (463.55)
+Seat 3: CCUUURRRRSSE (933.42)
+Seat 4: inuge285 (780.05)
+Seat 5: lasenorita (351.75)
+Seat 6: habing (630.64)
+habing has the dealer button
+AreUMine posts small blind 2
+CCUUURRRRSSE posts big blind 4
+** Hole Cards **
+Dealt to habing [Js 9h]
+inuge285 calls 4
+lasenorita folds
+habing folds
+AreUMine folds
+CCUUURRRRSSE checks
+** Flop ** [8c 3d 2s]
+CCUUURRRRSSE checks
+inuge285 bets 8
+CCUUURRRRSSE folds
+inuge285 refunded 8
+inuge285 wins Pot (9.75)
+Rake (0.25)
+
+
+
+Hand #8963976-110 - 2013-06-24 13:40:58
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #2
+Seat 2: AreUMine (457.55)
+Seat 3: CCUUURRRRSSE (1097.12)
+Seat 4: inuge285 (629.80)
+Seat 5: lasenorita (335.75)
+Seat 6: habing (630.64) - sitting out
+lasenorita has the dealer button
+AreUMine posts small blind 2
+CCUUURRRRSSE posts big blind 4
+** Hole Cards **
+inuge285 folds
+lasenorita raises to 8
+AreUMine folds
+CCUUURRRRSSE calls 4
+** Flop ** [9s 4d 6s]
+CCUUURRRRSSE checks
+lasenorita bets 8
+CCUUURRRRSSE raises to 32
+lasenorita folds
+CCUUURRRRSSE refunded 24
+CCUUURRRRSSE wins Pot (33.15)
+Rake (0.85)
+
+
+
+Hand #8963999-111 - 2013-06-24 13:41:35
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #2
+Seat 2: AreUMine (455.55)
+Seat 3: CCUUURRRRSSE (1114.27)
+Seat 4: inuge285 (629.80)
+Seat 5: lasenorita (319.75)
+Seat 6: habing (630.64) - sitting out
+AreUMine has the dealer button
+CCUUURRRRSSE posts small blind 2
+inuge285 posts big blind 4
+** Hole Cards **
+lasenorita raises to 8
+AreUMine folds
+CCUUURRRRSSE calls 6
+inuge285 calls 4
+** Flop ** [7c Kh Ad]
+CCUUURRRRSSE checks
+inuge285 checks
+lasenorita bets 12
+CCUUURRRRSSE raises to 36
+inuge285 folds
+lasenorita calls 24
+** Turn ** [4h]
+CCUUURRRRSSE bets 40
+lasenorita calls 40
+** River ** [7s]
+CCUUURRRRSSE checks
+lasenorita bets 67
+CCUUURRRRSSE folds
+lasenorita refunded 67
+lasenorita wins Pot (171.60)
+Rake (4.40)
+
+
+
+Hand #8964056-112 - 2013-06-24 13:42:49
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #2
+Seat 2: AreUMine (455.55)
+Seat 3: CCUUURRRRSSE (1030.27)
+Seat 4: inuge285 (621.80)
+Seat 5: lasenorita (407.35)
+Seat 6: habing (630.64)
+CCUUURRRRSSE has the dealer button
+inuge285 posts small blind 2
+lasenorita posts big blind 4
+habing posts small & big blind 6
+** Hole Cards **
+Dealt to habing [2s Qd]
+habing checks
+AreUMine folds
+CCUUURRRRSSE raises to 16
+inuge285 calls 14
+lasenorita folds
+habing folds
+** Flop ** [2h 5d 6h]
+inuge285 checks
+CCUUURRRRSSE bets 28
+inuge285 folds
+CCUUURRRRSSE refunded 28
+CCUUURRRRSSE wins Pot (40.95)
+Rake (1.05)
+
+
+
+Hand #8964079-113 - 2013-06-24 13:43:22
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #2
+Seat 2: AreUMine (455.55)
+Seat 3: CCUUURRRRSSE (1055.22)
+Seat 4: inuge285 (605.80)
+Seat 5: lasenorita (403.35)
+Seat 6: habing (624.64)
+inuge285 has the dealer button
+lasenorita posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [2d 4d]
+AreUMine folds
+CCUUURRRRSSE raises to 12
+inuge285 calls 12
+lasenorita folds
+habing has timed out
+habing folds
+** Flop ** [8d Ah Kd]
+CCUUURRRRSSE bets 20
+inuge285 calls 20
+** Turn ** [6s]
+CCUUURRRRSSE bets 32
+inuge285 calls 32
+** River ** [4h]
+CCUUURRRRSSE bets 125
+inuge285 folds
+CCUUURRRRSSE refunded 125
+CCUUURRRRSSE wins Pot (130.65)
+Rake (3.35)
+
+
+
+Hand #8964130-114 - 2013-06-24 13:44:38
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #2
+Seat 2: AreUMine (455.55)
+Seat 3: CCUUURRRRSSE (1121.87)
+Seat 4: inuge285 (541.80)
+Seat 5: lasenorita (401.35)
+Seat 6: habing (620.64)
+lasenorita has the dealer button
+habing posts small blind 2
+AreUMine posts big blind 4
+** Hole Cards **
+Dealt to habing [8h 8s]
+CCUUURRRRSSE raises to 16
+inuge285 folds
+lasenorita calls 16
+habing folds
+AreUMine folds
+** Flop ** [Jh 8d 2c]
+CCUUURRRRSSE bets 16
+lasenorita calls 16
+** Turn ** [Tc]
+CCUUURRRRSSE checks
+lasenorita bets 34
+CCUUURRRRSSE folds
+lasenorita refunded 34
+lasenorita wins Pot (68.25)
+Rake (1.75)
+
+
+
+Hand #8964159-115 - 2013-06-24 13:45:28
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #2
+Seat 1: datmonkeydoe (400)
+Seat 2: AreUMine (451.55)
+Seat 3: CCUUURRRRSSE (1089.87)
+Seat 4: inuge285 (541.80)
+Seat 5: lasenorita (437.60)
+Seat 6: habing (618.64)
+habing has the dealer button
+AreUMine posts small blind 2
+CCUUURRRRSSE posts big blind 4
+** Hole Cards **
+Dealt to habing [4d 9c]
+inuge285 raises to 12
+lasenorita folds
+habing folds
+AreUMine folds
+CCUUURRRRSSE calls 8
+** Flop ** [Ks 5d Jc]
+CCUUURRRRSSE checks
+inuge285 checks
+** Turn ** [Jh]
+CCUUURRRRSSE bets 12
+inuge285 folds
+CCUUURRRRSSE refunded 12
+CCUUURRRRSSE wins Pot (25.35)
+Rake (0.65)
+
+
+
+Hand #8964184-116 - 2013-06-24 13:46:22
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #2
+Seat 1: datmonkeydoe (400)
+Seat 2: AreUMine (449.55)
+Seat 3: CCUUURRRRSSE (1103.22)
+Seat 4: inuge285 (529.80)
+Seat 5: lasenorita (437.60)
+Seat 6: habing (618.64)
+AreUMine has the dealer button
+CCUUURRRRSSE posts small blind 2
+inuge285 posts big blind 4
+datmonkeydoe posts big blind 4
+** Hole Cards **
+Dealt to habing [8s 4h]
+lasenorita folds
+habing folds
+datmonkeydoe checks
+AreUMine folds
+CCUUURRRRSSE raises to 16
+inuge285 calls 12
+datmonkeydoe calls 12
+** Flop ** [2h 3h 7s]
+CCUUURRRRSSE bets 20
+inuge285 calls 20
+datmonkeydoe folds
+** Turn ** [4c]
+CCUUURRRRSSE bets 24
+inuge285 raises to 48
+CCUUURRRRSSE folds
+inuge285 refunded 24
+inuge285 wins Pot (132.60)
+Rake (3.40)
+
+
+
+Hand #8964224-117 - 2013-06-24 13:47:35
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #2
+Seat 1: datmonkeydoe (384)
+Seat 2: AreUMine (449.55)
+Seat 3: CCUUURRRRSSE (1043.22)
+Seat 4: inuge285 (602.40)
+Seat 5: lasenorita (437.60)
+Seat 6: habing (618.64)
+CCUUURRRRSSE has the dealer button
+inuge285 posts small blind 2
+lasenorita posts big blind 4
+** Hole Cards **
+Dealt to habing [Ad 5c]
+habing folds
+datmonkeydoe calls 4
+AreUMine folds
+CCUUURRRRSSE calls 4
+inuge285 folds
+lasenorita checks
+** Flop ** [Jd Jh Ac]
+lasenorita checks
+datmonkeydoe checks
+CCUUURRRRSSE bets 4
+lasenorita folds
+datmonkeydoe calls 4
+** Turn ** [8c]
+datmonkeydoe checks
+CCUUURRRRSSE bets 14
+datmonkeydoe raises to 28
+CCUUURRRRSSE folds
+datmonkeydoe refunded 14
+datmonkeydoe wins Pot (48.75)
+Rake (1.25)
+
+
+
+Hand #8964256-118 - 2013-06-24 13:48:37
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #2
+Seat 1: datmonkeydoe (410.75)
+Seat 2: AreUMine (449.55)
+Seat 3: CCUUURRRRSSE (1021.22)
+Seat 4: inuge285 (600.40)
+Seat 5: lasenorita (433.60)
+Seat 6: habing (618.64)
+inuge285 has the dealer button
+lasenorita posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [7c Ad]
+datmonkeydoe calls 4
+AreUMine folds
+CCUUURRRRSSE raises to 24
+inuge285 folds
+lasenorita folds
+habing folds
+datmonkeydoe folds
+CCUUURRRRSSE refunded 20
+CCUUURRRRSSE wins Pot (14)
+Rake (0)
+
+
+
+Hand #8964273-119 - 2013-06-24 13:49:14
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #2
+Seat 1: datmonkeydoe (406.75)
+Seat 2: AreUMine (449.55)
+Seat 3: CCUUURRRRSSE (1031.22)
+Seat 4: inuge285 (600.40)
+Seat 5: lasenorita (431.60)
+Seat 6: habing (614.64)
+lasenorita has the dealer button
+habing posts small blind 2
+datmonkeydoe posts big blind 4
+** Hole Cards **
+Dealt to habing [As 5s]
+AreUMine folds
+CCUUURRRRSSE raises to 8
+inuge285 raises to 35
+lasenorita folds
+habing folds
+datmonkeydoe raises to 62
+CCUUURRRRSSE folds
+inuge285 raises to 600.40 (All-in)
+datmonkeydoe calls 344.75 (All-in)
+inuge285 refunded 193.65
+** Flop ** [Kd 4c 9s]
+** Turn ** [4h]
+** River ** [8d]
+** Pot Show Down ** [Kd 4c 9s 4h 8d]
+datmonkeydoe shows [2s 2h] (Two Pair, Fours and Deuces +K)
+inuge285 shows [Ac Ah] (Two Pair, Aces and Fours +K)
+inuge285 wins Pot (815.50) with Two Pair
+Rake (8)
+
+
+
+Hand #8964295-120 - 2013-06-24 13:50:01
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #2
+Seat 2: AreUMine (449.55)
+Seat 3: CCUUURRRRSSE (1023.22)
+Seat 4: inuge285 (1009.15)
+Seat 5: lasenorita (431.60)
+Seat 6: habing (612.64)
+habing has the dealer button
+AreUMine posts small blind 2
+CCUUURRRRSSE posts big blind 4
+** Hole Cards **
+Dealt to habing [2c 7h]
+inuge285 folds
+lasenorita raises to 8
+habing folds
+AreUMine folds
+CCUUURRRRSSE calls 4
+** Flop ** [Jh Ks 3h]
+CCUUURRRRSSE checks
+lasenorita checks
+** Turn ** [As]
+CCUUURRRRSSE checks
+lasenorita bets 12
+CCUUURRRRSSE folds
+lasenorita refunded 12
+lasenorita wins Pot (17.55)
+Rake (0.45)
+
+
+
+Hand #8964316-121 - 2013-06-24 13:50:50
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #2
+Seat 2: AreUMine (447.55)
+Seat 3: CCUUURRRRSSE (1015.22)
+Seat 4: inuge285 (1009.15)
+Seat 5: lasenorita (441.15)
+Seat 6: habing (612.64)
+AreUMine has the dealer button
+CCUUURRRRSSE posts small blind 2
+inuge285 posts big blind 4
+** Hole Cards **
+Dealt to habing [4s Js]
+lasenorita folds
+habing folds
+AreUMine folds
+CCUUURRRRSSE raises to 20
+inuge285 folds
+CCUUURRRRSSE refunded 16
+CCUUURRRRSSE wins Pot (8)
+Rake (0)
+
+
+
+Hand #8964334-122 - 2013-06-24 13:51:26
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #2
+Seat 1: datmonkeydoe (319.99)
+Seat 2: AreUMine (447.55)
+Seat 3: CCUUURRRRSSE (1019.22)
+Seat 4: inuge285 (1005.15)
+Seat 5: lasenorita (441.15)
+Seat 6: habing (612.64)
+CCUUURRRRSSE has the dealer button
+inuge285 posts small blind 2
+lasenorita posts big blind 4
+datmonkeydoe posts big blind 4
+** Hole Cards **
+Dealt to habing [2d 5c]
+habing folds
+datmonkeydoe checks
+AreUMine folds
+CCUUURRRRSSE raises to 16
+inuge285 calls 14
+lasenorita calls 12
+datmonkeydoe folds
+** Flop ** [5d 8d 2c]
+inuge285 checks
+lasenorita checks
+CCUUURRRRSSE checks
+** Turn ** [9h]
+inuge285 checks
+lasenorita checks
+CCUUURRRRSSE bets 45
+inuge285 folds
+lasenorita folds
+CCUUURRRRSSE refunded 45
+CCUUURRRRSSE wins Pot (50.70)
+Rake (1.30)
+
+
+
+Hand #8964362-123 - 2013-06-24 13:52:21
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #2
+Seat 1: datmonkeydoe (315.99)
+Seat 2: AreUMine (447.55)
+Seat 3: CCUUURRRRSSE (1053.92)
+Seat 4: inuge285 (989.15)
+Seat 5: lasenorita (425.15)
+Seat 6: habing (612.64)
+inuge285 has the dealer button
+lasenorita posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [8d Qd]
+datmonkeydoe folds
+AreUMine folds
+CCUUURRRRSSE folds
+inuge285 folds
+lasenorita raises to 12
+habing folds
+lasenorita refunded 8
+lasenorita wins Pot (8)
+Rake (0)
+
+
+
+Hand #8964377-124 - 2013-06-24 13:52:47
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #2
+Seat 1: datmonkeydoe (315.99)
+Seat 2: AreUMine (447.55)
+Seat 3: CCUUURRRRSSE (1053.92)
+Seat 4: inuge285 (989.15)
+Seat 5: lasenorita (429.15)
+Seat 6: habing (608.64)
+lasenorita has the dealer button
+habing posts small blind 2
+datmonkeydoe posts big blind 4
+** Hole Cards **
+Dealt to habing [2h Ah]
+AreUMine folds
+CCUUURRRRSSE folds
+inuge285 folds
+lasenorita raises to 8
+habing folds
+datmonkeydoe calls 4
+** Flop ** [6c Kc 3d]
+datmonkeydoe checks
+lasenorita bets 8
+datmonkeydoe raises to 16
+lasenorita calls 8
+** Turn ** [Kd]
+datmonkeydoe bets 20
+lasenorita folds
+datmonkeydoe refunded 20
+datmonkeydoe wins Pot (48.75)
+Rake (1.25)
+
+
+
+Hand #8964406-125 - 2013-06-24 13:53:51
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #2
+Seat 1: datmonkeydoe (340.74)
+Seat 2: AreUMine (447.55)
+Seat 3: CCUUURRRRSSE (1053.92)
+Seat 4: inuge285 (989.15)
+Seat 5: lasenorita (405.15)
+Seat 6: habing (606.64)
+habing has the dealer button
+datmonkeydoe posts small blind 2
+AreUMine posts big blind 4
+** Hole Cards **
+Dealt to habing [7d 3c]
+CCUUURRRRSSE raises to 16
+inuge285 calls 16
+lasenorita folds
+habing folds
+datmonkeydoe folds
+AreUMine folds
+** Flop ** [7s As Ad]
+CCUUURRRRSSE bets 16
+inuge285 folds
+CCUUURRRRSSE refunded 16
+CCUUURRRRSSE wins Pot (37.05)
+Rake (0.95)
+
+
+
+Hand #8964423-126 - 2013-06-24 13:54:21
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #2
+Seat 1: datmonkeydoe (338.74)
+Seat 2: AreUMine (443.55)
+Seat 3: CCUUURRRRSSE (1074.97)
+Seat 4: inuge285 (973.15)
+Seat 5: lasenorita (405.15)
+Seat 6: habing (606.64)
+datmonkeydoe has the dealer button
+AreUMine posts small blind 2
+CCUUURRRRSSE posts big blind 4
+** Hole Cards **
+Dealt to habing [2h 6d]
+inuge285 calls 4
+lasenorita folds
+habing folds
+datmonkeydoe calls 4
+AreUMine folds
+CCUUURRRRSSE checks
+** Flop ** [4s 3d 6s]
+CCUUURRRRSSE checks
+inuge285 checks
+datmonkeydoe checks
+** Turn ** [9h]
+CCUUURRRRSSE checks
+inuge285 checks
+datmonkeydoe bets 20
+CCUUURRRRSSE folds
+inuge285 folds
+datmonkeydoe refunded 20
+datmonkeydoe wins Pot (13.65)
+Rake (0.35)
+
+
+
+Hand #8964452-127 - 2013-06-24 13:55:16
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #2
+Seat 1: datmonkeydoe (348.39)
+Seat 2: AreUMine (441.55)
+Seat 3: CCUUURRRRSSE (1070.97)
+Seat 4: inuge285 (969.15)
+Seat 5: lasenorita (405.15)
+Seat 6: habing (606.64)
+AreUMine has the dealer button
+CCUUURRRRSSE posts small blind 2
+inuge285 posts big blind 4
+** Hole Cards **
+Dealt to habing [2s 8c]
+lasenorita folds
+habing folds
+datmonkeydoe calls 4
+AreUMine folds
+CCUUURRRRSSE calls 2
+inuge285 checks
+** Flop ** [Kc Ad Js]
+CCUUURRRRSSE checks
+inuge285 checks
+datmonkeydoe bets 20
+CCUUURRRRSSE calls 20
+inuge285 folds
+** Turn ** [As]
+CCUUURRRRSSE checks
+datmonkeydoe bets 48
+CCUUURRRRSSE folds
+datmonkeydoe refunded 48
+datmonkeydoe wins Pot (50.70)
+Rake (1.30)
+
+
+
+Hand #8964490-128 - 2013-06-24 13:56:27
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #2
+Seat 1: datmonkeydoe (375.09)
+Seat 2: AreUMine (441.55)
+Seat 3: CCUUURRRRSSE (1046.97)
+Seat 4: inuge285 (965.15)
+Seat 5: lasenorita (405.15)
+Seat 6: habing (606.64)
+CCUUURRRRSSE has the dealer button
+inuge285 posts small blind 2
+lasenorita posts big blind 4
+** Hole Cards **
+Dealt to habing [Qs 4d]
+habing folds
+datmonkeydoe folds
+AreUMine folds
+CCUUURRRRSSE raises to 12
+inuge285 folds
+lasenorita folds
+CCUUURRRRSSE refunded 8
+CCUUURRRRSSE wins Pot (10)
+Rake (0)
+
+
+
+Hand #8964506-129 - 2013-06-24 13:56:51
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #2
+Seat 1: datmonkeydoe (375.09)
+Seat 2: AreUMine (441.55)
+Seat 3: CCUUURRRRSSE (1052.97)
+Seat 4: inuge285 (963.15)
+Seat 5: lasenorita (401.15)
+Seat 6: habing (606.64)
+inuge285 has the dealer button
+lasenorita posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [6h Jh]
+datmonkeydoe calls 4
+AreUMine folds
+CCUUURRRRSSE raises to 16
+inuge285 calls 16
+lasenorita folds
+habing folds
+datmonkeydoe calls 12
+** Flop ** [Qh Ts 4s]
+datmonkeydoe checks
+CCUUURRRRSSE bets 32
+inuge285 calls 32
+datmonkeydoe calls 32
+** Turn ** [Kd]
+datmonkeydoe checks
+CCUUURRRRSSE checks
+inuge285 checks
+** River ** [2d]
+datmonkeydoe checks
+CCUUURRRRSSE checks
+inuge285 bets 65
+datmonkeydoe folds
+CCUUURRRRSSE folds
+inuge285 refunded 65
+inuge285 wins Pot (146.25)
+Rake (3.75)
+
+
+
+Hand #8964563-130 - 2013-06-24 13:58:35
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #2
+Seat 1: datmonkeydoe (327.09)
+Seat 2: AreUMine (441.55)
+Seat 3: CCUUURRRRSSE (1004.97)
+Seat 4: inuge285 (1061.40)
+Seat 5: lasenorita (399.15)
+Seat 6: habing (602.64)
+lasenorita has the dealer button
+habing posts small blind 2
+datmonkeydoe posts big blind 4
+** Hole Cards **
+Dealt to habing [7s 5h]
+AreUMine folds
+CCUUURRRRSSE folds
+inuge285 folds
+lasenorita raises to 8
+habing folds
+datmonkeydoe folds
+lasenorita refunded 4
+lasenorita wins Pot (10)
+Rake (0)
+
+
+
+Hand #8964574-131 - 2013-06-24 13:58:50
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #2
+Seat 1: datmonkeydoe (323.09)
+Seat 2: AreUMine (441.55)
+Seat 3: CCUUURRRRSSE (1004.97)
+Seat 4: inuge285 (1061.40)
+Seat 5: lasenorita (405.15)
+Seat 6: habing (600.64)
+habing has the dealer button
+datmonkeydoe posts small blind 2
+AreUMine posts big blind 4
+** Hole Cards **
+Dealt to habing [As Qh]
+CCUUURRRRSSE folds
+inuge285 calls 4
+lasenorita calls 4
+habing raises to 24.80
+datmonkeydoe calls 22.80
+AreUMine folds
+inuge285 calls 20.80
+lasenorita calls 20.80
+** Flop ** [Ah Jd 7s]
+datmonkeydoe checks
+inuge285 checks
+lasenorita checks
+habing bets 47.20
+datmonkeydoe calls 47.20
+inuge285 calls 47.20
+lasenorita folds
+** Turn ** [9s]
+datmonkeydoe checks
+inuge285 checks
+habing bets 80
+datmonkeydoe folds
+inuge285 calls 80
+** River ** [7d]
+inuge285 checks
+habing bets 70
+inuge285 folds
+habing refunded 70
+habing wins Pot (396.80)
+Rake (8)
+
+
+
+Hand #8964638-132 - 2013-06-24 14:00:35
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #2
+Seat 1: datmonkeydoe (251.09)
+Seat 2: AreUMine (437.55)
+Seat 3: CCUUURRRRSSE (1004.97)
+Seat 4: inuge285 (909.40)
+Seat 5: lasenorita (380.35)
+Seat 6: habing (845.44)
+datmonkeydoe has the dealer button
+AreUMine posts small blind 2
+CCUUURRRRSSE posts big blind 4
+** Hole Cards **
+Dealt to habing [Qh 7d]
+inuge285 folds
+lasenorita raises to 8
+habing folds
+datmonkeydoe calls 8
+AreUMine calls 6
+CCUUURRRRSSE calls 4
+** Flop ** [4d 5s 8s]
+AreUMine bets 20
+CCUUURRRRSSE calls 20
+lasenorita folds
+datmonkeydoe calls 20
+** Turn ** [7c]
+AreUMine checks
+CCUUURRRRSSE bets 40
+datmonkeydoe folds
+AreUMine folds
+CCUUURRRRSSE refunded 40
+CCUUURRRRSSE wins Pot (89.70)
+Rake (2.30)
+
+
+
+Hand #8964676-133 - 2013-06-24 14:01:29
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #2
+Seat 1: datmonkeydoe (223.09)
+Seat 2: AreUMine (409.55)
+Seat 3: CCUUURRRRSSE (1066.67)
+Seat 4: inuge285 (909.40)
+Seat 5: lasenorita (372.35)
+Seat 6: habing (845.44)
+AreUMine has the dealer button
+CCUUURRRRSSE posts small blind 2
+inuge285 posts big blind 4
+** Hole Cards **
+Dealt to habing [Tc 9d]
+lasenorita folds
+habing folds
+datmonkeydoe calls 4
+AreUMine folds
+CCUUURRRRSSE calls 2
+inuge285 checks
+** Flop ** [Ks Ad Kc]
+CCUUURRRRSSE bets 4
+inuge285 folds
+datmonkeydoe folds
+CCUUURRRRSSE refunded 4
+CCUUURRRRSSE wins Pot (11.70)
+Rake (0.30)
+
+
+
+Hand #8964703-134 - 2013-06-24 14:02:01
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #2
+Seat 1: datmonkeydoe (219.09)
+Seat 2: AreUMine (409.55)
+Seat 3: CCUUURRRRSSE (1074.37)
+Seat 4: inuge285 (905.40)
+Seat 5: lasenorita (372.35)
+Seat 6: habing (845.44)
+CCUUURRRRSSE has the dealer button
+inuge285 posts small blind 2
+lasenorita posts big blind 4
+** Hole Cards **
+Dealt to habing [Qc 3h]
+habing folds
+datmonkeydoe folds
+AreUMine folds
+CCUUURRRRSSE raises to 16
+inuge285 calls 14
+lasenorita calls 12
+** Flop ** [5s Ad Js]
+inuge285 checks
+lasenorita checks
+CCUUURRRRSSE checks
+** Turn ** [3d]
+inuge285 bets 40
+lasenorita folds
+CCUUURRRRSSE folds
+inuge285 refunded 40
+inuge285 wins Pot (46.80)
+Rake (1.20)
+
+
+
+Hand #8964739-135 - 2013-06-24 14:02:48
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #2
+Seat 1: datmonkeydoe (219.09)
+Seat 2: AreUMine (409.55)
+Seat 3: CCUUURRRRSSE (1058.37)
+Seat 4: inuge285 (936.20)
+Seat 5: lasenorita (356.35)
+Seat 6: habing (845.44)
+inuge285 has the dealer button
+lasenorita posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [4c Th]
+datmonkeydoe raises to 8
+AreUMine folds
+CCUUURRRRSSE calls 8
+inuge285 folds
+lasenorita calls 6
+habing folds
+** Flop ** [8d 9c 6s]
+lasenorita checks
+datmonkeydoe bets 32
+CCUUURRRRSSE calls 32
+lasenorita folds
+** Turn ** [9s]
+datmonkeydoe bets 50
+CCUUURRRRSSE folds
+datmonkeydoe refunded 50
+datmonkeydoe wins Pot (89.70)
+Rake (2.30)
+
+
+
+Hand #8964788-136 - 2013-06-24 14:03:54
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #2
+Seat 1: datmonkeydoe (268.79)
+Seat 2: AreUMine (409.55)
+Seat 3: CCUUURRRRSSE (1018.37)
+Seat 4: inuge285 (936.20)
+Seat 5: lasenorita (348.35)
+Seat 6: habing (841.44)
+lasenorita has the dealer button
+habing posts small blind 2
+datmonkeydoe posts big blind 4
+** Hole Cards **
+Dealt to habing [2d 5h]
+AreUMine raises to 12
+CCUUURRRRSSE calls 12
+inuge285 calls 12
+lasenorita calls 12
+habing folds
+datmonkeydoe calls 8
+** Flop ** [As Qs 4h]
+datmonkeydoe checks
+AreUMine checks
+CCUUURRRRSSE bets 24
+inuge285 calls 24
+lasenorita calls 24
+datmonkeydoe folds
+AreUMine folds
+AreUMine adds 2.45 chips
+** Turn ** [Ks]
+CCUUURRRRSSE checks
+inuge285 checks
+lasenorita bets 65
+CCUUURRRRSSE folds
+inuge285 folds
+lasenorita refunded 65
+lasenorita wins Pot (130.65)
+Rake (3.35)
+
+
+
+Hand #8964854-137 - 2013-06-24 14:05:10
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #2
+Seat 1: datmonkeydoe (256.79)
+Seat 2: AreUMine (400)
+Seat 3: CCUUURRRRSSE (982.37)
+Seat 4: inuge285 (900.20)
+Seat 5: lasenorita (443)
+Seat 6: habing (839.44)
+habing has the dealer button
+datmonkeydoe posts small blind 2
+CCUUURRRRSSE posts big blind 4
+** Hole Cards **
+Dealt to habing [Jd 8h]
+inuge285 folds
+lasenorita folds
+habing raises to 8
+datmonkeydoe folds
+CCUUURRRRSSE raises to 32
+habing folds
+CCUUURRRRSSE refunded 24
+CCUUURRRRSSE wins Pot (18)
+Rake (0)
+
+
+
+Hand #8964865-138 - 2013-06-24 14:05:32
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE 6max 2/4 #2
+Seat 1: datmonkeydoe (254.79)
+Seat 3: CCUUURRRRSSE (992.37)
+Seat 4: inuge285 (900.20)
+Seat 5: lasenorita (443)
+Seat 6: habing (831.44)
+datmonkeydoe has the dealer button
+CCUUURRRRSSE posts small blind 2
+inuge285 posts big blind 4
+** Hole Cards **
+Dealt to habing [Kd As]
+lasenorita folds
+habing raises to 12
+datmonkeydoe calls 12
+CCUUURRRRSSE raises to 48
+inuge285 folds
+habing raises to 124
+datmonkeydoe calls 112
+CCUUURRRRSSE calls 76
+** Flop ** [3h 3s 5h]
+CCUUURRRRSSE checks
+habing checks
+datmonkeydoe bets 40
+CCUUURRRRSSE calls 40
+habing raises to 153.60
+datmonkeydoe folds
+CCUUURRRRSSE calls 113.60
+** Turn ** [6d]
+CCUUURRRRSSE bets 700
+habing calls 553.84 (All-in)
+CCUUURRRRSSE refunded 146.16
+** River ** [3d]
+** Pot Show Down ** [3h 3s 5h 6d 3d]
+CCUUURRRRSSE shows [4h 6h] (a Full House, Threes full of Sixes)
+habing shows [Kd As] (Three of a Kind, Threes +AK)
+CCUUURRRRSSE wins Pot (1822.88) with a Full House
+Rake (8)

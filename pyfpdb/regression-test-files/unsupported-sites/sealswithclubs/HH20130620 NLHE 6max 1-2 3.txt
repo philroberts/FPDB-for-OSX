@@ -1,0 +1,2966 @@
+Hand #8780183-10 - 2013-06-20 15:46:34
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (239.90)
+Seat 2: ty4drawing (184.30)
+Seat 3: habing (200) - waiting for big blind
+ty4drawing has the dealer button
+ty4drawing posts small blind 1
+sneakystrong posts big blind 2
+** Hole Cards **
+ty4drawing raises to 4
+sneakystrong raises to 16
+ty4drawing calls 12
+** Flop ** [2c 2h Qh]
+sneakystrong bets 24
+ty4drawing folds
+sneakystrong refunded 24
+sneakystrong wins Pot (31.20)
+Rake (0.80)
+
+
+
+Hand #8780200-11 - 2013-06-20 15:47:02
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (255.10)
+Seat 2: ty4drawing (168.30)
+Seat 3: habing (200) - waiting for big blind
+sneakystrong has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Jd 3s]
+sneakystrong raises to 4
+ty4drawing calls 3
+habing folds
+habing adds 2 chips
+** Flop ** [4d 9s 6d]
+ty4drawing checks
+sneakystrong bets 6
+ty4drawing calls 6
+** Turn ** [Kd]
+ty4drawing checks
+sneakystrong checks
+** River ** [Th]
+ty4drawing bets 18
+sneakystrong calls 18
+** Pot Show Down ** [4d 9s 6d Kd Th]
+sneakystrong shows [6c 4c] (Two Pair, Sixes and Fours +K)
+ty4drawing shows [8h Qs] (High Card King +QT98)
+sneakystrong wins Pot (56.55) with Two Pair
+Rake (1.45)
+
+
+
+Hand #8780223-12 - 2013-06-20 15:47:58
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (283.65)
+Seat 2: ty4drawing (140.30)
+Seat 3: habing (200)
+ty4drawing has the dealer button
+habing posts small blind 1
+sneakystrong posts big blind 2
+** Hole Cards **
+Dealt to habing [Jh 5d]
+ty4drawing folds
+ty4drawing adds 59.70 chips
+habing folds
+sneakystrong refunded 1
+habing adds 1 chips
+sneakystrong wins Pot (2)
+Rake (0)
+
+
+
+Hand #8780232-13 - 2013-06-20 15:48:12
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (284.65)
+Seat 2: ty4drawing (200)
+Seat 3: habing (200)
+habing has the dealer button
+sneakystrong posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [2c Td]
+habing folds
+sneakystrong folds
+ty4drawing refunded 1
+ty4drawing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8780242-14 - 2013-06-20 15:48:35
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (283.65)
+Seat 2: ty4drawing (201)
+Seat 3: habing (200)
+sneakystrong has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Jc Ks]
+sneakystrong folds
+ty4drawing calls 1
+habing raises to 8
+ty4drawing folds
+habing refunded 6
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8780264-15 - 2013-06-20 15:49:21
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (283.65)
+Seat 2: ty4drawing (199)
+Seat 3: habing (202)
+ty4drawing has the dealer button
+habing posts small blind 1
+sneakystrong posts big blind 2
+** Hole Cards **
+Dealt to habing [Qd Jc]
+ty4drawing raises to 6
+habing folds
+sneakystrong calls 4
+** Flop ** [7s Th Kc]
+sneakystrong checks
+ty4drawing bets 8
+sneakystrong calls 8
+** Turn ** [3h]
+sneakystrong checks
+ty4drawing checks
+** River ** [Jd]
+sneakystrong checks
+ty4drawing checks
+** Pot Show Down ** [7s Th Kc 3h Jd]
+sneakystrong shows [Td 8d] (a Pair of Tens +KJ8)
+ty4drawing shows [5h 5c] (a Pair of Fives +KJT)
+sneakystrong wins Pot (28.28) with a Pair
+Rake (0.72)
+
+
+
+Hand #8780295-16 - 2013-06-20 15:50:24
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (297.93)
+Seat 2: ty4drawing (185)
+Seat 3: habing (201)
+habing has the dealer button
+sneakystrong posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [9h 8s]
+habing raises to 6
+sneakystrong raises to 20
+ty4drawing folds
+ty4drawing adds 17 chips
+habing folds
+sneakystrong refunded 14
+habing adds 5 chips
+sneakystrong wins Pot (14)
+Rake (0)
+
+
+
+Hand #8780313-17 - 2013-06-20 15:50:59
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (305.93)
+Seat 2: ty4drawing (200)
+Seat 3: habing (200)
+sneakystrong has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [6d 3d]
+sneakystrong folds
+ty4drawing raises to 6
+habing folds
+ty4drawing refunded 4
+habing adds 2 chips
+ty4drawing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8780321-18 - 2013-06-20 15:51:17
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (305.93)
+Seat 2: ty4drawing (202)
+Seat 3: habing (200)
+ty4drawing has the dealer button
+habing posts small blind 1
+sneakystrong posts big blind 2
+** Hole Cards **
+Dealt to habing [Qs Td]
+ty4drawing raises to 4
+habing folds
+habing adds 1 chips
+sneakystrong calls 2
+** Flop ** [4c Th 2s]
+sneakystrong checks
+ty4drawing bets 6
+sneakystrong folds
+ty4drawing refunded 6
+ty4drawing wins Pot (8.78)
+Rake (0.22)
+
+
+
+Hand #8780340-19 - 2013-06-20 15:52:01
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (301.93)
+Seat 2: ty4drawing (206.78)
+Seat 3: habing (200)
+habing has the dealer button
+sneakystrong posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [9d As]
+habing raises to 4
+sneakystrong raises to 18
+ty4drawing folds
+habing folds
+sneakystrong refunded 14
+habing adds 4 chips
+sneakystrong wins Pot (10)
+Rake (0)
+
+
+
+Hand #8780352-20 - 2013-06-20 15:52:29
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (307.93)
+Seat 2: ty4drawing (204.78)
+Seat 3: habing (200)
+sneakystrong has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [6d 4d]
+sneakystrong folds
+ty4drawing raises to 6
+habing folds
+ty4drawing refunded 4
+habing adds 2 chips
+ty4drawing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8780365-21 - 2013-06-20 15:52:56
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (307.93)
+Seat 2: ty4drawing (206.78)
+Seat 3: habing (200)
+ty4drawing has the dealer button
+habing posts small blind 1
+sneakystrong posts big blind 2
+** Hole Cards **
+Dealt to habing [Kc 7c]
+ty4drawing raises to 6
+habing folds
+habing adds 1 chips
+sneakystrong folds
+ty4drawing refunded 4
+ty4drawing wins Pot (5)
+Rake (0)
+
+
+
+Hand #8780374-22 - 2013-06-20 15:53:18
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (305.93)
+Seat 2: ty4drawing (209.78)
+Seat 3: habing (200)
+habing has the dealer button
+sneakystrong posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [3h 9h]
+habing folds
+sneakystrong folds
+ty4drawing refunded 1
+ty4drawing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8780381-23 - 2013-06-20 15:53:34
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (304.93)
+Seat 2: ty4drawing (210.78)
+Seat 3: habing (200)
+sneakystrong has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [9c Qh]
+sneakystrong folds
+ty4drawing folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8780392-24 - 2013-06-20 15:54:01
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (304.93)
+Seat 2: ty4drawing (209.78)
+Seat 3: habing (201)
+ty4drawing has the dealer button
+habing posts small blind 1
+sneakystrong posts big blind 2
+** Hole Cards **
+Dealt to habing [Ks Kc]
+ty4drawing raises to 4
+habing raises to 16
+sneakystrong folds
+ty4drawing calls 12
+** Flop ** [2h Kd Ad]
+habing bets 17.20
+ty4drawing folds
+habing refunded 17.20
+habing wins Pot (33.15)
+Rake (0.85)
+
+
+
+Hand #8780412-25 - 2013-06-20 15:54:44
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (302.93)
+Seat 2: ty4drawing (193.78)
+Seat 3: habing (218.15)
+habing has the dealer button
+sneakystrong posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ah 4c]
+habing raises to 4
+sneakystrong folds
+ty4drawing folds
+habing refunded 2
+habing wins Pot (5)
+Rake (0)
+
+
+
+Hand #8780422-26 - 2013-06-20 15:55:04
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (301.93)
+Seat 2: ty4drawing (191.78)
+Seat 3: habing (221.15)
+sneakystrong has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [2h 3h]
+sneakystrong folds
+ty4drawing folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8780427-27 - 2013-06-20 15:55:19
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (301.93)
+Seat 2: ty4drawing (190.78)
+Seat 3: habing (222.15)
+ty4drawing has the dealer button
+habing posts small blind 1
+sneakystrong posts big blind 2
+** Hole Cards **
+Dealt to habing [Ad 2s]
+ty4drawing folds
+habing raises to 6
+sneakystrong folds
+habing refunded 4
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8780441-28 - 2013-06-20 15:55:42
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (299.93)
+Seat 2: ty4drawing (190.78)
+Seat 3: habing (224.15)
+habing has the dealer button
+sneakystrong posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [9d 2d]
+habing folds
+sneakystrong folds
+ty4drawing refunded 1
+ty4drawing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8780456-29 - 2013-06-20 15:56:08
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (298.93)
+Seat 2: ty4drawing (191.78)
+Seat 3: habing (224.15)
+sneakystrong has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Jc 2s]
+sneakystrong raises to 4
+ty4drawing calls 3
+habing folds
+** Flop ** [3c 3s 2h]
+ty4drawing checks
+sneakystrong bets 6
+ty4drawing calls 6
+** Turn ** [Kc]
+ty4drawing checks
+sneakystrong checks
+** River ** [Ad]
+ty4drawing checks
+sneakystrong checks
+** Pot Show Down ** [3c 3s 2h Kc Ad]
+sneakystrong shows [6h 9h] (a Pair of Threes +AK9)
+ty4drawing shows [Jh Qc] (a Pair of Threes +AKQ)
+ty4drawing wins Pot (21.45) with a Pair
+Rake (0.55)
+
+
+
+Hand #8780494-30 - 2013-06-20 15:57:15
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (288.93)
+Seat 2: ty4drawing (203.23)
+Seat 3: habing (222.15)
+ty4drawing has the dealer button
+habing posts small blind 1
+sneakystrong posts big blind 2
+** Hole Cards **
+Dealt to habing [5c 9s]
+ty4drawing folds
+habing folds
+sneakystrong refunded 1
+sneakystrong wins Pot (2)
+Rake (0)
+
+
+
+Hand #8780502-31 - 2013-06-20 15:57:27
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (289.93)
+Seat 2: ty4drawing (203.23)
+Seat 3: habing (221.15)
+habing has the dealer button
+sneakystrong posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [Kd 4h]
+habing raises to 4
+sneakystrong folds
+ty4drawing folds
+habing refunded 2
+habing wins Pot (5)
+Rake (0)
+
+
+
+Hand #8780513-32 - 2013-06-20 15:57:45
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (288.93)
+Seat 2: ty4drawing (201.23)
+Seat 3: habing (224.15)
+sneakystrong has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [3d 8d]
+sneakystrong folds
+ty4drawing raises to 6
+habing folds
+ty4drawing refunded 4
+ty4drawing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8780527-33 - 2013-06-20 15:58:08
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (288.93)
+Seat 2: ty4drawing (203.23)
+Seat 3: habing (222.15)
+ty4drawing has the dealer button
+habing posts small blind 1
+sneakystrong posts big blind 2
+** Hole Cards **
+Dealt to habing [4c 7c]
+ty4drawing raises to 6
+habing folds
+sneakystrong folds
+ty4drawing refunded 4
+ty4drawing wins Pot (5)
+Rake (0)
+
+
+
+Hand #8780542-34 - 2013-06-20 15:58:24
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (286.93)
+Seat 2: ty4drawing (206.23)
+Seat 3: habing (221.15)
+habing has the dealer button
+sneakystrong posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [9d 7h]
+habing folds
+sneakystrong folds
+ty4drawing refunded 1
+ty4drawing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8780555-35 - 2013-06-20 15:58:43
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (285.93)
+Seat 2: ty4drawing (207.23)
+Seat 3: habing (221.15)
+sneakystrong has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Jh 7s]
+sneakystrong folds
+ty4drawing calls 1
+habing checks
+** Flop ** [Ts 4h 2s]
+ty4drawing checks
+habing checks
+** Turn ** [Js]
+ty4drawing checks
+habing bets 4
+ty4drawing folds
+habing refunded 4
+habing wins Pot (3.90)
+Rake (0.10)
+
+
+
+Hand #8780579-36 - 2013-06-20 15:59:34
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (285.93)
+Seat 2: ty4drawing (205.23)
+Seat 3: habing (223.05)
+ty4drawing has the dealer button
+habing posts small blind 1
+sneakystrong posts big blind 2
+** Hole Cards **
+Dealt to habing [5h Qh]
+ty4drawing folds
+habing raises to 6
+sneakystrong folds
+habing refunded 4
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8780591-37 - 2013-06-20 15:59:55
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (283.93)
+Seat 2: ty4drawing (205.23)
+Seat 3: habing (225.05)
+habing has the dealer button
+sneakystrong posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [9s 3h]
+habing folds
+sneakystrong folds
+ty4drawing refunded 1
+ty4drawing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8780600-38 - 2013-06-20 16:00:18
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (282.93)
+Seat 2: ty4drawing (206.23)
+Seat 3: habing (225.05)
+sneakystrong has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [7h Qh]
+sneakystrong folds
+ty4drawing folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8780609-39 - 2013-06-20 16:00:31
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (282.93)
+Seat 2: ty4drawing (205.23)
+Seat 3: habing (226.05)
+ty4drawing has the dealer button
+habing posts small blind 1
+sneakystrong posts big blind 2
+** Hole Cards **
+Dealt to habing [Js Ks]
+ty4drawing raises to 6
+habing calls 5
+sneakystrong calls 4
+** Flop ** [4c 9d Td]
+habing checks
+sneakystrong checks
+ty4drawing bets 12
+habing folds
+sneakystrong calls 12
+** Turn ** [3c]
+sneakystrong checks
+ty4drawing checks
+** River ** [Jh]
+sneakystrong checks
+ty4drawing checks
+** Pot Show Down ** [4c 9d Td 3c Jh]
+sneakystrong shows [8c Ts] (a Pair of Tens +J98)
+ty4drawing shows [7d Ad] (High Card Ace +JT97)
+sneakystrong wins Pot (40.95) with a Pair
+Rake (1.05)
+
+
+
+Hand #8780663-40 - 2013-06-20 16:01:24
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (305.88)
+Seat 2: ty4drawing (187.23)
+Seat 3: habing (220.05)
+habing has the dealer button
+sneakystrong posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [5c 9h]
+habing folds
+sneakystrong folds
+ty4drawing refunded 1
+ty4drawing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8780682-41 - 2013-06-20 16:01:51
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (304.88)
+Seat 2: ty4drawing (188.23)
+Seat 3: habing (220.05)
+sneakystrong has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [5c 8d]
+sneakystrong raises to 4
+ty4drawing calls 3
+habing folds
+** Flop ** [Jh Kd 5d]
+ty4drawing checks
+sneakystrong bets 6
+ty4drawing folds
+sneakystrong refunded 6
+sneakystrong wins Pot (9.75)
+Rake (0.25)
+
+
+
+Hand #8780722-42 - 2013-06-20 16:02:44
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (310.63)
+Seat 2: ty4drawing (184.23)
+Seat 3: habing (218.05)
+Seat 4: solidddman (200) - waiting for big blind
+ty4drawing has the dealer button
+habing posts small blind 1
+solidddman posts big blind 2
+** Hole Cards **
+Dealt to habing [Th Qc]
+sneakystrong raises to 6
+ty4drawing raises to 18
+habing folds
+solidddman folds
+solidddman adds 2 chips
+sneakystrong raises to 42
+ty4drawing raises to 184.23 (All-in)
+sneakystrong calls 142.23
+** Flop ** [7s 5h Ac]
+** Turn ** [9d]
+** River ** [9c]
+** Pot Show Down ** [7s 5h Ac 9d 9c]
+sneakystrong shows [Kh Kd] (Two Pair, Kings and Nines +A)
+ty4drawing shows [Kc As] (Two Pair, Aces and Nines +K)
+ty4drawing wins Pot (367.46) with Two Pair
+Rake (4)
+sneakystrong adds 73.60 chips
+
+
+
+Hand #8780756-43 - 2013-06-20 16:03:31
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (200)
+Seat 2: ty4drawing (367.46)
+Seat 3: habing (217.05)
+Seat 4: solidddman (200)
+habing has the dealer button
+solidddman posts small blind 1
+sneakystrong posts big blind 2
+** Hole Cards **
+Dealt to habing [Qc 2h]
+ty4drawing folds
+habing raises to 4
+solidddman calls 3
+sneakystrong calls 2
+** Flop ** [4h 7h Jd]
+solidddman checks
+sneakystrong checks
+habing checks
+** Turn ** [7c]
+solidddman checks
+sneakystrong checks
+habing checks
+** River ** [8d]
+solidddman checks
+sneakystrong checks
+habing checks
+** Pot Show Down ** [4h 7h Jd 7c 8d]
+sneakystrong shows [Qh Tc] (a Pair of Sevens +QJT)
+habing shows [Qc 2h] (a Pair of Sevens +QJ8)
+solidddman shows [6h 6s] (Two Pair, Sevens and Sixes +J)
+solidddman wins Pot (11.70) with Two Pair
+Rake (0.30)
+sneakystrong adds 4 chips
+
+
+
+Hand #8780817-44 - 2013-06-20 16:04:54
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (200)
+Seat 2: ty4drawing (367.46)
+Seat 3: habing (213.05)
+Seat 4: solidddman (207.70)
+solidddman has the dealer button
+sneakystrong posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [Jd 9c]
+habing folds
+solidddman raises to 6
+sneakystrong folds
+sneakystrong adds 1 chips
+ty4drawing folds
+solidddman refunded 4
+solidddman wins Pot (5)
+Rake (0)
+
+
+
+Hand #8780836-45 - 2013-06-20 16:05:20
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (200)
+Seat 2: ty4drawing (365.46)
+Seat 3: habing (213.05)
+Seat 4: solidddman (210.70)
+sneakystrong has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Jc As]
+solidddman folds
+sneakystrong raises to 4
+ty4drawing calls 3
+habing raises to 22
+sneakystrong folds
+sneakystrong adds 4 chips
+ty4drawing calls 18
+** Flop ** [2d 8c 3d]
+ty4drawing checks
+habing bets 20.40
+ty4drawing calls 20.40
+** Turn ** [Th]
+ty4drawing checks
+habing bets 38
+ty4drawing calls 38
+** River ** [7h]
+ty4drawing checks
+habing checks
+** Pot Show Down ** [2d 8c 3d Th 7h]
+ty4drawing shows [5c 5d] (a Pair of Fives +T87)
+habing shows [Jc As] (High Card Ace +JT87)
+ty4drawing wins Pot (160.80) with a Pair
+Rake (4)
+habing adds 67.35 chips
+
+
+
+Hand #8780883-46 - 2013-06-20 16:06:22
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (200)
+Seat 2: ty4drawing (445.86)
+Seat 3: habing (200)
+Seat 4: solidddman (210.70)
+ty4drawing has the dealer button
+habing posts small blind 1
+solidddman posts big blind 2
+** Hole Cards **
+Dealt to habing [3h 7s]
+sneakystrong folds
+ty4drawing folds
+habing folds
+solidddman refunded 1
+habing adds 1 chips
+solidddman wins Pot (2)
+Rake (0)
+
+
+
+Hand #8780900-47 - 2013-06-20 16:06:45
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (200)
+Seat 3: habing (200)
+Seat 4: solidddman (211.70)
+habing has the dealer button
+solidddman posts small blind 1
+sneakystrong posts big blind 2
+** Hole Cards **
+Dealt to habing [Ks Jh]
+habing raises to 6
+solidddman has timed out
+solidddman folds
+sneakystrong calls 4
+** Flop ** [Kc 7h 4s]
+sneakystrong checks
+habing bets 9.20
+sneakystrong folds
+habing refunded 9.20
+sneakystrong adds 6 chips
+habing wins Pot (12.68)
+Rake (0.32)
+
+
+
+Hand #8780934-48 - 2013-06-20 16:07:34
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (200)
+Seat 3: habing (206.68)
+Seat 4: solidddman (210.70)
+solidddman has the dealer button
+sneakystrong posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [7s 8d]
+solidddman raises to 6
+sneakystrong raises to 18
+habing folds
+solidddman folds
+sneakystrong refunded 12
+sneakystrong wins Pot (14)
+Rake (0)
+
+
+
+Hand #8780954-49 - 2013-06-20 16:08:08
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (208)
+Seat 3: habing (204.68)
+Seat 4: solidddman (204.70)
+sneakystrong has the dealer button
+habing posts small blind 1
+solidddman posts big blind 2
+** Hole Cards **
+Dealt to habing [3s 7d]
+sneakystrong folds
+habing folds
+solidddman refunded 1
+solidddman wins Pot (2)
+Rake (0)
+
+
+
+Hand #8780969-50 - 2013-06-20 16:08:25
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (208)
+Seat 3: habing (203.68)
+Seat 4: solidddman (205.70)
+habing has the dealer button
+solidddman posts small blind 1
+sneakystrong posts big blind 2
+** Hole Cards **
+Dealt to habing [6h 4c]
+habing folds
+solidddman folds
+sneakystrong refunded 1
+sneakystrong wins Pot (2)
+Rake (0)
+
+
+
+Hand #8780978-51 - 2013-06-20 16:08:38
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (209)
+Seat 3: habing (203.68)
+Seat 4: solidddman (204.70)
+solidddman has the dealer button
+sneakystrong posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [9d Kc]
+solidddman raises to 6
+sneakystrong calls 5
+habing calls 4
+** Flop ** [6h Qs Kh]
+sneakystrong checks
+habing bets 10.40
+solidddman calls 10.40
+sneakystrong folds
+** Turn ** [6c]
+habing bets 24
+solidddman calls 24
+** River ** [Ac]
+habing checks
+solidddman checks
+** Pot Show Down ** [6h Qs Kh 6c Ac]
+habing shows [9d Kc] (Two Pair, Kings and Sixes +A)
+solidddman shows [9h 8h] (a Pair of Sixes +AKQ)
+habing wins Pot (84.63) with Two Pair
+Rake (2.17)
+solidddman adds 35.70 chips
+
+
+
+Hand #8781048-52 - 2013-06-20 16:10:15
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (203)
+Seat 3: habing (247.91)
+Seat 4: solidddman (200)
+sneakystrong has the dealer button
+habing posts small blind 1
+solidddman posts big blind 2
+** Hole Cards **
+Dealt to habing [Jd 4s]
+sneakystrong folds
+habing folds
+solidddman refunded 1
+solidddman wins Pot (2)
+Rake (0)
+
+
+
+Hand #8781074-53 - 2013-06-20 16:10:40
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (203)
+Seat 3: habing (246.91)
+Seat 4: solidddman (201)
+habing has the dealer button
+solidddman posts small blind 1
+sneakystrong posts big blind 2
+** Hole Cards **
+Dealt to habing [3c 3s]
+habing raises to 6
+solidddman calls 5
+sneakystrong folds
+** Flop ** [Ts Kd Ks]
+solidddman checks
+habing bets 8
+solidddman folds
+habing refunded 8
+solidddman adds 5 chips
+habing wins Pot (13.65)
+Rake (0.35)
+
+
+
+Hand #8781115-54 - 2013-06-20 16:11:28
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (201)
+Seat 3: habing (254.56)
+Seat 4: solidddman (200)
+solidddman has the dealer button
+sneakystrong posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ks Th]
+solidddman folds
+sneakystrong folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8781126-55 - 2013-06-20 16:11:43
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (200)
+Seat 3: habing (255.56)
+Seat 4: solidddman (200)
+sneakystrong has the dealer button
+habing posts small blind 1
+solidddman posts big blind 2
+** Hole Cards **
+Dealt to habing [6s 4s]
+sneakystrong folds
+habing folds
+solidddman refunded 1
+solidddman wins Pot (2)
+Rake (0)
+
+
+
+Hand #8781146-56 - 2013-06-20 16:11:57
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (200)
+Seat 3: habing (254.56)
+Seat 4: solidddman (201)
+habing has the dealer button
+solidddman posts small blind 1
+sneakystrong posts big blind 2
+** Hole Cards **
+Dealt to habing [2s 3h]
+habing folds
+solidddman folds
+sneakystrong refunded 1
+sneakystrong wins Pot (2)
+Rake (0)
+
+
+
+Hand #8781159-57 - 2013-06-20 16:12:08
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (201)
+Seat 3: habing (254.56)
+Seat 4: solidddman (200)
+solidddman has the dealer button
+sneakystrong posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ac 9c]
+solidddman raises to 6
+sneakystrong raises to 18
+habing folds
+solidddman folds
+sneakystrong refunded 12
+solidddman adds 6 chips
+sneakystrong wins Pot (14)
+Rake (0)
+
+
+
+Hand #8781175-58 - 2013-06-20 16:12:34
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (209)
+Seat 3: habing (252.56)
+Seat 4: solidddman (200)
+sneakystrong has the dealer button
+habing posts small blind 1
+solidddman posts big blind 2
+** Hole Cards **
+Dealt to habing [5c Qh]
+sneakystrong raises to 6
+habing folds
+solidddman folds
+sneakystrong refunded 4
+solidddman adds 2 chips
+sneakystrong wins Pot (5)
+Rake (0)
+
+
+
+Hand #8781191-59 - 2013-06-20 16:12:50
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (212)
+Seat 3: habing (251.56)
+Seat 4: solidddman (200)
+habing has the dealer button
+solidddman posts small blind 1
+sneakystrong posts big blind 2
+** Hole Cards **
+Dealt to habing [8c Ts]
+habing raises to 4
+solidddman calls 3
+sneakystrong folds
+** Flop ** [2c Th 4c]
+solidddman checks
+habing bets 8
+solidddman raises to 24
+habing calls 16
+** Turn ** [2h]
+solidddman checks
+habing bets 25.60
+solidddman calls 25.60
+** River ** [Td]
+solidddman checks
+habing bets 74.40
+solidddman raises to 146.40 (All-in)
+habing calls 72
+** Pot Show Down ** [2c Th 4c 2h Td]
+habing shows [8c Ts] (a Full House, Tens full of Deuces)
+solidddman shows [Tc Kc] (a Full House, Tens full of Deuces)
+habing splits Pot (199) with a Full House
+solidddman splits Pot (199) with a Full House
+Rake (4)
+solidddman adds 1 chips
+
+
+
+Hand #8781257-60 - 2013-06-20 16:14:19
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (210)
+Seat 3: habing (250.56)
+Seat 4: solidddman (200)
+solidddman has the dealer button
+sneakystrong posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [2h Qd]
+solidddman raises to 6
+sneakystrong folds
+habing folds
+solidddman refunded 4
+solidddman wins Pot (5)
+Rake (0)
+
+
+
+Hand #8781270-61 - 2013-06-20 16:14:35
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (209)
+Seat 3: habing (248.56)
+Seat 4: solidddman (203)
+sneakystrong has the dealer button
+habing posts small blind 1
+solidddman posts big blind 2
+** Hole Cards **
+Dealt to habing [6s Th]
+sneakystrong folds
+habing folds
+solidddman refunded 1
+solidddman wins Pot (2)
+Rake (0)
+
+
+
+Hand #8781283-62 - 2013-06-20 16:14:52
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (209)
+Seat 3: habing (247.56)
+Seat 4: solidddman (204)
+habing has the dealer button
+solidddman posts small blind 1
+sneakystrong posts big blind 2
+** Hole Cards **
+Dealt to habing [6s 7h]
+habing raises to 4
+solidddman folds
+sneakystrong raises to 16
+habing folds
+sneakystrong refunded 12
+sneakystrong wins Pot (9)
+Rake (0)
+
+
+
+Hand #8781296-63 - 2013-06-20 16:15:14
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (214)
+Seat 3: habing (243.56)
+Seat 4: solidddman (203)
+solidddman has the dealer button
+sneakystrong posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Js 2c]
+solidddman raises to 6
+sneakystrong calls 5
+habing folds
+** Flop ** [2s Td Kd]
+sneakystrong checks
+solidddman bets 10
+sneakystrong folds
+solidddman refunded 10
+solidddman wins Pot (13.65)
+Rake (0.35)
+
+
+
+Hand #8781323-64 - 2013-06-20 16:15:46
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (208)
+Seat 3: habing (241.56)
+Seat 4: solidddman (210.65)
+sneakystrong has the dealer button
+habing posts small blind 1
+solidddman posts big blind 2
+** Hole Cards **
+Dealt to habing [3d 2h]
+sneakystrong folds
+habing folds
+solidddman refunded 1
+solidddman wins Pot (2)
+Rake (0)
+
+
+
+Hand #8781340-65 - 2013-06-20 16:16:01
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (208)
+Seat 3: habing (240.56)
+Seat 4: solidddman (211.65)
+habing has the dealer button
+solidddman posts small blind 1
+sneakystrong posts big blind 2
+** Hole Cards **
+Dealt to habing [6s 5c]
+habing folds
+solidddman folds
+sneakystrong refunded 1
+sneakystrong wins Pot (2)
+Rake (0)
+
+
+
+Hand #8781350-66 - 2013-06-20 16:16:14
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (209)
+Seat 3: habing (240.56)
+Seat 4: solidddman (210.65)
+solidddman has the dealer button
+sneakystrong posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [2c 2s]
+solidddman folds
+sneakystrong raises to 6
+habing calls 4
+** Flop ** [Qd Qc 7h]
+sneakystrong bets 8
+habing folds
+sneakystrong refunded 8
+sneakystrong wins Pot (11.70)
+Rake (0.30)
+
+
+
+Hand #8781370-67 - 2013-06-20 16:16:44
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (214.70)
+Seat 3: habing (234.56)
+Seat 4: solidddman (210.65)
+sneakystrong has the dealer button
+habing posts small blind 1
+solidddman posts big blind 2
+** Hole Cards **
+Dealt to habing [5d Ah]
+sneakystrong folds
+habing raises to 6
+solidddman folds
+habing refunded 4
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8781383-68 - 2013-06-20 16:17:02
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (214.70)
+Seat 3: habing (236.56)
+Seat 4: solidddman (208.65)
+habing has the dealer button
+solidddman posts small blind 1
+sneakystrong posts big blind 2
+** Hole Cards **
+Dealt to habing [Ks Kh]
+habing raises to 6
+solidddman folds
+sneakystrong folds
+habing refunded 4
+habing wins Pot (5)
+Rake (0)
+
+
+
+Hand #8781397-69 - 2013-06-20 16:17:21
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (212.70)
+Seat 3: habing (239.56)
+Seat 4: solidddman (207.65)
+solidddman has the dealer button
+sneakystrong posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Qs Jd]
+solidddman folds
+sneakystrong folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8781414-70 - 2013-06-20 16:17:39
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (211.70)
+Seat 3: habing (240.56)
+Seat 4: solidddman (207.65)
+sneakystrong has the dealer button
+habing posts small blind 1
+solidddman posts big blind 2
+** Hole Cards **
+Dealt to habing [Qh Ac]
+sneakystrong raises to 6
+habing raises to 22
+solidddman folds
+sneakystrong calls 16
+** Flop ** [8h 9d 9h]
+habing bets 20
+sneakystrong folds
+habing refunded 20
+sneakystrong adds 10.30 chips
+habing wins Pot (44.85)
+Rake (1.15)
+
+
+
+Hand #8781432-71 - 2013-06-20 16:18:11
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (200)
+Seat 3: habing (263.41)
+Seat 4: solidddman (205.65)
+habing has the dealer button
+solidddman posts small blind 1
+sneakystrong posts big blind 2
+** Hole Cards **
+Dealt to habing [5h Qs]
+habing raises to 4
+solidddman folds
+sneakystrong raises to 16
+habing folds
+sneakystrong refunded 12
+sneakystrong wins Pot (9)
+Rake (0)
+
+
+
+Hand #8781460-72 - 2013-06-20 16:18:48
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (205)
+Seat 2: malthusian (200) - waiting for big blind
+Seat 3: habing (259.41)
+Seat 4: solidddman (204.65)
+solidddman has the dealer button
+sneakystrong posts small blind 1
+malthusian posts big blind 2
+** Hole Cards **
+Dealt to habing [5h Qh]
+habing raises to 6
+solidddman folds
+sneakystrong folds
+malthusian folds
+habing refunded 4
+malthusian adds 2 chips
+habing wins Pot (5)
+Rake (0)
+
+
+
+Hand #8781472-73 - 2013-06-20 16:19:06
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (204)
+Seat 2: malthusian (200)
+Seat 3: habing (262.41)
+Seat 4: solidddman (204.65)
+sneakystrong has the dealer button
+malthusian posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [7d Td]
+solidddman folds
+sneakystrong raises to 6
+malthusian folds
+malthusian adds 1 chips
+habing folds
+sneakystrong refunded 4
+sneakystrong wins Pot (5)
+Rake (0)
+
+
+
+Hand #8781486-74 - 2013-06-20 16:19:24
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (207)
+Seat 2: malthusian (200)
+Seat 3: habing (260.41)
+Seat 4: solidddman (204.65)
+malthusian has the dealer button
+habing posts small blind 1
+solidddman posts big blind 2
+** Hole Cards **
+Dealt to habing [Qc Js]
+sneakystrong raises to 6
+malthusian folds
+habing folds
+solidddman folds
+sneakystrong refunded 4
+sneakystrong wins Pot (5)
+Rake (0)
+
+
+
+Hand #8781502-75 - 2013-06-20 16:19:45
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (210)
+Seat 2: malthusian (200)
+Seat 3: habing (259.41)
+Seat 4: solidddman (202.65)
+habing has the dealer button
+solidddman posts small blind 1
+sneakystrong posts big blind 2
+** Hole Cards **
+Dealt to habing [Jh 2h]
+malthusian folds
+habing raises to 4
+solidddman folds
+sneakystrong folds
+habing refunded 2
+habing wins Pot (5)
+Rake (0)
+
+
+
+Hand #8781516-76 - 2013-06-20 16:20:03
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (208)
+Seat 2: malthusian (200)
+Seat 3: habing (262.41)
+Seat 4: solidddman (201.65)
+solidddman has the dealer button
+sneakystrong posts small blind 1
+malthusian posts big blind 2
+** Hole Cards **
+Dealt to habing [9d 4d]
+habing folds
+solidddman raises to 6
+sneakystrong folds
+malthusian folds
+solidddman refunded 4
+malthusian adds 2 chips
+solidddman wins Pot (5)
+Rake (0)
+
+
+
+Hand #8781531-77 - 2013-06-20 16:20:22
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (207)
+Seat 2: malthusian (200)
+Seat 3: habing (262.41)
+Seat 4: solidddman (204.65)
+sneakystrong has the dealer button
+malthusian posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [5c 4h]
+solidddman raises to 6
+sneakystrong calls 6
+malthusian folds
+malthusian adds 1 chips
+habing folds
+** Flop ** [Qs 9d Ks]
+solidddman bets 10
+sneakystrong calls 10
+** Turn ** [8h]
+solidddman bets 24
+sneakystrong calls 24
+** River ** [6s]
+solidddman bets 46
+sneakystrong folds
+solidddman refunded 46
+sneakystrong adds 33 chips
+solidddman wins Pot (80.93)
+Rake (2.07)
+
+
+
+Hand #8781574-78 - 2013-06-20 16:21:27
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (200)
+Seat 2: malthusian (200)
+Seat 3: habing (260.41)
+Seat 4: solidddman (245.58)
+malthusian has the dealer button
+habing posts small blind 1
+solidddman posts big blind 2
+** Hole Cards **
+Dealt to habing [Qd 7h]
+sneakystrong raises to 6
+malthusian calls 6
+habing folds
+solidddman calls 4
+** Flop ** [9h 8h Js]
+solidddman checks
+sneakystrong checks
+malthusian checks
+** Turn ** [Ks]
+solidddman checks
+sneakystrong bets 12
+malthusian folds
+malthusian adds 6 chips
+solidddman folds
+sneakystrong refunded 12
+sneakystrong wins Pot (18.53)
+Rake (0.47)
+
+
+
+Hand #8781610-79 - 2013-06-20 16:22:25
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (212.53)
+Seat 2: malthusian (200)
+Seat 3: habing (259.41)
+Seat 4: solidddman (239.58)
+Seat 6: CiscoMonte (200) - waiting for big blind
+habing has the dealer button
+solidddman posts small blind 1
+CiscoMonte posts big blind 2
+** Hole Cards **
+Dealt to habing [Ad 8h]
+sneakystrong folds
+malthusian folds
+habing raises to 4
+solidddman folds
+CiscoMonte folds
+habing refunded 2
+habing wins Pot (5)
+Rake (0)
+
+
+
+Hand #8781626-80 - 2013-06-20 16:22:56
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (212.53)
+Seat 2: malthusian (200)
+Seat 3: habing (262.41)
+Seat 4: solidddman (238.58)
+Seat 5: haastyle (200)
+Seat 6: CiscoMonte (198)
+solidddman has the dealer button
+CiscoMonte posts small blind 1
+sneakystrong posts big blind 2
+** Hole Cards **
+Dealt to habing [Ah 4c]
+malthusian folds
+habing folds
+solidddman raises to 6
+CiscoMonte folds
+sneakystrong calls 4
+** Flop ** [Td 8d 9h]
+sneakystrong checks
+solidddman bets 8
+sneakystrong folds
+solidddman refunded 8
+solidddman wins Pot (12.68)
+Rake (0.32)
+
+
+
+Hand #8781657-81 - 2013-06-20 16:23:39
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (206.53)
+Seat 2: malthusian (200)
+Seat 3: habing (262.41)
+Seat 4: solidddman (245.26)
+Seat 5: haastyle (200)
+Seat 6: CiscoMonte (197)
+CiscoMonte has the dealer button
+sneakystrong posts small blind 1
+malthusian posts big blind 2
+haastyle posts big blind 2
+** Hole Cards **
+Dealt to habing [9s 8s]
+habing raises to 10
+solidddman folds
+haastyle folds
+CiscoMonte folds
+sneakystrong folds
+malthusian folds
+habing refunded 8
+malthusian adds 2 chips
+habing wins Pot (7)
+Rake (0)
+
+
+
+Hand #8781680-82 - 2013-06-20 16:24:19
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (205.53)
+Seat 2: malthusian (200)
+Seat 3: habing (267.41)
+Seat 4: solidddman (245.26)
+Seat 5: haastyle (198)
+Seat 6: CiscoMonte (197)
+sneakystrong has the dealer button
+malthusian posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Jd 9c]
+solidddman folds
+haastyle raises to 6
+CiscoMonte folds
+sneakystrong folds
+malthusian folds
+malthusian adds 1 chips
+habing folds
+haastyle refunded 4
+haastyle wins Pot (5)
+Rake (0)
+
+
+
+Hand #8781697-83 - 2013-06-20 16:24:43
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (205.53)
+Seat 2: malthusian (200)
+Seat 3: habing (265.41)
+Seat 4: solidddman (245.26)
+Seat 5: haastyle (201)
+Seat 6: CiscoMonte (197)
+malthusian has the dealer button
+habing posts small blind 1
+solidddman posts big blind 2
+** Hole Cards **
+Dealt to habing [Kc 5h]
+haastyle folds
+CiscoMonte folds
+sneakystrong folds
+malthusian raises to 6
+habing folds
+solidddman folds
+malthusian refunded 4
+malthusian wins Pot (5)
+Rake (0)
+
+
+
+Hand #8781710-84 - 2013-06-20 16:25:10
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (205.53)
+Seat 2: malthusian (203)
+Seat 3: habing (264.41)
+Seat 4: solidddman (243.26)
+Seat 5: haastyle (201)
+Seat 6: CiscoMonte (197)
+habing has the dealer button
+solidddman posts small blind 1
+haastyle posts big blind 2
+** Hole Cards **
+Dealt to habing [9s Js]
+CiscoMonte folds
+sneakystrong folds
+malthusian raises to 6
+habing calls 6
+solidddman calls 5
+haastyle folds
+** Flop ** [Ts 7h 3c]
+solidddman checks
+malthusian bets 16
+habing folds
+solidddman calls 16
+** Turn ** [Ad]
+solidddman checks
+malthusian checks
+** River ** [4s]
+solidddman checks
+malthusian checks
+** Pot Show Down ** [Ts 7h 3c Ad 4s]
+malthusian shows [9c 9h] (a Pair of Nines +AT7)
+solidddman shows [6s 5s] (a Straight, Three to Seven)
+solidddman wins Pot (50.70) with a Straight
+Rake (1.30)
+malthusian adds 19 chips
+
+
+
+Hand #8781780-85 - 2013-06-20 16:26:38
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (205.53)
+Seat 2: malthusian (200)
+Seat 3: habing (258.41)
+Seat 4: solidddman (271.96)
+Seat 5: haastyle (199)
+Seat 6: CiscoMonte (197)
+solidddman has the dealer button
+haastyle posts small blind 1
+CiscoMonte posts big blind 2
+** Hole Cards **
+Dealt to habing [8d Tc]
+sneakystrong folds
+malthusian folds
+habing folds
+solidddman raises to 6
+haastyle calls 5
+CiscoMonte folds
+** Flop ** [8h Jh 7h]
+haastyle bets 6
+solidddman folds
+haastyle refunded 6
+haastyle wins Pot (13.65)
+Rake (0.35)
+
+
+
+Hand #8781811-86 - 2013-06-20 16:27:16
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (205.53)
+Seat 2: malthusian (200)
+Seat 3: habing (258.41)
+Seat 4: solidddman (265.96)
+Seat 5: haastyle (206.65)
+Seat 6: CiscoMonte (195)
+haastyle has the dealer button
+CiscoMonte posts small blind 1
+sneakystrong posts big blind 2
+** Hole Cards **
+Dealt to habing [5h Qh]
+malthusian folds
+habing folds
+solidddman folds
+haastyle raises to 6
+CiscoMonte raises to 18
+sneakystrong folds
+haastyle calls 12
+** Flop ** [8s 3h 6d]
+CiscoMonte bets 45
+haastyle folds
+CiscoMonte refunded 45
+CiscoMonte wins Pot (37.05)
+Rake (0.95)
+
+
+
+Hand #8781840-87 - 2013-06-20 16:28:10
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (203.53)
+Seat 2: malthusian (200)
+Seat 3: habing (258.41)
+Seat 4: solidddman (265.96)
+Seat 5: haastyle (188.65)
+Seat 6: CiscoMonte (214.05)
+CiscoMonte has the dealer button
+sneakystrong posts small blind 1
+malthusian posts big blind 2
+** Hole Cards **
+Dealt to habing [7d 4c]
+habing folds
+solidddman folds
+haastyle folds
+CiscoMonte folds
+sneakystrong raises to 6
+malthusian calls 4
+** Flop ** [2d 4d 6s]
+sneakystrong bets 8
+malthusian raises to 18
+sneakystrong calls 10
+** Turn ** [Kd]
+sneakystrong checks
+malthusian checks
+** River ** [8c]
+sneakystrong checks
+malthusian checks
+** Pot Show Down ** [2d 4d 6s Kd 8c]
+sneakystrong shows [4h 5h] (a Pair of Fours +K86)
+malthusian shows [Jd Jc] (a Pair of Jacks +K86)
+malthusian wins Pot (46.80) with a Pair
+Rake (1.20)
+sneakystrong adds 20.47 chips
+
+
+
+Hand #8781878-88 - 2013-06-20 16:29:18
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (200)
+Seat 2: malthusian (222.80)
+Seat 3: habing (258.41)
+Seat 4: solidddman (265.96)
+Seat 5: haastyle (188.65)
+Seat 6: CiscoMonte (214.05)
+sneakystrong has the dealer button
+malthusian posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Kh Qh]
+solidddman folds
+haastyle folds
+CiscoMonte folds
+sneakystrong folds
+malthusian calls 1
+habing raises to 8
+malthusian calls 6
+** Flop ** [3s 9h 7h]
+malthusian checks
+habing bets 9.20
+malthusian raises to 24
+habing calls 14.80
+** Turn ** [Ac]
+malthusian bets 46
+habing calls 46
+** River ** [9d]
+malthusian checks
+habing checks
+** Pot Show Down ** [3s 9h 7h Ac 9d]
+malthusian shows [4h Ah] (Two Pair, Aces and Nines +7)
+habing shows [Kh Qh] (a Pair of Nines +AKQ)
+malthusian wins Pot (152.10) with Two Pair
+Rake (3.90)
+habing adds 19.59 chips
+
+
+
+Hand #8781925-89 - 2013-06-20 16:30:40
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (200)
+Seat 2: malthusian (296.90)
+Seat 3: habing (200)
+Seat 4: solidddman (265.96)
+Seat 5: haastyle (188.65)
+Seat 6: CiscoMonte (214.05)
+malthusian has the dealer button
+habing posts small blind 1
+solidddman posts big blind 2
+** Hole Cards **
+Dealt to habing [Qc 2h]
+haastyle folds
+CiscoMonte folds
+sneakystrong raises to 6
+malthusian folds
+habing folds
+habing adds 1 chips
+solidddman folds
+sneakystrong refunded 4
+sneakystrong wins Pot (5)
+Rake (0)
+
+
+
+Hand #8781945-90 - 2013-06-20 16:31:07
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (203)
+Seat 2: malthusian (296.90)
+Seat 3: habing (200)
+Seat 4: solidddman (263.96)
+Seat 5: haastyle (188.65)
+Seat 6: CiscoMonte (214.05)
+habing has the dealer button
+solidddman posts small blind 1
+haastyle posts big blind 2
+** Hole Cards **
+Dealt to habing [8c Jh]
+CiscoMonte folds
+sneakystrong folds
+malthusian folds
+habing raises to 4
+solidddman folds
+haastyle calls 2
+** Flop ** [Ah Qh Qc]
+haastyle bets 8
+habing folds
+haastyle refunded 8
+habing adds 4 chips
+haastyle wins Pot (8.78)
+Rake (0.22)
+
+
+
+Hand #8781966-91 - 2013-06-20 16:31:50
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (203)
+Seat 2: malthusian (296.90)
+Seat 3: habing (200)
+Seat 4: solidddman (262.96)
+Seat 5: haastyle (193.43)
+Seat 6: CiscoMonte (214.05)
+solidddman has the dealer button
+haastyle posts small blind 1
+CiscoMonte posts big blind 2
+** Hole Cards **
+Dealt to habing [6h 3h]
+sneakystrong folds
+malthusian folds
+habing folds
+solidddman raises to 6
+haastyle calls 5
+CiscoMonte folds
+** Flop ** [Kh 7h 8d]
+haastyle checks
+solidddman bets 8
+haastyle folds
+solidddman refunded 8
+solidddman wins Pot (13.65)
+Rake (0.35)
+
+
+
+Hand #8782008-92 - 2013-06-20 16:32:44
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (203)
+Seat 2: malthusian (296.90)
+Seat 3: habing (200)
+Seat 4: solidddman (270.61)
+Seat 5: haastyle (187.43)
+Seat 6: CiscoMonte (212.05)
+haastyle has the dealer button
+CiscoMonte posts small blind 1
+sneakystrong posts big blind 2
+** Hole Cards **
+Dealt to habing [4c Jc]
+malthusian folds
+habing folds
+solidddman folds
+haastyle raises to 8
+CiscoMonte folds
+sneakystrong calls 6
+** Flop ** [3d 7h 2c]
+sneakystrong checks
+haastyle bets 10
+sneakystrong folds
+haastyle refunded 10
+sneakystrong adds 5 chips
+haastyle wins Pot (16.58)
+Rake (0.42)
+
+
+
+Hand #8782041-93 - 2013-06-20 16:33:26
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (200)
+Seat 3: habing (200)
+Seat 4: solidddman (270.61)
+Seat 5: haastyle (196.01)
+Seat 6: CiscoMonte (211.05)
+CiscoMonte has the dealer button
+sneakystrong posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [5h 9c]
+solidddman folds
+haastyle folds
+CiscoMonte folds
+sneakystrong raises to 6
+habing folds
+sneakystrong refunded 4
+habing adds 2 chips
+sneakystrong wins Pot (4)
+Rake (0)
+
+
+
+Hand #8782065-94 - 2013-06-20 16:33:54
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (202)
+Seat 3: habing (200)
+Seat 4: solidddman (270.61)
+Seat 5: haastyle (196.01)
+Seat 6: CiscoMonte (211.05)
+sneakystrong has the dealer button
+habing posts small blind 1
+solidddman posts big blind 2
+** Hole Cards **
+Dealt to habing [4c 3s]
+haastyle folds
+CiscoMonte raises to 6
+sneakystrong raises to 16
+habing folds
+habing adds 1 chips
+solidddman folds
+CiscoMonte calls 10
+** Flop ** [Qs 8d Qd]
+CiscoMonte checks
+sneakystrong bets 21
+CiscoMonte calls 21
+** Turn ** [Ah]
+CiscoMonte checks
+sneakystrong bets 44
+CiscoMonte raises to 88
+sneakystrong folds
+CiscoMonte refunded 44
+CiscoMonte wins Pot (161)
+Rake (4)
+
+
+
+Hand #8782126-95 - 2013-06-20 16:35:26
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (121)
+Seat 3: habing (200)
+Seat 4: solidddman (268.61)
+Seat 5: haastyle (196.01)
+Seat 6: CiscoMonte (291.05)
+habing has the dealer button
+solidddman posts small blind 1
+haastyle posts big blind 2
+** Hole Cards **
+Dealt to habing [Qh 3h]
+CiscoMonte folds
+sneakystrong raises to 6
+habing folds
+solidddman folds
+haastyle folds
+sneakystrong refunded 4
+sneakystrong wins Pot (5)
+Rake (0)
+
+
+
+Hand #8782146-96 - 2013-06-20 16:35:52
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (124)
+Seat 3: habing (200)
+Seat 4: solidddman (267.61)
+Seat 5: haastyle (194.01)
+Seat 6: CiscoMonte (291.05)
+solidddman has the dealer button
+haastyle posts small blind 1
+CiscoMonte posts big blind 2
+** Hole Cards **
+Dealt to habing [6d Qd]
+sneakystrong raises to 44
+habing folds
+solidddman calls 44
+haastyle folds
+CiscoMonte folds
+** Flop ** [5s 2d Jd]
+sneakystrong bets 80 (All-in)
+solidddman calls 80
+** Turn ** [Tc]
+** River ** [7s]
+** Pot Show Down ** [5s 2d Jd Tc 7s]
+sneakystrong shows [Kc Ah] (High Card Ace +KJT7)
+solidddman shows [Qc As] (High Card Ace +QJT7)
+sneakystrong wins Pot (247) with High Card
+Rake (4)
+solidddman adds 56.39 chips
+
+
+
+Hand #8782188-97 - 2013-06-20 16:36:49
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (247)
+Seat 2: broomcorn (200) - waiting for big blind
+Seat 3: habing (200)
+Seat 4: solidddman (200)
+Seat 5: haastyle (193.01)
+Seat 6: CiscoMonte (289.05)
+haastyle has the dealer button
+CiscoMonte posts small blind 1
+sneakystrong posts big blind 2
+** Hole Cards **
+Dealt to habing [Jh Ts]
+habing folds
+solidddman raises to 6
+haastyle calls 6
+CiscoMonte folds
+sneakystrong folds
+** Flop ** [3s Qd 5c]
+solidddman bets 8
+haastyle raises to 18
+solidddman folds
+haastyle refunded 10
+solidddman adds 14 chips
+haastyle wins Pot (30.23)
+Rake (0.77)
+
+
+
+Hand #8782227-98 - 2013-06-20 16:37:46
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (245)
+Seat 2: broomcorn (200) - waiting for big blind
+Seat 3: habing (200)
+Seat 4: solidddman (200)
+Seat 5: haastyle (209.24)
+Seat 6: CiscoMonte (288.05)
+CiscoMonte has the dealer button
+sneakystrong posts small blind 1
+broomcorn posts big blind 2
+** Hole Cards **
+Dealt to habing [7d 9d]
+habing folds
+solidddman folds
+haastyle raises to 4
+CiscoMonte folds
+sneakystrong folds
+broomcorn calls 2
+** Flop ** [5c Jd 3h]
+broomcorn checks
+haastyle checks
+** Turn ** [3c]
+broomcorn bets 6
+haastyle calls 6
+** River ** [9s]
+broomcorn bets 17
+haastyle folds
+broomcorn refunded 17
+broomcorn wins Pot (20.48)
+Rake (0.52)
+
+
+
+Hand #8782270-99 - 2013-06-20 16:38:59
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (244)
+Seat 2: broomcorn (210.48)
+Seat 3: habing (200)
+Seat 4: solidddman (200)
+Seat 5: haastyle (199.24)
+Seat 6: CiscoMonte (288.05)
+sneakystrong has the dealer button
+broomcorn posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [4h 5d]
+solidddman folds
+haastyle folds
+CiscoMonte folds
+sneakystrong raises to 6
+broomcorn folds
+habing folds
+sneakystrong refunded 4
+habing adds 2 chips
+sneakystrong wins Pot (5)
+Rake (0)
+
+
+
+Hand #8782292-100 - 2013-06-20 16:39:36
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (247)
+Seat 2: broomcorn (209.48)
+Seat 3: habing (200)
+Seat 4: solidddman (200)
+Seat 5: haastyle (199.24)
+Seat 6: CiscoMonte (288.05)
+broomcorn has the dealer button
+habing posts small blind 1
+solidddman posts big blind 2
+** Hole Cards **
+Dealt to habing [9c Jc]
+haastyle folds
+CiscoMonte folds
+sneakystrong folds
+broomcorn raises to 6
+habing calls 5
+solidddman folds
+solidddman adds 2 chips
+** Flop ** [3c 9s Kc]
+habing checks
+broomcorn bets 9
+habing raises to 28
+broomcorn folds
+habing refunded 19
+broomcorn adds 5.52 chips
+habing wins Pot (31.20)
+Rake (0.80)
+
+
+
+Hand #8782327-101 - 2013-06-20 16:40:21
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (247)
+Seat 2: broomcorn (200)
+Seat 3: habing (216.20)
+Seat 4: solidddman (200)
+Seat 5: haastyle (199.24)
+Seat 6: CiscoMonte (288.05)
+habing has the dealer button
+solidddman posts small blind 1
+haastyle posts big blind 2
+** Hole Cards **
+Dealt to habing [Jh Qs]
+CiscoMonte folds
+sneakystrong raises to 8
+broomcorn folds
+habing folds
+solidddman calls 7
+haastyle calls 6
+** Flop ** [Jc 4s 2h]
+solidddman checks
+haastyle checks
+sneakystrong checks
+** Turn ** [Kd]
+solidddman checks
+haastyle bets 8
+sneakystrong folds
+solidddman folds
+haastyle refunded 8
+solidddman adds 8 chips
+haastyle wins Pot (23.40)
+Rake (0.60)
+
+
+
+Hand #8782365-102 - 2013-06-20 16:41:19
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (239)
+Seat 2: broomcorn (200)
+Seat 3: habing (216.20)
+Seat 4: solidddman (200)
+Seat 5: haastyle (214.64)
+Seat 6: CiscoMonte (288.05)
+solidddman has the dealer button
+haastyle posts small blind 1
+CiscoMonte posts big blind 2
+** Hole Cards **
+Dealt to habing [2h 6h]
+sneakystrong folds
+broomcorn raises to 6
+habing folds
+solidddman calls 6
+haastyle calls 5
+CiscoMonte folds
+** Flop ** [7c 9h 8c]
+haastyle checks
+broomcorn bets 15
+solidddman folds
+solidddman adds 6 chips
+haastyle folds
+broomcorn refunded 15
+broomcorn wins Pot (19.50)
+Rake (0.50)
+
+
+
+Hand #8782402-103 - 2013-06-20 16:42:08
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (239)
+Seat 2: broomcorn (213.50)
+Seat 3: habing (216.20)
+Seat 4: solidddman (200)
+Seat 5: haastyle (208.64)
+Seat 6: CiscoMonte (286.05)
+haastyle has the dealer button
+CiscoMonte posts small blind 1
+sneakystrong posts big blind 2
+** Hole Cards **
+Dealt to habing [Ts 7s]
+broomcorn folds
+habing raises to 6
+solidddman calls 6
+haastyle calls 6
+CiscoMonte folds
+sneakystrong raises to 26
+habing calls 20
+solidddman calls 20
+haastyle folds
+** Flop ** [2h 6h 4c]
+sneakystrong checks
+habing checks
+solidddman checks
+** Turn ** [Kd]
+sneakystrong checks
+habing bets 20.80
+solidddman folds
+solidddman adds 26 chips
+sneakystrong calls 20.80
+** River ** [6s]
+sneakystrong checks
+habing checks
+** Pot Show Down ** [2h 6h 4c Kd 6s]
+sneakystrong shows [Qs Ah] (a Pair of Sixes +AKQ)
+habing shows [Ts 7s] (a Pair of Sixes +KT7)
+sneakystrong wins Pot (123.44) with a Pair
+Rake (3.16)
+habing adds 30.60 chips
+
+
+
+Hand #8782459-104 - 2013-06-20 16:43:37
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (315.64)
+Seat 2: broomcorn (213.50)
+Seat 3: habing (200)
+Seat 4: solidddman (200)
+Seat 5: haastyle (202.64)
+Seat 6: CiscoMonte (285.05)
+CiscoMonte has the dealer button
+sneakystrong posts small blind 1
+broomcorn posts big blind 2
+** Hole Cards **
+Dealt to habing [2d Tc]
+habing folds
+solidddman folds
+haastyle folds
+CiscoMonte folds
+sneakystrong folds
+broomcorn refunded 1
+broomcorn wins Pot (2)
+Rake (0)
+
+
+
+Hand #8782471-105 - 2013-06-20 16:43:57
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (314.64)
+Seat 2: broomcorn (214.50)
+Seat 3: habing (200)
+Seat 5: haastyle (202.64)
+Seat 6: CiscoMonte (285.05)
+sneakystrong has the dealer button
+broomcorn posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ah 5s]
+haastyle raises to 4
+CiscoMonte folds
+sneakystrong folds
+broomcorn calls 3
+habing folds
+habing adds 2 chips
+** Flop ** [Ts Ac 2c]
+broomcorn checks
+haastyle bets 8
+broomcorn calls 8
+** Turn ** [7s]
+broomcorn checks
+haastyle checks
+** River ** [5c]
+broomcorn checks
+haastyle checks
+** Pot Show Down ** [Ts Ac 2c 7s 5c]
+broomcorn shows [Qc Jh] (High Card Ace +QJT7)
+haastyle shows [8h 6h] (High Card Ace +T876)
+broomcorn wins Pot (25.35) with High Card
+Rake (0.65)
+
+
+
+Hand #8782513-106 - 2013-06-20 16:45:02
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (314.64)
+Seat 2: broomcorn (227.85)
+Seat 3: habing (200)
+Seat 5: haastyle (190.64)
+Seat 6: CiscoMonte (285.05)
+broomcorn has the dealer button
+habing posts small blind 1
+haastyle posts big blind 2
+** Hole Cards **
+Dealt to habing [7s 8d]
+CiscoMonte folds
+sneakystrong folds
+broomcorn raises to 6
+habing folds
+habing adds 1 chips
+haastyle folds
+broomcorn refunded 4
+broomcorn wins Pot (5)
+Rake (0)
+
+
+
+Hand #8782528-107 - 2013-06-20 16:45:23
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (314.64)
+Seat 2: broomcorn (230.85)
+Seat 3: habing (200)
+Seat 5: haastyle (188.64)
+Seat 6: CiscoMonte (285.05)
+habing has the dealer button
+haastyle posts small blind 1
+CiscoMonte posts big blind 2
+** Hole Cards **
+Dealt to habing [Ac 5s]
+sneakystrong folds
+broomcorn folds
+habing raises to 4
+haastyle calls 3
+CiscoMonte folds
+** Flop ** [Jh 4d 3c]
+haastyle checks
+habing bets 6
+haastyle folds
+habing refunded 6
+habing wins Pot (9.75)
+Rake (0.25)
+
+
+
+Hand #8782560-108 - 2013-06-20 16:46:02
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (314.64)
+Seat 2: broomcorn (230.85)
+Seat 3: habing (205.75)
+Seat 5: haastyle (184.64)
+Seat 6: CiscoMonte (283.05)
+haastyle has the dealer button
+CiscoMonte posts small blind 1
+sneakystrong posts big blind 2
+** Hole Cards **
+Dealt to habing [3c Th]
+broomcorn folds
+habing folds
+haastyle raises to 6
+CiscoMonte folds
+sneakystrong folds
+haastyle refunded 4
+haastyle wins Pot (5)
+Rake (0)
+
+
+
+Hand #8782574-109 - 2013-06-20 16:46:31
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (312.64)
+Seat 2: broomcorn (230.85)
+Seat 3: habing (205.75)
+Seat 5: haastyle (187.64)
+Seat 6: CiscoMonte (282.05)
+CiscoMonte has the dealer button
+sneakystrong posts small blind 1
+broomcorn posts big blind 2
+** Hole Cards **
+Dealt to habing [Qc 3c]
+habing folds
+haastyle raises to 6
+CiscoMonte folds
+sneakystrong folds
+broomcorn folds
+haastyle refunded 4
+haastyle wins Pot (5)
+Rake (0)
+
+
+
+Hand #8782583-110 - 2013-06-20 16:46:52
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (311.64)
+Seat 2: broomcorn (228.85)
+Seat 3: habing (205.75)
+Seat 5: haastyle (190.64)
+Seat 6: CiscoMonte (282.05)
+sneakystrong has the dealer button
+broomcorn posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [2s Tc]
+haastyle folds
+CiscoMonte folds
+sneakystrong raises to 6
+broomcorn raises to 18
+habing folds
+sneakystrong calls 12
+** Flop ** [Kd 6s 9s]
+broomcorn bets 30
+sneakystrong folds
+broomcorn refunded 30
+broomcorn wins Pot (37.05)
+Rake (0.95)
+
+
+
+Hand #8782609-111 - 2013-06-20 16:47:33
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (293.64)
+Seat 2: broomcorn (247.90)
+Seat 3: habing (203.75)
+Seat 5: haastyle (190.64)
+Seat 6: CiscoMonte (282.05)
+broomcorn has the dealer button
+habing posts small blind 1
+haastyle posts big blind 2
+** Hole Cards **
+Dealt to habing [9c Qh]
+CiscoMonte folds
+sneakystrong folds
+broomcorn raises to 6
+habing folds
+haastyle calls 4
+** Flop ** [Ts Tc 6d]
+haastyle checks
+broomcorn bets 8
+haastyle calls 8
+** Turn ** [6s]
+haastyle bets 8
+broomcorn calls 8
+** River ** [5h]
+haastyle checks
+broomcorn bets 40
+haastyle folds
+broomcorn refunded 40
+broomcorn wins Pot (43.88)
+Rake (1.12)
+
+
+
+Hand #8782655-112 - 2013-06-20 16:48:54
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (293.64)
+Seat 2: broomcorn (269.78)
+Seat 3: habing (202.75)
+Seat 4: testing86753 (40) - waiting for big blind
+Seat 5: haastyle (168.64)
+Seat 6: CiscoMonte (282.05)
+habing has the dealer button
+haastyle posts small blind 1
+CiscoMonte posts big blind 2
+** Hole Cards **
+Dealt to habing [7s Td]
+sneakystrong folds
+broomcorn folds
+habing folds
+haastyle folds
+CiscoMonte refunded 1
+CiscoMonte wins Pot (2)
+Rake (0)
+
+
+
+Hand #8782664-113 - 2013-06-20 16:49:12
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (293.64)
+Seat 2: broomcorn (269.78)
+Seat 3: habing (202.75)
+Seat 4: testing86753 (40) - waiting for big blind
+Seat 5: haastyle (167.64)
+Seat 6: CiscoMonte (283.05)
+haastyle has the dealer button
+CiscoMonte posts small blind 1
+sneakystrong posts big blind 2
+** Hole Cards **
+Dealt to habing [Ad Qc]
+broomcorn folds
+habing raises to 6
+haastyle calls 6
+CiscoMonte folds
+sneakystrong calls 4
+** Flop ** [4s Kc 8c]
+sneakystrong checks
+habing bets 10
+haastyle folds
+sneakystrong calls 10
+** Turn ** [7d]
+sneakystrong checks
+habing checks
+** River ** [9s]
+sneakystrong checks
+habing checks
+** Pot Show Down ** [4s Kc 8c 7d 9s]
+sneakystrong shows [9c 6c] (a Pair of Nines +K87)
+habing shows [Ad Qc] (High Card Ace +KQ98)
+sneakystrong wins Pot (38.03) with a Pair
+Rake (0.97)
+habing adds 13.25 chips
+
+
+
+Hand #8782693-114 - 2013-06-20 16:50:02
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (315.67)
+Seat 2: broomcorn (269.78)
+Seat 3: habing (200)
+Seat 4: testing86753 (40) - waiting for big blind
+Seat 5: haastyle (161.64)
+Seat 6: CiscoMonte (282.05)
+CiscoMonte has the dealer button
+sneakystrong posts small blind 1
+broomcorn posts big blind 2
+** Hole Cards **
+Dealt to habing [4c As]
+habing folds
+haastyle raises to 6
+CiscoMonte folds
+sneakystrong folds
+broomcorn folds
+haastyle refunded 4
+haastyle wins Pot (5)
+Rake (0)
+
+
+
+Hand #8782708-115 - 2013-06-20 16:50:25
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (314.67)
+Seat 2: broomcorn (267.78)
+Seat 3: habing (200)
+Seat 4: testing86753 (40) - waiting for big blind
+Seat 5: haastyle (164.64)
+Seat 6: CiscoMonte (282.05)
+sneakystrong has the dealer button
+broomcorn posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [8c Jd]
+haastyle raises to 4
+CiscoMonte folds
+sneakystrong folds
+broomcorn folds
+habing folds
+haastyle refunded 2
+habing adds 2 chips
+haastyle wins Pot (5)
+Rake (0)
+
+
+
+Hand #8782718-116 - 2013-06-20 16:50:45
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (314.67)
+Seat 2: broomcorn (266.78)
+Seat 3: habing (200)
+Seat 4: testing86753 (40) - waiting for big blind
+Seat 5: haastyle (167.64)
+Seat 6: CiscoMonte (282.05)
+broomcorn has the dealer button
+habing posts small blind 1
+testing86753 posts big blind 2
+** Hole Cards **
+Dealt to habing [Qd Jc]
+haastyle folds
+CiscoMonte raises to 4
+sneakystrong folds
+broomcorn folds
+habing folds
+habing adds 1 chips
+testing86753 calls 2
+** Flop ** [9c 5c 7c]
+testing86753 checks
+CiscoMonte checks
+** Turn ** [9s]
+testing86753 bets 6
+CiscoMonte folds
+testing86753 refunded 6
+testing86753 wins Pot (8.78)
+Rake (0.22)
+
+
+
+Hand #8782739-117 - 2013-06-20 16:51:29
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (314.67)
+Seat 2: broomcorn (266.78)
+Seat 3: habing (200)
+Seat 4: testing86753 (44.78)
+Seat 6: CiscoMonte (278.05)
+habing has the dealer button
+testing86753 posts small blind 1
+CiscoMonte posts big blind 2
+** Hole Cards **
+Dealt to habing [Qs 8d]
+sneakystrong raises to 6
+broomcorn folds
+habing folds
+testing86753 folds
+CiscoMonte folds
+sneakystrong refunded 4
+sneakystrong wins Pot (5)
+Rake (0)
+
+
+
+Hand #8782757-118 - 2013-06-20 16:51:53
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (317.67)
+Seat 2: broomcorn (266.78)
+Seat 3: habing (200)
+Seat 4: testing86753 (43.78)
+Seat 5: MrCuzamano (200)
+Seat 6: CiscoMonte (276.05)
+testing86753 has the dealer button
+CiscoMonte posts small blind 1
+sneakystrong posts big blind 2
+** Hole Cards **
+Dealt to habing [3d 4d]
+broomcorn folds
+habing folds
+testing86753 raises to 7
+CiscoMonte folds
+sneakystrong folds
+testing86753 refunded 5
+testing86753 wins Pot (5)
+Rake (0)
+
+
+
+Hand #8782775-119 - 2013-06-20 16:52:24
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (315.67)
+Seat 2: broomcorn (266.78)
+Seat 3: habing (200)
+Seat 4: testing86753 (46.78)
+Seat 5: MrCuzamano (200)
+Seat 6: CiscoMonte (275.05)
+CiscoMonte has the dealer button
+sneakystrong posts small blind 1
+broomcorn posts big blind 2
+MrCuzamano posts big blind 2
+** Hole Cards **
+Dealt to habing [9c 7h]
+habing folds
+testing86753 raises to 9
+MrCuzamano folds
+CiscoMonte folds
+sneakystrong folds
+broomcorn calls 7
+** Flop ** [3c 8c 5d]
+broomcorn checks
+testing86753 bets 9
+broomcorn folds
+testing86753 refunded 9
+testing86753 wins Pot (20.48)
+Rake (0.52)
+
+
+
+Hand #8782795-120 - 2013-06-20 16:53:13
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: sneakystrong (314.67)
+Seat 2: broomcorn (257.78)
+Seat 3: habing (200)
+Seat 4: testing86753 (58.26)
+Seat 5: MrCuzamano (198)
+Seat 6: CiscoMonte (275.05)
+sneakystrong has the dealer button
+broomcorn posts small blind 1
+testing86753 posts big blind 2
+** Hole Cards **
+MrCuzamano folds
+CiscoMonte folds
+sneakystrong raises to 6
+broomcorn folds
+testing86753 folds
+sneakystrong refunded 4
+sneakystrong wins Pot (5)
+Rake (0)

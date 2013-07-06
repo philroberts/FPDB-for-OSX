@@ -1,0 +1,6907 @@
+Hand #8902808-1 - 2013-06-23 01:51:40
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 3: sub (200) - waiting for big blind
+Seat 6: habing (200) - waiting for big blind
+sub has the dealer button
+sub posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [8h Jc]
+sub raises to 4
+habing calls 2
+** Flop ** [Ks 7s 4d]
+habing checks
+sub checks
+** Turn ** [Qc]
+habing bets 6
+sub folds
+habing refunded 6
+habing wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #8902837-2 - 2013-06-23 01:52:20
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 2: toaster_oven (40)
+Seat 3: sub (196)
+Seat 6: habing (203.80)
+habing has the dealer button
+habing posts small blind 1
+sub posts big blind 2
+** Hole Cards **
+Dealt to habing [3s 2s]
+habing folds
+sub refunded 1
+sub wins Pot (2)
+Rake (0)
+
+
+
+Hand #8902860-3 - 2013-06-23 01:52:48
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 2: toaster_oven (40)
+Seat 3: sub (197)
+Seat 6: habing (202.80)
+sub has the dealer button
+habing posts small blind 1
+toaster_oven posts big blind 2
+** Hole Cards **
+Dealt to habing [Qd Js]
+sub folds
+habing raises to 6
+toaster_oven folds
+habing refunded 4
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8902870-4 - 2013-06-23 01:53:04
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 2: toaster_oven (38)
+Seat 3: sub (197)
+Seat 6: habing (204.80)
+habing has the dealer button
+toaster_oven posts small blind 1
+sub posts big blind 2
+** Hole Cards **
+Dealt to habing [Js Ac]
+habing raises to 6
+toaster_oven folds
+sub calls 4
+** Flop ** [7c As 9s]
+sub checks
+habing bets 10.40
+sub calls 10.40
+** Turn ** [Th]
+sub checks
+habing bets 25.60
+sub raises to 180.60 (All-in)
+habing folds
+sub refunded 155
+habing adds 37.20 chips
+sub wins Pot (82.88)
+Rake (2.12)
+
+
+
+Hand #8902908-5 - 2013-06-23 01:53:58
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: ll2209 (80) - waiting for big blind
+Seat 2: toaster_oven (37)
+Seat 3: sub (237.88)
+Seat 6: habing (200)
+toaster_oven has the dealer button
+sub posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ts 7h]
+toaster_oven folds
+sub raises to 4
+habing calls 2
+** Flop ** [Qs 4d 4c]
+sub checks
+habing bets 6
+sub folds
+habing refunded 6
+habing wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #8902936-6 - 2013-06-23 01:54:39
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: ll2209 (80)
+Seat 2: toaster_oven (37)
+Seat 3: sub (233.88)
+Seat 6: habing (203.80)
+sub has the dealer button
+habing posts small blind 1
+ll2209 posts big blind 2
+** Hole Cards **
+Dealt to habing [3s 8d]
+toaster_oven folds
+sub folds
+habing folds
+ll2209 refunded 1
+ll2209 wins Pot (2)
+Rake (0)
+
+
+
+Hand #8902949-7 - 2013-06-23 01:54:59
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: ll2209 (81)
+Seat 2: toaster_oven (37)
+Seat 3: sub (233.88)
+Seat 6: habing (202.80)
+habing has the dealer button
+ll2209 posts small blind 1
+toaster_oven posts big blind 2
+** Hole Cards **
+Dealt to habing [9s 5c]
+sub raises to 6
+habing folds
+Tos5 adds 120 chips
+ll2209 calls 5
+toaster_oven folds
+** Flop ** [8d Kh 5s]
+ll2209 bets 10
+sub folds
+ll2209 refunded 10
+ll2209 wins Pot (13.65)
+Rake (0.35)
+
+
+
+Hand #8902988-8 - 2013-06-23 01:55:54
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: ll2209 (88.65) - sitting out
+Seat 2: toaster_oven (35)
+Seat 3: sub (227.88)
+Seat 4: Tos5 (200) - waiting for big blind
+Seat 6: habing (202.80)
+toaster_oven has the dealer button
+sub posts small blind 1
+Tos5 posts big blind 2
+** Hole Cards **
+Dealt to habing [7s 9h]
+habing folds
+toaster_oven folds
+sub folds
+Tos5 refunded 1
+Tos5 wins Pot (2)
+Rake (0)
+
+
+
+Hand #8903006-9 - 2013-06-23 01:56:13
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: ll2209 (88.65) - sitting out
+Seat 2: toaster_oven (35)
+Seat 4: Tos5 (201)
+Seat 6: habing (202.80)
+Tos5 has the dealer button
+habing posts small blind 1
+toaster_oven posts big blind 2
+** Hole Cards **
+Dealt to habing [4c Qc]
+Tos5 folds
+habing raises to 5.20
+toaster_oven raises to 8.40
+habing calls 3.20
+** Flop ** [Kc 8h Jc]
+habing checks
+toaster_oven checks
+** Turn ** [9d]
+habing checks
+toaster_oven bets 4
+habing calls 4
+** River ** [2h]
+habing checks
+toaster_oven bets 14
+habing folds
+toaster_oven refunded 14
+habing adds 9.60 chips
+toaster_oven wins Pot (24.18)
+Rake (0.62)
+
+
+
+Hand #8903066-10 - 2013-06-23 01:57:31
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: ll2209 (88.65)
+Seat 2: toaster_oven (46.78)
+Seat 3: vettefever88 (200) - waiting for big blind
+Seat 4: Tos5 (201)
+Seat 5: sukmyass5 (80) - waiting for big blind
+Seat 6: habing (200)
+habing has the dealer button
+toaster_oven posts small blind 1
+vettefever88 posts big blind 2
+** Hole Cards **
+Dealt to habing [Ah 8c]
+Tos5 folds
+habing raises to 4
+toaster_oven folds
+vettefever88 folds
+habing refunded 2
+habing wins Pot (5)
+Rake (0)
+
+
+
+Hand #8903083-11 - 2013-06-23 01:57:59
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: ll2209 (88.65)
+Seat 2: toaster_oven (45.78)
+Seat 3: vettefever88 (198)
+Seat 4: Tos5 (201)
+Seat 5: sukmyass5 (80) - waiting for big blind
+Seat 6: habing (203)
+toaster_oven has the dealer button
+vettefever88 posts small blind 1
+Tos5 posts big blind 2
+ll2209 posts big blind 2
+** Hole Cards **
+Dealt to habing [Kd Td]
+habing raises to 10
+ll2209 calls 8
+toaster_oven folds
+vettefever88 folds
+Tos5 calls 8
+** Flop ** [6s Ac 7c]
+Tos5 checks
+habing bets 14
+ll2209 raises to 28
+Tos5 calls 28
+habing folds
+habing adds 21 chips
+** Turn ** [Qd]
+Tos5 checks
+ll2209 bets 50.65 (All-in)
+Tos5 calls 50.65
+** River ** [2s]
+** Pot Show Down ** [6s Ac 7c Qd 2s]
+ll2209 shows [5h 8h] (High Card Ace +Q876)
+Tos5 shows [Jc 8c] (High Card Ace +QJ87)
+Tos5 wins Pot (198.30) with High Card
+Rake (4)
+
+
+
+Hand #8903130-12 - 2013-06-23 01:59:08
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: ll2209 (0) - sitting out
+Seat 2: toaster_oven (45.78)
+Seat 3: vettefever88 (197)
+Seat 4: Tos5 (310.65)
+Seat 5: sukmyass5 (80) - waiting for big blind
+Seat 6: habing (200)
+vettefever88 has the dealer button
+Tos5 posts small blind 1
+sukmyass5 posts big blind 2
+** Hole Cards **
+Dealt to habing [6d Kh]
+habing folds
+toaster_oven folds
+vettefever88 calls 2
+Tos5 folds
+sukmyass5 checks
+** Flop ** [Js Kc Ts]
+sukmyass5 checks
+vettefever88 checks
+** Turn ** [7c]
+sukmyass5 checks
+vettefever88 bets 2
+sukmyass5 raises to 6
+vettefever88 folds
+sukmyass5 refunded 4
+sukmyass5 wins Pot (8.78)
+Rake (0.22)
+
+
+
+Hand #8903161-13 - 2013-06-23 01:59:48
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 2: toaster_oven (45.78)
+Seat 3: vettefever88 (193)
+Seat 4: Tos5 (309.65)
+Seat 5: sukmyass5 (84.78)
+Seat 6: habing (200)
+Tos5 has the dealer button
+sukmyass5 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [2h As]
+toaster_oven calls 2
+vettefever88 calls 2
+Tos5 folds
+sukmyass5 calls 1
+habing checks
+** Flop ** [2c Ad Kc]
+sukmyass5 checks
+habing bets 5.60
+toaster_oven folds
+vettefever88 folds
+sukmyass5 folds
+habing refunded 5.60
+habing wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #8903192-14 - 2013-06-23 02:00:34
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 2: toaster_oven (43.78)
+Seat 3: vettefever88 (191)
+Seat 4: Tos5 (309.65)
+Seat 5: sukmyass5 (82.78)
+Seat 6: habing (205.80)
+sukmyass5 has the dealer button
+habing posts small blind 1
+toaster_oven posts big blind 2
+** Hole Cards **
+Dealt to habing [Kd 9c]
+vettefever88 folds
+Tos5 folds
+sukmyass5 raises to 6
+habing folds
+toaster_oven calls 4
+** Flop ** [7s 4h 9h]
+toaster_oven checks
+sukmyass5 bets 12
+toaster_oven folds
+sukmyass5 refunded 12
+sukmyass5 wins Pot (12.68)
+Rake (0.32)
+
+
+
+Hand #8903247-15 - 2013-06-23 02:01:18
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: ll2209 (132)
+Seat 2: toaster_oven (37.78)
+Seat 3: vettefever88 (191)
+Seat 4: Tos5 (309.65)
+Seat 5: sukmyass5 (89.46)
+Seat 6: habing (204.80)
+habing has the dealer button
+toaster_oven posts small blind 1
+vettefever88 posts big blind 2
+** Hole Cards **
+Dealt to habing [As 2h]
+Tos5 folds
+sukmyass5 folds
+habing raises to 4
+toaster_oven calls 3
+vettefever88 calls 2
+** Flop ** [5h 9h 7h]
+toaster_oven checks
+vettefever88 checks
+habing checks
+** Turn ** [4d]
+toaster_oven checks
+vettefever88 bets 6
+habing folds
+toaster_oven calls 6
+** River ** [9d]
+toaster_oven checks
+vettefever88 checks
+** Pot Show Down ** [5h 9h 7h 4d 9d]
+toaster_oven shows [Ah Kc] (a Pair of Nines +AK7)
+vettefever88 shows [Qh 3d] (a Pair of Nines +Q75)
+toaster_oven wins Pot (23.40) with a Pair
+Rake (0.60)
+
+
+
+Hand #8903306-16 - 2013-06-23 02:02:16
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: ll2209 (132)
+Seat 2: toaster_oven (51.18)
+Seat 3: vettefever88 (181)
+Seat 4: Tos5 (309.65)
+Seat 5: sukmyass5 (89.46)
+Seat 6: habing (200.80)
+toaster_oven has the dealer button
+vettefever88 posts small blind 1
+Tos5 posts big blind 2
+ll2209 posts big blind 2
+** Hole Cards **
+Dealt to habing [9d 9h]
+sukmyass5 folds
+habing raises to 8.80
+ll2209 calls 6.80
+toaster_oven folds
+vettefever88 folds
+Tos5 calls 6.80
+** Flop ** [2c 4h Jh]
+Tos5 checks
+habing checks
+ll2209 checks
+** Turn ** [4s]
+Tos5 checks
+habing checks
+ll2209 bets 123.20 (All-in)
+Tos5 folds
+habing folds
+ll2209 refunded 123.20
+habing adds 8 chips
+ll2209 wins Pot (26.72)
+Rake (0.68)
+
+
+
+Hand #8903398-17 - 2013-06-23 02:03:56
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: ll2209 (149.92)
+Seat 2: toaster_oven (51.18)
+Seat 3: vettefever88 (180)
+Seat 4: Tos5 (300.85)
+Seat 5: sukmyass5 (89.46)
+Seat 6: habing (200)
+vettefever88 has the dealer button
+Tos5 posts small blind 1
+sukmyass5 posts big blind 2
+** Hole Cards **
+Dealt to habing [Kh 6s]
+habing folds
+ll2209 calls 2
+toaster_oven folds
+vettefever88 calls 2
+Tos5 calls 1
+sukmyass5 checks
+** Flop ** [Js 5h Kc]
+Tos5 checks
+sukmyass5 checks
+ll2209 checks
+vettefever88 checks
+** Turn ** [Kd]
+Tos5 checks
+sukmyass5 checks
+ll2209 checks
+vettefever88 checks
+** River ** [Qs]
+Tos5 checks
+sukmyass5 checks
+ll2209 bets 147.91
+vettefever88 folds
+Tos5 folds
+sukmyass5 folds
+ll2209 refunded 147.91
+ll2209 wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #8903458-18 - 2013-06-23 02:05:05
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: ll2209 (155.72)
+Seat 3: vettefever88 (178)
+Seat 4: Tos5 (298.85)
+Seat 5: sukmyass5 (87.46)
+Seat 6: habing (200)
+Tos5 has the dealer button
+sukmyass5 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [6c 8h]
+ll2209 calls 2
+vettefever88 calls 2
+Tos5 folds
+sukmyass5 calls 1
+habing checks
+** Flop ** [Qd 7h 3c]
+sukmyass5 checks
+habing bets 4.40
+ll2209 raises to 8.80
+vettefever88 folds
+sukmyass5 folds
+habing folds
+ll2209 refunded 4.40
+habing adds 6.40 chips
+ll2209 wins Pot (16.38)
+Rake (0.42)
+
+
+
+Hand #8903507-19 - 2013-06-23 02:06:00
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: ll2209 (165.70)
+Seat 3: vettefever88 (176)
+Seat 4: Tos5 (298.85)
+Seat 5: sukmyass5 (85.46)
+Seat 6: habing (200)
+sukmyass5 has the dealer button
+habing posts small blind 1
+ll2209 posts big blind 2
+** Hole Cards **
+Dealt to habing [As Ks]
+vettefever88 raises to 4
+Tos5 folds
+sukmyass5 folds
+habing raises to 16.80
+ll2209 calls 14.80
+vettefever88 calls 12.80
+** Flop ** [5c Qc 3h]
+habing bets 22
+ll2209 raises to 148.90 (All-in)
+vettefever88 folds
+habing folds
+ll2209 refunded 126.90
+habing adds 38.80 chips
+ll2209 wins Pot (92.04)
+Rake (2.36)
+
+
+
+Hand #8903551-20 - 2013-06-23 02:06:49
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: ll2209 (218.94)
+Seat 3: vettefever88 (159.20)
+Seat 4: Tos5 (298.85)
+Seat 5: sukmyass5 (85.46)
+Seat 6: habing (200)
+habing has the dealer button
+ll2209 posts small blind 1
+vettefever88 posts big blind 2
+** Hole Cards **
+Dealt to habing [5h 4s]
+Tos5 calls 2
+sukmyass5 folds
+habing folds
+ll2209 raises to 4
+vettefever88 calls 2
+Tos5 calls 2
+** Flop ** [Ad 7d 3h]
+ll2209 bets 2
+vettefever88 folds
+Tos5 folds
+ll2209 refunded 2
+ll2209 wins Pot (11.70)
+Rake (0.30)
+
+
+
+Hand #8903582-21 - 2013-06-23 02:07:30
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: ll2209 (226.64)
+Seat 3: vettefever88 (155.20)
+Seat 4: Tos5 (294.85)
+Seat 5: sukmyass5 (85.46)
+Seat 6: habing (200)
+ll2209 has the dealer button
+vettefever88 posts small blind 1
+Tos5 posts big blind 2
+** Hole Cards **
+Dealt to habing [3s 3d]
+sukmyass5 folds
+habing raises to 6
+ll2209 calls 6
+vettefever88 folds
+Tos5 folds
+** Flop ** [7d 2s Qc]
+habing checks
+ll2209 checks
+** Turn ** [Ad]
+habing checks
+ll2209 checks
+** River ** [Kh]
+habing checks
+ll2209 bets 220.64 (All-in)
+habing folds
+ll2209 refunded 220.64
+habing adds 6 chips
+ll2209 wins Pot (14.63)
+Rake (0.37)
+
+
+
+Hand #8903636-22 - 2013-06-23 02:08:37
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: ll2209 (235.27)
+Seat 2: Rich4theWin (200)
+Seat 3: vettefever88 (154.20)
+Seat 4: Tos5 (292.85)
+Seat 5: sukmyass5 (85.46)
+Seat 6: habing (200)
+vettefever88 has the dealer button
+Tos5 posts small blind 1
+sukmyass5 posts big blind 2
+Rich4theWin posts big blind 2
+** Hole Cards **
+Dealt to habing [Js 7h]
+habing folds
+ll2209 raises to 4
+Rich4theWin calls 2
+vettefever88 folds
+Tos5 folds
+sukmyass5 folds
+** Flop ** [As 6d 9s]
+ll2209 bets 2
+Rich4theWin folds
+ll2209 refunded 2
+ll2209 wins Pot (10.73)
+Rake (0.27)
+
+
+
+Hand #8903660-23 - 2013-06-23 02:09:07
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: ll2209 (242)
+Seat 2: Rich4theWin (196)
+Seat 3: vettefever88 (154.20)
+Seat 4: Tos5 (291.85)
+Seat 5: sukmyass5 (83.46)
+Seat 6: habing (200)
+Tos5 has the dealer button
+sukmyass5 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [9h Kc]
+ll2209 raises to 4
+Rich4theWin folds
+vettefever88 calls 4
+Tos5 calls 4
+sukmyass5 folds
+habing calls 2
+** Flop ** [6s 8s 3h]
+habing checks
+ll2209 checks
+vettefever88 bets 10
+Tos5 folds
+habing folds
+habing adds 4 chips
+ll2209 folds
+vettefever88 refunded 10
+vettefever88 wins Pot (16.58)
+Rake (0.42)
+
+
+
+Hand #8903706-24 - 2013-06-23 02:10:09
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: ll2209 (238)
+Seat 2: Rich4theWin (196)
+Seat 3: vettefever88 (166.78)
+Seat 4: Tos5 (287.85)
+Seat 5: sukmyass5 (82.46)
+Seat 6: habing (200)
+sukmyass5 has the dealer button
+habing posts small blind 1
+ll2209 posts big blind 2
+** Hole Cards **
+Dealt to habing [Ts 6d]
+Rich4theWin raises to 4
+vettefever88 folds
+Tos5 folds
+sukmyass5 folds
+habing has timed out
+habing folds
+habing adds 1 chips
+ll2209 calls 2
+** Flop ** [Ks 9d 6c]
+ll2209 checks
+Rich4theWin bets 4
+ll2209 folds
+Rich4theWin refunded 4
+Rich4theWin wins Pot (8.78)
+Rake (0.22)
+
+
+
+Hand #8903748-25 - 2013-06-23 02:11:04
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: ll2209 (234)
+Seat 2: Rich4theWin (200.78)
+Seat 3: vettefever88 (166.78)
+Seat 4: Tos5 (287.85)
+Seat 5: sukmyass5 (82.46)
+Seat 6: habing (200)
+habing has the dealer button
+ll2209 posts small blind 1
+Rich4theWin posts big blind 2
+** Hole Cards **
+Dealt to habing [7c 9c]
+vettefever88 folds
+Tos5 folds
+sukmyass5 folds
+habing raises to 4
+ll2209 calls 3
+Rich4theWin calls 2
+** Flop ** [4d 5h 9h]
+ll2209 checks
+Rich4theWin bets 4
+habing calls 4
+ll2209 folds
+** Turn ** [4s]
+Rich4theWin bets 6
+habing calls 6
+** River ** [As]
+Rich4theWin checks
+habing checks
+** Pot Show Down ** [4d 5h 9h 4s As]
+Rich4theWin shows [8c 5c] (Two Pair, Fives and Fours +A)
+habing shows [7c 9c] (Two Pair, Nines and Fours +A)
+habing wins Pot (31.20) with Two Pair
+Rake (0.80)
+
+
+
+Hand #8903818-26 - 2013-06-23 02:12:38
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: ll2209 (230)
+Seat 2: Rich4theWin (186.78)
+Seat 3: vettefever88 (166.78)
+Seat 4: Tos5 (287.85)
+Seat 5: sukmyass5 (82.46)
+Seat 6: habing (217.20)
+ll2209 has the dealer button
+Rich4theWin posts small blind 1
+vettefever88 posts big blind 2
+** Hole Cards **
+Dealt to habing [Kc Qs]
+Tos5 folds
+sukmyass5 calls 2
+habing raises to 8.80
+ll2209 calls 8.80
+Rich4theWin folds
+vettefever88 calls 6.80
+sukmyass5 folds
+** Flop ** [4c Ac Jc]
+vettefever88 checks
+habing bets 17.60
+ll2209 raises to 35.20
+vettefever88 folds
+habing calls 17.60
+** Turn ** [8d]
+habing checks
+ll2209 checks
+** River ** [6d]
+habing checks
+ll2209 bets 186 (All-in)
+habing folds
+ll2209 refunded 186
+habing adds 26.80 chips
+ll2209 wins Pot (97.31)
+Rake (2.49)
+
+
+
+Hand #8903874-27 - 2013-06-23 02:13:45
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: ll2209 (283.31) - sitting out
+Seat 2: Rich4theWin (185.78)
+Seat 3: vettefever88 (157.98)
+Seat 4: Tos5 (287.85)
+Seat 5: sukmyass5 (80.46)
+Seat 6: habing (200)
+Rich4theWin has the dealer button
+vettefever88 posts small blind 1
+Tos5 posts big blind 2
+** Hole Cards **
+Dealt to habing [2s Kd]
+sukmyass5 folds
+habing folds
+Rich4theWin folds
+vettefever88 calls 1
+Tos5 checks
+** Flop ** [8d Jd Kc]
+vettefever88 checks
+Tos5 bets 3
+vettefever88 folds
+Tos5 refunded 3
+Tos5 wins Pot (3.90)
+Rake (0.10)
+
+
+
+Hand #8903898-28 - 2013-06-23 02:14:16
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 2: Rich4theWin (185.78)
+Seat 3: vettefever88 (155.98)
+Seat 4: Tos5 (289.75)
+Seat 5: sukmyass5 (80.46)
+Seat 6: habing (200)
+vettefever88 has the dealer button
+Tos5 posts small blind 1
+sukmyass5 posts big blind 2
+** Hole Cards **
+Dealt to habing [5c 8s]
+habing folds
+Rich4theWin raises to 4
+vettefever88 folds
+Tos5 folds
+sukmyass5 folds
+Rich4theWin refunded 2
+Rich4theWin wins Pot (5)
+Rake (0)
+
+
+
+Hand #8903925-29 - 2013-06-23 02:14:44
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 2: Rich4theWin (188.78)
+Seat 3: vettefever88 (155.98)
+Seat 4: Tos5 (288.75)
+Seat 5: sukmyass5 (78.46)
+Seat 6: habing (200)
+Tos5 has the dealer button
+sukmyass5 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [8h 6d]
+Rich4theWin folds
+vettefever88 calls 2
+Tos5 folds
+sukmyass5 folds
+habing checks
+** Flop ** [Kc 8c 9s]
+habing checks
+vettefever88 checks
+** Turn ** [Tc]
+habing checks
+vettefever88 checks
+** River ** [Th]
+habing checks
+vettefever88 checks
+** Pot Show Down ** [Kc 8c 9s Tc Th]
+vettefever88 shows [4h 3s] (a Pair of Tens +K98)
+habing shows [8h 6d] (Two Pair, Tens and Eights +K)
+habing wins Pot (4.88) with Two Pair
+Rake (0.12)
+
+
+
+Hand #8903965-30 - 2013-06-23 02:15:42
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 2: Rich4theWin (188.78)
+Seat 3: vettefever88 (153.98)
+Seat 4: Tos5 (288.75)
+Seat 5: sukmyass5 (77.46)
+Seat 6: habing (202.88)
+sukmyass5 has the dealer button
+habing posts small blind 1
+Rich4theWin posts big blind 2
+** Hole Cards **
+Dealt to habing [3d Ad]
+vettefever88 raises to 4
+Tos5 folds
+sukmyass5 folds
+habing calls 3
+Rich4theWin calls 2
+** Flop ** [9h Jc 2d]
+habing bets 6.80
+Rich4theWin folds
+vettefever88 calls 6.80
+** Turn ** [Ah]
+habing bets 18.80
+vettefever88 calls 18.80
+** River ** [7s]
+habing bets 42.80
+vettefever88 folds
+habing refunded 42.80
+habing wins Pot (61.62)
+Rake (1.58)
+
+
+
+Hand #8904026-31 - 2013-06-23 02:17:02
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 2: Rich4theWin (184.78)
+Seat 3: vettefever88 (124.38)
+Seat 4: Tos5 (288.75)
+Seat 5: sukmyass5 (77.46)
+Seat 6: habing (234.90)
+habing has the dealer button
+Rich4theWin posts small blind 1
+vettefever88 posts big blind 2
+** Hole Cards **
+Dealt to habing [As 6c]
+Tos5 folds
+sukmyass5 folds
+habing raises to 6
+Rich4theWin folds
+vettefever88 raises to 22
+habing folds
+vettefever88 refunded 16
+vettefever88 wins Pot (13)
+Rake (0)
+
+
+
+Hand #8904060-32 - 2013-06-23 02:17:41
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 2: Rich4theWin (183.78)
+Seat 3: vettefever88 (131.38)
+Seat 4: Tos5 (288.75)
+Seat 5: sukmyass5 (77.46)
+Seat 6: habing (228.90)
+Rich4theWin has the dealer button
+vettefever88 posts small blind 1
+Tos5 posts big blind 2
+** Hole Cards **
+Dealt to habing [6h Qd]
+sukmyass5 folds
+habing folds
+Rich4theWin folds
+vettefever88 raises to 8
+Tos5 folds
+vettefever88 refunded 6
+vettefever88 wins Pot (4)
+Rake (0)
+
+
+
+Hand #8904083-33 - 2013-06-23 02:18:05
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 2: Rich4theWin (183.78)
+Seat 3: vettefever88 (133.38)
+Seat 4: Tos5 (286.75)
+Seat 5: sukmyass5 (77.46)
+Seat 6: habing (228.90)
+vettefever88 has the dealer button
+Tos5 posts small blind 1
+sukmyass5 posts big blind 2
+** Hole Cards **
+Dealt to habing [4s 4h]
+habing raises to 6
+Rich4theWin folds
+vettefever88 folds
+Tos5 folds
+sukmyass5 folds
+habing refunded 4
+habing wins Pot (5)
+Rake (0)
+
+
+
+Hand #8904104-34 - 2013-06-23 02:18:35
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 2: Rich4theWin (183.78)
+Seat 3: vettefever88 (133.38)
+Seat 4: Tos5 (285.75)
+Seat 5: sukmyass5 (75.46)
+Seat 6: habing (231.90)
+Tos5 has the dealer button
+sukmyass5 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Td 8d]
+Rich4theWin folds
+vettefever88 folds
+Tos5 raises to 6
+sukmyass5 folds
+habing calls 4
+** Flop ** [5s Qs Kh]
+habing checks
+Tos5 bets 10
+habing folds
+Tos5 refunded 10
+Tos5 wins Pot (12.68)
+Rake (0.32)
+
+
+
+Hand #8904145-35 - 2013-06-23 02:19:28
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: ll2209 (283.31)
+Seat 2: Rich4theWin (183.78)
+Seat 3: vettefever88 (133.38)
+Seat 4: Tos5 (292.43)
+Seat 5: sukmyass5 (74.46)
+Seat 6: habing (225.90)
+sukmyass5 has the dealer button
+habing posts small blind 1
+ll2209 posts big blind 2
+** Hole Cards **
+Dealt to habing [Ks 7s]
+Rich4theWin folds
+vettefever88 raises to 10
+Tos5 folds
+sukmyass5 folds
+habing folds
+ll2209 calls 8
+** Flop ** [4s 8h 6h]
+ll2209 bets 12
+vettefever88 calls 12
+** Turn ** [2h]
+ll2209 checks
+vettefever88 checks
+** River ** [8c]
+ll2209 bets 261.31 (All-in)
+vettefever88 calls 111.38 (All-in)
+ll2209 refunded 149.93
+** Pot Show Down ** [4s 8h 6h 2h 8c]
+ll2209 shows [6d Kc] (Two Pair, Eights and Sixes +K)
+vettefever88 shows [Jh Ah] (a Flush, Ace high +J862)
+vettefever88 wins Pot (263.76) with a Flush
+Rake (4)
+
+
+
+Hand #8904186-36 - 2013-06-23 02:20:24
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: ll2209 (149.93)
+Seat 2: Rich4theWin (183.78)
+Seat 3: vettefever88 (263.76)
+Seat 4: Tos5 (292.43)
+Seat 5: sukmyass5 (74.46)
+Seat 6: habing (224.90)
+habing has the dealer button
+ll2209 posts small blind 1
+Rich4theWin posts big blind 2
+** Hole Cards **
+Dealt to habing [4c Qh]
+vettefever88 folds
+Tos5 folds
+sukmyass5 folds
+habing raises to 4
+ll2209 calls 3
+Rich4theWin calls 2
+** Flop ** [8s 5d 3c]
+ll2209 checks
+Rich4theWin checks
+habing checks
+** Turn ** [Jh]
+ll2209 bets 145.93 (All-in)
+Rich4theWin folds
+habing folds
+ll2209 refunded 145.93
+ll2209 wins Pot (11.70)
+Rake (0.30)
+
+
+
+Hand #8904242-37 - 2013-06-23 02:21:49
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: ll2209 (157.63) - sitting out
+Seat 2: Rich4theWin (179.78)
+Seat 3: vettefever88 (263.76)
+Seat 4: Tos5 (292.43)
+Seat 5: sukmyass5 (74.46)
+Seat 6: habing (220.90)
+Rich4theWin has the dealer button
+vettefever88 posts small blind 1
+Tos5 posts big blind 2
+** Hole Cards **
+Dealt to habing [3s 3c]
+sukmyass5 calls 2
+habing raises to 8.80
+Rich4theWin folds
+vettefever88 calls 7.80
+Tos5 folds
+sukmyass5 folds
+** Flop ** [Ad 3d 4d]
+vettefever88 checks
+habing bets 16.40
+vettefever88 folds
+habing refunded 16.40
+habing wins Pot (21.06)
+Rake (0.54)
+
+
+
+Hand #8904278-38 - 2013-06-23 02:22:42
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: ll2209 (157.63)
+Seat 2: Rich4theWin (179.78)
+Seat 3: vettefever88 (254.96)
+Seat 4: Tos5 (290.43)
+Seat 5: sukmyass5 (72.46)
+Seat 6: habing (233.16)
+vettefever88 has the dealer button
+Tos5 posts small blind 1
+sukmyass5 posts big blind 2
+ll2209 posts big blind 2
+** Hole Cards **
+Dealt to habing [Qs 4c]
+habing folds
+ll2209 checks
+Rich4theWin calls 2
+vettefever88 calls 2
+Tos5 folds
+sukmyass5 checks
+** Flop ** [Ks 7c Qc]
+sukmyass5 checks
+ll2209 checks
+Rich4theWin checks
+vettefever88 bets 12
+sukmyass5 folds
+ll2209 folds
+Rich4theWin folds
+vettefever88 refunded 12
+vettefever88 wins Pot (8.78)
+Rake (0.22)
+
+
+
+Hand #8904301-39 - 2013-06-23 02:23:22
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: ll2209 (155.63)
+Seat 2: Rich4theWin (177.78)
+Seat 3: vettefever88 (261.74)
+Seat 4: Tos5 (289.43)
+Seat 5: sukmyass5 (70.46)
+Seat 6: habing (233.16)
+Tos5 has the dealer button
+sukmyass5 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [6c 4d]
+ll2209 calls 2
+Rich4theWin folds
+vettefever88 folds
+Tos5 calls 2
+sukmyass5 calls 1
+habing checks
+** Flop ** [Ts 8c Qc]
+sukmyass5 checks
+habing checks
+ll2209 bets 2
+Tos5 folds
+sukmyass5 calls 2
+habing folds
+** Turn ** [3s]
+sukmyass5 checks
+ll2209 bets 10
+sukmyass5 calls 10
+** River ** [6d]
+sukmyass5 checks
+ll2209 checks
+** Pot Show Down ** [Ts 8c Qc 3s 6d]
+ll2209 shows [9h Tc] (a Pair of Tens +Q98)
+sukmyass5 shows [Qs Ks] (a Pair of Queens +KT8)
+sukmyass5 wins Pot (31.20) with a Pair
+Rake (0.80)
+
+
+
+Hand #8904346-40 - 2013-06-23 02:24:20
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: ll2209 (141.63)
+Seat 2: Rich4theWin (177.78)
+Seat 3: vettefever88 (261.74)
+Seat 4: Tos5 (287.43)
+Seat 5: sukmyass5 (87.66)
+Seat 6: habing (231.16)
+sukmyass5 has the dealer button
+habing posts small blind 1
+ll2209 posts big blind 2
+** Hole Cards **
+Dealt to habing [Jd Ks]
+Rich4theWin folds
+vettefever88 calls 2
+Tos5 folds
+sukmyass5 folds
+habing calls 1
+ll2209 checks
+** Flop ** [6d Ad 6c]
+habing checks
+ll2209 checks
+vettefever88 bets 6
+habing calls 6
+ll2209 folds
+** Turn ** [9c]
+habing checks
+vettefever88 checks
+** River ** [5h]
+habing checks
+vettefever88 checks
+** Pot Show Down ** [6d Ad 6c 9c 5h]
+vettefever88 shows [5s Ah] (Two Pair, Aces and Sixes +9)
+habing shows [Jd Ks] (a Pair of Sixes +AKJ)
+vettefever88 wins Pot (17.55) with Two Pair
+Rake (0.45)
+
+
+
+Hand #8904393-41 - 2013-06-23 02:25:26
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: ll2209 (139.63)
+Seat 2: Rich4theWin (177.78)
+Seat 3: vettefever88 (271.29)
+Seat 4: Tos5 (287.43)
+Seat 5: sukmyass5 (87.66)
+Seat 6: habing (223.16)
+habing has the dealer button
+ll2209 posts small blind 1
+Rich4theWin posts big blind 2
+** Hole Cards **
+Dealt to habing [Td Kc]
+vettefever88 calls 2
+Tos5 folds
+sukmyass5 folds
+habing raises to 8
+ll2209 calls 7
+Rich4theWin folds
+vettefever88 calls 6
+** Flop ** [Kd Jh Ac]
+ll2209 checks
+vettefever88 checks
+habing checks
+** Turn ** [6c]
+ll2209 bets 10
+vettefever88 folds
+habing folds
+ll2209 refunded 10
+ll2209 wins Pot (25.35)
+Rake (0.65)
+
+
+
+Hand #8904446-42 - 2013-06-23 02:26:35
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: ll2209 (156.98)
+Seat 2: Rich4theWin (175.78)
+Seat 3: vettefever88 (263.29)
+Seat 4: Tos5 (287.43)
+Seat 5: sukmyass5 (87.66)
+Seat 6: habing (215.16)
+ll2209 has the dealer button
+Rich4theWin posts small blind 1
+vettefever88 posts big blind 2
+** Hole Cards **
+Dealt to habing [Kc Ah]
+Tos5 calls 2
+sukmyass5 folds
+habing raises to 8.80
+ll2209 calls 8.80
+Rich4theWin folds
+vettefever88 calls 6.80
+Tos5 calls 6.80
+** Flop ** [5h 3s 6c]
+vettefever88 checks
+Tos5 checks
+habing checks
+ll2209 bets 148.18 (All-in)
+vettefever88 folds
+Tos5 folds
+habing folds
+ll2209 refunded 148.18
+ll2209 wins Pot (35.30)
+Rake (0.90)
+
+
+
+Hand #8904489-43 - 2013-06-23 02:27:26
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: ll2209 (183.48)
+Seat 2: Rich4theWin (174.78)
+Seat 3: vettefever88 (254.49)
+Seat 4: Tos5 (278.63)
+Seat 5: sukmyass5 (87.66)
+Seat 6: habing (206.36)
+Rich4theWin has the dealer button
+vettefever88 posts small blind 1
+Tos5 posts big blind 2
+** Hole Cards **
+Dealt to habing [Js Ts]
+sukmyass5 folds
+habing raises to 6
+ll2209 calls 6
+Rich4theWin calls 6
+vettefever88 folds
+Tos5 folds
+** Flop ** [4h Kc 8h]
+habing checks
+ll2209 bets 10
+Rich4theWin calls 10
+habing folds
+** Turn ** [Jc]
+ll2209 checks
+Rich4theWin bets 42
+ll2209 calls 42
+** River ** [Qd]
+ll2209 checks
+Rich4theWin checks
+** Pot Show Down ** [4h Kc 8h Jc Qd]
+ll2209 shows [Ad 8c] (a Pair of Eights +AKQ)
+Rich4theWin shows [8d Td] (a Pair of Eights +KQJ)
+ll2209 wins Pot (121.88) with a Pair
+Rake (3.12)
+
+
+
+Hand #8904539-44 - 2013-06-23 02:28:46
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: ll2209 (247.36)
+Seat 2: Rich4theWin (116.78)
+Seat 3: vettefever88 (253.49)
+Seat 4: Tos5 (276.63)
+Seat 5: sukmyass5 (87.66)
+Seat 6: habing (200.36)
+vettefever88 has the dealer button
+Tos5 posts small blind 1
+sukmyass5 posts big blind 2
+** Hole Cards **
+Dealt to habing [9s 3d]
+habing folds
+ll2209 calls 2
+Rich4theWin folds
+Rich4theWin adds 83.22 chips
+vettefever88 calls 2
+Tos5 calls 1
+sukmyass5 checks
+** Flop ** [4c 9d 3h]
+Tos5 checks
+sukmyass5 checks
+ll2209 checks
+vettefever88 checks
+** Turn ** [5d]
+Tos5 bets 5
+sukmyass5 folds
+ll2209 folds
+vettefever88 folds
+Tos5 refunded 5
+Tos5 wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #8904568-45 - 2013-06-23 02:29:31
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: ll2209 (245.36)
+Seat 2: Rich4theWin (200)
+Seat 3: vettefever88 (251.49)
+Seat 4: Tos5 (282.43)
+Seat 5: sukmyass5 (85.66)
+Seat 6: habing (200.36)
+Tos5 has the dealer button
+sukmyass5 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [3h Qh]
+ll2209 calls 2
+Rich4theWin folds
+vettefever88 calls 2
+Tos5 folds
+sukmyass5 calls 1
+habing checks
+** Flop ** [Jh Ks 7d]
+sukmyass5 checks
+habing checks
+ll2209 bets 10
+vettefever88 folds
+sukmyass5 folds
+habing folds
+ll2209 refunded 10
+habing adds 1.64 chips
+ll2209 wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #8904597-46 - 2013-06-23 02:30:12
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: ll2209 (251.16)
+Seat 2: Rich4theWin (200)
+Seat 3: vettefever88 (249.49)
+Seat 4: Tos5 (282.43)
+Seat 5: sukmyass5 (83.66)
+Seat 6: habing (200)
+sukmyass5 has the dealer button
+habing posts small blind 1
+ll2209 posts big blind 2
+** Hole Cards **
+Dealt to habing [4s Ts]
+Rich4theWin folds
+vettefever88 calls 2
+Tos5 folds
+sukmyass5 calls 2
+habing calls 1
+ll2209 checks
+** Flop ** [Jh Qh 6d]
+habing checks
+ll2209 checks
+vettefever88 checks
+sukmyass5 bets 4
+habing folds
+habing adds 2 chips
+ll2209 calls 4
+vettefever88 has timed out
+vettefever88 folds
+** Turn ** [6c]
+ll2209 checks
+sukmyass5 bets 4
+ll2209 calls 4
+** River ** [3h]
+ll2209 bets 6
+sukmyass5 calls 6
+** Pot Show Down ** [Jh Qh 6d 6c 3h]
+ll2209 shows [3d 2h] (Two Pair, Sixes and Threes +Q)
+sukmyass5 shows [Js Qs] (Two Pair, Queens and Jacks +6)
+sukmyass5 wins Pot (35.10) with Two Pair
+Rake (0.90)
+
+
+
+Hand #8904665-47 - 2013-06-23 02:32:07
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: ll2209 (235.16)
+Seat 2: Rich4theWin (200)
+Seat 3: vettefever88 (247.49)
+Seat 4: Tos5 (282.43)
+Seat 5: sukmyass5 (102.76)
+Seat 6: habing (200)
+habing has the dealer button
+ll2209 posts small blind 1
+Rich4theWin posts big blind 2
+** Hole Cards **
+Dealt to habing [5h Ts]
+vettefever88 raises to 4
+Tos5 folds
+sukmyass5 folds
+habing folds
+ll2209 calls 3
+Rich4theWin calls 2
+** Flop ** [5s 5c Js]
+ll2209 bets 12
+Rich4theWin folds
+vettefever88 folds
+ll2209 refunded 12
+ll2209 wins Pot (11.70)
+Rake (0.30)
+
+
+
+Hand #8904687-48 - 2013-06-23 02:32:42
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: ll2209 (242.86)
+Seat 2: Rich4theWin (196)
+Seat 3: vettefever88 (243.49)
+Seat 4: Tos5 (282.43)
+Seat 5: sukmyass5 (102.76)
+Seat 6: habing (200)
+ll2209 has the dealer button
+Rich4theWin posts small blind 1
+vettefever88 posts big blind 2
+** Hole Cards **
+Dealt to habing [8s 4c]
+Tos5 folds
+sukmyass5 folds
+habing folds
+ll2209 calls 2
+Rich4theWin calls 1
+vettefever88 checks
+** Flop ** [Qd Kh Ks]
+Rich4theWin bets 4
+vettefever88 folds
+ll2209 folds
+Rich4theWin refunded 4
+Rich4theWin wins Pot (5.85)
+Rake (0.15)
+
+
+
+Hand #8904712-49 - 2013-06-23 02:33:23
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: ll2209 (240.86)
+Seat 2: Rich4theWin (199.85)
+Seat 3: vettefever88 (241.49)
+Seat 4: Tos5 (282.43)
+Seat 5: sukmyass5 (102.76)
+Seat 6: habing (200)
+Rich4theWin has the dealer button
+vettefever88 posts small blind 1
+Tos5 posts big blind 2
+** Hole Cards **
+Dealt to habing [4d 7h]
+sukmyass5 folds
+habing folds
+ll2209 calls 2
+Rich4theWin calls 2
+vettefever88 raises to 10
+Tos5 folds
+ll2209 calls 8
+Rich4theWin folds
+** Flop ** [Qh Qd Jc]
+vettefever88 checks
+ll2209 bets 36
+vettefever88 folds
+ll2209 refunded 36
+ll2209 wins Pot (23.40)
+Rake (0.60)
+
+
+
+Hand #8904751-50 - 2013-06-23 02:34:19
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: ll2209 (254.26)
+Seat 2: Rich4theWin (197.85)
+Seat 3: vettefever88 (231.49)
+Seat 4: Tos5 (280.43)
+Seat 5: sukmyass5 (102.76)
+Seat 6: habing (200)
+vettefever88 has the dealer button
+Tos5 posts small blind 1
+sukmyass5 posts big blind 2
+** Hole Cards **
+Dealt to habing [7d 4s]
+habing folds
+ll2209 calls 2
+Rich4theWin raises to 8
+vettefever88 calls 8
+Tos5 calls 7
+sukmyass5 has timed out
+sukmyass5 folds
+ll2209 calls 6
+** Flop ** [6d 7s 8h]
+Tos5 checks
+ll2209 bets 6
+Rich4theWin raises to 12
+vettefever88 folds
+Tos5 folds
+ll2209 raises to 20
+Rich4theWin calls 8
+** Turn ** [3s]
+ll2209 bets 42.95
+Rich4theWin folds
+ll2209 refunded 42.95
+ll2209 wins Pot (72.15)
+Rake (1.85)
+
+
+
+Hand #8904798-51 - 2013-06-23 02:35:46
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: ll2209 (298.41)
+Seat 2: Rich4theWin (169.85)
+Seat 3: vettefever88 (223.49)
+Seat 4: Tos5 (272.43)
+Seat 5: sukmyass5 (100.76)
+Seat 6: habing (200)
+Tos5 has the dealer button
+sukmyass5 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [9s Kh]
+ll2209 raises to 4
+Rich4theWin calls 4
+vettefever88 folds
+Tos5 folds
+sukmyass5 folds
+habing folds
+habing adds 2 chips
+** Flop ** [Kd 6s 8c]
+ll2209 checks
+Rich4theWin bets 6
+ll2209 calls 6
+** Turn ** [3c]
+ll2209 checks
+Rich4theWin bets 16
+ll2209 calls 16
+** River ** [4s]
+ll2209 checks
+Rich4theWin checks
+** Pot Show Down ** [Kd 6s 8c 3c 4s]
+ll2209 shows [9h Ah] (High Card Ace +K986)
+Rich4theWin shows [9c Kc] (a Pair of Kings +986)
+Rich4theWin wins Pot (53.63) with a Pair
+Rake (1.37)
+
+
+
+Hand #8904848-52 - 2013-06-23 02:36:57
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: ll2209 (272.41)
+Seat 2: Rich4theWin (197.48)
+Seat 3: vettefever88 (223.49)
+Seat 4: Tos5 (272.43)
+Seat 5: sukmyass5 (99.76)
+Seat 6: habing (200)
+sukmyass5 has the dealer button
+habing posts small blind 1
+ll2209 posts big blind 2
+** Hole Cards **
+Dealt to habing [Ad 7c]
+Rich4theWin folds
+vettefever88 folds
+Tos5 folds
+sukmyass5 calls 2
+habing raises to 10
+ll2209 calls 8
+sukmyass5 folds
+** Flop ** [Jh 6s As]
+habing bets 15.20
+ll2209 folds
+habing refunded 15.20
+habing wins Pot (21.45)
+Rake (0.55)
+
+
+
+Hand #8904879-53 - 2013-06-23 02:37:41
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: ll2209 (262.41)
+Seat 2: ty4drawing (200)
+Seat 3: vettefever88 (223.49)
+Seat 4: Tos5 (272.43)
+Seat 5: sukmyass5 (97.76)
+Seat 6: habing (211.45)
+habing has the dealer button
+ll2209 posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ks Qh]
+vettefever88 calls 2
+Tos5 folds
+sukmyass5 calls 2
+habing raises to 8.80
+ll2209 calls 7.80
+ty4drawing folds
+vettefever88 calls 6.80
+sukmyass5 calls 6.80
+** Flop ** [8c 3s Qc]
+ll2209 checks
+vettefever88 checks
+sukmyass5 checks
+habing bets 25.20
+ll2209 folds
+vettefever88 folds
+sukmyass5 folds
+habing refunded 25.20
+habing wins Pot (36.27)
+Rake (0.93)
+
+
+
+Hand #8904935-54 - 2013-06-23 02:39:07
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: ll2209 (253.61)
+Seat 2: ty4drawing (198)
+Seat 3: vettefever88 (214.69)
+Seat 4: Tos5 (272.43)
+Seat 5: sukmyass5 (88.96)
+Seat 6: habing (238.92)
+ll2209 has the dealer button
+ty4drawing posts small blind 1
+vettefever88 posts big blind 2
+** Hole Cards **
+Dealt to habing [Qs 8c]
+Tos5 calls 2
+sukmyass5 folds
+habing folds
+ll2209 raises to 4
+ty4drawing calls 3
+vettefever88 calls 2
+Tos5 calls 2
+** Flop ** [3c Ks 5h]
+ty4drawing checks
+vettefever88 checks
+Tos5 bets 12
+ll2209 calls 12
+ty4drawing calls 12
+vettefever88 folds
+** Turn ** [Tc]
+ty4drawing checks
+Tos5 bets 42
+ll2209 folds
+ty4drawing raises to 182 (All-in)
+Tos5 folds
+ty4drawing refunded 140
+ty4drawing wins Pot (132.60)
+Rake (3.40)
+
+
+
+Hand #8904996-55 - 2013-06-23 02:40:36
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: ll2209 (237.61)
+Seat 2: ty4drawing (272.60)
+Seat 3: vettefever88 (210.69)
+Seat 4: Tos5 (214.43)
+Seat 5: sukmyass5 (88.96)
+Seat 6: habing (238.92)
+ty4drawing has the dealer button
+vettefever88 posts small blind 1
+Tos5 posts big blind 2
+** Hole Cards **
+Dealt to habing [3h 4s]
+sukmyass5 calls 2
+habing folds
+ll2209 calls 2
+ty4drawing folds
+vettefever88 raises to 4
+Tos5 calls 2
+sukmyass5 calls 2
+ll2209 raises to 6
+vettefever88 calls 2
+Tos5 calls 2
+sukmyass5 calls 2
+** Flop ** [7h 2c 8c]
+vettefever88 checks
+Tos5 checks
+sukmyass5 checks
+ll2209 bets 231.61 (All-in)
+vettefever88 folds
+Tos5 folds
+sukmyass5 folds
+ll2209 refunded 231.61
+ll2209 wins Pot (23.40)
+Rake (0.60)
+
+
+
+Hand #8905038-56 - 2013-06-23 02:41:34
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: ll2209 (255.01)
+Seat 2: ty4drawing (272.60)
+Seat 3: vettefever88 (204.69)
+Seat 4: Tos5 (208.43)
+Seat 5: sukmyass5 (82.96)
+Seat 6: habing (238.92)
+vettefever88 has the dealer button
+Tos5 posts small blind 1
+sukmyass5 posts big blind 2
+** Hole Cards **
+Dealt to habing [Th 2h]
+habing folds
+ll2209 calls 2
+ty4drawing folds
+vettefever88 calls 2
+Tos5 folds
+sukmyass5 checks
+** Flop ** [3c 5c 6h]
+sukmyass5 checks
+ll2209 checks
+vettefever88 bets 8
+sukmyass5 folds
+ll2209 calls 8
+** Turn ** [2c]
+ll2209 checks
+vettefever88 bets 12
+ll2209 calls 12
+** River ** [Td]
+ll2209 checks
+vettefever88 bets 16
+ll2209 calls 16
+** Pot Show Down ** [3c 5c 6h 2c Td]
+ll2209 shows [Kd Ac] (High Card Ace +KT65)
+vettefever88 shows [3h 6d] (Two Pair, Sixes and Threes +T)
+vettefever88 wins Pot (77.03) with Two Pair
+Rake (1.97)
+
+
+
+Hand #8905086-57 - 2013-06-23 02:42:54
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: ll2209 (217.01)
+Seat 2: ty4drawing (272.60)
+Seat 3: vettefever88 (243.72)
+Seat 4: Tos5 (207.43)
+Seat 5: sukmyass5 (80.96)
+Seat 6: habing (238.92)
+Tos5 has the dealer button
+sukmyass5 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [7d As]
+ll2209 calls 2
+ty4drawing raises to 6
+vettefever88 folds
+Tos5 calls 6
+sukmyass5 folds
+habing folds
+ll2209 calls 4
+** Flop ** [Td 6s 2c]
+ll2209 bets 18
+ty4drawing folds
+Tos5 folds
+ll2209 refunded 18
+ll2209 wins Pot (20.48)
+Rake (0.52)
+
+
+
+Hand #8905127-58 - 2013-06-23 02:43:57
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: ll2209 (231.49)
+Seat 2: ty4drawing (266.60)
+Seat 3: vettefever88 (243.72)
+Seat 4: Tos5 (201.43)
+Seat 5: sukmyass5 (79.96)
+Seat 6: habing (236.92)
+sukmyass5 has the dealer button
+habing posts small blind 1
+ll2209 posts big blind 2
+** Hole Cards **
+Dealt to habing [Kh 2s]
+ty4drawing folds
+vettefever88 folds
+Tos5 calls 2
+sukmyass5 folds
+habing folds
+ll2209 checks
+** Flop ** [9d Ad As]
+ll2209 bets 2
+Tos5 raises to 6
+ll2209 calls 4
+** Turn ** [6c]
+ll2209 checks
+Tos5 checks
+** River ** [Kc]
+ll2209 bets 48.22
+Tos5 calls 48.22
+** Pot Show Down ** [9d Ad As 6c Kc]
+ll2209 shows [Qd 8c] (a Pair of Aces +KQ9)
+Tos5 shows [9c 8d] (Two Pair, Aces and Nines +K)
+Tos5 wins Pot (110.61) with Two Pair
+Rake (2.83)
+
+
+
+Hand #8905157-59 - 2013-06-23 02:44:58
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: ll2209 (175.27)
+Seat 2: ty4drawing (266.60)
+Seat 3: vettefever88 (243.72)
+Seat 4: Tos5 (255.82)
+Seat 5: sukmyass5 (79.96)
+Seat 6: habing (235.92)
+habing has the dealer button
+ll2209 posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [7d Kc]
+vettefever88 folds
+Tos5 folds
+sukmyass5 calls 2
+habing raises to 8.80
+ll2209 raises to 15.60
+ty4drawing folds
+sukmyass5 folds
+habing folds
+ll2209 refunded 6.80
+ll2209 wins Pot (21.60)
+Rake (0)
+
+
+
+Hand #8905180-60 - 2013-06-23 02:45:33
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: ll2209 (188.07)
+Seat 2: ty4drawing (264.60)
+Seat 3: vettefever88 (243.72)
+Seat 4: Tos5 (255.82)
+Seat 5: sukmyass5 (77.96)
+Seat 6: habing (227.12)
+ll2209 has the dealer button
+ty4drawing posts small blind 1
+vettefever88 posts big blind 2
+** Hole Cards **
+Dealt to habing [Qc 9d]
+Tos5 calls 2
+sukmyass5 folds
+habing folds
+ll2209 raises to 8
+ty4drawing calls 7
+vettefever88 calls 6
+Tos5 calls 6
+** Flop ** [7d Td 6h]
+ty4drawing checks
+vettefever88 checks
+Tos5 checks
+ll2209 bets 6
+ty4drawing folds
+vettefever88 calls 6
+Tos5 calls 6
+** Turn ** [Th]
+vettefever88 checks
+Tos5 checks
+ll2209 bets 16
+vettefever88 folds
+Tos5 calls 16
+** River ** [5c]
+Tos5 checks
+ll2209 bets 158.07 (All-in)
+Tos5 calls 158.07
+** Pot Show Down ** [7d Td 6h Th 5c]
+ll2209 shows [8s 6c] (Two Pair, Tens and Sixes +8)
+Tos5 shows [7c Ac] (Two Pair, Tens and Sevens +A)
+Tos5 wins Pot (394.14) with Two Pair
+Rake (4)
+
+
+
+Hand #8905225-61 - 2013-06-23 02:47:00
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: ll2209 (0) - sitting out
+Seat 2: ty4drawing (256.60)
+Seat 3: vettefever88 (229.72)
+Seat 4: Tos5 (461.89)
+Seat 5: sukmyass5 (77.96)
+Seat 6: habing (227.12)
+ty4drawing has the dealer button
+vettefever88 posts small blind 1
+Tos5 posts big blind 2
+** Hole Cards **
+Dealt to habing [4h 9h]
+sukmyass5 folds
+habing folds
+ty4drawing folds
+vettefever88 folds
+Tos5 refunded 1
+Tos5 wins Pot (2)
+Rake (0)
+
+
+
+Hand #8905242-62 - 2013-06-23 02:47:28
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 2: ty4drawing (256.60)
+Seat 3: vettefever88 (228.72)
+Seat 4: Tos5 (462.89)
+Seat 5: sukmyass5 (77.96)
+Seat 6: habing (227.12)
+vettefever88 has the dealer button
+Tos5 posts small blind 1
+sukmyass5 posts big blind 2
+** Hole Cards **
+Dealt to habing [Ad 6d]
+habing folds
+ty4drawing raises to 6
+vettefever88 folds
+Tos5 folds
+sukmyass5 folds
+ty4drawing refunded 4
+ty4drawing wins Pot (5)
+Rake (0)
+
+
+
+Hand #8905257-63 - 2013-06-23 02:47:54
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 2: ty4drawing (259.60)
+Seat 3: vettefever88 (228.72)
+Seat 4: Tos5 (461.89)
+Seat 5: sukmyass5 (75.96)
+Seat 6: habing (227.12)
+Tos5 has the dealer button
+sukmyass5 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [2h 5d]
+ty4drawing folds
+vettefever88 raises to 10
+Tos5 calls 10
+sukmyass5 folds
+habing folds
+** Flop ** [5c 7c 9d]
+vettefever88 checks
+Tos5 checks
+** Turn ** [2d]
+vettefever88 checks
+Tos5 checks
+** River ** [3c]
+vettefever88 bets 48
+Tos5 folds
+vettefever88 refunded 48
+vettefever88 wins Pot (22.43)
+Rake (0.57)
+
+
+
+Hand #8905290-64 - 2013-06-23 02:48:40
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 2: ty4drawing (259.60)
+Seat 3: vettefever88 (241.15)
+Seat 4: Tos5 (451.89)
+Seat 5: sukmyass5 (74.96)
+Seat 6: habing (225.12)
+sukmyass5 has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ad 3h]
+vettefever88 raises to 4
+Tos5 folds
+sukmyass5 folds
+habing folds
+ty4drawing calls 2
+** Flop ** [2h 5c 8d]
+ty4drawing checks
+vettefever88 checks
+** Turn ** [5s]
+ty4drawing checks
+vettefever88 bets 2
+ty4drawing calls 2
+** River ** [9h]
+ty4drawing checks
+vettefever88 checks
+** Pot Show Down ** [2h 5c 8d 5s 9h]
+ty4drawing shows [9c Qd] (Two Pair, Nines and Fives +Q)
+vettefever88 shows [Td Kh] (a Pair of Fives +KT9)
+ty4drawing wins Pot (12.68) with Two Pair
+Rake (0.32)
+
+
+
+Hand #8905318-65 - 2013-06-23 02:49:27
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 2: ty4drawing (266.28)
+Seat 3: vettefever88 (235.15)
+Seat 4: Tos5 (451.89)
+Seat 5: sukmyass5 (74.96)
+Seat 6: habing (224.12)
+habing has the dealer button
+ty4drawing posts small blind 1
+vettefever88 posts big blind 2
+** Hole Cards **
+Dealt to habing [Qc Tc]
+Tos5 folds
+sukmyass5 folds
+habing raises to 6
+ty4drawing folds
+vettefever88 calls 4
+** Flop ** [5d 7h 3d]
+vettefever88 checks
+habing checks
+** Turn ** [4s]
+vettefever88 checks
+habing checks
+** River ** [2s]
+vettefever88 bets 8
+habing folds
+vettefever88 refunded 8
+vettefever88 wins Pot (12.68)
+Rake (0.32)
+
+
+
+Hand #8905371-66 - 2013-06-23 02:50:54
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (200) - waiting for big blind
+Seat 2: ty4drawing (265.28)
+Seat 3: vettefever88 (241.83)
+Seat 4: Tos5 (451.89)
+Seat 5: sukmyass5 (74.96)
+Seat 6: habing (218.12)
+ty4drawing has the dealer button
+vettefever88 posts small blind 1
+Tos5 posts big blind 2
+** Hole Cards **
+Dealt to habing [Js 4h]
+sukmyass5 folds
+habing folds
+ty4drawing raises to 4
+vettefever88 calls 3
+Tos5 calls 2
+** Flop ** [Ac 5h 2s]
+vettefever88 checks
+Tos5 checks
+ty4drawing bets 8
+vettefever88 folds
+Tos5 folds
+ty4drawing refunded 8
+ty4drawing wins Pot (11.70)
+Rake (0.30)
+
+
+
+Hand #8905412-67 - 2013-06-23 02:51:59
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (200) - waiting for big blind
+Seat 2: ty4drawing (272.98)
+Seat 3: vettefever88 (237.83)
+Seat 4: Tos5 (447.89)
+Seat 5: sukmyass5 (74.96)
+Seat 6: habing (218.12)
+vettefever88 has the dealer button
+Tos5 posts small blind 1
+sukmyass5 posts big blind 2
+** Hole Cards **
+Dealt to habing [Js Ah]
+habing raises to 6
+ty4drawing folds
+vettefever88 calls 6
+Tos5 folds
+sukmyass5 folds
+** Flop ** [4s Qh Kh]
+habing bets 8.80
+vettefever88 folds
+habing refunded 8.80
+habing wins Pot (14.63)
+Rake (0.37)
+
+
+
+Hand #8905424-68 - 2013-06-23 02:52:29
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (200) - waiting for big blind
+Seat 2: ty4drawing (272.98)
+Seat 3: vettefever88 (231.83)
+Seat 4: Tos5 (446.89)
+Seat 5: sukmyass5 (72.96)
+Seat 6: habing (226.75)
+Tos5 has the dealer button
+sukmyass5 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [6h 8c]
+ty4drawing folds
+vettefever88 folds
+Tos5 folds
+sukmyass5 calls 1
+habing checks
+** Flop ** [Qh 5c Kh]
+sukmyass5 checks
+habing checks
+** Turn ** [8s]
+sukmyass5 checks
+habing checks
+** River ** [3d]
+sukmyass5 checks
+habing checks
+** Pot Show Down ** [Qh 5c Kh 8s 3d]
+sukmyass5 shows [4c Ad] (High Card Ace +KQ85)
+habing shows [6h 8c] (a Pair of Eights +KQ6)
+habing wins Pot (3.90) with a Pair
+Rake (0.10)
+
+
+
+Hand #8905453-69 - 2013-06-23 02:53:28
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (200) - waiting for big blind
+Seat 2: ty4drawing (272.98)
+Seat 3: vettefever88 (231.83)
+Seat 4: Tos5 (446.89)
+Seat 5: sukmyass5 (70.96)
+Seat 6: habing (228.65)
+sukmyass5 has the dealer button
+habing posts small blind 1
+within posts big blind 2
+** Hole Cards **
+Dealt to habing [2h 6d]
+ty4drawing folds
+vettefever88 folds
+Tos5 folds
+sukmyass5 folds
+habing folds
+within refunded 1
+within wins Pot (2)
+Rake (0)
+
+
+
+Hand #8905465-70 - 2013-06-23 02:53:48
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (201)
+Seat 2: ty4drawing (272.98)
+Seat 3: vettefever88 (231.83)
+Seat 4: Tos5 (446.89)
+Seat 5: sukmyass5 (70.96)
+Seat 6: habing (227.65)
+habing has the dealer button
+within posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [9d 3h]
+vettefever88 raises to 4
+Tos5 folds
+sukmyass5 folds
+habing folds
+within folds
+ty4drawing calls 2
+** Flop ** [3c Th 7d]
+ty4drawing checks
+vettefever88 bets 8
+ty4drawing folds
+vettefever88 refunded 8
+vettefever88 wins Pot (8.78)
+Rake (0.22)
+
+
+
+Hand #8905505-71 - 2013-06-23 02:55:05
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (200)
+Seat 2: ty4drawing (268.98)
+Seat 3: vettefever88 (236.61)
+Seat 5: sukmyass5 (70.96)
+Seat 6: habing (227.65)
+within has the dealer button
+ty4drawing posts small blind 1
+vettefever88 posts big blind 2
+** Hole Cards **
+Dealt to habing [Qc Kc]
+sukmyass5 has timed out
+sukmyass5 folds
+habing raises to 6
+within calls 6
+ty4drawing folds
+vettefever88 calls 4
+** Flop ** [Js As 5d]
+vettefever88 checks
+habing bets 9.20
+within calls 9.20
+vettefever88 calls 9.20
+** Turn ** [7c]
+vettefever88 bets 20
+habing folds
+within folds
+vettefever88 refunded 20
+vettefever88 wins Pot (45.44)
+Rake (1.16)
+
+
+
+Hand #8905544-72 - 2013-06-23 02:56:19
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (184.80)
+Seat 2: ty4drawing (267.98)
+Seat 3: vettefever88 (266.85)
+Seat 5: sukmyass5 (70.96) - sitting out
+Seat 6: habing (212.45)
+ty4drawing has the dealer button
+vettefever88 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [3d 6h]
+within raises to 6
+ty4drawing calls 6
+vettefever88 calls 5
+habing folds
+** Flop ** [2h 8h Td]
+vettefever88 bets 8
+within calls 8
+ty4drawing calls 8
+** Turn ** [8d]
+vettefever88 checks
+within checks
+ty4drawing bets 30
+vettefever88 folds
+within calls 30
+** River ** [Ts]
+within bets 65
+ty4drawing folds
+within refunded 65
+within wins Pot (101.40)
+Rake (2.60)
+
+
+
+Hand #8905595-73 - 2013-06-23 02:57:55
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (242.20)
+Seat 2: ty4drawing (223.98)
+Seat 3: vettefever88 (252.85)
+Seat 5: sukmyass5 (70.96) - sitting out
+Seat 6: habing (210.45)
+vettefever88 has the dealer button
+habing posts small blind 1
+within posts big blind 2
+** Hole Cards **
+Dealt to habing [4s Jd]
+ty4drawing folds
+vettefever88 folds
+habing folds
+within refunded 1
+within wins Pot (2)
+Rake (0)
+
+
+
+Hand #8905601-74 - 2013-06-23 02:58:12
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (243.20)
+Seat 2: ty4drawing (223.98)
+Seat 3: vettefever88 (252.85)
+Seat 5: sukmyass5 (70.96)
+Seat 6: habing (209.45)
+habing has the dealer button
+within posts small blind 1
+ty4drawing posts big blind 2
+sukmyass5 posts small & big blind 3
+** Hole Cards **
+Dealt to habing [Jc 6c]
+vettefever88 folds
+sukmyass5 checks
+habing folds
+within raises to 8
+ty4drawing folds
+sukmyass5 has timed out
+sukmyass5 folds
+within refunded 6
+within wins Pot (7)
+Rake (0)
+
+
+
+Hand #8905640-75 - 2013-06-23 02:59:21
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (248.20)
+Seat 2: ty4drawing (221.98)
+Seat 3: vettefever88 (252.85)
+Seat 4: okie_freemen (80) - waiting for big blind
+Seat 5: sukmyass5 (67.96) - sitting out
+Seat 6: habing (209.45)
+within has the dealer button
+ty4drawing posts small blind 1
+vettefever88 posts big blind 2
+** Hole Cards **
+Dealt to habing [6d Qh]
+habing folds
+within folds
+ty4drawing calls 1
+vettefever88 checks
+** Flop ** [Ah 7c 4h]
+ty4drawing checks
+vettefever88 bets 2
+ty4drawing folds
+vettefever88 refunded 2
+vettefever88 wins Pot (3.90)
+Rake (0.10)
+
+
+
+Hand #8905661-76 - 2013-06-23 02:59:52
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (248.20)
+Seat 2: ty4drawing (219.98)
+Seat 3: vettefever88 (254.75)
+Seat 4: okie_freemen (80) - waiting for big blind
+Seat 5: sukmyass5 (67.96) - sitting out
+Seat 6: habing (209.45)
+ty4drawing has the dealer button
+vettefever88 posts small blind 1
+okie_freemen posts big blind 2
+** Hole Cards **
+Dealt to habing [5s 8c]
+habing folds
+within raises to 6
+ty4drawing folds
+vettefever88 folds
+okie_freemen calls 4
+** Flop ** [Ac 6h Kc]
+okie_freemen checks
+within checks
+** Turn ** [6c]
+okie_freemen checks
+within bets 8.11
+okie_freemen calls 8.11
+** River ** [2c]
+okie_freemen checks
+within checks
+** Pot Show Down ** [Ac 6h Kc 6c 2c]
+within shows [Td 8d] (a Pair of Sixes +AKT)
+okie_freemen shows [9s 9d] (Two Pair, Nines and Sixes +A)
+okie_freemen wins Pot (28.49) with Two Pair
+Rake (0.73)
+
+
+
+Hand #8905706-77 - 2013-06-23 03:00:47
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (234.09)
+Seat 2: ty4drawing (219.98)
+Seat 3: vettefever88 (253.75)
+Seat 4: okie_freemen (94.38)
+Seat 5: sukmyass5 (67.96)
+Seat 6: habing (209.45)
+vettefever88 has the dealer button
+okie_freemen posts small blind 1
+sukmyass5 posts big blind 2
+** Hole Cards **
+Dealt to habing [Kh 4h]
+habing folds
+within folds
+ty4drawing folds
+vettefever88 folds
+okie_freemen folds
+sukmyass5 refunded 1
+sukmyass5 wins Pot (2)
+Rake (0)
+
+
+
+Hand #8905722-78 - 2013-06-23 03:01:05
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (234.09)
+Seat 2: ty4drawing (219.98)
+Seat 3: vettefever88 (253.75)
+Seat 4: okie_freemen (93.38)
+Seat 5: sukmyass5 (68.96)
+Seat 6: habing (209.45)
+okie_freemen has the dealer button
+sukmyass5 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Kh Js]
+within folds
+ty4drawing calls 2
+vettefever88 folds
+okie_freemen folds
+sukmyass5 has timed out
+sukmyass5 folds
+habing raises to 10
+ty4drawing calls 8
+** Flop ** [9s 7s 7d]
+habing bets 11.60
+ty4drawing calls 11.60
+** Turn ** [9c]
+habing checks
+ty4drawing bets 24
+habing folds
+ty4drawing refunded 24
+habing adds 12.15 chips
+ty4drawing wins Pot (43.10)
+Rake (1.10)
+
+
+
+Hand #8905796-79 - 2013-06-23 03:02:53
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (234.09)
+Seat 2: ty4drawing (241.48)
+Seat 3: vettefever88 (253.75)
+Seat 4: okie_freemen (93.38)
+Seat 5: sukmyass5 (67.96) - sitting out
+Seat 6: habing (200)
+habing has the dealer button
+within posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [4c Jh]
+vettefever88 has timed out
+vettefever88 folds
+okie_freemen folds
+habing folds
+within raises to 6
+ty4drawing calls 4
+** Flop ** [3s 8d 5s]
+within checks
+ty4drawing bets 8
+within calls 8
+** Turn ** [Qs]
+within checks
+ty4drawing checks
+** River ** [Kh]
+within bets 14
+ty4drawing folds
+within refunded 14
+within wins Pot (27.30)
+Rake (0.70)
+
+
+
+Hand #8905858-80 - 2013-06-23 03:04:10
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (247.39)
+Seat 2: ty4drawing (227.48)
+Seat 3: vettefever88 (253.75)
+Seat 4: okie_freemen (93.38)
+Seat 5: sukmyass5 (67.96)
+Seat 6: habing (200)
+within has the dealer button
+ty4drawing posts small blind 1
+vettefever88 posts big blind 2
+** Hole Cards **
+Dealt to habing [8s 2c]
+okie_freemen folds
+sukmyass5 folds
+habing folds
+within folds
+ty4drawing folds
+vettefever88 refunded 1
+vettefever88 wins Pot (2)
+Rake (0)
+
+
+
+Hand #8905879-81 - 2013-06-23 03:04:38
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (247.39)
+Seat 2: ty4drawing (226.48)
+Seat 3: vettefever88 (254.75)
+Seat 4: okie_freemen (93.38)
+Seat 5: sukmyass5 (67.96)
+Seat 6: habing (200)
+ty4drawing has the dealer button
+vettefever88 posts small blind 1
+okie_freemen posts big blind 2
+** Hole Cards **
+Dealt to habing [Ac 7h]
+sukmyass5 folds
+habing folds
+within folds
+ty4drawing folds
+vettefever88 raises to 4
+okie_freemen folds
+vettefever88 refunded 2
+vettefever88 wins Pot (4)
+Rake (0)
+
+
+
+Hand #8905892-82 - 2013-06-23 03:04:58
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (247.39)
+Seat 2: ty4drawing (226.48)
+Seat 3: vettefever88 (256.75)
+Seat 4: okie_freemen (91.38)
+Seat 5: sukmyass5 (67.96)
+Seat 6: habing (200)
+vettefever88 has the dealer button
+okie_freemen posts small blind 1
+sukmyass5 posts big blind 2
+** Hole Cards **
+Dealt to habing [Td Kc]
+habing raises to 6
+within folds
+ty4drawing folds
+vettefever88 calls 6
+okie_freemen folds
+sukmyass5 folds
+** Flop ** [7h 4s 2d]
+habing checks
+vettefever88 bets 18
+habing folds
+vettefever88 refunded 18
+habing adds 6 chips
+vettefever88 wins Pot (14.63)
+Rake (0.37)
+
+
+
+Hand #8905935-83 - 2013-06-23 03:05:55
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (247.39)
+Seat 2: ty4drawing (226.48)
+Seat 3: vettefever88 (265.38)
+Seat 4: okie_freemen (90.38)
+Seat 5: sukmyass5 (65.96)
+Seat 6: habing (200)
+okie_freemen has the dealer button
+sukmyass5 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [7c 8s]
+within folds
+ty4drawing folds
+vettefever88 calls 2
+okie_freemen calls 2
+sukmyass5 calls 1
+habing checks
+** Flop ** [5s Ts 2s]
+sukmyass5 checks
+habing checks
+vettefever88 checks
+okie_freemen checks
+** Turn ** [Jd]
+sukmyass5 checks
+habing checks
+vettefever88 checks
+okie_freemen bets 4
+sukmyass5 folds
+habing folds
+habing adds 2 chips
+vettefever88 folds
+okie_freemen refunded 4
+okie_freemen wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #8905996-84 - 2013-06-23 03:07:14
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (247.39)
+Seat 2: ty4drawing (226.48)
+Seat 3: vettefever88 (263.38)
+Seat 4: okie_freemen (96.18)
+Seat 5: sukmyass5 (63.96)
+Seat 6: habing (200)
+sukmyass5 has the dealer button
+habing posts small blind 1
+within posts big blind 2
+** Hole Cards **
+Dealt to habing [8s 8d]
+ty4drawing raises to 4
+vettefever88 folds
+okie_freemen calls 4
+sukmyass5 folds
+habing calls 3
+within calls 2
+** Flop ** [7c 2h Ks]
+habing checks
+within checks
+ty4drawing checks
+okie_freemen checks
+** Turn ** [Tc]
+habing checks
+within checks
+ty4drawing checks
+okie_freemen bets 8
+habing folds
+habing adds 4 chips
+within folds
+ty4drawing folds
+okie_freemen refunded 8
+okie_freemen wins Pot (15.60)
+Rake (0.40)
+
+
+
+Hand #8906053-85 - 2013-06-23 03:08:37
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (243.39)
+Seat 2: ty4drawing (222.48)
+Seat 3: vettefever88 (263.38)
+Seat 4: okie_freemen (107.78)
+Seat 5: sukmyass5 (63.96)
+Seat 6: habing (200)
+habing has the dealer button
+within posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [2h Kc]
+vettefever88 calls 2
+okie_freemen calls 2
+sukmyass5 folds
+habing folds
+within calls 1
+ty4drawing checks
+** Flop ** [Js Td Ac]
+within checks
+ty4drawing checks
+vettefever88 bets 10
+okie_freemen folds
+within folds
+ty4drawing folds
+vettefever88 refunded 10
+vettefever88 wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #8906089-86 - 2013-06-23 03:09:34
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (241.39)
+Seat 2: ty4drawing (220.48)
+Seat 3: vettefever88 (269.18)
+Seat 4: okie_freemen (105.78)
+Seat 5: sukmyass5 (63.96)
+Seat 6: habing (200)
+within has the dealer button
+ty4drawing posts small blind 1
+vettefever88 posts big blind 2
+** Hole Cards **
+Dealt to habing [6s 8h]
+okie_freemen calls 2
+sukmyass5 folds
+habing folds
+within folds
+ty4drawing raises to 6
+vettefever88 calls 4
+okie_freemen calls 4
+** Flop ** [5c 4d 4c]
+ty4drawing bets 12
+vettefever88 calls 12
+okie_freemen folds
+** Turn ** [Jd]
+ty4drawing checks
+vettefever88 checks
+** River ** [Ad]
+ty4drawing bets 28
+vettefever88 folds
+ty4drawing refunded 28
+ty4drawing wins Pot (40.95)
+Rake (1.05)
+
+
+
+Hand #8906139-87 - 2013-06-23 03:10:50
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (241.39)
+Seat 2: ty4drawing (243.43)
+Seat 3: vettefever88 (251.18)
+Seat 4: okie_freemen (99.78)
+Seat 5: sukmyass5 (63.96)
+Seat 6: habing (200)
+ty4drawing has the dealer button
+vettefever88 posts small blind 1
+okie_freemen posts big blind 2
+** Hole Cards **
+Dealt to habing [6d 6h]
+sukmyass5 folds
+habing raises to 6
+within folds
+ty4drawing folds
+vettefever88 calls 5
+okie_freemen calls 4
+** Flop ** [6s Jd 8s]
+vettefever88 checks
+okie_freemen checks
+habing bets 15.20
+vettefever88 folds
+okie_freemen folds
+habing refunded 15.20
+habing wins Pot (17.55)
+Rake (0.45)
+
+
+
+Hand #8906167-88 - 2013-06-23 03:11:35
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (241.39)
+Seat 2: ty4drawing (243.43)
+Seat 3: vettefever88 (245.18)
+Seat 4: okie_freemen (93.78)
+Seat 6: habing (211.55)
+vettefever88 has the dealer button
+okie_freemen posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ac 2d]
+within calls 2
+ty4drawing folds
+vettefever88 raises to 8
+okie_freemen folds
+habing folds
+within calls 6
+** Flop ** [9h 6c Ah]
+within checks
+vettefever88 bets 10
+within folds
+vettefever88 refunded 10
+vettefever88 wins Pot (18.53)
+Rake (0.47)
+
+
+
+Hand #8906195-89 - 2013-06-23 03:12:18
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (233.39)
+Seat 2: ty4drawing (243.43)
+Seat 3: vettefever88 (255.71)
+Seat 4: okie_freemen (92.78)
+Seat 6: habing (209.55)
+okie_freemen has the dealer button
+habing posts small blind 1
+within posts big blind 2
+** Hole Cards **
+Dealt to habing [4c Th]
+ty4drawing folds
+vettefever88 raises to 10
+okie_freemen folds
+habing folds
+within folds
+vettefever88 refunded 8
+vettefever88 wins Pot (5)
+Rake (0)
+
+
+
+Hand #8906211-90 - 2013-06-23 03:12:41
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (231.39)
+Seat 2: ty4drawing (243.43)
+Seat 3: vettefever88 (258.71)
+Seat 4: okie_freemen (92.78)
+Seat 6: habing (208.55)
+habing has the dealer button
+within posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [7s 4s]
+vettefever88 calls 2
+okie_freemen folds
+habing folds
+within calls 1
+ty4drawing checks
+** Flop ** [Td 5s 9d]
+within checks
+ty4drawing checks
+vettefever88 bets 6
+within folds
+ty4drawing folds
+vettefever88 refunded 6
+vettefever88 wins Pot (5.85)
+Rake (0.15)
+
+
+
+Hand #8906236-91 - 2013-06-23 03:13:19
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (229.39)
+Seat 2: ty4drawing (241.43)
+Seat 3: vettefever88 (262.56)
+Seat 4: okie_freemen (92.78)
+Seat 6: habing (208.55)
+within has the dealer button
+ty4drawing posts small blind 1
+vettefever88 posts big blind 2
+** Hole Cards **
+Dealt to habing [Jh 7s]
+okie_freemen folds
+habing folds
+within folds
+ty4drawing calls 1
+vettefever88 checks
+** Flop ** [Qc 8c 2s]
+ty4drawing bets 4
+vettefever88 folds
+ty4drawing refunded 4
+ty4drawing wins Pot (3.90)
+Rake (0.10)
+
+
+
+Hand #8906251-92 - 2013-06-23 03:13:48
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (229.39)
+Seat 2: ty4drawing (243.33)
+Seat 3: vettefever88 (260.56)
+Seat 4: okie_freemen (92.78)
+Seat 6: habing (208.55)
+ty4drawing has the dealer button
+vettefever88 posts small blind 1
+okie_freemen posts big blind 2
+** Hole Cards **
+Dealt to habing [4s Ah]
+habing folds
+within folds
+ty4drawing folds
+vettefever88 raises to 4
+okie_freemen calls 2
+** Flop ** [Ad 3c 8h]
+vettefever88 bets 6
+okie_freemen folds
+vettefever88 refunded 6
+vettefever88 wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #8906284-93 - 2013-06-23 03:14:38
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (229.39)
+Seat 2: ty4drawing (243.33)
+Seat 3: vettefever88 (264.36)
+Seat 4: okie_freemen (88.78)
+Seat 6: habing (208.55)
+vettefever88 has the dealer button
+okie_freemen posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [8c 9h]
+within folds
+ty4drawing folds
+vettefever88 folds
+okie_freemen calls 1
+habing raises to 8
+okie_freemen calls 6
+** Flop ** [Kc 3c Ks]
+okie_freemen checks
+habing bets 8
+okie_freemen raises to 80.78 (All-in)
+habing folds
+okie_freemen refunded 72.78
+habing adds 7.45 chips
+okie_freemen wins Pot (31.20)
+Rake (0.80)
+
+
+
+Hand #8906310-94 - 2013-06-23 03:15:23
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (229.39)
+Seat 2: ty4drawing (243.33)
+Seat 3: vettefever88 (264.36)
+Seat 4: okie_freemen (103.98)
+Seat 6: habing (200)
+okie_freemen has the dealer button
+habing posts small blind 1
+within posts big blind 2
+** Hole Cards **
+Dealt to habing [6h 7c]
+ty4drawing folds
+vettefever88 raises to 8
+okie_freemen folds
+habing folds
+habing adds 1 chips
+within folds
+vettefever88 refunded 6
+vettefever88 wins Pot (5)
+Rake (0)
+
+
+
+Hand #8906322-95 - 2013-06-23 03:15:42
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (227.39)
+Seat 2: ty4drawing (243.33)
+Seat 3: vettefever88 (267.36)
+Seat 4: okie_freemen (103.98)
+Seat 6: habing (200)
+habing has the dealer button
+within posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [Jd 4c]
+vettefever88 folds
+okie_freemen calls 2
+habing folds
+within calls 1
+ty4drawing checks
+** Flop ** [9s 7d Td]
+within checks
+ty4drawing bets 4
+okie_freemen calls 4
+within folds
+** Turn ** [7h]
+ty4drawing bets 10
+okie_freemen calls 10
+** River ** [6h]
+ty4drawing bets 24
+okie_freemen raises to 87.98 (All-in)
+ty4drawing calls 63.98
+** Pot Show Down ** [9s 7d Td 7h 6h]
+ty4drawing shows [6c 8c] (a Straight, Six to Ten)
+okie_freemen shows [8s 9d] (a Straight, Six to Ten)
+ty4drawing splits Pot (102.98) with a Straight
+okie_freemen splits Pot (102.98) with a Straight
+Rake (4)
+
+
+
+Hand #8906372-96 - 2013-06-23 03:17:06
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (225.39)
+Seat 2: ty4drawing (242.33)
+Seat 3: vettefever88 (267.36)
+Seat 4: okie_freemen (102.98)
+Seat 6: habing (200)
+within has the dealer button
+ty4drawing posts small blind 1
+vettefever88 posts big blind 2
+** Hole Cards **
+Dealt to habing [9d 7s]
+okie_freemen folds
+habing folds
+within folds
+ty4drawing calls 1
+vettefever88 checks
+** Flop ** [Ac Kh 4d]
+ty4drawing checks
+vettefever88 checks
+** Turn ** [Td]
+ty4drawing checks
+vettefever88 bets 8
+ty4drawing folds
+vettefever88 refunded 8
+vettefever88 wins Pot (3.90)
+Rake (0.10)
+
+
+
+Hand #8906407-97 - 2013-06-23 03:18:05
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (225.39)
+Seat 2: ty4drawing (240.33)
+Seat 3: vettefever88 (269.26)
+Seat 4: okie_freemen (102.98)
+Seat 6: habing (200)
+ty4drawing has the dealer button
+vettefever88 posts small blind 1
+okie_freemen posts big blind 2
+** Hole Cards **
+Dealt to habing [4c Ah]
+habing folds
+within folds
+ty4drawing folds
+vettefever88 folds
+okie_freemen refunded 1
+okie_freemen wins Pot (2)
+Rake (0)
+
+
+
+Hand #8906424-98 - 2013-06-23 03:18:36
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (225.39)
+Seat 2: ty4drawing (240.33)
+Seat 3: vettefever88 (268.26)
+Seat 4: okie_freemen (103.98)
+Seat 6: habing (200)
+vettefever88 has the dealer button
+okie_freemen posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [7d 5c]
+within raises to 6
+ty4drawing folds
+vettefever88 calls 6
+okie_freemen folds
+habing folds
+habing adds 2 chips
+** Flop ** [Kd Jc 8c]
+within bets 8
+vettefever88 folds
+within refunded 8
+within wins Pot (14.63)
+Rake (0.37)
+
+
+
+Hand #8906445-99 - 2013-06-23 03:19:05
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (234.02)
+Seat 2: ty4drawing (240.33)
+Seat 3: vettefever88 (262.26)
+Seat 4: okie_freemen (102.98)
+Seat 5: sleepyknees (200) - waiting for big blind
+Seat 6: habing (200)
+okie_freemen has the dealer button
+habing posts small blind 1
+within posts big blind 2
+** Hole Cards **
+Dealt to habing [7h 6s]
+ty4drawing folds
+vettefever88 folds
+okie_freemen calls 2
+habing folds
+habing adds 1 chips
+within checks
+** Flop ** [9h 6d 8s]
+within checks
+okie_freemen checks
+** Turn ** [Ks]
+within checks
+okie_freemen checks
+** River ** [Ah]
+within bets 2
+okie_freemen calls 2
+** Pot Show Down ** [9h 6d 8s Ks Ah]
+within shows [3s Ad] (a Pair of Aces +K98)
+okie_freemen shows [Qd Th] (High Card Ace +KQT9)
+within wins Pot (8.78) with a Pair
+Rake (0.22)
+
+
+
+Hand #8906490-100 - 2013-06-23 03:20:16
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (238.80)
+Seat 2: ty4drawing (240.33)
+Seat 3: vettefever88 (262.26)
+Seat 4: okie_freemen (98.98)
+Seat 5: sleepyknees (200) - waiting for big blind
+Seat 6: habing (200)
+habing has the dealer button
+within posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [Tc 2d]
+vettefever88 folds
+okie_freemen calls 2
+habing folds
+within folds
+ty4drawing checks
+** Flop ** [7c 6s 5s]
+ty4drawing checks
+okie_freemen checks
+** Turn ** [Kc]
+ty4drawing checks
+okie_freemen checks
+** River ** [7h]
+ty4drawing bets 4
+okie_freemen folds
+ty4drawing refunded 4
+ty4drawing wins Pot (4.88)
+Rake (0.12)
+
+
+
+Hand #8906521-101 - 2013-06-23 03:21:11
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (237.80)
+Seat 2: ty4drawing (243.21)
+Seat 3: vettefever88 (262.26)
+Seat 4: okie_freemen (96.98)
+Seat 5: sleepyknees (200) - waiting for big blind
+Seat 6: habing (200)
+within has the dealer button
+ty4drawing posts small blind 1
+vettefever88 posts big blind 2
+** Hole Cards **
+Dealt to habing [8d 5c]
+okie_freemen raises to 5
+habing folds
+within calls 5
+ty4drawing folds
+vettefever88 calls 3
+** Flop ** [3h Td 6s]
+vettefever88 checks
+okie_freemen bets 10
+within calls 10
+vettefever88 folds
+** Turn ** [2d]
+okie_freemen checks
+within bets 22
+okie_freemen folds
+within refunded 22
+within wins Pot (35.10)
+Rake (0.90)
+
+
+
+Hand #8906551-102 - 2013-06-23 03:22:07
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (257.90)
+Seat 2: ty4drawing (242.21)
+Seat 3: vettefever88 (257.26)
+Seat 4: okie_freemen (81.98)
+Seat 5: sleepyknees (200) - waiting for big blind
+Seat 6: habing (200)
+ty4drawing has the dealer button
+vettefever88 posts small blind 1
+okie_freemen posts big blind 2
+** Hole Cards **
+Dealt to habing [4h 3d]
+habing folds
+within raises to 6
+ty4drawing calls 6
+vettefever88 calls 5
+okie_freemen calls 4
+** Flop ** [Th 7h 5s]
+vettefever88 checks
+okie_freemen bets 5
+within raises to 16
+ty4drawing folds
+vettefever88 calls 16
+okie_freemen calls 11
+** Turn ** [Qd]
+vettefever88 bets 44
+okie_freemen raises to 59.98 (All-in)
+within folds
+vettefever88 calls 15.98
+** River ** [9h]
+** Pot Show Down ** [Th 7h 5s Qd 9h]
+vettefever88 shows [Ts 7d] (Two Pair, Tens and Sevens +Q)
+okie_freemen shows [Jh 6h] (a Flush, Jack high +T976)
+okie_freemen wins Pot (187.96) with a Flush
+Rake (4)
+
+
+
+Hand #8906597-103 - 2013-06-23 03:23:45
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (235.90)
+Seat 2: ty4drawing (236.21)
+Seat 3: vettefever88 (175.28)
+Seat 4: okie_freemen (187.96)
+Seat 5: sleepyknees (200) - waiting for big blind
+Seat 6: habing (200)
+vettefever88 has the dealer button
+okie_freemen posts small blind 1
+sleepyknees posts big blind 2
+** Hole Cards **
+Dealt to habing [5c 4d]
+habing folds
+within folds
+ty4drawing raises to 4
+vettefever88 folds
+okie_freemen folds
+sleepyknees folds
+ty4drawing refunded 2
+sleepyknees adds 2 chips
+ty4drawing wins Pot (5)
+Rake (0)
+
+
+
+Hand #8906619-104 - 2013-06-23 03:24:18
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (235.90)
+Seat 2: ty4drawing (239.21)
+Seat 3: vettefever88 (175.28)
+Seat 4: okie_freemen (186.96)
+Seat 5: sleepyknees (200)
+Seat 6: habing (200)
+okie_freemen has the dealer button
+sleepyknees posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [3h Tc]
+within folds
+ty4drawing folds
+vettefever88 folds
+okie_freemen raises to 4
+sleepyknees folds
+sleepyknees adds 1 chips
+habing folds
+okie_freemen refunded 2
+habing adds 2 chips
+okie_freemen wins Pot (5)
+Rake (0)
+
+
+
+Hand #8906629-105 - 2013-06-23 03:24:39
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (235.90)
+Seat 2: ty4drawing (239.21)
+Seat 3: vettefever88 (175.28)
+Seat 4: okie_freemen (189.96)
+Seat 5: sleepyknees (200)
+Seat 6: habing (200)
+sleepyknees has the dealer button
+habing posts small blind 1
+within posts big blind 2
+** Hole Cards **
+Dealt to habing [Ac Qh]
+ty4drawing raises to 4
+vettefever88 folds
+okie_freemen folds
+sleepyknees folds
+habing raises to 18.80
+within calls 16.80
+ty4drawing calls 14.80
+** Flop ** [Ks 8c 9c]
+habing checks
+within checks
+ty4drawing checks
+** Turn ** [9s]
+habing checks
+within bets 25
+ty4drawing folds
+habing folds
+within refunded 25
+habing adds 18.80 chips
+within wins Pot (54.99)
+Rake (1.41)
+
+
+
+Hand #8906661-106 - 2013-06-23 03:25:48
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (272.09)
+Seat 2: ty4drawing (220.41)
+Seat 3: vettefever88 (175.28)
+Seat 5: sleepyknees (200)
+Seat 6: habing (200)
+habing has the dealer button
+within posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [Qd 7s]
+vettefever88 raises to 8
+sleepyknees folds
+habing folds
+within folds
+ty4drawing calls 6
+** Flop ** [As 3c 2d]
+ty4drawing checks
+vettefever88 bets 20
+ty4drawing calls 20
+** Turn ** [2s]
+ty4drawing checks
+vettefever88 checks
+** River ** [8c]
+ty4drawing checks
+vettefever88 checks
+** Pot Show Down ** [As 3c 2d 2s 8c]
+ty4drawing shows [Jc Jd] (Two Pair, Jacks and Deuces +A)
+vettefever88 shows [Ts Td] (Two Pair, Tens and Deuces +A)
+ty4drawing wins Pot (55.58) with Two Pair
+Rake (1.42)
+
+
+
+Hand #8906687-107 - 2013-06-23 03:26:38
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (271.09)
+Seat 2: ty4drawing (247.99)
+Seat 3: vettefever88 (147.28)
+Seat 5: sleepyknees (200)
+Seat 6: habing (200)
+within has the dealer button
+ty4drawing posts small blind 1
+vettefever88 posts big blind 2
+** Hole Cards **
+Dealt to habing [2c 2d]
+sleepyknees folds
+habing raises to 6
+within folds
+ty4drawing folds
+vettefever88 calls 4
+** Flop ** [4h Kc 7d]
+vettefever88 checks
+habing checks
+** Turn ** [5d]
+vettefever88 bets 8
+habing folds
+vettefever88 refunded 8
+habing adds 6 chips
+vettefever88 wins Pot (12.68)
+Rake (0.32)
+
+
+
+Hand #8906711-108 - 2013-06-23 03:27:29
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (271.09)
+Seat 2: ty4drawing (246.99)
+Seat 3: vettefever88 (153.96)
+Seat 5: sleepyknees (200)
+Seat 6: habing (200)
+ty4drawing has the dealer button
+vettefever88 posts small blind 1
+sleepyknees posts big blind 2
+** Hole Cards **
+Dealt to habing [4s Ts]
+habing folds
+within folds
+ty4drawing folds
+vettefever88 calls 1
+sleepyknees checks
+** Flop ** [9d 9s 3c]
+vettefever88 bets 10
+sleepyknees folds
+vettefever88 refunded 10
+sleepyknees adds 2 chips
+vettefever88 wins Pot (3.90)
+Rake (0.10)
+
+
+
+Hand #8906730-109 - 2013-06-23 03:28:08
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (271.09)
+Seat 2: ty4drawing (246.99)
+Seat 3: vettefever88 (155.86)
+Seat 5: sleepyknees (200)
+Seat 6: habing (200)
+vettefever88 has the dealer button
+sleepyknees posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Kc Ad]
+within folds
+ty4drawing calls 2
+vettefever88 folds
+sleepyknees raises to 10
+habing raises to 30
+ty4drawing folds
+sleepyknees folds
+habing refunded 20
+sleepyknees adds 10 chips
+habing wins Pot (22)
+Rake (0)
+
+
+
+Hand #8906748-110 - 2013-06-23 03:28:43
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (271.09)
+Seat 2: ty4drawing (244.99)
+Seat 3: vettefever88 (155.86)
+Seat 5: sleepyknees (200)
+Seat 6: habing (212)
+sleepyknees has the dealer button
+habing posts small blind 1
+within posts big blind 2
+** Hole Cards **
+Dealt to habing [Js 2c]
+ty4drawing folds
+vettefever88 raises to 12
+sleepyknees folds
+habing folds
+within calls 10
+** Flop ** [Ts 3h 7c]
+within checks
+vettefever88 bets 22
+within folds
+vettefever88 refunded 22
+vettefever88 wins Pot (24.38)
+Rake (0.62)
+
+
+
+Hand #8906777-111 - 2013-06-23 03:29:38
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (259.09)
+Seat 2: ty4drawing (244.99)
+Seat 3: vettefever88 (168.24)
+Seat 5: sleepyknees (200)
+Seat 6: habing (211)
+habing has the dealer button
+within posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [Qh 3s]
+vettefever88 folds
+sleepyknees folds
+habing raises to 4
+within calls 3
+ty4drawing folds
+** Flop ** [6s 2c 7s]
+within checks
+habing checks
+** Turn ** [Ks]
+within bets 4
+habing folds
+within refunded 4
+within wins Pot (9.75)
+Rake (0.25)
+
+
+
+Hand #8906802-112 - 2013-06-23 03:30:24
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (264.84)
+Seat 2: ty4drawing (242.99)
+Seat 3: vettefever88 (168.24)
+Seat 5: sleepyknees (200)
+Seat 6: habing (207)
+within has the dealer button
+ty4drawing posts small blind 1
+vettefever88 posts big blind 2
+** Hole Cards **
+Dealt to habing [Ad 5d]
+sleepyknees folds
+habing raises to 6
+within calls 6
+ty4drawing folds
+vettefever88 calls 4
+** Flop ** [Ts 4s Jh]
+vettefever88 checks
+habing checks
+within checks
+** Turn ** [4d]
+vettefever88 bets 14
+habing folds
+within folds
+vettefever88 refunded 14
+vettefever88 wins Pot (18.53)
+Rake (0.47)
+
+
+
+Hand #8906821-113 - 2013-06-23 03:31:09
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (258.84)
+Seat 2: ty4drawing (241.99)
+Seat 3: vettefever88 (180.77)
+Seat 5: sleepyknees (200)
+Seat 6: habing (201)
+ty4drawing has the dealer button
+vettefever88 posts small blind 1
+sleepyknees posts big blind 2
+** Hole Cards **
+Dealt to habing [6s 2h]
+habing folds
+within folds
+ty4drawing calls 2
+vettefever88 raises to 8
+sleepyknees folds
+sleepyknees adds 2 chips
+ty4drawing folds
+vettefever88 refunded 6
+vettefever88 wins Pot (6)
+Rake (0)
+
+
+
+Hand #8906842-114 - 2013-06-23 03:31:36
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (258.84)
+Seat 2: ty4drawing (239.99)
+Seat 3: vettefever88 (184.77)
+Seat 5: sleepyknees (200)
+Seat 6: habing (201)
+vettefever88 has the dealer button
+sleepyknees posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [7s Kd]
+within raises to 6
+ty4drawing folds
+vettefever88 calls 6
+sleepyknees folds
+sleepyknees adds 1 chips
+habing folds
+habing adds 1 chips
+** Flop ** [Qh 8c 6d]
+within checks
+vettefever88 checks
+** Turn ** [Td]
+within checks
+vettefever88 bets 8
+within calls 8
+** River ** [3d]
+within bets 22
+vettefever88 calls 22
+** Pot Show Down ** [Qh 8c 6d Td 3d]
+within shows [3s 3c] (Three of a Kind, Threes +QT)
+vettefever88 shows [Kc Th] (a Pair of Tens +KQ8)
+within wins Pot (73.13) with Three of a Kind
+Rake (1.87)
+
+
+
+Hand #8906868-115 - 2013-06-23 03:32:23
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (295.97)
+Seat 2: ty4drawing (239.99)
+Seat 3: vettefever88 (148.77)
+Seat 5: sleepyknees (200)
+Seat 6: habing (200)
+sleepyknees has the dealer button
+habing posts small blind 1
+within posts big blind 2
+** Hole Cards **
+Dealt to habing [2c Jc]
+ty4drawing folds
+vettefever88 raises to 14
+sleepyknees folds
+habing folds
+habing adds 1 chips
+within calls 12
+** Flop ** [6s Qh As]
+within bets 281.97 (All-in)
+vettefever88 folds
+within refunded 281.97
+within wins Pot (28.28)
+Rake (0.72)
+
+
+
+Hand #8906889-116 - 2013-06-23 03:32:53
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (310.25)
+Seat 2: ty4drawing (239.99)
+Seat 3: vettefever88 (134.77)
+Seat 5: sleepyknees (200)
+Seat 6: habing (200)
+habing has the dealer button
+within posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [8s Qc]
+vettefever88 raises to 4
+sleepyknees folds
+habing folds
+within calls 3
+ty4drawing folds
+** Flop ** [Jd 7s Ad]
+within checks
+vettefever88 checks
+** Turn ** [As]
+within checks
+vettefever88 checks
+** River ** [5s]
+within bets 8
+vettefever88 folds
+within refunded 8
+within wins Pot (9.75)
+Rake (0.25)
+
+
+
+Hand #8906918-117 - 2013-06-23 03:33:40
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (316)
+Seat 2: ty4drawing (237.99)
+Seat 3: vettefever88 (130.77)
+Seat 5: sleepyknees (200)
+Seat 6: habing (200)
+within has the dealer button
+ty4drawing posts small blind 1
+vettefever88 posts big blind 2
+** Hole Cards **
+Dealt to habing [4s Tc]
+sleepyknees folds
+habing folds
+within folds
+ty4drawing raises to 4
+vettefever88 raises to 6
+ty4drawing calls 2
+** Flop ** [6d 5d Td]
+ty4drawing checks
+vettefever88 checks
+** Turn ** [Ts]
+ty4drawing checks
+vettefever88 checks
+** River ** [7d]
+ty4drawing checks
+vettefever88 bets 22
+ty4drawing folds
+vettefever88 refunded 22
+vettefever88 wins Pot (11.70)
+Rake (0.30)
+
+
+
+Hand #8906953-118 - 2013-06-23 03:34:37
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (316)
+Seat 2: ty4drawing (231.99)
+Seat 3: vettefever88 (136.47)
+Seat 5: sleepyknees (200)
+Seat 6: habing (200)
+ty4drawing has the dealer button
+vettefever88 posts small blind 1
+sleepyknees posts big blind 2
+** Hole Cards **
+Dealt to habing [Jd 4d]
+habing folds
+within folds
+ty4drawing folds
+vettefever88 raises to 10
+sleepyknees folds
+vettefever88 refunded 8
+sleepyknees adds 2 chips
+vettefever88 wins Pot (4)
+Rake (0)
+
+
+
+Hand #8906976-119 - 2013-06-23 03:35:09
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (316)
+Seat 2: ty4drawing (231.99)
+Seat 3: vettefever88 (138.47)
+Seat 5: sleepyknees (200)
+Seat 6: habing (200)
+vettefever88 has the dealer button
+sleepyknees posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [9h 6d]
+within folds
+ty4drawing folds
+vettefever88 raises to 12
+sleepyknees folds
+sleepyknees adds 1 chips
+habing folds
+vettefever88 refunded 10
+habing adds 2 chips
+vettefever88 wins Pot (5)
+Rake (0)
+
+
+
+Hand #8906991-120 - 2013-06-23 03:35:35
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (316)
+Seat 2: ty4drawing (231.99)
+Seat 3: vettefever88 (141.47)
+Seat 4: gundabaab (40)
+Seat 5: sleepyknees (200)
+Seat 6: habing (200)
+sleepyknees has the dealer button
+habing posts small blind 1
+within posts big blind 2
+gundabaab posts big blind 2
+** Hole Cards **
+Dealt to habing [2h 6c]
+ty4drawing folds
+vettefever88 raises to 4
+gundabaab calls 2
+sleepyknees folds
+habing folds
+habing adds 1 chips
+within calls 2
+** Flop ** [8s 9s 5c]
+within checks
+vettefever88 bets 4
+gundabaab calls 4
+within calls 4
+** Turn ** [Ts]
+within checks
+vettefever88 checks
+gundabaab bets 17.13
+within folds
+vettefever88 folds
+gundabaab refunded 17.13
+gundabaab wins Pot (24.38)
+Rake (0.62)
+
+
+
+Hand #8907043-121 - 2013-06-23 03:36:54
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (308)
+Seat 3: vettefever88 (133.47)
+Seat 4: gundabaab (56.38)
+Seat 5: sleepyknees (200)
+Seat 6: habing (200)
+habing has the dealer button
+within posts small blind 1
+vettefever88 posts big blind 2
+** Hole Cards **
+Dealt to habing [Kc 9d]
+gundabaab folds
+sleepyknees folds
+habing raises to 6
+within raises to 20
+vettefever88 raises to 133.47 (All-in)
+habing folds
+habing adds 6 chips
+within calls 113.47
+** Flop ** [2d Ks 3d]
+** Turn ** [As]
+** River ** [7d]
+** Pot Show Down ** [2d Ks 3d As 7d]
+within shows [Ad Kh] (Two Pair, Aces and Kings +7)
+vettefever88 shows [6h 6s] (a Pair of Sixes +AK7)
+within wins Pot (268.94) with Two Pair
+Rake (4)
+
+
+
+Hand #8907078-122 - 2013-06-23 03:38:03
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (443.47)
+Seat 4: gundabaab (56.38)
+Seat 5: sleepyknees (200)
+Seat 6: habing (200)
+within has the dealer button
+gundabaab posts small blind 1
+sleepyknees posts big blind 2
+** Hole Cards **
+Dealt to habing [2s Kd]
+habing folds
+within folds
+gundabaab calls 1
+sleepyknees raises to 8
+gundabaab folds
+sleepyknees refunded 6
+sleepyknees wins Pot (4)
+Rake (0)
+
+
+
+Hand #8907090-123 - 2013-06-23 03:38:31
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (443.47)
+Seat 4: gundabaab (54.38)
+Seat 5: sleepyknees (202)
+Seat 6: habing (200)
+gundabaab has the dealer button
+sleepyknees posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [4d 3c]
+within folds
+gundabaab raises to 4
+sleepyknees raises to 12
+habing folds
+habing adds 2 chips
+gundabaab calls 8
+** Flop ** [2c 8c 9d]
+sleepyknees bets 10.82
+gundabaab raises to 42.38 (All-in)
+sleepyknees calls 31.56
+** Turn ** [8h]
+** River ** [Tc]
+** Pot Show Down ** [2c 8c 9d 8h Tc]
+gundabaab shows [As 2h] (Two Pair, Eights and Deuces +A)
+sleepyknees shows [Ac Ah] (Two Pair, Aces and Eights +T)
+sleepyknees wins Pot (108) with Two Pair
+Rake (2.76)
+
+
+
+Hand #8907131-124 - 2013-06-23 03:39:40
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (443.47)
+Seat 4: gundabaab (0) - sitting out
+Seat 5: sleepyknees (255.62)
+Seat 6: habing (200)
+sleepyknees has the dealer button
+habing posts small blind 1
+within posts big blind 2
+** Hole Cards **
+Dealt to habing [5c 2c]
+sleepyknees raises to 4
+habing folds
+habing adds 1 chips
+within folds
+sleepyknees refunded 2
+sleepyknees wins Pot (5)
+Rake (0)
+
+
+
+Hand #8907141-125 - 2013-06-23 03:40:01
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (441.47)
+Seat 5: sleepyknees (258.62)
+Seat 6: habing (200)
+habing has the dealer button
+within posts small blind 1
+sleepyknees posts big blind 2
+** Hole Cards **
+Dealt to habing [2c 9h]
+habing folds
+within folds
+sleepyknees refunded 1
+sleepyknees wins Pot (2)
+Rake (0)
+
+
+
+Hand #8907150-126 - 2013-06-23 03:40:12
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (440.47)
+Seat 5: sleepyknees (259.62)
+Seat 6: habing (200)
+within has the dealer button
+sleepyknees posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [2s Kd]
+within raises to 6
+sleepyknees folds
+habing folds
+within refunded 4
+habing adds 2 chips
+within wins Pot (5)
+Rake (0)
+
+
+
+Hand #8907167-127 - 2013-06-23 03:40:42
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (443.47)
+Seat 5: sleepyknees (258.62)
+Seat 6: habing (200)
+sleepyknees has the dealer button
+habing posts small blind 1
+within posts big blind 2
+** Hole Cards **
+Dealt to habing [2c 5d]
+sleepyknees folds
+habing folds
+within refunded 1
+habing adds 1 chips
+within wins Pot (2)
+Rake (0)
+
+
+
+Hand #8907177-128 - 2013-06-23 03:41:03
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (444.47)
+Seat 5: sleepyknees (258.62)
+Seat 6: habing (200)
+habing has the dealer button
+within posts small blind 1
+sleepyknees posts big blind 2
+** Hole Cards **
+Dealt to habing [7d 4c]
+habing folds
+within raises to 6
+sleepyknees raises to 18
+within calls 12
+** Flop ** [Jc Tc Td]
+within checks
+sleepyknees checks
+** Turn ** [6d]
+within checks
+sleepyknees bets 20.28
+within folds
+sleepyknees refunded 20.28
+sleepyknees wins Pot (35.10)
+Rake (0.90)
+
+
+
+Hand #8907214-129 - 2013-06-23 03:42:12
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (426.47)
+Seat 5: sleepyknees (275.72)
+Seat 6: habing (200)
+within has the dealer button
+sleepyknees posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [3d Kc]
+within raises to 6
+sleepyknees folds
+habing folds
+within refunded 4
+habing adds 2 chips
+within wins Pot (5)
+Rake (0)
+
+
+
+Hand #8907221-130 - 2013-06-23 03:42:30
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (429.47)
+Seat 5: sleepyknees (274.72)
+Seat 6: habing (200)
+sleepyknees has the dealer button
+habing posts small blind 1
+within posts big blind 2
+** Hole Cards **
+Dealt to habing [Tc Qd]
+sleepyknees folds
+habing raises to 6
+within folds
+habing refunded 4
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8907232-131 - 2013-06-23 03:42:47
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (427.47)
+Seat 5: sleepyknees (274.72)
+Seat 6: habing (202)
+habing has the dealer button
+within posts small blind 1
+sleepyknees posts big blind 2
+** Hole Cards **
+Dealt to habing [4d 2d]
+habing folds
+within raises to 6
+sleepyknees folds
+within refunded 4
+within wins Pot (4)
+Rake (0)
+
+
+
+Hand #8907241-132 - 2013-06-23 03:43:04
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (429.47)
+Seat 5: sleepyknees (272.72)
+Seat 6: habing (202)
+within has the dealer button
+sleepyknees posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [8h 2d]
+within raises to 6
+sleepyknees folds
+habing folds
+within refunded 4
+within wins Pot (5)
+Rake (0)
+
+
+
+Hand #8907255-133 - 2013-06-23 03:43:30
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (432.47)
+Seat 5: sleepyknees (271.72)
+Seat 6: habing (200)
+sleepyknees has the dealer button
+habing posts small blind 1
+within posts big blind 2
+** Hole Cards **
+Dealt to habing [2d 7h]
+sleepyknees folds
+habing folds
+within refunded 1
+habing adds 1 chips
+within wins Pot (2)
+Rake (0)
+
+
+
+Hand #8907260-134 - 2013-06-23 03:43:44
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (433.47)
+Seat 5: sleepyknees (271.72)
+Seat 6: habing (200)
+habing has the dealer button
+within posts small blind 1
+sleepyknees posts big blind 2
+** Hole Cards **
+Dealt to habing [7s 9c]
+habing folds
+within folds
+sleepyknees refunded 1
+sleepyknees wins Pot (2)
+Rake (0)
+
+
+
+Hand #8907267-135 - 2013-06-23 03:43:55
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (432.47)
+Seat 5: sleepyknees (272.72)
+Seat 6: habing (200)
+within has the dealer button
+sleepyknees posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [9d Ad]
+within folds
+sleepyknees raises to 6
+habing calls 4
+** Flop ** [7s Js 7c]
+sleepyknees bets 7.84
+habing calls 7.84
+** Turn ** [2h]
+sleepyknees checks
+habing bets 16.40
+sleepyknees folds
+habing refunded 16.40
+habing wins Pot (26.99)
+Rake (0.69)
+
+
+
+Hand #8907302-136 - 2013-06-23 03:44:59
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (432.47)
+Seat 5: sleepyknees (258.88)
+Seat 6: habing (213.15)
+sleepyknees has the dealer button
+habing posts small blind 1
+within posts big blind 2
+** Hole Cards **
+Dealt to habing [2c Tc]
+sleepyknees folds
+habing folds
+within refunded 1
+within wins Pot (2)
+Rake (0)
+
+
+
+Hand #8907313-137 - 2013-06-23 03:45:14
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (433.47)
+Seat 5: sleepyknees (258.88)
+Seat 6: habing (212.15)
+habing has the dealer button
+within posts small blind 1
+sleepyknees posts big blind 2
+** Hole Cards **
+Dealt to habing [2s 7h]
+habing folds
+within folds
+sleepyknees refunded 1
+sleepyknees wins Pot (2)
+Rake (0)
+
+
+
+Hand #8907326-138 - 2013-06-23 03:45:31
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (432.47)
+Seat 3: itsltctime (200)
+Seat 5: sleepyknees (259.88)
+Seat 6: habing (212.15)
+within has the dealer button
+sleepyknees posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ad Qd]
+within raises to 6
+sleepyknees folds
+habing raises to 20.40
+within folds
+habing refunded 14.40
+habing wins Pot (13)
+Rake (0)
+
+
+
+Hand #8907345-139 - 2013-06-23 03:46:03
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (426.47)
+Seat 3: itsltctime (200)
+Seat 5: sleepyknees (258.88)
+Seat 6: habing (219.15)
+sleepyknees has the dealer button
+habing posts small blind 1
+within posts big blind 2
+itsltctime posts big blind 2
+** Hole Cards **
+Dealt to habing [Ah 9h]
+itsltctime checks
+sleepyknees folds
+habing raises to 11.20
+within folds
+itsltctime folds
+habing refunded 9.20
+habing wins Pot (6)
+Rake (0)
+
+
+
+Hand #8907359-140 - 2013-06-23 03:46:32
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (424.47)
+Seat 3: itsltctime (198)
+Seat 5: sleepyknees (258.88)
+Seat 6: habing (223.15)
+habing has the dealer button
+within posts small blind 1
+itsltctime posts big blind 2
+** Hole Cards **
+Dealt to habing [6h 6d]
+sleepyknees folds
+habing raises to 6
+within calls 5
+itsltctime calls 4
+** Flop ** [Kc Js 4h]
+within checks
+itsltctime checks
+habing checks
+** Turn ** [Qd]
+within checks
+itsltctime checks
+habing checks
+** River ** [9d]
+within bets 10
+itsltctime folds
+habing folds
+within refunded 10
+within wins Pot (17.55)
+Rake (0.45)
+
+
+
+Hand #8907409-141 - 2013-06-23 03:47:46
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (436.02)
+Seat 3: itsltctime (192)
+Seat 5: sleepyknees (258.88)
+Seat 6: habing (217.15)
+within has the dealer button
+itsltctime posts small blind 1
+sleepyknees posts big blind 2
+** Hole Cards **
+Dealt to habing [Ah 6s]
+habing folds
+within folds
+itsltctime calls 1
+sleepyknees checks
+** Flop ** [Qh Kh 9s]
+itsltctime bets 2
+sleepyknees calls 2
+** Turn ** [5h]
+itsltctime checks
+sleepyknees bets 6
+itsltctime folds
+sleepyknees refunded 6
+sleepyknees wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #8907463-142 - 2013-06-23 03:49:12
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (436.02)
+Seat 3: itsltctime (188)
+Seat 5: sleepyknees (262.68)
+Seat 6: habing (217.15)
+itsltctime has the dealer button
+sleepyknees posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Qh Qc]
+within raises to 6
+itsltctime folds
+sleepyknees folds
+habing raises to 20.80
+within calls 14.80
+** Flop ** [7c 3c Qd]
+habing bets 24.80
+within raises to 51.60
+habing calls 26.80
+** Turn ** [3d]
+habing checks
+within bets 80
+habing calls 80
+** River ** [Td]
+habing bets 64.75 (All-in)
+within calls 64.75
+** Pot Show Down ** [7c 3c Qd 3d Td]
+within shows [Tc 8c] (Two Pair, Tens and Threes +Q)
+habing shows [Qh Qc] (a Full House, Queens full of Threes)
+habing wins Pot (431.30) with a Full House
+Rake (4)
+
+
+
+Hand #8907500-143 - 2013-06-23 03:50:17
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (218.87)
+Seat 3: itsltctime (188)
+Seat 5: sleepyknees (261.68)
+Seat 6: habing (431.30)
+sleepyknees has the dealer button
+habing posts small blind 1
+within posts big blind 2
+** Hole Cards **
+Dealt to habing [Ts Jd]
+itsltctime calls 2
+sleepyknees raises to 10
+habing folds
+within folds
+itsltctime calls 8
+** Flop ** [Qs Kc 4c]
+itsltctime checks
+sleepyknees bets 14.54
+itsltctime folds
+sleepyknees refunded 14.54
+sleepyknees wins Pot (22.43)
+Rake (0.57)
+
+
+
+Hand #8907531-144 - 2013-06-23 03:51:06
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (216.87)
+Seat 3: itsltctime (178)
+Seat 5: sleepyknees (274.11)
+Seat 6: habing (430.30)
+habing has the dealer button
+within posts small blind 1
+itsltctime posts big blind 2
+** Hole Cards **
+Dealt to habing [7h Td]
+sleepyknees raises to 6
+habing folds
+within calls 5
+itsltctime raises to 10
+sleepyknees calls 4
+within calls 4
+** Flop ** [7c Kc 9c]
+within checks
+itsltctime checks
+sleepyknees checks
+** Turn ** [3h]
+within checks
+itsltctime checks
+sleepyknees checks
+** River ** [4d]
+within checks
+itsltctime checks
+sleepyknees checks
+** Pot Show Down ** [7c Kc 9c 3h 4d]
+within shows [4s 6h] (a Pair of Fours +K97)
+itsltctime shows [Ks Qs] (a Pair of Kings +Q97)
+sleepyknees shows [Jc Qh] (High Card King +QJ97)
+itsltctime wins Pot (29.25) with a Pair
+Rake (0.75)
+
+
+
+Hand #8907598-145 - 2013-06-23 03:52:54
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (206.87)
+Seat 3: itsltctime (197.25)
+Seat 5: sleepyknees (264.11)
+Seat 6: habing (430.30)
+within has the dealer button
+itsltctime posts small blind 1
+sleepyknees posts big blind 2
+** Hole Cards **
+Dealt to habing [7c Ks]
+habing raises to 6
+within calls 6
+itsltctime calls 5
+sleepyknees folds
+** Flop ** [Kh Qs Kd]
+itsltctime checks
+habing bets 14
+within folds
+itsltctime folds
+habing refunded 14
+habing wins Pot (19.50)
+Rake (0.50)
+
+
+
+Hand #8907622-146 - 2013-06-23 03:53:27
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (200.87)
+Seat 3: itsltctime (191.25)
+Seat 5: sleepyknees (262.11)
+Seat 6: habing (443.80)
+itsltctime has the dealer button
+sleepyknees posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Jd 6s]
+within folds
+itsltctime calls 2
+sleepyknees folds
+habing checks
+** Flop ** [4d 5h Qd]
+habing bets 4
+itsltctime folds
+habing refunded 4
+habing wins Pot (4.88)
+Rake (0.12)
+
+
+
+Hand #8907639-147 - 2013-06-23 03:54:12
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (200.87)
+Seat 3: itsltctime (189.25)
+Seat 5: sleepyknees (261.11)
+Seat 6: habing (446.68)
+sleepyknees has the dealer button
+habing posts small blind 1
+within posts big blind 2
+** Hole Cards **
+Dealt to habing [Ad 4d]
+itsltctime folds
+sleepyknees folds
+habing raises to 6
+within calls 4
+** Flop ** [Kd 2h Ks]
+habing checks
+within checks
+** Turn ** [7h]
+habing checks
+within checks
+** River ** [8d]
+habing checks
+within checks
+** Pot Show Down ** [Kd 2h Ks 7h 8d]
+within shows [Ts Ah] (a Pair of Kings +AT8)
+habing shows [Ad 4d] (a Pair of Kings +A87)
+within wins Pot (11.70) with a Pair
+Rake (0.30)
+
+
+
+Hand #8907668-148 - 2013-06-23 03:55:02
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (206.57)
+Seat 3: itsltctime (189.25)
+Seat 5: sleepyknees (261.11)
+Seat 6: habing (440.68)
+habing has the dealer button
+within posts small blind 1
+itsltctime posts big blind 2
+** Hole Cards **
+Dealt to habing [2d 9s]
+sleepyknees raises to 6
+habing folds
+within folds
+itsltctime calls 4
+** Flop ** [Ad 4s Kh]
+itsltctime bets 6
+sleepyknees folds
+itsltctime refunded 6
+itsltctime wins Pot (12.68)
+Rake (0.32)
+
+
+
+Hand #8907685-149 - 2013-06-23 03:55:43
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (205.57)
+Seat 3: itsltctime (195.93)
+Seat 5: sleepyknees (255.11)
+Seat 6: habing (440.68)
+within has the dealer button
+itsltctime posts small blind 1
+sleepyknees posts big blind 2
+** Hole Cards **
+Dealt to habing [Kh Ad]
+habing raises to 6
+within calls 6
+itsltctime folds
+sleepyknees folds
+** Flop ** [As 7h 6d]
+habing bets 12.80
+within folds
+habing refunded 12.80
+habing wins Pot (14.63)
+Rake (0.37)
+
+
+
+Hand #8907717-150 - 2013-06-23 03:56:40
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (199.57)
+Seat 3: itsltctime (194.93)
+Seat 4: silent (200) - waiting for big blind
+Seat 5: sleepyknees (253.11)
+Seat 6: habing (449.31)
+itsltctime has the dealer button
+sleepyknees posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Qh Ah]
+within folds
+itsltctime calls 2
+sleepyknees folds
+habing raises to 10
+itsltctime calls 8
+** Flop ** [Qs 5h 9s]
+habing bets 19.60
+itsltctime calls 19.60
+** Turn ** [Ad]
+habing bets 49.60
+itsltctime calls 49.60
+** River ** [2d]
+habing bets 370.11 (All-in)
+itsltctime folds
+habing refunded 370.11
+habing wins Pot (155.42)
+Rake (3.98)
+
+
+
+Hand #8907759-151 - 2013-06-23 03:57:52
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (199.57)
+Seat 2: Jdot (80) - waiting for big blind
+Seat 3: itsltctime (115.73)
+Seat 4: silent (200) - waiting for big blind
+Seat 5: sleepyknees (252.11)
+Seat 6: habing (525.53)
+sleepyknees has the dealer button
+habing posts small blind 1
+within posts big blind 2
+** Hole Cards **
+Dealt to habing [8d 2h]
+itsltctime folds
+sleepyknees raises to 4
+habing folds
+within raises to 14
+sleepyknees calls 10
+** Flop ** [7c Td Qs]
+within bets 18
+sleepyknees calls 18
+** Turn ** [4c]
+within checks
+sleepyknees bets 44.10
+within calls 44.10
+** River ** [3d]
+within checks
+sleepyknees bets 176.01 (All-in)
+within folds
+sleepyknees refunded 176.01
+sleepyknees wins Pot (149.37)
+Rake (3.83)
+
+
+
+Hand #8907837-152 - 2013-06-23 04:00:41
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (123.47)
+Seat 2: Jdot (80) - waiting for big blind
+Seat 4: silent (200) - waiting for big blind
+Seat 5: sleepyknees (325.38)
+Seat 6: habing (524.53)
+habing has the dealer button
+within posts small blind 1
+Jdot posts big blind 2
+** Hole Cards **
+Dealt to habing [3d Ah]
+sleepyknees folds
+habing raises to 4
+within raises to 14
+Jdot calls 12
+habing folds
+** Flop ** [7h 6c Ac]
+within bets 21
+Jdot folds
+within refunded 21
+within wins Pot (31.20)
+Rake (0.80)
+
+
+
+Hand #8907862-153 - 2013-06-23 04:01:24
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (140.67)
+Seat 2: Jdot (66)
+Seat 4: silent (200) - waiting for big blind
+Seat 5: sleepyknees (325.38)
+Seat 6: habing (520.53)
+within has the dealer button
+Jdot posts small blind 1
+silent posts big blind 2
+** Hole Cards **
+Dealt to habing [2s Ah]
+sleepyknees folds
+habing folds
+within folds
+Jdot folds
+silent refunded 1
+silent wins Pot (2)
+Rake (0)
+
+
+
+Hand #8907880-154 - 2013-06-23 04:01:55
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (140.67)
+Seat 2: Jdot (65)
+Seat 4: silent (201)
+Seat 5: sleepyknees (325.38)
+Seat 6: habing (520.53)
+Jdot has the dealer button
+silent posts small blind 1
+sleepyknees posts big blind 2
+** Hole Cards **
+Dealt to habing [6c 7d]
+habing folds
+within folds
+Jdot raises to 6
+silent folds
+sleepyknees folds
+Jdot refunded 4
+Jdot wins Pot (5)
+Rake (0)
+
+
+
+Hand #8907899-155 - 2013-06-23 04:02:18
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (140.67)
+Seat 2: Jdot (68)
+Seat 4: silent (200)
+Seat 5: sleepyknees (323.38)
+Seat 6: habing (520.53)
+silent has the dealer button
+sleepyknees posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [8s 6s]
+within folds
+Jdot folds
+silent folds
+sleepyknees folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8907913-156 - 2013-06-23 04:02:40
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (140.67)
+Seat 2: Jdot (68)
+Seat 4: silent (200)
+Seat 5: sleepyknees (322.38)
+Seat 6: habing (521.53)
+sleepyknees has the dealer button
+habing posts small blind 1
+within posts big blind 2
+** Hole Cards **
+Dealt to habing [Ks Td]
+Jdot folds
+silent folds
+sleepyknees folds
+habing raises to 6
+within calls 4
+** Flop ** [6c 4h Qh]
+habing checks
+within bets 8
+habing folds
+within refunded 8
+within wins Pot (11.70)
+Rake (0.30)
+
+
+
+Hand #8907938-157 - 2013-06-23 04:03:10
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (146.37)
+Seat 2: Jdot (68)
+Seat 4: silent (200)
+Seat 5: sleepyknees (322.38)
+Seat 6: habing (515.53)
+habing has the dealer button
+within posts small blind 1
+Jdot posts big blind 2
+** Hole Cards **
+Dealt to habing [Kc 5s]
+silent raises to 6
+sleepyknees folds
+habing folds
+within folds
+Jdot calls 4
+** Flop ** [3c Qh 9h]
+Jdot checks
+silent bets 7
+Jdot calls 7
+** Turn ** [4c]
+Jdot checks
+silent bets 15
+Jdot folds
+silent refunded 15
+silent wins Pot (26.33)
+Rake (0.67)
+
+
+
+Hand #8907968-158 - 2013-06-23 04:04:03
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (145.37)
+Seat 2: Jdot (55)
+Seat 4: silent (213.33)
+Seat 5: sleepyknees (322.38)
+Seat 6: habing (515.53)
+within has the dealer button
+Jdot posts small blind 1
+silent posts big blind 2
+** Hole Cards **
+Dealt to habing [9d Kc]
+sleepyknees folds
+habing raises to 6
+within folds
+Jdot folds
+silent calls 4
+** Flop ** [Jc 8c 7c]
+silent checks
+habing bets 9.20
+silent calls 9.20
+** Turn ** [Ts]
+silent checks
+habing bets 27.60
+silent calls 27.60
+** River ** [6s]
+silent checks
+habing bets 23.60
+silent calls 23.60
+** Pot Show Down ** [Jc 8c 7c Ts 6s]
+silent shows [Ac Jd] (a Pair of Jacks +AT8)
+habing shows [9d Kc] (a Straight, Seven to Jack)
+habing wins Pot (130.46) with a Straight
+Rake (3.34)
+
+
+
+Hand #8908012-159 - 2013-06-23 04:05:09
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (145.37)
+Seat 2: Jdot (54)
+Seat 4: silent (146.93)
+Seat 5: sleepyknees (322.38)
+Seat 6: habing (579.59)
+Jdot has the dealer button
+silent posts small blind 1
+sleepyknees posts big blind 2
+** Hole Cards **
+Dealt to habing [8c Ts]
+habing folds
+within raises to 6
+Jdot folds
+silent folds
+sleepyknees folds
+within refunded 4
+within wins Pot (5)
+Rake (0)
+
+
+
+Hand #8908025-160 - 2013-06-23 04:05:30
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (148.37)
+Seat 2: Jdot (54)
+Seat 4: silent (145.93)
+Seat 5: sleepyknees (320.38)
+Seat 6: habing (579.59)
+silent has the dealer button
+sleepyknees posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [8s 5h]
+within raises to 6
+Jdot raises to 10
+silent folds
+sleepyknees folds
+habing folds
+within raises to 148.37 (All-in)
+Jdot calls 44 (All-in)
+within refunded 94.37
+** Flop ** [6s Js As]
+** Turn ** [6c]
+** River ** [3s]
+** Pot Show Down ** [6s Js As 6c 3s]
+within shows [Jd Jh] (a Full House, Jacks full of Sixes)
+Jdot shows [Qs Ah] (a Flush, Ace high +QJ63)
+within wins Pot (108.23) with a Full House
+Rake (2.77)
+
+
+
+Hand #8908057-161 - 2013-06-23 04:06:17
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (202.60)
+Seat 2: Jdot (0) - sitting out
+Seat 4: silent (145.93)
+Seat 5: sleepyknees (319.38)
+Seat 6: habing (577.59)
+sleepyknees has the dealer button
+habing posts small blind 1
+within posts big blind 2
+** Hole Cards **
+Dealt to habing [Ac 5s]
+silent folds
+sleepyknees folds
+habing raises to 6
+within folds
+habing refunded 4
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8908072-162 - 2013-06-23 04:06:40
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (200.60)
+Seat 2: Jdot (0) - sitting out
+Seat 4: silent (145.93)
+Seat 5: sleepyknees (319.38)
+Seat 6: habing (579.59)
+habing has the dealer button
+within posts small blind 1
+silent posts big blind 2
+** Hole Cards **
+Dealt to habing [2s 4c]
+sleepyknees folds
+habing folds
+within folds
+silent refunded 1
+silent wins Pot (2)
+Rake (0)
+
+
+
+Hand #8908081-163 - 2013-06-23 04:06:57
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (199.60)
+Seat 2: Jdot (0) - sitting out
+Seat 4: silent (146.93)
+Seat 5: sleepyknees (319.38)
+Seat 6: habing (579.59)
+within has the dealer button
+silent posts small blind 1
+sleepyknees posts big blind 2
+** Hole Cards **
+Dealt to habing [8d 3s]
+habing folds
+within folds
+silent calls 1
+sleepyknees raises to 8
+silent calls 6
+** Flop ** [Qd 5h Ac]
+silent checks
+sleepyknees checks
+** Turn ** [6s]
+silent bets 8
+sleepyknees calls 8
+** River ** [6h]
+silent bets 12
+sleepyknees calls 12
+** Pot Show Down ** [Qd 5h Ac 6s 6h]
+silent shows [9c As] (Two Pair, Aces and Sixes +Q)
+sleepyknees shows [3h Ah] (Two Pair, Aces and Sixes +Q)
+silent splits Pot (27.30) with Two Pair
+sleepyknees splits Pot (27.30) with Two Pair
+Rake (1.40)
+
+
+
+Hand #8908131-164 - 2013-06-23 04:08:19
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (199.60)
+Seat 4: silent (146.23)
+Seat 5: sleepyknees (318.68)
+Seat 6: habing (579.59)
+silent has the dealer button
+sleepyknees posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [2h 9d]
+within raises to 6
+silent calls 6
+sleepyknees folds
+habing folds
+** Flop ** [8s 6s Tc]
+within checks
+silent checks
+** Turn ** [7h]
+within checks
+silent checks
+** River ** [Ks]
+within checks
+silent bets 8
+within folds
+silent refunded 8
+silent wins Pot (14.63)
+Rake (0.37)
+
+
+
+Hand #8908161-165 - 2013-06-23 04:09:03
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (193.60)
+Seat 4: silent (154.86)
+Seat 5: sleepyknees (317.68)
+Seat 6: habing (577.59)
+sleepyknees has the dealer button
+habing posts small blind 1
+within posts big blind 2
+** Hole Cards **
+Dealt to habing [Ts 8d]
+silent folds
+sleepyknees folds
+habing raises to 6
+within calls 4
+** Flop ** [9d 7c 3s]
+habing bets 7.60
+within calls 7.60
+** Turn ** [6d]
+habing checks
+within checks
+** River ** [2d]
+habing bets 21.20
+within folds
+habing refunded 21.20
+habing wins Pot (26.52)
+Rake (0.68)
+
+
+
+Hand #8908191-166 - 2013-06-23 04:09:54
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (180)
+Seat 5: sleepyknees (317.68)
+Seat 6: habing (590.51)
+habing has the dealer button
+within posts small blind 1
+sleepyknees posts big blind 2
+** Hole Cards **
+Dealt to habing [4s 3s]
+habing raises to 4
+within folds
+sleepyknees folds
+habing refunded 2
+habing wins Pot (5)
+Rake (0)
+
+
+
+Hand #8908201-167 - 2013-06-23 04:10:09
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (179)
+Seat 5: sleepyknees (315.68)
+Seat 6: habing (593.51)
+within has the dealer button
+sleepyknees posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Td Tc]
+within raises to 6
+sleepyknees raises to 20
+habing folds
+within calls 14
+** Flop ** [4c 8h Ad]
+sleepyknees bets 21.57
+within calls 21.57
+** Turn ** [5c]
+sleepyknees checks
+within bets 45
+sleepyknees folds
+within refunded 45
+within wins Pot (83.02)
+Rake (2.12)
+
+
+
+Hand #8908232-168 - 2013-06-23 04:11:12
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (220.45)
+Seat 5: sleepyknees (274.11)
+Seat 6: habing (591.51)
+sleepyknees has the dealer button
+habing posts small blind 1
+within posts big blind 2
+** Hole Cards **
+Dealt to habing [Td Kd]
+sleepyknees folds
+habing raises to 6
+within calls 4
+** Flop ** [7s 8d 3c]
+habing bets 6.80
+within calls 6.80
+** Turn ** [As]
+habing bets 15.20
+within calls 15.20
+** River ** [4d]
+habing bets 32.40
+within folds
+habing refunded 32.40
+habing wins Pot (54.60)
+Rake (1.40)
+
+
+
+Hand #8908267-169 - 2013-06-23 04:12:01
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (192.45)
+Seat 5: sleepyknees (274.11)
+Seat 6: habing (618.11)
+habing has the dealer button
+within posts small blind 1
+sleepyknees posts big blind 2
+** Hole Cards **
+Dealt to habing [6c 5h]
+habing folds
+within folds
+sleepyknees refunded 1
+sleepyknees wins Pot (2)
+Rake (0)
+
+
+
+Hand #8908276-170 - 2013-06-23 04:12:14
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (191.45)
+Seat 5: sleepyknees (275.11)
+Seat 6: habing (618.11)
+within has the dealer button
+sleepyknees posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [4h 7d]
+within raises to 6
+sleepyknees folds
+habing folds
+within refunded 4
+within wins Pot (5)
+Rake (0)
+
+
+
+Hand #8908290-171 - 2013-06-23 04:12:42
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (194.45)
+Seat 5: sleepyknees (274.11)
+Seat 6: habing (616.11)
+sleepyknees has the dealer button
+habing posts small blind 1
+within posts big blind 2
+** Hole Cards **
+Dealt to habing [Ac Ah]
+sleepyknees folds
+habing raises to 6
+within calls 4
+** Flop ** [Qc 8h Qd]
+habing bets 8
+within raises to 20
+habing calls 12
+** Turn ** [Th]
+habing checks
+within bets 35
+habing folds
+within refunded 35
+within wins Pot (50.70)
+Rake (1.30)
+
+
+
+Hand #8908323-172 - 2013-06-23 04:13:44
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (219.15)
+Seat 5: sleepyknees (274.11)
+Seat 6: habing (590.11)
+habing has the dealer button
+within posts small blind 1
+sleepyknees posts big blind 2
+** Hole Cards **
+Dealt to habing [8s 5d]
+habing folds
+within folds
+sleepyknees refunded 1
+sleepyknees wins Pot (2)
+Rake (0)
+
+
+
+Hand #8908330-173 - 2013-06-23 04:13:58
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (218.15)
+Seat 5: sleepyknees (275.11)
+Seat 6: habing (590.11)
+within has the dealer button
+sleepyknees posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ad Ts]
+within folds
+sleepyknees raises to 6
+habing calls 4
+** Flop ** [Qd 2s 7h]
+sleepyknees bets 7.98
+habing folds
+sleepyknees refunded 7.98
+sleepyknees wins Pot (11.70)
+Rake (0.30)
+
+
+
+Hand #8908349-174 - 2013-06-23 04:14:33
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (218.15)
+Seat 5: sleepyknees (280.81)
+Seat 6: habing (584.11)
+sleepyknees has the dealer button
+habing posts small blind 1
+within posts big blind 2
+** Hole Cards **
+Dealt to habing [9h Kd]
+sleepyknees folds
+habing raises to 6
+within calls 4
+** Flop ** [9s 3h Qc]
+habing bets 6.80
+within folds
+habing refunded 6.80
+habing wins Pot (11.70)
+Rake (0.30)
+
+
+
+Hand #8908371-175 - 2013-06-23 04:15:06
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (212.15)
+Seat 5: sleepyknees (280.81)
+Seat 6: habing (589.81)
+habing has the dealer button
+within posts small blind 1
+sleepyknees posts big blind 2
+** Hole Cards **
+Dealt to habing [4s As]
+habing raises to 6
+within folds
+sleepyknees raises to 20
+habing calls 14
+** Flop ** [3d 9d 6h]
+sleepyknees bets 23.70
+habing folds
+sleepyknees refunded 23.70
+sleepyknees wins Pot (39.98)
+Rake (1.02)
+
+
+
+Hand #8908395-176 - 2013-06-23 04:16:09
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (211.15)
+Seat 5: sleepyknees (300.79)
+Seat 6: habing (569.81)
+within has the dealer button
+sleepyknees posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [5d Qd]
+within raises to 6
+sleepyknees raises to 20
+habing folds
+within calls 14
+** Flop ** [8h 3c 9d]
+sleepyknees bets 29.06
+within calls 29.06
+** Turn ** [4h]
+sleepyknees bets 46.82
+within folds
+sleepyknees refunded 46.82
+sleepyknees wins Pot (97.62)
+Rake (2.50)
+
+
+
+Hand #8908440-177 - 2013-06-23 04:17:16
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (162.09)
+Seat 5: sleepyknees (349.35)
+Seat 6: habing (567.81)
+sleepyknees has the dealer button
+habing posts small blind 1
+within posts big blind 2
+** Hole Cards **
+Dealt to habing [Ts 7h]
+sleepyknees folds
+habing folds
+within refunded 1
+within wins Pot (2)
+Rake (0)
+
+
+
+Hand #8908450-178 - 2013-06-23 04:17:31
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (163.09)
+Seat 5: sleepyknees (349.35)
+Seat 6: habing (566.81)
+habing has the dealer button
+within posts small blind 1
+sleepyknees posts big blind 2
+** Hole Cards **
+Dealt to habing [8c 7s]
+habing folds
+within folds
+sleepyknees refunded 1
+sleepyknees wins Pot (2)
+Rake (0)
+
+
+
+Hand #8908460-179 - 2013-06-23 04:17:45
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (162.09)
+Seat 5: sleepyknees (350.35)
+Seat 6: habing (566.81)
+within has the dealer button
+sleepyknees posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [4c Ts]
+within raises to 6
+sleepyknees folds
+habing has timed out
+habing folds
+within refunded 4
+within wins Pot (5)
+Rake (0)
+
+
+
+Hand #8908479-180 - 2013-06-23 04:18:24
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (165.09)
+Seat 5: sleepyknees (349.35)
+Seat 6: habing (564.81)
+sleepyknees has the dealer button
+habing posts small blind 1
+within posts big blind 2
+** Hole Cards **
+Dealt to habing [4h 7s]
+sleepyknees folds
+habing folds
+within refunded 1
+within wins Pot (2)
+Rake (0)
+
+
+
+Hand #8908486-181 - 2013-06-23 04:18:39
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (166.09)
+Seat 5: sleepyknees (349.35)
+Seat 6: habing (563.81)
+habing has the dealer button
+within posts small blind 1
+sleepyknees posts big blind 2
+** Hole Cards **
+Dealt to habing [8s Js]
+habing raises to 6
+within folds
+sleepyknees folds
+habing refunded 4
+habing wins Pot (5)
+Rake (0)
+
+
+
+Hand #8908502-182 - 2013-06-23 04:19:05
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (165.09)
+Seat 5: sleepyknees (347.35)
+Seat 6: habing (566.81)
+within has the dealer button
+sleepyknees posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ah 9c]
+within folds
+sleepyknees raises to 6
+habing calls 4
+** Flop ** [As 3s 7s]
+sleepyknees checks
+habing bets 8
+sleepyknees raises to 26
+habing folds
+sleepyknees refunded 18
+sleepyknees wins Pot (27.30)
+Rake (0.70)
+
+
+
+Hand #8908538-183 - 2013-06-23 04:20:18
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (165.09)
+Seat 5: sleepyknees (360.65)
+Seat 6: habing (552.81)
+sleepyknees has the dealer button
+habing posts small blind 1
+within posts big blind 2
+** Hole Cards **
+Dealt to habing [8d 2s]
+sleepyknees folds
+habing folds
+within refunded 1
+within wins Pot (2)
+Rake (0)
+
+
+
+Hand #8908546-184 - 2013-06-23 04:20:34
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (166.09)
+Seat 5: sleepyknees (360.65)
+Seat 6: habing (551.81)
+habing has the dealer button
+within posts small blind 1
+sleepyknees posts big blind 2
+** Hole Cards **
+Dealt to habing [4s 2h]
+habing folds
+within folds
+sleepyknees refunded 1
+sleepyknees wins Pot (2)
+Rake (0)
+
+
+
+Hand #8908559-185 - 2013-06-23 04:20:58
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (165.09)
+Seat 5: sleepyknees (361.65)
+Seat 6: habing (551.81)
+within has the dealer button
+sleepyknees posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Jh Ad]
+within folds
+sleepyknees folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8908571-186 - 2013-06-23 04:21:24
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (165.09)
+Seat 5: sleepyknees (360.65)
+Seat 6: habing (552.81)
+sleepyknees has the dealer button
+habing posts small blind 1
+within posts big blind 2
+** Hole Cards **
+Dealt to habing [As 3d]
+sleepyknees raises to 4
+habing folds
+within folds
+sleepyknees refunded 2
+sleepyknees wins Pot (5)
+Rake (0)
+
+
+
+Hand #8908587-187 - 2013-06-23 04:21:46
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (163.09)
+Seat 5: sleepyknees (363.65)
+Seat 6: habing (551.81)
+habing has the dealer button
+within posts small blind 1
+sleepyknees posts big blind 2
+** Hole Cards **
+Dealt to habing [As 5d]
+habing raises to 4
+within calls 3
+sleepyknees folds
+** Flop ** [Qh 7s Td]
+within checks
+habing bets 6.80
+within folds
+habing refunded 6.80
+habing wins Pot (9.75)
+Rake (0.25)
+
+
+
+Hand #8908615-188 - 2013-06-23 04:22:40
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (159.09)
+Seat 5: sleepyknees (361.65)
+Seat 6: habing (557.56)
+within has the dealer button
+sleepyknees posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [8c 9s]
+within raises to 6
+sleepyknees folds
+habing folds
+within refunded 4
+within wins Pot (5)
+Rake (0)
+
+
+
+Hand #8908627-189 - 2013-06-23 04:23:03
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (162.09)
+Seat 5: sleepyknees (360.65)
+Seat 6: habing (555.56)
+sleepyknees has the dealer button
+habing posts small blind 1
+within posts big blind 2
+** Hole Cards **
+Dealt to habing [5c Th]
+sleepyknees folds
+habing folds
+within refunded 1
+within wins Pot (2)
+Rake (0)
+
+
+
+Hand #8908635-190 - 2013-06-23 04:23:17
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (163.09)
+Seat 5: sleepyknees (360.65)
+Seat 6: habing (554.56)
+habing has the dealer button
+within posts small blind 1
+sleepyknees posts big blind 2
+** Hole Cards **
+Dealt to habing [Ah 4d]
+habing raises to 4
+within folds
+sleepyknees folds
+habing refunded 2
+habing wins Pot (5)
+Rake (0)
+
+
+
+Hand #8908644-191 - 2013-06-23 04:23:37
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (162.09)
+Seat 5: sleepyknees (358.65)
+Seat 6: habing (557.56)
+within has the dealer button
+sleepyknees posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Tc Ac]
+within raises to 6
+sleepyknees folds
+habing calls 4
+** Flop ** [6s 3d 4s]
+habing checks
+within checks
+** Turn ** [2h]
+habing checks
+within checks
+** River ** [Jc]
+habing bets 8
+within calls 8
+** Pot Show Down ** [6s 3d 4s 2h Jc]
+within shows [8d As] (High Card Ace +J864)
+habing shows [Tc Ac] (High Card Ace +JT64)
+habing wins Pot (28.28) with High Card
+Rake (0.72)
+
+
+
+Hand #8908670-192 - 2013-06-23 04:24:31
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (148.09)
+Seat 5: sleepyknees (357.65)
+Seat 6: habing (571.84)
+sleepyknees has the dealer button
+habing posts small blind 1
+within posts big blind 2
+** Hole Cards **
+Dealt to habing [Qh 4h]
+sleepyknees raises to 4
+habing folds
+within calls 2
+** Flop ** [2d 3d 8s]
+within checks
+sleepyknees checks
+** Turn ** [6d]
+within checks
+sleepyknees checks
+** River ** [4s]
+within bets 4
+sleepyknees folds
+within refunded 4
+within wins Pot (8.78)
+Rake (0.22)
+
+
+
+Hand #8908720-193 - 2013-06-23 04:25:58
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (152.87)
+Seat 5: sleepyknees (353.65)
+Seat 6: habing (570.84)
+habing has the dealer button
+within posts small blind 1
+sleepyknees posts big blind 2
+** Hole Cards **
+Dealt to habing [Js As]
+habing raises to 6
+within calls 5
+sleepyknees folds
+** Flop ** [3s Jd Qc]
+within checks
+habing bets 11.60
+within folds
+habing refunded 11.60
+habing wins Pot (13.65)
+Rake (0.35)
+
+
+
+Hand #8908753-194 - 2013-06-23 04:26:49
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (146.87)
+Seat 5: sleepyknees (351.65)
+Seat 6: habing (578.49)
+within has the dealer button
+sleepyknees posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [7c 5c]
+within raises to 6
+sleepyknees folds
+habing folds
+within refunded 4
+within wins Pot (5)
+Rake (0)
+
+
+
+Hand #8908772-195 - 2013-06-23 04:27:27
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (149.87)
+Seat 5: sleepyknees (350.65)
+Seat 6: habing (576.49)
+sleepyknees has the dealer button
+habing posts small blind 1
+within posts big blind 2
+** Hole Cards **
+Dealt to habing [Th 2s]
+sleepyknees folds
+habing folds
+within refunded 1
+within wins Pot (2)
+Rake (0)
+
+
+
+Hand #8908782-196 - 2013-06-23 04:27:46
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (150.87)
+Seat 5: sleepyknees (350.65)
+Seat 6: habing (575.49)
+habing has the dealer button
+within posts small blind 1
+sleepyknees posts big blind 2
+** Hole Cards **
+Dealt to habing [8h 8c]
+habing raises to 6
+within raises to 16
+sleepyknees folds
+habing calls 10
+** Flop ** [9c 2s 5h]
+within bets 21
+habing calls 21
+** Turn ** [Ts]
+within bets 113.87 (All-in)
+habing folds
+within refunded 113.87
+within wins Pot (74.10)
+Rake (1.90)
+
+
+
+Hand #8908813-197 - 2013-06-23 04:28:51
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (187.97)
+Seat 5: sleepyknees (348.65)
+Seat 6: habing (538.49)
+within has the dealer button
+sleepyknees posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [3h 5s]
+within folds
+sleepyknees raises to 6
+habing folds
+sleepyknees refunded 4
+sleepyknees wins Pot (4)
+Rake (0)
+
+
+
+Hand #8908825-198 - 2013-06-23 04:29:27
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (187.97)
+Seat 3: vettefever88 (200) - waiting for big blind
+Seat 5: sleepyknees (350.65)
+Seat 6: habing (536.49)
+sleepyknees has the dealer button
+habing posts small blind 1
+within posts big blind 2
+** Hole Cards **
+Dealt to habing [8c 6d]
+sleepyknees folds
+habing folds
+within refunded 1
+within wins Pot (2)
+Rake (0)
+
+
+
+Hand #8908833-199 - 2013-06-23 04:29:41
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (188.97)
+Seat 3: vettefever88 (200) - waiting for big blind
+Seat 5: sleepyknees (350.65)
+Seat 6: habing (535.49)
+habing has the dealer button
+within posts small blind 1
+vettefever88 posts big blind 2
+** Hole Cards **
+Dealt to habing [4s 3h]
+sleepyknees folds
+habing folds
+within folds
+vettefever88 refunded 1
+vettefever88 wins Pot (2)
+Rake (0)
+
+
+
+Hand #8908854-200 - 2013-06-23 04:30:12
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (187.97)
+Seat 3: vettefever88 (201)
+Seat 5: sleepyknees (350.65)
+Seat 6: habing (535.49)
+within has the dealer button
+vettefever88 posts small blind 1
+sleepyknees posts big blind 2
+** Hole Cards **
+Dealt to habing [7s Qh]
+habing raises to 6
+within folds
+vettefever88 calls 5
+sleepyknees folds
+** Flop ** [Ah 2d 5d]
+vettefever88 checks
+habing checks
+** Turn ** [5c]
+vettefever88 checks
+habing checks
+** River ** [6s]
+vettefever88 bets 48
+habing folds
+vettefever88 refunded 48
+vettefever88 wins Pot (13.65)
+Rake (0.35)
+
+
+
+Hand #8908882-201 - 2013-06-23 04:31:00
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (187.97)
+Seat 3: vettefever88 (208.65)
+Seat 5: sleepyknees (348.65)
+Seat 6: habing (529.49)
+vettefever88 has the dealer button
+sleepyknees posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ad 2h]
+within folds
+vettefever88 raises to 4
+sleepyknees folds
+habing folds
+vettefever88 refunded 2
+vettefever88 wins Pot (5)
+Rake (0)
+
+
+
+Hand #8908895-202 - 2013-06-23 04:31:31
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (187.97)
+Seat 3: vettefever88 (211.65)
+Seat 5: sleepyknees (347.65)
+Seat 6: habing (527.49)
+sleepyknees has the dealer button
+habing posts small blind 1
+within posts big blind 2
+** Hole Cards **
+Dealt to habing [5h 4d]
+vettefever88 raises to 4
+sleepyknees folds
+habing folds
+within calls 2
+** Flop ** [7h 2c Qs]
+within checks
+vettefever88 bets 6
+within calls 6
+** Turn ** [2s]
+within checks
+vettefever88 bets 8
+within calls 8
+** River ** [8h]
+within checks
+vettefever88 checks
+** Pot Show Down ** [7h 2c Qs 2s 8h]
+within shows [8s Ts] (Two Pair, Eights and Deuces +Q)
+vettefever88 shows [Qc 9h] (Two Pair, Queens and Deuces +9)
+vettefever88 wins Pot (36.08) with Two Pair
+Rake (0.92)
+
+
+
+Hand #8908924-203 - 2013-06-23 04:32:27
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (169.97)
+Seat 3: vettefever88 (229.73)
+Seat 5: sleepyknees (347.65)
+Seat 6: habing (526.49)
+habing has the dealer button
+within posts small blind 1
+vettefever88 posts big blind 2
+** Hole Cards **
+Dealt to habing [2s 7h]
+sleepyknees folds
+habing folds
+within calls 1
+vettefever88 checks
+** Flop ** [3h Td Jh]
+within checks
+vettefever88 bets 10
+within calls 10
+** Turn ** [Qd]
+within checks
+vettefever88 bets 14
+within calls 14
+** River ** [Kd]
+within bets 35
+vettefever88 calls 35
+** Pot Show Down ** [3h Td Jh Qd Kd]
+within shows [7c 8h] (High Card King +QJT8)
+vettefever88 shows [Kc Qc] (Two Pair, Kings and Queens +J)
+vettefever88 wins Pot (118.95) with Two Pair
+Rake (3.05)
+
+
+
+Hand #8908950-204 - 2013-06-23 04:33:24
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (108.97)
+Seat 3: vettefever88 (287.68)
+Seat 5: sleepyknees (347.65)
+Seat 6: habing (526.49)
+within has the dealer button
+vettefever88 posts small blind 1
+sleepyknees posts big blind 2
+** Hole Cards **
+Dealt to habing [5d 5h]
+habing raises to 6
+within raises to 16
+vettefever88 folds
+sleepyknees folds
+habing calls 10
+** Flop ** [Ts Tc 6c]
+habing checks
+within bets 21
+habing folds
+within refunded 21
+within wins Pot (34.13)
+Rake (0.87)
+
+
+
+Hand #8908975-205 - 2013-06-23 04:34:29
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (127.10)
+Seat 3: vettefever88 (286.68)
+Seat 5: sleepyknees (345.65)
+Seat 6: habing (510.49)
+vettefever88 has the dealer button
+sleepyknees posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [9c 5c]
+within folds
+vettefever88 calls 2
+sleepyknees folds
+habing checks
+** Flop ** [Td 8c Js]
+habing checks
+vettefever88 checks
+** Turn ** [Qs]
+habing checks
+vettefever88 checks
+** River ** [9s]
+habing checks
+vettefever88 checks
+** Pot Show Down ** [Td 8c Js Qs 9s]
+vettefever88 shows [Ah 4d] (a Straight, Eight to Queen)
+habing shows [9c 5c] (a Straight, Eight to Queen)
+vettefever88 splits Pot (2.44) with a Straight
+habing splits Pot (2.44) with a Straight
+Rake (0.12)
+
+
+
+Hand #8908996-206 - 2013-06-23 04:35:26
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (127.10)
+Seat 3: vettefever88 (287.12)
+Seat 5: sleepyknees (344.65)
+Seat 6: habing (510.93)
+sleepyknees has the dealer button
+habing posts small blind 1
+within posts big blind 2
+** Hole Cards **
+Dealt to habing [8d Ks]
+vettefever88 calls 2
+sleepyknees folds
+habing folds
+within checks
+** Flop ** [Qd 2h 2c]
+within checks
+vettefever88 checks
+** Turn ** [9c]
+within checks
+vettefever88 bets 2
+within calls 2
+** River ** [Js]
+within checks
+vettefever88 bets 2
+within calls 2
+** Pot Show Down ** [Qd 2h 2c 9c Js]
+within shows [Td 9h] (Two Pair, Nines and Deuces +Q)
+vettefever88 shows [9d Jh] (Two Pair, Jacks and Nines +Q)
+vettefever88 wins Pot (12.68) with Two Pair
+Rake (0.32)
+
+
+
+Hand #8909016-207 - 2013-06-23 04:36:11
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (121.10)
+Seat 3: vettefever88 (293.80)
+Seat 5: sleepyknees (344.65)
+Seat 6: habing (509.93)
+habing has the dealer button
+within posts small blind 1
+vettefever88 posts big blind 2
+** Hole Cards **
+Dealt to habing [4d 5s]
+sleepyknees raises to 6
+habing folds
+within folds
+vettefever88 calls 4
+** Flop ** [7s 3s Ks]
+vettefever88 checks
+sleepyknees bets 9.51
+vettefever88 folds
+sleepyknees refunded 9.51
+sleepyknees wins Pot (12.68)
+Rake (0.32)
+
+
+
+Hand #8909032-208 - 2013-06-23 04:36:46
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (120.10)
+Seat 3: vettefever88 (287.80)
+Seat 5: sleepyknees (351.33)
+Seat 6: habing (509.93)
+within has the dealer button
+vettefever88 posts small blind 1
+sleepyknees posts big blind 2
+** Hole Cards **
+Dealt to habing [8h Ks]
+habing folds
+within folds
+vettefever88 calls 1
+sleepyknees raises to 8
+vettefever88 folds
+sleepyknees refunded 6
+sleepyknees wins Pot (4)
+Rake (0)
+
+
+
+Hand #8909050-209 - 2013-06-23 04:37:19
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (120.10)
+Seat 3: vettefever88 (285.80)
+Seat 5: sleepyknees (353.33)
+Seat 6: habing (509.93)
+vettefever88 has the dealer button
+sleepyknees posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [3h Td]
+within folds
+vettefever88 folds
+sleepyknees raises to 6
+habing folds
+sleepyknees refunded 4
+sleepyknees wins Pot (4)
+Rake (0)
+
+
+
+Hand #8909058-210 - 2013-06-23 04:37:42
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (120.10)
+Seat 3: vettefever88 (285.80)
+Seat 5: sleepyknees (355.33)
+Seat 6: habing (507.93)
+sleepyknees has the dealer button
+habing posts small blind 1
+within posts big blind 2
+** Hole Cards **
+Dealt to habing [Th 6s]
+vettefever88 raises to 4
+sleepyknees folds
+habing folds
+within calls 2
+** Flop ** [9d 7s Ac]
+within checks
+vettefever88 bets 8
+within calls 8
+** Turn ** [Qd]
+within checks
+vettefever88 checks
+** River ** [4d]
+within bets 20
+vettefever88 folds
+within refunded 20
+within wins Pot (24.38)
+Rake (0.62)
+
+
+
+Hand #8909081-211 - 2013-06-23 04:38:46
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (132.48)
+Seat 3: vettefever88 (273.80)
+Seat 5: sleepyknees (355.33)
+Seat 6: habing (506.93)
+habing has the dealer button
+within posts small blind 1
+vettefever88 posts big blind 2
+** Hole Cards **
+Dealt to habing [7s Qc]
+sleepyknees folds
+habing raises to 6
+within folds
+vettefever88 folds
+habing refunded 4
+habing wins Pot (5)
+Rake (0)
+
+
+
+Hand #8909093-212 - 2013-06-23 04:39:17
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (131.48)
+Seat 3: vettefever88 (271.80)
+Seat 5: sleepyknees (355.33)
+Seat 6: habing (509.93)
+within has the dealer button
+vettefever88 posts small blind 1
+sleepyknees posts big blind 2
+** Hole Cards **
+Dealt to habing [5h Ac]
+habing folds
+within folds
+vettefever88 calls 1
+sleepyknees raises to 8
+vettefever88 calls 6
+** Flop ** [6c Ah 5d]
+vettefever88 checks
+sleepyknees checks
+** Turn ** [Qh]
+vettefever88 bets 14
+sleepyknees calls 14
+** River ** [Qc]
+vettefever88 checks
+sleepyknees bets 30.32
+vettefever88 folds
+sleepyknees refunded 30.32
+sleepyknees wins Pot (42.90)
+Rake (1.10)
+
+
+
+Hand #8909118-213 - 2013-06-23 04:40:31
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (131.48)
+Seat 3: vettefever88 (249.80)
+Seat 5: sleepyknees (376.23)
+Seat 6: habing (509.93)
+vettefever88 has the dealer button
+sleepyknees posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Qs Qc]
+within folds
+vettefever88 raises to 10
+sleepyknees raises to 34
+habing raises to 509.93 (All-in)
+vettefever88 folds
+sleepyknees folds
+habing refunded 475.93
+habing wins Pot (78)
+Rake (0)
+
+
+
+Hand #8909151-214 - 2013-06-23 04:41:49
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (131.48)
+Seat 3: vettefever88 (239.80)
+Seat 5: sleepyknees (342.23)
+Seat 6: habing (553.93)
+sleepyknees has the dealer button
+habing posts small blind 1
+within posts big blind 2
+** Hole Cards **
+Dealt to habing [5h 4h]
+vettefever88 folds
+sleepyknees raises to 4
+habing folds
+within folds
+sleepyknees refunded 2
+sleepyknees wins Pot (5)
+Rake (0)
+
+
+
+Hand #8909161-215 - 2013-06-23 04:42:13
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (129.48)
+Seat 3: vettefever88 (239.80)
+Seat 5: sleepyknees (345.23)
+Seat 6: habing (552.93)
+habing has the dealer button
+within posts small blind 1
+vettefever88 posts big blind 2
+** Hole Cards **
+Dealt to habing [6d 9d]
+sleepyknees raises to 6
+habing folds
+within folds
+vettefever88 raises to 10
+sleepyknees calls 4
+** Flop ** [6s 2s Td]
+vettefever88 bets 30
+sleepyknees folds
+vettefever88 refunded 30
+vettefever88 wins Pot (20.48)
+Rake (0.52)
+
+
+
+Hand #8909189-216 - 2013-06-23 04:43:23
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (128.48)
+Seat 3: vettefever88 (250.28)
+Seat 5: sleepyknees (335.23)
+Seat 6: habing (552.93)
+within has the dealer button
+vettefever88 posts small blind 1
+sleepyknees posts big blind 2
+** Hole Cards **
+Dealt to habing [Kh Kc]
+habing raises to 6
+within calls 6
+vettefever88 folds
+sleepyknees folds
+** Flop ** [Ts 4h Kd]
+habing bets 11.60
+within folds
+habing refunded 11.60
+habing wins Pot (14.63)
+Rake (0.37)
+
+
+
+Hand #8909206-217 - 2013-06-23 04:44:07
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (122.48)
+Seat 3: vettefever88 (249.28)
+Seat 5: sleepyknees (333.23)
+Seat 6: habing (561.56)
+vettefever88 has the dealer button
+sleepyknees posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ah Jh]
+within folds
+vettefever88 calls 2
+sleepyknees folds
+habing raises to 9.60
+vettefever88 folds
+habing refunded 7.60
+habing wins Pot (5)
+Rake (0)
+
+
+
+Hand #8909219-218 - 2013-06-23 04:44:44
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (122.48)
+Seat 3: vettefever88 (247.28)
+Seat 5: sleepyknees (332.23)
+Seat 6: habing (564.56)
+sleepyknees has the dealer button
+habing posts small blind 1
+within posts big blind 2
+** Hole Cards **
+Dealt to habing [8h Qs]
+vettefever88 folds
+sleepyknees folds
+habing raises to 6
+within calls 4
+** Flop ** [Js 8c Th]
+habing bets 6.40
+within raises to 12.80
+habing folds
+within refunded 6.40
+within wins Pot (24.18)
+Rake (0.62)
+
+
+
+Hand #8909233-219 - 2013-06-23 04:45:16
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (134.26)
+Seat 3: vettefever88 (247.28)
+Seat 5: sleepyknees (332.23)
+Seat 6: habing (552.16)
+habing has the dealer button
+within posts small blind 1
+vettefever88 posts big blind 2
+** Hole Cards **
+Dealt to habing [4s 4d]
+sleepyknees raises to 6
+habing calls 6
+within calls 5
+vettefever88 calls 4
+** Flop ** [2s Qd Th]
+within bets 12
+vettefever88 calls 12
+sleepyknees folds
+habing folds
+** Turn ** [Td]
+within checks
+vettefever88 bets 22
+within calls 22
+** River ** [8h]
+within checks
+vettefever88 checks
+** Pot Show Down ** [2s Qd Th Td 8h]
+within shows [Qh 9d] (Two Pair, Queens and Tens +9)
+vettefever88 shows [Kh As] (a Pair of Tens +AKQ)
+within wins Pot (89.70) with Two Pair
+Rake (2.30)
+
+
+
+Hand #8909260-220 - 2013-06-23 04:46:26
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (183.96)
+Seat 3: vettefever88 (207.28)
+Seat 5: sleepyknees (326.23)
+Seat 6: habing (546.16)
+within has the dealer button
+vettefever88 posts small blind 1
+sleepyknees posts big blind 2
+** Hole Cards **
+Dealt to habing [3s Jh]
+habing folds
+within folds
+vettefever88 raises to 4
+sleepyknees calls 2
+** Flop ** [3h 7h Qc]
+vettefever88 bets 6
+sleepyknees raises to 18
+vettefever88 folds
+sleepyknees refunded 12
+sleepyknees wins Pot (19.50)
+Rake (0.50)
+
+
+
+Hand #8909276-221 - 2013-06-23 04:47:15
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (183.96)
+Seat 3: vettefever88 (197.28)
+Seat 5: sleepyknees (335.73)
+Seat 6: habing (546.16)
+vettefever88 has the dealer button
+sleepyknees posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [2s Js]
+within raises to 6
+vettefever88 calls 6
+sleepyknees folds
+habing folds
+** Flop ** [Kc 4s 6c]
+within bets 8
+vettefever88 raises to 24
+within calls 16
+** Turn ** [5s]
+within checks
+vettefever88 bets 14
+within raises to 46
+vettefever88 calls 32
+** River ** [7c]
+within bets 107.96 (All-in)
+vettefever88 calls 107.96
+** Pot Show Down ** [Kc 4s 6c 5s 7c]
+within shows [Kh Kd] (Three of a Kind, Kings +76)
+vettefever88 shows [7s 5h] (Two Pair, Sevens and Fives +K)
+within wins Pot (366.92) with Three of a Kind
+Rake (4)
+
+
+
+Hand #8909293-222 - 2013-06-23 04:48:01
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (366.92)
+Seat 3: vettefever88 (13.32)
+Seat 5: sleepyknees (334.73)
+Seat 6: habing (544.16)
+sleepyknees has the dealer button
+habing posts small blind 1
+within posts big blind 2
+** Hole Cards **
+Dealt to habing [Qh As]
+vettefever88 raises to 13.32 (All-in)
+sleepyknees folds
+habing raises to 544.16 (All-in)
+within folds
+habing refunded 530.84
+** Flop ** [3c 7d 6h]
+** Turn ** [5h]
+** River ** [Qd]
+** Pot Show Down ** [3c 7d 6h 5h Qd]
+vettefever88 shows [Qs 6c] (Two Pair, Queens and Sixes +7)
+habing shows [Qh As] (a Pair of Queens +A76)
+vettefever88 wins Pot (27.93) with Two Pair
+Rake (0.71)
+
+
+
+Hand #8909305-223 - 2013-06-23 04:48:28
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (364.92)
+Seat 3: vettefever88 (27.93)
+Seat 5: sleepyknees (334.73)
+Seat 6: habing (530.84)
+habing has the dealer button
+within posts small blind 1
+vettefever88 posts big blind 2
+** Hole Cards **
+Dealt to habing [Ks 8h]
+sleepyknees folds
+habing raises to 6
+within calls 5
+vettefever88 raises to 27.93 (All-in)
+habing folds
+within calls 21.93
+** Flop ** [Qd Ad 7s]
+** Turn ** [2c]
+** River ** [9s]
+** Pot Show Down ** [Qd Ad 7s 2c 9s]
+within shows [Qh Jh] (a Pair of Queens +AJ9)
+vettefever88 shows [4d 8s] (High Card Ace +Q987)
+within wins Pot (60.32) with a Pair
+Rake (1.54)
+
+
+
+Hand #8909319-224 - 2013-06-23 04:49:03
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: within (397.31)
+Seat 5: sleepyknees (334.73)
+Seat 6: habing (524.84)
+within has the dealer button
+sleepyknees posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ah 3c]
+within folds
+sleepyknees raises to 6
+habing calls 4
+** Flop ** [Kc 4s 7c]
+sleepyknees bets 7.17
+habing folds
+sleepyknees refunded 7.17
+sleepyknees wins Pot (11.70)
+Rake (0.30)
+
+
+
+Hand #8909339-225 - 2013-06-23 04:49:56
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 5: sleepyknees (340.43)
+Seat 6: habing (518.84)
+sleepyknees has the dealer button
+sleepyknees posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Qs Js]
+sleepyknees raises to 4
+habing calls 2
+** Flop ** [Kc 5d 9d]
+habing checks
+sleepyknees checks
+** Turn ** [7d]
+habing checks
+sleepyknees bets 5.72
+habing folds
+sleepyknees refunded 5.72
+sleepyknees wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #8909356-226 - 2013-06-23 04:50:48
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 5: sleepyknees (344.23)
+Seat 6: habing (514.84)
+habing has the dealer button
+habing posts small blind 1
+sleepyknees posts big blind 2
+** Hole Cards **
+Dealt to habing [5s 4c]
+habing folds
+sleepyknees refunded 1
+sleepyknees wins Pot (2)
+Rake (0)
+
+
+
+Hand #8909362-227 - 2013-06-23 04:50:59
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 5: sleepyknees (345.23)
+Seat 6: habing (513.84)
+sleepyknees has the dealer button
+sleepyknees posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [9s Jh]
+sleepyknees folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8910138-1 - 2013-06-23 05:14:43
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: ericmail2010 (40) - waiting for big blind
+Seat 6: habing (514.84)
+habing has the dealer button
+habing posts small blind 1
+ericmail2010 posts big blind 2
+** Hole Cards **
+Dealt to habing [Jd Th]
+habing raises to 4
+ericmail2010 folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8910147-2 - 2013-06-23 05:15:00
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: ericmail2010 (38)
+Seat 6: habing (516.84)
+ericmail2010 has the dealer button
+ericmail2010 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [7c Qs]
+ericmail2010 raises to 4
+habing folds
+ericmail2010 refunded 2
+ericmail2010 wins Pot (4)
+Rake (0)
+
+
+
+Hand #8910155-3 - 2013-06-23 05:15:18
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: ericmail2010 (40)
+Seat 6: habing (514.84)
+habing has the dealer button
+habing posts small blind 1
+ericmail2010 posts big blind 2
+** Hole Cards **
+Dealt to habing [2h 9s]
+habing folds
+ericmail2010 refunded 1
+ericmail2010 wins Pot (2)
+Rake (0)
+
+
+
+Hand #8910162-4 - 2013-06-23 05:15:29
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: ericmail2010 (41)
+Seat 6: habing (513.84)
+ericmail2010 has the dealer button
+ericmail2010 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Tc 6h]
+ericmail2010 raises to 4
+habing folds
+ericmail2010 refunded 2
+ericmail2010 wins Pot (4)
+Rake (0)
+
+
+
+Hand #8910174-5 - 2013-06-23 05:15:50
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: ericmail2010 (43)
+Seat 6: habing (511.84)
+habing has the dealer button
+habing posts small blind 1
+ericmail2010 posts big blind 2
+** Hole Cards **
+Dealt to habing [Kd 7c]
+habing raises to 4
+ericmail2010 raises to 10
+habing folds
+ericmail2010 refunded 6
+ericmail2010 wins Pot (8)
+Rake (0)
+
+
+
+Hand #8910195-6 - 2013-06-23 05:16:37
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: ericmail2010 (47)
+Seat 6: habing (507.84)
+ericmail2010 has the dealer button
+ericmail2010 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Js Ad]
+ericmail2010 folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8910198-7 - 2013-06-23 05:16:47
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: ericmail2010 (46)
+Seat 6: habing (508.84)
+habing has the dealer button
+habing posts small blind 1
+ericmail2010 posts big blind 2
+** Hole Cards **
+Dealt to habing [Qd Kh]
+habing raises to 4
+ericmail2010 folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8910207-8 - 2013-06-23 05:17:09
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #3
+Seat 1: ericmail2010 (44)
+Seat 6: habing (510.84)
+ericmail2010 has the dealer button
+ericmail2010 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [5s Qs]
+ericmail2010 raises to 6
+habing folds
+ericmail2010 refunded 4
+ericmail2010 wins Pot (4)
+Rake (0)

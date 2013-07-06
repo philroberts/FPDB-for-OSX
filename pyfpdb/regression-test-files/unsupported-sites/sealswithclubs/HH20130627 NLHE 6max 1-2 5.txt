@@ -1,0 +1,184 @@
+Hand #9113747-1 - 2013-06-27 15:31:01
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 3: endoplazmik (60) - waiting for big blind
+Seat 4: habing (200) - waiting for big blind
+endoplazmik has the dealer button
+endoplazmik posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [7s 2d]
+endoplazmik folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #9113754-2 - 2013-06-27 15:31:17
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 3: endoplazmik (59)
+Seat 4: habing (201)
+habing has the dealer button
+habing posts small blind 1
+endoplazmik posts big blind 2
+** Hole Cards **
+Dealt to habing [8d 3h]
+habing folds
+endoplazmik refunded 1
+endoplazmik wins Pot (2)
+Rake (0)
+
+
+
+Hand #9113761-3 - 2013-06-27 15:31:32
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 3: endoplazmik (60)
+Seat 4: habing (200)
+endoplazmik has the dealer button
+endoplazmik posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Qh 8s]
+endoplazmik calls 1
+habing checks
+** Flop ** [8c Qc 9d]
+habing checks
+endoplazmik bets 2
+habing raises to 198 (All-in)
+endoplazmik calls 56 (All-in)
+habing refunded 140
+** Turn ** [7c]
+** River ** [6h]
+** Pot Show Down ** [8c Qc 9d 7c 6h]
+endoplazmik shows [Td 9s] (a Straight, Six to Ten)
+habing shows [Qh 8s] (Two Pair, Queens and Eights +9)
+endoplazmik wins Pot (117) with a Straight
+Rake (3)
+habing adds 60 chips
+
+
+
+Hand #9113773-4 - 2013-06-27 15:32:13
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 3: endoplazmik (117)
+Seat 4: habing (200)
+habing has the dealer button
+habing posts small blind 1
+endoplazmik posts big blind 2
+** Hole Cards **
+Dealt to habing [4c 9s]
+habing folds
+endoplazmik refunded 1
+habing adds 1 chips
+endoplazmik wins Pot (2)
+Rake (0)
+
+
+
+Hand #9113782-5 - 2013-06-27 15:32:26
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 3: endoplazmik (118)
+Seat 4: habing (200)
+endoplazmik has the dealer button
+endoplazmik posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [9d Jd]
+endoplazmik folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #9113784-6 - 2013-06-27 15:32:36
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 3: endoplazmik (117)
+Seat 4: habing (201)
+habing has the dealer button
+habing posts small blind 1
+endoplazmik posts big blind 2
+** Hole Cards **
+Dealt to habing [3s Ah]
+habing raises to 201 (All-in)
+endoplazmik folds
+habing refunded 199
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #9113794-7 - 2013-06-27 15:32:54
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 3: endoplazmik (115)
+Seat 4: habing (203)
+endoplazmik has the dealer button
+endoplazmik posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [9c 9s]
+endoplazmik calls 1
+habing raises to 203 (All-in)
+endoplazmik folds
+habing refunded 201
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #9113806-8 - 2013-06-27 15:33:17
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 3: endoplazmik (113)
+Seat 4: habing (205)
+habing has the dealer button
+habing posts small blind 1
+endoplazmik posts big blind 2
+** Hole Cards **
+Dealt to habing [7d 7h]
+habing raises to 205 (All-in)
+endoplazmik folds
+habing refunded 203
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #9113815-9 - 2013-06-27 15:33:36
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 3: endoplazmik (111)
+Seat 4: habing (207)
+endoplazmik has the dealer button
+endoplazmik posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [9d Ah]
+endoplazmik calls 1
+habing raises to 207 (All-in)
+endoplazmik calls 109 (All-in)
+habing refunded 96
+** Flop ** [4c 9h 8c]
+** Turn ** [7c]
+** River ** [8d]
+** Pot Show Down ** [4c 9h 8c 7c 8d]
+endoplazmik shows [2c As] (a Pair of Eights +A97)
+habing shows [9d Ah] (Two Pair, Nines and Eights +A)
+habing wins Pot (218) with Two Pair
+Rake (4)

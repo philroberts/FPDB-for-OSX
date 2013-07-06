@@ -1,0 +1,2855 @@
+Hand #8757932-345 - 2013-06-20 01:54:58
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 1: thirstyhobo (129.22)
+Seat 2: CoinArmy (81.62)
+Seat 3: Mpilalao (447.68)
+Seat 4: sctt11 (100)
+Seat 5: BONUS (125.75)
+Seat 6: habing (100) - waiting for big blind
+Mpilalao has the dealer button
+sctt11 posts small blind 0.50
+BONUS posts big blind 1
+thirstyhobo posts small blind 0.50
+** Hole Cards **
+thirstyhobo folds
+CoinArmy folds
+Mpilalao folds
+sctt11 folds
+BONUS refunded 0.50
+sctt11 adds 0.50 chips
+BONUS wins Pot (1.50)
+Rake (0)
+
+
+
+Hand #8757950-346 - 2013-06-20 01:55:30
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 1: thirstyhobo (128.72)
+Seat 2: CoinArmy (81.62)
+Seat 3: Mpilalao (447.68)
+Seat 4: sctt11 (100)
+Seat 5: BONUS (126.75)
+Seat 6: habing (100) - waiting for big blind
+sctt11 has the dealer button
+BONUS posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [Kh 8c]
+thirstyhobo folds
+CoinArmy folds
+Mpilalao folds
+sctt11 raises to 3
+BONUS folds
+habing folds
+sctt11 refunded 2
+habing adds 1 chips
+sctt11 wins Pot (2.50)
+Rake (0)
+
+
+
+Hand #8757972-347 - 2013-06-20 01:55:59
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 1: thirstyhobo (128.72)
+Seat 2: CoinArmy (81.62)
+Seat 3: Mpilalao (447.68)
+Seat 4: sctt11 (101.50)
+Seat 5: BONUS (126.25)
+Seat 6: habing (100)
+BONUS has the dealer button
+habing posts small blind 0.50
+thirstyhobo posts big blind 1
+** Hole Cards **
+Dealt to habing [7c 8d]
+CoinArmy folds
+Mpilalao folds
+sctt11 raises to 3
+BONUS folds
+habing folds
+habing adds 0.50 chips
+thirstyhobo folds
+sctt11 refunded 2
+sctt11 wins Pot (2.50)
+Rake (0)
+
+
+
+Hand #8758001-348 - 2013-06-20 01:56:32
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 1: thirstyhobo (127.72)
+Seat 2: CoinArmy (81.62)
+Seat 3: Mpilalao (447.68)
+Seat 4: sctt11 (103)
+Seat 5: BONUS (126.25)
+Seat 6: habing (100)
+habing has the dealer button
+thirstyhobo posts small blind 0.50
+CoinArmy posts big blind 1
+** Hole Cards **
+Dealt to habing [6c 9c]
+Mpilalao folds
+sctt11 raises to 3
+BONUS folds
+habing folds
+thirstyhobo calls 2.50
+CoinArmy folds
+** Flop ** [5d 3c Jc]
+thirstyhobo bets 5
+sctt11 folds
+thirstyhobo refunded 5
+thirstyhobo wins Pot (6.83)
+Rake (0.17)
+
+
+
+Hand #8758030-349 - 2013-06-20 01:57:20
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 1: thirstyhobo (131.55)
+Seat 2: CoinArmy (80.62)
+Seat 3: Mpilalao (447.68)
+Seat 4: sctt11 (100)
+Seat 5: BONUS (126.25)
+Seat 6: habing (100)
+thirstyhobo has the dealer button
+CoinArmy posts small blind 0.50
+Mpilalao posts big blind 1
+** Hole Cards **
+Dealt to habing [8h 5s]
+sctt11 raises to 3
+BONUS folds
+habing folds
+thirstyhobo folds
+CoinArmy folds
+Mpilalao folds
+sctt11 refunded 2
+sctt11 wins Pot (2.50)
+Rake (0)
+
+
+
+Hand #8758043-350 - 2013-06-20 01:57:44
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 1: thirstyhobo (131.55)
+Seat 2: CoinArmy (80.12)
+Seat 3: Mpilalao (446.68)
+Seat 4: sctt11 (101.50)
+Seat 5: BONUS (126.25)
+Seat 6: habing (100)
+CoinArmy has the dealer button
+Mpilalao posts small blind 0.50
+sctt11 posts big blind 1
+** Hole Cards **
+Dealt to habing [8c 4h]
+BONUS folds
+habing folds
+thirstyhobo folds
+CoinArmy folds
+Mpilalao folds
+sctt11 refunded 0.50
+sctt11 wins Pot (1)
+Rake (0)
+
+
+
+Hand #8758065-351 - 2013-06-20 01:58:08
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 1: thirstyhobo (131.55)
+Seat 2: CoinArmy (80.12)
+Seat 3: Mpilalao (446.18)
+Seat 4: sctt11 (102)
+Seat 5: BONUS (126.25)
+Seat 6: habing (100)
+Mpilalao has the dealer button
+sctt11 posts small blind 0.50
+BONUS posts big blind 1
+** Hole Cards **
+Dealt to habing [4s 2h]
+habing folds
+thirstyhobo folds
+CoinArmy calls 1
+Mpilalao folds
+sctt11 calls 0.50
+BONUS checks
+** Flop ** [3d Ks 9d]
+sctt11 checks
+BONUS checks
+CoinArmy checks
+** Turn ** [Kc]
+sctt11 checks
+BONUS checks
+CoinArmy bets 2
+sctt11 folds
+BONUS folds
+CoinArmy refunded 2
+CoinArmy wins Pot (2.93)
+Rake (0.07)
+
+
+
+Hand #8758105-352 - 2013-06-20 01:59:19
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 1: thirstyhobo (131.55)
+Seat 2: CoinArmy (82.05)
+Seat 3: Mpilalao (446.18)
+Seat 4: sctt11 (101)
+Seat 5: BONUS (125.25)
+Seat 6: habing (100)
+sctt11 has the dealer button
+BONUS posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [Qc Ah]
+thirstyhobo folds
+CoinArmy folds
+Mpilalao raises to 3
+sctt11 folds
+BONUS folds
+habing raises to 11
+Mpilalao calls 8
+** Flop ** [Kd 2h 6d]
+habing bets 8.20
+Mpilalao folds
+habing refunded 8.20
+habing wins Pot (21.94)
+Rake (0.56)
+
+
+
+Hand #8758148-353 - 2013-06-20 02:00:19
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 1: thirstyhobo (131.55)
+Seat 2: CoinArmy (82.05)
+Seat 3: Mpilalao (435.18)
+Seat 4: sctt11 (101)
+Seat 5: BONUS (124.75)
+Seat 6: habing (110.94)
+BONUS has the dealer button
+habing posts small blind 0.50
+thirstyhobo posts big blind 1
+** Hole Cards **
+Dealt to habing [Kd Kh]
+CoinArmy folds
+Mpilalao folds
+sctt11 raises to 3
+BONUS folds
+habing raises to 11
+thirstyhobo folds
+sctt11 folds
+habing refunded 8
+sctt11 adds 2 chips
+habing wins Pot (7)
+Rake (0)
+
+
+
+Hand #8758201-354 - 2013-06-20 02:01:07
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 1: thirstyhobo (130.55)
+Seat 2: CoinArmy (82.05)
+Seat 3: Mpilalao (435.18)
+Seat 4: sctt11 (100)
+Seat 5: BONUS (124.75)
+Seat 6: habing (114.94)
+habing has the dealer button
+thirstyhobo posts small blind 0.50
+CoinArmy posts big blind 1
+** Hole Cards **
+Dealt to habing [3h 3c]
+Mpilalao folds
+sctt11 raises to 3
+BONUS folds
+habing calls 3
+thirstyhobo calls 2.50
+CoinArmy folds
+** Flop ** [Jh Qd As]
+thirstyhobo checks
+sctt11 checks
+habing checks
+** Turn ** [Qs]
+thirstyhobo checks
+sctt11 checks
+habing checks
+** River ** [5d]
+thirstyhobo checks
+sctt11 checks
+habing checks
+** Pot Show Down ** [Jh Qd As Qs 5d]
+thirstyhobo shows [9d 8d] (a Pair of Queens +AJ9)
+sctt11 shows [2s Ad] (Two Pair, Aces and Queens +J)
+habing shows [3h 3c] (Two Pair, Queens and Threes +A)
+sctt11 wins Pot (9.75) with Two Pair
+Rake (0.25)
+
+
+
+Hand #8758303-355 - 2013-06-20 02:03:07
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 1: thirstyhobo (127.55)
+Seat 2: CoinArmy (81.05)
+Seat 3: Mpilalao (435.18)
+Seat 4: sctt11 (106.75)
+Seat 5: BONUS (124.75)
+Seat 6: habing (111.94)
+thirstyhobo has the dealer button
+CoinArmy posts small blind 0.50
+Mpilalao posts big blind 1
+** Hole Cards **
+Dealt to habing [4h 2c]
+sctt11 folds
+BONUS raises to 3
+habing folds
+thirstyhobo folds
+CoinArmy folds
+Mpilalao folds
+BONUS refunded 2
+BONUS wins Pot (2.50)
+Rake (0)
+
+
+
+Hand #8758339-356 - 2013-06-20 02:03:36
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 1: thirstyhobo (127.55)
+Seat 2: CoinArmy (80.55)
+Seat 3: Mpilalao (434.18)
+Seat 4: sctt11 (106.75)
+Seat 5: BONUS (126.25)
+Seat 6: habing (111.94)
+CoinArmy has the dealer button
+Mpilalao posts small blind 0.50
+sctt11 posts big blind 1
+** Hole Cards **
+Dealt to habing [2h 7c]
+BONUS folds
+habing folds
+thirstyhobo raises to 3
+CoinArmy folds
+Mpilalao raises to 10
+sctt11 folds
+thirstyhobo calls 7
+** Flop ** [7h 2s 8c]
+Mpilalao bets 13
+thirstyhobo raises to 30
+Mpilalao folds
+thirstyhobo refunded 17
+thirstyhobo wins Pot (45.83)
+Rake (1.17)
+
+
+
+Hand #8758407-357 - 2013-06-20 02:05:01
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 1: thirstyhobo (150.38)
+Seat 2: CoinArmy (80.55)
+Seat 3: Mpilalao (411.18)
+Seat 4: sctt11 (105.75)
+Seat 5: BONUS (126.25)
+Seat 6: habing (111.94)
+Mpilalao has the dealer button
+sctt11 posts small blind 0.50
+BONUS posts big blind 1
+** Hole Cards **
+Dealt to habing [4s 5h]
+habing folds
+thirstyhobo folds
+CoinArmy calls 1
+Mpilalao folds
+sctt11 calls 0.50
+BONUS raises to 5
+CoinArmy calls 4
+sctt11 folds
+** Flop ** [6d 3d Jc]
+BONUS bets 7
+CoinArmy calls 7
+** Turn ** [Th]
+BONUS checks
+CoinArmy bets 14
+BONUS calls 14
+** River ** [7h]
+BONUS checks
+CoinArmy bets 46
+BONUS folds
+CoinArmy refunded 46
+CoinArmy wins Pot (51.68)
+Rake (1.32)
+
+
+
+Hand #8758489-358 - 2013-06-20 02:06:27
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 1: thirstyhobo (150.38)
+Seat 2: CoinArmy (106.23)
+Seat 3: Mpilalao (411.18)
+Seat 4: sctt11 (104.75)
+Seat 5: BONUS (100.25)
+Seat 6: habing (111.94)
+sctt11 has the dealer button
+BONUS posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [6s 7h]
+thirstyhobo raises to 3
+CoinArmy folds
+Mpilalao folds
+sctt11 folds
+BONUS folds
+BONUS adds 0.25 chips
+habing folds
+thirstyhobo refunded 2
+thirstyhobo wins Pot (2.50)
+Rake (0)
+
+
+
+Hand #8758511-359 - 2013-06-20 02:06:52
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 1: thirstyhobo (151.88)
+Seat 2: CoinArmy (106.23)
+Seat 3: Mpilalao (411.18)
+Seat 4: sctt11 (104.75)
+Seat 5: BONUS (100)
+Seat 6: habing (110.94)
+BONUS has the dealer button
+habing posts small blind 0.50
+thirstyhobo posts big blind 1
+** Hole Cards **
+Dealt to habing [5c As]
+CoinArmy calls 1
+Mpilalao raises to 4
+sctt11 folds
+BONUS folds
+habing folds
+thirstyhobo calls 3
+CoinArmy calls 3
+** Flop ** [Tc 2h 3d]
+thirstyhobo checks
+CoinArmy bets 12
+Mpilalao folds
+thirstyhobo folds
+CoinArmy refunded 12
+CoinArmy wins Pot (12.19)
+Rake (0.31)
+
+
+
+Hand #8758560-360 - 2013-06-20 02:07:39
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 1: thirstyhobo (147.88)
+Seat 2: CoinArmy (114.42)
+Seat 3: Mpilalao (407.18)
+Seat 4: sctt11 (104.75)
+Seat 5: BONUS (100)
+Seat 6: habing (110.44)
+habing has the dealer button
+thirstyhobo posts small blind 0.50
+CoinArmy posts big blind 1
+** Hole Cards **
+Dealt to habing [Qh 8s]
+Mpilalao folds
+sctt11 folds
+BONUS raises to 3
+habing folds
+thirstyhobo folds
+CoinArmy folds
+BONUS refunded 2
+BONUS wins Pot (2.50)
+Rake (0)
+
+
+
+Hand #8758597-361 - 2013-06-20 02:08:15
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 1: thirstyhobo (147.38)
+Seat 2: CoinArmy (113.42)
+Seat 4: sctt11 (104.75)
+Seat 5: BONUS (101.50)
+Seat 6: habing (110.44)
+thirstyhobo has the dealer button
+CoinArmy posts small blind 0.50
+sctt11 posts big blind 1
+** Hole Cards **
+Dealt to habing [Ks Ts]
+BONUS folds
+habing raises to 3
+thirstyhobo folds
+CoinArmy folds
+sctt11 folds
+habing refunded 2
+habing wins Pot (2.50)
+Rake (0)
+
+
+
+Hand #8758636-362 - 2013-06-20 02:09:02
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 1: thirstyhobo (147.38)
+Seat 2: CoinArmy (112.92)
+Seat 4: sctt11 (103.75)
+Seat 5: BONUS (101.50)
+Seat 6: habing (111.94)
+CoinArmy has the dealer button
+sctt11 posts small blind 0.50
+BONUS posts big blind 1
+** Hole Cards **
+Dealt to habing [9s 7d]
+habing folds
+thirstyhobo folds
+CoinArmy folds
+sctt11 raises to 3
+BONUS folds
+sctt11 refunded 2
+sctt11 wins Pot (2)
+Rake (0)
+
+
+
+Hand #8758661-363 - 2013-06-20 02:09:27
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 1: thirstyhobo (147.38)
+Seat 2: CoinArmy (112.92)
+Seat 4: sctt11 (104.75)
+Seat 5: BONUS (100.50)
+Seat 6: habing (111.94)
+sctt11 has the dealer button
+BONUS posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [7h 8s]
+thirstyhobo folds
+CoinArmy folds
+sctt11 folds
+BONUS folds
+habing refunded 0.50
+habing wins Pot (1)
+Rake (0)
+
+
+
+Hand #8758678-364 - 2013-06-20 02:09:45
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 1: thirstyhobo (147.38)
+Seat 2: CoinArmy (112.92)
+Seat 4: sctt11 (104.75)
+Seat 5: BONUS (100)
+Seat 6: habing (112.44)
+BONUS has the dealer button
+habing posts small blind 0.50
+thirstyhobo posts big blind 1
+** Hole Cards **
+Dealt to habing [Ts 4d]
+CoinArmy calls 1
+sctt11 calls 1
+BONUS folds
+habing folds
+thirstyhobo checks
+** Flop ** [2s 9s 7c]
+thirstyhobo checks
+CoinArmy bets 1
+sctt11 calls 1
+thirstyhobo folds
+** Turn ** [4c]
+CoinArmy bets 3
+sctt11 calls 3
+** River ** [6s]
+CoinArmy bets 4
+sctt11 folds
+CoinArmy refunded 4
+sctt11 adds 0.25 chips
+CoinArmy wins Pot (11.22)
+Rake (0.28)
+
+
+
+Hand #8758735-365 - 2013-06-20 02:10:51
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 1: thirstyhobo (146.38)
+Seat 2: CoinArmy (119.14)
+Seat 4: sctt11 (100)
+Seat 5: BONUS (100)
+Seat 6: habing (111.94)
+habing has the dealer button
+thirstyhobo posts small blind 0.50
+CoinArmy posts big blind 1
+** Hole Cards **
+Dealt to habing [8d Kd]
+sctt11 folds
+BONUS folds
+habing raises to 3
+thirstyhobo folds
+CoinArmy calls 2
+** Flop ** [As Th 8s]
+CoinArmy checks
+habing bets 4
+CoinArmy calls 4
+** Turn ** [8c]
+CoinArmy checks
+habing bets 12
+CoinArmy calls 12
+** River ** [Qc]
+CoinArmy checks
+habing bets 32.20
+CoinArmy folds
+habing refunded 32.20
+habing wins Pot (37.54)
+Rake (0.96)
+
+
+
+Hand #8758833-366 - 2013-06-20 02:12:38
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 1: thirstyhobo (145.88)
+Seat 2: CoinArmy (100.14)
+Seat 3: ABitofKing (99.64) - waiting for big blind
+Seat 4: sctt11 (100)
+Seat 5: BONUS (100)
+Seat 6: habing (130.48)
+thirstyhobo has the dealer button
+CoinArmy posts small blind 0.50
+ABitofKing posts big blind 1
+** Hole Cards **
+Dealt to habing [3s Th]
+sctt11 folds
+BONUS folds
+habing folds
+thirstyhobo raises to 3
+CoinArmy folds
+ABitofKing folds
+thirstyhobo refunded 2
+thirstyhobo wins Pot (2.50)
+Rake (0)
+
+
+
+Hand #8758872-367 - 2013-06-20 02:13:19
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 1: thirstyhobo (147.38)
+Seat 2: CoinArmy (99.64)
+Seat 3: ABitofKing (98.64)
+Seat 4: sctt11 (100)
+Seat 5: BONUS (100)
+Seat 6: habing (130.48)
+CoinArmy has the dealer button
+ABitofKing posts small blind 0.50
+sctt11 posts big blind 1
+** Hole Cards **
+Dealt to habing [Qs 6s]
+BONUS folds
+habing folds
+thirstyhobo folds
+CoinArmy folds
+ABitofKing calls 0.50
+sctt11 raises to 4
+ABitofKing folds
+sctt11 refunded 3
+sctt11 wins Pot (2)
+Rake (0)
+
+
+
+Hand #8758911-368 - 2013-06-20 02:13:57
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 1: thirstyhobo (147.38)
+Seat 2: CoinArmy (99.64)
+Seat 3: ABitofKing (97.64)
+Seat 4: sctt11 (101)
+Seat 5: BONUS (100)
+Seat 6: habing (130.48)
+ABitofKing has the dealer button
+sctt11 posts small blind 0.50
+BONUS posts big blind 1
+** Hole Cards **
+Dealt to habing [5c Jd]
+habing folds
+thirstyhobo calls 1
+CoinArmy folds
+ABitofKing folds
+sctt11 calls 0.50
+BONUS checks
+** Flop ** [6s 6d As]
+sctt11 checks
+BONUS checks
+thirstyhobo checks
+** Turn ** [4s]
+sctt11 checks
+BONUS bets 2
+thirstyhobo calls 2
+sctt11 calls 2
+** River ** [9h]
+sctt11 checks
+BONUS bets 5
+thirstyhobo folds
+sctt11 folds
+BONUS refunded 5
+sctt11 adds 2 chips
+BONUS wins Pot (8.78)
+Rake (0.22)
+
+
+
+Hand #8759008-369 - 2013-06-20 02:15:42
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 1: thirstyhobo (144.38)
+Seat 2: CoinArmy (99.64)
+Seat 3: ABitofKing (97.64)
+Seat 4: sctt11 (100)
+Seat 5: BONUS (105.78)
+Seat 6: habing (130.48)
+sctt11 has the dealer button
+BONUS posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [7s 4d]
+thirstyhobo folds
+CoinArmy folds
+ABitofKing calls 1
+sctt11 folds
+BONUS folds
+habing checks
+** Flop ** [Ac 6s Kd]
+habing checks
+ABitofKing bets 1
+habing folds
+ABitofKing refunded 1
+ABitofKing wins Pot (2.44)
+Rake (0.06)
+
+
+
+Hand #8759041-370 - 2013-06-20 02:16:21
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 1: thirstyhobo (144.38)
+Seat 2: CoinArmy (99.64)
+Seat 3: ABitofKing (99.08)
+Seat 4: sctt11 (100)
+Seat 5: BONUS (105.28)
+Seat 6: habing (129.48)
+BONUS has the dealer button
+habing posts small blind 0.50
+thirstyhobo posts big blind 1
+** Hole Cards **
+Dealt to habing [Js Kd]
+CoinArmy folds
+ABitofKing folds
+sctt11 raises to 3
+BONUS raises to 9
+habing folds
+thirstyhobo folds
+sctt11 raises to 30
+BONUS folds
+sctt11 refunded 21
+BONUS adds 3.72 chips
+sctt11 wins Pot (19.50)
+Rake (0)
+
+
+
+Hand #8759104-371 - 2013-06-20 02:17:23
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 1: thirstyhobo (143.38)
+Seat 2: CoinArmy (99.64)
+Seat 3: ABitofKing (99.08)
+Seat 4: sctt11 (110.50)
+Seat 5: BONUS (100)
+Seat 6: habing (128.98)
+habing has the dealer button
+thirstyhobo posts small blind 0.50
+CoinArmy posts big blind 1
+** Hole Cards **
+Dealt to habing [5h 6h]
+ABitofKing calls 1
+sctt11 calls 1
+BONUS raises to 5
+habing folds
+thirstyhobo folds
+CoinArmy calls 4
+ABitofKing folds
+sctt11 calls 4
+** Flop ** [9s Kh 5c]
+CoinArmy bets 4
+sctt11 calls 4
+BONUS folds
+BONUS adds 5 chips
+** Turn ** [5s]
+CoinArmy checks
+sctt11 checks
+** River ** [Ts]
+CoinArmy bets 5
+sctt11 calls 5
+** Pot Show Down ** [9s Kh 5c 5s Ts]
+CoinArmy shows [Jh Jc] (Two Pair, Jacks and Fives +K)
+sctt11 shows [2d 9d] (Two Pair, Nines and Fives +K)
+CoinArmy wins Pot (33.64) with Two Pair
+Rake (0.86)
+sctt11 adds 3.50 chips
+
+
+
+Hand #8759162-372 - 2013-06-20 02:18:39
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 1: thirstyhobo (142.88)
+Seat 2: CoinArmy (119.28)
+Seat 3: ABitofKing (98.08)
+Seat 4: sctt11 (100)
+Seat 5: BONUS (100)
+Seat 6: habing (128.98)
+thirstyhobo has the dealer button
+CoinArmy posts small blind 0.50
+ABitofKing posts big blind 1
+** Hole Cards **
+Dealt to habing [6d 5h]
+sctt11 folds
+BONUS folds
+habing folds
+thirstyhobo folds
+CoinArmy calls 0.50
+ABitofKing checks
+** Flop ** [6h 9h Td]
+CoinArmy bets 1
+ABitofKing folds
+CoinArmy refunded 1
+CoinArmy wins Pot (1.95)
+Rake (0.05)
+
+
+
+Hand #8759189-373 - 2013-06-20 02:19:11
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 1: thirstyhobo (142.88)
+Seat 2: CoinArmy (120.23)
+Seat 3: ABitofKing (97.08)
+Seat 4: sctt11 (100)
+Seat 5: BONUS (100)
+Seat 6: habing (128.98)
+CoinArmy has the dealer button
+ABitofKing posts small blind 0.50
+sctt11 posts big blind 1
+** Hole Cards **
+Dealt to habing [Qs 8d]
+BONUS folds
+habing folds
+thirstyhobo raises to 3
+CoinArmy folds
+ABitofKing folds
+sctt11 folds
+thirstyhobo refunded 2
+sctt11 adds 1 chips
+thirstyhobo wins Pot (2.50)
+Rake (0)
+
+
+
+Hand #8759218-374 - 2013-06-20 02:19:39
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 1: thirstyhobo (144.38)
+Seat 2: CoinArmy (120.23)
+Seat 3: ABitofKing (96.58)
+Seat 4: sctt11 (100)
+Seat 5: BONUS (100)
+Seat 6: habing (128.98)
+ABitofKing has the dealer button
+sctt11 posts small blind 0.50
+BONUS posts big blind 1
+** Hole Cards **
+Dealt to habing [7s 2d]
+habing folds
+thirstyhobo folds
+CoinArmy calls 1
+ABitofKing raises to 4
+sctt11 calls 3.50
+BONUS folds
+BONUS adds 1 chips
+CoinArmy calls 3
+** Flop ** [Ks Td Kd]
+sctt11 checks
+CoinArmy bets 2
+ABitofKing raises to 10
+sctt11 folds
+sctt11 adds 4 chips
+CoinArmy folds
+ABitofKing refunded 8
+ABitofKing wins Pot (16.58)
+Rake (0.42)
+
+
+
+Hand #8759285-375 - 2013-06-20 02:20:50
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 1: thirstyhobo (144.38)
+Seat 2: CoinArmy (114.23)
+Seat 3: ABitofKing (107.16)
+Seat 4: sctt11 (100)
+Seat 5: BONUS (100)
+Seat 6: habing (128.98)
+sctt11 has the dealer button
+BONUS posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [Kc 4s]
+thirstyhobo calls 1
+CoinArmy folds
+ABitofKing calls 1
+sctt11 folds
+BONUS raises to 7
+habing folds
+thirstyhobo folds
+ABitofKing folds
+BONUS refunded 6
+BONUS wins Pot (4)
+Rake (0)
+
+
+
+Hand #8759327-376 - 2013-06-20 02:21:42
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 1: thirstyhobo (143.38)
+Seat 2: CoinArmy (114.23)
+Seat 3: ABitofKing (106.16)
+Seat 4: sctt11 (100)
+Seat 5: BONUS (103)
+Seat 6: habing (127.98)
+BONUS has the dealer button
+habing posts small blind 0.50
+thirstyhobo posts big blind 1
+** Hole Cards **
+Dealt to habing [2h Kd]
+CoinArmy folds
+ABitofKing folds
+sctt11 folds
+BONUS folds
+habing folds
+thirstyhobo refunded 0.50
+thirstyhobo wins Pot (1)
+Rake (0)
+
+
+
+Hand #8759353-377 - 2013-06-20 02:22:13
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 1: thirstyhobo (143.88)
+Seat 2: CoinArmy (114.23)
+Seat 3: ABitofKing (106.16)
+Seat 4: sctt11 (100)
+Seat 5: BONUS (103)
+Seat 6: habing (127.48)
+habing has the dealer button
+thirstyhobo posts small blind 0.50
+CoinArmy posts big blind 1
+** Hole Cards **
+Dealt to habing [Ah 3d]
+ABitofKing folds
+sctt11 folds
+BONUS folds
+habing raises to 2
+thirstyhobo folds
+CoinArmy folds
+habing refunded 1
+habing wins Pot (2.50)
+Rake (0)
+
+
+
+Hand #8759373-378 - 2013-06-20 02:22:46
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 1: thirstyhobo (143.38)
+Seat 2: CoinArmy (113.23)
+Seat 3: ABitofKing (106.16)
+Seat 4: sctt11 (100)
+Seat 5: BONUS (103)
+Seat 6: habing (128.98)
+thirstyhobo has the dealer button
+CoinArmy posts small blind 0.50
+ABitofKing posts big blind 1
+** Hole Cards **
+Dealt to habing [5c Jd]
+sctt11 folds
+BONUS folds
+habing folds
+thirstyhobo raises to 3
+CoinArmy folds
+ABitofKing folds
+thirstyhobo refunded 2
+thirstyhobo wins Pot (2.50)
+Rake (0)
+
+
+
+Hand #8759391-379 - 2013-06-20 02:23:22
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 1: thirstyhobo (144.88)
+Seat 2: CoinArmy (112.73)
+Seat 3: ABitofKing (105.16)
+Seat 4: sctt11 (100)
+Seat 5: BONUS (103)
+Seat 6: habing (128.98)
+CoinArmy has the dealer button
+ABitofKing posts small blind 0.50
+sctt11 posts big blind 1
+** Hole Cards **
+Dealt to habing [6s Ac]
+BONUS folds
+habing folds
+thirstyhobo folds
+CoinArmy folds
+ABitofKing folds
+sctt11 refunded 0.50
+sctt11 wins Pot (1)
+Rake (0)
+
+
+
+Hand #8759437-380 - 2013-06-20 02:24:15
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 1: thirstyhobo (144.88)
+Seat 2: CoinArmy (112.73)
+Seat 3: ABitofKing (104.66)
+Seat 4: sctt11 (100.50)
+Seat 5: BONUS (103)
+Seat 6: habing (128.98)
+ABitofKing has the dealer button
+sctt11 posts small blind 0.50
+BONUS posts big blind 1
+** Hole Cards **
+Dealt to habing [Qs As]
+habing raises to 3
+thirstyhobo calls 3
+CoinArmy folds
+ABitofKing folds
+sctt11 folds
+BONUS folds
+** Flop ** [7s Td Th]
+habing checks
+thirstyhobo bets 5
+habing calls 5
+** Turn ** [4s]
+habing bets 10.40
+thirstyhobo folds
+habing refunded 10.40
+habing wins Pot (17.07)
+Rake (0.43)
+
+
+
+Hand #8759510-381 - 2013-06-20 02:26:17
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 1: thirstyhobo (136.88)
+Seat 3: ABitofKing (104.66)
+Seat 4: sctt11 (100)
+Seat 5: BONUS (102)
+Seat 6: habing (138.05)
+sctt11 has the dealer button
+BONUS posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [9h 3h]
+thirstyhobo raises to 3
+ABitofKing folds
+sctt11 folds
+BONUS folds
+habing folds
+thirstyhobo refunded 2
+thirstyhobo wins Pot (2.50)
+Rake (0)
+
+
+
+Hand #8759534-382 - 2013-06-20 02:26:51
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 1: thirstyhobo (138.38)
+Seat 3: ABitofKing (104.66)
+Seat 4: sctt11 (100)
+Seat 5: BONUS (101.50)
+Seat 6: habing (137.05)
+BONUS has the dealer button
+habing posts small blind 0.50
+thirstyhobo posts big blind 1
+** Hole Cards **
+Dealt to habing [5c 7d]
+ABitofKing calls 1
+sctt11 raises to 4
+BONUS folds
+habing folds
+thirstyhobo calls 3
+ABitofKing calls 3
+** Flop ** [Qd 2s 7h]
+thirstyhobo checks
+ABitofKing checks
+sctt11 bets 9
+thirstyhobo folds
+ABitofKing folds
+sctt11 refunded 9
+sctt11 wins Pot (12.19)
+Rake (0.31)
+
+
+
+Hand #8759571-383 - 2013-06-20 02:27:51
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 1: thirstyhobo (134.38)
+Seat 3: ABitofKing (100.66)
+Seat 4: sctt11 (108.19)
+Seat 5: BONUS (101.50)
+Seat 6: habing (136.55)
+habing has the dealer button
+thirstyhobo posts small blind 0.50
+ABitofKing posts big blind 1
+** Hole Cards **
+Dealt to habing [2h 4c]
+sctt11 raises to 3
+BONUS folds
+habing folds
+thirstyhobo folds
+ABitofKing folds
+sctt11 refunded 2
+sctt11 wins Pot (2.50)
+Rake (0)
+
+
+
+Hand #8759588-384 - 2013-06-20 02:28:18
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 1: thirstyhobo (133.88)
+Seat 3: ABitofKing (99.66)
+Seat 4: sctt11 (109.69)
+Seat 5: BONUS (101.50)
+Seat 6: habing (136.55)
+thirstyhobo has the dealer button
+ABitofKing posts small blind 0.50
+sctt11 posts big blind 1
+** Hole Cards **
+Dealt to habing [6h Jc]
+BONUS folds
+habing folds
+thirstyhobo folds
+ABitofKing calls 0.50
+sctt11 checks
+** Flop ** [3c 3d 6s]
+ABitofKing checks
+sctt11 checks
+** Turn ** [7d]
+ABitofKing checks
+sctt11 checks
+** River ** [4h]
+ABitofKing checks
+sctt11 checks
+** Pot Show Down ** [3c 3d 6s 7d 4h]
+ABitofKing shows [9h Td] (a Pair of Threes +T97)
+sctt11 shows [8c Kd] (a Pair of Threes +K87)
+sctt11 wins Pot (1.95) with a Pair
+Rake (0.05)
+
+
+
+Hand #8759616-385 - 2013-06-20 02:29:15
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 1: thirstyhobo (133.88)
+Seat 3: ABitofKing (98.66)
+Seat 4: sctt11 (110.64)
+Seat 6: habing (136.55)
+ABitofKing has the dealer button
+sctt11 posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [4c 7d]
+thirstyhobo raises to 3
+ABitofKing folds
+sctt11 calls 2.50
+habing folds
+** Flop ** [7c Ts 3h]
+sctt11 checks
+thirstyhobo bets 5
+sctt11 folds
+thirstyhobo refunded 5
+thirstyhobo wins Pot (6.83)
+Rake (0.17)
+
+
+
+Hand #8759630-386 - 2013-06-20 02:29:55
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 1: thirstyhobo (137.71)
+Seat 3: ABitofKing (98.66)
+Seat 4: sctt11 (107.64)
+Seat 6: habing (135.55)
+sctt11 has the dealer button
+habing posts small blind 0.50
+thirstyhobo posts big blind 1
+** Hole Cards **
+Dealt to habing [3d 4c]
+ABitofKing folds
+sctt11 raises to 3
+habing folds
+thirstyhobo calls 2
+** Flop ** [4h 4s 2d]
+thirstyhobo checks
+sctt11 checks
+** Turn ** [Kc]
+thirstyhobo checks
+sctt11 bets 4
+thirstyhobo folds
+sctt11 refunded 4
+sctt11 wins Pot (6.34)
+Rake (0.16)
+
+
+
+Hand #8759667-387 - 2013-06-20 02:30:46
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 1: thirstyhobo (134.71)
+Seat 3: ABitofKing (98.66)
+Seat 4: sctt11 (110.98)
+Seat 6: habing (135.05)
+habing has the dealer button
+thirstyhobo posts small blind 0.50
+ABitofKing posts big blind 1
+** Hole Cards **
+Dealt to habing [Td 8d]
+sctt11 folds
+habing raises to 2
+thirstyhobo folds
+ABitofKing folds
+habing refunded 1
+habing wins Pot (2.50)
+Rake (0)
+
+
+
+Hand #8759688-388 - 2013-06-20 02:31:17
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 1: thirstyhobo (134.21)
+Seat 3: ABitofKing (97.66)
+Seat 4: sctt11 (110.98)
+Seat 6: habing (136.55)
+thirstyhobo has the dealer button
+ABitofKing posts small blind 0.50
+sctt11 posts big blind 1
+** Hole Cards **
+Dealt to habing [Tc 5h]
+habing folds
+thirstyhobo raises to 3
+ABitofKing folds
+sctt11 calls 2
+** Flop ** [3c 4s 8h]
+sctt11 bets 5
+thirstyhobo calls 5
+** Turn ** [Ks]
+sctt11 checks
+thirstyhobo bets 10
+sctt11 folds
+thirstyhobo refunded 10
+thirstyhobo wins Pot (16.09)
+Rake (0.41)
+
+
+
+Hand #8759724-389 - 2013-06-20 02:32:14
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 1: thirstyhobo (142.30)
+Seat 3: ABitofKing (97.16)
+Seat 4: sctt11 (102.98)
+Seat 6: habing (136.55)
+ABitofKing has the dealer button
+sctt11 posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [6h Qc]
+thirstyhobo folds
+ABitofKing calls 1
+sctt11 folds
+habing checks
+** Flop ** [Js Th Kh]
+habing checks
+ABitofKing bets 1
+habing calls 1
+** Turn ** [3d]
+habing checks
+ABitofKing bets 3
+habing folds
+ABitofKing refunded 3
+ABitofKing wins Pot (4.39)
+Rake (0.11)
+
+
+
+Hand #8759773-390 - 2013-06-20 02:33:27
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 1: thirstyhobo (142.30)
+Seat 3: ABitofKing (99.55)
+Seat 4: sctt11 (102.48)
+Seat 6: habing (134.55)
+sctt11 has the dealer button
+habing posts small blind 0.50
+thirstyhobo posts big blind 1
+** Hole Cards **
+Dealt to habing [9h 5h]
+ABitofKing calls 1
+sctt11 calls 1
+habing folds
+thirstyhobo checks
+** Flop ** [7s Ad 3d]
+thirstyhobo bets 3
+ABitofKing calls 3
+sctt11 folds
+** Turn ** [Th]
+thirstyhobo checks
+ABitofKing checks
+** River ** [Qh]
+thirstyhobo checks
+ABitofKing bets 9
+thirstyhobo folds
+ABitofKing refunded 9
+ABitofKing wins Pot (9.27)
+Rake (0.23)
+
+
+
+Hand #8759815-391 - 2013-06-20 02:34:45
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 1: thirstyhobo (138.30)
+Seat 3: ABitofKing (104.82)
+Seat 4: sctt11 (101.48)
+Seat 6: habing (134.05)
+habing has the dealer button
+thirstyhobo posts small blind 0.50
+ABitofKing posts big blind 1
+** Hole Cards **
+Dealt to habing [5s Ac]
+sctt11 folds
+habing raises to 2
+thirstyhobo calls 1.50
+ABitofKing folds
+** Flop ** [Qd Kc 4h]
+thirstyhobo checks
+habing bets 3
+thirstyhobo folds
+habing refunded 3
+habing wins Pot (4.88)
+Rake (0.12)
+
+
+
+Hand #8759839-392 - 2013-06-20 02:35:28
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 1: thirstyhobo (136.30)
+Seat 3: ABitofKing (103.82)
+Seat 4: sctt11 (101.48)
+Seat 6: habing (136.93)
+thirstyhobo has the dealer button
+ABitofKing posts small blind 0.50
+sctt11 posts big blind 1
+** Hole Cards **
+Dealt to habing [Qc 5h]
+habing folds
+thirstyhobo raises to 3
+ABitofKing folds
+sctt11 folds
+thirstyhobo refunded 2
+thirstyhobo wins Pot (2.50)
+Rake (0)
+
+
+
+Hand #8759852-393 - 2013-06-20 02:35:55
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 1: thirstyhobo (137.80)
+Seat 3: ABitofKing (103.32)
+Seat 4: sctt11 (100.48)
+Seat 5: aceskings212 (30) - waiting for big blind
+Seat 6: habing (136.93)
+ABitofKing has the dealer button
+sctt11 posts small blind 0.50
+aceskings212 posts big blind 1
+** Hole Cards **
+Dealt to habing [6h 6c]
+habing raises to 3
+thirstyhobo calls 3
+ABitofKing folds
+sctt11 calls 2.50
+aceskings212 calls 2
+** Flop ** [6s 3c 5h]
+sctt11 bets 8
+aceskings212 calls 8
+habing calls 8
+thirstyhobo raises to 24
+sctt11 calls 16
+aceskings212 raises to 27 (All-in)
+habing raises to 133.93 (All-in)
+thirstyhobo calls 109.93
+sctt11 folds
+sctt11 adds 26.52 chips
+** Turn ** [4c]
+** River ** [Jc]
+** Side Pot 1 Show Down ** [6s 3c 5h 4c Jc]
+thirstyhobo shows [Ks Kc] (a Pair of Kings +J65)
+habing shows [6h 6c] (Three of a Kind, Sixes +J5)
+habing wins Side Pot 1 (210.78) with Three of a Kind
+Rake (3.08)
+** Main Pot Show Down ** [6s 3c 5h 4c Jc]
+aceskings212 shows [9c 5s] (a Pair of Fives +J96)
+habing wins Main Pot (114.08) with Three of a Kind
+Rake (2.92)
+
+
+
+Hand #8759912-394 - 2013-06-20 02:37:45
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 1: thirstyhobo (0.87) - sitting out
+Seat 3: ABitofKing (103.32)
+Seat 4: sctt11 (100)
+Seat 5: aceskings212 (0) - sitting out
+Seat 6: habing (324.86)
+sctt11 has the dealer button
+habing posts small blind 0.50
+ABitofKing posts big blind 1
+** Hole Cards **
+Dealt to habing [Ac 7s]
+sctt11 folds
+habing folds
+ABitofKing refunded 0.50
+ABitofKing wins Pot (1)
+Rake (0)
+
+
+
+Hand #8759926-395 - 2013-06-20 02:38:01
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 3: ABitofKing (103.82)
+Seat 4: sctt11 (100)
+Seat 6: habing (324.36)
+habing has the dealer button
+ABitofKing posts small blind 0.50
+sctt11 posts big blind 1
+** Hole Cards **
+Dealt to habing [Ad 9h]
+habing raises to 2
+ABitofKing calls 1.50
+sctt11 calls 1
+** Flop ** [Js 2d Qh]
+ABitofKing checks
+sctt11 bets 4
+habing folds
+ABitofKing folds
+sctt11 refunded 4
+sctt11 wins Pot (5.85)
+Rake (0.15)
+
+
+
+Hand #8759951-396 - 2013-06-20 02:38:43
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 3: ABitofKing (101.82)
+Seat 4: sctt11 (103.85)
+Seat 6: habing (322.36)
+ABitofKing has the dealer button
+sctt11 posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [9c Qs]
+ABitofKing calls 1
+sctt11 calls 0.50
+habing checks
+** Flop ** [5h 2h Th]
+sctt11 bets 4
+habing folds
+ABitofKing calls 4
+** Turn ** [6h]
+sctt11 bets 12
+ABitofKing folds
+sctt11 refunded 12
+sctt11 wins Pot (10.73)
+Rake (0.27)
+
+
+
+Hand #8759985-397 - 2013-06-20 02:39:47
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 3: ABitofKing (96.82)
+Seat 4: sctt11 (109.58)
+Seat 6: habing (321.36)
+sctt11 has the dealer button
+habing posts small blind 0.50
+ABitofKing posts big blind 1
+** Hole Cards **
+Dealt to habing [3c 9d]
+sctt11 raises to 3
+habing folds
+ABitofKing folds
+sctt11 refunded 2
+sctt11 wins Pot (2.50)
+Rake (0)
+
+
+
+Hand #8760001-398 - 2013-06-20 02:40:09
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 3: ABitofKing (95.82)
+Seat 4: sctt11 (111.08)
+Seat 6: habing (320.86)
+habing has the dealer button
+ABitofKing posts small blind 0.50
+sctt11 posts big blind 1
+** Hole Cards **
+Dealt to habing [9c 7s]
+habing folds
+ABitofKing folds
+sctt11 refunded 0.50
+sctt11 wins Pot (1)
+Rake (0)
+
+
+
+Hand #8760012-399 - 2013-06-20 02:40:23
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 3: ABitofKing (95.32)
+Seat 4: sctt11 (111.58)
+Seat 6: habing (320.86)
+ABitofKing has the dealer button
+sctt11 posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [9h 5s]
+ABitofKing folds
+sctt11 raises to 3
+habing folds
+sctt11 refunded 2
+sctt11 wins Pot (2)
+Rake (0)
+
+
+
+Hand #8760028-400 - 2013-06-20 02:40:46
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 3: ABitofKing (95.32)
+Seat 4: sctt11 (112.58)
+Seat 6: habing (319.86)
+sctt11 has the dealer button
+habing posts small blind 0.50
+ABitofKing posts big blind 1
+** Hole Cards **
+Dealt to habing [Kc 9h]
+sctt11 folds
+habing raises to 3
+ABitofKing calls 2
+** Flop ** [4h 7d 3c]
+habing bets 3
+ABitofKing calls 3
+** Turn ** [8h]
+habing checks
+ABitofKing checks
+** River ** [Ah]
+habing checks
+ABitofKing checks
+** Pot Show Down ** [4h 7d 3c 8h Ah]
+ABitofKing shows [Ks 5s] (High Card Ace +K875)
+habing shows [Kc 9h] (High Card Ace +K987)
+habing wins Pot (11.70) with High Card
+Rake (0.30)
+
+
+
+Hand #8760068-401 - 2013-06-20 02:41:55
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 3: ABitofKing (89.32)
+Seat 4: sctt11 (112.58)
+Seat 6: habing (325.56)
+habing has the dealer button
+ABitofKing posts small blind 0.50
+sctt11 posts big blind 1
+** Hole Cards **
+Dealt to habing [9s Ks]
+habing raises to 2
+ABitofKing folds
+sctt11 calls 1
+** Flop ** [Jd 9c 6h]
+sctt11 checks
+habing bets 3
+sctt11 folds
+habing refunded 3
+habing wins Pot (4.39)
+Rake (0.11)
+
+
+
+Hand #8760096-402 - 2013-06-20 02:42:33
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 3: ABitofKing (88.82)
+Seat 4: sctt11 (110.58)
+Seat 6: habing (327.95)
+ABitofKing has the dealer button
+sctt11 posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [2d 3d]
+ABitofKing calls 1
+sctt11 calls 0.50
+habing checks
+** Flop ** [5d 8d 7h]
+sctt11 bets 3
+habing calls 3
+ABitofKing calls 3
+** Turn ** [5s]
+sctt11 checks
+habing checks
+ABitofKing checks
+** River ** [Qd]
+sctt11 checks
+habing bets 7.40
+ABitofKing folds
+sctt11 folds
+habing refunded 7.40
+habing wins Pot (11.70)
+Rake (0.30)
+
+
+
+Hand #8760139-403 - 2013-06-20 02:43:43
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 3: ABitofKing (84.82)
+Seat 4: sctt11 (106.58)
+Seat 6: habing (335.65)
+sctt11 has the dealer button
+habing posts small blind 0.50
+ABitofKing posts big blind 1
+** Hole Cards **
+Dealt to habing [Qh Td]
+sctt11 folds
+habing raises to 3
+ABitofKing folds
+habing refunded 2
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8760151-404 - 2013-06-20 02:44:05
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 3: ABitofKing (83.82)
+Seat 4: sctt11 (106.58)
+Seat 6: habing (336.65)
+habing has the dealer button
+ABitofKing posts small blind 0.50
+sctt11 posts big blind 1
+** Hole Cards **
+Dealt to habing [Tc 2h]
+habing folds
+ABitofKing folds
+sctt11 refunded 0.50
+sctt11 wins Pot (1)
+Rake (0)
+
+
+
+Hand #8760170-405 - 2013-06-20 02:44:34
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 3: ABitofKing (83.32)
+Seat 4: sctt11 (107.08)
+Seat 6: habing (336.65)
+ABitofKing has the dealer button
+sctt11 posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [Qh Th]
+ABitofKing folds
+sctt11 raises to 3
+habing calls 2
+** Flop ** [5c 5d 8d]
+sctt11 bets 4
+habing has timed out
+habing folds
+sctt11 refunded 4
+sctt11 wins Pot (5.85)
+Rake (0.15)
+
+
+
+Hand #8760200-406 - 2013-06-20 02:45:24
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 3: ABitofKing (83.32)
+Seat 4: sctt11 (109.93)
+Seat 6: habing (333.65) - sitting out
+sctt11 has the dealer button
+sctt11 posts small blind 0.50
+ABitofKing posts big blind 1
+** Hole Cards **
+sctt11 raises to 3
+ABitofKing folds
+sctt11 refunded 2
+sctt11 wins Pot (2)
+Rake (0)
+
+
+
+Hand #8760208-1 - 2013-06-20 02:45:44
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 3: ABitofKing (82.32)
+Seat 6: habing (333.65)
+habing has the dealer button
+habing posts small blind 0.50
+ABitofKing posts big blind 1
+** Hole Cards **
+Dealt to habing [Jc 9d]
+habing raises to 2
+ABitofKing folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8760217-2 - 2013-06-20 02:46:06
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 3: ABitofKing (81.32)
+Seat 6: habing (334.65)
+ABitofKing has the dealer button
+ABitofKing posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [9c Qs]
+ABitofKing calls 0.50
+habing raises to 4
+ABitofKing folds
+habing refunded 3
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8760229-3 - 2013-06-20 02:46:27
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 3: ABitofKing (80.32)
+Seat 6: habing (335.65)
+habing has the dealer button
+habing posts small blind 0.50
+ABitofKing posts big blind 1
+** Hole Cards **
+Dealt to habing [8d 6d]
+habing raises to 2
+ABitofKing calls 1
+** Flop ** [3c 5s 4d]
+ABitofKing bets 1
+habing calls 1
+** Turn ** [5d]
+ABitofKing checks
+habing bets 3
+ABitofKing raises to 7
+habing calls 4
+** River ** [3s]
+ABitofKing checks
+habing bets 10
+ABitofKing calls 10
+** Pot Show Down ** [3c 5s 4d 5d 3s]
+ABitofKing shows [9d Kc] (Two Pair, Fives and Threes +K)
+habing shows [8d 6d] (Two Pair, Fives and Threes +8)
+ABitofKing wins Pot (39) with Two Pair
+Rake (1)
+
+
+
+Hand #8760280-4 - 2013-06-20 02:47:55
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 3: ABitofKing (99.32)
+Seat 6: habing (315.65)
+ABitofKing has the dealer button
+ABitofKing posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [2c 8d]
+ABitofKing raises to 3
+habing folds
+ABitofKing refunded 2
+ABitofKing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8760296-5 - 2013-06-20 02:48:16
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 3: ABitofKing (100.32)
+Seat 6: habing (314.65)
+habing has the dealer button
+habing posts small blind 0.50
+ABitofKing posts big blind 1
+** Hole Cards **
+Dealt to habing [6d Kd]
+habing raises to 2
+ABitofKing folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8760310-6 - 2013-06-20 02:48:32
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 3: ABitofKing (99.32)
+Seat 6: habing (315.65)
+ABitofKing has the dealer button
+ABitofKing posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [7c Td]
+ABitofKing raises to 3
+habing folds
+ABitofKing refunded 2
+ABitofKing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8760321-7 - 2013-06-20 02:48:52
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 3: ABitofKing (100.32)
+Seat 6: habing (314.65)
+habing has the dealer button
+habing posts small blind 0.50
+ABitofKing posts big blind 1
+** Hole Cards **
+Dealt to habing [3d 4d]
+habing raises to 2
+ABitofKing calls 1
+** Flop ** [4s 5c Kh]
+ABitofKing checks
+habing bets 3
+ABitofKing calls 3
+** Turn ** [Qh]
+ABitofKing checks
+habing checks
+** River ** [8c]
+ABitofKing bets 4
+habing folds
+ABitofKing refunded 4
+ABitofKing wins Pot (9.75)
+Rake (0.25)
+
+
+
+Hand #8760361-8 - 2013-06-20 02:49:56
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 3: ABitofKing (105.07)
+Seat 6: habing (309.65)
+ABitofKing has the dealer button
+ABitofKing posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [3d 3s]
+ABitofKing raises to 2
+habing calls 1
+** Flop ** [Qh 9h 9c]
+habing checks
+ABitofKing checks
+** Turn ** [6d]
+habing checks
+ABitofKing checks
+** River ** [8d]
+habing checks
+ABitofKing bets 4
+habing folds
+ABitofKing refunded 4
+ABitofKing wins Pot (3.90)
+Rake (0.10)
+
+
+
+Hand #8760391-9 - 2013-06-20 02:50:51
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 3: ABitofKing (106.97)
+Seat 6: habing (307.65)
+habing has the dealer button
+habing posts small blind 0.50
+ABitofKing posts big blind 1
+** Hole Cards **
+Dealt to habing [7h 4s]
+habing folds
+ABitofKing refunded 0.50
+ABitofKing wins Pot (1)
+Rake (0)
+
+
+
+Hand #8760403-10 - 2013-06-20 02:51:07
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 3: ABitofKing (107.47)
+Seat 6: habing (307.15)
+ABitofKing has the dealer button
+ABitofKing posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [Tc Jh]
+ABitofKing raises to 2
+habing calls 1
+** Flop ** [9d 4d Ad]
+habing checks
+ABitofKing bets 5
+habing folds
+ABitofKing refunded 5
+ABitofKing wins Pot (3.90)
+Rake (0.10)
+
+
+
+Hand #8760430-11 - 2013-06-20 02:51:52
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 3: ABitofKing (109.37)
+Seat 6: habing (305.15)
+habing has the dealer button
+habing posts small blind 0.50
+ABitofKing posts big blind 1
+** Hole Cards **
+Dealt to habing [2s 3h]
+habing folds
+ABitofKing refunded 0.50
+ABitofKing wins Pot (1)
+Rake (0)
+
+
+
+Hand #8760439-12 - 2013-06-20 02:52:09
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 3: ABitofKing (109.87)
+Seat 6: habing (304.65)
+ABitofKing has the dealer button
+ABitofKing posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [Th Js]
+ABitofKing folds
+habing refunded 0.50
+habing wins Pot (1)
+Rake (0)
+
+
+
+Hand #8760448-13 - 2013-06-20 02:52:22
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 3: ABitofKing (109.37)
+Seat 6: habing (305.15)
+habing has the dealer button
+habing posts small blind 0.50
+ABitofKing posts big blind 1
+** Hole Cards **
+Dealt to habing [Jd Ah]
+habing raises to 2
+ABitofKing folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8760464-14 - 2013-06-20 02:52:46
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 3: ABitofKing (108.37)
+Seat 6: habing (306.15)
+ABitofKing has the dealer button
+ABitofKing posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [7c 7d]
+ABitofKing folds
+habing refunded 0.50
+habing wins Pot (1)
+Rake (0)
+
+
+
+Hand #8760473-15 - 2013-06-20 02:53:02
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 3: ABitofKing (107.87)
+Seat 6: habing (306.65)
+habing has the dealer button
+habing posts small blind 0.50
+ABitofKing posts big blind 1
+** Hole Cards **
+Dealt to habing [Qs 2s]
+habing raises to 2
+ABitofKing folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8760487-16 - 2013-06-20 02:53:16
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 3: ABitofKing (106.87)
+Seat 6: habing (307.65)
+ABitofKing has the dealer button
+ABitofKing posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [Ac 6d]
+ABitofKing folds
+habing refunded 0.50
+habing wins Pot (1)
+Rake (0)
+
+
+
+Hand #8760494-17 - 2013-06-20 02:53:28
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 3: ABitofKing (106.37)
+Seat 6: habing (308.15)
+habing has the dealer button
+habing posts small blind 0.50
+ABitofKing posts big blind 1
+** Hole Cards **
+Dealt to habing [Ad Qh]
+habing raises to 2
+ABitofKing folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8760502-18 - 2013-06-20 02:53:42
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 3: ABitofKing (105.37)
+Seat 6: habing (309.15)
+ABitofKing has the dealer button
+ABitofKing posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [9h 8h]
+ABitofKing raises to 3
+habing calls 2
+** Flop ** [5h Ah 7h]
+habing checks
+ABitofKing bets 5
+habing raises to 16
+ABitofKing folds
+habing refunded 11
+habing wins Pot (15.60)
+Rake (0.40)
+
+
+
+Hand #8760532-19 - 2013-06-20 02:54:25
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 3: ABitofKing (97.37)
+Seat 6: habing (316.75)
+habing has the dealer button
+habing posts small blind 0.50
+ABitofKing posts big blind 1
+** Hole Cards **
+Dealt to habing [Kd 4c]
+habing raises to 2
+ABitofKing calls 1
+** Flop ** [2h Kh 4d]
+ABitofKing bets 1
+habing raises to 6
+ABitofKing calls 5
+** Turn ** [9d]
+ABitofKing checks
+habing bets 11.60
+ABitofKing calls 11.60
+** River ** [Ad]
+ABitofKing bets 77
+habing folds
+ABitofKing refunded 77
+ABitofKing wins Pot (38.22)
+Rake (0.98)
+
+
+
+Hand #8760580-20 - 2013-06-20 02:55:39
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 3: ABitofKing (115.99)
+Seat 6: habing (297.15)
+ABitofKing has the dealer button
+ABitofKing posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [Ac 7s]
+ABitofKing folds
+habing refunded 0.50
+habing wins Pot (1)
+Rake (0)
+
+
+
+Hand #8760586-21 - 2013-06-20 02:55:52
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 3: ABitofKing (115.49)
+Seat 6: habing (297.65)
+habing has the dealer button
+habing posts small blind 0.50
+ABitofKing posts big blind 1
+** Hole Cards **
+Dealt to habing [8d 7s]
+habing raises to 2
+ABitofKing raises to 5
+habing folds
+ABitofKing refunded 3
+ABitofKing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8760603-22 - 2013-06-20 02:56:15
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 3: ABitofKing (117.49)
+Seat 6: habing (295.65)
+ABitofKing has the dealer button
+ABitofKing posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [Kc 4c]
+ABitofKing raises to 3
+habing folds
+ABitofKing refunded 2
+ABitofKing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8760614-23 - 2013-06-20 02:56:39
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 3: ABitofKing (118.49)
+Seat 6: habing (294.65)
+habing has the dealer button
+habing posts small blind 0.50
+ABitofKing posts big blind 1
+** Hole Cards **
+Dealt to habing [2d 6c]
+habing folds
+ABitofKing refunded 0.50
+ABitofKing wins Pot (1)
+Rake (0)
+
+
+
+Hand #8760628-24 - 2013-06-20 02:56:53
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 3: ABitofKing (118.99)
+Seat 6: habing (294.15)
+ABitofKing has the dealer button
+ABitofKing posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [8s 4s]
+ABitofKing raises to 2
+habing folds
+ABitofKing refunded 1
+ABitofKing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8760636-25 - 2013-06-20 02:57:09
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 3: ABitofKing (119.99)
+Seat 6: habing (293.15)
+habing has the dealer button
+habing posts small blind 0.50
+ABitofKing posts big blind 1
+** Hole Cards **
+Dealt to habing [8s 7s]
+habing raises to 2
+ABitofKing calls 1
+** Flop ** [Qh 9s 4d]
+ABitofKing checks
+habing bets 3
+ABitofKing folds
+habing refunded 3
+habing wins Pot (3.90)
+Rake (0.10)
+
+
+
+Hand #8760666-26 - 2013-06-20 02:57:54
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 3: ABitofKing (117.99)
+Seat 6: habing (295.05)
+ABitofKing has the dealer button
+ABitofKing posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [8h 5h]
+ABitofKing calls 0.50
+habing checks
+** Flop ** [7d Qs Ad]
+habing checks
+ABitofKing bets 1
+habing folds
+ABitofKing refunded 1
+ABitofKing wins Pot (1.95)
+Rake (0.05)
+
+
+
+Hand #8760686-27 - 2013-06-20 02:58:18
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 3: ABitofKing (118.94)
+Seat 6: habing (294.05)
+habing has the dealer button
+habing posts small blind 0.50
+ABitofKing posts big blind 1
+** Hole Cards **
+Dealt to habing [6h Js]
+habing raises to 2
+ABitofKing raises to 5
+habing folds
+ABitofKing refunded 3
+ABitofKing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8760702-28 - 2013-06-20 02:58:38
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 3: ABitofKing (120.94)
+Seat 6: habing (292.05)
+ABitofKing has the dealer button
+ABitofKing posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [Th 7s]
+ABitofKing raises to 3
+habing folds
+ABitofKing refunded 2
+ABitofKing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8760717-29 - 2013-06-20 02:58:56
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 3: ABitofKing (121.94)
+Seat 6: habing (291.05)
+habing has the dealer button
+habing posts small blind 0.50
+ABitofKing posts big blind 1
+** Hole Cards **
+Dealt to habing [4h 7h]
+habing raises to 2
+ABitofKing calls 1
+** Flop ** [Ac 5s 4s]
+ABitofKing bets 3
+habing calls 3
+** Turn ** [Qh]
+ABitofKing bets 10
+habing folds
+ABitofKing refunded 10
+ABitofKing wins Pot (9.75)
+Rake (0.25)
+
+
+
+Hand #8760740-30 - 2013-06-20 02:59:41
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 3: ABitofKing (126.69)
+Seat 6: habing (286.05)
+ABitofKing has the dealer button
+ABitofKing posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [Td 4c]
+ABitofKing calls 0.50
+habing checks
+** Flop ** [2c 5h Qh]
+habing checks
+ABitofKing bets 1
+habing folds
+ABitofKing refunded 1
+ABitofKing wins Pot (1.95)
+Rake (0.05)
+
+
+
+Hand #8760758-31 - 2013-06-20 03:00:11
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 3: ABitofKing (127.64)
+Seat 6: habing (285.05)
+habing has the dealer button
+habing posts small blind 0.50
+ABitofKing posts big blind 1
+** Hole Cards **
+Dealt to habing [7d 3h]
+habing folds
+ABitofKing refunded 0.50
+ABitofKing wins Pot (1)
+Rake (0)
+
+
+
+Hand #8760782-32 - 2013-06-20 03:00:23
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 3: ABitofKing (128.14)
+Seat 6: habing (284.55)
+ABitofKing has the dealer button
+ABitofKing posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [9h 2c]
+ABitofKing raises to 2
+habing folds
+ABitofKing refunded 1
+ABitofKing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8760797-33 - 2013-06-20 03:00:39
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 3: ABitofKing (129.14)
+Seat 6: habing (283.55)
+habing has the dealer button
+habing posts small blind 0.50
+ABitofKing posts big blind 1
+** Hole Cards **
+Dealt to habing [Qh 5d]
+habing raises to 2
+ABitofKing folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8760811-34 - 2013-06-20 03:00:55
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 3: ABitofKing (128.14)
+Seat 6: habing (284.55)
+ABitofKing has the dealer button
+ABitofKing posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [Ad 6c]
+ABitofKing raises to 3
+habing folds
+ABitofKing refunded 2
+ABitofKing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8760833-35 - 2013-06-20 03:01:16
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 3: ABitofKing (129.14)
+Seat 6: habing (283.55)
+habing has the dealer button
+habing posts small blind 0.50
+ABitofKing posts big blind 1
+** Hole Cards **
+Dealt to habing [7h 9s]
+habing raises to 2
+ABitofKing calls 1
+** Flop ** [Jc 3c Ad]
+ABitofKing checks
+habing checks
+** Turn ** [8s]
+ABitofKing checks
+habing checks
+** River ** [6c]
+ABitofKing checks
+habing checks
+** Pot Show Down ** [Jc 3c Ad 8s 6c]
+ABitofKing shows [Qc 5d] (High Card Ace +QJ86)
+habing shows [7h 9s] (High Card Ace +J987)
+ABitofKing wins Pot (3.90) with High Card
+Rake (0.10)
+
+
+
+Hand #8760886-36 - 2013-06-20 03:02:05
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 3: ABitofKing (131.04)
+Seat 6: habing (281.55)
+ABitofKing has the dealer button
+ABitofKing posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [8h 6d]
+ABitofKing raises to 3
+habing folds
+ABitofKing refunded 2
+ABitofKing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8760901-37 - 2013-06-20 03:02:20
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 3: ABitofKing (132.04)
+Seat 6: habing (280.55)
+habing has the dealer button
+habing posts small blind 0.50
+ABitofKing posts big blind 1
+** Hole Cards **
+Dealt to habing [As 9s]
+habing raises to 2
+ABitofKing calls 1
+** Flop ** [4s 4h Qh]
+ABitofKing checks
+habing bets 3
+ABitofKing folds
+habing refunded 3
+habing wins Pot (3.90)
+Rake (0.10)
+
+
+
+Hand #8760934-38 - 2013-06-20 03:02:55
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 3: ABitofKing (130.04)
+Seat 6: habing (282.45)
+ABitofKing has the dealer button
+ABitofKing posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [Th Qs]
+ABitofKing folds
+habing refunded 0.50
+habing wins Pot (1)
+Rake (0)
+
+
+
+Hand #8760951-39 - 2013-06-20 03:03:10
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 3: ABitofKing (129.54)
+Seat 6: habing (282.95)
+habing has the dealer button
+habing posts small blind 0.50
+ABitofKing posts big blind 1
+** Hole Cards **
+Dealt to habing [9s Kd]
+habing raises to 2
+ABitofKing calls 1
+** Flop ** [8d 5s Ah]
+ABitofKing bets 1
+habing folds
+ABitofKing refunded 1
+ABitofKing wins Pot (3.90)
+Rake (0.10)
+
+
+
+Hand #8760972-40 - 2013-06-20 03:03:37
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 3: ABitofKing (131.44)
+Seat 6: habing (280.95)
+ABitofKing has the dealer button
+ABitofKing posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [Tc 3d]
+ABitofKing folds
+habing refunded 0.50
+habing wins Pot (1)
+Rake (0)
+
+
+
+Hand #8760984-41 - 2013-06-20 03:03:49
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 3: ABitofKing (130.94)
+Seat 6: habing (281.45)
+habing has the dealer button
+habing posts small blind 0.50
+ABitofKing posts big blind 1
+** Hole Cards **
+Dealt to habing [Tc 3c]
+habing folds
+ABitofKing refunded 0.50
+ABitofKing wins Pot (1)
+Rake (0)
+
+
+
+Hand #8761007-42 - 2013-06-20 03:04:03
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 3: ABitofKing (131.44)
+Seat 6: habing (280.95)
+ABitofKing has the dealer button
+ABitofKing posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [6c 7c]
+ABitofKing raises to 2
+habing calls 1
+** Flop ** [Jc Kh 6h]
+habing checks
+ABitofKing bets 2
+habing calls 2
+** Turn ** [2h]
+habing checks
+ABitofKing checks
+** River ** [2d]
+habing checks
+ABitofKing checks
+** Pot Show Down ** [Jc Kh 6h 2h 2d]
+ABitofKing shows [Qs 9d] (a Pair of Deuces +KQJ)
+habing shows [6c 7c] (Two Pair, Sixes and Deuces +K)
+habing wins Pot (7.80) with Two Pair
+Rake (0.20)
+
+
+
+Hand #8761049-43 - 2013-06-20 03:04:50
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 3: ABitofKing (127.44)
+Seat 6: habing (284.75)
+habing has the dealer button
+habing posts small blind 0.50
+ABitofKing posts big blind 1
+** Hole Cards **
+Dealt to habing [Ts Th]
+habing raises to 3
+ABitofKing folds
+habing refunded 2
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8761067-44 - 2013-06-20 03:05:10
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 3: ABitofKing (126.44)
+Seat 6: habing (285.75)
+ABitofKing has the dealer button
+ABitofKing posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [2s Qh]
+ABitofKing folds
+habing refunded 0.50
+habing wins Pot (1)
+Rake (0)
+
+
+
+Hand #8761076-45 - 2013-06-20 03:05:20
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 3: ABitofKing (125.94)
+Seat 6: habing (286.25)
+habing has the dealer button
+habing posts small blind 0.50
+ABitofKing posts big blind 1
+** Hole Cards **
+Dealt to habing [9s 2c]
+habing folds
+ABitofKing refunded 0.50
+ABitofKing wins Pot (1)
+Rake (0)
+
+
+
+Hand #8761089-46 - 2013-06-20 03:05:34
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 3: ABitofKing (126.44)
+Seat 6: habing (285.75)
+ABitofKing has the dealer button
+ABitofKing posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [8d Td]
+ABitofKing raises to 3
+habing calls 2
+** Flop ** [2d 4h 2s]
+habing checks
+ABitofKing checks
+** Turn ** [Ah]
+habing checks
+ABitofKing checks
+** River ** [Qd]
+habing checks
+ABitofKing bets 3
+habing folds
+ABitofKing refunded 3
+ABitofKing wins Pot (5.85)
+Rake (0.15)
+
+
+
+Hand #8761140-47 - 2013-06-20 03:06:22
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 3: ABitofKing (129.29)
+Seat 6: habing (282.75)
+habing has the dealer button
+habing posts small blind 0.50
+ABitofKing posts big blind 1
+** Hole Cards **
+Dealt to habing [Tc Kh]
+habing raises to 2
+ABitofKing calls 1
+** Flop ** [Kc 9h Ts]
+ABitofKing checks
+habing bets 3
+ABitofKing folds
+habing refunded 3
+habing wins Pot (3.90)
+Rake (0.10)
+
+
+
+Hand #8761175-48 - 2013-06-20 03:07:01
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 3: ABitofKing (127.29)
+Seat 6: habing (284.65)
+ABitofKing has the dealer button
+ABitofKing posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [3h As]
+ABitofKing raises to 3
+habing folds
+ABitofKing refunded 2
+ABitofKing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8761191-49 - 2013-06-20 03:07:17
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 3: ABitofKing (128.29)
+Seat 6: habing (283.65)
+habing has the dealer button
+habing posts small blind 0.50
+ABitofKing posts big blind 1
+** Hole Cards **
+Dealt to habing [3s Td]
+habing folds
+ABitofKing refunded 0.50
+ABitofKing wins Pot (1)
+Rake (0)
+
+
+
+Hand #8761206-50 - 2013-06-20 03:07:29
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #1
+Seat 3: ABitofKing (128.79)
+Seat 6: habing (283.15)
+ABitofKing has the dealer button
+ABitofKing posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [9h Qs]
+ABitofKing folds
+habing refunded 0.50
+habing wins Pot (1)
+Rake (0)

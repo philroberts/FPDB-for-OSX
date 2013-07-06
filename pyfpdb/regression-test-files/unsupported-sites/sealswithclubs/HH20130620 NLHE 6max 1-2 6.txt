@@ -1,0 +1,305 @@
+Hand #8780548-1 - 2013-06-20 15:58:34
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #6
+Seat 1: swag123 (76.15) - waiting for big blind
+Seat 6: habing (200) - waiting for big blind
+habing has the dealer button
+habing posts small blind 1
+swag123 posts big blind 2
+** Hole Cards **
+Dealt to habing [4d 5d]
+habing raises to 4
+swag123 raises to 10
+habing calls 6
+** Flop ** [8h 6h 7d]
+swag123 checks
+habing bets 10
+swag123 calls 10
+** Turn ** [Jd]
+swag123 checks
+habing bets 22.80
+swag123 folds
+habing refunded 22.80
+habing wins Pot (39)
+Rake (1)
+
+
+
+Hand #8780572-2 - 2013-06-20 15:59:25
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #6
+Seat 1: swag123 (56.15)
+Seat 6: habing (219)
+swag123 has the dealer button
+swag123 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [8h Kh]
+swag123 raises to 4
+habing calls 2
+** Flop ** [Ks Ah 7s]
+habing bets 5.60
+swag123 calls 5.60
+** Turn ** [Th]
+habing checks
+swag123 bets 10
+habing calls 10
+** River ** [6c]
+habing checks
+swag123 bets 8
+habing folds
+swag123 refunded 8
+habing adds 0.60 chips
+swag123 wins Pot (38.22)
+Rake (0.98)
+
+
+
+Hand #8780603-3 - 2013-06-20 16:00:22
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #6
+Seat 1: swag123 (74.77)
+Seat 6: habing (200)
+habing has the dealer button
+habing posts small blind 1
+swag123 posts big blind 2
+** Hole Cards **
+Dealt to habing [2c 8h]
+habing folds
+swag123 refunded 1
+habing adds 1 chips
+swag123 wins Pot (2)
+Rake (0)
+
+
+
+Hand #8780623-4 - 2013-06-20 16:00:33
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #6
+Seat 1: swag123 (75.77)
+Seat 6: habing (200)
+swag123 has the dealer button
+swag123 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [9c 7h]
+swag123 raises to 4
+habing folds
+swag123 refunded 2
+habing adds 2 chips
+swag123 wins Pot (4)
+Rake (0)
+
+
+
+Hand #8780632-5 - 2013-06-20 16:00:48
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #6
+Seat 1: swag123 (77.77)
+Seat 6: habing (200)
+habing has the dealer button
+habing posts small blind 1
+swag123 posts big blind 2
+** Hole Cards **
+Dealt to habing [9h Ac]
+habing raises to 4
+swag123 folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8780644-6 - 2013-06-20 16:01:04
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #6
+Seat 1: swag123 (75.77)
+Seat 6: habing (202)
+swag123 has the dealer button
+swag123 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [As Ts]
+swag123 raises to 4
+habing calls 2
+** Flop ** [4d 9h 2c]
+habing checks
+swag123 bets 5
+habing calls 5
+** Turn ** [Qd]
+habing checks
+swag123 checks
+** River ** [4c]
+habing checks
+swag123 checks
+** Pot Show Down ** [4d 9h 2c Qd 4c]
+swag123 shows [Td 5h] (a Pair of Fours +QT9)
+habing shows [As Ts] (a Pair of Fours +AQT)
+habing wins Pot (17.55) with a Pair
+Rake (0.45)
+
+
+
+Hand #8780676-7 - 2013-06-20 16:01:40
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #6
+Seat 1: swag123 (66.77)
+Seat 6: habing (210.55)
+habing has the dealer button
+habing posts small blind 1
+swag123 posts big blind 2
+** Hole Cards **
+Dealt to habing [6h Jh]
+habing raises to 4
+swag123 folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8780686-8 - 2013-06-20 16:01:55
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #6
+Seat 1: swag123 (64.77)
+Seat 6: habing (212.55)
+swag123 has the dealer button
+swag123 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Td 7h]
+swag123 raises to 4
+habing folds
+swag123 refunded 2
+swag123 wins Pot (4)
+Rake (0)
+
+
+
+Hand #8780708-9 - 2013-06-20 16:02:23
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #6
+Seat 1: swag123 (66.77)
+Seat 6: habing (210.55)
+habing has the dealer button
+habing posts small blind 1
+swag123 posts big blind 2
+** Hole Cards **
+Dealt to habing [8h Kh]
+habing raises to 4
+swag123 calls 2
+** Flop ** [2s 9c 2d]
+swag123 checks
+habing bets 6
+swag123 calls 6
+** Turn ** [9s]
+swag123 checks
+habing checks
+** River ** [7c]
+swag123 checks
+habing checks
+** Pot Show Down ** [2s 9c 2d 9s 7c]
+swag123 shows [Ks Td] (Two Pair, Nines and Deuces +K)
+habing shows [8h Kh] (Two Pair, Nines and Deuces +K)
+swag123 splits Pot (9.75) with Two Pair
+habing splits Pot (9.75) with Two Pair
+Rake (0.50)
+
+
+
+Hand #8780757-10 - 2013-06-20 16:03:32
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #6
+Seat 1: swag123 (66.52)
+Seat 6: habing (210.30)
+swag123 has the dealer button
+swag123 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Kd 5d]
+swag123 raises to 4
+habing calls 2
+** Flop ** [7h 5c 8d]
+habing checks
+swag123 bets 6
+habing folds
+swag123 refunded 6
+swag123 wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #8780779-11 - 2013-06-20 16:04:00
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #6
+Seat 1: swag123 (70.32)
+Seat 6: habing (206.30)
+habing has the dealer button
+habing posts small blind 1
+swag123 posts big blind 2
+** Hole Cards **
+Dealt to habing [3h As]
+habing raises to 4
+swag123 folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8780789-12 - 2013-06-20 16:04:15
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #6
+Seat 1: swag123 (68.32)
+Seat 6: habing (208.30)
+swag123 has the dealer button
+swag123 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ks 5d]
+swag123 raises to 4
+habing folds
+swag123 refunded 2
+swag123 wins Pot (4)
+Rake (0)
+
+
+
+Hand #8780807-13 - 2013-06-20 16:04:39
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #6
+Seat 1: swag123 (70.32)
+Seat 6: habing (206.30)
+habing has the dealer button
+habing posts small blind 1
+swag123 posts big blind 2
+** Hole Cards **
+Dealt to habing [Js 8d]
+habing raises to 4
+swag123 raises to 10
+habing calls 6
+** Flop ** [5s Tc Jd]
+swag123 bets 14
+habing calls 14
+** Turn ** [8c]
+swag123 bets 46.32 (All-in)
+habing calls 46.32
+** River ** [3c]
+** Pot Show Down ** [5s Tc Jd 8c 3c]
+swag123 shows [Kd Qc] (High Card King +QJT8)
+habing shows [Js 8d] (Two Pair, Jacks and Eights +T)
+habing wins Pot (137.13) with Two Pair
+Rake (3.51)

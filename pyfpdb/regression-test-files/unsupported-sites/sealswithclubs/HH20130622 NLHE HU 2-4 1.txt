@@ -1,0 +1,285 @@
+Hand #8863289-1 - 2013-06-22 06:43:23
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #1
+Seat 1: MisterWonka (400) - waiting for big blind
+Seat 2: habing (400) - waiting for big blind
+habing has the dealer button
+habing posts small blind 2
+MisterWonka posts big blind 4
+** Hole Cards **
+Dealt to habing [Ac 8h]
+habing raises to 8
+MisterWonka calls 4
+** Flop ** [4c 5c 3d]
+MisterWonka checks
+habing bets 8.80
+MisterWonka calls 8.80
+** Turn ** [6d]
+MisterWonka checks
+habing checks
+** River ** [4s]
+MisterWonka checks
+habing checks
+** Pot Show Down ** [4c 5c 3d 6d 4s]
+MisterWonka shows [Jh Ts] (a Pair of Fours +JT6)
+habing shows [Ac 8h] (a Pair of Fours +A86)
+habing wins Pot (32.76) with a Pair
+Rake (0.84)
+
+
+
+Hand #8863310-2 - 2013-06-22 06:44:40
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #1
+Seat 1: MisterWonka (383.20)
+Seat 2: habing (415.96)
+MisterWonka has the dealer button
+MisterWonka posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [7d 5d]
+MisterWonka calls 2
+habing checks
+** Flop ** [6s 9s Td]
+habing checks
+MisterWonka bets 4
+habing folds
+MisterWonka refunded 4
+MisterWonka wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #8863322-3 - 2013-06-22 06:45:22
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #1
+Seat 1: MisterWonka (387)
+Seat 2: habing (411.96)
+habing has the dealer button
+habing posts small blind 2
+MisterWonka posts big blind 4
+** Hole Cards **
+Dealt to habing [2c Jh]
+habing folds
+MisterWonka refunded 2
+MisterWonka wins Pot (4)
+Rake (0)
+
+
+
+Hand #8863326-4 - 2013-06-22 06:45:34
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #1
+Seat 1: MisterWonka (389)
+Seat 2: habing (409.96)
+MisterWonka has the dealer button
+MisterWonka posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [3d 8s]
+MisterWonka calls 2
+habing checks
+** Flop ** [2c 2d 9d]
+habing checks
+MisterWonka checks
+** Turn ** [Td]
+habing checks
+MisterWonka checks
+** River ** [Qh]
+habing checks
+MisterWonka checks
+** Pot Show Down ** [2c 2d 9d Td Qh]
+MisterWonka shows [Th 6c] (Two Pair, Tens and Deuces +Q)
+habing shows [3d 8s] (a Pair of Deuces +QT9)
+MisterWonka wins Pot (7.80) with Two Pair
+Rake (0.20)
+
+
+
+Hand #8863339-5 - 2013-06-22 06:46:07
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #1
+Seat 1: MisterWonka (392.80)
+Seat 2: habing (405.96)
+habing has the dealer button
+habing posts small blind 2
+MisterWonka posts big blind 4
+** Hole Cards **
+Dealt to habing [6s 9d]
+habing folds
+MisterWonka refunded 2
+MisterWonka wins Pot (4)
+Rake (0)
+
+
+
+Hand #8863345-6 - 2013-06-22 06:46:24
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #1
+Seat 1: MisterWonka (394.80)
+Seat 2: habing (403.96)
+MisterWonka has the dealer button
+MisterWonka posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [Ad 2s]
+MisterWonka calls 2
+habing checks
+** Flop ** [6h 3d Kc]
+habing checks
+MisterWonka bets 4
+habing folds
+MisterWonka refunded 4
+habing adds 0.04 chips
+MisterWonka wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #8863360-7 - 2013-06-22 06:47:12
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #1
+Seat 1: MisterWonka (398.60)
+Seat 2: habing (400)
+habing has the dealer button
+habing posts small blind 2
+MisterWonka posts big blind 4
+** Hole Cards **
+Dealt to habing [Js Tc]
+habing raises to 8
+MisterWonka folds
+habing refunded 4
+habing wins Pot (8)
+Rake (0)
+
+
+
+Hand #8863367-8 - 2013-06-22 06:47:27
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #1
+Seat 1: MisterWonka (394.60)
+Seat 2: habing (404)
+MisterWonka has the dealer button
+MisterWonka posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [4h 7d]
+MisterWonka raises to 8
+habing folds
+MisterWonka refunded 4
+MisterWonka wins Pot (8)
+Rake (0)
+
+
+
+Hand #8863375-9 - 2013-06-22 06:47:43
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #1
+Seat 1: MisterWonka (398.60)
+Seat 2: habing (400)
+habing has the dealer button
+habing posts small blind 2
+MisterWonka posts big blind 4
+** Hole Cards **
+Dealt to habing [9s Qc]
+habing raises to 8
+MisterWonka calls 4
+** Flop ** [4s 8d 2h]
+MisterWonka checks
+habing bets 8
+MisterWonka raises to 16
+habing folds
+MisterWonka refunded 8
+habing adds 16 chips
+MisterWonka wins Pot (31.20)
+Rake (0.80)
+
+
+
+Hand #8863386-10 - 2013-06-22 06:48:14
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #1
+Seat 1: MisterWonka (413.80)
+Seat 2: habing (400)
+MisterWonka has the dealer button
+MisterWonka posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [Qh Ad]
+MisterWonka calls 2
+habing raises to 20
+MisterWonka folds
+habing refunded 16
+habing wins Pot (8)
+Rake (0)
+
+
+
+Hand #8863395-11 - 2013-06-22 06:48:45
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #1
+Seat 1: MisterWonka (409.80)
+Seat 2: habing (404)
+habing has the dealer button
+habing posts small blind 2
+MisterWonka posts big blind 4
+** Hole Cards **
+Dealt to habing [8h Ad]
+habing raises to 8
+MisterWonka calls 4
+** Flop ** [7s 2s 3s]
+MisterWonka bets 10
+habing folds
+MisterWonka refunded 10
+habing adds 4 chips
+MisterWonka wins Pot (15.60)
+Rake (0.40)
+
+
+
+Hand #8863407-12 - 2013-06-22 06:49:27
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #1
+Seat 1: MisterWonka (417.40)
+Seat 2: habing (400)
+MisterWonka has the dealer button
+MisterWonka posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [Js 2d]
+MisterWonka folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8866996-1 - 2013-06-22 10:13:18
+Game: NL Hold'em (80 - 400) - Blinds 2/4
+Site: Seals With Clubs
+Table: NLHE HU 2/4 #1
+Seat 1: habing (400) - waiting for big blind
+Seat 2: NickWebZilla (400)
+NickWebZilla has the dealer button
+NickWebZilla posts small blind 2
+habing posts big blind 4
+** Hole Cards **
+Dealt to habing [3c As]
+NickWebZilla raises to 12
+habing folds
+NickWebZilla refunded 8
+habing adds 4 chips
+NickWebZilla wins Pot (8)
+Rake (0)

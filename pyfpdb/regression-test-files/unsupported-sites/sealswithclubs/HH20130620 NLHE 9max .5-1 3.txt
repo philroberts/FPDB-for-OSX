@@ -1,0 +1,1666 @@
+Hand #8757873-333 - 2013-06-20 01:53:45
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #3
+Seat 1: habing (100) - waiting for big blind
+Seat 3: silent (90.29)
+Seat 4: aki199 (695.22)
+Seat 5: hairryjerry (129.86)
+Seat 6: racer56 (109.77)
+Seat 7: BONUS (152.98)
+Seat 8: wonderboy (31.18)
+Seat 9: Evolutionary (129.01)
+hairryjerry has the dealer button
+racer56 posts small blind 0.50
+BONUS posts big blind 1
+** Hole Cards **
+wonderboy folds
+Evolutionary folds
+silent folds
+aki199 folds
+hairryjerry folds
+racer56 folds
+BONUS refunded 0.50
+BONUS wins Pot (1)
+Rake (0)
+
+
+
+Hand #8757892-334 - 2013-06-20 01:54:09
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #3
+Seat 1: habing (100) - waiting for big blind
+Seat 3: silent (90.29)
+Seat 4: aki199 (695.22)
+Seat 5: hairryjerry (129.86)
+Seat 6: racer56 (109.27)
+Seat 7: BONUS (153.48)
+Seat 8: wonderboy (31.18)
+Seat 9: Evolutionary (129.01)
+racer56 has the dealer button
+BONUS posts small blind 0.50
+wonderboy posts big blind 1
+** Hole Cards **
+Evolutionary folds
+silent folds
+aki199 folds
+hairryjerry folds
+racer56 folds
+BONUS folds
+wonderboy refunded 0.50
+wonderboy wins Pot (1)
+Rake (0)
+
+
+
+Hand #8757923-335 - 2013-06-20 01:54:51
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #3
+Seat 1: habing (100) - waiting for big blind
+Seat 3: silent (90.29)
+Seat 4: aki199 (695.22)
+Seat 5: hairryjerry (129.86)
+Seat 6: racer56 (109.27)
+Seat 7: BONUS (152.98)
+Seat 8: wonderboy (31.68)
+Seat 9: Evolutionary (129.01)
+BONUS has the dealer button
+wonderboy posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [5d Qs]
+silent folds
+aki199 folds
+hairryjerry folds
+racer56 folds
+BONUS raises to 3
+wonderboy folds
+habing folds
+BONUS refunded 2
+habing adds 1 chips
+BONUS wins Pot (2.50)
+Rake (0)
+
+
+
+Hand #8757955-336 - 2013-06-20 01:55:41
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #3
+Seat 1: habing (100)
+Seat 3: silent (90.29)
+Seat 4: aki199 (695.22)
+Seat 5: hairryjerry (129.86)
+Seat 6: racer56 (109.27)
+Seat 7: BONUS (154.48)
+Seat 8: wonderboy (31.18)
+wonderboy has the dealer button
+habing posts small blind 0.50
+silent posts big blind 1
+** Hole Cards **
+Dealt to habing [Jh 3s]
+aki199 folds
+hairryjerry folds
+racer56 raises to 4
+BONUS folds
+wonderboy folds
+habing folds
+habing adds 0.50 chips
+silent folds
+racer56 refunded 3
+racer56 wins Pot (2.50)
+Rake (0)
+
+
+
+Hand #8757981-337 - 2013-06-20 01:56:14
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #3
+Seat 1: habing (100)
+Seat 3: silent (89.29)
+Seat 4: aki199 (695.22)
+Seat 5: hairryjerry (129.86)
+Seat 6: racer56 (110.77)
+Seat 7: BONUS (154.48)
+Seat 8: wonderboy (31.18)
+habing has the dealer button
+silent posts small blind 0.50
+aki199 posts big blind 1
+** Hole Cards **
+Dealt to habing [Ah Kh]
+hairryjerry folds
+racer56 raises to 3
+BONUS folds
+wonderboy folds
+habing raises to 9
+silent folds
+aki199 folds
+racer56 calls 6
+** Flop ** [8c Td 2s]
+racer56 checks
+habing bets 9.40
+racer56 calls 9.40
+** Turn ** [9h]
+racer56 checks
+habing checks
+** River ** [Kc]
+racer56 checks
+habing bets 23.40
+racer56 folds
+habing refunded 23.40
+habing wins Pot (37.35)
+Rake (0.95)
+
+
+
+Hand #8758064-338 - 2013-06-20 01:58:07
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #3
+Seat 1: habing (118.95)
+Seat 3: silent (88.79)
+Seat 4: aki199 (694.22)
+Seat 5: hairryjerry (129.86)
+Seat 6: racer56 (92.37)
+Seat 7: BONUS (154.48)
+Seat 8: wonderboy (31.18)
+silent has the dealer button
+aki199 posts small blind 0.50
+hairryjerry posts big blind 1
+** Hole Cards **
+Dealt to habing [Ts Jc]
+racer56 folds
+BONUS folds
+wonderboy folds
+habing folds
+silent folds
+aki199 folds
+hairryjerry refunded 0.50
+hairryjerry wins Pot (1)
+Rake (0)
+
+
+
+Hand #8758083-339 - 2013-06-20 01:58:34
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #3
+Seat 1: habing (118.95)
+Seat 3: silent (88.79)
+Seat 4: aki199 (693.72)
+Seat 5: hairryjerry (130.36)
+Seat 6: racer56 (92.37)
+Seat 7: BONUS (154.48)
+Seat 8: wonderboy (31.18)
+aki199 has the dealer button
+hairryjerry posts small blind 0.50
+racer56 posts big blind 1
+** Hole Cards **
+Dealt to habing [Jd 6c]
+BONUS folds
+wonderboy folds
+habing folds
+silent raises to 3
+aki199 folds
+hairryjerry folds
+racer56 folds
+silent refunded 2
+silent wins Pot (2.50)
+Rake (0)
+
+
+
+Hand #8758104-340 - 2013-06-20 01:59:15
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #3
+Seat 1: habing (118.95)
+Seat 3: silent (90.29)
+Seat 4: aki199 (693.72)
+Seat 5: hairryjerry (129.86)
+Seat 6: racer56 (91.37)
+Seat 7: BONUS (154.48)
+Seat 8: wonderboy (31.18)
+hairryjerry has the dealer button
+racer56 posts small blind 0.50
+BONUS posts big blind 1
+** Hole Cards **
+Dealt to habing [Ts 2h]
+wonderboy folds
+habing folds
+silent raises to 3
+aki199 calls 3
+hairryjerry calls 3
+racer56 folds
+BONUS folds
+** Flop ** [3d 3s 6c]
+silent checks
+aki199 bets 11
+hairryjerry calls 11
+silent folds
+** Turn ** [Jh]
+aki199 checks
+hairryjerry checks
+** River ** [9c]
+aki199 bets 26.60
+hairryjerry folds
+aki199 refunded 26.60
+aki199 wins Pot (31.69)
+Rake (0.81)
+
+
+
+Hand #8758212-341 - 2013-06-20 02:01:18
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #3
+Seat 1: habing (118.95)
+Seat 3: silent (87.29)
+Seat 4: aki199 (711.41)
+Seat 5: hairryjerry (115.86)
+Seat 6: racer56 (90.87)
+Seat 7: BONUS (153.48)
+Seat 8: wonderboy (31.18)
+racer56 has the dealer button
+BONUS posts small blind 0.50
+wonderboy posts big blind 1
+** Hole Cards **
+Dealt to habing [Kd 8c]
+habing folds
+silent raises to 3
+aki199 calls 3
+hairryjerry folds
+racer56 folds
+BONUS folds
+wonderboy folds
+** Flop ** [4d 3h 6s]
+silent bets 4
+aki199 calls 4
+** Turn ** [9s]
+silent bets 10
+aki199 calls 10
+** River ** [2s]
+silent bets 25
+aki199 raises to 237.26
+silent calls 45.29 (All-in)
+aki199 refunded 166.97
+** Pot Show Down ** [4d 3h 6s 9s 2s]
+silent shows [7s Ts] (a Flush, Ten high +9762)
+aki199 shows [Ks As] (a Flush, Ace high +K962)
+aki199 wins Pot (171.68) with a Flush
+Rake (4.40)
+
+
+
+Hand #8758279-342 - 2013-06-20 02:02:39
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #3
+Seat 1: habing (118.95)
+Seat 3: silent (0) - sitting out
+Seat 4: aki199 (795.80)
+Seat 5: hairryjerry (115.86)
+Seat 7: BONUS (152.98)
+Seat 8: wonderboy (30.18)
+BONUS has the dealer button
+wonderboy posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [Ac Qs]
+aki199 raises to 3
+hairryjerry calls 3
+BONUS folds
+wonderboy folds
+habing raises to 14
+aki199 calls 11
+hairryjerry calls 11
+** Flop ** [7c Kh 6h]
+habing bets 14.80
+aki199 folds
+hairryjerry calls 14.80
+** Turn ** [7s]
+habing bets 30.20
+hairryjerry calls 30.20
+** River ** [8c]
+habing checks
+hairryjerry checks
+** Pot Show Down ** [7c Kh 6h 7s 8c]
+habing shows [Ac Qs] (a Pair of Sevens +AKQ)
+hairryjerry shows [Ts Td] (Two Pair, Tens and Sevens +K)
+hairryjerry wins Pot (129.19) with Two Pair
+Rake (3.31)
+habing adds 40.05 chips
+
+
+
+Hand #8758416-343 - 2013-06-20 02:05:10
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #3
+Seat 1: habing (100)
+Seat 4: aki199 (781.80)
+Seat 5: hairryjerry (186.05)
+Seat 7: BONUS (152.98)
+Seat 8: wonderboy (29.68)
+wonderboy has the dealer button
+habing posts small blind 0.50
+aki199 posts big blind 1
+** Hole Cards **
+Dealt to habing [Ks Kh]
+hairryjerry calls 1
+BONUS calls 1
+wonderboy folds
+habing raises to 6
+aki199 folds
+hairryjerry folds
+BONUS folds
+habing refunded 5
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8758457-344 - 2013-06-20 02:05:57
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #3
+Seat 1: habing (103)
+Seat 4: aki199 (780.80)
+Seat 5: hairryjerry (185.05)
+Seat 7: BONUS (151.98)
+Seat 8: wonderboy (29.68)
+habing has the dealer button
+aki199 posts small blind 0.50
+hairryjerry posts big blind 1
+** Hole Cards **
+Dealt to habing [Td 9d]
+BONUS folds
+wonderboy folds
+habing raises to 2
+aki199 folds
+hairryjerry folds
+habing refunded 1
+habing wins Pot (2.50)
+Rake (0)
+
+
+
+Hand #8758497-345 - 2013-06-20 02:06:35
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #3
+Seat 1: habing (104.50)
+Seat 4: aki199 (780.30)
+Seat 5: hairryjerry (184.05)
+Seat 7: BONUS (151.98)
+Seat 8: wonderboy (29.68)
+aki199 has the dealer button
+BONUS posts small blind 0.50
+wonderboy posts big blind 1
+** Hole Cards **
+Dealt to habing [Tc 5s]
+habing folds
+aki199 raises to 3
+BONUS folds
+wonderboy folds
+aki199 refunded 2
+aki199 wins Pot (2.50)
+Rake (0)
+
+
+
+Hand #8758517-346 - 2013-06-20 02:06:58
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #3
+Seat 1: habing (104.50)
+Seat 4: aki199 (781.80)
+Seat 5: hairryjerry (184.05) - sitting out
+Seat 7: BONUS (151.48)
+Seat 8: wonderboy (28.68)
+BONUS has the dealer button
+wonderboy posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [9d Th]
+aki199 folds
+BONUS raises to 3
+wonderboy folds
+habing folds
+BONUS refunded 2
+BONUS wins Pot (2.50)
+Rake (0)
+
+
+
+Hand #8758540-347 - 2013-06-20 02:07:17
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #3
+Seat 1: habing (103.50)
+Seat 4: aki199 (781.80) - sitting out
+Seat 5: hairryjerry (184.05) - sitting out
+Seat 7: BONUS (152.98)
+Seat 8: wonderboy (28.18)
+wonderboy has the dealer button
+habing posts small blind 0.50
+BONUS posts big blind 1
+** Hole Cards **
+Dealt to habing [Js 8c]
+wonderboy folds
+habing raises to 3
+BONUS raises to 10
+habing folds
+BONUS refunded 7
+BONUS wins Pot (6)
+Rake (0)
+
+
+
+Hand #8758571-348 - 2013-06-20 02:07:46
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #3
+Seat 1: habing (100.50)
+Seat 5: hairryjerry (184.05) - sitting out
+Seat 7: BONUS (155.98)
+habing has the dealer button
+habing posts small blind 0.50
+BONUS posts big blind 1
+** Hole Cards **
+Dealt to habing [5h Ac]
+habing raises to 3
+BONUS folds
+habing refunded 2
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8758592-349 - 2013-06-20 02:08:10
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #3
+Seat 1: habing (101.50)
+Seat 5: hairryjerry (184.05) - sitting out
+Seat 7: BONUS (154.98)
+BONUS has the dealer button
+BONUS posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [9s 6c]
+BONUS raises to 3
+habing folds
+BONUS refunded 2
+BONUS wins Pot (2)
+Rake (0)
+
+
+
+Hand #8759192-1 - 2013-06-20 02:19:17
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #3
+Seat 1: habing (100.50)
+Seat 7: roadrelief (20) - waiting for big blind
+habing has the dealer button
+habing posts small blind 0.50
+roadrelief posts big blind 1
+** Hole Cards **
+Dealt to habing [Qh 4s]
+habing folds
+roadrelief refunded 0.50
+roadrelief wins Pot (1)
+Rake (0)
+
+
+
+Hand #8759211-2 - 2013-06-20 02:19:34
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #3
+Seat 1: habing (100)
+Seat 7: roadrelief (20.50)
+roadrelief has the dealer button
+roadrelief posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [Jd Qd]
+roadrelief folds
+habing refunded 0.50
+habing wins Pot (1)
+Rake (0)
+
+
+
+Hand #8759227-3 - 2013-06-20 02:19:49
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #3
+Seat 1: habing (100.50)
+Seat 7: roadrelief (20)
+habing has the dealer button
+habing posts small blind 0.50
+roadrelief posts big blind 1
+** Hole Cards **
+Dealt to habing [8d Qh]
+habing raises to 2
+roadrelief calls 1
+** Flop ** [6s 7c 2d]
+roadrelief checks
+habing checks
+** Turn ** [2s]
+roadrelief checks
+habing bets 2
+roadrelief folds
+habing refunded 2
+roadrelief adds 2 chips
+habing wins Pot (3.90)
+Rake (0.10)
+
+
+
+Hand #8759284-4 - 2013-06-20 02:20:50
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #3
+Seat 1: habing (102.40)
+Seat 7: roadrelief (20)
+roadrelief has the dealer button
+roadrelief posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [Jh Jd]
+roadrelief raises to 20 (All-in)
+habing calls 19
+** Flop ** [Kc Ks 9c]
+** Turn ** [5d]
+** River ** [9h]
+** Pot Show Down ** [Kc Ks 9c 5d 9h]
+habing shows [Jh Jd] (Two Pair, Kings and Jacks +9)
+roadrelief shows [5s 5c] (a Full House, Fives full of Kings)
+roadrelief wins Pot (39) with a Full House
+Rake (1)
+habing adds 17.60 chips
+
+
+
+Hand #8759323-5 - 2013-06-20 02:21:33
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #3
+Seat 1: habing (100)
+Seat 7: roadrelief (39)
+habing has the dealer button
+habing posts small blind 0.50
+roadrelief posts big blind 1
+** Hole Cards **
+Dealt to habing [3c Qs]
+habing raises to 2
+roadrelief calls 1
+** Flop ** [3s Ah 6c]
+roadrelief checks
+habing bets 2
+roadrelief folds
+habing refunded 2
+habing wins Pot (3.90)
+Rake (0.10)
+
+
+
+Hand #8759347-6 - 2013-06-20 02:22:04
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #3
+Seat 1: habing (101.90)
+Seat 7: roadrelief (37)
+roadrelief has the dealer button
+roadrelief posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [Js 5s]
+roadrelief calls 0.50
+habing checks
+** Flop ** [Jh 6d 4s]
+habing bets 1
+roadrelief folds
+habing refunded 1
+habing wins Pot (1.95)
+Rake (0.05)
+
+
+
+Hand #8759382-7 - 2013-06-20 02:23:02
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #3
+Seat 1: habing (102.85)
+Seat 7: roadrelief (36)
+habing has the dealer button
+habing posts small blind 0.50
+roadrelief posts big blind 1
+** Hole Cards **
+Dealt to habing [8c 3c]
+habing raises to 2
+roadrelief folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8759395-8 - 2013-06-20 02:23:23
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #3
+Seat 1: habing (103.85)
+Seat 7: roadrelief (35)
+roadrelief has the dealer button
+roadrelief posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [3s 8d]
+roadrelief calls 0.50
+habing checks
+** Flop ** [7s Ks Jc]
+habing checks
+roadrelief checks
+** Turn ** [As]
+habing checks
+roadrelief checks
+** River ** [Kd]
+habing checks
+roadrelief checks
+** Pot Show Down ** [7s Ks Jc As Kd]
+habing shows [3s 8d] (a Pair of Kings +AJ8)
+roadrelief shows [4c 3c] (a Pair of Kings +AJ7)
+habing wins Pot (1.95) with a Pair
+Rake (0.05)
+
+
+
+Hand #8759453-9 - 2013-06-20 02:24:40
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #3
+Seat 1: habing (104.80)
+Seat 7: roadrelief (34)
+habing has the dealer button
+habing posts small blind 0.50
+roadrelief posts big blind 1
+** Hole Cards **
+Dealt to habing [8d 8h]
+habing raises to 2
+roadrelief raises to 34 (All-in)
+habing calls 32
+** Flop ** [7h 4s 2h]
+** Turn ** [6s]
+** River ** [2d]
+** Pot Show Down ** [7h 4s 2h 6s 2d]
+habing shows [8d 8h] (Two Pair, Eights and Deuces +7)
+roadrelief shows [Ad 2s] (Three of a Kind, Deuces +A7)
+roadrelief wins Pot (66.30) with Three of a Kind
+Rake (1.70)
+habing adds 29.20 chips
+
+
+
+Hand #8760273-1 - 2013-06-20 02:47:44
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #3
+Seat 1: habing (100)
+Seat 2: BritneysBack (100) - waiting for big blind
+BritneysBack has the dealer button
+BritneysBack posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [6s 7d]
+BritneysBack raises to 3
+habing folds
+BritneysBack refunded 2
+habing adds 1 chips
+BritneysBack wins Pot (2)
+Rake (0)
+
+
+
+Hand #8760283-2 - 2013-06-20 02:48:01
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #3
+Seat 1: habing (100)
+Seat 2: BritneysBack (101)
+habing has the dealer button
+habing posts small blind 0.50
+BritneysBack posts big blind 1
+** Hole Cards **
+Dealt to habing [5c 7c]
+habing raises to 2
+BritneysBack calls 1
+** Flop ** [2s Ks 4d]
+BritneysBack bets 2
+habing folds
+BritneysBack refunded 2
+habing adds 2 chips
+BritneysBack wins Pot (3.90)
+Rake (0.10)
+
+
+
+Hand #8760302-3 - 2013-06-20 02:48:25
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #3
+Seat 1: habing (100)
+Seat 2: BritneysBack (102.90)
+BritneysBack has the dealer button
+BritneysBack posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [Tc 4c]
+BritneysBack raises to 3
+habing folds
+BritneysBack refunded 2
+habing adds 1 chips
+BritneysBack wins Pot (2)
+Rake (0)
+
+
+
+Hand #8760312-4 - 2013-06-20 02:48:38
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #3
+Seat 1: habing (100)
+Seat 2: BritneysBack (103.90)
+habing has the dealer button
+habing posts small blind 0.50
+BritneysBack posts big blind 1
+** Hole Cards **
+Dealt to habing [Jh 4c]
+habing folds
+BritneysBack refunded 0.50
+habing adds 0.50 chips
+BritneysBack wins Pot (1)
+Rake (0)
+
+
+
+Hand #8760319-5 - 2013-06-20 02:48:51
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #3
+Seat 1: habing (100)
+Seat 2: BritneysBack (104.40)
+BritneysBack has the dealer button
+BritneysBack posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [Qd Jc]
+BritneysBack raises to 3
+habing calls 2
+** Flop ** [Jd Tc 8s]
+habing checks
+BritneysBack bets 4
+habing calls 4
+** Turn ** [4s]
+habing checks
+BritneysBack bets 9
+habing calls 9
+** River ** [6d]
+habing checks
+BritneysBack checks
+** Pot Show Down ** [Jd Tc 8s 4s 6d]
+habing shows [Qd Jc] (a Pair of Jacks +QT8)
+BritneysBack shows [7s 6s] (a Pair of Sixes +JT8)
+habing wins Pot (31.20) with a Pair
+Rake (0.80)
+
+
+
+Hand #8760364-6 - 2013-06-20 02:50:00
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #3
+Seat 1: habing (115.20)
+Seat 2: BritneysBack (88.40)
+habing has the dealer button
+habing posts small blind 0.50
+BritneysBack posts big blind 1
+** Hole Cards **
+Dealt to habing [8d 8h]
+habing raises to 2
+BritneysBack raises to 7
+habing raises to 21
+BritneysBack folds
+habing refunded 14
+habing wins Pot (14)
+Rake (0)
+
+
+
+Hand #8760384-7 - 2013-06-20 02:50:29
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #3
+Seat 1: habing (122.20)
+Seat 2: BritneysBack (81.40)
+BritneysBack has the dealer button
+BritneysBack posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [7h Qh]
+BritneysBack raises to 3
+habing calls 2
+** Flop ** [Qs Ad Kd]
+habing checks
+BritneysBack bets 4
+habing calls 4
+** Turn ** [Qd]
+habing checks
+BritneysBack checks
+** River ** [9d]
+habing checks
+BritneysBack checks
+** Pot Show Down ** [Qs Ad Kd Qd 9d]
+habing shows [7h Qh] (Three of a Kind, Queens +AK)
+BritneysBack shows [As 7c] (Two Pair, Aces and Queens +K)
+habing wins Pot (13.65) with Three of a Kind
+Rake (0.35)
+
+
+
+Hand #8760409-8 - 2013-06-20 02:51:16
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #3
+Seat 1: habing (128.85)
+Seat 2: BritneysBack (74.40)
+habing has the dealer button
+habing posts small blind 0.50
+BritneysBack posts big blind 1
+** Hole Cards **
+Dealt to habing [Ad 6d]
+habing raises to 2
+BritneysBack calls 1
+** Flop ** [Td 8s Kd]
+BritneysBack bets 2
+habing raises to 7
+BritneysBack calls 5
+** Turn ** [7s]
+BritneysBack checks
+habing bets 10.80
+BritneysBack raises to 33.80
+habing calls 23
+** River ** [5d]
+BritneysBack checks
+habing bets 86.05 (All-in)
+BritneysBack folds
+habing refunded 86.05
+habing wins Pot (83.46)
+Rake (2.14)
+
+
+
+Hand #8760463-9 - 2013-06-20 02:52:46
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #3
+Seat 1: habing (169.51)
+Seat 2: BritneysBack (31.60)
+BritneysBack has the dealer button
+BritneysBack posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [4d Tc]
+BritneysBack raises to 3
+habing folds
+BritneysBack refunded 2
+BritneysBack wins Pot (2)
+Rake (0)
+
+
+
+Hand #8760477-10 - 2013-06-20 02:53:05
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #3
+Seat 1: habing (168.51)
+Seat 2: BritneysBack (32.60)
+habing has the dealer button
+habing posts small blind 0.50
+BritneysBack posts big blind 1
+** Hole Cards **
+Dealt to habing [Th 9c]
+habing raises to 2
+BritneysBack folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8760488-11 - 2013-06-20 02:53:18
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #3
+Seat 1: habing (169.51)
+Seat 2: BritneysBack (31.60)
+BritneysBack has the dealer button
+BritneysBack posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [2h 6h]
+BritneysBack folds
+habing refunded 0.50
+BritneysBack adds 68.90 chips
+habing wins Pot (1)
+Rake (0)
+
+
+
+Hand #8760496-12 - 2013-06-20 02:53:31
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #3
+Seat 1: habing (170.01)
+Seat 2: BritneysBack (100)
+habing has the dealer button
+habing posts small blind 0.50
+BritneysBack posts big blind 1
+** Hole Cards **
+Dealt to habing [Js 7h]
+habing raises to 2
+BritneysBack folds
+habing refunded 1
+BritneysBack adds 1 chips
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8760503-13 - 2013-06-20 02:53:44
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #3
+Seat 1: habing (171.01)
+Seat 2: BritneysBack (100)
+BritneysBack has the dealer button
+BritneysBack posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [4h 9h]
+BritneysBack raises to 3
+habing folds
+BritneysBack refunded 2
+BritneysBack wins Pot (2)
+Rake (0)
+
+
+
+Hand #8760519-14 - 2013-06-20 02:53:58
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #3
+Seat 1: habing (170.01)
+Seat 2: BritneysBack (101)
+habing has the dealer button
+habing posts small blind 0.50
+BritneysBack posts big blind 1
+** Hole Cards **
+Dealt to habing [Qh Kc]
+habing raises to 2
+BritneysBack calls 1
+** Flop ** [Ah 4d Ad]
+BritneysBack checks
+habing bets 3
+BritneysBack raises to 13
+habing folds
+BritneysBack refunded 10
+BritneysBack wins Pot (9.75)
+Rake (0.25)
+
+
+
+Hand #8760537-15 - 2013-06-20 02:54:31
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #3
+Seat 1: habing (165.01)
+Seat 2: BritneysBack (105.75)
+BritneysBack has the dealer button
+BritneysBack posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [6d 6h]
+BritneysBack raises to 3
+habing raises to 11
+BritneysBack calls 8
+** Flop ** [4h 5s 8h]
+habing bets 10.40
+BritneysBack calls 10.40
+** Turn ** [2h]
+habing bets 20.80
+BritneysBack calls 20.80
+** River ** [9c]
+habing checks
+BritneysBack checks
+** Pot Show Down ** [4h 5s 8h 2h 9c]
+habing shows [6d 6h] (a Pair of Sixes +985)
+BritneysBack shows [4s 3s] (a Pair of Fours +985)
+habing wins Pot (82.29) with a Pair
+Rake (2.11)
+BritneysBack adds 36.45 chips
+
+
+
+Hand #8760569-16 - 2013-06-20 02:55:25
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #3
+Seat 1: habing (205.10)
+Seat 2: BritneysBack (100)
+habing has the dealer button
+habing posts small blind 0.50
+BritneysBack posts big blind 1
+** Hole Cards **
+Dealt to habing [3h Jd]
+habing raises to 2
+BritneysBack calls 1
+** Flop ** [4s 9c Jc]
+BritneysBack checks
+habing bets 3
+BritneysBack raises to 13
+habing calls 10
+** Turn ** [Js]
+BritneysBack checks
+habing bets 22.80
+BritneysBack raises to 60.40
+habing raises to 190.10 (All-in)
+BritneysBack calls 24.60 (All-in)
+habing refunded 105.10
+** River ** [8d]
+** Pot Show Down ** [4s 9c Jc Js 8d]
+habing shows [3h Jd] (Three of a Kind, Jacks +98)
+BritneysBack shows [3c 7c] (a Pair of Jacks +987)
+habing wins Pot (195) with Three of a Kind
+Rake (5)
+BritneysBack adds 100 chips
+
+
+
+Hand #8760624-17 - 2013-06-20 02:56:51
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #3
+Seat 1: habing (300.10)
+Seat 2: BritneysBack (100)
+BritneysBack has the dealer button
+BritneysBack posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [3s Ks]
+BritneysBack folds
+habing refunded 0.50
+BritneysBack adds 0.50 chips
+habing wins Pot (1)
+Rake (0)
+
+
+
+Hand #8760630-18 - 2013-06-20 02:57:01
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #3
+Seat 1: habing (300.60)
+Seat 2: BritneysBack (100)
+habing has the dealer button
+habing posts small blind 0.50
+BritneysBack posts big blind 1
+** Hole Cards **
+Dealt to habing [9c 5s]
+habing folds
+BritneysBack refunded 0.50
+BritneysBack wins Pot (1)
+Rake (0)
+
+
+
+Hand #8760639-19 - 2013-06-20 02:57:12
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #3
+Seat 1: habing (300.10)
+Seat 2: BritneysBack (100.50)
+BritneysBack has the dealer button
+BritneysBack posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [Ts Th]
+BritneysBack raises to 7
+habing raises to 300.10 (All-in)
+BritneysBack calls 93.50 (All-in)
+habing refunded 199.60
+** Flop ** [7c Td 6d]
+** Turn ** [Qs]
+** River ** [Qc]
+** Pot Show Down ** [7c Td 6d Qs Qc]
+habing shows [Ts Th] (a Full House, Tens full of Queens)
+BritneysBack shows [Js Jd] (Two Pair, Queens and Jacks +T)
+habing wins Pot (196) with a Full House
+Rake (5)
+BritneysBack adds 100 chips
+
+
+
+Hand #8760660-20 - 2013-06-20 02:57:46
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #3
+Seat 1: habing (395.60)
+Seat 2: BritneysBack (100)
+habing has the dealer button
+habing posts small blind 0.50
+BritneysBack posts big blind 1
+** Hole Cards **
+Dealt to habing [9c 9h]
+habing raises to 2
+BritneysBack calls 1
+** Flop ** [9d Ac Ah]
+BritneysBack checks
+habing bets 3
+BritneysBack folds
+habing refunded 3
+BritneysBack adds 2 chips
+habing wins Pot (3.90)
+Rake (0.10)
+
+
+
+Hand #8760679-21 - 2013-06-20 02:58:13
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #3
+Seat 1: habing (397.50)
+Seat 2: BritneysBack (100)
+BritneysBack has the dealer button
+BritneysBack posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [5c Jc]
+BritneysBack raises to 3
+habing folds
+BritneysBack refunded 2
+BritneysBack wins Pot (2)
+Rake (0)
+
+
+
+Hand #8760691-22 - 2013-06-20 02:58:25
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #3
+Seat 1: habing (396.50)
+Seat 2: BritneysBack (101)
+habing has the dealer button
+habing posts small blind 0.50
+BritneysBack posts big blind 1
+** Hole Cards **
+Dealt to habing [Jh 8s]
+habing raises to 2
+BritneysBack raises to 9
+habing folds
+BritneysBack refunded 7
+BritneysBack wins Pot (4)
+Rake (0)
+
+
+
+Hand #8760708-23 - 2013-06-20 02:58:44
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #3
+Seat 1: habing (394.50)
+Seat 2: BritneysBack (103)
+BritneysBack has the dealer button
+BritneysBack posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [8d Ac]
+BritneysBack raises to 3
+habing calls 2
+** Flop ** [2d Kc Jd]
+habing checks
+BritneysBack bets 4
+habing folds
+BritneysBack refunded 4
+BritneysBack wins Pot (5.85)
+Rake (0.15)
+
+
+
+Hand #8760728-24 - 2013-06-20 02:59:13
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #3
+Seat 1: habing (391.50)
+Seat 2: BritneysBack (105.85)
+Seat 5: joebags13 (40) - waiting for big blind
+habing has the dealer button
+BritneysBack posts small blind 0.50
+joebags13 posts big blind 1
+** Hole Cards **
+Dealt to habing [Jc 6h]
+habing raises to 2
+BritneysBack raises to 8
+joebags13 calls 7
+habing folds
+** Flop ** [Jh 3h 7c]
+BritneysBack bets 13
+joebags13 raises to 32 (All-in)
+BritneysBack folds
+joebags13 refunded 19
+BritneysBack adds 15.15 chips
+joebags13 wins Pot (42.90)
+Rake (1.10)
+
+
+
+Hand #8760754-25 - 2013-06-20 03:00:06
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #3
+Seat 1: habing (389.50)
+Seat 2: BritneysBack (100)
+Seat 5: joebags13 (61.90)
+BritneysBack has the dealer button
+joebags13 posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [7s 7d]
+BritneysBack raises to 3
+joebags13 calls 2.50
+habing raises to 14
+BritneysBack folds
+BritneysBack adds 3 chips
+joebags13 calls 11
+** Flop ** [6s 2h 6c]
+joebags13 checks
+habing bets 11.40
+joebags13 calls 11.40
+** Turn ** [As]
+joebags13 checks
+habing checks
+** River ** [Kh]
+joebags13 checks
+habing checks
+** Pot Show Down ** [6s 2h 6c As Kh]
+habing shows [7s 7d] (Two Pair, Sevens and Sixes +A)
+joebags13 shows [9d 7c] (a Pair of Sixes +AK9)
+habing wins Pot (52.46) with Two Pair
+Rake (1.34)
+
+
+
+Hand #8760891-26 - 2013-06-20 03:02:10
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #3
+Seat 1: habing (416.56)
+Seat 2: BritneysBack (100)
+Seat 5: joebags13 (36.50)
+joebags13 has the dealer button
+habing posts small blind 0.50
+BritneysBack posts big blind 1
+** Hole Cards **
+Dealt to habing [9d Ts]
+joebags13 raises to 3
+habing folds
+BritneysBack calls 2
+** Flop ** [5d 8h 5c]
+BritneysBack checks
+joebags13 checks
+** Turn ** [7c]
+BritneysBack bets 3
+joebags13 calls 3
+** River ** [Qd]
+BritneysBack checks
+joebags13 bets 8
+BritneysBack calls 8
+** Pot Show Down ** [5d 8h 5c 7c Qd]
+BritneysBack shows [4s 4d] (Two Pair, Fives and Fours +Q)
+joebags13 shows [Kh Tc] (a Pair of Fives +KQT)
+BritneysBack wins Pot (27.79) with Two Pair
+Rake (0.71)
+
+
+
+Hand #8760989-27 - 2013-06-20 03:03:50
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #3
+Seat 1: habing (416.06)
+Seat 2: BritneysBack (113.79)
+Seat 5: joebags13 (22.50)
+habing has the dealer button
+BritneysBack posts small blind 0.50
+joebags13 posts big blind 1
+** Hole Cards **
+Dealt to habing [4h 7s]
+habing folds
+BritneysBack folds
+joebags13 refunded 0.50
+joebags13 wins Pot (1)
+Rake (0)
+
+
+
+Hand #8761011-28 - 2013-06-20 03:04:07
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #3
+Seat 1: habing (416.06)
+Seat 2: BritneysBack (113.29)
+Seat 5: joebags13 (23)
+BritneysBack has the dealer button
+joebags13 posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [3d Th]
+BritneysBack folds
+joebags13 calls 0.50
+habing checks
+** Flop ** [Qd 8h 7d]
+joebags13 checks
+habing checks
+** Turn ** [Tc]
+joebags13 bets 1
+habing calls 1
+** River ** [4c]
+joebags13 checks
+habing checks
+** Pot Show Down ** [Qd 8h 7d Tc 4c]
+habing shows [3d Th] (a Pair of Tens +Q87)
+joebags13 shows [6s Jh] (High Card Queen +JT87)
+habing wins Pot (3.90) with a Pair
+Rake (0.10)
+
+
+
+Hand #8761084-29 - 2013-06-20 03:05:29
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #3
+Seat 1: habing (417.96)
+Seat 2: BritneysBack (113.29)
+Seat 5: joebags13 (21)
+joebags13 has the dealer button
+habing posts small blind 0.50
+BritneysBack posts big blind 1
+** Hole Cards **
+Dealt to habing [3c 9c]
+joebags13 folds
+habing folds
+BritneysBack refunded 0.50
+BritneysBack wins Pot (1)
+Rake (0)
+
+
+
+Hand #8761117-30 - 2013-06-20 03:05:58
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #3
+Seat 1: habing (417.46)
+Seat 2: BritneysBack (113.79)
+Seat 5: joebags13 (21)
+habing has the dealer button
+BritneysBack posts small blind 0.50
+joebags13 posts big blind 1
+** Hole Cards **
+Dealt to habing [7h Kh]
+habing raises to 2
+BritneysBack folds
+joebags13 calls 1
+** Flop ** [5c 2d 9h]
+joebags13 bets 5.15
+habing folds
+joebags13 refunded 5.15
+joebags13 wins Pot (4.39)
+Rake (0.11)
+
+
+
+Hand #8761167-31 - 2013-06-20 03:06:53
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #3
+Seat 1: habing (415.46)
+Seat 2: BritneysBack (113.29)
+Seat 5: joebags13 (23.39)
+BritneysBack has the dealer button
+joebags13 posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [Td 7s]
+BritneysBack folds
+joebags13 raises to 2
+habing calls 1
+** Flop ** [5c 6h Qc]
+joebags13 bets 1
+habing folds
+joebags13 refunded 1
+joebags13 wins Pot (3.90)
+Rake (0.10)
+
+
+
+Hand #8761214-32 - 2013-06-20 03:07:38
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #3
+Seat 1: habing (413.46)
+Seat 2: BritneysBack (113.29)
+Seat 5: joebags13 (25.29)
+joebags13 has the dealer button
+habing posts small blind 0.50
+BritneysBack posts big blind 1
+** Hole Cards **
+Dealt to habing [As 4c]
+joebags13 raises to 2
+habing folds
+BritneysBack folds
+joebags13 refunded 1
+joebags13 wins Pot (2.50)
+Rake (0)
+
+
+
+Hand #8761241-33 - 2013-06-20 03:08:02
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #3
+Seat 1: habing (412.96)
+Seat 2: BritneysBack (112.29)
+Seat 5: joebags13 (26.79)
+habing has the dealer button
+BritneysBack posts small blind 0.50
+joebags13 posts big blind 1
+** Hole Cards **
+Dealt to habing [2s 2c]
+habing raises to 2
+BritneysBack folds
+joebags13 raises to 5
+habing calls 3
+** Flop ** [3h 6h 5d]
+joebags13 bets 6
+habing folds
+joebags13 refunded 6
+joebags13 wins Pot (10.24)
+Rake (0.26)
+
+
+
+Hand #8761300-34 - 2013-06-20 03:09:03
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #3
+Seat 1: habing (407.96)
+Seat 2: BritneysBack (111.79)
+Seat 5: joebags13 (32.03)
+BritneysBack has the dealer button
+joebags13 posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [9h 7s]
+BritneysBack raises to 3
+joebags13 raises to 5
+habing folds
+BritneysBack calls 2
+** Flop ** [2s Qh Qs]
+joebags13 bets 5
+BritneysBack folds
+joebags13 refunded 5
+joebags13 wins Pot (10.73)
+Rake (0.27)
+
+
+
+Hand #8761346-35 - 2013-06-20 03:10:06
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #3
+Seat 1: habing (406.96)
+Seat 2: BritneysBack (106.79)
+Seat 5: joebags13 (37.76)
+joebags13 has the dealer button
+habing posts small blind 0.50
+BritneysBack posts big blind 1
+** Hole Cards **
+Dealt to habing [2h Ad]
+joebags13 calls 1
+habing folds
+BritneysBack raises to 4
+joebags13 raises to 16
+BritneysBack raises to 50
+joebags13 calls 21.76 (All-in)
+BritneysBack refunded 12.24
+** Flop ** [Jd 6d 3h]
+** Turn ** [5s]
+** River ** [Kd]
+** Pot Show Down ** [Jd 6d 3h 5s Kd]
+BritneysBack shows [Ah Qc] (High Card Ace +KQJ6)
+joebags13 shows [Kc Ks] (Three of a Kind, Kings +J6)
+joebags13 wins Pot (74.12) with Three of a Kind
+Rake (1.90)
+BritneysBack adds 30.97 chips
+
+
+
+Hand #8761397-36 - 2013-06-20 03:11:06
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #3
+Seat 1: habing (406.46)
+Seat 2: BritneysBack (100)
+Seat 5: joebags13 (74.12)
+habing has the dealer button
+BritneysBack posts small blind 0.50
+joebags13 posts big blind 1
+** Hole Cards **
+Dealt to habing [6s Kd]
+habing raises to 2
+BritneysBack calls 1.50
+joebags13 raises to 3
+habing folds
+BritneysBack calls 1
+** Flop ** [8c 9c 3d]
+BritneysBack checks
+joebags13 bets 1
+BritneysBack calls 1
+** Turn ** [5d]
+BritneysBack checks
+joebags13 bets 1
+BritneysBack calls 1
+** River ** [7c]
+BritneysBack checks
+joebags13 checks
+** Pot Show Down ** [8c 9c 3d 5d 7c]
+BritneysBack shows [6h Ad] (a Straight, Five to Nine)
+joebags13 shows [Ac 7d] (a Pair of Sevens +A98)
+BritneysBack wins Pot (11.70) with a Straight
+Rake (0.30)
+
+
+
+Hand #8761473-37 - 2013-06-20 03:12:49
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #3
+Seat 1: habing (404.46)
+Seat 2: BritneysBack (106.70)
+Seat 5: joebags13 (69.12)
+BritneysBack has the dealer button
+joebags13 posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [9h 2s]
+BritneysBack raises to 3
+joebags13 calls 2.50
+habing folds
+** Flop ** [3d 7c 7d]
+joebags13 bets 4
+BritneysBack folds
+joebags13 refunded 4
+joebags13 wins Pot (6.83)
+Rake (0.17)
+
+
+
+Hand #8761515-38 - 2013-06-20 03:13:38
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #3
+Seat 1: habing (403.46)
+Seat 2: BritneysBack (103.70)
+Seat 5: joebags13 (72.95)
+joebags13 has the dealer button
+joebags13 posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [Qd 2c]
+joebags13 raises to 2
+habing folds
+joebags13 refunded 1
+joebags13 wins Pot (2)
+Rake (0)
+
+
+
+Hand #8761546-39 - 2013-06-20 03:14:17
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #3
+Seat 1: habing (402.46)
+Seat 5: joebags13 (73.95)
+habing has the dealer button
+habing posts small blind 0.50
+joebags13 posts big blind 1
+** Hole Cards **
+Dealt to habing [8h 7s]
+habing raises to 2
+joebags13 calls 1
+** Flop ** [2s 8d Qd]
+joebags13 checks
+habing bets 3
+joebags13 calls 3
+** Turn ** [2c]
+joebags13 bets 7
+habing folds
+joebags13 refunded 7
+joebags13 wins Pot (9.75)
+Rake (0.25)

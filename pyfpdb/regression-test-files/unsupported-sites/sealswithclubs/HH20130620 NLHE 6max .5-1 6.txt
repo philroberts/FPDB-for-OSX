@@ -1,0 +1,3586 @@
+Hand #8758654-1 - 2013-06-20 02:09:18
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (100) - waiting for big blind
+Seat 6: habing (100) - waiting for big blind
+habing has the dealer button
+habing posts small blind 0.50
+BritneysBack posts big blind 1
+** Hole Cards **
+Dealt to habing [6d Ah]
+habing raises to 2
+BritneysBack calls 1
+** Flop ** [9c 2h Qc]
+BritneysBack checks
+habing checks
+** Turn ** [Ks]
+BritneysBack checks
+habing checks
+** River ** [Ad]
+BritneysBack checks
+habing bets 2.80
+BritneysBack calls 2.80
+** Pot Show Down ** [9c 2h Qc Ks Ad]
+BritneysBack shows [Ac 6h] (a Pair of Aces +KQ9)
+habing shows [6d Ah] (a Pair of Aces +KQ9)
+BritneysBack splits Pot (4.68) with a Pair
+habing splits Pot (4.68) with a Pair
+Rake (0.24)
+BritneysBack adds 0.12 chips
+habing adds 0.12 chips
+
+
+
+Hand #8758721-2 - 2013-06-20 02:10:34
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (100)
+Seat 6: habing (100)
+BritneysBack has the dealer button
+BritneysBack posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [6s Th]
+BritneysBack raises to 3
+habing folds
+BritneysBack refunded 2
+habing adds 1 chips
+BritneysBack wins Pot (2)
+Rake (0)
+
+
+
+Hand #8758734-3 - 2013-06-20 02:10:50
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (101)
+Seat 6: habing (100)
+habing has the dealer button
+habing posts small blind 0.50
+BritneysBack posts big blind 1
+** Hole Cards **
+Dealt to habing [3s Ah]
+habing raises to 2
+BritneysBack folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8758759-4 - 2013-06-20 02:11:17
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (100)
+Seat 6: habing (101)
+BritneysBack has the dealer button
+BritneysBack posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [9c Ks]
+BritneysBack raises to 3
+habing calls 2
+** Flop ** [Ad 4s 7s]
+habing checks
+BritneysBack bets 4
+habing calls 4
+** Turn ** [Th]
+habing checks
+BritneysBack bets 11
+habing folds
+BritneysBack refunded 11
+habing adds 6 chips
+BritneysBack wins Pot (13.65)
+Rake (0.35)
+
+
+
+Hand #8758807-5 - 2013-06-20 02:12:10
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (106.65)
+Seat 6: habing (100)
+habing has the dealer button
+habing posts small blind 0.50
+BritneysBack posts big blind 1
+** Hole Cards **
+Dealt to habing [Td 6h]
+habing raises to 2
+BritneysBack calls 1
+** Flop ** [5c 4h Js]
+BritneysBack bets 2
+habing raises to 7
+BritneysBack calls 5
+** Turn ** [Qd]
+BritneysBack checks
+habing checks
+** River ** [Tc]
+BritneysBack checks
+habing checks
+** Pot Show Down ** [5c 4h Js Qd Tc]
+BritneysBack shows [Kh 4c] (a Pair of Fours +KQJ)
+habing shows [Td 6h] (a Pair of Tens +QJ6)
+habing wins Pot (17.55) with a Pair
+Rake (0.45)
+BritneysBack adds 2.35 chips
+
+
+
+Hand #8758867-6 - 2013-06-20 02:13:13
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (100)
+Seat 6: habing (108.55)
+BritneysBack has the dealer button
+BritneysBack posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [7c Ac]
+BritneysBack raises to 3
+habing calls 2
+** Flop ** [8s Js 4d]
+habing bets 3
+BritneysBack folds
+habing refunded 3
+BritneysBack adds 3 chips
+habing wins Pot (5.85)
+Rake (0.15)
+
+
+
+Hand #8758897-7 - 2013-06-20 02:13:43
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (100)
+Seat 6: habing (111.40)
+habing has the dealer button
+habing posts small blind 0.50
+BritneysBack posts big blind 1
+** Hole Cards **
+Dealt to habing [Kd Kh]
+habing raises to 3
+BritneysBack folds
+habing refunded 2
+BritneysBack adds 1 chips
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8758921-8 - 2013-06-20 02:14:05
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (100)
+Seat 6: habing (112.40)
+BritneysBack has the dealer button
+BritneysBack posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [Kh Td]
+BritneysBack folds
+habing refunded 0.50
+BritneysBack adds 0.50 chips
+habing wins Pot (1)
+Rake (0)
+
+
+
+Hand #8758935-9 - 2013-06-20 02:14:18
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (100)
+Seat 6: habing (112.90)
+habing has the dealer button
+habing posts small blind 0.50
+BritneysBack posts big blind 1
+** Hole Cards **
+Dealt to habing [7h 5h]
+habing raises to 2
+BritneysBack calls 1
+** Flop ** [6d 5c 8c]
+BritneysBack checks
+habing bets 3
+BritneysBack calls 3
+** Turn ** [9c]
+BritneysBack checks
+habing bets 7
+BritneysBack folds
+habing refunded 7
+BritneysBack adds 5 chips
+habing wins Pot (9.75)
+Rake (0.25)
+
+
+
+Hand #8758983-10 - 2013-06-20 02:15:08
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (100)
+Seat 6: habing (117.65)
+BritneysBack has the dealer button
+BritneysBack posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [2s Td]
+BritneysBack raises to 3
+habing folds
+BritneysBack refunded 2
+BritneysBack wins Pot (2)
+Rake (0)
+
+
+
+Hand #8759005-11 - 2013-06-20 02:15:40
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (101)
+Seat 6: habing (116.65)
+habing has the dealer button
+habing posts small blind 0.50
+BritneysBack posts big blind 1
+** Hole Cards **
+Dealt to habing [3d 4h]
+habing folds
+BritneysBack refunded 0.50
+BritneysBack wins Pot (1)
+Rake (0)
+
+
+
+Hand #8759018-12 - 2013-06-20 02:15:53
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (101.50)
+Seat 6: habing (116.15)
+BritneysBack has the dealer button
+BritneysBack posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [Jc 8d]
+BritneysBack folds
+habing refunded 0.50
+habing wins Pot (1)
+Rake (0)
+
+
+
+Hand #8759026-13 - 2013-06-20 02:16:05
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (101)
+Seat 6: habing (116.65)
+habing has the dealer button
+habing posts small blind 0.50
+BritneysBack posts big blind 1
+** Hole Cards **
+Dealt to habing [Ac 3s]
+habing raises to 2
+BritneysBack calls 1
+** Flop ** [4s Ts 3d]
+BritneysBack bets 2
+habing calls 2
+** Turn ** [7h]
+BritneysBack checks
+habing checks
+** River ** [7d]
+BritneysBack checks
+habing checks
+** Pot Show Down ** [4s Ts 3d 7h 7d]
+BritneysBack shows [Ks Jh] (a Pair of Sevens +KJT)
+habing shows [Ac 3s] (Two Pair, Sevens and Threes +A)
+habing wins Pot (7.80) with Two Pair
+Rake (0.20)
+BritneysBack adds 3 chips
+
+
+
+Hand #8759089-14 - 2013-06-20 02:17:13
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (100)
+Seat 6: habing (120.45)
+BritneysBack has the dealer button
+BritneysBack posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [7s 8c]
+BritneysBack folds
+habing refunded 0.50
+BritneysBack adds 0.50 chips
+habing wins Pot (1)
+Rake (0)
+
+
+
+Hand #8759105-15 - 2013-06-20 02:17:23
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (100)
+Seat 6: habing (120.95)
+habing has the dealer button
+habing posts small blind 0.50
+BritneysBack posts big blind 1
+** Hole Cards **
+Dealt to habing [Kd 3c]
+habing raises to 2
+BritneysBack folds
+habing refunded 1
+BritneysBack adds 1 chips
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8759118-16 - 2013-06-20 02:17:39
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (100)
+Seat 6: habing (121.95)
+BritneysBack has the dealer button
+BritneysBack posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [Jh 3h]
+BritneysBack raises to 3
+habing folds
+BritneysBack refunded 2
+BritneysBack wins Pot (2)
+Rake (0)
+
+
+
+Hand #8759133-17 - 2013-06-20 02:17:56
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (101)
+Seat 6: habing (120.95)
+habing has the dealer button
+habing posts small blind 0.50
+BritneysBack posts big blind 1
+** Hole Cards **
+Dealt to habing [2c 3c]
+habing raises to 2
+BritneysBack calls 1
+** Flop ** [Td 6h Qh]
+BritneysBack bets 2
+habing folds
+BritneysBack refunded 2
+BritneysBack wins Pot (3.90)
+Rake (0.10)
+
+
+
+Hand #8759163-18 - 2013-06-20 02:18:39
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (102.90)
+Seat 6: habing (118.95)
+BritneysBack has the dealer button
+BritneysBack posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [7d 3s]
+BritneysBack raises to 3
+habing folds
+BritneysBack refunded 2
+BritneysBack wins Pot (2)
+Rake (0)
+
+
+
+Hand #8759172-19 - 2013-06-20 02:18:55
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (103.90)
+Seat 6: habing (117.95)
+habing has the dealer button
+habing posts small blind 0.50
+BritneysBack posts big blind 1
+** Hole Cards **
+Dealt to habing [7c 4c]
+habing raises to 2
+BritneysBack raises to 7
+habing folds
+BritneysBack refunded 5
+BritneysBack wins Pot (4)
+Rake (0)
+
+
+
+Hand #8759191-20 - 2013-06-20 02:19:16
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (105.90)
+Seat 6: habing (115.95)
+BritneysBack has the dealer button
+BritneysBack posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [4d 3d]
+BritneysBack raises to 3
+habing folds
+BritneysBack refunded 2
+BritneysBack wins Pot (2)
+Rake (0)
+
+
+
+Hand #8759207-21 - 2013-06-20 02:19:31
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (106.90)
+Seat 6: habing (114.95)
+habing has the dealer button
+habing posts small blind 0.50
+BritneysBack posts big blind 1
+** Hole Cards **
+Dealt to habing [Kd 2c]
+habing raises to 2
+BritneysBack calls 1
+** Flop ** [4c As 4h]
+BritneysBack checks
+habing bets 3
+BritneysBack calls 3
+** Turn ** [7h]
+BritneysBack bets 6
+habing folds
+BritneysBack refunded 6
+BritneysBack wins Pot (9.75)
+Rake (0.25)
+
+
+
+Hand #8759241-22 - 2013-06-20 02:20:02
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (111.65)
+Seat 6: habing (109.95)
+BritneysBack has the dealer button
+BritneysBack posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [Ks Tc]
+BritneysBack raises to 3
+habing calls 2
+** Flop ** [8s Qs 4d]
+habing checks
+BritneysBack bets 4
+habing calls 4
+** Turn ** [3h]
+habing checks
+BritneysBack bets 10.40
+habing folds
+BritneysBack refunded 10.40
+BritneysBack wins Pot (13.65)
+Rake (0.35)
+
+
+
+Hand #8759299-23 - 2013-06-20 02:21:11
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (118.30)
+Seat 6: habing (102.95)
+habing has the dealer button
+habing posts small blind 0.50
+BritneysBack posts big blind 1
+** Hole Cards **
+Dealt to habing [6s 8s]
+habing raises to 2
+BritneysBack raises to 7
+habing calls 5
+** Flop ** [Ts 9c 7h]
+BritneysBack checks
+habing bets 8.20
+BritneysBack calls 8.20
+** Turn ** [Kc]
+BritneysBack checks
+habing bets 22.40
+BritneysBack calls 22.40
+** River ** [5h]
+BritneysBack checks
+habing bets 65.34
+BritneysBack calls 65.34
+** Pot Show Down ** [Ts 9c 7h Kc 5h]
+BritneysBack shows [9s As] (a Pair of Nines +AKT)
+habing shows [6s 8s] (a Straight, Six to Ten)
+habing wins Pot (200.74) with a Straight
+Rake (5.14)
+BritneysBack adds 84.64 chips
+
+
+
+Hand #8759381-24 - 2013-06-20 02:23:00
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (100)
+Seat 6: habing (200.75)
+BritneysBack has the dealer button
+BritneysBack posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [4s Jd]
+BritneysBack raises to 3
+habing folds
+BritneysBack refunded 2
+BritneysBack wins Pot (2)
+Rake (0)
+
+
+
+Hand #8759401-25 - 2013-06-20 02:23:27
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (101)
+Seat 6: habing (199.75)
+habing has the dealer button
+habing posts small blind 0.50
+BritneysBack posts big blind 1
+** Hole Cards **
+Dealt to habing [7h 9c]
+habing raises to 2
+BritneysBack raises to 7
+habing folds
+BritneysBack refunded 5
+BritneysBack wins Pot (4)
+Rake (0)
+
+
+
+Hand #8759428-26 - 2013-06-20 02:24:03
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (103)
+Seat 6: habing (197.75)
+BritneysBack has the dealer button
+BritneysBack posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [Kd 5h]
+BritneysBack raises to 3
+habing folds
+BritneysBack refunded 2
+BritneysBack wins Pot (2)
+Rake (0)
+
+
+
+Hand #8759441-27 - 2013-06-20 02:24:19
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (104)
+Seat 6: habing (196.75)
+habing has the dealer button
+habing posts small blind 0.50
+BritneysBack posts big blind 1
+** Hole Cards **
+Dealt to habing [7d 8c]
+habing folds
+BritneysBack refunded 0.50
+BritneysBack wins Pot (1)
+Rake (0)
+
+
+
+Hand #8759452-28 - 2013-06-20 02:24:40
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (104.50)
+Seat 6: habing (196.25)
+BritneysBack has the dealer button
+BritneysBack posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [9h Ac]
+BritneysBack raises to 3
+habing calls 2
+** Flop ** [Th Qc Js]
+habing checks
+BritneysBack checks
+** Turn ** [Qs]
+habing checks
+BritneysBack bets 4
+habing folds
+BritneysBack refunded 4
+BritneysBack wins Pot (5.85)
+Rake (0.15)
+
+
+
+Hand #8759484-29 - 2013-06-20 02:25:25
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (107.35)
+Seat 6: habing (193.25)
+habing has the dealer button
+habing posts small blind 0.50
+BritneysBack posts big blind 1
+** Hole Cards **
+Dealt to habing [2s 7s]
+habing raises to 2
+BritneysBack raises to 7
+habing folds
+BritneysBack refunded 5
+BritneysBack wins Pot (4)
+Rake (0)
+
+
+
+Hand #8759501-30 - 2013-06-20 02:26:02
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (109.35)
+Seat 6: habing (191.25)
+BritneysBack has the dealer button
+BritneysBack posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [3d 4c]
+BritneysBack raises to 3
+habing folds
+BritneysBack refunded 2
+BritneysBack wins Pot (2)
+Rake (0)
+
+
+
+Hand #8759511-31 - 2013-06-20 02:26:18
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (110.35)
+Seat 6: habing (190.25)
+habing has the dealer button
+habing posts small blind 0.50
+BritneysBack posts big blind 1
+** Hole Cards **
+Dealt to habing [6c Ac]
+habing raises to 2
+BritneysBack folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8759527-32 - 2013-06-20 02:26:38
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (109.35)
+Seat 6: habing (191.25)
+BritneysBack has the dealer button
+BritneysBack posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [5d Kh]
+BritneysBack raises to 3
+habing folds
+BritneysBack refunded 2
+BritneysBack wins Pot (2)
+Rake (0)
+
+
+
+Hand #8759538-33 - 2013-06-20 02:27:02
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (110.35)
+Seat 6: habing (190.25)
+habing has the dealer button
+habing posts small blind 0.50
+BritneysBack posts big blind 1
+** Hole Cards **
+Dealt to habing [Jd 6h]
+habing folds
+BritneysBack refunded 0.50
+BritneysBack wins Pot (1)
+Rake (0)
+
+
+
+Hand #8759550-34 - 2013-06-20 02:27:18
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (110.85)
+Seat 6: habing (189.75)
+BritneysBack has the dealer button
+BritneysBack posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [8d 3d]
+BritneysBack raises to 3
+habing folds
+BritneysBack refunded 2
+BritneysBack wins Pot (2)
+Rake (0)
+
+
+
+Hand #8759561-35 - 2013-06-20 02:27:34
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (111.85)
+Seat 6: habing (188.75)
+habing has the dealer button
+habing posts small blind 0.50
+BritneysBack posts big blind 1
+** Hole Cards **
+Dealt to habing [Qs Ad]
+habing raises to 2
+BritneysBack raises to 7
+habing raises to 20.40
+BritneysBack raises to 50
+habing raises to 188.75 (All-in)
+BritneysBack calls 61.85 (All-in)
+habing refunded 76.90
+** Flop ** [6c Ah As]
+** Turn ** [9d]
+** River ** [8s]
+** Pot Show Down ** [6c Ah As 9d 8s]
+BritneysBack shows [Td Ts] (Two Pair, Aces and Tens +9)
+habing shows [Qs Ad] (Three of a Kind, Aces +Q9)
+habing wins Pot (218.11) with Three of a Kind
+Rake (5.59)
+BritneysBack adds 100 chips
+
+
+
+Hand #8759595-36 - 2013-06-20 02:28:33
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (100)
+Seat 6: habing (295.01)
+BritneysBack has the dealer button
+BritneysBack posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [Ah Kh]
+BritneysBack raises to 3
+habing raises to 11
+BritneysBack calls 8
+** Flop ** [4d 6h 7s]
+habing bets 9
+BritneysBack folds
+habing refunded 9
+BritneysBack adds 11 chips
+habing wins Pot (21.45)
+Rake (0.55)
+
+
+
+Hand #8759613-37 - 2013-06-20 02:29:07
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (100)
+Seat 6: habing (305.46)
+habing has the dealer button
+habing posts small blind 0.50
+BritneysBack posts big blind 1
+** Hole Cards **
+Dealt to habing [3d 5h]
+habing folds
+BritneysBack refunded 0.50
+BritneysBack wins Pot (1)
+Rake (0)
+
+
+
+Hand #8759620-38 - 2013-06-20 02:29:25
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (100.50)
+Seat 6: habing (304.96)
+BritneysBack has the dealer button
+BritneysBack posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [Ah 8h]
+BritneysBack raises to 3
+habing raises to 11
+BritneysBack raises to 24.50
+habing raises to 304.95
+BritneysBack folds
+habing refunded 280.45
+BritneysBack adds 24 chips
+habing wins Pot (49)
+Rake (0)
+
+
+
+Hand #8759642-39 - 2013-06-20 02:30:12
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (100)
+Seat 6: habing (329.46)
+habing has the dealer button
+habing posts small blind 0.50
+BritneysBack posts big blind 1
+** Hole Cards **
+Dealt to habing [8d Ac]
+habing raises to 2
+BritneysBack raises to 7
+habing folds
+BritneysBack refunded 5
+BritneysBack wins Pot (4)
+Rake (0)
+
+
+
+Hand #8759657-40 - 2013-06-20 02:30:34
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (102)
+Seat 6: habing (327.46)
+BritneysBack has the dealer button
+BritneysBack posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [4h 3s]
+BritneysBack raises to 3
+habing folds
+BritneysBack refunded 2
+BritneysBack wins Pot (2)
+Rake (0)
+
+
+
+Hand #8759680-41 - 2013-06-20 02:31:04
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (103)
+Seat 6: habing (326.46)
+habing has the dealer button
+habing posts small blind 0.50
+BritneysBack posts big blind 1
+** Hole Cards **
+Dealt to habing [9c Qc]
+habing raises to 2
+BritneysBack raises to 7
+habing calls 5
+** Flop ** [7s Ts 3s]
+BritneysBack bets 9
+habing folds
+BritneysBack refunded 9
+BritneysBack wins Pot (13.65)
+Rake (0.35)
+
+
+
+Hand #8759695-42 - 2013-06-20 02:31:32
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (109.65)
+Seat 6: habing (319.46)
+BritneysBack has the dealer button
+BritneysBack posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [9h 4h]
+BritneysBack raises to 3
+habing folds
+BritneysBack refunded 2
+BritneysBack wins Pot (2)
+Rake (0)
+
+
+
+Hand #8759717-43 - 2013-06-20 02:32:01
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (110.65)
+Seat 6: habing (318.46)
+habing has the dealer button
+habing posts small blind 0.50
+BritneysBack posts big blind 1
+** Hole Cards **
+Dealt to habing [3d 5s]
+habing folds
+BritneysBack refunded 0.50
+BritneysBack wins Pot (1)
+Rake (0)
+
+
+
+Hand #8759722-44 - 2013-06-20 02:32:12
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (111.15)
+Seat 6: habing (317.96)
+BritneysBack has the dealer button
+BritneysBack posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [8s 4c]
+BritneysBack folds
+habing refunded 0.50
+habing wins Pot (1)
+Rake (0)
+
+
+
+Hand #8759731-45 - 2013-06-20 02:32:23
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (110.65)
+Seat 6: habing (318.46)
+habing has the dealer button
+habing posts small blind 0.50
+BritneysBack posts big blind 1
+** Hole Cards **
+Dealt to habing [5h 4s]
+habing folds
+BritneysBack refunded 0.50
+BritneysBack wins Pot (1)
+Rake (0)
+
+
+
+Hand #8759746-46 - 2013-06-20 02:32:38
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (111.15)
+Seat 6: habing (317.96)
+BritneysBack has the dealer button
+BritneysBack posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [2h 9h]
+BritneysBack raises to 3
+habing folds
+BritneysBack refunded 2
+BritneysBack wins Pot (2)
+Rake (0)
+
+
+
+Hand #8759755-47 - 2013-06-20 02:32:53
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (112.15)
+Seat 6: habing (316.96)
+habing has the dealer button
+habing posts small blind 0.50
+BritneysBack posts big blind 1
+** Hole Cards **
+Dealt to habing [As Ac]
+habing raises to 2
+BritneysBack raises to 7
+habing raises to 21
+BritneysBack raises to 50.20
+habing raises to 316.95
+BritneysBack calls 61.95 (All-in)
+habing refunded 204.80
+** Flop ** [Qs Ad 8c]
+** Turn ** [Qc]
+** River ** [8h]
+** Pot Show Down ** [Qs Ad 8c Qc 8h]
+BritneysBack shows [9s 9c] (Two Pair, Queens and Nines +A)
+habing shows [As Ac] (a Full House, Aces full of Queens)
+habing wins Pot (218.70) with a Full House
+Rake (5.60)
+BritneysBack adds 100 chips
+
+
+
+Hand #8759774-48 - 2013-06-20 02:33:32
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (100)
+Seat 6: habing (423.51)
+BritneysBack has the dealer button
+BritneysBack posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [Kh 4h]
+BritneysBack folds
+habing refunded 0.50
+BritneysBack adds 0.50 chips
+habing wins Pot (1)
+Rake (0)
+
+
+
+Hand #8759781-49 - 2013-06-20 02:33:42
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (100)
+Seat 6: habing (424.01)
+habing has the dealer button
+habing posts small blind 0.50
+BritneysBack posts big blind 1
+** Hole Cards **
+Dealt to habing [7d Kh]
+habing raises to 2
+BritneysBack raises to 7
+habing folds
+BritneysBack refunded 5
+BritneysBack wins Pot (4)
+Rake (0)
+
+
+
+Hand #8759790-50 - 2013-06-20 02:34:00
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (102)
+Seat 6: habing (422.01)
+BritneysBack has the dealer button
+BritneysBack posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [7c Qh]
+BritneysBack raises to 3
+habing folds
+BritneysBack refunded 2
+BritneysBack wins Pot (2)
+Rake (0)
+
+
+
+Hand #8759802-51 - 2013-06-20 02:34:16
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (103)
+Seat 6: habing (421.01)
+habing has the dealer button
+habing posts small blind 0.50
+BritneysBack posts big blind 1
+** Hole Cards **
+Dealt to habing [Ac Qd]
+habing raises to 2
+BritneysBack calls 1
+** Flop ** [Ks Qc 6s]
+BritneysBack checks
+habing bets 3
+BritneysBack folds
+habing refunded 3
+habing wins Pot (3.90)
+Rake (0.10)
+
+
+
+Hand #8759820-52 - 2013-06-20 02:34:56
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (101)
+Seat 6: habing (422.91)
+BritneysBack has the dealer button
+BritneysBack posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [2s 3h]
+BritneysBack raises to 3
+habing folds
+BritneysBack refunded 2
+BritneysBack wins Pot (2)
+Rake (0)
+
+
+
+Hand #8759836-53 - 2013-06-20 02:35:20
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (102)
+Seat 6: habing (421.91)
+habing has the dealer button
+habing posts small blind 0.50
+BritneysBack posts big blind 1
+** Hole Cards **
+Dealt to habing [4h 4c]
+habing raises to 2
+BritneysBack raises to 7
+habing calls 5
+** Flop ** [Kc 4s Ac]
+BritneysBack checks
+habing bets 9.80
+BritneysBack folds
+habing refunded 9.80
+BritneysBack adds 5 chips
+habing wins Pot (13.65)
+Rake (0.35)
+
+
+
+Hand #8759869-54 - 2013-06-20 02:36:21
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (100)
+Seat 6: habing (428.56)
+BritneysBack has the dealer button
+BritneysBack posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [Js Tc]
+BritneysBack folds
+habing refunded 0.50
+BritneysBack adds 0.50 chips
+habing wins Pot (1)
+Rake (0)
+
+
+
+Hand #8759874-55 - 2013-06-20 02:36:33
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (100)
+Seat 6: habing (429.06)
+habing has the dealer button
+habing posts small blind 0.50
+BritneysBack posts big blind 1
+** Hole Cards **
+Dealt to habing [2s 9d]
+habing folds
+BritneysBack refunded 0.50
+BritneysBack wins Pot (1)
+Rake (0)
+
+
+
+Hand #8759883-56 - 2013-06-20 02:36:47
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (100.50)
+Seat 6: habing (428.56)
+BritneysBack has the dealer button
+BritneysBack posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [6s 8h]
+BritneysBack raises to 3
+habing folds
+BritneysBack refunded 2
+BritneysBack wins Pot (2)
+Rake (0)
+
+
+
+Hand #8759889-57 - 2013-06-20 02:37:01
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (101.50)
+Seat 6: habing (427.56)
+habing has the dealer button
+habing posts small blind 0.50
+BritneysBack posts big blind 1
+** Hole Cards **
+Dealt to habing [3d 9d]
+habing raises to 2
+BritneysBack folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8759902-58 - 2013-06-20 02:37:26
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (100.50)
+Seat 6: habing (428.56)
+BritneysBack has the dealer button
+BritneysBack posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [Ac 9s]
+BritneysBack folds
+habing refunded 0.50
+habing wins Pot (1)
+Rake (0)
+
+
+
+Hand #8759911-59 - 2013-06-20 02:37:43
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (100)
+Seat 6: habing (429.06)
+habing has the dealer button
+habing posts small blind 0.50
+BritneysBack posts big blind 1
+** Hole Cards **
+Dealt to habing [Jc Ah]
+habing raises to 2
+BritneysBack calls 1
+** Flop ** [9c Jd 7s]
+BritneysBack checks
+habing bets 3
+BritneysBack folds
+habing refunded 3
+BritneysBack adds 2 chips
+habing wins Pot (3.90)
+Rake (0.10)
+
+
+
+Hand #8759933-60 - 2013-06-20 02:38:13
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (100)
+Seat 6: habing (430.96)
+BritneysBack has the dealer button
+BritneysBack posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [3h 6c]
+BritneysBack raises to 3
+habing folds
+BritneysBack refunded 2
+BritneysBack wins Pot (2)
+Rake (0)
+
+
+
+Hand #8759945-61 - 2013-06-20 02:38:35
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (101)
+Seat 6: habing (429.96)
+habing has the dealer button
+habing posts small blind 0.50
+BritneysBack posts big blind 1
+** Hole Cards **
+Dealt to habing [Kd 6h]
+habing raises to 2
+BritneysBack raises to 7
+habing folds
+BritneysBack refunded 5
+BritneysBack wins Pot (4)
+Rake (0)
+
+
+
+Hand #8759955-62 - 2013-06-20 02:38:51
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (103)
+Seat 6: habing (427.96)
+BritneysBack has the dealer button
+BritneysBack posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [3h 8h]
+BritneysBack raises to 3
+habing folds
+BritneysBack refunded 2
+BritneysBack wins Pot (2)
+Rake (0)
+
+
+
+Hand #8759965-63 - 2013-06-20 02:39:08
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (104)
+Seat 6: habing (426.96)
+habing has the dealer button
+habing posts small blind 0.50
+BritneysBack posts big blind 1
+** Hole Cards **
+Dealt to habing [9c 3h]
+habing folds
+BritneysBack refunded 0.50
+BritneysBack wins Pot (1)
+Rake (0)
+
+
+
+Hand #8759972-64 - 2013-06-20 02:39:21
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (104.50)
+Seat 6: habing (426.46)
+BritneysBack has the dealer button
+BritneysBack posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [Qh 4h]
+BritneysBack raises to 3
+habing folds
+BritneysBack refunded 2
+BritneysBack wins Pot (2)
+Rake (0)
+
+
+
+Hand #8759975-65 - 2013-06-20 02:39:35
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (105.50)
+Seat 6: habing (425.46)
+habing has the dealer button
+habing posts small blind 0.50
+BritneysBack posts big blind 1
+** Hole Cards **
+Dealt to habing [2s Qc]
+habing raises to 2
+BritneysBack calls 1
+** Flop ** [Kc 6c Jh]
+BritneysBack checks
+habing bets 3
+BritneysBack folds
+habing refunded 3
+habing wins Pot (3.90)
+Rake (0.10)
+
+
+
+Hand #8759998-66 - 2013-06-20 02:40:06
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (103.50)
+Seat 6: habing (427.36)
+BritneysBack has the dealer button
+BritneysBack posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [Tc Qs]
+BritneysBack raises to 3
+habing calls 2
+** Flop ** [4c Ts Kd]
+habing checks
+BritneysBack checks
+** Turn ** [7d]
+habing bets 3
+BritneysBack folds
+habing refunded 3
+habing wins Pot (5.85)
+Rake (0.15)
+
+
+
+Hand #8760024-67 - 2013-06-20 02:40:36
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (100.50)
+Seat 6: habing (430.21)
+habing has the dealer button
+habing posts small blind 0.50
+BritneysBack posts big blind 1
+** Hole Cards **
+Dealt to habing [5c Kc]
+habing raises to 2
+BritneysBack calls 1
+** Flop ** [6h Ks 3c]
+BritneysBack checks
+habing bets 3
+BritneysBack folds
+habing refunded 3
+BritneysBack adds 1.50 chips
+habing wins Pot (3.90)
+Rake (0.10)
+
+
+
+Hand #8760049-68 - 2013-06-20 02:41:20
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (100)
+Seat 6: habing (432.11)
+BritneysBack has the dealer button
+BritneysBack posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [Jh Jd]
+BritneysBack raises to 3
+habing raises to 11
+BritneysBack calls 8
+** Flop ** [4d Ac Th]
+habing bets 10
+BritneysBack calls 10
+** Turn ** [Qs]
+habing checks
+BritneysBack bets 25.80
+habing folds
+BritneysBack refunded 25.80
+BritneysBack wins Pot (40.95)
+Rake (1.05)
+
+
+
+Hand #8760098-69 - 2013-06-20 02:42:34
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (119.95)
+Seat 6: habing (411.11)
+habing has the dealer button
+habing posts small blind 0.50
+BritneysBack posts big blind 1
+** Hole Cards **
+Dealt to habing [Qd 4h]
+habing raises to 2
+BritneysBack calls 1
+** Flop ** [9c 8c 2c]
+BritneysBack checks
+habing bets 3
+BritneysBack calls 3
+** Turn ** [Qh]
+BritneysBack checks
+habing bets 6
+BritneysBack calls 6
+** River ** [3c]
+BritneysBack bets 14
+habing folds
+BritneysBack refunded 14
+BritneysBack wins Pot (21.45)
+Rake (0.55)
+
+
+
+Hand #8760130-70 - 2013-06-20 02:43:27
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (130.40)
+Seat 6: habing (400.11)
+BritneysBack has the dealer button
+BritneysBack posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [6s Th]
+BritneysBack raises to 3
+habing folds
+BritneysBack refunded 2
+BritneysBack wins Pot (2)
+Rake (0)
+
+
+
+Hand #8760145-71 - 2013-06-20 02:43:56
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (131.40)
+Seat 6: habing (399.11)
+habing has the dealer button
+habing posts small blind 0.50
+BritneysBack posts big blind 1
+** Hole Cards **
+Dealt to habing [Js Kc]
+habing raises to 2
+BritneysBack calls 1
+** Flop ** [2c 8d Jh]
+BritneysBack bets 2
+habing calls 2
+** Turn ** [8s]
+BritneysBack checks
+habing bets 5
+BritneysBack calls 5
+** River ** [7c]
+BritneysBack checks
+habing bets 10.40
+BritneysBack folds
+habing refunded 10.40
+habing wins Pot (17.55)
+Rake (0.45)
+
+
+
+Hand #8760189-72 - 2013-06-20 02:45:04
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (122.40)
+Seat 6: habing (407.66)
+BritneysBack has the dealer button
+BritneysBack posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [Jd Td]
+BritneysBack raises to 3
+habing calls 2
+** Flop ** [3s 3d Ad]
+habing checks
+BritneysBack checks
+** Turn ** [As]
+habing bets 3
+BritneysBack folds
+habing refunded 3
+habing wins Pot (5.85)
+Rake (0.15)
+
+
+
+Hand #8760205-73 - 2013-06-20 02:45:42
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (119.40)
+Seat 6: habing (410.51)
+habing has the dealer button
+habing posts small blind 0.50
+BritneysBack posts big blind 1
+** Hole Cards **
+Dealt to habing [Ad 6h]
+habing raises to 2
+BritneysBack calls 1
+** Flop ** [Ah 3s 6c]
+BritneysBack checks
+habing bets 3
+BritneysBack calls 3
+** Turn ** [9c]
+BritneysBack checks
+habing bets 8.60
+BritneysBack folds
+habing refunded 8.60
+habing wins Pot (9.75)
+Rake (0.25)
+
+
+
+Hand #8760236-74 - 2013-06-20 02:46:41
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (114.40)
+Seat 6: habing (415.26)
+BritneysBack has the dealer button
+BritneysBack posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [2h 3s]
+BritneysBack raises to 3
+habing folds
+BritneysBack refunded 2
+BritneysBack wins Pot (2)
+Rake (0)
+
+
+
+Hand #8760248-75 - 2013-06-20 02:46:58
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (115.40)
+Seat 6: habing (414.26)
+habing has the dealer button
+habing posts small blind 0.50
+BritneysBack posts big blind 1
+** Hole Cards **
+Dealt to habing [7s 4s]
+habing raises to 2
+BritneysBack folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8760261-76 - 2013-06-20 02:47:22
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (114.40)
+Seat 6: habing (415.26)
+BritneysBack has the dealer button
+BritneysBack posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [7d 6d]
+BritneysBack raises to 3
+habing calls 2
+** Flop ** [3h As Tc]
+habing checks
+BritneysBack bets 4
+habing folds
+BritneysBack refunded 4
+BritneysBack wins Pot (5.85)
+Rake (0.15)
+
+
+
+Hand #8760290-77 - 2013-06-20 02:48:09
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (117.25)
+Seat 6: habing (412.26)
+habing has the dealer button
+habing posts small blind 0.50
+BritneysBack posts big blind 1
+** Hole Cards **
+Dealt to habing [3h 8c]
+habing folds
+BritneysBack refunded 0.50
+BritneysBack wins Pot (1)
+Rake (0)
+
+
+
+Hand #8760298-78 - 2013-06-20 02:48:20
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (117.75)
+Seat 6: habing (411.76)
+BritneysBack has the dealer button
+BritneysBack posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [6d 6s]
+BritneysBack folds
+habing refunded 0.50
+habing wins Pot (1)
+Rake (0)
+
+
+
+Hand #8760308-79 - 2013-06-20 02:48:32
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (117.25)
+Seat 6: habing (412.26)
+habing has the dealer button
+habing posts small blind 0.50
+BritneysBack posts big blind 1
+** Hole Cards **
+Dealt to habing [Jh Kc]
+habing raises to 2
+BritneysBack calls 1
+** Flop ** [Th Jd 4s]
+BritneysBack checks
+habing bets 3
+BritneysBack calls 3
+** Turn ** [6h]
+BritneysBack checks
+habing bets 7.40
+BritneysBack calls 7.40
+** River ** [5h]
+BritneysBack checks
+habing bets 29
+BritneysBack folds
+habing refunded 29
+habing wins Pot (24.18)
+Rake (0.62)
+
+
+
+Hand #8760371-80 - 2013-06-20 02:50:07
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (104.85)
+Seat 5: Ilovecoins (20) - waiting for big blind
+Seat 6: habing (424.04)
+BritneysBack has the dealer button
+BritneysBack posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [3d Js]
+BritneysBack raises to 3
+habing folds
+BritneysBack refunded 2
+BritneysBack wins Pot (2)
+Rake (0)
+
+
+
+Hand #8760383-81 - 2013-06-20 02:50:28
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (105.85)
+Seat 5: Ilovecoins (20) - waiting for big blind
+Seat 6: habing (423.04)
+habing has the dealer button
+BritneysBack posts small blind 0.50
+Ilovecoins posts big blind 1
+** Hole Cards **
+Dealt to habing [Ac 2s]
+habing raises to 2
+BritneysBack folds
+Ilovecoins raises to 5
+habing folds
+Ilovecoins refunded 3
+Ilovecoins wins Pot (4.50)
+Rake (0)
+
+
+
+Hand #8760397-82 - 2013-06-20 02:50:59
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (105.35)
+Seat 5: Ilovecoins (22.50)
+Seat 6: habing (421.04)
+BritneysBack has the dealer button
+Ilovecoins posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [9c 5d]
+BritneysBack raises to 3
+Ilovecoins folds
+habing folds
+BritneysBack refunded 2
+BritneysBack wins Pot (2.50)
+Rake (0)
+
+
+
+Hand #8760410-83 - 2013-06-20 02:51:17
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (106.85)
+Seat 5: Ilovecoins (22)
+Seat 6: habing (420.04)
+Ilovecoins has the dealer button
+habing posts small blind 0.50
+BritneysBack posts big blind 1
+** Hole Cards **
+Dealt to habing [3c Th]
+Ilovecoins folds
+habing folds
+BritneysBack refunded 0.50
+BritneysBack wins Pot (1)
+Rake (0)
+
+
+
+Hand #8760420-84 - 2013-06-20 02:51:35
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (107.35)
+Seat 5: Ilovecoins (22)
+Seat 6: habing (419.54)
+habing has the dealer button
+BritneysBack posts small blind 0.50
+Ilovecoins posts big blind 1
+** Hole Cards **
+Dealt to habing [Kd 7d]
+habing raises to 2
+BritneysBack raises to 7
+Ilovecoins folds
+habing calls 5
+** Flop ** [7c Kh Ah]
+BritneysBack bets 9
+habing raises to 26.20
+BritneysBack raises to 70.40
+habing raises to 412.54 (All-in)
+BritneysBack calls 29.95 (All-in)
+habing refunded 312.19
+** Turn ** [4c]
+** River ** [4s]
+** Pot Show Down ** [7c Kh Ah 4c 4s]
+BritneysBack shows [Th Jh] (a Pair of Fours +AKJ)
+habing shows [Kd 7d] (Two Pair, Kings and Sevens +A)
+habing wins Pot (210.31) with Two Pair
+Rake (5.39)
+BritneysBack adds 100 chips
+
+
+
+Hand #8760472-85 - 2013-06-20 02:53:00
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (100)
+Seat 5: Ilovecoins (21)
+Seat 6: habing (522.50)
+BritneysBack has the dealer button
+Ilovecoins posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [Tc 9c]
+BritneysBack raises to 3
+Ilovecoins folds
+habing calls 2
+** Flop ** [Jc 3d Kh]
+habing checks
+BritneysBack bets 4
+habing folds
+BritneysBack refunded 4
+BritneysBack wins Pot (6.34)
+Rake (0.16)
+
+
+
+Hand #8760495-86 - 2013-06-20 02:53:28
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (103.34)
+Seat 5: Ilovecoins (20.50)
+Seat 6: habing (519.50)
+Ilovecoins has the dealer button
+habing posts small blind 0.50
+BritneysBack posts big blind 1
+** Hole Cards **
+Dealt to habing [6h 8s]
+Ilovecoins folds
+habing folds
+BritneysBack refunded 0.50
+BritneysBack wins Pot (1)
+Rake (0)
+
+
+
+Hand #8760504-87 - 2013-06-20 02:53:45
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (103.84)
+Seat 5: Ilovecoins (20.50)
+Seat 6: habing (519)
+habing has the dealer button
+BritneysBack posts small blind 0.50
+Ilovecoins posts big blind 1
+** Hole Cards **
+Dealt to habing [7h 9c]
+habing raises to 2
+BritneysBack calls 1.50
+Ilovecoins raises to 20.50 (All-in)
+habing folds
+BritneysBack folds
+Ilovecoins refunded 18.50
+Ilovecoins wins Pot (6)
+Rake (0)
+
+
+
+Hand #8760524-88 - 2013-06-20 02:54:09
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (101.84)
+Seat 5: Ilovecoins (24.50)
+Seat 6: habing (517)
+BritneysBack has the dealer button
+Ilovecoins posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [Ah 8h]
+BritneysBack raises to 3
+Ilovecoins folds
+habing calls 2
+** Flop ** [3d Qc 5h]
+habing checks
+BritneysBack checks
+** Turn ** [Jd]
+habing checks
+BritneysBack checks
+** River ** [7h]
+habing checks
+BritneysBack checks
+** Pot Show Down ** [3d Qc 5h Jd 7h]
+BritneysBack shows [Kh Ad] (High Card Ace +KQJ7)
+habing shows [Ah 8h] (High Card Ace +QJ87)
+BritneysBack wins Pot (6.34) with High Card
+Rake (0.16)
+
+
+
+Hand #8760558-89 - 2013-06-20 02:55:12
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (105.18)
+Seat 4: BitHustla (40) - waiting for big blind
+Seat 5: Ilovecoins (24)
+Seat 6: habing (514)
+Ilovecoins has the dealer button
+habing posts small blind 0.50
+BritneysBack posts big blind 1
+** Hole Cards **
+Dealt to habing [9s 9h]
+Ilovecoins raises to 3
+habing raises to 11
+BritneysBack folds
+Ilovecoins folds
+habing refunded 8
+habing wins Pot (7)
+Rake (0)
+
+
+
+Hand #8760576-90 - 2013-06-20 02:55:36
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (104.18)
+Seat 4: BitHustla (40) - waiting for big blind
+Seat 5: Ilovecoins (21)
+Seat 6: habing (518)
+habing has the dealer button
+BritneysBack posts small blind 0.50
+BitHustla posts big blind 1
+** Hole Cards **
+Dealt to habing [6c 4d]
+Ilovecoins calls 1
+habing folds
+BritneysBack calls 0.50
+BitHustla checks
+** Flop ** [Ac Ad 3h]
+BritneysBack checks
+BitHustla bets 2
+Ilovecoins folds
+BritneysBack folds
+BitHustla refunded 2
+BitHustla wins Pot (2.93)
+Rake (0.07)
+
+
+
+Hand #8760610-91 - 2013-06-20 02:56:27
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (103.18)
+Seat 3: CoinArmy (100)
+Seat 4: BitHustla (41.93)
+Seat 5: Ilovecoins (20)
+Seat 6: habing (518)
+BritneysBack has the dealer button
+BitHustla posts small blind 0.50
+Ilovecoins posts big blind 1
+** Hole Cards **
+Dealt to habing [4c 5h]
+habing folds
+BritneysBack raises to 3
+BitHustla folds
+Ilovecoins calls 2
+** Flop ** [Ah 9s 8h]
+Ilovecoins bets 6.50
+BritneysBack calls 6.50
+** Turn ** [4d]
+Ilovecoins checks
+BritneysBack checks
+** River ** [2d]
+Ilovecoins bets 1
+BritneysBack calls 1
+** Pot Show Down ** [Ah 9s 8h 4d 2d]
+BritneysBack shows [Th 9d] (a Pair of Nines +AT8)
+Ilovecoins shows [6s Ks] (High Card Ace +K986)
+BritneysBack wins Pot (20.97) with a Pair
+Rake (0.53)
+
+
+
+Hand #8760667-92 - 2013-06-20 02:57:54
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (113.65)
+Seat 3: CoinArmy (100)
+Seat 4: BitHustla (41.43)
+Seat 5: Ilovecoins (9.50)
+Seat 6: habing (518)
+BitHustla has the dealer button
+Ilovecoins posts small blind 0.50
+habing posts big blind 1
+CoinArmy posts big blind 1
+** Hole Cards **
+Dealt to habing [Th 5s]
+BritneysBack calls 1
+CoinArmy checks
+BitHustla calls 1
+Ilovecoins folds
+habing checks
+** Flop ** [As 8s 3d]
+habing checks
+BritneysBack checks
+CoinArmy checks
+BitHustla bets 1
+habing folds
+BritneysBack raises to 5
+CoinArmy folds
+BitHustla calls 4
+** Turn ** [Qh]
+BritneysBack bets 11
+BitHustla calls 11
+** River ** [Jd]
+BritneysBack bets 96.65 (All-in)
+BitHustla calls 24.43 (All-in)
+BritneysBack refunded 72.22
+** Pot Show Down ** [As 8s 3d Qh Jd]
+BritneysBack shows [8c Ac] (Two Pair, Aces and Eights +Q)
+BitHustla shows [7s Ah] (a Pair of Aces +QJ8)
+BritneysBack wins Pot (83.23) with Two Pair
+Rake (2.13)
+
+
+
+Hand #8760729-93 - 2013-06-20 02:59:16
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (155.45)
+Seat 2: iDab (34) - waiting for big blind
+Seat 3: CoinArmy (99)
+Seat 4: BitHustla (0) - sitting out
+Seat 5: Ilovecoins (9)
+Seat 6: habing (517)
+Ilovecoins has the dealer button
+habing posts small blind 0.50
+BritneysBack posts big blind 1
+** Hole Cards **
+Dealt to habing [2d 5c]
+BitHustla adds 20 chips
+CoinArmy folds
+Ilovecoins raises to 9 (All-in)
+habing folds
+BritneysBack calls 8
+** Flop ** [Jh 6h 9c]
+** Turn ** [Th]
+** River ** [Jc]
+** Pot Show Down ** [Jh 6h 9c Th Jc]
+BritneysBack shows [Kc Tc] (Two Pair, Jacks and Tens +K)
+Ilovecoins shows [5s 5d] (Two Pair, Jacks and Fives +T)
+BritneysBack wins Pot (18.04) with Two Pair
+Rake (0.46)
+
+
+
+Hand #8760749-94 - 2013-06-20 02:59:57
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (164.49)
+Seat 2: iDab (34) - waiting for big blind
+Seat 3: CoinArmy (99)
+Seat 4: BitHustla (20)
+Seat 5: Ilovecoins (0) - sitting out
+Seat 6: habing (516.50)
+habing has the dealer button
+BritneysBack posts small blind 0.50
+iDab posts big blind 1
+** Hole Cards **
+Dealt to habing [9h 8s]
+CoinArmy calls 1
+BitHustla raises to 2
+habing folds
+BritneysBack folds
+iDab folds
+CoinArmy calls 1
+** Flop ** [5d 5c Ks]
+CoinArmy checks
+BitHustla checks
+** Turn ** [Jh]
+CoinArmy checks
+BitHustla checks
+** River ** [4s]
+CoinArmy bets 6
+BitHustla folds
+CoinArmy refunded 6
+CoinArmy wins Pot (5.37)
+Rake (0.13)
+
+
+
+Hand #8760803-95 - 2013-06-20 03:00:47
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (163.99)
+Seat 2: iDab (33)
+Seat 3: CoinArmy (102.37)
+Seat 4: BitHustla (18)
+Seat 6: habing (516.50)
+BritneysBack has the dealer button
+iDab posts small blind 0.50
+CoinArmy posts big blind 1
+** Hole Cards **
+Dealt to habing [4s 8s]
+BitHustla calls 1
+habing folds
+BritneysBack folds
+iDab folds
+CoinArmy checks
+** Flop ** [7d 8h Qd]
+CoinArmy checks
+BitHustla bets 2
+CoinArmy folds
+BitHustla refunded 2
+BitHustla wins Pot (2.44)
+Rake (0.06)
+
+
+
+Hand #8760839-96 - 2013-06-20 03:01:20
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (163.99)
+Seat 2: iDab (32.50)
+Seat 3: CoinArmy (101.37)
+Seat 4: BitHustla (19.44)
+Seat 6: habing (516.50)
+iDab has the dealer button
+CoinArmy posts small blind 0.50
+BitHustla posts big blind 1
+** Hole Cards **
+Dealt to habing [Tc 5d]
+habing folds
+BritneysBack raises to 3
+iDab folds
+CoinArmy folds
+BitHustla folds
+BritneysBack refunded 2
+BritneysBack wins Pot (2.50)
+Rake (0)
+
+
+
+Hand #8760872-97 - 2013-06-20 03:01:53
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (165.49)
+Seat 2: iDab (32.50)
+Seat 3: CoinArmy (100.87)
+Seat 4: BitHustla (18.44)
+Seat 6: habing (516.50)
+CoinArmy has the dealer button
+BitHustla posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [7c Kd]
+BritneysBack folds
+iDab raises to 3
+CoinArmy folds
+BitHustla folds
+habing folds
+iDab refunded 2
+iDab wins Pot (2.50)
+Rake (0)
+
+
+
+Hand #8760903-98 - 2013-06-20 03:02:23
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (165.49)
+Seat 2: iDab (34)
+Seat 3: CoinArmy (100.87)
+Seat 4: BitHustla (17.94)
+Seat 6: habing (515.50)
+BitHustla has the dealer button
+habing posts small blind 0.50
+BritneysBack posts big blind 1
+** Hole Cards **
+Dealt to habing [6d 6h]
+iDab folds
+CoinArmy folds
+BitHustla calls 1
+habing raises to 5
+BritneysBack calls 4
+BitHustla folds
+** Flop ** [9h Jh 5d]
+habing checks
+BritneysBack bets 8
+habing folds
+BritneysBack refunded 8
+BritneysBack wins Pot (10.73)
+Rake (0.27)
+
+
+
+Hand #8760948-99 - 2013-06-20 03:03:08
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (171.22)
+Seat 3: CoinArmy (100.87)
+Seat 4: BitHustla (16.94)
+Seat 6: habing (510.50)
+habing has the dealer button
+BritneysBack posts small blind 0.50
+CoinArmy posts big blind 1
+** Hole Cards **
+Dealt to habing [Kd 8d]
+BitHustla raises to 2
+habing calls 2
+BritneysBack calls 1.50
+CoinArmy folds
+** Flop ** [9d 6c 6h]
+BritneysBack checks
+BitHustla checks
+habing bets 4
+BritneysBack folds
+BitHustla folds
+habing refunded 4
+habing wins Pot (6.83)
+Rake (0.17)
+
+
+
+Hand #8761012-100 - 2013-06-20 03:04:08
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (169.22)
+Seat 3: CoinArmy (99.87)
+Seat 4: BitHustla (14.94)
+Seat 5: MrCuzamano (100)
+Seat 6: habing (515.33)
+BritneysBack has the dealer button
+CoinArmy posts small blind 0.50
+BitHustla posts big blind 1
+MrCuzamano posts big blind 1
+** Hole Cards **
+Dealt to habing [8c Ah]
+MrCuzamano raises to 4
+habing folds
+BritneysBack calls 4
+CoinArmy folds
+BitHustla folds
+** Flop ** [9d Ad 3c]
+MrCuzamano checks
+BritneysBack checks
+** Turn ** [4c]
+MrCuzamano checks
+BritneysBack bets 7
+MrCuzamano folds
+BritneysBack refunded 7
+BritneysBack wins Pot (9.27)
+Rake (0.23)
+
+
+
+Hand #8761056-101 - 2013-06-20 03:04:58
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (174.49)
+Seat 2: aceskings212 (28.84) - waiting for big blind
+Seat 3: CoinArmy (99.37)
+Seat 4: BitHustla (13.94)
+Seat 5: MrCuzamano (96)
+Seat 6: habing (515.33)
+CoinArmy has the dealer button
+BitHustla posts small blind 0.50
+MrCuzamano posts big blind 1
+** Hole Cards **
+Dealt to habing [2d 6d]
+habing folds
+BritneysBack folds
+CoinArmy calls 1
+BitHustla folds
+MrCuzamano checks
+** Flop ** [Jh 5d Ts]
+MrCuzamano checks
+CoinArmy checks
+** Turn ** [2s]
+MrCuzamano checks
+CoinArmy bets 1
+MrCuzamano folds
+CoinArmy refunded 1
+CoinArmy wins Pot (2.44)
+Rake (0.06)
+
+
+
+Hand #8761097-102 - 2013-06-20 03:05:41
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (174.49)
+Seat 2: aceskings212 (28.84) - waiting for big blind
+Seat 3: CoinArmy (100.81)
+Seat 4: BitHustla (13.44)
+Seat 5: MrCuzamano (95)
+Seat 6: habing (515.33)
+BitHustla has the dealer button
+MrCuzamano posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [5c 7s]
+BritneysBack folds
+CoinArmy folds
+BitHustla calls 1
+MrCuzamano folds
+habing checks
+** Flop ** [Tc As 2c]
+habing checks
+BitHustla checks
+** Turn ** [5s]
+habing checks
+BitHustla bets 1
+habing calls 1
+** River ** [8d]
+habing checks
+BitHustla bets 11.44 (All-in)
+habing folds
+BitHustla refunded 11.44
+BitHustla wins Pot (4.39)
+Rake (0.11)
+
+
+
+Hand #8761148-103 - 2013-06-20 03:06:33
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (174.49)
+Seat 2: aceskings212 (28.84) - waiting for big blind
+Seat 3: CoinArmy (100.81)
+Seat 4: BitHustla (15.83)
+Seat 5: MrCuzamano (94.50)
+Seat 6: habing (513.33)
+MrCuzamano has the dealer button
+habing posts small blind 0.50
+BritneysBack posts big blind 1
+** Hole Cards **
+Dealt to habing [6d 5h]
+CoinArmy folds
+BitHustla folds
+MrCuzamano folds
+habing folds
+BritneysBack refunded 0.50
+BritneysBack wins Pot (1)
+Rake (0)
+
+
+
+Hand #8761172-104 - 2013-06-20 03:06:59
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (174.99)
+Seat 2: aceskings212 (28.84) - waiting for big blind
+Seat 3: CoinArmy (100.81)
+Seat 4: BitHustla (15.83)
+Seat 5: MrCuzamano (94.50)
+Seat 6: habing (512.83)
+habing has the dealer button
+BritneysBack posts small blind 0.50
+aceskings212 posts big blind 1
+** Hole Cards **
+Dealt to habing [8d Th]
+CoinArmy folds
+BitHustla folds
+MrCuzamano folds
+habing raises to 2
+BritneysBack raises to 8
+aceskings212 folds
+habing folds
+BritneysBack refunded 6
+BritneysBack wins Pot (5)
+Rake (0)
+
+
+
+Hand #8761210-105 - 2013-06-20 03:07:35
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (177.99)
+Seat 2: aceskings212 (27.84)
+Seat 3: CoinArmy (100.81)
+Seat 4: BitHustla (15.83)
+Seat 5: MrCuzamano (94.50)
+Seat 6: habing (510.83)
+BritneysBack has the dealer button
+aceskings212 posts small blind 0.50
+CoinArmy posts big blind 1
+** Hole Cards **
+Dealt to habing [5c 4d]
+BitHustla raises to 15.83 (All-in)
+MrCuzamano folds
+habing folds
+BritneysBack folds
+aceskings212 folds
+CoinArmy calls 14.83
+** Flop ** [9d 3s Qh]
+** Turn ** [Jh]
+** River ** [Th]
+** Pot Show Down ** [9d 3s Qh Jh Th]
+CoinArmy shows [Ac 3d] (a Pair of Threes +AQJ)
+BitHustla shows [9s 9h] (Three of a Kind, Nines +QJ)
+BitHustla wins Pot (31.36) with Three of a Kind
+Rake (0.80)
+
+
+
+Hand #8761255-106 - 2013-06-20 03:08:19
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (177.99)
+Seat 2: aceskings212 (27.34)
+Seat 3: CoinArmy (84.98)
+Seat 4: BitHustla (31.36)
+Seat 5: MrCuzamano (94.50)
+Seat 6: habing (510.83)
+aceskings212 has the dealer button
+CoinArmy posts small blind 0.50
+BitHustla posts big blind 1
+** Hole Cards **
+Dealt to habing [Tc Kd]
+MrCuzamano folds
+habing folds
+BritneysBack folds
+aceskings212 calls 1
+CoinArmy folds
+BitHustla checks
+** Flop ** [7c Jc 7h]
+BitHustla checks
+aceskings212 checks
+** Turn ** [3s]
+BitHustla checks
+aceskings212 checks
+** River ** [Th]
+BitHustla bets 1
+aceskings212 raises to 4
+BitHustla calls 3
+** Pot Show Down ** [7c Jc 7h 3s Th]
+aceskings212 shows [8h 9c] (a Straight, Seven to Jack)
+BitHustla shows [5d 3d] (Two Pair, Sevens and Threes +J)
+aceskings212 wins Pot (10.24) with a Straight
+Rake (0.26)
+
+
+
+Hand #8761324-107 - 2013-06-20 03:09:36
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (177.99)
+Seat 2: aceskings212 (32.58)
+Seat 3: CoinArmy (84.48)
+Seat 4: BitHustla (26.36)
+Seat 5: MrCuzamano (94.50)
+Seat 6: habing (510.83)
+CoinArmy has the dealer button
+BitHustla posts small blind 0.50
+MrCuzamano posts big blind 1
+** Hole Cards **
+Dealt to habing [2s Qc]
+habing folds
+BritneysBack folds
+aceskings212 raises to 4
+CoinArmy calls 4
+BitHustla folds
+MrCuzamano folds
+** Flop ** [7c Qd 2d]
+aceskings212 bets 6
+CoinArmy folds
+aceskings212 refunded 6
+aceskings212 wins Pot (9.27)
+Rake (0.23)
+
+
+
+Hand #8761372-108 - 2013-06-20 03:10:28
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (177.99)
+Seat 2: aceskings212 (37.85)
+Seat 3: CoinArmy (80.48)
+Seat 4: BitHustla (25.86)
+Seat 5: MrCuzamano (93.50)
+Seat 6: habing (510.83)
+BitHustla has the dealer button
+MrCuzamano posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [9c Th]
+BritneysBack folds
+aceskings212 raises to 3
+CoinArmy folds
+BitHustla folds
+MrCuzamano folds
+habing folds
+aceskings212 refunded 2
+aceskings212 wins Pot (2.50)
+Rake (0)
+
+
+
+Hand #8761387-109 - 2013-06-20 03:10:49
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (177.99)
+Seat 2: aceskings212 (39.35)
+Seat 3: CoinArmy (80.48)
+Seat 4: BitHustla (25.86)
+Seat 5: MrCuzamano (93)
+Seat 6: habing (509.83)
+MrCuzamano has the dealer button
+habing posts small blind 0.50
+aceskings212 posts big blind 1
+** Hole Cards **
+Dealt to habing [5d 7c]
+CoinArmy folds
+BitHustla calls 1
+MrCuzamano raises to 4
+habing folds
+aceskings212 folds
+BitHustla calls 3
+** Flop ** [7d Jc 4s]
+BitHustla checks
+MrCuzamano bets 6
+BitHustla folds
+MrCuzamano refunded 6
+MrCuzamano wins Pot (9.27)
+Rake (0.23)
+
+
+
+Hand #8761417-110 - 2013-06-20 03:11:33
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (177.99) - sitting out
+Seat 2: aceskings212 (38.35)
+Seat 3: CoinArmy (80.48)
+Seat 4: BitHustla (21.86)
+Seat 5: MrCuzamano (98.27)
+Seat 6: habing (509.33)
+habing has the dealer button
+aceskings212 posts small blind 0.50
+CoinArmy posts big blind 1
+** Hole Cards **
+Dealt to habing [5d 5h]
+BitHustla calls 1
+MrCuzamano folds
+habing raises to 4
+aceskings212 calls 3.50
+CoinArmy calls 3
+BitHustla folds
+** Flop ** [Jh Jc 8c]
+aceskings212 checks
+CoinArmy bets 1
+habing calls 1
+aceskings212 raises to 9
+CoinArmy folds
+habing folds
+aceskings212 refunded 8
+aceskings212 wins Pot (15.60)
+Rake (0.40)
+
+
+
+Hand #8761478-111 - 2013-06-20 03:12:53
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: BritneysBack (177.99) - sitting out
+Seat 2: aceskings212 (48.95)
+Seat 3: CoinArmy (75.48)
+Seat 4: BitHustla (20.86)
+Seat 5: MrCuzamano (98.27)
+Seat 6: habing (504.33)
+aceskings212 has the dealer button
+CoinArmy posts small blind 0.50
+BitHustla posts big blind 1
+** Hole Cards **
+Dealt to habing [Kc 3d]
+MrCuzamano folds
+habing folds
+aceskings212 calls 1
+CoinArmy calls 0.50
+BitHustla checks
+** Flop ** [3h Ac Th]
+CoinArmy checks
+BitHustla checks
+aceskings212 checks
+** Turn ** [2s]
+CoinArmy checks
+BitHustla checks
+aceskings212 checks
+** River ** [2c]
+CoinArmy bets 3
+BitHustla folds
+aceskings212 folds
+CoinArmy refunded 3
+CoinArmy wins Pot (2.93)
+Rake (0.07)
+
+
+
+Hand #8761548-112 - 2013-06-20 03:14:19
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 2: aceskings212 (47.95)
+Seat 3: CoinArmy (77.41)
+Seat 4: BitHustla (19.86)
+Seat 5: MrCuzamano (98.27)
+Seat 6: habing (504.33)
+CoinArmy has the dealer button
+BitHustla posts small blind 0.50
+MrCuzamano posts big blind 1
+** Hole Cards **
+Dealt to habing [9d Js]
+habing folds
+aceskings212 folds
+CoinArmy folds
+BitHustla calls 0.50
+MrCuzamano checks
+** Flop ** [5h Ad 7s]
+BitHustla bets 1
+MrCuzamano folds
+BitHustla refunded 1
+BitHustla wins Pot (1.95)
+Rake (0.05)
+
+
+
+Hand #8761578-113 - 2013-06-20 03:14:51
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: newnew2 (50)
+Seat 2: aceskings212 (47.95)
+Seat 3: CoinArmy (77.41)
+Seat 4: BitHustla (20.81)
+Seat 5: MrCuzamano (97.27)
+Seat 6: habing (504.33)
+BitHustla has the dealer button
+MrCuzamano posts small blind 0.50
+habing posts big blind 1
+newnew2 posts big blind 1
+** Hole Cards **
+Dealt to habing [5s 3d]
+newnew2 checks
+aceskings212 raises to 4
+CoinArmy folds
+BitHustla has timed out
+BitHustla folds
+MrCuzamano folds
+habing folds
+newnew2 folds
+aceskings212 refunded 3
+aceskings212 wins Pot (3.50)
+Rake (0)
+
+
+
+Hand #8761618-114 - 2013-06-20 03:15:42
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: newnew2 (49)
+Seat 2: aceskings212 (50.45)
+Seat 3: CoinArmy (77.41)
+Seat 4: BitHustla (20.81)
+Seat 5: MrCuzamano (96.77)
+Seat 6: habing (503.33)
+MrCuzamano has the dealer button
+habing posts small blind 0.50
+newnew2 posts big blind 1
+** Hole Cards **
+Dealt to habing [Kc Ks]
+aceskings212 calls 1
+CoinArmy folds
+BitHustla calls 1
+MrCuzamano folds
+habing raises to 6
+newnew2 folds
+aceskings212 calls 5
+BitHustla folds
+** Flop ** [2d 8h 8s]
+habing bets 11.20
+aceskings212 folds
+habing refunded 11.20
+habing wins Pot (13.65)
+Rake (0.35)
+
+
+
+Hand #8761663-115 - 2013-06-20 03:16:37
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: newnew2 (48)
+Seat 2: aceskings212 (44.45)
+Seat 3: CoinArmy (77.41)
+Seat 4: BitHustla (19.81)
+Seat 5: MrCuzamano (96.77)
+Seat 6: habing (510.98)
+habing has the dealer button
+newnew2 posts small blind 0.50
+aceskings212 posts big blind 1
+** Hole Cards **
+Dealt to habing [6h 7d]
+CoinArmy calls 1
+BitHustla folds
+MrCuzamano folds
+habing folds
+newnew2 calls 0.50
+aceskings212 checks
+** Flop ** [3d 5s 5c]
+newnew2 checks
+aceskings212 checks
+CoinArmy bets 1
+newnew2 folds
+aceskings212 folds
+CoinArmy refunded 1
+CoinArmy wins Pot (2.93)
+Rake (0.07)
+
+
+
+Hand #8761695-116 - 2013-06-20 03:17:14
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: newnew2 (47)
+Seat 2: aceskings212 (43.45)
+Seat 3: CoinArmy (79.34)
+Seat 4: BitHustla (19.81)
+Seat 5: MrCuzamano (96.77)
+Seat 6: habing (510.98)
+newnew2 has the dealer button
+aceskings212 posts small blind 0.50
+CoinArmy posts big blind 1
+** Hole Cards **
+Dealt to habing [4h 8c]
+BitHustla folds
+MrCuzamano raises to 3
+habing folds
+newnew2 folds
+aceskings212 folds
+CoinArmy folds
+MrCuzamano refunded 2
+MrCuzamano wins Pot (2.50)
+Rake (0)
+
+
+
+Hand #8761710-117 - 2013-06-20 03:17:39
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: newnew2 (47)
+Seat 2: aceskings212 (42.95)
+Seat 3: CoinArmy (78.34)
+Seat 4: BitHustla (19.81)
+Seat 5: MrCuzamano (98.27)
+Seat 6: habing (510.98)
+aceskings212 has the dealer button
+CoinArmy posts small blind 0.50
+BitHustla posts big blind 1
+** Hole Cards **
+Dealt to habing [Kh Kc]
+MrCuzamano folds
+habing raises to 3
+newnew2 calls 3
+aceskings212 folds
+CoinArmy folds
+BitHustla folds
+** Flop ** [Qs 9s Qd]
+habing bets 4.60
+newnew2 folds
+habing refunded 4.60
+habing wins Pot (7.32)
+Rake (0.18)
+
+
+
+Hand #8761739-118 - 2013-06-20 03:18:18
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: newnew2 (44)
+Seat 2: aceskings212 (42.95)
+Seat 3: CoinArmy (77.84)
+Seat 4: BitHustla (18.81)
+Seat 5: MrCuzamano (98.27)
+Seat 6: habing (515.30)
+CoinArmy has the dealer button
+BitHustla posts small blind 0.50
+MrCuzamano posts big blind 1
+** Hole Cards **
+Dealt to habing [Qd 2d]
+habing folds
+newnew2 calls 1
+aceskings212 raises to 4
+CoinArmy folds
+BitHustla folds
+MrCuzamano calls 3
+newnew2 folds
+** Flop ** [7c 7d As]
+MrCuzamano bets 6
+aceskings212 calls 6
+** Turn ** [Qh]
+MrCuzamano checks
+aceskings212 checks
+** River ** [Jd]
+MrCuzamano checks
+aceskings212 checks
+** Pot Show Down ** [7c 7d As Qh Jd]
+aceskings212 shows [Ad 3d] (Two Pair, Aces and Sevens +Q)
+MrCuzamano shows [Jc Kh] (Two Pair, Jacks and Sevens +A)
+aceskings212 wins Pot (20.97) with Two Pair
+Rake (0.53)
+
+
+
+Hand #8761794-119 - 2013-06-20 03:19:30
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 2: aceskings212 (53.92)
+Seat 3: CoinArmy (77.84)
+Seat 4: BitHustla (18.31)
+Seat 5: MrCuzamano (88.27)
+Seat 6: habing (515.30)
+BitHustla has the dealer button
+MrCuzamano posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [Ts 3d]
+aceskings212 raises to 3
+CoinArmy folds
+BitHustla calls 3
+MrCuzamano folds
+habing folds
+** Flop ** [Ad Kh 3c]
+aceskings212 bets 4
+BitHustla raises to 8
+aceskings212 calls 4
+** Turn ** [9h]
+aceskings212 bets 9
+BitHustla calls 7.31 (All-in)
+aceskings212 refunded 1.69
+** River ** [8d]
+** Pot Show Down ** [Ad Kh 3c 9h 8d]
+aceskings212 shows [Ah 4d] (a Pair of Aces +K98)
+BitHustla shows [Js Ac] (a Pair of Aces +KJ9)
+BitHustla wins Pot (37.17) with a Pair
+Rake (0.95)
+
+
+
+Hand #8761836-120 - 2013-06-20 03:20:26
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 2: aceskings212 (35.61)
+Seat 3: CoinArmy (77.84)
+Seat 4: BitHustla (37.17)
+Seat 5: MrCuzamano (87.77)
+Seat 6: habing (514.30)
+MrCuzamano has the dealer button
+habing posts small blind 0.50
+aceskings212 posts big blind 1
+** Hole Cards **
+Dealt to habing [8s Qs]
+CoinArmy folds
+BitHustla calls 1
+MrCuzamano folds
+habing raises to 5
+aceskings212 calls 4
+BitHustla calls 4
+** Flop ** [4s 9s 5d]
+habing bets 7
+aceskings212 folds
+BitHustla raises to 14
+habing calls 7
+** Turn ** [5c]
+habing checks
+BitHustla bets 18.17 (All-in)
+habing folds
+BitHustla refunded 18.17
+BitHustla wins Pot (41.93)
+Rake (1.07)
+
+
+
+Hand #8761878-121 - 2013-06-20 03:21:34
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 2: aceskings212 (30.61)
+Seat 3: CoinArmy (77.84)
+Seat 4: BitHustla (60.10)
+Seat 5: MrCuzamano (87.77)
+Seat 6: habing (495.30)
+habing has the dealer button
+aceskings212 posts small blind 0.50
+CoinArmy posts big blind 1
+** Hole Cards **
+Dealt to habing [4h Jh]
+BitHustla folds
+MrCuzamano raises to 3
+habing folds
+aceskings212 folds
+CoinArmy folds
+MrCuzamano refunded 2
+MrCuzamano wins Pot (2.50)
+Rake (0)
+
+
+
+Hand #8761902-122 - 2013-06-20 03:22:10
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 2: aceskings212 (30.11)
+Seat 3: CoinArmy (76.84)
+Seat 4: BitHustla (60.10)
+Seat 5: MrCuzamano (89.27)
+Seat 6: habing (495.30)
+aceskings212 has the dealer button
+CoinArmy posts small blind 0.50
+BitHustla posts big blind 1
+** Hole Cards **
+Dealt to habing [Th 2d]
+MrCuzamano raises to 3
+habing folds
+aceskings212 folds
+CoinArmy folds
+BitHustla calls 2
+** Flop ** [8h As 5s]
+BitHustla checks
+MrCuzamano checks
+** Turn ** [2h]
+BitHustla checks
+MrCuzamano checks
+** River ** [9h]
+BitHustla checks
+MrCuzamano checks
+** Pot Show Down ** [8h As 5s 2h 9h]
+BitHustla shows [7h Qs] (High Card Ace +Q987)
+MrCuzamano shows [3h 3c] (a Pair of Threes +A98)
+MrCuzamano wins Pot (6.34) with a Pair
+Rake (0.16)
+
+
+
+Hand #8761952-123 - 2013-06-20 03:23:36
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: vettefever88 (100) - waiting for big blind
+Seat 2: aceskings212 (30.11)
+Seat 3: CoinArmy (76.34)
+Seat 4: BitHustla (57.10)
+Seat 5: MrCuzamano (92.61)
+Seat 6: habing (495.30)
+CoinArmy has the dealer button
+BitHustla posts small blind 0.50
+MrCuzamano posts big blind 1
+** Hole Cards **
+Dealt to habing [Ah 5d]
+habing folds
+aceskings212 calls 1
+CoinArmy calls 1
+BitHustla calls 0.50
+MrCuzamano checks
+** Flop ** [6c Td Qd]
+BitHustla bets 1
+MrCuzamano folds
+aceskings212 raises to 2
+CoinArmy calls 2
+BitHustla calls 1
+** Turn ** [5s]
+BitHustla checks
+aceskings212 checks
+CoinArmy checks
+** River ** [Ts]
+BitHustla bets 3
+aceskings212 calls 3
+CoinArmy raises to 9
+BitHustla calls 6
+aceskings212 folds
+** Pot Show Down ** [6c Td Qd 5s Ts]
+CoinArmy shows [4c 4h] (Two Pair, Tens and Fours +Q)
+BitHustla shows [Qc Kh] (Two Pair, Queens and Tens +K)
+BitHustla wins Pot (30.23) with Two Pair
+Rake (0.77)
+
+
+
+Hand #8762031-124 - 2013-06-20 03:25:35
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: vettefever88 (100) - waiting for big blind
+Seat 2: aceskings212 (24.11)
+Seat 3: CoinArmy (64.34)
+Seat 4: BitHustla (75.33)
+Seat 5: MrCuzamano (91.61)
+Seat 6: habing (495.30)
+BitHustla has the dealer button
+MrCuzamano posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [Js Jc]
+aceskings212 raises to 3
+CoinArmy folds
+BitHustla folds
+MrCuzamano folds
+habing raises to 12
+aceskings212 raises to 24.11 (All-in)
+habing calls 12.11
+** Flop ** [9d Th Ad]
+** Turn ** [7d]
+** River ** [Qc]
+** Pot Show Down ** [9d Th Ad 7d Qc]
+aceskings212 shows [Ac Ah] (Three of a Kind, Aces +QT)
+habing shows [Js Jc] (a Pair of Jacks +AQT)
+aceskings212 wins Pot (47.51) with Three of a Kind
+Rake (1.21)
+
+
+
+Hand #8762066-125 - 2013-06-20 03:26:23
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: vettefever88 (100) - waiting for big blind
+Seat 2: aceskings212 (47.51)
+Seat 3: CoinArmy (64.34)
+Seat 4: BitHustla (75.33)
+Seat 5: MrCuzamano (91.11)
+Seat 6: habing (471.19)
+MrCuzamano has the dealer button
+habing posts small blind 0.50
+vettefever88 posts big blind 1
+** Hole Cards **
+Dealt to habing [9c 9s]
+aceskings212 folds
+CoinArmy calls 1
+BitHustla folds
+MrCuzamano folds
+habing raises to 5
+vettefever88 has timed out
+vettefever88 folds
+CoinArmy calls 4
+** Flop ** [Jc 4s Kc]
+habing checks
+CoinArmy checks
+** Turn ** [6d]
+habing checks
+CoinArmy bets 6
+habing folds
+CoinArmy refunded 6
+CoinArmy wins Pot (10.73)
+Rake (0.27)
+
+
+
+Hand #8762128-126 - 2013-06-20 03:28:02
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: vettefever88 (99) - sitting out
+Seat 2: aceskings212 (47.51)
+Seat 3: CoinArmy (70.07)
+Seat 4: BitHustla (75.33)
+Seat 5: MrCuzamano (91.11)
+Seat 6: habing (466.19)
+habing has the dealer button
+aceskings212 posts small blind 0.50
+CoinArmy posts big blind 1
+** Hole Cards **
+Dealt to habing [Kh 9h]
+BitHustla folds
+MrCuzamano folds
+habing raises to 2
+aceskings212 calls 1.50
+CoinArmy calls 1
+** Flop ** [2s 8c Qs]
+aceskings212 checks
+CoinArmy checks
+habing bets 4
+aceskings212 calls 4
+CoinArmy raises to 11
+habing folds
+aceskings212 calls 7
+** Turn ** [4d]
+aceskings212 checks
+CoinArmy bets 17
+aceskings212 calls 17
+** River ** [Jc]
+aceskings212 checks
+CoinArmy bets 18
+aceskings212 folds
+CoinArmy refunded 18
+CoinArmy wins Pot (64.35)
+Rake (1.65)
+
+
+
+Hand #8762177-127 - 2013-06-20 03:29:26
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 2: aceskings212 (17.51)
+Seat 3: CoinArmy (104.42)
+Seat 4: BitHustla (75.33)
+Seat 5: MrCuzamano (91.11)
+Seat 6: habing (460.19)
+aceskings212 has the dealer button
+CoinArmy posts small blind 0.50
+BitHustla posts big blind 1
+** Hole Cards **
+Dealt to habing [7d 2h]
+MrCuzamano folds
+habing folds
+aceskings212 calls 1
+CoinArmy calls 0.50
+BitHustla checks
+** Flop ** [2c 6s 9c]
+CoinArmy checks
+BitHustla bets 1
+aceskings212 calls 1
+CoinArmy folds
+** Turn ** [Ah]
+BitHustla checks
+aceskings212 checks
+** River ** [4s]
+BitHustla checks
+aceskings212 checks
+** Pot Show Down ** [2c 6s 9c Ah 4s]
+aceskings212 shows [5s 8s] (High Card Ace +9865)
+BitHustla shows [Td 3s] (High Card Ace +T964)
+BitHustla wins Pot (4.88) with High Card
+Rake (0.12)
+
+
+
+Hand #8762232-128 - 2013-06-20 03:30:41
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 2: aceskings212 (15.51)
+Seat 3: CoinArmy (103.42)
+Seat 4: BitHustla (78.21)
+Seat 5: MrCuzamano (91.11)
+Seat 6: habing (460.19)
+CoinArmy has the dealer button
+BitHustla posts small blind 0.50
+MrCuzamano posts big blind 1
+** Hole Cards **
+Dealt to habing [9d 7h]
+habing folds
+aceskings212 folds
+CoinArmy calls 1
+BitHustla calls 0.50
+MrCuzamano checks
+** Flop ** [3s 6h 4d]
+BitHustla checks
+MrCuzamano bets 2
+CoinArmy folds
+BitHustla folds
+MrCuzamano refunded 2
+MrCuzamano wins Pot (2.93)
+Rake (0.07)
+
+
+
+Hand #8762261-129 - 2013-06-20 03:31:34
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 2: aceskings212 (15.51)
+Seat 3: CoinArmy (102.42)
+Seat 4: BitHustla (77.21)
+Seat 5: MrCuzamano (93.04)
+Seat 6: habing (460.19)
+BitHustla has the dealer button
+MrCuzamano posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [3c Ad]
+aceskings212 raises to 3
+CoinArmy calls 3
+BitHustla folds
+MrCuzamano folds
+habing folds
+** Flop ** [6d Th 5s]
+aceskings212 bets 4
+CoinArmy folds
+aceskings212 refunded 4
+aceskings212 wins Pot (7.32)
+Rake (0.18)
+
+
+
+Hand #8762297-130 - 2013-06-20 03:32:25
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 2: aceskings212 (19.83)
+Seat 3: CoinArmy (99.42)
+Seat 4: BitHustla (77.21)
+Seat 5: MrCuzamano (92.54)
+Seat 6: habing (459.19)
+MrCuzamano has the dealer button
+habing posts small blind 0.50
+aceskings212 posts big blind 1
+** Hole Cards **
+Dealt to habing [Td 3s]
+CoinArmy folds
+BitHustla raises to 3
+MrCuzamano folds
+habing folds
+aceskings212 calls 2
+** Flop ** [7h Ad 7s]
+aceskings212 checks
+BitHustla checks
+** Turn ** [Kc]
+aceskings212 bets 3
+BitHustla folds
+aceskings212 refunded 3
+aceskings212 wins Pot (6.34)
+Rake (0.16)
+
+
+
+Hand #8762327-131 - 2013-06-20 03:33:07
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 2: aceskings212 (23.17)
+Seat 3: CoinArmy (99.42)
+Seat 4: BitHustla (74.21)
+Seat 5: MrCuzamano (92.54)
+Seat 6: habing (458.69)
+habing has the dealer button
+aceskings212 posts small blind 0.50
+CoinArmy posts big blind 1
+** Hole Cards **
+Dealt to habing [Qc 4c]
+BitHustla calls 1
+MrCuzamano folds
+habing raises to 4
+aceskings212 folds
+CoinArmy folds
+BitHustla folds
+habing refunded 3
+habing wins Pot (3.50)
+Rake (0)
+
+
+
+Hand #8762341-132 - 2013-06-20 03:33:45
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 2: aceskings212 (22.67)
+Seat 3: CoinArmy (98.42)
+Seat 4: BitHustla (73.21)
+Seat 5: MrCuzamano (92.54)
+Seat 6: habing (461.19)
+aceskings212 has the dealer button
+CoinArmy posts small blind 0.50
+BitHustla posts big blind 1
+** Hole Cards **
+Dealt to habing [5h Ac]
+MrCuzamano folds
+habing folds
+aceskings212 raises to 2
+CoinArmy calls 1.50
+BitHustla calls 1
+** Flop ** [Th 9h 8d]
+CoinArmy checks
+BitHustla checks
+aceskings212 bets 5
+CoinArmy folds
+BitHustla calls 5
+** Turn ** [3h]
+BitHustla checks
+aceskings212 bets 15.67 (All-in)
+BitHustla folds
+aceskings212 refunded 15.67
+aceskings212 wins Pot (15.60)
+Rake (0.40)
+
+
+
+Hand #8762384-133 - 2013-06-20 03:35:06
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: nonsense (20) - waiting for big blind
+Seat 2: aceskings212 (31.27)
+Seat 3: CoinArmy (96.42)
+Seat 4: BitHustla (66.21)
+Seat 5: MrCuzamano (92.54)
+Seat 6: habing (461.19)
+CoinArmy has the dealer button
+BitHustla posts small blind 0.50
+MrCuzamano posts big blind 1
+** Hole Cards **
+Dealt to habing [2h 3s]
+habing folds
+aceskings212 folds
+CoinArmy folds
+BitHustla calls 0.50
+MrCuzamano checks
+** Flop ** [Qh As 6c]
+BitHustla checks
+MrCuzamano checks
+** Turn ** [5c]
+BitHustla bets 1
+MrCuzamano calls 1
+** River ** [3d]
+BitHustla checks
+MrCuzamano checks
+** Pot Show Down ** [Qh As 6c 5c 3d]
+BitHustla shows [Ad 2d] (a Pair of Aces +Q65)
+MrCuzamano shows [9s Qd] (a Pair of Queens +A96)
+BitHustla wins Pot (3.90) with a Pair
+Rake (0.10)
+
+
+
+Hand #8762423-134 - 2013-06-20 03:36:31
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: nonsense (20) - waiting for big blind
+Seat 2: aceskings212 (31.27)
+Seat 3: CoinArmy (96.42)
+Seat 4: BitHustla (68.11)
+Seat 5: MrCuzamano (90.54)
+Seat 6: habing (461.19)
+BitHustla has the dealer button
+MrCuzamano posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [Qc 5d]
+aceskings212 folds
+CoinArmy folds
+BitHustla raises to 2
+MrCuzamano folds
+habing folds
+BitHustla refunded 1
+BitHustla wins Pot (2.50)
+Rake (0)
+
+
+
+Hand #8762445-135 - 2013-06-20 03:37:12
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: nonsense (20) - waiting for big blind
+Seat 2: aceskings212 (31.27)
+Seat 3: CoinArmy (96.42)
+Seat 4: BitHustla (69.61)
+Seat 5: MrCuzamano (90.04)
+Seat 6: habing (460.19)
+MrCuzamano has the dealer button
+habing posts small blind 0.50
+nonsense posts big blind 1
+** Hole Cards **
+Dealt to habing [9s 3s]
+aceskings212 folds
+CoinArmy folds
+BitHustla folds
+MrCuzamano raises to 3
+habing folds
+nonsense folds
+MrCuzamano refunded 2
+MrCuzamano wins Pot (2.50)
+Rake (0)
+
+
+
+Hand #8762479-136 - 2013-06-20 03:38:11
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: nonsense (19)
+Seat 2: aceskings212 (31.27)
+Seat 3: CoinArmy (96.42)
+Seat 4: BitHustla (69.61)
+Seat 5: MrCuzamano (91.54)
+Seat 6: habing (459.69)
+habing has the dealer button
+nonsense posts small blind 0.50
+aceskings212 posts big blind 1
+** Hole Cards **
+Dealt to habing [7h 6c]
+CoinArmy folds
+BitHustla calls 1
+MrCuzamano raises to 4
+habing folds
+nonsense folds
+aceskings212 calls 3
+BitHustla folds
+** Flop ** [3c Kh Kd]
+aceskings212 checks
+MrCuzamano bets 8
+aceskings212 calls 8
+** Turn ** [Jd]
+aceskings212 checks
+MrCuzamano checks
+** River ** [9c]
+aceskings212 checks
+MrCuzamano checks
+** Pot Show Down ** [3c Kh Kd Jd 9c]
+aceskings212 shows [2s 2c] (Two Pair, Kings and Deuces +J)
+MrCuzamano shows [8d 8h] (Two Pair, Kings and Eights +J)
+MrCuzamano wins Pot (24.87) with Two Pair
+Rake (0.63)
+
+
+
+Hand #8762514-137 - 2013-06-20 03:39:18
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: nonsense (18.50)
+Seat 2: aceskings212 (19.27)
+Seat 3: CoinArmy (96.42)
+Seat 4: BitHustla (68.61)
+Seat 5: MrCuzamano (104.41)
+Seat 6: habing (459.69)
+nonsense has the dealer button
+aceskings212 posts small blind 0.50
+CoinArmy posts big blind 1
+** Hole Cards **
+Dealt to habing [Jd 4s]
+BitHustla folds
+MrCuzamano folds
+habing folds
+nonsense folds
+aceskings212 calls 0.50
+CoinArmy checks
+** Flop ** [5d Ah 4c]
+aceskings212 checks
+CoinArmy bets 1
+aceskings212 folds
+CoinArmy refunded 1
+CoinArmy wins Pot (1.95)
+Rake (0.05)
+
+
+
+Hand #8762545-138 - 2013-06-20 03:40:06
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: nonsense (18.50)
+Seat 2: aceskings212 (18.27)
+Seat 3: CoinArmy (97.37)
+Seat 4: BitHustla (68.61)
+Seat 5: MrCuzamano (104.41)
+Seat 6: habing (459.69)
+aceskings212 has the dealer button
+CoinArmy posts small blind 0.50
+BitHustla posts big blind 1
+** Hole Cards **
+Dealt to habing [Th Ad]
+MrCuzamano folds
+habing raises to 3
+nonsense folds
+aceskings212 folds
+CoinArmy calls 2.50
+BitHustla folds
+** Flop ** [Kh 3d 8c]
+CoinArmy bets 1
+habing calls 1
+** Turn ** [3c]
+CoinArmy bets 4
+habing calls 4
+** River ** [4s]
+CoinArmy bets 8
+habing folds
+CoinArmy refunded 8
+CoinArmy wins Pot (16.58)
+Rake (0.42)
+
+
+
+Hand #8762594-139 - 2013-06-20 03:41:42
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: nonsense (18.50)
+Seat 2: aceskings212 (18.27)
+Seat 3: CoinArmy (105.95)
+Seat 4: BitHustla (67.61)
+Seat 5: MrCuzamano (104.41)
+Seat 6: habing (451.69)
+CoinArmy has the dealer button
+BitHustla posts small blind 0.50
+MrCuzamano posts big blind 1
+** Hole Cards **
+Dealt to habing [Qs Kc]
+habing raises to 3
+nonsense folds
+aceskings212 calls 3
+CoinArmy calls 3
+BitHustla calls 2.50
+MrCuzamano folds
+** Flop ** [3c 3s 7h]
+BitHustla checks
+habing checks
+aceskings212 bets 15.27 (All-in)
+CoinArmy folds
+BitHustla folds
+habing folds
+aceskings212 refunded 15.27
+aceskings212 wins Pot (12.68)
+Rake (0.32)

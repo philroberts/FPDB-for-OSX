@@ -1,0 +1,4294 @@
+Hand #9140591-75 - 2013-06-28 01:58:21
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 2: Degnr8Gamblr (263.99)
+Seat 4: username1134 (213.41)
+Seat 5: BBlaiz1287 (200)
+Seat 6: Blackfish (292.45)
+Seat 7: sctt11 (182)
+Seat 8: seamutt (111)
+Seat 9: habing (200) - waiting for big blind
+Blackfish has the dealer button
+sctt11 posts small blind 1
+seamutt posts big blind 2
+** Hole Cards **
+Degnr8Gamblr folds
+username1134 calls 2
+BBlaiz1287 folds
+Blackfish raises to 8
+sctt11 folds
+seamutt raises to 20
+username1134 folds
+Blackfish calls 12
+** Flop ** [Js Th Td]
+seamutt bets 40
+Blackfish folds
+seamutt refunded 40
+seamutt wins Pot (41.93)
+Rake (1.07)
+
+
+
+Hand #9140625-76 - 2013-06-28 01:59:14
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 2: Degnr8Gamblr (263.99)
+Seat 4: username1134 (211.41)
+Seat 5: BBlaiz1287 (200)
+Seat 6: Blackfish (272.45)
+Seat 7: sctt11 (181)
+Seat 8: seamutt (132.93)
+Seat 9: habing (200) - waiting for big blind
+sctt11 has the dealer button
+seamutt posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [4h 3h]
+Degnr8Gamblr folds
+username1134 folds
+BBlaiz1287 folds
+Blackfish folds
+sctt11 folds
+seamutt calls 1
+habing checks
+** Flop ** [Jd 9s Jc]
+seamutt bets 3
+habing folds
+seamutt refunded 3
+habing adds 2 chips
+seamutt wins Pot (3.90)
+Rake (0.10)
+
+
+
+Hand #9140657-77 - 2013-06-28 01:59:53
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 2: Degnr8Gamblr (263.99)
+Seat 4: username1134 (211.41)
+Seat 5: BBlaiz1287 (200)
+Seat 6: Blackfish (272.45)
+Seat 7: sctt11 (181)
+Seat 8: seamutt (134.83)
+Seat 9: habing (200)
+seamutt has the dealer button
+habing posts small blind 1
+Degnr8Gamblr posts big blind 2
+** Hole Cards **
+Dealt to habing [7h 5c]
+username1134 folds
+BBlaiz1287 folds
+Blackfish folds
+sctt11 raises to 6
+seamutt folds
+habing folds
+habing adds 1 chips
+Degnr8Gamblr folds
+sctt11 refunded 4
+sctt11 wins Pot (5)
+Rake (0)
+
+
+
+Hand #9140685-78 - 2013-06-28 02:00:26
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 2: Degnr8Gamblr (261.99)
+Seat 4: username1134 (211.41)
+Seat 5: BBlaiz1287 (200)
+Seat 6: Blackfish (272.45)
+Seat 7: sctt11 (184)
+Seat 8: seamutt (134.83)
+Seat 9: habing (200)
+habing has the dealer button
+Degnr8Gamblr posts small blind 1
+username1134 posts big blind 2
+** Hole Cards **
+Dealt to habing [Jc 7h]
+BBlaiz1287 folds
+Blackfish raises to 6
+sctt11 calls 6
+seamutt folds
+habing folds
+Degnr8Gamblr folds
+username1134 calls 4
+** Flop ** [4d Jd Qh]
+username1134 bets 9.41
+Blackfish calls 9.41
+sctt11 calls 9.41
+** Turn ** [2d]
+username1134 bets 16
+Blackfish raises to 42
+sctt11 calls 42
+username1134 folds
+** River ** [Qd]
+Blackfish bets 127
+sctt11 calls 126.59 (All-in)
+Blackfish refunded 0.41
+** Pot Show Down ** [4d Jd Qh 2d Qd]
+Blackfish shows [Kd Qs] (a Flush, King high +QJ42)
+sctt11 shows [Td Ad] (a Flush, Ace high +QJT4)
+sctt11 wins Pot (396.41) with a Flush
+Rake (4)
+
+
+
+Hand #9140788-79 - 2013-06-28 02:02:13
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 2: Degnr8Gamblr (260.99)
+Seat 3: Stromisle (166.99)
+Seat 4: username1134 (180)
+Seat 5: BBlaiz1287 (200)
+Seat 6: Blackfish (88.45)
+Seat 7: sctt11 (396.41)
+Seat 8: seamutt (134.83)
+Seat 9: habing (200)
+Degnr8Gamblr has the dealer button
+username1134 posts small blind 1
+BBlaiz1287 posts big blind 2
+** Hole Cards **
+Dealt to habing [3d 7d]
+Blackfish folds
+sctt11 folds
+seamutt folds
+habing folds
+Degnr8Gamblr folds
+username1134 calls 1
+BBlaiz1287 raises to 8
+username1134 has timed out
+username1134 folds
+BBlaiz1287 refunded 6
+BBlaiz1287 wins Pot (4)
+Rake (0)
+
+
+
+Hand #9140836-80 - 2013-06-28 02:03:11
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: machina357 (200)
+Seat 2: Degnr8Gamblr (260.99)
+Seat 3: Stromisle (166.99)
+Seat 4: username1134 (178) - sitting out
+Seat 5: BBlaiz1287 (202)
+Seat 7: sctt11 (396.41)
+Seat 8: seamutt (134.83)
+Seat 9: habing (200)
+BBlaiz1287 has the dealer button
+sctt11 posts small blind 1
+seamutt posts big blind 2
+machina357 posts big blind 2
+Stromisle posts big blind 2
+** Hole Cards **
+Dealt to habing [9h 2d]
+habing folds
+machina357 checks
+Degnr8Gamblr folds
+Stromisle checks
+BBlaiz1287 raises to 8
+sctt11 folds
+seamutt calls 6
+machina357 folds
+Stromisle folds
+** Flop ** [2s 3d Jh]
+seamutt checks
+BBlaiz1287 bets 12
+seamutt raises to 30
+BBlaiz1287 folds
+seamutt refunded 18
+BBlaiz1287 adds 18 chips
+seamutt wins Pot (43.88)
+Rake (1.12)
+
+
+
+Hand #9140891-81 - 2013-06-28 02:04:15
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: machina357 (198)
+Seat 2: Degnr8Gamblr (260.99)
+Seat 3: Stromisle (164.99)
+Seat 4: username1134 (178)
+Seat 5: BBlaiz1287 (200)
+Seat 7: sctt11 (395.41)
+Seat 8: seamutt (158.71)
+Seat 9: habing (200)
+sctt11 has the dealer button
+seamutt posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [9d Qc]
+machina357 raises to 6
+Degnr8Gamblr folds
+Stromisle folds
+username1134 folds
+BBlaiz1287 folds
+sctt11 folds
+seamutt calls 5
+habing folds
+habing adds 2 chips
+** Flop ** [Qs 2h Qh]
+seamutt bets 5
+machina357 raises to 100
+seamutt folds
+machina357 refunded 95
+machina357 wins Pot (23.40)
+Rake (0.60)
+
+
+
+Hand #9140946-82 - 2013-06-28 02:05:25
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: machina357 (210.40)
+Seat 2: Degnr8Gamblr (260.99)
+Seat 3: Stromisle (164.99)
+Seat 4: username1134 (178)
+Seat 5: BBlaiz1287 (200)
+Seat 7: sctt11 (395.41)
+Seat 8: seamutt (147.71)
+Seat 9: habing (200)
+seamutt has the dealer button
+habing posts small blind 1
+machina357 posts big blind 2
+** Hole Cards **
+Dealt to habing [As 3d]
+Degnr8Gamblr calls 2
+Stromisle folds
+username1134 calls 2
+BBlaiz1287 folds
+sctt11 calls 2
+seamutt folds
+habing calls 1
+machina357 checks
+** Flop ** [Td 5s 3c]
+habing checks
+machina357 bets 6
+Degnr8Gamblr folds
+username1134 folds
+sctt11 folds
+habing folds
+machina357 refunded 6
+habing adds 2 chips
+machina357 wins Pot (9.75)
+Rake (0.25)
+
+
+
+Hand #9140992-83 - 2013-06-28 02:06:21
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: machina357 (218.15)
+Seat 2: Degnr8Gamblr (258.99)
+Seat 3: Stromisle (164.99)
+Seat 4: username1134 (176)
+Seat 5: BBlaiz1287 (200)
+Seat 7: sctt11 (393.41)
+Seat 8: seamutt (147.71)
+Seat 9: habing (200)
+habing has the dealer button
+machina357 posts small blind 1
+Degnr8Gamblr posts big blind 2
+** Hole Cards **
+Dealt to habing [6c Kc]
+Stromisle folds
+username1134 folds
+BBlaiz1287 folds
+sctt11 folds
+seamutt calls 2
+habing raises to 8.80
+machina357 folds
+Degnr8Gamblr folds
+seamutt calls 6.80
+** Flop ** [Jh 8d Kd]
+seamutt checks
+username1134 adds 24 chips
+habing bets 16.40
+seamutt folds
+habing refunded 16.40
+habing wins Pot (20.09)
+Rake (0.51)
+
+
+
+Hand #9141032-84 - 2013-06-28 02:07:01
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: machina357 (217.15)
+Seat 2: Degnr8Gamblr (256.99)
+Seat 3: Stromisle (164.99)
+Seat 4: username1134 (200)
+Seat 5: BBlaiz1287 (200)
+Seat 6: dazhanik (80)
+Seat 7: sctt11 (393.41)
+Seat 8: seamutt (138.91)
+Seat 9: habing (211.29)
+machina357 has the dealer button
+Degnr8Gamblr posts small blind 1
+Stromisle posts big blind 2
+dazhanik posts big blind 2
+** Hole Cards **
+Dealt to habing [4c 6h]
+username1134 raises to 44
+BBlaiz1287 folds
+dazhanik folds
+sctt11 folds
+seamutt folds
+habing folds
+machina357 folds
+Degnr8Gamblr folds
+Stromisle folds
+username1134 refunded 42
+username1134 wins Pot (7)
+Rake (0)
+
+
+
+Hand #9141062-85 - 2013-06-28 02:07:39
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: machina357 (217.15)
+Seat 2: Degnr8Gamblr (255.99)
+Seat 3: Stromisle (162.99)
+Seat 4: username1134 (205)
+Seat 5: BBlaiz1287 (200)
+Seat 6: dazhanik (78)
+Seat 7: sctt11 (393.41)
+Seat 8: seamutt (138.91)
+Seat 9: habing (211.29)
+Degnr8Gamblr has the dealer button
+Stromisle posts small blind 1
+username1134 posts big blind 2
+** Hole Cards **
+Dealt to habing [Ah Ac]
+BBlaiz1287 folds
+dazhanik calls 2
+sctt11 folds
+seamutt calls 2
+habing raises to 10
+machina357 folds
+Degnr8Gamblr folds
+Stromisle folds
+username1134 folds
+dazhanik folds
+seamutt folds
+habing refunded 8
+habing wins Pot (9)
+Rake (0)
+
+
+
+Hand #9141089-86 - 2013-06-28 02:08:08
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: machina357 (217.15)
+Seat 2: Degnr8Gamblr (255.99)
+Seat 3: Stromisle (161.99)
+Seat 4: username1134 (203)
+Seat 5: BBlaiz1287 (200)
+Seat 6: dazhanik (76)
+Seat 7: sctt11 (393.41)
+Seat 8: seamutt (136.91)
+Seat 9: habing (218.29)
+Stromisle has the dealer button
+username1134 posts small blind 1
+BBlaiz1287 posts big blind 2
+** Hole Cards **
+Dealt to habing [Jc Ah]
+dazhanik folds
+sctt11 folds
+seamutt folds
+habing raises to 6
+machina357 folds
+Degnr8Gamblr folds
+Stromisle folds
+username1134 calls 5
+BBlaiz1287 folds
+BBlaiz1287 adds 2 chips
+** Flop ** [2h Th 9c]
+username1134 checks
+habing bets 8.80
+username1134 calls 8.80
+** Turn ** [8h]
+username1134 checks
+habing checks
+** River ** [Qd]
+username1134 bets 18
+habing calls 18
+** Pot Show Down ** [2h Th 9c 8h Qd]
+username1134 shows [As 8d] (a Pair of Eights +AQT)
+habing shows [Jc Ah] (a Straight, Eight to Queen)
+habing wins Pot (65.91) with a Straight
+Rake (1.69)
+
+
+
+Hand #9141150-87 - 2013-06-28 02:09:29
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: machina357 (217.15)
+Seat 2: Degnr8Gamblr (255.99)
+Seat 3: Stromisle (161.99)
+Seat 4: username1134 (170.20)
+Seat 5: BBlaiz1287 (200)
+Seat 6: dazhanik (76)
+Seat 7: sctt11 (393.41)
+Seat 8: seamutt (136.91)
+Seat 9: habing (251.40)
+username1134 has the dealer button
+BBlaiz1287 posts small blind 1
+dazhanik posts big blind 2
+** Hole Cards **
+Dealt to habing [Ac 7c]
+sctt11 folds
+seamutt folds
+habing raises to 6
+machina357 folds
+Degnr8Gamblr calls 6
+Stromisle folds
+username1134 calls 6
+BBlaiz1287 folds
+BBlaiz1287 adds 1 chips
+dazhanik folds
+** Flop ** [Qd 3d 3c]
+habing bets 12.40
+Degnr8Gamblr folds
+username1134 raises to 164.20 (All-in)
+habing folds
+username1134 refunded 151.80
+username1134 wins Pot (44.66)
+Rake (1.14)
+
+
+
+Hand #9141189-88 - 2013-06-28 02:10:24
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: machina357 (217.15)
+Seat 2: Degnr8Gamblr (249.99)
+Seat 3: Stromisle (161.99)
+Seat 4: username1134 (196.46)
+Seat 5: BBlaiz1287 (200)
+Seat 6: dazhanik (74)
+Seat 7: sctt11 (393.41)
+Seat 8: seamutt (136.91)
+Seat 9: habing (233)
+BBlaiz1287 has the dealer button
+dazhanik posts small blind 1
+sctt11 posts big blind 2
+** Hole Cards **
+Dealt to habing [8h 9d]
+seamutt folds
+habing folds
+machina357 folds
+Degnr8Gamblr folds
+Stromisle folds
+username1134 calls 2
+BBlaiz1287 calls 2
+dazhanik folds
+sctt11 checks
+** Flop ** [Tc 6h Ks]
+sctt11 checks
+username1134 checks
+BBlaiz1287 checks
+** Turn ** [5h]
+sctt11 checks
+username1134 checks
+BBlaiz1287 checks
+** River ** [Kd]
+sctt11 checks
+username1134 bets 6.83
+BBlaiz1287 folds
+BBlaiz1287 adds 2 chips
+sctt11 folds
+username1134 refunded 6.83
+username1134 wins Pot (6.83)
+Rake (0.17)
+
+
+
+Hand #9141247-89 - 2013-06-28 02:11:39
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: machina357 (217.15)
+Seat 2: Degnr8Gamblr (249.99)
+Seat 3: Stromisle (161.99)
+Seat 4: username1134 (201.29)
+Seat 5: BBlaiz1287 (200)
+Seat 6: dazhanik (73)
+Seat 7: sctt11 (391.41)
+Seat 8: seamutt (136.91)
+Seat 9: habing (233)
+dazhanik has the dealer button
+sctt11 posts small blind 1
+seamutt posts big blind 2
+** Hole Cards **
+Dealt to habing [Ah Qh]
+habing raises to 6
+machina357 folds
+Degnr8Gamblr folds
+Stromisle folds
+username1134 folds
+BBlaiz1287 folds
+dazhanik folds
+sctt11 folds
+seamutt folds
+habing refunded 4
+habing wins Pot (5)
+Rake (0)
+
+
+
+Hand #9141272-90 - 2013-06-28 02:12:11
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: machina357 (217.15)
+Seat 2: Degnr8Gamblr (249.99)
+Seat 3: Stromisle (161.99)
+Seat 4: username1134 (201.29)
+Seat 5: BBlaiz1287 (200)
+Seat 6: dazhanik (73)
+Seat 7: sctt11 (390.41)
+Seat 8: seamutt (134.91)
+Seat 9: habing (236)
+sctt11 has the dealer button
+seamutt posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [3c 7d]
+machina357 folds
+Degnr8Gamblr folds
+Stromisle folds
+username1134 calls 2
+BBlaiz1287 folds
+dazhanik folds
+sctt11 folds
+seamutt folds
+habing checks
+** Flop ** [6s 5h 5s]
+habing checks
+username1134 checks
+** Turn ** [8c]
+habing checks
+username1134 checks
+** River ** [Jh]
+habing checks
+username1134 bets 4.88
+habing folds
+username1134 refunded 4.88
+username1134 wins Pot (4.88)
+Rake (0.12)
+
+
+
+Hand #9141322-91 - 2013-06-28 02:13:28
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: LionelHutz (200) - waiting for big blind
+Seat 2: Degnr8Gamblr (249.99)
+Seat 3: Stromisle (161.99) - sitting out
+Seat 4: username1134 (204.17)
+Seat 5: BBlaiz1287 (200)
+Seat 6: dazhanik (73)
+Seat 7: sctt11 (390.41)
+Seat 8: seamutt (133.91)
+Seat 9: habing (234)
+seamutt has the dealer button
+habing posts small blind 1
+LionelHutz posts big blind 2
+** Hole Cards **
+Dealt to habing [5s As]
+Degnr8Gamblr folds
+username1134 folds
+BBlaiz1287 folds
+dazhanik calls 2
+sctt11 folds
+seamutt folds
+habing calls 1
+LionelHutz checks
+** Flop ** [6d Kc Qs]
+habing checks
+LionelHutz bets 4
+dazhanik folds
+habing folds
+LionelHutz refunded 4
+LionelHutz wins Pot (5.85)
+Rake (0.15)
+
+
+
+Hand #9141360-92 - 2013-06-28 02:14:23
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: LionelHutz (203.85)
+Seat 2: Degnr8Gamblr (249.99)
+Seat 3: Stromisle (161.99) - sitting out
+Seat 4: username1134 (204.17)
+Seat 5: BBlaiz1287 (200)
+Seat 6: dazhanik (71)
+Seat 7: sctt11 (390.41)
+Seat 8: seamutt (133.91)
+Seat 9: habing (232)
+habing has the dealer button
+LionelHutz posts small blind 1
+Degnr8Gamblr posts big blind 2
+** Hole Cards **
+Dealt to habing [2c 5s]
+username1134 folds
+BBlaiz1287 folds
+dazhanik raises to 6
+sctt11 folds
+seamutt folds
+habing folds
+LionelHutz folds
+Degnr8Gamblr folds
+dazhanik refunded 4
+dazhanik wins Pot (5)
+Rake (0)
+
+
+
+Hand #9141385-93 - 2013-06-28 02:14:59
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: LionelHutz (202.85)
+Seat 2: Degnr8Gamblr (247.99)
+Seat 3: Stromisle (161.99) - sitting out
+Seat 4: username1134 (204.17) - sitting out
+Seat 5: BBlaiz1287 (200)
+Seat 6: dazhanik (74)
+Seat 7: sctt11 (390.41)
+Seat 8: seamutt (133.91)
+Seat 9: habing (232)
+LionelHutz has the dealer button
+Degnr8Gamblr posts small blind 1
+BBlaiz1287 posts big blind 2
+** Hole Cards **
+Dealt to habing [8s 2d]
+dazhanik folds
+sctt11 folds
+seamutt folds
+habing folds
+LionelHutz raises to 6
+Degnr8Gamblr folds
+BBlaiz1287 folds
+LionelHutz refunded 4
+BBlaiz1287 adds 2 chips
+LionelHutz wins Pot (5)
+Rake (0)
+
+
+
+Hand #9141403-94 - 2013-06-28 02:15:30
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: LionelHutz (205.85)
+Seat 2: Degnr8Gamblr (246.99)
+Seat 3: Stromisle (161.99) - sitting out
+Seat 4: username1134 (204.17) - sitting out
+Seat 5: BBlaiz1287 (200)
+Seat 6: dazhanik (74)
+Seat 7: sctt11 (390.41)
+Seat 8: seamutt (133.91)
+Seat 9: habing (232)
+Degnr8Gamblr has the dealer button
+BBlaiz1287 posts small blind 1
+dazhanik posts big blind 2
+** Hole Cards **
+Dealt to habing [Jd Th]
+sctt11 calls 2
+seamutt folds
+habing folds
+LionelHutz folds
+Degnr8Gamblr folds
+BBlaiz1287 calls 1
+dazhanik raises to 6
+sctt11 folds
+BBlaiz1287 folds
+dazhanik refunded 4
+BBlaiz1287 adds 2 chips
+dazhanik wins Pot (6)
+Rake (0)
+
+
+
+Hand #9141432-95 - 2013-06-28 02:16:14
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: LionelHutz (205.85)
+Seat 2: Degnr8Gamblr (246.99)
+Seat 3: Stromisle (161.99) - sitting out
+Seat 4: username1134 (204.17) - sitting out
+Seat 5: BBlaiz1287 (200)
+Seat 6: dazhanik (78)
+Seat 7: sctt11 (388.41)
+Seat 8: seamutt (133.91)
+Seat 9: habing (232)
+BBlaiz1287 has the dealer button
+dazhanik posts small blind 1
+sctt11 posts big blind 2
+** Hole Cards **
+Dealt to habing [5s 6c]
+seamutt folds
+habing folds
+LionelHutz raises to 6
+Degnr8Gamblr folds
+BBlaiz1287 folds
+dazhanik folds
+sctt11 folds
+LionelHutz refunded 4
+LionelHutz wins Pot (5)
+Rake (0)
+
+
+
+Hand #9141451-96 - 2013-06-28 02:16:42
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: LionelHutz (208.85)
+Seat 2: Degnr8Gamblr (246.99)
+Seat 3: Stromisle (161.99) - sitting out
+Seat 4: username1134 (204.17)
+Seat 5: BBlaiz1287 (200)
+Seat 6: dazhanik (77)
+Seat 7: sctt11 (386.41)
+Seat 8: seamutt (133.91)
+Seat 9: habing (232)
+dazhanik has the dealer button
+sctt11 posts small blind 1
+seamutt posts big blind 2
+username1134 posts small & big blind 3
+** Hole Cards **
+Dealt to habing [4d Qc]
+habing folds
+LionelHutz folds
+Degnr8Gamblr folds
+username1134 checks
+BBlaiz1287 raises to 12
+dazhanik folds
+sctt11 folds
+seamutt folds
+username1134 folds
+BBlaiz1287 refunded 10
+BBlaiz1287 wins Pot (8)
+Rake (0)
+
+
+
+Hand #9141477-97 - 2013-06-28 02:17:28
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: LionelHutz (208.85)
+Seat 2: Degnr8Gamblr (246.99)
+Seat 3: Stromisle (161.99) - sitting out
+Seat 4: username1134 (201.17)
+Seat 5: BBlaiz1287 (206)
+Seat 6: dazhanik (77)
+Seat 7: sctt11 (385.41)
+Seat 8: seamutt (131.91)
+Seat 9: habing (232)
+sctt11 has the dealer button
+seamutt posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [2d Th]
+LionelHutz folds
+Degnr8Gamblr folds
+username1134 folds
+BBlaiz1287 raises to 6
+dazhanik folds
+sctt11 folds
+seamutt folds
+habing folds
+BBlaiz1287 refunded 4
+BBlaiz1287 wins Pot (5)
+Rake (0)
+
+
+
+Hand #9141495-98 - 2013-06-28 02:17:56
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: LionelHutz (208.85)
+Seat 2: Degnr8Gamblr (246.99)
+Seat 3: Stromisle (161.99) - sitting out
+Seat 4: username1134 (201.17)
+Seat 5: BBlaiz1287 (209)
+Seat 6: dazhanik (77)
+Seat 7: sctt11 (385.41)
+Seat 8: seamutt (130.91)
+Seat 9: habing (230)
+seamutt has the dealer button
+habing posts small blind 1
+LionelHutz posts big blind 2
+** Hole Cards **
+Dealt to habing [5c Ad]
+Degnr8Gamblr folds
+username1134 raises to 4
+BBlaiz1287 calls 4
+dazhanik folds
+sctt11 calls 4
+seamutt calls 4
+habing folds
+LionelHutz folds
+** Flop ** [Qs Th 5s]
+username1134 checks
+BBlaiz1287 bets 12
+sctt11 calls 12
+seamutt calls 12
+username1134 folds
+** Turn ** [3s]
+BBlaiz1287 checks
+sctt11 bets 30
+seamutt folds
+BBlaiz1287 folds
+sctt11 refunded 30
+BBlaiz1287 adds 7 chips
+sctt11 wins Pot (53.63)
+Rake (1.37)
+
+
+
+Hand #9141540-99 - 2013-06-28 02:19:18
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: LionelHutz (206.85)
+Seat 2: Degnr8Gamblr (246.99)
+Seat 3: Stromisle (161.99) - sitting out
+Seat 4: username1134 (197.17)
+Seat 5: BBlaiz1287 (200)
+Seat 6: dazhanik (77)
+Seat 7: sctt11 (423.04)
+Seat 8: seamutt (114.91)
+Seat 9: habing (229)
+habing has the dealer button
+LionelHutz posts small blind 1
+Degnr8Gamblr posts big blind 2
+** Hole Cards **
+Dealt to habing [Tc 5c]
+username1134 folds
+BBlaiz1287 folds
+dazhanik folds
+sctt11 folds
+seamutt folds
+habing raises to 4
+LionelHutz calls 3
+Degnr8Gamblr folds
+** Flop ** [9s 2d Jc]
+LionelHutz checks
+habing checks
+** Turn ** [6c]
+LionelHutz bets 5
+habing calls 5
+** River ** [Jh]
+LionelHutz checks
+habing checks
+** Pot Show Down ** [9s 2d Jc 6c Jh]
+LionelHutz shows [Ah Qc] (a Pair of Jacks +AQ9)
+habing shows [Tc 5c] (a Pair of Jacks +T96)
+LionelHutz wins Pot (19.50) with a Pair
+Rake (0.50)
+
+
+
+Hand #9141579-100 - 2013-06-28 02:20:34
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: LionelHutz (217.35)
+Seat 2: Degnr8Gamblr (244.99)
+Seat 3: Stromisle (161.99) - sitting out
+Seat 4: username1134 (197.17)
+Seat 5: BBlaiz1287 (200)
+Seat 6: dazhanik (77)
+Seat 7: sctt11 (423.04)
+Seat 8: seamutt (114.91)
+Seat 9: habing (220)
+LionelHutz has the dealer button
+Degnr8Gamblr posts small blind 1
+username1134 posts big blind 2
+** Hole Cards **
+Dealt to habing [5c 8c]
+BBlaiz1287 folds
+dazhanik calls 2
+sctt11 folds
+seamutt folds
+habing folds
+LionelHutz raises to 8
+Degnr8Gamblr folds
+username1134 folds
+dazhanik folds
+LionelHutz refunded 6
+LionelHutz wins Pot (7)
+Rake (0)
+
+
+
+Hand #9141600-101 - 2013-06-28 02:21:11
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: LionelHutz (222.35)
+Seat 2: Degnr8Gamblr (243.99)
+Seat 3: Stromisle (161.99) - sitting out
+Seat 4: username1134 (195.17)
+Seat 5: BBlaiz1287 (200)
+Seat 6: dazhanik (75)
+Seat 7: sctt11 (423.04)
+Seat 8: seamutt (114.91)
+Seat 9: habing (220)
+Degnr8Gamblr has the dealer button
+username1134 posts small blind 1
+BBlaiz1287 posts big blind 2
+** Hole Cards **
+Dealt to habing [3h 4d]
+dazhanik calls 2
+sctt11 calls 2
+seamutt folds
+habing folds
+LionelHutz folds
+Degnr8Gamblr folds
+username1134 calls 1
+BBlaiz1287 checks
+** Flop ** [4c 2d 3d]
+username1134 bets 2
+BBlaiz1287 calls 2
+dazhanik calls 2
+sctt11 calls 2
+** Turn ** [8d]
+username1134 bets 2
+BBlaiz1287 calls 2
+dazhanik folds
+sctt11 raises to 16
+username1134 folds
+BBlaiz1287 folds
+sctt11 refunded 14
+BBlaiz1287 adds 6 chips
+sctt11 wins Pot (21.45)
+Rake (0.55)
+
+
+
+Hand #9141665-102 - 2013-06-28 02:22:46
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: LionelHutz (222.35)
+Seat 2: Degnr8Gamblr (243.99)
+Seat 4: username1134 (189.17)
+Seat 5: BBlaiz1287 (200)
+Seat 6: dazhanik (71)
+Seat 7: sctt11 (438.49)
+Seat 8: seamutt (114.91)
+Seat 9: habing (220)
+username1134 has the dealer button
+BBlaiz1287 posts small blind 1
+dazhanik posts big blind 2
+** Hole Cards **
+Dealt to habing [3d Qs]
+sctt11 calls 2
+seamutt folds
+habing folds
+LionelHutz folds
+Degnr8Gamblr calls 2
+username1134 folds
+BBlaiz1287 folds
+BBlaiz1287 adds 1 chips
+dazhanik checks
+** Flop ** [7h 8c 4h]
+dazhanik checks
+sctt11 checks
+Degnr8Gamblr checks
+** Turn ** [8d]
+dazhanik bets 4
+sctt11 folds
+Degnr8Gamblr folds
+dazhanik refunded 4
+dazhanik wins Pot (6.83)
+Rake (0.17)
+
+
+
+Hand #9141698-103 - 2013-06-28 02:23:50
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: LionelHutz (222.35)
+Seat 2: Degnr8Gamblr (241.99)
+Seat 4: username1134 (189.17)
+Seat 5: BBlaiz1287 (200)
+Seat 6: dazhanik (75.83)
+Seat 7: sctt11 (436.49)
+Seat 8: seamutt (114.91)
+Seat 9: habing (220)
+BBlaiz1287 has the dealer button
+dazhanik posts small blind 1
+sctt11 posts big blind 2
+** Hole Cards **
+Dealt to habing [8s Ts]
+seamutt folds
+habing folds
+LionelHutz folds
+Degnr8Gamblr folds
+username1134 raises to 22
+BBlaiz1287 folds
+dazhanik folds
+sctt11 folds
+username1134 refunded 20
+username1134 wins Pot (5)
+Rake (0)
+
+
+
+Hand #9141725-104 - 2013-06-28 02:24:31
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: LionelHutz (222.35)
+Seat 2: Degnr8Gamblr (241.99)
+Seat 4: username1134 (192.17)
+Seat 5: BBlaiz1287 (200)
+Seat 6: dazhanik (74.83)
+Seat 7: sctt11 (434.49)
+Seat 8: seamutt (114.91)
+Seat 9: habing (220)
+dazhanik has the dealer button
+sctt11 posts small blind 1
+seamutt posts big blind 2
+** Hole Cards **
+Dealt to habing [4h 5s]
+habing folds
+LionelHutz folds
+Degnr8Gamblr folds
+username1134 calls 2
+BBlaiz1287 folds
+dazhanik folds
+sctt11 folds
+seamutt checks
+** Flop ** [2c 3c 4c]
+seamutt checks
+username1134 bets 2
+seamutt calls 2
+** Turn ** [Jd]
+seamutt checks
+username1134 checks
+** River ** [8c]
+seamutt bets 8
+username1134 calls 8
+** Pot Show Down ** [2c 3c 4c Jd 8c]
+username1134 shows [8s Kd] (a Pair of Eights +KJ4)
+seamutt shows [9c Ac] (a Flush, Ace high +9843)
+seamutt wins Pot (24.38) with a Flush
+Rake (0.62)
+
+
+
+Hand #9141769-105 - 2013-06-28 02:25:57
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: LionelHutz (222.35)
+Seat 2: Degnr8Gamblr (241.99)
+Seat 4: username1134 (180.17)
+Seat 5: BBlaiz1287 (200)
+Seat 6: dazhanik (74.83)
+Seat 7: sctt11 (433.49)
+Seat 8: seamutt (127.29)
+Seat 9: habing (220)
+sctt11 has the dealer button
+seamutt posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [9h 9c]
+LionelHutz folds
+Degnr8Gamblr calls 2
+username1134 raises to 8
+BBlaiz1287 folds
+dazhanik folds
+sctt11 folds
+seamutt folds
+habing has timed out
+habing folds
+Degnr8Gamblr calls 6
+** Flop ** [4h Td 9s]
+Degnr8Gamblr checks
+username1134 bets 172.17 (All-in)
+Degnr8Gamblr folds
+username1134 refunded 172.17
+username1134 wins Pot (18.53)
+Rake (0.47)
+
+
+
+Hand #9141816-106 - 2013-06-28 02:27:16
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: LionelHutz (222.35)
+Seat 2: Degnr8Gamblr (233.99)
+Seat 4: username1134 (190.70)
+Seat 5: BBlaiz1287 (200)
+Seat 6: dazhanik (74.83)
+Seat 7: sctt11 (433.49)
+Seat 8: seamutt (126.29)
+Seat 9: habing (218)
+seamutt has the dealer button
+habing posts small blind 1
+LionelHutz posts big blind 2
+** Hole Cards **
+Dealt to habing [Kd 3s]
+Degnr8Gamblr folds
+username1134 raises to 10
+BBlaiz1287 folds
+dazhanik folds
+sctt11 folds
+seamutt folds
+habing folds
+LionelHutz folds
+username1134 refunded 8
+username1134 wins Pot (5)
+Rake (0)
+
+
+
+Hand #9141833-107 - 2013-06-28 02:27:42
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: LionelHutz (220.35)
+Seat 2: Degnr8Gamblr (233.99)
+Seat 4: username1134 (193.70)
+Seat 5: BBlaiz1287 (200)
+Seat 6: dazhanik (74.83)
+Seat 7: sctt11 (433.49)
+Seat 8: seamutt (126.29)
+Seat 9: habing (217)
+habing has the dealer button
+LionelHutz posts small blind 1
+Degnr8Gamblr posts big blind 2
+** Hole Cards **
+Dealt to habing [Qc 4s]
+username1134 calls 2
+BBlaiz1287 folds
+dazhanik folds
+sctt11 folds
+seamutt calls 2
+habing folds
+LionelHutz folds
+Degnr8Gamblr checks
+** Flop ** [7d 9s Ac]
+Degnr8Gamblr checks
+username1134 checks
+seamutt checks
+** Turn ** [4h]
+Degnr8Gamblr checks
+username1134 bets 2
+seamutt calls 2
+Degnr8Gamblr calls 2
+** River ** [Ad]
+Degnr8Gamblr checks
+username1134 bets 189.70 (All-in)
+seamutt folds
+Degnr8Gamblr folds
+username1134 refunded 189.70
+username1134 wins Pot (12.68)
+Rake (0.32)
+
+
+
+Hand #9141886-108 - 2013-06-28 02:29:17
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: LionelHutz (219.35)
+Seat 2: Degnr8Gamblr (229.99)
+Seat 4: username1134 (202.38)
+Seat 5: BBlaiz1287 (200)
+Seat 6: dazhanik (74.83)
+Seat 7: sctt11 (433.49)
+Seat 8: seamutt (122.29)
+Seat 9: habing (217)
+LionelHutz has the dealer button
+Degnr8Gamblr posts small blind 1
+username1134 posts big blind 2
+** Hole Cards **
+Dealt to habing [Th 8s]
+BBlaiz1287 folds
+dazhanik folds
+sctt11 folds
+seamutt folds
+habing folds
+LionelHutz raises to 6
+Degnr8Gamblr folds
+username1134 folds
+LionelHutz refunded 4
+LionelHutz wins Pot (5)
+Rake (0)
+
+
+
+Hand #9141909-109 - 2013-06-28 02:29:52
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: LionelHutz (222.35)
+Seat 2: Degnr8Gamblr (228.99)
+Seat 5: BBlaiz1287 (200)
+Seat 6: dazhanik (74.83)
+Seat 7: sctt11 (433.49)
+Seat 8: seamutt (122.29)
+Seat 9: habing (217)
+Degnr8Gamblr has the dealer button
+BBlaiz1287 posts small blind 1
+dazhanik posts big blind 2
+** Hole Cards **
+Dealt to habing [4c 8h]
+sctt11 folds
+seamutt folds
+habing folds
+LionelHutz folds
+Degnr8Gamblr folds
+BBlaiz1287 folds
+dazhanik refunded 1
+BBlaiz1287 adds 1 chips
+dazhanik wins Pot (2)
+Rake (0)
+
+
+
+Hand #9141926-110 - 2013-06-28 02:30:22
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: LionelHutz (222.35)
+Seat 2: Degnr8Gamblr (228.99)
+Seat 5: BBlaiz1287 (200)
+Seat 6: dazhanik (75.83)
+Seat 7: sctt11 (433.49)
+Seat 8: seamutt (122.29)
+Seat 9: habing (217)
+BBlaiz1287 has the dealer button
+dazhanik posts small blind 1
+sctt11 posts big blind 2
+** Hole Cards **
+Dealt to habing [As 6c]
+seamutt folds
+habing folds
+LionelHutz folds
+Degnr8Gamblr folds
+BBlaiz1287 raises to 6
+dazhanik folds
+sctt11 folds
+BBlaiz1287 refunded 4
+BBlaiz1287 wins Pot (5)
+Rake (0)
+
+
+
+Hand #9141943-111 - 2013-06-28 02:30:55
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: LionelHutz (222.35)
+Seat 2: Degnr8Gamblr (228.99)
+Seat 4: mixerguy (100) - waiting for big blind
+Seat 5: BBlaiz1287 (203)
+Seat 6: dazhanik (74.83)
+Seat 7: sctt11 (431.49)
+Seat 8: seamutt (122.29)
+Seat 9: habing (217)
+dazhanik has the dealer button
+sctt11 posts small blind 1
+seamutt posts big blind 2
+** Hole Cards **
+Dealt to habing [5c Ac]
+habing folds
+LionelHutz raises to 6
+Degnr8Gamblr folds
+BBlaiz1287 calls 6
+dazhanik folds
+sctt11 folds
+seamutt folds
+** Flop ** [6h Ts 9c]
+LionelHutz bets 10
+BBlaiz1287 raises to 28
+LionelHutz folds
+BBlaiz1287 refunded 18
+BBlaiz1287 wins Pot (34.13)
+Rake (0.87)
+
+
+
+Hand #9141979-112 - 2013-06-28 02:31:55
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: LionelHutz (206.35)
+Seat 2: Degnr8Gamblr (228.99)
+Seat 4: mixerguy (100) - waiting for big blind
+Seat 5: BBlaiz1287 (221.13)
+Seat 6: dazhanik (74.83)
+Seat 7: sctt11 (430.49)
+Seat 8: seamutt (120.29)
+Seat 9: habing (217)
+sctt11 has the dealer button
+seamutt posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Qd Td]
+LionelHutz folds
+Degnr8Gamblr calls 2
+BBlaiz1287 folds
+dazhanik raises to 6
+sctt11 folds
+seamutt folds
+habing calls 4
+Degnr8Gamblr calls 4
+** Flop ** [2s Ks Ac]
+habing checks
+Degnr8Gamblr checks
+dazhanik bets 18
+habing folds
+Degnr8Gamblr folds
+dazhanik refunded 18
+dazhanik wins Pot (18.53)
+Rake (0.47)
+
+
+
+Hand #9142014-113 - 2013-06-28 02:32:46
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: LionelHutz (206.35)
+Seat 2: Degnr8Gamblr (222.99)
+Seat 4: mixerguy (100) - waiting for big blind
+Seat 5: BBlaiz1287 (221.13)
+Seat 6: dazhanik (87.36)
+Seat 7: sctt11 (430.49)
+Seat 8: seamutt (119.29)
+Seat 9: habing (211)
+seamutt has the dealer button
+habing posts small blind 1
+LionelHutz posts big blind 2
+** Hole Cards **
+Dealt to habing [4c Jc]
+Degnr8Gamblr folds
+BBlaiz1287 folds
+dazhanik raises to 6
+sctt11 folds
+seamutt folds
+habing folds
+LionelHutz folds
+dazhanik refunded 4
+dazhanik wins Pot (5)
+Rake (0)
+
+
+
+Hand #9142034-114 - 2013-06-28 02:33:18
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: LionelHutz (204.35)
+Seat 2: Degnr8Gamblr (222.99)
+Seat 4: mixerguy (100) - waiting for big blind
+Seat 5: BBlaiz1287 (221.13)
+Seat 6: dazhanik (90.36)
+Seat 7: sctt11 (430.49)
+Seat 8: seamutt (119.29)
+Seat 9: habing (210)
+habing has the dealer button
+LionelHutz posts small blind 1
+Degnr8Gamblr posts big blind 2
+** Hole Cards **
+Dealt to habing [5s 3s]
+BBlaiz1287 folds
+dazhanik folds
+sctt11 folds
+seamutt folds
+habing folds
+LionelHutz folds
+Degnr8Gamblr refunded 1
+Degnr8Gamblr wins Pot (2)
+Rake (0)
+
+
+
+Hand #9142044-115 - 2013-06-28 02:33:45
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: LionelHutz (203.35)
+Seat 2: Degnr8Gamblr (223.99)
+Seat 4: mixerguy (100) - waiting for big blind
+Seat 5: BBlaiz1287 (221.13)
+Seat 6: dazhanik (90.36)
+Seat 7: sctt11 (430.49)
+Seat 8: seamutt (119.29)
+Seat 9: habing (210)
+LionelHutz has the dealer button
+Degnr8Gamblr posts small blind 1
+mixerguy posts big blind 2
+** Hole Cards **
+Dealt to habing [5h Ah]
+BBlaiz1287 folds
+dazhanik folds
+sctt11 folds
+seamutt folds
+habing raises to 6
+LionelHutz folds
+Degnr8Gamblr folds
+mixerguy folds
+habing refunded 4
+habing wins Pot (5)
+Rake (0)
+
+
+
+Hand #9142072-116 - 2013-06-28 02:34:24
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: LionelHutz (203.35)
+Seat 2: Degnr8Gamblr (222.99)
+Seat 4: mixerguy (98)
+Seat 5: BBlaiz1287 (221.13)
+Seat 6: dazhanik (90.36)
+Seat 7: sctt11 (430.49)
+Seat 8: seamutt (119.29)
+Seat 9: habing (213)
+Degnr8Gamblr has the dealer button
+mixerguy posts small blind 1
+BBlaiz1287 posts big blind 2
+** Hole Cards **
+Dealt to habing [8h Kc]
+dazhanik folds
+sctt11 folds
+seamutt folds
+habing folds
+LionelHutz folds
+Degnr8Gamblr folds
+mixerguy raises to 6
+BBlaiz1287 calls 4
+** Flop ** [8s Ks 9s]
+mixerguy bets 8
+BBlaiz1287 calls 8
+** Turn ** [Qs]
+mixerguy checks
+BBlaiz1287 bets 11
+mixerguy folds
+BBlaiz1287 refunded 11
+BBlaiz1287 wins Pot (27.30)
+Rake (0.70)
+
+
+
+Hand #9142107-117 - 2013-06-28 02:35:25
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: LionelHutz (203.35)
+Seat 2: Degnr8Gamblr (222.99)
+Seat 3: zbailey83 (168.31) - waiting for big blind
+Seat 4: mixerguy (84)
+Seat 5: BBlaiz1287 (234.43)
+Seat 6: dazhanik (90.36)
+Seat 7: sctt11 (430.49)
+Seat 8: seamutt (119.29)
+Seat 9: habing (213)
+mixerguy has the dealer button
+BBlaiz1287 posts small blind 1
+dazhanik posts big blind 2
+** Hole Cards **
+Dealt to habing [Kc 6s]
+sctt11 folds
+seamutt folds
+habing folds
+LionelHutz folds
+Degnr8Gamblr folds
+mixerguy folds
+BBlaiz1287 folds
+dazhanik refunded 1
+dazhanik wins Pot (2)
+Rake (0)
+
+
+
+Hand #9142120-118 - 2013-06-28 02:35:53
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: LionelHutz (203.35)
+Seat 2: Degnr8Gamblr (222.99)
+Seat 3: zbailey83 (168.31) - sitting out
+Seat 4: mixerguy (84)
+Seat 5: BBlaiz1287 (233.43)
+Seat 6: dazhanik (91.36)
+Seat 7: sctt11 (430.49)
+Seat 8: seamutt (119.29)
+Seat 9: habing (213)
+BBlaiz1287 has the dealer button
+dazhanik posts small blind 1
+sctt11 posts big blind 2
+** Hole Cards **
+Dealt to habing [2s Jd]
+seamutt folds
+habing folds
+LionelHutz folds
+Degnr8Gamblr folds
+mixerguy calls 2
+BBlaiz1287 folds
+dazhanik folds
+sctt11 checks
+** Flop ** [Td 9d Qd]
+sctt11 checks
+mixerguy checks
+** Turn ** [Qs]
+sctt11 checks
+mixerguy checks
+** River ** [Ks]
+sctt11 bets 3
+mixerguy folds
+sctt11 refunded 3
+sctt11 wins Pot (4.88)
+Rake (0.12)
+
+
+
+Hand #9142156-119 - 2013-06-28 02:36:58
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: LionelHutz (203.35)
+Seat 2: Degnr8Gamblr (222.99)
+Seat 3: zbailey83 (168.31) - sitting out
+Seat 4: mixerguy (82)
+Seat 5: BBlaiz1287 (233.43)
+Seat 6: dazhanik (90.36)
+Seat 7: sctt11 (433.37)
+Seat 8: seamutt (119.29)
+Seat 9: habing (213)
+dazhanik has the dealer button
+sctt11 posts small blind 1
+seamutt posts big blind 2
+** Hole Cards **
+Dealt to habing [3d Qh]
+habing folds
+LionelHutz folds
+Degnr8Gamblr folds
+mixerguy folds
+BBlaiz1287 folds
+dazhanik calls 2
+sctt11 calls 1
+seamutt checks
+** Flop ** [6h 4d 6d]
+sctt11 checks
+seamutt checks
+dazhanik checks
+** Turn ** [3h]
+sctt11 checks
+seamutt checks
+dazhanik checks
+** River ** [9s]
+sctt11 checks
+seamutt checks
+dazhanik checks
+** Pot Show Down ** [6h 4d 6d 3h 9s]
+dazhanik shows [Jh As] (a Pair of Sixes +AJ9)
+sctt11 shows [8h 7d] (a Pair of Sixes +987)
+seamutt shows [7s Ac] (a Pair of Sixes +A97)
+dazhanik wins Pot (5.85) with a Pair
+Rake (0.15)
+
+
+
+Hand #9142187-120 - 2013-06-28 02:37:58
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: LionelHutz (203.35)
+Seat 2: Degnr8Gamblr (222.99)
+Seat 3: zbailey83 (168.31) - sitting out
+Seat 4: mixerguy (82)
+Seat 5: BBlaiz1287 (233.43)
+Seat 6: dazhanik (94.21)
+Seat 7: sctt11 (431.37)
+Seat 8: seamutt (117.29)
+Seat 9: habing (213)
+sctt11 has the dealer button
+seamutt posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Kh 3s]
+LionelHutz folds
+Degnr8Gamblr folds
+mixerguy calls 2
+BBlaiz1287 raises to 10
+dazhanik calls 10
+sctt11 folds
+seamutt folds
+habing folds
+mixerguy calls 8
+** Flop ** [8d Kd 7d]
+mixerguy checks
+zbailey83 adds 31.69 chips
+BBlaiz1287 bets 25
+dazhanik folds
+mixerguy folds
+BBlaiz1287 refunded 25
+BBlaiz1287 wins Pot (32.18)
+Rake (0.82)
+
+
+
+Hand #9142211-121 - 2013-06-28 02:38:48
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: LionelHutz (203.35)
+Seat 2: Degnr8Gamblr (222.99)
+Seat 3: zbailey83 (200) - sitting out
+Seat 4: mixerguy (72)
+Seat 5: BBlaiz1287 (255.61)
+Seat 6: dazhanik (84.21)
+Seat 7: sctt11 (431.37)
+Seat 8: seamutt (116.29)
+Seat 9: habing (211)
+seamutt has the dealer button
+habing posts small blind 1
+LionelHutz posts big blind 2
+** Hole Cards **
+Dealt to habing [6s 2h]
+Degnr8Gamblr folds
+mixerguy folds
+BBlaiz1287 folds
+dazhanik folds
+sctt11 raises to 6
+seamutt folds
+habing folds
+LionelHutz folds
+sctt11 refunded 4
+sctt11 wins Pot (5)
+Rake (0)
+
+
+
+Hand #9142234-122 - 2013-06-28 02:39:29
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: LionelHutz (201.35)
+Seat 2: Degnr8Gamblr (222.99)
+Seat 3: zbailey83 (200) - sitting out
+Seat 4: mixerguy (72)
+Seat 5: BBlaiz1287 (255.61)
+Seat 6: dazhanik (84.21)
+Seat 7: sctt11 (434.37)
+Seat 8: seamutt (116.29)
+Seat 9: habing (210)
+habing has the dealer button
+LionelHutz posts small blind 1
+Degnr8Gamblr posts big blind 2
+** Hole Cards **
+Dealt to habing [4s 9d]
+mixerguy folds
+BBlaiz1287 folds
+dazhanik folds
+sctt11 folds
+seamutt folds
+habing folds
+LionelHutz raises to 6
+Degnr8Gamblr folds
+LionelHutz refunded 4
+LionelHutz wins Pot (4)
+Rake (0)
+
+
+
+Hand #9142253-123 - 2013-06-28 02:40:04
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: LionelHutz (203.35)
+Seat 2: Degnr8Gamblr (220.99)
+Seat 3: zbailey83 (200) - sitting out
+Seat 4: mixerguy (72)
+Seat 5: BBlaiz1287 (255.61)
+Seat 6: dazhanik (84.21)
+Seat 7: sctt11 (434.37)
+Seat 8: seamutt (116.29)
+Seat 9: habing (210)
+LionelHutz has the dealer button
+Degnr8Gamblr posts small blind 1
+mixerguy posts big blind 2
+** Hole Cards **
+Dealt to habing [5s Qc]
+BBlaiz1287 folds
+dazhanik folds
+sctt11 folds
+seamutt calls 2
+habing folds
+LionelHutz folds
+Degnr8Gamblr calls 1
+mixerguy checks
+** Flop ** [9h Td 8d]
+Degnr8Gamblr checks
+mixerguy checks
+seamutt bets 4
+Degnr8Gamblr calls 4
+mixerguy calls 4
+** Turn ** [7c]
+Degnr8Gamblr bets 16
+mixerguy folds
+seamutt folds
+Degnr8Gamblr refunded 16
+Degnr8Gamblr wins Pot (17.55)
+Rake (0.45)
+
+
+
+Hand #9142294-124 - 2013-06-28 02:41:18
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: LionelHutz (203.35)
+Seat 2: Degnr8Gamblr (232.54)
+Seat 3: zbailey83 (200) - sitting out
+Seat 4: mixerguy (66)
+Seat 5: BBlaiz1287 (255.61)
+Seat 6: dazhanik (84.21)
+Seat 7: sctt11 (434.37)
+Seat 8: seamutt (110.29)
+Seat 9: habing (210)
+Degnr8Gamblr has the dealer button
+mixerguy posts small blind 1
+BBlaiz1287 posts big blind 2
+** Hole Cards **
+Dealt to habing [3d 2s]
+dazhanik folds
+sctt11 folds
+seamutt folds
+habing folds
+LionelHutz folds
+Degnr8Gamblr raises to 6
+mixerguy folds
+BBlaiz1287 folds
+Degnr8Gamblr refunded 4
+Degnr8Gamblr wins Pot (5)
+Rake (0)
+
+
+
+Hand #9142315-125 - 2013-06-28 02:42:04
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: LionelHutz (203.35)
+Seat 2: Degnr8Gamblr (235.54)
+Seat 3: zbailey83 (200) - sitting out
+Seat 4: mixerguy (65)
+Seat 5: BBlaiz1287 (253.61)
+Seat 6: dazhanik (84.21)
+Seat 7: sctt11 (434.37)
+Seat 8: seamutt (110.29)
+Seat 9: habing (210)
+mixerguy has the dealer button
+BBlaiz1287 posts small blind 1
+dazhanik posts big blind 2
+** Hole Cards **
+Dealt to habing [9d Kd]
+sctt11 folds
+seamutt folds
+habing folds
+LionelHutz folds
+Degnr8Gamblr folds
+mixerguy folds
+BBlaiz1287 raises to 132.01
+dazhanik folds
+BBlaiz1287 refunded 130.01
+BBlaiz1287 wins Pot (4)
+Rake (0)
+
+
+
+Hand #9142330-126 - 2013-06-28 02:42:34
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: LionelHutz (203.35)
+Seat 2: Degnr8Gamblr (235.54)
+Seat 3: zbailey83 (200) - sitting out
+Seat 4: mixerguy (65)
+Seat 5: BBlaiz1287 (255.61)
+Seat 6: dazhanik (82.21)
+Seat 7: sctt11 (434.37)
+Seat 8: seamutt (110.29)
+Seat 9: habing (210)
+BBlaiz1287 has the dealer button
+dazhanik posts small blind 1
+sctt11 posts big blind 2
+** Hole Cards **
+Dealt to habing [7d Jc]
+seamutt folds
+habing folds
+LionelHutz folds
+Degnr8Gamblr folds
+mixerguy raises to 6
+BBlaiz1287 folds
+dazhanik folds
+sctt11 folds
+mixerguy refunded 4
+mixerguy wins Pot (5)
+Rake (0)
+
+
+
+Hand #9142350-127 - 2013-06-28 02:43:03
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: LionelHutz (203.35)
+Seat 2: Degnr8Gamblr (235.54)
+Seat 3: zbailey83 (200) - sitting out
+Seat 4: mixerguy (68)
+Seat 5: BBlaiz1287 (255.61)
+Seat 6: dazhanik (81.21)
+Seat 7: sctt11 (432.37)
+Seat 8: seamutt (110.29)
+Seat 9: habing (210)
+dazhanik has the dealer button
+sctt11 posts small blind 1
+seamutt posts big blind 2
+** Hole Cards **
+Dealt to habing [3d 2c]
+habing folds
+LionelHutz raises to 6
+Degnr8Gamblr calls 6
+mixerguy folds
+BBlaiz1287 calls 6
+dazhanik folds
+sctt11 folds
+seamutt folds
+** Flop ** [4h 9c 4s]
+LionelHutz bets 11
+Degnr8Gamblr folds
+BBlaiz1287 calls 11
+** Turn ** [4c]
+LionelHutz checks
+BBlaiz1287 bets 19
+LionelHutz folds
+BBlaiz1287 refunded 19
+LionelHutz adds 13.65 chips
+BBlaiz1287 wins Pot (41.93)
+Rake (1.07)
+
+
+
+Hand #9142381-128 - 2013-06-28 02:44:07
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: LionelHutz (200)
+Seat 2: Degnr8Gamblr (229.54)
+Seat 3: zbailey83 (200) - sitting out
+Seat 4: mixerguy (68)
+Seat 5: BBlaiz1287 (280.54)
+Seat 6: dazhanik (81.21)
+Seat 7: sctt11 (431.37)
+Seat 8: seamutt (108.29)
+Seat 9: habing (210)
+sctt11 has the dealer button
+seamutt posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [7c 8c]
+LionelHutz folds
+Degnr8Gamblr folds
+mixerguy folds
+BBlaiz1287 folds
+dazhanik folds
+sctt11 folds
+seamutt calls 1
+habing checks
+** Flop ** [4d 5d 6d]
+seamutt checks
+habing bets 4
+seamutt calls 4
+** Turn ** [4h]
+seamutt checks
+habing bets 9.20
+seamutt folds
+habing refunded 9.20
+habing wins Pot (11.70)
+Rake (0.30)
+
+
+
+Hand #9142408-129 - 2013-06-28 02:45:04
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: LionelHutz (200)
+Seat 2: Degnr8Gamblr (229.54)
+Seat 3: zbailey83 (200) - sitting out
+Seat 4: mixerguy (68)
+Seat 5: BBlaiz1287 (280.54)
+Seat 6: dazhanik (81.21)
+Seat 7: sctt11 (431.37)
+Seat 8: seamutt (102.29)
+Seat 9: habing (215.70)
+seamutt has the dealer button
+habing posts small blind 1
+LionelHutz posts big blind 2
+** Hole Cards **
+Dealt to habing [7h Jc]
+Degnr8Gamblr folds
+mixerguy folds
+BBlaiz1287 folds
+dazhanik folds
+sctt11 folds
+seamutt folds
+habing raises to 6
+LionelHutz folds
+habing refunded 4
+LionelHutz adds 2 chips
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #9142423-130 - 2013-06-28 02:45:31
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: LionelHutz (200)
+Seat 2: Degnr8Gamblr (229.54)
+Seat 3: zbailey83 (200) - sitting out
+Seat 4: mixerguy (68)
+Seat 5: BBlaiz1287 (280.54)
+Seat 6: dazhanik (81.21)
+Seat 7: sctt11 (431.37)
+Seat 8: seamutt (102.29)
+Seat 9: habing (217.70)
+habing has the dealer button
+LionelHutz posts small blind 1
+Degnr8Gamblr posts big blind 2
+** Hole Cards **
+Dealt to habing [6h 7s]
+mixerguy has timed out
+mixerguy folds
+BBlaiz1287 folds
+dazhanik folds
+sctt11 folds
+seamutt folds
+habing folds
+LionelHutz folds
+Degnr8Gamblr refunded 1
+LionelHutz adds 1 chips
+Degnr8Gamblr wins Pot (2)
+Rake (0)
+
+
+
+Hand #9142448-131 - 2013-06-28 02:46:16
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: LionelHutz (200)
+Seat 2: Degnr8Gamblr (230.54)
+Seat 3: zbailey83 (200) - sitting out
+Seat 4: mixerguy (68)
+Seat 5: BBlaiz1287 (280.54)
+Seat 6: dazhanik (81.21)
+Seat 7: sctt11 (431.37)
+Seat 8: seamutt (102.29) - sitting out
+Seat 9: habing (217.70)
+LionelHutz has the dealer button
+Degnr8Gamblr posts small blind 1
+mixerguy posts big blind 2
+** Hole Cards **
+Dealt to habing [Ac 7c]
+BBlaiz1287 calls 2
+dazhanik folds
+sctt11 calls 2
+habing calls 2
+LionelHutz folds
+Degnr8Gamblr calls 1
+mixerguy checks
+** Flop ** [4d 7h Qc]
+Degnr8Gamblr checks
+mixerguy checks
+BBlaiz1287 bets 6
+sctt11 folds
+habing folds
+Degnr8Gamblr folds
+mixerguy has timed out
+mixerguy folds
+BBlaiz1287 refunded 6
+BBlaiz1287 wins Pot (9.75)
+Rake (0.25)
+
+
+
+Hand #9142499-132 - 2013-06-28 02:47:48
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: LionelHutz (200)
+Seat 2: Degnr8Gamblr (228.54)
+Seat 3: zbailey83 (200) - sitting out
+Seat 4: mixerguy (66) - sitting out
+Seat 5: BBlaiz1287 (288.29)
+Seat 6: dazhanik (81.21)
+Seat 7: sctt11 (429.37)
+Seat 8: seamutt (102.29) - sitting out
+Seat 9: habing (215.70)
+Degnr8Gamblr has the dealer button
+BBlaiz1287 posts small blind 1
+dazhanik posts big blind 2
+** Hole Cards **
+Dealt to habing [Ac Qs]
+sctt11 folds
+habing raises to 6
+LionelHutz folds
+Degnr8Gamblr folds
+BBlaiz1287 folds
+dazhanik folds
+habing refunded 4
+habing wins Pot (5)
+Rake (0)
+
+
+
+Hand #9142513-133 - 2013-06-28 02:48:11
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: LionelHutz (200)
+Seat 2: Degnr8Gamblr (228.54)
+Seat 3: zbailey83 (200) - sitting out
+Seat 4: mixerguy (66) - sitting out
+Seat 5: BBlaiz1287 (287.29)
+Seat 6: dazhanik (79.21)
+Seat 7: sctt11 (429.37)
+Seat 8: seamutt (102.29) - sitting out
+Seat 9: habing (218.70)
+BBlaiz1287 has the dealer button
+dazhanik posts small blind 1
+sctt11 posts big blind 2
+** Hole Cards **
+Dealt to habing [3h 6h]
+habing folds
+LionelHutz folds
+Degnr8Gamblr folds
+BBlaiz1287 raises to 6
+dazhanik folds
+sctt11 folds
+BBlaiz1287 refunded 4
+BBlaiz1287 wins Pot (5)
+Rake (0)
+
+
+
+Hand #9142530-134 - 2013-06-28 02:48:40
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: LionelHutz (200)
+Seat 2: Degnr8Gamblr (228.54)
+Seat 3: zbailey83 (200) - sitting out
+Seat 4: mixerguy (66) - sitting out
+Seat 5: BBlaiz1287 (290.29)
+Seat 6: dazhanik (78.21)
+Seat 7: sctt11 (427.37)
+Seat 8: seamutt (102.29) - sitting out
+Seat 9: habing (218.70)
+dazhanik has the dealer button
+sctt11 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [6c Js]
+LionelHutz folds
+Degnr8Gamblr folds
+BBlaiz1287 folds
+dazhanik folds
+sctt11 folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #9142543-135 - 2013-06-28 02:49:03
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: LionelHutz (200)
+Seat 2: Degnr8Gamblr (228.54)
+Seat 3: zbailey83 (200) - sitting out
+Seat 4: mixerguy (66) - sitting out
+Seat 5: BBlaiz1287 (290.29)
+Seat 6: dazhanik (78.21)
+Seat 7: sctt11 (426.37)
+Seat 8: seamutt (102.29) - sitting out
+Seat 9: habing (219.70)
+sctt11 has the dealer button
+habing posts small blind 1
+LionelHutz posts big blind 2
+** Hole Cards **
+Dealt to habing [5c Ks]
+Degnr8Gamblr folds
+BBlaiz1287 folds
+dazhanik folds
+sctt11 folds
+habing raises to 6
+LionelHutz folds
+habing refunded 4
+LionelHutz adds 2 chips
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #9142555-136 - 2013-06-28 02:49:36
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: LionelHutz (200)
+Seat 2: Degnr8Gamblr (228.54)
+Seat 3: zbailey83 (200) - sitting out
+Seat 4: mixerguy (66) - sitting out
+Seat 5: BBlaiz1287 (290.29)
+Seat 6: dazhanik (78.21)
+Seat 7: sctt11 (426.37)
+Seat 8: Norns (150) - waiting for big blind
+Seat 9: habing (221.70)
+habing has the dealer button
+LionelHutz posts small blind 1
+Degnr8Gamblr posts big blind 2
+** Hole Cards **
+Dealt to habing [3s Ac]
+BBlaiz1287 folds
+dazhanik raises to 6
+sctt11 folds
+habing folds
+LionelHutz folds
+LionelHutz adds 1 chips
+Degnr8Gamblr folds
+dazhanik refunded 4
+dazhanik wins Pot (5)
+Rake (0)
+
+
+
+Hand #9142580-137 - 2013-06-28 02:50:18
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: LionelHutz (200)
+Seat 2: Degnr8Gamblr (226.54)
+Seat 3: zbailey83 (200) - sitting out
+Seat 4: mixerguy (66) - sitting out
+Seat 5: BBlaiz1287 (290.29)
+Seat 6: dazhanik (81.21)
+Seat 7: sctt11 (426.37)
+Seat 8: Norns (150)
+Seat 9: habing (221.70)
+LionelHutz has the dealer button
+Degnr8Gamblr posts small blind 1
+BBlaiz1287 posts big blind 2
+Norns posts big blind 2
+** Hole Cards **
+Dealt to habing [Ac 3h]
+dazhanik raises to 6
+sctt11 folds
+Norns folds
+habing folds
+LionelHutz raises to 20
+Degnr8Gamblr folds
+BBlaiz1287 folds
+dazhanik calls 14
+** Flop ** [Kd Th 2d]
+dazhanik bets 61.21 (All-in)
+LionelHutz calls 61.21
+** Turn ** [Qs]
+** River ** [5c]
+** Pot Show Down ** [Kd Th 2d Qs 5c]
+LionelHutz shows [Qd Qc] (Three of a Kind, Queens +KT)
+dazhanik shows [Ks Ah] (a Pair of Kings +AQT)
+LionelHutz wins Pot (163.42) with Three of a Kind
+Rake (4)
+
+
+
+Hand #9142605-138 - 2013-06-28 02:51:04
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: LionelHutz (282.21)
+Seat 2: Degnr8Gamblr (225.54)
+Seat 3: zbailey83 (200) - sitting out
+Seat 4: mixerguy (66) - sitting out
+Seat 5: BBlaiz1287 (288.29)
+Seat 6: dazhanik (0) - sitting out
+Seat 7: sctt11 (426.37)
+Seat 8: Norns (148)
+Seat 9: habing (221.70)
+Degnr8Gamblr has the dealer button
+BBlaiz1287 posts small blind 1
+sctt11 posts big blind 2
+** Hole Cards **
+Dealt to habing [3s 8s]
+Norns folds
+habing folds
+LionelHutz folds
+Degnr8Gamblr folds
+BBlaiz1287 folds
+sctt11 refunded 1
+sctt11 wins Pot (2)
+Rake (0)
+
+
+
+Hand #9142618-139 - 2013-06-28 02:51:29
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: LionelHutz (282.21)
+Seat 2: Degnr8Gamblr (225.54)
+Seat 3: zbailey83 (200) - sitting out
+Seat 4: mixerguy (66) - sitting out
+Seat 5: BBlaiz1287 (287.29)
+Seat 7: sctt11 (427.37)
+Seat 8: Norns (148)
+Seat 9: habing (221.70)
+BBlaiz1287 has the dealer button
+sctt11 posts small blind 1
+Norns posts big blind 2
+** Hole Cards **
+Dealt to habing [9s Qs]
+habing folds
+LionelHutz folds
+Degnr8Gamblr raises to 6
+BBlaiz1287 calls 6
+sctt11 folds
+Norns calls 4
+** Flop ** [9d As 2d]
+Norns checks
+Degnr8Gamblr bets 8
+BBlaiz1287 folds
+Norns folds
+Degnr8Gamblr refunded 8
+Degnr8Gamblr wins Pot (18.53)
+Rake (0.47)
+
+
+
+Hand #9142659-140 - 2013-06-28 02:52:42
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: LionelHutz (282.21)
+Seat 2: Degnr8Gamblr (238.07)
+Seat 3: zbailey83 (200) - sitting out
+Seat 4: mixerguy (66) - sitting out
+Seat 5: BBlaiz1287 (281.29)
+Seat 6: Stromisle (200)
+Seat 7: sctt11 (426.37)
+Seat 8: Norns (142)
+Seat 9: habing (221.70)
+sctt11 has the dealer button
+Norns posts small blind 1
+habing posts big blind 2
+Stromisle posts big blind 2
+** Hole Cards **
+Dealt to habing [4d 7c]
+LionelHutz folds
+Degnr8Gamblr raises to 8
+BBlaiz1287 folds
+Stromisle folds
+sctt11 calls 8
+Norns folds
+habing folds
+** Flop ** [3d 2d Qh]
+Degnr8Gamblr checks
+sctt11 checks
+** Turn ** [Kc]
+Degnr8Gamblr bets 8
+sctt11 folds
+Degnr8Gamblr refunded 8
+Degnr8Gamblr wins Pot (20.48)
+Rake (0.52)
+
+
+
+Hand #9142702-141 - 2013-06-28 02:53:51
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: LionelHutz (282.21)
+Seat 2: Degnr8Gamblr (250.55)
+Seat 3: zbailey83 (200) - sitting out
+Seat 4: mixerguy (66) - sitting out
+Seat 5: BBlaiz1287 (281.29)
+Seat 6: Stromisle (198)
+Seat 7: sctt11 (418.37)
+Seat 8: Norns (141)
+Seat 9: habing (219.70)
+Norns has the dealer button
+habing posts small blind 1
+LionelHutz posts big blind 2
+** Hole Cards **
+Dealt to habing [7d 5h]
+Degnr8Gamblr folds
+BBlaiz1287 folds
+Stromisle folds
+sctt11 raises to 6
+Norns folds
+habing folds
+LionelHutz folds
+sctt11 refunded 4
+sctt11 wins Pot (5)
+Rake (0)
+
+
+
+Hand #9142727-142 - 2013-06-28 02:54:28
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: LionelHutz (280.21)
+Seat 2: Degnr8Gamblr (250.55)
+Seat 3: zbailey83 (200) - sitting out
+Seat 4: mixerguy (66) - sitting out
+Seat 5: BBlaiz1287 (281.29)
+Seat 6: Stromisle (198)
+Seat 7: sctt11 (421.37)
+Seat 8: Norns (141)
+Seat 9: habing (218.70)
+habing has the dealer button
+LionelHutz posts small blind 1
+Degnr8Gamblr posts big blind 2
+** Hole Cards **
+Dealt to habing [Jd Qd]
+BBlaiz1287 folds
+Stromisle folds
+sctt11 folds
+Norns raises to 7
+habing calls 7
+LionelHutz folds
+Degnr8Gamblr folds
+** Flop ** [3h 7d Kd]
+Norns bets 10
+habing calls 10
+** Turn ** [7h]
+Norns bets 21
+habing calls 21
+** River ** [Th]
+Norns bets 45
+habing folds
+Norns refunded 45
+habing adds 19.30 chips
+Norns wins Pot (77.03)
+Rake (1.97)
+
+
+
+Hand #9142774-143 - 2013-06-28 02:55:41
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: LionelHutz (279.21)
+Seat 2: Degnr8Gamblr (248.55)
+Seat 3: zbailey83 (200) - sitting out
+Seat 4: mixerguy (66) - sitting out
+Seat 5: BBlaiz1287 (281.29)
+Seat 6: Stromisle (198)
+Seat 7: sctt11 (421.37)
+Seat 8: Norns (180.03)
+Seat 9: habing (200)
+LionelHutz has the dealer button
+Degnr8Gamblr posts small blind 1
+BBlaiz1287 posts big blind 2
+** Hole Cards **
+Dealt to habing [8s Qs]
+Stromisle folds
+sctt11 calls 2
+Norns calls 2
+habing calls 2
+LionelHutz folds
+Degnr8Gamblr calls 1
+BBlaiz1287 checks
+** Flop ** [6c 9h Ks]
+Degnr8Gamblr checks
+BBlaiz1287 checks
+sctt11 checks
+Norns checks
+habing checks
+** Turn ** [9s]
+Degnr8Gamblr checks
+BBlaiz1287 checks
+sctt11 checks
+Norns checks
+habing checks
+** River ** [8d]
+Degnr8Gamblr checks
+BBlaiz1287 checks
+sctt11 bets 4
+Norns folds
+habing calls 4
+Degnr8Gamblr raises to 24
+BBlaiz1287 folds
+sctt11 folds
+habing folds
+Degnr8Gamblr refunded 20
+habing adds 6 chips
+Degnr8Gamblr wins Pot (21.45)
+Rake (0.55)
+Degnr8Gamblr shows [Jh 4c]
+
+
+
+Hand #9142861-144 - 2013-06-28 02:58:27
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: LionelHutz (279.21)
+Seat 2: Degnr8Gamblr (264)
+Seat 5: BBlaiz1287 (279.29)
+Seat 6: Stromisle (198)
+Seat 7: sctt11 (415.37)
+Seat 8: Norns (178.03)
+Seat 9: habing (200)
+Degnr8Gamblr has the dealer button
+BBlaiz1287 posts small blind 1
+Stromisle posts big blind 2
+** Hole Cards **
+Dealt to habing [8s Th]
+sctt11 folds
+Norns folds
+habing folds
+LionelHutz folds
+Degnr8Gamblr folds
+BBlaiz1287 folds
+Stromisle refunded 1
+Stromisle wins Pot (2)
+Rake (0)
+
+
+
+Hand #9142871-145 - 2013-06-28 02:58:54
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: LionelHutz (279.21)
+Seat 2: Degnr8Gamblr (264)
+Seat 5: BBlaiz1287 (278.29)
+Seat 6: Stromisle (199)
+Seat 7: sctt11 (415.37)
+Seat 8: Norns (178.03)
+Seat 9: habing (200)
+BBlaiz1287 has the dealer button
+Stromisle posts small blind 1
+sctt11 posts big blind 2
+** Hole Cards **
+Dealt to habing [5s 9c]
+Norns folds
+habing folds
+LionelHutz folds
+Degnr8Gamblr raises to 6
+BBlaiz1287 folds
+Stromisle folds
+sctt11 folds
+Degnr8Gamblr refunded 4
+Degnr8Gamblr wins Pot (5)
+Rake (0)
+
+
+
+Hand #9142889-146 - 2013-06-28 02:59:36
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: LionelHutz (279.21)
+Seat 2: Degnr8Gamblr (267)
+Seat 5: BBlaiz1287 (278.29)
+Seat 6: Stromisle (198)
+Seat 7: sctt11 (413.37)
+Seat 8: Norns (178.03)
+Seat 9: habing (200)
+Stromisle has the dealer button
+sctt11 posts small blind 1
+Norns posts big blind 2
+** Hole Cards **
+Dealt to habing [8d 7s]
+habing folds
+LionelHutz folds
+Degnr8Gamblr folds
+BBlaiz1287 raises to 6
+Stromisle calls 6
+sctt11 calls 5
+Norns calls 4
+** Flop ** [9s As 4s]
+sctt11 checks
+Norns checks
+BBlaiz1287 checks
+Stromisle checks
+** Turn ** [8h]
+sctt11 checks
+Norns bets 11
+BBlaiz1287 folds
+Stromisle folds
+sctt11 calls 11
+** River ** [8c]
+sctt11 checks
+Norns bets 20
+sctt11 calls 20
+** Pot Show Down ** [9s As 4s 8h 8c]
+sctt11 shows [Ah 9h] (Two Pair, Aces and Nines +8)
+Norns shows [Ks 8s] (a Flush, Ace high +K984)
+Norns wins Pot (83.85) with a Flush
+Rake (2.15)
+
+
+
+Hand #9142950-147 - 2013-06-28 03:01:21
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: LionelHutz (279.21)
+Seat 2: Degnr8Gamblr (267)
+Seat 5: BBlaiz1287 (272.29)
+Seat 6: Stromisle (192)
+Seat 7: sctt11 (376.37)
+Seat 8: Norns (224.88)
+Seat 9: habing (200)
+sctt11 has the dealer button
+Norns posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Jc 5d]
+LionelHutz folds
+Degnr8Gamblr calls 2
+BBlaiz1287 folds
+Stromisle calls 2
+sctt11 folds
+Norns folds
+habing checks
+** Flop ** [As Ts Ad]
+habing checks
+Degnr8Gamblr checks
+Stromisle bets 8
+habing folds
+habing adds 2 chips
+Degnr8Gamblr calls 8
+** Turn ** [Ac]
+Degnr8Gamblr checks
+Stromisle checks
+** River ** [2d]
+Degnr8Gamblr checks
+Stromisle checks
+** Pot Show Down ** [As Ts Ad Ac 2d]
+Degnr8Gamblr shows [Qs 9s] (Three of a Kind, Aces +QT)
+Stromisle shows [8s Ks] (Three of a Kind, Aces +KT)
+Stromisle wins Pot (22.43) with Three of a Kind
+Rake (0.57)
+
+
+
+Hand #9143003-148 - 2013-06-28 03:02:59
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: LionelHutz (279.21)
+Seat 2: Degnr8Gamblr (257)
+Seat 5: BBlaiz1287 (272.29)
+Seat 6: Stromisle (204.43)
+Seat 7: sctt11 (376.37)
+Seat 8: Norns (223.88)
+Seat 9: habing (200)
+Norns has the dealer button
+habing posts small blind 1
+LionelHutz posts big blind 2
+** Hole Cards **
+Dealt to habing [Td 2d]
+Degnr8Gamblr folds
+BBlaiz1287 folds
+Stromisle raises to 4
+sctt11 calls 4
+Norns calls 4
+habing folds
+habing adds 1 chips
+LionelHutz folds
+** Flop ** [8s 2h 4s]
+Stromisle checks
+sctt11 checks
+Norns bets 8
+Stromisle folds
+sctt11 folds
+Norns refunded 8
+Norns wins Pot (14.63)
+Rake (0.37)
+
+
+
+Hand #9143049-149 - 2013-06-28 03:04:08
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: LionelHutz (277.21)
+Seat 2: Degnr8Gamblr (257)
+Seat 5: BBlaiz1287 (272.29)
+Seat 6: Stromisle (200.43)
+Seat 7: sctt11 (372.37)
+Seat 8: Norns (234.51)
+Seat 9: habing (200)
+habing has the dealer button
+LionelHutz posts small blind 1
+Degnr8Gamblr posts big blind 2
+** Hole Cards **
+Dealt to habing [3h 4h]
+BBlaiz1287 folds
+Stromisle folds
+sctt11 folds
+Norns raises to 6
+habing folds
+LionelHutz folds
+Degnr8Gamblr folds
+Norns refunded 4
+Norns wins Pot (5)
+Rake (0)
+
+
+
+Hand #9143078-150 - 2013-06-28 03:04:53
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: LionelHutz (276.21)
+Seat 2: Degnr8Gamblr (255)
+Seat 5: BBlaiz1287 (272.29)
+Seat 6: Stromisle (200.43)
+Seat 7: sctt11 (372.37)
+Seat 8: Norns (237.51)
+Seat 9: habing (200)
+LionelHutz has the dealer button
+Degnr8Gamblr posts small blind 1
+BBlaiz1287 posts big blind 2
+** Hole Cards **
+Dealt to habing [Qd 2c]
+Stromisle raises to 6
+sctt11 calls 6
+Norns calls 6
+habing folds
+LionelHutz folds
+Degnr8Gamblr folds
+BBlaiz1287 folds
+** Flop ** [Qs Ad 8d]
+Stromisle checks
+sctt11 checks
+Norns bets 11
+Stromisle folds
+sctt11 folds
+Norns refunded 11
+Norns wins Pot (20.48)
+Rake (0.52)
+
+
+
+Hand #9143122-151 - 2013-06-28 03:05:53
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: LionelHutz (276.21)
+Seat 2: Degnr8Gamblr (254)
+Seat 5: BBlaiz1287 (270.29)
+Seat 6: Stromisle (194.43)
+Seat 7: sctt11 (366.37)
+Seat 8: Norns (251.99)
+Seat 9: habing (200)
+Degnr8Gamblr has the dealer button
+BBlaiz1287 posts small blind 1
+Stromisle posts big blind 2
+** Hole Cards **
+Dealt to habing [2c Kh]
+sctt11 folds
+Norns folds
+habing folds
+LionelHutz folds
+Degnr8Gamblr raises to 6
+BBlaiz1287 folds
+Stromisle folds
+Degnr8Gamblr refunded 4
+Degnr8Gamblr wins Pot (5)
+Rake (0)
+
+
+
+Hand #9143145-152 - 2013-06-28 03:06:30
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: LionelHutz (276.21)
+Seat 2: Degnr8Gamblr (257)
+Seat 5: BBlaiz1287 (269.29)
+Seat 6: Stromisle (192.43)
+Seat 7: sctt11 (366.37)
+Seat 8: Norns (251.99)
+Seat 9: habing (200)
+BBlaiz1287 has the dealer button
+Stromisle posts small blind 1
+sctt11 posts big blind 2
+** Hole Cards **
+Dealt to habing [4d 8s]
+Norns folds
+habing folds
+LionelHutz folds
+Degnr8Gamblr folds
+BBlaiz1287 raises to 6
+Stromisle folds
+sctt11 calls 4
+** Flop ** [9d 8h 6h]
+sctt11 bets 9
+BBlaiz1287 calls 9
+** Turn ** [7h]
+sctt11 bets 20
+BBlaiz1287 raises to 45
+sctt11 folds
+BBlaiz1287 refunded 25
+BBlaiz1287 wins Pot (69.23)
+Rake (1.77)
+
+
+
+Hand #9143190-153 - 2013-06-28 03:07:46
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: LionelHutz (276.21)
+Seat 2: Degnr8Gamblr (257)
+Seat 4: zbailey83 (200) - sitting out
+Seat 5: BBlaiz1287 (303.52)
+Seat 6: Stromisle (191.43)
+Seat 7: sctt11 (331.37)
+Seat 8: Norns (251.99)
+Seat 9: habing (200)
+Stromisle has the dealer button
+sctt11 posts small blind 1
+Norns posts big blind 2
+** Hole Cards **
+Dealt to habing [4s 4c]
+habing raises to 6
+LionelHutz folds
+Degnr8Gamblr folds
+BBlaiz1287 calls 6
+Stromisle calls 6
+sctt11 calls 5
+Norns calls 4
+** Flop ** [Qs Qc 8s]
+sctt11 checks
+Norns checks
+habing checks
+BBlaiz1287 checks
+Stromisle bets 16
+sctt11 folds
+Norns folds
+habing folds
+habing adds 6 chips
+BBlaiz1287 folds
+Stromisle refunded 16
+Stromisle wins Pot (29.25)
+Rake (0.75)
+
+
+
+Hand #9143234-154 - 2013-06-28 03:09:08
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 1: LionelHutz (276.21)
+Seat 2: Degnr8Gamblr (257)
+Seat 4: zbailey83 (200) - sitting out
+Seat 5: BBlaiz1287 (297.52)
+Seat 6: Stromisle (214.68)
+Seat 7: sctt11 (325.37)
+Seat 8: Norns (245.99)
+Seat 9: habing (200)
+sctt11 has the dealer button
+Norns posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ad 2c]
+LionelHutz folds
+Degnr8Gamblr folds
+BBlaiz1287 folds
+Stromisle folds
+sctt11 folds
+Norns calls 1
+habing raises to 8.80
+Norns calls 6.80
+** Flop ** [3c Tc As]
+Norns bets 8
+habing calls 8
+** Turn ** [5s]
+Norns checks
+habing checks
+** River ** [9c]
+Norns checks
+habing checks
+** Pot Show Down ** [3c Tc As 5s 9c]
+Norns shows [Qc Kh] (High Card Ace +KQT9)
+habing shows [Ad 2c] (a Pair of Aces +T95)
+habing wins Pot (32.76) with a Pair
+Rake (0.84)
+
+
+
+Hand #9143284-155 - 2013-06-28 03:10:39
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 2: Degnr8Gamblr (257)
+Seat 4: zbailey83 (200) - sitting out
+Seat 5: BBlaiz1287 (297.52)
+Seat 6: Stromisle (214.68)
+Seat 7: sctt11 (325.37)
+Seat 8: Norns (229.19)
+Seat 9: habing (215.96)
+Norns has the dealer button
+habing posts small blind 1
+Degnr8Gamblr posts big blind 2
+** Hole Cards **
+Dealt to habing [9d Qs]
+BBlaiz1287 folds
+Stromisle raises to 6
+sctt11 folds
+Norns folds
+habing folds
+Degnr8Gamblr folds
+Stromisle refunded 4
+Stromisle wins Pot (5)
+Rake (0)
+
+
+
+Hand #9143302-156 - 2013-06-28 03:11:12
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 2: Degnr8Gamblr (255)
+Seat 4: zbailey83 (200) - sitting out
+Seat 5: BBlaiz1287 (297.52)
+Seat 6: Stromisle (217.68)
+Seat 7: sctt11 (325.37)
+Seat 8: Norns (229.19)
+Seat 9: habing (214.96)
+habing has the dealer button
+Degnr8Gamblr posts small blind 1
+BBlaiz1287 posts big blind 2
+** Hole Cards **
+Dealt to habing [Ts 6h]
+Stromisle folds
+sctt11 folds
+Norns folds
+habing folds
+Degnr8Gamblr raises to 6
+BBlaiz1287 raises to 14
+Degnr8Gamblr folds
+BBlaiz1287 refunded 8
+BBlaiz1287 wins Pot (12)
+Rake (0)
+
+
+
+Hand #9143331-157 - 2013-06-28 03:12:06
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 2: Degnr8Gamblr (249)
+Seat 4: zbailey83 (200) - sitting out
+Seat 5: BBlaiz1287 (303.52)
+Seat 6: Stromisle (217.68)
+Seat 7: sctt11 (325.37)
+Seat 8: Norns (229.19)
+Seat 9: habing (214.96)
+Degnr8Gamblr has the dealer button
+BBlaiz1287 posts small blind 1
+Stromisle posts big blind 2
+** Hole Cards **
+Dealt to habing [Ad 7d]
+sctt11 folds
+Norns folds
+habing raises to 6
+Degnr8Gamblr folds
+BBlaiz1287 folds
+Stromisle folds
+habing refunded 4
+habing wins Pot (5)
+Rake (0)
+
+
+
+Hand #9143345-158 - 2013-06-28 03:12:28
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 2: Degnr8Gamblr (249)
+Seat 4: zbailey83 (200) - sitting out
+Seat 5: BBlaiz1287 (302.52)
+Seat 6: Stromisle (215.68)
+Seat 7: sctt11 (325.37)
+Seat 8: Norns (229.19)
+Seat 9: habing (217.96)
+BBlaiz1287 has the dealer button
+Stromisle posts small blind 1
+sctt11 posts big blind 2
+** Hole Cards **
+Dealt to habing [7h Ts]
+Norns calls 2
+habing folds
+Degnr8Gamblr folds
+BBlaiz1287 calls 2
+Stromisle calls 1
+sctt11 checks
+** Flop ** [9s 8h Tc]
+Stromisle checks
+sctt11 checks
+Norns checks
+BBlaiz1287 bets 4
+Stromisle calls 4
+sctt11 folds
+Norns folds
+** Turn ** [3h]
+Stromisle checks
+BBlaiz1287 bets 8
+Stromisle folds
+BBlaiz1287 refunded 8
+BBlaiz1287 wins Pot (15.60)
+Rake (0.40)
+
+
+
+Hand #9143390-159 - 2013-06-28 03:13:51
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 2: Degnr8Gamblr (249)
+Seat 4: zbailey83 (200) - sitting out
+Seat 5: BBlaiz1287 (312.12)
+Seat 6: Stromisle (209.68)
+Seat 7: sctt11 (323.37)
+Seat 8: Norns (227.19)
+Seat 9: habing (217.96)
+Stromisle has the dealer button
+sctt11 posts small blind 1
+Norns posts big blind 2
+** Hole Cards **
+Dealt to habing [Jc Qc]
+habing raises to 6
+Degnr8Gamblr folds
+BBlaiz1287 folds
+Stromisle folds
+sctt11 folds
+Norns folds
+habing refunded 4
+habing wins Pot (5)
+Rake (0)
+
+
+
+Hand #9143406-160 - 2013-06-28 03:14:18
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 2: Degnr8Gamblr (249)
+Seat 4: zbailey83 (200) - sitting out
+Seat 5: BBlaiz1287 (312.12)
+Seat 6: Stromisle (209.68)
+Seat 7: sctt11 (322.37)
+Seat 8: Norns (225.19)
+Seat 9: habing (220.96)
+sctt11 has the dealer button
+Norns posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Qc 4h]
+Degnr8Gamblr folds
+BBlaiz1287 raises to 7
+Stromisle folds
+sctt11 folds
+Norns folds
+habing folds
+BBlaiz1287 refunded 5
+BBlaiz1287 wins Pot (5)
+Rake (0)
+
+
+
+Hand #9143417-161 - 2013-06-28 03:14:44
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 2: Degnr8Gamblr (249)
+Seat 4: zbailey83 (200) - sitting out
+Seat 5: BBlaiz1287 (315.12)
+Seat 6: Stromisle (209.68)
+Seat 7: sctt11 (322.37)
+Seat 8: Norns (224.19)
+Seat 9: habing (218.96)
+Norns has the dealer button
+habing posts small blind 1
+Degnr8Gamblr posts big blind 2
+** Hole Cards **
+Dealt to habing [7c Kc]
+BBlaiz1287 folds
+Stromisle raises to 4
+sctt11 folds
+Norns calls 4
+habing calls 3
+Degnr8Gamblr calls 2
+** Flop ** [Qc 6h As]
+habing checks
+Degnr8Gamblr checks
+Stromisle bets 4
+Norns raises to 12
+habing folds
+Degnr8Gamblr folds
+Stromisle raises to 28
+Norns folds
+Stromisle refunded 16
+Stromisle wins Pot (39)
+Rake (1)
+
+
+
+Hand #9143463-162 - 2013-06-28 03:16:04
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 2: Degnr8Gamblr (245)
+Seat 4: zbailey83 (200) - sitting out
+Seat 5: BBlaiz1287 (315.12)
+Seat 6: Stromisle (232.68)
+Seat 7: sctt11 (322.37)
+Seat 8: Norns (208.19)
+Seat 9: habing (214.96)
+habing has the dealer button
+Degnr8Gamblr posts small blind 1
+BBlaiz1287 posts big blind 2
+** Hole Cards **
+Dealt to habing [Ks Ad]
+Stromisle folds
+sctt11 raises to 6
+Norns calls 6
+habing raises to 24.40
+Degnr8Gamblr folds
+BBlaiz1287 folds
+sctt11 folds
+Norns folds
+habing refunded 18.40
+habing wins Pot (21)
+Rake (0)
+
+
+
+Hand #9143484-163 - 2013-06-28 03:16:46
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 2: Degnr8Gamblr (244)
+Seat 5: BBlaiz1287 (313.12)
+Seat 6: Stromisle (232.68)
+Seat 7: sctt11 (316.37)
+Seat 8: Norns (202.19)
+Seat 9: habing (229.96)
+Degnr8Gamblr has the dealer button
+BBlaiz1287 posts small blind 1
+Stromisle posts big blind 2
+** Hole Cards **
+Dealt to habing [Kd 6h]
+sctt11 calls 2
+Norns calls 2
+habing folds
+Degnr8Gamblr raises to 4
+BBlaiz1287 folds
+Stromisle calls 2
+sctt11 calls 2
+Norns calls 2
+** Flop ** [3h 8s 7h]
+Stromisle checks
+sctt11 checks
+Norns bets 17
+Degnr8Gamblr folds
+Stromisle folds
+sctt11 calls 17
+** Turn ** [4h]
+sctt11 checks
+Norns bets 35
+sctt11 calls 35
+** River ** [5d]
+sctt11 checks
+Norns checks
+** Pot Show Down ** [3h 8s 7h 4h 5d]
+sctt11 shows [3s 3d] (Three of a Kind, Threes +87)
+Norns shows [Jc Jh] (a Pair of Jacks +875)
+sctt11 wins Pot (117.98) with Three of a Kind
+Rake (3.02)
+
+
+
+Hand #9143535-164 - 2013-06-28 03:18:28
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 2: Degnr8Gamblr (240)
+Seat 5: BBlaiz1287 (312.12)
+Seat 6: Stromisle (228.68)
+Seat 7: sctt11 (378.35)
+Seat 8: Norns (146.19)
+Seat 9: habing (229.96)
+BBlaiz1287 has the dealer button
+Stromisle posts small blind 1
+sctt11 posts big blind 2
+** Hole Cards **
+Dealt to habing [6s 5c]
+Norns raises to 7
+habing folds
+Degnr8Gamblr folds
+BBlaiz1287 folds
+Stromisle folds
+sctt11 folds
+Norns refunded 5
+Norns wins Pot (5)
+Rake (0)
+
+
+
+Hand #9143554-165 - 2013-06-28 03:19:01
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 2: Degnr8Gamblr (240)
+Seat 5: BBlaiz1287 (312.12)
+Seat 6: Stromisle (227.68)
+Seat 7: sctt11 (376.35)
+Seat 8: Norns (149.19)
+Seat 9: habing (229.96)
+Stromisle has the dealer button
+sctt11 posts small blind 1
+Norns posts big blind 2
+** Hole Cards **
+Dealt to habing [Tc 4s]
+habing folds
+Degnr8Gamblr folds
+BBlaiz1287 folds
+Stromisle raises to 6
+sctt11 folds
+Norns folds
+Stromisle refunded 4
+Stromisle wins Pot (5)
+Rake (0)
+
+
+
+Hand #9143576-166 - 2013-06-28 03:19:34
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 2: Degnr8Gamblr (240)
+Seat 5: BBlaiz1287 (312.12)
+Seat 6: Stromisle (230.68)
+Seat 7: sctt11 (375.35)
+Seat 8: Norns (147.19)
+Seat 9: habing (229.96)
+sctt11 has the dealer button
+Norns posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [6s Jd]
+Degnr8Gamblr raises to 6
+BBlaiz1287 folds
+Stromisle folds
+sctt11 folds
+Norns calls 5
+habing folds
+** Flop ** [9d 9c As]
+Norns bets 10
+Degnr8Gamblr folds
+Norns refunded 10
+Norns wins Pot (13.65)
+Rake (0.35)
+
+
+
+Hand #9143592-167 - 2013-06-28 03:20:16
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 2: Degnr8Gamblr (234)
+Seat 5: BBlaiz1287 (312.12)
+Seat 6: Stromisle (230.68)
+Seat 7: sctt11 (375.35)
+Seat 8: Norns (154.84)
+Seat 9: habing (227.96)
+Norns has the dealer button
+habing posts small blind 1
+Degnr8Gamblr posts big blind 2
+** Hole Cards **
+Dealt to habing [9s Kd]
+BBlaiz1287 folds
+Stromisle folds
+sctt11 folds
+Norns calls 2
+habing folds
+Degnr8Gamblr checks
+** Flop ** [6s 9c 9d]
+Degnr8Gamblr checks
+Norns checks
+** Turn ** [8s]
+Degnr8Gamblr bets 4
+Norns calls 4
+** River ** [As]
+Degnr8Gamblr checks
+Norns checks
+** Pot Show Down ** [6s 9c 9d 8s As]
+Degnr8Gamblr shows [Qd 8h] (Two Pair, Nines and Eights +A)
+Norns shows [Jc 5d] (a Pair of Nines +AJ8)
+Degnr8Gamblr wins Pot (12.68) with Two Pair
+Rake (0.32)
+
+
+
+Hand #9143628-168 - 2013-06-28 03:21:29
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 2: Degnr8Gamblr (240.68)
+Seat 5: BBlaiz1287 (312.12)
+Seat 6: Stromisle (230.68)
+Seat 7: sctt11 (375.35)
+Seat 8: Norns (148.84)
+Seat 9: habing (226.96)
+habing has the dealer button
+Degnr8Gamblr posts small blind 1
+BBlaiz1287 posts big blind 2
+** Hole Cards **
+Dealt to habing [7h 5s]
+Stromisle folds
+sctt11 folds
+Norns folds
+habing folds
+Degnr8Gamblr folds
+BBlaiz1287 refunded 1
+BBlaiz1287 wins Pot (2)
+Rake (0)
+
+
+
+Hand #9143644-169 - 2013-06-28 03:21:54
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 2: Degnr8Gamblr (239.68)
+Seat 5: BBlaiz1287 (313.12)
+Seat 6: Stromisle (230.68)
+Seat 7: sctt11 (375.35)
+Seat 8: Norns (148.84)
+Seat 9: habing (226.96)
+Degnr8Gamblr has the dealer button
+BBlaiz1287 posts small blind 1
+Stromisle posts big blind 2
+** Hole Cards **
+Dealt to habing [As Qh]
+sctt11 folds
+Norns calls 2
+habing raises to 8.80
+Degnr8Gamblr folds
+BBlaiz1287 folds
+Stromisle folds
+Norns folds
+habing refunded 6.80
+habing wins Pot (7)
+Rake (0)
+
+
+
+Hand #9143656-170 - 2013-06-28 03:22:23
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 2: Degnr8Gamblr (239.68)
+Seat 5: BBlaiz1287 (312.12)
+Seat 6: Stromisle (228.68)
+Seat 7: sctt11 (375.35)
+Seat 8: Norns (146.84)
+Seat 9: habing (231.96)
+BBlaiz1287 has the dealer button
+Stromisle posts small blind 1
+sctt11 posts big blind 2
+** Hole Cards **
+Dealt to habing [Jd Ah]
+Norns folds
+habing raises to 6
+Degnr8Gamblr folds
+BBlaiz1287 calls 6
+Stromisle folds
+sctt11 folds
+** Flop ** [4s Jc 7c]
+habing bets 10.40
+BBlaiz1287 folds
+habing refunded 10.40
+habing wins Pot (14.63)
+Rake (0.37)
+
+
+
+Hand #9143678-171 - 2013-06-28 03:23:05
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 2: Degnr8Gamblr (239.68)
+Seat 5: BBlaiz1287 (306.12)
+Seat 6: Stromisle (227.68)
+Seat 7: sctt11 (373.35)
+Seat 8: Norns (146.84)
+Seat 9: habing (240.59)
+Stromisle has the dealer button
+sctt11 posts small blind 1
+Norns posts big blind 2
+** Hole Cards **
+Dealt to habing [5h 7s]
+habing folds
+Degnr8Gamblr raises to 8
+BBlaiz1287 folds
+Stromisle calls 8
+sctt11 folds
+Norns calls 6
+** Flop ** [Kc 3h 9h]
+Norns checks
+Degnr8Gamblr checks
+Stromisle checks
+** Turn ** [Tc]
+Norns bets 14
+Degnr8Gamblr calls 14
+Stromisle folds
+** River ** [3s]
+Norns bets 20
+Degnr8Gamblr raises to 217.68 (All-in)
+Norns folds
+Degnr8Gamblr refunded 197.68
+Degnr8Gamblr wins Pot (90.68)
+Rake (2.32)
+
+
+
+Hand #9143714-172 - 2013-06-28 03:24:56
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 2: Degnr8Gamblr (288.36)
+Seat 5: BBlaiz1287 (306.12)
+Seat 6: Stromisle (219.68)
+Seat 7: sctt11 (372.35)
+Seat 8: Norns (104.84)
+Seat 9: habing (240.59)
+sctt11 has the dealer button
+Norns posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [8h Tc]
+Degnr8Gamblr folds
+BBlaiz1287 folds
+Stromisle raises to 6
+sctt11 folds
+Norns folds
+habing folds
+Stromisle refunded 4
+Stromisle wins Pot (5)
+Rake (0)
+
+
+
+Hand #9143723-173 - 2013-06-28 03:25:22
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 2: Degnr8Gamblr (288.36)
+Seat 5: BBlaiz1287 (306.12)
+Seat 6: Stromisle (222.68)
+Seat 7: sctt11 (372.35)
+Seat 8: Norns (103.84)
+Seat 9: habing (238.59)
+Norns has the dealer button
+habing posts small blind 1
+Degnr8Gamblr posts big blind 2
+** Hole Cards **
+Dealt to habing [9s Td]
+BBlaiz1287 folds
+Stromisle folds
+sctt11 folds
+Norns folds
+habing folds
+Degnr8Gamblr refunded 1
+Degnr8Gamblr wins Pot (2)
+Rake (0)
+
+
+
+Hand #9143736-174 - 2013-06-28 03:25:48
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 2: Degnr8Gamblr (289.36)
+Seat 5: BBlaiz1287 (306.12)
+Seat 6: Stromisle (222.68)
+Seat 7: sctt11 (372.35)
+Seat 8: Norns (103.84)
+Seat 9: habing (237.59)
+habing has the dealer button
+Degnr8Gamblr posts small blind 1
+BBlaiz1287 posts big blind 2
+** Hole Cards **
+Dealt to habing [Td Kc]
+Stromisle folds
+sctt11 folds
+Norns calls 2
+habing raises to 8.80
+Degnr8Gamblr folds
+BBlaiz1287 folds
+Norns calls 6.80
+** Flop ** [Qh 2s 7d]
+Norns checks
+habing bets 9.20
+Norns folds
+habing refunded 9.20
+habing wins Pot (20.09)
+Rake (0.51)
+
+
+
+Hand #9143757-175 - 2013-06-28 03:26:50
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 2: Degnr8Gamblr (288.36)
+Seat 5: BBlaiz1287 (304.12)
+Seat 6: Stromisle (222.68)
+Seat 7: sctt11 (372.35)
+Seat 8: Norns (95.04)
+Seat 9: habing (248.88)
+Degnr8Gamblr has the dealer button
+BBlaiz1287 posts small blind 1
+Stromisle posts big blind 2
+** Hole Cards **
+Dealt to habing [Kd 7s]
+sctt11 folds
+Norns calls 2
+habing folds
+Degnr8Gamblr folds
+BBlaiz1287 folds
+Stromisle checks
+** Flop ** [Ac Jh 6c]
+Stromisle checks
+Norns bets 3
+Stromisle folds
+Norns refunded 3
+Norns wins Pot (4.88)
+Rake (0.12)
+
+
+
+Hand #9143778-176 - 2013-06-28 03:27:54
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 2: Degnr8Gamblr (288.36)
+Seat 5: BBlaiz1287 (303.12)
+Seat 6: Stromisle (220.68)
+Seat 7: sctt11 (372.35)
+Seat 8: Norns (97.92)
+Seat 9: habing (248.88)
+BBlaiz1287 has the dealer button
+Stromisle posts small blind 1
+sctt11 posts big blind 2
+** Hole Cards **
+Dealt to habing [Tc Jd]
+Norns folds
+habing folds
+Degnr8Gamblr folds
+BBlaiz1287 raises to 6
+Stromisle calls 5
+sctt11 folds
+** Flop ** [2c 5c 3c]
+Stromisle checks
+BBlaiz1287 bets 8
+Stromisle folds
+BBlaiz1287 refunded 8
+BBlaiz1287 wins Pot (13.65)
+Rake (0.35)
+
+
+
+Hand #9143797-177 - 2013-06-28 03:28:41
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 2: Degnr8Gamblr (288.36)
+Seat 5: BBlaiz1287 (310.77)
+Seat 6: Stromisle (214.68)
+Seat 7: sctt11 (370.35)
+Seat 8: Norns (97.92)
+Seat 9: habing (248.88)
+Stromisle has the dealer button
+sctt11 posts small blind 1
+Norns posts big blind 2
+** Hole Cards **
+Dealt to habing [Ks Qc]
+habing raises to 6
+Degnr8Gamblr folds
+BBlaiz1287 calls 6
+Stromisle folds
+sctt11 folds
+Norns calls 4
+** Flop ** [8s Tc Kd]
+Norns checks
+habing bets 14
+BBlaiz1287 folds
+Norns folds
+habing refunded 14
+habing wins Pot (18.53)
+Rake (0.47)
+
+
+
+Hand #9143816-178 - 2013-06-28 03:29:24
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 2: Degnr8Gamblr (288.36)
+Seat 5: BBlaiz1287 (304.77)
+Seat 6: Stromisle (214.68)
+Seat 7: sctt11 (369.35)
+Seat 8: Norns (91.92)
+Seat 9: habing (261.41)
+sctt11 has the dealer button
+Norns posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Js 6d]
+Degnr8Gamblr folds
+BBlaiz1287 folds
+Stromisle calls 2
+sctt11 calls 2
+Norns calls 1
+habing checks
+** Flop ** [Ks 2h 9h]
+Norns bets 5
+habing folds
+Stromisle folds
+sctt11 folds
+Norns refunded 5
+Norns wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #9143834-179 - 2013-06-28 03:30:10
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 2: Degnr8Gamblr (288.36)
+Seat 5: BBlaiz1287 (304.77)
+Seat 6: Stromisle (212.68)
+Seat 7: sctt11 (367.35)
+Seat 8: Norns (97.72)
+Seat 9: habing (259.41)
+Norns has the dealer button
+habing posts small blind 1
+Degnr8Gamblr posts big blind 2
+** Hole Cards **
+Dealt to habing [8d 2d]
+BBlaiz1287 folds
+Stromisle raises to 4
+sctt11 folds
+Norns folds
+habing folds
+Degnr8Gamblr folds
+Stromisle refunded 2
+Stromisle wins Pot (5)
+Rake (0)
+
+
+
+Hand #9143846-180 - 2013-06-28 03:30:39
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 2: Degnr8Gamblr (286.36)
+Seat 5: BBlaiz1287 (304.77)
+Seat 6: Stromisle (215.68)
+Seat 7: sctt11 (367.35)
+Seat 8: Norns (97.72)
+Seat 9: habing (258.41)
+habing has the dealer button
+Degnr8Gamblr posts small blind 1
+BBlaiz1287 posts big blind 2
+** Hole Cards **
+Dealt to habing [Qc 6c]
+Stromisle folds
+sctt11 folds
+Norns folds
+habing raises to 4
+Degnr8Gamblr raises to 12
+BBlaiz1287 folds
+habing folds
+Degnr8Gamblr refunded 8
+Degnr8Gamblr wins Pot (10)
+Rake (0)
+
+
+
+Hand #9143864-181 - 2013-06-28 03:31:24
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 2: Degnr8Gamblr (292.36)
+Seat 5: BBlaiz1287 (302.77)
+Seat 6: Stromisle (215.68)
+Seat 7: sctt11 (367.35)
+Seat 8: Norns (97.72)
+Seat 9: habing (254.41)
+Degnr8Gamblr has the dealer button
+BBlaiz1287 posts small blind 1
+Stromisle posts big blind 2
+** Hole Cards **
+Dealt to habing [Jh 7c]
+sctt11 raises to 8
+Norns calls 8
+habing folds
+Degnr8Gamblr calls 8
+BBlaiz1287 folds
+Stromisle has timed out
+Stromisle folds
+** Flop ** [5s 3h 6s]
+sctt11 checks
+Norns bets 20
+Degnr8Gamblr folds
+sctt11 folds
+Norns refunded 20
+Norns wins Pot (26.33)
+Rake (0.67)
+
+
+
+Hand #9143888-182 - 2013-06-28 03:32:44
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 2: Degnr8Gamblr (284.36)
+Seat 5: BBlaiz1287 (301.77)
+Seat 6: Stromisle (213.68) - sitting out
+Seat 7: sctt11 (359.35)
+Seat 8: Norns (116.05)
+Seat 9: habing (254.41)
+BBlaiz1287 has the dealer button
+sctt11 posts small blind 1
+Norns posts big blind 2
+** Hole Cards **
+Dealt to habing [9h Ac]
+habing folds
+Degnr8Gamblr folds
+BBlaiz1287 raises to 6
+sctt11 folds
+Norns calls 4
+** Flop ** [8c 8s 7h]
+Norns checks
+BBlaiz1287 bets 8
+Norns folds
+BBlaiz1287 refunded 8
+BBlaiz1287 wins Pot (12.68)
+Rake (0.32)
+
+
+
+Hand #9143903-183 - 2013-06-28 03:33:20
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 2: Degnr8Gamblr (284.36)
+Seat 5: BBlaiz1287 (308.45)
+Seat 6: Stromisle (213.68)
+Seat 7: sctt11 (358.35)
+Seat 8: Norns (110.05)
+Seat 9: habing (254.41)
+sctt11 has the dealer button
+Norns posts small blind 1
+habing posts big blind 2
+Stromisle posts small blind 1
+** Hole Cards **
+Dealt to habing [Jd Jh]
+Degnr8Gamblr calls 2
+BBlaiz1287 folds
+Stromisle folds
+sctt11 calls 2
+Norns calls 1
+habing raises to 13.60
+Degnr8Gamblr folds
+sctt11 folds
+Norns folds
+habing refunded 11.60
+habing wins Pot (9)
+Rake (0)
+
+
+
+Hand #9143921-184 - 2013-06-28 03:34:03
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 2: Degnr8Gamblr (282.36)
+Seat 5: BBlaiz1287 (308.45)
+Seat 6: Stromisle (212.68)
+Seat 7: sctt11 (356.35)
+Seat 8: Norns (108.05)
+Seat 9: habing (261.41)
+Norns has the dealer button
+habing posts small blind 1
+Degnr8Gamblr posts big blind 2
+** Hole Cards **
+Dealt to habing [Qh Qc]
+BBlaiz1287 raises to 6
+Stromisle folds
+sctt11 folds
+Norns folds
+habing raises to 21.60
+Degnr8Gamblr folds
+BBlaiz1287 calls 15.60
+** Flop ** [9c 5h 8s]
+habing bets 22
+BBlaiz1287 calls 22
+** Turn ** [Tc]
+habing bets 43.20
+BBlaiz1287 calls 43.20
+** River ** [Ks]
+habing checks
+BBlaiz1287 checks
+** Pot Show Down ** [9c 5h 8s Tc Ks]
+BBlaiz1287 shows [Kh Jh] (a Pair of Kings +JT9)
+habing shows [Qh Qc] (a Pair of Queens +KT9)
+BBlaiz1287 wins Pot (171.60) with a Pair
+Rake (4)
+habing adds 25.39 chips
+
+
+
+Hand #9143944-185 - 2013-06-28 03:34:55
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 2: Degnr8Gamblr (280.36)
+Seat 5: BBlaiz1287 (393.25)
+Seat 6: Stromisle (212.68)
+Seat 7: sctt11 (356.35)
+Seat 8: Norns (108.05)
+Seat 9: habing (200)
+habing has the dealer button
+Degnr8Gamblr posts small blind 1
+BBlaiz1287 posts big blind 2
+** Hole Cards **
+Dealt to habing [6c 8s]
+Stromisle folds
+sctt11 folds
+Norns folds
+habing folds
+Degnr8Gamblr raises to 4
+BBlaiz1287 folds
+Degnr8Gamblr refunded 2
+Degnr8Gamblr wins Pot (4)
+Rake (0)
+
+
+
+Hand #9143960-186 - 2013-06-28 03:35:38
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 2: Degnr8Gamblr (282.36)
+Seat 5: BBlaiz1287 (391.25)
+Seat 6: Stromisle (212.68)
+Seat 7: sctt11 (356.35)
+Seat 8: Norns (108.05)
+Seat 9: habing (200)
+Degnr8Gamblr has the dealer button
+BBlaiz1287 posts small blind 1
+Stromisle posts big blind 2
+** Hole Cards **
+Dealt to habing [2h 5d]
+sctt11 calls 2
+Norns folds
+habing folds
+Degnr8Gamblr folds
+BBlaiz1287 folds
+Stromisle checks
+** Flop ** [Ts 9d Kc]
+Stromisle bets 4
+sctt11 folds
+Stromisle refunded 4
+Stromisle wins Pot (4.88)
+Rake (0.12)
+
+
+
+Hand #9143982-187 - 2013-06-28 03:36:16
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 2: Degnr8Gamblr (282.36)
+Seat 5: BBlaiz1287 (390.25)
+Seat 6: Stromisle (215.56)
+Seat 7: sctt11 (354.35)
+Seat 8: Norns (108.05)
+Seat 9: habing (200)
+BBlaiz1287 has the dealer button
+Stromisle posts small blind 1
+Norns posts big blind 2
+** Hole Cards **
+Dealt to habing [9d Jd]
+habing raises to 6
+Degnr8Gamblr raises to 18
+BBlaiz1287 folds
+Stromisle calls 17
+Norns folds
+habing calls 12
+** Flop ** [7s 5c 6s]
+Stromisle checks
+habing checks
+Degnr8Gamblr bets 38
+Stromisle folds
+habing folds
+Degnr8Gamblr refunded 38
+habing adds 18 chips
+Degnr8Gamblr wins Pot (54.60)
+Rake (1.40)
+
+
+
+Hand #9144011-188 - 2013-06-28 03:37:20
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 2: Degnr8Gamblr (318.96)
+Seat 5: BBlaiz1287 (390.25)
+Seat 6: Stromisle (197.56)
+Seat 8: Norns (106.05)
+Seat 9: habing (200)
+Stromisle has the dealer button
+Norns posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [8d Qd]
+Degnr8Gamblr calls 2
+BBlaiz1287 raises to 12
+Stromisle folds
+Norns calls 11
+habing folds
+habing adds 2 chips
+Degnr8Gamblr calls 10
+** Flop ** [Th Jh 2s]
+Norns bets 21
+Degnr8Gamblr folds
+BBlaiz1287 folds
+Norns refunded 21
+Norns wins Pot (37.05)
+Rake (0.95)
+
+
+
+Hand #9144039-189 - 2013-06-28 03:38:32
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 2: Degnr8Gamblr (306.96)
+Seat 5: BBlaiz1287 (378.25)
+Seat 6: Stromisle (197.56)
+Seat 8: Norns (131.10)
+Seat 9: habing (200)
+Norns has the dealer button
+habing posts small blind 1
+Degnr8Gamblr posts big blind 2
+** Hole Cards **
+Dealt to habing [Qs Td]
+BBlaiz1287 folds
+Stromisle folds
+Norns calls 2
+habing raises to 10
+Degnr8Gamblr folds
+Norns calls 8
+** Flop ** [Ah Qh Ks]
+habing checks
+Norns bets 11
+habing folds
+Norns refunded 11
+habing adds 10 chips
+Norns wins Pot (21.45)
+Rake (0.55)
+
+
+
+Hand #9144071-190 - 2013-06-28 03:39:42
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 2: Degnr8Gamblr (304.96)
+Seat 5: BBlaiz1287 (378.25)
+Seat 6: Stromisle (197.56)
+Seat 8: Norns (142.55)
+Seat 9: habing (200)
+habing has the dealer button
+Degnr8Gamblr posts small blind 1
+BBlaiz1287 posts big blind 2
+** Hole Cards **
+Dealt to habing [Jh 6c]
+Stromisle folds
+Norns folds
+habing folds
+Degnr8Gamblr folds
+BBlaiz1287 refunded 1
+BBlaiz1287 wins Pot (2)
+Rake (0)
+
+
+
+Hand #9144084-191 - 2013-06-28 03:40:07
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 2: Degnr8Gamblr (303.96)
+Seat 5: BBlaiz1287 (379.25)
+Seat 6: Stromisle (197.56)
+Seat 8: Norns (142.55)
+Seat 9: habing (200)
+Degnr8Gamblr has the dealer button
+BBlaiz1287 posts small blind 1
+Stromisle posts big blind 2
+** Hole Cards **
+Dealt to habing [Kh 7c]
+Norns folds
+habing folds
+Degnr8Gamblr folds
+BBlaiz1287 folds
+Stromisle refunded 1
+Stromisle wins Pot (2)
+Rake (0)
+
+
+
+Hand #9144095-192 - 2013-06-28 03:40:33
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 2: Degnr8Gamblr (303.96)
+Seat 5: BBlaiz1287 (378.25)
+Seat 6: Stromisle (198.56)
+Seat 8: Norns (142.55)
+Seat 9: habing (200)
+BBlaiz1287 has the dealer button
+Stromisle posts small blind 1
+Norns posts big blind 2
+** Hole Cards **
+Dealt to habing [5d 8h]
+habing has timed out
+habing folds
+Degnr8Gamblr folds
+BBlaiz1287 raises to 4
+Stromisle folds
+Norns calls 2
+** Flop ** [6h Qc Kc]
+Norns checks
+BBlaiz1287 bets 4
+Norns folds
+BBlaiz1287 refunded 4
+BBlaiz1287 wins Pot (8.78)
+Rake (0.22)
+
+
+
+Hand #9144125-193 - 2013-06-28 03:41:41
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 2: Degnr8Gamblr (303.96)
+Seat 5: BBlaiz1287 (383.03)
+Seat 6: Stromisle (197.56)
+Seat 8: Norns (138.55)
+Seat 9: habing (200) - sitting out
+Stromisle has the dealer button
+Norns posts small blind 1
+Degnr8Gamblr posts big blind 2
+** Hole Cards **
+BBlaiz1287 raises to 6
+Stromisle raises to 16
+Norns folds
+Degnr8Gamblr folds
+BBlaiz1287 calls 10
+** Flop ** [Jh 4d Js]
+BBlaiz1287 checks
+Stromisle checks
+** Turn ** [Ks]
+BBlaiz1287 checks
+Stromisle bets 8
+BBlaiz1287 calls 8
+** River ** [Ts]
+BBlaiz1287 checks
+Stromisle checks
+** Pot Show Down ** [Jh 4d Js Ks Ts]
+BBlaiz1287 shows [7s 7c] (Two Pair, Jacks and Sevens +K)
+Stromisle shows [Ah Kh] (Two Pair, Kings and Jacks +A)
+Stromisle wins Pot (49.73) with Two Pair
+Rake (1.27)
+
+
+
+Hand #9144149-194 - 2013-06-28 03:42:36
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 5: BBlaiz1287 (359.03)
+Seat 6: Stromisle (223.29)
+Seat 8: Norns (137.55)
+Seat 9: habing (200)
+Norns has the dealer button
+BBlaiz1287 posts small blind 1
+Stromisle posts big blind 2
+** Hole Cards **
+Norns folds
+BBlaiz1287 folds
+Stromisle refunded 1
+Stromisle wins Pot (2)
+Rake (0)
+
+
+
+Hand #9144161-195 - 2013-06-28 03:43:00
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 5: BBlaiz1287 (358.03)
+Seat 6: Stromisle (224.29)
+Seat 8: Norns (137.55)
+Seat 9: habing (200)
+BBlaiz1287 has the dealer button
+Stromisle posts small blind 1
+Norns posts big blind 2
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Js Ks]
+habing raises to 12.40
+BBlaiz1287 folds
+Stromisle folds
+Norns folds
+habing refunded 10.40
+habing wins Pot (5)
+Rake (0)
+
+
+
+Hand #9144177-196 - 2013-06-28 03:43:33
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 5: BBlaiz1287 (358.03)
+Seat 6: Stromisle (223.29)
+Seat 8: Norns (135.55)
+Seat 9: habing (203)
+Stromisle has the dealer button
+Norns posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [2h Qh]
+BBlaiz1287 raises to 6
+Stromisle folds
+Norns folds
+habing folds
+BBlaiz1287 refunded 4
+BBlaiz1287 wins Pot (5)
+Rake (0)
+
+
+
+Hand #9144190-197 - 2013-06-28 03:44:04
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 5: BBlaiz1287 (361.03)
+Seat 6: Stromisle (223.29)
+Seat 8: Norns (134.55)
+Seat 9: habing (201)
+Norns has the dealer button
+habing posts small blind 1
+Stromisle posts big blind 2
+** Hole Cards **
+Dealt to habing [5s As]
+Norns folds
+habing raises to 6
+Stromisle calls 4
+** Flop ** [Tc 8c Qc]
+habing checks
+Stromisle checks
+** Turn ** [Ah]
+habing bets 8
+Stromisle folds
+habing refunded 8
+habing wins Pot (11.70)
+Rake (0.30)
+
+
+
+Hand #9144214-198 - 2013-06-28 03:44:59
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 6: Stromisle (217.29)
+Seat 8: Norns (134.55)
+Seat 9: habing (206.70)
+habing has the dealer button
+Stromisle posts small blind 1
+Norns posts big blind 2
+** Hole Cards **
+Dealt to habing [8d Jc]
+habing raises to 4
+Stromisle calls 3
+Norns calls 2
+** Flop ** [2c 3d Jd]
+Stromisle checks
+Norns bets 6
+habing calls 6
+Stromisle folds
+** Turn ** [9s]
+Norns bets 12
+habing calls 12
+** River ** [Kc]
+Norns checks
+habing checks
+** Pot Show Down ** [2c 3d Jd 9s Kc]
+Norns shows [2s 4c] (a Pair of Deuces +KJ9)
+habing shows [8d Jc] (a Pair of Jacks +K98)
+habing wins Pot (46.80) with a Pair
+Rake (1.20)
+
+
+
+Hand #9144258-199 - 2013-06-28 03:46:41
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 6: Stromisle (213.29)
+Seat 8: Norns (112.55)
+Seat 9: habing (231.50)
+Stromisle has the dealer button
+Norns posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [4s 9c]
+Stromisle raises to 6
+Norns raises to 12
+habing folds
+Stromisle calls 6
+** Flop ** [Ks 3s Ah]
+Norns bets 17
+Stromisle folds
+Norns refunded 17
+Norns wins Pot (25.35)
+Rake (0.65)
+
+
+
+Hand #9144759-1 - 2013-06-28 04:04:26
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 5: SniperBetty (69) - waiting for big blind
+Seat 9: habing (229.50)
+habing has the dealer button
+habing posts small blind 1
+SniperBetty posts big blind 2
+** Hole Cards **
+Dealt to habing [Ac 7d]
+habing raises to 4
+SniperBetty raises to 69 (All-in)
+habing calls 65
+** Flop ** [Ks 6h 4h]
+** Turn ** [5s]
+** River ** [4c]
+** Pot Show Down ** [Ks 6h 4h 5s 4c]
+SniperBetty shows [9h 9s] (Two Pair, Nines and Fours +K)
+habing shows [Ac 7d] (a Pair of Fours +AK7)
+SniperBetty wins Pot (134.55) with Two Pair
+Rake (3.45)
+habing adds 39.50 chips
+
+
+
+Hand #9144770-2 - 2013-06-28 04:04:52
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 5: SniperBetty (134.55)
+Seat 9: habing (200)
+SniperBetty has the dealer button
+SniperBetty posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Jc 4d]
+SniperBetty raises to 6
+habing folds
+SniperBetty refunded 4
+habing adds 2 chips
+SniperBetty wins Pot (4)
+Rake (0)
+
+
+
+Hand #9144780-3 - 2013-06-28 04:05:06
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 9max 1/2 #0
+Seat 5: SniperBetty (136.55)
+Seat 9: habing (200)
+habing has the dealer button
+habing posts small blind 1
+SniperBetty posts big blind 2
+** Hole Cards **
+Dealt to habing [Kh 3s]
+habing raises to 200 (All-in)
+SniperBetty folds
+habing refunded 198
+habing wins Pot (4)
+Rake (0)

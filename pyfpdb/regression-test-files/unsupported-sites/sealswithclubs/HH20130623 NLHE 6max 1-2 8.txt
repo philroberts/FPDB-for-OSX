@@ -1,0 +1,6740 @@
+Hand #8904807-1 - 2013-06-23 02:35:59
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (200) - waiting for big blind
+Seat 6: habing (200) - waiting for big blind
+habing has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ks Js]
+habing raises to 6
+ty4drawing folds
+habing refunded 4
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8904817-2 - 2013-06-23 02:36:13
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (198)
+Seat 6: habing (202)
+ty4drawing has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [2s Jd]
+ty4drawing folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8904824-3 - 2013-06-23 02:36:24
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (197)
+Seat 6: habing (203)
+habing has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [4d 4c]
+habing raises to 6
+ty4drawing calls 4
+** Flop ** [Ts 3c Jd]
+ty4drawing checks
+habing checks
+** Turn ** [7d]
+ty4drawing checks
+habing checks
+** River ** [8d]
+ty4drawing bets 8
+habing folds
+ty4drawing refunded 8
+habing adds 3 chips
+ty4drawing wins Pot (11.70)
+Rake (0.30)
+
+
+
+Hand #8904850-4 - 2013-06-23 02:37:01
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (202.70)
+Seat 6: habing (200)
+ty4drawing has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [5d Kc]
+ty4drawing raises to 6
+habing folds
+ty4drawing refunded 4
+habing adds 2 chips
+ty4drawing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8904868-5 - 2013-06-23 02:37:24
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (204.70)
+Seat 6: habing (200)
+habing has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [8d 6c]
+habing folds
+ty4drawing refunded 1
+habing adds 1 chips
+ty4drawing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8904878-6 - 2013-06-23 02:37:41
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (205.70)
+Seat 6: habing (200)
+ty4drawing has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Th Ac]
+ty4drawing raises to 4
+habing raises to 16.80
+ty4drawing calls 12.80
+** Flop ** [2d 8d 3d]
+habing bets 18
+ty4drawing raises to 40
+habing folds
+ty4drawing refunded 22
+habing adds 34.80 chips
+ty4drawing wins Pot (67.86)
+Rake (1.74)
+
+
+
+Hand #8904922-7 - 2013-06-23 02:38:39
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (238.76)
+Seat 6: habing (200)
+habing has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [7s 2d]
+habing folds
+ty4drawing refunded 1
+habing adds 1 chips
+ty4drawing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8904931-8 - 2013-06-23 02:38:53
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (239.76)
+Seat 6: habing (200)
+ty4drawing has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [5h 8c]
+ty4drawing raises to 4
+habing folds
+ty4drawing refunded 2
+habing adds 2 chips
+ty4drawing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8904934-9 - 2013-06-23 02:39:06
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (241.76)
+Seat 6: habing (200)
+habing has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [9h 8d]
+habing raises to 4
+ty4drawing calls 2
+** Flop ** [3h 4s Jh]
+ty4drawing checks
+habing checks
+** Turn ** [7h]
+ty4drawing bets 6
+habing calls 6
+** River ** [2s]
+ty4drawing checks
+habing checks
+** Pot Show Down ** [3h 4s Jh 7h 2s]
+ty4drawing shows [5h 7s] (a Pair of Sevens +J54)
+habing shows [9h 8d] (High Card Jack +9874)
+ty4drawing wins Pot (19.50) with a Pair
+Rake (0.50)
+habing adds 10 chips
+
+
+
+Hand #8904974-10 - 2013-06-23 02:39:59
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (251.26)
+Seat 6: habing (200)
+ty4drawing has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [8c Jh]
+ty4drawing raises to 6
+habing calls 4
+** Flop ** [2s 5s 3s]
+habing checks
+ty4drawing bets 8
+habing folds
+ty4drawing refunded 8
+habing adds 6 chips
+ty4drawing wins Pot (11.70)
+Rake (0.30)
+
+
+
+Hand #8904992-11 - 2013-06-23 02:40:28
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (256.96)
+Seat 6: habing (200)
+habing has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [5h 4c]
+habing folds
+ty4drawing refunded 1
+habing adds 1 chips
+ty4drawing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8905003-12 - 2013-06-23 02:40:42
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (257.96)
+Seat 6: habing (200)
+ty4drawing has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [9c 8h]
+ty4drawing raises to 4
+habing calls 2
+** Flop ** [3c 3d 6c]
+habing checks
+ty4drawing checks
+** Turn ** [7h]
+habing checks
+ty4drawing checks
+** River ** [2d]
+habing checks
+ty4drawing checks
+** Pot Show Down ** [3c 3d 6c 7h 2d]
+ty4drawing shows [Th Qh] (a Pair of Threes +QT7)
+habing shows [9c 8h] (a Pair of Threes +987)
+ty4drawing wins Pot (7.80) with a Pair
+Rake (0.20)
+habing adds 4 chips
+
+
+
+Hand #8905056-13 - 2013-06-23 02:42:02
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (261.76)
+Seat 6: habing (200)
+habing has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [4c 7s]
+habing folds
+ty4drawing refunded 1
+habing adds 1 chips
+ty4drawing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8905064-14 - 2013-06-23 02:42:14
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (262.76)
+Seat 6: habing (200)
+ty4drawing has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [4s 6h]
+ty4drawing folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8905069-15 - 2013-06-23 02:42:26
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (261.76)
+Seat 6: habing (201)
+habing has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [Tc 8h]
+habing raises to 4
+ty4drawing calls 2
+** Flop ** [Js 2s As]
+ty4drawing checks
+habing checks
+** Turn ** [6c]
+ty4drawing checks
+habing checks
+** River ** [Ad]
+ty4drawing checks
+habing checks
+** Pot Show Down ** [Js 2s As 6c Ad]
+ty4drawing shows [Td Qd] (a Pair of Aces +QJT)
+habing shows [Tc 8h] (a Pair of Aces +JT8)
+ty4drawing wins Pot (7.80) with a Pair
+Rake (0.20)
+habing adds 3 chips
+
+
+
+Hand #8905111-16 - 2013-06-23 02:43:43
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (265.56)
+Seat 6: habing (200)
+ty4drawing has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [8s 3h]
+ty4drawing raises to 4
+habing folds
+ty4drawing refunded 2
+habing adds 2 chips
+ty4drawing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8905130-17 - 2013-06-23 02:44:01
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (267.56)
+Seat 6: habing (200)
+habing has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [8d Qh]
+habing raises to 4
+ty4drawing calls 2
+** Flop ** [Ks 4h 9h]
+ty4drawing checks
+habing checks
+** Turn ** [2d]
+ty4drawing bets 6
+habing folds
+ty4drawing refunded 6
+habing adds 4 chips
+ty4drawing wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #8905151-18 - 2013-06-23 02:44:46
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (271.36)
+Seat 6: habing (200)
+ty4drawing has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [7d 6d]
+ty4drawing raises to 4
+habing calls 2
+** Flop ** [3s 8h 2c]
+habing checks
+ty4drawing checks
+** Turn ** [7c]
+habing bets 5.60
+ty4drawing folds
+habing refunded 5.60
+habing wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #8905165-19 - 2013-06-23 02:45:13
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (267.36)
+Seat 6: habing (203.80)
+habing has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [2s Qs]
+habing raises to 4
+ty4drawing folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8905175-20 - 2013-06-23 02:45:26
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (265.36)
+Seat 6: habing (205.80)
+ty4drawing has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [2h 5s]
+ty4drawing calls 1
+habing checks
+** Flop ** [4d Kh 4c]
+habing checks
+ty4drawing checks
+** Turn ** [3c]
+habing bets 4
+ty4drawing folds
+habing refunded 4
+habing wins Pot (3.90)
+Rake (0.10)
+
+
+
+Hand #8905193-21 - 2013-06-23 02:46:14
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (263.36)
+Seat 6: habing (207.70)
+habing has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [7h 9s]
+habing folds
+ty4drawing refunded 1
+ty4drawing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8905204-22 - 2013-06-23 02:46:29
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (264.36)
+Seat 6: habing (206.70)
+ty4drawing has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [7s Kd]
+ty4drawing folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8905216-23 - 2013-06-23 02:46:41
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (263.36)
+Seat 6: habing (207.70)
+habing has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [2s 7c]
+habing has timed out
+habing folds
+ty4drawing refunded 1
+ty4drawing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8905233-1 - 2013-06-23 02:47:17
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (264.36)
+Seat 6: habing (206.70)
+ty4drawing has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [9s Jh]
+ty4drawing raises to 6
+habing folds
+ty4drawing refunded 4
+ty4drawing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8905244-2 - 2013-06-23 02:47:32
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (266.36)
+Seat 6: habing (204.70)
+habing has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [4d 2c]
+habing folds
+ty4drawing refunded 1
+ty4drawing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8905252-3 - 2013-06-23 02:47:43
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (267.36)
+Seat 6: habing (203.70)
+ty4drawing has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [3h Qh]
+ty4drawing raises to 6
+habing folds
+ty4drawing refunded 4
+ty4drawing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8905262-4 - 2013-06-23 02:48:00
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (269.36)
+Seat 6: habing (201.70)
+habing has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [5d 6c]
+habing folds
+ty4drawing refunded 1
+ty4drawing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8905271-5 - 2013-06-23 02:48:14
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (270.36)
+Seat 6: habing (200.70)
+ty4drawing has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [2c 8c]
+ty4drawing raises to 6
+habing folds
+ty4drawing refunded 4
+habing adds 1.30 chips
+ty4drawing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8905287-6 - 2013-06-23 02:48:33
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (272.36)
+Seat 6: habing (200)
+habing has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [9s 5d]
+habing raises to 4
+ty4drawing calls 2
+** Flop ** [Qh Ad Ac]
+ty4drawing checks
+habing checks
+** Turn ** [Td]
+ty4drawing bets 6
+habing folds
+ty4drawing refunded 6
+habing adds 4 chips
+ty4drawing wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #8905319-7 - 2013-06-23 02:49:29
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (276.16)
+Seat 6: habing (200)
+ty4drawing has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Th 5s]
+ty4drawing raises to 4
+habing folds
+ty4drawing refunded 2
+habing adds 2 chips
+ty4drawing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8905328-8 - 2013-06-23 02:49:45
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (278.16)
+Seat 6: habing (200)
+habing has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [Qs 4c]
+habing raises to 4
+ty4drawing folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8905338-9 - 2013-06-23 02:50:04
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (276.16)
+Seat 6: habing (202)
+ty4drawing has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [5s Jc]
+ty4drawing folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8905348-10 - 2013-06-23 02:50:16
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (275.16)
+Seat 6: habing (203)
+habing has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [Jd 3c]
+habing folds
+ty4drawing refunded 1
+ty4drawing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8905359-11 - 2013-06-23 02:50:31
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (276.16)
+Seat 6: habing (202)
+ty4drawing has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ac 7h]
+ty4drawing raises to 4
+habing calls 2
+** Flop ** [3s 8h 5c]
+habing checks
+ty4drawing bets 6
+habing calls 6
+** Turn ** [6h]
+habing checks
+ty4drawing bets 14
+habing has timed out
+habing folds
+ty4drawing refunded 14
+habing adds 8 chips
+ty4drawing wins Pot (19.50)
+Rake (0.50)
+
+
+
+Hand #8905402-12 - 2013-06-23 02:51:47
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (285.66)
+Seat 6: habing (200)
+habing has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ks Qh]
+habing raises to 6
+ty4drawing folds
+habing refunded 4
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8905413-13 - 2013-06-23 02:52:00
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (283.66)
+Seat 6: habing (202)
+ty4drawing has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [7s 2s]
+ty4drawing raises to 6
+habing folds
+ty4drawing refunded 4
+ty4drawing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8905419-14 - 2013-06-23 02:52:13
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (285.66)
+Seat 6: habing (200)
+habing has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [9c 8h]
+habing raises to 4
+ty4drawing calls 2
+** Flop ** [Qh 8d Tc]
+ty4drawing checks
+habing bets 5.60
+ty4drawing calls 5.60
+** Turn ** [6s]
+ty4drawing checks
+habing checks
+** River ** [Ah]
+ty4drawing checks
+habing checks
+** Pot Show Down ** [Qh 8d Tc 6s Ah]
+ty4drawing shows [Ks 9d] (High Card Ace +KQT9)
+habing shows [9c 8h] (a Pair of Eights +AQT)
+habing wins Pot (18.72) with a Pair
+Rake (0.48)
+
+
+
+Hand #8905451-15 - 2013-06-23 02:53:24
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (276.06)
+Seat 6: habing (209.12)
+ty4drawing has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [2c Kc]
+ty4drawing raises to 4
+habing calls 2
+** Flop ** [9c 6c 6d]
+habing checks
+ty4drawing checks
+** Turn ** [Qd]
+habing bets 5.20
+ty4drawing calls 5.20
+** River ** [5d]
+habing checks
+ty4drawing bets 12
+habing folds
+ty4drawing refunded 12
+habing adds 0.08 chips
+ty4drawing wins Pot (17.94)
+Rake (0.46)
+
+
+
+Hand #8905477-16 - 2013-06-23 02:54:15
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (284.80)
+Seat 6: habing (200)
+habing has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [Jd 6c]
+habing raises to 4
+ty4drawing calls 2
+** Flop ** [7s 2h 2d]
+ty4drawing checks
+habing checks
+** Turn ** [9h]
+ty4drawing bets 6
+habing folds
+ty4drawing refunded 6
+habing adds 4 chips
+ty4drawing wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #8905500-17 - 2013-06-23 02:54:58
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (288.60)
+Seat 6: habing (200)
+ty4drawing has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [8d 5d]
+ty4drawing raises to 4
+habing calls 2
+** Flop ** [4d 8s Qs]
+habing checks
+ty4drawing bets 6
+habing calls 6
+** Turn ** [3s]
+habing checks
+ty4drawing bets 12
+habing folds
+ty4drawing refunded 12
+habing adds 10 chips
+ty4drawing wins Pot (19.50)
+Rake (0.50)
+
+
+
+Hand #8905527-18 - 2013-06-23 02:55:51
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (298.10)
+Seat 6: habing (200)
+habing has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [9s 6c]
+habing folds
+ty4drawing refunded 1
+habing adds 1 chips
+ty4drawing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8905539-19 - 2013-06-23 02:56:03
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (299.10)
+Seat 6: habing (200)
+ty4drawing has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [4h 6h]
+ty4drawing raises to 6
+habing folds
+ty4drawing refunded 4
+habing adds 2 chips
+ty4drawing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8905542-20 - 2013-06-23 02:56:17
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (301.10)
+Seat 6: habing (200)
+habing has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [Th 4c]
+habing raises to 4
+ty4drawing calls 2
+** Flop ** [2d 3s 9d]
+ty4drawing checks
+habing bets 4.40
+ty4drawing raises to 18.80
+habing folds
+ty4drawing refunded 14.40
+habing adds 8.40 chips
+ty4drawing wins Pot (16.38)
+Rake (0.42)
+
+
+
+Hand #8905573-21 - 2013-06-23 02:57:14
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (309.08)
+Seat 6: habing (200)
+ty4drawing has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ad 9h]
+ty4drawing raises to 4
+habing raises to 16.80
+ty4drawing folds
+habing refunded 12.80
+habing wins Pot (8)
+Rake (0)
+
+
+
+Hand #8905593-22 - 2013-06-23 02:57:53
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (305.08)
+Seat 6: habing (204)
+habing has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [Kc 4c]
+habing raises to 6
+ty4drawing calls 4
+** Flop ** [2d Jc Ah]
+ty4drawing checks
+habing bets 6.80
+ty4drawing calls 6.80
+** Turn ** [6d]
+ty4drawing checks
+habing checks
+** River ** [Ad]
+ty4drawing bets 16
+habing folds
+ty4drawing refunded 16
+habing adds 8.80 chips
+ty4drawing wins Pot (24.96)
+Rake (0.64)
+
+
+
+Hand #8905637-23 - 2013-06-23 02:59:18
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (317.24)
+Seat 6: habing (200)
+ty4drawing has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [3s 3d]
+ty4drawing folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8905644-24 - 2013-06-23 02:59:30
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (316.24)
+Seat 6: habing (201)
+habing has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [Qc 8h]
+habing raises to 4
+ty4drawing raises to 18
+habing folds
+ty4drawing refunded 14
+habing adds 3 chips
+ty4drawing wins Pot (8)
+Rake (0)
+
+
+
+Hand #8905656-25 - 2013-06-23 02:59:48
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (320.24)
+Seat 6: habing (200)
+ty4drawing has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Js Ac]
+ty4drawing folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8905666-26 - 2013-06-23 03:00:02
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (319.24)
+Seat 6: habing (201)
+habing has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [8h 2s]
+habing folds
+ty4drawing refunded 1
+ty4drawing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8905675-27 - 2013-06-23 03:00:19
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (320.24)
+Seat 6: habing (200)
+ty4drawing has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [8h 9h]
+ty4drawing folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8905682-28 - 2013-06-23 03:00:35
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (319.24)
+Seat 6: habing (201)
+habing has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [5d Ks]
+habing raises to 4
+ty4drawing folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8905710-29 - 2013-06-23 03:00:51
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (317.24)
+Seat 6: habing (203)
+ty4drawing has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [8c 9h]
+ty4drawing raises to 6
+habing folds
+ty4drawing refunded 4
+ty4drawing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8905726-30 - 2013-06-23 03:01:09
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (319.24)
+Seat 6: habing (201)
+habing has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [Js Jd]
+habing raises to 4
+ty4drawing calls 2
+** Flop ** [Tc 6d 7s]
+ty4drawing checks
+habing bets 6.80
+ty4drawing calls 6.80
+** Turn ** [8s]
+ty4drawing checks
+habing checks
+** River ** [7h]
+ty4drawing bets 16
+habing folds
+ty4drawing refunded 16
+habing adds 9.80 chips
+ty4drawing wins Pot (21.06)
+Rake (0.54)
+
+
+
+Hand #8905787-31 - 2013-06-23 03:02:44
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (329.50)
+Seat 6: habing (200)
+ty4drawing has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Th 9c]
+ty4drawing raises to 4
+habing calls 2
+** Flop ** [2d Js Ts]
+habing bets 4.40
+ty4drawing calls 4.40
+** Turn ** [Kc]
+habing checks
+ty4drawing bets 12
+habing folds
+ty4drawing refunded 12
+habing adds 8.40 chips
+ty4drawing wins Pot (16.38)
+Rake (0.42)
+
+
+
+Hand #8905832-32 - 2013-06-23 03:03:36
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (337.48)
+Seat 6: habing (200)
+habing has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [8c Qd]
+habing raises to 6
+ty4drawing folds
+habing refunded 4
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8905842-33 - 2013-06-23 03:03:51
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (335.48)
+Seat 6: habing (202)
+ty4drawing has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [8s 7s]
+ty4drawing raises to 4
+habing calls 2
+** Flop ** [Ac 4c 5d]
+habing checks
+ty4drawing bets 6
+habing raises to 18
+ty4drawing folds
+habing refunded 12
+habing wins Pot (19.50)
+Rake (0.50)
+
+
+
+Hand #8905872-34 - 2013-06-23 03:04:26
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (325.48)
+Seat 6: habing (211.50)
+habing has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [7c 5d]
+habing folds
+ty4drawing refunded 1
+ty4drawing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8905881-35 - 2013-06-23 03:04:40
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (326.48)
+Seat 6: habing (210.50)
+ty4drawing has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [6h 7h]
+ty4drawing raises to 4
+habing calls 2
+** Flop ** [Ac 6d 8d]
+habing checks
+ty4drawing bets 6
+habing calls 6
+** Turn ** [3h]
+habing checks
+ty4drawing bets 12
+habing folds
+ty4drawing refunded 12
+ty4drawing wins Pot (19.50)
+Rake (0.50)
+
+
+
+Hand #8905923-36 - 2013-06-23 03:05:38
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (335.98)
+Seat 6: habing (200.50)
+habing has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ts 6c]
+habing raises to 4
+ty4drawing calls 2
+** Flop ** [4c Qc Jd]
+ty4drawing checks
+habing checks
+** Turn ** [Ah]
+ty4drawing bets 6
+habing folds
+ty4drawing refunded 6
+habing adds 3.50 chips
+ty4drawing wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #8905959-37 - 2013-06-23 03:06:22
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (339.78)
+Seat 6: habing (200)
+ty4drawing has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Jc 9c]
+ty4drawing folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8905974-38 - 2013-06-23 03:06:44
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (338.78)
+Seat 6: habing (201)
+habing has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [Qd 4d]
+habing raises to 6
+ty4drawing folds
+habing refunded 4
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8905989-39 - 2013-06-23 03:07:03
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (336.78)
+Seat 6: habing (203)
+ty4drawing has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Th 5s]
+ty4drawing raises to 4
+habing folds
+ty4drawing refunded 2
+ty4drawing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8905999-40 - 2013-06-23 03:07:20
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (338.78)
+Seat 6: habing (201)
+habing has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [6d Ts]
+habing raises to 4
+ty4drawing calls 2
+** Flop ** [2s Ad Td]
+ty4drawing checks
+habing bets 5.60
+ty4drawing folds
+habing refunded 5.60
+habing wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #8906027-41 - 2013-06-23 03:07:56
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (334.78)
+Seat 6: habing (204.80)
+ty4drawing has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [9c 9d]
+ty4drawing raises to 6
+habing raises to 22
+ty4drawing calls 16
+** Flop ** [9s Th Qd]
+habing bets 24.40
+ty4drawing calls 24.40
+** Turn ** [2c]
+habing bets 49.60
+ty4drawing folds
+habing refunded 49.60
+habing wins Pot (90.48)
+Rake (2.32)
+
+
+
+Hand #8906061-42 - 2013-06-23 03:08:49
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (288.38)
+Seat 6: habing (248.88)
+habing has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [Jc 6d]
+habing raises to 4
+ty4drawing folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8906069-43 - 2013-06-23 03:09:06
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (286.38)
+Seat 6: habing (250.88)
+ty4drawing has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Th Td]
+ty4drawing raises to 6
+habing raises to 20.80
+ty4drawing calls 14.80
+** Flop ** [4h 5h 3h]
+habing bets 23.60
+ty4drawing raises to 53.20
+habing raises to 230.08 (All-in)
+ty4drawing folds
+habing refunded 176.88
+habing wins Pot (144.30)
+Rake (3.70)
+
+
+
+Hand #8906104-44 - 2013-06-23 03:10:01
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (212.38)
+Seat 6: habing (321.18)
+habing has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [Tc 2s]
+habing raises to 4
+ty4drawing calls 2
+** Flop ** [Ah 2h Kh]
+ty4drawing checks
+habing checks
+** Turn ** [Th]
+ty4drawing checks
+habing checks
+** River ** [5c]
+ty4drawing checks
+habing checks
+** Pot Show Down ** [Ah 2h Kh Th 5c]
+ty4drawing shows [7h Qc] (a Flush, Ace high +KT72)
+habing shows [Tc 2s] (Two Pair, Tens and Deuces +A)
+ty4drawing wins Pot (7.80) with a Flush
+Rake (0.20)
+
+
+
+Hand #8906125-45 - 2013-06-23 03:10:37
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (216.18)
+Seat 6: habing (317.18)
+ty4drawing has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [9d Js]
+ty4drawing folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8906138-46 - 2013-06-23 03:10:50
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (215.18)
+Seat 6: habing (318.18)
+habing has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [Th 8h]
+habing raises to 4
+ty4drawing calls 2
+** Flop ** [9d Qc Qd]
+ty4drawing checks
+habing bets 5.60
+ty4drawing calls 5.60
+** Turn ** [8c]
+ty4drawing checks
+habing checks
+** River ** [8s]
+ty4drawing checks
+habing bets 12.80
+ty4drawing calls 12.80
+** Pot Show Down ** [9d Qc Qd 8c 8s]
+ty4drawing shows [Jd Ah] (Two Pair, Queens and Eights +A)
+habing shows [Th 8h] (a Full House, Eights full of Queens)
+habing wins Pot (43.68) with a Full House
+Rake (1.12)
+
+
+
+Hand #8906181-47 - 2013-06-23 03:11:57
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (192.78)
+Seat 6: habing (339.46)
+ty4drawing has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [7h 6c]
+ty4drawing folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8906187-48 - 2013-06-23 03:12:10
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (191.78)
+Seat 6: habing (340.46)
+habing has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [3s 9c]
+habing folds
+ty4drawing refunded 1
+ty4drawing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8906201-49 - 2013-06-23 03:12:27
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (192.78)
+Seat 6: habing (339.46)
+ty4drawing has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ks 7d]
+ty4drawing raises to 4
+habing calls 2
+** Flop ** [Jh 7s 9c]
+habing checks
+ty4drawing bets 6
+habing calls 6
+** Turn ** [Qd]
+habing checks
+ty4drawing checks
+** River ** [3s]
+habing checks
+ty4drawing checks
+** Pot Show Down ** [Jh 7s 9c Qd 3s]
+ty4drawing shows [8s Ac] (High Card Ace +QJ98)
+habing shows [Ks 7d] (a Pair of Sevens +KQJ)
+habing wins Pot (19.50) with a Pair
+Rake (0.50)
+
+
+
+Hand #8906237-50 - 2013-06-23 03:13:22
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (182.78)
+Seat 6: habing (348.96)
+habing has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [8s 3d]
+habing folds
+ty4drawing refunded 1
+ty4drawing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8906245-51 - 2013-06-23 03:13:34
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (183.78)
+Seat 6: habing (347.96)
+ty4drawing has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [3c 9c]
+ty4drawing raises to 6
+habing folds
+ty4drawing refunded 4
+ty4drawing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8906259-52 - 2013-06-23 03:13:55
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (185.78)
+Seat 6: habing (345.96)
+habing has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [Qc 9h]
+habing raises to 6
+ty4drawing calls 4
+** Flop ** [3c 9s 8h]
+ty4drawing checks
+habing bets 9.20
+ty4drawing folds
+habing refunded 9.20
+habing wins Pot (11.70)
+Rake (0.30)
+
+
+
+Hand #8906272-53 - 2013-06-23 03:14:27
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (179.78)
+Seat 6: habing (351.66)
+ty4drawing has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [3d 6h]
+ty4drawing raises to 6
+habing folds
+ty4drawing refunded 4
+ty4drawing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8906285-54 - 2013-06-23 03:14:41
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (181.78)
+Seat 6: habing (349.66)
+habing has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [Kd Jd]
+habing raises to 6
+ty4drawing folds
+habing refunded 4
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8906297-55 - 2013-06-23 03:14:56
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (179.78)
+Seat 6: habing (351.66)
+ty4drawing has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [5s 9d]
+ty4drawing raises to 4
+habing folds
+ty4drawing refunded 2
+ty4drawing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8906304-56 - 2013-06-23 03:15:16
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (181.78)
+Seat 6: habing (349.66)
+habing has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [As Tc]
+habing raises to 4
+ty4drawing folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8906316-57 - 2013-06-23 03:15:30
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (179.78)
+Seat 6: habing (351.66)
+ty4drawing has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Td As]
+ty4drawing raises to 6
+habing raises to 20.80
+ty4drawing calls 14.80
+** Flop ** [8d Jh 2c]
+habing bets 20
+ty4drawing calls 20
+** Turn ** [Ad]
+habing bets 45.20
+ty4drawing calls 45.20
+** River ** [6s]
+habing bets 265.66 (All-in)
+ty4drawing calls 93.78 (All-in)
+habing refunded 171.88
+** Pot Show Down ** [8d Jh 2c Ad 6s]
+ty4drawing shows [Qc Ah] (a Pair of Aces +QJ8)
+habing shows [Td As] (a Pair of Aces +JT8)
+ty4drawing wins Pot (355.56) with a Pair
+Rake (4)
+habing adds 28.12 chips
+
+
+
+Hand #8906344-58 - 2013-06-23 03:16:18
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (355.56)
+Seat 6: habing (200)
+habing has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [8s 9c]
+habing raises to 6
+ty4drawing folds
+habing refunded 4
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8906353-59 - 2013-06-23 03:16:41
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (353.56)
+Seat 6: habing (202)
+ty4drawing has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Qd Ac]
+ty4drawing folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8906362-60 - 2013-06-23 03:16:53
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (352.56)
+Seat 6: habing (203)
+habing has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [Tc 4d]
+habing folds
+ty4drawing refunded 1
+ty4drawing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8906370-61 - 2013-06-23 03:17:06
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (353.56)
+Seat 6: habing (202)
+ty4drawing has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [3s Th]
+ty4drawing folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8906381-62 - 2013-06-23 03:17:18
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (352.56)
+Seat 6: habing (203)
+habing has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [Td Kh]
+habing raises to 6
+ty4drawing folds
+habing refunded 4
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8906396-63 - 2013-06-23 03:17:40
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (350.56)
+Seat 6: habing (205)
+ty4drawing has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [5h Ac]
+ty4drawing raises to 4
+habing calls 2
+** Flop ** [Qs 3d Kc]
+habing checks
+ty4drawing bets 6
+habing folds
+ty4drawing refunded 6
+ty4drawing wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #8906409-64 - 2013-06-23 03:18:05
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (354.36)
+Seat 6: habing (201)
+habing has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [6s 8d]
+habing folds
+ty4drawing refunded 1
+ty4drawing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8906421-65 - 2013-06-23 03:18:31
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (355.36)
+Seat 6: habing (200)
+ty4drawing has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [8d Jh]
+ty4drawing raises to 4
+habing folds
+ty4drawing refunded 2
+habing adds 2 chips
+ty4drawing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8906432-66 - 2013-06-23 03:18:44
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (357.36)
+Seat 6: habing (200)
+habing has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [3s Qs]
+habing raises to 4
+ty4drawing folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8906439-67 - 2013-06-23 03:19:00
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (355.36)
+Seat 6: habing (202)
+ty4drawing has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [7d Td]
+ty4drawing folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8906449-68 - 2013-06-23 03:19:13
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (354.36)
+Seat 6: habing (203)
+habing has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [Tc Jc]
+habing raises to 6
+ty4drawing folds
+habing refunded 4
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8906454-69 - 2013-06-23 03:19:27
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (352.36)
+Seat 6: habing (205)
+ty4drawing has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [3c 7h]
+ty4drawing folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8906464-70 - 2013-06-23 03:19:38
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (351.36)
+Seat 6: habing (206)
+habing has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [9s 9d]
+habing raises to 4
+ty4drawing folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8906473-71 - 2013-06-23 03:19:53
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (349.36)
+Seat 6: habing (208)
+ty4drawing has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [8s 5s]
+ty4drawing folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8906479-72 - 2013-06-23 03:20:03
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (348.36)
+Seat 6: habing (209)
+habing has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [Qh Qc]
+habing raises to 6
+ty4drawing folds
+habing refunded 4
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8906491-73 - 2013-06-23 03:20:17
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (346.36)
+Seat 6: habing (211)
+ty4drawing has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [5s As]
+ty4drawing raises to 4
+habing calls 2
+** Flop ** [4d Qs Tc]
+habing checks
+ty4drawing checks
+** Turn ** [Jh]
+habing checks
+ty4drawing checks
+** River ** [Kc]
+habing checks
+ty4drawing checks
+** Pot Show Down ** [4d Qs Tc Jh Kc]
+ty4drawing shows [6d 8c] (High Card King +QJT8)
+habing shows [5s As] (a Straight, Ten to Ace)
+habing wins Pot (7.80) with a Straight
+Rake (0.20)
+
+
+
+Hand #8906511-74 - 2013-06-23 03:20:56
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (342.36)
+Seat 6: habing (214.80)
+habing has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [2d Qh]
+habing raises to 6
+ty4drawing folds
+habing refunded 4
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8906522-75 - 2013-06-23 03:21:12
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (340.36)
+Seat 6: habing (216.80)
+ty4drawing has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [7c Jc]
+ty4drawing raises to 4
+habing calls 2
+** Flop ** [3c 4c 8d]
+habing bets 5.60
+ty4drawing calls 5.60
+** Turn ** [Qd]
+habing checks
+ty4drawing bets 12
+habing raises to 36
+ty4drawing calls 24
+** River ** [3d]
+habing checks
+ty4drawing checks
+** Pot Show Down ** [3c 4c 8d Qd 3d]
+ty4drawing shows [Qs Td] (Two Pair, Queens and Threes +T)
+habing shows [7c Jc] (a Pair of Threes +QJ8)
+ty4drawing wins Pot (88.92) with Two Pair
+Rake (2.28)
+habing adds 28.80 chips
+
+
+
+Hand #8906544-76 - 2013-06-23 03:21:54
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (383.68)
+Seat 6: habing (200)
+habing has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [5d Kd]
+habing raises to 6
+ty4drawing calls 4
+** Flop ** [3s Qs Ah]
+ty4drawing checks
+habing checks
+** Turn ** [5s]
+ty4drawing bets 8
+habing folds
+ty4drawing refunded 8
+habing adds 6 chips
+ty4drawing wins Pot (11.70)
+Rake (0.30)
+
+
+
+Hand #8906554-77 - 2013-06-23 03:22:16
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (389.38)
+Seat 6: habing (200)
+ty4drawing has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Jd 8c]
+ty4drawing raises to 4
+habing calls 2
+** Flop ** [7c 7s 2c]
+habing checks
+ty4drawing bets 6
+habing folds
+ty4drawing refunded 6
+habing adds 4 chips
+ty4drawing wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #8906570-78 - 2013-06-23 03:22:43
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (393.18)
+Seat 6: habing (200)
+habing has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [7s 7d]
+habing raises to 6
+ty4drawing calls 4
+** Flop ** [Ks Qd 9d]
+ty4drawing checks
+habing checks
+** Turn ** [7c]
+ty4drawing checks
+habing bets 8
+ty4drawing folds
+habing refunded 8
+habing wins Pot (11.70)
+Rake (0.30)
+
+
+
+Hand #8906583-79 - 2013-06-23 03:23:14
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (387.18)
+Seat 6: habing (205.70)
+ty4drawing has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Tc 2d]
+ty4drawing folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8906589-80 - 2013-06-23 03:23:27
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (386.18)
+Seat 6: habing (206.70)
+habing has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [5c 3c]
+habing raises to 4
+ty4drawing raises to 16
+habing folds
+ty4drawing refunded 12
+ty4drawing wins Pot (8)
+Rake (0)
+
+
+
+Hand #8906601-81 - 2013-06-23 03:23:46
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (390.18)
+Seat 6: habing (202.70)
+ty4drawing has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Qs 6h]
+ty4drawing folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8906610-82 - 2013-06-23 03:23:58
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (389.18)
+Seat 6: habing (203.70)
+habing has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [4d Qs]
+habing raises to 4
+ty4drawing calls 2
+** Flop ** [2d Qd Kh]
+ty4drawing checks
+habing bets 5.60
+ty4drawing folds
+habing refunded 5.60
+habing wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #8906625-83 - 2013-06-23 03:24:25
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (385.18)
+Seat 6: habing (207.50)
+ty4drawing has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [3d Ad]
+ty4drawing raises to 6
+habing calls 4
+** Flop ** [4h Ts 7s]
+habing checks
+ty4drawing bets 8
+habing folds
+ty4drawing refunded 8
+ty4drawing wins Pot (11.70)
+Rake (0.30)
+
+
+
+Hand #8906635-84 - 2013-06-23 03:24:49
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (390.88)
+Seat 6: habing (201.50)
+habing has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [7s 5h]
+habing folds
+ty4drawing refunded 1
+ty4drawing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8906643-85 - 2013-06-23 03:25:06
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (391.88)
+Seat 6: habing (200.50)
+ty4drawing has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [4s 7d]
+ty4drawing raises to 6
+habing folds
+ty4drawing refunded 4
+habing adds 1.50 chips
+ty4drawing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8906645-86 - 2013-06-23 03:25:21
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (393.88)
+Seat 6: habing (200)
+habing has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [7h Js]
+habing raises to 4
+ty4drawing calls 2
+** Flop ** [Qd 5c 5h]
+ty4drawing checks
+habing checks
+** Turn ** [4s]
+ty4drawing checks
+habing checks
+** River ** [2d]
+ty4drawing checks
+habing checks
+** Pot Show Down ** [Qd 5c 5h 4s 2d]
+ty4drawing shows [Jc 9c] (a Pair of Fives +QJ9)
+habing shows [7h Js] (a Pair of Fives +QJ7)
+ty4drawing wins Pot (7.80) with a Pair
+Rake (0.20)
+habing adds 4 chips
+
+
+
+Hand #8906672-87 - 2013-06-23 03:25:58
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (397.68)
+Seat 6: habing (200)
+ty4drawing has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [8h Jh]
+ty4drawing folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8906678-88 - 2013-06-23 03:26:15
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (396.68)
+Seat 6: habing (201)
+habing has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [As 2d]
+habing raises to 6
+ty4drawing calls 4
+** Flop ** [9h 9s Tc]
+ty4drawing checks
+habing checks
+** Turn ** [Td]
+ty4drawing bets 8
+habing folds
+ty4drawing refunded 8
+habing adds 5 chips
+ty4drawing wins Pot (11.70)
+Rake (0.30)
+
+
+
+Hand #8906706-89 - 2013-06-23 03:27:18
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (402.38)
+Seat 6: habing (200)
+ty4drawing has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ad 2c]
+ty4drawing raises to 4
+habing calls 2
+** Flop ** [2d 6h Kc]
+habing checks
+ty4drawing bets 6
+habing calls 6
+** Turn ** [Jd]
+habing checks
+ty4drawing checks
+** River ** [Ks]
+habing checks
+ty4drawing checks
+** Pot Show Down ** [2d 6h Kc Jd Ks]
+ty4drawing shows [Ac 7h] (a Pair of Kings +AJ7)
+habing shows [Ad 2c] (Two Pair, Kings and Deuces +A)
+habing wins Pot (19.50) with Two Pair
+Rake (0.50)
+
+
+
+Hand #8906731-90 - 2013-06-23 03:28:08
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (392.38)
+Seat 6: habing (209.50)
+habing has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ts 5s]
+habing raises to 6
+ty4drawing calls 4
+** Flop ** [Ad Kd 7d]
+ty4drawing checks
+habing checks
+** Turn ** [8s]
+ty4drawing bets 8
+habing folds
+ty4drawing refunded 8
+ty4drawing wins Pot (11.70)
+Rake (0.30)
+
+
+
+Hand #8906744-91 - 2013-06-23 03:28:38
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (398.08)
+Seat 6: habing (203.50)
+ty4drawing has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Qs 5d]
+ty4drawing raises to 4
+habing folds
+ty4drawing refunded 2
+ty4drawing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8906754-92 - 2013-06-23 03:28:52
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (400.08)
+Seat 6: habing (201.50)
+habing has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [5h 6d]
+habing folds
+ty4drawing refunded 1
+ty4drawing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8906761-93 - 2013-06-23 03:29:04
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (401.08)
+Seat 6: habing (200.50)
+ty4drawing has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [5d 3h]
+ty4drawing raises to 4
+habing folds
+ty4drawing refunded 2
+habing adds 1.50 chips
+ty4drawing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8906766-94 - 2013-06-23 03:29:23
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (403.08)
+Seat 6: habing (200)
+habing has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [Th Qh]
+habing raises to 6
+ty4drawing folds
+habing refunded 4
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8906776-95 - 2013-06-23 03:29:36
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (401.08)
+Seat 6: habing (202)
+ty4drawing has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [8s 6s]
+ty4drawing raises to 6
+habing folds
+ty4drawing refunded 4
+ty4drawing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8906785-96 - 2013-06-23 03:29:52
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (403.08)
+Seat 6: habing (200)
+habing has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [Jh 8d]
+habing raises to 4
+ty4drawing calls 2
+** Flop ** [9s 4d 5h]
+ty4drawing checks
+habing bets 5.60
+ty4drawing raises to 19.20
+habing folds
+ty4drawing refunded 13.60
+habing adds 9.60 chips
+ty4drawing wins Pot (18.72)
+Rake (0.48)
+
+
+
+Hand #8906798-97 - 2013-06-23 03:30:20
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (412.20)
+Seat 6: habing (200)
+ty4drawing has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ac 9d]
+ty4drawing raises to 6
+habing calls 4
+** Flop ** [9s Qs Kh]
+habing checks
+ty4drawing bets 8
+habing folds
+ty4drawing refunded 8
+habing adds 6 chips
+ty4drawing wins Pot (11.70)
+Rake (0.30)
+
+
+
+Hand #8906811-98 - 2013-06-23 03:30:54
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (417.90)
+Seat 6: habing (200)
+habing has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [9s 3c]
+habing folds
+ty4drawing refunded 1
+habing adds 1 chips
+ty4drawing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8906829-99 - 2013-06-23 03:31:20
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (418.90)
+Seat 6: habing (200)
+ty4drawing has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [9d Qh]
+ty4drawing folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8906838-100 - 2013-06-23 03:31:32
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (417.90)
+Seat 6: habing (201)
+habing has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [Js 4s]
+habing raises to 4
+ty4drawing calls 2
+** Flop ** [3s Ad Ks]
+ty4drawing checks
+habing bets 4.40
+ty4drawing folds
+habing refunded 4.40
+habing wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #8906858-101 - 2013-06-23 03:32:09
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (413.90)
+Seat 6: habing (204.80)
+ty4drawing has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Qs 5s]
+ty4drawing raises to 4
+habing folds
+ty4drawing refunded 2
+ty4drawing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8906870-102 - 2013-06-23 03:32:26
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (415.90)
+Seat 6: habing (202.80)
+habing has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [3d 8h]
+habing raises to 4
+ty4drawing calls 2
+** Flop ** [9h 6s Ad]
+ty4drawing checks
+habing bets 4
+ty4drawing folds
+habing refunded 4
+habing wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #8906888-103 - 2013-06-23 03:32:53
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (411.90)
+Seat 6: habing (206.60)
+ty4drawing has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [6d Jh]
+ty4drawing folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8906898-104 - 2013-06-23 03:33:07
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (410.90)
+Seat 6: habing (207.60)
+habing has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [Qs 6h]
+habing raises to 6
+ty4drawing folds
+habing refunded 4
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8906905-105 - 2013-06-23 03:33:22
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (408.90)
+Seat 6: habing (209.60)
+ty4drawing has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [6s Qs]
+ty4drawing raises to 4
+habing calls 2
+** Flop ** [Tc Ks Qc]
+habing checks
+ty4drawing bets 6
+habing folds
+ty4drawing refunded 6
+ty4drawing wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #8906926-106 - 2013-06-23 03:33:53
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (412.70)
+Seat 6: habing (205.60)
+habing has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [Kh Jc]
+habing raises to 4
+ty4drawing calls 2
+** Flop ** [Qd 6s 2c]
+ty4drawing checks
+habing bets 5.60
+ty4drawing folds
+habing refunded 5.60
+habing wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #8906940-107 - 2013-06-23 03:34:17
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (408.70)
+Seat 6: habing (209.40)
+ty4drawing has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [6d Ad]
+ty4drawing folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8906949-108 - 2013-06-23 03:34:30
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (407.70)
+Seat 6: habing (210.40)
+habing has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [Th Kd]
+habing raises to 4
+ty4drawing calls 2
+** Flop ** [Qs Js 8s]
+ty4drawing checks
+habing bets 4
+ty4drawing folds
+habing refunded 4
+habing wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #8906967-109 - 2013-06-23 03:34:57
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (403.70)
+Seat 6: habing (214.20)
+ty4drawing has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [6h 2c]
+ty4drawing raises to 6
+habing folds
+ty4drawing refunded 4
+ty4drawing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8906978-110 - 2013-06-23 03:35:12
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (405.70)
+Seat 6: habing (212.20)
+habing has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [7h Tc]
+habing raises to 4
+ty4drawing calls 2
+** Flop ** [7c 6d 4s]
+ty4drawing checks
+habing bets 5.60
+ty4drawing calls 5.60
+** Turn ** [6h]
+ty4drawing checks
+habing bets 12.80
+ty4drawing folds
+habing refunded 12.80
+habing wins Pot (18.72)
+Rake (0.48)
+
+
+
+Hand #8907017-111 - 2013-06-23 03:36:12
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (396.10)
+Seat 6: habing (221.32)
+ty4drawing has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [2h 5h]
+ty4drawing folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8907025-112 - 2013-06-23 03:36:25
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (395.10)
+Seat 6: habing (222.32)
+habing has the dealer button
+habing posts small blind 1
+ty4drawing posts big blind 2
+** Hole Cards **
+Dealt to habing [7s Jh]
+habing raises to 4
+ty4drawing folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8907035-113 - 2013-06-23 03:36:38
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: ty4drawing (393.10)
+Seat 6: habing (224.32)
+ty4drawing has the dealer button
+ty4drawing posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [6h Th]
+ty4drawing raises to 4
+habing calls 2
+** Flop ** [9h 3d Ac]
+habing checks
+ty4drawing checks
+** Turn ** [2c]
+habing checks
+ty4drawing checks
+** River ** [Ad]
+habing checks
+ty4drawing checks
+** Pot Show Down ** [9h 3d Ac 2c Ad]
+ty4drawing shows [Kc Td] (a Pair of Aces +KT9)
+habing shows [6h Th] (a Pair of Aces +T96)
+ty4drawing wins Pot (7.80) with a Pair
+Rake (0.20)
+
+
+
+Hand #8908423-1 - 2013-06-23 04:16:43
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: KingOfSports (100.65) - waiting for big blind
+Seat 6: habing (220.32)
+KingOfSports has the dealer button
+KingOfSports posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ah 6d]
+KingOfSports calls 1
+habing checks
+** Flop ** [4h 2s Ad]
+habing bets 3.20
+KingOfSports folds
+habing refunded 3.20
+habing wins Pot (3.90)
+Rake (0.10)
+
+
+
+Hand #8908454-2 - 2013-06-23 04:17:38
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: KingOfSports (98.65)
+Seat 6: habing (222.22)
+habing has the dealer button
+habing posts small blind 1
+KingOfSports posts big blind 2
+** Hole Cards **
+Dealt to habing [Ac Ks]
+habing raises to 4
+KingOfSports calls 2
+** Flop ** [3s Ts 9d]
+KingOfSports checks
+habing checks
+** Turn ** [Tc]
+KingOfSports bets 5
+habing calls 5
+** River ** [7d]
+KingOfSports bets 8
+habing folds
+KingOfSports refunded 8
+KingOfSports wins Pot (17.55)
+Rake (0.45)
+
+
+
+Hand #8908489-3 - 2013-06-23 04:18:49
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: KingOfSports (107.20)
+Seat 6: habing (213.22)
+KingOfSports has the dealer button
+KingOfSports posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [7c 3d]
+KingOfSports calls 1
+habing checks
+** Flop ** [Ah 2h Js]
+habing bets 2
+KingOfSports folds
+habing refunded 2
+habing wins Pot (3.90)
+Rake (0.10)
+
+
+
+Hand #8908506-4 - 2013-06-23 04:19:18
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: KingOfSports (105.20)
+Seat 6: habing (215.12)
+habing has the dealer button
+habing posts small blind 1
+KingOfSports posts big blind 2
+** Hole Cards **
+Dealt to habing [5d 3s]
+habing folds
+KingOfSports refunded 1
+KingOfSports wins Pot (2)
+Rake (0)
+
+
+
+Hand #8908513-5 - 2013-06-23 04:19:30
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: KingOfSports (106.20)
+Seat 6: habing (214.12)
+KingOfSports has the dealer button
+KingOfSports posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [8s Ts]
+KingOfSports raises to 4
+habing calls 2
+** Flop ** [3d 3c 4s]
+habing checks
+KingOfSports bets 3.45
+habing folds
+KingOfSports refunded 3.45
+KingOfSports wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #8908534-6 - 2013-06-23 04:20:11
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: KingOfSports (110)
+Seat 6: habing (210.12)
+habing has the dealer button
+habing posts small blind 1
+KingOfSports posts big blind 2
+** Hole Cards **
+Dealt to habing [8h 6d]
+habing folds
+KingOfSports refunded 1
+KingOfSports wins Pot (2)
+Rake (0)
+
+
+
+Hand #8908543-7 - 2013-06-23 04:20:26
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: KingOfSports (111)
+Seat 6: habing (209.12)
+KingOfSports has the dealer button
+KingOfSports posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ac 8c]
+KingOfSports calls 1
+habing raises to 8.80
+KingOfSports folds
+habing refunded 6.80
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8908556-8 - 2013-06-23 04:20:54
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: KingOfSports (109)
+Seat 6: habing (211.12)
+habing has the dealer button
+habing posts small blind 1
+KingOfSports posts big blind 2
+** Hole Cards **
+Dealt to habing [4c Jc]
+habing raises to 4
+KingOfSports folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8908567-9 - 2013-06-23 04:21:17
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: KingOfSports (107)
+Seat 6: habing (213.12)
+KingOfSports has the dealer button
+KingOfSports posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [4d 8h]
+KingOfSports folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8908575-10 - 2013-06-23 04:21:28
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: KingOfSports (106)
+Seat 6: habing (214.12)
+habing has the dealer button
+habing posts small blind 1
+KingOfSports posts big blind 2
+** Hole Cards **
+Dealt to habing [3h Jd]
+habing folds
+KingOfSports refunded 1
+KingOfSports wins Pot (2)
+Rake (0)
+
+
+
+Hand #8908582-11 - 2013-06-23 04:21:41
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: KingOfSports (107)
+Seat 6: habing (213.12)
+KingOfSports has the dealer button
+KingOfSports posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [2d Ts]
+KingOfSports raises to 4
+habing folds
+KingOfSports refunded 2
+KingOfSports wins Pot (4)
+Rake (0)
+
+
+
+Hand #8908592-12 - 2013-06-23 04:21:56
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: KingOfSports (109)
+Seat 6: habing (211.12)
+habing has the dealer button
+habing posts small blind 1
+KingOfSports posts big blind 2
+** Hole Cards **
+Dealt to habing [7h Td]
+habing folds
+KingOfSports refunded 1
+KingOfSports wins Pot (2)
+Rake (0)
+
+
+
+Hand #8908598-13 - 2013-06-23 04:22:12
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: KingOfSports (110)
+Seat 6: habing (210.12)
+KingOfSports has the dealer button
+KingOfSports posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ah 4d]
+KingOfSports raises to 4
+habing folds
+KingOfSports refunded 2
+KingOfSports wins Pot (4)
+Rake (0)
+
+
+
+Hand #8908612-14 - 2013-06-23 04:22:34
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: KingOfSports (112)
+Seat 6: habing (208.12)
+habing has the dealer button
+habing posts small blind 1
+KingOfSports posts big blind 2
+** Hole Cards **
+Dealt to habing [5h 2d]
+habing folds
+KingOfSports refunded 1
+KingOfSports wins Pot (2)
+Rake (0)
+
+
+
+Hand #8908619-15 - 2013-06-23 04:22:48
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: KingOfSports (113)
+Seat 6: habing (207.12)
+KingOfSports has the dealer button
+KingOfSports posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Th 7h]
+KingOfSports raises to 4
+habing calls 2
+** Flop ** [2c 4c 3h]
+habing checks
+KingOfSports checks
+** Turn ** [8d]
+habing checks
+KingOfSports checks
+** River ** [Qh]
+habing checks
+KingOfSports checks
+** Pot Show Down ** [2c 4c 3h 8d Qh]
+KingOfSports shows [5d Kc] (High Card King +Q854)
+habing shows [Th 7h] (High Card Queen +T874)
+KingOfSports wins Pot (7.80) with High Card
+Rake (0.20)
+
+
+
+Hand #8908639-16 - 2013-06-23 04:23:28
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: KingOfSports (116.80)
+Seat 6: habing (203.12)
+habing has the dealer button
+habing posts small blind 1
+KingOfSports posts big blind 2
+** Hole Cards **
+Dealt to habing [3d 7s]
+habing folds
+KingOfSports refunded 1
+KingOfSports wins Pot (2)
+Rake (0)
+
+
+
+Hand #8908645-17 - 2013-06-23 04:23:43
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: KingOfSports (117.80)
+Seat 6: habing (202.12)
+KingOfSports has the dealer button
+KingOfSports posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [7s 2h]
+KingOfSports folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8908649-18 - 2013-06-23 04:23:53
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: KingOfSports (116.80)
+Seat 6: habing (203.12)
+habing has the dealer button
+habing posts small blind 1
+KingOfSports posts big blind 2
+** Hole Cards **
+Dealt to habing [Kc 4c]
+habing raises to 4
+KingOfSports calls 2
+** Flop ** [5s Ad 9h]
+KingOfSports checks
+habing bets 5.60
+KingOfSports folds
+habing refunded 5.60
+habing wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #8908668-19 - 2013-06-23 04:24:29
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: KingOfSports (112.80)
+Seat 6: habing (206.92)
+KingOfSports has the dealer button
+KingOfSports posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [7s 7h]
+KingOfSports raises to 4
+habing raises to 16.80
+KingOfSports calls 12.80
+** Flop ** [4s 8s 2d]
+habing bets 14.80
+KingOfSports calls 14.80
+** Turn ** [Ts]
+habing checks
+KingOfSports bets 12
+habing calls 12
+** River ** [3d]
+habing checks
+KingOfSports bets 22
+habing folds
+KingOfSports refunded 22
+habing adds 36.68 chips
+KingOfSports wins Pot (85.02)
+Rake (2.18)
+
+
+
+Hand #8908703-20 - 2013-06-23 04:25:33
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: KingOfSports (154.22)
+Seat 6: habing (200)
+habing has the dealer button
+habing posts small blind 1
+KingOfSports posts big blind 2
+** Hole Cards **
+Dealt to habing [7c 3h]
+habing folds
+KingOfSports refunded 1
+habing adds 1 chips
+KingOfSports wins Pot (2)
+Rake (0)
+
+
+
+Hand #8908714-21 - 2013-06-23 04:25:46
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: KingOfSports (155.22)
+Seat 6: habing (200)
+KingOfSports has the dealer button
+KingOfSports posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [5s Kh]
+KingOfSports folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8908721-22 - 2013-06-23 04:25:59
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: KingOfSports (154.22)
+Seat 6: habing (201)
+habing has the dealer button
+habing posts small blind 1
+KingOfSports posts big blind 2
+** Hole Cards **
+Dealt to habing [Qs Ac]
+habing raises to 4
+KingOfSports calls 2
+** Flop ** [7h 6h 9s]
+KingOfSports checks
+habing bets 5.60
+KingOfSports calls 5.60
+** Turn ** [Js]
+KingOfSports checks
+habing checks
+** River ** [3d]
+KingOfSports checks
+habing checks
+** Pot Show Down ** [7h 6h 9s Js 3d]
+KingOfSports shows [6s 9h] (Two Pair, Nines and Sixes +J)
+habing shows [Qs Ac] (High Card Ace +QJ97)
+KingOfSports wins Pot (18.72) with Two Pair
+Rake (0.48)
+habing adds 8.60 chips
+
+
+
+Hand #8908749-23 - 2013-06-23 04:26:45
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: KingOfSports (163.34)
+Seat 6: habing (200)
+KingOfSports has the dealer button
+KingOfSports posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ah 7s]
+KingOfSports calls 1
+habing raises to 10
+KingOfSports folds
+habing refunded 8
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8908760-24 - 2013-06-23 04:27:05
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: KingOfSports (161.34)
+Seat 6: habing (202)
+habing has the dealer button
+habing posts small blind 1
+KingOfSports posts big blind 2
+** Hole Cards **
+Dealt to habing [7s 2c]
+habing folds
+KingOfSports refunded 1
+KingOfSports wins Pot (2)
+Rake (0)
+
+
+
+Hand #8908767-25 - 2013-06-23 04:27:18
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: KingOfSports (162.34)
+Seat 6: habing (201)
+KingOfSports has the dealer button
+KingOfSports posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [7s Th]
+KingOfSports calls 1
+habing checks
+** Flop ** [Ks Td 4h]
+habing bets 4
+KingOfSports folds
+habing refunded 4
+habing wins Pot (3.90)
+Rake (0.10)
+
+
+
+Hand #8908779-26 - 2013-06-23 04:27:40
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: KingOfSports (160.34)
+Seat 6: habing (202.90)
+habing has the dealer button
+habing posts small blind 1
+KingOfSports posts big blind 2
+** Hole Cards **
+Dealt to habing [Qc 3h]
+habing raises to 6
+KingOfSports folds
+habing refunded 4
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8908787-27 - 2013-06-23 04:27:53
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: KingOfSports (158.34)
+Seat 6: habing (204.90)
+KingOfSports has the dealer button
+KingOfSports posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [3c 4c]
+KingOfSports calls 1
+habing checks
+** Flop ** [9c Ad Js]
+habing checks
+KingOfSports bets 2
+habing folds
+KingOfSports refunded 2
+KingOfSports wins Pot (3.90)
+Rake (0.10)
+
+
+
+Hand #8908796-28 - 2013-06-23 04:28:25
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: KingOfSports (160.24)
+Seat 6: habing (202.90)
+habing has the dealer button
+habing posts small blind 1
+KingOfSports posts big blind 2
+** Hole Cards **
+Dealt to habing [6h Ah]
+habing raises to 6
+KingOfSports calls 4
+** Flop ** [Tc 4d 9h]
+KingOfSports checks
+habing bets 6.80
+KingOfSports folds
+habing refunded 6.80
+habing wins Pot (11.70)
+Rake (0.30)
+
+
+
+Hand #8908812-29 - 2013-06-23 04:28:51
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: KingOfSports (154.24)
+Seat 6: habing (208.60)
+KingOfSports has the dealer button
+KingOfSports posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Kc 9h]
+KingOfSports folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8908818-30 - 2013-06-23 04:29:03
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: KingOfSports (153.24)
+Seat 6: habing (209.60)
+habing has the dealer button
+habing posts small blind 1
+KingOfSports posts big blind 2
+** Hole Cards **
+Dealt to habing [Ad 3s]
+habing raises to 6
+KingOfSports folds
+habing refunded 4
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8908826-31 - 2013-06-23 04:29:28
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: KingOfSports (151.24)
+Seat 6: habing (211.60)
+KingOfSports has the dealer button
+KingOfSports posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [7d 2h]
+KingOfSports calls 1
+habing checks
+** Flop ** [9h 5h 4d]
+habing checks
+KingOfSports checks
+** Turn ** [7c]
+habing checks
+KingOfSports bets 2
+habing folds
+KingOfSports refunded 2
+KingOfSports wins Pot (3.90)
+Rake (0.10)
+
+
+
+Hand #8908846-32 - 2013-06-23 04:29:59
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: KingOfSports (153.14)
+Seat 6: habing (209.60)
+habing has the dealer button
+habing posts small blind 1
+KingOfSports posts big blind 2
+** Hole Cards **
+Dealt to habing [3c 2c]
+habing raises to 6
+KingOfSports folds
+habing refunded 4
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8908857-33 - 2013-06-23 04:30:19
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: KingOfSports (151.14)
+Seat 6: habing (211.60)
+KingOfSports has the dealer button
+KingOfSports posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ks Jc]
+KingOfSports calls 1
+habing raises to 8.80
+KingOfSports folds
+habing refunded 6.80
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8908874-34 - 2013-06-23 04:30:47
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: KingOfSports (149.14)
+Seat 6: habing (213.60)
+habing has the dealer button
+habing posts small blind 1
+KingOfSports posts big blind 2
+** Hole Cards **
+Dealt to habing [Jc 3d]
+habing folds
+KingOfSports refunded 1
+KingOfSports wins Pot (2)
+Rake (0)
+
+
+
+Hand #8908880-35 - 2013-06-23 04:30:59
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: KingOfSports (150.14)
+Seat 6: habing (212.60)
+KingOfSports has the dealer button
+KingOfSports posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [8s Qc]
+KingOfSports calls 1
+habing raises to 10
+KingOfSports calls 8
+** Flop ** [2d 4c 2h]
+habing checks
+KingOfSports bets 6
+habing folds
+KingOfSports refunded 6
+KingOfSports wins Pot (19.50)
+Rake (0.50)
+
+
+
+Hand #8908896-36 - 2013-06-23 04:31:31
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: KingOfSports (159.64)
+Seat 6: habing (202.60)
+habing has the dealer button
+habing posts small blind 1
+KingOfSports posts big blind 2
+** Hole Cards **
+Dealt to habing [Qs Jh]
+habing raises to 6
+KingOfSports folds
+habing refunded 4
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8908901-37 - 2013-06-23 04:31:43
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: KingOfSports (157.64)
+Seat 6: habing (204.60)
+KingOfSports has the dealer button
+KingOfSports posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Tc 4s]
+KingOfSports calls 1
+habing checks
+** Flop ** [Qh 2h 5c]
+habing checks
+KingOfSports checks
+** Turn ** [6s]
+habing checks
+KingOfSports bets 3.33
+habing folds
+KingOfSports refunded 3.33
+KingOfSports wins Pot (3.90)
+Rake (0.10)
+
+
+
+Hand #8908919-38 - 2013-06-23 04:32:16
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: KingOfSports (159.54)
+Seat 6: habing (202.60)
+habing has the dealer button
+habing posts small blind 1
+KingOfSports posts big blind 2
+** Hole Cards **
+Dealt to habing [Td Jh]
+habing raises to 6
+KingOfSports raises to 18
+habing folds
+KingOfSports refunded 12
+habing adds 3.40 chips
+KingOfSports wins Pot (12)
+Rake (0)
+
+
+
+Hand #8908931-39 - 2013-06-23 04:32:40
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: KingOfSports (165.54)
+Seat 6: habing (200)
+KingOfSports has the dealer button
+KingOfSports posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [8d Ts]
+KingOfSports folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8908941-40 - 2013-06-23 04:33:07
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: KingOfSports (164.54)
+Seat 6: habing (201)
+habing has the dealer button
+habing posts small blind 1
+KingOfSports posts big blind 2
+** Hole Cards **
+Dealt to habing [2c 9c]
+habing folds
+KingOfSports refunded 1
+KingOfSports wins Pot (2)
+Rake (0)
+
+
+
+Hand #8908947-41 - 2013-06-23 04:33:18
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: KingOfSports (165.54)
+Seat 6: habing (200)
+KingOfSports has the dealer button
+KingOfSports posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [4c Jc]
+KingOfSports folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8908953-42 - 2013-06-23 04:33:30
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: KingOfSports (164.54)
+Seat 6: habing (201)
+habing has the dealer button
+habing posts small blind 1
+KingOfSports posts big blind 2
+** Hole Cards **
+Dealt to habing [2h 3c]
+habing folds
+KingOfSports refunded 1
+KingOfSports wins Pot (2)
+Rake (0)
+
+
+
+Hand #8908958-43 - 2013-06-23 04:33:43
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: KingOfSports (165.54)
+Seat 6: habing (200)
+KingOfSports has the dealer button
+KingOfSports posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Jh 4c]
+KingOfSports raises to 4
+habing folds
+KingOfSports refunded 2
+habing adds 2 chips
+KingOfSports wins Pot (4)
+Rake (0)
+
+
+
+Hand #8908970-44 - 2013-06-23 04:34:15
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: KingOfSports (167.54)
+Seat 6: habing (200)
+habing has the dealer button
+habing posts small blind 1
+KingOfSports posts big blind 2
+** Hole Cards **
+Dealt to habing [Th 8h]
+habing raises to 6
+KingOfSports folds
+habing refunded 4
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8908981-45 - 2013-06-23 04:34:39
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: KingOfSports (165.54)
+Seat 6: habing (202)
+KingOfSports has the dealer button
+KingOfSports posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [8d Qd]
+KingOfSports calls 1
+habing raises to 10
+KingOfSports folds
+habing refunded 8
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8908993-46 - 2013-06-23 04:35:08
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: KingOfSports (163.54)
+Seat 6: habing (204)
+habing has the dealer button
+habing posts small blind 1
+KingOfSports posts big blind 2
+** Hole Cards **
+Dealt to habing [9c 9d]
+habing raises to 6
+KingOfSports calls 4
+** Flop ** [6h 7s 4c]
+KingOfSports checks
+habing checks
+** Turn ** [Qh]
+KingOfSports checks
+habing checks
+** River ** [Ts]
+KingOfSports bets 6
+habing folds
+KingOfSports refunded 6
+habing adds 2 chips
+KingOfSports wins Pot (11.70)
+Rake (0.30)
+
+
+
+Hand #8909011-47 - 2013-06-23 04:36:00
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: KingOfSports (169.24)
+Seat 6: habing (200)
+KingOfSports has the dealer button
+KingOfSports posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ts 8s]
+KingOfSports raises to 4
+habing calls 2
+** Flop ** [Td 6s Jh]
+habing bets 6
+KingOfSports folds
+habing refunded 6
+habing wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #8909024-48 - 2013-06-23 04:36:29
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: KingOfSports (165.24)
+Seat 6: habing (203.80)
+habing has the dealer button
+habing posts small blind 1
+KingOfSports posts big blind 2
+** Hole Cards **
+Dealt to habing [Ad 6s]
+habing raises to 6
+KingOfSports calls 4
+** Flop ** [7d 8d 8c]
+KingOfSports checks
+habing bets 8
+KingOfSports calls 8
+** Turn ** [5c]
+KingOfSports checks
+habing checks
+** River ** [Th]
+KingOfSports checks
+habing checks
+** Pot Show Down ** [7d 8d 8c 5c Th]
+KingOfSports shows [9s Ac] (a Pair of Eights +AT9)
+habing shows [Ad 6s] (a Pair of Eights +AT7)
+KingOfSports wins Pot (27.30) with a Pair
+Rake (0.70)
+habing adds 10.20 chips
+
+
+
+Hand #8909052-49 - 2013-06-23 04:37:23
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: KingOfSports (178.54)
+Seat 6: habing (200)
+KingOfSports has the dealer button
+KingOfSports posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Kc 7s]
+KingOfSports folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8909057-50 - 2013-06-23 04:37:42
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: KingOfSports (177.54)
+Seat 6: habing (201)
+habing has the dealer button
+habing posts small blind 1
+KingOfSports posts big blind 2
+** Hole Cards **
+Dealt to habing [Th Qc]
+habing raises to 6
+KingOfSports calls 4
+** Flop ** [2c 2d Qd]
+KingOfSports checks
+habing bets 9.20
+KingOfSports folds
+habing refunded 9.20
+habing wins Pot (11.70)
+Rake (0.30)
+
+
+
+Hand #8909077-51 - 2013-06-23 04:38:41
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: KingOfSports (171.54)
+Seat 6: habing (206.70)
+KingOfSports has the dealer button
+KingOfSports posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Td Qd]
+KingOfSports calls 1
+habing raises to 10
+KingOfSports calls 8
+** Flop ** [8d 6h Jd]
+habing bets 14.80
+KingOfSports folds
+habing refunded 14.80
+habing wins Pot (19.50)
+Rake (0.50)
+
+
+
+Hand #8909088-52 - 2013-06-23 04:39:08
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: KingOfSports (161.54)
+Seat 6: habing (216.20)
+habing has the dealer button
+habing posts small blind 1
+KingOfSports posts big blind 2
+** Hole Cards **
+Dealt to habing [3h 5s]
+habing folds
+KingOfSports refunded 1
+KingOfSports wins Pot (2)
+Rake (0)
+
+
+
+Hand #8909094-53 - 2013-06-23 04:39:20
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: KingOfSports (162.54)
+Seat 6: habing (215.20)
+KingOfSports has the dealer button
+KingOfSports posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [7s 2d]
+KingOfSports folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8909098-54 - 2013-06-23 04:39:33
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: KingOfSports (161.54)
+Seat 6: habing (216.20)
+habing has the dealer button
+habing posts small blind 1
+KingOfSports posts big blind 2
+** Hole Cards **
+Dealt to habing [Th 6h]
+habing raises to 4
+KingOfSports folds
+habing refunded 2
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8909103-55 - 2013-06-23 04:39:50
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: KingOfSports (159.54)
+Seat 6: habing (218.20)
+KingOfSports has the dealer button
+KingOfSports posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ac 8c]
+KingOfSports raises to 4
+habing raises to 16.80
+KingOfSports folds
+habing refunded 12.80
+habing wins Pot (8)
+Rake (0)
+
+
+
+Hand #8909110-56 - 2013-06-23 04:40:09
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: KingOfSports (155.54)
+Seat 6: habing (222.20)
+habing has the dealer button
+habing posts small blind 1
+KingOfSports posts big blind 2
+** Hole Cards **
+Dealt to habing [Js Jd]
+habing raises to 6
+KingOfSports folds
+habing refunded 4
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8909123-57 - 2013-06-23 04:40:37
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: KingOfSports (153.54)
+Seat 6: habing (224.20)
+KingOfSports has the dealer button
+KingOfSports posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ac Qs]
+KingOfSports folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8909127-58 - 2013-06-23 04:40:48
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 3: KingOfSports (152.54)
+Seat 6: habing (225.20)
+habing has the dealer button
+habing posts small blind 1
+KingOfSports posts big blind 2
+** Hole Cards **
+Dealt to habing [Qc 5s]
+habing raises to 6
+KingOfSports folds
+habing refunded 4
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8909365-1 - 2013-06-23 04:51:13
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 5: boneher (200) - waiting for big blind
+Seat 6: habing (227.20)
+boneher has the dealer button
+boneher posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ts 3d]
+boneher folds
+habing refunded 1
+boneher adds 1 chips
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8909370-2 - 2013-06-23 04:51:24
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 5: boneher (200)
+Seat 6: habing (228.20)
+habing has the dealer button
+habing posts small blind 1
+boneher posts big blind 2
+** Hole Cards **
+Dealt to habing [Js 9c]
+habing raises to 4
+boneher folds
+habing refunded 2
+boneher adds 2 chips
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8909379-3 - 2013-06-23 04:51:40
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 5: boneher (200)
+Seat 6: habing (230.20)
+boneher has the dealer button
+boneher posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [7d 3s]
+boneher raises to 5
+habing folds
+boneher refunded 3
+boneher wins Pot (4)
+Rake (0)
+
+
+
+Hand #8909384-4 - 2013-06-23 04:52:00
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 5: boneher (202)
+Seat 6: habing (228.20)
+habing has the dealer button
+habing posts small blind 1
+boneher posts big blind 2
+** Hole Cards **
+Dealt to habing [5s Ac]
+habing raises to 6
+boneher folds
+habing refunded 4
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8909389-5 - 2013-06-23 04:52:13
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 5: boneher (200)
+Seat 6: habing (230.20)
+boneher has the dealer button
+boneher posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [7s Jh]
+boneher folds
+habing refunded 1
+boneher adds 1 chips
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8909393-6 - 2013-06-23 04:52:23
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 5: boneher (200)
+Seat 6: habing (231.20)
+habing has the dealer button
+habing posts small blind 1
+boneher posts big blind 2
+** Hole Cards **
+Dealt to habing [Ts 9c]
+habing raises to 4
+boneher calls 2
+** Flop ** [Jh 7h 6c]
+boneher bets 8
+habing calls 8
+** Turn ** [2s]
+boneher checks
+habing checks
+** River ** [Js]
+boneher checks
+habing checks
+** Pot Show Down ** [Jh 7h 6c 2s Js]
+boneher shows [6d 8s] (Two Pair, Jacks and Sixes +8)
+habing shows [Ts 9c] (a Pair of Jacks +T97)
+boneher wins Pot (23.40) with Two Pair
+Rake (0.60)
+
+
+
+Hand #8909414-7 - 2013-06-23 04:53:31
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 5: boneher (211.40)
+Seat 6: habing (219.20)
+boneher has the dealer button
+boneher posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Qs Js]
+boneher raises to 5
+habing calls 3
+** Flop ** [5d 8s 6c]
+habing checks
+boneher bets 10
+habing folds
+boneher refunded 10
+boneher wins Pot (9.75)
+Rake (0.25)
+
+
+
+Hand #8909429-8 - 2013-06-23 04:54:09
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 5: boneher (216.15)
+Seat 6: habing (214.20)
+habing has the dealer button
+habing posts small blind 1
+boneher posts big blind 2
+** Hole Cards **
+Dealt to habing [4c 8h]
+habing folds
+boneher refunded 1
+boneher wins Pot (2)
+Rake (0)
+
+
+
+Hand #8909435-9 - 2013-06-23 04:54:21
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 5: boneher (217.15)
+Seat 6: habing (213.20)
+boneher has the dealer button
+boneher posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [7s Td]
+boneher raises to 5
+habing folds
+boneher refunded 3
+boneher wins Pot (4)
+Rake (0)
+
+
+
+Hand #8909442-10 - 2013-06-23 04:54:35
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 5: boneher (219.15)
+Seat 6: habing (211.20)
+habing has the dealer button
+habing posts small blind 1
+boneher posts big blind 2
+** Hole Cards **
+Dealt to habing [9h 2c]
+habing folds
+boneher refunded 1
+boneher wins Pot (2)
+Rake (0)
+
+
+
+Hand #8909450-11 - 2013-06-23 04:54:56
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 5: boneher (220.15)
+Seat 6: habing (210.20)
+boneher has the dealer button
+boneher posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Jc Qs]
+boneher raises to 5
+habing calls 3
+** Flop ** [Jd 3c As]
+habing checks
+boneher bets 7
+habing calls 7
+** Turn ** [3s]
+habing checks
+boneher checks
+** River ** [Ks]
+habing checks
+boneher checks
+** Pot Show Down ** [Jd 3c As 3s Ks]
+boneher shows [Td 4d] (a Pair of Threes +AKJ)
+habing shows [Jc Qs] (Two Pair, Jacks and Threes +A)
+habing wins Pot (23.40) with Two Pair
+Rake (0.60)
+
+
+
+Hand #8909471-12 - 2013-06-23 04:55:59
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 4: low (80) - waiting for big blind
+Seat 5: boneher (208.15)
+Seat 6: habing (221.60)
+habing has the dealer button
+habing posts small blind 1
+boneher posts big blind 2
+** Hole Cards **
+Dealt to habing [2d 7c]
+habing folds
+boneher refunded 1
+boneher wins Pot (2)
+Rake (0)
+
+
+
+Hand #8909476-13 - 2013-06-23 04:56:12
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 4: low (80)
+Seat 5: boneher (209.15)
+Seat 6: habing (220.60)
+boneher has the dealer button
+habing posts small blind 1
+low posts big blind 2
+** Hole Cards **
+Dealt to habing [9d Qc]
+boneher folds
+habing raises to 6
+low raises to 16
+habing folds
+low refunded 10
+low wins Pot (12)
+Rake (0)
+
+
+
+Hand #8909487-14 - 2013-06-23 04:56:34
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 4: low (86)
+Seat 5: boneher (209.15)
+Seat 6: habing (214.60)
+habing has the dealer button
+low posts small blind 1
+boneher posts big blind 2
+** Hole Cards **
+Dealt to habing [4c 8h]
+habing folds
+low raises to 6
+boneher folds
+low refunded 4
+low wins Pot (4)
+Rake (0)
+
+
+
+Hand #8909493-15 - 2013-06-23 04:56:50
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 4: low (88)
+Seat 5: boneher (207.15)
+Seat 6: habing (214.60)
+low has the dealer button
+boneher posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [9c Qd]
+low folds
+boneher folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8909501-16 - 2013-06-23 04:57:08
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 4: low (88)
+Seat 5: boneher (206.15)
+Seat 6: habing (215.60)
+boneher has the dealer button
+habing posts small blind 1
+low posts big blind 2
+** Hole Cards **
+Dealt to habing [8d 8s]
+boneher folds
+habing raises to 6
+low folds
+habing refunded 4
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8909510-17 - 2013-06-23 04:57:22
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 4: low (86)
+Seat 5: boneher (206.15)
+Seat 6: habing (217.60)
+habing has the dealer button
+low posts small blind 1
+boneher posts big blind 2
+** Hole Cards **
+Dealt to habing [8c 6s]
+habing folds
+low folds
+boneher refunded 1
+boneher wins Pot (2)
+Rake (0)
+
+
+
+Hand #8909515-18 - 2013-06-23 04:57:38
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 4: low (85)
+Seat 5: boneher (207.15)
+Seat 6: habing (217.60)
+low has the dealer button
+boneher posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [5c 2d]
+low folds
+boneher raises to 5
+habing folds
+boneher refunded 3
+boneher wins Pot (4)
+Rake (0)
+
+
+
+Hand #8909533-19 - 2013-06-23 04:58:14
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 4: low (85)
+Seat 5: boneher (209.15)
+Seat 6: habing (215.60)
+boneher has the dealer button
+habing posts small blind 1
+low posts big blind 2
+** Hole Cards **
+Dealt to habing [3s 8c]
+boneher folds
+habing folds
+low refunded 1
+low wins Pot (2)
+Rake (0)
+
+
+
+Hand #8909542-20 - 2013-06-23 04:58:40
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 4: low (86)
+Seat 5: boneher (209.15)
+Seat 6: habing (214.60)
+habing has the dealer button
+low posts small blind 1
+boneher posts big blind 2
+** Hole Cards **
+Dealt to habing [8d Ac]
+habing raises to 6
+low raises to 14
+boneher folds
+habing folds
+low refunded 8
+low wins Pot (14)
+Rake (0)
+
+
+
+Hand #8909557-21 - 2013-06-23 04:59:03
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 4: low (94)
+Seat 5: boneher (207.15)
+Seat 6: habing (208.60)
+low has the dealer button
+boneher posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [5s Td]
+low folds
+boneher raises to 5
+habing folds
+boneher refunded 3
+boneher wins Pot (4)
+Rake (0)
+
+
+
+Hand #8909573-22 - 2013-06-23 04:59:37
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 4: low (94)
+Seat 5: boneher (209.15)
+Seat 6: habing (206.60)
+boneher has the dealer button
+habing posts small blind 1
+low posts big blind 2
+** Hole Cards **
+Dealt to habing [As Kc]
+boneher folds
+habing raises to 10
+low folds
+habing refunded 8
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8909583-23 - 2013-06-23 04:59:53
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 4: low (92)
+Seat 5: boneher (209.15)
+Seat 6: habing (208.60)
+habing has the dealer button
+low posts small blind 1
+boneher posts big blind 2
+** Hole Cards **
+Dealt to habing [3d 7c]
+habing folds
+low folds
+boneher refunded 1
+boneher wins Pot (2)
+Rake (0)
+
+
+
+Hand #8909595-24 - 2013-06-23 05:00:10
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 4: low (91)
+Seat 5: boneher (210.15)
+Seat 6: habing (208.60)
+low has the dealer button
+boneher posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [7s 6c]
+low folds
+boneher raises to 5
+habing folds
+boneher refunded 3
+boneher wins Pot (4)
+Rake (0)
+
+
+
+Hand #8909618-25 - 2013-06-23 05:00:33
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 4: low (91)
+Seat 5: boneher (212.15)
+Seat 6: habing (206.60)
+boneher has the dealer button
+habing posts small blind 1
+low posts big blind 2
+** Hole Cards **
+Dealt to habing [As 9h]
+boneher folds
+habing raises to 6
+low calls 4
+** Flop ** [Qh 4h 4d]
+habing checks
+low bets 6
+habing folds
+low refunded 6
+low wins Pot (11.70)
+Rake (0.30)
+
+
+
+Hand #8909651-26 - 2013-06-23 05:01:21
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 4: low (96.70)
+Seat 5: boneher (212.15)
+Seat 6: habing (200.60)
+habing has the dealer button
+low posts small blind 1
+boneher posts big blind 2
+** Hole Cards **
+Dealt to habing [9s 4h]
+habing folds
+low folds
+boneher refunded 1
+boneher wins Pot (2)
+Rake (0)
+
+
+
+Hand #8909665-27 - 2013-06-23 05:01:39
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 4: low (95.70)
+Seat 5: boneher (213.15)
+Seat 6: habing (200.60)
+low has the dealer button
+boneher posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [7c Js]
+low raises to 6
+boneher folds
+habing folds
+low refunded 4
+habing adds 1.40 chips
+low wins Pot (5)
+Rake (0)
+
+
+
+Hand #8909673-28 - 2013-06-23 05:01:53
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 4: low (98.70)
+Seat 5: boneher (212.15)
+Seat 6: habing (200)
+boneher has the dealer button
+habing posts small blind 1
+low posts big blind 2
+** Hole Cards **
+Dealt to habing [Tc 3c]
+boneher raises to 7
+habing folds
+habing adds 1 chips
+low calls 5
+** Flop ** [8h 2d 5c]
+low checks
+boneher bets 11
+low folds
+boneher refunded 11
+boneher wins Pot (14.63)
+Rake (0.37)
+
+
+
+Hand #8909694-29 - 2013-06-23 05:02:20
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 4: low (91.70)
+Seat 5: boneher (219.78)
+Seat 6: habing (200)
+habing has the dealer button
+low posts small blind 1
+boneher posts big blind 2
+** Hole Cards **
+Dealt to habing [As Ah]
+habing raises to 6
+low folds
+boneher folds
+habing refunded 4
+habing wins Pot (5)
+Rake (0)
+
+
+
+Hand #8909707-30 - 2013-06-23 05:02:45
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 4: low (90.70)
+Seat 5: boneher (217.78)
+Seat 6: habing (203)
+low has the dealer button
+boneher posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [5h 3d]
+low folds
+boneher raises to 5
+habing folds
+boneher refunded 3
+boneher wins Pot (4)
+Rake (0)
+
+
+
+Hand #8909719-31 - 2013-06-23 05:03:06
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 4: low (90.70)
+Seat 5: boneher (219.78)
+Seat 6: habing (201)
+boneher has the dealer button
+habing posts small blind 1
+low posts big blind 2
+** Hole Cards **
+Dealt to habing [Kc 4c]
+boneher raises to 7
+habing folds
+low raises to 20
+boneher folds
+low refunded 13
+low wins Pot (15)
+Rake (0)
+
+
+
+Hand #8909738-32 - 2013-06-23 05:03:30
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 4: low (98.70)
+Seat 5: boneher (212.78)
+Seat 6: habing (200)
+habing has the dealer button
+low posts small blind 1
+boneher posts big blind 2
+** Hole Cards **
+Dealt to habing [3c Jd]
+habing raises to 4
+low folds
+boneher folds
+habing refunded 2
+habing wins Pot (5)
+Rake (0)
+
+
+
+Hand #8909750-33 - 2013-06-23 05:03:47
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 4: low (97.70)
+Seat 5: boneher (210.78)
+Seat 6: habing (203)
+low has the dealer button
+boneher posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [3h 4c]
+low raises to 6
+boneher folds
+habing folds
+low refunded 4
+low wins Pot (5)
+Rake (0)
+
+
+
+Hand #8909762-34 - 2013-06-23 05:04:04
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 4: low (100.70)
+Seat 5: boneher (209.78)
+Seat 6: habing (201)
+boneher has the dealer button
+habing posts small blind 1
+low posts big blind 2
+** Hole Cards **
+Dealt to habing [8h Ah]
+boneher folds
+habing raises to 6
+low folds
+habing refunded 4
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8909771-35 - 2013-06-23 05:04:19
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 4: low (98.70)
+Seat 5: boneher (209.78)
+Seat 6: habing (203)
+habing has the dealer button
+low posts small blind 1
+boneher posts big blind 2
+** Hole Cards **
+Dealt to habing [6s 9h]
+habing folds
+low raises to 6
+boneher folds
+low refunded 4
+low wins Pot (4)
+Rake (0)
+
+
+
+Hand #8909784-36 - 2013-06-23 05:04:37
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 4: low (100.70)
+Seat 5: boneher (207.78)
+Seat 6: habing (203)
+low has the dealer button
+boneher posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [9c Td]
+low raises to 6
+boneher folds
+habing calls 4
+** Flop ** [Kd 4h 7s]
+habing checks
+low bets 8
+habing raises to 23.20
+low folds
+habing refunded 15.20
+habing wins Pot (28.28)
+Rake (0.72)
+
+
+
+Hand #8909811-37 - 2013-06-23 05:05:15
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 4: low (86.70)
+Seat 5: boneher (206.78)
+Seat 6: habing (217.28)
+boneher has the dealer button
+habing posts small blind 1
+low posts big blind 2
+** Hole Cards **
+Dealt to habing [Kc 6s]
+boneher raises to 7
+habing folds
+low folds
+boneher refunded 5
+boneher wins Pot (5)
+Rake (0)
+
+
+
+Hand #8909827-38 - 2013-06-23 05:05:32
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 4: low (84.70)
+Seat 5: boneher (209.78)
+Seat 6: habing (216.28)
+habing has the dealer button
+low posts small blind 1
+boneher posts big blind 2
+** Hole Cards **
+Dealt to habing [5h 8c]
+habing folds
+low folds
+boneher refunded 1
+boneher wins Pot (2)
+Rake (0)
+
+
+
+Hand #8909840-39 - 2013-06-23 05:05:48
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 4: low (83.70)
+Seat 5: boneher (210.78)
+Seat 6: habing (216.28)
+low has the dealer button
+boneher posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ad Qd]
+low raises to 6
+boneher calls 5
+habing raises to 28
+low raises to 83.70 (All-in)
+boneher folds
+habing calls 55.70
+** Flop ** [Jc Kh Qs]
+** Turn ** [As]
+** River ** [3s]
+** Pot Show Down ** [Jc Kh Qs As 3s]
+low shows [8s 6s] (a Flush, Ace high +Q863)
+habing shows [Ad Qd] (Two Pair, Aces and Queens +K)
+low wins Pot (169.40) with a Flush
+Rake (4)
+habing adds 67.42 chips
+
+
+
+Hand #8909873-40 - 2013-06-23 05:06:44
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 4: low (169.40)
+Seat 5: boneher (204.78)
+Seat 6: habing (200)
+boneher has the dealer button
+habing posts small blind 1
+low posts big blind 2
+** Hole Cards **
+Dealt to habing [4c 3c]
+boneher raises to 7
+habing folds
+habing adds 1 chips
+low calls 5
+** Flop ** [Qs Ts 6s]
+low checks
+boneher bets 11
+low folds
+boneher refunded 11
+boneher wins Pot (14.63)
+Rake (0.37)
+
+
+
+Hand #8909889-41 - 2013-06-23 05:07:12
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 4: low (162.40)
+Seat 5: boneher (212.41)
+Seat 6: habing (200)
+habing has the dealer button
+low posts small blind 1
+boneher posts big blind 2
+** Hole Cards **
+Dealt to habing [6h 4h]
+habing raises to 6
+low folds
+boneher folds
+habing refunded 4
+habing wins Pot (5)
+Rake (0)
+
+
+
+Hand #8909900-42 - 2013-06-23 05:07:28
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 4: low (161.40)
+Seat 5: boneher (210.41)
+Seat 6: habing (203)
+low has the dealer button
+boneher posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [9d Tc]
+low raises to 6
+boneher calls 5
+habing folds
+** Flop ** [Td 8c Qc]
+boneher checks
+low checks
+** Turn ** [3h]
+boneher bets 14
+low folds
+boneher refunded 14
+boneher wins Pot (13.65)
+Rake (0.35)
+
+
+
+Hand #8909922-43 - 2013-06-23 05:08:15
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 4: low (155.40) - sitting out
+Seat 5: boneher (218.06)
+Seat 6: habing (201)
+boneher has the dealer button
+boneher posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Js 3s]
+boneher raises to 5
+habing folds
+boneher refunded 3
+habing adds 1 chips
+boneher wins Pot (4)
+Rake (0)
+
+
+
+Hand #8909927-44 - 2013-06-23 05:08:31
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 4: low (155.40) - sitting out
+Seat 5: boneher (220.06)
+Seat 6: habing (200)
+habing has the dealer button
+habing posts small blind 1
+boneher posts big blind 2
+** Hole Cards **
+Dealt to habing [Qd 4d]
+habing raises to 6
+boneher folds
+habing refunded 4
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8909932-45 - 2013-06-23 05:08:43
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 4: low (155.40) - sitting out
+Seat 5: boneher (218.06)
+Seat 6: habing (202)
+boneher has the dealer button
+boneher posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [2s 8c]
+boneher raises to 5
+habing folds
+boneher refunded 3
+boneher wins Pot (4)
+Rake (0)
+
+
+
+Hand #8909940-46 - 2013-06-23 05:08:56
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 4: low (155.40) - sitting out
+Seat 5: boneher (220.06)
+Seat 6: habing (200)
+habing has the dealer button
+habing posts small blind 1
+boneher posts big blind 2
+** Hole Cards **
+Dealt to habing [As 8d]
+habing raises to 6
+boneher folds
+habing refunded 4
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8910000-1 - 2013-06-23 05:10:38
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 4: low (155.40) - sitting out
+Seat 5: boneher (218.06)
+Seat 6: habing (202)
+boneher has the dealer button
+boneher posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [9s Jh]
+boneher folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8910003-2 - 2013-06-23 05:10:48
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 4: low (155.40) - sitting out
+Seat 5: boneher (217.06)
+Seat 6: habing (203)
+habing has the dealer button
+habing posts small blind 1
+boneher posts big blind 2
+** Hole Cards **
+Dealt to habing [Ac Qh]
+habing raises to 6
+boneher folds
+habing refunded 4
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8910013-3 - 2013-06-23 05:11:03
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 4: low (155.40) - sitting out
+Seat 5: boneher (215.06)
+Seat 6: habing (205)
+boneher has the dealer button
+boneher posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [2c 5c]
+boneher raises to 5
+habing folds
+boneher refunded 3
+boneher wins Pot (4)
+Rake (0)
+
+
+
+Hand #8910026-4 - 2013-06-23 05:11:18
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 4: low (155.40) - sitting out
+Seat 5: boneher (217.06)
+Seat 6: habing (203)
+habing has the dealer button
+habing posts small blind 1
+boneher posts big blind 2
+** Hole Cards **
+Dealt to habing [6h 5d]
+habing folds
+boneher refunded 1
+boneher wins Pot (2)
+Rake (0)
+
+
+
+Hand #8910038-5 - 2013-06-23 05:11:40
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 4: low (155.40) - sitting out
+Seat 5: boneher (218.06)
+Seat 6: habing (202)
+boneher has the dealer button
+boneher posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [4s 9h]
+boneher raises to 5
+habing folds
+boneher refunded 3
+boneher wins Pot (4)
+Rake (0)
+
+
+
+Hand #8910043-6 - 2013-06-23 05:11:54
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 4: low (155.40) - sitting out
+Seat 5: boneher (220.06)
+Seat 6: habing (200)
+habing has the dealer button
+habing posts small blind 1
+boneher posts big blind 2
+** Hole Cards **
+Dealt to habing [6c 8h]
+habing folds
+boneher refunded 1
+habing adds 1 chips
+boneher wins Pot (2)
+Rake (0)
+
+
+
+Hand #8910050-7 - 2013-06-23 05:12:05
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 4: low (155.40) - sitting out
+Seat 5: boneher (221.06)
+Seat 6: habing (200)
+boneher has the dealer button
+boneher posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [4d 8s]
+boneher raises to 5
+habing folds
+boneher refunded 3
+habing adds 2 chips
+boneher wins Pot (4)
+Rake (0)
+
+
+
+Hand #8910062-8 - 2013-06-23 05:12:20
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 4: low (155.40) - sitting out
+Seat 5: boneher (223.06)
+Seat 6: habing (200)
+habing has the dealer button
+habing posts small blind 1
+boneher posts big blind 2
+** Hole Cards **
+Dealt to habing [4c 5d]
+habing folds
+boneher refunded 1
+habing adds 1 chips
+boneher wins Pot (2)
+Rake (0)
+
+
+
+Hand #8910069-9 - 2013-06-23 05:12:32
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 4: low (155.40)
+Seat 5: boneher (224.06)
+Seat 6: habing (200)
+boneher has the dealer button
+habing posts small blind 1
+low posts big blind 2
+** Hole Cards **
+Dealt to habing [4s Jd]
+boneher folds
+habing folds
+low refunded 1
+habing adds 1 chips
+low wins Pot (2)
+Rake (0)
+
+
+
+Hand #8910078-10 - 2013-06-23 05:12:44
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 4: low (156.40)
+Seat 5: boneher (224.06)
+Seat 6: habing (200)
+habing has the dealer button
+low posts small blind 1
+boneher posts big blind 2
+** Hole Cards **
+Dealt to habing [6d 9h]
+habing folds
+low raises to 6
+boneher calls 4
+** Flop ** [Jc 7d 2s]
+low checks
+boneher checks
+** Turn ** [Ac]
+low checks
+boneher checks
+** River ** [Th]
+low checks
+boneher checks
+** Pot Show Down ** [Jc 7d 2s Ac Th]
+low shows [Qh 3h] (High Card Ace +QJT7)
+boneher shows [8d Kd] (High Card Ace +KJT8)
+boneher wins Pot (11.70) with High Card
+Rake (0.30)
+
+
+
+Hand #8910104-11 - 2013-06-23 05:13:35
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 4: low (150.40)
+Seat 5: boneher (229.76)
+Seat 6: habing (200)
+low has the dealer button
+boneher posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [3c Ad]
+low raises to 6
+boneher folds
+habing folds
+low refunded 4
+habing adds 2 chips
+low wins Pot (5)
+Rake (0)
+
+
+
+Hand #8910110-12 - 2013-06-23 05:13:49
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 4: low (153.40)
+Seat 5: boneher (228.76)
+Seat 6: habing (200)
+boneher has the dealer button
+habing posts small blind 1
+low posts big blind 2
+** Hole Cards **
+Dealt to habing [6s 3s]
+boneher calls 2
+habing folds
+habing adds 1 chips
+low checks
+** Flop ** [6d 5h 6c]
+low checks
+boneher checks
+** Turn ** [8d]
+low bets 4
+boneher calls 4
+** River ** [Kh]
+low checks
+boneher checks
+** Pot Show Down ** [6d 5h 6c 8d Kh]
+low shows [Js 3c] (a Pair of Sixes +KJ8)
+boneher shows [Td 9d] (a Pair of Sixes +KT9)
+low wins Pot (12.68) with a Pair
+Rake (0.32)
+
+
+
+Hand #8910127-13 - 2013-06-23 05:14:24
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 4: low (160.08)
+Seat 5: boneher (222.76)
+Seat 6: habing (200)
+habing has the dealer button
+low posts small blind 1
+boneher posts big blind 2
+** Hole Cards **
+Dealt to habing [Jd Jc]
+habing has timed out
+habing folds
+low raises to 6
+boneher folds
+low refunded 4
+low wins Pot (4)
+Rake (0)
+
+
+
+Hand #8910148-14 - 2013-06-23 05:15:03
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 4: low (162.08)
+Seat 5: boneher (220.76)
+Seat 6: habing (200) - sitting out
+low has the dealer button
+low posts small blind 1
+boneher posts big blind 2
+** Hole Cards **
+low folds
+boneher refunded 1
+boneher wins Pot (2)
+Rake (0)
+
+
+
+Hand #8910154-15 - 2013-06-23 05:15:15
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 4: low (161.08)
+Seat 5: boneher (221.76)
+Seat 6: habing (200) - sitting out
+boneher has the dealer button
+boneher posts small blind 1
+low posts big blind 2
+** Hole Cards **
+boneher raises to 5
+low folds
+boneher refunded 3
+boneher wins Pot (4)
+Rake (0)
+
+
+
+Hand #8910163-16 - 2013-06-23 05:15:31
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 4: low (159.08)
+Seat 5: boneher (223.76)
+Seat 6: habing (200) - sitting out
+low has the dealer button
+low posts small blind 1
+boneher posts big blind 2
+** Hole Cards **
+low raises to 5
+boneher calls 3
+** Flop ** [2s Kc 3c]
+boneher checks
+low bets 6
+boneher folds
+low refunded 6
+low wins Pot (9.75)
+Rake (0.25)
+
+
+
+Hand #8910175-17 - 2013-06-23 05:15:55
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 4: low (163.83)
+Seat 5: boneher (218.76)
+Seat 6: habing (200) - sitting out
+boneher has the dealer button
+boneher posts small blind 1
+low posts big blind 2
+** Hole Cards **
+boneher raises to 5
+low calls 3
+** Flop ** [6s Ad Ts]
+low checks
+boneher bets 7
+low calls 7
+** Turn ** [4c]
+low bets 12
+boneher folds
+low refunded 12
+low wins Pot (23.40)
+Rake (0.60)
+
+
+
+Hand #8910193-18 - 2013-06-23 05:16:32
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 4: low (175.23)
+Seat 5: boneher (206.76)
+Seat 6: habing (200) - sitting out
+low has the dealer button
+low posts small blind 1
+boneher posts big blind 2
+** Hole Cards **
+low folds
+boneher refunded 1
+boneher wins Pot (2)
+Rake (0)
+
+
+
+Hand #8910197-19 - 2013-06-23 05:16:43
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 4: low (174.23)
+Seat 5: boneher (207.76)
+Seat 6: habing (200) - sitting out
+boneher has the dealer button
+boneher posts small blind 1
+low posts big blind 2
+** Hole Cards **
+boneher raises to 5
+low raises to 8
+boneher calls 3
+** Flop ** [3c Js Ac]
+low bets 8
+boneher calls 8
+** Turn ** [Kd]
+low checks
+boneher checks
+** River ** [4d]
+low bets 12
+boneher calls 12
+** Pot Show Down ** [3c Js Ac Kd 4d]
+low shows [Ad 9h] (a Pair of Aces +KJ9)
+boneher shows [Qh Qd] (a Pair of Queens +AKJ)
+low wins Pot (54.60) with a Pair
+Rake (1.40)
+boneher adds 20.24 chips
+
+
+
+Hand #8910215-20 - 2013-06-23 05:17:26
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 4: low (200.83)
+Seat 5: boneher (200)
+Seat 6: habing (200) - sitting out
+low has the dealer button
+low posts small blind 1
+boneher posts big blind 2
+** Hole Cards **
+low folds
+boneher refunded 1
+boneher wins Pot (2)
+Rake (0)
+
+
+
+Hand #8910221-21 - 2013-06-23 05:17:37
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 4: low (199.83)
+Seat 5: boneher (201)
+Seat 6: habing (200) - sitting out
+boneher has the dealer button
+boneher posts small blind 1
+low posts big blind 2
+** Hole Cards **
+boneher raises to 5
+low raises to 8
+boneher folds
+low refunded 3
+boneher adds 4 chips
+low wins Pot (10)
+Rake (0)
+
+
+
+Hand #8910231-22 - 2013-06-23 05:18:04
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 4: low (204.83)
+Seat 5: boneher (200)
+Seat 6: habing (200) - sitting out
+low has the dealer button
+low posts small blind 1
+boneher posts big blind 2
+** Hole Cards **
+low raises to 6
+boneher calls 4
+** Flop ** [3c Qc Th]
+boneher bets 9
+low folds
+boneher refunded 9
+boneher wins Pot (11.70)
+Rake (0.30)
+
+
+
+Hand #8910241-23 - 2013-06-23 05:18:25
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 4: low (198.83)
+Seat 5: boneher (205.70)
+Seat 6: habing (200) - sitting out
+boneher has the dealer button
+boneher posts small blind 1
+low posts big blind 2
+** Hole Cards **
+boneher folds
+low refunded 1
+low wins Pot (2)
+Rake (0)
+
+
+
+Hand #8910247-24 - 2013-06-23 05:18:40
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 4: low (199.83)
+Seat 5: boneher (204.70)
+Seat 6: habing (200) - sitting out
+low has the dealer button
+low posts small blind 1
+boneher posts big blind 2
+** Hole Cards **
+low raises to 6
+boneher calls 4
+** Flop ** [2d Ad 3h]
+boneher bets 9
+low raises to 20
+boneher folds
+low refunded 11
+boneher adds 10.30 chips
+low wins Pot (29.25)
+Rake (0.75)
+
+
+
+Hand #8910254-25 - 2013-06-23 05:19:07
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 4: low (214.08)
+Seat 5: boneher (200)
+Seat 6: habing (200) - sitting out
+boneher has the dealer button
+boneher posts small blind 1
+low posts big blind 2
+** Hole Cards **
+boneher raises to 5
+low raises to 8
+boneher calls 3
+** Flop ** [6d 4d 7c]
+low checks
+boneher bets 12
+low calls 12
+** Turn ** [Jh]
+low checks
+boneher checks
+** River ** [8s]
+low checks
+boneher bets 20
+low calls 20
+** Pot Show Down ** [6d 4d 7c Jh 8s]
+low shows [Ah Ts] (High Card Ace +JT87)
+boneher shows [7h 8h] (Two Pair, Eights and Sevens +J)
+boneher wins Pot (78) with Two Pair
+Rake (2)
+
+
+
+Hand #8910270-26 - 2013-06-23 05:19:55
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 4: low (174.08)
+Seat 5: boneher (238)
+Seat 6: habing (200)
+low has the dealer button
+boneher posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [6s 9d]
+low folds
+boneher raises to 5
+habing folds
+boneher refunded 3
+habing adds 2 chips
+boneher wins Pot (4)
+Rake (0)
+
+
+
+Hand #8910276-27 - 2013-06-23 05:20:12
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 4: low (174.08)
+Seat 5: boneher (240)
+Seat 6: habing (200)
+boneher has the dealer button
+habing posts small blind 1
+low posts big blind 2
+** Hole Cards **
+Dealt to habing [Jh 7h]
+boneher raises to 7
+habing folds
+habing adds 1 chips
+low calls 5
+** Flop ** [8s 9h Ah]
+low bets 8
+boneher calls 8
+** Turn ** [8c]
+low checks
+boneher checks
+** River ** [5d]
+low bets 22
+boneher calls 22
+** Pot Show Down ** [8s 9h Ah 8c 5d]
+low shows [8h 7s] (Three of a Kind, Eights +A9)
+boneher shows [5h 6d] (Two Pair, Eights and Fives +A)
+low wins Pot (73.13) with Three of a Kind
+Rake (1.87)
+
+
+
+Hand #8910304-28 - 2013-06-23 05:21:18
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 4: low (210.21)
+Seat 5: boneher (203)
+Seat 6: habing (200)
+habing has the dealer button
+low posts small blind 1
+boneher posts big blind 2
+** Hole Cards **
+Dealt to habing [Jh Tc]
+habing folds
+low raises to 6
+boneher raises to 16
+low folds
+boneher refunded 10
+boneher wins Pot (12)
+Rake (0)
+
+
+
+Hand #8910314-29 - 2013-06-23 05:21:40
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 4: low (204.21)
+Seat 5: boneher (209)
+Seat 6: habing (200)
+low has the dealer button
+boneher posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ts 6s]
+low raises to 6
+boneher raises to 14
+habing folds
+habing adds 2 chips
+low calls 8
+** Flop ** [4d Qc Kh]
+boneher checks
+low checks
+** Turn ** [Jd]
+boneher bets 15
+low folds
+boneher refunded 15
+boneher wins Pot (29.25)
+Rake (0.75)
+
+
+
+Hand #8910326-30 - 2013-06-23 05:22:09
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 4: low (190.21)
+Seat 5: boneher (224.25)
+Seat 6: habing (200)
+boneher has the dealer button
+habing posts small blind 1
+low posts big blind 2
+** Hole Cards **
+Dealt to habing [Tc 4h]
+boneher folds
+habing folds
+low refunded 1
+habing adds 1 chips
+low wins Pot (2)
+Rake (0)
+
+
+
+Hand #8910331-31 - 2013-06-23 05:22:22
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 4: low (191.21)
+Seat 5: boneher (224.25)
+Seat 6: habing (200)
+habing has the dealer button
+low posts small blind 1
+boneher posts big blind 2
+** Hole Cards **
+Dealt to habing [Td 5s]
+habing folds
+low raises to 6
+boneher calls 4
+** Flop ** [3h Qs 4s]
+low bets 8
+boneher calls 8
+** Turn ** [8s]
+low checks
+boneher checks
+** River ** [8h]
+low checks
+boneher checks
+** Pot Show Down ** [3h Qs 4s 8s 8h]
+low shows [Jc Kc] (a Pair of Eights +KQJ)
+boneher shows [2c Ah] (a Pair of Eights +AQ4)
+boneher wins Pot (27.30) with a Pair
+Rake (0.70)
+
+
+
+Hand #8910353-32 - 2013-06-23 05:23:00
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: slowah (200) - waiting for big blind
+Seat 4: low (177.21)
+Seat 5: boneher (237.55)
+Seat 6: habing (200)
+low has the dealer button
+boneher posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [As Td]
+low raises to 6
+boneher folds
+habing calls 4
+** Flop ** [Ac Qd 6d]
+habing bets 9.20
+low calls 9.20
+** Turn ** [Kh]
+habing bets 22.40
+low folds
+habing refunded 22.40
+habing wins Pot (30.62)
+Rake (0.78)
+
+
+
+Hand #8910379-33 - 2013-06-23 05:23:59
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: slowah (200) - waiting for big blind
+Seat 4: low (162.01)
+Seat 5: boneher (236.55)
+Seat 6: habing (215.42)
+boneher has the dealer button
+habing posts small blind 1
+slowah posts big blind 2
+** Hole Cards **
+Dealt to habing [9s Td]
+low folds
+boneher raises to 7
+habing folds
+slowah folds
+boneher refunded 5
+boneher wins Pot (5)
+Rake (0)
+
+
+
+Hand #8910386-34 - 2013-06-23 05:24:21
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: slowah (198)
+Seat 4: low (162.01)
+Seat 5: boneher (239.55)
+Seat 6: habing (214.42)
+habing has the dealer button
+slowah posts small blind 1
+low posts big blind 2
+** Hole Cards **
+Dealt to habing [3s Ks]
+boneher has timed out
+boneher folds
+habing raises to 6
+slowah folds
+low calls 4
+** Flop ** [2h Js Td]
+low checks
+habing checks
+** Turn ** [3d]
+low bets 8
+habing folds
+low refunded 8
+low wins Pot (12.68)
+Rake (0.32)
+
+
+
+Hand #8910409-35 - 2013-06-23 05:25:14
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: slowah (197)
+Seat 3: Grundle (200) - waiting for big blind
+Seat 4: low (168.69)
+Seat 5: boneher (239.55) - sitting out
+Seat 6: habing (208.42)
+slowah has the dealer button
+low posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [4d 9c]
+slowah folds
+low raises to 6
+habing folds
+low refunded 4
+low wins Pot (4)
+Rake (0)
+
+
+
+Hand #8910418-36 - 2013-06-23 05:25:34
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: slowah (197)
+Seat 3: Grundle (200) - waiting for big blind
+Seat 4: low (170.69)
+Seat 5: boneher (239.55)
+Seat 6: habing (206.42)
+low has the dealer button
+habing posts small blind 1
+slowah posts big blind 2
+** Hole Cards **
+Dealt to habing [8s 9c]
+low folds
+habing raises to 6
+slowah folds
+habing refunded 4
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8910429-37 - 2013-06-23 05:25:54
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: slowah (195)
+Seat 3: Grundle (200) - waiting for big blind
+Seat 4: low (170.69)
+Seat 5: boneher (239.55)
+Seat 6: habing (208.42)
+habing has the dealer button
+slowah posts small blind 1
+Grundle posts big blind 2
+boneher posts big blind 2
+** Hole Cards **
+Dealt to habing [6d Qs]
+low raises to 8
+boneher raises to 15
+habing folds
+slowah folds
+Grundle folds
+low calls 7
+** Flop ** [8h 5s Kd]
+low checks
+boneher bets 16
+low folds
+boneher refunded 16
+boneher wins Pot (32.18)
+Rake (0.82)
+
+
+
+Hand #8910446-38 - 2013-06-23 05:26:34
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: slowah (194)
+Seat 3: Grundle (198)
+Seat 4: low (155.69)
+Seat 5: boneher (256.73)
+Seat 6: habing (208.42)
+slowah has the dealer button
+Grundle posts small blind 1
+low posts big blind 2
+** Hole Cards **
+Dealt to habing [As 7c]
+boneher raises to 7
+habing folds
+slowah folds
+Grundle folds
+low calls 5
+** Flop ** [2s 2h 3s]
+low checks
+boneher checks
+** Turn ** [6c]
+low bets 8
+boneher calls 8
+** River ** [Jd]
+low bets 18
+boneher calls 18
+** Pot Show Down ** [2s 2h 3s 6c Jd]
+low shows [Ad 3c] (Two Pair, Threes and Deuces +A)
+boneher shows [Ac 9c] (a Pair of Deuces +AJ9)
+low wins Pot (65.33) with Two Pair
+Rake (1.67)
+
+
+
+Hand #8910471-39 - 2013-06-23 05:27:24
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: slowah (194)
+Seat 3: Grundle (197)
+Seat 4: low (188.02)
+Seat 5: boneher (223.73)
+Seat 6: habing (208.42)
+Grundle has the dealer button
+low posts small blind 1
+boneher posts big blind 2
+** Hole Cards **
+Dealt to habing [8d Kh]
+habing folds
+slowah raises to 6
+Grundle folds
+low calls 5
+boneher raises to 17
+slowah calls 11
+low folds
+** Flop ** [Ac 5h 3s]
+boneher bets 20
+slowah calls 20
+** Turn ** [Qs]
+boneher checks
+slowah bets 40.42
+boneher folds
+slowah refunded 40.42
+boneher adds 13.27 chips
+slowah wins Pot (78)
+Rake (2)
+
+
+
+Hand #8910496-40 - 2013-06-23 05:28:25
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: slowah (235)
+Seat 3: Grundle (197)
+Seat 4: low (182.02)
+Seat 5: boneher (200)
+Seat 6: habing (208.42)
+low has the dealer button
+boneher posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Th 4s]
+slowah folds
+Grundle raises to 12
+low calls 12
+boneher calls 11
+habing folds
+** Flop ** [Jh Ac 9d]
+boneher checks
+Grundle bets 20
+low folds
+boneher calls 20
+** Turn ** [6s]
+boneher checks
+Grundle bets 54
+boneher folds
+Grundle refunded 54
+boneher adds 32 chips
+Grundle wins Pot (76.05)
+Rake (1.95)
+
+
+
+Hand #8910520-41 - 2013-06-23 05:29:25
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: slowah (235)
+Seat 3: Grundle (241.05)
+Seat 5: boneher (200)
+Seat 6: habing (206.42)
+boneher has the dealer button
+habing posts small blind 1
+slowah posts big blind 2
+** Hole Cards **
+Dealt to habing [3h 5h]
+Grundle raises to 6
+boneher raises to 21
+habing folds
+slowah folds
+Grundle folds
+boneher refunded 15
+boneher wins Pot (15)
+Rake (0)
+
+
+
+Hand #8910530-42 - 2013-06-23 05:29:47
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: slowah (233)
+Seat 3: Grundle (235.05)
+Seat 5: boneher (209)
+Seat 6: habing (205.42)
+habing has the dealer button
+slowah posts small blind 1
+Grundle posts big blind 2
+** Hole Cards **
+Dealt to habing [6s Ah]
+boneher raises to 7
+habing folds
+slowah calls 6
+Grundle calls 5
+** Flop ** [Jd 5h 7s]
+slowah checks
+Grundle checks
+boneher bets 10
+slowah calls 10
+Grundle folds
+** Turn ** [Qh]
+slowah checks
+boneher bets 30
+slowah calls 30
+** River ** [7c]
+slowah bets 50.75
+boneher folds
+slowah refunded 50.75
+boneher adds 38 chips
+slowah wins Pot (98.48)
+Rake (2.52)
+
+
+
+Hand #8910569-43 - 2013-06-23 05:31:07
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: slowah (284.48)
+Seat 3: Grundle (228.05)
+Seat 5: boneher (200)
+Seat 6: habing (205.42)
+slowah has the dealer button
+Grundle posts small blind 1
+boneher posts big blind 2
+** Hole Cards **
+Dealt to habing [Qs Js]
+habing raises to 6
+slowah folds
+Grundle folds
+boneher folds
+habing refunded 4
+boneher adds 2 chips
+habing wins Pot (5)
+Rake (0)
+
+
+
+Hand #8910579-44 - 2013-06-23 05:31:30
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: slowah (284.48)
+Seat 3: Grundle (227.05)
+Seat 5: boneher (200)
+Seat 6: habing (208.42)
+Grundle has the dealer button
+boneher posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ad As]
+slowah raises to 6
+Grundle folds
+boneher raises to 19
+habing raises to 44
+slowah calls 38
+boneher calls 25
+** Flop ** [Qh 7c Ks]
+boneher bets 99
+habing raises to 164.42 (All-in)
+slowah folds
+boneher calls 57 (All-in)
+habing refunded 8.42
+** Turn ** [5d]
+** River ** [8h]
+** Pot Show Down ** [Qh 7c Ks 5d 8h]
+boneher shows [Jd Td] (High Card King +QJT8)
+habing shows [Ad As] (a Pair of Aces +KQ8)
+habing wins Pot (440) with a Pair
+Rake (4)
+boneher adds 200 chips
+
+
+
+Hand #8910601-45 - 2013-06-23 05:32:28
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: slowah (240.48)
+Seat 3: Grundle (227.05)
+Seat 6: habing (448.42)
+habing has the dealer button
+slowah posts small blind 1
+Grundle posts big blind 2
+** Hole Cards **
+Dealt to habing [9h Jh]
+habing raises to 6
+slowah folds
+Grundle calls 4
+** Flop ** [Qs 5c Ah]
+Grundle checks
+habing checks
+** Turn ** [Kc]
+Grundle checks
+habing checks
+** River ** [3c]
+Grundle bets 10
+habing folds
+Grundle refunded 10
+Grundle wins Pot (12.68)
+Rake (0.32)
+
+
+
+Hand #8910620-46 - 2013-06-23 05:33:19
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: slowah (239.48)
+Seat 3: Grundle (233.73)
+Seat 6: habing (442.42)
+slowah has the dealer button
+Grundle posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [As 5d]
+slowah folds
+Grundle raises to 6
+habing calls 4
+** Flop ** [Js Jh Tc]
+Grundle checks
+habing checks
+** Turn ** [7h]
+Grundle checks
+habing checks
+** River ** [2h]
+Grundle bets 8
+habing folds
+Grundle refunded 8
+Grundle wins Pot (11.70)
+Rake (0.30)
+
+
+
+Hand #8910645-47 - 2013-06-23 05:34:39
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: slowah (239.48)
+Seat 3: Grundle (239.43)
+Seat 6: habing (436.42)
+Grundle has the dealer button
+habing posts small blind 1
+slowah posts big blind 2
+** Hole Cards **
+Dealt to habing [Ad Kc]
+Grundle raises to 6
+habing raises to 20.80
+slowah folds
+Grundle calls 14.80
+** Flop ** [5s 4c Kd]
+habing bets 22
+Grundle folds
+habing refunded 22
+habing wins Pot (42.51)
+Rake (1.09)
+
+
+
+Hand #8910660-48 - 2013-06-23 05:35:23
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: slowah (237.48)
+Seat 3: Grundle (218.63)
+Seat 6: habing (458.13)
+habing has the dealer button
+slowah posts small blind 1
+Grundle posts big blind 2
+** Hole Cards **
+Dealt to habing [3s Ah]
+habing raises to 6
+slowah folds
+Grundle calls 4
+** Flop ** [As 4c Th]
+Grundle checks
+habing bets 9.20
+Grundle raises to 28.39
+habing folds
+Grundle refunded 19.19
+Grundle wins Pot (30.62)
+Rake (0.78)
+
+
+
+Hand #8910687-49 - 2013-06-23 05:36:31
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: slowah (236.48)
+Seat 3: Grundle (234.05)
+Seat 6: habing (442.93)
+slowah has the dealer button
+Grundle posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [3c Jh]
+slowah folds
+Grundle raises to 6
+habing folds
+Grundle refunded 4
+Grundle wins Pot (4)
+Rake (0)
+
+
+
+Hand #8910695-50 - 2013-06-23 05:36:52
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: slowah (236.48)
+Seat 3: Grundle (236.05)
+Seat 6: habing (440.93)
+Grundle has the dealer button
+habing posts small blind 1
+slowah posts big blind 2
+** Hole Cards **
+Dealt to habing [7s 5h]
+Grundle raises to 6
+habing folds
+slowah folds
+Grundle refunded 4
+Grundle wins Pot (5)
+Rake (0)
+
+
+
+Hand #8910705-51 - 2013-06-23 05:37:10
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: slowah (234.48)
+Seat 6: habing (439.93)
+habing has the dealer button
+habing posts small blind 1
+slowah posts big blind 2
+** Hole Cards **
+Dealt to habing [As 3h]
+habing raises to 6
+slowah raises to 18
+habing folds
+slowah refunded 12
+slowah wins Pot (12)
+Rake (0)
+
+
+
+Hand #8910714-52 - 2013-06-23 05:37:32
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: slowah (240.48)
+Seat 6: habing (433.93)
+slowah has the dealer button
+slowah posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [3s Qc]
+slowah raises to 6
+habing folds
+slowah refunded 4
+slowah wins Pot (4)
+Rake (0)
+
+
+
+Hand #8910720-53 - 2013-06-23 05:37:49
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: slowah (242.48)
+Seat 6: habing (431.93)
+habing has the dealer button
+habing posts small blind 1
+slowah posts big blind 2
+** Hole Cards **
+Dealt to habing [3c 5h]
+habing folds
+slowah refunded 1
+slowah wins Pot (2)
+Rake (0)
+
+
+
+Hand #8910724-54 - 2013-06-23 05:38:01
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: slowah (243.48)
+Seat 6: habing (430.93)
+slowah has the dealer button
+slowah posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [8s 5c]
+slowah raises to 6
+habing folds
+slowah refunded 4
+slowah wins Pot (4)
+Rake (0)
+
+
+
+Hand #8910734-55 - 2013-06-23 05:38:18
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: slowah (245.48)
+Seat 6: habing (428.93)
+habing has the dealer button
+habing posts small blind 1
+slowah posts big blind 2
+** Hole Cards **
+Dealt to habing [4s 9d]
+habing folds
+slowah refunded 1
+slowah wins Pot (2)
+Rake (0)
+
+
+
+Hand #8910738-56 - 2013-06-23 05:38:29
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: slowah (246.48)
+Seat 6: habing (427.93)
+slowah has the dealer button
+slowah posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Qh 7h]
+slowah calls 1
+habing raises to 10
+slowah calls 8
+** Flop ** [3c Qc 9s]
+habing bets 13.60
+slowah raises to 39.20
+habing calls 25.60
+** Turn ** [4d]
+habing checks
+slowah bets 50.07
+habing has timed out
+habing folds
+slowah refunded 50.07
+slowah wins Pot (95.94)
+Rake (2.46)
+
+
+
+Hand #8910770-57 - 2013-06-23 05:39:51
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: slowah (293.22)
+Seat 6: habing (378.73)
+habing has the dealer button
+habing posts small blind 1
+slowah posts big blind 2
+** Hole Cards **
+Dealt to habing [7s Kd]
+habing raises to 6
+slowah folds
+habing refunded 4
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8910779-58 - 2013-06-23 05:40:07
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: slowah (291.22)
+Seat 6: habing (380.73)
+slowah has the dealer button
+slowah posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [4h 2s]
+slowah raises to 6
+habing folds
+slowah refunded 4
+slowah wins Pot (4)
+Rake (0)
+
+
+
+Hand #8910787-59 - 2013-06-23 05:40:24
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: slowah (293.22)
+Seat 6: habing (378.73)
+habing has the dealer button
+habing posts small blind 1
+slowah posts big blind 2
+** Hole Cards **
+Dealt to habing [7s Kh]
+habing raises to 6
+slowah folds
+habing refunded 4
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #8910795-60 - 2013-06-23 05:40:40
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: slowah (291.22)
+Seat 6: habing (380.73)
+slowah has the dealer button
+slowah posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [5d Qc]
+slowah raises to 6
+habing folds
+slowah refunded 4
+slowah wins Pot (4)
+Rake (0)
+
+
+
+Hand #8910800-61 - 2013-06-23 05:40:54
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: slowah (293.22)
+Seat 6: habing (378.73)
+habing has the dealer button
+habing posts small blind 1
+slowah posts big blind 2
+** Hole Cards **
+Dealt to habing [5s 5d]
+habing raises to 6
+slowah calls 4
+** Flop ** [8h Ad Ac]
+slowah checks
+habing bets 6.80
+slowah calls 6.80
+** Turn ** [8c]
+slowah checks
+habing checks
+** River ** [9h]
+slowah bets 12
+habing folds
+slowah refunded 12
+slowah wins Pot (24.96)
+Rake (0.64)
+
+
+
+Hand #8910814-62 - 2013-06-23 05:41:35
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: slowah (305.38)
+Seat 6: habing (365.93)
+slowah has the dealer button
+slowah posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [5s 2d]
+slowah folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #8910819-63 - 2013-06-23 05:41:50
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: slowah (304.38)
+Seat 6: habing (366.93)
+habing has the dealer button
+habing posts small blind 1
+slowah posts big blind 2
+** Hole Cards **
+Dealt to habing [6s 4h]
+habing folds
+slowah refunded 1
+slowah wins Pot (2)
+Rake (0)
+
+
+
+Hand #8910823-64 - 2013-06-23 05:42:01
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: slowah (305.38)
+Seat 6: habing (365.93)
+slowah has the dealer button
+slowah posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Qc 8d]
+slowah raises to 6
+habing calls 4
+** Flop ** [5d 6c 4c]
+habing bets 8
+slowah calls 8
+** Turn ** [Td]
+habing checks
+slowah bets 20
+habing folds
+slowah refunded 20
+slowah wins Pot (27.30)
+Rake (0.70)
+
+
+
+Hand #8910845-65 - 2013-06-23 05:43:08
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #8
+Seat 1: slowah (318.68)
+Seat 6: habing (351.93)
+habing has the dealer button
+habing posts small blind 1
+slowah posts big blind 2
+** Hole Cards **
+Dealt to habing [6s Qs]
+habing raises to 6
+slowah folds
+habing refunded 4
+habing wins Pot (4)
+Rake (0)

@@ -1,0 +1,1237 @@
+Hand #8757977-1 - 2013-06-20 01:56:08
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #0
+Seat 5: joebags13 (40) - waiting for big blind
+Seat 6: habing (100) - waiting for big blind
+joebags13 has the dealer button
+joebags13 posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [Ad Kh]
+joebags13 raises to 2
+habing raises to 8
+joebags13 calls 6
+** Flop ** [7h Td 2d]
+habing bets 7
+joebags13 calls 7
+** Turn ** [8d]
+habing checks
+joebags13 checks
+** River ** [9c]
+habing checks
+joebags13 checks
+** Pot Show Down ** [7h Td 2d 8d 9c]
+joebags13 shows [5h Qd] (High Card Queen +T987)
+habing shows [Ad Kh] (High Card Ace +KT98)
+habing wins Pot (29.25) with High Card
+Rake (0.75)
+
+
+
+Hand #8758020-2 - 2013-06-20 01:57:09
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #0
+Seat 5: joebags13 (25)
+Seat 6: habing (114.25)
+habing has the dealer button
+habing posts small blind 0.50
+joebags13 posts big blind 1
+** Hole Cards **
+Dealt to habing [5s 3d]
+habing folds
+joebags13 refunded 0.50
+joebags13 wins Pot (1)
+Rake (0)
+
+
+
+Hand #8758035-3 - 2013-06-20 01:57:29
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #0
+Seat 5: joebags13 (25.50)
+Seat 6: habing (113.75)
+joebags13 has the dealer button
+joebags13 posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [Qc 7d]
+joebags13 calls 0.50
+habing checks
+** Flop ** [Ts 8s 5d]
+habing checks
+joebags13 bets 1
+habing folds
+joebags13 refunded 1
+joebags13 wins Pot (1.95)
+Rake (0.05)
+
+
+
+Hand #8758066-4 - 2013-06-20 01:58:11
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #0
+Seat 5: joebags13 (26.45)
+Seat 6: habing (112.75)
+habing has the dealer button
+habing posts small blind 0.50
+joebags13 posts big blind 1
+** Hole Cards **
+Dealt to habing [8s Jh]
+habing raises to 2
+joebags13 calls 1
+** Flop ** [6d 8d Ah]
+joebags13 checks
+habing bets 3
+joebags13 raises to 7
+habing folds
+joebags13 refunded 4
+joebags13 wins Pot (9.75)
+Rake (0.25)
+
+
+
+Hand #8758099-5 - 2013-06-20 01:59:04
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #0
+Seat 5: joebags13 (31.20)
+Seat 6: habing (107.75)
+joebags13 has the dealer button
+joebags13 posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [2d 9c]
+joebags13 folds
+habing refunded 0.50
+habing wins Pot (1)
+Rake (0)
+
+
+
+Hand #8758107-6 - 2013-06-20 01:59:20
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #0
+Seat 5: joebags13 (30.70)
+Seat 6: habing (108.25)
+Seat 7: TMJigsaw (100) - waiting for big blind
+habing has the dealer button
+habing posts small blind 0.50
+joebags13 posts big blind 1
+** Hole Cards **
+Dealt to habing [Td Jh]
+habing raises to 3
+joebags13 calls 2
+** Flop ** [6s 4d 2c]
+joebags13 checks
+habing bets 3
+joebags13 raises to 8
+habing folds
+joebags13 refunded 5
+joebags13 wins Pot (11.70)
+Rake (0.30)
+
+
+
+Hand #8758157-7 - 2013-06-20 02:00:33
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #0
+Seat 5: joebags13 (36.40)
+Seat 6: habing (102.25)
+Seat 7: TMJigsaw (100)
+joebags13 has the dealer button
+habing posts small blind 0.50
+TMJigsaw posts big blind 1
+** Hole Cards **
+Dealt to habing [6d 2h]
+joebags13 calls 1
+habing folds
+TMJigsaw checks
+** Flop ** [Jc 8d Js]
+TMJigsaw checks
+joebags13 checks
+** Turn ** [Ah]
+TMJigsaw bets 1
+joebags13 folds
+TMJigsaw refunded 1
+TMJigsaw wins Pot (2.44)
+Rake (0.06)
+
+
+
+Hand #8758238-8 - 2013-06-20 02:01:56
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #0
+Seat 5: joebags13 (35.40)
+Seat 6: habing (101.75)
+Seat 7: TMJigsaw (101.44)
+habing has the dealer button
+TMJigsaw posts small blind 0.50
+joebags13 posts big blind 1
+** Hole Cards **
+Dealt to habing [8c 3c]
+habing folds
+TMJigsaw raises to 2
+joebags13 calls 1
+** Flop ** [2c 6h 7c]
+TMJigsaw checks
+joebags13 bets 2
+TMJigsaw calls 2
+** Turn ** [Jc]
+TMJigsaw bets 4
+joebags13 calls 4
+** River ** [9s]
+TMJigsaw bets 5
+joebags13 folds
+TMJigsaw refunded 5
+TMJigsaw wins Pot (15.60)
+Rake (0.40)
+
+
+
+Hand #8758315-9 - 2013-06-20 02:03:16
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #0
+Seat 5: joebags13 (27.40)
+Seat 6: habing (101.75)
+Seat 7: TMJigsaw (109.04)
+TMJigsaw has the dealer button
+joebags13 posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [Kd Ad]
+TMJigsaw calls 1
+joebags13 calls 0.50
+habing raises to 5
+TMJigsaw calls 4
+joebags13 calls 4
+** Flop ** [6c 8d Ah]
+joebags13 bets 1
+habing calls 1
+TMJigsaw raises to 4
+joebags13 calls 3
+habing calls 3
+** Turn ** [Jd]
+joebags13 bets 4
+habing calls 4
+TMJigsaw calls 4
+** River ** [2s]
+joebags13 bets 1
+habing raises to 14.60
+TMJigsaw folds
+joebags13 folds
+habing refunded 13.60
+habing wins Pot (39.98)
+Rake (1.02)
+
+
+
+Hand #8758427-10 - 2013-06-20 02:05:21
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #0
+Seat 5: joebags13 (13.40)
+Seat 6: habing (127.73)
+Seat 7: TMJigsaw (96.04)
+joebags13 has the dealer button
+habing posts small blind 0.50
+TMJigsaw posts big blind 1
+** Hole Cards **
+Dealt to habing [9d 7c]
+joebags13 raises to 4
+habing folds
+TMJigsaw raises to 7
+joebags13 calls 3
+** Flop ** [3s 6c 5s]
+TMJigsaw bets 89.04 (All-in)
+joebags13 has timed out
+joebags13 folds
+TMJigsaw refunded 89.04
+TMJigsaw wins Pot (14.14)
+Rake (0.36)
+
+
+
+Hand #8758501-11 - 2013-06-20 02:06:41
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #0
+Seat 5: joebags13 (6.40) - sitting out
+Seat 6: habing (127.23)
+Seat 7: TMJigsaw (103.18)
+habing has the dealer button
+habing posts small blind 0.50
+TMJigsaw posts big blind 1
+** Hole Cards **
+Dealt to habing [3s 3c]
+habing raises to 2
+TMJigsaw calls 1
+** Flop ** [Th 5d 4h]
+TMJigsaw checks
+habing checks
+** Turn ** [7h]
+TMJigsaw bets 3
+habing folds
+TMJigsaw refunded 3
+TMJigsaw wins Pot (3.90)
+Rake (0.10)
+
+
+
+Hand #8758528-12 - 2013-06-20 02:07:10
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #0
+Seat 5: joebags13 (6.40) - sitting out
+Seat 6: habing (125.23)
+Seat 7: TMJigsaw (105.08)
+TMJigsaw has the dealer button
+TMJigsaw posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [6d Ah]
+TMJigsaw calls 0.50
+habing checks
+** Flop ** [6c 7c Ad]
+habing bets 1
+TMJigsaw calls 1
+** Turn ** [6h]
+habing checks
+TMJigsaw checks
+** River ** [8c]
+habing bets 3
+TMJigsaw calls 3
+** Pot Show Down ** [6c 7c Ad 6h 8c]
+habing shows [6d Ah] (a Full House, Sixes full of Aces)
+TMJigsaw shows [5s Th] (a Pair of Sixes +AT8)
+habing wins Pot (9.75) with a Full House
+Rake (0.25)
+
+
+
+Hand #8758587-13 - 2013-06-20 02:08:05
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #0
+Seat 5: joebags13 (6.40)
+Seat 6: habing (129.98)
+habing has the dealer button
+habing posts small blind 0.50
+joebags13 posts big blind 1
+** Hole Cards **
+Dealt to habing [Jh 5h]
+habing raises to 129.97
+joebags13 calls 5.40 (All-in)
+habing refunded 123.57
+** Flop ** [5d 9c Th]
+** Turn ** [4h]
+** River ** [5c]
+** Pot Show Down ** [5d 9c Th 4h 5c]
+joebags13 shows [Kc 2d] (a Pair of Fives +KT9)
+habing shows [Jh 5h] (Three of a Kind, Fives +JT)
+habing wins Pot (12.48) with Three of a Kind
+Rake (0.32)
+joebags13 adds 100 chips
+
+
+
+Hand #8758639-1 - 2013-06-20 02:09:05
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #0
+Seat 5: joebags13 (100)
+Seat 6: habing (136.06)
+joebags13 has the dealer button
+joebags13 posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [4s Kd]
+joebags13 calls 0.50
+habing checks
+** Flop ** [Ts 7h 3d]
+habing checks
+joebags13 bets 1
+habing folds
+joebags13 refunded 1
+joebags13 wins Pot (1.95)
+Rake (0.05)
+
+
+
+Hand #8758672-2 - 2013-06-20 02:09:38
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #0
+Seat 5: joebags13 (100.95)
+Seat 6: habing (135.06)
+habing has the dealer button
+habing posts small blind 0.50
+joebags13 posts big blind 1
+** Hole Cards **
+Dealt to habing [Jd 2h]
+habing folds
+joebags13 refunded 0.50
+joebags13 wins Pot (1)
+Rake (0)
+
+
+
+Hand #8758683-3 - 2013-06-20 02:09:51
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #0
+Seat 5: joebags13 (101.45)
+Seat 6: habing (134.56)
+joebags13 has the dealer button
+joebags13 posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [6h 2c]
+joebags13 raises to 2
+habing folds
+joebags13 refunded 1
+joebags13 wins Pot (2)
+Rake (0)
+
+
+
+Hand #8758712-4 - 2013-06-20 02:10:27
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #0
+Seat 5: joebags13 (102.45)
+Seat 6: habing (133.56)
+habing has the dealer button
+habing posts small blind 0.50
+joebags13 posts big blind 1
+** Hole Cards **
+Dealt to habing [7s 4h]
+habing folds
+joebags13 refunded 0.50
+joebags13 wins Pot (1)
+Rake (0)
+
+
+
+Hand #8758736-5 - 2013-06-20 02:10:52
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #0
+Seat 5: joebags13 (102.95)
+Seat 6: habing (133.06)
+joebags13 has the dealer button
+joebags13 posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [5h 6c]
+joebags13 calls 0.50
+habing checks
+** Flop ** [2s 8s 9d]
+habing bets 2
+joebags13 calls 2
+** Turn ** [Th]
+habing checks
+joebags13 bets 4
+habing folds
+joebags13 refunded 4
+joebags13 wins Pot (5.85)
+Rake (0.15)
+
+
+
+Hand #8758789-6 - 2013-06-20 02:11:50
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #0
+Seat 5: joebags13 (105.80)
+Seat 6: habing (130.06)
+habing has the dealer button
+habing posts small blind 0.50
+joebags13 posts big blind 1
+** Hole Cards **
+Dealt to habing [Ac Qc]
+habing raises to 3
+joebags13 calls 2
+** Flop ** [3h 6h 3s]
+joebags13 checks
+habing bets 3.40
+joebags13 folds
+habing refunded 3.40
+habing wins Pot (5.85)
+Rake (0.15)
+
+
+
+Hand #8758840-7 - 2013-06-20 02:12:43
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #0
+Seat 5: joebags13 (102.80)
+Seat 6: habing (132.91)
+joebags13 has the dealer button
+joebags13 posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [Kh Kc]
+joebags13 raises to 3
+habing raises to 11
+joebags13 calls 8
+** Flop ** [5c 9d 8d]
+habing bets 20.80
+joebags13 calls 20.80
+** Turn ** [Ah]
+habing checks
+joebags13 checks
+** River ** [8h]
+habing bets 22.40
+joebags13 raises to 53.80
+habing folds
+joebags13 refunded 31.40
+habing adds 21.29 chips
+joebags13 wins Pot (106.40)
+Rake (2)
+
+
+
+Hand #8758915-8 - 2013-06-20 02:13:59
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #0
+Seat 5: joebags13 (155)
+Seat 6: habing (100)
+habing has the dealer button
+habing posts small blind 0.50
+joebags13 posts big blind 1
+** Hole Cards **
+Dealt to habing [3d 8d]
+habing folds
+joebags13 refunded 0.50
+habing adds 0.50 chips
+joebags13 wins Pot (1)
+Rake (0)
+
+
+
+Hand #8758925-9 - 2013-06-20 02:14:11
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #0
+Seat 5: joebags13 (155.50)
+Seat 6: habing (100)
+joebags13 has the dealer button
+joebags13 posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [9c 4c]
+joebags13 calls 0.50
+habing checks
+** Flop ** [3h 8d 7s]
+habing checks
+joebags13 bets 1
+habing folds
+joebags13 refunded 1
+habing adds 1 chips
+joebags13 wins Pot (1.95)
+Rake (0.05)
+
+
+
+Hand #8758960-10 - 2013-06-20 02:14:41
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #0
+Seat 5: joebags13 (156.45)
+Seat 6: habing (100)
+habing has the dealer button
+habing posts small blind 0.50
+joebags13 posts big blind 1
+** Hole Cards **
+Dealt to habing [Js Jc]
+habing raises to 3
+joebags13 calls 2
+** Flop ** [4c 2s 5d]
+joebags13 bets 33.57
+habing raises to 97 (All-in)
+joebags13 calls 63.43
+** Turn ** [As]
+** River ** [5s]
+** Pot Show Down ** [4c 2s 5d As 5s]
+joebags13 shows [3h Ks] (a Straight, Ace to Five)
+habing shows [Js Jc] (Two Pair, Jacks and Fives +A)
+joebags13 wins Pot (198) with a Straight
+Rake (2)
+habing adds 100 chips
+
+
+
+Hand #8759002-11 - 2013-06-20 02:15:36
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #0
+Seat 5: joebags13 (254.45)
+Seat 6: habing (100)
+joebags13 has the dealer button
+joebags13 posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [8h Qd]
+joebags13 raises to 2
+habing calls 1
+** Flop ** [Qc 7h Ad]
+habing checks
+joebags13 bets 3
+habing calls 3
+** Turn ** [3c]
+habing checks
+joebags13 checks
+** River ** [Js]
+habing checks
+joebags13 checks
+** Pot Show Down ** [Qc 7h Ad 3c Js]
+joebags13 shows [8s Qs] (a Pair of Queens +AJ8)
+habing shows [8h Qd] (a Pair of Queens +AJ8)
+joebags13 splits Pot (4.87) with a Pair
+habing splits Pot (4.88) with a Pair
+Rake (0.25)
+habing adds 0.12 chips
+
+
+
+Hand #8759070-12 - 2013-06-20 02:16:48
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #0
+Seat 5: joebags13 (254.32)
+Seat 6: habing (100)
+habing has the dealer button
+habing posts small blind 0.50
+joebags13 posts big blind 1
+** Hole Cards **
+Dealt to habing [5d 9c]
+habing folds
+joebags13 refunded 0.50
+habing adds 0.50 chips
+joebags13 wins Pot (1)
+Rake (0)
+
+
+
+Hand #8759080-13 - 2013-06-20 02:17:01
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #0
+Seat 5: joebags13 (254.82)
+Seat 6: habing (100)
+joebags13 has the dealer button
+joebags13 posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [7d 8d]
+joebags13 folds
+habing refunded 0.50
+habing wins Pot (1)
+Rake (0)
+
+
+
+Hand #8759091-14 - 2013-06-20 02:17:16
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #0
+Seat 5: joebags13 (254.32)
+Seat 6: habing (100.50)
+habing has the dealer button
+habing posts small blind 0.50
+joebags13 posts big blind 1
+** Hole Cards **
+Dealt to habing [8c 6s]
+habing folds
+joebags13 refunded 0.50
+joebags13 wins Pot (1)
+Rake (0)
+
+
+
+Hand #8759110-15 - 2013-06-20 02:17:27
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #0
+Seat 5: joebags13 (254.82)
+Seat 6: habing (100)
+joebags13 has the dealer button
+joebags13 posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [5s 6h]
+joebags13 calls 0.50
+habing checks
+** Flop ** [2h Qc 7c]
+habing checks
+joebags13 bets 1
+habing folds
+joebags13 refunded 1
+habing adds 1 chips
+joebags13 wins Pot (1.95)
+Rake (0.05)
+
+
+
+Hand #8759137-16 - 2013-06-20 02:18:00
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #0
+Seat 5: joebags13 (255.77)
+Seat 6: habing (100)
+habing has the dealer button
+habing posts small blind 0.50
+joebags13 posts big blind 1
+** Hole Cards **
+Dealt to habing [3d 3s]
+habing raises to 2
+joebags13 calls 1
+** Flop ** [Td 3c 4s]
+joebags13 bets 4
+habing raises to 15
+joebags13 raises to 32
+habing calls 17
+** Turn ** [Kd]
+joebags13 bets 42.51
+habing raises to 66 (All-in)
+joebags13 folds
+habing refunded 23.49
+habing wins Pot (151.02)
+Rake (2)
+
+
+
+Hand #8759235-17 - 2013-06-20 02:19:56
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #0
+Seat 5: joebags13 (179.26)
+Seat 6: habing (174.51)
+joebags13 has the dealer button
+joebags13 posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [Jd 5d]
+joebags13 folds
+habing refunded 0.50
+habing wins Pot (1)
+Rake (0)
+
+
+
+Hand #8759249-18 - 2013-06-20 02:20:12
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #0
+Seat 5: joebags13 (178.76)
+Seat 6: habing (175.01)
+habing has the dealer button
+habing posts small blind 0.50
+joebags13 posts big blind 1
+** Hole Cards **
+Dealt to habing [5d 9c]
+habing folds
+joebags13 refunded 0.50
+joebags13 wins Pot (1)
+Rake (0)
+
+
+
+Hand #8759260-19 - 2013-06-20 02:20:24
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #0
+Seat 5: joebags13 (179.26)
+Seat 6: habing (174.51)
+joebags13 has the dealer button
+joebags13 posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [9s Ts]
+joebags13 calls 0.50
+habing raises to 4
+joebags13 calls 3
+** Flop ** [5c Ac 3c]
+habing checks
+joebags13 bets 3
+habing folds
+joebags13 refunded 3
+joebags13 wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #8759325-20 - 2013-06-20 02:21:38
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #0
+Seat 5: joebags13 (183.06)
+Seat 6: habing (170.51)
+habing has the dealer button
+habing posts small blind 0.50
+joebags13 posts big blind 1
+** Hole Cards **
+Dealt to habing [5c 5h]
+habing raises to 2
+joebags13 calls 1
+** Flop ** [Js 7c 2s]
+joebags13 bets 2
+habing folds
+joebags13 refunded 2
+joebags13 wins Pot (3.90)
+Rake (0.10)
+
+
+
+Hand #8759355-21 - 2013-06-20 02:22:18
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #0
+Seat 5: joebags13 (184.96)
+Seat 6: habing (168.51)
+joebags13 has the dealer button
+joebags13 posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [Kc Qd]
+joebags13 raises to 4
+habing calls 3
+** Flop ** [Qc 3h Ah]
+habing checks
+joebags13 checks
+** Turn ** [Th]
+habing bets 5
+joebags13 calls 5
+** River ** [2d]
+habing checks
+joebags13 checks
+** Pot Show Down ** [Qc 3h Ah Th 2d]
+joebags13 shows [Js Kh] (a Straight, Ten to Ace)
+habing shows [Kc Qd] (a Pair of Queens +AKT)
+joebags13 wins Pot (17.55) with a Straight
+Rake (0.45)
+
+
+
+Hand #8759414-22 - 2013-06-20 02:23:49
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #0
+Seat 5: joebags13 (193.51)
+Seat 6: habing (159.51)
+habing has the dealer button
+habing posts small blind 0.50
+joebags13 posts big blind 1
+** Hole Cards **
+Dealt to habing [Qs 6d]
+habing raises to 2
+joebags13 raises to 3
+habing calls 1
+** Flop ** [5c Ac Qc]
+joebags13 bets 3
+habing folds
+joebags13 refunded 3
+joebags13 wins Pot (5.85)
+Rake (0.15)
+
+
+
+Hand #8759449-23 - 2013-06-20 02:24:34
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #0
+Seat 5: joebags13 (196.36)
+Seat 6: habing (156.51)
+joebags13 has the dealer button
+joebags13 posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [Qh 3s]
+joebags13 raises to 4
+habing folds
+joebags13 refunded 3
+joebags13 wins Pot (2)
+Rake (0)
+
+
+
+Hand #8759467-24 - 2013-06-20 02:24:57
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #0
+Seat 5: joebags13 (197.36)
+Seat 6: habing (155.51)
+habing has the dealer button
+habing posts small blind 0.50
+joebags13 posts big blind 1
+** Hole Cards **
+Dealt to habing [Qc 5c]
+habing raises to 2
+joebags13 calls 1
+** Flop ** [As Jh 7s]
+joebags13 bets 3
+habing folds
+joebags13 refunded 3
+joebags13 wins Pot (3.90)
+Rake (0.10)
+
+
+
+Hand #8759498-25 - 2013-06-20 02:25:52
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #0
+Seat 5: joebags13 (199.26)
+Seat 6: habing (153.51)
+joebags13 has the dealer button
+joebags13 posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [6c Ks]
+joebags13 calls 0.50
+habing checks
+** Flop ** [Ac Th 5c]
+habing bets 1
+joebags13 calls 1
+** Turn ** [3d]
+habing checks
+joebags13 checks
+** River ** [3h]
+habing checks
+joebags13 bets 5
+habing folds
+joebags13 refunded 5
+joebags13 wins Pot (3.90)
+Rake (0.10)
+
+
+
+Hand #8759535-26 - 2013-06-20 02:26:54
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #0
+Seat 5: joebags13 (201.16)
+Seat 6: habing (151.51)
+habing has the dealer button
+habing posts small blind 0.50
+joebags13 posts big blind 1
+** Hole Cards **
+Dealt to habing [Jd 2h]
+habing raises to 2
+joebags13 raises to 6
+habing folds
+joebags13 refunded 4
+joebags13 wins Pot (4)
+Rake (0)
+
+
+
+Hand #8759553-27 - 2013-06-20 02:27:24
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #0
+Seat 5: joebags13 (203.16)
+Seat 6: habing (149.51)
+joebags13 has the dealer button
+joebags13 posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [Th 5s]
+joebags13 raises to 2
+habing folds
+joebags13 refunded 1
+joebags13 wins Pot (2)
+Rake (0)
+
+
+
+Hand #8759573-28 - 2013-06-20 02:27:55
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #0
+Seat 5: joebags13 (204.16)
+Seat 6: habing (148.51)
+habing has the dealer button
+habing posts small blind 0.50
+joebags13 posts big blind 1
+** Hole Cards **
+Dealt to habing [Jd Qd]
+habing raises to 2
+joebags13 calls 1
+** Flop ** [Ac 9c Qs]
+joebags13 checks
+habing bets 3
+joebags13 has timed out
+joebags13 folds
+habing refunded 3
+habing wins Pot (3.90)
+Rake (0.10)
+
+
+
+Hand #8759614-1 - 2013-06-20 02:29:08
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #0
+Seat 5: joebags13 (202.16)
+Seat 6: habing (150.41)
+joebags13 has the dealer button
+joebags13 posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [6d As]
+joebags13 calls 0.50
+habing checks
+** Flop ** [Jc Qh Ah]
+habing bets 1
+joebags13 calls 1
+** Turn ** [Ts]
+habing checks
+joebags13 checks
+** River ** [6c]
+habing checks
+joebags13 checks
+** Pot Show Down ** [Jc Qh Ah Ts 6c]
+joebags13 shows [6h 9s] (a Pair of Sixes +AQJ)
+habing shows [6d As] (Two Pair, Aces and Sixes +Q)
+habing wins Pot (3.90) with Two Pair
+Rake (0.10)
+
+
+
+Hand #8759639-2 - 2013-06-20 02:30:11
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #0
+Seat 5: joebags13 (200.16)
+Seat 6: habing (152.31)
+habing has the dealer button
+habing posts small blind 0.50
+joebags13 posts big blind 1
+** Hole Cards **
+Dealt to habing [9s Jh]
+habing raises to 2
+joebags13 raises to 5
+habing folds
+joebags13 refunded 3
+joebags13 wins Pot (4)
+Rake (0)
+
+
+
+Hand #8759661-3 - 2013-06-20 02:30:37
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #0
+Seat 5: joebags13 (202.16)
+Seat 6: habing (150.31)
+joebags13 has the dealer button
+joebags13 posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [5c Kc]
+joebags13 calls 0.50
+habing raises to 4
+joebags13 calls 3
+** Flop ** [6c 2h 3s]
+habing checks
+joebags13 bets 4
+habing folds
+joebags13 refunded 4
+joebags13 wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #8759708-4 - 2013-06-20 02:31:47
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #0
+Seat 5: joebags13 (205.96)
+Seat 6: habing (146.31)
+habing has the dealer button
+habing posts small blind 0.50
+joebags13 posts big blind 1
+** Hole Cards **
+Dealt to habing [9h 8s]
+habing raises to 2
+joebags13 raises to 7
+habing folds
+joebags13 refunded 5
+joebags13 wins Pot (4)
+Rake (0)
+
+
+
+Hand #8759720-5 - 2013-06-20 02:32:10
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #0
+Seat 5: joebags13 (207.96)
+Seat 6: habing (144.31)
+joebags13 has the dealer button
+joebags13 posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [Th 5h]
+joebags13 raises to 5
+habing folds
+joebags13 refunded 4
+joebags13 wins Pot (2)
+Rake (0)
+
+
+
+Hand #8759745-6 - 2013-06-20 02:32:38
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #0
+Seat 5: joebags13 (208.96)
+Seat 6: habing (143.31)
+habing has the dealer button
+habing posts small blind 0.50
+joebags13 posts big blind 1
+** Hole Cards **
+Dealt to habing [9c As]
+habing raises to 2
+joebags13 calls 1
+** Flop ** [8c Qc 4d]
+joebags13 checks
+habing bets 3
+joebags13 folds
+habing refunded 3
+habing wins Pot (3.90)
+Rake (0.10)
+
+
+
+Hand #8759769-7 - 2013-06-20 02:33:20
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #0
+Seat 5: joebags13 (206.96)
+Seat 6: habing (145.21)
+joebags13 has the dealer button
+joebags13 posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [Kc 7d]
+joebags13 calls 0.50
+habing raises to 4
+joebags13 calls 3
+** Flop ** [Qc 5c Ac]
+habing checks
+joebags13 bets 6
+habing calls 6
+** Turn ** [4s]
+habing checks
+joebags13 checks
+** River ** [6c]
+habing bets 16
+joebags13 folds
+habing refunded 16
+habing wins Pot (19.50)
+Rake (0.50)
+
+
+
+Hand #8759822-8 - 2013-06-20 02:34:57
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #0
+Seat 5: joebags13 (196.96)
+Seat 6: habing (154.71)
+habing has the dealer button
+habing posts small blind 0.50
+joebags13 posts big blind 1
+** Hole Cards **
+Dealt to habing [Js 8s]
+habing raises to 2
+joebags13 raises to 5
+habing calls 3
+** Flop ** [2c 7d 3d]
+joebags13 bets 4
+habing folds
+joebags13 refunded 4
+joebags13 wins Pot (9.75)
+Rake (0.25)
+
+
+
+Hand #8759848-9 - 2013-06-20 02:35:50
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #0
+Seat 5: joebags13 (201.71)
+Seat 6: habing (149.71)
+joebags13 has the dealer button
+joebags13 posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [Qh Qs]
+joebags13 raises to 9
+habing raises to 149.71 (All-in)
+joebags13 folds
+habing refunded 140.71
+habing wins Pot (18)
+Rake (0)
+
+
+
+Hand #8759873-10 - 2013-06-20 02:36:33
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #0
+Seat 5: joebags13 (192.71)
+Seat 6: habing (158.71)
+habing has the dealer button
+habing posts small blind 0.50
+joebags13 posts big blind 1
+** Hole Cards **
+Dealt to habing [6d 6s]
+habing raises to 2
+joebags13 calls 1
+** Flop ** [7s 2d 9c]
+joebags13 checks
+habing checks
+** Turn ** [6h]
+joebags13 bets 3
+habing raises to 14
+joebags13 calls 11
+** River ** [5c]
+joebags13 checks
+habing checks
+** Pot Show Down ** [7s 2d 9c 6h 5c]
+joebags13 shows [Js Th] (High Card Jack +T976)
+habing shows [6d 6s] (Three of a Kind, Sixes +97)
+habing wins Pot (31.20) with Three of a Kind
+Rake (0.80)
+
+
+
+Hand #8759919-11 - 2013-06-20 02:37:54
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 9max .5/1 #0
+Seat 5: joebags13 (176.71)
+Seat 6: habing (173.91)
+joebags13 has the dealer button
+joebags13 posts small blind 0.50
+habing posts big blind 1
+** Hole Cards **
+Dealt to habing [Js 4d]
+joebags13 raises to 2
+habing folds
+joebags13 refunded 1
+joebags13 wins Pot (2)
+Rake (0)
