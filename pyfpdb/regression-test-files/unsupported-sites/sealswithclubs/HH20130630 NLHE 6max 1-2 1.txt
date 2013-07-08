@@ -1,0 +1,2201 @@
+Hand #9252751-123 - 2013-06-30 16:10:03
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: iwillcrushu (329.69)
+Seat 2: FeedMeBits (229.60)
+Seat 3: lipton36 (219.98)
+Seat 4: Spain (265.66)
+Seat 5: Tos5 (149.27)
+Seat 6: sctt11 (234.76)
+Tos5 has the dealer button
+sctt11 posts small blind 1
+iwillcrushu posts big blind 2
+** Hole Cards **
+FeedMeBits raises to 6
+lipton36 folds
+Spain folds
+Tos5 folds
+sctt11 folds
+iwillcrushu folds
+FeedMeBits refunded 4
+FeedMeBits wins Pot (5)
+Rake (0)
+
+
+
+Hand #9252782-124 - 2013-06-30 16:10:40
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: iwillcrushu (327.69)
+Seat 2: FeedMeBits (232.60)
+Seat 3: lipton36 (219.98)
+Seat 4: Spain (265.66)
+Seat 5: Tos5 (149.27)
+Seat 6: sctt11 (233.76)
+sctt11 has the dealer button
+iwillcrushu posts small blind 1
+FeedMeBits posts big blind 2
+** Hole Cards **
+lipton36 folds
+Spain folds
+Tos5 folds
+sctt11 folds
+iwillcrushu calls 1
+FeedMeBits checks
+** Flop ** [6s Kd 7d]
+iwillcrushu checks
+FeedMeBits checks
+** Turn ** [3s]
+iwillcrushu checks
+FeedMeBits checks
+** River ** [Ah]
+iwillcrushu bets 4
+FeedMeBits folds
+iwillcrushu refunded 4
+iwillcrushu wins Pot (3.90)
+Rake (0.10)
+
+
+
+Hand #9252848-125 - 2013-06-30 16:12:00
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: iwillcrushu (329.59)
+Seat 2: FeedMeBits (230.60)
+Seat 3: lipton36 (219.98)
+Seat 4: Spain (265.66)
+Seat 5: Tos5 (149.27)
+Seat 6: sctt11 (233.76)
+iwillcrushu has the dealer button
+FeedMeBits posts small blind 1
+lipton36 posts big blind 2
+** Hole Cards **
+Spain raises to 6
+Tos5 folds
+sctt11 folds
+iwillcrushu folds
+FeedMeBits folds
+lipton36 folds
+Spain refunded 4
+Spain wins Pot (5)
+Rake (0)
+
+
+
+Hand #9252862-126 - 2013-06-30 16:12:25
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: iwillcrushu (329.59)
+Seat 2: FeedMeBits (229.60)
+Seat 3: lipton36 (217.98)
+Seat 4: Spain (268.66)
+Seat 5: Tos5 (149.27)
+Seat 6: sctt11 (233.76)
+FeedMeBits has the dealer button
+lipton36 posts small blind 1
+Spain posts big blind 2
+** Hole Cards **
+Tos5 folds
+sctt11 folds
+iwillcrushu folds
+FeedMeBits folds
+lipton36 folds
+Spain refunded 1
+Spain wins Pot (2)
+Rake (0)
+
+
+
+Hand #9252890-127 - 2013-06-30 16:12:54
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: iwillcrushu (329.59)
+Seat 2: FeedMeBits (229.60)
+Seat 3: lipton36 (216.98)
+Seat 4: Spain (269.66)
+Seat 5: Tos5 (149.27)
+Seat 6: sctt11 (233.76)
+lipton36 has the dealer button
+Spain posts small blind 1
+Tos5 posts big blind 2
+** Hole Cards **
+sctt11 folds
+iwillcrushu folds
+FeedMeBits raises to 6
+lipton36 folds
+Spain folds
+Tos5 calls 4
+** Flop ** [2d Ks Td]
+Tos5 checks
+FeedMeBits checks
+** Turn ** [Jh]
+Tos5 bets 8
+FeedMeBits folds
+Tos5 refunded 8
+Tos5 wins Pot (12.68)
+Rake (0.32)
+
+
+
+Hand #9252939-128 - 2013-06-30 16:13:52
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: iwillcrushu (329.59)
+Seat 2: FeedMeBits (223.60)
+Seat 3: lipton36 (216.98)
+Seat 4: Spain (268.66)
+Seat 5: Tos5 (155.95)
+Seat 6: sctt11 (233.76)
+Spain has the dealer button
+Tos5 posts small blind 1
+sctt11 posts big blind 2
+** Hole Cards **
+iwillcrushu folds
+FeedMeBits folds
+lipton36 folds
+Spain folds
+Tos5 calls 1
+sctt11 checks
+** Flop ** [Qh 2d Ah]
+Tos5 bets 3
+sctt11 folds
+Tos5 refunded 3
+Tos5 wins Pot (3.90)
+Rake (0.10)
+
+
+
+Hand #9252967-129 - 2013-06-30 16:14:28
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: iwillcrushu (329.59)
+Seat 2: FeedMeBits (223.60)
+Seat 3: lipton36 (216.98)
+Seat 4: Spain (268.66)
+Seat 5: Tos5 (157.85)
+Seat 6: sctt11 (231.76)
+Tos5 has the dealer button
+sctt11 posts small blind 1
+iwillcrushu posts big blind 2
+** Hole Cards **
+FeedMeBits raises to 6
+lipton36 folds
+Spain folds
+Tos5 calls 6
+sctt11 folds
+iwillcrushu calls 4
+** Flop ** [Js 3h Qs]
+iwillcrushu checks
+FeedMeBits checks
+Tos5 checks
+** Turn ** [4h]
+iwillcrushu bets 12
+FeedMeBits folds
+Tos5 calls 12
+** River ** [4c]
+iwillcrushu bets 26
+Tos5 calls 26
+** Pot Show Down ** [Js 3h Qs 4h 4c]
+iwillcrushu shows [Qc 9c] (Two Pair, Queens and Fours +J)
+Tos5 shows [Tc Jc] (Two Pair, Jacks and Fours +Q)
+iwillcrushu wins Pot (92.63) with Two Pair
+Rake (2.37)
+
+
+
+Hand #9253033-130 - 2013-06-30 16:15:54
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: iwillcrushu (378.22)
+Seat 2: FeedMeBits (217.60)
+Seat 3: lipton36 (216.98)
+Seat 4: Spain (268.66)
+Seat 5: Tos5 (113.85)
+Seat 6: sctt11 (230.76)
+sctt11 has the dealer button
+iwillcrushu posts small blind 1
+FeedMeBits posts big blind 2
+** Hole Cards **
+lipton36 folds
+Spain folds
+Tos5 raises to 6
+sctt11 folds
+iwillcrushu folds
+FeedMeBits folds
+Tos5 refunded 4
+Tos5 wins Pot (5)
+Rake (0)
+Tos5 adds 83.15 chips
+
+
+
+Hand #9253059-131 - 2013-06-30 16:16:31
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: iwillcrushu (377.22)
+Seat 2: FeedMeBits (215.60)
+Seat 3: lipton36 (216.98)
+Seat 4: Spain (268.66)
+Seat 5: Tos5 (200)
+Seat 6: sctt11 (230.76)
+iwillcrushu has the dealer button
+FeedMeBits posts small blind 1
+lipton36 posts big blind 2
+** Hole Cards **
+Spain folds
+Tos5 folds
+sctt11 folds
+iwillcrushu raises to 4
+FeedMeBits folds
+lipton36 folds
+iwillcrushu refunded 2
+iwillcrushu wins Pot (5)
+Rake (0)
+
+
+
+Hand #9253087-132 - 2013-06-30 16:17:06
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: iwillcrushu (380.22)
+Seat 2: FeedMeBits (214.60)
+Seat 3: lipton36 (214.98)
+Seat 4: Spain (268.66)
+Seat 5: Tos5 (200)
+Seat 6: sctt11 (230.76)
+FeedMeBits has the dealer button
+lipton36 posts small blind 1
+Tos5 posts big blind 2
+** Hole Cards **
+sctt11 has timed out
+sctt11 folds
+iwillcrushu folds
+FeedMeBits raises to 6
+lipton36 folds
+Tos5 folds
+FeedMeBits refunded 4
+FeedMeBits wins Pot (5)
+Rake (0)
+
+
+
+Hand #9253115-133 - 2013-06-30 16:17:48
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: iwillcrushu (380.22)
+Seat 2: FeedMeBits (217.60)
+Seat 3: lipton36 (213.98)
+Seat 4: Spain (268.66) - sitting out
+Seat 5: Tos5 (198)
+Seat 6: sctt11 (230.76) - sitting out
+lipton36 has the dealer button
+Tos5 posts small blind 1
+FeedMeBits posts big blind 2
+** Hole Cards **
+lipton36 raises to 6
+Tos5 calls 5
+FeedMeBits folds
+** Flop ** [2s Jh 5s]
+Tos5 checks
+lipton36 bets 8
+Tos5 folds
+lipton36 refunded 8
+lipton36 wins Pot (13.65)
+Rake (0.35)
+
+
+
+Hand #9253139-134 - 2013-06-30 16:18:16
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: iwillcrushu (380.22) - sitting out
+Seat 2: FeedMeBits (215.60)
+Seat 3: lipton36 (221.63)
+Seat 5: Tos5 (192)
+Seat 6: sctt11 (230.76) - sitting out
+Tos5 has the dealer button
+FeedMeBits posts small blind 1
+lipton36 posts big blind 2
+** Hole Cards **
+Tos5 calls 2
+FeedMeBits folds
+lipton36 checks
+** Flop ** [Ts Ad 4s]
+lipton36 checks
+Tos5 bets 3
+lipton36 folds
+Tos5 refunded 3
+Tos5 wins Pot (4.88)
+Rake (0.12)
+
+
+
+Hand #9253165-135 - 2013-06-30 16:18:49
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: iwillcrushu (380.22) - sitting out
+Seat 2: FeedMeBits (214.60)
+Seat 3: lipton36 (219.63)
+Seat 4: habing (200) - waiting for big blind
+Seat 5: Tos5 (194.88)
+Seat 6: sctt11 (230.76)
+FeedMeBits has the dealer button
+lipton36 posts small blind 1
+habing posts big blind 2
+sctt11 posts small & big blind 3
+** Hole Cards **
+Dealt to habing [Kd Jc]
+Tos5 folds
+sctt11 checks
+FeedMeBits folds
+lipton36 folds
+habing checks
+** Flop ** [3d 4c Ad]
+habing bets 4.40
+sctt11 calls 4.40
+** Turn ** [Ts]
+habing checks
+sctt11 checks
+** River ** [7h]
+habing checks
+sctt11 checks
+** Pot Show Down ** [3d 4c Ad Ts 7h]
+habing shows [Kd Jc] (High Card Ace +KJT7)
+sctt11 shows [Ah 6c] (a Pair of Aces +T76)
+sctt11 wins Pot (14.43) with a Pair
+Rake (0.37)
+habing adds 6.40 chips
+
+
+
+Hand #9253221-136 - 2013-06-30 16:20:13
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: iwillcrushu (380.22) - sitting out
+Seat 2: FeedMeBits (214.60)
+Seat 3: lipton36 (218.63)
+Seat 4: habing (200)
+Seat 5: Tos5 (194.88)
+Seat 6: sctt11 (237.79)
+lipton36 has the dealer button
+habing posts small blind 1
+Tos5 posts big blind 2
+** Hole Cards **
+Dealt to habing [Th Kd]
+sctt11 folds
+FeedMeBits folds
+lipton36 folds
+habing raises to 6
+Tos5 calls 4
+** Flop ** [Js Kc 6c]
+habing bets 6.80
+Tos5 calls 6.80
+** Turn ** [Ah]
+habing bets 17.20
+Tos5 calls 17.20
+** River ** [6d]
+habing checks
+Tos5 checks
+** Pot Show Down ** [Js Kc 6c Ah 6d]
+habing shows [Th Kd] (Two Pair, Kings and Sixes +A)
+Tos5 shows [Qs Jh] (Two Pair, Jacks and Sixes +A)
+habing wins Pot (58.50) with Two Pair
+Rake (1.50)
+
+
+
+Hand #9253272-137 - 2013-06-30 16:21:21
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: iwillcrushu (380.22)
+Seat 2: FeedMeBits (214.60)
+Seat 3: lipton36 (218.63)
+Seat 4: habing (228.50)
+Seat 5: Tos5 (164.88)
+Seat 6: sctt11 (237.79)
+habing has the dealer button
+Tos5 posts small blind 1
+sctt11 posts big blind 2
+iwillcrushu posts small & big blind 3
+** Hole Cards **
+Dealt to habing [Kd 4s]
+iwillcrushu checks
+FeedMeBits folds
+lipton36 folds
+habing raises to 8
+Tos5 folds
+sctt11 folds
+iwillcrushu folds
+habing refunded 6
+habing wins Pot (8)
+Rake (0)
+
+
+
+Hand #9253298-138 - 2013-06-30 16:21:59
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: iwillcrushu (377.22)
+Seat 2: FeedMeBits (214.60)
+Seat 3: lipton36 (218.63)
+Seat 4: habing (234.50)
+Seat 5: Tos5 (163.88)
+Seat 6: sctt11 (235.79)
+Tos5 has the dealer button
+sctt11 posts small blind 1
+iwillcrushu posts big blind 2
+** Hole Cards **
+Dealt to habing [3d 5c]
+FeedMeBits folds
+lipton36 folds
+habing folds
+Tos5 folds
+sctt11 calls 1
+iwillcrushu checks
+** Flop ** [3s 5h 8s]
+sctt11 bets 2
+iwillcrushu calls 2
+** Turn ** [5d]
+sctt11 checks
+iwillcrushu checks
+** River ** [Kd]
+sctt11 checks
+iwillcrushu checks
+** Pot Show Down ** [3s 5h 8s 5d Kd]
+iwillcrushu shows [7c Ah] (a Pair of Fives +AK8)
+sctt11 shows [Jc Qh] (a Pair of Fives +KQJ)
+iwillcrushu wins Pot (7.80) with a Pair
+Rake (0.20)
+
+
+
+Hand #9253337-139 - 2013-06-30 16:23:05
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: iwillcrushu (381.02)
+Seat 2: FeedMeBits (214.60)
+Seat 3: lipton36 (218.63)
+Seat 4: habing (234.50)
+Seat 5: Tos5 (163.88)
+Seat 6: sctt11 (231.79)
+sctt11 has the dealer button
+iwillcrushu posts small blind 1
+FeedMeBits posts big blind 2
+** Hole Cards **
+Dealt to habing [Kh Tc]
+lipton36 folds
+habing raises to 6
+Tos5 calls 6
+sctt11 calls 6
+iwillcrushu calls 5
+FeedMeBits folds
+** Flop ** [9c 7d As]
+iwillcrushu checks
+habing checks
+Tos5 checks
+sctt11 checks
+** Turn ** [4c]
+iwillcrushu checks
+habing checks
+Tos5 bets 18
+sctt11 folds
+iwillcrushu folds
+habing folds
+Tos5 refunded 18
+Tos5 wins Pot (25.35)
+Rake (0.65)
+
+
+
+Hand #9253397-140 - 2013-06-30 16:25:00
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: iwillcrushu (375.02)
+Seat 2: FeedMeBits (212.60)
+Seat 3: lipton36 (218.63)
+Seat 4: habing (228.50)
+Seat 5: Tos5 (183.23)
+Seat 6: sctt11 (225.79)
+iwillcrushu has the dealer button
+FeedMeBits posts small blind 1
+lipton36 posts big blind 2
+** Hole Cards **
+Dealt to habing [Qd Js]
+habing has timed out
+habing folds
+Tos5 folds
+sctt11 folds
+iwillcrushu folds
+FeedMeBits folds
+lipton36 refunded 1
+lipton36 wins Pot (2)
+Rake (0)
+
+
+
+Hand #9253421-141 - 2013-06-30 16:25:42
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: iwillcrushu (375.02)
+Seat 2: FeedMeBits (211.60)
+Seat 3: lipton36 (219.63)
+Seat 4: habing (228.50)
+Seat 5: Tos5 (183.23)
+Seat 6: sctt11 (225.79)
+FeedMeBits has the dealer button
+lipton36 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [6h Th]
+Tos5 folds
+sctt11 folds
+iwillcrushu folds
+FeedMeBits folds
+lipton36 folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #9253441-142 - 2013-06-30 16:26:11
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: iwillcrushu (375.02)
+Seat 2: FeedMeBits (211.60)
+Seat 3: lipton36 (218.63)
+Seat 4: habing (229.50)
+Seat 5: Tos5 (183.23)
+Seat 6: sctt11 (225.79)
+lipton36 has the dealer button
+habing posts small blind 1
+Tos5 posts big blind 2
+** Hole Cards **
+Dealt to habing [8d Qc]
+sctt11 folds
+iwillcrushu folds
+FeedMeBits folds
+lipton36 raises to 6
+habing folds
+Tos5 calls 4
+** Flop ** [2s Ts Jc]
+Tos5 checks
+lipton36 bets 8
+Tos5 raises to 22
+lipton36 folds
+Tos5 refunded 14
+Tos5 wins Pot (28.28)
+Rake (0.72)
+
+
+
+Hand #9253488-143 - 2013-06-30 16:27:26
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: iwillcrushu (375.02)
+Seat 2: FeedMeBits (211.60)
+Seat 3: lipton36 (204.63)
+Seat 4: habing (228.50)
+Seat 5: Tos5 (197.51)
+Seat 6: sctt11 (225.79)
+habing has the dealer button
+Tos5 posts small blind 1
+sctt11 posts big blind 2
+** Hole Cards **
+Dealt to habing [5c Ah]
+iwillcrushu folds
+FeedMeBits folds
+lipton36 raises to 6
+habing folds
+Tos5 folds
+sctt11 raises to 18
+lipton36 calls 12
+** Flop ** [Ac 7d 4c]
+sctt11 checks
+lipton36 checks
+** Turn ** [3d]
+sctt11 checks
+lipton36 checks
+** River ** [Kh]
+sctt11 checks
+lipton36 checks
+** Pot Show Down ** [Ac 7d 4c 3d Kh]
+lipton36 shows [Kd Td] (a Pair of Kings +AT7)
+sctt11 shows [5s 7s] (a Pair of Sevens +AK5)
+lipton36 wins Pot (36.08) with a Pair
+Rake (0.92)
+
+
+
+Hand #9253544-144 - 2013-06-30 16:28:59
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: iwillcrushu (375.02)
+Seat 2: FeedMeBits (211.60)
+Seat 3: lipton36 (222.71)
+Seat 4: habing (228.50)
+Seat 5: Tos5 (196.51)
+Seat 6: sctt11 (207.79)
+Tos5 has the dealer button
+sctt11 posts small blind 1
+iwillcrushu posts big blind 2
+** Hole Cards **
+Dealt to habing [Td 9c]
+FeedMeBits folds
+lipton36 raises to 6
+habing folds
+Tos5 folds
+sctt11 folds
+iwillcrushu folds
+lipton36 refunded 4
+lipton36 wins Pot (5)
+Rake (0)
+
+
+
+Hand #9253627-147 - 2013-06-30 16:30:49
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: iwillcrushu (372.02)
+Seat 2: FeedMeBits (208.60)
+Seat 3: lipton36 (226.71)
+Seat 4: habing (228.50) - sitting out
+Seat 5: Tos5 (196.51)
+Seat 6: sctt11 (209.79)
+FeedMeBits has the dealer button
+lipton36 posts small blind 1
+Tos5 posts big blind 2
+** Hole Cards **
+sctt11 calls 2
+iwillcrushu folds
+FeedMeBits raises to 8
+lipton36 folds
+Tos5 folds
+sctt11 calls 6
+** Flop ** [Ad Qc 6c]
+sctt11 checks
+FeedMeBits bets 14
+sctt11 folds
+FeedMeBits refunded 14
+FeedMeBits wins Pot (18.53)
+Rake (0.47)
+
+
+
+Hand #9253670-148 - 2013-06-30 16:31:41
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: iwillcrushu (372.02)
+Seat 2: FeedMeBits (219.13)
+Seat 3: lipton36 (225.71)
+Seat 4: habing (228.50)
+Seat 5: Tos5 (194.51)
+Seat 6: sctt11 (201.79)
+lipton36 has the dealer button
+Tos5 posts small blind 1
+sctt11 posts big blind 2
+** Hole Cards **
+iwillcrushu raises to 4
+FeedMeBits calls 4
+lipton36 raises to 16
+Tos5 folds
+sctt11 folds
+iwillcrushu folds
+FeedMeBits folds
+lipton36 refunded 12
+lipton36 wins Pot (15)
+Rake (0)
+
+
+
+Hand #9253701-149 - 2013-06-30 16:32:19
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: iwillcrushu (368.02)
+Seat 2: FeedMeBits (215.13)
+Seat 3: lipton36 (236.71)
+Seat 4: habing (228.50)
+Seat 5: Tos5 (193.51)
+Seat 6: sctt11 (199.79)
+Tos5 has the dealer button
+sctt11 posts small blind 1
+iwillcrushu posts big blind 2
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [4s 7s]
+FeedMeBits folds
+lipton36 folds
+habing checks
+Tos5 raises to 6
+sctt11 folds
+iwillcrushu calls 4
+habing folds
+** Flop ** [7h 2h Kh]
+iwillcrushu checks
+Tos5 bets 8
+iwillcrushu calls 8
+** Turn ** [Tc]
+iwillcrushu checks
+Tos5 checks
+** River ** [9d]
+iwillcrushu checks
+Tos5 bets 22
+iwillcrushu folds
+Tos5 refunded 22
+Tos5 wins Pot (30.23)
+Rake (0.77)
+
+
+
+Hand #9253775-150 - 2013-06-30 16:33:44
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: iwillcrushu (354.02)
+Seat 2: FeedMeBits (215.13)
+Seat 3: lipton36 (236.71)
+Seat 4: habing (226.50)
+Seat 5: Tos5 (209.74)
+Seat 6: sctt11 (198.79)
+sctt11 has the dealer button
+iwillcrushu posts small blind 1
+FeedMeBits posts big blind 2
+** Hole Cards **
+Dealt to habing [8d 6d]
+lipton36 folds
+habing folds
+Tos5 folds
+sctt11 raises to 6
+iwillcrushu folds
+FeedMeBits folds
+sctt11 refunded 4
+sctt11 wins Pot (5)
+Rake (0)
+
+
+
+Hand #9253810-151 - 2013-06-30 16:34:32
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: iwillcrushu (353.02)
+Seat 2: FeedMeBits (213.13)
+Seat 3: lipton36 (236.71)
+Seat 4: habing (226.50)
+Seat 5: Tos5 (209.74)
+Seat 6: sctt11 (201.79)
+iwillcrushu has the dealer button
+FeedMeBits posts small blind 1
+lipton36 posts big blind 2
+** Hole Cards **
+Dealt to habing [4s Qs]
+habing folds
+Tos5 folds
+sctt11 folds
+iwillcrushu raises to 4
+FeedMeBits folds
+lipton36 folds
+iwillcrushu refunded 2
+iwillcrushu wins Pot (5)
+Rake (0)
+
+
+
+Hand #9253840-152 - 2013-06-30 16:35:09
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: iwillcrushu (356.02)
+Seat 2: FeedMeBits (212.13)
+Seat 3: lipton36 (234.71)
+Seat 4: habing (226.50)
+Seat 5: Tos5 (209.74)
+Seat 6: sctt11 (201.79)
+FeedMeBits has the dealer button
+lipton36 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Tc 7s]
+Tos5 raises to 6
+sctt11 folds
+iwillcrushu folds
+FeedMeBits calls 6
+lipton36 folds
+habing folds
+** Flop ** [As 9s Ts]
+Tos5 checks
+FeedMeBits checks
+** Turn ** [3c]
+Tos5 checks
+FeedMeBits checks
+** River ** [4c]
+Tos5 checks
+FeedMeBits bets 10
+Tos5 calls 10
+** Pot Show Down ** [As 9s Ts 3c 4c]
+FeedMeBits shows [Th Jd] (a Pair of Tens +AJ9)
+Tos5 shows [3d 2d] (a Pair of Threes +AT9)
+FeedMeBits wins Pot (34.13) with a Pair
+Rake (0.87)
+
+
+
+Hand #9253908-153 - 2013-06-30 16:36:36
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: iwillcrushu (356.02)
+Seat 2: FeedMeBits (230.26)
+Seat 3: lipton36 (233.71)
+Seat 4: habing (224.50)
+Seat 5: Tos5 (193.74)
+Seat 6: sctt11 (201.79)
+lipton36 has the dealer button
+habing posts small blind 1
+Tos5 posts big blind 2
+** Hole Cards **
+Dealt to habing [5c Ah]
+sctt11 folds
+iwillcrushu folds
+FeedMeBits folds
+lipton36 raises to 6
+habing folds
+Tos5 folds
+lipton36 refunded 4
+lipton36 wins Pot (5)
+Rake (0)
+
+
+
+Hand #9253930-154 - 2013-06-30 16:37:03
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: iwillcrushu (356.02)
+Seat 2: FeedMeBits (230.26)
+Seat 3: lipton36 (236.71)
+Seat 4: habing (223.50)
+Seat 5: Tos5 (191.74)
+Seat 6: sctt11 (201.79)
+habing has the dealer button
+Tos5 posts small blind 1
+sctt11 posts big blind 2
+** Hole Cards **
+Dealt to habing [2s Js]
+iwillcrushu folds
+FeedMeBits folds
+lipton36 raises to 6
+habing folds
+Tos5 calls 5
+sctt11 folds
+** Flop ** [5c 3h 7s]
+Tos5 checks
+lipton36 bets 8
+Tos5 calls 8
+** Turn ** [Qs]
+Tos5 checks
+lipton36 bets 18
+Tos5 calls 18
+** River ** [2c]
+Tos5 checks
+lipton36 bets 38
+Tos5 raises to 80
+lipton36 calls 42
+** Pot Show Down ** [5c 3h 7s Qs 2c]
+lipton36 shows [9h 9c] (a Pair of Nines +Q75)
+Tos5 shows [Ah 4h] (a Straight, Ace to Five)
+Tos5 wins Pot (222) with a Straight
+Rake (4)
+lipton36 adds 75.29 chips
+
+
+
+Hand #9254002-155 - 2013-06-30 16:38:29
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: iwillcrushu (356.02)
+Seat 2: FeedMeBits (230.26)
+Seat 3: lipton36 (200)
+Seat 4: habing (223.50)
+Seat 5: Tos5 (301.74)
+Seat 6: sctt11 (199.79)
+Tos5 has the dealer button
+sctt11 posts small blind 1
+iwillcrushu posts big blind 2
+** Hole Cards **
+Dealt to habing [8s Ks]
+FeedMeBits folds
+lipton36 folds
+habing raises to 6
+Tos5 folds
+sctt11 folds
+iwillcrushu calls 4
+** Flop ** [5s 2h 3d]
+iwillcrushu checks
+habing bets 8
+iwillcrushu raises to 22
+habing folds
+iwillcrushu refunded 14
+iwillcrushu wins Pot (28.28)
+Rake (0.72)
+
+
+
+Hand #9254058-156 - 2013-06-30 16:39:38
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: iwillcrushu (370.30)
+Seat 2: FeedMeBits (230.26)
+Seat 3: lipton36 (200)
+Seat 4: habing (209.50)
+Seat 5: Tos5 (301.74)
+Seat 6: sctt11 (198.79)
+sctt11 has the dealer button
+iwillcrushu posts small blind 1
+FeedMeBits posts big blind 2
+** Hole Cards **
+Dealt to habing [Qh 8s]
+lipton36 folds
+habing folds
+Tos5 folds
+sctt11 folds
+iwillcrushu calls 1
+FeedMeBits raises to 6
+iwillcrushu folds
+FeedMeBits refunded 4
+FeedMeBits wins Pot (4)
+Rake (0)
+
+
+
+Hand #9254082-157 - 2013-06-30 16:40:16
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: iwillcrushu (368.30)
+Seat 2: FeedMeBits (232.26)
+Seat 3: lipton36 (200)
+Seat 4: habing (209.50)
+Seat 5: Tos5 (301.74)
+Seat 6: sctt11 (198.79)
+iwillcrushu has the dealer button
+FeedMeBits posts small blind 1
+lipton36 posts big blind 2
+** Hole Cards **
+Dealt to habing [Jd 6c]
+habing folds
+Tos5 folds
+sctt11 folds
+iwillcrushu raises to 4
+FeedMeBits folds
+lipton36 raises to 16
+iwillcrushu folds
+lipton36 refunded 12
+lipton36 wins Pot (9)
+Rake (0)
+
+
+
+Hand #9254120-158 - 2013-06-30 16:40:58
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: iwillcrushu (364.30)
+Seat 2: FeedMeBits (231.26)
+Seat 3: lipton36 (205)
+Seat 4: habing (209.50)
+Seat 5: Tos5 (301.74)
+Seat 6: sctt11 (198.79)
+FeedMeBits has the dealer button
+lipton36 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [3h 6d]
+Tos5 folds
+sctt11 raises to 6
+iwillcrushu folds
+FeedMeBits folds
+lipton36 folds
+habing folds
+sctt11 refunded 4
+sctt11 wins Pot (5)
+Rake (0)
+
+
+
+Hand #9254152-159 - 2013-06-30 16:41:34
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: iwillcrushu (364.30)
+Seat 2: FeedMeBits (231.26)
+Seat 3: lipton36 (204)
+Seat 4: habing (207.50)
+Seat 5: Tos5 (301.74)
+Seat 6: sctt11 (201.79)
+lipton36 has the dealer button
+habing posts small blind 1
+Tos5 posts big blind 2
+** Hole Cards **
+Dealt to habing [3s Tc]
+sctt11 folds
+iwillcrushu raises to 6
+FeedMeBits folds
+lipton36 folds
+habing folds
+Tos5 folds
+iwillcrushu refunded 4
+iwillcrushu wins Pot (5)
+Rake (0)
+
+
+
+Hand #9254191-160 - 2013-06-30 16:42:26
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: iwillcrushu (367.30)
+Seat 2: FeedMeBits (231.26)
+Seat 3: lipton36 (204)
+Seat 4: habing (206.50)
+Seat 5: Tos5 (299.74)
+Seat 6: sctt11 (201.79)
+habing has the dealer button
+Tos5 posts small blind 1
+sctt11 posts big blind 2
+** Hole Cards **
+Dealt to habing [6c 3s]
+iwillcrushu folds
+FeedMeBits folds
+lipton36 folds
+habing folds
+Tos5 folds
+sctt11 refunded 1
+sctt11 wins Pot (2)
+Rake (0)
+
+
+
+Hand #9254208-161 - 2013-06-30 16:42:51
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: iwillcrushu (367.30)
+Seat 2: FeedMeBits (231.26)
+Seat 3: lipton36 (204)
+Seat 4: habing (206.50)
+Seat 5: Tos5 (298.74)
+Seat 6: sctt11 (202.79)
+Tos5 has the dealer button
+sctt11 posts small blind 1
+iwillcrushu posts big blind 2
+** Hole Cards **
+Dealt to habing [Ad Ks]
+FeedMeBits folds
+lipton36 raises to 6
+habing raises to 21.60
+Tos5 folds
+sctt11 folds
+iwillcrushu folds
+lipton36 calls 15.60
+** Flop ** [Td 6h Ac]
+lipton36 checks
+habing bets 24.80
+lipton36 folds
+habing refunded 24.80
+lipton36 adds 17.60 chips
+habing wins Pot (45.05)
+Rake (1.15)
+
+
+
+Hand #9254244-162 - 2013-06-30 16:43:35
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: iwillcrushu (365.30)
+Seat 2: FeedMeBits (231.26)
+Seat 3: lipton36 (200)
+Seat 4: habing (229.95)
+Seat 5: Tos5 (298.74)
+Seat 6: sctt11 (201.79)
+sctt11 has the dealer button
+iwillcrushu posts small blind 1
+FeedMeBits posts big blind 2
+** Hole Cards **
+Dealt to habing [5s 7s]
+lipton36 folds
+habing folds
+Tos5 raises to 6
+sctt11 calls 6
+iwillcrushu folds
+FeedMeBits folds
+** Flop ** [Qh Kd 2c]
+Tos5 bets 8
+sctt11 folds
+Tos5 refunded 8
+Tos5 wins Pot (14.63)
+Rake (0.37)
+
+
+
+Hand #9254275-163 - 2013-06-30 16:44:20
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: iwillcrushu (364.30)
+Seat 2: FeedMeBits (229.26)
+Seat 3: lipton36 (200)
+Seat 4: habing (229.95)
+Seat 5: Tos5 (307.37)
+Seat 6: sctt11 (195.79)
+iwillcrushu has the dealer button
+FeedMeBits posts small blind 1
+lipton36 posts big blind 2
+** Hole Cards **
+Dealt to habing [4d Tc]
+habing folds
+Tos5 raises to 6
+sctt11 folds
+iwillcrushu folds
+FeedMeBits raises to 18
+lipton36 folds
+lipton36 adds 2 chips
+Tos5 raises to 45
+FeedMeBits calls 27
+** Flop ** [Td Jh 2h]
+FeedMeBits checks
+Tos5 bets 65
+FeedMeBits folds
+Tos5 refunded 65
+FeedMeBits adds 15.74 chips
+Tos5 wins Pot (89.70)
+Rake (2.30)
+
+
+
+Hand #9254368-164 - 2013-06-30 16:46:14
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: iwillcrushu (364.30)
+Seat 2: FeedMeBits (200)
+Seat 3: lipton36 (200)
+Seat 4: habing (229.95)
+Seat 5: Tos5 (352.07)
+Seat 6: sctt11 (195.79)
+FeedMeBits has the dealer button
+lipton36 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Qh 2s]
+Tos5 folds
+sctt11 raises to 6
+iwillcrushu calls 6
+FeedMeBits folds
+lipton36 folds
+lipton36 adds 1 chips
+habing folds
+** Flop ** [4d 9s 4h]
+sctt11 bets 12
+iwillcrushu calls 12
+** Turn ** [5c]
+sctt11 checks
+iwillcrushu bets 20
+sctt11 folds
+iwillcrushu refunded 20
+iwillcrushu wins Pot (38.03)
+Rake (0.97)
+
+
+
+Hand #9254401-165 - 2013-06-30 16:47:05
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: iwillcrushu (384.33)
+Seat 2: FeedMeBits (200)
+Seat 3: lipton36 (200)
+Seat 4: habing (227.95)
+Seat 5: Tos5 (352.07)
+Seat 6: sctt11 (177.79)
+lipton36 has the dealer button
+habing posts small blind 1
+Tos5 posts big blind 2
+** Hole Cards **
+Dealt to habing [Td 5h]
+sctt11 folds
+iwillcrushu raises to 6
+FeedMeBits folds
+lipton36 folds
+habing folds
+Tos5 folds
+iwillcrushu refunded 4
+iwillcrushu wins Pot (5)
+Rake (0)
+
+
+
+Hand #9254432-166 - 2013-06-30 16:47:47
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: iwillcrushu (387.33)
+Seat 2: FeedMeBits (200)
+Seat 3: lipton36 (200)
+Seat 4: habing (226.95)
+Seat 5: Tos5 (350.07)
+Seat 6: sctt11 (177.79)
+habing has the dealer button
+Tos5 posts small blind 1
+sctt11 posts big blind 2
+** Hole Cards **
+Dealt to habing [6d 5h]
+iwillcrushu raises to 4
+FeedMeBits folds
+lipton36 folds
+habing folds
+Tos5 folds
+sctt11 calls 2
+** Flop ** [Qd 7h 7d]
+sctt11 checks
+iwillcrushu checks
+** Turn ** [Kc]
+sctt11 checks
+iwillcrushu bets 6
+sctt11 folds
+iwillcrushu refunded 6
+iwillcrushu wins Pot (8.78)
+Rake (0.22)
+
+
+
+Hand #9254476-167 - 2013-06-30 16:48:41
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: iwillcrushu (392.11)
+Seat 2: FeedMeBits (200)
+Seat 3: lipton36 (200)
+Seat 4: habing (226.95)
+Seat 5: Tos5 (349.07)
+Seat 6: sctt11 (173.79)
+Tos5 has the dealer button
+sctt11 posts small blind 1
+iwillcrushu posts big blind 2
+** Hole Cards **
+Dealt to habing [5h 9c]
+FeedMeBits folds
+lipton36 folds
+habing folds
+Tos5 folds
+sctt11 folds
+iwillcrushu refunded 1
+iwillcrushu wins Pot (2)
+Rake (0)
+
+
+
+Hand #9254498-168 - 2013-06-30 16:49:21
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: iwillcrushu (393.11)
+Seat 2: FeedMeBits (200)
+Seat 3: lipton36 (200)
+Seat 4: habing (226.95)
+Seat 5: Tos5 (349.07)
+Seat 6: sctt11 (172.79)
+sctt11 has the dealer button
+iwillcrushu posts small blind 1
+FeedMeBits posts big blind 2
+** Hole Cards **
+Dealt to habing [4d Jc]
+lipton36 folds
+habing folds
+Tos5 folds
+sctt11 folds
+iwillcrushu calls 1
+FeedMeBits raises to 6
+iwillcrushu calls 4
+** Flop ** [8h 5c 6h]
+iwillcrushu checks
+FeedMeBits checks
+** Turn ** [Ts]
+iwillcrushu checks
+FeedMeBits bets 8
+iwillcrushu calls 8
+** River ** [7h]
+iwillcrushu bets 22
+FeedMeBits calls 22
+** Pot Show Down ** [8h 5c 6h Ts 7h]
+iwillcrushu shows [3h Kh] (a Flush, King high +8763)
+FeedMeBits shows [Tc 9c] (a Straight, Six to Ten)
+iwillcrushu wins Pot (70.20) with a Flush
+Rake (1.80)
+FeedMeBits adds 36 chips
+
+
+
+Hand #9254562-169 - 2013-06-30 16:51:05
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: iwillcrushu (427.31)
+Seat 2: FeedMeBits (200)
+Seat 3: lipton36 (200)
+Seat 4: habing (226.95)
+Seat 5: Tos5 (349.07)
+Seat 6: sctt11 (172.79)
+iwillcrushu has the dealer button
+FeedMeBits posts small blind 1
+lipton36 posts big blind 2
+** Hole Cards **
+Dealt to habing [4d Ad]
+habing raises to 6
+Tos5 folds
+sctt11 folds
+iwillcrushu calls 6
+FeedMeBits folds
+FeedMeBits adds 1 chips
+lipton36 folds
+lipton36 adds 2 chips
+** Flop ** [2c Tc 9c]
+habing checks
+iwillcrushu checks
+** Turn ** [4h]
+habing checks
+iwillcrushu checks
+** River ** [3s]
+habing checks
+iwillcrushu checks
+** Pot Show Down ** [2c Tc 9c 4h 3s]
+iwillcrushu shows [8d 6d] (High Card Ten +9864)
+habing shows [4d Ad] (a Pair of Fours +AT9)
+habing wins Pot (14.63) with a Pair
+Rake (0.37)
+
+
+
+Hand #9254607-170 - 2013-06-30 16:52:12
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: iwillcrushu (421.31)
+Seat 2: FeedMeBits (200)
+Seat 3: lipton36 (200)
+Seat 4: habing (235.58)
+Seat 5: Tos5 (349.07)
+Seat 6: sctt11 (172.79)
+FeedMeBits has the dealer button
+lipton36 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [9s Jd]
+Tos5 folds
+sctt11 raises to 6
+iwillcrushu calls 6
+FeedMeBits calls 6
+lipton36 folds
+lipton36 adds 1 chips
+habing folds
+** Flop ** [5s 3h Ah]
+sctt11 bets 15
+iwillcrushu calls 15
+FeedMeBits folds
+FeedMeBits adds 6 chips
+** Turn ** [7d]
+sctt11 bets 25
+iwillcrushu folds
+sctt11 refunded 25
+sctt11 wins Pot (49.73)
+Rake (1.27)
+
+
+
+Hand #9254662-171 - 2013-06-30 16:53:22
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: iwillcrushu (400.31)
+Seat 2: FeedMeBits (200)
+Seat 3: lipton36 (200)
+Seat 4: habing (233.58)
+Seat 5: Tos5 (349.07)
+Seat 6: sctt11 (201.52)
+lipton36 has the dealer button
+habing posts small blind 1
+Tos5 posts big blind 2
+** Hole Cards **
+Dealt to habing [7h Kh]
+sctt11 folds
+iwillcrushu folds
+FeedMeBits folds
+lipton36 folds
+habing raises to 6
+Tos5 calls 4
+** Flop ** [3s 7d 9d]
+habing bets 7.60
+Tos5 calls 7.60
+** Turn ** [5h]
+habing checks
+Tos5 bets 15
+habing calls 15
+** River ** [5s]
+habing checks
+Tos5 checks
+** Pot Show Down ** [3s 7d 9d 5h 5s]
+habing shows [7h Kh] (Two Pair, Sevens and Fives +K)
+Tos5 shows [9h Ah] (Two Pair, Nines and Fives +A)
+Tos5 wins Pot (55.77) with Two Pair
+Rake (1.43)
+
+
+
+Hand #9254718-172 - 2013-06-30 16:54:27
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: iwillcrushu (400.31)
+Seat 2: FeedMeBits (200)
+Seat 3: lipton36 (200)
+Seat 4: habing (204.98)
+Seat 5: Tos5 (376.24)
+Seat 6: sctt11 (201.52)
+habing has the dealer button
+Tos5 posts small blind 1
+sctt11 posts big blind 2
+** Hole Cards **
+Dealt to habing [Kh Qh]
+iwillcrushu folds
+FeedMeBits folds
+lipton36 raises to 6
+habing raises to 18.40
+Tos5 folds
+sctt11 folds
+lipton36 raises to 60
+habing folds
+lipton36 refunded 41.60
+habing adds 13.42 chips
+lipton36 wins Pot (39.80)
+Rake (0)
+
+
+
+Hand #9254768-173 - 2013-06-30 16:55:31
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: iwillcrushu (400.31)
+Seat 2: FeedMeBits (200)
+Seat 3: lipton36 (221.40)
+Seat 4: habing (200)
+Seat 6: sctt11 (199.52)
+sctt11 has the dealer button
+iwillcrushu posts small blind 1
+FeedMeBits posts big blind 2
+** Hole Cards **
+Dealt to habing [Qc Td]
+lipton36 folds
+habing raises to 6
+sctt11 folds
+iwillcrushu calls 5
+FeedMeBits folds
+FeedMeBits adds 2 chips
+** Flop ** [Ks Jd 7h]
+iwillcrushu checks
+habing bets 9.20
+iwillcrushu folds
+habing refunded 9.20
+habing wins Pot (13.65)
+Rake (0.35)
+
+
+
+Hand #9254812-174 - 2013-06-30 16:56:37
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: iwillcrushu (394.31)
+Seat 2: FeedMeBits (200)
+Seat 3: lipton36 (221.40)
+Seat 4: habing (207.65)
+Seat 6: sctt11 (199.52)
+iwillcrushu has the dealer button
+FeedMeBits posts small blind 1
+lipton36 posts big blind 2
+** Hole Cards **
+Dealt to habing [Jc Jd]
+habing raises to 6
+sctt11 folds
+iwillcrushu calls 6
+FeedMeBits folds
+FeedMeBits adds 1 chips
+lipton36 folds
+** Flop ** [Ac 8h Jh]
+habing bets 11.60
+iwillcrushu folds
+habing refunded 11.60
+habing wins Pot (14.63)
+Rake (0.37)
+
+
+
+Hand #9254838-175 - 2013-06-30 16:57:10
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: iwillcrushu (388.31)
+Seat 2: FeedMeBits (200)
+Seat 3: lipton36 (219.40)
+Seat 4: habing (216.28)
+Seat 6: sctt11 (199.52)
+FeedMeBits has the dealer button
+lipton36 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [7d 2d]
+sctt11 folds
+iwillcrushu folds
+FeedMeBits raises to 6
+lipton36 raises to 19
+habing folds
+FeedMeBits folds
+lipton36 refunded 13
+FeedMeBits adds 6 chips
+lipton36 wins Pot (14)
+Rake (0)
+
+
+
+Hand #9254860-176 - 2013-06-30 16:57:46
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: iwillcrushu (388.31)
+Seat 2: FeedMeBits (200)
+Seat 3: lipton36 (227.40)
+Seat 4: habing (214.28)
+Seat 6: sctt11 (199.52)
+lipton36 has the dealer button
+habing posts small blind 1
+sctt11 posts big blind 2
+** Hole Cards **
+Dealt to habing [7s Jh]
+iwillcrushu raises to 6
+FeedMeBits folds
+lipton36 folds
+habing folds
+sctt11 folds
+iwillcrushu refunded 4
+iwillcrushu wins Pot (5)
+Rake (0)
+
+
+
+Hand #9254876-177 - 2013-06-30 16:58:18
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: iwillcrushu (391.31)
+Seat 2: FeedMeBits (200)
+Seat 3: lipton36 (227.40)
+Seat 4: habing (213.28)
+Seat 6: sctt11 (197.52)
+habing has the dealer button
+sctt11 posts small blind 1
+iwillcrushu posts big blind 2
+** Hole Cards **
+Dealt to habing [7c 4d]
+FeedMeBits folds
+lipton36 folds
+habing folds
+sctt11 folds
+iwillcrushu refunded 1
+iwillcrushu wins Pot (2)
+Rake (0)
+
+
+
+Hand #9254892-178 - 2013-06-30 16:58:47
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: iwillcrushu (392.31)
+Seat 2: FeedMeBits (200)
+Seat 3: lipton36 (227.40)
+Seat 4: habing (213.28)
+Seat 6: sctt11 (196.52)
+sctt11 has the dealer button
+iwillcrushu posts small blind 1
+FeedMeBits posts big blind 2
+** Hole Cards **
+Dealt to habing [2d Jh]
+lipton36 folds
+habing folds
+sctt11 folds
+iwillcrushu folds
+FeedMeBits refunded 1
+FeedMeBits wins Pot (2)
+Rake (0)
+
+
+
+Hand #9254905-179 - 2013-06-30 16:59:06
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: iwillcrushu (391.31)
+Seat 2: FeedMeBits (201)
+Seat 3: lipton36 (227.40)
+Seat 4: habing (213.28)
+Seat 6: sctt11 (196.52)
+iwillcrushu has the dealer button
+FeedMeBits posts small blind 1
+lipton36 posts big blind 2
+** Hole Cards **
+Dealt to habing [6s 5d]
+habing folds
+sctt11 raises to 6
+iwillcrushu folds
+FeedMeBits raises to 20
+lipton36 folds
+sctt11 folds
+FeedMeBits refunded 14
+FeedMeBits wins Pot (14)
+Rake (0)
+
+
+
+Hand #9254932-180 - 2013-06-30 16:59:41
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: iwillcrushu (391.31)
+Seat 2: FeedMeBits (209)
+Seat 3: lipton36 (225.40)
+Seat 4: habing (213.28)
+Seat 6: sctt11 (190.52)
+FeedMeBits has the dealer button
+lipton36 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [7c 8c]
+sctt11 raises to 6
+iwillcrushu folds
+FeedMeBits folds
+lipton36 folds
+habing folds
+sctt11 refunded 4
+sctt11 wins Pot (5)
+Rake (0)
+
+
+
+Hand #9254953-181 - 2013-06-30 17:00:24
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: iwillcrushu (391.31)
+Seat 2: FeedMeBits (209)
+Seat 3: lipton36 (224.40)
+Seat 4: habing (211.28)
+Seat 6: sctt11 (193.52)
+lipton36 has the dealer button
+habing posts small blind 1
+sctt11 posts big blind 2
+** Hole Cards **
+Dealt to habing [Th As]
+iwillcrushu folds
+FeedMeBits folds
+lipton36 raises to 6
+habing raises to 22
+sctt11 folds
+lipton36 calls 16
+** Flop ** [4d Kc 7s]
+habing bets 17.60
+lipton36 calls 17.60
+** Turn ** [4h]
+habing checks
+lipton36 checks
+** River ** [6c]
+habing checks
+lipton36 bets 48
+habing folds
+lipton36 refunded 48
+habing adds 28.32 chips
+lipton36 wins Pot (79.17)
+Rake (2.03)
+
+
+
+Hand #9255069-182 - 2013-06-30 17:02:06
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: iwillcrushu (391.31)
+Seat 2: FeedMeBits (209)
+Seat 3: lipton36 (263.97)
+Seat 4: habing (200)
+Seat 6: sctt11 (191.52)
+habing has the dealer button
+sctt11 posts small blind 1
+iwillcrushu posts big blind 2
+** Hole Cards **
+Dealt to habing [9s 6s]
+FeedMeBits folds
+lipton36 folds
+habing raises to 6
+sctt11 folds
+iwillcrushu folds
+habing refunded 4
+habing wins Pot (5)
+Rake (0)
+
+
+
+Hand #9255095-183 - 2013-06-30 17:02:27
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: iwillcrushu (389.31)
+Seat 2: FeedMeBits (209)
+Seat 3: lipton36 (263.97)
+Seat 4: habing (203)
+Seat 6: sctt11 (190.52)
+sctt11 has the dealer button
+iwillcrushu posts small blind 1
+FeedMeBits posts big blind 2
+** Hole Cards **
+Dealt to habing [6d 4s]
+lipton36 folds
+habing folds
+sctt11 folds
+iwillcrushu calls 1
+FeedMeBits checks
+** Flop ** [3s 8c Kc]
+iwillcrushu bets 4
+FeedMeBits folds
+iwillcrushu refunded 4
+iwillcrushu wins Pot (3.90)
+Rake (0.10)
+
+
+
+Hand #9255130-184 - 2013-06-30 17:03:08
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: iwillcrushu (391.21)
+Seat 2: FeedMeBits (207)
+Seat 3: lipton36 (263.97)
+Seat 4: habing (203)
+Seat 6: sctt11 (190.52)
+iwillcrushu has the dealer button
+FeedMeBits posts small blind 1
+lipton36 posts big blind 2
+** Hole Cards **
+Dealt to habing [4h Th]
+habing folds
+sctt11 folds
+iwillcrushu raises to 6
+FeedMeBits folds
+lipton36 folds
+iwillcrushu refunded 4
+iwillcrushu wins Pot (5)
+Rake (0)
+
+
+
+Hand #9255166-185 - 2013-06-30 17:03:44
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: iwillcrushu (394.21)
+Seat 2: FeedMeBits (206)
+Seat 3: lipton36 (261.97)
+Seat 4: habing (203)
+Seat 6: sctt11 (190.52)
+FeedMeBits has the dealer button
+lipton36 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Ts 4h]
+sctt11 raises to 6
+iwillcrushu calls 6
+FeedMeBits folds
+lipton36 raises to 30
+habing folds
+sctt11 folds
+iwillcrushu folds
+lipton36 refunded 24
+lipton36 wins Pot (20)
+Rake (0)
+
+
+
+Hand #9255209-186 - 2013-06-30 17:04:30
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: iwillcrushu (388.21)
+Seat 2: FeedMeBits (206)
+Seat 3: lipton36 (275.97)
+Seat 4: habing (201)
+Seat 6: sctt11 (184.52)
+lipton36 has the dealer button
+habing posts small blind 1
+sctt11 posts big blind 2
+** Hole Cards **
+Dealt to habing [9d Td]
+iwillcrushu folds
+FeedMeBits folds
+lipton36 folds
+habing raises to 6
+sctt11 folds
+habing refunded 4
+habing wins Pot (4)
+Rake (0)
+
+
+
+Hand #9255230-187 - 2013-06-30 17:04:56
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: iwillcrushu (388.21)
+Seat 2: FeedMeBits (206)
+Seat 3: lipton36 (275.97)
+Seat 4: habing (203)
+Seat 6: sctt11 (182.52)
+habing has the dealer button
+sctt11 posts small blind 1
+iwillcrushu posts big blind 2
+** Hole Cards **
+Dealt to habing [6d 8d]
+FeedMeBits folds
+lipton36 folds
+habing raises to 6
+sctt11 folds
+iwillcrushu folds
+habing refunded 4
+habing wins Pot (5)
+Rake (0)
+
+
+
+Hand #9255252-188 - 2013-06-30 17:05:17
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: iwillcrushu (386.21)
+Seat 2: FeedMeBits (206)
+Seat 3: lipton36 (275.97)
+Seat 4: habing (206)
+Seat 6: sctt11 (181.52)
+sctt11 has the dealer button
+iwillcrushu posts small blind 1
+FeedMeBits posts big blind 2
+** Hole Cards **
+Dealt to habing [9c Jh]
+lipton36 raises to 6
+habing folds
+sctt11 folds
+iwillcrushu folds
+FeedMeBits folds
+lipton36 refunded 4
+lipton36 wins Pot (5)
+Rake (0)
+
+
+
+Hand #9255272-189 - 2013-06-30 17:05:48
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: iwillcrushu (385.21)
+Seat 2: FeedMeBits (204)
+Seat 3: lipton36 (278.97)
+Seat 4: habing (206)
+Seat 6: sctt11 (181.52)
+iwillcrushu has the dealer button
+FeedMeBits posts small blind 1
+lipton36 posts big blind 2
+** Hole Cards **
+Dealt to habing [9s 9d]
+habing raises to 6
+sctt11 folds
+iwillcrushu folds
+FeedMeBits folds
+lipton36 folds
+habing refunded 4
+habing wins Pot (5)
+Rake (0)
+
+
+
+Hand #9255309-190 - 2013-06-30 17:06:29
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: iwillcrushu (385.21)
+Seat 2: FeedMeBits (203)
+Seat 3: lipton36 (276.97)
+Seat 4: habing (209)
+Seat 6: sctt11 (181.52)
+FeedMeBits has the dealer button
+lipton36 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [5c Kh]
+sctt11 folds
+iwillcrushu folds
+FeedMeBits folds
+lipton36 folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #9255326-191 - 2013-06-30 17:06:54
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 1: iwillcrushu (385.21)
+Seat 2: FeedMeBits (203)
+Seat 3: lipton36 (275.97)
+Seat 4: habing (210)
+Seat 6: sctt11 (181.52)
+lipton36 has the dealer button
+habing posts small blind 1
+sctt11 posts big blind 2
+** Hole Cards **
+Dealt to habing [4d 8h]
+iwillcrushu folds
+FeedMeBits folds
+lipton36 raises to 6
+habing folds
+sctt11 folds
+lipton36 refunded 4
+lipton36 wins Pot (5)
+Rake (0)
+
+
+
+Hand #9255362-192 - 2013-06-30 17:07:24
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 2: FeedMeBits (203)
+Seat 3: lipton36 (278.97)
+Seat 4: habing (209)
+Seat 6: sctt11 (179.52)
+habing has the dealer button
+sctt11 posts small blind 1
+FeedMeBits posts big blind 2
+** Hole Cards **
+Dealt to habing [9c Kc]
+lipton36 folds
+habing raises to 6
+sctt11 folds
+FeedMeBits folds
+habing refunded 4
+habing wins Pot (5)
+Rake (0)
+
+
+
+Hand #9255388-193 - 2013-06-30 17:07:54
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 2: FeedMeBits (201)
+Seat 3: lipton36 (278.97)
+Seat 4: habing (212)
+Seat 6: sctt11 (178.52)
+sctt11 has the dealer button
+FeedMeBits posts small blind 1
+lipton36 posts big blind 2
+** Hole Cards **
+Dealt to habing [3h 3c]
+habing raises to 6
+sctt11 folds
+FeedMeBits folds
+lipton36 folds
+habing refunded 4
+habing wins Pot (5)
+Rake (0)
+
+
+
+Hand #9255419-194 - 2013-06-30 17:08:24
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 2: FeedMeBits (200)
+Seat 3: lipton36 (276.97)
+Seat 4: habing (215)
+Seat 6: sctt11 (178.52)
+FeedMeBits has the dealer button
+lipton36 posts small blind 1
+habing posts big blind 2
+** Hole Cards **
+Dealt to habing [Qc 7d]
+sctt11 folds
+FeedMeBits folds
+lipton36 folds
+habing refunded 1
+habing wins Pot (2)
+Rake (0)
+
+
+
+Hand #9255443-195 - 2013-06-30 17:08:46
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 2: FeedMeBits (200)
+Seat 3: lipton36 (275.97)
+Seat 4: habing (216)
+Seat 6: sctt11 (178.52)
+lipton36 has the dealer button
+habing posts small blind 1
+sctt11 posts big blind 2
+** Hole Cards **
+Dealt to habing [5h As]
+FeedMeBits folds
+lipton36 raises to 6
+habing folds
+sctt11 calls 4
+** Flop ** [5d 2d 8d]
+sctt11 checks
+lipton36 checks
+** Turn ** [3h]
+sctt11 checks
+lipton36 bets 8
+sctt11 folds
+lipton36 refunded 8
+lipton36 wins Pot (12.68)
+Rake (0.32)
+
+
+
+Hand #9255489-196 - 2013-06-30 17:09:38
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 2: FeedMeBits (200)
+Seat 3: lipton36 (282.65)
+Seat 4: habing (215)
+Seat 6: sctt11 (172.52)
+habing has the dealer button
+sctt11 posts small blind 1
+FeedMeBits posts big blind 2
+** Hole Cards **
+Dealt to habing [6d 4d]
+lipton36 folds
+habing folds
+sctt11 calls 1
+FeedMeBits checks
+** Flop ** [Ks 3h 5s]
+sctt11 bets 2
+FeedMeBits calls 2
+** Turn ** [Qh]
+sctt11 checks
+FeedMeBits bets 6
+sctt11 folds
+FeedMeBits refunded 6
+FeedMeBits wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #9255542-197 - 2013-06-30 17:10:38
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 2: FeedMeBits (203.80)
+Seat 3: lipton36 (282.65)
+Seat 4: habing (215)
+Seat 6: sctt11 (168.52)
+sctt11 has the dealer button
+FeedMeBits posts small blind 1
+lipton36 posts big blind 2
+** Hole Cards **
+Dealt to habing [8c Qd]
+habing folds
+sctt11 raises to 6
+FeedMeBits folds
+lipton36 folds
+sctt11 refunded 4
+sctt11 wins Pot (5)
+Rake (0)
+
+
+
+Hand #9255562-198 - 2013-06-30 17:10:57
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 2: FeedMeBits (202.80)
+Seat 4: habing (215)
+Seat 6: sctt11 (171.52)
+FeedMeBits has the dealer button
+habing posts small blind 1
+sctt11 posts big blind 2
+** Hole Cards **
+Dealt to habing [8s 3d]
+FeedMeBits folds
+habing folds
+sctt11 refunded 1
+sctt11 wins Pot (2)
+Rake (0)
+
+
+
+Hand #9255579-199 - 2013-06-30 17:11:14
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #1
+Seat 2: FeedMeBits (202.80)
+Seat 4: habing (214)
+Seat 6: sctt11 (172.52)
+habing has the dealer button
+sctt11 posts small blind 1
+FeedMeBits posts big blind 2
+** Hole Cards **
+Dealt to habing [2s Jc]
+habing raises to 6
+sctt11 folds
+FeedMeBits folds
+habing refunded 4
+habing wins Pot (5)
+Rake (0)
