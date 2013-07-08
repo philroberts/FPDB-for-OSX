@@ -704,10 +704,9 @@ class DerivedStats():
             if pname in vpipers:
                 player_stats = self.handsplayers.get(pname)
                 player_stats['street0VPI'] = True
-                
-                if pname in hand.sitout:
-                    player_stats['street0VPIChance'] = False
-                    player_stats['street0AggrChance'] = False
+            elif pname in hand.sitout:
+                player_stats['street0VPIChance'] = False
+                player_stats['street0AggrChance'] = False
                 
         if len(vpipers)==0 and bb:
             self.handsplayers[bb[0]]['street0VPIChance'] = False
@@ -878,9 +877,6 @@ class DerivedStats():
             player_stats = self.handsplayers.get(pname)
             if len(action) > 3 and act != 'discards':
                 allin = action[-1]
-            if len(p_in)==1:
-                raise_chance = False
-                player_stats['street0AggrChance'] = raise_chance
             if act == 'folds' or allin or player_stats['sitout']:
                 p_in.discard(pname)
                 if player_stats['sitout']: continue
