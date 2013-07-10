@@ -79,6 +79,7 @@ class SealsWithClubs(HandHistoryConverter):
                          \s*\(\d+\s*-\s*(?P<BUYIN>\d+)\)\s*-\s*
                          (Blinds|Stakes)\s*(?P<SB>[\d\.]+)/(?P<BB>[\d.]+)\s*
                          Site:\s+Seals\s+With\s+Clubs\s*""",re.VERBOSE)
+    # TODO: for tournaments: (?P<BIAMT>[\d\.]+)\+(?P<BIRAKE>[\d\.]+)
 
     re_PlayerInfo   = re.compile(ur"""
         ^\s?Seat\s+(?P<SEAT>\d+):\s*
