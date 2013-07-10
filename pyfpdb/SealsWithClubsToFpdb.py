@@ -36,9 +36,7 @@ class SealsWithClubs(HandHistoryConverter):
     codepage = ("utf8", "cp1252")
     siteId   = 23 # Needs to match id entry in Sites database
     substitutions = {
-                     'LEGAL_ISO' : "USD|EUR|GBP|CAD|FPP",      # legal ISO currency codes
                            'PLYR': r'\s?(?P<PNAME>.+?)',
-                            'CUR': u"(\$|\xe2\x82\xac|\u20ac||\£|)",
                           'BRKTS': r'(\(button\) |\(small blind\) |\(big blind\) |\(button\) \(small blind\) |\(button\) \(big blind\) )?',
                     }
                     
@@ -68,16 +66,18 @@ class SealsWithClubs(HandHistoryConverter):
                      '2000.00': ('500.00', '1000.00'), '2000': ('500.00', '1000.00'),
                   }
 
-    limits = { 
-                'No Limit':'nl', 'NO LIMIT':'nl', "NL":'nl', 'Pot Limit':'pl', 'POT LIMIT':'pl', 'Limit':'fl', 'LIMIT':'fl' , 
-                'Pot Limit Pre-Flop, No Limit Post-Flop': 'pn'}
+    limits = { "NL":'nl', 'PL': 'pl', 'Limit':'fl' }
     games = {                          # base, category
-                              "Hold'em" : ('hold','holdem')
+                              "Hold'em" : ('hold','holdem'),
+                                'Omaha' : ('hold','omahahi'),
+                          'Omaha Hi-Lo' : ('hold','omahahilo')
                }
 
     # Static regexes
     re_GameInfo = re.compile(ur"""Hand\s*\#(?P<HID>\d+)-\d+\s*-\s*(?P<DATETIME>[\-:\d ]+)\s*
-                         Game:\s*(?P<LIMIT>NL)\s*(?P<GAME>Hold'em)\s*\(\d+\s*-\s*(?P<BUYIN>\d+)\)\s*-\s*Blinds\s*(?P<SB>[\d\.]+)/(?P<BB>[\d.]+)\s*
+                         Game:\s*(?P<LIMIT>(NL|PL|Limit))\s*(?P<GAME>(Hold'em|Omaha|Omaha\ Hi-Lo))
+                         \s*\(\d+\s*-\s*(?P<BUYIN>\d+)\)\s*-\s*
+                         (Blinds|Stakes)\s*(?P<SB>[\d\.]+)/(?P<BB>[\d.]+)\s*
                          Site:\s+Seals\s+With\s+Clubs\s*""",re.VERBOSE)
 
     re_PlayerInfo   = re.compile(ur"""
@@ -109,9 +109,8 @@ class SealsWithClubs(HandHistoryConverter):
                          %  substitutions, re.MULTILINE|re.VERBOSE)
     re_ShowdownAction   = re.compile(r"^%s shows \[(?P<CARDS>.*)\]" % substitutions['PLYR'], re.MULTILINE)
     re_sitsOut          = re.compile("^%s sits out" %  substitutions['PLYR'], re.MULTILINE)
-    re_ShownCards       = re.compile("^Seat (?P<SEAT>[0-9]+): %(PLYR)s %(BRKTS)s(?P<SHOWED>showed|mucked) \[(?P<CARDS>.*)\]( and (lost|(won|collected) \(%(CUR)s(?P<POT>[.\d]+)\)) with (?P<STRING>.+?)(,\sand\s(won\s\(%(CUR)s[.\d]+\)|lost)\swith\s(?P<STRING2>.*))?)?$" % substitutions, re.MULTILINE)
     
-    re_CollectPot       = re.compile(r"%(PLYR)s\s+(wins|splits)\s+(Side\s+)?Pot[\d\s]+\((?P<POT>[.\d]+)\)" %  substitutions, re.MULTILINE)
+    re_CollectPot       = re.compile(r"%(PLYR)s\s+(wins|splits)\s+((Side|Hi|Lo)\s+)?Pot[\d\s]+\((?P<POT>[.\d]+)\)" %  substitutions, re.MULTILINE)
     
     re_Cancelled        = re.compile('Hand\scancelled', re.MULTILINE)
     re_Rake             = re.compile('Rake\s+\((?P<RAKE>[.\d]+)\)')
@@ -119,12 +118,18 @@ class SealsWithClubs(HandHistoryConverter):
     re_Flop             = re.compile('\*\* Flop \*\*')
     re_Turn             = re.compile('\*\* Turn \*\*')
     re_River            = re.compile('\*\* River \*\*')
+    
+    
+    re_WinningRank = re.compile(u"^%(PLYR)s finishes tournament in place \#(?P<RANK>[0-9]+) and wins (?P<AMT>[.0-9]+) chips$" %  substitutions, re.MULTILINE)
+    re_LosingRank  = re.compile(u"^%(PLYR)s finishes tournament in place \#(?P<RANK>[0-9]+)$" %  substitutions, re.MULTILINE)
 
     def compilePlayerRegexs(self,  hand):
         pass
 
     def readSupportedGames(self):
-        return [["ring", "hold", "nl"]]
+        return [["ring", "hold", "nl"],
+                ["ring", "hold", "pl"],
+                ["ring", "hold", "fl"]]
 
     def determineGameType(self, handText):
         info = {}
@@ -146,6 +151,7 @@ class SealsWithClubs(HandHistoryConverter):
             
         info['currency'] = 'EUR'
         
+        # TODO: something about TOURNO
         info['type'] = 'ring'
 
         if info['limitType'] == 'fl' and info['bb'] is not None:
@@ -375,24 +381,13 @@ class SealsWithClubs(HandHistoryConverter):
                 i+=1
         if i==0:
             #print "WHAT IS THIS"
-            raise Exception("what is this")
+            raise Exception("what is this: " + str(hand.handid))
             for m in self.re_CollectPot2.finditer(hand.handText):
                 hand.addCollectPot(player=m.group('PNAME'),pot=m.group('POT'))
 
     def readShownCards(self,hand):
-        for m in self.re_ShownCards.finditer(hand.handText):
-            if m.group('CARDS') is not None:
-                cards = m.group('CARDS')
-                cards = cards.split(' ') # needs to be a list, not a set--stud needs the order
-                string = m.group('STRING')
-                if m.group('STRING2'):
-                    string += '|' + m.group('STRING2')
-
-                (shown, mucked) = (False, False)
-                if m.group('SHOWED') == "showed": shown = True
-                elif m.group('SHOWED') == "mucked": mucked = True
-
-                hand.addShownCards(cards=cards, player=m.group('PNAME'), shown=shown, mucked=mucked, string=string)
+        # TODO: something here?
+        return
 
     @staticmethod
     def getTableTitleRe(type, table_name=None, tournament = None, table_number=None):

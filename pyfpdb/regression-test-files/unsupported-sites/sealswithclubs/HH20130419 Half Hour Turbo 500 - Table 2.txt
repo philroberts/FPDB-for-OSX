@@ -1,0 +1,241 @@
+Hand #5693513-26 - 2013-04-19 22:51:25
+Game: NL Hold'em (47+3) - Blinds 200/400 Ante 25
+Site: Seals With Clubs
+Table: Half Hour Turbo 500 - Table 2
+Seat 3: yoloswag4 (2760)
+Seat 4: GRE3N (3595)
+Seat 5: dave23 (575) - sitting out
+Seat 6: Dimitry (720)
+Seat 9: NameIsPak (4350)
+GRE3N has the dealer button
+yoloswag4 posts ante 25
+GRE3N posts ante 25
+dave23 posts ante 25
+Dimitry posts ante 25
+NameIsPak posts ante 25
+dave23 posts small blind 200
+Dimitry posts big blind 400
+** Hole Cards **
+NameIsPak folds
+yoloswag4 folds
+GRE3N folds
+dave23 folds
+Dimitry refunded 200
+Dimitry wins Pot (525)
+Dimitry shows [9h 7s]
+
+
+
+Hand #5693542-27 - 2013-04-19 22:51:56
+Game: NL Hold'em (47+3) - Blinds 200/400 Ante 25
+Site: Seals With Clubs
+Table: Half Hour Turbo 500 - Table 2
+Seat 3: yoloswag4 (2735)
+Seat 4: GRE3N (3570)
+Seat 5: dave23 (350) - sitting out
+Seat 6: Dimitry (1020)
+Seat 9: NameIsPak (4325)
+dave23 has the dealer button
+yoloswag4 posts ante 25
+GRE3N posts ante 25
+dave23 posts ante 25
+Dimitry posts ante 25
+NameIsPak posts ante 25
+Dimitry posts small blind 200
+NameIsPak posts big blind 400
+** Hole Cards **
+yoloswag4 folds
+GRE3N folds
+dave23 folds
+Dimitry folds
+NameIsPak refunded 200
+NameIsPak wins Pot (525)
+
+
+
+Hand #5693562-28 - 2013-04-19 22:52:15
+Game: NL Hold'em (47+3) - Blinds 200/400 Ante 25
+Site: Seals With Clubs
+Table: Half Hour Turbo 500 - Table 2
+Seat 3: yoloswag4 (2710)
+Seat 4: GRE3N (3545)
+Seat 5: dave23 (325) - sitting out
+Seat 6: Dimitry (795)
+Seat 9: NameIsPak (4625)
+Dimitry has the dealer button
+yoloswag4 posts ante 25
+GRE3N posts ante 25
+dave23 posts ante 25
+Dimitry posts ante 25
+NameIsPak posts ante 25
+NameIsPak posts small blind 200
+yoloswag4 posts big blind 400
+** Hole Cards **
+GRE3N folds
+dave23 folds
+Dimitry folds
+NameIsPak folds
+yoloswag4 refunded 200
+yoloswag4 wins Pot (525)
+
+
+
+Hand #5693573-29 - 2013-04-19 22:52:30
+Game: NL Hold'em (47+3) - Blinds 200/400 Ante 25
+Site: Seals With Clubs
+Table: Half Hour Turbo 500 - Table 2
+Seat 3: yoloswag4 (3010)
+Seat 4: GRE3N (3520)
+Seat 5: dave23 (300) - sitting out
+Seat 6: Dimitry (770)
+Seat 9: NameIsPak (4400)
+NameIsPak has the dealer button
+yoloswag4 posts ante 25
+GRE3N posts ante 25
+dave23 posts ante 25
+Dimitry posts ante 25
+NameIsPak posts ante 25
+yoloswag4 posts small blind 200
+GRE3N posts big blind 400
+** Hole Cards **
+dave23 folds
+Dimitry raises to 745 (All-in)
+NameIsPak folds
+yoloswag4 folds
+GRE3N calls 345
+GALLAGHER28 moved from Table 1
+qdmcg moved from Table 1
+bigmooky moved from Table 1
+outthere moved from Table 1
+** Flop ** [4d Qh 8c]
+** Turn ** [2c]
+** River ** [Kd]
+** Pot Show Down ** [4d Qh 8c 2c Kd]
+GRE3N shows [5c 9s] (High Card King +Q985)
+Dimitry shows [3s Ac] (High Card Ace +KQ84)
+Dimitry wins Pot (1815) with High Card
+
+
+
+Hand #5693612-30 - 2013-04-19 22:53:13
+Game: NL Hold'em (47+3) - Blinds 200/400 Ante 25
+Site: Seals With Clubs
+Table: Half Hour Turbo 500 - Table 2
+Seat 1: bigmooky (1350)
+Seat 2: outthere (2195)
+Seat 3: yoloswag4 (2785)
+Seat 4: GRE3N (2750)
+Seat 5: dave23 (275) - sitting out
+Seat 6: Dimitry (1815)
+Seat 7: GALLAGHER28 (6645)
+Seat 8: qdmcg (1810)
+Seat 9: NameIsPak (4375)
+yoloswag4 has the dealer button
+bigmooky posts ante 25
+outthere posts ante 25
+yoloswag4 posts ante 25
+GRE3N posts ante 25
+dave23 posts ante 25
+Dimitry posts ante 25
+GALLAGHER28 posts ante 25
+qdmcg posts ante 25
+NameIsPak posts ante 25
+GRE3N posts small blind 200
+dave23 posts big blind 250 (All-in)
+** Hole Cards **
+Dealt to qdmcg [5s Kh]
+Dimitry raises to 1790 (All-in)
+GALLAGHER28 folds
+qdmcg folds
+NameIsPak folds
+bigmooky folds
+outthere folds
+yoloswag4 folds
+GRE3N folds
+dave23 folds
+Dimitry refunded 1540
+Dimitry wins Pot (925)
+dave23 finishes tournament in place #9
+
+
+
+Hand #5693634-31 - 2013-04-19 22:53:41
+Game: NL Hold'em (47+3) - Blinds 200/400 Ante 25
+Site: Seals With Clubs
+Table: Half Hour Turbo 500 - Table 2
+Seat 1: bigmooky (1325)
+Seat 2: outthere (2170)
+Seat 3: yoloswag4 (2760)
+Seat 4: GRE3N (2525)
+Seat 6: Dimitry (2465)
+Seat 7: GALLAGHER28 (6620)
+Seat 8: qdmcg (1785)
+Seat 9: NameIsPak (4350)
+GRE3N has the dealer button
+bigmooky posts ante 25
+outthere posts ante 25
+yoloswag4 posts ante 25
+GRE3N posts ante 25
+Dimitry posts ante 25
+GALLAGHER28 posts ante 25
+qdmcg posts ante 25
+NameIsPak posts ante 25
+Dimitry posts small blind 200
+GALLAGHER28 posts big blind 400
+** Hole Cards **
+Dealt to qdmcg [Qs 7c]
+qdmcg folds
+NameIsPak folds
+bigmooky folds
+outthere folds
+yoloswag4 folds
+GRE3N raises to 2500 (All-in)
+Dimitry folds
+GALLAGHER28 folds
+GRE3N refunded 2100
+GRE3N wins Pot (1200)
+
+
+
+Hand #5693678-32 - 2013-04-19 22:54:27
+Game: NL Hold'em (47+3) - Blinds 300/600 Ante 50
+Site: Seals With Clubs
+Table: Half Hour Turbo 500 - Table 2
+Seat 1: bigmooky (1300)
+Seat 2: outthere (2145)
+Seat 3: yoloswag4 (2735)
+Seat 4: GRE3N (3300)
+Seat 6: Dimitry (2240)
+Seat 7: GALLAGHER28 (6195)
+Seat 8: qdmcg (1760)
+Seat 9: NameIsPak (4325)
+Dimitry has the dealer button
+bigmooky posts ante 50
+outthere posts ante 50
+yoloswag4 posts ante 50
+GRE3N posts ante 50
+Dimitry posts ante 50
+GALLAGHER28 posts ante 50
+qdmcg posts ante 50
+NameIsPak posts ante 50
+GALLAGHER28 posts small blind 300
+qdmcg posts big blind 600
+** Hole Cards **
+Dealt to qdmcg [Ad Qc]
+NameIsPak raises to 2400
+bigmooky folds
+outthere folds
+yoloswag4 folds
+GRE3N folds
+Dimitry folds
+GALLAGHER28 folds
+qdmcg calls 1110 (All-in)
+NameIsPak refunded 690
+** Flop ** [Kc 9h Jc]
+** Turn ** [7c]
+** River ** [8d]
+** Pot Show Down ** [Kc 9h Jc 7c 8d]
+qdmcg shows [Ad Qc] (High Card Ace +KQJ9)
+NameIsPak shows [Ks Kd] (Three of a Kind, Kings +J9)
+NameIsPak wins Pot (4120) with Three of a Kind
+qdmcg finishes tournament in place #8

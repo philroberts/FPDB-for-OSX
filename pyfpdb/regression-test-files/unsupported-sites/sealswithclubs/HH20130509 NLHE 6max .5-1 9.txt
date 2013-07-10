@@ -1,0 +1,325 @@
+Hand #6754314-89 - 2013-05-09 23:54:42
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #9
+Seat 2: low (43.13) - sitting out
+Seat 3: ZEyeOn (157.68)
+Seat 4: Du3ces (188.56)
+Seat 5: HustlinCheat (52.73)
+Seat 6: RiseAndFire (203.57)
+ZEyeOn has the dealer button
+Du3ces posts small blind 0.50
+HustlinCheat posts big blind 1
+** Hole Cards **
+RiseAndFire folds
+ZEyeOn folds
+Du3ces folds
+HustlinCheat refunded 0.50
+HustlinCheat wins Pot (1)
+Rake (0)
+
+
+
+Hand #6754329-90 - 2013-05-09 23:55:14
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #9
+Seat 1: qdmcg (100) - waiting for big blind
+Seat 2: low (43.13) - sitting out
+Seat 3: ZEyeOn (157.68)
+Seat 4: Du3ces (188.06)
+Seat 5: HustlinCheat (53.23)
+Seat 6: RiseAndFire (203.57)
+Du3ces has the dealer button
+HustlinCheat posts small blind 0.50
+RiseAndFire posts big blind 1
+** Hole Cards **
+ZEyeOn folds
+Du3ces raises to 3
+HustlinCheat calls 2.50
+RiseAndFire folds
+** Flop ** [Th Jc 8s]
+HustlinCheat checks
+Du3ces checks
+** Turn ** [5c]
+HustlinCheat checks
+Du3ces bets 3
+HustlinCheat folds
+Du3ces refunded 3
+Du3ces wins Pot (6.83)
+Rake (0.17)
+
+
+
+Hand #6754357-91 - 2013-05-09 23:56:04
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #9
+Seat 1: qdmcg (100) - waiting for big blind
+Seat 2: low (43.13) - sitting out
+Seat 3: ZEyeOn (157.68)
+Seat 4: Du3ces (191.89)
+Seat 5: HustlinCheat (50.23)
+Seat 6: RiseAndFire (202.57)
+HustlinCheat has the dealer button
+RiseAndFire posts small blind 0.50
+qdmcg posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [8h 8c]
+ZEyeOn folds
+Du3ces folds
+HustlinCheat calls 1
+RiseAndFire folds
+qdmcg raises to 3
+HustlinCheat calls 2
+** Flop ** [2h 2d Jc]
+qdmcg bets 4
+HustlinCheat folds
+qdmcg refunded 4
+qdmcg wins Pot (6.34)
+Rake (0.16)
+
+
+
+Hand #6754381-92 - 2013-05-09 23:56:43
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #9
+Seat 1: qdmcg (103.34)
+Seat 2: low (43.13) - sitting out
+Seat 3: ZEyeOn (157.68)
+Seat 4: Du3ces (191.89)
+Seat 5: HustlinCheat (47.23)
+Seat 6: RiseAndFire (202.07)
+RiseAndFire has the dealer button
+qdmcg posts small blind 0.50
+ZEyeOn posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [7s 5h]
+Du3ces folds
+HustlinCheat folds
+RiseAndFire raises to 3
+qdmcg folds
+ZEyeOn folds
+RiseAndFire refunded 2
+RiseAndFire wins Pot (2.50)
+Rake (0)
+
+
+
+Hand #6754392-93 - 2013-05-09 23:57:02
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #9
+Seat 1: qdmcg (102.84)
+Seat 2: low (43.13) - sitting out
+Seat 3: ZEyeOn (156.68)
+Seat 4: Du3ces (191.89)
+Seat 5: HustlinCheat (47.23)
+Seat 6: RiseAndFire (203.57)
+qdmcg has the dealer button
+ZEyeOn posts small blind 0.50
+Du3ces posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Ad Qh]
+HustlinCheat folds
+RiseAndFire folds
+qdmcg raises to 4
+ZEyeOn folds
+Du3ces folds
+qdmcg refunded 3
+qdmcg wins Pot (2.50)
+Rake (0)
+
+
+
+Hand #6754423-94 - 2013-05-09 23:57:41
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #9
+Seat 1: qdmcg (104.34)
+Seat 2: low (43.13) - sitting out
+Seat 3: ZEyeOn (156.18)
+Seat 4: Du3ces (190.89)
+Seat 5: HustlinCheat (47.23)
+Seat 6: RiseAndFire (203.57)
+ZEyeOn has the dealer button
+Du3ces posts small blind 0.50
+HustlinCheat posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [5h Qc]
+RiseAndFire folds
+qdmcg folds
+ZEyeOn folds
+Du3ces folds
+HustlinCheat refunded 0.50
+HustlinCheat wins Pot (1)
+Rake (0)
+
+
+
+Hand #6754441-95 - 2013-05-09 23:58:16
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #9
+Seat 1: qdmcg (104.34)
+Seat 2: low (43.13) - sitting out
+Seat 3: ZEyeOn (156.18)
+Seat 4: Du3ces (190.39)
+Seat 5: HustlinCheat (47.73)
+Seat 6: RiseAndFire (203.57)
+Du3ces has the dealer button
+HustlinCheat posts small blind 0.50
+RiseAndFire posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [6s Ac]
+qdmcg folds
+ZEyeOn folds
+Du3ces folds
+HustlinCheat folds
+RiseAndFire refunded 0.50
+RiseAndFire wins Pot (1)
+Rake (0)
+
+
+
+Hand #6754459-96 - 2013-05-09 23:58:42
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #9
+Seat 1: qdmcg (104.34)
+Seat 2: low (43.13) - sitting out
+Seat 3: ZEyeOn (156.18)
+Seat 4: Du3ces (190.39)
+Seat 5: HustlinCheat (47.23)
+Seat 6: RiseAndFire (204.07)
+HustlinCheat has the dealer button
+RiseAndFire posts small blind 0.50
+qdmcg posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [2h 5c]
+ZEyeOn raises to 3
+Du3ces folds
+HustlinCheat raises to 5
+RiseAndFire folds
+qdmcg folds
+ZEyeOn calls 2
+** Flop ** [6s 8d As]
+ZEyeOn checks
+HustlinCheat bets 10
+ZEyeOn folds
+HustlinCheat refunded 10
+HustlinCheat wins Pot (11.22)
+Rake (0.28)
+
+
+
+Hand #6754497-97 - 2013-05-09 23:59:35
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #9
+Seat 1: qdmcg (103.34)
+Seat 3: ZEyeOn (151.18)
+Seat 4: Du3ces (190.39)
+Seat 5: HustlinCheat (53.45)
+Seat 6: RiseAndFire (203.57)
+RiseAndFire has the dealer button
+qdmcg posts small blind 0.50
+ZEyeOn posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Tc Jh]
+Du3ces folds
+HustlinCheat folds
+RiseAndFire raises to 3
+qdmcg folds
+ZEyeOn calls 2
+** Flop ** [Jd As Ac]
+ZEyeOn bets 3
+RiseAndFire calls 3
+** Turn ** [7c]
+ZEyeOn bets 10
+RiseAndFire folds
+ZEyeOn refunded 10
+ZEyeOn wins Pot (12.19)
+Rake (0.31)
+
+
+
+Hand #6754570-98 - 2013-05-10 00:00:50
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #9
+Seat 1: qdmcg (102.84)
+Seat 2: JWbtc (100) - waiting for big blind
+Seat 3: ZEyeOn (157.37)
+Seat 4: Du3ces (190.39)
+Seat 5: HustlinCheat (53.45)
+Seat 6: RiseAndFire (197.57)
+qdmcg has the dealer button
+ZEyeOn posts small blind 0.50
+Du3ces posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Tc 8c]
+HustlinCheat calls 1
+RiseAndFire folds
+qdmcg calls 1
+ZEyeOn calls 0.50
+Du3ces raises to 6
+HustlinCheat calls 5
+qdmcg folds
+ZEyeOn folds
+** Flop ** [Qd 2h 6h]
+Du3ces bets 7.11
+HustlinCheat raises to 14.22
+Du3ces calls 7.11
+** Turn ** [Ts]
+Du3ces checks
+HustlinCheat bets 20
+Du3ces calls 20
+** River ** [3s]
+Du3ces checks
+HustlinCheat bets 13.23 (All-in)
+Du3ces calls 13.23
+** Pot Show Down ** [Qd 2h 6h Ts 3s]
+Du3ces shows [Jc Jd] (a Pair of Jacks +QT6)
+HustlinCheat shows [3h Qh] (Two Pair, Queens and Threes +T)
+HustlinCheat wins Pot (106.90) with Two Pair
+Rake (2)
+
+
+
+Hand #6754681-99 - 2013-05-10 00:02:49
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #9
+Seat 1: qdmcg (101.84)
+Seat 2: JWbtc (100) - waiting for big blind
+Seat 3: ZEyeOn (156.37)
+Seat 4: Du3ces (136.94)
+Seat 5: HustlinCheat (106.90)
+Seat 6: RiseAndFire (197.57)
+ZEyeOn has the dealer button
+Du3ces posts small blind 0.50
+HustlinCheat posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [8c Qh]
+RiseAndFire folds
+qdmcg folds
+ZEyeOn raises to 2.50
+Du3ces raises to 7.11
+HustlinCheat folds
+ZEyeOn calls 4.61
+** Flop ** [9c Qd 4c]
+Du3ces bets 8.88
+ZEyeOn calls 8.88
+** Turn ** [Jc]
+Du3ces checks
+ZEyeOn checks
+** River ** [Qs]
+Du3ces checks
+ZEyeOn checks
+** Pot Show Down ** [9c Qd 4c Jc Qs]
+ZEyeOn shows [Td 9d] (Two Pair, Queens and Nines +J)
+Du3ces shows [As Jh] (Two Pair, Queens and Jacks +A)
+Du3ces wins Pot (32.16) with Two Pair
+Rake (0.82)

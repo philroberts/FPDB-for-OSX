@@ -1,0 +1,634 @@
+Hand #5289012-1 - 2013-04-10 22:44:10
+Game: PL Omaha (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: PLO 9max 1/1 #1
+Seat 2: DocHo11idaze (40) - waiting for big blind
+Seat 5: qdmcg (100)
+DocHo11idaze has the dealer button
+DocHo11idaze posts small blind 1
+qdmcg posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [As 4s 5c 8c]
+DocHo11idaze checks
+qdmcg raises to 3
+DocHo11idaze calls 2
+** Flop ** [6h 7c Qd]
+qdmcg bets 6
+DocHo11idaze folds
+qdmcg refunded 6
+qdmcg wins Pot (6)
+Rake (0)
+
+
+
+Hand #5296815-110 - 2013-04-11 01:38:24
+Game: PL Omaha (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: PLO 9max 1/1 #1
+Seat 2: pkoike (123)
+Seat 6: glitch (172)
+Seat 9: FeltJester (74)
+FeltJester has the dealer button
+FeltJester posts small blind 1
+pkoike posts big blind 1
+** Hole Cards **
+FeltJester raises to 2
+pkoike calls 1
+** Flop ** [9h Th 8d]
+pkoike checks
+FeltJester checks
+** Turn ** [4s]
+pkoike checks
+FeltJester checks
+** River ** [7s]
+pkoike checks
+FeltJester checks
+** Pot Show Down ** [9h Th 8d 4s 7s]
+pkoike shows [Ks As 9s 6d] (a Straight, Six to Ten)
+FeltJester shows [9c Kd Ac 7h] (Two Pair, Nines and Sevens +T)
+pkoike wins Pot (4) with a Straight
+Rake (0)
+
+
+
+Hand #5296836-111 - 2013-04-11 01:39:09
+Game: PL Omaha (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: PLO 9max 1/1 #1
+Seat 2: pkoike (125)
+Seat 7: qdmcg (100) - waiting for big blind
+Seat 9: FeltJester (72)
+pkoike has the dealer button
+pkoike posts small blind 1
+FeltJester posts big blind 1
+** Hole Cards **
+pkoike checks
+FeltJester checks
+** Flop ** [Ad Tc 3s]
+FeltJester checks
+pkoike checks
+** Turn ** [7h]
+FeltJester checks
+pkoike checks
+** River ** [2h]
+FeltJester checks
+pkoike checks
+** Pot Show Down ** [Ad Tc 3s 7h 2h]
+pkoike shows [4d 2s 7d Qh] (Two Pair, Sevens and Deuces +A)
+FeltJester shows [3h 5h 8d 4s] (a Straight, Ace to Five)
+FeltJester wins Pot (2) with a Straight
+Rake (0)
+
+
+
+Hand #5296870-112 - 2013-04-11 01:40:07
+Game: PL Omaha (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: PLO 9max 1/1 #1
+Seat 2: pkoike (124)
+Seat 7: qdmcg (100) - waiting for big blind
+Seat 9: FeltJester (73)
+FeltJester has the dealer button
+pkoike posts small blind 1
+qdmcg posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [9d 3s 8s 2c]
+FeltJester raises to 2
+pkoike calls 1
+qdmcg folds
+** Flop ** [Td 5s Kd]
+pkoike checks
+FeltJester bets 3
+pkoike raises to 9
+FeltJester folds
+pkoike refunded 6
+pkoike wins Pot (11)
+Rake (0)
+
+
+
+Hand #5296907-113 - 2013-04-11 01:41:03
+Game: PL Omaha (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: PLO 9max 1/1 #1
+Seat 2: pkoike (130)
+Seat 7: qdmcg (99)
+Seat 9: FeltJester (68)
+pkoike has the dealer button
+qdmcg posts small blind 1
+FeltJester posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Qh Ad 2s 5c]
+pkoike folds
+qdmcg raises to 3
+FeltJester calls 2
+** Flop ** [Qd Kc Ks]
+qdmcg bets 3
+FeltJester raises to 6
+qdmcg folds
+FeltJester refunded 3
+FeltJester wins Pot (12)
+Rake (0)
+
+
+
+Hand #5296926-114 - 2013-04-11 01:41:39
+Game: PL Omaha (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: PLO 9max 1/1 #1
+Seat 2: pkoike (130)
+Seat 7: qdmcg (93)
+Seat 9: FeltJester (74)
+qdmcg has the dealer button
+FeltJester posts small blind 1
+pkoike posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Ks 4s 7d 9c]
+qdmcg folds
+FeltJester checks
+pkoike raises to 3
+FeltJester calls 2
+** Flop ** [Qs 3s Qh]
+FeltJester checks
+pkoike checks
+** Turn ** [8h]
+FeltJester bets 2
+pkoike calls 2
+** River ** [9s]
+FeltJester bets 4
+pkoike folds
+FeltJester refunded 4
+FeltJester wins Pot (10)
+Rake (0)
+
+
+
+Hand #5296968-115 - 2013-04-11 01:42:54
+Game: PL Omaha (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: PLO 9max 1/1 #1
+Seat 2: pkoike (125)
+Seat 7: qdmcg (93)
+Seat 9: FeltJester (79)
+FeltJester has the dealer button
+pkoike posts small blind 1
+qdmcg posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Qd Tc 4s Qs]
+FeltJester calls 1
+pkoike checks
+qdmcg checks
+** Flop ** [9s 5c 4h]
+pkoike checks
+qdmcg bets 3
+FeltJester calls 3
+pkoike folds
+** Turn ** [3s]
+qdmcg checks
+FeltJester bets 4
+qdmcg calls 4
+** River ** [Jc]
+qdmcg checks
+FeltJester bets 7
+qdmcg folds
+FeltJester refunded 7
+FeltJester wins Pot (17)
+Rake (0)
+
+
+
+Hand #5297014-116 - 2013-04-11 01:44:19
+Game: PL Omaha (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: PLO 9max 1/1 #1
+Seat 2: pkoike (124)
+Seat 7: qdmcg (85)
+Seat 9: FeltJester (88)
+pkoike has the dealer button
+qdmcg posts small blind 1
+FeltJester posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [2c Js Ad Ac]
+pkoike raises to 3
+qdmcg raises to 10
+FeltJester folds
+pkoike calls 7
+** Flop ** [4c 7d Jd]
+qdmcg bets 21
+pkoike calls 21
+** Turn ** [2s]
+qdmcg bets 54 (All-in)
+pkoike calls 54
+** River ** [7c]
+** Pot Show Down ** [4c 7d Jd 2s 7c]
+pkoike shows [8s Qd Ts Td] (Two Pair, Tens and Sevens +J)
+qdmcg shows [2c Js Ad Ac] (Two Pair, Aces and Sevens +J)
+qdmcg wins Pot (169) with Two Pair
+Rake (2)
+pkoike adds 61 chips
+
+
+
+Hand #5297037-117 - 2013-04-11 01:45:04
+Game: PL Omaha (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: PLO 9max 1/1 #1
+Seat 2: pkoike (100)
+Seat 7: qdmcg (169)
+Seat 9: FeltJester (87)
+qdmcg has the dealer button
+FeltJester posts small blind 1
+pkoike posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [4d 5h Qh Qd]
+qdmcg raises to 3
+FeltJester calls 2
+pkoike calls 2
+** Flop ** [Jc 6d 8s]
+FeltJester checks
+pkoike checks
+qdmcg bets 4
+FeltJester folds
+pkoike raises to 16
+qdmcg folds
+pkoike refunded 12
+pkoike wins Pot (17)
+Rake (0)
+
+
+
+Hand #5297071-118 - 2013-04-11 01:46:01
+Game: PL Omaha (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: PLO 9max 1/1 #1
+Seat 2: pkoike (110) - sitting out
+Seat 7: qdmcg (162)
+Seat 9: FeltJester (84)
+FeltJester has the dealer button
+FeltJester posts small blind 1
+qdmcg posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Qs Qd Ks 7c]
+FeltJester checks
+qdmcg raises to 3
+FeltJester calls 2
+** Flop ** [Ac 6h 7d]
+qdmcg bets 5
+FeltJester calls 5
+** Turn ** [Jc]
+qdmcg bets 8
+FeltJester calls 8
+** River ** [Ah]
+qdmcg checks
+FeltJester bets 10
+qdmcg calls 10
+** Pot Show Down ** [Ac 6h 7d Jc Ah]
+qdmcg shows [Qs Qd Ks 7c] (Two Pair, Aces and Queens +J)
+FeltJester shows [Td 9d Ad 5s] (Three of a Kind, Aces +JT)
+FeltJester wins Pot (51) with Three of a Kind
+Rake (1)
+
+
+
+Hand #5297117-119 - 2013-04-11 01:47:14
+Game: PL Omaha (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: PLO 9max 1/1 #1
+Seat 7: qdmcg (136)
+Seat 9: FeltJester (109)
+qdmcg has the dealer button
+qdmcg posts small blind 1
+FeltJester posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [9h Ts Ac Qs]
+qdmcg checks
+FeltJester checks
+** Flop ** [3s Kd 5d]
+FeltJester checks
+qdmcg bets 2
+FeltJester folds
+qdmcg refunded 2
+qdmcg wins Pot (2)
+Rake (0)
+
+
+
+Hand #5297132-120 - 2013-04-11 01:47:45
+Game: PL Omaha (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: PLO 9max 1/1 #1
+Seat 1: hilypo (213)
+Seat 7: qdmcg (137)
+Seat 9: FeltJester (108)
+FeltJester has the dealer button
+FeltJester posts small blind 1
+qdmcg posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Ts 8s 2s 5c]
+FeltJester checks
+qdmcg checks
+** Flop ** [2c 5s 6c]
+qdmcg bets 2
+FeltJester folds
+qdmcg refunded 2
+qdmcg wins Pot (2)
+Rake (0)
+
+
+
+Hand #5297145-121 - 2013-04-11 01:48:10
+Game: PL Omaha (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: PLO 9max 1/1 #1
+Seat 1: hilypo (213)
+Seat 7: qdmcg (138)
+Seat 9: FeltJester (107)
+qdmcg has the dealer button
+FeltJester posts small blind 1
+hilypo posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Qs 9s Jd 7h]
+qdmcg raises to 2
+FeltJester calls 1
+hilypo calls 1
+** Flop ** [2s 3h 8c]
+FeltJester checks
+hilypo bets 4
+qdmcg folds
+FeltJester folds
+hilypo refunded 4
+hilypo wins Pot (6)
+Rake (0)
+
+
+
+Hand #5297167-122 - 2013-04-11 01:48:49
+Game: PL Omaha (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: PLO 9max 1/1 #1
+Seat 1: hilypo (217)
+Seat 7: qdmcg (136)
+Seat 9: FeltJester (105)
+FeltJester has the dealer button
+hilypo posts small blind 1
+qdmcg posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [4h 7d Ah 6c]
+FeltJester folds
+hilypo checks
+qdmcg checks
+** Flop ** [Ts 5d 3c]
+hilypo bets 2
+qdmcg calls 2
+** Turn ** [Ac]
+hilypo checks
+qdmcg checks
+** River ** [8s]
+hilypo bets 5
+qdmcg calls 5
+** Pot Show Down ** [Ts 5d 3c Ac 8s]
+hilypo shows [3s Th Qs 5c] (Two Pair, Tens and Fives +A)
+qdmcg shows [4h 7d Ah 6c] (a Pair of Aces +T87)
+hilypo wins Pot (16) with Two Pair
+Rake (0)
+
+
+
+Hand #5297203-123 - 2013-04-11 01:49:52
+Game: PL Omaha (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: PLO 9max 1/1 #1
+Seat 1: hilypo (225)
+Seat 7: qdmcg (128)
+Seat 9: FeltJester (105)
+hilypo has the dealer button
+qdmcg posts small blind 1
+FeltJester posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Ah As 3h 4c]
+hilypo raises to 4
+qdmcg calls 3
+FeltJester calls 3
+** Flop ** [Ad 5h Tc]
+qdmcg checks
+FeltJester bets 5
+hilypo folds
+qdmcg raises to 15
+FeltJester calls 10
+** Turn ** [Qh]
+qdmcg bets 41
+FeltJester folds
+qdmcg refunded 41
+qdmcg wins Pot (41)
+Rake (1)
+
+
+
+Hand #5297244-124 - 2013-04-11 01:51:21
+Game: PL Omaha (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: PLO 9max 1/1 #1
+Seat 1: hilypo (221)
+Seat 7: qdmcg (150)
+Seat 9: FeltJester (86)
+qdmcg has the dealer button
+FeltJester posts small blind 1
+hilypo posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [3s 3d As 7s]
+qdmcg raises to 3
+FeltJester calls 2
+hilypo folds
+** Flop ** [Qd Js Ks]
+FeltJester checks
+qdmcg checks
+** Turn ** [4h]
+FeltJester bets 3
+qdmcg calls 3
+** River ** [Jd]
+FeltJester bets 5
+qdmcg folds
+FeltJester refunded 5
+FeltJester wins Pot (13)
+Rake (0)
+
+
+
+Hand #5297269-125 - 2013-04-11 01:52:09
+Game: PL Omaha (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: PLO 9max 1/1 #1
+Seat 1: hilypo (220)
+Seat 7: qdmcg (144)
+Seat 9: FeltJester (93)
+FeltJester has the dealer button
+hilypo posts small blind 1
+qdmcg posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [7d Ts Qc Ac]
+FeltJester folds
+hilypo checks
+qdmcg checks
+** Flop ** [7c 3c Ah]
+hilypo bets 2
+qdmcg calls 2
+** Turn ** [Ks]
+hilypo checks
+qdmcg checks
+** River ** [2c]
+hilypo bets 4
+qdmcg raises to 10
+hilypo calls 6
+** Pot Show Down ** [7c 3c Ah Ks 2c]
+hilypo shows [4c 5s Tc 3h] (a Flush, Ten high +7432)
+qdmcg shows [7d Ts Qc Ac] (a Flush, Ace high +Q732)
+qdmcg wins Pot (26) with a Flush
+Rake (0)
+
+
+
+Hand #5297313-126 - 2013-04-11 01:53:36
+Game: PL Omaha (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: PLO 9max 1/1 #1
+Seat 1: hilypo (207)
+Seat 2: SlipSlapSLAM (46) - waiting for big blind
+Seat 7: qdmcg (157)
+Seat 9: FeltJester (93)
+hilypo has the dealer button
+qdmcg posts small blind 1
+FeltJester posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [5c Ks Jd Qd]
+hilypo folds
+qdmcg checks
+FeltJester checks
+** Flop ** [6s Ts 4s]
+qdmcg checks
+FeltJester checks
+** Turn ** [9s]
+qdmcg checks
+FeltJester checks
+** River ** [Qs]
+qdmcg checks
+FeltJester checks
+** Pot Show Down ** [6s Ts 4s 9s Qs]
+qdmcg shows [5c Ks Jd Qd] (a Straight, Nine to King)
+FeltJester shows [4d 5h 2d 5d] (a Pair of Fives +QT9)
+qdmcg wins Pot (2) with a Straight
+Rake (0)
+
+
+
+Hand #5297340-127 - 2013-04-11 01:54:42
+Game: PL Omaha (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: PLO 9max 1/1 #1
+Seat 1: hilypo (207)
+Seat 2: SlipSlapSLAM (46) - waiting for big blind
+Seat 3: itsDPB (100)
+Seat 7: qdmcg (158)
+Seat 9: FeltJester (92)
+qdmcg has the dealer button
+FeltJester posts small blind 1
+hilypo posts big blind 1
+itsDPB posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [4s 5h 7s Js]
+itsDPB checks
+qdmcg folds
+FeltJester raises to 3
+hilypo raises to 10
+itsDPB folds
+FeltJester calls 7
+** Flop ** [9h Qs Jd]
+FeltJester checks
+hilypo bets 13
+FeltJester calls 13
+** Turn ** [4h]
+FeltJester checks
+hilypo checks
+** River ** [Tc]
+FeltJester bets 28
+hilypo has timed out
+hilypo folds
+FeltJester refunded 28
+FeltJester wins Pot (46)
+Rake (1)
+
+
+
+Hand #5297411-128 - 2013-04-11 01:56:39
+Game: PL Omaha (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: PLO 9max 1/1 #1
+Seat 1: hilypo (184)
+Seat 2: SlipSlapSLAM (46) - waiting for big blind
+Seat 3: itsDPB (99)
+Seat 7: qdmcg (158)
+Seat 8: JackMcBastrd (20)
+Seat 9: FeltJester (115)
+FeltJester has the dealer button
+hilypo posts small blind 1
+SlipSlapSLAM posts big blind 1
+JackMcBastrd posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [9d 6s Qh Jh]
+itsDPB calls 1
+qdmcg folds
+JackMcBastrd raises to 3
+FeltJester folds
+hilypo raises to 11
+SlipSlapSLAM calls 10
+itsDPB folds
+JackMcBastrd calls 8
+** Flop ** [Qc 8c 4s]
+hilypo bets 26
+SlipSlapSLAM folds
+JackMcBastrd calls 9 (All-in)
+hilypo refunded 17
+** Turn ** [4d]
+** River ** [5d]
+** Pot Show Down ** [Qc 8c 4s 4d 5d]
+hilypo shows [Jc Ah Td 9h] (a Pair of Fours +AQJ)
+JackMcBastrd shows [2h 5h 7c 2c] (Two Pair, Fives and Fours +7)
+JackMcBastrd wins Pot (51) with Two Pair
+Rake (1)
+
+
+
+Hand #5297449-129 - 2013-04-11 01:58:05
+Game: PL Omaha (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: PLO 9max 1/1 #1
+Seat 1: hilypo (164)
+Seat 2: SlipSlapSLAM (35)
+Seat 3: itsDPB (98)
+Seat 7: qdmcg (158)
+Seat 8: JackMcBastrd (51)
+Seat 9: FeltJester (115)
+hilypo has the dealer button
+SlipSlapSLAM posts small blind 1
+itsDPB posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [2h 3c Ah 8h]
+qdmcg folds
+JackMcBastrd raises to 2
+FeltJester calls 2
+hilypo folds
+SlipSlapSLAM folds
+SlipSlapSLAM adds 11 chips
+itsDPB calls 1
+** Flop ** [Kh Jc 2d]
+itsDPB checks
+JackMcBastrd bets 3
+FeltJester calls 3
+itsDPB calls 3
+** Turn ** [Kc]
+itsDPB checks
+JackMcBastrd bets 5
+FeltJester folds
+itsDPB folds
+JackMcBastrd refunded 5
+JackMcBastrd wins Pot (16)
+Rake (0)

@@ -1,0 +1,273 @@
+Hand #5223322-11 - 2013-04-09 19:31:50
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 3: qdmcg (200) - waiting for big blind
+Seat 4: BluntObject (200)
+Seat 5: ottograph (276)
+Seat 6: lolbananas (126)
+BluntObject has the dealer button
+ottograph posts small blind 1
+lolbananas posts big blind 2
+** Hole Cards **
+BluntObject calls 2
+ottograph calls 1
+lolbananas checks
+** Flop ** [5d 9h Jc]
+ottograph checks
+lolbananas bets 4
+BluntObject raises to 16
+ottograph folds
+lolbananas folds
+BluntObject refunded 12
+BluntObject wins Pot (14)
+Rake (0)
+
+
+
+Hand #5223352-12 - 2013-04-09 19:32:27
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 2: zootrecords (80)
+Seat 3: qdmcg (200) - waiting for big blind
+Seat 4: BluntObject (208)
+Seat 5: ottograph (274)
+Seat 6: lolbananas (120)
+ottograph has the dealer button
+lolbananas posts small blind 1
+zootrecords posts big blind 2
+** Hole Cards **
+BluntObject folds
+ottograph folds
+lolbananas raises to 6
+zootrecords calls 4
+** Flop ** [9s Th Kh]
+lolbananas bets 8
+zootrecords calls 8
+** Turn ** [3s]
+lolbananas checks
+zootrecords bets 7
+lolbananas calls 7
+** River ** [4d]
+lolbananas checks
+zootrecords checks
+** Pot Show Down ** [9s Th Kh 3s 4d]
+zootrecords shows [Td Ad] (a Pair of Tens +AK9)
+lolbananas shows [6h As] (High Card Ace +KT96)
+zootrecords wins Pot (41) with a Pair
+Rake (1)
+
+
+
+Hand #5223391-13 - 2013-04-09 19:33:23
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 2: zootrecords (100)
+Seat 3: qdmcg (200) - waiting for big blind
+Seat 4: BluntObject (208)
+Seat 5: ottograph (274)
+Seat 6: lolbananas (99)
+lolbananas has the dealer button
+zootrecords posts small blind 1
+qdmcg posts big blind 2
+** Hole Cards **
+Dealt to qdmcg [4s 3c]
+BluntObject calls 2
+ottograph folds
+lolbananas raises to 10
+zootrecords calls 9
+qdmcg folds
+BluntObject folds
+** Flop ** [8d 8h Qh]
+zootrecords checks
+lolbananas bets 18
+zootrecords calls 18
+** Turn ** [Kh]
+zootrecords bets 15
+lolbananas calls 15
+** River ** [Ah]
+zootrecords checks
+lolbananas checks
+** Pot Show Down ** [8d 8h Qh Kh Ah]
+zootrecords shows [Jc Ad] (Two Pair, Aces and Eights +K)
+lolbananas shows [As 3h] (a Flush, Ace high +KQ83)
+lolbananas wins Pot (88) with a Flush
+Rake (2)
+
+
+
+Hand #5223458-14 - 2013-04-09 19:34:43
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: ronaldo (40) - waiting for big blind
+Seat 2: zootrecords (57)
+Seat 3: qdmcg (198)
+Seat 4: BluntObject (206)
+Seat 5: ottograph (274)
+Seat 6: lolbananas (144)
+zootrecords has the dealer button
+qdmcg posts small blind 1
+BluntObject posts big blind 2
+** Hole Cards **
+Dealt to qdmcg [Qh 5s]
+ottograph folds
+lolbananas folds
+zootrecords calls 2
+qdmcg folds
+BluntObject checks
+** Flop ** [4d Kh 6h]
+BluntObject checks
+zootrecords checks
+** Turn ** [5d]
+BluntObject checks
+lolbananas adds 24 chips
+zootrecords checks
+** River ** [8s]
+BluntObject bets 5
+zootrecords calls 5
+** Pot Show Down ** [4d Kh 6h 5d 8s]
+zootrecords shows [As Js] (High Card Ace +KJ86)
+BluntObject shows [Ah 8c] (a Pair of Eights +AK6)
+BluntObject wins Pot (15) with a Pair
+Rake (0)
+
+
+
+Hand #5223513-15 - 2013-04-09 19:35:47
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: ronaldo (40) - waiting for big blind
+Seat 2: zootrecords (50)
+Seat 3: qdmcg (197)
+Seat 4: BluntObject (214)
+Seat 5: ottograph (274)
+Seat 6: lolbananas (168)
+qdmcg has the dealer button
+BluntObject posts small blind 1
+ottograph posts big blind 2
+** Hole Cards **
+Dealt to qdmcg [5s 5d]
+lolbananas folds
+zootrecords calls 2
+qdmcg raises to 6
+BluntObject folds
+ottograph raises to 26
+zootrecords calls 24
+qdmcg folds
+** Flop ** [2d 6s Qc]
+ottograph bets 27
+zootrecords calls 24 (All-in)
+ottograph refunded 3
+** Turn ** [2s]
+** River ** [2c]
+** Pot Show Down ** [2d 6s Qc 2s 2c]
+zootrecords shows [Jd Ad] (Three of a Kind, Deuces +AQ)
+ottograph shows [Ah 9c] (Three of a Kind, Deuces +AQ)
+zootrecords splits Pot (52) with Three of a Kind
+ottograph splits Pot (53) with Three of a Kind
+Rake (2)
+
+
+
+Hand #5223547-16 - 2013-04-09 19:36:37
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: ronaldo (40) - waiting for big blind
+Seat 2: zootrecords (52)
+Seat 3: qdmcg (191)
+Seat 4: BluntObject (213)
+Seat 5: ottograph (277)
+Seat 6: lolbananas (168)
+BluntObject has the dealer button
+ottograph posts small blind 1
+lolbananas posts big blind 2
+** Hole Cards **
+Dealt to qdmcg [5c 4d]
+zootrecords folds
+qdmcg folds
+BluntObject folds
+ottograph folds
+lolbananas refunded 1
+lolbananas wins Pot (2)
+Rake (0)
+
+
+
+Hand #5223565-17 - 2013-04-09 19:36:57
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: ronaldo (40) - waiting for big blind
+Seat 2: zootrecords (52)
+Seat 3: qdmcg (191)
+Seat 4: BluntObject (213)
+Seat 5: ottograph (276)
+Seat 6: lolbananas (169)
+ottograph has the dealer button
+lolbananas posts small blind 1
+ronaldo posts big blind 2
+** Hole Cards **
+Dealt to qdmcg [9s 3s]
+zootrecords folds
+qdmcg folds
+BluntObject calls 2
+ottograph folds
+lolbananas raises to 12
+ronaldo folds
+ronaldo adds 2 chips
+BluntObject folds
+lolbananas refunded 10
+lolbananas wins Pot (6)
+Rake (0)
+
+
+
+Hand #5223590-18 - 2013-04-09 19:37:28
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: ronaldo (40)
+Seat 2: zootrecords (52)
+Seat 3: qdmcg (191)
+Seat 4: BluntObject (211)
+Seat 5: ottograph (276)
+Seat 6: lolbananas (173)
+lolbananas has the dealer button
+ronaldo posts small blind 1
+zootrecords posts big blind 2
+** Hole Cards **
+Dealt to qdmcg [2d 8s]
+qdmcg folds
+BluntObject calls 2
+ottograph folds
+lolbananas calls 2
+ronaldo calls 1
+zootrecords checks
+** Flop ** [Td 3h 5s]
+ronaldo checks
+zootrecords checks
+BluntObject checks
+lolbananas checks
+** Turn ** [Ah]
+ronaldo checks
+zootrecords checks
+BluntObject checks
+lolbananas checks
+** River ** [Kh]
+ronaldo checks
+zootrecords checks
+BluntObject checks
+lolbananas checks
+** Pot Show Down ** [Td 3h 5s Ah Kh]
+ronaldo shows [6d 4d] (High Card Ace +KT65)
+zootrecords shows [2c 7c] (High Card Ace +KT75)
+BluntObject shows [6c Js] (High Card Ace +KJT6)
+lolbananas shows [Qc 4s] (High Card Ace +KQT5)
+lolbananas wins Pot (8) with High Card
+Rake (0)
+ronaldo adds 2 chips

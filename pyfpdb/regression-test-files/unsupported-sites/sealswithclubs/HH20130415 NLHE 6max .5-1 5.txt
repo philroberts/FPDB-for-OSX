@@ -1,0 +1,516 @@
+Hand #5495915-307 - 2013-04-15 16:46:27
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #5
+Seat 1: matija (34.54)
+Seat 2: roadrelief (100)
+Seat 3: WyeKnott1 (107.54)
+Seat 4: man22555 (40)
+Seat 5: cheechu (253.25)
+Seat 6: qdmcg (100) - waiting for big blind
+matija has the dealer button
+WyeKnott1 posts small blind 0.50
+man22555 posts big blind 1
+** Hole Cards **
+cheechu folds
+matija calls 1
+WyeKnott1 folds
+man22555 checks
+** Flop ** [Jd 6h Tc]
+man22555 checks
+matija checks
+** Turn ** [5s]
+man22555 bets 2
+matija folds
+man22555 refunded 2
+man22555 wins Pot (2.44)
+Rake (0.06)
+
+
+
+Hand #5495944-308 - 2013-04-15 16:47:26
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #5
+Seat 1: matija (33.54)
+Seat 2: roadrelief (100)
+Seat 3: WyeKnott1 (107.04)
+Seat 4: man22555 (41.44)
+Seat 5: cheechu (253.25)
+Seat 6: qdmcg (100) - waiting for big blind
+WyeKnott1 has the dealer button
+man22555 posts small blind 0.50
+cheechu posts big blind 1
+roadrelief posts big blind 1
+** Hole Cards **
+matija folds
+roadrelief checks
+WyeKnott1 folds
+man22555 folds
+cheechu checks
+** Flop ** [7s Jc 2h]
+cheechu checks
+roadrelief checks
+** Turn ** [9s]
+cheechu checks
+roadrelief checks
+** River ** [8h]
+cheechu checks
+roadrelief checks
+** Pot Show Down ** [7s Jc 2h 9s 8h]
+roadrelief shows [5c 8c] (a Pair of Eights +J97)
+cheechu shows [3c 6c] (High Card Jack +9876)
+roadrelief wins Pot (2.44) with a Pair
+Rake (0.06)
+
+
+
+Hand #5495971-309 - 2013-04-15 16:48:30
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #5
+Seat 1: matija (33.54)
+Seat 2: roadrelief (101.44)
+Seat 3: WyeKnott1 (107.04)
+Seat 4: man22555 (40.94)
+Seat 5: cheechu (252.25)
+Seat 6: qdmcg (100) - waiting for big blind
+man22555 has the dealer button
+cheechu posts small blind 0.50
+qdmcg posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Kh 5s]
+matija folds
+roadrelief raises to 3
+WyeKnott1 raises to 9
+man22555 folds
+man22555 adds 40 chips
+cheechu folds
+qdmcg folds
+roadrelief calls 6
+** Flop ** [8d 7d 9d]
+roadrelief checks
+WyeKnott1 bets 10
+roadrelief calls 10
+** Turn ** [Tc]
+roadrelief checks
+WyeKnott1 checks
+** River ** [Ah]
+roadrelief checks
+WyeKnott1 checks
+** Pot Show Down ** [8d 7d 9d Tc Ah]
+roadrelief shows [Kc Ts] (a Pair of Tens +AK9)
+WyeKnott1 shows [Qs As] (a Pair of Aces +QT9)
+WyeKnott1 wins Pot (38.52) with a Pair
+Rake (0.98)
+
+
+
+Hand #5496009-310 - 2013-04-15 16:49:59
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #5
+Seat 1: matija (33.54)
+Seat 2: roadrelief (82.44)
+Seat 3: WyeKnott1 (126.56)
+Seat 4: man22555 (80.94)
+Seat 5: cheechu (251.75)
+Seat 6: qdmcg (99)
+cheechu has the dealer button
+qdmcg posts small blind 0.50
+matija posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [6h 4h]
+roadrelief calls 1
+WyeKnott1 folds
+man22555 folds
+cheechu folds
+qdmcg calls 0.50
+matija checks
+** Flop ** [Td 8h 7c]
+qdmcg checks
+matija checks
+roadrelief bets 2
+qdmcg folds
+matija folds
+roadrelief refunded 2
+roadrelief wins Pot (2.93)
+Rake (0.07)
+
+
+
+Hand #5496037-311 - 2013-04-15 16:50:51
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #5
+Seat 1: matija (32.54)
+Seat 2: roadrelief (84.37)
+Seat 3: WyeKnott1 (126.56)
+Seat 4: man22555 (80.94)
+Seat 5: cheechu (251.75)
+Seat 6: qdmcg (98)
+qdmcg has the dealer button
+matija posts small blind 0.50
+roadrelief posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [7d 6h]
+WyeKnott1 folds
+man22555 folds
+cheechu folds
+qdmcg folds
+matija calls 0.50
+roadrelief checks
+** Flop ** [Jd 7s 9h]
+matija checks
+roadrelief checks
+** Turn ** [5h]
+matija bets 4
+roadrelief folds
+matija refunded 4
+matija wins Pot (1.95)
+Rake (0.05)
+
+
+
+Hand #5496067-312 - 2013-04-15 16:51:58
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #5
+Seat 1: matija (33.49)
+Seat 2: roadrelief (83.37)
+Seat 3: WyeKnott1 (126.56)
+Seat 4: man22555 (80.94)
+Seat 5: cheechu (251.75)
+Seat 6: qdmcg (98)
+matija has the dealer button
+roadrelief posts small blind 0.50
+WyeKnott1 posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Kh 6s]
+man22555 folds
+cheechu folds
+qdmcg folds
+matija folds
+roadrelief calls 0.50
+WyeKnott1 raises to 4
+roadrelief calls 3
+** Flop ** [2d 5h 2c]
+roadrelief checks
+WyeKnott1 bets 5
+roadrelief calls 5
+** Turn ** [Ah]
+roadrelief checks
+WyeKnott1 checks
+** River ** [3c]
+roadrelief bets 9
+WyeKnott1 calls 9
+** Pot Show Down ** [2d 5h 2c Ah 3c]
+roadrelief shows [6h 8h] (a Pair of Deuces +A86)
+WyeKnott1 shows [9d 9h] (Two Pair, Nines and Deuces +A)
+WyeKnott1 wins Pot (35.10) with Two Pair
+Rake (0.90)
+
+
+
+Hand #5496099-313 - 2013-04-15 16:53:29
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #5
+Seat 1: matija (33.49)
+Seat 2: roadrelief (65.37)
+Seat 3: WyeKnott1 (143.66)
+Seat 4: man22555 (80.94)
+Seat 5: cheechu (251.75)
+Seat 6: qdmcg (98)
+roadrelief has the dealer button
+WyeKnott1 posts small blind 0.50
+man22555 posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [3c 8h]
+cheechu folds
+qdmcg folds
+matija raises to 2
+roadrelief folds
+WyeKnott1 folds
+man22555 folds
+matija refunded 1
+man22555 adds 1 chips
+matija wins Pot (2.50)
+Rake (0)
+
+
+
+Hand #5496113-314 - 2013-04-15 16:53:58
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #5
+Seat 1: matija (34.99)
+Seat 2: roadrelief (65.37)
+Seat 3: WyeKnott1 (143.16)
+Seat 4: man22555 (80.94)
+Seat 5: cheechu (251.75)
+Seat 6: qdmcg (98)
+WyeKnott1 has the dealer button
+man22555 posts small blind 0.50
+cheechu posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [5h 2s]
+qdmcg folds
+matija calls 1
+roadrelief calls 1
+WyeKnott1 folds
+man22555 raises to 4
+cheechu folds
+matija calls 3
+roadrelief calls 3
+** Flop ** [Jd 8s 2c]
+man22555 bets 7
+matija calls 7
+roadrelief folds
+** Turn ** [Jh]
+man22555 bets 24.57
+matija calls 23.99 (All-in)
+man22555 refunded 0.58
+** River ** [3c]
+** Pot Show Down ** [Jd 8s 2c Jh 3c]
+matija shows [9h Js] (Three of a Kind, Jacks +98)
+man22555 shows [Th Tc] (Two Pair, Jacks and Tens +8)
+matija wins Pot (73.11) with Three of a Kind
+Rake (1.87)
+man22555 adds 34.99 chips
+
+
+
+Hand #5496152-315 - 2013-04-15 16:55:18
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #5
+Seat 1: matija (73.11)
+Seat 2: roadrelief (61.37)
+Seat 3: WyeKnott1 (143.16)
+Seat 4: man22555 (80.94)
+Seat 5: cheechu (250.75)
+Seat 6: qdmcg (98)
+man22555 has the dealer button
+cheechu posts small blind 0.50
+qdmcg posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [3s 2s]
+matija calls 1
+roadrelief calls 1
+WyeKnott1 folds
+man22555 folds
+cheechu folds
+qdmcg checks
+** Flop ** [8h 5s 2h]
+qdmcg checks
+matija checks
+roadrelief bets 3
+qdmcg folds
+matija calls 3
+** Turn ** [Jd]
+matija checks
+roadrelief checks
+** River ** [As]
+matija checks
+roadrelief bets 3
+matija calls 3
+** Pot Show Down ** [8h 5s 2h Jd As]
+matija shows [Ks Jh] (a Pair of Jacks +AK8)
+roadrelief shows [4s Ac] (a Pair of Aces +J85)
+roadrelief wins Pot (15.12) with a Pair
+Rake (0.38)
+
+
+
+Hand #5496185-316 - 2013-04-15 16:56:42
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #5
+Seat 1: matija (66.11)
+Seat 2: roadrelief (69.49)
+Seat 3: WyeKnott1 (143.16)
+Seat 4: man22555 (80.94)
+Seat 5: cheechu (250.25)
+Seat 6: qdmcg (97)
+cheechu has the dealer button
+qdmcg posts small blind 0.50
+matija posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Qc 3c]
+roadrelief folds
+WyeKnott1 folds
+man22555 folds
+cheechu raises to 3
+qdmcg folds
+matija calls 2
+** Flop ** [8h Ac Td]
+matija checks
+cheechu bets 3.75
+matija raises to 7.50
+cheechu calls 3.75
+** Turn ** [Jh]
+matija checks
+cheechu checks
+** River ** [2s]
+matija bets 8
+cheechu folds
+matija refunded 8
+matija wins Pot (20.97)
+Rake (0.53)
+
+
+
+Hand #5496224-317 - 2013-04-15 16:58:10
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #5
+Seat 1: matija (76.58)
+Seat 2: roadrelief (69.49)
+Seat 3: WyeKnott1 (143.16)
+Seat 4: man22555 (80.94)
+Seat 5: cheechu (239.75)
+Seat 6: qdmcg (96.50)
+qdmcg has the dealer button
+matija posts small blind 0.50
+roadrelief posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Kc 6c]
+WyeKnott1 raises to 3
+man22555 folds
+cheechu calls 3
+qdmcg folds
+matija calls 2.50
+roadrelief calls 2
+** Flop ** [6s Ac Jh]
+matija bets 2
+roadrelief folds
+WyeKnott1 folds
+cheechu folds
+matija refunded 2
+matija wins Pot (11.70)
+Rake (0.30)
+
+
+
+Hand #5496248-318 - 2013-04-15 16:59:03
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #5
+Seat 1: matija (85.28)
+Seat 2: roadrelief (66.49)
+Seat 3: WyeKnott1 (140.16)
+Seat 4: man22555 (80.94)
+Seat 5: cheechu (236.75)
+Seat 6: qdmcg (96.50)
+matija has the dealer button
+roadrelief posts small blind 0.50
+WyeKnott1 posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [7h 8s]
+man22555 folds
+cheechu folds
+qdmcg folds
+matija raises to 2
+roadrelief folds
+WyeKnott1 folds
+matija refunded 1
+matija wins Pot (2.50)
+Rake (0)
+
+
+
+Hand #5496266-319 - 2013-04-15 16:59:48
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #5
+Seat 1: matija (86.78)
+Seat 2: roadrelief (65.99)
+Seat 3: WyeKnott1 (139.16)
+Seat 4: man22555 (80.94)
+Seat 5: cheechu (236.75)
+Seat 6: qdmcg (96.50)
+roadrelief has the dealer button
+WyeKnott1 posts small blind 0.50
+man22555 posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Jh 3h]
+cheechu folds
+qdmcg folds
+matija calls 1
+roadrelief raises to 5
+WyeKnott1 folds
+man22555 folds
+man22555 adds 1 chips
+matija folds
+roadrelief refunded 4
+roadrelief wins Pot (3.50)
+Rake (0)
+
+
+
+Hand #5496277-320 - 2013-04-15 17:00:18
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #5
+Seat 1: matija (85.78)
+Seat 2: roadrelief (68.49)
+Seat 3: WyeKnott1 (138.66)
+Seat 4: man22555 (80.94)
+Seat 5: cheechu (236.75)
+Seat 6: qdmcg (96.50)
+WyeKnott1 has the dealer button
+man22555 posts small blind 0.50
+cheechu posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Kd 2d]
+qdmcg folds
+matija calls 1
+roadrelief raises to 5
+WyeKnott1 folds
+man22555 folds
+man22555 adds 0.50 chips
+cheechu folds
+matija calls 4
+** Flop ** [Kh 9c 4c]
+matija checks
+roadrelief bets 5
+matija folds
+roadrelief refunded 5
+roadrelief wins Pot (11.22)
+Rake (0.28)
+
+
+
+Hand #5496343-321 - 2013-04-15 17:01:17
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #5
+Seat 1: matija (80.78)
+Seat 2: roadrelief (74.71)
+Seat 3: WyeKnott1 (138.66)
+Seat 4: man22555 (80.94)
+Seat 5: cheechu (235.75)
+Seat 6: qdmcg (96.50)
+man22555 has the dealer button
+cheechu posts small blind 0.50
+qdmcg posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [8s Ks]
+matija folds
+roadrelief folds
+WyeKnott1 raises to 3
+man22555 folds
+cheechu calls 2.50
+qdmcg has timed out
+qdmcg folds
+** Flop ** [Ac 2s Qd]
+cheechu checks
+WyeKnott1 checks
+** Turn ** [Ts]
+cheechu checks
+WyeKnott1 bets 4
+cheechu folds
+WyeKnott1 refunded 4
+WyeKnott1 wins Pot (6.83)
+Rake (0.17)

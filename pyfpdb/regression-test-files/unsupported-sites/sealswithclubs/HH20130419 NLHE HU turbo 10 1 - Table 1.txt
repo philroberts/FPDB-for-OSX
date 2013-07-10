@@ -1,0 +1,480 @@
+Hand #5697084-2 - 2013-04-20 00:03:05
+Game: NL Hold'em (9.80+0.20) - Blinds 25/50
+Site: Seals With Clubs
+Table: NLHE HU turbo+ 10 #1 - Table 1
+Seat 1: qdmcg (1475)
+Seat 2: JGP (1525)
+JGP has the dealer button
+JGP posts small blind 25
+qdmcg posts big blind 50
+** Hole Cards **
+Dealt to qdmcg [8c 7s]
+JGP raises to 100
+qdmcg calls 50
+** Flop ** [7d As Js]
+qdmcg checks
+JGP checks
+** Turn ** [4h]
+qdmcg bets 100
+JGP calls 100
+** River ** [3d]
+qdmcg checks
+JGP checks
+** Pot Show Down ** [7d As Js 4h 3d]
+qdmcg shows [8c 7s] (a Pair of Sevens +AJ8)
+JGP shows [5c 3c] (a Pair of Threes +AJ7)
+qdmcg wins Pot (400) with a Pair
+
+
+
+Hand #5697110-3 - 2013-04-20 00:03:45
+Game: NL Hold'em (9.80+0.20) - Blinds 25/50
+Site: Seals With Clubs
+Table: NLHE HU turbo+ 10 #1 - Table 1
+Seat 1: qdmcg (1675)
+Seat 2: JGP (1325)
+qdmcg has the dealer button
+qdmcg posts small blind 25
+JGP posts big blind 50
+** Hole Cards **
+Dealt to qdmcg [Js Jd]
+qdmcg raises to 100
+JGP folds
+qdmcg refunded 50
+qdmcg wins Pot (100)
+
+
+
+Hand #5697123-4 - 2013-04-20 00:03:58
+Game: NL Hold'em (9.80+0.20) - Blinds 25/50
+Site: Seals With Clubs
+Table: NLHE HU turbo+ 10 #1 - Table 1
+Seat 1: qdmcg (1725)
+Seat 2: JGP (1275)
+JGP has the dealer button
+JGP posts small blind 25
+qdmcg posts big blind 50
+** Hole Cards **
+Dealt to qdmcg [5s Kh]
+JGP raises to 100
+qdmcg folds
+JGP refunded 50
+JGP wins Pot (100)
+
+
+
+Hand #5697140-5 - 2013-04-20 00:04:14
+Game: NL Hold'em (9.80+0.20) - Blinds 25/50
+Site: Seals With Clubs
+Table: NLHE HU turbo+ 10 #1 - Table 1
+Seat 1: qdmcg (1675)
+Seat 2: JGP (1325)
+qdmcg has the dealer button
+qdmcg posts small blind 25
+JGP posts big blind 50
+** Hole Cards **
+Dealt to qdmcg [Th Ah]
+qdmcg raises to 150
+JGP folds
+qdmcg refunded 100
+qdmcg wins Pot (100)
+
+
+
+Hand #5697153-6 - 2013-04-20 00:04:28
+Game: NL Hold'em (9.80+0.20) - Blinds 25/50
+Site: Seals With Clubs
+Table: NLHE HU turbo+ 10 #1 - Table 1
+Seat 1: qdmcg (1725)
+Seat 2: JGP (1275)
+JGP has the dealer button
+JGP posts small blind 25
+qdmcg posts big blind 50
+** Hole Cards **
+Dealt to qdmcg [3s 4s]
+JGP folds
+qdmcg refunded 25
+qdmcg wins Pot (50)
+
+
+
+Hand #5697166-7 - 2013-04-20 00:04:40
+Game: NL Hold'em (9.80+0.20) - Blinds 25/50
+Site: Seals With Clubs
+Table: NLHE HU turbo+ 10 #1 - Table 1
+Seat 1: qdmcg (1750)
+Seat 2: JGP (1250)
+qdmcg has the dealer button
+qdmcg posts small blind 25
+JGP posts big blind 50
+** Hole Cards **
+Dealt to qdmcg [7s 9d]
+qdmcg raises to 100
+JGP calls 50
+** Flop ** [7c Kh 6c]
+JGP checks
+qdmcg bets 100
+JGP calls 100
+** Turn ** [As]
+JGP checks
+qdmcg bets 100
+JGP calls 100
+** River ** [6d]
+JGP checks
+qdmcg checks
+** Pot Show Down ** [7c Kh 6c As 6d]
+qdmcg shows [7s 9d] (Two Pair, Sevens and Sixes +A)
+JGP shows [3c 7d] (Two Pair, Sevens and Sixes +A)
+qdmcg splits Pot (300) with Two Pair
+JGP splits Pot (300) with Two Pair
+
+
+
+Hand #5697204-8 - 2013-04-20 00:05:29
+Game: NL Hold'em (9.80+0.20) - Blinds 25/50
+Site: Seals With Clubs
+Table: NLHE HU turbo+ 10 #1 - Table 1
+Seat 1: qdmcg (1750)
+Seat 2: JGP (1250)
+JGP has the dealer button
+JGP posts small blind 25
+qdmcg posts big blind 50
+** Hole Cards **
+Dealt to qdmcg [Qs Qd]
+JGP folds
+qdmcg refunded 25
+qdmcg wins Pot (50)
+
+
+
+Hand #5697221-9 - 2013-04-20 00:05:41
+Game: NL Hold'em (9.80+0.20) - Blinds 25/50
+Site: Seals With Clubs
+Table: NLHE HU turbo+ 10 #1 - Table 1
+Seat 1: qdmcg (1775)
+Seat 2: JGP (1225)
+qdmcg has the dealer button
+qdmcg posts small blind 25
+JGP posts big blind 50
+** Hole Cards **
+Dealt to qdmcg [Kd Ts]
+qdmcg raises to 150
+JGP folds
+qdmcg refunded 100
+qdmcg wins Pot (100)
+
+
+
+Hand #5697228-10 - 2013-04-20 00:05:52
+Game: NL Hold'em (9.80+0.20) - Blinds 25/50
+Site: Seals With Clubs
+Table: NLHE HU turbo+ 10 #1 - Table 1
+Seat 1: qdmcg (1825)
+Seat 2: JGP (1175)
+JGP has the dealer button
+JGP posts small blind 25
+qdmcg posts big blind 50
+** Hole Cards **
+Dealt to qdmcg [3s 5h]
+JGP calls 25
+qdmcg checks
+** Flop ** [8d 6h Kc]
+qdmcg checks
+JGP bets 50
+qdmcg folds
+JGP refunded 50
+JGP wins Pot (100)
+
+
+
+Hand #5697252-11 - 2013-04-20 00:06:16
+Game: NL Hold'em (9.80+0.20) - Blinds 25/50
+Site: Seals With Clubs
+Table: NLHE HU turbo+ 10 #1 - Table 1
+Seat 1: qdmcg (1775)
+Seat 2: JGP (1225)
+qdmcg has the dealer button
+qdmcg posts small blind 25
+JGP posts big blind 50
+** Hole Cards **
+Dealt to qdmcg [4h 5c]
+qdmcg raises to 100
+JGP calls 50
+** Flop ** [Kc Qh 3d]
+JGP checks
+qdmcg bets 200
+JGP folds
+qdmcg refunded 200
+qdmcg wins Pot (200)
+
+
+
+Hand #5697278-12 - 2013-04-20 00:06:43
+Game: NL Hold'em (9.80+0.20) - Blinds 25/50
+Site: Seals With Clubs
+Table: NLHE HU turbo+ 10 #1 - Table 1
+Seat 1: qdmcg (1875)
+Seat 2: JGP (1125)
+JGP has the dealer button
+JGP posts small blind 25
+qdmcg posts big blind 50
+** Hole Cards **
+Dealt to qdmcg [9c 6h]
+JGP raises to 100
+qdmcg folds
+JGP refunded 50
+JGP wins Pot (100)
+
+
+
+Hand #5697285-13 - 2013-04-20 00:06:56
+Game: NL Hold'em (9.80+0.20) - Blinds 25/50
+Site: Seals With Clubs
+Table: NLHE HU turbo+ 10 #1 - Table 1
+Seat 1: qdmcg (1825)
+Seat 2: JGP (1175)
+qdmcg has the dealer button
+qdmcg posts small blind 25
+JGP posts big blind 50
+** Hole Cards **
+Dealt to qdmcg [9c 6d]
+qdmcg raises to 100
+JGP raises to 200
+qdmcg folds
+JGP refunded 100
+JGP wins Pot (200)
+
+
+
+Hand #5697308-14 - 2013-04-20 00:07:22
+Game: NL Hold'em (9.80+0.20) - Blinds 25/50
+Site: Seals With Clubs
+Table: NLHE HU turbo+ 10 #1 - Table 1
+Seat 1: qdmcg (1725)
+Seat 2: JGP (1275)
+JGP has the dealer button
+JGP posts small blind 25
+qdmcg posts big blind 50
+** Hole Cards **
+Dealt to qdmcg [Kc Qs]
+JGP calls 25
+qdmcg raises to 150
+JGP calls 100
+** Flop ** [7h 3h 4d]
+qdmcg checks
+JGP checks
+** Turn ** [Td]
+qdmcg checks
+JGP bets 100
+qdmcg calls 100
+** River ** [Ks]
+qdmcg checks
+JGP checks
+** Pot Show Down ** [7h 3h 4d Td Ks]
+qdmcg shows [Kc Qs] (a Pair of Kings +QT7)
+JGP shows [Th 6c] (a Pair of Tens +K76)
+qdmcg wins Pot (500) with a Pair
+
+
+
+Hand #5697343-15 - 2013-04-20 00:08:06
+Game: NL Hold'em (9.80+0.20) - Blinds 25/50
+Site: Seals With Clubs
+Table: NLHE HU turbo+ 10 #1 - Table 1
+Seat 1: qdmcg (1975)
+Seat 2: JGP (1025)
+qdmcg has the dealer button
+qdmcg posts small blind 25
+JGP posts big blind 50
+** Hole Cards **
+Dealt to qdmcg [Qc 6s]
+qdmcg raises to 100
+JGP calls 50
+** Flop ** [3h Ah 7c]
+JGP checks
+qdmcg bets 150
+JGP folds
+qdmcg refunded 150
+qdmcg wins Pot (200)
+
+
+
+Hand #5697364-16 - 2013-04-20 00:08:29
+Game: NL Hold'em (9.80+0.20) - Blinds 25/50
+Site: Seals With Clubs
+Table: NLHE HU turbo+ 10 #1 - Table 1
+Seat 1: qdmcg (2075)
+Seat 2: JGP (925)
+JGP has the dealer button
+JGP posts small blind 25
+qdmcg posts big blind 50
+** Hole Cards **
+Dealt to qdmcg [Qd 4c]
+JGP raises to 200
+qdmcg folds
+JGP refunded 150
+JGP wins Pot (100)
+
+
+
+Hand #5697379-17 - 2013-04-20 00:08:48
+Game: NL Hold'em (9.80+0.20) - Blinds 25/50
+Site: Seals With Clubs
+Table: NLHE HU turbo+ 10 #1 - Table 1
+Seat 1: qdmcg (2025)
+Seat 2: JGP (975)
+qdmcg has the dealer button
+qdmcg posts small blind 25
+JGP posts big blind 50
+** Hole Cards **
+Dealt to qdmcg [Ts 4c]
+qdmcg calls 25
+JGP checks
+** Flop ** [Kc 5d 6d]
+JGP bets 100
+qdmcg folds
+JGP refunded 100
+JGP wins Pot (100)
+
+
+
+Hand #5697398-18 - 2013-04-20 00:09:14
+Game: NL Hold'em (9.80+0.20) - Blinds 50/100
+Site: Seals With Clubs
+Table: NLHE HU turbo+ 10 #1 - Table 1
+Seat 1: qdmcg (1975)
+Seat 2: JGP (1025)
+JGP has the dealer button
+JGP posts small blind 50
+qdmcg posts big blind 100
+** Hole Cards **
+Dealt to qdmcg [7d Ah]
+JGP folds
+qdmcg refunded 50
+qdmcg wins Pot (100)
+
+
+
+Hand #5697411-19 - 2013-04-20 00:09:25
+Game: NL Hold'em (9.80+0.20) - Blinds 50/100
+Site: Seals With Clubs
+Table: NLHE HU turbo+ 10 #1 - Table 1
+Seat 1: qdmcg (2025)
+Seat 2: JGP (975)
+qdmcg has the dealer button
+qdmcg posts small blind 50
+JGP posts big blind 100
+** Hole Cards **
+Dealt to qdmcg [6s 8s]
+qdmcg raises to 200
+JGP calls 100
+** Flop ** [6c 2s 2c]
+JGP checks
+qdmcg bets 881
+JGP folds
+qdmcg refunded 881
+qdmcg wins Pot (400)
+
+
+
+Hand #5697426-20 - 2013-04-20 00:09:51
+Game: NL Hold'em (9.80+0.20) - Blinds 50/100
+Site: Seals With Clubs
+Table: NLHE HU turbo+ 10 #1 - Table 1
+Seat 1: qdmcg (2225)
+Seat 2: JGP (775)
+JGP has the dealer button
+JGP posts small blind 50
+qdmcg posts big blind 100
+** Hole Cards **
+Dealt to qdmcg [8d As]
+JGP calls 50
+qdmcg raises to 823
+JGP folds
+qdmcg refunded 723
+qdmcg wins Pot (200)
+
+
+
+Hand #5697440-21 - 2013-04-20 00:10:12
+Game: NL Hold'em (9.80+0.20) - Blinds 50/100
+Site: Seals With Clubs
+Table: NLHE HU turbo+ 10 #1 - Table 1
+Seat 1: qdmcg (2325)
+Seat 2: JGP (675)
+qdmcg has the dealer button
+qdmcg posts small blind 50
+JGP posts big blind 100
+** Hole Cards **
+Dealt to qdmcg [5s Kh]
+qdmcg calls 50
+JGP checks
+** Flop ** [Qs 4c 7h]
+JGP checks
+qdmcg checks
+** Turn ** [Jh]
+JGP checks
+qdmcg bets 200
+JGP folds
+qdmcg refunded 200
+qdmcg wins Pot (200)
+
+
+
+Hand #5697472-22 - 2013-04-20 00:10:47
+Game: NL Hold'em (9.80+0.20) - Blinds 50/100
+Site: Seals With Clubs
+Table: NLHE HU turbo+ 10 #1 - Table 1
+Seat 1: qdmcg (2425)
+Seat 2: JGP (575)
+JGP has the dealer button
+JGP posts small blind 50
+qdmcg posts big blind 100
+** Hole Cards **
+Dealt to qdmcg [Tc 5c]
+JGP folds
+qdmcg refunded 50
+qdmcg wins Pot (100)
+
+
+
+Hand #5697481-23 - 2013-04-20 00:10:58
+Game: NL Hold'em (9.80+0.20) - Blinds 50/100
+Site: Seals With Clubs
+Table: NLHE HU turbo+ 10 #1 - Table 1
+Seat 1: qdmcg (2475)
+Seat 2: JGP (525)
+qdmcg has the dealer button
+qdmcg posts small blind 50
+JGP posts big blind 100
+** Hole Cards **
+Dealt to qdmcg [6h 3h]
+qdmcg raises to 200
+JGP folds
+qdmcg refunded 100
+qdmcg wins Pot (200)
+
+
+
+Hand #5697499-24 - 2013-04-20 00:11:20
+Game: NL Hold'em (9.80+0.20) - Blinds 50/100
+Site: Seals With Clubs
+Table: NLHE HU turbo+ 10 #1 - Table 1
+Seat 1: qdmcg (2575)
+Seat 2: JGP (425)
+JGP has the dealer button
+JGP posts small blind 50
+qdmcg posts big blind 100
+** Hole Cards **
+Dealt to qdmcg [Ks Qs]
+JGP raises to 425 (All-in)
+qdmcg calls 325
+** Flop ** [Kc Qc 7c]
+** Turn ** [5c]
+** River ** [6d]
+** Pot Show Down ** [Kc Qc 7c 5c 6d]
+qdmcg shows [Ks Qs] (Two Pair, Kings and Queens +7)
+JGP shows [4d 5d] (a Pair of Fives +KQ7)
+qdmcg wins Pot (850) with Two Pair
+JGP finishes tournament in place #2
+qdmcg finishes tournament in place #1 and wins 19.60 chips

@@ -1,0 +1,548 @@
+Hand #5296944-425 - 2013-04-11 01:42:11
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 6max 1/1 #4
+Seat 3: Snuggles78 (29)
+Seat 4: Frankie (462)
+Seat 5: qdmcg (100) - waiting for big blind
+Seat 6: hopeshine (45)
+Snuggles78 has the dealer button
+Frankie posts small blind 1
+qdmcg posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [4c Qd]
+hopeshine folds
+Snuggles78 calls 1
+Frankie checks
+qdmcg checks
+** Flop ** [Qh 7d 2d]
+Frankie checks
+qdmcg bets 2
+Snuggles78 folds
+Frankie folds
+qdmcg refunded 2
+qdmcg wins Pot (3)
+Rake (0)
+
+
+
+Hand #5296967-426 - 2013-04-11 01:42:54
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 6max 1/1 #4
+Seat 3: Snuggles78 (28)
+Seat 4: Frankie (461)
+Seat 5: qdmcg (102)
+Seat 6: hopeshine (45)
+Frankie has the dealer button
+qdmcg posts small blind 1
+hopeshine posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [4h 7d]
+Snuggles78 folds
+Frankie folds
+qdmcg checks
+hopeshine checks
+** Flop ** [5h Jh Js]
+qdmcg checks
+hopeshine bets 3
+qdmcg folds
+hopeshine refunded 3
+hopeshine wins Pot (2)
+Rake (0)
+
+
+
+Hand #5296984-427 - 2013-04-11 01:43:25
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 6max 1/1 #4
+Seat 1: bmarley2084 (70) - waiting for big blind
+Seat 3: Snuggles78 (28)
+Seat 4: Frankie (461)
+Seat 5: qdmcg (101)
+Seat 6: hopeshine (46)
+qdmcg has the dealer button
+hopeshine posts small blind 1
+bmarley2084 posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Ts As]
+Snuggles78 folds
+Frankie folds
+qdmcg raises to 3
+hopeshine calls 2
+bmarley2084 calls 2
+** Flop ** [Qs 3d 9h]
+hopeshine checks
+bmarley2084 checks
+qdmcg checks
+** Turn ** [4h]
+hopeshine bets 1
+bmarley2084 calls 1
+qdmcg folds
+** River ** [6s]
+hopeshine checks
+bmarley2084 bets 3
+hopeshine calls 3
+** Pot Show Down ** [Qs 3d 9h 4h 6s]
+bmarley2084 shows [2d Qd] (a Pair of Queens +964)
+hopeshine shows [Ks 4d] (a Pair of Fours +KQ9)
+bmarley2084 wins Pot (17) with a Pair
+Rake (0)
+
+
+
+Hand #5297017-428 - 2013-04-11 01:44:22
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 6max 1/1 #4
+Seat 1: bmarley2084 (80)
+Seat 3: Snuggles78 (28)
+Seat 4: Frankie (461)
+Seat 5: qdmcg (98)
+Seat 6: hopeshine (39)
+hopeshine has the dealer button
+bmarley2084 posts small blind 1
+Snuggles78 posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [3s 5c]
+Frankie folds
+qdmcg folds
+hopeshine calls 1
+bmarley2084 checks
+Snuggles78 checks
+** Flop ** [6s 6d 8d]
+bmarley2084 bets 1
+Snuggles78 has timed out
+Snuggles78 folds
+hopeshine calls 1
+** Turn ** [7c]
+bmarley2084 bets 1
+hopeshine calls 1
+** River ** [3h]
+bmarley2084 bets 4
+hopeshine calls 4
+** Pot Show Down ** [6s 6d 8d 7c 3h]
+bmarley2084 shows [Ac 5h] (a Pair of Sixes +A87)
+hopeshine shows [2h 2d] (Two Pair, Sixes and Deuces +8)
+hopeshine wins Pot (15) with Two Pair
+Rake (0)
+
+
+
+Hand #5297072-429 - 2013-04-11 01:46:04
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 6max 1/1 #4
+Seat 1: bmarley2084 (73)
+Seat 2: Amderstet (35)
+Seat 3: Snuggles78 (27) - sitting out
+Seat 4: Frankie (461)
+Seat 5: qdmcg (98)
+Seat 6: hopeshine (47)
+bmarley2084 has the dealer button
+Frankie posts small blind 1
+qdmcg posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Kh 8s]
+hopeshine folds
+bmarley2084 folds
+Frankie checks
+qdmcg checks
+** Flop ** [4h Jh 9h]
+Frankie checks
+qdmcg bets 2
+Frankie folds
+qdmcg refunded 2
+qdmcg wins Pot (2)
+Rake (0)
+
+
+
+Hand #5297089-430 - 2013-04-11 01:46:33
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 6max 1/1 #4
+Seat 1: bmarley2084 (73)
+Seat 2: Amderstet (35)
+Seat 3: Snuggles78 (27)
+Seat 4: Frankie (460)
+Seat 5: qdmcg (99)
+Seat 6: hopeshine (47)
+Frankie has the dealer button
+qdmcg posts small blind 1
+hopeshine posts big blind 1
+Amderstet posts big blind 1
+Snuggles78 posts small blind 1
+** Hole Cards **
+Dealt to qdmcg [5d 7s]
+bmarley2084 folds
+Amderstet raises to 4
+Snuggles78 calls 4
+Frankie calls 4
+qdmcg folds
+hopeshine folds
+** Flop ** [2h 7d Kd]
+Amderstet checks
+Snuggles78 checks
+Frankie bets 10
+Amderstet folds
+Snuggles78 raises to 22 (All-in)
+Frankie calls 12
+** Turn ** [3d]
+** River ** [Kc]
+** Pot Show Down ** [2h 7d Kd 3d Kc]
+Snuggles78 shows [Jd 8d] (a Flush, King high +J873)
+Frankie shows [Qc Th] (a Pair of Kings +QT7)
+Snuggles78 wins Pot (58) with a Flush
+Rake (1)
+
+
+
+Hand #5297143-431 - 2013-04-11 01:48:07
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 6max 1/1 #4
+Seat 1: bmarley2084 (73)
+Seat 2: Amderstet (31)
+Seat 3: Snuggles78 (58)
+Seat 4: Frankie (434)
+Seat 5: qdmcg (98)
+Seat 6: hopeshine (46)
+qdmcg has the dealer button
+hopeshine posts small blind 1
+bmarley2084 posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [6h 3h]
+Amderstet folds
+Snuggles78 folds
+Frankie calls 1
+qdmcg folds
+hopeshine checks
+bmarley2084 checks
+** Flop ** [Ks 4c 7s]
+hopeshine checks
+bmarley2084 checks
+Frankie bets 2
+hopeshine calls 2
+bmarley2084 folds
+** Turn ** [Jh]
+hopeshine checks
+Frankie checks
+** River ** [8d]
+hopeshine checks
+Frankie checks
+** Pot Show Down ** [Ks 4c 7s Jh 8d]
+Frankie shows [Kd 2d] (a Pair of Kings +J87)
+hopeshine shows [4d 2c] (a Pair of Fours +KJ8)
+Frankie wins Pot (7) with a Pair
+Rake (0)
+
+
+
+Hand #5297217-432 - 2013-04-11 01:50:17
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 6max 1/1 #4
+Seat 1: bmarley2084 (72)
+Seat 2: Amderstet (31)
+Seat 3: Snuggles78 (58)
+Seat 4: Frankie (438)
+Seat 5: qdmcg (98)
+Seat 6: hopeshine (43)
+hopeshine has the dealer button
+bmarley2084 posts small blind 1
+Amderstet posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [4c 3h]
+Snuggles78 folds
+Frankie folds
+qdmcg folds
+hopeshine calls 1
+bmarley2084 checks
+Amderstet checks
+** Flop ** [6s 5s 6h]
+bmarley2084 bets 2
+Amderstet folds
+hopeshine folds
+bmarley2084 refunded 2
+bmarley2084 wins Pot (3)
+Rake (0)
+
+
+
+Hand #5297248-433 - 2013-04-11 01:51:25
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 6max 1/1 #4
+Seat 1: bmarley2084 (74)
+Seat 2: Amderstet (30)
+Seat 3: Snuggles78 (58)
+Seat 4: Frankie (438)
+Seat 5: qdmcg (98)
+Seat 6: hopeshine (42)
+bmarley2084 has the dealer button
+Amderstet posts small blind 1
+Snuggles78 posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Td As]
+Frankie folds
+qdmcg raises to 4
+hopeshine calls 4
+bmarley2084 calls 4
+Amderstet folds
+Snuggles78 calls 3
+** Flop ** [2c 8h 2s]
+Snuggles78 checks
+qdmcg checks
+hopeshine checks
+bmarley2084 bets 4
+Snuggles78 folds
+qdmcg folds
+hopeshine folds
+bmarley2084 refunded 4
+bmarley2084 wins Pot (17)
+Rake (0)
+
+
+
+Hand #5297278-434 - 2013-04-11 01:52:22
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 6max 1/1 #4
+Seat 1: bmarley2084 (87)
+Seat 2: Amderstet (29)
+Seat 3: Snuggles78 (54)
+Seat 4: Frankie (438)
+Seat 5: qdmcg (94)
+Seat 6: hopeshine (38)
+Amderstet has the dealer button
+Snuggles78 posts small blind 1
+Frankie posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Jd 8h]
+qdmcg folds
+hopeshine calls 1
+bmarley2084 folds
+Amderstet raises to 4
+Snuggles78 folds
+Frankie calls 3
+hopeshine folds
+** Flop ** [6c 9s Kh]
+Frankie bets 10
+Amderstet folds
+Frankie refunded 10
+Frankie wins Pot (10)
+Rake (0)
+
+
+
+Hand #5297301-435 - 2013-04-11 01:53:15
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 6max 1/1 #4
+Seat 1: bmarley2084 (87)
+Seat 2: Amderstet (25)
+Seat 3: Snuggles78 (53)
+Seat 4: Frankie (444)
+Seat 5: qdmcg (94)
+Seat 6: hopeshine (37)
+Snuggles78 has the dealer button
+Frankie posts small blind 1
+qdmcg posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Ah 7h]
+hopeshine calls 1
+bmarley2084 folds
+Amderstet folds
+Snuggles78 calls 1
+Frankie checks
+qdmcg checks
+** Flop ** [Jh 7d Ac]
+Frankie checks
+qdmcg bets 4
+hopeshine calls 4
+Snuggles78 calls 4
+Frankie folds
+** Turn ** [4c]
+qdmcg bets 12
+hopeshine calls 12
+Snuggles78 folds
+** River ** [2s]
+qdmcg bets 21
+hopeshine calls 20 (All-in)
+qdmcg refunded 1
+** Pot Show Down ** [Jh 7d Ac 4c 2s]
+qdmcg shows [Ah 7h] (Two Pair, Aces and Sevens +J)
+hopeshine shows [Js Th] (a Pair of Jacks +AT7)
+qdmcg wins Pot (78) with Two Pair
+Rake (2)
+
+
+
+Hand #5297354-436 - 2013-04-11 01:54:52
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 6max 1/1 #4
+Seat 1: bmarley2084 (87)
+Seat 2: Amderstet (25)
+Seat 3: Snuggles78 (48)
+Seat 4: Frankie (443)
+Seat 5: qdmcg (135)
+Seat 6: hopeshine (0) - sitting out
+Frankie has the dealer button
+qdmcg posts small blind 1
+bmarley2084 posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Jc Ks]
+Amderstet folds
+Snuggles78 raises to 5
+Frankie folds
+qdmcg folds
+bmarley2084 folds
+Snuggles78 refunded 4
+Snuggles78 wins Pot (3)
+Rake (0)
+
+
+
+Hand #5297373-437 - 2013-04-11 01:55:21
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 6max 1/1 #4
+Seat 1: bmarley2084 (86)
+Seat 2: Amderstet (25)
+Seat 3: Snuggles78 (50)
+Seat 4: Frankie (443)
+Seat 5: qdmcg (134)
+Seat 6: Degnr8Gamblr (100)
+qdmcg has the dealer button
+bmarley2084 posts small blind 1
+Amderstet posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [7h 8d]
+Snuggles78 raises to 5
+Frankie folds
+qdmcg folds
+bmarley2084 folds
+Amderstet calls 4
+** Flop ** [Qd 6d Ad]
+Amderstet bets 3
+Snuggles78 raises to 45 (All-in)
+Amderstet calls 17 (All-in)
+Snuggles78 refunded 25
+** Turn ** [Ts]
+** River ** [8s]
+** Pot Show Down ** [Qd 6d Ad Ts 8s]
+Amderstet shows [Qh 9d] (a Pair of Queens +AT9)
+Snuggles78 shows [7d 3h] (High Card Ace +QT87)
+Amderstet wins Pot (50) with a Pair
+Rake (1)
+
+
+
+Hand #5297393-438 - 2013-04-11 01:56:04
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 6max 1/1 #4
+Seat 1: bmarley2084 (85)
+Seat 2: Amderstet (50)
+Seat 3: Snuggles78 (25)
+Seat 4: Frankie (443)
+Seat 5: qdmcg (134)
+Seat 6: Degnr8Gamblr (100)
+bmarley2084 has the dealer button
+Amderstet posts small blind 1
+Snuggles78 posts big blind 1
+Degnr8Gamblr posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [3c Qs]
+Frankie calls 1
+qdmcg folds
+Degnr8Gamblr raises to 8
+bmarley2084 folds
+Amderstet calls 7
+Snuggles78 folds
+Frankie calls 7
+** Flop ** [6h 3h 3s]
+Amderstet bets 2
+Frankie calls 2
+Degnr8Gamblr raises to 14
+Amderstet folds
+Frankie raises to 435 (All-in)
+Degnr8Gamblr folds
+Frankie refunded 421
+Degnr8Gamblr adds 22 chips
+Frankie wins Pot (54)
+Rake (1)
+
+
+
+Hand #5297443-439 - 2013-04-11 01:57:39
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 6max 1/1 #4
+Seat 1: bmarley2084 (85)
+Seat 2: Amderstet (40)
+Seat 3: Snuggles78 (24)
+Seat 4: Frankie (475)
+Seat 5: qdmcg (134)
+Seat 6: Degnr8Gamblr (100)
+Amderstet has the dealer button
+Snuggles78 posts small blind 1
+Frankie posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Jh Kh]
+qdmcg raises to 3
+Degnr8Gamblr folds
+bmarley2084 folds
+Amderstet calls 3
+Snuggles78 raises to 10
+Frankie folds
+qdmcg folds
+Amderstet calls 7
+** Flop ** [9s Td 3c]
+Snuggles78 bets 14 (All-in)
+Amderstet calls 14
+** Turn ** [7c]
+** River ** [4h]
+** Pot Show Down ** [9s Td 3c 7c 4h]
+Amderstet shows [9d 8d] (a Pair of Nines +T87)
+Snuggles78 shows [Qc Kc] (High Card King +QT97)
+Amderstet wins Pot (51) with a Pair
+Rake (1)
+
+
+
+Hand #5297459-440 - 2013-04-11 01:58:16
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 6max 1/1 #4
+Seat 1: bmarley2084 (85)
+Seat 2: Amderstet (67)
+Seat 3: Snuggles78 (0) - sitting out
+Seat 4: Frankie (474)
+Seat 5: qdmcg (131)
+Seat 6: Degnr8Gamblr (100)
+Frankie has the dealer button
+qdmcg posts small blind 1
+Degnr8Gamblr posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Ts 6d]
+bmarley2084 folds
+Amderstet folds
+Frankie calls 1
+qdmcg checks
+Degnr8Gamblr checks
+** Flop ** [5c Ks 4h]
+qdmcg checks
+Degnr8Gamblr checks
+Frankie checks
+** Turn ** [8s]
+qdmcg bets 3
+Degnr8Gamblr folds
+Degnr8Gamblr adds 1 chips
+Frankie folds
+qdmcg refunded 3
+qdmcg wins Pot (3)
+Rake (0)

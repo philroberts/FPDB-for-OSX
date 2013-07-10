@@ -1,0 +1,365 @@
+Hand #5764100-183 - 2013-04-21 11:19:31
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #3
+Seat 1: desmo88 (118.54)
+Seat 2: wwworm (134.08)
+Seat 3: skiffy (147.52)
+Seat 4: coinbytare (165.43)
+Seat 5: GalaxyS3 (99.28)
+Seat 6: qdmcg (100)
+skiffy has the dealer button
+coinbytare posts small blind 0.50
+GalaxyS3 posts big blind 1
+qdmcg posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [2s Tc]
+qdmcg checks
+desmo88 folds
+wwworm folds
+skiffy folds
+coinbytare calls 0.50
+GalaxyS3 checks
+** Flop ** [9c 8c 4s]
+coinbytare checks
+GalaxyS3 checks
+qdmcg checks
+** Turn ** [Js]
+coinbytare bets 3
+GalaxyS3 folds
+qdmcg folds
+coinbytare refunded 3
+coinbytare wins Pot (2.93)
+Rake (0.07)
+
+
+
+Hand #5764121-184 - 2013-04-21 11:20:22
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #3
+Seat 1: desmo88 (118.54)
+Seat 2: wwworm (134.08)
+Seat 3: skiffy (147.52)
+Seat 4: coinbytare (167.36)
+Seat 5: GalaxyS3 (98.28)
+Seat 6: qdmcg (99)
+coinbytare has the dealer button
+GalaxyS3 posts small blind 0.50
+qdmcg posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Qs 4h]
+desmo88 folds
+wwworm folds
+skiffy raises to 3
+coinbytare calls 3
+GalaxyS3 folds
+qdmcg folds
+** Flop ** [Td Kh 4c]
+skiffy bets 5
+coinbytare folds
+skiffy refunded 5
+skiffy wins Pot (7.32)
+Rake (0.18)
+
+
+
+Hand #5764139-185 - 2013-04-21 11:21:11
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #3
+Seat 1: desmo88 (118.54)
+Seat 2: wwworm (134.08)
+Seat 3: skiffy (151.84)
+Seat 4: coinbytare (164.36)
+Seat 5: GalaxyS3 (97.78)
+Seat 6: qdmcg (98)
+GalaxyS3 has the dealer button
+qdmcg posts small blind 0.50
+desmo88 posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [2d 3h]
+wwworm folds
+skiffy raises to 3
+coinbytare folds
+GalaxyS3 folds
+qdmcg folds
+desmo88 folds
+skiffy refunded 2
+skiffy wins Pot (2.50)
+Rake (0)
+
+
+
+Hand #5764155-186 - 2013-04-21 11:21:48
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #3
+Seat 1: desmo88 (117.54)
+Seat 2: wwworm (134.08)
+Seat 3: skiffy (153.34)
+Seat 4: coinbytare (164.36)
+Seat 5: GalaxyS3 (97.78)
+Seat 6: qdmcg (97.50)
+qdmcg has the dealer button
+desmo88 posts small blind 0.50
+wwworm posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [8c 5d]
+skiffy folds
+coinbytare folds
+GalaxyS3 raises to 3
+qdmcg folds
+desmo88 folds
+wwworm calls 2
+** Flop ** [7h 8h Qc]
+wwworm checks
+GalaxyS3 bets 5
+wwworm folds
+GalaxyS3 refunded 5
+GalaxyS3 wins Pot (6.34)
+Rake (0.16)
+
+
+
+Hand #5764169-187 - 2013-04-21 11:22:31
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #3
+Seat 1: desmo88 (117.04)
+Seat 2: wwworm (131.08)
+Seat 3: skiffy (153.34)
+Seat 4: coinbytare (164.36)
+Seat 5: GalaxyS3 (101.12)
+Seat 6: qdmcg (97.50)
+desmo88 has the dealer button
+wwworm posts small blind 0.50
+skiffy posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Jc Td]
+coinbytare calls 1
+GalaxyS3 raises to 3
+qdmcg folds
+desmo88 folds
+wwworm calls 2.50
+skiffy folds
+coinbytare calls 2
+** Flop ** [Kd Jd 5s]
+wwworm checks
+coinbytare bets 6
+GalaxyS3 raises to 12
+wwworm folds
+coinbytare calls 6
+** Turn ** [Kc]
+coinbytare checks
+GalaxyS3 bets 20
+coinbytare folds
+GalaxyS3 refunded 20
+GalaxyS3 wins Pot (33.15)
+Rake (0.85)
+
+
+
+Hand #5764202-188 - 2013-04-21 11:23:52
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #3
+Seat 1: desmo88 (117.04)
+Seat 2: wwworm (128.08)
+Seat 3: skiffy (152.34)
+Seat 4: coinbytare (149.36)
+Seat 5: GalaxyS3 (119.27)
+Seat 6: qdmcg (97.50)
+wwworm has the dealer button
+skiffy posts small blind 0.50
+coinbytare posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [4d 7h]
+GalaxyS3 folds
+qdmcg folds
+desmo88 folds
+wwworm folds
+skiffy folds
+coinbytare refunded 0.50
+coinbytare wins Pot (1)
+Rake (0)
+
+
+
+Hand #5764206-189 - 2013-04-21 11:24:10
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #3
+Seat 1: desmo88 (117.04)
+Seat 2: wwworm (128.08)
+Seat 3: skiffy (151.84)
+Seat 4: coinbytare (149.86)
+Seat 5: GalaxyS3 (119.27)
+Seat 6: qdmcg (97.50)
+skiffy has the dealer button
+coinbytare posts small blind 0.50
+GalaxyS3 posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Ac 2d]
+qdmcg folds
+desmo88 folds
+wwworm folds
+skiffy folds
+coinbytare folds
+GalaxyS3 refunded 0.50
+GalaxyS3 wins Pot (1)
+Rake (0)
+
+
+
+Hand #5764218-190 - 2013-04-21 11:24:39
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #3
+Seat 1: desmo88 (117.04)
+Seat 2: wwworm (128.08)
+Seat 3: skiffy (151.84)
+Seat 4: coinbytare (149.36)
+Seat 5: GalaxyS3 (119.77)
+Seat 6: qdmcg (97.50)
+coinbytare has the dealer button
+GalaxyS3 posts small blind 0.50
+qdmcg posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [6h 9d]
+desmo88 folds
+wwworm folds
+skiffy folds
+coinbytare folds
+GalaxyS3 folds
+qdmcg refunded 0.50
+qdmcg wins Pot (1)
+Rake (0)
+
+
+
+Hand #5764230-191 - 2013-04-21 11:25:07
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #3
+Seat 1: desmo88 (117.04)
+Seat 2: wwworm (128.08)
+Seat 3: skiffy (151.84)
+Seat 4: coinbytare (149.36)
+Seat 5: GalaxyS3 (119.27)
+Seat 6: qdmcg (98)
+GalaxyS3 has the dealer button
+qdmcg posts small blind 0.50
+desmo88 posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [9s Ac]
+wwworm folds
+skiffy folds
+coinbytare calls 1
+GalaxyS3 raises to 2
+qdmcg calls 1.50
+desmo88 calls 1
+coinbytare calls 1
+** Flop ** [8s 5c 6d]
+qdmcg checks
+desmo88 checks
+coinbytare bets 4
+GalaxyS3 folds
+qdmcg folds
+desmo88 folds
+coinbytare refunded 4
+coinbytare wins Pot (7.80)
+Rake (0.20)
+
+
+
+Hand #5764252-192 - 2013-04-21 11:26:20
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #3
+Seat 1: desmo88 (115.04)
+Seat 2: wwworm (128.08)
+Seat 3: skiffy (151.84)
+Seat 4: coinbytare (155.16)
+Seat 5: GalaxyS3 (117.27)
+Seat 6: qdmcg (96)
+qdmcg has the dealer button
+desmo88 posts small blind 0.50
+wwworm posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Jd 7d]
+skiffy raises to 2.50
+coinbytare folds
+GalaxyS3 folds
+qdmcg folds
+desmo88 folds
+wwworm folds
+skiffy refunded 1.50
+skiffy wins Pot (2.50)
+Rake (0)
+
+
+
+Hand #5764259-193 - 2013-04-21 11:26:50
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #3
+Seat 1: desmo88 (114.54)
+Seat 2: wwworm (127.08)
+Seat 3: skiffy (153.34)
+Seat 4: coinbytare (155.16)
+Seat 5: GalaxyS3 (117.27)
+Seat 6: qdmcg (96)
+desmo88 has the dealer button
+wwworm posts small blind 0.50
+skiffy posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [3h Jd]
+coinbytare calls 1
+GalaxyS3 has timed out
+GalaxyS3 folds
+qdmcg folds
+desmo88 folds
+wwworm calls 0.50
+skiffy checks
+** Flop ** [Qd 7s 6d]
+wwworm checks
+skiffy checks
+coinbytare checks
+** Turn ** [Tc]
+wwworm checks
+skiffy checks
+coinbytare bets 2
+wwworm folds
+skiffy folds
+coinbytare refunded 2
+coinbytare wins Pot (2.93)
+Rake (0.07)
+
+
+
+Hand #5764285-194 - 2013-04-21 11:27:56
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #3
+Seat 1: desmo88 (114.54)
+Seat 2: wwworm (126.08)
+Seat 3: skiffy (152.34)
+Seat 4: coinbytare (157.09)
+Seat 5: GalaxyS3 (117.27)
+Seat 6: qdmcg (96)
+wwworm has the dealer button
+skiffy posts small blind 0.50
+coinbytare posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Qc Qh]
+GalaxyS3 calls 1
+qdmcg raises to 4
+desmo88 folds
+wwworm folds
+skiffy folds
+coinbytare folds
+GalaxyS3 folds
+qdmcg refunded 3
+qdmcg wins Pot (3.50)
+Rake (0)

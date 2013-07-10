@@ -1,0 +1,861 @@
+Hand #5692583-2 - 2013-04-19 22:31:50
+Game: NL Hold'em (47+3) - Blinds 10/20
+Site: Seals With Clubs
+Table: Half Hour Turbo 500 - Table 1
+Seat 1: holydivinity (1440)
+Seat 2: securitas (1680)
+Seat 3: outthere (1440)
+Seat 4: ItsAFire (1500) - sitting out
+Seat 5: GALLAGHER28 (1500)
+Seat 6: qdmcg (1500)
+Seat 7: bigmooky (1500)
+Seat 8: bwstacker1 (1440)
+securitas has the dealer button
+outthere posts small blind 10
+ItsAFire posts big blind 20
+** Hole Cards **
+Dealt to qdmcg [5d 6d]
+GALLAGHER28 folds
+qdmcg folds
+bigmooky raises to 60
+bwstacker1 has timed out
+bwstacker1 folds
+holydivinity folds
+securitas calls 60
+outthere folds
+ItsAFire folds
+** Flop ** [6c Ks Js]
+bigmooky bets 140
+securitas folds
+bigmooky refunded 140
+bigmooky wins Pot (150)
+
+
+
+Hand #5692635-3 - 2013-04-19 22:33:17
+Game: NL Hold'em (47+3) - Blinds 10/20
+Site: Seals With Clubs
+Table: Half Hour Turbo 500 - Table 1
+Seat 1: holydivinity (1440)
+Seat 2: securitas (1620)
+Seat 3: outthere (1430)
+Seat 4: ItsAFire (1480) - sitting out
+Seat 5: GALLAGHER28 (1500)
+Seat 6: qdmcg (1500)
+Seat 7: bigmooky (1590)
+Seat 8: bwstacker1 (1440)
+outthere has the dealer button
+ItsAFire posts small blind 10
+GALLAGHER28 posts big blind 20
+** Hole Cards **
+Dealt to qdmcg [6d Jd]
+qdmcg folds
+bigmooky raises to 140
+bwstacker1 folds
+holydivinity calls 140
+securitas folds
+outthere folds
+ItsAFire folds
+GALLAGHER28 folds
+** Flop ** [5h 3c 4c]
+bigmooky bets 280
+holydivinity calls 280
+** Turn ** [7s]
+bigmooky bets 660
+holydivinity folds
+bigmooky refunded 660
+bigmooky wins Pot (870)
+
+
+
+Hand #5692675-4 - 2013-04-19 22:34:25
+Game: NL Hold'em (47+3) - Blinds 20/40
+Site: Seals With Clubs
+Table: Half Hour Turbo 500 - Table 1
+Seat 1: holydivinity (1020)
+Seat 2: securitas (1620)
+Seat 3: outthere (1430)
+Seat 4: ItsAFire (1470) - sitting out
+Seat 5: GALLAGHER28 (1480)
+Seat 6: qdmcg (1500)
+Seat 7: bigmooky (2040)
+Seat 8: bwstacker1 (1440)
+ItsAFire has the dealer button
+GALLAGHER28 posts small blind 20
+qdmcg posts big blind 40
+** Hole Cards **
+Dealt to qdmcg [3c 5d]
+bigmooky folds
+bwstacker1 raises to 440
+holydivinity folds
+securitas calls 440
+outthere raises to 1430 (All-in)
+ItsAFire folds
+GALLAGHER28 folds
+qdmcg folds
+bwstacker1 calls 990
+securitas calls 990
+** Flop ** [9d 4s Jc]
+bwstacker1 bets 10 (All-in)
+securitas calls 10
+** Turn ** [4d]
+** River ** [2c]
+** Side Pot 1 Show Down ** [9d 4s Jc 4d 2c]
+securitas shows [7c Qc] (a Pair of Fours +QJ9)
+bwstacker1 shows [Ac Th] (a Pair of Fours +AJT)
+bwstacker1 wins Side Pot 1 (20) with a Pair
+** Main Pot Show Down ** [9d 4s Jc 4d 2c]
+outthere shows [Ad As] (Two Pair, Aces and Fours +J)
+outthere wins Main Pot (4350) with Two Pair
+
+
+
+Hand #5692698-5 - 2013-04-19 22:35:13
+Game: NL Hold'em (47+3) - Blinds 20/40
+Site: Seals With Clubs
+Table: Half Hour Turbo 500 - Table 1
+Seat 1: holydivinity (1020)
+Seat 2: securitas (180)
+Seat 3: outthere (4350)
+Seat 4: ItsAFire (1470) - sitting out
+Seat 5: GALLAGHER28 (1460)
+Seat 6: qdmcg (1460)
+Seat 7: bigmooky (2040)
+Seat 8: bwstacker1 (20)
+GALLAGHER28 has the dealer button
+qdmcg posts small blind 20
+bigmooky posts big blind 40
+** Hole Cards **
+Dealt to qdmcg [Jd 3s]
+bwstacker1 calls 20 (All-in)
+holydivinity folds
+securitas raises to 180 (All-in)
+outthere calls 180
+ItsAFire folds
+GALLAGHER28 calls 180
+qdmcg folds
+bigmooky folds
+** Flop ** [Ah 8s Td]
+outthere checks
+GALLAGHER28 checks
+** Turn ** [6d]
+outthere bets 40
+GALLAGHER28 calls 40
+** River ** [Ac]
+outthere bets 160
+GALLAGHER28 calls 160
+** Side Pot 2 Show Down ** [Ah 8s Td 6d Ac]
+outthere shows [As Qs] (Three of a Kind, Aces +QT)
+GALLAGHER28 shows [7c Ts] (Two Pair, Aces and Tens +8)
+outthere wins Side Pot 2 (400) with Three of a Kind
+** Side Pot 1 Show Down ** [Ah 8s Td 6d Ac]
+securitas shows [Js 2c] (a Pair of Aces +JT8)
+outthere wins Side Pot 1 (500) with Three of a Kind
+** Main Pot Show Down ** [Ah 8s Td 6d Ac]
+bwstacker1 shows [Ad 5d] (Three of a Kind, Aces +T8)
+outthere wins Main Pot (120) with Three of a Kind
+bwstacker1 finishes tournament in place #14
+securitas finishes tournament in place #13
+
+
+
+Hand #5692754-6 - 2013-04-19 22:36:35
+Game: NL Hold'em (47+3) - Blinds 20/40
+Site: Seals With Clubs
+Table: Half Hour Turbo 500 - Table 1
+Seat 1: holydivinity (1020)
+Seat 3: outthere (4990)
+Seat 4: ItsAFire (1470) - sitting out
+Seat 5: GALLAGHER28 (1080)
+Seat 6: qdmcg (1440)
+Seat 7: bigmooky (2000)
+qdmcg has the dealer button
+bigmooky posts small blind 20
+holydivinity posts big blind 40
+** Hole Cards **
+Dealt to qdmcg [9c 2h]
+outthere folds
+ItsAFire folds
+GALLAGHER28 calls 40
+qdmcg folds
+bigmooky calls 20
+holydivinity checks
+** Flop ** [6c 7c Ad]
+bigmooky bets 120
+holydivinity folds
+GALLAGHER28 calls 120
+** Turn ** [5s]
+bigmooky bets 240
+GALLAGHER28 raises to 920 (All-in)
+bigmooky folds
+GALLAGHER28 refunded 680
+GALLAGHER28 wins Pot (840)
+
+
+
+Hand #5692826-7 - 2013-04-19 22:38:09
+Game: NL Hold'em (47+3) - Blinds 20/40
+Site: Seals With Clubs
+Table: Half Hour Turbo 500 - Table 1
+Seat 1: holydivinity (980)
+Seat 3: outthere (4990)
+Seat 4: ItsAFire (1470) - sitting out
+Seat 5: GALLAGHER28 (1520)
+Seat 6: qdmcg (1440)
+Seat 7: bigmooky (1600)
+bigmooky has the dealer button
+holydivinity posts small blind 20
+outthere posts big blind 40
+** Hole Cards **
+Dealt to qdmcg [5h 7h]
+ItsAFire folds
+GALLAGHER28 calls 40
+qdmcg calls 40
+bigmooky folds
+holydivinity folds
+outthere checks
+** Flop ** [4h Kc Ah]
+outthere checks
+GALLAGHER28 checks
+qdmcg bets 120
+outthere folds
+GALLAGHER28 folds
+qdmcg refunded 120
+qdmcg wins Pot (140)
+
+
+
+Hand #5692867-8 - 2013-04-19 22:38:58
+Game: NL Hold'em (47+3) - Blinds 50/100
+Site: Seals With Clubs
+Table: Half Hour Turbo 500 - Table 1
+Seat 1: holydivinity (960)
+Seat 3: outthere (4950)
+Seat 4: ItsAFire (1470) - sitting out
+Seat 5: GALLAGHER28 (1480)
+Seat 6: qdmcg (1540)
+Seat 7: bigmooky (1600)
+holydivinity has the dealer button
+outthere posts small blind 50
+ItsAFire posts big blind 100
+** Hole Cards **
+Dealt to qdmcg [Ts 6d]
+GALLAGHER28 raises to 300
+qdmcg folds
+bigmooky folds
+holydivinity folds
+outthere calls 250
+ItsAFire folds
+** Flop ** [9s 6h Qh]
+outthere checks
+GALLAGHER28 bets 400
+outthere folds
+GALLAGHER28 refunded 400
+GALLAGHER28 wins Pot (700)
+
+
+
+Hand #5692898-9 - 2013-04-19 22:39:49
+Game: NL Hold'em (47+3) - Blinds 50/100
+Site: Seals With Clubs
+Table: Half Hour Turbo 500 - Table 1
+Seat 1: holydivinity (960)
+Seat 3: outthere (4650)
+Seat 4: ItsAFire (1370) - sitting out
+Seat 5: GALLAGHER28 (1880)
+Seat 6: qdmcg (1540)
+Seat 7: bigmooky (1600)
+outthere has the dealer button
+ItsAFire posts small blind 50
+GALLAGHER28 posts big blind 100
+** Hole Cards **
+Dealt to qdmcg [Tc 9c]
+qdmcg folds
+bigmooky folds
+holydivinity raises to 400
+outthere folds
+ItsAFire folds
+GALLAGHER28 calls 300
+** Flop ** [As 3d 9s]
+GALLAGHER28 checks
+holydivinity bets 200
+GALLAGHER28 folds
+holydivinity refunded 200
+holydivinity wins Pot (850)
+
+
+
+Hand #5692934-10 - 2013-04-19 22:40:29
+Game: NL Hold'em (47+3) - Blinds 50/100
+Site: Seals With Clubs
+Table: Half Hour Turbo 500 - Table 1
+Seat 1: holydivinity (1410)
+Seat 3: outthere (4650)
+Seat 4: ItsAFire (1320) - sitting out
+Seat 5: GALLAGHER28 (1480)
+Seat 6: qdmcg (1540)
+Seat 7: bigmooky (1600)
+ItsAFire has the dealer button
+GALLAGHER28 posts small blind 50
+qdmcg posts big blind 100
+** Hole Cards **
+Dealt to qdmcg [2d 7d]
+bigmooky folds
+holydivinity folds
+outthere folds
+ItsAFire folds
+GALLAGHER28 calls 50
+qdmcg checks
+** Flop ** [5h 9h Tc]
+GALLAGHER28 bets 200
+qdmcg calls 200
+** Turn ** [8d]
+GALLAGHER28 checks
+qdmcg bets 500
+GALLAGHER28 raises to 1180 (All-in)
+qdmcg folds
+GALLAGHER28 refunded 680
+GALLAGHER28 wins Pot (1600)
+
+
+
+Hand #5692974-11 - 2013-04-19 22:41:19
+Game: NL Hold'em (47+3) - Blinds 50/100
+Site: Seals With Clubs
+Table: Half Hour Turbo 500 - Table 1
+Seat 1: holydivinity (1410)
+Seat 3: outthere (4650)
+Seat 4: ItsAFire (1320) - sitting out
+Seat 5: GALLAGHER28 (2280)
+Seat 6: qdmcg (740)
+Seat 7: bigmooky (1600)
+GALLAGHER28 has the dealer button
+qdmcg posts small blind 50
+bigmooky posts big blind 100
+** Hole Cards **
+Dealt to qdmcg [Jh 5d]
+holydivinity raises to 200
+outthere folds
+ItsAFire folds
+GALLAGHER28 raises to 2280 (All-in)
+qdmcg folds
+bigmooky has timed out
+bigmooky folds
+holydivinity folds
+GALLAGHER28 refunded 2080
+GALLAGHER28 wins Pot (550)
+
+
+
+Hand #5693019-12 - 2013-04-19 22:42:19
+Game: NL Hold'em (47+3) - Blinds 50/100
+Site: Seals With Clubs
+Table: Half Hour Turbo 500 - Table 1
+Seat 1: holydivinity (1210)
+Seat 3: outthere (4650)
+Seat 4: ItsAFire (1320) - sitting out
+Seat 5: GALLAGHER28 (2630)
+Seat 6: qdmcg (690)
+Seat 7: bigmooky (1500)
+qdmcg has the dealer button
+bigmooky posts small blind 50
+holydivinity posts big blind 100
+** Hole Cards **
+Dealt to qdmcg [3s 3h]
+outthere folds
+ItsAFire folds
+GALLAGHER28 folds
+qdmcg raises to 690 (All-in)
+bigmooky folds
+holydivinity folds
+qdmcg refunded 590
+qdmcg wins Pot (250)
+
+
+
+Hand #5693035-13 - 2013-04-19 22:42:40
+Game: NL Hold'em (47+3) - Blinds 75/150
+Site: Seals With Clubs
+Table: Half Hour Turbo 500 - Table 1
+Seat 1: holydivinity (1110)
+Seat 3: outthere (4650)
+Seat 4: ItsAFire (1320) - sitting out
+Seat 5: GALLAGHER28 (2630)
+Seat 6: qdmcg (840)
+Seat 7: bigmooky (1450)
+bigmooky has the dealer button
+holydivinity posts small blind 75
+outthere posts big blind 150
+** Hole Cards **
+Dealt to qdmcg [Qs Qh]
+ItsAFire folds
+GALLAGHER28 calls 150
+qdmcg raises to 450
+bigmooky folds
+holydivinity folds
+outthere folds
+GALLAGHER28 raises to 900
+qdmcg calls 390 (All-in)
+GALLAGHER28 refunded 60
+** Flop ** [8c 4h As]
+** Turn ** [3s]
+** River ** [5d]
+** Pot Show Down ** [8c 4h As 3s 5d]
+GALLAGHER28 shows [Kc Jd] (High Card Ace +KJ85)
+qdmcg shows [Qs Qh] (a Pair of Queens +A85)
+qdmcg wins Pot (1905) with a Pair
+
+
+
+Hand #5693084-14 - 2013-04-19 22:43:19
+Game: NL Hold'em (47+3) - Blinds 75/150
+Site: Seals With Clubs
+Table: Half Hour Turbo 500 - Table 1
+Seat 1: holydivinity (1035)
+Seat 3: outthere (4500)
+Seat 4: ItsAFire (1320) - sitting out
+Seat 5: GALLAGHER28 (1790)
+Seat 6: qdmcg (1905)
+Seat 7: bigmooky (1450)
+holydivinity has the dealer button
+outthere posts small blind 75
+ItsAFire posts big blind 150
+** Hole Cards **
+Dealt to qdmcg [2d 9h]
+GALLAGHER28 folds
+qdmcg folds
+bigmooky has timed out
+bigmooky folds
+holydivinity folds
+outthere folds
+ItsAFire refunded 75
+ItsAFire wins Pot (150)
+
+
+
+Hand #5693116-15 - 2013-04-19 22:43:57
+Game: NL Hold'em (47+3) - Blinds 75/150
+Site: Seals With Clubs
+Table: Half Hour Turbo 500 - Table 1
+Seat 1: holydivinity (1035)
+Seat 3: outthere (4425)
+Seat 4: ItsAFire (1395) - sitting out
+Seat 5: GALLAGHER28 (1790)
+Seat 6: qdmcg (1905)
+Seat 7: bigmooky (1450)
+outthere has the dealer button
+ItsAFire posts small blind 75
+GALLAGHER28 posts big blind 150
+** Hole Cards **
+Dealt to qdmcg [9d 3d]
+qdmcg folds
+bigmooky folds
+holydivinity raises to 1035 (All-in)
+outthere folds
+ItsAFire folds
+GALLAGHER28 calls 885
+** Flop ** [8d 4s 9s]
+** Turn ** [Jd]
+** River ** [As]
+** Pot Show Down ** [8d 4s 9s Jd As]
+holydivinity shows [Kd 9h] (a Pair of Nines +AKJ)
+GALLAGHER28 shows [Kh Ah] (a Pair of Aces +KJ9)
+GALLAGHER28 wins Pot (2145) with a Pair
+holydivinity finishes tournament in place #12
+
+
+
+Hand #5693160-16 - 2013-04-19 22:44:49
+Game: NL Hold'em (47+3) - Blinds 75/150
+Site: Seals With Clubs
+Table: Half Hour Turbo 500 - Table 1
+Seat 3: outthere (4425)
+Seat 4: ItsAFire (1320)
+Seat 5: GALLAGHER28 (2900)
+Seat 6: qdmcg (1905)
+Seat 7: bigmooky (1450)
+ItsAFire has the dealer button
+GALLAGHER28 posts small blind 75
+qdmcg posts big blind 150
+** Hole Cards **
+Dealt to qdmcg [6h 7d]
+bigmooky folds
+outthere folds
+ItsAFire raises to 450
+GALLAGHER28 folds
+qdmcg folds
+ItsAFire refunded 300
+ItsAFire wins Pot (375)
+
+
+
+Hand #5693195-17 - 2013-04-19 22:45:27
+Game: NL Hold'em (47+3) - Blinds 75/150
+Site: Seals With Clubs
+Table: Half Hour Turbo 500 - Table 1
+Seat 3: outthere (4425)
+Seat 4: ItsAFire (1545)
+Seat 5: GALLAGHER28 (2825)
+Seat 6: qdmcg (1755)
+Seat 7: bigmooky (1450)
+GALLAGHER28 has the dealer button
+qdmcg posts small blind 75
+bigmooky posts big blind 150
+** Hole Cards **
+Dealt to qdmcg [4c 4d]
+outthere folds
+ItsAFire folds
+GALLAGHER28 calls 150
+qdmcg calls 75
+bigmooky checks
+** Flop ** [6h 2c 5d]
+qdmcg checks
+bigmooky bets 450
+GALLAGHER28 folds
+qdmcg folds
+bigmooky refunded 450
+bigmooky wins Pot (450)
+
+
+
+Hand #5693240-18 - 2013-04-19 22:46:23
+Game: NL Hold'em (47+3) - Blinds 100/200 Ante 25
+Site: Seals With Clubs
+Table: Half Hour Turbo 500 - Table 1
+Seat 3: outthere (4425)
+Seat 4: ItsAFire (1545)
+Seat 5: GALLAGHER28 (2675)
+Seat 6: qdmcg (1605)
+Seat 7: bigmooky (1750)
+qdmcg has the dealer button
+outthere posts ante 25
+ItsAFire posts ante 25
+GALLAGHER28 posts ante 25
+qdmcg posts ante 25
+bigmooky posts ante 25
+bigmooky posts small blind 100
+outthere posts big blind 200
+** Hole Cards **
+Dealt to qdmcg [5c 3s]
+ItsAFire raises to 1520 (All-in)
+GALLAGHER28 folds
+qdmcg folds
+bigmooky folds
+outthere folds
+ItsAFire refunded 1320
+ItsAFire wins Pot (625)
+
+
+
+Hand #5693265-19 - 2013-04-19 22:46:47
+Game: NL Hold'em (47+3) - Blinds 100/200 Ante 25
+Site: Seals With Clubs
+Table: Half Hour Turbo 500 - Table 1
+Seat 3: outthere (4200)
+Seat 4: ItsAFire (1945)
+Seat 5: GALLAGHER28 (2650)
+Seat 6: qdmcg (1580)
+Seat 7: bigmooky (1625)
+bigmooky has the dealer button
+outthere posts ante 25
+ItsAFire posts ante 25
+GALLAGHER28 posts ante 25
+qdmcg posts ante 25
+bigmooky posts ante 25
+outthere posts small blind 100
+ItsAFire posts big blind 200
+** Hole Cards **
+Dealt to qdmcg [7c 4s]
+GALLAGHER28 raises to 600
+qdmcg folds
+bigmooky folds
+outthere folds
+ItsAFire folds
+GALLAGHER28 refunded 400
+GALLAGHER28 wins Pot (625)
+
+
+
+Hand #5693297-20 - 2013-04-19 22:47:27
+Game: NL Hold'em (47+3) - Blinds 100/200 Ante 25
+Site: Seals With Clubs
+Table: Half Hour Turbo 500 - Table 1
+Seat 3: outthere (4075)
+Seat 4: ItsAFire (1720)
+Seat 5: GALLAGHER28 (3050)
+Seat 6: qdmcg (1555)
+Seat 7: bigmooky (1600)
+outthere has the dealer button
+outthere posts ante 25
+ItsAFire posts ante 25
+GALLAGHER28 posts ante 25
+qdmcg posts ante 25
+bigmooky posts ante 25
+ItsAFire posts small blind 100
+GALLAGHER28 posts big blind 200
+** Hole Cards **
+Dealt to qdmcg [4s 8d]
+qdmcg folds
+bigmooky folds
+outthere folds
+ItsAFire raises to 1695 (All-in)
+GALLAGHER28 folds
+ItsAFire refunded 1495
+ItsAFire wins Pot (525)
+
+
+
+Hand #5693322-21 - 2013-04-19 22:47:50
+Game: NL Hold'em (47+3) - Blinds 100/200 Ante 25
+Site: Seals With Clubs
+Table: Half Hour Turbo 500 - Table 1
+Seat 3: outthere (4050)
+Seat 4: ItsAFire (2020)
+Seat 5: GALLAGHER28 (2825)
+Seat 6: qdmcg (1530)
+Seat 7: bigmooky (1575)
+ItsAFire has the dealer button
+outthere posts ante 25
+ItsAFire posts ante 25
+GALLAGHER28 posts ante 25
+qdmcg posts ante 25
+bigmooky posts ante 25
+GALLAGHER28 posts small blind 100
+qdmcg posts big blind 200
+** Hole Cards **
+Dealt to qdmcg [Th 5c]
+bigmooky folds
+outthere folds
+ItsAFire has timed out
+ItsAFire folds
+GALLAGHER28 raises to 600
+qdmcg folds
+GALLAGHER28 refunded 400
+GALLAGHER28 wins Pot (525)
+
+
+
+Hand #5693370-22 - 2013-04-19 22:48:40
+Game: NL Hold'em (47+3) - Blinds 100/200 Ante 25
+Site: Seals With Clubs
+Table: Half Hour Turbo 500 - Table 1
+Seat 3: outthere (4025)
+Seat 4: ItsAFire (1995)
+Seat 5: GALLAGHER28 (3125)
+Seat 6: qdmcg (1305)
+Seat 7: bigmooky (1550)
+GALLAGHER28 has the dealer button
+outthere posts ante 25
+ItsAFire posts ante 25
+GALLAGHER28 posts ante 25
+qdmcg posts ante 25
+bigmooky posts ante 25
+qdmcg posts small blind 100
+bigmooky posts big blind 200
+** Hole Cards **
+Dealt to qdmcg [2c 5h]
+outthere folds
+ItsAFire raises to 800
+GALLAGHER28 folds
+qdmcg folds
+bigmooky folds
+ItsAFire refunded 600
+ItsAFire wins Pot (625)
+
+
+
+Hand #5693398-23 - 2013-04-19 22:49:14
+Game: NL Hold'em (47+3) - Blinds 100/200 Ante 25
+Site: Seals With Clubs
+Table: Half Hour Turbo 500 - Table 1
+Seat 3: outthere (4000)
+Seat 4: ItsAFire (2395)
+Seat 5: GALLAGHER28 (3100)
+Seat 6: qdmcg (1180)
+Seat 7: bigmooky (1325)
+qdmcg has the dealer button
+outthere posts ante 25
+ItsAFire posts ante 25
+GALLAGHER28 posts ante 25
+qdmcg posts ante 25
+bigmooky posts ante 25
+bigmooky posts small blind 100
+outthere posts big blind 200
+** Hole Cards **
+Dealt to qdmcg [Jd Tc]
+ItsAFire folds
+GALLAGHER28 folds
+qdmcg raises to 1155 (All-in)
+bigmooky folds
+outthere calls 955
+** Flop ** [Qc Ks 6h]
+** Turn ** [9d]
+** River ** [As]
+** Pot Show Down ** [Qc Ks 6h 9d As]
+outthere shows [8d 8c] (a Pair of Eights +AKQ)
+qdmcg shows [Jd Tc] (a Straight, Ten to Ace)
+qdmcg wins Pot (2535) with a Straight
+
+
+
+Hand #5693429-24 - 2013-04-19 22:49:46
+Game: NL Hold'em (47+3) - Blinds 100/200 Ante 25
+Site: Seals With Clubs
+Table: Half Hour Turbo 500 - Table 1
+Seat 3: outthere (2820)
+Seat 4: ItsAFire (2370)
+Seat 5: GALLAGHER28 (3075)
+Seat 6: qdmcg (2535)
+Seat 7: bigmooky (1200)
+bigmooky has the dealer button
+outthere posts ante 25
+ItsAFire posts ante 25
+GALLAGHER28 posts ante 25
+qdmcg posts ante 25
+bigmooky posts ante 25
+outthere posts small blind 100
+ItsAFire posts big blind 200
+** Hole Cards **
+Dealt to qdmcg [6c 5h]
+GALLAGHER28 folds
+qdmcg folds
+bigmooky folds
+outthere folds
+ItsAFire refunded 100
+ItsAFire wins Pot (325)
+
+
+
+Hand #5693449-25 - 2013-04-19 22:50:10
+Game: NL Hold'em (47+3) - Blinds 100/200 Ante 25
+Site: Seals With Clubs
+Table: Half Hour Turbo 500 - Table 1
+Seat 3: outthere (2695)
+Seat 4: ItsAFire (2570)
+Seat 5: GALLAGHER28 (3050)
+Seat 6: qdmcg (2510)
+Seat 7: bigmooky (1175)
+outthere has the dealer button
+outthere posts ante 25
+ItsAFire posts ante 25
+GALLAGHER28 posts ante 25
+qdmcg posts ante 25
+bigmooky posts ante 25
+ItsAFire posts small blind 100
+GALLAGHER28 posts big blind 200
+** Hole Cards **
+Dealt to qdmcg [7d 3h]
+qdmcg folds
+bigmooky raises to 1150 (All-in)
+outthere folds
+ItsAFire folds
+GALLAGHER28 calls 950
+** Flop ** [7c Ks 5h]
+** Turn ** [7s]
+** River ** [Kd]
+** Pot Show Down ** [7c Ks 5h 7s Kd]
+GALLAGHER28 shows [Ac As] (Two Pair, Aces and Kings +7)
+bigmooky shows [5c 5d] (a Full House, Fives full of Kings)
+bigmooky wins Pot (2525) with a Full House
+
+
+
+Hand #5693490-26 - 2013-04-19 22:50:55
+Game: NL Hold'em (47+3) - Blinds 200/400 Ante 25
+Site: Seals With Clubs
+Table: Half Hour Turbo 500 - Table 1
+Seat 3: outthere (2670)
+Seat 4: ItsAFire (2445)
+Seat 5: GALLAGHER28 (1875)
+Seat 6: qdmcg (2485)
+Seat 7: bigmooky (2525)
+ItsAFire has the dealer button
+outthere posts ante 25
+ItsAFire posts ante 25
+GALLAGHER28 posts ante 25
+qdmcg posts ante 25
+bigmooky posts ante 25
+GALLAGHER28 posts small blind 200
+qdmcg posts big blind 400
+** Hole Cards **
+Dealt to qdmcg [4h Jh]
+bigmooky raises to 2500 (All-in)
+outthere folds
+ItsAFire folds
+GALLAGHER28 folds
+qdmcg folds
+bigmooky refunded 2100
+bigmooky wins Pot (1125)
+
+
+
+Hand #5693515-27 - 2013-04-19 22:51:26
+Game: NL Hold'em (47+3) - Blinds 200/400 Ante 25
+Site: Seals With Clubs
+Table: Half Hour Turbo 500 - Table 1
+Seat 3: outthere (2645)
+Seat 4: ItsAFire (2420)
+Seat 5: GALLAGHER28 (1650)
+Seat 6: qdmcg (2060)
+Seat 7: bigmooky (3225)
+GALLAGHER28 has the dealer button
+outthere posts ante 25
+ItsAFire posts ante 25
+GALLAGHER28 posts ante 25
+qdmcg posts ante 25
+bigmooky posts ante 25
+qdmcg posts small blind 200
+bigmooky posts big blind 400
+** Hole Cards **
+Dealt to qdmcg [3s Qh]
+outthere folds
+ItsAFire folds
+GALLAGHER28 raises to 1625 (All-in)
+qdmcg folds
+bigmooky calls 1225
+** Flop ** [Js 6h Ks]
+** Turn ** [Jh]
+** River ** [8s]
+** Pot Show Down ** [Js 6h Ks Jh 8s]
+GALLAGHER28 shows [Jd Tc] (Three of a Kind, Jacks +KT)
+bigmooky shows [3c Kc] (Two Pair, Kings and Jacks +8)
+GALLAGHER28 wins Pot (3575) with Three of a Kind
+
+
+
+Hand #5693549-28 - 2013-04-19 22:52:01
+Game: NL Hold'em (47+3) - Blinds 200/400 Ante 25
+Site: Seals With Clubs
+Table: Half Hour Turbo 500 - Table 1
+Seat 3: outthere (2620)
+Seat 4: ItsAFire (2395)
+Seat 5: GALLAGHER28 (3575)
+Seat 6: qdmcg (1835)
+Seat 7: bigmooky (1575)
+qdmcg has the dealer button
+outthere posts ante 25
+ItsAFire posts ante 25
+GALLAGHER28 posts ante 25
+qdmcg posts ante 25
+bigmooky posts ante 25
+bigmooky posts small blind 200
+outthere posts big blind 400
+** Hole Cards **
+Dealt to qdmcg [Jh Qs]
+ItsAFire raises to 1200
+GALLAGHER28 raises to 3550 (All-in)
+qdmcg folds
+bigmooky folds
+outthere folds
+ItsAFire calls 1170 (All-in)
+GALLAGHER28 refunded 1180
+** Flop ** [4c Jd Js]
+** Turn ** [8d]
+** River ** [Tc]
+** Pot Show Down ** [4c Jd Js 8d Tc]
+ItsAFire shows [Qd Kh] (a Pair of Jacks +KQT)
+GALLAGHER28 shows [6h 6d] (Two Pair, Jacks and Sixes +T)
+GALLAGHER28 wins Pot (5465) with Two Pair
+ItsAFire finishes tournament in place #10
+GALLAGHER28 moved to Table 2
+

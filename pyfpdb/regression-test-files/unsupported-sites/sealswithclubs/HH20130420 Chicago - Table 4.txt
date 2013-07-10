@@ -1,0 +1,855 @@
+Hand #5729859-55 - 2013-04-20 18:16:18
+Game: NL Hold'em (10+0) - Blinds 400/800 Ante 50
+Site: Seals With Clubs
+Table: Chicago - Table 4
+Seat 1: chewzy (3670)
+Seat 3: zif33rs (15015)
+Seat 4: Murrrr (2290)
+Seat 6: Viagra (4045)
+Seat 7: rmanteu (2735)
+Seat 8: sickNtired (11018)
+Seat 9: qdmcg (19727)
+zif33rs has the dealer button
+chewzy posts ante 50
+zif33rs posts ante 50
+Murrrr posts ante 50
+Viagra posts ante 50
+rmanteu posts ante 50
+sickNtired posts ante 50
+qdmcg posts ante 50
+Murrrr posts small blind 400
+Viagra posts big blind 800
+** Hole Cards **
+Dealt to qdmcg [5s 3s]
+rmanteu folds
+sickNtired folds
+qdmcg folds
+chewzy raises to 1600
+zif33rs raises to 3200
+Murrrr folds
+Viagra folds
+chewzy raises to 3620 (All-in)
+zif33rs calls 420
+** Flop ** [3c As 4h]
+** Turn ** [Kc]
+** River ** [4s]
+** Pot Show Down ** [3c As 4h Kc 4s]
+chewzy shows [Jc Jh] (Two Pair, Jacks and Fours +A)
+zif33rs shows [Kh Tc] (Two Pair, Kings and Fours +A)
+zif33rs wins Pot (8790) with Two Pair
+chewzy finishes tournament in place #7
+
+
+
+Hand #5729929-56 - 2013-04-20 18:17:26
+Game: NL Hold'em (10+0) - Blinds 400/800 Ante 50
+Site: Seals With Clubs
+Table: Chicago - Table 4
+Seat 3: zif33rs (20135)
+Seat 4: Murrrr (1840)
+Seat 6: Viagra (3195)
+Seat 7: rmanteu (2685)
+Seat 8: sickNtired (10968)
+Seat 9: qdmcg (19677)
+Murrrr has the dealer button
+zif33rs posts ante 50
+Murrrr posts ante 50
+Viagra posts ante 50
+rmanteu posts ante 50
+sickNtired posts ante 50
+qdmcg posts ante 50
+Viagra posts small blind 400
+rmanteu posts big blind 800
+** Hole Cards **
+Dealt to qdmcg [6s Ah]
+sickNtired folds
+qdmcg raises to 2400
+zif33rs folds
+Murrrr calls 1790 (All-in)
+Viagra folds
+rmanteu folds
+qdmcg refunded 610
+** Flop ** [Qc Qd Jc]
+** Turn ** [2c]
+** River ** [2d]
+** Pot Show Down ** [Qc Qd Jc 2c 2d]
+Murrrr shows [8d Td] (Two Pair, Queens and Deuces +J)
+qdmcg shows [6s Ah] (Two Pair, Queens and Deuces +A)
+qdmcg wins Pot (5080) with Two Pair
+Murrrr finishes tournament in place #6 and wins 29.40 chips
+
+
+
+Hand #5729979-57 - 2013-04-20 18:18:24
+Game: NL Hold'em (10+0) - Blinds 400/800 Ante 50
+Site: Seals With Clubs
+Table: Chicago - Table 4
+Seat 3: zif33rs (20085)
+Seat 6: Viagra (2745)
+Seat 7: rmanteu (1835)
+Seat 8: sickNtired (10918)
+Seat 9: qdmcg (22917)
+Viagra has the dealer button
+zif33rs posts ante 50
+Viagra posts ante 50
+rmanteu posts ante 50
+sickNtired posts ante 50
+qdmcg posts ante 50
+rmanteu posts small blind 400
+sickNtired posts big blind 800
+** Hole Cards **
+Dealt to qdmcg [Jd Ts]
+qdmcg folds
+zif33rs raises to 3200
+Viagra calls 2695 (All-in)
+rmanteu folds
+sickNtired folds
+zif33rs refunded 505
+** Flop ** [Ac As 3c]
+** Turn ** [2c]
+** River ** [Qh]
+** Pot Show Down ** [Ac As 3c 2c Qh]
+zif33rs shows [9h Kh] (a Pair of Aces +KQ9)
+Viagra shows [Ah 9s] (Three of a Kind, Aces +Q9)
+Viagra wins Pot (6840) with Three of a Kind
+
+
+
+Hand #5730017-58 - 2013-04-20 18:19:01
+Game: NL Hold'em (10+0) - Blinds 400/800 Ante 50
+Site: Seals With Clubs
+Table: Chicago - Table 4
+Seat 3: zif33rs (17340)
+Seat 6: Viagra (6840)
+Seat 7: rmanteu (1385)
+Seat 8: sickNtired (10068)
+Seat 9: qdmcg (22867)
+rmanteu has the dealer button
+zif33rs posts ante 50
+Viagra posts ante 50
+rmanteu posts ante 50
+sickNtired posts ante 50
+qdmcg posts ante 50
+sickNtired posts small blind 400
+qdmcg posts big blind 800
+** Hole Cards **
+Dealt to qdmcg [As Th]
+zif33rs folds
+Viagra folds
+rmanteu folds
+sickNtired folds
+qdmcg refunded 400
+qdmcg wins Pot (1050)
+
+
+
+Hand #5730051-59 - 2013-04-20 18:19:38
+Game: NL Hold'em (10+0) - Blinds 400/800 Ante 50
+Site: Seals With Clubs
+Table: Chicago - Table 4
+Seat 3: zif33rs (17290)
+Seat 6: Viagra (6790)
+Seat 7: rmanteu (1335)
+Seat 8: sickNtired (9618)
+Seat 9: qdmcg (23467)
+sickNtired has the dealer button
+zif33rs posts ante 50
+Viagra posts ante 50
+rmanteu posts ante 50
+sickNtired posts ante 50
+qdmcg posts ante 50
+qdmcg posts small blind 400
+zif33rs posts big blind 800
+** Hole Cards **
+Dealt to qdmcg [5h Qs]
+Viagra raises to 2083
+rmanteu calls 1285 (All-in)
+sickNtired folds
+qdmcg folds
+zif33rs folds
+Viagra refunded 798
+** Flop ** [2c Ad 4s]
+** Turn ** [9s]
+** River ** [Kc]
+** Pot Show Down ** [2c Ad 4s 9s Kc]
+Viagra shows [Jd Ah] (a Pair of Aces +KJ9)
+rmanteu shows [As Js] (a Pair of Aces +KJ9)
+Viagra splits Pot (2010) with a Pair
+rmanteu splits Pot (2010) with a Pair
+
+
+
+Hand #5730088-60 - 2013-04-20 18:20:22
+Game: NL Hold'em (10+0) - Blinds 400/800 Ante 50
+Site: Seals With Clubs
+Table: Chicago - Table 4
+Seat 3: zif33rs (16440)
+Seat 6: Viagra (7465)
+Seat 7: rmanteu (2010)
+Seat 8: sickNtired (9568)
+Seat 9: qdmcg (23017)
+qdmcg has the dealer button
+zif33rs posts ante 50
+Viagra posts ante 50
+rmanteu posts ante 50
+sickNtired posts ante 50
+qdmcg posts ante 50
+zif33rs posts small blind 400
+Viagra posts big blind 800
+** Hole Cards **
+Dealt to qdmcg [9d Ad]
+rmanteu folds
+sickNtired folds
+qdmcg raises to 1600
+zif33rs raises to 2400
+Viagra folds
+qdmcg calls 800
+** Flop ** [6s 9c 3s]
+zif33rs checks
+qdmcg bets 20567 (All-in)
+zif33rs folds
+qdmcg refunded 20567
+qdmcg wins Pot (5850)
+
+
+
+Hand #5730168-61 - 2013-04-20 18:21:45
+Game: NL Hold'em (10+0) - Blinds 600/1200 Ante 75
+Site: Seals With Clubs
+Table: Chicago - Table 4
+Seat 3: zif33rs (13990)
+Seat 6: Viagra (6615)
+Seat 7: rmanteu (1960)
+Seat 8: sickNtired (9518)
+Seat 9: qdmcg (26417)
+zif33rs has the dealer button
+zif33rs posts ante 75
+Viagra posts ante 75
+rmanteu posts ante 75
+sickNtired posts ante 75
+qdmcg posts ante 75
+Viagra posts small blind 600
+rmanteu posts big blind 1200
+** Hole Cards **
+Dealt to qdmcg [Qd Ac]
+sickNtired folds
+qdmcg raises to 2400
+zif33rs folds
+Viagra folds
+rmanteu calls 685 (All-in)
+qdmcg refunded 515
+** Flop ** [Kd 4h 8c]
+** Turn ** [2s]
+** River ** [6d]
+** Pot Show Down ** [Kd 4h 8c 2s 6d]
+rmanteu shows [4c 3c] (a Pair of Fours +K86)
+qdmcg shows [Qd Ac] (High Card Ace +KQ86)
+rmanteu wins Pot (4745) with a Pair
+
+
+
+Hand #5730225-62 - 2013-04-20 18:22:42
+Game: NL Hold'em (10+0) - Blinds 600/1200 Ante 75
+Site: Seals With Clubs
+Table: Chicago - Table 4
+Seat 3: zif33rs (13915)
+Seat 6: Viagra (5940)
+Seat 7: rmanteu (4745)
+Seat 8: sickNtired (9443)
+Seat 9: qdmcg (24457)
+Viagra has the dealer button
+zif33rs posts ante 75
+Viagra posts ante 75
+rmanteu posts ante 75
+sickNtired posts ante 75
+qdmcg posts ante 75
+rmanteu posts small blind 600
+sickNtired posts big blind 1200
+** Hole Cards **
+Dealt to qdmcg [Ah Js]
+qdmcg raises to 3600
+zif33rs folds
+Viagra calls 3600
+rmanteu folds
+sickNtired folds
+** Flop ** [4h 8s 8c]
+qdmcg bets 2400
+Viagra folds
+qdmcg refunded 2400
+qdmcg wins Pot (9375)
+
+
+
+Hand #5730268-63 - 2013-04-20 18:23:22
+Game: NL Hold'em (10+0) - Blinds 600/1200 Ante 75
+Site: Seals With Clubs
+Table: Chicago - Table 4
+Seat 3: zif33rs (13840)
+Seat 6: Viagra (2265)
+Seat 7: rmanteu (4070)
+Seat 8: sickNtired (8168)
+Seat 9: qdmcg (30157)
+rmanteu has the dealer button
+zif33rs posts ante 75
+Viagra posts ante 75
+rmanteu posts ante 75
+sickNtired posts ante 75
+qdmcg posts ante 75
+sickNtired posts small blind 600
+qdmcg posts big blind 1200
+** Hole Cards **
+Dealt to qdmcg [Jd 6s]
+zif33rs folds
+Viagra folds
+rmanteu folds
+sickNtired raises to 3600
+qdmcg folds
+sickNtired refunded 2400
+sickNtired wins Pot (2775)
+
+
+
+Hand #5730308-64 - 2013-04-20 18:24:00
+Game: NL Hold'em (10+0) - Blinds 600/1200 Ante 75
+Site: Seals With Clubs
+Table: Chicago - Table 4
+Seat 3: zif33rs (13765)
+Seat 6: Viagra (2190)
+Seat 7: rmanteu (3995)
+Seat 8: sickNtired (9668)
+Seat 9: qdmcg (28882)
+sickNtired has the dealer button
+zif33rs posts ante 75
+Viagra posts ante 75
+rmanteu posts ante 75
+sickNtired posts ante 75
+qdmcg posts ante 75
+qdmcg posts small blind 600
+zif33rs posts big blind 1200
+** Hole Cards **
+Dealt to qdmcg [2h Kh]
+Viagra folds
+rmanteu folds
+sickNtired folds
+qdmcg folds
+zif33rs refunded 600
+zif33rs wins Pot (1575)
+
+
+
+Hand #5730343-65 - 2013-04-20 18:24:37
+Game: NL Hold'em (10+0) - Blinds 600/1200 Ante 75
+Site: Seals With Clubs
+Table: Chicago - Table 4
+Seat 3: zif33rs (14665)
+Seat 6: Viagra (2115)
+Seat 7: rmanteu (3920)
+Seat 8: sickNtired (9593)
+Seat 9: qdmcg (28207)
+qdmcg has the dealer button
+zif33rs posts ante 75
+Viagra posts ante 75
+rmanteu posts ante 75
+sickNtired posts ante 75
+qdmcg posts ante 75
+zif33rs posts small blind 600
+Viagra posts big blind 1200
+** Hole Cards **
+Dealt to qdmcg [Ah 5s]
+rmanteu folds
+sickNtired folds
+qdmcg raises to 2400
+zif33rs raises to 14590 (All-in)
+Viagra calls 840 (All-in)
+qdmcg folds
+zif33rs refunded 12190
+** Flop ** [4h 7c Kc]
+** Turn ** [8d]
+** River ** [Qd]
+zif33rs wins Side Pot 1 (720)
+** Main Pot Show Down ** [4h 7c Kc 8d Qd]
+zif33rs shows [Td Ts] (a Pair of Tens +KQ8)
+Viagra shows [Ac 9c] (High Card Ace +KQ98)
+zif33rs wins Main Pot (6495) with a Pair
+Viagra finishes tournament in place #5 and wins 33.60 chips
+
+
+
+Hand #5730384-66 - 2013-04-20 18:25:15
+Game: NL Hold'em (10+0) - Blinds 600/1200 Ante 75
+Site: Seals With Clubs
+Table: Chicago - Table 4
+Seat 3: zif33rs (19405)
+Seat 7: rmanteu (3845)
+Seat 8: sickNtired (9518)
+Seat 9: qdmcg (25732)
+zif33rs has the dealer button
+zif33rs posts ante 75
+rmanteu posts ante 75
+sickNtired posts ante 75
+qdmcg posts ante 75
+rmanteu posts small blind 600
+sickNtired posts big blind 1200
+** Hole Cards **
+Dealt to qdmcg [4s 6s]
+qdmcg folds
+zif33rs raises to 3600
+rmanteu folds
+sickNtired raises to 9443 (All-in)
+zif33rs calls 5843
+** Flop ** [4h 9d 7h]
+** Turn ** [6h]
+** River ** [Jc]
+** Pot Show Down ** [4h 9d 7h 6h Jc]
+zif33rs shows [Tc 7c] (a Pair of Sevens +JT9)
+sickNtired shows [9s Ah] (a Pair of Nines +AJ7)
+sickNtired wins Pot (19786) with a Pair
+
+
+
+Hand #5730426-67 - 2013-04-20 18:26:04
+Game: NL Hold'em (10+0) - Blinds 600/1200 Ante 75
+Site: Seals With Clubs
+Table: Chicago - Table 4
+Seat 3: zif33rs (9887)
+Seat 7: rmanteu (3170)
+Seat 8: sickNtired (19786)
+Seat 9: qdmcg (25657)
+rmanteu has the dealer button
+zif33rs posts ante 75
+rmanteu posts ante 75
+sickNtired posts ante 75
+qdmcg posts ante 75
+sickNtired posts small blind 600
+qdmcg posts big blind 1200
+** Hole Cards **
+Dealt to qdmcg [5c 5d]
+zif33rs folds
+rmanteu folds
+sickNtired folds
+qdmcg refunded 600
+qdmcg wins Pot (1500)
+
+
+
+Hand #5730457-68 - 2013-04-20 18:26:40
+Game: NL Hold'em (10+0) - Blinds 800/1600 Ante 75
+Site: Seals With Clubs
+Table: Chicago - Table 4
+Seat 3: zif33rs (9812)
+Seat 7: rmanteu (3095)
+Seat 8: sickNtired (19111)
+Seat 9: qdmcg (26482)
+sickNtired has the dealer button
+zif33rs posts ante 75
+rmanteu posts ante 75
+sickNtired posts ante 75
+qdmcg posts ante 75
+qdmcg posts small blind 800
+zif33rs posts big blind 1600
+** Hole Cards **
+Dealt to qdmcg [Kd Ah]
+rmanteu raises to 3020 (All-in)
+sickNtired calls 3020
+qdmcg raises to 26407 (All-in)
+zif33rs folds
+sickNtired folds
+qdmcg refunded 23387
+** Flop ** [4h 4c Jd]
+** Turn ** [5c]
+** River ** [Th]
+** Pot Show Down ** [4h 4c Jd 5c Th]
+rmanteu shows [Jc Qc] (Two Pair, Jacks and Fours +Q)
+qdmcg shows [Kd Ah] (a Pair of Fours +AKJ)
+rmanteu wins Pot (10960) with Two Pair
+
+
+
+Hand #5730498-69 - 2013-04-20 18:27:18
+Game: NL Hold'em (10+0) - Blinds 800/1600 Ante 75
+Site: Seals With Clubs
+Table: Chicago - Table 4
+Seat 3: zif33rs (8137)
+Seat 7: rmanteu (10960)
+Seat 8: sickNtired (16016)
+Seat 9: qdmcg (23387)
+qdmcg has the dealer button
+zif33rs posts ante 75
+rmanteu posts ante 75
+sickNtired posts ante 75
+qdmcg posts ante 75
+zif33rs posts small blind 800
+rmanteu posts big blind 1600
+** Hole Cards **
+Dealt to qdmcg [2d Ts]
+sickNtired folds
+qdmcg folds
+zif33rs raises to 8062 (All-in)
+rmanteu folds
+zif33rs refunded 6462
+zif33rs wins Pot (3500)
+
+
+
+Hand #5730517-70 - 2013-04-20 18:27:41
+Game: NL Hold'em (10+0) - Blinds 800/1600 Ante 75
+Site: Seals With Clubs
+Table: Chicago - Table 4
+Seat 3: zif33rs (9962)
+Seat 7: rmanteu (9285)
+Seat 8: sickNtired (15941)
+Seat 9: qdmcg (23312)
+zif33rs has the dealer button
+zif33rs posts ante 75
+rmanteu posts ante 75
+sickNtired posts ante 75
+qdmcg posts ante 75
+rmanteu posts small blind 800
+sickNtired posts big blind 1600
+** Hole Cards **
+Dealt to qdmcg [Kc Ah]
+qdmcg raises to 23237 (All-in)
+zif33rs folds
+rmanteu folds
+sickNtired folds
+qdmcg refunded 21637
+qdmcg wins Pot (4300)
+
+
+
+Hand #5730540-71 - 2013-04-20 18:28:08
+Game: NL Hold'em (10+0) - Blinds 800/1600 Ante 75
+Site: Seals With Clubs
+Table: Chicago - Table 4
+Seat 3: zif33rs (9887)
+Seat 7: rmanteu (8410)
+Seat 8: sickNtired (14266)
+Seat 9: qdmcg (25937)
+rmanteu has the dealer button
+zif33rs posts ante 75
+rmanteu posts ante 75
+sickNtired posts ante 75
+qdmcg posts ante 75
+sickNtired posts small blind 800
+qdmcg posts big blind 1600
+** Hole Cards **
+Dealt to qdmcg [Kh Jc]
+zif33rs calls 1600
+rmanteu folds
+sickNtired raises to 5079
+qdmcg folds
+zif33rs raises to 8558
+sickNtired calls 3479
+** Flop ** [Ac 7d Qc]
+sickNtired bets 1600
+zif33rs calls 1254 (All-in)
+sickNtired refunded 346
+** Turn ** [8h]
+** River ** [2h]
+** Pot Show Down ** [Ac 7d Qc 8h 2h]
+zif33rs shows [4h 4d] (a Pair of Fours +AQ8)
+sickNtired shows [As 9d] (a Pair of Aces +Q98)
+sickNtired wins Pot (21524) with a Pair
+zif33rs finishes tournament in place #4 and wins 46.20 chips
+
+
+
+Hand #5730578-72 - 2013-04-20 18:28:52
+Game: NL Hold'em (10+0) - Blinds 800/1600 Ante 75
+Site: Seals With Clubs
+Table: Chicago - Table 4
+Seat 7: rmanteu (8335)
+Seat 8: sickNtired (25903)
+Seat 9: qdmcg (24262)
+sickNtired has the dealer button
+rmanteu posts ante 75
+sickNtired posts ante 75
+qdmcg posts ante 75
+qdmcg posts small blind 800
+rmanteu posts big blind 1600
+** Hole Cards **
+Dealt to qdmcg [Ad 9c]
+sickNtired folds
+qdmcg raises to 17191
+rmanteu folds
+qdmcg refunded 15591
+qdmcg wins Pot (3425)
+
+
+
+Hand #5730626-73 - 2013-04-20 18:29:45
+Game: NL Hold'em (10+0) - Blinds 800/1600 Ante 75
+Site: Seals With Clubs
+Table: Chicago - Table 4
+Seat 7: rmanteu (6660)
+Seat 8: sickNtired (25828)
+Seat 9: qdmcg (26012)
+qdmcg has the dealer button
+rmanteu posts ante 75
+sickNtired posts ante 75
+qdmcg posts ante 75
+rmanteu posts small blind 800
+sickNtired posts big blind 1600
+** Hole Cards **
+Dealt to qdmcg [8c 6s]
+qdmcg folds
+rmanteu folds
+sickNtired refunded 800
+sickNtired wins Pot (1825)
+
+
+
+Hand #5730637-74 - 2013-04-20 18:30:00
+Game: NL Hold'em (10+0) - Blinds 800/1600 Ante 75
+Site: Seals With Clubs
+Table: Chicago - Table 4
+Seat 7: rmanteu (5785)
+Seat 8: sickNtired (26778)
+Seat 9: qdmcg (25937)
+rmanteu has the dealer button
+rmanteu posts ante 75
+sickNtired posts ante 75
+qdmcg posts ante 75
+sickNtired posts small blind 800
+qdmcg posts big blind 1600
+** Hole Cards **
+Dealt to qdmcg [As 9d]
+rmanteu folds
+sickNtired folds
+qdmcg refunded 800
+qdmcg wins Pot (1825)
+
+
+
+Hand #5730651-75 - 2013-04-20 18:30:17
+Game: NL Hold'em (10+0) - Blinds 800/1600 Ante 75
+Site: Seals With Clubs
+Table: Chicago - Table 4
+Seat 7: rmanteu (5710)
+Seat 8: sickNtired (25903)
+Seat 9: qdmcg (26887)
+sickNtired has the dealer button
+rmanteu posts ante 75
+sickNtired posts ante 75
+qdmcg posts ante 75
+qdmcg posts small blind 800
+rmanteu posts big blind 1600
+** Hole Cards **
+Dealt to qdmcg [4c Ts]
+sickNtired raises to 3200
+qdmcg folds
+rmanteu raises to 5635 (All-in)
+sickNtired calls 2435
+** Flop ** [3c 6s 9d]
+** Turn ** [Jd]
+** River ** [5c]
+** Pot Show Down ** [3c 6s 9d Jd 5c]
+rmanteu shows [Kh 4h] (High Card King +J965)
+sickNtired shows [As Tc] (High Card Ace +JT96)
+sickNtired wins Pot (12295) with High Card
+rmanteu finishes tournament in place #3 and wins 63 chips
+
+
+
+Hand #5730685-76 - 2013-04-20 18:30:50
+Game: NL Hold'em (10+0) - Blinds 800/1600 Ante 75
+Site: Seals With Clubs
+Table: Chicago - Table 4
+Seat 8: sickNtired (32488)
+Seat 9: qdmcg (26012)
+qdmcg has the dealer button
+sickNtired posts ante 75
+qdmcg posts ante 75
+qdmcg posts small blind 800
+sickNtired posts big blind 1600
+** Hole Cards **
+Dealt to qdmcg [8s 7s]
+qdmcg calls 800
+sickNtired checks
+** Flop ** [9s 8d 7c]
+sickNtired checks
+qdmcg bets 3200
+sickNtired folds
+qdmcg refunded 3200
+qdmcg wins Pot (3350)
+
+
+
+Hand #5730716-77 - 2013-04-20 18:31:20
+Game: NL Hold'em (10+0) - Blinds 800/1600 Ante 75
+Site: Seals With Clubs
+Table: Chicago - Table 4
+Seat 8: sickNtired (30813)
+Seat 9: qdmcg (27687)
+sickNtired has the dealer button
+sickNtired posts ante 75
+qdmcg posts ante 75
+sickNtired posts small blind 800
+qdmcg posts big blind 1600
+** Hole Cards **
+Dealt to qdmcg [2d 5c]
+sickNtired raises to 3200
+qdmcg folds
+sickNtired refunded 1600
+sickNtired wins Pot (3350)
+
+
+
+Hand #5730739-78 - 2013-04-20 18:31:40
+Game: NL Hold'em (10+0) - Blinds 800/1600 Ante 75
+Site: Seals With Clubs
+Table: Chicago - Table 4
+Seat 8: sickNtired (32488)
+Seat 9: qdmcg (26012)
+qdmcg has the dealer button
+sickNtired posts ante 75
+qdmcg posts ante 75
+qdmcg posts small blind 800
+sickNtired posts big blind 1600
+** Hole Cards **
+Dealt to qdmcg [4d 2c]
+qdmcg folds
+sickNtired refunded 800
+sickNtired wins Pot (1750)
+
+
+
+Hand #5730756-79 - 2013-04-20 18:31:52
+Game: NL Hold'em (10+0) - Blinds 800/1600 Ante 75
+Site: Seals With Clubs
+Table: Chicago - Table 4
+Seat 8: sickNtired (33363)
+Seat 9: qdmcg (25137)
+sickNtired has the dealer button
+sickNtired posts ante 75
+qdmcg posts ante 75
+sickNtired posts small blind 800
+qdmcg posts big blind 1600
+** Hole Cards **
+Dealt to qdmcg [9c 4c]
+sickNtired raises to 3200
+qdmcg calls 1600
+** Flop ** [Ks Td 3s]
+qdmcg checks
+sickNtired bets 3350
+qdmcg folds
+sickNtired refunded 3350
+sickNtired wins Pot (6550)
+
+
+
+Hand #5730776-80 - 2013-04-20 18:32:25
+Game: NL Hold'em (10+0) - Blinds 800/1600 Ante 75
+Site: Seals With Clubs
+Table: Chicago - Table 4
+Seat 8: sickNtired (36638)
+Seat 9: qdmcg (21862)
+qdmcg has the dealer button
+sickNtired posts ante 75
+qdmcg posts ante 75
+qdmcg posts small blind 800
+sickNtired posts big blind 1600
+** Hole Cards **
+Dealt to qdmcg [Ks 4d]
+qdmcg raises to 3200
+sickNtired calls 1600
+** Flop ** [Td 5c 7d]
+sickNtired checks
+qdmcg bets 4800
+sickNtired raises to 11200
+qdmcg folds
+sickNtired refunded 6400
+sickNtired wins Pot (16150)
+
+
+
+Hand #5730812-81 - 2013-04-20 18:33:02
+Game: NL Hold'em (10+0) - Blinds 1000/2000 Ante 100
+Site: Seals With Clubs
+Table: Chicago - Table 4
+Seat 8: sickNtired (44713)
+Seat 9: qdmcg (13787)
+sickNtired has the dealer button
+sickNtired posts ante 100
+qdmcg posts ante 100
+sickNtired posts small blind 1000
+qdmcg posts big blind 2000
+** Hole Cards **
+Dealt to qdmcg [5d Ts]
+sickNtired raises to 4000
+qdmcg folds
+sickNtired refunded 2000
+sickNtired wins Pot (4200)
+
+
+
+Hand #5730832-82 - 2013-04-20 18:33:19
+Game: NL Hold'em (10+0) - Blinds 1000/2000 Ante 100
+Site: Seals With Clubs
+Table: Chicago - Table 4
+Seat 8: sickNtired (46813)
+Seat 9: qdmcg (11687)
+qdmcg has the dealer button
+sickNtired posts ante 100
+qdmcg posts ante 100
+qdmcg posts small blind 1000
+sickNtired posts big blind 2000
+** Hole Cards **
+Dealt to qdmcg [Kc 6c]
+qdmcg raises to 11587 (All-in)
+sickNtired calls 9587
+** Flop ** [As 3c 3s]
+** Turn ** [Ah]
+** River ** [Ac]
+** Pot Show Down ** [As 3c 3s Ah Ac]
+sickNtired shows [Js Ks] (a Full House, Aces full of Threes)
+qdmcg shows [Kc 6c] (a Full House, Aces full of Threes)
+sickNtired splits Pot (11687) with a Full House
+qdmcg splits Pot (11687) with a Full House
+
+
+
+Hand #5730851-83 - 2013-04-20 18:33:41
+Game: NL Hold'em (10+0) - Blinds 1000/2000 Ante 100
+Site: Seals With Clubs
+Table: Chicago - Table 4
+Seat 8: sickNtired (46813)
+Seat 9: qdmcg (11687)
+sickNtired has the dealer button
+sickNtired posts ante 100
+qdmcg posts ante 100
+sickNtired posts small blind 1000
+qdmcg posts big blind 2000
+** Hole Cards **
+Dealt to qdmcg [3s 7s]
+sickNtired raises to 20793
+qdmcg folds
+sickNtired refunded 18793
+sickNtired wins Pot (4200)
+
+
+
+Hand #5730869-84 - 2013-04-20 18:34:03
+Game: NL Hold'em (10+0) - Blinds 1000/2000 Ante 100
+Site: Seals With Clubs
+Table: Chicago - Table 4
+Seat 8: sickNtired (48913)
+Seat 9: qdmcg (9587)
+qdmcg has the dealer button
+sickNtired posts ante 100
+qdmcg posts ante 100
+qdmcg posts small blind 1000
+sickNtired posts big blind 2000
+** Hole Cards **
+Dealt to qdmcg [4d 3s]
+qdmcg raises to 9487 (All-in)
+sickNtired calls 7487
+** Flop ** [4h 2s 6d]
+** Turn ** [4c]
+** River ** [8s]
+** Pot Show Down ** [4h 2s 6d 4c 8s]
+sickNtired shows [8c 8d] (a Full House, Eights full of Fours)
+qdmcg shows [4d 3s] (Three of a Kind, Fours +86)
+sickNtired wins Pot (19174) with a Full House
+qdmcg finishes tournament in place #2 and wins 96.60 chips
+sickNtired finishes tournament in place #1 and wins 151.20 chips

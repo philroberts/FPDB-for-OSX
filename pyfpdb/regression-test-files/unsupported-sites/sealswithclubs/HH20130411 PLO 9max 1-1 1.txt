@@ -1,0 +1,445 @@
+Hand #5297490-130 - 2013-04-11 01:59:12
+Game: PL Omaha (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: PLO 9max 1/1 #1
+Seat 1: hilypo (164)
+Seat 2: SlipSlapSLAM (45)
+Seat 3: itsDPB (93)
+Seat 7: qdmcg (158)
+Seat 8: JackMcBastrd (62)
+Seat 9: FeltJester (110)
+SlipSlapSLAM has the dealer button
+itsDPB posts small blind 1
+qdmcg posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [6s 7c Jc 8c]
+JackMcBastrd raises to 2
+FeltJester folds
+hilypo folds
+SlipSlapSLAM folds
+itsDPB calls 1
+qdmcg calls 1
+** Flop ** [2d 9c Kh]
+itsDPB checks
+qdmcg checks
+JackMcBastrd bets 6
+itsDPB has timed out
+itsDPB folds
+qdmcg folds
+JackMcBastrd refunded 6
+JackMcBastrd wins Pot (6)
+Rake (0)
+JackMcBastrd shows [Kc Ks 3s Ts]
+
+
+
+Hand #5297526-131 - 2013-04-11 02:00:26
+Game: PL Omaha (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: PLO 9max 1/1 #1
+Seat 1: hilypo (164)
+Seat 2: SlipSlapSLAM (45)
+Seat 3: itsDPB (91) - sitting out
+Seat 7: qdmcg (156)
+Seat 8: JackMcBastrd (66)
+Seat 9: FeltJester (110)
+qdmcg has the dealer button
+JackMcBastrd posts small blind 1
+FeltJester posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [4h Ac As Ts]
+hilypo folds
+SlipSlapSLAM folds
+qdmcg raises to 3
+JackMcBastrd calls 2
+FeltJester calls 2
+** Flop ** [6c 3h Kc]
+JackMcBastrd checks
+FeltJester checks
+qdmcg bets 6
+JackMcBastrd folds
+FeltJester calls 6
+** Turn ** [Ah]
+FeltJester checks
+qdmcg bets 17
+FeltJester folds
+qdmcg refunded 17
+qdmcg wins Pot (21)
+Rake (0)
+
+
+
+Hand #5297560-132 - 2013-04-11 02:01:38
+Game: PL Omaha (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: PLO 9max 1/1 #1
+Seat 1: hilypo (164)
+Seat 2: SlipSlapSLAM (45)
+Seat 3: itsDPB (91)
+Seat 7: qdmcg (168)
+Seat 8: JackMcBastrd (63)
+Seat 9: FeltJester (101)
+JackMcBastrd has the dealer button
+FeltJester posts small blind 1
+hilypo posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Qc Kh Ac Jd]
+SlipSlapSLAM raises to 4
+itsDPB calls 4
+qdmcg calls 4
+JackMcBastrd calls 4
+FeltJester folds
+hilypo calls 3
+** Flop ** [7s 4h Ks]
+hilypo checks
+SlipSlapSLAM checks
+itsDPB checks
+qdmcg checks
+JackMcBastrd checks
+** Turn ** [Ts]
+hilypo checks
+SlipSlapSLAM checks
+itsDPB bets 3
+qdmcg folds
+JackMcBastrd folds
+hilypo folds
+SlipSlapSLAM calls 3
+** River ** [6c]
+SlipSlapSLAM checks
+itsDPB bets 5
+SlipSlapSLAM calls 5
+** Pot Show Down ** [7s 4h Ks Ts 6c]
+SlipSlapSLAM shows [9h Th Tc Kc] (Three of a Kind, Tens +K7)
+itsDPB shows [9c 5c 5s Ah] (a Pair of Fives +KT7)
+SlipSlapSLAM wins Pot (37) with Three of a Kind
+Rake (0)
+
+
+
+Hand #5297627-133 - 2013-04-11 02:04:02
+Game: PL Omaha (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: PLO 9max 1/1 #1
+Seat 1: hilypo (160)
+Seat 2: SlipSlapSLAM (70)
+Seat 3: itsDPB (79)
+Seat 4: cashabit (40) - waiting for big blind
+Seat 7: qdmcg (164)
+Seat 8: JackMcBastrd (59)
+Seat 9: FeltJester (100)
+FeltJester has the dealer button
+hilypo posts small blind 1
+SlipSlapSLAM posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Tc 3h As Jd]
+itsDPB calls 1
+qdmcg folds
+JackMcBastrd folds
+FeltJester calls 1
+hilypo checks
+SlipSlapSLAM checks
+** Flop ** [4s Td 4d]
+hilypo bets 3
+SlipSlapSLAM folds
+itsDPB folds
+FeltJester folds
+hilypo refunded 3
+hilypo wins Pot (4)
+Rake (0)
+
+
+
+Hand #5297652-134 - 2013-04-11 02:04:49
+Game: PL Omaha (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: PLO 9max 1/1 #1
+Seat 1: hilypo (163)
+Seat 2: SlipSlapSLAM (69)
+Seat 3: itsDPB (78)
+Seat 4: cashabit (40)
+Seat 6: ClubedSlushi (40) - waiting for big blind
+Seat 7: qdmcg (164)
+Seat 8: JackMcBastrd (59)
+Seat 9: FeltJester (99)
+hilypo has the dealer button
+SlipSlapSLAM posts small blind 1
+itsDPB posts big blind 1
+cashabit posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [6s Qd Js 5d]
+cashabit checks
+qdmcg folds
+JackMcBastrd raises to 3
+FeltJester folds
+hilypo folds
+SlipSlapSLAM folds
+itsDPB has timed out
+itsDPB folds
+cashabit raises to 11
+JackMcBastrd calls 8
+** Flop ** [6c Td Ah]
+cashabit bets 24
+JackMcBastrd folds
+cashabit refunded 24
+cashabit wins Pot (24)
+Rake (0)
+
+
+
+Hand #5297697-135 - 2013-04-11 02:06:23
+Game: PL Omaha (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: PLO 9max 1/1 #1
+Seat 1: hilypo (163)
+Seat 2: SlipSlapSLAM (68)
+Seat 3: itsDPB (77) - sitting out
+Seat 4: cashabit (53)
+Seat 5: BellaLobo (100) - waiting for big blind
+Seat 6: ClubedSlushi (40) - sitting out
+Seat 7: qdmcg (164)
+Seat 8: JackMcBastrd (48)
+SlipSlapSLAM has the dealer button
+cashabit posts small blind 1
+BellaLobo posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [4h 2c 9d 7s]
+qdmcg folds
+JackMcBastrd raises to 3
+hilypo folds
+SlipSlapSLAM calls 3
+cashabit calls 2
+BellaLobo calls 2
+** Flop ** [2s 9s 5s]
+cashabit checks
+BellaLobo checks
+JackMcBastrd bets 5
+SlipSlapSLAM folds
+cashabit folds
+BellaLobo calls 5
+** Turn ** [2h]
+BellaLobo checks
+JackMcBastrd bets 5
+BellaLobo calls 5
+** River ** [5c]
+BellaLobo checks
+JackMcBastrd checks
+** Pot Show Down ** [2s 9s 5s 2h 5c]
+BellaLobo shows [Td Ks 6s 8h] (a Flush, King high +9652)
+JackMcBastrd shows [Ad Th Jh Ts] (Two Pair, Tens and Fives +9)
+BellaLobo wins Pot (32) with a Flush
+Rake (0)
+
+
+
+Hand #5297744-136 - 2013-04-11 02:07:46
+Game: PL Omaha (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: PLO 9max 1/1 #1
+Seat 1: hilypo (163)
+Seat 2: SlipSlapSLAM (65)
+Seat 3: itsDPB (77) - sitting out
+Seat 4: cashabit (50)
+Seat 5: BellaLobo (119)
+Seat 6: ClubedSlushi (40)
+Seat 7: qdmcg (164)
+Seat 8: JackMcBastrd (35)
+cashabit has the dealer button
+BellaLobo posts small blind 1
+ClubedSlushi posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [5d 6c Kc 9d]
+qdmcg folds
+JackMcBastrd folds
+hilypo calls 1
+SlipSlapSLAM folds
+cashabit folds
+BellaLobo checks
+ClubedSlushi checks
+** Flop ** [2s 9s Qs]
+BellaLobo checks
+ClubedSlushi checks
+hilypo checks
+** Turn ** [2c]
+BellaLobo bets 1
+ClubedSlushi folds
+hilypo folds
+BellaLobo refunded 1
+BellaLobo wins Pot (3)
+Rake (0)
+
+
+
+Hand #5297786-137 - 2013-04-11 02:08:55
+Game: PL Omaha (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: PLO 9max 1/1 #1
+Seat 1: hilypo (162)
+Seat 2: SlipSlapSLAM (65)
+Seat 3: itsDPB (77) - sitting out
+Seat 4: cashabit (50)
+Seat 5: BellaLobo (121)
+Seat 6: ClubedSlushi (39)
+Seat 7: qdmcg (164)
+Seat 8: JackMcBastrd (35)
+BellaLobo has the dealer button
+ClubedSlushi posts small blind 1
+qdmcg posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [4c 7d Qc Kd]
+JackMcBastrd calls 1
+hilypo folds
+SlipSlapSLAM folds
+cashabit raises to 3
+BellaLobo folds
+ClubedSlushi folds
+qdmcg calls 2
+JackMcBastrd calls 2
+** Flop ** [3d 4h 2d]
+qdmcg checks
+JackMcBastrd checks
+cashabit checks
+** Turn ** [Qd]
+qdmcg bets 6
+JackMcBastrd folds
+cashabit folds
+qdmcg refunded 6
+qdmcg wins Pot (10)
+Rake (0)
+
+
+
+Hand #5297814-138 - 2013-04-11 02:09:51
+Game: PL Omaha (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: PLO 9max 1/1 #1
+Seat 1: hilypo (162)
+Seat 2: SlipSlapSLAM (65)
+Seat 4: cashabit (47)
+Seat 5: BellaLobo (121)
+Seat 6: ClubedSlushi (38)
+Seat 7: qdmcg (171)
+Seat 8: JackMcBastrd (32)
+ClubedSlushi has the dealer button
+qdmcg posts small blind 1
+JackMcBastrd posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [9h Ts 4d Ac]
+hilypo folds
+SlipSlapSLAM folds
+cashabit calls 1
+BellaLobo folds
+ClubedSlushi folds
+qdmcg checks
+JackMcBastrd checks
+** Flop ** [Th 2c 2d]
+qdmcg checks
+JackMcBastrd checks
+cashabit checks
+** Turn ** [7d]
+qdmcg bets 2
+JackMcBastrd calls 2
+cashabit calls 2
+** River ** [Qs]
+qdmcg checks
+JackMcBastrd checks
+cashabit bets 5
+qdmcg folds
+JackMcBastrd folds
+cashabit refunded 5
+cashabit wins Pot (9)
+Rake (0)
+
+
+
+Hand #5297863-139 - 2013-04-11 02:11:26
+Game: PL Omaha (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: PLO 9max 1/1 #1
+Seat 1: hilypo (162)
+Seat 2: SlipSlapSLAM (65)
+Seat 4: cashabit (53)
+Seat 5: BellaLobo (121)
+Seat 6: ClubedSlushi (38)
+Seat 7: qdmcg (168)
+Seat 8: JackMcBastrd (29)
+qdmcg has the dealer button
+JackMcBastrd posts small blind 1
+hilypo posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Kh Ts 8h Qh]
+SlipSlapSLAM folds
+cashabit folds
+BellaLobo folds
+ClubedSlushi folds
+qdmcg raises to 3
+JackMcBastrd folds
+hilypo folds
+qdmcg refunded 2
+qdmcg wins Pot (3)
+Rake (0)
+
+
+
+Hand #5297883-140 - 2013-04-11 02:12:05
+Game: PL Omaha (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: PLO 9max 1/1 #1
+Seat 1: hilypo (161)
+Seat 2: SlipSlapSLAM (65)
+Seat 4: cashabit (53)
+Seat 5: BellaLobo (121)
+Seat 6: ClubedSlushi (38)
+Seat 7: qdmcg (170)
+Seat 8: JackMcBastrd (28)
+JackMcBastrd has the dealer button
+hilypo posts small blind 1
+SlipSlapSLAM posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Kc 2h 9d 7c]
+cashabit raises to 3
+BellaLobo folds
+ClubedSlushi folds
+qdmcg folds
+JackMcBastrd calls 3
+hilypo folds
+SlipSlapSLAM folds
+** Flop ** [3c 8s 7s]
+cashabit bets 5
+JackMcBastrd calls 5
+** Turn ** [Jh]
+cashabit bets 11
+JackMcBastrd folds
+cashabit refunded 11
+cashabit wins Pot (18)
+Rake (0)
+
+
+
+Hand #5297918-141 - 2013-04-11 02:13:13
+Game: PL Omaha (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: PLO 9max 1/1 #1
+Seat 1: hilypo (160)
+Seat 2: SlipSlapSLAM (64)
+Seat 4: cashabit (63)
+Seat 5: BellaLobo (121)
+Seat 6: ClubedSlushi (38)
+Seat 7: qdmcg (170)
+Seat 8: JackMcBastrd (20)
+hilypo has the dealer button
+SlipSlapSLAM posts small blind 1
+cashabit posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [3d 4c 3c Ac]
+BellaLobo folds
+ClubedSlushi folds
+qdmcg calls 1
+JackMcBastrd calls 1
+hilypo raises to 6
+SlipSlapSLAM folds
+cashabit folds
+qdmcg folds
+JackMcBastrd folds
+hilypo refunded 5
+hilypo wins Pot (5)
+Rake (0)

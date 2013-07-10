@@ -1,0 +1,794 @@
+Hand #5724340-2 - 2013-04-20 16:21:10
+Game: NL Hold'em (10+0) - Blinds 10/20
+Site: Seals With Clubs
+Table: NYC - Table 5
+Seat 1: yourbestpal (1725)
+Seat 2: NotEvenOnce (1295)
+Seat 3: qdmcg (1480) - sitting out
+Seat 5: lewisb (1500)
+Seat 6: qkil (1500)
+Seat 7: anarchology (1500) - sitting out
+Seat 8: 1Marley1 (1500)
+Seat 9: cloudsurfer (1500)
+NotEvenOnce has the dealer button
+qdmcg posts small blind 10
+lewisb posts big blind 20
+** Hole Cards **
+Dealt to qdmcg [5d 3d]
+qkil folds
+anarchology folds
+1Marley1 folds
+cloudsurfer raises to 60
+yourbestpal calls 60
+NotEvenOnce folds
+qdmcg folds
+lewisb folds
+** Flop ** [6h 2h 9c]
+cloudsurfer checks
+yourbestpal checks
+** Turn ** [5c]
+cloudsurfer bets 80
+yourbestpal folds
+cloudsurfer refunded 80
+cloudsurfer wins Pot (150)
+
+
+
+Hand #5724387-3 - 2013-04-20 16:22:08
+Game: NL Hold'em (10+0) - Blinds 10/20
+Site: Seals With Clubs
+Table: NYC - Table 5
+Seat 1: yourbestpal (1665)
+Seat 2: NotEvenOnce (1295)
+Seat 3: qdmcg (1470)
+Seat 5: lewisb (1480)
+Seat 6: qkil (1500)
+Seat 7: anarchology (1500) - sitting out
+Seat 8: 1Marley1 (1500)
+Seat 9: cloudsurfer (1590)
+qdmcg has the dealer button
+lewisb posts small blind 10
+qkil posts big blind 20
+** Hole Cards **
+Dealt to qdmcg [5s Ah]
+anarchology folds
+1Marley1 folds
+cloudsurfer folds
+yourbestpal folds
+NotEvenOnce folds
+qdmcg raises to 60
+lewisb folds
+qkil calls 40
+** Flop ** [Qd 7s 3c]
+qkil bets 60
+qdmcg folds
+qkil refunded 60
+qkil wins Pot (130)
+
+
+
+Hand #5724436-4 - 2013-04-20 16:23:10
+Game: NL Hold'em (10+0) - Blinds 10/20
+Site: Seals With Clubs
+Table: NYC - Table 5
+Seat 1: yourbestpal (1665)
+Seat 2: NotEvenOnce (1295)
+Seat 3: qdmcg (1410)
+Seat 5: lewisb (1470)
+Seat 6: qkil (1570)
+Seat 7: anarchology (1500) - sitting out
+Seat 8: 1Marley1 (1500)
+Seat 9: cloudsurfer (1590)
+lewisb has the dealer button
+qkil posts small blind 10
+anarchology posts big blind 20
+** Hole Cards **
+Dealt to qdmcg [8c Td]
+1Marley1 folds
+cloudsurfer folds
+yourbestpal raises to 387
+NotEvenOnce raises to 1295 (All-in)
+qdmcg folds
+lewisb folds
+qkil folds
+anarchology folds
+yourbestpal calls 908
+** Flop ** [2h 5s 7s]
+** Turn ** [9s]
+** River ** [Qd]
+** Pot Show Down ** [2h 5s 7s 9s Qd]
+yourbestpal shows [Kc Kh] (a Pair of Kings +Q97)
+NotEvenOnce shows [Jd Jh] (a Pair of Jacks +Q97)
+yourbestpal wins Pot (2620) with a Pair
+NotEvenOnce finishes tournament in place #50
+
+
+
+Hand #5724463-5 - 2013-04-20 16:23:49
+Game: NL Hold'em (10+0) - Blinds 10/20
+Site: Seals With Clubs
+Table: NYC - Table 5
+Seat 1: yourbestpal (2990)
+Seat 3: qdmcg (1410)
+Seat 5: lewisb (1470)
+Seat 6: qkil (1560)
+Seat 7: anarchology (1480) - sitting out
+Seat 8: 1Marley1 (1500)
+Seat 9: cloudsurfer (1590)
+qkil has the dealer button
+anarchology posts small blind 10
+1Marley1 posts big blind 20
+** Hole Cards **
+Dealt to qdmcg [7d Kh]
+cloudsurfer folds
+yourbestpal calls 20
+qdmcg folds
+lewisb folds
+qkil calls 20
+anarchology folds
+1Marley1 checks
+** Flop ** [Js 8c 9h]
+1Marley1 checks
+yourbestpal checks
+qkil checks
+** Turn ** [Qd]
+1Marley1 bets 40
+yourbestpal folds
+qkil folds
+1Marley1 refunded 40
+1Marley1 wins Pot (70)
+
+
+
+Hand #5724497-6 - 2013-04-20 16:24:40
+Game: NL Hold'em (10+0) - Blinds 10/20
+Site: Seals With Clubs
+Table: NYC - Table 5
+Seat 1: yourbestpal (2970)
+Seat 3: qdmcg (1410)
+Seat 5: lewisb (1470)
+Seat 6: qkil (1540)
+Seat 7: anarchology (1470) - sitting out
+Seat 8: 1Marley1 (1550)
+Seat 9: cloudsurfer (1590)
+anarchology has the dealer button
+1Marley1 posts small blind 10
+cloudsurfer posts big blind 20
+** Hole Cards **
+Dealt to qdmcg [6h Jh]
+yourbestpal calls 20
+qdmcg folds
+lewisb folds
+qkil folds
+anarchology folds
+slowroll moved from Table 3
+1Marley1 raises to 80
+cloudsurfer folds
+yourbestpal calls 60
+** Flop ** [Kh Ts Js]
+1Marley1 bets 120
+yourbestpal raises to 240
+1Marley1 raises to 660
+yourbestpal calls 420
+** Turn ** [Qs]
+1Marley1 bets 810 (All-in)
+yourbestpal folds
+1Marley1 refunded 810
+1Marley1 wins Pot (1500)
+
+
+
+Hand #5724540-7 - 2013-04-20 16:25:36
+Game: NL Hold'em (10+0) - Blinds 10/20
+Site: Seals With Clubs
+Table: NYC - Table 5
+Seat 1: yourbestpal (2230)
+Seat 2: slowroll (2020)
+Seat 3: qdmcg (1410)
+Seat 5: lewisb (1470)
+Seat 6: qkil (1540)
+Seat 7: anarchology (1470) - sitting out
+Seat 8: 1Marley1 (2310)
+Seat 9: cloudsurfer (1570)
+1Marley1 has the dealer button
+cloudsurfer posts small blind 10
+yourbestpal posts big blind 20
+** Hole Cards **
+Dealt to qdmcg [Qc 5s]
+slowroll raises to 60
+qdmcg folds
+lewisb folds
+qkil folds
+anarchology folds
+1Marley1 calls 60
+cloudsurfer calls 50
+yourbestpal folds
+** Flop ** [9s 9d 6c]
+cloudsurfer checks
+slowroll bets 200
+1Marley1 calls 200
+cloudsurfer folds
+** Turn ** [Ad]
+slowroll checks
+1Marley1 bets 200
+slowroll folds
+1Marley1 refunded 200
+1Marley1 wins Pot (600)
+1Marley1 shows [As 9h]
+
+
+
+Hand #5724586-8 - 2013-04-20 16:26:47
+Game: NL Hold'em (10+0) - Blinds 15/30
+Site: Seals With Clubs
+Table: NYC - Table 5
+Seat 1: yourbestpal (2210)
+Seat 2: slowroll (1760)
+Seat 3: qdmcg (1410)
+Seat 5: lewisb (1470)
+Seat 6: qkil (1540)
+Seat 7: anarchology (1470) - sitting out
+Seat 8: 1Marley1 (2650)
+Seat 9: cloudsurfer (1510)
+cloudsurfer has the dealer button
+yourbestpal posts small blind 15
+slowroll posts big blind 30
+** Hole Cards **
+Dealt to qdmcg [9s Ts]
+qdmcg folds
+lewisb folds
+qkil folds
+anarchology folds
+1Marley1 calls 30
+cloudsurfer calls 30
+yourbestpal calls 15
+slowroll checks
+** Flop ** [Jd 2c Kc]
+yourbestpal checks
+slowroll checks
+1Marley1 bets 60
+cloudsurfer calls 60
+yourbestpal folds
+slowroll folds
+** Turn ** [9c]
+1Marley1 checks
+cloudsurfer bets 150
+1Marley1 calls 150
+** River ** [3c]
+1Marley1 checks
+cloudsurfer checks
+** Pot Show Down ** [Jd 2c Kc 9c 3c]
+1Marley1 shows [6s Ks] (a Pair of Kings +J96)
+cloudsurfer shows [Ad Qh] (High Card Ace +KQJ9)
+1Marley1 wins Pot (540) with a Pair
+
+
+
+Hand #5724644-9 - 2013-04-20 16:28:04
+Game: NL Hold'em (10+0) - Blinds 15/30
+Site: Seals With Clubs
+Table: NYC - Table 5
+Seat 1: yourbestpal (2180)
+Seat 2: slowroll (1730)
+Seat 3: qdmcg (1410)
+Seat 5: lewisb (1470)
+Seat 6: qkil (1540)
+Seat 7: anarchology (1470) - sitting out
+Seat 8: 1Marley1 (2950)
+Seat 9: cloudsurfer (1270)
+yourbestpal has the dealer button
+slowroll posts small blind 15
+qdmcg posts big blind 30
+** Hole Cards **
+Dealt to qdmcg [Jc 3h]
+lewisb folds
+qkil calls 30
+anarchology folds
+1Marley1 calls 30
+cloudsurfer folds
+yourbestpal folds
+slowroll calls 15
+qdmcg checks
+** Flop ** [Qs Ac 4s]
+slowroll checks
+qdmcg checks
+qkil checks
+1Marley1 checks
+** Turn ** [9h]
+slowroll bets 120
+qdmcg folds
+qkil calls 120
+1Marley1 folds
+** River ** [4h]
+slowroll bets 210
+qkil calls 210
+** Pot Show Down ** [Qs Ac 4s 9h 4h]
+slowroll shows [8d As] (Two Pair, Aces and Fours +Q)
+qkil shows [8c Ah] (Two Pair, Aces and Fours +Q)
+slowroll splits Pot (390) with Two Pair
+qkil splits Pot (390) with Two Pair
+
+
+
+Hand #5724695-10 - 2013-04-20 16:29:12
+Game: NL Hold'em (10+0) - Blinds 15/30
+Site: Seals With Clubs
+Table: NYC - Table 5
+Seat 1: yourbestpal (2180)
+Seat 2: slowroll (1760)
+Seat 3: qdmcg (1380)
+Seat 5: lewisb (1470)
+Seat 6: qkil (1570)
+Seat 7: anarchology (1470) - sitting out
+Seat 8: 1Marley1 (2920)
+Seat 9: cloudsurfer (1270)
+slowroll has the dealer button
+qdmcg posts small blind 15
+lewisb posts big blind 30
+** Hole Cards **
+Dealt to qdmcg [Ah 7d]
+qkil folds
+anarchology folds
+1Marley1 folds
+cloudsurfer folds
+yourbestpal folds
+slowroll raises to 90
+qdmcg folds
+lewisb calls 60
+** Flop ** [As 7c 7h]
+lewisb checks
+slowroll bets 150
+lewisb folds
+slowroll refunded 150
+slowroll wins Pot (195)
+
+
+
+Hand #5724730-11 - 2013-04-20 16:29:57
+Game: NL Hold'em (10+0) - Blinds 15/30
+Site: Seals With Clubs
+Table: NYC - Table 5
+Seat 1: yourbestpal (2180)
+Seat 2: slowroll (1865)
+Seat 3: qdmcg (1365)
+Seat 5: lewisb (1380)
+Seat 6: qkil (1570)
+Seat 7: anarchology (1470) - sitting out
+Seat 8: 1Marley1 (2920)
+Seat 9: cloudsurfer (1270)
+qdmcg has the dealer button
+lewisb posts small blind 15
+qkil posts big blind 30
+** Hole Cards **
+Dealt to qdmcg [Qd 3h]
+anarchology folds
+1Marley1 calls 30
+cloudsurfer folds
+yourbestpal calls 30
+slowroll folds
+qdmcg folds
+lewisb calls 15
+qkil checks
+** Flop ** [Qc Ac 5c]
+lewisb checks
+qkil checks
+1Marley1 bets 120
+yourbestpal folds
+lewisb folds
+qkil folds
+1Marley1 refunded 120
+1Marley1 wins Pot (120)
+1Marley1 shows [As Ah]
+
+
+
+Hand #5724767-12 - 2013-04-20 16:30:47
+Game: NL Hold'em (10+0) - Blinds 15/30
+Site: Seals With Clubs
+Table: NYC - Table 5
+Seat 1: yourbestpal (2150)
+Seat 2: slowroll (1865)
+Seat 3: qdmcg (1365)
+Seat 5: lewisb (1350)
+Seat 6: qkil (1540)
+Seat 7: anarchology (1470) - sitting out
+Seat 8: 1Marley1 (3010)
+Seat 9: cloudsurfer (1270)
+lewisb has the dealer button
+qkil posts small blind 15
+anarchology posts big blind 30
+** Hole Cards **
+Dealt to qdmcg [3d 2d]
+1Marley1 folds
+cloudsurfer folds
+yourbestpal folds
+slowroll folds
+qdmcg folds
+lewisb folds
+qkil calls 15
+anarchology folds
+qkil wins Pot (60)
+
+
+
+Hand #5724781-13 - 2013-04-20 16:31:10
+Game: NL Hold'em (10+0) - Blinds 15/30
+Site: Seals With Clubs
+Table: NYC - Table 5
+Seat 1: yourbestpal (2150)
+Seat 2: slowroll (1865)
+Seat 3: qdmcg (1365)
+Seat 5: lewisb (1350)
+Seat 6: qkil (1570)
+Seat 7: anarchology (1440) - sitting out
+Seat 8: 1Marley1 (3010)
+Seat 9: cloudsurfer (1270)
+qkil has the dealer button
+anarchology posts small blind 15
+1Marley1 posts big blind 30
+** Hole Cards **
+Dealt to qdmcg [4c 5c]
+cloudsurfer calls 30
+yourbestpal folds
+slowroll calls 30
+qdmcg folds
+lewisb folds
+qkil folds
+anarchology folds
+1Marley1 checks
+** Flop ** [Qs 8s 8c]
+1Marley1 checks
+cloudsurfer checks
+slowroll bets 90
+1Marley1 folds
+cloudsurfer calls 90
+** Turn ** [3c]
+cloudsurfer checks
+slowroll bets 210
+cloudsurfer calls 210
+** River ** [7c]
+cloudsurfer checks
+slowroll checks
+** Pot Show Down ** [Qs 8s 8c 3c 7c]
+slowroll shows [9c 9d] (Two Pair, Nines and Eights +Q)
+cloudsurfer shows [Kc Qh] (Two Pair, Queens and Eights +K)
+cloudsurfer wins Pot (705) with Two Pair
+
+
+
+Hand #5724844-14 - 2013-04-20 16:32:29
+Game: NL Hold'em (10+0) - Blinds 25/50
+Site: Seals With Clubs
+Table: NYC - Table 5
+Seat 1: yourbestpal (2150)
+Seat 2: slowroll (1535)
+Seat 3: qdmcg (1365)
+Seat 5: lewisb (1350)
+Seat 6: qkil (1570)
+Seat 7: anarchology (1425) - sitting out
+Seat 8: 1Marley1 (2980)
+Seat 9: cloudsurfer (1645)
+anarchology has the dealer button
+1Marley1 posts small blind 25
+cloudsurfer posts big blind 50
+** Hole Cards **
+Dealt to qdmcg [7d 3c]
+yourbestpal calls 50
+slowroll folds
+qdmcg folds
+lewisb folds
+qkil folds
+anarchology folds
+1Marley1 calls 25
+cloudsurfer checks
+** Flop ** [Tc Qc 4c]
+1Marley1 checks
+cloudsurfer checks
+yourbestpal checks
+** Turn ** [4d]
+1Marley1 bets 100
+cloudsurfer calls 100
+yourbestpal folds
+** River ** [3h]
+1Marley1 bets 200
+cloudsurfer raises to 495
+1Marley1 calls 295
+** Pot Show Down ** [Tc Qc 4c 4d 3h]
+1Marley1 shows [Jd Qs] (Two Pair, Queens and Fours +J)
+cloudsurfer shows [Qh 4h] (a Full House, Fours full of Queens)
+cloudsurfer wins Pot (1340) with a Full House
+
+
+
+Hand #5724912-15 - 2013-04-20 16:33:46
+Game: NL Hold'em (10+0) - Blinds 25/50
+Site: Seals With Clubs
+Table: NYC - Table 5
+Seat 1: yourbestpal (2100)
+Seat 2: slowroll (1535)
+Seat 3: qdmcg (1365)
+Seat 5: lewisb (1350)
+Seat 6: qkil (1570)
+Seat 7: anarchology (1425) - sitting out
+Seat 8: 1Marley1 (2335)
+Seat 9: cloudsurfer (2340)
+1Marley1 has the dealer button
+cloudsurfer posts small blind 25
+yourbestpal posts big blind 50
+** Hole Cards **
+Dealt to qdmcg [Jc Th]
+slowroll folds
+qdmcg folds
+lewisb folds
+qkil folds
+anarchology folds
+1Marley1 folds
+cloudsurfer calls 25
+yourbestpal checks
+** Flop ** [Ah 9s 7s]
+cloudsurfer checks
+yourbestpal checks
+** Turn ** [Ts]
+cloudsurfer checks
+yourbestpal checks
+** River ** [4s]
+cloudsurfer checks
+yourbestpal checks
+** Pot Show Down ** [Ah 9s 7s Ts 4s]
+yourbestpal shows [6d Kh] (High Card Ace +KT97)
+cloudsurfer shows [2h Qh] (High Card Ace +QT97)
+yourbestpal wins Pot (100) with High Card
+
+
+
+Hand #5724948-16 - 2013-04-20 16:34:35
+Game: NL Hold'em (10+0) - Blinds 25/50
+Site: Seals With Clubs
+Table: NYC - Table 5
+Seat 1: yourbestpal (2150)
+Seat 2: slowroll (1535)
+Seat 3: qdmcg (1365)
+Seat 5: lewisb (1350)
+Seat 6: qkil (1570)
+Seat 7: anarchology (1425) - sitting out
+Seat 8: 1Marley1 (2335)
+Seat 9: cloudsurfer (2290)
+cloudsurfer has the dealer button
+yourbestpal posts small blind 25
+slowroll posts big blind 50
+** Hole Cards **
+Dealt to qdmcg [8h Ks]
+qdmcg folds
+lewisb folds
+qkil folds
+anarchology folds
+1Marley1 folds
+cloudsurfer folds
+yourbestpal calls 25
+slowroll raises to 300
+yourbestpal folds
+slowroll refunded 250
+slowroll wins Pot (100)
+
+
+
+Hand #5724970-17 - 2013-04-20 16:35:06
+Game: NL Hold'em (10+0) - Blinds 25/50
+Site: Seals With Clubs
+Table: NYC - Table 5
+Seat 1: yourbestpal (2100)
+Seat 2: slowroll (1585)
+Seat 3: qdmcg (1365)
+Seat 5: lewisb (1350)
+Seat 6: qkil (1570)
+Seat 7: anarchology (1425) - sitting out
+Seat 8: 1Marley1 (2335)
+Seat 9: cloudsurfer (2290)
+yourbestpal has the dealer button
+slowroll posts small blind 25
+qdmcg posts big blind 50
+** Hole Cards **
+Dealt to qdmcg [5c 6s]
+lewisb folds
+qkil folds
+anarchology folds
+1Marley1 folds
+cloudsurfer folds
+yourbestpal calls 50
+slowroll raises to 400
+qdmcg folds
+yourbestpal calls 350
+** Flop ** [8c Qc Kh]
+slowroll bets 1185 (All-in)
+yourbestpal calls 1185
+** Turn ** [Jd]
+** River ** [7d]
+** Pot Show Down ** [8c Qc Kh Jd 7d]
+yourbestpal shows [Ac 9c] (High Card Ace +KQJ9)
+slowroll shows [Jc Ah] (a Pair of Jacks +AKQ)
+slowroll wins Pot (3220) with a Pair
+
+
+
+Hand #5725008-18 - 2013-04-20 16:36:03
+Game: NL Hold'em (10+0) - Blinds 25/50
+Site: Seals With Clubs
+Table: NYC - Table 5
+Seat 1: yourbestpal (515)
+Seat 2: slowroll (3220)
+Seat 3: qdmcg (1315)
+Seat 5: lewisb (1350)
+Seat 6: qkil (1570)
+Seat 7: anarchology (1425) - sitting out
+Seat 8: 1Marley1 (2335)
+Seat 9: cloudsurfer (2290)
+slowroll has the dealer button
+qdmcg posts small blind 25
+lewisb posts big blind 50
+** Hole Cards **
+Dealt to qdmcg [3h 4d]
+sealkilla moved from Table 6
+qkil raises to 100
+anarchology folds
+1Marley1 folds
+cloudsurfer folds
+yourbestpal calls 100
+slowroll calls 100
+qdmcg folds
+lewisb folds
+** Flop ** [Td 5h 7s]
+qkil bets 200
+yourbestpal folds
+slowroll raises to 800
+qkil folds
+slowroll refunded 600
+slowroll wins Pot (775)
+
+
+
+Hand #5725040-19 - 2013-04-20 16:36:54
+Game: NL Hold'em (10+0) - Blinds 25/50
+Site: Seals With Clubs
+Table: NYC - Table 5
+Seat 1: yourbestpal (415)
+Seat 2: slowroll (3695)
+Seat 3: qdmcg (1290)
+Seat 4: sealkilla (715)
+Seat 5: lewisb (1300)
+Seat 6: qkil (1270)
+Seat 7: anarchology (1425) - sitting out
+Seat 8: 1Marley1 (2335)
+Seat 9: cloudsurfer (2290)
+qdmcg has the dealer button
+sealkilla plays after the button
+lewisb posts small blind 25
+qkil posts big blind 50
+** Hole Cards **
+Dealt to qdmcg [Kd 6c]
+anarchology folds
+1Marley1 folds
+cloudsurfer folds
+yourbestpal folds
+slowroll raises to 250
+qdmcg folds
+lewisb folds
+qkil calls 200
+** Flop ** [Ad 9d 6d]
+qkil bets 200
+slowroll calls 200
+** Turn ** [6s]
+qkil bets 820 (All-in)
+slowroll folds
+qkil refunded 820
+qkil wins Pot (925)
+
+
+
+Hand #5725094-20 - 2013-04-20 16:38:05
+Game: NL Hold'em (10+0) - Blinds 25/50
+Site: Seals With Clubs
+Table: NYC - Table 5
+Seat 1: yourbestpal (415)
+Seat 2: slowroll (3245)
+Seat 3: qdmcg (1290)
+Seat 4: sealkilla (715)
+Seat 5: lewisb (1275)
+Seat 6: qkil (1745)
+Seat 7: anarchology (1425) - sitting out
+Seat 8: 1Marley1 (2335)
+Seat 9: cloudsurfer (2290)
+lewisb has the dealer button
+qkil posts small blind 25
+anarchology posts big blind 50
+** Hole Cards **
+Dealt to qdmcg [9h Qc]
+1Marley1 raises to 150
+cloudsurfer folds
+yourbestpal raises to 415 (All-in)
+slowroll folds
+qdmcg folds
+sealkilla raises to 715 (All-in)
+lewisb folds
+qkil calls 690
+anarchology folds
+1Marley1 raises to 2335 (All-in)
+qkil folds
+1Marley1 refunded 1620
+** Flop ** [6s 4d 4c]
+** Turn ** [Tc]
+** River ** [3d]
+** Side Pot 1 Show Down ** [6s 4d 4c Tc 3d]
+sealkilla shows [Kd 8d] (a Pair of Fours +KT8)
+1Marley1 shows [Qh Qd] (Two Pair, Queens and Fours +T)
+1Marley1 wins Side Pot 1 (900) with Two Pair
+** Main Pot Show Down ** [6s 4d 4c Tc 3d]
+yourbestpal shows [Js Ad] (a Pair of Fours +AJT)
+1Marley1 wins Main Pot (1710) with Two Pair
+yourbestpal finishes tournament in place #45
+sealkilla finishes tournament in place #44
+
+
+
+Hand #5725134-21 - 2013-04-20 16:39:00
+Game: NL Hold'em (10+0) - Blinds 50/100
+Site: Seals With Clubs
+Table: NYC - Table 5
+Seat 2: slowroll (3245)
+Seat 3: qdmcg (1290)
+Seat 5: lewisb (1275)
+Seat 6: qkil (1030)
+Seat 7: anarchology (1375) - sitting out
+Seat 8: 1Marley1 (4230)
+Seat 9: cloudsurfer (2290)
+qkil has the dealer button
+anarchology posts small blind 50
+1Marley1 posts big blind 100
+** Hole Cards **
+Dealt to qdmcg [4c 5d]
+cloudsurfer folds
+slowroll folds
+qdmcg folds
+lewisb folds
+qkil folds
+anarchology folds
+1Marley1 refunded 50
+1Marley1 wins Pot (100)
+
+
+
+Hand #5725144-22 - 2013-04-20 16:39:19
+Game: NL Hold'em (10+0) - Blinds 50/100
+Site: Seals With Clubs
+Table: NYC - Table 5
+Seat 2: slowroll (3245)
+Seat 3: qdmcg (1290)
+Seat 5: lewisb (1275)
+Seat 6: qkil (1030)
+Seat 7: anarchology (1325) - sitting out
+Seat 8: 1Marley1 (4280)
+Seat 9: cloudsurfer (2290)
+anarchology has the dealer button
+1Marley1 posts small blind 50
+cloudsurfer posts big blind 100
+** Hole Cards **
+Dealt to qdmcg [2c 2s]
+slowroll folds
+lluboski moved from Table 1
+qdmcg raises to 200
+lewisb folds
+qkil folds
+anarchology folds
+1Marley1 raises to 400
+cloudsurfer folds
+qdmcg calls 200
+** Flop ** [Ks 3h 4s]
+1Marley1 bets 400
+qdmcg raises to 890 (All-in)
+1Marley1 calls 490
+** Turn ** [7s]
+** River ** [Qh]
+** Pot Show Down ** [Ks 3h 4s 7s Qh]
+qdmcg shows [2c 2s] (a Pair of Deuces +KQ7)
+1Marley1 shows [Ad Ah] (a Pair of Aces +KQ7)
+1Marley1 wins Pot (2680) with a Pair
+qdmcg finishes tournament in place #40

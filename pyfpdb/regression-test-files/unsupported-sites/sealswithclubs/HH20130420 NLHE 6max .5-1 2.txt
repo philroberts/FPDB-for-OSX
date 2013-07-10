@@ -1,0 +1,1335 @@
+Hand #5716531-130 - 2013-04-20 13:05:32
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #2
+Seat 1: toaster_oven (31.32)
+Seat 2: BoneMan61 (116.68)
+Seat 3: ownmatusow (100) - waiting for big blind
+Seat 4: AceJokerSnap (13.05)
+Seat 5: qdmcg (100) - waiting for big blind
+Seat 6: igor2322 (92.24)
+toaster_oven has the dealer button
+BoneMan61 posts small blind 0.50
+ownmatusow posts big blind 1
+** Hole Cards **
+AceJokerSnap raises to 13.05 (All-in)
+igor2322 folds
+toaster_oven folds
+BoneMan61 folds
+ownmatusow folds
+AceJokerSnap refunded 12.05
+AceJokerSnap wins Pot (2.50)
+Rake (0)
+
+
+
+Hand #5716557-131 - 2013-04-20 13:06:01
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #2
+Seat 1: toaster_oven (31.32)
+Seat 2: BoneMan61 (116.18)
+Seat 3: ownmatusow (99)
+Seat 4: AceJokerSnap (14.55) - sitting out
+Seat 5: qdmcg (100) - waiting for big blind
+Seat 6: igor2322 (92.24)
+BoneMan61 has the dealer button
+ownmatusow posts small blind 0.50
+qdmcg posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [9d 8h]
+igor2322 calls 1
+toaster_oven folds
+BoneMan61 folds
+ownmatusow has timed out
+ownmatusow folds
+qdmcg checks
+** Flop ** [8d 6h Td]
+qdmcg checks
+igor2322 checks
+** Turn ** [5s]
+qdmcg bets 2
+igor2322 calls 2
+** River ** [Qs]
+qdmcg checks
+igor2322 checks
+** Pot Show Down ** [8d 6h Td 5s Qs]
+qdmcg shows [9d 8h] (a Pair of Eights +QT9)
+igor2322 shows [Ah 5c] (a Pair of Fives +AQT)
+qdmcg wins Pot (6.34) with a Pair
+Rake (0.16)
+
+
+
+Hand #5716605-132 - 2013-04-20 13:07:03
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #2
+Seat 1: toaster_oven (31.32)
+Seat 2: BoneMan61 (116.18)
+Seat 3: ownmatusow (98.50) - sitting out
+Seat 5: qdmcg (103.34)
+Seat 6: igor2322 (89.24)
+qdmcg has the dealer button
+igor2322 posts small blind 0.50
+toaster_oven posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [5c Ah]
+BoneMan61 folds
+qdmcg raises to 3
+igor2322 folds
+toaster_oven folds
+qdmcg refunded 2
+qdmcg wins Pot (2.50)
+Rake (0)
+
+
+
+Hand #5716624-133 - 2013-04-20 13:07:28
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #2
+Seat 1: toaster_oven (30.32)
+Seat 2: BoneMan61 (116.18)
+Seat 3: ownmatusow (98.50)
+Seat 5: qdmcg (104.84)
+Seat 6: igor2322 (88.74)
+igor2322 has the dealer button
+toaster_oven posts small blind 0.50
+BoneMan61 posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Jh 8c]
+ownmatusow folds
+qdmcg folds
+igor2322 calls 1
+toaster_oven calls 0.50
+BoneMan61 raises to 4
+igor2322 calls 3
+toaster_oven calls 3
+** Flop ** [Tc Kc 7c]
+toaster_oven checks
+BoneMan61 bets 7.18
+igor2322 has timed out
+igor2322 folds
+toaster_oven folds
+BoneMan61 refunded 7.18
+BoneMan61 wins Pot (11.70)
+Rake (0.30)
+
+
+
+Hand #5716696-134 - 2013-04-20 13:08:53
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #2
+Seat 1: toaster_oven (26.32)
+Seat 2: BoneMan61 (123.88)
+Seat 3: ownmatusow (98.50)
+Seat 5: qdmcg (104.84)
+Seat 6: igor2322 (84.74) - sitting out
+toaster_oven has the dealer button
+BoneMan61 posts small blind 0.50
+ownmatusow posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [9h Kc]
+qdmcg folds
+toaster_oven folds
+BoneMan61 raises to 3
+ownmatusow calls 2
+** Flop ** [Jc 2s Jd]
+BoneMan61 checks
+ownmatusow checks
+** Turn ** [9s]
+BoneMan61 checks
+ownmatusow bets 3
+BoneMan61 folds
+ownmatusow refunded 3
+ownmatusow wins Pot (5.85)
+Rake (0.15)
+
+
+
+Hand #5716780-135 - 2013-04-20 13:10:39
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #2
+Seat 1: toaster_oven (26.32)
+Seat 2: BoneMan61 (120.88)
+Seat 3: ownmatusow (101.35)
+Seat 4: akindlyone (100)
+Seat 5: qdmcg (104.84)
+Seat 6: igor2322 (84.74)
+BoneMan61 has the dealer button
+ownmatusow posts small blind 0.50
+akindlyone posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Jh Th]
+qdmcg raises to 3
+igor2322 folds
+toaster_oven folds
+BoneMan61 folds
+ownmatusow calls 2.50
+akindlyone calls 2
+** Flop ** [Kh 7c 8c]
+ownmatusow checks
+akindlyone checks
+qdmcg bets 6
+ownmatusow folds
+akindlyone folds
+qdmcg refunded 6
+qdmcg wins Pot (8.78)
+Rake (0.22)
+
+
+
+Hand #5716834-136 - 2013-04-20 13:11:51
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #2
+Seat 1: toaster_oven (26.32)
+Seat 2: BoneMan61 (120.88)
+Seat 3: ownmatusow (98.35)
+Seat 4: akindlyone (97)
+Seat 5: qdmcg (110.62)
+Seat 6: igor2322 (84.74)
+ownmatusow has the dealer button
+akindlyone posts small blind 0.50
+qdmcg posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Qd 5s]
+igor2322 calls 1
+toaster_oven folds
+BoneMan61 calls 1
+ownmatusow raises to 6
+akindlyone folds
+qdmcg folds
+igor2322 folds
+BoneMan61 folds
+ownmatusow refunded 5
+ownmatusow wins Pot (4.50)
+Rake (0)
+
+
+
+Hand #5716892-137 - 2013-04-20 13:12:56
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #2
+Seat 1: toaster_oven (26.32)
+Seat 2: BoneMan61 (119.88)
+Seat 3: ownmatusow (101.85)
+Seat 4: akindlyone (96.50)
+Seat 5: qdmcg (109.62)
+Seat 6: igor2322 (83.74)
+akindlyone has the dealer button
+qdmcg posts small blind 0.50
+igor2322 posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [3c 6h]
+toaster_oven folds
+BoneMan61 has timed out
+BoneMan61 folds
+ownmatusow folds
+akindlyone folds
+qdmcg folds
+igor2322 refunded 0.50
+igor2322 wins Pot (1)
+Rake (0)
+
+
+
+Hand #5716936-138 - 2013-04-20 13:13:43
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #2
+Seat 1: toaster_oven (26.32)
+Seat 2: BoneMan61 (119.88) - sitting out
+Seat 3: ownmatusow (101.85)
+Seat 4: akindlyone (96.50)
+Seat 5: qdmcg (109.12)
+Seat 6: igor2322 (84.24)
+qdmcg has the dealer button
+igor2322 posts small blind 0.50
+toaster_oven posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [6d 4c]
+ownmatusow folds
+akindlyone folds
+qdmcg folds
+igor2322 calls 0.50
+toaster_oven checks
+** Flop ** [6h 7s Jc]
+igor2322 checks
+toaster_oven bets 2
+igor2322 folds
+toaster_oven refunded 2
+toaster_oven wins Pot (1.95)
+Rake (0.05)
+
+
+
+Hand #5716961-139 - 2013-04-20 13:14:18
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #2
+Seat 1: toaster_oven (27.27)
+Seat 2: BoneMan61 (119.88)
+Seat 3: ownmatusow (101.85)
+Seat 4: akindlyone (96.50)
+Seat 5: qdmcg (109.12)
+Seat 6: igor2322 (83.24)
+igor2322 has the dealer button
+toaster_oven posts small blind 0.50
+BoneMan61 posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Jh Ks]
+ownmatusow has timed out
+ownmatusow folds
+akindlyone folds
+qdmcg raises to 3
+igor2322 folds
+toaster_oven calls 2.50
+BoneMan61 folds
+** Flop ** [Kd 2s 2h]
+toaster_oven bets 1
+qdmcg raises to 3
+toaster_oven calls 2
+** Turn ** [Qc]
+toaster_oven checks
+qdmcg bets 12.35
+toaster_oven calls 12.35
+** River ** [Th]
+toaster_oven checks
+qdmcg bets 11.74
+toaster_oven calls 8.92 (All-in)
+qdmcg refunded 2.82
+** Pot Show Down ** [Kd 2s 2h Qc Th]
+toaster_oven shows [Ac Kh] (Two Pair, Kings and Deuces +A)
+qdmcg shows [Jh Ks] (Two Pair, Kings and Deuces +Q)
+toaster_oven wins Pot (54.16) with Two Pair
+Rake (1.38)
+
+
+
+Hand #5717034-140 - 2013-04-20 13:15:48
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #2
+Seat 1: toaster_oven (54.16)
+Seat 2: BoneMan61 (118.88)
+Seat 3: ownmatusow (101.85)
+Seat 4: akindlyone (96.50)
+Seat 5: qdmcg (81.85)
+Seat 6: igor2322 (83.24)
+toaster_oven has the dealer button
+BoneMan61 posts small blind 0.50
+ownmatusow posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Kc 4d]
+akindlyone folds
+qdmcg folds
+igor2322 folds
+qdmcg adds 18.15 chips
+toaster_oven folds
+BoneMan61 folds
+ownmatusow refunded 0.50
+ownmatusow wins Pot (1)
+Rake (0)
+
+
+
+Hand #5717049-141 - 2013-04-20 13:16:08
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #2
+Seat 1: toaster_oven (54.16)
+Seat 2: BoneMan61 (118.38)
+Seat 3: ownmatusow (102.35)
+Seat 4: akindlyone (96.50)
+Seat 5: qdmcg (100)
+Seat 6: igor2322 (83.24)
+BoneMan61 has the dealer button
+ownmatusow posts small blind 0.50
+akindlyone posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [9s 8h]
+qdmcg folds
+igor2322 calls 1
+toaster_oven folds
+BoneMan61 raises to 3
+ownmatusow folds
+akindlyone calls 2
+igor2322 folds
+** Flop ** [Ad 9d Qd]
+akindlyone folds
+BoneMan61 wins Pot (7.32)
+Rake (0.18)
+
+
+
+Hand #5717082-142 - 2013-04-20 13:16:44
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #2
+Seat 1: toaster_oven (54.16)
+Seat 2: BoneMan61 (122.70)
+Seat 3: ownmatusow (101.85)
+Seat 4: akindlyone (93.50)
+Seat 5: qdmcg (100)
+Seat 6: igor2322 (82.24)
+ownmatusow has the dealer button
+akindlyone posts small blind 0.50
+qdmcg posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [3h Kd]
+igor2322 calls 1
+toaster_oven folds
+BoneMan61 calls 1
+ownmatusow folds
+akindlyone folds
+qdmcg checks
+** Flop ** [8h 5h Qs]
+qdmcg checks
+igor2322 bets 2
+BoneMan61 calls 2
+qdmcg folds
+** Turn ** [Ah]
+igor2322 checks
+BoneMan61 bets 7
+igor2322 folds
+BoneMan61 refunded 7
+BoneMan61 wins Pot (7.32)
+Rake (0.18)
+
+
+
+Hand #5717125-143 - 2013-04-20 13:17:47
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #2
+Seat 1: toaster_oven (54.16)
+Seat 2: BoneMan61 (127.02)
+Seat 3: ownmatusow (101.85)
+Seat 4: akindlyone (93)
+Seat 5: qdmcg (99)
+Seat 6: igor2322 (79.24)
+akindlyone has the dealer button
+qdmcg posts small blind 0.50
+igor2322 posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [5d As]
+toaster_oven calls 1
+BoneMan61 folds
+ownmatusow has timed out
+ownmatusow folds
+akindlyone folds
+qdmcg calls 0.50
+igor2322 checks
+** Flop ** [6d 2s Ac]
+qdmcg checks
+igor2322 checks
+toaster_oven bets 2
+qdmcg calls 2
+igor2322 folds
+** Turn ** [Qc]
+qdmcg checks
+toaster_oven bets 2
+qdmcg calls 2
+** River ** [5h]
+qdmcg checks
+toaster_oven checks
+** Pot Show Down ** [6d 2s Ac Qc 5h]
+toaster_oven shows [Ad 9s] (a Pair of Aces +Q96)
+qdmcg shows [5d As] (Two Pair, Aces and Fives +Q)
+qdmcg wins Pot (10.73) with Two Pair
+Rake (0.27)
+
+
+
+Hand #5717175-144 - 2013-04-20 13:19:05
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #2
+Seat 1: toaster_oven (49.16)
+Seat 2: BoneMan61 (127.02)
+Seat 4: akindlyone (93)
+Seat 5: qdmcg (104.73)
+Seat 6: igor2322 (78.24)
+qdmcg has the dealer button
+igor2322 posts small blind 0.50
+toaster_oven posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Qs Kh]
+BoneMan61 folds
+akindlyone folds
+qdmcg raises to 3
+igor2322 folds
+toaster_oven calls 2
+** Flop ** [Jh Jc 7c]
+toaster_oven checks
+qdmcg bets 4
+toaster_oven folds
+qdmcg refunded 4
+qdmcg wins Pot (6.34)
+Rake (0.16)
+
+
+
+Hand #5717199-145 - 2013-04-20 13:19:39
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #2
+Seat 1: toaster_oven (46.16)
+Seat 2: BoneMan61 (127.02)
+Seat 4: akindlyone (93)
+Seat 5: qdmcg (108.07)
+Seat 6: igor2322 (77.74)
+igor2322 has the dealer button
+toaster_oven posts small blind 0.50
+BoneMan61 posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Ac 3d]
+akindlyone folds
+qdmcg folds
+igor2322 folds
+toaster_oven calls 0.50
+BoneMan61 checks
+** Flop ** [2d Js 9h]
+toaster_oven checks
+BoneMan61 bets 2
+toaster_oven folds
+BoneMan61 refunded 2
+BoneMan61 wins Pot (1.95)
+Rake (0.05)
+
+
+
+Hand #5717228-146 - 2013-04-20 13:20:25
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #2
+Seat 1: toaster_oven (45.16)
+Seat 2: BoneMan61 (127.97)
+Seat 4: akindlyone (93)
+Seat 5: qdmcg (108.07)
+Seat 6: igor2322 (77.74)
+toaster_oven has the dealer button
+BoneMan61 posts small blind 0.50
+akindlyone posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Ad 5s]
+qdmcg folds
+igor2322 folds
+toaster_oven calls 1
+BoneMan61 folds
+akindlyone checks
+** Flop ** [Qd 6d 2h]
+akindlyone checks
+toaster_oven checks
+** Turn ** [Jc]
+akindlyone bets 2
+toaster_oven calls 2
+** River ** [5h]
+akindlyone checks
+toaster_oven bets 4
+akindlyone folds
+toaster_oven refunded 4
+toaster_oven wins Pot (6.34)
+Rake (0.16)
+
+
+
+Hand #5717258-147 - 2013-04-20 13:21:15
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #2
+Seat 1: toaster_oven (48.50)
+Seat 2: BoneMan61 (127.47)
+Seat 4: akindlyone (90)
+Seat 5: qdmcg (108.07)
+Seat 6: igor2322 (77.74)
+BoneMan61 has the dealer button
+akindlyone posts small blind 0.50
+qdmcg posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [9d 5s]
+igor2322 calls 1
+toaster_oven folds
+BoneMan61 folds
+akindlyone folds
+qdmcg checks
+** Flop ** [7c Qc 3s]
+qdmcg checks
+igor2322 bets 2
+qdmcg folds
+igor2322 refunded 2
+igor2322 wins Pot (2.44)
+Rake (0.06)
+
+
+
+Hand #5717284-148 - 2013-04-20 13:22:03
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #2
+Seat 1: toaster_oven (48.50)
+Seat 2: BoneMan61 (127.47)
+Seat 3: edcvgr (100)
+Seat 4: akindlyone (89.50)
+Seat 5: qdmcg (107.07)
+Seat 6: igor2322 (79.18)
+akindlyone has the dealer button
+qdmcg posts small blind 0.50
+igor2322 posts big blind 1
+edcvgr posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Jd 4s]
+toaster_oven raises to 2
+BoneMan61 folds
+edcvgr calls 1
+akindlyone folds
+qdmcg folds
+igor2322 folds
+** Flop ** [5h 8h Ad]
+toaster_oven bets 2
+edcvgr folds
+toaster_oven refunded 2
+toaster_oven wins Pot (5.37)
+Rake (0.13)
+toaster_oven shows [Ah Kc]
+
+
+
+Hand #5717311-149 - 2013-04-20 13:22:44
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #2
+Seat 1: toaster_oven (51.87)
+Seat 2: BoneMan61 (127.47)
+Seat 3: edcvgr (98)
+Seat 4: akindlyone (89.50)
+Seat 5: qdmcg (106.57)
+Seat 6: igor2322 (78.18)
+qdmcg has the dealer button
+igor2322 posts small blind 0.50
+toaster_oven posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Tc 4d]
+BoneMan61 folds
+edcvgr folds
+akindlyone folds
+qdmcg folds
+igor2322 calls 0.50
+toaster_oven raises to 3
+igor2322 calls 2
+** Flop ** [Jd 8c Kc]
+igor2322 checks
+toaster_oven checks
+** Turn ** [3s]
+igor2322 bets 4
+toaster_oven calls 4
+** River ** [Qs]
+igor2322 bets 7
+toaster_oven calls 7
+** Pot Show Down ** [Jd 8c Kc 3s Qs]
+toaster_oven shows [Ad Qd] (a Pair of Queens +AKJ)
+igor2322 shows [5s Ks] (a Pair of Kings +QJ8)
+igor2322 wins Pot (27.30) with a Pair
+Rake (0.70)
+
+
+
+Hand #5717337-150 - 2013-04-20 13:23:36
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #2
+Seat 1: toaster_oven (37.87)
+Seat 2: BoneMan61 (127.47)
+Seat 3: edcvgr (98)
+Seat 4: akindlyone (89.50)
+Seat 5: qdmcg (106.57)
+Seat 6: igor2322 (91.48)
+igor2322 has the dealer button
+toaster_oven posts small blind 0.50
+BoneMan61 posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Ac 7h]
+edcvgr calls 1
+akindlyone folds
+qdmcg folds
+igor2322 folds
+toaster_oven folds
+BoneMan61 checks
+** Flop ** [5h 6c 3d]
+BoneMan61 bets 3
+edcvgr calls 3
+** Turn ** [6s]
+BoneMan61 bets 3
+edcvgr calls 3
+** River ** [8h]
+BoneMan61 bets 12
+edcvgr calls 12
+** Pot Show Down ** [5h 6c 3d 6s 8h]
+BoneMan61 shows [6h Qc] (Three of a Kind, Sixes +Q8)
+edcvgr shows [7d 6d] (Three of a Kind, Sixes +87)
+BoneMan61 wins Pot (37.54) with Three of a Kind
+Rake (0.96)
+
+
+
+Hand #5717374-151 - 2013-04-20 13:24:40
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #2
+Seat 1: toaster_oven (37.37)
+Seat 2: BoneMan61 (146.01)
+Seat 3: edcvgr (79)
+Seat 4: akindlyone (89.50)
+Seat 5: qdmcg (106.57)
+Seat 6: igor2322 (91.48)
+toaster_oven has the dealer button
+BoneMan61 posts small blind 0.50
+edcvgr posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Jh 9h]
+akindlyone calls 1
+qdmcg calls 1
+igor2322 folds
+toaster_oven folds
+BoneMan61 folds
+edcvgr checks
+** Flop ** [Kc Qc 4d]
+edcvgr checks
+akindlyone checks
+qdmcg bets 3
+edcvgr calls 3
+akindlyone calls 3
+** Turn ** [As]
+edcvgr checks
+akindlyone checks
+qdmcg checks
+** River ** [7c]
+edcvgr checks
+akindlyone bets 15
+qdmcg folds
+edcvgr folds
+akindlyone refunded 15
+akindlyone wins Pot (12.19)
+Rake (0.31)
+
+
+
+Hand #5717400-152 - 2013-04-20 13:25:28
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #2
+Seat 1: toaster_oven (37.37)
+Seat 2: BoneMan61 (145.51)
+Seat 3: edcvgr (75)
+Seat 4: akindlyone (97.69)
+Seat 5: qdmcg (102.57)
+Seat 6: igor2322 (91.48)
+BoneMan61 has the dealer button
+edcvgr posts small blind 0.50
+akindlyone posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [6s 9h]
+qdmcg folds
+igor2322 calls 1
+toaster_oven folds
+BoneMan61 folds
+edcvgr calls 0.50
+akindlyone checks
+** Flop ** [5h 2d 9c]
+edcvgr checks
+akindlyone checks
+igor2322 checks
+** Turn ** [8c]
+edcvgr checks
+akindlyone checks
+igor2322 bets 2
+edcvgr calls 2
+akindlyone calls 2
+** River ** [5d]
+edcvgr checks
+akindlyone checks
+igor2322 bets 7
+edcvgr folds
+akindlyone folds
+igor2322 refunded 7
+igor2322 wins Pot (8.78)
+Rake (0.22)
+
+
+
+Hand #5717435-153 - 2013-04-20 13:26:31
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #2
+Seat 1: toaster_oven (37.37)
+Seat 2: BoneMan61 (145.51)
+Seat 3: edcvgr (72)
+Seat 4: akindlyone (94.69)
+Seat 5: qdmcg (102.57)
+Seat 6: igor2322 (97.26)
+edcvgr has the dealer button
+akindlyone posts small blind 0.50
+qdmcg posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [6c As]
+igor2322 calls 1
+toaster_oven calls 1
+BoneMan61 calls 1
+edcvgr calls 1
+akindlyone folds
+qdmcg checks
+** Flop ** [5s Ks 2d]
+qdmcg checks
+igor2322 bets 2
+toaster_oven folds
+BoneMan61 raises to 6
+edcvgr folds
+qdmcg folds
+igor2322 folds
+BoneMan61 refunded 4
+BoneMan61 wins Pot (9.27)
+Rake (0.23)
+
+
+
+Hand #5717477-154 - 2013-04-20 13:27:42
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #2
+Seat 1: toaster_oven (36.37)
+Seat 2: BoneMan61 (151.78)
+Seat 3: edcvgr (71)
+Seat 4: akindlyone (94.19)
+Seat 5: qdmcg (101.57)
+Seat 6: igor2322 (94.26)
+akindlyone has the dealer button
+qdmcg posts small blind 0.50
+igor2322 posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [6c 2s]
+toaster_oven raises to 2
+BoneMan61 folds
+edcvgr folds
+akindlyone folds
+qdmcg folds
+igor2322 folds
+toaster_oven refunded 1
+toaster_oven wins Pot (2.50)
+Rake (0)
+
+
+
+Hand #5717493-155 - 2013-04-20 13:28:14
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #2
+Seat 1: toaster_oven (37.87)
+Seat 2: BoneMan61 (151.78)
+Seat 3: edcvgr (71)
+Seat 4: akindlyone (94.19)
+Seat 5: qdmcg (101.07)
+Seat 6: igor2322 (93.26)
+qdmcg has the dealer button
+igor2322 posts small blind 0.50
+toaster_oven posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [5d 2c]
+BoneMan61 folds
+edcvgr folds
+akindlyone folds
+qdmcg folds
+igor2322 calls 0.50
+toaster_oven checks
+** Flop ** [Td 4d 3h]
+igor2322 bets 2
+toaster_oven calls 2
+** Turn ** [3s]
+igor2322 checks
+toaster_oven bets 5
+igor2322 folds
+toaster_oven refunded 5
+toaster_oven wins Pot (5.85)
+Rake (0.15)
+toaster_oven shows [3c 2s]
+
+
+
+Hand #5717518-156 - 2013-04-20 13:29:02
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #2
+Seat 1: toaster_oven (40.72)
+Seat 2: BoneMan61 (151.78)
+Seat 3: edcvgr (71)
+Seat 4: akindlyone (94.19)
+Seat 5: qdmcg (101.07)
+Seat 6: igor2322 (90.26)
+igor2322 has the dealer button
+toaster_oven posts small blind 0.50
+BoneMan61 posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [9c 6d]
+edcvgr folds
+akindlyone folds
+qdmcg folds
+igor2322 folds
+toaster_oven folds
+BoneMan61 refunded 0.50
+BoneMan61 wins Pot (1)
+Rake (0)
+
+
+
+Hand #5717526-157 - 2013-04-20 13:29:20
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #2
+Seat 1: toaster_oven (40.22)
+Seat 2: BoneMan61 (152.28)
+Seat 3: edcvgr (71)
+Seat 4: akindlyone (94.19)
+Seat 5: qdmcg (101.07)
+Seat 6: igor2322 (90.26)
+toaster_oven has the dealer button
+BoneMan61 posts small blind 0.50
+edcvgr posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [2s 2d]
+akindlyone folds
+qdmcg raises to 4
+igor2322 folds
+toaster_oven folds
+BoneMan61 folds
+edcvgr folds
+qdmcg refunded 3
+qdmcg wins Pot (2.50)
+Rake (0)
+
+
+
+Hand #5717541-158 - 2013-04-20 13:29:41
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #2
+Seat 1: toaster_oven (40.22)
+Seat 2: BoneMan61 (151.78)
+Seat 3: edcvgr (70)
+Seat 4: akindlyone (94.19)
+Seat 5: qdmcg (102.57)
+Seat 6: igor2322 (90.26)
+BoneMan61 has the dealer button
+edcvgr posts small blind 0.50
+akindlyone posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Tc Qc]
+qdmcg calls 1
+igor2322 folds
+toaster_oven calls 1
+BoneMan61 folds
+edcvgr calls 0.50
+akindlyone checks
+** Flop ** [7d 5h Ts]
+edcvgr checks
+akindlyone checks
+qdmcg bets 3
+toaster_oven folds
+edcvgr folds
+akindlyone calls 3
+** Turn ** [Jh]
+akindlyone checks
+qdmcg bets 5
+akindlyone calls 5
+** River ** [2h]
+akindlyone checks
+qdmcg checks
+** Pot Show Down ** [7d 5h Ts Jh 2h]
+akindlyone shows [9d 8h] (a Straight, Seven to Jack)
+qdmcg shows [Tc Qc] (a Pair of Tens +QJ7)
+akindlyone wins Pot (19.50) with a Straight
+Rake (0.50)
+
+
+
+Hand #5717588-159 - 2013-04-20 13:30:41
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #2
+Seat 1: toaster_oven (39.22)
+Seat 2: healit (40)
+Seat 3: edcvgr (69)
+Seat 4: akindlyone (104.69)
+Seat 5: qdmcg (93.57)
+Seat 6: igor2322 (90.26)
+edcvgr has the dealer button
+akindlyone posts small blind 0.50
+qdmcg posts big blind 1
+healit posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [6h 9c]
+igor2322 calls 1
+toaster_oven folds
+healit checks
+edcvgr calls 1
+akindlyone folds
+qdmcg checks
+** Flop ** [2d 7s Kd]
+qdmcg checks
+igor2322 checks
+healit checks
+edcvgr checks
+** Turn ** [6s]
+qdmcg checks
+igor2322 checks
+healit bets 4
+edcvgr folds
+qdmcg folds
+igor2322 folds
+healit refunded 4
+healit wins Pot (4.39)
+Rake (0.11)
+
+
+
+Hand #5717632-160 - 2013-04-20 13:31:53
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #2
+Seat 1: toaster_oven (39.22)
+Seat 2: healit (43.39)
+Seat 3: edcvgr (68)
+Seat 4: akindlyone (104.19)
+Seat 5: qdmcg (92.57)
+Seat 6: igor2322 (89.26)
+akindlyone has the dealer button
+qdmcg posts small blind 0.50
+igor2322 posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [7c Ks]
+toaster_oven folds
+healit calls 1
+edcvgr calls 1
+akindlyone folds
+qdmcg calls 0.50
+igor2322 checks
+** Flop ** [9s 5c 4c]
+qdmcg checks
+igor2322 checks
+healit checks
+edcvgr checks
+** Turn ** [4d]
+qdmcg checks
+igor2322 checks
+healit checks
+edcvgr checks
+** River ** [7d]
+qdmcg checks
+igor2322 checks
+healit checks
+edcvgr checks
+** Pot Show Down ** [9s 5c 4c 4d 7d]
+healit shows [Qs 5h] (Two Pair, Fives and Fours +Q)
+edcvgr shows [8d As] (a Pair of Fours +A98)
+qdmcg shows [7c Ks] (Two Pair, Sevens and Fours +K)
+igor2322 shows [8s Kc] (a Pair of Fours +K98)
+qdmcg wins Pot (3.90) with Two Pair
+Rake (0.10)
+
+
+
+Hand #5717693-161 - 2013-04-20 13:33:21
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #2
+Seat 1: toaster_oven (39.22)
+Seat 2: healit (42.39)
+Seat 3: edcvgr (67)
+Seat 4: akindlyone (104.19)
+Seat 5: qdmcg (95.47)
+Seat 6: igor2322 (88.26)
+qdmcg has the dealer button
+igor2322 posts small blind 0.50
+toaster_oven posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [2h 5d]
+healit calls 1
+edcvgr calls 1
+akindlyone folds
+qdmcg folds
+igor2322 calls 0.50
+toaster_oven checks
+** Flop ** [Js Td Ac]
+igor2322 checks
+toaster_oven checks
+healit bets 3
+edcvgr folds
+igor2322 folds
+toaster_oven calls 3
+** Turn ** [9c]
+toaster_oven checks
+healit bets 7
+toaster_oven folds
+healit refunded 7
+healit wins Pot (9.75)
+Rake (0.25)
+
+
+
+Hand #5717729-162 - 2013-04-20 13:34:24
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #2
+Seat 1: toaster_oven (35.22)
+Seat 2: healit (48.14)
+Seat 3: edcvgr (66)
+Seat 4: akindlyone (104.19)
+Seat 5: qdmcg (95.47)
+Seat 6: igor2322 (87.26)
+igor2322 has the dealer button
+toaster_oven posts small blind 0.50
+healit posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [2c Ts]
+edcvgr folds
+akindlyone folds
+qdmcg folds
+igor2322 calls 1
+toaster_oven calls 0.50
+healit checks
+** Flop ** [4h 7d 3h]
+toaster_oven checks
+healit checks
+igor2322 bets 2
+toaster_oven folds
+healit calls 2
+** Turn ** [7h]
+healit checks
+igor2322 checks
+** River ** [Tc]
+healit checks
+igor2322 checks
+** Pot Show Down ** [4h 7d 3h 7h Tc]
+healit shows [6c Ac] (a Pair of Sevens +AT6)
+igor2322 shows [Ah 4s] (Two Pair, Sevens and Fours +A)
+igor2322 wins Pot (6.83) with Two Pair
+Rake (0.17)
+
+
+
+Hand #5717793-163 - 2013-04-20 13:36:11
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #2
+Seat 1: toaster_oven (34.22)
+Seat 2: healit (45.14)
+Seat 3: edcvgr (66)
+Seat 4: akindlyone (104.19)
+Seat 5: qdmcg (95.47)
+Seat 6: igor2322 (91.09)
+toaster_oven has the dealer button
+healit posts small blind 0.50
+edcvgr posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [3s Jd]
+akindlyone folds
+qdmcg folds
+igor2322 folds
+toaster_oven folds
+healit calls 0.50
+edcvgr checks
+** Flop ** [Ah Tc 7c]
+healit checks
+edcvgr checks
+** Turn ** [Ks]
+healit checks
+edcvgr checks
+** River ** [Qc]
+healit checks
+edcvgr checks
+** Pot Show Down ** [Ah Tc 7c Ks Qc]
+healit shows [3c Kh] (a Pair of Kings +AQT)
+edcvgr shows [6h 8d] (High Card Ace +KQT8)
+healit wins Pot (1.95) with a Pair
+Rake (0.05)
+
+
+
+Hand #5717850-164 - 2013-04-20 13:38:02
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #2
+Seat 1: toaster_oven (34.22)
+Seat 2: healit (46.09)
+Seat 3: edcvgr (65)
+Seat 4: akindlyone (104.19)
+Seat 5: qdmcg (95.47)
+Seat 6: Kasaf (20) - waiting for big blind
+healit has the dealer button
+edcvgr posts small blind 0.50
+akindlyone posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Ac 6c]
+qdmcg raises to 4
+toaster_oven folds
+healit folds
+edcvgr calls 3.50
+akindlyone folds
+** Flop ** [Qh 9h 7h]
+edcvgr bets 8
+qdmcg folds
+edcvgr refunded 8
+edcvgr wins Pot (8.78)
+Rake (0.22)
+
+
+
+Hand #5717871-165 - 2013-04-20 13:38:45
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #2
+Seat 1: toaster_oven (34.22)
+Seat 2: healit (46.09)
+Seat 3: edcvgr (69.78)
+Seat 4: akindlyone (103.19)
+Seat 5: qdmcg (91.47)
+Seat 6: Kasaf (20) - waiting for big blind
+edcvgr has the dealer button
+akindlyone posts small blind 0.50
+qdmcg posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [9c 3h]
+toaster_oven calls 1
+healit calls 1
+edcvgr folds
+akindlyone folds
+qdmcg checks
+** Flop ** [Kc Ad Ah]
+qdmcg checks
+toaster_oven bets 3
+healit folds
+qdmcg folds
+toaster_oven refunded 3
+toaster_oven wins Pot (3.42)
+Rake (0.08)
+
+
+
+Hand #5717894-166 - 2013-04-20 13:39:29
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #2
+Seat 1: toaster_oven (36.64)
+Seat 2: healit (45.09)
+Seat 3: edcvgr (69.78)
+Seat 4: akindlyone (102.69)
+Seat 5: qdmcg (90.47)
+Seat 6: Kasaf (20)
+akindlyone has the dealer button
+qdmcg posts small blind 0.50
+Kasaf posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [2c 7c]
+toaster_oven folds
+healit calls 1
+edcvgr calls 1
+akindlyone folds
+qdmcg folds
+Kasaf checks
+** Flop ** [Td Jc Js]
+Kasaf checks
+healit checks
+edcvgr checks
+** Turn ** [9s]
+Kasaf checks
+healit checks
+edcvgr bets 3
+Kasaf folds
+healit has timed out
+healit folds
+edcvgr refunded 3
+edcvgr wins Pot (3.42)
+Rake (0.08)
+
+
+
+Hand #5717952-167 - 2013-04-20 13:41:04
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #2
+Seat 1: toaster_oven (36.64)
+Seat 2: healit (44.09) - sitting out
+Seat 3: edcvgr (72.20)
+Seat 4: akindlyone (102.69)
+Seat 5: qdmcg (89.97)
+Seat 6: Kasaf (19)
+qdmcg has the dealer button
+Kasaf posts small blind 0.50
+toaster_oven posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [4c Th]
+edcvgr calls 1
+akindlyone calls 1
+qdmcg folds
+Kasaf calls 0.50
+toaster_oven checks
+** Flop ** [7s As 5s]
+Kasaf checks
+toaster_oven checks
+edcvgr checks
+akindlyone bets 5
+Kasaf calls 5
+toaster_oven folds
+edcvgr folds
+** Turn ** [7c]
+Kasaf checks
+akindlyone checks
+** River ** [5d]
+Kasaf checks
+akindlyone bets 10
+Kasaf calls 10
+** Pot Show Down ** [7s As 5s 7c 5d]
+akindlyone shows [Td Ah] (Two Pair, Aces and Sevens +T)
+Kasaf shows [Js 6s] (a Flush, Ace high +J765)
+Kasaf wins Pot (33.15) with a Flush
+Rake (0.85)
+
+
+
+Hand #5718001-168 - 2013-04-20 13:42:23
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #2
+Seat 1: toaster_oven (35.64)
+Seat 2: healit (44.09)
+Seat 3: edcvgr (71.20)
+Seat 4: akindlyone (86.69)
+Seat 5: qdmcg (89.97)
+Seat 6: Kasaf (36.15)
+Kasaf has the dealer button
+toaster_oven posts small blind 0.50
+healit posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [6c 9c]
+edcvgr folds
+akindlyone folds
+qdmcg folds
+Kasaf calls 1
+toaster_oven folds
+healit checks
+** Flop ** [5d 3c 7d]
+healit checks
+Kasaf checks
+** Turn ** [4h]
+healit bets 2
+Kasaf calls 2
+** River ** [3s]
+healit bets 5
+Kasaf folds
+healit refunded 5
+healit wins Pot (6.34)
+Rake (0.16)
+healit shows [5s 3h]

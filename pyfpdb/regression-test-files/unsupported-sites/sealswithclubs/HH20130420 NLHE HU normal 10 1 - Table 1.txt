@@ -1,0 +1,452 @@
+Hand #5720431-2 - 2013-04-20 14:48:34
+Game: NL Hold'em (9.70+0.30) - Blinds 10/20
+Site: Seals With Clubs
+Table: NLHE HU normal 10 #1 - Table 1
+Seat 1: qdmcg (1520)
+Seat 2: bugs (1480) - sitting out
+bugs has the dealer button
+bugs posts small blind 10
+qdmcg posts big blind 20
+** Hole Cards **
+Dealt to qdmcg [Kd Qc]
+bugs folds
+qdmcg refunded 10
+qdmcg wins Pot (20)
+
+
+
+Hand #5720439-3 - 2013-04-20 14:48:41
+Game: NL Hold'em (9.70+0.30) - Blinds 10/20
+Site: Seals With Clubs
+Table: NLHE HU normal 10 #1 - Table 1
+Seat 1: qdmcg (1530)
+Seat 2: bugs (1470) - sitting out
+qdmcg has the dealer button
+qdmcg posts small blind 10
+bugs posts big blind 20
+** Hole Cards **
+Dealt to qdmcg [7h 7c]
+qdmcg raises to 60
+bugs folds
+qdmcg refunded 40
+qdmcg wins Pot (40)
+
+
+
+Hand #5720443-4 - 2013-04-20 14:48:52
+Game: NL Hold'em (9.70+0.30) - Blinds 10/20
+Site: Seals With Clubs
+Table: NLHE HU normal 10 #1 - Table 1
+Seat 1: qdmcg (1550)
+Seat 2: bugs (1450) - sitting out
+bugs has the dealer button
+bugs posts small blind 10
+qdmcg posts big blind 20
+** Hole Cards **
+Dealt to qdmcg [3h 5h]
+bugs folds
+qdmcg refunded 10
+qdmcg wins Pot (20)
+
+
+
+Hand #5720448-5 - 2013-04-20 14:49:00
+Game: NL Hold'em (9.70+0.30) - Blinds 10/20
+Site: Seals With Clubs
+Table: NLHE HU normal 10 #1 - Table 1
+Seat 1: qdmcg (1560)
+Seat 2: bugs (1440) - sitting out
+qdmcg has the dealer button
+qdmcg posts small blind 10
+bugs posts big blind 20
+** Hole Cards **
+Dealt to qdmcg [3s 5h]
+qdmcg raises to 60
+bugs folds
+qdmcg refunded 40
+qdmcg wins Pot (40)
+
+
+
+Hand #5720454-6 - 2013-04-20 14:49:10
+Game: NL Hold'em (9.70+0.30) - Blinds 10/20
+Site: Seals With Clubs
+Table: NLHE HU normal 10 #1 - Table 1
+Seat 1: qdmcg (1580)
+Seat 2: bugs (1420)
+bugs has the dealer button
+bugs posts small blind 10
+qdmcg posts big blind 20
+** Hole Cards **
+Dealt to qdmcg [6s 3s]
+bugs raises to 60
+qdmcg folds
+bugs refunded 40
+bugs wins Pot (40)
+
+
+
+Hand #5720464-7 - 2013-04-20 14:49:26
+Game: NL Hold'em (9.70+0.30) - Blinds 10/20
+Site: Seals With Clubs
+Table: NLHE HU normal 10 #1 - Table 1
+Seat 1: qdmcg (1560)
+Seat 2: bugs (1440)
+qdmcg has the dealer button
+qdmcg posts small blind 10
+bugs posts big blind 20
+** Hole Cards **
+Dealt to qdmcg [Qc 9c]
+qdmcg raises to 60
+bugs calls 40
+** Flop ** [Ks 4c 3s]
+bugs checks
+qdmcg bets 60
+bugs calls 60
+** Turn ** [4h]
+bugs checks
+qdmcg checks
+** River ** [9s]
+bugs bets 320
+qdmcg folds
+bugs refunded 320
+bugs wins Pot (240)
+
+
+
+Hand #5720495-8 - 2013-04-20 14:50:29
+Game: NL Hold'em (9.70+0.30) - Blinds 10/20
+Site: Seals With Clubs
+Table: NLHE HU normal 10 #1 - Table 1
+Seat 1: qdmcg (1440)
+Seat 2: bugs (1560)
+bugs has the dealer button
+bugs posts small blind 10
+qdmcg posts big blind 20
+** Hole Cards **
+Dealt to qdmcg [3c 5d]
+bugs raises to 60
+qdmcg folds
+bugs refunded 40
+bugs wins Pot (40)
+
+
+
+Hand #5720507-9 - 2013-04-20 14:50:43
+Game: NL Hold'em (9.70+0.30) - Blinds 10/20
+Site: Seals With Clubs
+Table: NLHE HU normal 10 #1 - Table 1
+Seat 1: qdmcg (1420)
+Seat 2: bugs (1580)
+qdmcg has the dealer button
+qdmcg posts small blind 10
+bugs posts big blind 20
+** Hole Cards **
+Dealt to qdmcg [Jd 4d]
+qdmcg raises to 60
+bugs calls 40
+** Flop ** [Ac 6h 7d]
+bugs checks
+qdmcg bets 100
+bugs calls 100
+** Turn ** [Kd]
+bugs checks
+qdmcg bets 160
+bugs calls 160
+** River ** [5d]
+bugs checks
+qdmcg bets 340
+bugs folds
+qdmcg refunded 340
+qdmcg wins Pot (640)
+
+
+
+Hand #5720533-10 - 2013-04-20 14:51:36
+Game: NL Hold'em (9.70+0.30) - Blinds 10/20
+Site: Seals With Clubs
+Table: NLHE HU normal 10 #1 - Table 1
+Seat 1: qdmcg (1740)
+Seat 2: bugs (1260)
+bugs has the dealer button
+bugs posts small blind 10
+qdmcg posts big blind 20
+** Hole Cards **
+Dealt to qdmcg [Ah 9s]
+bugs raises to 60
+qdmcg calls 40
+** Flop ** [8h 6c 5c]
+qdmcg checks
+bugs bets 60
+qdmcg folds
+bugs refunded 60
+bugs wins Pot (120)
+
+
+
+Hand #5720545-11 - 2013-04-20 14:51:56
+Game: NL Hold'em (9.70+0.30) - Blinds 10/20
+Site: Seals With Clubs
+Table: NLHE HU normal 10 #1 - Table 1
+Seat 1: qdmcg (1680)
+Seat 2: bugs (1320)
+qdmcg has the dealer button
+qdmcg posts small blind 10
+bugs posts big blind 20
+** Hole Cards **
+Dealt to qdmcg [7c 8s]
+qdmcg raises to 60
+bugs raises to 1320 (All-in)
+qdmcg folds
+bugs refunded 1260
+bugs wins Pot (120)
+
+
+
+Hand #5720550-12 - 2013-04-20 14:52:10
+Game: NL Hold'em (9.70+0.30) - Blinds 10/20
+Site: Seals With Clubs
+Table: NLHE HU normal 10 #1 - Table 1
+Seat 1: qdmcg (1620)
+Seat 2: bugs (1380)
+bugs has the dealer button
+bugs posts small blind 10
+qdmcg posts big blind 20
+** Hole Cards **
+Dealt to qdmcg [9d 5d]
+bugs raises to 60
+qdmcg calls 40
+** Flop ** [3s 8d Js]
+qdmcg checks
+bugs bets 80
+qdmcg folds
+bugs refunded 80
+bugs wins Pot (120)
+
+
+
+Hand #5720562-13 - 2013-04-20 14:52:36
+Game: NL Hold'em (9.70+0.30) - Blinds 10/20
+Site: Seals With Clubs
+Table: NLHE HU normal 10 #1 - Table 1
+Seat 1: qdmcg (1560)
+Seat 2: bugs (1440)
+qdmcg has the dealer button
+qdmcg posts small blind 10
+bugs posts big blind 20
+** Hole Cards **
+Dealt to qdmcg [6d 4c]
+qdmcg folds
+bugs refunded 10
+bugs wins Pot (20)
+
+
+
+Hand #5720568-14 - 2013-04-20 14:52:48
+Game: NL Hold'em (9.70+0.30) - Blinds 10/20
+Site: Seals With Clubs
+Table: NLHE HU normal 10 #1 - Table 1
+Seat 1: qdmcg (1550)
+Seat 2: bugs (1450)
+bugs has the dealer button
+bugs posts small blind 10
+qdmcg posts big blind 20
+** Hole Cards **
+Dealt to qdmcg [6h Js]
+bugs raises to 80
+qdmcg folds
+bugs refunded 60
+bugs wins Pot (40)
+
+
+
+Hand #5720574-15 - 2013-04-20 14:53:01
+Game: NL Hold'em (9.70+0.30) - Blinds 10/20
+Site: Seals With Clubs
+Table: NLHE HU normal 10 #1 - Table 1
+Seat 1: qdmcg (1530)
+Seat 2: bugs (1470)
+qdmcg has the dealer button
+qdmcg posts small blind 10
+bugs posts big blind 20
+** Hole Cards **
+Dealt to qdmcg [5s Jc]
+qdmcg raises to 60
+bugs calls 40
+** Flop ** [4s Qs 2d]
+bugs checks
+qdmcg checks
+** Turn ** [Qd]
+bugs checks
+qdmcg bets 100
+bugs calls 100
+** River ** [2h]
+bugs checks
+qdmcg checks
+** Pot Show Down ** [4s Qs 2d Qd 2h]
+qdmcg shows [5s Jc] (Two Pair, Queens and Deuces +J)
+bugs shows [Ks 4d] (Two Pair, Queens and Fours +K)
+bugs wins Pot (320) with Two Pair
+
+
+
+Hand #5720599-16 - 2013-04-20 14:53:46
+Game: NL Hold'em (9.70+0.30) - Blinds 10/20
+Site: Seals With Clubs
+Table: NLHE HU normal 10 #1 - Table 1
+Seat 1: qdmcg (1370)
+Seat 2: bugs (1630)
+bugs has the dealer button
+bugs posts small blind 10
+qdmcg posts big blind 20
+** Hole Cards **
+Dealt to qdmcg [9h 5h]
+bugs raises to 60
+qdmcg folds
+bugs refunded 40
+bugs wins Pot (40)
+
+
+
+Hand #5720605-17 - 2013-04-20 14:53:58
+Game: NL Hold'em (9.70+0.30) - Blinds 10/20
+Site: Seals With Clubs
+Table: NLHE HU normal 10 #1 - Table 1
+Seat 1: qdmcg (1350)
+Seat 2: bugs (1650)
+qdmcg has the dealer button
+qdmcg posts small blind 10
+bugs posts big blind 20
+** Hole Cards **
+Dealt to qdmcg [5s 4s]
+qdmcg raises to 60
+bugs raises to 120
+qdmcg calls 60
+** Flop ** [Kh 3c Ac]
+bugs checks
+qdmcg checks
+** Turn ** [7d]
+bugs bets 80
+qdmcg calls 80
+** River ** [8h]
+bugs checks
+qdmcg checks
+** Pot Show Down ** [Kh 3c Ac 7d 8h]
+qdmcg shows [5s 4s] (High Card Ace +K875)
+bugs shows [5h Qd] (High Card Ace +KQ87)
+bugs wins Pot (400) with High Card
+
+
+
+Hand #5720634-18 - 2013-04-20 14:54:57
+Game: NL Hold'em (9.70+0.30) - Blinds 15/30
+Site: Seals With Clubs
+Table: NLHE HU normal 10 #1 - Table 1
+Seat 1: qdmcg (1150)
+Seat 2: bugs (1850)
+bugs has the dealer button
+bugs posts small blind 15
+qdmcg posts big blind 30
+** Hole Cards **
+Dealt to qdmcg [Ad 4c]
+bugs raises to 90
+qdmcg calls 60
+** Flop ** [Kd 4d 8h]
+qdmcg checks
+bugs bets 90
+qdmcg calls 90
+** Turn ** [6h]
+qdmcg checks
+bugs bets 150
+qdmcg folds
+bugs refunded 150
+bugs wins Pot (360)
+
+
+
+Hand #5720647-19 - 2013-04-20 14:55:23
+Game: NL Hold'em (9.70+0.30) - Blinds 15/30
+Site: Seals With Clubs
+Table: NLHE HU normal 10 #1 - Table 1
+Seat 1: qdmcg (970)
+Seat 2: bugs (2030)
+qdmcg has the dealer button
+qdmcg posts small blind 15
+bugs posts big blind 30
+** Hole Cards **
+Dealt to qdmcg [6c 5d]
+qdmcg raises to 60
+bugs raises to 150
+qdmcg folds
+bugs refunded 90
+bugs wins Pot (120)
+
+
+
+Hand #5720651-20 - 2013-04-20 14:55:37
+Game: NL Hold'em (9.70+0.30) - Blinds 15/30
+Site: Seals With Clubs
+Table: NLHE HU normal 10 #1 - Table 1
+Seat 1: qdmcg (910)
+Seat 2: bugs (2090)
+bugs has the dealer button
+bugs posts small blind 15
+qdmcg posts big blind 30
+** Hole Cards **
+Dealt to qdmcg [Qd Kh]
+bugs raises to 120
+qdmcg raises to 240
+bugs raises to 2090 (All-in)
+qdmcg calls 670 (All-in)
+bugs refunded 1180
+** Flop ** [5s 7h 4c]
+** Turn ** [Qh]
+** River ** [4d]
+** Pot Show Down ** [5s 7h 4c Qh 4d]
+qdmcg shows [Qd Kh] (Two Pair, Queens and Fours +K)
+bugs shows [9h 9d] (Two Pair, Nines and Fours +Q)
+qdmcg wins Pot (1820) with Two Pair
+
+
+
+Hand #5720660-21 - 2013-04-20 14:56:00
+Game: NL Hold'em (9.70+0.30) - Blinds 15/30
+Site: Seals With Clubs
+Table: NLHE HU normal 10 #1 - Table 1
+Seat 1: qdmcg (1820)
+Seat 2: bugs (1180)
+qdmcg has the dealer button
+qdmcg posts small blind 15
+bugs posts big blind 30
+** Hole Cards **
+Dealt to qdmcg [6s 5h]
+qdmcg raises to 60
+bugs raises to 1180 (All-in)
+qdmcg folds
+bugs refunded 1120
+bugs wins Pot (120)
+
+
+
+Hand #5720673-22 - 2013-04-20 14:56:15
+Game: NL Hold'em (9.70+0.30) - Blinds 15/30
+Site: Seals With Clubs
+Table: NLHE HU normal 10 #1 - Table 1
+Seat 1: qdmcg (1760)
+Seat 2: bugs (1240)
+bugs has the dealer button
+bugs posts small blind 15
+qdmcg posts big blind 30
+** Hole Cards **
+Dealt to qdmcg [Jc Ad]
+bugs raises to 1240 (All-in)
+qdmcg calls 1210
+** Flop ** [7h 9s 9h]
+** Turn ** [6c]
+** River ** [Ks]
+** Pot Show Down ** [7h 9s 9h 6c Ks]
+qdmcg shows [Jc Ad] (a Pair of Nines +AKJ)
+bugs shows [5s 4d] (a Pair of Nines +K76)
+qdmcg wins Pot (2480) with a Pair
+bugs finishes tournament in place #2
+qdmcg finishes tournament in place #1 and wins 19.40 chips

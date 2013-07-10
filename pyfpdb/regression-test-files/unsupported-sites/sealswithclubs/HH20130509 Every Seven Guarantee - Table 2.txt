@@ -1,0 +1,1330 @@
+Hand #6754585-2 - 2013-05-10 00:01:08
+Game: NL Hold'em (38+2) - Blinds 10/20
+Site: Seals With Clubs
+Table: Every Seven Guarantee - Table 2
+Seat 1: ItsAFire (1500)
+Seat 3: unworncoma (1490) - sitting out
+Seat 4: garmin00 (1510)
+Seat 5: Dewby (1500)
+Seat 6: mathkid (1500)
+Seat 7: FIVEbetBLUFF (1500)
+Seat 8: zif33rs (1500) - sitting out
+Seat 9: qdmcg (1500)
+unworncoma has the dealer button
+garmin00 posts small blind 10
+Dewby posts big blind 20
+** Hole Cards **
+Dealt to qdmcg [2c 5h]
+mathkid folds
+FIVEbetBLUFF raises to 40
+zif33rs folds
+qdmcg folds
+ItsAFire folds
+unworncoma folds
+garmin00 folds
+Dewby has timed out
+Dewby folds
+FIVEbetBLUFF refunded 20
+FIVEbetBLUFF wins Pot (50)
+
+
+
+Hand #6754650-3 - 2013-05-10 00:02:16
+Game: NL Hold'em (38+2) - Blinds 10/20
+Site: Seals With Clubs
+Table: Every Seven Guarantee - Table 2
+Seat 1: ItsAFire (1500)
+Seat 3: unworncoma (1490)
+Seat 4: garmin00 (1500)
+Seat 5: Dewby (1480) - sitting out
+Seat 6: mathkid (1500)
+Seat 7: FIVEbetBLUFF (1530)
+Seat 8: zif33rs (1500) - sitting out
+Seat 9: qdmcg (1500)
+garmin00 has the dealer button
+Dewby posts small blind 10
+mathkid posts big blind 20
+** Hole Cards **
+Dealt to qdmcg [Jh 5h]
+FIVEbetBLUFF raises to 40
+zif33rs folds
+qdmcg folds
+ItsAFire has timed out
+ItsAFire folds
+unworncoma calls 40
+garmin00 folds
+Dewby folds
+mathkid folds
+** Flop ** [Qc 8d 2c]
+FIVEbetBLUFF bets 60
+unworncoma folds
+FIVEbetBLUFF refunded 60
+FIVEbetBLUFF wins Pot (110)
+DLGonzo moved from Table 6
+
+
+
+Hand #6754728-4 - 2013-05-10 00:03:38
+Game: NL Hold'em (38+2) - Blinds 10/20
+Site: Seals With Clubs
+Table: Every Seven Guarantee - Table 2
+Seat 1: ItsAFire (1500) - sitting out
+Seat 2: DLGonzo (1520)
+Seat 3: unworncoma (1450)
+Seat 4: garmin00 (1500)
+Seat 5: Dewby (1470)
+Seat 6: mathkid (1480)
+Seat 7: FIVEbetBLUFF (1600)
+Seat 8: zif33rs (1500) - sitting out
+Seat 9: qdmcg (1500)
+Dewby has the dealer button
+mathkid posts small blind 10
+FIVEbetBLUFF posts big blind 20
+** Hole Cards **
+Dealt to qdmcg [Tc 6s]
+zif33rs folds
+qdmcg folds
+ItsAFire folds
+DLGonzo folds
+unworncoma folds
+garmin00 folds
+Dewby folds
+mathkid folds
+FIVEbetBLUFF refunded 10
+FIVEbetBLUFF wins Pot (20)
+
+
+
+Hand #6754755-5 - 2013-05-10 00:04:11
+Game: NL Hold'em (38+2) - Blinds 10/20
+Site: Seals With Clubs
+Table: Every Seven Guarantee - Table 2
+Seat 1: ItsAFire (1500)
+Seat 2: DLGonzo (1520)
+Seat 3: unworncoma (1450)
+Seat 4: garmin00 (1500)
+Seat 5: Dewby (1470)
+Seat 6: mathkid (1470)
+Seat 7: FIVEbetBLUFF (1610)
+Seat 8: zif33rs (1500) - sitting out
+Seat 9: qdmcg (1500)
+mathkid has the dealer button
+FIVEbetBLUFF posts small blind 10
+zif33rs posts big blind 20
+** Hole Cards **
+Dealt to qdmcg [4c 8h]
+qdmcg folds
+ItsAFire folds
+DLGonzo raises to 40
+unworncoma folds
+garmin00 folds
+Dewby folds
+mathkid folds
+FIVEbetBLUFF folds
+zif33rs folds
+DLGonzo refunded 20
+DLGonzo wins Pot (50)
+
+
+
+Hand #6754784-6 - 2013-05-10 00:04:42
+Game: NL Hold'em (38+2) - Blinds 10/20
+Site: Seals With Clubs
+Table: Every Seven Guarantee - Table 2
+Seat 1: ItsAFire (1500)
+Seat 2: DLGonzo (1550)
+Seat 3: unworncoma (1450)
+Seat 4: garmin00 (1500)
+Seat 5: Dewby (1470)
+Seat 6: mathkid (1470)
+Seat 7: FIVEbetBLUFF (1600)
+Seat 8: zif33rs (1480) - sitting out
+Seat 9: qdmcg (1500)
+FIVEbetBLUFF has the dealer button
+zif33rs posts small blind 10
+qdmcg posts big blind 20
+** Hole Cards **
+Dealt to qdmcg [Th Jd]
+ItsAFire has timed out
+ItsAFire folds
+DLGonzo raises to 40
+unworncoma folds
+garmin00 calls 40
+Dewby folds
+mathkid folds
+FIVEbetBLUFF folds
+zif33rs folds
+qdmcg calls 20
+** Flop ** [2d Qd 6c]
+qdmcg checks
+DLGonzo checks
+garmin00 checks
+** Turn ** [3s]
+qdmcg checks
+DLGonzo checks
+garmin00 checks
+** River ** [2s]
+qdmcg checks
+DLGonzo checks
+garmin00 checks
+** Pot Show Down ** [2d Qd 6c 3s 2s]
+DLGonzo shows [Js Ah] (a Pair of Deuces +AQJ)
+garmin00 shows [Kh Ad] (a Pair of Deuces +AKQ)
+qdmcg shows [Th Jd] (a Pair of Deuces +QJT)
+garmin00 wins Pot (130) with a Pair
+
+
+
+Hand #6754878-7 - 2013-05-10 00:06:31
+Game: NL Hold'em (38+2) - Blinds 10/20
+Site: Seals With Clubs
+Table: Every Seven Guarantee - Table 2
+Seat 1: ItsAFire (1500)
+Seat 2: DLGonzo (1510)
+Seat 3: unworncoma (1450)
+Seat 4: garmin00 (1590)
+Seat 5: Dewby (1470)
+Seat 6: mathkid (1470)
+Seat 7: FIVEbetBLUFF (1600)
+Seat 8: zif33rs (1470) - sitting out
+Seat 9: qdmcg (1460)
+zif33rs has the dealer button
+qdmcg posts small blind 10
+ItsAFire posts big blind 20
+** Hole Cards **
+Dealt to qdmcg [Jd 2c]
+DLGonzo folds
+unworncoma raises to 60
+garmin00 folds
+Dewby calls 60
+mathkid folds
+FIVEbetBLUFF folds
+zif33rs folds
+qdmcg folds
+ItsAFire has timed out
+ItsAFire folds
+** Flop ** [3d 4d 6h]
+unworncoma checks
+Dewby bets 140
+unworncoma calls 140
+** Turn ** [Ks]
+unworncoma checks
+Dewby bets 140
+unworncoma raises to 320
+Dewby calls 180
+** River ** [Kc]
+unworncoma bets 930 (All-in)
+Dewby folds
+unworncoma refunded 930
+unworncoma wins Pot (1070)
+
+
+
+Hand #6754996-8 - 2013-05-10 00:08:57
+Game: NL Hold'em (38+2) - Blinds 10/20
+Site: Seals With Clubs
+Table: Every Seven Guarantee - Table 2
+Seat 1: ItsAFire (1480) - sitting out
+Seat 2: DLGonzo (1510)
+Seat 3: unworncoma (2000)
+Seat 4: garmin00 (1590)
+Seat 5: Dewby (950)
+Seat 6: mathkid (1470)
+Seat 7: FIVEbetBLUFF (1600)
+Seat 8: zif33rs (1470) - sitting out
+Seat 9: qdmcg (1450)
+qdmcg has the dealer button
+ItsAFire posts small blind 10
+DLGonzo posts big blind 20
+** Hole Cards **
+Dealt to qdmcg [7d 6s]
+unworncoma folds
+garmin00 folds
+Dewby folds
+mathkid folds
+FIVEbetBLUFF raises to 40
+zif33rs folds
+qdmcg folds
+ItsAFire folds
+DLGonzo calls 20
+** Flop ** [2h 5s Qs]
+DLGonzo checks
+FIVEbetBLUFF bets 55
+DLGonzo raises to 110
+FIVEbetBLUFF folds
+DLGonzo refunded 55
+DLGonzo wins Pot (200)
+
+
+
+Hand #6755039-9 - 2013-05-10 00:10:02
+Game: NL Hold'em (38+2) - Blinds 10/20
+Site: Seals With Clubs
+Table: Every Seven Guarantee - Table 2
+Seat 1: ItsAFire (1470) - sitting out
+Seat 2: DLGonzo (1615)
+Seat 3: unworncoma (2000)
+Seat 4: garmin00 (1590)
+Seat 5: Dewby (950)
+Seat 6: mathkid (1470)
+Seat 7: FIVEbetBLUFF (1505)
+Seat 8: zif33rs (1470) - sitting out
+Seat 9: qdmcg (1450)
+ItsAFire has the dealer button
+DLGonzo posts small blind 10
+unworncoma posts big blind 20
+** Hole Cards **
+Dealt to qdmcg [3d Kh]
+garmin00 folds
+Dewby folds
+mathkid calls 20
+FIVEbetBLUFF folds
+zif33rs folds
+qdmcg folds
+ItsAFire folds
+DLGonzo calls 10
+unworncoma checks
+** Flop ** [Qs 4h Ks]
+DLGonzo checks
+unworncoma checks
+mathkid bets 60
+DLGonzo folds
+unworncoma folds
+mathkid refunded 60
+mathkid wins Pot (60)
+
+
+
+Hand #6755088-10 - 2013-05-10 00:11:01
+Game: NL Hold'em (38+2) - Blinds 15/30
+Site: Seals With Clubs
+Table: Every Seven Guarantee - Table 2
+Seat 1: ItsAFire (1470)
+Seat 2: DLGonzo (1595)
+Seat 3: unworncoma (1980)
+Seat 4: garmin00 (1590)
+Seat 5: Dewby (950)
+Seat 6: mathkid (1510)
+Seat 7: FIVEbetBLUFF (1505)
+Seat 8: zif33rs (1470) - sitting out
+Seat 9: qdmcg (1450)
+DLGonzo has the dealer button
+unworncoma posts small blind 15
+garmin00 posts big blind 30
+** Hole Cards **
+Dealt to qdmcg [7s Jc]
+Dewby calls 30
+mathkid folds
+FIVEbetBLUFF folds
+zif33rs folds
+qdmcg folds
+ItsAFire folds
+DLGonzo folds
+unworncoma calls 15
+garmin00 checks
+** Flop ** [4s 3h 3c]
+unworncoma checks
+garmin00 checks
+Dewby bets 150
+unworncoma calls 150
+garmin00 folds
+** Turn ** [3s]
+unworncoma checks
+Dewby checks
+** River ** [4d]
+unworncoma bets 270
+Dewby raises to 770 (All-in)
+unworncoma folds
+Dewby refunded 500
+Dewby wins Pot (930)
+Dewby shows [Qd Qc]
+
+
+
+Hand #6755180-11 - 2013-05-10 00:12:47
+Game: NL Hold'em (38+2) - Blinds 15/30
+Site: Seals With Clubs
+Table: Every Seven Guarantee - Table 2
+Seat 1: ItsAFire (1470)
+Seat 2: DLGonzo (1595)
+Seat 3: unworncoma (1530)
+Seat 4: garmin00 (1560)
+Seat 5: Dewby (1430)
+Seat 6: mathkid (1510)
+Seat 7: FIVEbetBLUFF (1505)
+Seat 8: zif33rs (1470) - sitting out
+Seat 9: qdmcg (1450)
+unworncoma has the dealer button
+garmin00 posts small blind 15
+Dewby posts big blind 30
+** Hole Cards **
+Dealt to qdmcg [9c 2c]
+mathkid folds
+FIVEbetBLUFF folds
+zif33rs folds
+qdmcg folds
+ItsAFire folds
+DLGonzo folds
+unworncoma folds
+garmin00 folds
+Dewby refunded 15
+Dewby wins Pot (30)
+mathkid moved to Table 4
+
+
+
+
+Hand #6755221-12 - 2013-05-10 00:13:27
+Game: NL Hold'em (38+2) - Blinds 15/30
+Site: Seals With Clubs
+Table: Every Seven Guarantee - Table 2
+Seat 1: ItsAFire (1470)
+Seat 2: DLGonzo (1595)
+Seat 3: unworncoma (1530)
+Seat 4: garmin00 (1545)
+Seat 5: Dewby (1445)
+Seat 7: FIVEbetBLUFF (1505)
+Seat 8: zif33rs (1470) - sitting out
+Seat 9: qdmcg (1450)
+garmin00 has the dealer button
+Dewby posts small blind 15
+FIVEbetBLUFF posts big blind 30
+** Hole Cards **
+Dealt to qdmcg [Jd 5h]
+zif33rs folds
+qdmcg has timed out
+qdmcg folds
+ItsAFire raises to 120
+DLGonzo folds
+unworncoma raises to 330
+garmin00 folds
+Dewby folds
+FIVEbetBLUFF has timed out
+FIVEbetBLUFF folds
+ItsAFire calls 210
+** Flop ** [3c Kh 9c]
+ItsAFire checks
+unworncoma bets 400
+ItsAFire folds
+unworncoma refunded 400
+unworncoma wins Pot (705)
+
+
+
+Hand #6755327-13 - 2013-05-10 00:15:24
+Game: NL Hold'em (38+2) - Blinds 15/30
+Site: Seals With Clubs
+Table: Every Seven Guarantee - Table 2
+Seat 1: ItsAFire (1140)
+Seat 2: DLGonzo (1595)
+Seat 3: unworncoma (1905)
+Seat 4: garmin00 (1545)
+Seat 5: Dewby (1430)
+Seat 7: FIVEbetBLUFF (1475)
+Seat 8: zif33rs (1470) - sitting out
+Seat 9: qdmcg (1450) - sitting out
+Dewby has the dealer button
+FIVEbetBLUFF posts small blind 15
+zif33rs posts big blind 30
+** Hole Cards **
+Dealt to qdmcg [9c 3c]
+qdmcg folds
+ItsAFire folds
+DLGonzo raises to 60
+unworncoma raises to 90
+garmin00 folds
+Dewby has timed out
+Dewby folds
+FIVEbetBLUFF folds
+zif33rs folds
+DLGonzo calls 30
+** Flop ** [3d 7c 8d]
+DLGonzo checks
+unworncoma bets 150
+DLGonzo folds
+unworncoma refunded 150
+unworncoma wins Pot (225)
+
+
+
+Hand #6755397-14 - 2013-05-10 00:16:39
+Game: NL Hold'em (38+2) - Blinds 15/30
+Site: Seals With Clubs
+Table: Every Seven Guarantee - Table 2
+Seat 1: ItsAFire (1140)
+Seat 2: DLGonzo (1505)
+Seat 3: unworncoma (2040)
+Seat 4: garmin00 (1545)
+Seat 5: Dewby (1430)
+Seat 7: FIVEbetBLUFF (1460)
+Seat 8: zif33rs (1440) - sitting out
+Seat 9: qdmcg (1450)
+FIVEbetBLUFF has the dealer button
+zif33rs posts small blind 15
+qdmcg posts big blind 30
+** Hole Cards **
+Dealt to qdmcg [8h 9s]
+ItsAFire folds
+DLGonzo has timed out
+DLGonzo folds
+unworncoma folds
+garmin00 folds
+Dewby folds
+FIVEbetBLUFF folds
+zif33rs folds
+qdmcg refunded 15
+qdmcg wins Pot (30)
+
+
+
+Hand #6755444-15 - 2013-05-10 00:17:33
+Game: NL Hold'em (38+2) - Blinds 15/30
+Site: Seals With Clubs
+Table: Every Seven Guarantee - Table 2
+Seat 1: ItsAFire (1140)
+Seat 2: DLGonzo (1505) - sitting out
+Seat 3: unworncoma (2040)
+Seat 4: garmin00 (1545)
+Seat 5: Dewby (1430)
+Seat 7: FIVEbetBLUFF (1460)
+Seat 8: zif33rs (1425) - sitting out
+Seat 9: qdmcg (1465)
+zif33rs has the dealer button
+qdmcg posts small blind 15
+ItsAFire posts big blind 30
+** Hole Cards **
+Dealt to qdmcg [8h 8c]
+DLGonzo folds
+unworncoma folds
+garmin00 has timed out
+garmin00 folds
+Dewby folds
+FIVEbetBLUFF folds
+zif33rs folds
+qdmcg calls 15
+ItsAFire checks
+** Flop ** [8s 8d 3h]
+qdmcg checks
+ItsAFire checks
+** Turn ** [Th]
+qdmcg checks
+ItsAFire checks
+** River ** [9h]
+qdmcg bets 60
+ItsAFire folds
+qdmcg refunded 60
+qdmcg wins Pot (60)
+
+
+
+Hand #6755519-16 - 2013-05-10 00:19:05
+Game: NL Hold'em (38+2) - Blinds 15/30
+Site: Seals With Clubs
+Table: Every Seven Guarantee - Table 2
+Seat 1: ItsAFire (1110)
+Seat 2: DLGonzo (1505) - sitting out
+Seat 3: unworncoma (2040)
+Seat 4: garmin00 (1545) - sitting out
+Seat 5: Dewby (1430)
+Seat 7: FIVEbetBLUFF (1460)
+Seat 8: zif33rs (1425) - sitting out
+Seat 9: qdmcg (1495)
+qdmcg has the dealer button
+ItsAFire posts small blind 15
+DLGonzo posts big blind 30
+** Hole Cards **
+Dealt to qdmcg [3h 2s]
+unworncoma folds
+garmin00 folds
+Dewby folds
+FIVEbetBLUFF folds
+zif33rs folds
+qdmcg folds
+ItsAFire folds
+DLGonzo refunded 15
+DLGonzo wins Pot (30)
+
+
+
+Hand #6755554-17 - 2013-05-10 00:19:45
+Game: NL Hold'em (38+2) - Blinds 15/30
+Site: Seals With Clubs
+Table: Every Seven Guarantee - Table 2
+Seat 1: ItsAFire (1095)
+Seat 2: DLGonzo (1520) - sitting out
+Seat 3: unworncoma (2040)
+Seat 4: garmin00 (1545) - sitting out
+Seat 5: Dewby (1430)
+Seat 7: FIVEbetBLUFF (1460)
+Seat 8: zif33rs (1425) - sitting out
+Seat 9: qdmcg (1495)
+ItsAFire has the dealer button
+DLGonzo posts small blind 15
+unworncoma posts big blind 30
+** Hole Cards **
+Dealt to qdmcg [2s 9h]
+garmin00 folds
+Dewby calls 30
+FIVEbetBLUFF calls 30
+zif33rs folds
+qdmcg folds
+ItsAFire folds
+DLGonzo folds
+unworncoma checks
+** Flop ** [6c 2d 8h]
+unworncoma checks
+Dewby checks
+FIVEbetBLUFF checks
+** Turn ** [Ac]
+unworncoma checks
+Dewby checks
+FIVEbetBLUFF bets 60
+unworncoma folds
+Dewby folds
+FIVEbetBLUFF refunded 60
+FIVEbetBLUFF wins Pot (105)
+
+
+
+Hand #6755604-18 - 2013-05-10 00:20:45
+Game: NL Hold'em (38+2) - Blinds 25/50
+Site: Seals With Clubs
+Table: Every Seven Guarantee - Table 2
+Seat 1: ItsAFire (1095)
+Seat 2: DLGonzo (1505) - sitting out
+Seat 3: unworncoma (2010)
+Seat 4: garmin00 (1545) - sitting out
+Seat 5: Dewby (1400)
+Seat 7: FIVEbetBLUFF (1535)
+Seat 8: zif33rs (1425) - sitting out
+Seat 9: qdmcg (1495)
+DLGonzo has the dealer button
+unworncoma posts small blind 25
+garmin00 posts big blind 50
+** Hole Cards **
+Dealt to qdmcg [Qd Th]
+Dewby folds
+FIVEbetBLUFF folds
+zif33rs folds
+qdmcg folds
+ItsAFire folds
+DLGonzo folds
+unworncoma raises to 150
+garmin00 calls 100
+** Flop ** [3d Ks 7h]
+unworncoma bets 200
+garmin00 calls 200
+** Turn ** [Js]
+unworncoma checks
+garmin00 checks
+** River ** [Kd]
+unworncoma bets 400
+garmin00 calls 400
+** Pot Show Down ** [3d Ks 7h Js Kd]
+unworncoma shows [6d Ah] (a Pair of Kings +AJ7)
+garmin00 shows [Ac 9s] (a Pair of Kings +AJ9)
+garmin00 wins Pot (1500) with a Pair
+
+
+
+Hand #6755685-19 - 2013-05-10 00:22:22
+Game: NL Hold'em (38+2) - Blinds 25/50
+Site: Seals With Clubs
+Table: Every Seven Guarantee - Table 2
+Seat 1: ItsAFire (1095)
+Seat 2: DLGonzo (1505) - sitting out
+Seat 3: unworncoma (1260)
+Seat 4: garmin00 (2295)
+Seat 5: Dewby (1400)
+Seat 7: FIVEbetBLUFF (1535)
+Seat 8: zif33rs (1425) - sitting out
+Seat 9: qdmcg (1495)
+unworncoma has the dealer button
+garmin00 posts small blind 25
+Dewby posts big blind 50
+** Hole Cards **
+Dealt to qdmcg [Qs 7h]
+FIVEbetBLUFF folds
+zif33rs folds
+qdmcg folds
+ItsAFire folds
+DLGonzo folds
+unworncoma raises to 150
+garmin00 folds
+Dewby folds
+unworncoma refunded 100
+unworncoma wins Pot (125)
+
+
+
+Hand #6755732-20 - 2013-05-10 00:23:15
+Game: NL Hold'em (38+2) - Blinds 25/50
+Site: Seals With Clubs
+Table: Every Seven Guarantee - Table 2
+Seat 1: ItsAFire (1095)
+Seat 2: DLGonzo (1505) - sitting out
+Seat 3: unworncoma (1335)
+Seat 4: garmin00 (2270)
+Seat 5: Dewby (1350)
+Seat 7: FIVEbetBLUFF (1535)
+Seat 8: zif33rs (1425) - sitting out
+Seat 9: qdmcg (1495)
+garmin00 has the dealer button
+Dewby posts small blind 25
+FIVEbetBLUFF posts big blind 50
+** Hole Cards **
+Dealt to qdmcg [8h 2h]
+zif33rs folds
+qdmcg folds
+ItsAFire folds
+DLGonzo folds
+unworncoma has timed out
+unworncoma folds
+garmin00 folds
+Dewby calls 25
+FIVEbetBLUFF checks
+** Flop ** [6c 6s 8d]
+Dewby checks
+FIVEbetBLUFF bets 50
+Dewby folds
+FIVEbetBLUFF refunded 50
+FIVEbetBLUFF wins Pot (100)
+
+
+
+Hand #6755785-21 - 2013-05-10 00:24:35
+Game: NL Hold'em (38+2) - Blinds 25/50
+Site: Seals With Clubs
+Table: Every Seven Guarantee - Table 2
+Seat 1: ItsAFire (1095)
+Seat 2: DLGonzo (1505) - sitting out
+Seat 3: unworncoma (1335)
+Seat 4: garmin00 (2270)
+Seat 5: Dewby (1300)
+Seat 7: FIVEbetBLUFF (1585)
+Seat 8: zif33rs (1425) - sitting out
+Seat 9: qdmcg (1495)
+Dewby has the dealer button
+FIVEbetBLUFF posts small blind 25
+zif33rs posts big blind 50
+** Hole Cards **
+Dealt to qdmcg [5h Jd]
+qdmcg folds
+ItsAFire folds
+DLGonzo folds
+unworncoma folds
+garmin00 folds
+Dewby folds
+FIVEbetBLUFF folds
+zif33rs refunded 25
+zif33rs wins Pot (50)
+
+
+
+Hand #6755824-22 - 2013-05-10 00:25:28
+Game: NL Hold'em (38+2) - Blinds 25/50
+Site: Seals With Clubs
+Table: Every Seven Guarantee - Table 2
+Seat 1: ItsAFire (1095)
+Seat 2: DLGonzo (1505) - sitting out
+Seat 3: unworncoma (1335)
+Seat 4: garmin00 (2270)
+Seat 5: Dewby (1300)
+Seat 7: FIVEbetBLUFF (1560)
+Seat 8: zif33rs (1450) - sitting out
+Seat 9: qdmcg (1495)
+FIVEbetBLUFF has the dealer button
+zif33rs posts small blind 25
+qdmcg posts big blind 50
+** Hole Cards **
+Dealt to qdmcg [2h 6s]
+ItsAFire folds
+DLGonzo folds
+unworncoma folds
+garmin00 folds
+Dewby folds
+FIVEbetBLUFF folds
+zif33rs folds
+qdmcg refunded 25
+qdmcg wins Pot (50)
+
+
+
+Hand #6755852-23 - 2013-05-10 00:26:15
+Game: NL Hold'em (38+2) - Blinds 25/50
+Site: Seals With Clubs
+Table: Every Seven Guarantee - Table 2
+Seat 1: ItsAFire (1095)
+Seat 2: DLGonzo (1505) - sitting out
+Seat 3: unworncoma (1335)
+Seat 4: garmin00 (2270)
+Seat 5: Dewby (1300)
+Seat 7: FIVEbetBLUFF (1560)
+Seat 8: zif33rs (1425) - sitting out
+Seat 9: qdmcg (1520)
+zif33rs has the dealer button
+qdmcg posts small blind 25
+ItsAFire posts big blind 50
+** Hole Cards **
+Dealt to qdmcg [Ah 7s]
+DLGonzo folds
+unworncoma folds
+garmin00 folds
+Dewby folds
+FIVEbetBLUFF raises to 150
+zif33rs folds
+qdmcg folds
+ItsAFire folds
+FIVEbetBLUFF refunded 100
+FIVEbetBLUFF wins Pot (125)
+
+
+
+Hand #6755882-24 - 2013-05-10 00:27:07
+Game: NL Hold'em (38+2) - Blinds 25/50
+Site: Seals With Clubs
+Table: Every Seven Guarantee - Table 2
+Seat 1: ItsAFire (1045)
+Seat 2: DLGonzo (1505) - sitting out
+Seat 3: unworncoma (1335)
+Seat 4: garmin00 (2270)
+Seat 5: Dewby (1300)
+Seat 7: FIVEbetBLUFF (1635)
+Seat 8: zif33rs (1425) - sitting out
+Seat 9: qdmcg (1495)
+qdmcg has the dealer button
+ItsAFire posts small blind 25
+DLGonzo posts big blind 50
+** Hole Cards **
+Dealt to qdmcg [6s 9c]
+unworncoma has timed out
+unworncoma folds
+garmin00 folds
+Dewby folds
+FIVEbetBLUFF folds
+zif33rs folds
+qdmcg folds
+ItsAFire raises to 100
+DLGonzo folds
+ItsAFire refunded 50
+ItsAFire wins Pot (100)
+
+
+
+Hand #6755917-25 - 2013-05-10 00:28:04
+Game: NL Hold'em (38+2) - Blinds 25/50
+Site: Seals With Clubs
+Table: Every Seven Guarantee - Table 2
+Seat 1: ItsAFire (1095)
+Seat 2: DLGonzo (1455) - sitting out
+Seat 3: unworncoma (1335)
+Seat 4: garmin00 (2270)
+Seat 5: Dewby (1300)
+Seat 7: FIVEbetBLUFF (1635)
+Seat 8: zif33rs (1425) - sitting out
+Seat 9: qdmcg (1495)
+ItsAFire has the dealer button
+DLGonzo posts small blind 25
+unworncoma posts big blind 50
+** Hole Cards **
+Dealt to qdmcg [5s 9c]
+garmin00 folds
+Dewby calls 50
+FIVEbetBLUFF calls 50
+zif33rs folds
+qdmcg folds
+ItsAFire folds
+DLGonzo folds
+unworncoma checks
+** Flop ** [5h 6c 6h]
+unworncoma checks
+Dewby checks
+FIVEbetBLUFF bets 100
+unworncoma has timed out
+unworncoma folds
+Dewby folds
+FIVEbetBLUFF refunded 100
+FIVEbetBLUFF wins Pot (175)
+
+
+
+Hand #6755991-26 - 2013-05-10 00:29:52
+Game: NL Hold'em (38+2) - Blinds 25/50
+Site: Seals With Clubs
+Table: Every Seven Guarantee - Table 2
+Seat 1: ItsAFire (1095)
+Seat 2: DLGonzo (1430) - sitting out
+Seat 3: unworncoma (1285)
+Seat 4: garmin00 (2270)
+Seat 5: Dewby (1250)
+Seat 7: FIVEbetBLUFF (1760)
+Seat 8: zif33rs (1425) - sitting out
+Seat 9: qdmcg (1495)
+DLGonzo has the dealer button
+unworncoma posts small blind 25
+garmin00 posts big blind 50
+** Hole Cards **
+Dealt to qdmcg [Js 9d]
+Dewby calls 50
+FIVEbetBLUFF folds
+zif33rs folds
+qdmcg folds
+ItsAFire folds
+DLGonzo folds
+unworncoma calls 25
+cloudsurfer moved from Table 5
+garmin00 checks
+** Flop ** [5h 7c As]
+unworncoma bets 100
+garmin00 folds
+Dewby calls 100
+** Turn ** [6d]
+unworncoma checks
+Dewby checks
+** River ** [9c]
+unworncoma checks
+Dewby bets 250
+unworncoma calls 250
+** Pot Show Down ** [5h 7c As 6d 9c]
+unworncoma shows [5s 4c] (a Pair of Fives +A97)
+Dewby shows [Ac Jc] (a Pair of Aces +J97)
+Dewby wins Pot (850) with a Pair
+
+
+
+Hand #6756052-27 - 2013-05-10 00:31:30
+Game: NL Hold'em (38+2) - Blinds 50/100
+Site: Seals With Clubs
+Table: Every Seven Guarantee - Table 2
+Seat 1: ItsAFire (1095)
+Seat 2: DLGonzo (1430) - sitting out
+Seat 3: unworncoma (885)
+Seat 4: garmin00 (2220)
+Seat 5: Dewby (1700)
+Seat 6: cloudsurfer (815)
+Seat 7: FIVEbetBLUFF (1760)
+Seat 8: zif33rs (1425) - sitting out
+Seat 9: qdmcg (1495)
+unworncoma has the dealer button
+garmin00 posts small blind 50
+Dewby posts big blind 100
+** Hole Cards **
+Dealt to qdmcg [2s 7d]
+cloudsurfer folds
+FIVEbetBLUFF has timed out
+FIVEbetBLUFF folds
+zif33rs folds
+qdmcg folds
+ItsAFire folds
+DLGonzo folds
+unworncoma raises to 885 (All-in)
+garmin00 folds
+Dewby calls 785
+** Flop ** [9s Qh 3c]
+** Turn ** [3h]
+** River ** [8h]
+** Pot Show Down ** [9s Qh 3c 3h 8h]
+unworncoma shows [Kd Js] (a Pair of Threes +KQJ)
+Dewby shows [Jh Jd] (Two Pair, Jacks and Threes +Q)
+Dewby wins Pot (1820) with Two Pair
+unworncoma finishes tournament in place #35
+
+
+
+Hand #6756117-28 - 2013-05-10 00:32:57
+Game: NL Hold'em (38+2) - Blinds 50/100
+Site: Seals With Clubs
+Table: Every Seven Guarantee - Table 2
+Seat 1: ItsAFire (1095)
+Seat 2: DLGonzo (1430)
+Seat 4: garmin00 (2170)
+Seat 5: Dewby (2635)
+Seat 6: cloudsurfer (815)
+Seat 7: FIVEbetBLUFF (1760)
+Seat 8: zif33rs (1425) - sitting out
+Seat 9: qdmcg (1495)
+garmin00 has the dealer button
+Dewby posts small blind 50
+cloudsurfer posts big blind 100
+** Hole Cards **
+Dealt to qdmcg [6s Kd]
+FIVEbetBLUFF folds
+zif33rs folds
+qdmcg folds
+ItsAFire folds
+DLGonzo raises to 200
+garmin00 folds
+Dewby folds
+cloudsurfer calls 100
+** Flop ** [8c 2h 3d]
+cloudsurfer checks
+DLGonzo checks
+** Turn ** [8s]
+cloudsurfer checks
+DLGonzo bets 200
+cloudsurfer folds
+DLGonzo refunded 200
+DLGonzo wins Pot (450)
+
+
+
+Hand #6756169-29 - 2013-05-10 00:34:09
+Game: NL Hold'em (38+2) - Blinds 50/100
+Site: Seals With Clubs
+Table: Every Seven Guarantee - Table 2
+Seat 1: ItsAFire (1095)
+Seat 2: DLGonzo (1680)
+Seat 4: garmin00 (2170)
+Seat 5: Dewby (2585)
+Seat 6: cloudsurfer (615)
+Seat 7: FIVEbetBLUFF (1760)
+Seat 8: zif33rs (1425) - sitting out
+Seat 9: qdmcg (1495)
+Dewby has the dealer button
+cloudsurfer posts small blind 50
+FIVEbetBLUFF posts big blind 100
+** Hole Cards **
+Dealt to qdmcg [4d 6c]
+zif33rs folds
+qdmcg folds
+ItsAFire folds
+DLGonzo folds
+garmin00 folds
+Dewby calls 100
+cloudsurfer calls 50
+FIVEbetBLUFF checks
+** Flop ** [9c Ks 5h]
+cloudsurfer bets 215
+FIVEbetBLUFF folds
+Dewby folds
+cloudsurfer refunded 215
+cloudsurfer wins Pot (300)
+
+
+
+Hand #6756224-30 - 2013-05-10 00:35:22
+Game: NL Hold'em (38+2) - Blinds 50/100
+Site: Seals With Clubs
+Table: Every Seven Guarantee - Table 2
+Seat 1: ItsAFire (1095)
+Seat 2: DLGonzo (1680)
+Seat 4: garmin00 (2170)
+Seat 5: Dewby (2485)
+Seat 6: cloudsurfer (815)
+Seat 7: FIVEbetBLUFF (1660)
+Seat 8: zif33rs (1425) - sitting out
+Seat 9: qdmcg (1495)
+cloudsurfer has the dealer button
+FIVEbetBLUFF posts small blind 50
+zif33rs posts big blind 100
+** Hole Cards **
+Dealt to qdmcg [Tc Qd]
+qdmcg folds
+ItsAFire folds
+DLGonzo folds
+garmin00 folds
+Dewby folds
+cloudsurfer folds
+FIVEbetBLUFF folds
+zif33rs refunded 50
+zif33rs wins Pot (100)
+
+
+
+Hand #6756263-31 - 2013-05-10 00:36:08
+Game: NL Hold'em (38+2) - Blinds 50/100
+Site: Seals With Clubs
+Table: Every Seven Guarantee - Table 2
+Seat 1: ItsAFire (1095)
+Seat 2: DLGonzo (1680)
+Seat 4: garmin00 (2170)
+Seat 5: Dewby (2485)
+Seat 6: cloudsurfer (815)
+Seat 7: FIVEbetBLUFF (1610)
+Seat 8: zif33rs (1475) - sitting out
+Seat 9: qdmcg (1495)
+FIVEbetBLUFF has the dealer button
+zif33rs posts small blind 50
+qdmcg posts big blind 100
+** Hole Cards **
+Dealt to qdmcg [Td 8c]
+ItsAFire folds
+DLGonzo folds
+garmin00 folds
+Dewby folds
+cloudsurfer raises to 265
+FIVEbetBLUFF folds
+zif33rs folds
+qdmcg folds
+cloudsurfer refunded 165
+cloudsurfer wins Pot (250)
+
+
+
+Hand #6756293-32 - 2013-05-10 00:36:48
+Game: NL Hold'em (38+2) - Blinds 50/100
+Site: Seals With Clubs
+Table: Every Seven Guarantee - Table 2
+Seat 1: ItsAFire (1095)
+Seat 2: DLGonzo (1680)
+Seat 4: garmin00 (2170)
+Seat 5: Dewby (2485)
+Seat 6: cloudsurfer (965)
+Seat 7: FIVEbetBLUFF (1610)
+Seat 8: zif33rs (1425) - sitting out
+Seat 9: qdmcg (1395)
+zif33rs has the dealer button
+qdmcg posts small blind 50
+ItsAFire posts big blind 100
+** Hole Cards **
+Dealt to qdmcg [Ad 3h]
+DLGonzo folds
+garmin00 folds
+Dewby calls 100
+cloudsurfer folds
+FIVEbetBLUFF folds
+zif33rs folds
+qdmcg calls 50
+ItsAFire checks
+** Flop ** [8d Ks 5d]
+qdmcg checks
+ItsAFire checks
+Dewby checks
+** Turn ** [Th]
+qdmcg checks
+ItsAFire bets 200
+Dewby folds
+qdmcg folds
+ItsAFire refunded 200
+ItsAFire wins Pot (300)
+
+
+
+Hand #6756354-33 - 2013-05-10 00:37:53
+Game: NL Hold'em (38+2) - Blinds 50/100
+Site: Seals With Clubs
+Table: Every Seven Guarantee - Table 2
+Seat 1: ItsAFire (1295)
+Seat 2: DLGonzo (1680)
+Seat 4: garmin00 (2170)
+Seat 5: Dewby (2385)
+Seat 6: cloudsurfer (965)
+Seat 7: FIVEbetBLUFF (1610)
+Seat 8: zif33rs (1425) - sitting out
+Seat 9: qdmcg (1295)
+qdmcg has the dealer button
+ItsAFire posts small blind 50
+DLGonzo posts big blind 100
+** Hole Cards **
+Dealt to qdmcg [9d 4h]
+garmin00 folds
+Dewby calls 100
+cloudsurfer folds
+FIVEbetBLUFF folds
+zif33rs folds
+qdmcg folds
+ItsAFire folds
+DLGonzo checks
+** Flop ** [Kd As 7h]
+DLGonzo checks
+Dewby bets 100
+DLGonzo folds
+Dewby refunded 100
+Dewby wins Pot (250)
+
+
+
+Hand #6756405-34 - 2013-05-10 00:38:48
+Game: NL Hold'em (38+2) - Blinds 50/100
+Site: Seals With Clubs
+Table: Every Seven Guarantee - Table 2
+Seat 1: ItsAFire (1245)
+Seat 2: DLGonzo (1580)
+Seat 4: garmin00 (2170)
+Seat 5: Dewby (2535)
+Seat 6: cloudsurfer (965)
+Seat 7: FIVEbetBLUFF (1610)
+Seat 8: zif33rs (1425) - sitting out
+Seat 9: qdmcg (1295)
+ItsAFire has the dealer button
+DLGonzo posts small blind 50
+garmin00 posts big blind 100
+** Hole Cards **
+Dealt to qdmcg [Qd Ts]
+Dewby calls 100
+cloudsurfer folds
+FIVEbetBLUFF raises to 300
+zif33rs folds
+qdmcg folds
+ItsAFire folds
+DLGonzo folds
+garmin00 folds
+Dewby calls 200
+** Flop ** [Qs 3h Jc]
+Dewby checks
+FIVEbetBLUFF bets 350
+Dewby calls 350
+** Turn ** [9c]
+Dewby bets 500
+FIVEbetBLUFF raises to 960 (All-in)
+Dewby folds
+FIVEbetBLUFF refunded 460
+FIVEbetBLUFF wins Pot (2450)
+
+
+
+Hand #6756460-35 - 2013-05-10 00:40:06
+Game: NL Hold'em (38+2) - Blinds 50/100
+Site: Seals With Clubs
+Table: Every Seven Guarantee - Table 2
+Seat 1: ItsAFire (1245)
+Seat 2: DLGonzo (1530)
+Seat 4: garmin00 (2070)
+Seat 5: Dewby (1385)
+Seat 6: cloudsurfer (965)
+Seat 7: FIVEbetBLUFF (2910)
+Seat 8: zif33rs (1425) - sitting out
+Seat 9: qdmcg (1295)
+DLGonzo has the dealer button
+garmin00 posts small blind 50
+Dewby posts big blind 100
+** Hole Cards **
+Dealt to qdmcg [8s 9s]
+cloudsurfer folds
+FIVEbetBLUFF folds
+zif33rs folds
+qdmcg folds
+ItsAFire has timed out
+ItsAFire folds
+DLGonzo folds
+garmin00 folds
+Dewby refunded 50
+Dewby wins Pot (100)
+cloudsurfer moved to Table 3
+
+
+
+
+Hand #6756494-36 - 2013-05-10 00:40:55
+Game: NL Hold'em (38+2) - Blinds 75/150
+Site: Seals With Clubs
+Table: Every Seven Guarantee - Table 2
+Seat 1: ItsAFire (1245) - sitting out
+Seat 2: DLGonzo (1530)
+Seat 4: garmin00 (2020)
+Seat 5: Dewby (1435)
+Seat 7: FIVEbetBLUFF (2910)
+Seat 8: zif33rs (1425) - sitting out
+Seat 9: qdmcg (1295)
+garmin00 has the dealer button
+Dewby posts small blind 75
+FIVEbetBLUFF posts big blind 150
+** Hole Cards **
+Dealt to qdmcg [Th Kh]
+zif33rs folds
+qdmcg raises to 300
+ItsAFire folds
+DLGonzo folds
+garmin00 folds
+Dewby folds
+FIVEbetBLUFF folds
+qdmcg refunded 150
+qdmcg wins Pot (375)
+
+
+
+Hand #6756525-37 - 2013-05-10 00:41:37
+Game: NL Hold'em (38+2) - Blinds 75/150
+Site: Seals With Clubs
+Table: Every Seven Guarantee - Table 2
+Seat 1: ItsAFire (1245) - sitting out
+Seat 2: DLGonzo (1530)
+Seat 4: garmin00 (2020)
+Seat 5: Dewby (1360)
+Seat 7: FIVEbetBLUFF (2760)
+Seat 8: zif33rs (1425) - sitting out
+Seat 9: qdmcg (1520)
+Dewby has the dealer button
+FIVEbetBLUFF posts small blind 75
+zif33rs posts big blind 150
+** Hole Cards **
+Dealt to qdmcg [2h Qd]
+qdmcg folds
+ItsAFire has timed out
+ItsAFire folds
+DLGonzo folds
+garmin00 folds
+Dewby folds
+FIVEbetBLUFF raises to 300
+zif33rs folds
+FIVEbetBLUFF refunded 150
+FIVEbetBLUFF wins Pot (300)
+
+
+
+Hand #6756567-38 - 2013-05-10 00:42:31
+Game: NL Hold'em (38+2) - Blinds 75/150
+Site: Seals With Clubs
+Table: Every Seven Guarantee - Table 2
+Seat 1: ItsAFire (1245)
+Seat 2: DLGonzo (1530)
+Seat 4: garmin00 (2020)
+Seat 5: Dewby (1360)
+Seat 7: FIVEbetBLUFF (2910)
+Seat 8: zif33rs (1275) - sitting out
+Seat 9: qdmcg (1520)
+FIVEbetBLUFF has the dealer button
+zif33rs posts small blind 75
+qdmcg posts big blind 150
+** Hole Cards **
+Dealt to qdmcg [Qd 5c]
+ItsAFire folds
+DLGonzo folds
+garmin00 raises to 450
+Dewby raises to 1360 (All-in)
+FIVEbetBLUFF folds
+zif33rs folds
+qdmcg folds
+garmin00 calls 910
+** Flop ** [3c 9c 8c]
+** Turn ** [Jh]
+** River ** [4c]
+** Pot Show Down ** [3c 9c 8c Jh 4c]
+garmin00 shows [Ad Ks] (High Card Ace +KJ98)
+Dewby shows [Th Jd] (a Pair of Jacks +T98)
+Dewby wins Pot (2945) with a Pair
+
+
+
+Hand #6756601-39 - 2013-05-10 00:43:19
+Game: NL Hold'em (38+2) - Blinds 75/150
+Site: Seals With Clubs
+Table: Every Seven Guarantee - Table 2
+Seat 1: ItsAFire (1245)
+Seat 2: DLGonzo (1530)
+Seat 4: garmin00 (660)
+Seat 5: Dewby (2945)
+Seat 7: FIVEbetBLUFF (2910)
+Seat 8: zif33rs (1200) - sitting out
+Seat 9: qdmcg (1370)
+zif33rs has the dealer button
+qdmcg posts small blind 75
+ItsAFire posts big blind 150
+** Hole Cards **
+Dealt to qdmcg [Jh Js]
+DLGonzo raises to 450
+garmin00 folds
+Dewby folds
+FIVEbetBLUFF folds
+zif33rs folds
+qdmcg raises to 1370 (All-in)
+ItsAFire folds
+DLGonzo calls 920
+** Flop ** [Ks Qh 8d]
+** Turn ** [Td]
+** River ** [6d]
+** Pot Show Down ** [Ks Qh 8d Td 6d]
+DLGonzo shows [Qs Ah] (a Pair of Queens +AKT)
+qdmcg shows [Jh Js] (a Pair of Jacks +KQT)
+DLGonzo wins Pot (2890) with a Pair
+qdmcg finishes tournament in place #28

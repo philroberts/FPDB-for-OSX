@@ -1,0 +1,2343 @@
+Hand #5727229-2 - 2013-04-20 17:20:50
+Game: NL Hold'em (10+0) - Blinds 10/20
+Site: Seals With Clubs
+Table: Chicago - Table 1
+Seat 1: prime14k (1500)
+Seat 2: modestmouse (1490)
+Seat 4: Tabmad81 (1480) - sitting out
+Seat 5: sickNtired (1500) - sitting out
+Seat 6: cookie9001 (1500)
+Seat 7: noob (1500)
+Seat 8: coolhand (1530)
+Seat 9: qdmcg (1500) - sitting out
+modestmouse has the dealer button
+Tabmad81 posts small blind 10
+sickNtired posts big blind 20
+** Hole Cards **
+Dealt to qdmcg [7c 8c]
+cookie9001 folds
+noob folds
+coolhand calls 20
+qdmcg raises to 60
+prime14k calls 60
+modestmouse folds
+Tabmad81 folds
+sickNtired folds
+coolhand calls 40
+** Flop ** [4s 8d 9h]
+coolhand checks
+qdmcg bets 100
+prime14k folds
+coolhand folds
+qdmcg refunded 100
+qdmcg wins Pot (210)
+
+
+
+Hand #5727269-3 - 2013-04-20 17:21:35
+Game: NL Hold'em (10+0) - Blinds 10/20
+Site: Seals With Clubs
+Table: Chicago - Table 1
+Seat 1: prime14k (1440)
+Seat 2: modestmouse (1490)
+Seat 4: Tabmad81 (1470) - sitting out
+Seat 5: sickNtired (1480) - sitting out
+Seat 6: cookie9001 (1500)
+Seat 7: noob (1500)
+Seat 8: coolhand (1470)
+Seat 9: qdmcg (1650)
+Tabmad81 has the dealer button
+sickNtired posts small blind 10
+cookie9001 posts big blind 20
+** Hole Cards **
+Dealt to qdmcg [5d Kh]
+noob calls 20
+coolhand folds
+qdmcg folds
+prime14k calls 20
+modestmouse calls 20
+Tabmad81 folds
+sickNtired calls 10
+cookie9001 checks
+** Flop ** [8c Qs Ac]
+sickNtired checks
+cookie9001 bets 40
+noob calls 40
+prime14k folds
+modestmouse folds
+sickNtired calls 40
+** Turn ** [6s]
+sickNtired checks
+cookie9001 checks
+noob bets 60
+sickNtired folds
+cookie9001 calls 60
+** River ** [Jc]
+cookie9001 bets 200
+noob calls 200
+** Pot Show Down ** [8c Qs Ac 6s Jc]
+cookie9001 shows [5c 3c] (a Flush, Ace high +J853)
+noob shows [6c As] (Two Pair, Aces and Sixes +Q)
+cookie9001 wins Pot (740) with a Flush
+
+
+
+Hand #5727366-4 - 2013-04-20 17:23:39
+Game: NL Hold'em (10+0) - Blinds 10/20
+Site: Seals With Clubs
+Table: Chicago - Table 1
+Seat 1: prime14k (1420)
+Seat 2: modestmouse (1470)
+Seat 4: Tabmad81 (1470) - sitting out
+Seat 5: sickNtired (1420)
+Seat 6: cookie9001 (1920)
+Seat 7: noob (1180)
+Seat 8: coolhand (1470)
+Seat 9: qdmcg (1650)
+sickNtired has the dealer button
+cookie9001 posts small blind 10
+noob posts big blind 20
+** Hole Cards **
+Dealt to qdmcg [4h Ts]
+coolhand folds
+qdmcg folds
+prime14k folds
+modestmouse raises to 60
+Tabmad81 folds
+sickNtired folds
+cookie9001 folds
+noob folds
+modestmouse refunded 40
+modestmouse wins Pot (50)
+
+
+
+Hand #5727396-5 - 2013-04-20 17:24:09
+Game: NL Hold'em (10+0) - Blinds 10/20
+Site: Seals With Clubs
+Table: Chicago - Table 1
+Seat 1: prime14k (1420)
+Seat 2: modestmouse (1500)
+Seat 4: Tabmad81 (1470)
+Seat 5: sickNtired (1420)
+Seat 6: cookie9001 (1910)
+Seat 7: noob (1160)
+Seat 8: coolhand (1470)
+Seat 9: qdmcg (1650)
+cookie9001 has the dealer button
+noob posts small blind 10
+coolhand posts big blind 20
+** Hole Cards **
+Dealt to qdmcg [7c Ad]
+qdmcg folds
+prime14k folds
+modestmouse folds
+Tabmad81 calls 20
+sickNtired folds
+cookie9001 calls 20
+noob folds
+coolhand checks
+** Flop ** [8c Kd 3s]
+coolhand bets 20
+Tabmad81 folds
+cookie9001 folds
+coolhand refunded 20
+coolhand wins Pot (70)
+
+
+
+Hand #5727431-6 - 2013-04-20 17:24:55
+Game: NL Hold'em (10+0) - Blinds 10/20
+Site: Seals With Clubs
+Table: Chicago - Table 1
+Seat 1: prime14k (1420)
+Seat 2: modestmouse (1500)
+Seat 4: Tabmad81 (1450)
+Seat 5: sickNtired (1420)
+Seat 6: cookie9001 (1890)
+Seat 7: noob (1150)
+Seat 8: coolhand (1520)
+Seat 9: qdmcg (1650)
+noob has the dealer button
+coolhand posts small blind 10
+qdmcg posts big blind 20
+** Hole Cards **
+Dealt to qdmcg [5s 6s]
+prime14k folds
+modestmouse folds
+Tabmad81 calls 20
+sickNtired calls 20
+cookie9001 has timed out
+cookie9001 folds
+noob folds
+coolhand calls 10
+qdmcg checks
+** Flop ** [Tc 6c Qs]
+coolhand checks
+qdmcg checks
+Tabmad81 checks
+sickNtired checks
+** Turn ** [Jd]
+coolhand checks
+qdmcg checks
+Tabmad81 bets 40
+sickNtired raises to 140
+coolhand folds
+qdmcg folds
+Tabmad81 calls 100
+** River ** [6d]
+Tabmad81 bets 100
+sickNtired calls 100
+** Pot Show Down ** [Tc 6c Qs Jd 6d]
+Tabmad81 shows [Kd 9h] (a Straight, Nine to King)
+sickNtired shows [Js As] (Two Pair, Jacks and Sixes +A)
+Tabmad81 wins Pot (560) with a Straight
+
+
+
+Hand #5727547-7 - 2013-04-20 17:27:12
+Game: NL Hold'em (10+0) - Blinds 15/30
+Site: Seals With Clubs
+Table: Chicago - Table 1
+Seat 1: prime14k (1420)
+Seat 2: modestmouse (1500)
+Seat 4: Tabmad81 (1750)
+Seat 5: sickNtired (1160)
+Seat 6: cookie9001 (1890)
+Seat 7: noob (1150)
+Seat 8: coolhand (1500)
+Seat 9: qdmcg (1630)
+coolhand has the dealer button
+qdmcg posts small blind 15
+prime14k posts big blind 30
+** Hole Cards **
+Dealt to qdmcg [9c 5h]
+modestmouse folds
+Tabmad81 calls 30
+sickNtired calls 30
+cookie9001 has timed out
+cookie9001 folds
+noob folds
+coolhand raises to 120
+qdmcg folds
+prime14k folds
+Tabmad81 folds
+sickNtired calls 90
+** Flop ** [Ah 4s Tc]
+sickNtired checks
+coolhand bets 120
+sickNtired calls 120
+** Turn ** [4d]
+sickNtired checks
+coolhand bets 120
+sickNtired calls 120
+** River ** [5d]
+sickNtired bets 800 (All-in)
+coolhand folds
+sickNtired refunded 800
+sickNtired wins Pot (795)
+
+
+
+Hand #5727639-8 - 2013-04-20 17:29:15
+Game: NL Hold'em (10+0) - Blinds 15/30
+Site: Seals With Clubs
+Table: Chicago - Table 1
+Seat 1: prime14k (1390)
+Seat 2: modestmouse (1500)
+Seat 4: Tabmad81 (1720)
+Seat 5: sickNtired (1595)
+Seat 6: cookie9001 (1890)
+Seat 7: noob (1150)
+Seat 8: coolhand (1140)
+Seat 9: qdmcg (1615)
+qdmcg has the dealer button
+prime14k posts small blind 15
+modestmouse posts big blind 30
+** Hole Cards **
+Dealt to qdmcg [Qd 3c]
+Tabmad81 folds
+sickNtired calls 30
+cookie9001 folds
+noob folds
+coolhand calls 30
+qdmcg folds
+prime14k calls 15
+modestmouse checks
+** Flop ** [Kd 5h 6h]
+prime14k checks
+modestmouse checks
+sickNtired checks
+coolhand checks
+** Turn ** [Kc]
+prime14k bets 30
+modestmouse folds
+sickNtired folds
+coolhand calls 30
+** River ** [8s]
+prime14k bets 90
+coolhand calls 90
+** Pot Show Down ** [Kd 5h 6h Kc 8s]
+prime14k shows [5d 2d] (Two Pair, Kings and Fives +8)
+coolhand shows [Ts 6s] (Two Pair, Kings and Sixes +T)
+coolhand wins Pot (360) with Two Pair
+
+
+
+Hand #5727705-9 - 2013-04-20 17:30:29
+Game: NL Hold'em (10+0) - Blinds 15/30
+Site: Seals With Clubs
+Table: Chicago - Table 1
+Seat 1: prime14k (1240)
+Seat 2: modestmouse (1470)
+Seat 4: Tabmad81 (1720)
+Seat 5: sickNtired (1565)
+Seat 6: cookie9001 (1890)
+Seat 7: noob (1150)
+Seat 8: coolhand (1350)
+Seat 9: qdmcg (1615)
+prime14k has the dealer button
+modestmouse posts small blind 15
+Tabmad81 posts big blind 30
+** Hole Cards **
+Dealt to qdmcg [4d 3c]
+sickNtired folds
+cookie9001 folds
+noob raises to 60
+coolhand raises to 180
+qdmcg folds
+prime14k folds
+modestmouse calls 165
+Tabmad81 folds
+noob calls 120
+** Flop ** [6c 7h 6h]
+modestmouse checks
+noob checks
+coolhand checks
+** Turn ** [Jd]
+modestmouse checks
+noob bets 120
+coolhand folds
+modestmouse folds
+noob refunded 120
+noob wins Pot (570)
+
+
+
+Hand #5727787-10 - 2013-04-20 17:32:11
+Game: NL Hold'em (10+0) - Blinds 15/30
+Site: Seals With Clubs
+Table: Chicago - Table 1
+Seat 1: prime14k (1240)
+Seat 2: modestmouse (1290)
+Seat 4: Tabmad81 (1690)
+Seat 5: sickNtired (1565)
+Seat 6: cookie9001 (1890)
+Seat 7: noob (1540)
+Seat 8: coolhand (1170)
+Seat 9: qdmcg (1615)
+modestmouse has the dealer button
+Tabmad81 posts small blind 15
+sickNtired posts big blind 30
+** Hole Cards **
+Dealt to qdmcg [7d Jd]
+cookie9001 has timed out
+cookie9001 folds
+noob calls 30
+coolhand calls 30
+qdmcg raises to 90
+prime14k calls 90
+modestmouse raises to 240
+Tabmad81 folds
+sickNtired folds
+noob folds
+coolhand folds
+qdmcg folds
+prime14k calls 150
+** Flop ** [Th Tc 8d]
+prime14k bets 150
+modestmouse raises to 390
+prime14k calls 240
+** Turn ** [3s]
+prime14k checks
+modestmouse bets 600
+prime14k folds
+modestmouse refunded 600
+modestmouse wins Pot (1455)
+
+
+
+Hand #5727878-11 - 2013-04-20 17:34:02
+Game: NL Hold'em (10+0) - Blinds 25/50
+Site: Seals With Clubs
+Table: Chicago - Table 1
+Seat 1: prime14k (610)
+Seat 2: modestmouse (2115)
+Seat 4: Tabmad81 (1675)
+Seat 5: sickNtired (1535)
+Seat 6: cookie9001 (1890) - sitting out
+Seat 7: noob (1510)
+Seat 8: coolhand (1140)
+Seat 9: qdmcg (1525)
+Tabmad81 has the dealer button
+sickNtired posts small blind 25
+cookie9001 posts big blind 50
+** Hole Cards **
+Dealt to qdmcg [7c Ks]
+noob folds
+coolhand folds
+qdmcg folds
+prime14k calls 50
+modestmouse folds
+Tabmad81 folds
+sickNtired calls 25
+cookie9001 folds
+** Flop ** [Ts Qc 3s]
+sickNtired checks
+prime14k checks
+** Turn ** [8d]
+sickNtired checks
+prime14k bets 100
+sickNtired folds
+prime14k refunded 100
+prime14k wins Pot (150)
+
+
+
+Hand #5727908-12 - 2013-04-20 17:34:46
+Game: NL Hold'em (10+0) - Blinds 25/50
+Site: Seals With Clubs
+Table: Chicago - Table 1
+Seat 1: prime14k (710)
+Seat 2: modestmouse (2115)
+Seat 4: Tabmad81 (1675)
+Seat 5: sickNtired (1485)
+Seat 6: cookie9001 (1840) - sitting out
+Seat 7: noob (1510)
+Seat 8: coolhand (1140)
+Seat 9: qdmcg (1525)
+sickNtired has the dealer button
+cookie9001 posts small blind 25
+noob posts big blind 50
+** Hole Cards **
+Dealt to qdmcg [Kc Ts]
+coolhand folds
+qdmcg raises to 200
+prime14k folds
+modestmouse calls 200
+Tabmad81 folds
+sickNtired folds
+cookie9001 folds
+noob folds
+** Flop ** [9c 4s 9s]
+qdmcg bets 213
+modestmouse calls 213
+** Turn ** [Td]
+qdmcg checks
+modestmouse bets 450
+qdmcg raises to 1112 (All-in)
+modestmouse calls 662
+** River ** [Qh]
+** Pot Show Down ** [9c 4s 9s Td Qh]
+modestmouse shows [8d 8s] (Two Pair, Nines and Eights +Q)
+qdmcg shows [Kc Ts] (Two Pair, Tens and Nines +K)
+qdmcg wins Pot (3125) with Two Pair
+
+
+
+Hand #5727968-13 - 2013-04-20 17:35:58
+Game: NL Hold'em (10+0) - Blinds 25/50
+Site: Seals With Clubs
+Table: Chicago - Table 1
+Seat 1: prime14k (710)
+Seat 2: modestmouse (590)
+Seat 4: Tabmad81 (1675)
+Seat 5: sickNtired (1485)
+Seat 6: cookie9001 (1815) - sitting out
+Seat 7: noob (1460)
+Seat 8: coolhand (1140)
+Seat 9: qdmcg (3125)
+cookie9001 has the dealer button
+noob posts small blind 25
+coolhand posts big blind 50
+** Hole Cards **
+Dealt to qdmcg [Ts Kd]
+qdmcg folds
+prime14k folds
+modestmouse folds
+Tabmad81 folds
+sickNtired raises to 150
+cookie9001 folds
+noob raises to 250
+coolhand folds
+sickNtired calls 100
+** Flop ** [Jh 7d 4s]
+noob bets 300
+sickNtired raises to 1235 (All-in)
+noob calls 910 (All-in)
+sickNtired refunded 25
+** Turn ** [4h]
+** River ** [3c]
+** Pot Show Down ** [Jh 7d 4s 4h 3c]
+sickNtired shows [7h Ah] (Two Pair, Sevens and Fours +A)
+noob shows [As Qc] (a Pair of Fours +AQJ)
+sickNtired wins Pot (2970) with Two Pair
+noob finishes tournament in place #37
+
+
+
+Hand #5728018-14 - 2013-04-20 17:36:55
+Game: NL Hold'em (10+0) - Blinds 25/50
+Site: Seals With Clubs
+Table: Chicago - Table 1
+Seat 1: prime14k (710)
+Seat 2: modestmouse (590)
+Seat 4: Tabmad81 (1675)
+Seat 5: sickNtired (2995)
+Seat 6: cookie9001 (1815) - sitting out
+Seat 8: coolhand (1090)
+Seat 9: qdmcg (3125)
+coolhand has the dealer button
+qdmcg posts small blind 25
+prime14k posts big blind 50
+** Hole Cards **
+Dealt to qdmcg [5h Th]
+modestmouse folds
+Tabmad81 calls 50
+sickNtired folds
+cookie9001 folds
+coolhand calls 50
+qdmcg calls 25
+prime14k checks
+** Flop ** [7d Jc Td]
+qdmcg checks
+prime14k bets 100
+Tabmad81 folds
+coolhand folds
+qdmcg folds
+prime14k refunded 100
+prime14k wins Pot (200)
+
+
+
+Hand #5728045-15 - 2013-04-20 17:37:30
+Game: NL Hold'em (10+0) - Blinds 25/50
+Site: Seals With Clubs
+Table: Chicago - Table 1
+Seat 1: prime14k (860)
+Seat 2: modestmouse (590)
+Seat 4: Tabmad81 (1625)
+Seat 5: sickNtired (2995)
+Seat 6: cookie9001 (1815) - sitting out
+Seat 8: coolhand (1040)
+Seat 9: qdmcg (3075)
+qdmcg has the dealer button
+prime14k posts small blind 25
+modestmouse posts big blind 50
+** Hole Cards **
+Dealt to qdmcg [5h 4c]
+qkil moved from Table 5
+Crowley moved from Table 5
+Tabmad81 calls 50
+sickNtired folds
+cookie9001 folds
+coolhand folds
+qdmcg folds
+prime14k calls 25
+modestmouse checks
+** Flop ** [Th 3c Qh]
+prime14k bets 50
+modestmouse folds
+Tabmad81 calls 50
+** Turn ** [8h]
+prime14k bets 150
+Tabmad81 calls 150
+** River ** [Qd]
+prime14k bets 300
+Tabmad81 calls 300
+** Pot Show Down ** [Th 3c Qh 8h Qd]
+prime14k shows [Jc Qs] (Three of a Kind, Queens +JT)
+Tabmad81 shows [Ts Jh] (Two Pair, Queens and Tens +J)
+prime14k wins Pot (1150) with Three of a Kind
+
+
+
+Hand #5728104-16 - 2013-04-20 17:38:58
+Game: NL Hold'em (10+0) - Blinds 50/100
+Site: Seals With Clubs
+Table: Chicago - Table 1
+Seat 1: prime14k (1460)
+Seat 2: modestmouse (540)
+Seat 3: Crowley (720)
+Seat 4: Tabmad81 (1075)
+Seat 5: sickNtired (2995)
+Seat 6: cookie9001 (1815) - sitting out
+Seat 7: qkil (485)
+Seat 8: coolhand (1040)
+Seat 9: qdmcg (3075)
+prime14k has the dealer button
+modestmouse posts small blind 50
+Crowley posts big blind 100
+** Hole Cards **
+Dealt to qdmcg [7d Th]
+Tabmad81 calls 100
+sickNtired folds
+cookie9001 folds
+qkil folds
+coolhand calls 100
+qdmcg folds
+prime14k calls 100
+modestmouse calls 50
+Crowley checks
+** Flop ** [3s 5d Ac]
+modestmouse checks
+Crowley checks
+Tabmad81 checks
+coolhand checks
+prime14k checks
+** Turn ** [2s]
+modestmouse checks
+Crowley bets 620 (All-in)
+Tabmad81 folds
+coolhand folds
+prime14k folds
+modestmouse folds
+Crowley refunded 620
+Crowley wins Pot (500)
+
+
+
+Hand #5728138-17 - 2013-04-20 17:40:01
+Game: NL Hold'em (10+0) - Blinds 50/100
+Site: Seals With Clubs
+Table: Chicago - Table 1
+Seat 1: prime14k (1360)
+Seat 2: modestmouse (440)
+Seat 3: Crowley (1120)
+Seat 4: Tabmad81 (975)
+Seat 5: sickNtired (2995)
+Seat 6: cookie9001 (1815) - sitting out
+Seat 7: qkil (485)
+Seat 8: coolhand (940)
+Seat 9: qdmcg (3075)
+modestmouse has the dealer button
+Crowley posts small blind 50
+Tabmad81 posts big blind 100
+** Hole Cards **
+Dealt to qdmcg [Jd 4c]
+sickNtired folds
+cookie9001 folds
+qkil folds
+coolhand folds
+qdmcg folds
+prime14k has timed out
+prime14k folds
+modestmouse raises to 440 (All-in)
+Crowley calls 390
+Tabmad81 folds
+** Flop ** [7c 9s Ad]
+** Turn ** [Th]
+** River ** [Kh]
+** Pot Show Down ** [7c 9s Ad Th Kh]
+modestmouse shows [Js 8d] (a Straight, Seven to Jack)
+Crowley shows [9c 7h] (Two Pair, Nines and Sevens +A)
+modestmouse wins Pot (980) with a Straight
+
+
+
+Hand #5728178-18 - 2013-04-20 17:41:00
+Game: NL Hold'em (10+0) - Blinds 50/100
+Site: Seals With Clubs
+Table: Chicago - Table 1
+Seat 1: prime14k (1360)
+Seat 2: modestmouse (980)
+Seat 3: Crowley (680)
+Seat 4: Tabmad81 (875)
+Seat 5: sickNtired (2995)
+Seat 6: cookie9001 (1815) - sitting out
+Seat 7: qkil (485)
+Seat 8: coolhand (940)
+Seat 9: qdmcg (3075)
+Crowley has the dealer button
+Tabmad81 posts small blind 50
+sickNtired posts big blind 100
+** Hole Cards **
+Dealt to qdmcg [Ts Kh]
+cookie9001 folds
+qkil folds
+coolhand raises to 940 (All-in)
+qdmcg folds
+prime14k folds
+modestmouse folds
+Crowley folds
+Tabmad81 folds
+sickNtired folds
+coolhand refunded 840
+coolhand wins Pot (250)
+
+
+
+Hand #5728199-19 - 2013-04-20 17:41:26
+Game: NL Hold'em (10+0) - Blinds 50/100
+Site: Seals With Clubs
+Table: Chicago - Table 1
+Seat 1: prime14k (1360)
+Seat 2: modestmouse (980)
+Seat 3: Crowley (680)
+Seat 4: Tabmad81 (825)
+Seat 5: sickNtired (2895)
+Seat 6: cookie9001 (1815) - sitting out
+Seat 7: qkil (485)
+Seat 8: coolhand (1090)
+Seat 9: qdmcg (3075)
+Tabmad81 has the dealer button
+sickNtired posts small blind 50
+cookie9001 posts big blind 100
+** Hole Cards **
+Dealt to qdmcg [4d 5d]
+qkil calls 100
+coolhand folds
+qdmcg folds
+prime14k folds
+modestmouse folds
+Crowley folds
+Tabmad81 raises to 825 (All-in)
+sickNtired folds
+cookie9001 folds
+qkil calls 385 (All-in)
+Tabmad81 refunded 340
+** Flop ** [Jc Td 3c]
+** Turn ** [Th]
+** River ** [8h]
+** Pot Show Down ** [Jc Td 3c Th 8h]
+Tabmad81 shows [Kc 5c] (a Pair of Tens +KJ8)
+qkil shows [As Qc] (a Pair of Tens +AQJ)
+qkil wins Pot (1120) with a Pair
+qkil moved to Table 2
+
+
+
+
+Hand #5728230-20 - 2013-04-20 17:42:12
+Game: NL Hold'em (10+0) - Blinds 50/100
+Site: Seals With Clubs
+Table: Chicago - Table 1
+Seat 1: prime14k (1360)
+Seat 2: modestmouse (980)
+Seat 3: Crowley (680)
+Seat 4: Tabmad81 (340)
+Seat 5: sickNtired (2845)
+Seat 6: cookie9001 (1715) - sitting out
+Seat 8: coolhand (1090)
+Seat 9: qdmcg (3075)
+sickNtired has the dealer button
+cookie9001 posts small blind 50
+coolhand posts big blind 100
+** Hole Cards **
+Dealt to qdmcg [7d 7s]
+qdmcg raises to 300
+prime14k folds
+modestmouse folds
+Crowley folds
+Tabmad81 raises to 340 (All-in)
+sickNtired folds
+cookie9001 folds
+coolhand raises to 1090 (All-in)
+qdmcg calls 790
+** Flop ** [7c Ah 4d]
+** Turn ** [8h]
+** River ** [9h]
+** Side Pot 1 Show Down ** [7c Ah 4d 8h 9h]
+coolhand shows [Qs Qc] (a Pair of Queens +A98)
+qdmcg shows [7d 7s] (Three of a Kind, Sevens +A9)
+qdmcg wins Side Pot 1 (1500) with Three of a Kind
+** Main Pot Show Down ** [7c Ah 4d 8h 9h]
+Tabmad81 shows [Qd 9s] (a Pair of Nines +AQ8)
+qdmcg wins Main Pot (1070) with Three of a Kind
+Tabmad81 finishes tournament in place #33
+coolhand finishes tournament in place #32
+
+
+
+Hand #5728262-21 - 2013-04-20 17:43:07
+Game: NL Hold'em (10+0) - Blinds 50/100
+Site: Seals With Clubs
+Table: Chicago - Table 1
+Seat 1: prime14k (1360)
+Seat 2: modestmouse (980)
+Seat 3: Crowley (680)
+Seat 5: sickNtired (2845)
+Seat 6: cookie9001 (1665) - sitting out
+Seat 9: qdmcg (4555)
+cookie9001 has the dealer button
+qdmcg posts small blind 50
+prime14k posts big blind 100
+** Hole Cards **
+Dealt to qdmcg [8d Kd]
+modestmouse calls 100
+Crowley calls 100
+sickNtired folds
+cookie9001 folds
+qdmcg calls 50
+prime14k checks
+** Flop ** [4c 5s 3d]
+qdmcg checks
+prime14k bets 200
+modestmouse calls 200
+Crowley raises to 580 (All-in)
+qdmcg folds
+prime14k calls 380
+modestmouse raises to 880 (All-in)
+prime14k calls 300
+** Turn ** [7s]
+** River ** [4s]
+** Side Pot 1 Show Down ** [4c 5s 3d 7s 4s]
+Havoc moved from Table 3
+prime14k shows [4h 9d] (Three of a Kind, Fours +97)
+modestmouse shows [As 4d] (Three of a Kind, Fours +A7)
+modestmouse wins Side Pot 1 (600) with Three of a Kind
+** Main Pot Show Down ** [4c 5s 3d 7s 4s]
+Crowley shows [2c Ad] (a Straight, Ace to Five)
+Crowley wins Main Pot (2140) with a Straight
+
+
+
+Hand #5728295-22 - 2013-04-20 17:44:10
+Game: NL Hold'em (10+0) - Blinds 50/100
+Site: Seals With Clubs
+Table: Chicago - Table 1
+Seat 1: prime14k (380)
+Seat 2: modestmouse (600)
+Seat 3: Crowley (2140)
+Seat 4: Havoc (1490)
+Seat 5: sickNtired (2845)
+Seat 6: cookie9001 (1665) - sitting out
+Seat 9: qdmcg (4455)
+qdmcg has the dealer button
+prime14k posts small blind 50
+modestmouse posts big blind 100
+** Hole Cards **
+Dealt to qdmcg [8c 6s]
+Crowley calls 100
+Havoc folds
+sickNtired folds
+cookie9001 folds
+qdmcg folds
+prime14k folds
+modestmouse checks
+** Flop ** [Qc 6c Qd]
+modestmouse checks
+Crowley checks
+** Turn ** [Jd]
+modestmouse bets 500 (All-in)
+Crowley calls 500
+** River ** [4d]
+** Pot Show Down ** [Qc 6c Qd Jd 4d]
+modestmouse shows [Js 5c] (Two Pair, Queens and Jacks +6)
+Crowley shows [6d 5d] (a Flush, Queen high +J654)
+Crowley wins Pot (1250) with a Flush
+modestmouse finishes tournament in place #29
+
+
+
+Hand #5728316-23 - 2013-04-20 17:44:55
+Game: NL Hold'em (10+0) - Blinds 75/150
+Site: Seals With Clubs
+Table: Chicago - Table 1
+Seat 1: prime14k (330)
+Seat 3: Crowley (2790)
+Seat 4: Havoc (1490)
+Seat 5: sickNtired (2845)
+Seat 6: cookie9001 (1665) - sitting out
+Seat 9: qdmcg (4455)
+prime14k has the dealer button
+Crowley posts small blind 75
+Havoc posts big blind 150
+** Hole Cards **
+Dealt to qdmcg [Qc 5c]
+sickNtired folds
+cookie9001 folds
+qdmcg raises to 450
+prime14k folds
+Crowley folds
+Havoc folds
+qdmcg refunded 300
+qdmcg wins Pot (375)
+
+
+
+Hand #5728328-24 - 2013-04-20 17:45:21
+Game: NL Hold'em (10+0) - Blinds 75/150
+Site: Seals With Clubs
+Table: Chicago - Table 1
+Seat 1: prime14k (330)
+Seat 3: Crowley (2715)
+Seat 4: Havoc (1340)
+Seat 5: sickNtired (2845)
+Seat 6: cookie9001 (1665) - sitting out
+Seat 9: qdmcg (4680)
+Crowley has the dealer button
+Havoc posts small blind 75
+sickNtired posts big blind 150
+** Hole Cards **
+Dealt to qdmcg [Qh Js]
+cookie9001 folds
+qdmcg folds
+prime14k folds
+Crowley folds
+Havoc folds
+sickNtired refunded 75
+sickNtired wins Pot (150)
+
+
+
+Hand #5728336-25 - 2013-04-20 17:45:42
+Game: NL Hold'em (10+0) - Blinds 75/150
+Site: Seals With Clubs
+Table: Chicago - Table 1
+Seat 1: prime14k (330)
+Seat 3: Crowley (2715)
+Seat 4: Havoc (1265)
+Seat 5: sickNtired (2920)
+Seat 6: cookie9001 (1665) - sitting out
+Seat 9: qdmcg (4680)
+Havoc has the dealer button
+sickNtired posts small blind 75
+cookie9001 posts big blind 150
+** Hole Cards **
+Dealt to qdmcg [7s Tc]
+qdmcg folds
+prime14k folds
+trend moved from Table 3
+Crowley has timed out
+Crowley folds
+Havoc folds
+sickNtired calls 75
+cookie9001 folds
+sickNtired wins Pot (300)
+
+
+
+Hand #5728356-26 - 2013-04-20 17:46:22
+Game: NL Hold'em (10+0) - Blinds 75/150
+Site: Seals With Clubs
+Table: Chicago - Table 1
+Seat 1: prime14k (330)
+Seat 2: trend (2680)
+Seat 3: Crowley (2715) - sitting out
+Seat 4: Havoc (1265)
+Seat 5: sickNtired (3070)
+Seat 6: cookie9001 (1515) - sitting out
+Seat 9: qdmcg (4680)
+sickNtired has the dealer button
+cookie9001 posts small blind 75
+qdmcg posts big blind 150
+** Hole Cards **
+Dealt to qdmcg [4c 5d]
+prime14k folds
+trend calls 150
+Crowley folds
+Havoc folds
+sickNtired folds
+cookie9001 folds
+qdmcg checks
+** Flop ** [4d Tc 4s]
+qdmcg checks
+Citizen71348 moved from Table 3
+lookalive342 moved from Table 3
+trend bets 300
+qdmcg calls 300
+** Turn ** [Ac]
+qdmcg checks
+trend checks
+** River ** [3c]
+qdmcg checks
+trend checks
+** Pot Show Down ** [4d Tc 4s Ac 3c]
+trend shows [Js Kc] (a Pair of Fours +AKJ)
+qdmcg shows [4c 5d] (Three of a Kind, Fours +AT)
+qdmcg wins Pot (975) with Three of a Kind
+
+
+
+Hand #5728392-27 - 2013-04-20 17:47:27
+Game: NL Hold'em (10+0) - Blinds 75/150
+Site: Seals With Clubs
+Table: Chicago - Table 1
+Seat 1: prime14k (330)
+Seat 2: trend (2230)
+Seat 3: Crowley (2715) - sitting out
+Seat 4: Havoc (1265)
+Seat 5: sickNtired (3070)
+Seat 6: cookie9001 (1440) - sitting out
+Seat 7: Citizen71348 (1140)
+Seat 8: lookalive342 (260)
+Seat 9: qdmcg (5205)
+cookie9001 has the dealer button
+Citizen71348 plays after the button
+lookalive342 plays after the button
+qdmcg posts small blind 75
+prime14k posts big blind 150
+** Hole Cards **
+Dealt to qdmcg [6h 2d]
+trend folds
+Crowley folds
+Havoc folds
+sickNtired folds
+cookie9001 folds
+qdmcg folds
+prime14k refunded 75
+prime14k wins Pot (150)
+
+
+
+Hand #5728403-28 - 2013-04-20 17:47:48
+Game: NL Hold'em (10+0) - Blinds 75/150
+Site: Seals With Clubs
+Table: Chicago - Table 1
+Seat 1: prime14k (405)
+Seat 2: trend (2230)
+Seat 3: Crowley (2715) - sitting out
+Seat 4: Havoc (1265)
+Seat 5: sickNtired (3070)
+Seat 6: cookie9001 (1440) - sitting out
+Seat 7: Citizen71348 (1140)
+Seat 8: lookalive342 (260)
+Seat 9: qdmcg (5130)
+qdmcg has the dealer button
+prime14k posts small blind 75
+trend posts big blind 150
+** Hole Cards **
+Dealt to qdmcg [7s Ah]
+Crowley folds
+Havoc folds
+sickNtired folds
+cookie9001 folds
+Citizen71348 folds
+lookalive342 folds
+qdmcg raises to 450
+prime14k folds
+trend folds
+qdmcg refunded 300
+qdmcg wins Pot (375)
+
+
+
+Hand #5728418-29 - 2013-04-20 17:48:20
+Game: NL Hold'em (10+0) - Blinds 75/150
+Site: Seals With Clubs
+Table: Chicago - Table 1
+Seat 1: prime14k (330)
+Seat 2: trend (2080)
+Seat 3: Crowley (2715) - sitting out
+Seat 4: Havoc (1265)
+Seat 5: sickNtired (3070)
+Seat 6: cookie9001 (1440) - sitting out
+Seat 7: Citizen71348 (1140)
+Seat 8: lookalive342 (260)
+Seat 9: qdmcg (5355)
+prime14k has the dealer button
+trend posts small blind 75
+Crowley posts big blind 150
+** Hole Cards **
+Dealt to qdmcg [Tc 4h]
+Havoc folds
+sickNtired raises to 450
+cookie9001 folds
+Citizen71348 folds
+lookalive342 folds
+qdmcg folds
+prime14k calls 330 (All-in)
+trend folds
+Crowley folds
+sickNtired refunded 120
+** Flop ** [2s 8c 5s]
+** Turn ** [2c]
+** River ** [5h]
+** Pot Show Down ** [2s 8c 5s 2c 5h]
+prime14k shows [Th Ah] (Two Pair, Fives and Deuces +A)
+sickNtired shows [Js Ac] (Two Pair, Fives and Deuces +A)
+prime14k splits Pot (442) with Two Pair
+sickNtired splits Pot (443) with Two Pair
+
+
+
+Hand #5728436-30 - 2013-04-20 17:49:08
+Game: NL Hold'em (10+0) - Blinds 75/150
+Site: Seals With Clubs
+Table: Chicago - Table 1
+Seat 1: prime14k (442)
+Seat 2: trend (2005)
+Seat 3: Crowley (2565) - sitting out
+Seat 4: Havoc (1265)
+Seat 5: sickNtired (3183)
+Seat 6: cookie9001 (1440) - sitting out
+Seat 7: Citizen71348 (1140)
+Seat 8: lookalive342 (260)
+Seat 9: qdmcg (5355)
+trend has the dealer button
+Crowley posts small blind 75
+Havoc posts big blind 150
+** Hole Cards **
+Dealt to qdmcg [Ks Jc]
+sickNtired calls 150
+cookie9001 folds
+Citizen71348 folds
+lookalive342 folds
+qdmcg raises to 300
+prime14k folds
+trend folds
+Crowley folds
+Havoc folds
+sickNtired calls 150
+** Flop ** [Ts Js 9d]
+sickNtired checks
+qdmcg bets 450
+sickNtired folds
+qdmcg refunded 450
+qdmcg wins Pot (825)
+sickNtired moved to Table 2
+
+
+
+
+Hand #5728461-31 - 2013-04-20 17:50:03
+Game: NL Hold'em (10+0) - Blinds 75/150
+Site: Seals With Clubs
+Table: Chicago - Table 1
+Seat 1: prime14k (442)
+Seat 2: trend (2005)
+Seat 3: Crowley (2490)
+Seat 4: Havoc (1115)
+Seat 6: cookie9001 (1440) - sitting out
+Seat 7: Citizen71348 (1140)
+Seat 8: lookalive342 (260)
+Seat 9: qdmcg (5880)
+Crowley has the dealer button
+Havoc posts small blind 75
+cookie9001 posts big blind 150
+** Hole Cards **
+Dealt to qdmcg [3h 4h]
+Citizen71348 raises to 1140 (All-in)
+lookalive342 folds
+qdmcg folds
+prime14k folds
+trend folds
+Crowley folds
+Havoc folds
+cookie9001 folds
+Citizen71348 refunded 990
+Citizen71348 wins Pot (375)
+
+
+
+Hand #5728477-32 - 2013-04-20 17:50:31
+Game: NL Hold'em (10+0) - Blinds 100/200
+Site: Seals With Clubs
+Table: Chicago - Table 1
+Seat 1: prime14k (442)
+Seat 2: trend (2005)
+Seat 3: Crowley (2490)
+Seat 4: Havoc (1040)
+Seat 6: cookie9001 (1290) - sitting out
+Seat 7: Citizen71348 (1365)
+Seat 8: lookalive342 (260)
+Seat 9: qdmcg (5880)
+Havoc has the dealer button
+cookie9001 posts small blind 100
+Citizen71348 posts big blind 200
+** Hole Cards **
+Dealt to qdmcg [5d Ks]
+lookalive342 has timed out
+lookalive342 folds
+qdmcg folds
+prime14k folds
+trend folds
+Crowley folds
+Havoc folds
+cookie9001 folds
+Citizen71348 refunded 100
+Citizen71348 wins Pot (200)
+
+
+
+Hand #5728504-33 - 2013-04-20 17:51:17
+Game: NL Hold'em (10+0) - Blinds 100/200
+Site: Seals With Clubs
+Table: Chicago - Table 1
+Seat 1: prime14k (442)
+Seat 2: trend (2005)
+Seat 3: Crowley (2490)
+Seat 4: Havoc (1040)
+Seat 6: cookie9001 (1190) - sitting out
+Seat 7: Citizen71348 (1465)
+Seat 8: lookalive342 (260)
+Seat 9: qdmcg (5880)
+cookie9001 has the dealer button
+Citizen71348 posts small blind 100
+lookalive342 posts big blind 200
+** Hole Cards **
+Dealt to qdmcg [4c Ac]
+qdmcg folds
+prime14k folds
+trend raises to 400
+Crowley folds
+Havoc raises to 1040 (All-in)
+cookie9001 folds
+Citizen71348 folds
+lookalive342 calls 60 (All-in)
+trend calls 640
+** Flop ** [6h As 6d]
+** Turn ** [5d]
+** River ** [4s]
+** Side Pot 1 Show Down ** [6h As 6d 5d 4s]
+trend shows [Qh Th] (a Pair of Sixes +AQT)
+Havoc shows [Ah Js] (Two Pair, Aces and Sixes +J)
+Havoc wins Side Pot 1 (1560) with Two Pair
+** Main Pot Show Down ** [6h As 6d 5d 4s]
+lookalive342 shows [9s 3s] (a Pair of Sixes +A95)
+Havoc wins Main Pot (880) with Two Pair
+lookalive342 finishes tournament in place #25
+
+
+
+Hand #5728534-34 - 2013-04-20 17:52:19
+Game: NL Hold'em (10+0) - Blinds 100/200
+Site: Seals With Clubs
+Table: Chicago - Table 1
+Seat 1: prime14k (442)
+Seat 2: trend (965)
+Seat 3: Crowley (2490)
+Seat 4: Havoc (2440)
+Seat 6: cookie9001 (1190) - sitting out
+Seat 7: Citizen71348 (1365)
+Seat 9: qdmcg (5880)
+Citizen71348 has the dealer button
+qdmcg posts small blind 100
+prime14k posts big blind 200
+** Hole Cards **
+Dealt to qdmcg [Qs Qd]
+trend folds
+Crowley calls 200
+Havoc folds
+cookie9001 folds
+Citizen71348 folds
+qdmcg raises to 600
+prime14k folds
+Crowley calls 400
+** Flop ** [Qh Jc Tc]
+qdmcg bets 1937
+Crowley calls 1890 (All-in)
+qdmcg refunded 47
+** Turn ** [4c]
+** River ** [5d]
+** Pot Show Down ** [Qh Jc Tc 4c 5d]
+Crowley shows [Th Ac] (a Pair of Tens +AQJ)
+qdmcg shows [Qs Qd] (Three of a Kind, Queens +JT)
+qdmcg wins Pot (5180) with Three of a Kind
+Crowley finishes tournament in place #23
+
+
+
+Hand #5728557-35 - 2013-04-20 17:52:59
+Game: NL Hold'em (10+0) - Blinds 100/200
+Site: Seals With Clubs
+Table: Chicago - Table 1
+Seat 1: prime14k (242)
+Seat 2: trend (965)
+Seat 4: Havoc (2440)
+Seat 6: cookie9001 (1190) - sitting out
+Seat 7: Citizen71348 (1365)
+Seat 9: qdmcg (8570)
+qdmcg has the dealer button
+prime14k posts small blind 100
+trend posts big blind 200
+** Hole Cards **
+Dealt to qdmcg [9s 2d]
+Havoc folds
+cookie9001 folds
+Citizen71348 raises to 500
+qdmcg folds
+prime14k calls 142 (All-in)
+anarchology moved from Table 4
+trend calls 300
+** Flop ** [3d 8h 7s]
+trend bets 465 (All-in)
+Citizen71348 folds
+trend refunded 465
+** Turn ** [9d]
+** River ** [2c]
+trend wins Side Pot 1 (516)
+** Main Pot Show Down ** [3d 8h 7s 9d 2c]
+prime14k shows [Kd Jd] (High Card King +J987)
+trend shows [Tc 7h] (a Pair of Sevens +T98)
+trend wins Main Pot (726) with a Pair
+prime14k finishes tournament in place #21
+
+
+
+Hand #5728585-36 - 2013-04-20 17:53:45
+Game: NL Hold'em (10+0) - Blinds 100/200
+Site: Seals With Clubs
+Table: Chicago - Table 1
+Seat 2: trend (1707)
+Seat 4: Havoc (2440)
+Seat 5: anarchology (1375)
+Seat 6: cookie9001 (1190) - sitting out
+Seat 7: Citizen71348 (865)
+Seat 9: qdmcg (8570)
+trend has the dealer button
+Havoc posts small blind 100
+anarchology posts big blind 200
+** Hole Cards **
+Dealt to qdmcg [4c 8d]
+cookie9001 folds
+Citizen71348 folds
+qdmcg folds
+trend raises to 400
+Havoc folds
+anarchology folds
+trend refunded 200
+trend wins Pot (500)
+
+
+
+Hand #5728597-37 - 2013-04-20 17:54:04
+Game: NL Hold'em (10+0) - Blinds 100/200
+Site: Seals With Clubs
+Table: Chicago - Table 1
+Seat 2: trend (2007)
+Seat 4: Havoc (2340)
+Seat 5: anarchology (1175)
+Seat 6: cookie9001 (1190) - sitting out
+Seat 7: Citizen71348 (865)
+Seat 9: qdmcg (8570)
+Havoc has the dealer button
+anarchology posts small blind 100
+cookie9001 posts big blind 200
+** Hole Cards **
+Dealt to qdmcg [8d 9d]
+Citizen71348 folds
+qdmcg raises to 400
+trend folds
+Havoc folds
+anarchology folds
+cookie9001 calls 200
+** Flop ** [Kd 5d 5c]
+cookie9001 bets 790 (All-in)
+qdmcg calls 790
+** Turn ** [Jc]
+** River ** [3s]
+** Pot Show Down ** [Kd 5d 5c Jc 3s]
+cookie9001 shows [9s 4d] (a Pair of Fives +KJ9)
+qdmcg shows [8d 9d] (a Pair of Fives +KJ9)
+cookie9001 splits Pot (1240) with a Pair
+qdmcg splits Pot (1240) with a Pair
+
+
+
+Hand #5728615-38 - 2013-04-20 17:54:47
+Game: NL Hold'em (10+0) - Blinds 100/200
+Site: Seals With Clubs
+Table: Chicago - Table 1
+Seat 2: trend (2007)
+Seat 4: Havoc (2340)
+Seat 5: anarchology (1075)
+Seat 6: cookie9001 (1240)
+Seat 7: Citizen71348 (865)
+Seat 9: qdmcg (8620)
+anarchology has the dealer button
+cookie9001 posts small blind 100
+Citizen71348 posts big blind 200
+** Hole Cards **
+Dealt to qdmcg [Kc Td]
+qdmcg folds
+trend calls 200
+Havoc folds
+anarchology calls 200
+cookie9001 calls 100
+Citizen71348 checks
+** Flop ** [4c 4s 8c]
+cookie9001 checks
+Citizen71348 checks
+trend bets 200
+anarchology folds
+cookie9001 folds
+Citizen71348 folds
+trend refunded 200
+trend wins Pot (800)
+
+
+
+Hand #5728637-39 - 2013-04-20 17:55:26
+Game: NL Hold'em (10+0) - Blinds 100/200
+Site: Seals With Clubs
+Table: Chicago - Table 1
+Seat 2: trend (2607)
+Seat 4: Havoc (2340)
+Seat 5: anarchology (875)
+Seat 6: cookie9001 (1040)
+Seat 7: Citizen71348 (665)
+Seat 9: qdmcg (8620)
+cookie9001 has the dealer button
+Citizen71348 posts small blind 100
+qdmcg posts big blind 200
+** Hole Cards **
+Dealt to qdmcg [Kd Ad]
+trend folds
+Havoc folds
+anarchology folds
+cookie9001 raises to 1040 (All-in)
+Citizen71348 folds
+qdmcg calls 840
+** Flop ** [Ts 3s Tc]
+** Turn ** [5c]
+** River ** [Kc]
+** Pot Show Down ** [Ts 3s Tc 5c Kc]
+cookie9001 shows [7c Ac] (a Flush, Ace high +KT75)
+qdmcg shows [Kd Ad] (Two Pair, Kings and Tens +A)
+cookie9001 wins Pot (2180) with a Flush
+
+
+
+Hand #5728655-40 - 2013-04-20 17:55:58
+Game: NL Hold'em (10+0) - Blinds 100/200
+Site: Seals With Clubs
+Table: Chicago - Table 1
+Seat 2: trend (2607)
+Seat 4: Havoc (2340)
+Seat 5: anarchology (875)
+Seat 6: cookie9001 (2180)
+Seat 7: Citizen71348 (565)
+Seat 9: qdmcg (7580)
+Citizen71348 has the dealer button
+qdmcg posts small blind 100
+trend posts big blind 200
+** Hole Cards **
+Dealt to qdmcg [2h 3c]
+Havoc folds
+anarchology raises to 875 (All-in)
+cookie9001 folds
+Citizen71348 folds
+qdmcg folds
+trend folds
+anarchology refunded 675
+anarchology wins Pot (500)
+
+
+
+Hand #5728667-41 - 2013-04-20 17:56:23
+Game: NL Hold'em (10+0) - Blinds 100/200
+Site: Seals With Clubs
+Table: Chicago - Table 1
+Seat 2: trend (2407)
+Seat 4: Havoc (2340)
+Seat 5: anarchology (1175)
+Seat 6: cookie9001 (2180)
+Seat 7: Citizen71348 (565)
+Seat 9: qdmcg (7480)
+qdmcg has the dealer button
+trend posts small blind 100
+Havoc posts big blind 200
+** Hole Cards **
+Dealt to qdmcg [Qh Jc]
+anarchology folds
+cookie9001 folds
+Citizen71348 folds
+qdmcg raises to 600
+trend folds
+Havoc folds
+qdmcg refunded 400
+qdmcg wins Pot (500)
+
+
+
+Hand #5728682-42 - 2013-04-20 17:56:43
+Game: NL Hold'em (10+0) - Blinds 100/200 Ante 25
+Site: Seals With Clubs
+Table: Chicago - Table 1
+Seat 2: trend (2307)
+Seat 4: Havoc (2140)
+Seat 5: anarchology (1175)
+Seat 6: cookie9001 (2180)
+Seat 7: Citizen71348 (565)
+Seat 9: qdmcg (7780)
+trend has the dealer button
+trend posts ante 25
+Havoc posts ante 25
+anarchology posts ante 25
+cookie9001 posts ante 25
+Citizen71348 posts ante 25
+qdmcg posts ante 25
+Havoc posts small blind 100
+anarchology posts big blind 200
+** Hole Cards **
+Dealt to qdmcg [Kd 8d]
+sickNtired moved from Table 2
+silent moved from Table 2
+murphysLAWL moved from Table 2
+cookie9001 folds
+Citizen71348 folds
+qdmcg raises to 600
+trend folds
+Havoc folds
+anarchology raises to 1150 (All-in)
+qdmcg calls 550
+** Flop ** [Qs Td 5c]
+** Turn ** [Jc]
+** River ** [As]
+** Pot Show Down ** [Qs Td 5c Jc As]
+anarchology shows [3c 3s] (a Pair of Threes +AQJ)
+qdmcg shows [Kd 8d] (a Straight, Ten to Ace)
+qdmcg wins Pot (2550) with a Straight
+anarchology finishes tournament in place #17
+
+
+
+Hand #5728703-43 - 2013-04-20 17:57:22
+Game: NL Hold'em (10+0) - Blinds 100/200 Ante 25
+Site: Seals With Clubs
+Table: Chicago - Table 1
+Seat 1: silent (5570)
+Seat 2: trend (2282)
+Seat 3: murphysLAWL (2740)
+Seat 4: Havoc (2015)
+Seat 6: cookie9001 (2155)
+Seat 7: Citizen71348 (540)
+Seat 8: sickNtired (4863)
+Seat 9: qdmcg (9155)
+Havoc has the dealer button
+silent posts ante 25
+trend posts ante 25
+murphysLAWL posts ante 25
+Havoc posts ante 25
+cookie9001 posts ante 25
+Citizen71348 posts ante 25
+sickNtired posts ante 25
+qdmcg posts ante 25
+cookie9001 posts small blind 100
+Citizen71348 posts big blind 200
+** Hole Cards **
+Dealt to qdmcg [7d 6h]
+sickNtired folds
+qdmcg folds
+silent folds
+trend raises to 600
+murphysLAWL folds
+Havoc raises to 1990 (All-in)
+cookie9001 raises to 2130 (All-in)
+Citizen71348 calls 315 (All-in)
+trend calls 1530
+** Flop ** [8h Ts Kh]
+** Turn ** [8c]
+** River ** [Qc]
+** Side Pot 2 Show Down ** [8h Ts Kh 8c Qc]
+trend shows [Ad Jh] (a Straight, Ten to Ace)
+cookie9001 shows [Kd As] (Two Pair, Kings and Eights +A)
+trend wins Side Pot 2 (280) with a Straight
+** Side Pot 1 Show Down ** [8h Ts Kh 8c Qc]
+Havoc shows [3s Ah] (a Pair of Eights +AKQ)
+trend wins Side Pot 1 (4425) with a Straight
+** Main Pot Show Down ** [8h Ts Kh 8c Qc]
+Citizen71348 shows [5d 4d] (a Pair of Eights +KQT)
+trend wins Main Pot (2260) with a Straight
+Citizen71348 finishes tournament in place #16
+Havoc finishes tournament in place #15
+cookie9001 finishes tournament in place #14
+
+
+
+Hand #5728729-44 - 2013-04-20 17:58:12
+Game: NL Hold'em (10+0) - Blinds 100/200 Ante 25
+Site: Seals With Clubs
+Table: Chicago - Table 1
+Seat 1: silent (5545)
+Seat 2: trend (7092)
+Seat 3: murphysLAWL (2715)
+Seat 8: sickNtired (4838)
+Seat 9: qdmcg (9130)
+sickNtired has the dealer button
+silent posts ante 25
+trend posts ante 25
+murphysLAWL posts ante 25
+sickNtired posts ante 25
+qdmcg posts ante 25
+qdmcg posts small blind 100
+silent posts big blind 200
+** Hole Cards **
+Dealt to qdmcg [6s 4c]
+trend folds
+murphysLAWL folds
+sickNtired folds
+qdmcg folds
+silent refunded 100
+silent wins Pot (325)
+
+
+
+Hand #5728743-45 - 2013-04-20 17:58:33
+Game: NL Hold'em (10+0) - Blinds 100/200 Ante 25
+Site: Seals With Clubs
+Table: Chicago - Table 1
+Seat 1: silent (5745)
+Seat 2: trend (7067)
+Seat 3: murphysLAWL (2690)
+Seat 8: sickNtired (4813)
+Seat 9: qdmcg (9005)
+qdmcg has the dealer button
+silent posts ante 25
+trend posts ante 25
+murphysLAWL posts ante 25
+sickNtired posts ante 25
+qdmcg posts ante 25
+silent posts small blind 100
+trend posts big blind 200
+** Hole Cards **
+Dealt to qdmcg [Ad 9d]
+murphysLAWL folds
+sickNtired folds
+qdmcg raises to 600
+rmanteu moved from Table 4
+silent raises to 1250
+trend folds
+qdmcg calls 650
+** Flop ** [Qc 8c 5h]
+silent checks
+qdmcg checks
+** Turn ** [6h]
+silent bets 1575
+qdmcg folds
+silent refunded 1575
+silent wins Pot (2825)
+
+
+
+Hand #5728767-46 - 2013-04-20 17:59:30
+Game: NL Hold'em (10+0) - Blinds 100/200 Ante 25
+Site: Seals With Clubs
+Table: Chicago - Table 1
+Seat 1: silent (7295)
+Seat 2: trend (6842)
+Seat 3: murphysLAWL (2665)
+Seat 4: rmanteu (4160)
+Seat 8: sickNtired (4788)
+Seat 9: qdmcg (7730)
+silent has the dealer button
+silent posts ante 25
+trend posts ante 25
+murphysLAWL posts ante 25
+rmanteu posts ante 25
+sickNtired posts ante 25
+qdmcg posts ante 25
+trend posts small blind 100
+murphysLAWL posts big blind 200
+** Hole Cards **
+Dealt to qdmcg [3c 4h]
+rmanteu folds
+sickNtired folds
+qdmcg folds
+silent raises to 600
+trend calls 500
+murphysLAWL raises to 2640 (All-in)
+silent folds
+trend calls 2040
+** Flop ** [3s 7s As]
+** Turn ** [2h]
+** River ** [2s]
+** Pot Show Down ** [3s 7s As 2h 2s]
+trend shows [Js Tc] (a Flush, Ace high +J732)
+murphysLAWL shows [Td Ad] (Two Pair, Aces and Deuces +T)
+trend wins Pot (6030) with a Flush
+murphysLAWL finishes tournament in place #13
+
+
+
+Hand #5728803-47 - 2013-04-20 18:00:31
+Game: NL Hold'em (10+0) - Blinds 100/200 Ante 25
+Site: Seals With Clubs
+Table: Chicago - Table 1
+Seat 1: silent (6670)
+Seat 2: trend (10207)
+Seat 4: rmanteu (4135)
+Seat 8: sickNtired (4763)
+Seat 9: qdmcg (7705)
+trend has the dealer button
+silent posts ante 25
+trend posts ante 25
+rmanteu posts ante 25
+sickNtired posts ante 25
+qdmcg posts ante 25
+rmanteu posts small blind 100
+sickNtired posts big blind 200
+** Hole Cards **
+Dealt to qdmcg [Ah Jh]
+qdmcg raises to 600
+silent folds
+trend folds
+rmanteu folds
+sickNtired folds
+qdmcg refunded 400
+qdmcg wins Pot (625)
+
+
+
+Hand #5728860-48 - 2013-04-20 18:01:03
+Game: NL Hold'em (10+0) - Blinds 100/200 Ante 25
+Site: Seals With Clubs
+Table: Chicago - Table 1
+Seat 1: silent (6645)
+Seat 2: trend (10182)
+Seat 4: rmanteu (4010)
+Seat 8: sickNtired (4538)
+Seat 9: qdmcg (8105)
+rmanteu has the dealer button
+silent posts ante 25
+trend posts ante 25
+rmanteu posts ante 25
+sickNtired posts ante 25
+qdmcg posts ante 25
+sickNtired posts small blind 100
+qdmcg posts big blind 200
+** Hole Cards **
+Dealt to qdmcg [2s 9s]
+silent calls 200
+trend folds
+rmanteu folds
+sickNtired calls 100
+qdmcg checks
+** Flop ** [Qh 5s As]
+sickNtired checks
+qdmcg checks
+silent bets 425
+sickNtired folds
+qdmcg calls 425
+** Turn ** [3d]
+qdmcg checks
+silent checks
+** River ** [Kc]
+qdmcg checks
+silent checks
+** Pot Show Down ** [Qh 5s As 3d Kc]
+silent shows [2d 2h] (a Pair of Deuces +AKQ)
+qdmcg shows [2s 9s] (High Card Ace +KQ95)
+silent wins Pot (1575) with a Pair
+
+
+
+Hand #5728954-49 - 2013-04-20 18:02:24
+Game: NL Hold'em (10+0) - Blinds 100/200 Ante 25
+Site: Seals With Clubs
+Table: Chicago - Table 1
+Seat 1: silent (7570)
+Seat 2: trend (10157)
+Seat 4: rmanteu (3985)
+Seat 8: sickNtired (4313)
+Seat 9: qdmcg (7455)
+sickNtired has the dealer button
+silent posts ante 25
+trend posts ante 25
+rmanteu posts ante 25
+sickNtired posts ante 25
+qdmcg posts ante 25
+qdmcg posts small blind 100
+silent posts big blind 200
+** Hole Cards **
+Dealt to qdmcg [4d 7h]
+trend folds
+rmanteu folds
+sickNtired folds
+qdmcg folds
+silent refunded 100
+silent wins Pot (325)
+
+
+
+Hand #5728982-50 - 2013-04-20 18:02:50
+Game: NL Hold'em (10+0) - Blinds 200/400 Ante 25
+Site: Seals With Clubs
+Table: Chicago - Table 1
+Seat 1: silent (7770)
+Seat 2: trend (10132)
+Seat 4: rmanteu (3960)
+Seat 8: sickNtired (4288)
+Seat 9: qdmcg (7330)
+qdmcg has the dealer button
+silent posts ante 25
+trend posts ante 25
+rmanteu posts ante 25
+sickNtired posts ante 25
+qdmcg posts ante 25
+silent posts small blind 200
+trend posts big blind 400
+** Hole Cards **
+Dealt to qdmcg [2d 7h]
+rmanteu folds
+sickNtired folds
+qdmcg folds
+silent folds
+trend refunded 200
+trend wins Pot (525)
+
+
+
+Hand #5729020-51 - 2013-04-20 18:03:21
+Game: NL Hold'em (10+0) - Blinds 200/400 Ante 25
+Site: Seals With Clubs
+Table: Chicago - Table 1
+Seat 1: silent (7545)
+Seat 2: trend (10432)
+Seat 4: rmanteu (3935)
+Seat 8: sickNtired (4263)
+Seat 9: qdmcg (7305)
+silent has the dealer button
+silent posts ante 25
+trend posts ante 25
+rmanteu posts ante 25
+sickNtired posts ante 25
+qdmcg posts ante 25
+trend posts small blind 200
+rmanteu posts big blind 400
+** Hole Cards **
+Dealt to qdmcg [3d Jc]
+sickNtired folds
+qdmcg folds
+silent folds
+trend raises to 1200
+rmanteu folds
+trend refunded 800
+trend wins Pot (925)
+
+
+
+Hand #5729069-52 - 2013-04-20 18:04:03
+Game: NL Hold'em (10+0) - Blinds 200/400 Ante 25
+Site: Seals With Clubs
+Table: Chicago - Table 1
+Seat 1: silent (7520)
+Seat 2: trend (10932)
+Seat 4: rmanteu (3510)
+Seat 8: sickNtired (4238)
+Seat 9: qdmcg (7280)
+trend has the dealer button
+silent posts ante 25
+trend posts ante 25
+rmanteu posts ante 25
+sickNtired posts ante 25
+qdmcg posts ante 25
+rmanteu posts small blind 200
+sickNtired posts big blind 400
+** Hole Cards **
+Dealt to qdmcg [As 2s]
+qdmcg raises to 1200
+silent folds
+trend folds
+rmanteu folds
+sickNtired folds
+qdmcg refunded 800
+qdmcg wins Pot (1125)
+
+
+
+Hand #5729118-53 - 2013-04-20 18:04:44
+Game: NL Hold'em (10+0) - Blinds 200/400 Ante 25
+Site: Seals With Clubs
+Table: Chicago - Table 1
+Seat 1: silent (7495)
+Seat 2: trend (10907)
+Seat 4: rmanteu (3285)
+Seat 8: sickNtired (3813)
+Seat 9: qdmcg (7980)
+rmanteu has the dealer button
+silent posts ante 25
+trend posts ante 25
+rmanteu posts ante 25
+sickNtired posts ante 25
+qdmcg posts ante 25
+sickNtired posts small blind 200
+qdmcg posts big blind 400
+** Hole Cards **
+Dealt to qdmcg [Qs 7h]
+silent folds
+trend raises to 800
+rmanteu folds
+sickNtired folds
+qdmcg folds
+trend refunded 400
+trend wins Pot (1125)
+
+
+
+Hand #5729166-54 - 2013-04-20 18:05:17
+Game: NL Hold'em (10+0) - Blinds 200/400 Ante 25
+Site: Seals With Clubs
+Table: Chicago - Table 1
+Seat 1: silent (7470)
+Seat 2: trend (11607)
+Seat 4: rmanteu (3260)
+Seat 8: sickNtired (3588)
+Seat 9: qdmcg (7555)
+sickNtired has the dealer button
+silent posts ante 25
+trend posts ante 25
+rmanteu posts ante 25
+sickNtired posts ante 25
+qdmcg posts ante 25
+qdmcg posts small blind 200
+silent posts big blind 400
+** Hole Cards **
+Dealt to qdmcg [3d 3s]
+trend folds
+rmanteu folds
+sickNtired folds
+qdmcg raises to 800
+silent folds
+qdmcg refunded 400
+qdmcg wins Pot (925)
+
+
+
+Hand #5729200-55 - 2013-04-20 18:05:52
+Game: NL Hold'em (10+0) - Blinds 200/400 Ante 25
+Site: Seals With Clubs
+Table: Chicago - Table 1
+Seat 1: silent (7045)
+Seat 2: trend (11582)
+Seat 4: rmanteu (3235)
+Seat 8: sickNtired (3563)
+Seat 9: qdmcg (8055)
+qdmcg has the dealer button
+silent posts ante 25
+trend posts ante 25
+rmanteu posts ante 25
+sickNtired posts ante 25
+qdmcg posts ante 25
+silent posts small blind 200
+trend posts big blind 400
+** Hole Cards **
+Dealt to qdmcg [5h Qs]
+rmanteu folds
+sickNtired raises to 1200
+qdmcg folds
+silent folds
+trend folds
+sickNtired refunded 800
+sickNtired wins Pot (1125)
+
+
+
+Hand #5729246-56 - 2013-04-20 18:06:38
+Game: NL Hold'em (10+0) - Blinds 200/400 Ante 25
+Site: Seals With Clubs
+Table: Chicago - Table 1
+Seat 1: silent (6820)
+Seat 2: trend (11157)
+Seat 4: rmanteu (3210)
+Seat 8: sickNtired (4263)
+Seat 9: qdmcg (8030)
+silent has the dealer button
+silent posts ante 25
+trend posts ante 25
+rmanteu posts ante 25
+sickNtired posts ante 25
+qdmcg posts ante 25
+trend posts small blind 200
+rmanteu posts big blind 400
+** Hole Cards **
+Dealt to qdmcg [Jc 2c]
+sickNtired folds
+qdmcg folds
+silent folds
+trend raises to 800
+rmanteu calls 400
+** Flop ** [Ad 6s Kd]
+trend bets 1200
+rmanteu raises to 2385 (All-in)
+trend folds
+rmanteu refunded 1185
+rmanteu wins Pot (4125)
+
+
+
+Hand #5729314-57 - 2013-04-20 18:07:41
+Game: NL Hold'em (10+0) - Blinds 200/400 Ante 25
+Site: Seals With Clubs
+Table: Chicago - Table 1
+Seat 1: silent (6795)
+Seat 2: trend (9132)
+Seat 4: rmanteu (5310)
+Seat 8: sickNtired (4238)
+Seat 9: qdmcg (8005)
+trend has the dealer button
+silent posts ante 25
+trend posts ante 25
+rmanteu posts ante 25
+sickNtired posts ante 25
+qdmcg posts ante 25
+rmanteu posts small blind 200
+sickNtired posts big blind 400
+** Hole Cards **
+Dealt to qdmcg [Kd As]
+qdmcg raises to 1200
+silent folds
+trend calls 1200
+rmanteu folds
+sickNtired folds
+** Flop ** [Js 4c 8c]
+qdmcg bets 6780 (All-in)
+trend calls 6780
+** Turn ** [3c]
+** River ** [2h]
+** Pot Show Down ** [Js 4c 8c 3c 2h]
+trend shows [Th Qs] (High Card Queen +JT84)
+qdmcg shows [Kd As] (High Card Ace +KJ84)
+qdmcg wins Pot (16685) with High Card
+
+
+
+Hand #5729385-58 - 2013-04-20 18:08:45
+Game: NL Hold'em (10+0) - Blinds 300/600 Ante 50
+Site: Seals With Clubs
+Table: Chicago - Table 1
+Seat 1: silent (6770)
+Seat 2: trend (1127)
+Seat 4: rmanteu (5085)
+Seat 8: sickNtired (3813)
+Seat 9: qdmcg (16685)
+rmanteu has the dealer button
+silent posts ante 50
+trend posts ante 50
+rmanteu posts ante 50
+sickNtired posts ante 50
+qdmcg posts ante 50
+sickNtired posts small blind 300
+qdmcg posts big blind 600
+** Hole Cards **
+Dealt to qdmcg [Js Td]
+silent folds
+trend raises to 1077 (All-in)
+rmanteu folds
+sickNtired folds
+qdmcg calls 477
+** Flop ** [8d 2c 6c]
+** Turn ** [5s]
+** River ** [Jh]
+** Pot Show Down ** [8d 2c 6c 5s Jh]
+trend shows [6s 6d] (Three of a Kind, Sixes +J8)
+qdmcg shows [Js Td] (a Pair of Jacks +T86)
+trend wins Pot (2704) with Three of a Kind
+
+
+
+Hand #5729431-59 - 2013-04-20 18:09:26
+Game: NL Hold'em (10+0) - Blinds 300/600 Ante 50
+Site: Seals With Clubs
+Table: Chicago - Table 1
+Seat 1: silent (6720)
+Seat 2: trend (2704)
+Seat 4: rmanteu (5035)
+Seat 8: sickNtired (3463)
+Seat 9: qdmcg (15558)
+sickNtired has the dealer button
+silent posts ante 50
+trend posts ante 50
+rmanteu posts ante 50
+sickNtired posts ante 50
+qdmcg posts ante 50
+qdmcg posts small blind 300
+silent posts big blind 600
+** Hole Cards **
+Dealt to qdmcg [Tc 9s]
+trend folds
+rmanteu folds
+sickNtired raises to 3413 (All-in)
+qdmcg folds
+silent folds
+sickNtired refunded 2813
+sickNtired wins Pot (1750)
+
+
+
+Hand #5729471-60 - 2013-04-20 18:10:02
+Game: NL Hold'em (10+0) - Blinds 300/600 Ante 50
+Site: Seals With Clubs
+Table: Chicago - Table 1
+Seat 1: silent (6070)
+Seat 2: trend (2654)
+Seat 4: rmanteu (4985)
+Seat 8: sickNtired (4563)
+Seat 9: qdmcg (15208)
+qdmcg has the dealer button
+silent posts ante 50
+trend posts ante 50
+rmanteu posts ante 50
+sickNtired posts ante 50
+qdmcg posts ante 50
+silent posts small blind 300
+trend posts big blind 600
+** Hole Cards **
+Dealt to qdmcg [8d 9d]
+rmanteu folds
+sickNtired folds
+qdmcg folds
+silent folds
+trend refunded 300
+trend wins Pot (850)
+
+
+
+Hand #5729507-61 - 2013-04-20 18:10:32
+Game: NL Hold'em (10+0) - Blinds 300/600 Ante 50
+Site: Seals With Clubs
+Table: Chicago - Table 1
+Seat 1: silent (5720)
+Seat 2: trend (3154)
+Seat 4: rmanteu (4935)
+Seat 8: sickNtired (4513)
+Seat 9: qdmcg (15158)
+silent has the dealer button
+silent posts ante 50
+trend posts ante 50
+rmanteu posts ante 50
+sickNtired posts ante 50
+qdmcg posts ante 50
+trend posts small blind 300
+rmanteu posts big blind 600
+** Hole Cards **
+Dealt to qdmcg [Ac 7c]
+sickNtired folds
+qdmcg raises to 1200
+silent folds
+trend folds
+rmanteu folds
+qdmcg refunded 600
+qdmcg wins Pot (1750)
+
+
+
+Hand #5729547-62 - 2013-04-20 18:11:05
+Game: NL Hold'em (10+0) - Blinds 300/600 Ante 50
+Site: Seals With Clubs
+Table: Chicago - Table 1
+Seat 1: silent (5670)
+Seat 2: trend (2804)
+Seat 4: rmanteu (4285)
+Seat 8: sickNtired (4463)
+Seat 9: qdmcg (16258)
+trend has the dealer button
+silent posts ante 50
+trend posts ante 50
+rmanteu posts ante 50
+sickNtired posts ante 50
+qdmcg posts ante 50
+rmanteu posts small blind 300
+sickNtired posts big blind 600
+** Hole Cards **
+Dealt to qdmcg [Kc 6c]
+qdmcg folds
+silent folds
+trend folds
+rmanteu folds
+sickNtired refunded 300
+sickNtired wins Pot (850)
+
+
+
+Hand #5729576-63 - 2013-04-20 18:11:44
+Game: NL Hold'em (10+0) - Blinds 300/600 Ante 50
+Site: Seals With Clubs
+Table: Chicago - Table 1
+Seat 1: silent (5620)
+Seat 2: trend (2754)
+Seat 4: rmanteu (3935)
+Seat 8: sickNtired (4963)
+Seat 9: qdmcg (16208)
+rmanteu has the dealer button
+silent posts ante 50
+trend posts ante 50
+rmanteu posts ante 50
+sickNtired posts ante 50
+qdmcg posts ante 50
+sickNtired posts small blind 300
+qdmcg posts big blind 600
+** Hole Cards **
+Dealt to qdmcg [Th Td]
+silent folds
+trend raises to 2704 (All-in)
+rmanteu folds
+sickNtired raises to 4808
+qdmcg folds
+sickNtired refunded 2104
+** Flop ** [4h 5c 2d]
+** Turn ** [9c]
+** River ** [Kh]
+** Pot Show Down ** [4h 5c 2d 9c Kh]
+trend shows [9s 9h] (Three of a Kind, Nines +K5)
+sickNtired shows [5d 5s] (Three of a Kind, Fives +K9)
+trend wins Pot (6258) with Three of a Kind
+
+
+
+Hand #5729621-64 - 2013-04-20 18:12:31
+Game: NL Hold'em (10+0) - Blinds 300/600 Ante 50
+Site: Seals With Clubs
+Table: Chicago - Table 1
+Seat 1: silent (5570)
+Seat 2: trend (6258)
+Seat 4: rmanteu (3885)
+Seat 8: sickNtired (2209)
+Seat 9: qdmcg (15558)
+sickNtired has the dealer button
+silent posts ante 50
+trend posts ante 50
+rmanteu posts ante 50
+sickNtired posts ante 50
+qdmcg posts ante 50
+qdmcg posts small blind 300
+silent posts big blind 600
+** Hole Cards **
+Dealt to qdmcg [7h Js]
+trend folds
+rmanteu folds
+sickNtired raises to 2159 (All-in)
+qdmcg folds
+silent folds
+sickNtired refunded 1559
+sickNtired wins Pot (1750)
+
+
+
+Hand #5729661-65 - 2013-04-20 18:13:03
+Game: NL Hold'em (10+0) - Blinds 300/600 Ante 50
+Site: Seals With Clubs
+Table: Chicago - Table 1
+Seat 1: silent (4920)
+Seat 2: trend (6208)
+Seat 4: rmanteu (3835)
+Seat 8: sickNtired (3309)
+Seat 9: qdmcg (15208)
+qdmcg has the dealer button
+silent posts ante 50
+trend posts ante 50
+rmanteu posts ante 50
+sickNtired posts ante 50
+qdmcg posts ante 50
+silent posts small blind 300
+trend posts big blind 600
+** Hole Cards **
+Dealt to qdmcg [7h 9s]
+rmanteu folds
+sickNtired raises to 3259 (All-in)
+qdmcg folds
+silent folds
+trend folds
+sickNtired refunded 2659
+sickNtired wins Pot (1750)
+
+
+
+Hand #5729691-66 - 2013-04-20 18:13:30
+Game: NL Hold'em (10+0) - Blinds 300/600 Ante 50
+Site: Seals With Clubs
+Table: Chicago - Table 1
+Seat 1: silent (4570)
+Seat 2: trend (5558)
+Seat 4: rmanteu (3785)
+Seat 8: sickNtired (4409)
+Seat 9: qdmcg (15158)
+silent has the dealer button
+silent posts ante 50
+trend posts ante 50
+rmanteu posts ante 50
+sickNtired posts ante 50
+qdmcg posts ante 50
+trend posts small blind 300
+rmanteu posts big blind 600
+** Hole Cards **
+Dealt to qdmcg [Ks 3c]
+sickNtired raises to 4359 (All-in)
+qdmcg folds
+silent folds
+trend folds
+rmanteu folds
+sickNtired refunded 3759
+sickNtired wins Pot (1750)
+
+
+
+Hand #5729720-67 - 2013-04-20 18:14:00
+Game: NL Hold'em (10+0) - Blinds 300/600 Ante 50
+Site: Seals With Clubs
+Table: Chicago - Table 1
+Seat 1: silent (4520)
+Seat 2: trend (5208)
+Seat 4: rmanteu (3135)
+Seat 8: sickNtired (5509)
+Seat 9: qdmcg (15108)
+trend has the dealer button
+silent posts ante 50
+trend posts ante 50
+rmanteu posts ante 50
+sickNtired posts ante 50
+qdmcg posts ante 50
+rmanteu posts small blind 300
+sickNtired posts big blind 600
+** Hole Cards **
+Dealt to qdmcg [Kc Jh]
+qdmcg raises to 1800
+silent folds
+trend folds
+rmanteu folds
+sickNtired raises to 5459 (All-in)
+qdmcg calls 3659
+** Flop ** [Qs 5h 2c]
+** Turn ** [Qh]
+** River ** [Td]
+** Pot Show Down ** [Qs 5h 2c Qh Td]
+sickNtired shows [As Th] (Two Pair, Queens and Tens +A)
+qdmcg shows [Kc Jh] (a Pair of Queens +KJT)
+sickNtired wins Pot (11468) with Two Pair
+
+
+
+Hand #5729764-68 - 2013-04-20 18:14:40
+Game: NL Hold'em (10+0) - Blinds 400/800 Ante 50
+Site: Seals With Clubs
+Table: Chicago - Table 1
+Seat 1: silent (4470)
+Seat 2: trend (5158)
+Seat 4: rmanteu (2785)
+Seat 8: sickNtired (11468)
+Seat 9: qdmcg (9599)
+rmanteu has the dealer button
+silent posts ante 50
+trend posts ante 50
+rmanteu posts ante 50
+sickNtired posts ante 50
+qdmcg posts ante 50
+sickNtired posts small blind 400
+qdmcg posts big blind 800
+** Hole Cards **
+Dealt to qdmcg [Kc Kd]
+silent raises to 4420 (All-in)
+trend calls 4420
+rmanteu folds
+sickNtired folds
+qdmcg raises to 9549 (All-in)
+trend calls 688 (All-in)
+qdmcg refunded 4441
+** Flop ** [Jc 7h Qs]
+** Turn ** [5d]
+** River ** [Qh]
+** Side Pot 1 Show Down ** [Jc 7h Qs 5d Qh]
+trend shows [3c 3d] (Two Pair, Queens and Threes +J)
+qdmcg shows [Kc Kd] (Two Pair, Kings and Queens +J)
+qdmcg wins Side Pot 1 (1376) with Two Pair
+** Main Pot Show Down ** [Jc 7h Qs 5d Qh]
+silent shows [Ac Th] (a Pair of Queens +AJT)
+qdmcg wins Main Pot (13910) with Two Pair
+silent finishes tournament in place #10
+trend finishes tournament in place #9
+rmanteu moved to Table 4
+
+sickNtired moved to Table 4
+

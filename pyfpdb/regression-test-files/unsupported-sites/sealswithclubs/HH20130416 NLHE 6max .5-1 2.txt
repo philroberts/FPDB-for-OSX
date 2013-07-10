@@ -1,0 +1,581 @@
+Hand #5558191-132 - 2013-04-16 23:34:20
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #2
+Seat 1: strizzo (168.11)
+Seat 2: ungod (100)
+Seat 3: JEWOWNSYOU (102.14)
+Seat 4: qdmcg (100) - waiting for big blind
+Seat 5: joby (124.01)
+Seat 6: SEXYCOCK (105.27)
+JEWOWNSYOU has the dealer button
+SEXYCOCK posts small blind 0.50
+strizzo posts big blind 1
+** Hole Cards **
+ungod raises to 3
+JEWOWNSYOU folds
+SEXYCOCK raises to 9
+strizzo folds
+ungod raises to 22
+SEXYCOCK folds
+ungod refunded 13
+SEXYCOCK adds 3.73 chips
+ungod wins Pot (19)
+Rake (0)
+
+
+
+Hand #5558223-133 - 2013-04-16 23:35:13
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #2
+Seat 1: strizzo (167.11)
+Seat 2: ungod (110)
+Seat 3: JEWOWNSYOU (102.14)
+Seat 4: qdmcg (100) - waiting for big blind
+Seat 5: joby (124.01) - sitting out
+Seat 6: SEXYCOCK (100)
+SEXYCOCK has the dealer button
+strizzo posts small blind 0.50
+ungod posts big blind 1
+** Hole Cards **
+JEWOWNSYOU folds
+SEXYCOCK folds
+strizzo calls 0.50
+ungod checks
+** Flop ** [Js 5s Kh]
+strizzo checks
+ungod checks
+** Turn ** [9d]
+strizzo checks
+ungod checks
+** River ** [Kc]
+strizzo checks
+ungod checks
+** Pot Show Down ** [Js 5s Kh 9d Kc]
+strizzo shows [2c Ah] (a Pair of Kings +AJ9)
+ungod shows [2d 7d] (a Pair of Kings +J97)
+strizzo wins Pot (1.95) with a Pair
+Rake (0.05)
+
+
+
+Hand #5558250-134 - 2013-04-16 23:36:07
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #2
+Seat 1: strizzo (168.06)
+Seat 2: ungod (109)
+Seat 3: JEWOWNSYOU (102.14)
+Seat 4: qdmcg (100) - waiting for big blind
+Seat 5: ZEyeOn (100) - waiting for big blind
+Seat 6: SEXYCOCK (100)
+strizzo has the dealer button
+ungod posts small blind 0.50
+JEWOWNSYOU posts big blind 1
+** Hole Cards **
+SEXYCOCK folds
+strizzo folds
+ungod folds
+JEWOWNSYOU refunded 0.50
+JEWOWNSYOU wins Pot (1)
+Rake (0)
+
+
+
+Hand #5558275-135 - 2013-04-16 23:36:41
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #2
+Seat 1: strizzo (168.06)
+Seat 2: ungod (108.50)
+Seat 3: JEWOWNSYOU (102.64)
+Seat 4: qdmcg (100) - waiting for big blind
+Seat 5: ZEyeOn (100) - waiting for big blind
+Seat 6: SEXYCOCK (100)
+ungod has the dealer button
+JEWOWNSYOU posts small blind 0.50
+qdmcg posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [4s 8d]
+SEXYCOCK folds
+strizzo folds
+ungod folds
+JEWOWNSYOU raises to 4
+qdmcg folds
+JEWOWNSYOU refunded 3
+JEWOWNSYOU wins Pot (2)
+Rake (0)
+
+
+
+Hand #5558287-136 - 2013-04-16 23:37:10
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #2
+Seat 1: strizzo (168.06)
+Seat 2: ungod (108.50)
+Seat 3: JEWOWNSYOU (103.64)
+Seat 4: qdmcg (99)
+Seat 5: ZEyeOn (100) - waiting for big blind
+Seat 6: SEXYCOCK (100)
+JEWOWNSYOU has the dealer button
+qdmcg posts small blind 0.50
+ZEyeOn posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [5h 9c]
+SEXYCOCK folds
+strizzo calls 1
+ungod raises to 3
+JEWOWNSYOU folds
+qdmcg folds
+ZEyeOn calls 2
+strizzo calls 2
+** Flop ** [9s 3h 4s]
+ZEyeOn checks
+strizzo checks
+ungod checks
+** Turn ** [Qs]
+ZEyeOn bets 6
+strizzo calls 6
+ungod folds
+** River ** [Kh]
+ZEyeOn bets 10
+strizzo calls 10
+** Pot Show Down ** [9s 3h 4s Qs Kh]
+strizzo shows [Qc Kc] (Two Pair, Kings and Queens +9)
+ZEyeOn shows [4h 4d] (Three of a Kind, Fours +KQ)
+ZEyeOn wins Pot (40.47) with Three of a Kind
+Rake (1.03)
+
+
+
+Hand #5558333-137 - 2013-04-16 23:38:37
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #2
+Seat 1: strizzo (149.06)
+Seat 2: ungod (105.50)
+Seat 3: JEWOWNSYOU (103.64)
+Seat 4: qdmcg (98.50)
+Seat 5: ZEyeOn (121.47)
+Seat 6: SEXYCOCK (100)
+qdmcg has the dealer button
+ZEyeOn posts small blind 0.50
+SEXYCOCK posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Ah 9c]
+strizzo folds
+ungod folds
+JEWOWNSYOU folds
+qdmcg raises to 3
+ZEyeOn folds
+SEXYCOCK folds
+qdmcg refunded 2
+SEXYCOCK adds 1 chips
+qdmcg wins Pot (2.50)
+Rake (0)
+
+
+
+Hand #5558356-138 - 2013-04-16 23:39:13
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #2
+Seat 1: strizzo (149.06)
+Seat 2: ungod (105.50)
+Seat 3: JEWOWNSYOU (103.64)
+Seat 4: qdmcg (100)
+Seat 5: ZEyeOn (120.97)
+Seat 6: SEXYCOCK (100)
+ZEyeOn has the dealer button
+SEXYCOCK posts small blind 0.50
+strizzo posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [9d Td]
+ungod folds
+JEWOWNSYOU folds
+qdmcg raises to 3
+ZEyeOn folds
+SEXYCOCK raises to 9
+strizzo folds
+qdmcg calls 6
+** Flop ** [Jc Ah 6h]
+SEXYCOCK bets 12
+qdmcg folds
+SEXYCOCK refunded 12
+SEXYCOCK wins Pot (18.53)
+Rake (0.47)
+
+
+
+Hand #5558394-139 - 2013-04-16 23:40:25
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #2
+Seat 1: strizzo (148.06)
+Seat 2: ungod (105.50)
+Seat 3: JEWOWNSYOU (103.64)
+Seat 4: qdmcg (91)
+Seat 5: ZEyeOn (120.97)
+Seat 6: SEXYCOCK (109.53)
+SEXYCOCK has the dealer button
+strizzo posts small blind 0.50
+ungod posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [4d 4s]
+JEWOWNSYOU folds
+qdmcg raises to 4
+ZEyeOn folds
+SEXYCOCK folds
+strizzo calls 3.50
+ungod calls 3
+** Flop ** [Jh Qc 5d]
+strizzo checks
+ungod checks
+qdmcg bets 9.27
+strizzo folds
+ungod calls 9.27
+** Turn ** [6d]
+ungod checks
+qdmcg bets 22
+ungod folds
+qdmcg refunded 22
+ungod adds 7.77 chips
+qdmcg wins Pot (29.78)
+Rake (0.76)
+
+
+
+Hand #5558450-140 - 2013-04-16 23:41:47
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #2
+Seat 1: strizzo (144.06)
+Seat 2: ungod (100)
+Seat 3: JEWOWNSYOU (103.64)
+Seat 4: qdmcg (107.51)
+Seat 5: ZEyeOn (120.97)
+Seat 6: SEXYCOCK (109.53)
+strizzo has the dealer button
+ungod posts small blind 0.50
+JEWOWNSYOU posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [5h Js]
+qdmcg folds
+ZEyeOn folds
+SEXYCOCK raises to 4
+strizzo folds
+ungod calls 3.50
+JEWOWNSYOU folds
+** Flop ** [Ah 8d 3s]
+ungod checks
+SEXYCOCK bets 6
+ungod calls 6
+** Turn ** [Jd]
+ungod checks
+SEXYCOCK checks
+** River ** [Jh]
+ungod checks
+SEXYCOCK checks
+** Pot Show Down ** [Ah 8d 3s Jd Jh]
+ungod shows [8c 7s] (Two Pair, Jacks and Eights +A)
+SEXYCOCK shows [8h 9h] (Two Pair, Jacks and Eights +A)
+ungod splits Pot (10.24) with Two Pair
+SEXYCOCK splits Pot (10.24) with Two Pair
+Rake (0.52)
+
+
+
+Hand #5558502-141 - 2013-04-16 23:43:03
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #2
+Seat 1: strizzo (144.06)
+Seat 2: ungod (100.24)
+Seat 3: JEWOWNSYOU (102.64)
+Seat 4: qdmcg (107.51)
+Seat 5: ZEyeOn (120.97)
+Seat 6: SEXYCOCK (109.77)
+ungod has the dealer button
+qdmcg posts small blind 0.50
+ZEyeOn posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Qs 7d]
+SEXYCOCK folds
+strizzo calls 1
+ungod raises to 3
+qdmcg folds
+ZEyeOn folds
+strizzo calls 2
+** Flop ** [Ad 6s Kc]
+strizzo checks
+ungod checks
+** Turn ** [9s]
+strizzo checks
+ungod checks
+** River ** [7s]
+strizzo bets 2
+ungod folds
+strizzo refunded 2
+ungod adds 2.76 chips
+strizzo wins Pot (7.32)
+Rake (0.18)
+
+
+
+Hand #5558542-142 - 2013-04-16 23:44:14
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #2
+Seat 1: strizzo (148.38)
+Seat 2: ungod (100)
+Seat 3: JEWOWNSYOU (102.64) - sitting out
+Seat 4: qdmcg (107.01)
+Seat 5: ZEyeOn (119.97)
+Seat 6: SEXYCOCK (109.77)
+qdmcg has the dealer button
+ZEyeOn posts small blind 0.50
+SEXYCOCK posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Jd 3d]
+strizzo folds
+ungod folds
+qdmcg folds
+ZEyeOn raises to 3
+SEXYCOCK folds
+ZEyeOn refunded 2
+ZEyeOn wins Pot (2)
+Rake (0)
+
+
+
+Hand #5558565-143 - 2013-04-16 23:44:41
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #2
+Seat 1: zif33rs (40) - waiting for big blind
+Seat 2: ungod (100)
+Seat 3: JEWOWNSYOU (102.64) - sitting out
+Seat 4: qdmcg (107.01)
+Seat 5: ZEyeOn (120.97)
+Seat 6: SEXYCOCK (108.77)
+ZEyeOn has the dealer button
+SEXYCOCK posts small blind 0.50
+zif33rs posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [7s As]
+ungod folds
+qdmcg raises to 4
+ZEyeOn folds
+SEXYCOCK raises to 12
+zif33rs folds
+qdmcg folds
+SEXYCOCK refunded 8
+SEXYCOCK wins Pot (9)
+Rake (0)
+
+
+
+Hand #5558583-144 - 2013-04-16 23:45:14
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #2
+Seat 1: zif33rs (39)
+Seat 2: ungod (100)
+Seat 3: JEWOWNSYOU (102.64) - sitting out
+Seat 4: qdmcg (103.01)
+Seat 5: ZEyeOn (120.97)
+Seat 6: SEXYCOCK (113.77)
+SEXYCOCK has the dealer button
+zif33rs posts small blind 0.50
+ungod posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Kc 7s]
+qdmcg folds
+ZEyeOn folds
+SEXYCOCK raises to 2
+zif33rs calls 1.50
+ungod folds
+ungod adds 1 chips
+** Flop ** [6d 9c 3s]
+zif33rs bets 4
+SEXYCOCK folds
+zif33rs refunded 4
+zif33rs wins Pot (4.88)
+Rake (0.12)
+
+
+
+Hand #5558626-145 - 2013-04-16 23:46:16
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #2
+Seat 1: zif33rs (41.88)
+Seat 2: ungod (100)
+Seat 4: qdmcg (103.01)
+Seat 5: ZEyeOn (120.97)
+Seat 6: SEXYCOCK (111.77)
+zif33rs has the dealer button
+ungod posts small blind 0.50
+qdmcg posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [3h 4d]
+ZEyeOn folds
+SEXYCOCK folds
+zif33rs folds
+ungod calls 0.50
+qdmcg checks
+** Flop ** [4h Ts Ks]
+ungod checks
+qdmcg bets 2
+ungod folds
+qdmcg refunded 2
+ungod adds 1 chips
+qdmcg wins Pot (1.95)
+Rake (0.05)
+
+
+
+Hand #5558664-146 - 2013-04-16 23:47:11
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #2
+Seat 1: zif33rs (41.88)
+Seat 2: ungod (100)
+Seat 4: qdmcg (103.96)
+Seat 5: ZEyeOn (120.97)
+Seat 6: SEXYCOCK (111.77)
+ungod has the dealer button
+qdmcg posts small blind 0.50
+ZEyeOn posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Tc Ac]
+SEXYCOCK folds
+zif33rs folds
+ungod raises to 3
+qdmcg calls 2.50
+ZEyeOn folds
+** Flop ** [Ah Kd 6c]
+qdmcg checks
+ungod bets 4
+qdmcg calls 4
+** Turn ** [4s]
+qdmcg checks
+ungod bets 10
+qdmcg calls 10
+** River ** [Th]
+qdmcg checks
+ungod checks
+** Pot Show Down ** [Ah Kd 6c 4s Th]
+ungod shows [3h As] (a Pair of Aces +KT6)
+qdmcg shows [Tc Ac] (Two Pair, Aces and Tens +K)
+qdmcg wins Pot (34.13) with Two Pair
+Rake (0.87)
+ungod adds 17 chips
+
+
+
+Hand #5558704-147 - 2013-04-16 23:48:13
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #2
+Seat 1: zif33rs (41.88)
+Seat 2: ungod (100)
+Seat 4: qdmcg (121.09)
+Seat 5: ZEyeOn (119.97)
+Seat 6: SEXYCOCK (111.77)
+qdmcg has the dealer button
+ZEyeOn posts small blind 0.50
+SEXYCOCK posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [As Qd]
+zif33rs folds
+ungod folds
+qdmcg raises to 3
+ZEyeOn folds
+SEXYCOCK raises to 9
+qdmcg raises to 121.09 (All-in)
+SEXYCOCK calls 102.77 (All-in)
+qdmcg refunded 9.32
+** Flop ** [4c 7s Jc]
+** Turn ** [5d]
+** River ** [8d]
+** Pot Show Down ** [4c 7s Jc 5d 8d]
+qdmcg shows [As Qd] (High Card Ace +QJ87)
+SEXYCOCK shows [Ac Ad] (a Pair of Aces +J87)
+SEXYCOCK wins Pot (219.04) with a Pair
+Rake (5)
+qdmcg adds 90.68 chips
+
+
+
+Hand #5558732-148 - 2013-04-16 23:48:54
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #2
+Seat 1: zif33rs (41.88)
+Seat 2: ungod (100)
+Seat 4: qdmcg (100)
+Seat 5: ZEyeOn (119.47)
+Seat 6: SEXYCOCK (219.04)
+ZEyeOn has the dealer button
+SEXYCOCK posts small blind 0.50
+zif33rs posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Jc 7c]
+ungod folds
+qdmcg raises to 3
+ZEyeOn folds
+SEXYCOCK folds
+zif33rs calls 2
+** Flop ** [Js 9d Ts]
+zif33rs checks
+qdmcg bets 5
+zif33rs folds
+qdmcg refunded 5
+qdmcg wins Pot (6.34)
+Rake (0.16)
+
+
+
+Hand #5558763-149 - 2013-04-16 23:49:44
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #2
+Seat 1: zif33rs (38.88)
+Seat 2: ungod (100)
+Seat 4: qdmcg (103.34)
+Seat 5: ZEyeOn (119.47)
+Seat 6: SEXYCOCK (218.54)
+SEXYCOCK has the dealer button
+zif33rs posts small blind 0.50
+ungod posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Jc 3c]
+qdmcg folds
+ZEyeOn folds
+SEXYCOCK raises to 2
+zif33rs calls 1.50
+ungod calls 1
+** Flop ** [8d Js 2s]
+zif33rs checks
+ungod checks
+SEXYCOCK bets 3
+zif33rs calls 3
+ungod calls 3
+** Turn ** [Qh]
+zif33rs checks
+ungod checks
+SEXYCOCK checks
+** River ** [7c]
+zif33rs checks
+ungod checks
+SEXYCOCK checks
+** Pot Show Down ** [8d Js 2s Qh 7c]
+zif33rs shows [2h Kh] (a Pair of Deuces +KQJ)
+ungod shows [2c 6d] (a Pair of Deuces +QJ8)
+SEXYCOCK shows [2d Ah] (a Pair of Deuces +AQJ)
+SEXYCOCK wins Pot (14.63) with a Pair
+Rake (0.37)
+ungod adds 5 chips

@@ -1,0 +1,2249 @@
+Hand #5336745-1 - 2013-04-12 00:01:09
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 5: mrpoor (100)
+Seat 6: qdmcg (100) - waiting for big blind
+qdmcg has the dealer button
+qdmcg posts small blind 1
+mrpoor posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [2s 8s]
+qdmcg checks
+mrpoor checks
+** Flop ** [8d 7d 6h]
+mrpoor checks
+qdmcg bets 2
+mrpoor calls 2
+** Turn ** [Qs]
+mrpoor checks
+qdmcg bets 3
+mrpoor calls 3
+** River ** [9c]
+mrpoor checks
+qdmcg checks
+** Pot Show Down ** [8d 7d 6h Qs 9c]
+mrpoor shows [2d Qd] (a Pair of Queens +987)
+qdmcg shows [2s 8s] (a Pair of Eights +Q97)
+mrpoor wins Pot (12) with a Pair
+Rake (0)
+
+
+
+Hand #5336814-2 - 2013-04-12 00:02:06
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 5: mrpoor (106)
+Seat 6: qdmcg (94)
+mrpoor has the dealer button
+mrpoor posts small blind 1
+qdmcg posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [9c 7c]
+mrpoor raises to 3
+qdmcg folds
+mrpoor refunded 2
+mrpoor wins Pot (2)
+Rake (0)
+
+
+
+Hand #5336827-3 - 2013-04-12 00:02:20
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 5: mrpoor (107)
+Seat 6: qdmcg (93)
+qdmcg has the dealer button
+qdmcg posts small blind 1
+mrpoor posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Th 3d]
+qdmcg checks
+mrpoor checks
+** Flop ** [3h 5c Ac]
+mrpoor bets 2
+qdmcg folds
+mrpoor refunded 2
+mrpoor wins Pot (2)
+Rake (0)
+
+
+
+Hand #5336852-4 - 2013-04-12 00:02:43
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 5: mrpoor (108)
+Seat 6: qdmcg (92)
+mrpoor has the dealer button
+mrpoor posts small blind 1
+qdmcg posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Td Ad]
+mrpoor raises to 3
+qdmcg calls 2
+** Flop ** [4c Kc 5c]
+qdmcg checks
+mrpoor bets 3
+qdmcg folds
+mrpoor refunded 3
+mrpoor wins Pot (6)
+Rake (0)
+
+
+
+Hand #5336884-5 - 2013-04-12 00:03:15
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 5: mrpoor (111)
+Seat 6: qdmcg (89)
+qdmcg has the dealer button
+qdmcg posts small blind 1
+mrpoor posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [3h Jc]
+qdmcg checks
+mrpoor raises to 4
+qdmcg folds
+mrpoor refunded 3
+mrpoor wins Pot (2)
+Rake (0)
+
+
+
+Hand #5336908-6 - 2013-04-12 00:03:34
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 5: mrpoor (112)
+Seat 6: qdmcg (88)
+mrpoor has the dealer button
+mrpoor posts small blind 1
+qdmcg posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [3h 6c]
+mrpoor raises to 3
+qdmcg folds
+mrpoor refunded 2
+mrpoor wins Pot (2)
+Rake (0)
+
+
+
+Hand #5336934-7 - 2013-04-12 00:03:50
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 5: mrpoor (113)
+Seat 6: qdmcg (87)
+qdmcg has the dealer button
+qdmcg posts small blind 1
+mrpoor posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Js Tc]
+qdmcg raises to 3
+mrpoor calls 2
+** Flop ** [7h As 2s]
+mrpoor checks
+qdmcg bets 5
+mrpoor calls 5
+** Turn ** [4d]
+mrpoor checks
+qdmcg bets 12
+mrpoor calls 12
+** River ** [6d]
+mrpoor checks
+qdmcg checks
+** Pot Show Down ** [7h As 2s 4d 6d]
+mrpoor shows [3c Ah] (a Pair of Aces +764)
+qdmcg shows [Js Tc] (High Card Ace +JT76)
+mrpoor wins Pot (39) with a Pair
+Rake (1)
+
+
+
+Hand #5336977-8 - 2013-04-12 00:04:31
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 5: mrpoor (132)
+Seat 6: qdmcg (67)
+mrpoor has the dealer button
+mrpoor posts small blind 1
+qdmcg posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Ah 3c]
+mrpoor raises to 3
+qdmcg calls 2
+** Flop ** [5s 8d 6h]
+qdmcg checks
+mrpoor bets 6
+qdmcg folds
+mrpoor refunded 6
+qdmcg adds 36 chips
+mrpoor wins Pot (6)
+Rake (0)
+
+
+
+Hand #5337001-9 - 2013-04-12 00:04:59
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 5: mrpoor (135)
+Seat 6: qdmcg (100)
+qdmcg has the dealer button
+qdmcg posts small blind 1
+mrpoor posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [3h 2h]
+qdmcg raises to 3
+mrpoor folds
+qdmcg refunded 2
+qdmcg wins Pot (2)
+Rake (0)
+
+
+
+Hand #5337017-10 - 2013-04-12 00:05:14
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 5: mrpoor (134)
+Seat 6: qdmcg (101)
+mrpoor has the dealer button
+mrpoor posts small blind 1
+qdmcg posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Jh 9s]
+mrpoor checks
+qdmcg raises to 3
+mrpoor folds
+qdmcg refunded 2
+qdmcg wins Pot (2)
+Rake (0)
+
+
+
+Hand #5337044-11 - 2013-04-12 00:05:36
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 5: mrpoor (133)
+Seat 6: qdmcg (102)
+qdmcg has the dealer button
+qdmcg posts small blind 1
+mrpoor posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Th 5s]
+qdmcg checks
+mrpoor checks
+** Flop ** [Js 5h Ah]
+mrpoor checks
+qdmcg bets 2
+mrpoor folds
+qdmcg refunded 2
+qdmcg wins Pot (2)
+Rake (0)
+
+
+
+Hand #5337078-12 - 2013-04-12 00:06:05
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 5: mrpoor (132)
+Seat 6: qdmcg (103)
+mrpoor has the dealer button
+mrpoor posts small blind 1
+qdmcg posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Kd 8c]
+mrpoor raises to 3
+qdmcg calls 2
+** Flop ** [4c 2s Kc]
+qdmcg checks
+mrpoor bets 3
+qdmcg calls 3
+** Turn ** [8s]
+qdmcg checks
+mrpoor checks
+** River ** [3c]
+qdmcg bets 7
+mrpoor folds
+qdmcg refunded 7
+qdmcg wins Pot (12)
+Rake (0)
+
+
+
+Hand #5337126-13 - 2013-04-12 00:07:01
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 5: mrpoor (126)
+Seat 6: qdmcg (109)
+qdmcg has the dealer button
+qdmcg posts small blind 1
+mrpoor posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [8d Jh]
+qdmcg raises to 2
+mrpoor calls 1
+** Flop ** [Jc Kh 2s]
+mrpoor checks
+qdmcg checks
+** Turn ** [7d]
+mrpoor checks
+qdmcg bets 2
+mrpoor folds
+qdmcg refunded 2
+qdmcg wins Pot (4)
+Rake (0)
+
+
+
+Hand #5337158-14 - 2013-04-12 00:07:31
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 5: mrpoor (124)
+Seat 6: qdmcg (111)
+mrpoor has the dealer button
+mrpoor posts small blind 1
+qdmcg posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Ah 6c]
+mrpoor checks
+qdmcg raises to 3
+mrpoor folds
+qdmcg refunded 2
+qdmcg wins Pot (2)
+Rake (0)
+
+
+
+Hand #5337179-15 - 2013-04-12 00:07:54
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 5: mrpoor (123)
+Seat 6: qdmcg (112)
+qdmcg has the dealer button
+qdmcg posts small blind 1
+mrpoor posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Jh 4d]
+qdmcg checks
+mrpoor checks
+** Flop ** [8d 7h Th]
+mrpoor checks
+qdmcg checks
+** Turn ** [8h]
+mrpoor checks
+qdmcg bets 2
+mrpoor folds
+qdmcg refunded 2
+qdmcg wins Pot (2)
+Rake (0)
+
+
+
+Hand #5337211-16 - 2013-04-12 00:08:26
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 5: mrpoor (122)
+Seat 6: qdmcg (113)
+mrpoor has the dealer button
+mrpoor posts small blind 1
+qdmcg posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Qd 3s]
+mrpoor raises to 3
+qdmcg folds
+mrpoor refunded 2
+mrpoor wins Pot (2)
+Rake (0)
+
+
+
+Hand #5337224-17 - 2013-04-12 00:08:40
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 5: mrpoor (123)
+Seat 6: qdmcg (112)
+qdmcg has the dealer button
+qdmcg posts small blind 1
+mrpoor posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [5h Ad]
+qdmcg raises to 3
+mrpoor folds
+qdmcg refunded 2
+qdmcg wins Pot (2)
+Rake (0)
+
+
+
+Hand #5337241-18 - 2013-04-12 00:08:55
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 5: mrpoor (122)
+Seat 6: qdmcg (113)
+mrpoor has the dealer button
+mrpoor posts small blind 1
+qdmcg posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Jc 5c]
+mrpoor raises to 3
+qdmcg calls 2
+** Flop ** [Ac Ts 5d]
+qdmcg checks
+mrpoor checks
+** Turn ** [Qh]
+qdmcg checks
+mrpoor checks
+** River ** [Td]
+qdmcg checks
+mrpoor checks
+** Pot Show Down ** [Ac Ts 5d Qh Td]
+mrpoor shows [8c 8d] (Two Pair, Tens and Eights +A)
+qdmcg shows [Jc 5c] (Two Pair, Tens and Fives +A)
+mrpoor wins Pot (6) with Two Pair
+Rake (0)
+
+
+
+Hand #5337270-19 - 2013-04-12 00:09:27
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 5: mrpoor (125)
+Seat 6: qdmcg (110)
+qdmcg has the dealer button
+qdmcg posts small blind 1
+mrpoor posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [4d Ks]
+qdmcg raises to 3
+mrpoor folds
+qdmcg refunded 2
+qdmcg wins Pot (2)
+Rake (0)
+
+
+
+Hand #5337286-20 - 2013-04-12 00:09:43
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 5: mrpoor (124)
+Seat 6: qdmcg (111)
+mrpoor has the dealer button
+mrpoor posts small blind 1
+qdmcg posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [7d 3c]
+mrpoor raises to 3
+qdmcg folds
+mrpoor refunded 2
+mrpoor wins Pot (2)
+Rake (0)
+
+
+
+Hand #5337307-21 - 2013-04-12 00:09:57
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 5: mrpoor (125)
+Seat 6: qdmcg (110)
+qdmcg has the dealer button
+qdmcg posts small blind 1
+mrpoor posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Js 2c]
+qdmcg checks
+mrpoor raises to 4
+qdmcg folds
+mrpoor refunded 3
+mrpoor wins Pot (2)
+Rake (0)
+
+
+
+Hand #5337319-22 - 2013-04-12 00:10:13
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 5: mrpoor (126)
+Seat 6: qdmcg (109)
+mrpoor has the dealer button
+mrpoor posts small blind 1
+qdmcg posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [9h Qs]
+mrpoor raises to 3
+qdmcg calls 2
+** Flop ** [6c 4h 5d]
+qdmcg checks
+mrpoor checks
+** Turn ** [9s]
+qdmcg checks
+mrpoor checks
+** River ** [8c]
+qdmcg checks
+mrpoor checks
+** Pot Show Down ** [6c 4h 5d 9s 8c]
+mrpoor shows [3d 4c] (a Pair of Fours +986)
+qdmcg shows [9h Qs] (a Pair of Nines +Q86)
+qdmcg wins Pot (6) with a Pair
+Rake (0)
+
+
+
+Hand #5337353-23 - 2013-04-12 00:10:46
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 5: mrpoor (123)
+Seat 6: qdmcg (112)
+qdmcg has the dealer button
+qdmcg posts small blind 1
+mrpoor posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [2c Qh]
+qdmcg raises to 3
+mrpoor folds
+qdmcg refunded 2
+qdmcg wins Pot (2)
+Rake (0)
+
+
+
+Hand #5337368-24 - 2013-04-12 00:11:01
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 5: mrpoor (122)
+Seat 6: qdmcg (113)
+mrpoor has the dealer button
+mrpoor posts small blind 1
+qdmcg posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [7d As]
+mrpoor raises to 3
+qdmcg calls 2
+** Flop ** [3d 7h 7c]
+qdmcg checks
+mrpoor bets 3
+qdmcg calls 3
+** Turn ** [9h]
+qdmcg checks
+mrpoor bets 9
+qdmcg calls 9
+** River ** [Js]
+qdmcg bets 13
+mrpoor folds
+qdmcg refunded 13
+qdmcg wins Pot (30)
+Rake (0)
+
+
+
+Hand #5337416-25 - 2013-04-12 00:11:44
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 5: mrpoor (107)
+Seat 6: qdmcg (128)
+qdmcg has the dealer button
+qdmcg posts small blind 1
+mrpoor posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [5s 3s]
+qdmcg raises to 3
+mrpoor calls 2
+** Flop ** [2h 9h Ks]
+mrpoor checks
+qdmcg checks
+** Turn ** [Jh]
+mrpoor checks
+qdmcg bets 4
+mrpoor calls 4
+** River ** [4h]
+mrpoor checks
+qdmcg checks
+** Pot Show Down ** [2h 9h Ks Jh 4h]
+mrpoor shows [Qs 9c] (a Pair of Nines +KQJ)
+qdmcg shows [5s 3s] (High Card King +J954)
+mrpoor wins Pot (14) with a Pair
+Rake (0)
+
+
+
+Hand #5337449-26 - 2013-04-12 00:12:21
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 5: mrpoor (114)
+Seat 6: qdmcg (121)
+mrpoor has the dealer button
+mrpoor posts small blind 1
+qdmcg posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Qd 3c]
+mrpoor raises to 3
+qdmcg folds
+mrpoor refunded 2
+mrpoor wins Pot (2)
+Rake (0)
+
+
+
+Hand #5337461-27 - 2013-04-12 00:12:35
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 5: mrpoor (115)
+Seat 6: qdmcg (120)
+qdmcg has the dealer button
+qdmcg posts small blind 1
+mrpoor posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Ad 7c]
+qdmcg raises to 3
+mrpoor calls 2
+** Flop ** [Qs 3d Ts]
+mrpoor checks
+qdmcg bets 4
+mrpoor folds
+qdmcg refunded 4
+qdmcg wins Pot (6)
+Rake (0)
+
+
+
+Hand #5337493-28 - 2013-04-12 00:13:08
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 5: mrpoor (112)
+Seat 6: qdmcg (123)
+mrpoor has the dealer button
+mrpoor posts small blind 1
+qdmcg posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Th 7s]
+mrpoor checks
+qdmcg checks
+** Flop ** [Kh 5h 2d]
+qdmcg checks
+mrpoor checks
+** Turn ** [Ks]
+qdmcg checks
+mrpoor checks
+** River ** [Js]
+qdmcg checks
+mrpoor checks
+** Pot Show Down ** [Kh 5h 2d Ks Js]
+mrpoor shows [8d 4c] (a Pair of Kings +J85)
+qdmcg shows [Th 7s] (a Pair of Kings +JT7)
+qdmcg wins Pot (2) with a Pair
+Rake (0)
+
+
+
+Hand #5337523-29 - 2013-04-12 00:13:41
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 5: mrpoor (111)
+Seat 6: qdmcg (124)
+qdmcg has the dealer button
+qdmcg posts small blind 1
+mrpoor posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Ts 6d]
+qdmcg raises to 3
+mrpoor raises to 10
+qdmcg folds
+mrpoor refunded 7
+mrpoor wins Pot (6)
+Rake (0)
+
+
+
+Hand #5337542-30 - 2013-04-12 00:14:02
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 5: mrpoor (114)
+Seat 6: qdmcg (121)
+mrpoor has the dealer button
+mrpoor posts small blind 1
+qdmcg posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [9s Qs]
+mrpoor raises to 2
+qdmcg calls 1
+** Flop ** [Ts 8s 3s]
+qdmcg checks
+mrpoor checks
+** Turn ** [Kh]
+qdmcg bets 2
+mrpoor folds
+qdmcg refunded 2
+qdmcg wins Pot (4)
+Rake (0)
+
+
+
+Hand #5337562-31 - 2013-04-12 00:14:28
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 5: mrpoor (112)
+Seat 6: qdmcg (123)
+qdmcg has the dealer button
+qdmcg posts small blind 1
+mrpoor posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Ad Jc]
+qdmcg raises to 3
+mrpoor raises to 10
+qdmcg calls 7
+** Flop ** [Qc Qs 9s]
+mrpoor checks
+qdmcg checks
+** Turn ** [Kd]
+mrpoor checks
+qdmcg checks
+** River ** [9c]
+mrpoor checks
+qdmcg checks
+** Pot Show Down ** [Qc Qs 9s Kd 9c]
+mrpoor shows [Ts Tc] (Two Pair, Queens and Tens +K)
+qdmcg shows [Ad Jc] (Two Pair, Queens and Nines +A)
+mrpoor wins Pot (20) with Two Pair
+Rake (0)
+
+
+
+Hand #5337590-32 - 2013-04-12 00:15:05
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 4: SnarfOn (36)
+Seat 5: mrpoor (122)
+Seat 6: qdmcg (113)
+mrpoor has the dealer button
+qdmcg posts small blind 1
+SnarfOn posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Qh Kd]
+mrpoor raises to 3
+qdmcg calls 2
+SnarfOn calls 2
+** Flop ** [5d 9h Jd]
+qdmcg checks
+SnarfOn checks
+mrpoor checks
+** Turn ** [Ac]
+qdmcg checks
+SnarfOn bets 1
+mrpoor folds
+qdmcg calls 1
+** River ** [2s]
+qdmcg checks
+SnarfOn bets 5
+qdmcg folds
+SnarfOn refunded 5
+SnarfOn wins Pot (11)
+Rake (0)
+
+
+
+Hand #5337632-33 - 2013-04-12 00:15:50
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 4: SnarfOn (43)
+Seat 5: mrpoor (119)
+Seat 6: qdmcg (109)
+qdmcg has the dealer button
+SnarfOn posts small blind 1
+mrpoor posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Kh Kd]
+qdmcg raises to 3
+SnarfOn raises to 5
+mrpoor folds
+qdmcg raises to 11
+SnarfOn raises to 17
+qdmcg raises to 52
+SnarfOn calls 26 (All-in)
+qdmcg refunded 9
+** Flop ** [3c 2s 6s]
+** Turn ** [Ks]
+** River ** [2d]
+** Pot Show Down ** [3c 2s 6s Ks 2d]
+SnarfOn shows [Qs Qh] (Two Pair, Queens and Deuces +K)
+qdmcg shows [Kh Kd] (a Full House, Kings full of Deuces)
+qdmcg wins Pot (85) with a Full House
+Rake (2)
+
+
+
+Hand #5337658-34 - 2013-04-12 00:16:25
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 4: SnarfOn (0) - sitting out
+Seat 5: mrpoor (118)
+Seat 6: qdmcg (151)
+mrpoor has the dealer button
+mrpoor posts small blind 1
+qdmcg posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [6d 5h]
+mrpoor checks
+qdmcg checks
+** Flop ** [Jc 3s Kc]
+qdmcg checks
+mrpoor bets 2
+qdmcg folds
+mrpoor refunded 2
+mrpoor wins Pot (2)
+Rake (0)
+
+
+
+Hand #5337673-35 - 2013-04-12 00:16:46
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 5: mrpoor (119)
+Seat 6: qdmcg (150)
+qdmcg has the dealer button
+qdmcg posts small blind 1
+mrpoor posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [6c Qd]
+qdmcg raises to 3
+mrpoor folds
+qdmcg refunded 2
+qdmcg wins Pot (2)
+Rake (0)
+
+
+
+Hand #5337687-36 - 2013-04-12 00:17:00
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 5: mrpoor (118)
+Seat 6: qdmcg (151)
+mrpoor has the dealer button
+mrpoor posts small blind 1
+qdmcg posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [6c Jc]
+mrpoor raises to 3
+qdmcg calls 2
+** Flop ** [Td Ah Ac]
+qdmcg checks
+mrpoor bets 3
+qdmcg folds
+mrpoor refunded 3
+mrpoor wins Pot (6)
+Rake (0)
+
+
+
+Hand #5337705-37 - 2013-04-12 00:17:22
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 5: mrpoor (121)
+Seat 6: qdmcg (148)
+qdmcg has the dealer button
+qdmcg posts small blind 1
+mrpoor posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Jd Ad]
+qdmcg raises to 3
+mrpoor folds
+qdmcg refunded 2
+qdmcg wins Pot (2)
+Rake (0)
+
+
+
+Hand #5337713-38 - 2013-04-12 00:17:36
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 5: mrpoor (120)
+Seat 6: qdmcg (149)
+mrpoor has the dealer button
+mrpoor posts small blind 1
+qdmcg posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Ts 9d]
+mrpoor raises to 3
+qdmcg calls 2
+** Flop ** [Ah Ad 8h]
+qdmcg checks
+mrpoor bets 3
+qdmcg raises to 10
+mrpoor calls 7
+** Turn ** [5c]
+qdmcg checks
+mrpoor bets 18
+qdmcg folds
+mrpoor refunded 18
+mrpoor wins Pot (26)
+Rake (0)
+
+
+
+Hand #5337738-39 - 2013-04-12 00:18:12
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 5: mrpoor (133)
+Seat 6: qdmcg (136)
+qdmcg has the dealer button
+qdmcg posts small blind 1
+mrpoor posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [4s Js]
+qdmcg raises to 3
+mrpoor folds
+qdmcg refunded 2
+qdmcg wins Pot (2)
+Rake (0)
+
+
+
+Hand #5337750-40 - 2013-04-12 00:18:26
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 5: mrpoor (132)
+Seat 6: qdmcg (137)
+mrpoor has the dealer button
+mrpoor posts small blind 1
+qdmcg posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [4h 3s]
+mrpoor raises to 3
+qdmcg folds
+mrpoor refunded 2
+mrpoor wins Pot (2)
+Rake (0)
+
+
+
+Hand #5337765-41 - 2013-04-12 00:18:39
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 5: mrpoor (133)
+Seat 6: qdmcg (136)
+qdmcg has the dealer button
+qdmcg posts small blind 1
+mrpoor posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [7d Ad]
+qdmcg raises to 3
+mrpoor calls 2
+** Flop ** [9d 5s 4d]
+mrpoor checks
+qdmcg bets 5
+mrpoor calls 5
+** Turn ** [8h]
+mrpoor checks
+qdmcg checks
+** River ** [3h]
+mrpoor checks
+qdmcg checks
+** Pot Show Down ** [9d 5s 4d 8h 3h]
+mrpoor shows [Td 9s] (a Pair of Nines +T85)
+qdmcg shows [7d Ad] (High Card Ace +9875)
+mrpoor wins Pot (16) with a Pair
+Rake (0)
+
+
+
+Hand #5337792-42 - 2013-04-12 00:19:12
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 5: mrpoor (141)
+Seat 6: qdmcg (128)
+mrpoor has the dealer button
+mrpoor posts small blind 1
+qdmcg posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [6h 6s]
+mrpoor raises to 3
+qdmcg calls 2
+** Flop ** [Qd 2d Qh]
+qdmcg checks
+mrpoor bets 3
+qdmcg calls 3
+** Turn ** [3h]
+qdmcg checks
+mrpoor checks
+** River ** [5c]
+qdmcg checks
+mrpoor checks
+** Pot Show Down ** [Qd 2d Qh 3h 5c]
+mrpoor shows [4c 8d] (a Pair of Queens +854)
+qdmcg shows [6h 6s] (Two Pair, Queens and Sixes +5)
+qdmcg wins Pot (12) with Two Pair
+Rake (0)
+
+
+
+Hand #5337817-43 - 2013-04-12 00:19:49
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 5: mrpoor (135)
+Seat 6: qdmcg (134)
+qdmcg has the dealer button
+qdmcg posts small blind 1
+mrpoor posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [4s 5h]
+qdmcg raises to 3
+mrpoor raises to 10
+qdmcg folds
+mrpoor refunded 7
+mrpoor wins Pot (6)
+Rake (0)
+
+
+
+Hand #5337838-44 - 2013-04-12 00:20:10
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 5: mrpoor (138)
+Seat 6: qdmcg (131)
+mrpoor has the dealer button
+mrpoor posts small blind 1
+qdmcg posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [6d 5c]
+mrpoor raises to 3
+qdmcg folds
+mrpoor refunded 2
+mrpoor wins Pot (2)
+Rake (0)
+
+
+
+Hand #5337847-45 - 2013-04-12 00:20:23
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 5: mrpoor (139)
+Seat 6: qdmcg (130)
+qdmcg has the dealer button
+qdmcg posts small blind 1
+mrpoor posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [3c 4h]
+qdmcg raises to 3
+mrpoor calls 2
+** Flop ** [3h 5d Js]
+mrpoor checks
+qdmcg bets 3
+mrpoor folds
+qdmcg refunded 3
+qdmcg wins Pot (6)
+Rake (0)
+
+
+
+Hand #5337865-46 - 2013-04-12 00:20:43
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 5: mrpoor (136)
+Seat 6: qdmcg (133)
+mrpoor has the dealer button
+mrpoor posts small blind 1
+qdmcg posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [7h Jd]
+mrpoor raises to 3
+qdmcg calls 2
+** Flop ** [7c Tc Kd]
+qdmcg checks
+mrpoor checks
+** Turn ** [3d]
+qdmcg bets 3
+mrpoor calls 3
+** River ** [3h]
+qdmcg checks
+mrpoor bets 3
+qdmcg calls 3
+** Pot Show Down ** [7c Tc Kd 3d 3h]
+mrpoor shows [Qd Ts] (Two Pair, Tens and Threes +K)
+qdmcg shows [7h Jd] (Two Pair, Sevens and Threes +K)
+mrpoor wins Pot (18) with Two Pair
+Rake (0)
+
+
+
+Hand #5337898-47 - 2013-04-12 00:21:28
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 5: mrpoor (145)
+Seat 6: qdmcg (124)
+qdmcg has the dealer button
+qdmcg posts small blind 1
+mrpoor posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Ks 8s]
+qdmcg raises to 3
+mrpoor folds
+qdmcg refunded 2
+qdmcg wins Pot (2)
+Rake (0)
+
+
+
+Hand #5337911-48 - 2013-04-12 00:21:43
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 5: mrpoor (144)
+Seat 6: qdmcg (125)
+mrpoor has the dealer button
+mrpoor posts small blind 1
+qdmcg posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [9d 5s]
+mrpoor raises to 3
+qdmcg folds
+mrpoor refunded 2
+mrpoor wins Pot (2)
+Rake (0)
+
+
+
+Hand #5337923-49 - 2013-04-12 00:21:57
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 5: mrpoor (145)
+Seat 6: qdmcg (124)
+qdmcg has the dealer button
+qdmcg posts small blind 1
+mrpoor posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [7d 7h]
+qdmcg raises to 3
+mrpoor folds
+qdmcg refunded 2
+qdmcg wins Pot (2)
+Rake (0)
+
+
+
+Hand #5337936-50 - 2013-04-12 00:22:12
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 5: mrpoor (144)
+Seat 6: qdmcg (125)
+mrpoor has the dealer button
+mrpoor posts small blind 1
+qdmcg posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Js Qs]
+mrpoor raises to 3
+qdmcg calls 2
+** Flop ** [8h 4h 5d]
+qdmcg checks
+mrpoor checks
+** Turn ** [7d]
+qdmcg checks
+mrpoor checks
+** River ** [2d]
+qdmcg checks
+mrpoor checks
+** Pot Show Down ** [8h 4h 5d 7d 2d]
+mrpoor shows [Tc Ah] (High Card Ace +T875)
+qdmcg shows [Js Qs] (High Card Queen +J875)
+mrpoor wins Pot (6) with High Card
+Rake (0)
+
+
+
+Hand #5337955-51 - 2013-04-12 00:22:40
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 5: mrpoor (147)
+Seat 6: qdmcg (122)
+qdmcg has the dealer button
+qdmcg posts small blind 1
+mrpoor posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [6c 4c]
+qdmcg checks
+mrpoor raises to 4
+qdmcg folds
+mrpoor refunded 3
+mrpoor wins Pot (2)
+Rake (0)
+
+
+
+Hand #5337969-52 - 2013-04-12 00:22:56
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 5: mrpoor (148)
+Seat 6: qdmcg (121)
+mrpoor has the dealer button
+mrpoor posts small blind 1
+qdmcg posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Qc Tc]
+mrpoor raises to 3
+qdmcg calls 2
+** Flop ** [Qs Ad 9d]
+qdmcg checks
+mrpoor checks
+** Turn ** [6c]
+qdmcg checks
+mrpoor checks
+** River ** [Js]
+qdmcg checks
+mrpoor checks
+** Pot Show Down ** [Qs Ad 9d 6c Js]
+mrpoor shows [Ts Td] (a Pair of Tens +AQJ)
+qdmcg shows [Qc Tc] (a Pair of Queens +AJT)
+qdmcg wins Pot (6) with a Pair
+Rake (0)
+
+
+
+Hand #5337982-53 - 2013-04-12 00:23:25
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 5: mrpoor (145)
+Seat 6: qdmcg (124)
+qdmcg has the dealer button
+qdmcg posts small blind 1
+mrpoor posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [9d 8h]
+qdmcg raises to 3
+mrpoor folds
+qdmcg refunded 2
+qdmcg wins Pot (2)
+Rake (0)
+
+
+
+Hand #5337994-54 - 2013-04-12 00:23:38
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 5: mrpoor (144)
+Seat 6: qdmcg (125)
+mrpoor has the dealer button
+mrpoor posts small blind 1
+qdmcg posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [6c Jc]
+mrpoor checks
+qdmcg checks
+** Flop ** [4c 2c 5c]
+qdmcg checks
+mrpoor checks
+** Turn ** [Qh]
+qdmcg bets 2
+mrpoor folds
+qdmcg refunded 2
+qdmcg wins Pot (2)
+Rake (0)
+
+
+
+Hand #5338015-55 - 2013-04-12 00:24:08
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 5: mrpoor (143)
+Seat 6: qdmcg (126)
+qdmcg has the dealer button
+qdmcg posts small blind 1
+mrpoor posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Kh Kc]
+qdmcg raises to 3
+mrpoor calls 2
+** Flop ** [8h Jh 2c]
+mrpoor checks
+qdmcg bets 4
+mrpoor raises to 12
+qdmcg calls 8
+** Turn ** [4d]
+mrpoor checks
+qdmcg checks
+** River ** [Th]
+mrpoor checks
+qdmcg bets 13
+mrpoor folds
+qdmcg refunded 13
+qdmcg wins Pot (30)
+Rake (0)
+
+
+
+Hand #5338052-56 - 2013-04-12 00:24:51
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 5: mrpoor (128)
+Seat 6: qdmcg (141)
+mrpoor has the dealer button
+mrpoor posts small blind 1
+qdmcg posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Js Qs]
+mrpoor raises to 3
+qdmcg calls 2
+** Flop ** [2h 5h 6h]
+qdmcg checks
+mrpoor bets 5
+qdmcg folds
+mrpoor refunded 5
+mrpoor wins Pot (6)
+Rake (0)
+
+
+
+Hand #5338067-57 - 2013-04-12 00:25:12
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 5: mrpoor (131)
+Seat 6: qdmcg (138)
+qdmcg has the dealer button
+qdmcg posts small blind 1
+mrpoor posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Th 4c]
+Dealt to qdmcg [Th 4c]
+qdmcg raises to 3
+mrpoor calls 2
+** Flop ** [8s 7s Td]
+mrpoor checks
+qdmcg bets 3
+mrpoor folds
+qdmcg refunded 3
+qdmcg wins Pot (6)
+Rake (0)
+
+
+
+Hand #5338083-58 - 2013-04-12 00:25:31
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 5: mrpoor (128)
+Seat 6: qdmcg (141)
+mrpoor has the dealer button
+mrpoor posts small blind 1
+qdmcg posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [8c 7h]
+mrpoor raises to 3
+qdmcg calls 2
+** Flop ** [Js 5c Jd]
+qdmcg checks
+mrpoor bets 3
+qdmcg folds
+mrpoor refunded 3
+mrpoor wins Pot (6)
+Rake (0)
+
+
+
+Hand #5338093-59 - 2013-04-12 00:25:52
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 5: mrpoor (131)
+Seat 6: qdmcg (138)
+qdmcg has the dealer button
+qdmcg posts small blind 1
+mrpoor posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Ad 9d]
+qdmcg raises to 3
+mrpoor folds
+qdmcg refunded 2
+qdmcg wins Pot (2)
+Rake (0)
+
+
+
+Hand #5338105-60 - 2013-04-12 00:26:08
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 5: mrpoor (130)
+Seat 6: qdmcg (139)
+mrpoor has the dealer button
+mrpoor posts small blind 1
+qdmcg posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [4c Kd]
+mrpoor raises to 3
+qdmcg raises to 9
+mrpoor calls 6
+** Flop ** [As Jh 5h]
+qdmcg bets 15
+mrpoor folds
+qdmcg refunded 15
+qdmcg wins Pot (18)
+Rake (0)
+
+
+
+Hand #5338123-61 - 2013-04-12 00:26:31
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 5: mrpoor (121)
+Seat 6: qdmcg (148)
+qdmcg has the dealer button
+qdmcg posts small blind 1
+mrpoor posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [8d 9c]
+qdmcg raises to 3
+mrpoor calls 2
+** Flop ** [Qc Js Jc]
+mrpoor checks
+qdmcg checks
+** Turn ** [2d]
+mrpoor bets 4
+qdmcg folds
+mrpoor refunded 4
+mrpoor wins Pot (6)
+Rake (0)
+
+
+
+Hand #5338144-62 - 2013-04-12 00:26:56
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 5: mrpoor (124)
+Seat 6: qdmcg (145)
+mrpoor has the dealer button
+mrpoor posts small blind 1
+qdmcg posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [3h 8c]
+mrpoor raises to 3
+qdmcg folds
+mrpoor refunded 2
+mrpoor wins Pot (2)
+Rake (0)
+
+
+
+Hand #5338154-63 - 2013-04-12 00:27:09
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 5: mrpoor (125)
+Seat 6: qdmcg (144)
+qdmcg has the dealer button
+qdmcg posts small blind 1
+mrpoor posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [6d As]
+qdmcg raises to 3
+mrpoor folds
+qdmcg refunded 2
+qdmcg wins Pot (2)
+Rake (0)
+
+
+
+Hand #5338168-64 - 2013-04-12 00:27:22
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 5: mrpoor (124)
+Seat 6: qdmcg (145)
+mrpoor has the dealer button
+mrpoor posts small blind 1
+qdmcg posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [5d 6c]
+mrpoor raises to 3
+qdmcg calls 2
+** Flop ** [Ad Ac 2d]
+qdmcg checks
+mrpoor bets 3
+qdmcg calls 3
+** Turn ** [Jd]
+qdmcg checks
+mrpoor bets 8
+qdmcg folds
+mrpoor refunded 8
+mrpoor wins Pot (12)
+Rake (0)
+
+
+
+Hand #5338187-65 - 2013-04-12 00:27:55
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 5: mrpoor (130)
+Seat 6: qdmcg (139)
+qdmcg has the dealer button
+qdmcg posts small blind 1
+mrpoor posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [5d 8s]
+qdmcg checks
+mrpoor checks
+** Flop ** [Ah 4s 6d]
+mrpoor checks
+qdmcg bets 2
+mrpoor folds
+qdmcg refunded 2
+qdmcg wins Pot (2)
+Rake (0)
+
+
+
+Hand #5338206-66 - 2013-04-12 00:28:24
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 5: mrpoor (129)
+Seat 6: qdmcg (140)
+mrpoor has the dealer button
+mrpoor posts small blind 1
+qdmcg posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [4h 3c]
+mrpoor raises to 3
+qdmcg folds
+mrpoor refunded 2
+mrpoor wins Pot (2)
+Rake (0)
+
+
+
+Hand #5338226-67 - 2013-04-12 00:28:49
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 1: Human (44)
+Seat 5: mrpoor (130)
+Seat 6: qdmcg (139)
+qdmcg has the dealer button
+qdmcg posts small blind 1
+mrpoor posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Tc 5d]
+qdmcg raises to 3
+mrpoor calls 2
+** Flop ** [3c 8c 5c]
+mrpoor checks
+qdmcg bets 3
+mrpoor calls 3
+** Turn ** [6s]
+mrpoor checks
+qdmcg bets 4
+mrpoor calls 4
+** River ** [Ts]
+mrpoor checks
+qdmcg bets 9
+mrpoor calls 9
+** Pot Show Down ** [3c 8c 5c 6s Ts]
+mrpoor shows [8d Jd] (a Pair of Eights +JT6)
+qdmcg shows [Tc 5d] (Two Pair, Tens and Fives +8)
+qdmcg wins Pot (38) with Two Pair
+Rake (0)
+
+
+
+Hand #5338264-68 - 2013-04-12 00:29:37
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 1: Human (44)
+Seat 5: mrpoor (111)
+Seat 6: qdmcg (158)
+mrpoor has the dealer button
+qdmcg posts small blind 1
+Human posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Qd Ac]
+mrpoor folds
+qdmcg raises to 3
+Human folds
+qdmcg refunded 2
+qdmcg wins Pot (2)
+Rake (0)
+
+
+
+Hand #5338279-69 - 2013-04-12 00:29:58
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 1: Human (43)
+Seat 5: mrpoor (111)
+Seat 6: qdmcg (159)
+qdmcg has the dealer button
+Human posts small blind 1
+mrpoor posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [6d 2c]
+qdmcg folds
+Human raises to 2
+mrpoor folds
+Human refunded 1
+Human wins Pot (2)
+Rake (0)
+
+
+
+Hand #5338291-70 - 2013-04-12 00:30:14
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 1: Human (44)
+Seat 5: mrpoor (110)
+Seat 6: qdmcg (159)
+Human has the dealer button
+mrpoor posts small blind 1
+qdmcg posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Jc Jh]
+Human raises to 5
+mrpoor folds
+qdmcg calls 4
+** Flop ** [3s Qh Qc]
+qdmcg checks
+Human bets 10
+qdmcg raises to 44
+Human folds
+qdmcg refunded 34
+qdmcg wins Pot (31)
+Rake (0)
+
+
+
+Hand #5338319-71 - 2013-04-12 00:30:47
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 1: Human (29)
+Seat 5: mrpoor (109)
+Seat 6: qdmcg (175)
+mrpoor has the dealer button
+qdmcg posts small blind 1
+Human posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [8h 6d]
+mrpoor raises to 3
+qdmcg folds
+Human folds
+mrpoor refunded 2
+mrpoor wins Pot (3)
+Rake (0)
+
+
+
+Hand #5338330-72 - 2013-04-12 00:31:08
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 1: Human (28)
+Seat 5: mrpoor (111)
+Seat 6: qdmcg (174)
+qdmcg has the dealer button
+Human posts small blind 1
+mrpoor posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Th Ks]
+qdmcg raises to 3
+Human calls 2
+mrpoor folds
+** Flop ** [3s 2d Js]
+Human bets 2
+qdmcg calls 2
+** Turn ** [9h]
+Human checks
+qdmcg checks
+** River ** [4s]
+Human checks
+qdmcg checks
+** Pot Show Down ** [3s 2d Js 9h 4s]
+Human shows [Ah 5s] (a Straight, Ace to Five)
+qdmcg shows [Th Ks] (High Card King +JT94)
+Human wins Pot (11) with a Straight
+Rake (0)
+
+
+
+Hand #5338363-73 - 2013-04-12 00:31:49
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 1: Human (34)
+Seat 2: tim (20) - waiting for big blind
+Seat 5: mrpoor (110)
+Seat 6: qdmcg (169)
+Human has the dealer button
+mrpoor posts small blind 1
+qdmcg posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Qs 4c]
+Human calls 1
+mrpoor checks
+qdmcg checks
+** Flop ** [3h 8h Jc]
+mrpoor checks
+qdmcg checks
+Human checks
+** Turn ** [9c]
+mrpoor checks
+qdmcg bets 3
+Human calls 3
+mrpoor folds
+** River ** [9d]
+qdmcg checks
+Human bets 9
+qdmcg folds
+Human refunded 9
+Human wins Pot (9)
+Rake (0)
+
+
+
+Hand #5338399-74 - 2013-04-12 00:32:44
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 1: Human (39)
+Seat 2: tim (20) - waiting for big blind
+Seat 5: mrpoor (109)
+Seat 6: qdmcg (165)
+mrpoor has the dealer button
+qdmcg posts small blind 1
+Human posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Ac Ad]
+mrpoor raises to 3
+qdmcg raises to 9
+Human calls 8
+mrpoor raises to 24
+qdmcg raises to 141
+Human folds
+mrpoor calls 85 (All-in)
+qdmcg refunded 32
+** Flop ** [9h 3h Ks]
+** Turn ** [Td]
+** River ** [4s]
+** Pot Show Down ** [9h 3h Ks Td 4s]
+mrpoor shows [Kd Kc] (Three of a Kind, Kings +T9)
+qdmcg shows [Ac Ad] (a Pair of Aces +KT9)
+mrpoor wins Pot (225) with Three of a Kind
+Rake (2)
+
+
+
+Hand #5338422-75 - 2013-04-12 00:33:22
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 1: Human (30)
+Seat 2: tim (20) - waiting for big blind
+Seat 5: mrpoor (225)
+Seat 6: qdmcg (56)
+qdmcg has the dealer button
+Human posts small blind 1
+tim posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Tc 3s]
+mrpoor folds
+qdmcg folds
+qdmcg adds 44 chips
+Human raises to 3
+tim calls 2
+** Flop ** [Jc Ad 2s]
+Human bets 6
+tim raises to 12
+Human calls 6
+** Turn ** [8d]
+Human bets 5
+tim calls 5 (All-in)
+** River ** [5c]
+** Pot Show Down ** [Jc Ad 2s 8d 5c]
+Human shows [As Qs] (a Pair of Aces +QJ8)
+tim shows [3d Ah] (a Pair of Aces +J85)
+Human wins Pot (39) with a Pair
+Rake (1)
+tim adds 20 chips
+
+
+
+Hand #5338455-76 - 2013-04-12 00:34:02
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 1: Human (49)
+Seat 2: tim (20)
+Seat 5: mrpoor (225)
+Seat 6: qdmcg (100)
+Human has the dealer button
+tim posts small blind 1
+mrpoor posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [5c Ts]
+qdmcg folds
+Human calls 1
+tim raises to 3
+mrpoor folds
+Human folds
+tim refunded 2
+tim wins Pot (3)
+Rake (0)
+
+
+
+Hand #5338471-77 - 2013-04-12 00:34:27
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 1: Human (48)
+Seat 2: tim (22)
+Seat 5: mrpoor (224)
+Seat 6: qdmcg (100)
+tim has the dealer button
+mrpoor posts small blind 1
+qdmcg posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [3d 8h]
+Human raises to 3
+tim folds
+mrpoor calls 2
+qdmcg folds
+** Flop ** [Ks 3s 8c]
+mrpoor checks
+Human checks
+** Turn ** [3c]
+mrpoor bets 4
+Human folds
+mrpoor refunded 4
+mrpoor wins Pot (7)
+Rake (0)
+
+
+
+Hand #5338496-78 - 2013-04-12 00:35:04
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 1: Human (45)
+Seat 2: tim (22)
+Seat 5: mrpoor (228)
+Seat 6: qdmcg (99)
+mrpoor has the dealer button
+qdmcg posts small blind 1
+Human posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Qd 8h]
+tim raises to 3
+mrpoor folds
+qdmcg folds
+Human calls 2
+** Flop ** [3h 3d 7d]
+Human checks
+tim bets 5
+Human folds
+tim refunded 5
+tim wins Pot (7)
+Rake (0)
+
+
+
+Hand #5338512-79 - 2013-04-12 00:35:28
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 1: Human (42)
+Seat 2: tim (26)
+Seat 4: mtbomb (100) - waiting for big blind
+Seat 5: mrpoor (228)
+Seat 6: qdmcg (98)
+qdmcg has the dealer button
+tim posts small blind 1
+mtbomb posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [5d Qs]
+mrpoor raises to 3
+qdmcg folds
+tim calls 2
+mtbomb folds
+** Flop ** [Kd 8s Ks]
+tim checks
+mrpoor bets 4
+tim folds
+mrpoor refunded 4
+mrpoor wins Pot (7)
+Rake (0)
+
+
+
+Hand #5338538-80 - 2013-04-12 00:36:02
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 2: tim (23)
+Seat 4: mtbomb (99)
+Seat 5: mrpoor (232)
+Seat 6: qdmcg (98)
+tim has the dealer button
+mtbomb posts small blind 1
+mrpoor posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Jc Ah]
+qdmcg raises to 3
+tim folds
+mtbomb folds
+mrpoor folds
+qdmcg refunded 2
+qdmcg wins Pot (3)
+Rake (0)
+
+
+
+Hand #5338554-81 - 2013-04-12 00:36:24
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 2: tim (23)
+Seat 4: mtbomb (98)
+Seat 5: mrpoor (231)
+Seat 6: qdmcg (100)
+mtbomb has the dealer button
+mrpoor posts small blind 1
+qdmcg posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Ks Kh]
+tim folds
+mtbomb raises to 4
+mrpoor folds
+qdmcg raises to 10
+mtbomb calls 6
+** Flop ** [Qd Jc 6c]
+qdmcg bets 23
+mtbomb calls 23
+** Turn ** [2d]
+qdmcg bets 67 (All-in)
+mtbomb calls 65 (All-in)
+qdmcg refunded 2
+** River ** [Jh]
+** Pot Show Down ** [Qd Jc 6c 2d Jh]
+mtbomb shows [Qc Qs] (a Full House, Queens full of Jacks)
+qdmcg shows [Ks Kh] (Two Pair, Kings and Jacks +Q)
+mtbomb wins Pot (195) with a Full House
+Rake (2)
+
+
+
+Hand #5338590-82 - 2013-04-12 00:37:11
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 2: tim (23)
+Seat 4: mtbomb (195)
+Seat 5: mrpoor (230)
+Seat 6: qdmcg (2)
+mrpoor has the dealer button
+qdmcg posts small blind 1
+tim posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Kd Qh]
+mtbomb folds
+mrpoor raises to 3
+qdmcg calls 1 (All-in)
+tim calls 2
+** Flop ** [5h 5d Kh]
+tim checks
+mrpoor checks
+** Turn ** [6s]
+tim checks
+mrpoor bets 3
+tim folds
+mrpoor refunded 3
+** River ** [8h]
+mrpoor wins Side Pot 1 (2)
+Rake (0)
+** Main Pot Show Down ** [5h 5d Kh 6s 8h]
+mrpoor shows [Td Tc] (Two Pair, Tens and Fives +K)
+qdmcg shows [Kd Qh] (Two Pair, Kings and Fives +Q)
+qdmcg wins Main Pot (6) with Two Pair
+Rake (0)
+qdmcg adds 94 chips
+
+
+
+Hand #5338642-83 - 2013-04-12 00:38:24
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 2: tim (20)
+Seat 4: mtbomb (195)
+Seat 5: mrpoor (229)
+Seat 6: qdmcg (100)
+qdmcg has the dealer button
+tim posts small blind 1
+mtbomb posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [7h 4s]
+mrpoor folds
+qdmcg folds
+tim checks
+mtbomb checks
+** Flop ** [7d 6c 4h]
+tim checks
+mtbomb bets 2
+tim folds
+mtbomb refunded 2
+mtbomb wins Pot (2)
+Rake (0)
+
+
+
+Hand #5338671-84 - 2013-04-12 00:39:05
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 2: tim (19)
+Seat 4: mtbomb (196)
+Seat 5: mrpoor (229)
+Seat 6: qdmcg (100)
+tim has the dealer button
+mtbomb posts small blind 1
+mrpoor posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [3c Qd]
+qdmcg folds
+tim folds
+mtbomb checks
+mrpoor checks
+** Flop ** [9c 8s 9h]
+mtbomb checks
+mrpoor checks
+** Turn ** [Qh]
+mtbomb checks
+mrpoor checks
+** River ** [6d]
+mtbomb checks
+mrpoor checks
+** Pot Show Down ** [9c 8s 9h Qh 6d]
+mtbomb shows [5s Jh] (a Pair of Nines +QJ8)
+mrpoor shows [Ts 5h] (a Pair of Nines +QT8)
+mtbomb wins Pot (2) with a Pair
+Rake (0)
+
+
+
+Hand #5338704-85 - 2013-04-12 00:39:48
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 2: tim (19)
+Seat 4: mtbomb (197)
+Seat 5: mrpoor (228)
+Seat 6: qdmcg (100)
+mtbomb has the dealer button
+mrpoor posts small blind 1
+qdmcg posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [8c Tc]
+tim folds
+mtbomb folds
+mrpoor checks
+qdmcg checks
+** Flop ** [Jd 2d 4h]
+mrpoor bets 2
+qdmcg folds
+mrpoor refunded 2
+mrpoor wins Pot (2)
+Rake (0)
+
+
+
+Hand #5338719-86 - 2013-04-12 00:40:14
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 2: tim (19)
+Seat 4: mtbomb (197)
+Seat 5: mrpoor (229)
+Seat 6: qdmcg (99)
+Seat 7: skanks26 (100) - waiting for big blind
+mrpoor has the dealer button
+qdmcg posts small blind 1
+skanks26 posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Ad 9d]
+tim folds
+mtbomb raises to 4
+mrpoor folds
+qdmcg calls 3
+skanks26 folds
+skanks26 adds 1 chips
+** Flop ** [Tc 3d 5d]
+qdmcg checks
+mtbomb bets 7
+qdmcg calls 7
+** Turn ** [7s]
+qdmcg checks
+mtbomb bets 18
+qdmcg folds
+mtbomb refunded 18
+mtbomb wins Pot (23)
+Rake (0)
+
+
+
+Hand #5338756-87 - 2013-04-12 00:41:07
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 2: tim (19)
+Seat 4: mtbomb (209)
+Seat 5: mrpoor (229)
+Seat 6: qdmcg (88)
+Seat 7: skanks26 (100)
+Seat 8: iclubseals (20) - waiting for big blind
+qdmcg has the dealer button
+skanks26 posts small blind 1
+iclubseals posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [8c 3h]
+tim calls 1
+mtbomb folds
+mrpoor raises to 4
+qdmcg folds
+skanks26 folds
+skanks26 adds 1 chips
+iclubseals folds
+tim calls 3
+** Flop ** [3d 8d 8s]
+tim checks
+mrpoor bets 6
+tim folds
+mrpoor refunded 6
+mrpoor wins Pot (10)
+Rake (0)
+
+
+
+Hand #5338783-88 - 2013-04-12 00:41:49
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 2: tim (15)
+Seat 4: mtbomb (209)
+Seat 5: mrpoor (235)
+Seat 6: qdmcg (88)
+Seat 7: skanks26 (100)
+Seat 8: iclubseals (19)
+skanks26 has the dealer button
+iclubseals posts small blind 1
+tim posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [3c 2c]
+mtbomb folds
+mrpoor folds
+qdmcg folds
+skanks26 folds
+iclubseals checks
+tim checks
+** Flop ** [8c Th Jh]
+iclubseals checks
+tim bets 1
+iclubseals calls 1
+** Turn ** [5s]
+iclubseals checks
+tim bets 2
+iclubseals calls 2
+** River ** [Td]
+iclubseals checks
+tim checks
+** Pot Show Down ** [8c Th Jh 5s Td]
+tim shows [4h 8d] (Two Pair, Tens and Eights +J)
+iclubseals shows [3h 5h] (Two Pair, Tens and Fives +J)
+tim wins Pot (8) with Two Pair
+Rake (0)
+
+
+
+Hand #5338813-89 - 2013-04-12 00:42:42
+Game: NL Hold'em (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: NLHE 9max 1/1 #2
+Seat 2: tim (19)
+Seat 4: mtbomb (209)
+Seat 5: mrpoor (235)
+Seat 6: qdmcg (88)
+Seat 7: skanks26 (100)
+Seat 8: iclubseals (15)
+iclubseals has the dealer button
+tim posts small blind 1
+mtbomb posts big blind 1
+** Hole Cards **
+Dealt to qdmcg [Qc 5s]
+mrpoor folds
+qdmcg folds
+skanks26 folds
+iclubseals folds
+tim raises to 3
+mtbomb calls 2
+** Flop ** [7d 3s 3d]
+tim bets 3
+mtbomb calls 3
+** Turn ** [Tc]
+tim checks
+mtbomb bets 42
+tim folds
+mtbomb refunded 42
+mtbomb wins Pot (12)
+Rake (0)
