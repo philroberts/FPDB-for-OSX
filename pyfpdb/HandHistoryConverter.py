@@ -581,6 +581,8 @@ or None if we fail to get the info """
             givenTZ = timezone('America/Argentina/Buenos_Aires')
         elif givenTimezone == 'BRT': # Brasilia Time
             givenTZ = timezone('America/Sao_Paulo')
+        elif givenTimezone == 'VET':
+            givenTZ = timezone('America/Caracas')
         elif givenTimezone == 'COT':
             givenTZ = timezone('America/Bogota')
         elif givenTimezone in ('EET', 'EEST'): # Eastern European Time

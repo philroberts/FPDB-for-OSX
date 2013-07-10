@@ -993,15 +993,12 @@ or None if we fail to get the info """
     @staticmethod
     def getTableTitleRe(type, table_name=None, tournament = None, table_number=None):
         "Returns string to search in windows titles"
-        regex = re.escape(table_name)
+        regex = re.escape(str(table_name))
         if type=="tour":
             # Ignoring table number as it doesn't appear to be in the window title
             # "$200 Freeroll - NL Holdem - 20:00 (46302299) - Table 1" -- the table number doesn't matter, it seems to always be 1 in the HH.
             # "Fun Step 1 (4358174) - Table 1"
-            regex = "\(" + re.escape(str(tournament)) + "\)"
-        else: # type == "ring":
-            regex += " \("
-
+            regex = re.escape(str(tournament))
         log.info("Merge.getTableTitleRe: table_name='%s' tournament='%s' table_number='%s'" % (table_name, tournament, table_number))
         log.info("Merge.getTableTitleRe: returns: '%s'" % (regex))
         return regex
