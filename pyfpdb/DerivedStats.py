@@ -704,13 +704,12 @@ class DerivedStats():
 
         for player in hand.players:
             pname = player[1]
+            player_stats = self.handsplayers.get(pname)
             if pname in vpipers:
-                player_stats = self.handsplayers.get(pname)
                 player_stats['street0VPI'] = True
-                
-                if pname in hand.sitout:
-                    player_stats['street0VPIChance'] = False
-                    player_stats['street0AggrChance'] = False
+            elif pname in hand.sitout:
+                player_stats['street0VPIChance'] = False
+                player_stats['street0AggrChance'] = False
                 
         if len(vpipers)==0 and bb:
             self.handsplayers[bb[0]]['street0VPIChance'] = False
@@ -872,16 +871,18 @@ class DerivedStats():
     def calc34BetStreet0(self, hand):
         """Fills street0_(3|4)B(Chance|Done), other(3|4)BStreet0"""
         bet_level = 1 # bet_level after 3-bet is equal to 3
-        squeeze_chance, raise_chance = False, True
+        squeeze_chance, raise_chance, action_cnt = False, True, {}
         p0_in = set([x[0] for x in hand.actions[hand.actionStreets[0]] if not x[-1]])
         p1_in = set([x[0] for x in hand.actions[hand.actionStreets[1]]])
         p_in = p1_in.union(p0_in)
+        for p in p_in: action_cnt[p] = 0
         for action in hand.actions[hand.actionStreets[1]]:
             pname, act, aggr, allin = action[0], action[1], action[1] in ('raises', 'bets'), False
             player_stats = self.handsplayers.get(pname)
+            action_cnt[pname] += 1
             if len(action) > 3 and act != 'discards':
                 allin = action[-1]
-            if len(p_in)==1:
+            if len(p_in)==1 and action_cnt[pname]==1:
                 raise_chance = False
                 player_stats['street0AggrChance'] = raise_chance
             if act == 'folds' or allin or player_stats['sitout']:
