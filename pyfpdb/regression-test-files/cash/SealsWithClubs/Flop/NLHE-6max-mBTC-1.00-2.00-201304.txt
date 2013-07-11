@@ -1,0 +1,44 @@
+Hand #5223590-18 - 2013-04-09 19:37:28
+Game: NL Hold'em (40 - 200) - Blinds 1/2
+Site: Seals With Clubs
+Table: NLHE 6max 1/2 #5
+Seat 1: Player0 (40)
+Seat 2: Player1 (52)
+Seat 3: Hero (191)
+Seat 4: Player2 (211)
+Seat 5: Player3 (276)
+Seat 6: Player4 (173)
+Player4 has the dealer button
+Player0 posts small blind 1
+Player1 posts big blind 2
+** Hole Cards **
+Dealt to Hero [2d 8s]
+Hero folds
+Player2 calls 2
+Player3 folds
+Player4 calls 2
+Player0 calls 1
+Player1 checks
+** Flop ** [Td 3h 5s]
+Player0 checks
+Player1 checks
+Player2 checks
+Player4 checks
+** Turn ** [Ah]
+Player0 checks
+Player1 checks
+Player2 checks
+Player4 checks
+** River ** [Kh]
+Player0 checks
+Player1 checks
+Player2 checks
+Player4 checks
+** Pot Show Down ** [Td 3h 5s Ah Kh]
+Player0 shows [6d 4d] (High Card Ace +KT65)
+Player1 shows [2c 7c] (High Card Ace +KT75)
+Player2 shows [6c Js] (High Card Ace +KJT6)
+Player4 shows [Qc 4s] (High Card Ace +KQT5)
+Player4 wins Pot (8) with High Card
+Rake (0)
+Player0 adds 2 chips

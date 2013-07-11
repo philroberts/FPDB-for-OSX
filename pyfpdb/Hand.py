@@ -48,7 +48,7 @@ class Hand(object):
 #    Class Variables
     UPS = {'a':'A', 't':'T', 'j':'J', 'q':'Q', 'k':'K', 'S':'s', 'C':'c', 'H':'h', 'D':'d'}
     LCS = {'H':'h', 'D':'d', 'C':'c', 'S':'s'}
-    SYMBOL = {'USD': '$', 'CAD': 'C$', 'EUR': u'€', 'GBP': u'£', 'SEK': 'kr.', 'RSD': u'РСД', 'T$': '', 'play': ''}
+    SYMBOL = {'USD': '$', 'CAD': 'C$', 'EUR': u'€', 'GBP': u'£', 'SEK': 'kr.', 'RSD': u'РСД', 'mBTC': u'mɃ', 'T$': '', 'play': ''}
     MS = {'horse' : 'HORSE', '8game' : '8-Game', 'hose'  : 'HOSE', 'ha': 'HA'}
     ACTION = {'ante': 1, 'small blind': 2, 'secondsb': 3, 'big blind': 4, 'both': 5, 'calls': 6, 'raises': 7,
               'bets': 8, 'stands pat': 9, 'folds': 10, 'checks': 11, 'discards': 12, 'bringin': 13, 'completes': 14}

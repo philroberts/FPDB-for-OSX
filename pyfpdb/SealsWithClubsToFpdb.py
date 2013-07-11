@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#    Copyright 2008-2011, Carl Gherardi
+#    Copyright 2008-2013, Carl Gherardi
 #    
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -39,32 +39,6 @@ class SealsWithClubs(HandHistoryConverter):
                            'PLYR': r'\s?(?P<PNAME>.+?)',
                           'BRKTS': r'(\(button\) |\(small blind\) |\(big blind\) |\(button\) \(small blind\) |\(button\) \(big blind\) )?',
                     }
-                    
-    # translations from captured groups to fpdb info strings
-    Lim_Blinds = {      
-                        '0.04': ('0.01', '0.02'),         '0.08': ('0.02', '0.04'),
-                        '0.10': ('0.02', '0.05'),         '0.20': ('0.05', '0.10'),
-                        '0.40': ('0.10', '0.20'),         '0.50': ('0.10', '0.25'),
-                        '1.00': ('0.25', '0.50'),         '1': ('0.25', '0.50'),
-                        '2.00': ('0.50', '1.00'),         '2': ('0.50', '1.00'),
-                        '4.00': ('1.00', '2.00'),         '4': ('1.00', '2.00'),
-                        '6.00': ('1.00', '3.00'),         '6': ('1.00', '3.00'),
-                        '8.00': ('2.00', '4.00'),         '8': ('2.00', '4.00'),
-                       '10.00': ('2.00', '5.00'),        '10': ('2.00', '5.00'),
-                       '20.00': ('5.00', '10.00'),       '20': ('5.00', '10.00'),
-                       '30.00': ('10.00', '15.00'),      '30': ('10.00', '15.00'),
-                       '40.00': ('10.00', '20.00'),      '40': ('10.00', '20.00'),
-                       '60.00': ('15.00', '30.00'),      '60': ('15.00', '30.00'),
-                       '80.00': ('20.00', '40.00'),      '80': ('20.00', '40.00'),
-                      '100.00': ('25.00', '50.00'),     '100': ('25.00', '50.00'),
-                      '150.00': ('50.00', '75.00'),     '150': ('50.00', '75.00'),
-                      '200.00': ('50.00', '100.00'),    '200': ('50.00', '100.00'),
-                      '400.00': ('100.00', '200.00'),   '400': ('100.00', '200.00'),
-                      '600.00': ('150.00', '300.00'),   '600': ('150.00', '300.00'),
-                      '800.00': ('200.00', '400.00'),   '800': ('200.00', '400.00'),
-                     '1000.00': ('250.00', '500.00'),  '1000': ('250.00', '500.00'),
-                     '2000.00': ('500.00', '1000.00'), '2000': ('500.00', '1000.00'),
-                  }
 
     limits = { "NL":'nl', 'PL': 'pl', 'Limit':'fl' }
     games = {                          # base, category
@@ -78,7 +52,8 @@ class SealsWithClubs(HandHistoryConverter):
                          Game:\s*(?P<LIMIT>(NL|PL|Limit))\s*(?P<GAME>(Hold'em|Omaha|Omaha\ Hi-Lo))
                          \s*\(\d+\s*-\s*(?P<BUYIN>\d+)\)\s*-\s*
                          (Blinds|Stakes)\s*(?P<SB>[\d\.]+)/(?P<BB>[\d.]+)\s*
-                         Site:\s+Seals\s+With\s+Clubs\s*""",re.VERBOSE)
+                         Site:\s+Seals\s+With\s+Clubs\s*
+                         (Table:\sL\w+\s\d+max\s(?P<SB1>[\d\.]+)/(?P<BB1>[\d.]+))?""",re.VERBOSE)
     # TODO: for tournaments: (?P<BIAMT>[\d\.]+)\+(?P<BIRAKE>[\d\.]+)
 
     re_PlayerInfo   = re.compile(ur"""
@@ -102,27 +77,19 @@ class SealsWithClubs(HandHistoryConverter):
     re_PostSB           = re.compile(r"^%(PLYR)s posts small blind (?P<SB>[.0-9]+)" %  substitutions, re.MULTILINE)
     re_PostBB           = re.compile(r"^%(PLYR)s posts big blind (?P<BB>[.0-9]+)" %  substitutions, re.MULTILINE)
     re_Antes            = re.compile(r"^%(PLYR)s posts the ante (?P<ANTE>[.0-9]+)" % substitutions, re.MULTILINE)
-    re_PostBoth         = re.compile(r"^%(PLYR)s: posts small \& big blinds (?P<SBBB>[.0-9]+)" %  substitutions, re.MULTILINE)
+    re_PostBoth         = re.compile(r"^%(PLYR)s posts small \& big blind (?P<SBBB>[.0-9]+)" %  substitutions, re.MULTILINE)
     re_HeroCards        = re.compile(r"^Dealt to %(PLYR)s(?: \[(?P<OLDCARDS>.+?)\])?( \[(?P<NEWCARDS>.+?)\])" % substitutions, re.MULTILINE)
     re_Action           = re.compile(r"""
                         ^%(PLYR)s(?P<ATYPE>\sbets|\schecks|\sraises|\scalls|\sfolds|\sdiscards|\sstands\spat)
                         (\s+(to\s+)?(?P<BET>[.\d]+)?\s*)?( \(All-in\))?$"""
                          %  substitutions, re.MULTILINE|re.VERBOSE)
     re_ShowdownAction   = re.compile(r"^%s shows \[(?P<CARDS>.*)\]" % substitutions['PLYR'], re.MULTILINE)
-    re_sitsOut          = re.compile("^%s sits out" %  substitutions['PLYR'], re.MULTILINE)
-    
-    re_CollectPot       = re.compile(r"%(PLYR)s\s+(wins|splits)\s+((Side|Hi|Lo)\s+)?Pot[\d\s]+\((?P<POT>[.\d]+)\)" %  substitutions, re.MULTILINE)
-    
+    re_CollectPot       = re.compile(r"%(PLYR)s\s+(wins|splits)\s+((Side|Main|Hi|Lo)\s+)?Pot[\d\s]+\((?P<POT>[.\d]+)\)" %  substitutions, re.MULTILINE)
     re_Cancelled        = re.compile('Hand\scancelled', re.MULTILINE)
-    re_Rake             = re.compile('Rake\s+\((?P<RAKE>[.\d]+)\)')
     
     re_Flop             = re.compile('\*\* Flop \*\*')
     re_Turn             = re.compile('\*\* Turn \*\*')
     re_River            = re.compile('\*\* River \*\*')
-    
-    
-    re_WinningRank = re.compile(u"^%(PLYR)s finishes tournament in place \#(?P<RANK>[0-9]+) and wins (?P<AMT>[.0-9]+) chips$" %  substitutions, re.MULTILINE)
-    re_LosingRank  = re.compile(u"^%(PLYR)s finishes tournament in place \#(?P<RANK>[0-9]+)$" %  substitutions, re.MULTILINE)
 
     def compilePlayerRegexs(self,  hand):
         pass
@@ -145,28 +112,21 @@ class SealsWithClubs(HandHistoryConverter):
             info['limitType'] = self.limits[mg['LIMIT']]
         if 'GAME' in mg:
             (info['base'], info['category']) = self.games[mg['GAME']]
-        if 'SB' in mg:
-            info['sb'] = mg['SB']
-        if 'BB' in mg:
-            info['bb'] = mg['BB']
-            
-        info['currency'] = 'EUR'
         
-        # TODO: something about TOURNO
-        info['type'] = 'ring'
-
-        if info['limitType'] == 'fl' and info['bb'] is not None:
-            if info['type'] == 'ring':
-                try:
-                    info['sb'] = self.Lim_Blinds[mg['BB']][0]
-                    info['bb'] = self.Lim_Blinds[mg['BB']][1]
-                except KeyError:
-                    tmp = handText[0:200]
-                    log.error(_("SealsWithClubsToFpdb.determineGameType: Lim_Blinds has no lookup for '%s' - '%s'") % (mg['BB'], tmp))
-                    raise FpdbParseError
-            else:
-                info['sb'] = str((Decimal(mg['SB'])/2).quantize(Decimal("0.01")))
-                info['bb'] = str(Decimal(mg['SB']).quantize(Decimal("0.01")))    
+        if info['limitType'] != 'fl':
+            if 'SB' in mg:
+                info['sb'] = mg['SB']
+            if 'BB' in mg:
+                info['bb'] = mg['BB']
+        else:
+            if 'SB1' in mg:
+                info['sb'] = mg['SB1']
+            if 'BB1' in mg:
+                info['bb'] = mg['BB1']
+            
+        info['currency'] = 'mBTC'
+        # TODO: NO TOURNO so cash only for now
+        info['type'] = 'ring' 
 
         return info
 
@@ -197,30 +157,28 @@ class SealsWithClubs(HandHistoryConverter):
                 hand.startTime = HandHistoryConverter.changeTimezone(hand.startTime, "ET", "UTC")
             if key == 'HID':
                 hand.handid = info[key]
-            if key == 'TOURNO':
-                hand.tourNo = info[key]
-            if key == 'BUYIN':
-                if hand.tourNo!=None:
+            #if key == 'TOURNO':
+            #    hand.tourNo = info[key]
+            #if key == 'BUYIN':
+            #    if hand.tourNo!=None:
                     #print "DEBUG: info['BUYIN']: %s" % info['BUYIN']
                     #print "DEBUG: info['BIAMT']: %s" % info['BIAMT']
                     #print "DEBUG: info['BIRAKE']: %s" % info['BIRAKE']
                     
-                    if info[key] == 'Freeroll':
-                        hand.buyin = 0
-                        hand.fee = 0
-                        hand.buyinCurrency = "FREE"
-                    else:
+            #        if info[key] == 'Freeroll':
+            #            hand.buyin = 0
+            #            hand.fee = 0
+            #            hand.buyinCurrency = "FREE"
+            #        else:
                         ##FIXME: currency set as EUR
-                        hand.buyinCurrency="EUR"
+            #            hand.buyinCurrency="EUR"
                         #info['BIRAKE'] = info['BIRAKE'].strip(u'$€£')
 
-                        hand.buyin = int(100*Decimal(info['BIAMT']))
-                        hand.fee = int(100*Decimal(info['BIRAKE']))
+            #            hand.buyin = int(100*Decimal(info['BIAMT']))
+            #            hand.fee = int(100*Decimal(info['BIRAKE']))
                         
-            if key == 'LEVEL':
-                hand.level = info[key]       
-            if key == 'SHOOTOUT' and info[key] != None:
-                hand.isShootout = True
+            #if key == 'LEVEL':
+            #    hand.level = info[key]       
             if key == 'TABLE':
                 tablesplit = re.split(" ", info[key])
                 if hand.tourNo != None and len(tablesplit)>1:
@@ -286,12 +244,6 @@ class SealsWithClubs(HandHistoryConverter):
         for player in m:
             log.debug("hand.addAnte(%s,%s)" %(player.group('PNAME'), player.group('ANTE')))
             hand.addAnte(player.group('PNAME'), player.group('ANTE'))
-    
-    def readBringIn(self, hand):
-        m = self.re_BringIn.search(hand.handText,re.DOTALL)
-        if m:
-            log.debug("readBringIn: %s for %s" %(m.group('PNAME'),  m.group('BRINGIN')))
-            hand.addBringIn(m.group('PNAME'),  m.group('BRINGIN'))
         
     def readBlinds(self, hand):
         liveBlind = True
@@ -314,36 +266,9 @@ class SealsWithClubs(HandHistoryConverter):
             if street in hand.streets.keys():
                 m = self.re_HeroCards.finditer(hand.streets[street])
                 for found in m:
-#                    if m == None:
-#                        hand.involved = False
-#                    else:
                     hand.hero = found.group('PNAME')
                     newcards = found.group('NEWCARDS').split(' ')
-                    #print street
-                    #print newcards
                     hand.addHoleCards(street, hand.hero, closed=newcards, shown=False, mucked=False, dealt=True)
-
-        for street, text in hand.streets.iteritems():
-            if not text or street in ('PREFLOP', 'DEAL'): continue  # already done these
-            m = self.re_HeroCards.finditer(hand.streets[street])
-            for found in m:
-                player = found.group('PNAME')
-                if found.group('NEWCARDS') is None:
-                    newcards = []
-                else:
-                    newcards = found.group('NEWCARDS').split(' ')
-                if found.group('OLDCARDS') is None:
-                    oldcards = []
-                else:
-                    oldcards = found.group('OLDCARDS').split(' ')
-
-                if street == 'THIRD' and len(newcards) == 3: # hero in stud game
-                    hand.hero = player
-                    hand.dealt.add(player) # need this for stud??
-                    hand.addHoleCards(street, player, closed=newcards[0:2], open=[newcards[2]], shown=False, mucked=False, dealt=False)
-                else:
-                    hand.addHoleCards(street, player, open=newcards, closed=oldcards, shown=False, mucked=False, dealt=False)
-
 
     def readAction(self, hand, street):
         m = self.re_Action.finditer(hand.streets[street])
@@ -360,10 +285,6 @@ class SealsWithClubs(HandHistoryConverter):
                 hand.addRaiseTo( street, action.group('PNAME'), action.group('BET') )
             elif action.group('ATYPE') == ' bets':
                 hand.addBet( street, action.group('PNAME'), action.group('BET') )
-            elif action.group('ATYPE') == ' discards':
-                hand.addDiscard(street, action.group('PNAME'), action.group('BET'), action.group('CARDS'))
-            elif action.group('ATYPE') == ' stands pat':
-                hand.addStandsPat( street, action.group('PNAME'), action.group('CARDS'))
             else:
                 print (_("DEBUG:") + " " + _("Unimplemented %s: '%s' '%s'") % ("readAction", action.group('PNAME'), action.group('ATYPE')))
 
@@ -375,16 +296,8 @@ class SealsWithClubs(HandHistoryConverter):
             hand.addShownCards(cards, shows.group('PNAME'))
 
     def readCollectPot(self,hand):
-        i=0
-        if hand.runItTimes==0:
-            for m in self.re_CollectPot.finditer(hand.handText):
-                hand.addCollectPot(player=m.group('PNAME'),pot=m.group('POT'))
-                i+=1
-        if i==0:
-            #print "WHAT IS THIS"
-            raise Exception("what is this: " + str(hand.handid))
-            for m in self.re_CollectPot2.finditer(hand.handText):
-                hand.addCollectPot(player=m.group('PNAME'),pot=m.group('POT'))
+        for m in self.re_CollectPot.finditer(hand.handText):
+            hand.addCollectPot(player=m.group('PNAME'),pot=m.group('POT'))
 
     def readShownCards(self,hand):
         # TODO: something here?
@@ -395,11 +308,9 @@ class SealsWithClubs(HandHistoryConverter):
         "Returns string to search in windows titles"
         regex = re.escape(str(table_name))
         if type=="tour":
-            regex = re.escape(str(tournament)) + ".* (Table|Tisch) " + re.escape(str(table_number))
-        log.debug("Stars.getTableTitleRe: table_name='%s' tournament='%s' table_number='%s'" % (table_name, tournament, table_number))
-        log.debug("Stars.getTableTitleRe: returns: '%s'" % (regex))
+            pass
+            #regex = re.escape(str(tournament)) + ".* (Table|Tisch) " + re.escape(str(table_number))
+        log.debug("Seals.getTableTitleRe: table_name='%s' tournament='%s' table_number='%s'" % (table_name, tournament, table_number))
+        log.debug("Seals.getTableTitleRe: returns: '%s'" % (regex))
         return regex
-
-    def getRake(self, hand):
-        m = self.re_Rake.search(hand.handText)
-        hand.rake = Decimal(m.group('RAKE'))
+    

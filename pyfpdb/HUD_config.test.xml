@@ -1888,6 +1888,7 @@
         <hhc site="Microgaming" converter="MicrogamingToFpdb"/>
         <hhc site="Bovada" converter="BovadaToFpdb" summaryImporter="BovadaSummary"/>
         <hhc site="Enet" converter="EnetToFpdb"/>
+        <hhc site="SealsWithClubs" converter="SealsWithClubsToFpdb"/>
     </hhcs>
 
 
