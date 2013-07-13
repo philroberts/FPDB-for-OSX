@@ -520,6 +520,8 @@ class GuiRingPlayerStats:
                                     value += ' - $' + '%.2f' % (maxbb/100.0)
                                 else:
                                     value += ' - $' + '%.0f' % (maxbb/100.0)
+                            if result[sqlrow][colnames.index('zoom')] == 1:
+                                value += ' Zoom'
                     else:
                         continue
                 if value != None and value != -999:
