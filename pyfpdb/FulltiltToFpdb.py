@@ -672,3 +672,15 @@ class Fulltilt(HandHistoryConverter):
 
                 #print "DEBUG: hand.addShownCards(%s, %s, %s, %s)" %(cards, m.group('PNAME'), shown, mucked)
                 hand.addShownCards(cards=cards, player=m.group('PNAME'), shown=shown, mucked=mucked, string=string)
+                
+    @staticmethod
+    def getTableTitleRe(type, table_name=None, tournament = None, table_number=None):
+        "Returns string to search in windows titles"
+        if type=="tour":
+            regex = "Tournament " + re.escape(str(tournament)) + ", Table " + re.escape(str(table_number))
+        else:
+            regex = re.escape(str(table_name))
+        log.info("Fulltilt.getTableTitleRe: table_name='%s' tournament='%s' table_number='%s'" % (table_name, tournament, table_number))
+        log.info("Fulltilt.getTableTitleRe: returns: '%s'" % (regex))
+        return regex
+        
