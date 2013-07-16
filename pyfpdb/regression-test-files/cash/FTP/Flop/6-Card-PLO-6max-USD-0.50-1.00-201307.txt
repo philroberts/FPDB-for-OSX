@@ -1,0 +1,36 @@
+Full Tilt Poker Game #32973699160: Table Systrum (6 max) - PL 6 Card Omaha Hi - $0.50/$1 - 10:04:25 ET - 2013/07/14
+Seat 2: Hero ($100)
+Seat 5: Player0 ($133.80)
+Seat 6: Player1 ($76.60)
+Hero posts the small blind of $0.50
+Player0 posts the big blind of $1
+The button is in seat #1
+*** HOLE CARDS ***
+Dealt to Hero [Jh 4s Tc 5s Jc 9h]
+Player1 folds
+Hero raises to $3
+Player0 raises to $9
+Hero has 15 seconds left to act
+Hero calls $6
+*** FLOP *** [Kh 6s 7c] (Total Pot: $18, 2 Players)
+Hero checks
+Player0 checks
+*** TURN *** [Kh 6s 7c] [9c] (Total Pot: $18, 2 Players)
+Hero has 15 seconds left to act
+Hero bets $16
+Player0 calls $16
+*** RIVER *** [Kh 6s 7c 9c] [8c] (Total Pot: $50, 2 Players)
+Hero checks
+Player0 bets $50
+Hero raises to $75, and is all in
+Player0 calls $25
+*** SHOW DOWN ***
+Hero shows [Jh 4s Tc 5s Jc 9h] a straight flush, Jack high
+Player0 mucks
+Hero wins the pot ($199) with a straight flush, Jack high
+*** SUMMARY ***
+Total pot $200 | Rake $1
+Board: [Kh 6s 7c 9c 8c]
+Seat 2: Hero (small blind) showed [Jh 4s Tc 5s Jc 9h] and won ($199) with a straight flush, Jack high
+Seat 5: Player0 (big blind) mucked [6c Js Ac Qc Ts 5d] - a flush, Ace high
+Seat 6: Player1 didn't bet (folded)
