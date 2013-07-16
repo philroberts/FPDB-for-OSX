@@ -418,8 +418,8 @@ class Importer:
             else: self.pos_in_file[fpdbfile.path], idx = 0, 0
                 
             hhc = obj( self.config, in_path = fpdbfile.path, index = idx, autostart=False
-                      ,starsArchive = self.settings['starsArchive']
-                      ,ftpArchive   = self.settings['ftpArchive']
+                      ,starsArchive = fpdbfile.archive
+                      ,ftpArchive   = fpdbfile.archive
                       ,sitename     = fpdbfile.site.name)
             hhc.setAutoPop(self.mode=='auto')
             hhc.start()
