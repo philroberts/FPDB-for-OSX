@@ -445,6 +445,23 @@
             <fav max="8" fav_seat="0"/>
             <fav max="9" fav_seat="0"/>
             <fav max="10" fav_seat="0"/>
+        </site>  
+        
+        <site site_name="SealsWithClubs"
+                enabled="False"
+                screen_name="YOUR SCREEN NAME HERE" 
+                site_path="C:/SealsWithClubs/"
+                HH_path="C:/SealsWithClubs/"
+                aux_enabled="True" hud_menu_xshift="0" hud_menu_yshift="0">
+            <email fetchType="request-summary" host="YOUR_EMAIL_SERVER" username="YOUR_EMAIL_USERNAME" password="YOUR_EMAIL_PASSWORD" useSsl="True" folder="INBOX"/>
+            <layout_set game_type="all" ls="sealswithclubs_default"/>
+            <fav max="2" fav_seat="0"/>
+            <fav max="4" fav_seat="0"/>
+            <fav max="6" fav_seat="0"/>
+            <fav max="7" fav_seat="0"/>
+            <fav max="8" fav_seat="0"/>
+            <fav max="9" fav_seat="0"/>
+            <fav max="10" fav_seat="0"/>
         </site>        
     </supported_sites>
 
@@ -1502,6 +1519,76 @@
         </ls>
         
         <ls name="enet_default">
+            <layout max="2" height="546" width="792">
+                <location seat="1" x="681" y="221"/>
+                <location seat="2" x="2" y="221"/>
+                <location common="1" x="323" y="232"/>
+            </layout>
+            <layout max="4" height="546" width="792">
+                <location seat="1" x="573" y="41"/>
+                <location seat="2" x="512" y="411"/>
+                <location seat="3" x="162" y="413"/>
+                <location seat="4" x="112" y="41"/>
+                <location common="1" x="323" y="232"/>
+            </layout>
+            <layout max="6" height="546" width="792">
+                <location seat="1" x="663" y="48"/>
+                <location seat="2" x="664" y="293"/>
+                <location seat="3" x="563" y="402"/>
+                <location seat="4" x="120" y="401"/>
+                <location seat="5" x="32" y="291"/>
+                <location seat="6" x="12" y="46"/>
+                <location common="1" x="323" y="232"/>
+            </layout>
+            <layout max="7" height="546" width="792">
+                <location seat="1" x="643" y="99"/>
+                <location seat="2" x="660" y="290"/>
+                <location seat="3" x="633" y="393"/>
+                <location seat="4" x="427" y="409"/>
+                <location seat="5" x="224" y="393"/>
+                <location seat="6" x="-4" y="290"/>
+                <location seat="7" x="-4" y="100"/>
+                <location common="1" x="323" y="232"/>
+            </layout>
+            <layout max="8" height="546" width="792">
+                <location seat="1" x="573" y="41"/>
+                <location seat="2" x="681" y="221"/>
+                <location seat="3" x="686" y="338"/>
+                <location seat="4" x="512" y="411"/>
+                <location seat="5" x="162" y="413"/>
+                <location seat="6" x="3" y="339"/>
+                <location seat="7" x="2" y="221"/>
+                <location seat="8" x="112" y="41"/>
+                <location common="1" x="323" y="232"/>
+            </layout>
+            <layout max="9" height="546" width="792">
+                <location seat="1" x="663" y="48"/>
+                <location seat="2" x="694" y="205"/>
+                <location seat="3" x="682" y="325"/>
+                <location seat="4" x="630" y="393"/>
+                <location seat="5" x="429" y="410"/>
+                <location seat="6" x="231" y="392"/>
+                <location seat="7" x="8" y="332"/>
+                <location seat="8" x="10" y="204"/>
+                <location seat="9" x="10" y="48"/>
+                <location common="1" x="323" y="232"/>
+            </layout>
+            <layout max="10" height="546" width="792">
+                <location seat="1" x="531" y="14"/>
+                <location seat="2" x="678" y="66"/>
+                <location seat="3" x="669" y="278"/>
+                <location seat="4" x="682" y="351"/>
+                <location seat="5" x="508" y="411"/>
+                <location seat="6" x="183" y="411"/>
+                <location seat="7" x="11" y="352"/>
+                <location seat="8" x="1" y="277"/>
+                <location seat="9" x="6" y="65"/>
+                <location seat="10" x="159" y="11"/>
+                <location common="1" x="316" y="237"/>
+            </layout>
+        </ls>
+        
+        <ls name="sealswithclubs_default">
             <layout max="2" height="546" width="792">
                 <location seat="1" x="681" y="221"/>
                 <location seat="2" x="2" y="221"/>
