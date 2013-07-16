@@ -890,7 +890,8 @@ or None if we fail to get the info """
                             oldcards = []
                         else:
                             if hand.gametype['base'] == 'stud':
-                                cards = found.group('CARDS').replace('null,', '').replace(',null','').split(',')
+                                cards = found.group('CARDS').replace('null', '').split(',')
+                                cards = [c for c in cards if c!='']
                                 oldcards = cards[:-1]
                                 newcards = [cards[-1]]
                             else:

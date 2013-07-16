@@ -1,0 +1,84 @@
+<description type="7-Stud H/L8" stakes="Limit $0.25/$0.50" version="2"/>
+<game id="70969727-130" starttime="20130715213500" numholecards="7" gametype="43" seats="8" realmoney="true" data="20130715|Guatemala II|70969727|70969727-130|false" version="2">
+	<players dealer="7">
+		<player seat="0" nickname="Player0" balance="$4.02" dealtin="false" />
+		<player seat="1" nickname="Player1" balance="$4.66" dealtin="true" />
+		<player seat="2" nickname="Player2" balance="$13.14" dealtin="true" />
+		<player seat="3" nickname="Player3" balance="$7.75" dealtin="true" />
+		<player seat="4" nickname="Player4" balance="$8.98" dealtin="true" />
+		<player seat="5" nickname="Player5" balance="$9.93" dealtin="true" />
+		<player seat="6" nickname="Player6" balance="$18.26" dealtin="true" />
+		<player seat="7" nickname="Hero" balance="$10.00" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="ANTE" timestamp="1373942103107" player="5" amount="0.02"/>
+		<event sequence="2" type="ANTE" timestamp="1373942103263" player="7" amount="0.02"/>
+		<event sequence="3" type="ANTE" timestamp="1373942103263" player="2" amount="0.02"/>
+		<event sequence="4" type="ANTE" timestamp="1373942103263" player="3" amount="0.02"/>
+		<event sequence="5" type="ANTE" timestamp="1373942103400" player="1" amount="0.02"/>
+		<event sequence="6" type="ANTE" timestamp="1373942103400" player="6" amount="0.02"/>
+		<event sequence="7" type="ANTE" timestamp="1373942103736" player="4" amount="0.02"/>
+	</round>
+	<round id="BRING_IN" sequence="2">
+		<event sequence="8" type="BRING_IN" timestamp="1373942107408" player="3" amount="0.05"/>
+		<cards type="DRAW_DRAWN_CARDS" cards=",,5h" player="1"/>
+		<cards type="DRAW_DRAWN_CARDS" cards=",,Jc" player="2"/>
+		<cards type="DRAW_DRAWN_CARDS" cards=",,2h" player="3"/>
+		<cards type="DRAW_DRAWN_CARDS" cards=",,7h" player="4"/>
+		<cards type="DRAW_DRAWN_CARDS" cards=",,3h" player="5"/>
+		<cards type="DRAW_DRAWN_CARDS" cards=",,Qh" player="6"/>
+		<cards type="HOLE" cards="9c,6c,Ah" player="7" hand="Ace High"/>
+	</round>
+	<round id="THIRD_STREET" sequence="3">
+		<event sequence="9" type="COMPLETE" timestamp="1373942109718" player="4" amount="0.25"/>
+		<event sequence="10" type="CALL" timestamp="1373942111991" player="5" amount="0.25"/>
+		<event sequence="11" type="FOLD" timestamp="1373942125745" player="6"/>
+		<event sequence="12" type="FOLD" timestamp="1373942126109" player="7"/>
+		<event sequence="13" type="FOLD" timestamp="1373942126440" player="1"/>
+		<event sequence="14" type="FOLD" timestamp="1373942126776" player="2"/>
+		<event sequence="15" type="CALL" timestamp="1373942128840" player="3" amount="0.20"/>
+	</round>
+	<round id="FOURTH_STREET" sequence="4">
+		<event sequence="16" type="CHECK" timestamp="1373942130381" player="3"/>
+		<event sequence="17" type="BET" timestamp="1373942132514" player="4" amount="0.25"/>
+		<event sequence="18" type="RAISE" timestamp="1373942138331" player="5" amount="0.50"/>
+		<event sequence="19" type="CALL" timestamp="1373942141211" player="3" amount="0.50"/>
+		<event sequence="20" type="CALL" timestamp="1373942143115" player="4" amount="0.25"/>
+		<cards type="DRAW_DRAWN_CARDS" cards=",,2h,8s" player="3"/>
+		<cards type="DRAW_DRAWN_CARDS" cards=",,7h,6s" player="4"/>
+		<cards type="DRAW_DRAWN_CARDS" cards=",,3h,4h" player="5"/>
+		<cards type="HOLE" cards="9c,6c,Ah" player="7" hand="Ace High"/>
+	</round>
+	<round id="FIFTH_STREET" sequence="5">
+		<event sequence="21" type="BET" timestamp="1373942147985" player="4" amount="0.50"/>
+		<event sequence="22" type="CALL" timestamp="1373942151263" player="5" amount="0.50"/>
+		<event sequence="23" type="FOLD" timestamp="1373942151604" player="3"/>
+		<cards type="DRAW_DRAWN_CARDS" cards=",,2h,8s,Js" player="3"/>
+		<cards type="DRAW_DRAWN_CARDS" cards=",,7h,6s,Ad" player="4"/>
+		<cards type="DRAW_DRAWN_CARDS" cards=",,3h,4h,Qc" player="5"/>
+		<cards type="HOLE" cards="9c,6c,Ah" player="7" hand="Ace High"/>
+	</round>
+	<round id="SIXTH_STREET" sequence="6">
+		<event sequence="24" type="CHECK" timestamp="1373942155343" player="5"/>
+		<event sequence="25" type="CHECK" timestamp="1373942159978" player="4"/>
+		<cards type="DRAW_DRAWN_CARDS" cards=",,7h,6s,Ad,3s" player="4"/>
+		<cards type="DRAW_DRAWN_CARDS" cards=",,3h,4h,Qc,4d" player="5"/>
+		<cards type="HOLE" cards="9c,6c,Ah" player="7" hand="Ace High"/>
+	</round>
+	<round id="SEVENTH_STREET" sequence="7">
+		<event sequence="26" type="BET" timestamp="1373942163512" player="5" amount="0.50"/>
+		<event sequence="27" type="CALL" timestamp="1373942168906" player="4" amount="0.50"/>
+		<cards type="DRAW_DRAWN_CARDS" cards=",,7h,6s,Ad,3s," player="4"/>
+		<cards type="DRAW_DRAWN_CARDS" cards=",,3h,4h,Qc,4d," player="5"/>
+		<cards type="HOLE" cards="9c,6c,Ah" player="7" hand="Ace High"/>
+	</round>
+	<round id="SHOWDOWN" sequence="8">
+		<event sequence="28" type="SHOW" timestamp="1373942169465" player="5"/>
+		<event sequence="29" type="MUCK" timestamp="1373942170348" player="4"/>
+		<cards type="SHOWN" cards="5c,2c,3h,4h,Qc,4d,4s" player="5"/>
+		<cards type="MUCKED" cards="7d,Kh,7h,6s,Ad,3s,Jd" player="4"/>
+	</round>
+	<round id="END_OF_GAME" sequence="9">
+		<winner amount="4.23" uncalled="false" potnumber="1" player="5" hand="Three of a Kind Fours" pottype="n"/>
+	</round>
+</game>
