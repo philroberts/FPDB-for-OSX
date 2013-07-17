@@ -1184,11 +1184,7 @@ class Filters:
                 else:
                     vbox3.pack_start(hbox, False, False, 0)
                 if True:  #line[0] == 'ring':
-                    if line[3] == 1:
-                        zoom = ' Zoom'
-                    else:
-                        zoom = ''
-                    name = str(line[2])+line[1]+zoom
+                    name = str(line[2])+line[1]
                     self.found[line[1]] = True
                     self.cbLimits[name] = self.createLimitLine(hbox, name, name)
                     self.types[name] = line[0]

@@ -38,6 +38,7 @@ from TreeViewTooltips import TreeViewTooltips
 #new order in config file:
 colalias,colheading,colshowsumm,colshowposn,colformat,coltype,colxalign = 0,1,2,3,4,5,6
 ranks = {'x':0, '2':2, '3':3, '4':4, '5':5, '6':6, '7':7, '8':8, '9':9, 'T':10, 'J':11, 'Q':12, 'K':13, 'A':14}
+fast_names = {'OnGame':'Strobe', 'PokerStars':'Zoom', 'Full Tilt Poker':'Rush'}
 onlinehelp = {'Game':_('Type of Game'),
               'Hand':_('Hole Cards'),
               'Posn':_('Position'),
@@ -520,8 +521,8 @@ class GuiRingPlayerStats:
                                     value += ' - $' + '%.2f' % (maxbb/100.0)
                                 else:
                                     value += ' - $' + '%.0f' % (maxbb/100.0)
-                            if result[sqlrow][colnames.index('zoom')] == 1:
-                                value += ' Zoom'
+                            if result[sqlrow][colnames.index('fast')] == 1:
+                                value += ' ' + fast_names[result[sqlrow][colnames.index('name')]]
                     else:
                         continue
                 if value != None and value != -999:

@@ -4596,7 +4596,6 @@ class Sql:
         self.query['getCashLimits'] = """select DISTINCT type
                                            , limitType
                                            , bigBlind as bb_or_buyin
-                                           , fast
                                       from Gametypes gt
                                       WHERE type = 'ring'
                                       order by type, limitType DESC, bb_or_buyin DESC"""
@@ -4619,7 +4618,7 @@ class Sql:
                             /*,<hcgametypeId>                                                         AS gtid*/
                             ,<position>                                                             AS plposition
                             ,count(1)                                                               AS n
-                            ,gt.fast                                                                AS zoom
+                            ,gt.fast                                                                AS fast
                             ,case when sum(cast(hp.street0VPIChance as <signed>integer)) = 0 then -999
                                   else 100.0*sum(cast(hp.street0VPI as <signed>integer))/sum(cast(hp.street0VPIChance as <signed>integer))
                              end                                                                    AS vpip
@@ -4776,7 +4775,7 @@ class Sql:
                             /*,<hcgametypeId>                                                       AS gtid*/
                             ,<position>                                                             AS plposition
                             ,count(1)                                                               AS n
-                            ,gt.fast                                                                AS zoom
+                            ,gt.fast                                                                AS fast
                             ,case when sum(cast(hp.street0VPIChance as <signed>integer)) = 0 then -999
                                   else 100.0*sum(cast(hp.street0VPI as <signed>integer))/sum(cast(hp.street0VPIChance as <signed>integer))
                              end                                                                    AS vpip
@@ -4945,7 +4944,7 @@ class Sql:
                             /*,<hcgametypeId>                                                       AS gtid*/
                             ,<position>                                                             AS plposition
                             ,count(1)                                                               AS n
-                            ,gt.fast                                                                AS zoom
+                            ,gt.fast                                                                AS fast
                             ,case when sum(cast(hp.street0VPIChance as <signed>integer)) = 0 then -999
                                   else 100.0*sum(cast(hp.street0VPI as <signed>integer))/sum(cast(hp.street0VPIChance as <signed>integer))
                              end                                                                    AS vpip
