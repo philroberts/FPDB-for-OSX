@@ -184,6 +184,8 @@ class DerivedStats():
         self.hands['boardcard4'] = cards[3]
         self.hands['boardcard5'] = cards[4]
         
+        #print "cards: ",cards
+        
         self.hands['boards']     = []
         self.hands['runItTwice']      = False           
         for i in range(hand.runItTimes):
@@ -580,7 +582,7 @@ class DerivedStats():
         base, evalgame, hilo, streets, last, hrange = Card.games[category]
         if (evalgame and (len(hand.pot.pots)>1 or (showdown and (hilo=='s' or hand.runItTimes==2)))):
             #print 'DEBUG hand.collected', hand.collected
-            #print 'DEBUG hand.oollectees', hand.collectees
+            #print 'DEBUG hand.collectees', hand.collectees
             rakes, totrake, potId = {}, 0, 0
             for pot, players in hand.pot.pots:
                 if potId ==0: pot += sum(hand.pot.common.values())
@@ -629,6 +631,7 @@ class DerivedStats():
                 if hand.collectees.get(p) and info:
                     potFound[p][1] = hand.collectees.get(p)
                     for item in info:
+                        #print (str(hand.handid)," winners: ",item['winners'])
                         split = [n for n in item['winners'] if len(playersPots[n][1])==1]
                         if len(info)==1:
                             ppot = item['ppot']
@@ -701,13 +704,12 @@ class DerivedStats():
 
         for player in hand.players:
             pname = player[1]
+            player_stats = self.handsplayers.get(pname)
             if pname in vpipers:
-                player_stats = self.handsplayers.get(pname)
                 player_stats['street0VPI'] = True
-                
-                if pname in hand.sitout:
-                    player_stats['street0VPIChance'] = False
-                    player_stats['street0AggrChance'] = False
+            elif pname in hand.sitout:
+                player_stats['street0VPIChance'] = False
+                player_stats['street0AggrChance'] = False
                 
         if len(vpipers)==0 and bb:
             self.handsplayers[bb[0]]['street0VPIChance'] = False
@@ -869,16 +871,18 @@ class DerivedStats():
     def calc34BetStreet0(self, hand):
         """Fills street0_(3|4)B(Chance|Done), other(3|4)BStreet0"""
         bet_level = 1 # bet_level after 3-bet is equal to 3
-        squeeze_chance, raise_chance = False, True
+        squeeze_chance, raise_chance, action_cnt = False, True, {}
         p0_in = set([x[0] for x in hand.actions[hand.actionStreets[0]] if not x[-1]])
         p1_in = set([x[0] for x in hand.actions[hand.actionStreets[1]]])
         p_in = p1_in.union(p0_in)
+        for p in p_in: action_cnt[p] = 0
         for action in hand.actions[hand.actionStreets[1]]:
             pname, act, aggr, allin = action[0], action[1], action[1] in ('raises', 'bets'), False
             player_stats = self.handsplayers.get(pname)
+            action_cnt[pname] += 1
             if len(action) > 3 and act != 'discards':
                 allin = action[-1]
-            if len(p_in)==1:
+            if len(p_in)==1 and action_cnt[pname]==1:
                 raise_chance = False
                 player_stats['street0AggrChance'] = raise_chance
             if act == 'folds' or allin or player_stats['sitout']:
@@ -944,7 +948,7 @@ class DerivedStats():
                     player_stats['street%dCBDone' % (i+1)] = self.betStreet(hand.actions, hand.actionStreets[i+2], name)
                     if player_stats['street%dCBDone' % (i+1)]:
                         for pname, folds in self.foldTofirstsBetOrRaiser(hand.actions, street, name).iteritems():
-                            #print "DEBUG: hand.handid, pname.encode('utf8'), street, folds, '--', name, 'lastbet on ', hand.actionStreets[i+1]
+                            #print "DEBUG:", hand.handid, pname.encode('utf8'), street, folds, '--', name, 'lastbet on ', hand.actionStreets[i+1]
                             self.handsplayers[pname]['foldToStreet%sCBChance' % (i+1)] = True
                             self.handsplayers[pname]['foldToStreet%sCBDone' % (i+1)] = folds
 

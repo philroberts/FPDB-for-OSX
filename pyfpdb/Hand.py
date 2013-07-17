@@ -40,6 +40,7 @@ import Configuration
 from Exceptions import *
 import DerivedStats
 import Card
+Configuration.set_logfile("fpdb-log.txt")
 
 class Hand(object):
 
@@ -47,7 +48,7 @@ class Hand(object):
 #    Class Variables
     UPS = {'a':'A', 't':'T', 'j':'J', 'q':'Q', 'k':'K', 'S':'s', 'C':'c', 'H':'h', 'D':'d'}
     LCS = {'H':'h', 'D':'d', 'C':'c', 'S':'s'}
-    SYMBOL = {'USD': '$', 'CAD': 'C$', 'EUR': u'€', 'GBP': u'£', 'SEK': 'kr.', 'RSD': u'РСД', 'T$': '', 'play': ''}
+    SYMBOL = {'USD': '$', 'CAD': 'C$', 'EUR': u'€', 'GBP': u'£', 'SEK': 'kr.', 'RSD': u'РСД', 'mBTC': u'mɃ', 'T$': '', 'play': ''}
     MS = {'horse' : 'HORSE', '8game' : '8-Game', 'hose'  : 'HOSE', 'ha': 'HA'}
     ACTION = {'ante': 1, 'small blind': 2, 'secondsb': 3, 'big blind': 4, 'both': 5, 'calls': 6, 'raises': 7,
               'bets': 8, 'stands pat': 9, 'folds': 10, 'checks': 11, 'discards': 12, 'bringin': 13, 'completes': 14}
@@ -299,7 +300,7 @@ class Hand(object):
         
     def getHandId(self, db, id):
         if db.isDuplicate(self.dbid_gt, self.hands['siteHandNo'], self.hands['heroSeat']):
-            #log.info(_("Hand.insert(): hid #: %s is a duplicate") % hh['siteHandNo'])
+            #log.debug(_("Hand.insert(): hid #: %s is a duplicate") % hh['siteHandNo'])
             self.is_duplicate = True  # i.e. don't update hudcache
             next = id
             raise FpdbHandDuplicate(self.hands['siteHandNo'])
@@ -1102,8 +1103,10 @@ class HoldemOmahaHand(Hand):
             hhc.readHeroCards(self)
             hhc.readShowdownActions(self)
             # Read actions in street order
+            #print "debugging there"
             for street, text in self.streets.iteritems():
                 if text and (street is not "PREFLOP"): #TODO: the except PREFLOP shouldn't be necessary, but regression-test-files/cash/Everleaf/Flop/NLHE-10max-USD-0.01-0.02-201008.2Way.All-in.pre.txt fails without it
+                    #print(street)
                     hhc.readCommunityCards(self, street)
             for street in self.actionStreets:
                 if self.streets[street]:
@@ -1133,7 +1136,7 @@ class HoldemOmahaHand(Hand):
             if shown:  self.shown.add(player)
             if mucked: self.mucked.add(player)
         else:
-            if len(cards) in (2, 3, 4) or self.gametype['category'] in ('5_omahahi', '5_omaha8', 'cour_hi', 'cour_hilo'):  # avoid adding board by mistake (Everleaf problem)
+            if len(cards) in (2, 3, 4, 6) or self.gametype['category'] in ('5_omahahi', '5_omaha8', 'cour_hi', 'cour_hilo'):  # avoid adding board by mistake (Everleaf problem)
                 self.addHoleCards('PREFLOP', player, open=[], closed=cards, shown=shown, mucked=mucked, dealt=dealt)
             elif len(cards) == 5:     # cards holds a winning hand, not hole cards
                 # filter( lambda x: x not in b, a )             # calcs a - b where a and b are lists
@@ -1159,7 +1162,7 @@ class HoldemOmahaHand(Hand):
 
     def join_holecards(self, player, asList=False):
         """With asList = True it returns the set cards for a player including down cards if they aren't know"""
-        hcs = [u'0x', u'0x', u'0x', u'0x', u'0x']
+        hcs = [u'0x', u'0x', u'0x', u'0x', u'0x', u'0x']
         holeNo = Card.games[self.gametype['category']][5][0][1]
         for street in self.holeStreets:
             if player in self.holecards[street].keys():
@@ -1168,7 +1171,7 @@ class HoldemOmahaHand(Hand):
                     hcs[i] = self.holecards[street][player][1][i]
                     hcs[i] = upper(hcs[i][0:1])+hcs[i][1:2]
                 try:
-                    for i in (2,3,4):
+                    for i in (2,3,4,5):
                         hcs[i] = self.holecards[street][player][1][i]
                         hcs[i] = upper(hcs[i][0:1])+hcs[i][1:2]
                 except IndexError:
@@ -1989,6 +1992,7 @@ class Pot(object):
         except IndexError, e:
             log.error(_("Pot.end(): '%s': Major failure while calculating pot: '%s'") % (self.handid, e))
             raise FpdbParseError
+        
 
         # TODO: I think rake gets taken out of the pots.
         # so it goes:

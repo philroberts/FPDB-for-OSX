@@ -1,0 +1,33 @@
+Hand #5557960-70 - 2013-04-16 23:29:08
+Game: NL Hold'em (20 - 100) - Blinds 0.50/1
+Site: Seals With Clubs
+Table: NLHE 6max .5/1 #6
+Seat 1: Player0 (40)
+Seat 2: Player1 (107.43)
+Seat 3: Player2 (63.72)
+Seat 4: Hero (96)
+Seat 5: Player3 (176.12)
+Seat 6: Player4 (108.27)
+Player2 has the dealer button
+Hero posts small blind 0.50
+Player3 posts big blind 1
+Player4 posts small & big blind 1.50
+** Hole Cards **
+Dealt to Hero [6d Jc]
+Player4 checks
+Player0 folds
+Player1 folds
+Player2 folds
+Hero folds
+Player3 checks
+** Flop ** [3s Tc Qh]
+Player3 checks
+Player4 bets 2
+Player3 calls 2
+** Turn ** [2h]
+Player3 checks
+Player4 bets 4
+Player3 folds
+Player4 refunded 4
+Player4 wins Pot (6.83)
+Rake (0.17)

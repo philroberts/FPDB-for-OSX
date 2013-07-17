@@ -1,0 +1,36 @@
+Hand #5297786-137 - 2013-04-11 02:08:55
+Game: PL Omaha (20 - 100) - Blinds 1/1
+Site: Seals With Clubs
+Table: PLO 9max 1/1 #1
+Seat 1: Player0 (162)
+Seat 2: Player1 (65)
+Seat 3: Player2 (77) - sitting out
+Seat 4: Player3 (50)
+Seat 5: Player4 (121)
+Seat 6: Player5 (39)
+Seat 7: Hero (164)
+Seat 8: Player6 (35)
+Player4 has the dealer button
+Player5 posts small blind 1
+Hero posts big blind 1
+** Hole Cards **
+Dealt to Hero [4c 7d Qc Kd]
+Player6 calls 1
+Player0 folds
+Player1 folds
+Player3 raises to 3
+Player4 folds
+Player5 folds
+Hero calls 2
+Player6 calls 2
+** Flop ** [3d 4h 2d]
+Hero checks
+Player6 checks
+Player3 checks
+** Turn ** [Qd]
+Hero bets 6
+Player6 folds
+Player3 folds
+Hero refunded 6
+Hero wins Pot (10)
+Rake (0)

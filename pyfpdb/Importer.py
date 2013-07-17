@@ -225,12 +225,13 @@ class Importer:
                 self.dirlist[site] = [dir] + [filter]
 
             #print "addImportDirectory: checking files in", dir
-            for file in os.listdir(dir):
-                filename = os.path.join(dir, file)
-                if (time() - os.stat(filename).st_mtime)<= 43200: # look all files modded in the last 12 hours
+            for subdir in os.walk(dir):
+                for file in subdir[2]:
+                    filename = os.path.join(subdir[0], file)
+                    if (time() - os.stat(filename).st_mtime)<= 43200: # look all files modded in the last 12 hours
                                                                     # need long time because FTP in Win does not
                                                                     # update the timestamp on the HH during session
-                    self.addImportFile(filename, "auto")
+                        self.addImportFile(filename, "auto")
         else:
             log.warning(_("Attempted to add non-directory '%s' as an import directory") % str(dir))
 
@@ -417,8 +418,8 @@ class Importer:
             else: self.pos_in_file[fpdbfile.path], idx = 0, 0
                 
             hhc = obj( self.config, in_path = fpdbfile.path, index = idx, autostart=False
-                      ,starsArchive = self.settings['starsArchive']
-                      ,ftpArchive   = self.settings['ftpArchive']
+                      ,starsArchive = fpdbfile.archive
+                      ,ftpArchive   = fpdbfile.archive
                       ,sitename     = fpdbfile.site.name)
             hhc.setAutoPop(self.mode=='auto')
             hhc.start()

@@ -1,0 +1,13 @@
+Winamax Poker - Tournament summary : No Limit Hold'em(39203383)
+Player : Hero
+Buy-In : 4.70€ + 0.30€
+Registered players : 2
+Prizepool : 9.40€
+Mode : sngType : sitngo
+Speed : semiturbo
+Levels : [10-20:0:360:holdem-no-limit,15-30:0:360:holdem-no-limit,20-40:0:360:holdem-no-limit,30-60:0:360:holdem-no-limit,40-80:0:360:holdem-no-limit,60-120:0:360:holdem-no-limit,80-160:0:360:holdem-no-limit,100-200:10:360:holdem-no-limit,150-300:20:360:holdem-no-limit,200-400:50:360:holdem-no-limit,300-600:75:360:holdem-no-limit,400-800:100:360:holdem-no-limit,500-1000:125:360:holdem-no-limit,600-1200:150:360:holdem-no-limit,800-1600:200:360:holdem-no-limit,1k-2k:300:360:holdem-no-limit,1,25k-2,50k:400:360:holdem-no-limit,1,50k-3k:500:360:holdem-no-limit,2k-4k:600:360:holdem-no-limit,2,50k-5k:700:360:holdem-no-limit,3k-6k:800:360:holdem-no-limit,4k-8k:1k:360:holdem-no-limit,5k-10k:1,25k:360:holdem-no-limit,6k-12k:1,50k:360:holdem-no-limit,8k-16k:2k:360:holdem-no-limit,10k-20k:3k:360:holdem-no-limit,12,50k-25k:4k:360:holdem-no-limit,15k-30k:5k:360:holdem-no-limit,20k-40k:6k:360:holdem-no-limit,25k-50k:7k:360:holdem-no-limit]
+Tournament started 2013/02/08 12:24:04 UTC
+You played 7min 41s 
+You finished in ... place
+
+

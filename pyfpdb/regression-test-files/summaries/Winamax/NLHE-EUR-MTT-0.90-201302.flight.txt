@@ -1,0 +1,14 @@
+Winamax Poker - Tournament summary : TRILOGY 1€ - DAY 1H(39061553) - Late registration
+Player : Hero
+Buy-In : 0.90€ + 0.10€
+Registered players : 1097
+Prizepool : 20000€
+Mode : ttType : flight
+Speed : normal
+Flight ID : 418
+Levels : [50-100:0:900:holdem-no-limit,75-150:0:900:holdem-no-limit,100-200:0:900:holdem-no-limit,150-300:0:900:holdem-no-limit,150-300:25:900:holdem-no-limit,200-400:30:900:holdem-no-limit,250-500:40:900:holdem-no-limit,300-600:60:900:holdem-no-limit,400-800:75:900:holdem-no-limit,500-1000:100:900:holdem-no-limit,600-1200:150:900:holdem-no-limit,800-1600:180:900:holdem-no-limit,1k-2k:240:900:holdem-no-limit,1,25k-2,50k:320:900:holdem-no-limit,1,50k-3k:430:900:holdem-no-limit,2k-4k:500:900:holdem-no-limit]
+Tournament started 2013/02/16 20:00:00 UTC
+You played 16min 5s 
+You finished in 1012th place
+
+

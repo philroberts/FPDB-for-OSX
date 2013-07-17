@@ -111,7 +111,7 @@ class Fulltilt(HandHistoryConverter):
                                     \s-\s(?P<STAKES1>(?P<CURRENCY1>[%(LS)s]|)?(?P<SB1>[%(NUM)s]+)/[%(LS)s]?(?P<BB1>[%(NUM)s]+)\s(Ante\s\$?(?P<ANTE1>[%(NUM)s]+)\s)?-\s)?
                                     (?P<CAP>([%(LS)s]?[%(NUM)s]+\s)?C[a|A][p|P]\s)?
                                     (?P<LIMIT>(No\sLimit|Pot\sLimit|Limit|NL|PL|FL))\s
-                                    (?P<GAME>(Hold\'em|(5\sCard\s)?Omaha(\sH/L|\sHi/Lo|\sHi|)|Irish|Courchevel\sHi|5(-|\s)Card\sStud(\sHi)?|7\sCard\sStud|7\sCard\sStud|Stud\sH/L|Razz|Stud\sHi|2-7\sTriple\sDraw|5\sCard\sDraw|Badugi|2-7\sSingle\sDraw|A-5\sTriple\sDraw))\s
+                                    (?P<GAME>(Hold\'em|((5|6)\sCard\s)?Omaha(\sH/L|\sHi/Lo|\sHi|)|Irish|Courchevel\sHi|5(-|\s)Card\sStud(\sHi)?|7\sCard\sStud|7\sCard\sStud|Stud\sH/L|Razz|Stud\sHi|2-7\sTriple\sDraw|5\sCard\sDraw|Badugi|2-7\sSingle\sDraw|A-5\sTriple\sDraw))\s
                                     (?P<STAKES2>-\s(?P<CURRENCY2>[%(LS)s]|)?(?P<SB2>[%(NUM)s]+)/[%(LS)s]?(?P<BB2>[%(NUM)s]+)\s(Ante\s\$?(?P<ANTE2>[%(NUM)s]+)\s)?)?-\s
                                  ''' % substitutions, re.VERBOSE)
     re_Identify     = re.compile(u'FullTiltPoker|Full\sTilt\sPoker\sGame\s#\d+:')
@@ -223,6 +223,7 @@ class Fulltilt(HandHistoryConverter):
                 'Omaha H/L' : ('hold','omahahilo'),
               'Omaha Hi/Lo' : ('hold','omahahilo'),
           '5 Card Omaha Hi' : ('hold', '5_omahahi'),
+          '6 Card Omaha Hi' : ('hold', '6_omahahi'),
             'Courchevel Hi' : ('hold', 'cour_hi'),
                     'Irish' : ('hold','irish'), 
                      'Razz' : ('stud','razz'), 
@@ -672,3 +673,15 @@ class Fulltilt(HandHistoryConverter):
 
                 #print "DEBUG: hand.addShownCards(%s, %s, %s, %s)" %(cards, m.group('PNAME'), shown, mucked)
                 hand.addShownCards(cards=cards, player=m.group('PNAME'), shown=shown, mucked=mucked, string=string)
+                
+    @staticmethod
+    def getTableTitleRe(type, table_name=None, tournament = None, table_number=None):
+        "Returns string to search in windows titles"
+        if type=="tour":
+            regex = "Tournament " + re.escape(str(tournament)) + ", Table " + re.escape(str(table_number))
+        else:
+            regex = re.escape(str(table_name))
+        log.info("Fulltilt.getTableTitleRe: table_name='%s' tournament='%s' table_number='%s'" % (table_name, tournament, table_number))
+        log.info("Fulltilt.getTableTitleRe: returns: '%s'" % (regex))
+        return regex
+        

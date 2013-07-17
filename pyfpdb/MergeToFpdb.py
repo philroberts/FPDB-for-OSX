@@ -85,6 +85,8 @@ class Merge(HandHistoryConverter):
                        '50.00': ('10.00', '25.00'),    '50': ('10.00', '25.00'),
                        '60.00': ('15.00', '30.00'),    '60': ('15.00', '30.00'),
                       '100.00': ('25.00', '50.00'),   '100': ('25.00', '50.00'),
+                      '200.00': ('50.00', '100.00'),  '200': ('50.00', '100.00'),
+                      '400.00': ('100.00', '200.00'), '400': ('100.00', '200.00'),
                   }
 
     Multigametypes = {  '1': ('hold','holdem'),
@@ -890,7 +892,8 @@ or None if we fail to get the info """
                             oldcards = []
                         else:
                             if hand.gametype['base'] == 'stud':
-                                cards = found.group('CARDS').replace('null,', '').replace(',null','').split(',')
+                                cards = found.group('CARDS').replace('null', '').split(',')
+                                cards = [c for c in cards if c!='']
                                 oldcards = cards[:-1]
                                 newcards = [cards[-1]]
                             else:

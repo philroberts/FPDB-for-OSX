@@ -1,0 +1,28 @@
+Hand #6340502-110 - 2013-05-02 02:14:03
+Game: Limit Hold'em (40 - 1000000) - Stakes 2/4
+Site: Seals With Clubs
+Table: LHE 6max 1/2 #1
+Seat 3: Player0 (63.68)
+Seat 5: Hero (148)
+Player0 has the dealer button
+Player0 posts small blind 1
+Hero posts big blind 2
+** Hole Cards **
+Dealt to Hero [Js 7d]
+Player0 raises to 4
+Hero calls 2
+** Flop ** [2d Qc 6c]
+Hero checks
+Player0 bets 2
+Hero calls 2
+** Turn ** [3h]
+Hero checks
+Player0 checks
+** River ** [2h]
+Hero checks
+Player0 checks
+** Pot Show Down ** [2d Qc 6c 3h 2h]
+Player0 shows [5s Ts] (a Pair of Deuces +QT6)
+Hero shows [Js 7d] (a Pair of Deuces +QJ7)
+Hero wins Pot (11.70) with a Pair
+Rake (0.30)
