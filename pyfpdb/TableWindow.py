@@ -67,7 +67,7 @@ limit_game_names = { #fpdb name      Stars Name   FTP Name
 
 #    A window title might have our table name + one of these words/
 #    phrases. If it has this word in the title, it is not a table.
-bad_words = ('History for table:', 'HUD:', 'Chat:', 'FPDBHUD', 'Logged In', 'Lobby')
+bad_words = ('History for table:', 'HUD:', 'Chat:', 'FPDBHUD', 'Lobby')
 
 #    Here are the custom signals we define for allowing the 'client watcher'
 #    thread to communicate with the gui thread. Any time a poker client is
