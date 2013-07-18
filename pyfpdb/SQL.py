@@ -5102,6 +5102,7 @@ class Sql:
                             ,tt.fee/100.0                                                           AS fee
                             ,tt.category                                                            AS category
                             ,tt.limitType                                                           AS limitType
+                            ,tt.speed                                                                AS speed
                             ,p.name                                                                 AS playerName
                             ,COUNT(1)                                                               AS tourneyCount
                             ,SUM(CASE WHEN tp.rank > 0 THEN 0 ELSE 1 END)                           AS unknownRank
@@ -5145,6 +5146,7 @@ class Sql:
                             ,tt.fee/100.0                                                           AS "fee"
                             ,tt.category                                                            AS "category"
                             ,tt.limitType                                                           AS "limitType"
+                            ,tt.speed                                                                AS "speed"
                             ,p.name                                                                 AS "playerName"
                             ,COUNT(1)                                                               AS "tourneyCount"
                             ,SUM(CASE WHEN tp.rank > 0 THEN 0 ELSE 1 END)                           AS "unknownRank"
@@ -5188,6 +5190,7 @@ class Sql:
                             ,tt.fee/100.0                                                           AS fee
                             ,tt.category                                                            AS category
                             ,tt.limitType                                                           AS limitType
+                            ,tt.speed                                                                AS speed
                             ,p.name                                                                 AS playerName
                             ,COUNT(1)                                                               AS tourneyCount
                             ,SUM(CASE WHEN tp.rank > 0 THEN 0 ELSE 1 END)                           AS unknownRank

@@ -183,6 +183,14 @@ class GuiTourneyPlayerStats:
                     value = result[sqlrow][colnames.index(column[colalias])]
                 else:
                     value = 111
+                if column[colalias] == 'siteName':
+                    if result[sqlrow][colnames.index('speed')] != 'Normal':
+                        if (result[sqlrow][colnames.index('speed')] == 'Hyper' 
+                            and result[sqlrow][colnames.index('siteName')] ==
+                            'Full Tilt Poker'):
+                            value = value + ' ' + 'Super Turbo'
+                        else:
+                            value = value + ' ' + result[sqlrow][colnames.index('speed')]
                 if value != None and value != -999:
                     treerow.append(column[colformat] % value)
                 else:
