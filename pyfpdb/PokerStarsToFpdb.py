@@ -338,7 +338,7 @@ class PokerStars(HandHistoryConverter):
 
                             info['BIRAKE'] = info['BIRAKE'].strip(u'$€£')
 
-                            hand.buyin = int(100*Decimal(info['BIAMT']))
+                            hand.buyin = int(100*Decimal(info['BIAMT'])) + hand.koBounty
                             hand.fee = int(100*Decimal(info['BIRAKE']))
                         else:
                             hand.buyin = int(Decimal(info['BIAMT']))
