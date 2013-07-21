@@ -291,6 +291,7 @@ class Simple_table_popup_menu(gtk.Window):
         self.set_transient_for(parentwin)
         self.set_destroy_with_parent(True)
         self.set_resizable(False)
+        self.set_deletable(False)
         self.set_skip_taskbar_hint(True)
         self.set_skip_pager_hint(True)
         self.move(self.parentwin.hud.table.x + self.parentwin.aw.xshift,
