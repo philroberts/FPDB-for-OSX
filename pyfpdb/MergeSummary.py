@@ -24,7 +24,7 @@ from BeautifulSoup import BeautifulSoup
 
 from Exceptions import FpdbParseError
 from HandHistoryConverter import *
-import MergeToFpdb
+import MergeToFpdb, MergeStructures
 from TourneySummary import *
 
 
@@ -83,6 +83,7 @@ class MergeSummary(TourneySummary):
     re_GameTypeHH = re.compile(r'<description type="(?P<GAME>Holdem|Omaha|Omaha|Omaha\sH/L8|2\-7\sLowball|A\-5\sLowball|Badugi|5\-Draw\sw/Joker|5\-Draw|7\-Stud|7\-Stud\sH/L8|5\-Stud|Razz|HORSE|RASH|HA|HO|SHOE|HOSE|HAR)(?P<TYPE>\sTournament)?" stakes="(?P<LIMIT>[a-zA-Z ]+)(\s\(?\$?(?P<SB>[.0-9]+)?/?\$?(?P<BB>[.0-9]+)?(?P<blah>.*)\)?)?"(\sversion="\d+")?/>\s?', re.MULTILINE)
     re_HandInfoHH = re.compile(r'<game id="(?P<HID1>[0-9]+)-(?P<HID2>[0-9]+)" starttime="(?P<DATETIME>.+?)" numholecards="[0-9]+" gametype="[0-9]+" (multigametype="(?P<MULTIGAMETYPE>\d+)" )?(seats="(?P<SEATS>[0-9]+)" )?realmoney="(?P<REALMONEY>(true|false))" data="[0-9]+[|:](?P<TABLENAME>[^|:]+)[|:](?P<TDATA>[^|:]+)[|:]?.*>', re.MULTILINE)
     re_DateTimeHH = re.compile(r'(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)', re.MULTILINE)
+    re_turboHH    = re.compile(r'Turbo\s\-\s')
     
     re_HTMLName = re.compile("Name\s+?</th>\s+?<td>(?P<NAME>.+?)\s+?</td>")
     re_HTMLGameType = re.compile("""Game Type\s+?</th>\s+?<td>(?P<LIMIT>Fixed Limit|No Limit|Pot Limit) (?P<GAME>Texas\sHoldem|Omaha|Omaha\sHiLo|2\-7\sLow\sTriple\sDraw|Badugi|Seven\sCard\sStud|Seven\sCard\sStud\sHiLo|Five\sCard\sStud|Razz|HORSE|HA|HO)\s+?</td>""")
@@ -126,6 +127,7 @@ class MergeSummary(TourneySummary):
         update = False
         handsList = hhc.allHandsAsList()
         handsDict = {}
+        Structures = MergeStructures.MergeStructures()
         for handText in handsList:
             m = self.re_HandInfoHH.search(handText)
             if m is None:
@@ -154,6 +156,8 @@ class MergeSummary(TourneySummary):
                     #(self.info['base'], self.info['category']) = self.Multigametypes[m2.group('MULTIGAMETYPE')]
                 else:
                     self.gametype['category'] = self.games[mg['GAME']][1]
+            if 'SEATS' in mg and mg['SEATS'] is not None:
+                self.maxseats = int(mg['SEATS'])
                     
             for handText in hands:
                 m = self.re_HandInfoHH.search(handText)
@@ -177,47 +181,66 @@ class MergeSummary(TourneySummary):
                     self.startTime = datetime.datetime.strptime(m.group('DATETIME')[:14],'%Y%m%d%H%M%S')
                 self.startTime = HandHistoryConverter.changeTimezone(self.startTime, "ET", "UTC")
                 
-                if tourneyNameFull not in hhc.SnG_Structures:
+                if self.re_turboHH.match(tourneyNameFull):
+                    if self.maxseats==6:
+                        tourneyNameFull += ' (6-max)'
+                
+                structure = Structures.lookupSnG(tourneyNameFull, self.startTime)
+                if structure is None:
                     log.error(_("MergeSummary.determineGameType: No match in SnG_Structures"))
                     continue
                     raise FpdbParseError
                 
-                self.buyin     = int(100*hhc.SnG_Structures[tourneyNameFull]['buyIn'])
-                self.fee       = int(100*hhc.SnG_Structures[tourneyNameFull]['fee'])
-                if 'max' in hhc.SnG_Structures[tourneyNameFull]:
-                    self.entries = hhc.SnG_Structures[tourneyNameFull]['max']
+                self.buyin     = int(100*structure['buyIn'])
+                self.fee       = int(100*structure['fee'])
+                if 'max' in structure:
+                    self.entries = structure['max']
                 else:
-                    self.entries = hhc.SnG_Structures[tourneyNameFull]['seats']
-                self.buyinCurrency = hhc.SnG_Structures[tourneyNameFull]['currency']
-                self.currency  = hhc.SnG_Structures[tourneyNameFull]['payoutCurrency']
-                self.maxseats  = hhc.SnG_Structures[tourneyNameFull]['seats']
-                self.prizepool = sum(hhc.SnG_Structures[tourneyNameFull]['payouts'])
-                payouts = len(hhc.SnG_Structures[tourneyNameFull]['payouts'])
+                    self.entries = structure['seats']
+                self.buyinCurrency = structure['currency']
+                self.currency  = structure['payoutCurrency']
+                self.maxseats  = structure['seats']
+                if 'speed' in structure:
+                    self.speed = structure['speed']
+                if 'doubleOrNothing' in structure:
+                    self.isDoubleOrNothing = True
+                if 'bounty' in structure:
+                    self.isKO = True
+                    self.koBounty = int(100*structure['bounty'])
+                
+                self.prizepool = sum(structure['payouts'])
+                payouts = len(structure['payouts'])
                 self.isSng     = True
                 
-                if hhc.SnG_Structures[tourneyNameFull]['multi']:
+                if structure['multi']:
                     log.error(_("MergeSummary.determineGameType: Muli-table SnG found, unsupported"))
-                    raise FpdbParseError            
+                    continue           
                 
                 players, out, won = {}, [], []
                 for m in hhc.re_PlayerOut.finditer(handText):
-                    out.append(m.group('PSEAT'))
+                    if m.group('PSEAT') != None:
+                        out.append(m.group('PSEAT'))
                 if out:
                     for m in hhc.re_PlayerInfo.finditer(handText):
                         players[m.group('SEAT')] = m.group('PNAME')
                     if not players: continue
                     for m in hhc.re_CollectPot.finditer(handText):
                         won.append(m.group('PSEAT'))
+                        
+                    if self.isDoubleOrNothing:
+                        if handText==hands[-1]:
+                            won = [w for w in players.keys() if w not in out or w in won]
+                            out = [p for p in players.keys()]
                     i = 0
                     for n in out:
                         winnings = 0
                         if n in won:
                             rank = 1
-                            winnings = int(100*hhc.SnG_Structures[tourneyNameFull]['payouts'][0])
+                            winnings = int(100*structure['payouts'][0])
                         else:
                             rank = len(players) - i
                             if rank <= payouts:
-                                winnings = int(100*hhc.SnG_Structures[tourneyNameFull]['payouts'][rank-1])
+                                winnings = int(100*structure['payouts'][rank-1])
                             i += 1
                         self.addPlayer(rank, players[n], winnings, self.currency, 0, 0, 0)
             self.insertOrUpdate()
