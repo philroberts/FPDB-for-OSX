@@ -25,7 +25,7 @@ import datetime
 
 from Exceptions import FpdbParseError
 from HandHistoryConverter import *
-import PokerStarsToFpdb
+import PokerStarsStructures
 from TourneySummary import *
 
 class PokerStarsSummary(TourneySummary):
@@ -168,7 +168,7 @@ class PokerStarsSummary(TourneySummary):
             self.fee   = int(100*Decimal(self.clearMoneyString(mg['FEE'])))
         if 'PRIZEPOOL' in mg:
             if mg['PRIZEPOOL'] != None: self.prizepool = int(Decimal(self.clearMoneyString(mg['PRIZEPOOL'])))
-        if 'ENTRIES'   in mg: self.entries               = mg['ENTRIES']
+        if 'ENTRIES'   in mg: self.entries               = int(mg['ENTRIES'])
         if 'DATETIME'  in mg: m1 = self.re_DateTime.finditer(mg['DATETIME'])
         datetimestr = "2000/01/01 00:00:00"  # default used if time not found
         for a in m1:
@@ -187,6 +187,23 @@ class PokerStarsSummary(TourneySummary):
         
         if 'Zoom' in self.in_path:
             self.isFast = True
+            
+        Structures = PokerStarsStructures.PokerStarsStructures()
+        if self.entries%9==0 and self.entries < 45:
+            entries = 9
+        elif self.entries%6==0 and self.entries < 30:
+            entries = 6
+        elif self.entries > 6 and self.entries < 9:
+            entries = 9
+        else:
+            entries = self.entries
+        
+        speed = Structures.lookupSnG((self.buyin, self.fee, entries), self.startTime)
+        if speed is not None:
+            self.speed = speed
+            self.isSng = True
+            if entries==10:
+                self.isDoubleOrNothing = True
 
         m = self.re_Player.finditer(self.summaryText)
         for a in m:
