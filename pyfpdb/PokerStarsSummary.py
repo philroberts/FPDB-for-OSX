@@ -25,7 +25,7 @@ import datetime
 
 from Exceptions import FpdbParseError
 from HandHistoryConverter import *
-import PokerStarsToFpdb
+import PokerStarsStructures
 from TourneySummary import *
 
 class PokerStarsSummary(TourneySummary):
@@ -72,7 +72,7 @@ class PokerStarsSummary(TourneySummary):
                         ((?P<LIMIT>No\sLimit|NO\sLIMIT|Limit|LIMIT|Pot\sLimit|POT\sLIMIT|Pot\sLimit\sPre\-Flop,\sNo\sLimit\sPost\-Flop)\s)?
                         (?P<GAME>Hold\'em|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Omaha|Omaha\sHi/Lo|Badugi|Triple\sDraw\s2\-7\sLowball|Single\sDraw\s2\-7\sLowball|5\sCard\sDraw|5\sCard\sOmaha(\sHi/Lo)?|Courchevel(\sHi/Lo)?|HORSE|8\-Game|HOSE|Mixed\sOmaha\sH/L|Mixed\sHold\'em|Mixed\sPLH/PLO|Mixed\sNLH/PLO|Triple\sStud)\s+
                         (?P<DESC>[ a-zA-Z]+\s+)?
-                        (Buy-In:\s(?P<CURRENCY>[%(LS)s]?)(?P<BUYIN>[,.0-9]+)(\/[%(LS)s]?(?P<FEE>[,.0-9]+))?(?P<CUR>\s(%(LEGAL_ISO)s))?\s+)?
+                        (Buy-In:\s(?P<CURRENCY>[%(LS)s]?)(?P<BUYIN>[,.0-9]+)(\/[%(LS)s]?(?P<FEE>[,.0-9]+))?(\/[%(LS)s]?(?P<BOUNTY>[,.0-9]+))?(?P<CUR>\s(%(LEGAL_ISO)s))?\s+)?
                         (?P<ENTRIES>[0-9]+)\splayers\s+
                         ([%(LS)s]?(?P<ADDED>[,.\d]+)(\s(%(LEGAL_ISO)s))?\sadded\sto\sthe\sprize\spool\sby\sPokerStars(\.com)?\s+)?
                         (Total\sPrize\sPool:\s[%(LS)s]?(?P<PRIZEPOOL>[,.0-9]+)(\s(%(LEGAL_ISO)s))?\s+)?
@@ -158,13 +158,17 @@ class PokerStarsSummary(TourneySummary):
         else:
             self.gametype['limitType'] = 'fl'
         if 'GAME'      in mg: self.gametype['category']  = self.games[mg['GAME']][1]
+        if mg['BOUNTY'] != None and mg['FEE'] != None:
+            self.koBounty = int(100*Decimal(self.clearMoneyString(mg['FEE'])))
+            self.isKO = True
+            mg['FEE'] = mg['BOUNTY']
         if mg['BUYIN'] != None:
-            self.buyin = int(100*Decimal(self.clearMoneyString(mg['BUYIN'])))
+            self.buyin = int(100*Decimal(self.clearMoneyString(mg['BUYIN']))) + self.koBounty
         if mg['FEE'] != None:
             self.fee   = int(100*Decimal(self.clearMoneyString(mg['FEE'])))
         if 'PRIZEPOOL' in mg:
             if mg['PRIZEPOOL'] != None: self.prizepool = int(Decimal(self.clearMoneyString(mg['PRIZEPOOL'])))
-        if 'ENTRIES'   in mg: self.entries               = mg['ENTRIES']
+        if 'ENTRIES'   in mg: self.entries               = int(mg['ENTRIES'])
         if 'DATETIME'  in mg: m1 = self.re_DateTime.finditer(mg['DATETIME'])
         datetimestr = "2000/01/01 00:00:00"  # default used if time not found
         for a in m1:
@@ -183,6 +187,23 @@ class PokerStarsSummary(TourneySummary):
         
         if 'Zoom' in self.in_path:
             self.isFast = True
+            
+        Structures = PokerStarsStructures.PokerStarsStructures()
+        if self.entries%9==0 and self.entries < 45:
+            entries = 9
+        elif self.entries%6==0 and self.entries < 30:
+            entries = 6
+        elif self.entries > 6 and self.entries < 9:
+            entries = 9
+        else:
+            entries = self.entries
+        
+        speed = Structures.lookupSnG((self.buyin, self.fee, entries), self.startTime)
+        if speed is not None:
+            self.speed = speed
+            self.isSng = True
+            if entries==10:
+                self.isDoubleOrNothing = True
 
         m = self.re_Player.finditer(self.summaryText)
         for a in m:
@@ -196,7 +217,7 @@ class PokerStarsSummary(TourneySummary):
             koCount = 0
 
             if 'WINNINGS' in mg and mg['WINNINGS'] != None:
-                winnings = int(100*Decimal(mg['WINNINGS']))
+                winnings = int(100*Decimal(self.clearMoneyString(mg['WINNINGS'])))
                 
             if 'CUR' in mg and mg['CUR'] != None:
                 if mg['CUR'] == "$":     self.currency="USD"
