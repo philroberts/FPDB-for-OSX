@@ -29,7 +29,7 @@ class PokerStarsStructures:
         self.versions.append(datetime.utcnow().replace(tzinfo = pytz.utc))
         self.SnG_Structures = []
         self.SnG_Structures.append({(150, 25, 9): 'Turbo', #7-10 handed, under 45 entrants
-                                    (300, 40, 9): 'Turbo', #7-10 handed, under 45 entrants
+                                    #Not unique (300, 40, 9): 'Turbo', #7-10 handed, under 45 entrants
                                     (600, 50, 9): 'Turbo', #7-10 handed, under 45 entrants
                                     (1500, 100, 9): 'Turbo', #7-10 handed, under 45 entrants
                                     (2500, 200, 9): 'Turbo', #7-10 handed, under 45 entrants
@@ -42,7 +42,7 @@ class PokerStarsStructures:
                                     (105000, 5000, 9): 'Turbo', #7-10 handed, under 45 entrants
                                     (210000, 9000, 9): 'Turbo', #7-10 handed, under 45 entrants
                                     (100, 20, 9): 'Normal', #7-10 handed, under 45 entrants
-                                    (300, 40, 9): 'Normal', #7-10 handed, under 45 entrants
+                                    (300, 40, 9): 'Normal', #7-10 handed, under 45 entrants #Not unique
                                     (545, 55, 9): 'Normal', #7-10 handed, under 45 entrants
                                     (1000, 100, 9): 'Normal', #7-10 handed, under 45 entrants
                                     (2000, 200, 9): 'Normal', #7-10 handed, under 45 entrants
@@ -55,9 +55,9 @@ class PokerStarsStructures:
                                     (100000, 5000, 9): 'Normal', #7-10 handed, under 45 entrants
                                     (200000, 9000, 9): 'Normal', #7-10 handed, under 45 entrants
                                     (300, 25, 6): 'Turbo', #6-handed, Under 30 Entrants
-                                    (600, 60, 6): 'Turbo', #6-handed, Under 30 Entrants
-                                    (1200, 100, 6): 'Turbo', #6-handed, Under 30 Entrants
-                                    (2300, 200, 6): 'Turbo', #6-handed, Under 30 Entrants
+                                    #Not unique (600, 60, 6): 'Turbo', #6-handed, Under 30 Entrants
+                                    #Not unique (1200, 100, 6): 'Turbo', #6-handed, Under 30 Entrants
+                                    #Not unique (2300, 200, 6): 'Turbo', #6-handed, Under 30 Entrants
                                     (3600, 300, 6): 'Turbo', #6-handed, Under 30 Entrants
                                     (5500, 500, 6): 'Turbo', #6-handed, Under 30 Entrants
                                     (7200, 600, 6): 'Turbo', #6-handed, Under 30 Entrants
@@ -67,9 +67,9 @@ class PokerStarsStructures:
                                     (106000, 5000, 6): 'Turbo', #6-handed, Under 30 Entrants
                                     (100, 20, 6): 'Normal', #6-handed, Under 30 Entrants
                                     (300, 40, 6): 'Normal', #6-handed, Under 30 Entrants
-                                    (600, 60, 6): 'Normal', #6-handed, Under 30 Entrants
-                                    (1200, 100, 6): 'Normal', #6-handed, Under 30 Entrants
-                                    (2300, 200, 6): 'Normal', #6-handed, Under 30 Entrants
+                                    (600, 60, 6): 'Normal', #6-handed, Under 30 Entrants #Not unique
+                                    (1200, 100, 6): 'Normal', #6-handed, Under 30 Entrants #Not unique
+                                    (2300, 200, 6): 'Normal', #6-handed, Under 30 Entrants #Not unique
                                     (3500, 300, 6): 'Normal', #6-handed, Under 30 Entrants
                                     (5060, 440, 6): 'Normal', #6-handed, Under 30 Entrants
                                     (7000, 600, 6): 'Normal', #6-handed, Under 30 Entrants
@@ -232,6 +232,8 @@ class PokerStarsStructures:
                                     (319, 31, 45): 'Turbo', #45 Entrants
                                     (918, 82, 45): 'Turbo', #45 Entrants
                                     (2765, 235, 45): 'Turbo', #45 Entrants
+                                    (136, 14, 48): 'Turbo', #48 Entrants
+                                    (136, 14, 36): 'Turbo', #36 Entrants
                                     (23, 2, 45): 'Normal', #45 Entrants
                                     (91, 9, 45): 'Normal', #45 Entrants
                                     (546, 54, 45): 'Normal', #45 Entrants
