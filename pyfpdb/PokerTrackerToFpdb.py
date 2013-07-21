@@ -25,7 +25,7 @@ _ = L10n.get_translation()
 
 import sys
 from HandHistoryConverter import *
-import MergeToFpdb
+import MergeStructures
 from decimal_wrapper import Decimal
 
 # PokerTracker HH Format
@@ -33,7 +33,7 @@ from decimal_wrapper import Decimal
 class PokerTracker(HandHistoryConverter):
 
     # Class Variables
-    SnG_Structures = None
+    Structures = None
     filetype = "text"
     codepage = ("utf8", "cp1252")
     sym = {'USD': "\$", 'CAD': "\$", 'T$': "", "EUR": "\xe2\x82\xac", "GBP": "\£", "play": ""}         # ADD Euro, Sterling, etc HERE
@@ -321,16 +321,15 @@ class PokerTracker(HandHistoryConverter):
                 if hand.tourNo!=None:
                     tourneyname = ''
                     if self.sitename == 'Merge':
-                        if self.SnG_Structures is None:
-                            obj = getattr(MergeToFpdb, "Merge", None)
-                            hhc = obj(self.config, in_path = self.in_path, sitename = None, autostart = False)
-                            self.SnG_Structures = hhc.SnG_Structures
+                        if self.Structures is None:
+                            self.Structures = MergeStructures.MergeStructures()
                         tourneyname = re.split(",", m.group('TABLE'))[0].strip()
-                        if tourneyname in self.SnG_Structures:
-                            hand.buyin = int(100*self.SnG_Structures[tourneyname]['buyIn'])
-                            hand.fee   = int(100*self.SnG_Structures[tourneyname]['fee'])
-                            hand.buyinCurrency=self.SnG_Structures[tourneyname]['currency']
-                            hand.maxseats = self.SnG_Structures[tourneyname]['seats']
+                        structure = self.Structures.lookupSnG(tourneyname, hand.startTime)
+                        if structure!=None:
+                            hand.buyin = int(100*structure['buyIn'])
+                            hand.fee   = int(100*structure['fee'])
+                            hand.buyinCurrency=structure['currency']
+                            hand.maxseats = structure['seats']
                             hand.isSng = True
                         else:
                             #print 'DEBUG', 'no match for tourney %s tourNo %s' % (tourneyname, hand.tourNo)
