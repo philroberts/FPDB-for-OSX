@@ -450,8 +450,8 @@
         <site site_name="SealsWithClubs"
                 enabled="False"
                 screen_name="YOUR SCREEN NAME HERE" 
-                site_path="C:/SealsWithClubs/"
-                HH_path="C:/SealsWithClubs/"
+                site_path="C:/Program Files/SealsWithClubs/handhistories"
+                HH_path="C:/Program Files/SealsWithClubs/handhistories"
                 aux_enabled="True" hud_menu_xshift="0" hud_menu_yshift="0">
             <email fetchType="request-summary" host="YOUR_EMAIL_SERVER" username="YOUR_EMAIL_USERNAME" password="YOUR_EMAIL_PASSWORD" useSsl="True" folder="INBOX"/>
             <layout_set game_type="all" ls="sealswithclubs_default"/>
