@@ -511,6 +511,9 @@
         <game game_name="a5_3draw" aux="Classic_HUD, mucked">
             <game_stat_set game_type="all" stat_set ="draw_default"/>
         </game>  
+        <game game_name="6_omahahi" aux="Classic_HUD, mucked" >
+            <game_stat_set game_type="all" stat_set="omaha_default"/>
+        </game>
     </supported_games>
 
 
