@@ -73,6 +73,7 @@ class Filters:
                         ,"cour_hilo" : _("Courchevel Hi/Lo")
                         ,"2_holdem"  : _("Double hold'em")
                         ,"irish"     : _("Irish")
+                        ,"6_omahahi" : _("6 Card Omaha")
                         }
 
         self.currencyName = {"USD" : _("US Dollar")
