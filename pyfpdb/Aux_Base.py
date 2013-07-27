@@ -311,7 +311,7 @@ class Aux_Seats(Aux_Window):
                         actual_seat = i
                         break
 
-        if not actual_seat:
+        if not actual_seat: # this shouldn't happen because we don't create huds if the hero isn't seated.
             log.error(_("Error finding hero seat."))
             return adj
                 
