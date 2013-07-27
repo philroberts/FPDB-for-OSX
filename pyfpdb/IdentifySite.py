@@ -40,7 +40,7 @@ class FPDBFile:
     site = None
     kodec = None
     archive = False
-    archiveSplit = None
+    archiveSplit = ''
     gametype = False
     hero = '-'
 
