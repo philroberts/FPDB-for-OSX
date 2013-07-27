@@ -348,6 +348,20 @@ class HUD_main(object):
                 self.db_connection.init_hud_stat_vars( self.hud_params['hud_days'], self.hud_params['h_hud_days'] )
                 stat_dict = self.db_connection.get_stats_from_hand(new_hand_id, type, self.hud_params,
                                                                    self.hero_ids[site_id], num_seats)
+                
+                #Confirm our hero is seated for this hand, otherwise we must __not__ create a hud
+                # because it is impossible to work out who is sitting where, and that working-out
+                # of seat positions __only__ happens during creation.  (see Aux_Base.Aux_Seats.adj_seats())
+                #Fixes issue with 888/pacific which includes cash hands before the hero is dealt-in
+                hero_found = False
+                for key in stat_dict:
+                    if stat_dict[key]['screen_name'] == self.hero[site_id]:
+                        hero_found = True
+                        break
+                if not hero_found:
+                    log.info(_('hud not created yet, because hero is not seated for this hand'))
+                    continue
+                    
                 cards = self.get_cards(new_hand_id, poker_game)
                 table_kwargs = dict(table_name=table_name, tournament=tour_number, table_number=tab_number)
                 tablewindow = Tables.Table(self.config, site_name, **table_kwargs)
