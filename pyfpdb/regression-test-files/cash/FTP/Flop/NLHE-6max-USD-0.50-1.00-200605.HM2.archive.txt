@@ -1,0 +1,83 @@
+BEGIN
+FullTiltPoker Game #656000081: Table Keifer (6 max) - $0.50/$1 - No Limit Hold'em - 16:13:10 ET - 2006/05/22
+
+Seat 1: Player0 ($78.75)
+Seat 2: Player1 ($112.30), is sitting out
+Seat 3: Player2 ($51.70), is sitting out
+Seat 4: Hero ($100)
+Seat 5: Player3 ($47.50)
+Seat 6: Player4 ($134.25)
+Player0 posts the small blind of $0.50
+Hero posts the big blind of $1
+The button is in seat #6
+*** HOLE CARDS ***
+Dealt to Hero [Jc Qd]
+Player3 raises to $2
+Player4 calls $2
+Player0 raises to $5
+Hero folds
+Player3 calls $3
+Player4 calls $3
+*** FLOP *** [Ah Js 9s]
+Player0 bets $16
+Player3 folds
+Player4 folds
+Uncalled bet of $16 returned to Player0
+Player0 mucks
+Player0 wins the pot ($15.20)
+*** SUMMARY ***
+Duration 41s
+Total pot $16 | Rake $0.80
+Board: [Ah Js 9s]
+Seat 1: Player0 (small blind) collected ($15.20)
+Seat 2: Player1 is sitting out
+Seat 3: Player2 is sitting out
+Seat 4: Hero (big blind) folded before the Flop
+Seat 5: Player3 folded on the Flop
+Seat 6: Player4 (button) folded on the Flop
+
+FullTiltPoker Game #656001515: Table Keifer (6 max) - $0.50/$1 - No Limit Hold'em - 16:13:51 ET - 2006/05/22
+
+Seat 1: Player0 ($88.95)
+Seat 3: Player2 ($51.70), is sitting out
+Seat 4: Hero ($99)
+Seat 5: Player3 ($42.50)
+Seat 6: Player4 ($129.25)
+Hero posts the small blind of $0.50
+Player3 posts the big blind of $1
+The button is in seat #1
+*** HOLE CARDS ***
+Dealt to Hero [4c Kc]
+Player4 calls $1
+Player0 calls $1
+Hero calls $0.50
+Player3 checks
+*** FLOP *** [6h Qd Jh]
+Hero checks
+Player3 checks
+Player4 checks
+Player0 checks
+*** TURN *** [6h Qd Jh] [9c]
+Hero checks
+Player3 bets $1
+Player4 calls $1
+Player0 calls $1
+Hero folds
+*** RIVER *** [6h Qd Jh 9c] [Qc]
+Player3 checks
+Player4 checks
+Player0 checks
+*** SHOW DOWN ***
+Player3 shows [Ts 7c] a pair of Queens
+Player4 shows [Ks 5s] a pair of Queens
+Player0 mucks
+Player4 wins the pot ($6.65) with a pair of Queens
+*** SUMMARY ***
+Duration 70s
+Total pot $7 | Rake $0.35
+Board: [6h Qd Jh 9c Qc]
+Seat 1: Player0 (button) mucked [8s 2s] - a pair of Queens
+Seat 3: Player2 is sitting out
+Seat 4: Hero (small blind) folded on the Turn
+Seat 5: Player3 (big blind) showed [Ts 7c] and lost with a pair of Queens
+Seat 6: Player4 showed [Ks 5s] and won ($6.65) with a pair of Queens

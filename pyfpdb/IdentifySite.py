@@ -30,11 +30,9 @@ import logging
 # logging has been set up in fpdb.py or HUD_main.py, use their settings:
 log = logging.getLogger("parser")
 
-__ARCHIVE_PRE_HEADER_REGEX, re_SplitArchive = {}, {}
-__ARCHIVE_PRE_HEADER_REGEX['PokerStars'] = '^Hand #(\d+)\s*$'
-__ARCHIVE_PRE_HEADER_REGEX['Fulltilt'] ='\*{20}\s#\s\d+\s\*{20,25}\s?'
-re_SplitArchive['PokerStars'] = re.compile(__ARCHIVE_PRE_HEADER_REGEX['PokerStars'], re.MULTILINE)
-re_SplitArchive['Fulltilt'] = re.compile(__ARCHIVE_PRE_HEADER_REGEX['Fulltilt'], re.MULTILINE)
+re_SplitArchive  = {}
+re_SplitArchive['PokerStars'] = re.compile(r'(?P<SPLIT>^Hand #(\d+)\s*$)', re.MULTILINE)
+re_SplitArchive['Fulltilt'] = re.compile(r'(?P<SPLIT>(\*{20}\s#\s\d+\s\*{20,25}\s?)|(BEGIN\s*FullTiltPoker))', re.MULTILINE)
 
 class FPDBFile:
     path = ""
@@ -42,6 +40,7 @@ class FPDBFile:
     site = None
     kodec = None
     archive = False
+    archiveSplit = None
     gametype = False
     hero = '-'
 
@@ -76,7 +75,7 @@ class Site:
             line_delimiter = '\n\n'
         elif filter_name == 'Fulltilt' or filter_name == 'PokerTracker':
             line_delimiter = '\n\n\n'
-        elif self.re_SplitHands.match('\n\n') and filter_name not in ('Entraction'):
+        elif self.re_SplitHands.match('\n\n') and filter_name != 'Entraction':
              line_delimiter = '\n\n'
         elif self.re_SplitHands.match('\n\n\n'):
             line_delimiter = '\n\n\n'
@@ -221,8 +220,10 @@ class IdentifySite:
             filter_name = site.filter_name
             m = site.re_Identify.search(whole_file)
             if m and filter_name in ('Fulltilt', 'PokerStars'):
-                if re_SplitArchive[filter_name].search(whole_file):
+                m1 = re_SplitArchive[filter_name].search(whole_file)
+                if m1:
                     f.archive = True
+                    f.archiveSplit = m1.group('SPLIT')
             if m:
                 f.site = site
                 f.ftype = "hh"
