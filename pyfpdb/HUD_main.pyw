@@ -84,6 +84,7 @@ class HUD_main(object):
             log.info(_("HUD_main starting"))
         #update and save config
         self.hud_dict = {}
+        self.blacklist = [] #a list of blacklisted table numbers (handles)
         self.hud_params = self.config.get_hud_ui_parameters()
         self.deck = Deck.Deck(self.config,
             deck_type=self.hud_params["deck_type"], card_back=self.hud_params["card_back"],
@@ -156,7 +157,12 @@ class HUD_main(object):
     def kill_hud(self, event, table):
         log.debug(_("kill_hud event"))
         gobject.idle_add(idle_kill, self, table)
-    
+
+    def blacklist_hud(self, event, table):
+        log.debug(_("blacklist_hud event"))
+        self.blacklist.append(self.hud_dict[table].tablenumber)
+        gobject.idle_add(idle_kill, self, table)
+
     def check_tables(self):
         gobject.idle_add(idle_check_tables, self)
         return True
@@ -249,12 +255,16 @@ class HUD_main(object):
 #        if there is a db error, complain, skip hand, and proceed
             #log.info("HUD_main.read_stdin: " + _("Hand processing starting."))
             try:
-                (table_name, max, poker_game, type, site_id, site_name, num_seats, tour_number, tab_number) = \
+                (table_name, max, poker_game, type, fast, site_id, site_name, num_seats, tour_number, tab_number) = \
                                 self.db_connection.get_table_info(new_hand_id)
             except Exception:
                 log.error(_("database error: skipping %s") % new_hand_id)
                 continue
-            
+                
+            if fast:
+                #we are rush/zoom
+                continue
+                
             # Do nothing if this site is on the ignore list
             if site_name in aux_disabled_sites:
                 continue
@@ -371,6 +381,8 @@ class HUD_main(object):
                         table_name = "%s %s" % (tour_number, tab_number)
                     log.error(_("HUD create: table name %s not found, skipping.") % table_name)
                     continue
+                elif tablewindow.number in self.blacklist:
+                    continue    #no hud please, we are blacklisted
                 else:
                     tablewindow.key = temp_key
                     tablewindow.max = max
@@ -446,6 +458,7 @@ def idle_create(hud_main, new_hand_id, table, temp_key, max, poker_game, type, s
         hud_main.main_window.resize_children()
 
         hud_main.hud_dict[temp_key].tablehudlabel = newlabel
+        hud_main.hud_dict[temp_key].tablenumber = table.number
         # call the hud.create method, apparently
         hud_main.hud_dict[temp_key].create(new_hand_id, hud_main.config, stat_dict)
         for m in hud_main.hud_dict[temp_key].aux_windows:

@@ -334,6 +334,7 @@ class Simple_table_popup_menu(gtk.Window):
         
         vbox1.pack_start(self.build_button(_('Restart This HUD'), gtk.STOCK_REFRESH, "kill"))
         vbox1.pack_start(self.build_button(_('Save HUD Layout'), gtk.STOCK_SAVE, "save"))
+        vbox1.pack_start(self.build_button(_('Stop this HUD'), gtk.STOCK_STOP, "blacklist"))
         vbox1.pack_start(self.build_button(_('Close'), gtk.STOCK_CLOSE, "close"))
         vbox1.pack_start(self.build_label(_('')))
         vbox1.pack_start(self.build_combo_and_set_active('new_max_seats', cb_max_dict))
@@ -390,7 +391,9 @@ class Simple_table_popup_menu(gtk.Window):
         if data == "kill":
             self.parentwin.hud.parent.kill_hud("kill", self.parentwin.hud.table.key)
             return True
-            
+        if data == "blacklist":
+            self.parentwin.hud.parent.blacklist_hud("kill", self.parentwin.hud.table.key)
+            return True
         if data == "save":
             # This calls the save_layout method of the Hud object. The Hud object 
             # then calls the save_layout method in each installed AW.

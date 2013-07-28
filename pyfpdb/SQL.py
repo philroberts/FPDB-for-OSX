@@ -4442,14 +4442,14 @@ class Sql:
             """
 
         self.query['get_table_name'] = """
-                SELECT h.tableName, gt.maxSeats, gt.category, gt.type, s.id, s.name
+                SELECT h.tableName, gt.maxSeats, gt.category, gt.type, gt.fast, s.id, s.name
                      , count(1) as numseats
                 FROM Hands h, Gametypes gt, Sites s, HandsPlayers hp
                 WHERE h.id = %s
                     AND   gt.id = h.gametypeId
                     AND   s.id = gt.siteID
                     AND   hp.handId = h.id
-                GROUP BY h.tableName, gt.maxSeats, gt.category, gt.type, s.id, s.name
+                GROUP BY h.tableName, gt.maxSeats, gt.category, gt.type, gt.fast, s.id, s.name
             """
 
         self.query['get_actual_seat'] = """

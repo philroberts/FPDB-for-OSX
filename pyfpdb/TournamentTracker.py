@@ -251,7 +251,7 @@ class ttracker_main(object):
 #    get basic info about the new hand from the db
 #    if there is a db error, complain, skip hand, and proceed
             try:
-                (table_name, max, poker_game, type, site_id, numseats) = self.db_connection.get_table_name(new_hand_id)
+                (table_name, max, poker_game, type, fast, site_id, numseats) = self.db_connection.get_table_name(new_hand_id)
                 stat_dict = self.db_connection.get_stats_from_hand(new_hand_id, aggregate_stats[type]
                                                                   ,hud_style, agg_bb_mult)
 

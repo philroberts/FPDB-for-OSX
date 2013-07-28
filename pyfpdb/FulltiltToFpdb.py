@@ -102,7 +102,11 @@ class Fulltilt(HandHistoryConverter):
                 500000: {'Turbo': 5500, 'Normal': 7000}
                 }
     
-    Rush_Tables = ('Mach 10', 'Lightning', 'Velociraptor', 'Supercharger', 'Adrenaline', 'Afterburner', 'Mercury', 'Apollo', 'Warp Speed', 'Speeding Bullet')
+    Rush_Tables = ('Mach 10', 'Lightning', 'Velociraptor', 'Supercharger', 'Adrenaline',
+                    'Afterburner', 'Mercury', 'Apollo', 'Warp Speed', 'Speeding Bullet',
+                    'Flash', 'Bazinga', 'Lickety Split', 'Electro', 'Celerity', 'Alacrity',
+                    'Dart',  'Accelerator', 'Sonic Boom', 'Vroom', 'Hermes', 'Thunderbolt',
+                    'Swiftly Tilting', 'Rapido', 'Veyron', )
 
     # Static regexes
     re_GameInfo     = re.compile(u'''\#(?P<HID>[0-9]+):\s
