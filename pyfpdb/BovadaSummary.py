@@ -95,12 +95,11 @@ class BovadaSummary(TourneySummary):
             self.prizepool = None
             self.entries   = None
             
+            if self.currency is None:
+                self.buyinCurrency = "FREE"
+            
             if 'BUYIN' in info and info['BUYIN'] is not None:
-                if info['BUYIN'] == 'Freeroll':
-                    self.buyin = 0
-                    self.fee = 0
-                    self.buyinCurrency = "FREE"
-                elif info['BIAMT'] is not None and info['BIRAKE'] is not None:
+                if info['BIAMT'] is not None and info['BIRAKE'] is not None:
                     if info['BUYIN'].find("$")!=-1:
                         self.buyinCurrency="USD"
                     elif re.match("^[0-9+]*$", info['BUYIN']):
