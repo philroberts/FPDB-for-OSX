@@ -76,7 +76,7 @@ class BovadaSummary(TourneySummary):
             if 'GAME' in info:
                 self.gametype['category'] = hhc.games[info['GAME']][1]
                  
-            if 'CURRENCY' in info and info['CURRENCY'] is not None:
+            if 'CURRENCY' in info and info['CURRENCY']:
                 self.buyinCurrency = hhc.currencies[info['CURRENCY']]
             self.currency = self.buyinCurrency
             
