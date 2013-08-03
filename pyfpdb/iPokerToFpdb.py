@@ -355,6 +355,10 @@ class iPoker(HandHistoryConverter):
                 if a.group('BUTTONPOS') == '1':
                     hand.buttonpos = int(a.group('SEAT'))
                     
+        if len(plist)<=1:
+            # Hand cancelled
+            raise FpdbHandPartial(hid=hand.handid)
+                                
         # Add remaining players
         for pname in plist:
             seat, stack, win, sitout = plist[pname]
