@@ -639,6 +639,7 @@ class Database:
             self.build_full_hudcache = not self.import_options['fastStoreHudCache']
             self.cacheSessions = self.import_options['cacheSessions']
             self.callHud = self.import_options['callFpdbHud']
+            self.publicDB = self.import_options['publicDB']
 
             #self.hud_hero_style = 'T'  # Duplicate set of vars just for hero - not used yet.
             #self.hud_hero_hands = 2000 # Idea is that you might want all-time stats for others
@@ -1579,7 +1580,7 @@ class Database:
         # Create unique indexes:
         log.debug("Creating unique indexes")
         c.execute(self.sql.query['addTourneyIndex'])
-        c.execute(self.sql.query['addHandsIndex'])
+        c.execute(self.sql.query['addHandsIndex'].replace('<heroseat>', ', heroSeat' if self.publicDB else ''))
         c.execute(self.sql.query['addPlayersIndex'])
         c.execute(self.sql.query['addTPlayersIndex'])
         c.execute(self.sql.query['addPlayersSeat'])
@@ -3223,16 +3224,22 @@ class Database:
         id += self.hand_inc
         return id
 
-    def isDuplicate(self, gametypeID, siteHandNo, heroSeat):
-        if (gametypeID, siteHandNo, heroSeat) in self.siteHandNos:
+    def isDuplicate(self, siteId, siteHandNo, heroSeat, publicDB):
+        q = self.sql.query['isAlreadyInDB'].replace('%s', self.sql.query['placeholder'])
+        if publicDB:
+            key = (siteHandNo, siteId, heroSeat)
+            q = q.replace('<heroSeat>', ' AND heroSeat=%s')
+        else:
+            key = (siteHandNo, siteId)
+            q = q.replace('<heroSeat>', '')
+        if key in self.siteHandNos:
             return True
         c = self.get_cursor()
-        q = self.sql.query['isAlreadyInDB'].replace('%s', self.sql.query['placeholder'])
-        c.execute(q, (gametypeID, siteHandNo, heroSeat))
+        c.execute(q, key)
         result = c.fetchall()
         if len(result) > 0:
             return True
-        self.siteHandNos.append((gametypeID, siteHandNo, heroSeat))
+        self.siteHandNos.append(key)
         return False
     
     def getSqlPlayerIDs(self, pnames, siteid, hero):
