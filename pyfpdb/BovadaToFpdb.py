@@ -74,14 +74,17 @@ class Bovada(HandHistoryConverter):
                            'OMAHA HiLo' : ('hold','omahahilo'),
                                 '7CARD' : ('stud', 'studhi'),
                            '7CARD HiLo' : ('stud', 'studhilo'),
+                      'HOLDEMZonePoker' : ('hold','holdem'),
+                       'OMAHAZonePoker' : ('hold','omahahi'),
+                      
                }
     currencies = {'$':'USD', '':'T$'}
 
     # Static regexes
     re_GameInfo     = re.compile(u"""
           (Bovada|Bodog(\sUK|\sCanada|88)?)\sHand\s\#C?(?P<HID>[0-9]+):?\s+
-          (TBL\#(?P<TABLE>.+?)\s)?
-          (?P<GAME>HOLDEM|OMAHA|7CARD|7CARD\sHiLo|OMAHA\sHiLo)\s+
+          ((?P<ZONE>Zone\sPoker\sID|TBL)\#(?P<TABLE>.+?)\s)?
+          (?P<GAME>HOLDEM|OMAHA|7CARD|7CARD\sHiLo|OMAHA\sHiLo|HOLDEMZonePoker|OMAHAZonePoker)\s+
           (Tournament\s\#                # open paren of tournament info Tournament #2194767 TBL#1, 
           (?P<TOURNO>\d+)\sTBL\#(?P<TABLENO>\d+),
           \s)?
@@ -267,8 +270,10 @@ class Bovada(HandHistoryConverter):
             if key == 'TABLE':
                 if info.get('TABLENO'):
                     hand.tablename = info.get('TABLENO')
+                elif info['ZONE'] and 'Zone' in info['ZONE']:
+                    hand.tablename = info['ZONE'] + ' ' +info[key]
                 else:
-                    hand.tablename = info[key]
+                    hand.tablename = info[key]        
             if key == 'MAX' and info[key] != None:
                 hand.maxseats = int(info[key])
             if key == 'HU' and info[key] != None:
