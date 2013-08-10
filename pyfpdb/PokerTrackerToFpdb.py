@@ -169,7 +169,7 @@ class PokerTracker(HandHistoryConverter):
     # we don't have to, and it makes life faster.
     re_PostSB            = re.compile(r"^%(PLYR)s:? ((posts|posted) the small blind( of)?|Post SB) (\- )?%(CUR)s(?P<SB>[%(NUM)s]+)" %  substitutions, re.MULTILINE)
     re_PostBB            = re.compile(r"^%(PLYR)s:? ((posts|posted) the big blind( of)?|posts the dead blind of|Post BB) (\- )?%(CUR)s(?P<BB>[%(NUM)s]+)" %  substitutions, re.MULTILINE)
-    re_Antes             = re.compile(r"^%(PLYR)s:? ((posts|posted) the ante of|Post Ante) (\- )?%(CUR)s(?P<ANTE>[%(NUM)s]+)" % substitutions, re.MULTILINE)
+    re_Antes             = re.compile(r"^%(PLYR)s:? ((posts|posted) (the )?ante( of)?|Post Ante) (\- )?%(CUR)s(?P<ANTE>[%(NUM)s]+)" % substitutions, re.MULTILINE)
     re_PostBoth1         = re.compile(r"^%(PLYR)s:? (posts|Post|Post DB) %(CUR)s(?P<SBBB>[%(NUM)s]+)" %  substitutions, re.MULTILINE)
     re_PostBoth2         = re.compile(r"^%(PLYR)s:? posted to play \- %(CUR)s(?P<SBBB>[%(NUM)s]+)" %  substitutions, re.MULTILINE)
     re_HeroCards1        = re.compile(r"^Dealt to %(PLYR)s(?: \[(?P<OLDCARDS>.+?)\])?( \[(?P<NEWCARDS>.+?)\])" % substitutions, re.MULTILINE)
@@ -185,7 +185,7 @@ class PokerTracker(HandHistoryConverter):
                          %  substitutions, re.MULTILINE|re.VERBOSE)
     re_Action2           = re.compile(r"""
                         ^%(PLYR)s(?P<ATYPE>\sbet|\schecked|\sraised|\scalled|\sfolded|\swent\sall\-in)
-                        (\s\-\s%(CUR)s(?P<BET>[%(NUM)s]+))? """
+                        (\s\-\s%(CUR)s(?P<BET>[%(NUM)s]+))?\s*$"""
                          %  substitutions, re.MULTILINE|re.VERBOSE)
     re_ShownCards1     = re.compile("^%(PLYR)s:? (?P<SHOWED>shows|Shows|mucked) \[(?P<CARDS>.*)\]" % substitutions, re.MULTILINE)
     re_ShownCards2     = re.compile("^%(PLYR)s (?P<SHOWED>shows|mucks): (?P<CARDS>.+)\n" % substitutions, re.MULTILINE)
