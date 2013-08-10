@@ -86,7 +86,7 @@ class PokerTrackerSummary(TourneySummary):
 
         mg = m.groupdict()
         if 'SITE'    in mg:
-            self.siteName = mg['SITE']
+            self.siteName = mg['SITE'].replace('MicroGaming', 'Microgaming')
             self.siteId   = self.SITEIDS.get(self.siteName)
             if self.siteId is None:
                 tmp = self.summaryText[0:200]
@@ -107,7 +107,7 @@ class PokerTrackerSummary(TourneySummary):
             self.entries = mg['ENTRIES']
             self.prizepool = int(Decimal(self.clearMoneyString(mg['BUYIN']))) * int(self.entries)
         if 'DATETIME'  in mg: 
-            if self.siteName == 'iPoker':
+            if self.siteName in ('iPoker', 'Microgaming'):
                 m1 = self.re_DateTime1.finditer(mg['DATETIME'])
             elif self.siteName == 'Merge':
                 m1 = self.re_DateTime2.finditer(mg['DATETIME'])

@@ -121,9 +121,11 @@ class PokerTracker(HandHistoryConverter):
         """ % substitutions, re.MULTILINE|re.VERBOSE)
     
     re_GameInfo3     = re.compile(u"""
-          (?P<HID>[0-9]+)\sstarting\s\-\s(?P<DATETIME>.*$)\s
-          \*\*\s(?P<TABLE>.+)\[(?P<GAME>Hold\'em|Omaha|Omaha\sHi|Omaha\sHi/Lo)\]\s
-          \((?P<SB>[%(NUM)s]+)\|(?P<BB>[%(NUM)s]+)\s(?P<LIMIT>NL|FL|PL)\s\-\s(?P<CURRENCY>%(LS)s|)\sCash\sGame\)\s(Real|Play)\sMoney
+          (?P<HID>[0-9]+)(\sVersion:\d)?\sstarting\s\-\s(?P<DATETIME>.*$)\s
+          \*\*(?P<TOUR>.+(?P<SPEED>(Turbo|Hyper))?\((?P<TOURNO>\d+)\):Table)?\s(?P<TABLE>.+)\s
+          \[((Multi|Single)\sTable\s)?(?P<GAME>Hold\'em|Omaha|Omaha\sHi|Omaha\sHi/Lo)\]\s
+          \((?P<SB>[%(NUM)s]+)\|(?P<BB>[%(NUM)s]+)\s(?P<LIMIT>NL|FL|PL)\s\-\s(MTT|SNG|STT|(?P<CURRENCY>%(LS)s|)\sCash\sGame)(\sseats:(?P<MAX>\d+))?.*\)\s
+          (?P<PLAY>Real|Play)\sMoney
         """ % substitutions, re.MULTILINE|re.VERBOSE)
 
     re_PlayerInfo1   = re.compile(u"""
@@ -364,6 +366,8 @@ class PokerTracker(HandHistoryConverter):
             if key == 'TABLE':
                 if hand.gametype['type'] == 'tour':
                     hand.tablename = '0'
+                elif hand.gametype['type'] == 'tour' and self.sitename == 'Microgaming':
+                    hand.tablename = info[key]
                 else:
                     hand.tablename = re.split(",", info[key])[0]
                     hand.tablename = hand.tablename.strip()
@@ -374,7 +378,7 @@ class PokerTracker(HandHistoryConverter):
                 if seats <=10:
                     hand.maxseats = int(info[key])
 
-            if key == 'PLAY' and info['PLAY'] is not None:
+            if key == 'PLAY' and info['PLAY'] is not None and info['PLAY']=='Play':
 #                hand.currency = 'play' # overrides previously set value
                 hand.gametype['currency'] = 'play'
                 
