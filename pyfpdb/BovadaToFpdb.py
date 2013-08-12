@@ -72,8 +72,10 @@ class Bovada(HandHistoryConverter):
                                "HOLDEM" : ('hold','holdem'),
                                 'OMAHA' : ('hold','omahahi'),
                            'OMAHA HiLo' : ('hold','omahahilo'),
-                                '7CARD' : ('stud', 'studhi'),
-                           '7CARD HiLo' : ('stud', 'studhilo'),
+                             'OMAHA_HL' : ('hold','omahahilo'),
+                                '7CARD' : ('stud','studhi'),
+                           '7CARD HiLo' : ('stud','studhilo'),
+                             '7CARD_HL' : ('hold','studhilo'),
                       'HOLDEMZonePoker' : ('hold','holdem'),
                        'OMAHAZonePoker' : ('hold','omahahi'),
                       
@@ -84,7 +86,7 @@ class Bovada(HandHistoryConverter):
     re_GameInfo     = re.compile(u"""
           (Bovada|Bodog(\sUK|\sCanada|88)?)\sHand\s\#C?(?P<HID>[0-9]+):?\s+
           ((?P<ZONE>Zone\sPoker\sID|TBL)\#(?P<TABLE>.+?)\s)?
-          (?P<GAME>HOLDEM|OMAHA|7CARD|7CARD\sHiLo|OMAHA\sHiLo|HOLDEMZonePoker|OMAHAZonePoker)\s+
+          (?P<GAME>HOLDEM|OMAHA|OMAHA_HL|7CARD|7CARD\sHiLo|OMAHA\sHiLo|7CARD_HL|HOLDEMZonePoker|OMAHAZonePoker)\s+
           (Tournament\s\#                # open paren of tournament info Tournament #2194767 TBL#1, 
           (?P<TOURNO>\d+)\sTBL\#(?P<TABLENO>\d+),
           \s)?
@@ -493,7 +495,7 @@ class Bovada(HandHistoryConverter):
             acts = action.groupdict()
             #print "DEBUG: %s, %s, %s" % (street, acts['PNAME'], acts['ATYPE']), action.group('BET')
             player = self.playerSeatFromPosition('BovadaToFpdb.readAction', hand.handid, action.group('PNAME'))
-            if action.group('ATYPE') not in (' Fold', ' Card dealt to a spot', ' Big blind/Bring in') and not hand.allInBlind:
+            if action.group('ATYPE') not in (' Checks', ' Fold', ' Card dealt to a spot', ' Big blind/Bring in') and not hand.allInBlind:
                 hand.setUncalledBets(False)
             if action.group('ATYPE') == ' Fold':
                 hand.addFold( street, player)
