@@ -1,0 +1,42 @@
+Bovada Hand #2725384529 TBL#4801331 HOLDEM Fixed Limit - 2013-07-21 21:16:46
+Seat 1: Dealer ($383.14 in chips)
+Seat 3: Small Blind [ME] ($489 in chips)
+Seat 4: Big Blind ($8 in chips)
+Seat 5: UTG ($1,230.39 in chips)
+Dealer : Set dealer/Bring in spot [1] 
+Small Blind  [ME] : Ante/Small Blind $4 
+Big Blind : All-in $8 
+*** HOLE CARDS ***
+Dealer : Card dealt to a spot [Kh Qc] 
+Small Blind  [ME] : Card dealt to a spot [Th Tc] 
+Big Blind : Card dealt to a spot [Kd 3c] 
+UTG : Card dealt to a spot [2s 4h] 
+UTG : Folds
+Dealer : Raises $16 to $16
+Small Blind  [ME] : Raises $20 to $24
+Dealer : Raises $16 to $32
+Small Blind  [ME] : Calls $8 
+*** FLOP *** [7c 3d 9h]
+Small Blind  [ME] : Bets $8 
+Dealer : Calls $8 
+*** TURN *** [7c 3d 9h] [Qd]
+Small Blind  [ME] : Bets $16 
+Dealer : Raises $32 to $32
+Small Blind  [ME] : Calls $16 
+*** RIVER *** [7c 3d 9h Qd] [9c]
+Small Blind  [ME] : Checks
+Dealer : Bets $16 
+Small Blind  [ME] : Calls $16 
+Dealer : Showdown [Qd Qc 9h 9c Kh] (Two pair)
+Small Blind  [ME] : Mucks [Th Tc] (Two pair)
+Big Blind : Mucks [Kd 3c] (Two pair)
+Dealer : Hand result-Side pot $158.27 
+Dealer : Hand result $23.73 
+Big Blind : Seat sit out
+*** SUMMARY ***
+Total Pot($184)
+Board [7c 3d 9h Qd 9c]
+Seat+1: Dealer $182  with Two pair [Kh Qc-Qd Qc 9h 9c Kh]  
+Seat+3: Small Blind [Mucked] [Th Tc]  
+Seat+4: Big Blind [Mucked] [Kd 3c]  
+Seat+5: UTG Folded before the FLOP

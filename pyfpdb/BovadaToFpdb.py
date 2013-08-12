@@ -329,9 +329,14 @@ class Bovada(HandHistoryConverter):
         if hand.gametype['base'] == "hold":
             street, firststreet = 'PREFLOP', 'PREFLOP'
         else:
-            street, firststreet = 'THIRD', 'THIRD'   
+            street, firststreet = 'THIRD', 'THIRD'  
+        m = self.re_Action.finditer(self.re_Hole_Third.split(hand.handText)[0])
+        allinblind = 0
+        for action in m:
+            if action.group('ATYPE') == ' All-in':
+                allinblind+=1
         m = self.re_Action.finditer(self.re_Hole_Third.split(hand.handText)[-1])
-        dealtIn = len(hand.players)# - len(hand.sitout)
+        dealtIn = len(hand.players) - allinblind
         streetactions, streetno, players, i, contenders, bets = 0, 1, dealtIn, 0, dealtIn, 0
         for action in m:
             acts = action.groupdict()
@@ -355,7 +360,7 @@ class Bovada(HandHistoryConverter):
                 if action.group('ATYPE')!=' Big blind/Bring in' or hand.gametype['base'] == 'stud':
                     streetactions += 1
             hand.streets[street] += action.group('ACTION') + '\n'
-            #print street, action.group('PNAME'), action.group('ATYPE'), streetactions, players, contenders
+            print street, action.group('PNAME'), action.group('ATYPE'), streetactions, players, contenders
             if streetactions == players:
                 streetno += 1
                 if streetno < len(hand.actionStreets):
