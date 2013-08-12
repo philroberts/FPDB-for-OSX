@@ -360,7 +360,7 @@ class Bovada(HandHistoryConverter):
                 if action.group('ATYPE')!=' Big blind/Bring in' or hand.gametype['base'] == 'stud':
                     streetactions += 1
             hand.streets[street] += action.group('ACTION') + '\n'
-            print street, action.group('PNAME'), action.group('ATYPE'), streetactions, players, contenders
+            #print street, action.group('PNAME'), action.group('ATYPE'), streetactions, players, contenders
             if streetactions == players:
                 streetno += 1
                 if streetno < len(hand.actionStreets):
