@@ -199,6 +199,11 @@ class Bovada(HandHistoryConverter):
         if 'CURRENCY' in mg and mg['CURRENCY'] is not None:
             info['currency'] = self.currencies[mg['CURRENCY']]
             
+        if 'Zone' in mg['GAME']:
+            info['fast'] = True
+        else:
+            info['fast'] = False
+            
         if info['limitType'] == 'fl' and info['bb'] is not None:
             if info['type'] == 'ring':
                 try:
