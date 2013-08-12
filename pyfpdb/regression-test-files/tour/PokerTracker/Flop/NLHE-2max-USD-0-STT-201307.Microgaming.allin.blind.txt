@@ -1,0 +1,20 @@
+** Game ID 4969489282 Version:4 starting - 2013-07-18 14:34:51
+** Heads Up(10195133):Table 1 [Multi Table Hold'em] (10|20 NL - MTT seats:2 ) Real Money
+
+- Hero sitting in seat 1 with 2990.00 at end 3000.00 [Dealer]
+- Player0 sitting in seat 2 with 10.00 at end 0.00 [Sitting out]
+
+Hero posted the small blind - 10.00
+Player0 went all-in - 10.00
+** Dealing card to Hero: 6 of d, K of h
+Hero shows: 6 of d, K of h
+Player0 shows: 7 of s, 4 of s
+** Dealing the flop: 9 of d, 8 of d, 3 of c
+** Dealing the turn: J of c
+** Dealing the river: K of d
+Hero shows: 6 of d, K of h
+Hero wins 20.00 from the main pot
+
+End of game 4969489282
+
+

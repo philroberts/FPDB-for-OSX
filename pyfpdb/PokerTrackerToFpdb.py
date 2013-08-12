@@ -193,6 +193,7 @@ class PokerTracker(HandHistoryConverter):
     re_CollectPot2     = re.compile(r"^%(PLYR)s wins %(CUR)s(?P<POT>[%(NUM)s]+)" %  substitutions, re.MULTILINE)
     re_Cancelled       = re.compile('Hand\scancelled', re.MULTILINE)
     re_Tournament      = re.compile('\(Tournament:')
+    re_Hole            = re.compile(r"\*\*\sDealing\scard")
 
     def compilePlayerRegexs(self,  hand):
         pass
@@ -442,7 +443,7 @@ class PokerTracker(HandHistoryConverter):
             hand.addAnte(player.group('PNAME'), player.group('ANTE'))
         
     def readBlinds(self, hand):
-        liveBlind = True
+        liveBlind, bb, sb = True, None, None
         for a in self.re_PostSB.finditer(hand.handText):
             sb = self.clearMoneyString(a.group('SB'))
             if liveBlind:
@@ -478,6 +479,16 @@ class PokerTracker(HandHistoryConverter):
                 bet = self.clearMoneyString(a.group('SBBB'))
                 amount = str(Decimal(bet) + Decimal(bet)/2)
                 hand.addBlind(a.group('PNAME'), 'both', amount)
+            for a in self.re_Action2.finditer(self.re_Hole.split(hand.handText)[0]):
+                if a.group('ATYPE') == ' went all-in':
+                    amount = Decimal(self.clearMoneyString(a.group('BET')))
+                    player = a.group('PNAME')
+                    if bb is None:
+                        hand.addBlind(player, 'big blind', self.clearMoneyString(a.group('BET')))
+                        self.allInBlind(hand, 'PREFLOP', a, 'big blind')
+                    elif sb is None:
+                        hand.addBlind(player, 'small blind', self.clearMoneyString(a.group('BET')))
+                        self.allInBlind(hand, 'PREFLOP', a, 'small blind')
         else:
             for a in self.re_PostBoth1.finditer(hand.handText):
                 self.adjustMergeTourneyStack(hand, a.group('PNAME'), a.group('SBBB'))
@@ -587,7 +598,13 @@ class PokerTracker(HandHistoryConverter):
                 curr_pot = amount
             else:
                 print (_("DEBUG:") + " " + _("Unimplemented %s: '%s' '%s'") % ("readAction", action.group('PNAME'), action.group('ATYPE')))
-
+                
+    def allInBlind(self, hand, street, action, actiontype):
+        if street in ('PREFLOP', 'DEAL'):
+            player = action.group('PNAME')
+            if hand.stacks[player]==0:
+                hand.setUncalledBets(True)
+                
     def adjustMergeTourneyStack(self, hand, player, amount):
         if self.sitename == 'Merge':
             amount = Decimal(self.clearMoneyString(amount))
