@@ -4617,8 +4617,8 @@ class Sql:
                             ,max(gt.bigBlind)                                                       AS maxbigblind
                             /*,<hcgametypeId>                                                         AS gtid*/
                             ,<position>                                                             AS plposition
-                            ,count(1)                                                               AS n
                             ,gt.fast                                                                AS fast
+                            ,count(1)                                                               AS n
                             ,case when sum(cast(hp.street0VPIChance as <signed>integer)) = 0 then -999
                                   else 100.0*sum(cast(hp.street0VPI as <signed>integer))/sum(cast(hp.street0VPIChance as <signed>integer))
                              end                                                                    AS vpip
@@ -4747,6 +4747,7 @@ class Sql:
                               <groupbyseats>
                               ,plposition
                               ,upper(gt.limitType)
+                              ,gt.fast
                               ,s.name
                       having 1 = 1 <havingclause>
                       order by pname
@@ -4760,6 +4761,7 @@ class Sql:
                               <orderbyhgametypeId>
                               ,upper(gt.limitType) desc
                               ,maxbigblind desc
+                              ,gt.fast
                               ,s.name
                       """
         elif db_server == 'postgresql':
@@ -4774,8 +4776,8 @@ class Sql:
                             ,max(gt.bigBlind)                                                       AS maxbigblind
                             /*,<hcgametypeId>                                                       AS gtid*/
                             ,<position>                                                             AS plposition
-                            ,count(1)                                                               AS n
                             ,gt.fast                                                                AS fast
+                            ,count(1)                                                               AS n
                             ,case when sum(cast(hp.street0VPIChance as <signed>integer)) = 0 then -999
                                   else 100.0*sum(cast(hp.street0VPI as <signed>integer))/sum(cast(hp.street0VPIChance as <signed>integer))
                              end                                                                    AS vpip
@@ -4915,6 +4917,7 @@ class Sql:
                               <groupbyseats>
                               ,plposition
                               ,upper(gt.limitType)
+                              ,gt.fast
                               ,s.name
                       having 1 = 1 <havingclause>
                       order by pname
@@ -4929,6 +4932,7 @@ class Sql:
                               <orderbyhgametypeId>
                               ,upper(gt.limitType) desc
                               ,maxbigblind desc
+                              ,gt.fast
                               ,s.name
                       """
         elif db_server == 'sqlite':
@@ -4943,8 +4947,8 @@ class Sql:
                             ,max(gt.bigBlind)                                                       AS maxbigblind
                             /*,<hcgametypeId>                                                       AS gtid*/
                             ,<position>                                                             AS plposition
-                            ,count(1)                                                               AS n
                             ,gt.fast                                                                AS fast
+                            ,count(1)                                                               AS n
                             ,case when sum(cast(hp.street0VPIChance as <signed>integer)) = 0 then -999
                                   else 100.0*sum(cast(hp.street0VPI as <signed>integer))/sum(cast(hp.street0VPIChance as <signed>integer))
                              end                                                                    AS vpip
@@ -5072,6 +5076,7 @@ class Sql:
                               <groupbyseats>
                               ,plposition
                               ,upper(gt.limitType)
+                              ,gt.fast
                               ,s.name
                       having 1 = 1 <havingclause>
                       order by hp.playerId
@@ -5086,6 +5091,7 @@ class Sql:
                               <orderbyhgametypeId>
                               ,upper(gt.limitType) desc
                               ,max(gt.bigBlind) desc
+                              ,gt.fast
                               ,s.name
                       """
 
