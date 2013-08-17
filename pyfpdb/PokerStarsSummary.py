@@ -77,7 +77,9 @@ class PokerStarsSummary(TourneySummary):
                         (?P<ENTRIES>[0-9]+)\splayers\s+
                         ([%(LS)s]?(?P<ADDED>[,.\d]+)(\s(%(LEGAL_ISO)s))?\sadded\sto\sthe\sprize\spool\sby\sPokerStars(\.com)?\s+)?
                         (Total\sPrize\sPool:\s[%(LS)s]?(?P<PRIZEPOOL>[,.0-9]+)(\s(%(LEGAL_ISO)s))?\s+)?
-                        (Target\sTournament\s.+?\s)?
+                        (?P<SATELLITE>Target\sTournament\s\#(?P<TARGTOURNO>[0-9]+)\s
+                        Buy-In:\s(?P<TARGCURRENCY>[%(LS)s]?)(?P<TARGBUYIN>[,.0-9]+)(\/[%(LS)s]?(?P<TARGFEE>[,.0-9]+))?(\/[%(LS)s]?(?P<TARGBOUNTY>[,.0-9]+))?(?P<TARGCUR>\s(%(LEGAL_ISO)s))?\s+)?
+                        ([0-9]+\stickets?\sto\sthe\starget\stournament\s+)?
                         Tournament\sstarted\s+(-\s)?
                         (?P<DATETIME>.*$)
                         """ % substitutions ,re.VERBOSE|re.MULTILINE)
@@ -99,7 +101,7 @@ class PokerStarsSummary(TourneySummary):
                         ur'<td nowrap align="right".*?>(?P<KOS>[,.0-9]+)</td>' 
                         % substitutions)
 
-    re_Player = re.compile(u"""(?P<RANK>[0-9]+):\s(?P<NAME>.+?)\s\(.+?\),(\s)?((?P<CUR>[%(LS)s]?)(?P<WINNINGS>[,.0-9]+))?(?P<STILLPLAYING>still\splaying)?((?P<TICKET>Tournament\sTicket)\s\(WSOP\sStep\s(?P<LEVEL>\d)\))?(\s+)?""" % substitutions)
+    re_Player = re.compile(u"""(?P<RANK>[0-9]+):\s(?P<NAME>.+?)\s\(.+?\),(\s)?((?P<CUR>[%(LS)s]?)(?P<WINNINGS>[,.0-9]+))?(?P<STILLPLAYING>still\splaying)?((?P<TICKET>Tournament\sTicket)\s\(WSOP\sStep\s(?P<LEVEL>\d)\))?(?P<QUALIFIED>\s\(qualified\sfor\sthe\starget\stournament\))?(\s+)?""" % substitutions)
     re_HTMLPlayer = re.compile(ur"<h2>All\s+(?P<SNG>(Regular|Sit & Go))\s?Tournaments\splayed\sby\s'(<b>)?(?P<NAME>.+?)':?</h2>")
     
     re_DateTime = re.compile("""(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)""", re.MULTILINE)
@@ -218,14 +220,14 @@ class PokerStarsSummary(TourneySummary):
             self.buyinCurrency="FREE"
             self.currency="USD"
         elif info['FPPBUYIN'] != None:
-            self.buyinCurrency="FPP"
+            self.buyinCurrency="PSFP"
         elif self.currency != None:
             self.buyinCurrency=self.currency
         else:
             self.buyinCurrency = "play"
             self.currency = "play"
             
-        if self.buyinCurrency not in ('FREE', 'FPP'):
+        if self.buyinCurrency not in ('FREE', 'PSFP'):
             self.prizepool = int(Decimal(self.entries))*self.buyin
         
         if self.isSng:
@@ -277,6 +279,21 @@ class PokerStarsSummary(TourneySummary):
         if 'PRIZEPOOL' in mg:
             if mg['PRIZEPOOL'] != None: self.prizepool = int(Decimal(self.clearMoneyString(mg['PRIZEPOOL'])))
         if 'ENTRIES'   in mg: self.entries               = int(mg['ENTRIES'])
+        if 'SATELLITE' in mg and 'SATELLITE'!=None:
+            self.isSatellite = True
+            targetBuyin, targetCurrency = 0, "USD"
+            if mg['TARGBUYIN'] != None:
+                targetBuyin += int(100*Decimal(self.clearMoneyString(mg['TARGBUYIN'])))
+            if mg['TARGFEE'] != None:
+                targetBuyin += int(100*Decimal(self.clearMoneyString(mg['TARGFEE'])))
+            if mg['TARGBOUNTY'] != None:
+                targetBuyin += int(100*Decimal(self.clearMoneyString(mg['TARGBOUNTY'])))
+            if mg['TARGCUR'] != None:
+                if mg['CUR'] == "$":     targetCurrency="USD"
+                elif mg['CUR'] == u"€":  targetCurrency="EUR"
+                elif mg['CUR'] == u"£":  targetCurrency="GBP"
+                elif mg['CUR'] == "FPP": targetCurrency="PSFP"                
+            
         if 'DATETIME'  in mg: m1 = self.re_DateTime.finditer(mg['DATETIME'])
         datetimestr = "2000/01/01 00:00:00"  # default used if time not found
         for a in m1:
@@ -323,7 +340,7 @@ class PokerStarsSummary(TourneySummary):
                 rank=None
                 winnings=None
 
-            if 'TICKET' and mg['TICKET'] != None:
+            if 'TICKET' in mg and mg['TICKET'] != None:
                 #print "Tournament Ticket Level %s" % mg['LEVEL']
                 step_values = {
                                 '1' :    '750', # Step 1 -    $7.50 USD
@@ -334,6 +351,10 @@ class PokerStarsSummary(TourneySummary):
                                 '6' : '210000', # Step 6 - $2100.00 USD
                               }
                 winnings = step_values[mg['LEVEL']]
+            
+            if 'QUALIFIED' in mg and mg['QUALIFIED'] != None and self.isSatellite:
+                winnings = targetBuyin
+                self.currency = targetCurrency      
 
             #TODO: currency, ko/addon/rebuy count -> need examples!
             #print "DEBUG: addPlayer(%s, %s, %s, %s, None, None, None)" %(rank, name, winnings, self.currency)
