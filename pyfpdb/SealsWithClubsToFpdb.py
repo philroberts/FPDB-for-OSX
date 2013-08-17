@@ -187,6 +187,8 @@ class SealsWithClubs(HandHistoryConverter):
                     hand.tablename = info[key]
             if key == 'MAX' and info[key] != None:
                 hand.maxseats = int(info[key])
+            if key == 'HU' and info[key] != None:
+                hand.maxseats = 2
                 
         if self.re_Cancelled.search(hand.handText):
             raise FpdbHandPartial(_("Hand '%s' was cancelled.") % hand.handid)
