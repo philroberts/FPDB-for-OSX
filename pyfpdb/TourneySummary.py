@@ -56,7 +56,7 @@ class TourneySummary(object):
                'Cake':17, 'Entraction':18, 'BetOnline':19, 'Microgaming':20, 'Bovada':21, 'Enet':22}
 
 
-    def __init__(self, db, config, siteName, summaryText, in_path='-', builtFrom="HHC"):
+    def __init__(self, db, config, siteName, summaryText, in_path='-', builtFrom="HHC", header=""):
         self.db = db
         self.config = config
         self.siteName = siteName
@@ -64,6 +64,7 @@ class TourneySummary(object):
         if siteName in self.SITEIDS:
             self.siteId = self.SITEIDS[siteName]
         self.in_path = in_path
+        self.header = header
         
         self.summaryText = summaryText
         self.tourneyName = None

@@ -578,9 +578,11 @@ class Importer:
             for j, summaryText in enumerate(summaryTexts, start=1):
                 doinsert = len(summaryTexts)==j
                 try:
-                    conv = obj(db=self.database, config=self.config, siteName=fpdbfile.site.name, summaryText=summaryText, in_path = fpdbfile.path)
+                    conv = obj(db=self.database, config=self.config, siteName=fpdbfile.site.name, summaryText=summaryText, in_path = fpdbfile.path, header=summaryTexts[0])
                     self.database.resetBulkCache(False)
                     conv.insertOrUpdate(printtest = self.settings['testData'])
+                except Exceptions.FpdbHandPartial, e:
+                    partial += 1
                 except FpdbParseError, e:
                     log.error(_("Summary import parse error in file: %s") % fpdbfile.path)
                     errors += 1
@@ -590,7 +592,7 @@ class Importer:
             ####Lock Placeholder####
 
         ttime = time() - ttime
-        return (imported - errors, duplicates, partial, errors, ttime)
+        return (imported - errors - partial, duplicates, partial, errors, ttime)
 
     def progressNotify(self):
         "A callback to the interface while events are pending"
