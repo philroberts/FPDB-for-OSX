@@ -495,14 +495,14 @@ class Fulltilt(HandHistoryConverter):
     def markStreets(self, hand):
 
         if hand.gametype['base'] == 'hold':
-            m =  re.search(r"\*\*\* HOLE CARDS \*\*\*(?P<PREFLOP>.+(?=\*\*\* FLOP (1\s)?\*\*\*)|.+)"
-                       r"(\*\*\* FLOP \*\*\*(?P<FLOP> \[\S\S \S\S \S\S\].+(?=\*\*\* TURN (1\s)?\*\*\*)|.+))?"
+            m =  re.search(r"\*\*\* HOLE CARDS \*\*\*(?P<PREFLOP>(.+\*\*\* FLOPET \*\*\* (?P<FLOPET>\[\S\S\]))?.+(?=\*\*\* FLOP (1\s)?\*\*\*)|.+)"
+                       r"(\*\*\* FLOP \*\*\*(?P<FLOP> \[\S\S \S\S( \S\S)?\].+(?=\*\*\* TURN (1\s)?\*\*\*)|.+))?"
                        r"(\*\*\* TURN \*\*\* \[\S\S \S\S \S\S] (?P<TURN>\[\S\S\].+(?=\*\*\* RIVER (1\s)?\*\*\*)|.+))?"
                        r"(\*\*\* RIVER \*\*\* \[\S\S \S\S \S\S \S\S] (?P<RIVER>\[\S\S\].+))?"
-                       r"(\*\*\* FLOP 1 \*\*\*(?P<FLOP1> \[\S\S \S\S \S\S\].+(?=\*\*\* TURN 1 \*\*\*)|.+))?"
+                       r"(\*\*\* FLOP 1 \*\*\*(?P<FLOP1> \[\S\S \S\S( \S\S)\].+(?=\*\*\* TURN 1 \*\*\*)|.+))?"
                        r"(\*\*\* TURN 1 \*\*\* \[\S\S \S\S \S\S] (?P<TURN1>\[\S\S\].+(?=\*\*\* RIVER 1 \*\*\*)|.+))?"
                        r"(\*\*\* RIVER 1 \*\*\* \[\S\S \S\S \S\S \S\S] (?P<RIVER1>\[\S\S\].+?(?=\*\*\* (FLOP|TURN|RIVER) 2 \*\*\*)))?"
-                       r"(\*\*\* FLOP 2 \*\*\*(?P<FLOP2> \[\S\S \S\S \S\S\].+(?=\*\*\* TURN 2 \*\*\*)|.+))?"
+                       r"(\*\*\* FLOP 2 \*\*\*(?P<FLOP2> \[\S\S \S\S( \S\S)?\].+(?=\*\*\* TURN 2 \*\*\*)|.+))?"
                        r"(\*\*\* TURN 2 \*\*\* \[\S\S \S\S \S\S] (?P<TURN2>\[\S\S\].+(?=\*\*\* RIVER 2 \*\*\*)|.+))?"
                        r"(\*\*\* RIVER 2 \*\*\* \[\S\S \S\S \S\S \S\S] (?P<RIVER2>\[\S\S\].+))?", hand.handText,re.DOTALL)
         elif hand.gametype['base'] == "stud":
@@ -529,7 +529,7 @@ class Fulltilt(HandHistoryConverter):
         hand.addStreets(m)
 
     def readCommunityCards(self, hand, street):
-        if street in ('FLOP','TURN','RIVER'):
+        if street in ('FLOPET','FLOP','TURN','RIVER'):
             #print "DEBUG readCommunityCards:", street, hand.streets[street]
             m = self.re_Board.search(hand.streets[street])
             hand.setCommunityCards(street, m.group('CARDS').split(' '))

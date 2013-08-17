@@ -174,6 +174,8 @@ class DerivedStats():
         # This (i think...) is correct for both stud and flop games, as hand.board['street'] disappears, and
         # those values remain default in stud.
         boardcards = []
+        if hand.board.get('FLOPET')!=None:
+            boardcards += hand.board.get('FLOPET')
         for street in hand.communityStreets:
             boardcards += hand.board[street]
         boardcards += [u'0x', u'0x', u'0x', u'0x', u'0x']
