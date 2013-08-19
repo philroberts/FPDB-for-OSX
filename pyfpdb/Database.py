@@ -3731,7 +3731,7 @@ class Database:
                         if summaryDict[player][entryIdx]==None and resultDict[ev[1]]!=None:#DB has this value but object doesnt, so update object 
                             summaryDict[player][entryIdx] = resultDict[ev[1]]
                             setattr(summary, summaryAttribute, summaryDict)
-                        elif summaryDict!=None and resultDict[ev[1]]==None:#object has this value but DB doesnt, so update DB
+                        elif summaryDict[player][entryIdx]!=None and not resultDict[ev[1]]:#object has this value but DB doesnt, so update DB
                             updateDb=True
                     if updateDb:
                         q = self.sql.query['updateTourneysPlayer'].replace('%s', self.sql.query['placeholder'])
