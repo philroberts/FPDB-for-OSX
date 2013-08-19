@@ -98,7 +98,9 @@ class PokerStarsSummary(TourneySummary):
                         ur'<td align="right">(?P<ENTRIES>[0-9]+)</td>' \
                         ur'(<td align="right".*?>[,.0-9]+</td>)?' \
                         ur'<td nowrap align="right".*?>(?P<WINNINGS>[,.0-9]+)(?P<FPPWINNINGS>\s\+\s[,.0-9]+\sFPP)?</td>' \
-                        ur'<td nowrap align="right".*?>(?P<KOS>[,.0-9]+)</td>' 
+                        ur'<td nowrap align="right".*?>(?P<KOS>[,.0-9]+)</td>' \
+                        ur'<td.*?>((?P<TARGET>[,.0-9]+)|(&nbsp;))</td>' \
+                        ur'<td.*?>((?P<WONTICKET>\*\\\/\*)|(&nbsp;))</td>' 
                         % substitutions)
 
     re_Player = re.compile(u"""(?P<RANK>[0-9]+):\s(?P<NAME>.+?)\s\(.+?\),(\s)?((?P<CUR>[%(LS)s]?)(?P<WINNINGS>[,.0-9]+))?(?P<STILLPLAYING>still\splaying)?((?P<TICKET>Tournament\sTicket)\s\(WSOP\sStep\s(?P<LEVEL>\d)\))?(?P<QUALIFIED>\s\(qualified\sfor\sthe\starget\stournament\))?(\s+)?""" % substitutions)
@@ -205,6 +207,10 @@ class PokerStarsSummary(TourneySummary):
                 self.speed = 'Turbo'
             elif info['SPEED']=='Hyper-Turbo':
                 self.speed = 'Hyper'
+        if 'TARGET' in info and info['TARGET']!=None:
+            self.isSatellite = True
+            if 'WONTICKET' in info and info['WONTICKET']!=None:
+                self.comment = info['TARGET']               
             
         if 'DATETIME'  in info: m4 = self.re_HTMLDateTime.finditer(info['DATETIME'])
         datetimestr = "2000/01/01 12:00:00 AM"  # default used if time not found
