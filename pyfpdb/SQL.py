@@ -8874,7 +8874,7 @@ class Sql:
         self.query['insertTourney'] = """INSERT INTO Tourneys
                                             (tourneyTypeId, sessionId, siteTourneyNo, entries, prizepool,
                                              startTime, endTime, tourneyName, totalRebuyCount, totalAddOnCount,
-                                             omment, commentTs, added, addedCurrency)
+                                             comment, commentTs, added, addedCurrency)
                                         VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
         """
         
