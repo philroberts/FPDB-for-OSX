@@ -46,9 +46,13 @@ class PokerStarsSummary(TourneySummary):
                                'Badugi' : ('draw','badugi'),
               'Triple Draw 2-7 Lowball' : ('draw','27_3draw'),
               'Single Draw 2-7 Lowball' : ('draw','27_1draw'),
+                      'Triple Draw 2-7' : ('draw','27_3draw'),
+                      'Single Draw 2-7' : ('draw','27_1draw'),
                           '5 Card Draw' : ('draw','fivedraw'),
                                 'HORSE' : ('mixed','horse'),
                                  'HOSE' : ('mixed','hose'),
+                                'Horse' : ('mixed','horse'),
+                                 'Hose' : ('mixed','hose'),
                           'Triple Stud' : ('mixed','3stud'),
                                '8-Game' : ('mixed','8game'),
                         'Mixed PLH/PLO' : ('mixed','plh_plo'),
@@ -89,7 +93,7 @@ class PokerStarsSummary(TourneySummary):
                         ur'(<td>(?P<TOURNAME>.*)</td>)?' \
                         ur'<td align="right">' \
                         ur'(?P<LIMIT>[ a-zA-Z\-]+)\s' \
-                        ur'(?P<GAME>Hold\'em|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Omaha|Omaha\sHi/Lo|Badugi|Triple\sDraw\s2\-7\sLowball|Single\sDraw\s2\-7\sLowball|5\sCard\sDraw|5\sCard\sOmaha(\sHi/Lo)?|Courchevel(\sHi/Lo)?|HORSE|8\-Game|HOSE|Mixed\sOmaha\sH/L|Mixed\sHold\'em|Mixed\sPLH/PLO|Mixed\sNLH/PLO|Triple\sStud|Mixed\sNLH/NLO)</td>' \
+                        ur'(?P<GAME>Hold\'em|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Omaha|Omaha\sHi/Lo|Badugi|Triple\sDraw\s2\-7(\sLowball)?|Single\sDraw\s2\-7(\sLowball)?|5\sCard\sDraw|5\sCard\sOmaha(\sHi/Lo)?|Courchevel(\sHi/Lo)?|HORSE|Horse|8\-Game|HOSE|Hose|Mixed\sOmaha\sH/L|Mixed\sHold\'em|Mixed\sPLH/PLO|Mixed\sNLH/PLO|Triple\sStud|Mixed\sNLH/NLO)</td>' \
                         ur'<td.*?>(?P<CURRENCY>(%(LEGAL_ISO)s)?)(&nbsp;)?</td>' \
                         ur'<td.*?>(?P<BUYIN>([,.0-9]+|Freeroll))(?P<FPPBUYIN>\sFPP)?</td>' \
                         ur'<td align="right".*?>(?P<REBUYADDON>[,.0-9]+)</td>' \
@@ -102,9 +106,27 @@ class PokerStarsSummary(TourneySummary):
                         ur'<td.*?>((?P<TARGET>[,.0-9]+)|(&nbsp;))</td>' \
                         ur'<td.*?>((?P<WONTICKET>\*\\\/\*)|(&nbsp;))</td>' 
                         % substitutions)
+    
+    re_XLSTourneyInfo = {}
+    re_XLSTourneyInfo['Date/Time'] = re.compile(r'(?P<DATETIME>.*)')
+    re_XLSTourneyInfo['Tourney'] = re.compile(r'(?P<TOURNO>[0-9]+)')
+    re_XLSTourneyInfo['Name'] = re.compile(ur'(?P<TOURNAME>.*)')
+    re_XLSTourneyInfo['Game'] = re.compile(ur'(?P<LIMIT>[ a-zA-Z\-]+)\s' \
+                                           ur'(?P<GAME>Hold\'em|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Omaha|Omaha\sHi/Lo|Badugi|Triple\sDraw\s2\-7(\sLowball)?|Single\sDraw\s2\-7(\sLowball)?|5\sCard\sDraw|5\sCard\sOmaha(\sHi/Lo)?|Courchevel(\sHi/Lo)?|HORSE|Horse|8\-Game|HOSE|Hose|Mixed\sOmaha\sH/L|Mixed\sHold\'em|Mixed\sPLH/PLO|Mixed\sNLH/PLO|Triple\sStud|Mixed\sNLH/NLO)')
+    re_XLSTourneyInfo['Currency'] = re.compile(ur'(?P<CURRENCY>(%(LEGAL_ISO)s)?)' % substitutions)
+    re_XLSTourneyInfo['Buy-In'] = re.compile(ur'(?P<BUYIN>([,.0-9]+|Freeroll))(?P<FPPBUYIN>\sFPP)?')
+    re_XLSTourneyInfo['ReBuys'] = re.compile(r'(?P<REBUYADDON>[,.0-9]+)')
+    re_XLSTourneyInfo['Rake'] =  re.compile(r'(?P<FEE>[,.0-9]+)')
+    re_XLSTourneyInfo['Place'] = re.compile(r'(?P<RANK>[0-9]+)')
+    re_XLSTourneyInfo['Entries'] = re.compile(r'(?P<ENTRIES>[0-9]+)')
+    re_XLSTourneyInfo['Prize'] = re.compile(ur'(?P<WINNINGS>[,.0-9]+)(?P<FPPWINNINGS>\s\+\s[,.0-9]+\sFPP)?')
+    re_XLSTourneyInfo['Bounty Awarded'] =  re.compile(r'(?P<KOS>[,.0-9]+)')
+    re_XLSTourneyInfo['Target ID'] = re.compile(r'(?P<TARGET>[0-9]+)?')
+    re_XLSTourneyInfo['Qualified'] = re.compile(r'(?P<WONTICKET>\*\\\/\*)?')
 
     re_Player = re.compile(u"""(?P<RANK>[0-9]+):\s(?P<NAME>.+?)\s\(.+?\),(\s)?((?P<CUR>[%(LS)s]?)(?P<WINNINGS>[,.0-9]+))?(?P<STILLPLAYING>still\splaying)?((?P<TICKET>Tournament\sTicket)\s\(WSOP\sStep\s(?P<LEVEL>\d)\))?(?P<QUALIFIED>\s\(qualified\sfor\sthe\starget\stournament\))?(\s+)?""" % substitutions)
     re_HTMLPlayer = re.compile(ur"<h2>All\s+(?P<SNG>(Regular|Sit & Go))\s?Tournaments\splayed\sby\s'(<b>)?(?P<NAME>.+?)':?</h2>")
+    re_XLSPlayer = re.compile(r'All\s(?P<SNG>(Regular|(Heads\sup\s)?Sit\s&\sGo))\sTournaments\splayed\sby\s\'(?P<NAME>.+?)\'')
     
     re_DateTime = re.compile("""(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)""", re.MULTILINE)
     re_HTMLDateTime = re.compile("""(?P<M>[0-9]+)\/(?P<D>[0-9]+)\/(?P<Y>[0-9]{4})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+) (?P<AMPM>(AM|PM))""", re.MULTILINE)
@@ -113,7 +135,7 @@ class PokerStarsSummary(TourneySummary):
     #re_WinningRankOther = re.compile(u"^%(PLYR)s finished the tournament in (?P<RANK>[0-9]+)(st|nd|rd|th) place and received %(CUR)s(?P<AMT>[.0-9]+)\.$" %  substitutions, re.MULTILINE)
     #re_RankOther        = re.compile(u"^%(PLYR)s finished the tournament in (?P<RANK>[0-9]+)(st|nd|rd|th) place$" %  substitutions, re.MULTILINE)
 
-    codepage = ("utf8", "cp1252")
+    codepage = ["utf8", "cp1252"]
 
     @staticmethod
     def getSplitRe(self, head):
@@ -133,6 +155,8 @@ class PokerStarsSummary(TourneySummary):
             if self.header==self.summaryText:
                 raise FpdbHandPartial
             self.parseSummaryHtml()
+        elif self.hhtype == "xls":
+            self.parseSummaryXLS()
         elif self.hhtype == "hh":
             self.parseSummaryFromHH()
         else:
@@ -157,6 +181,26 @@ class PokerStarsSummary(TourneySummary):
         #self.maxseats  =
         #self.isSng     =
         #self.addPlayer(rank, name, winnings, self.currency, rebuyCount, addOnCount, koCount)
+        
+    def parseSummaryXLS(self):
+        info = self.summaryText
+        m = self.re_XLSPlayer.search(info['header'])
+        if m==None:
+            tmp1 = info['header']
+            tmp2 = str(info)[0:200]
+            log.error(_("PokerStarsSummary.parseSummaryXLS: '%s' '%s") % (tmp1, tmp2))
+            raise FpdbParseError
+        info.update(m.groupdict())
+        mg = {}
+        for k, j in info.iteritems():
+            if self.re_XLSTourneyInfo.get(k)!=None:
+                m1 = self.re_XLSTourneyInfo[k].search(j)
+                if m1: mg.update(m1.groupdict())
+                elif k=='Game':
+                    log.error(_("PokerStarsSummary.parseSummaryXLS Game '%s' not found") % j)
+                    raise FpdbParseError
+        info.update(mg)
+        self.parseSummaryArchive(info)
 
     def parseSummaryHtml(self):
         info = {}
@@ -169,8 +213,10 @@ class PokerStarsSummary(TourneySummary):
             raise FpdbParseError
         info.update(m1.groupdict())
         info.update(m2.groupdict())
+        self.parseSummaryArchive(info)
         
-        if 'SNG' in info and info['SNG']=="Sit & Go":
+    def parseSummaryArchive(self, info):        
+        if 'SNG' in info and "Sit & Go" in info['SNG']:
             self.isSng = True
         
         if 'TOURNAME' in info and info['TOURNAME'] != None:
@@ -242,6 +288,7 @@ class PokerStarsSummary(TourneySummary):
         if info.get('NAME')!=None and info.get('RANK')!=None: 
             name = info['NAME']
             rank = int(info['RANK'])
+            winnings = 0
             rebuyCount = 0
             addOnCount = 0
             koCount = 0
