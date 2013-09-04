@@ -98,8 +98,8 @@ class FullTiltPokerSummary(TourneySummary):
                         (Buy-In:\s[%(LS)s]?(?P<BUYIN>[%(NUM)s]+)(\sFTP|\sT\$|\sPlay\sChips)?(\s\+\s[%(LS)s]?(?P<FEE>[%(NUM)s]+)(\sFTP|\sT\$|\sPlay\sChips)?)?\s+)?
                         (Knockout\sBounty:\s[%(LS)s](?P<KOBOUNTY>[%(NUM)s]+)\s+)?
                         ((?P<PNAMEBOUNTIES>.{2,15})\sreceived\s(?P<PBOUNTIES>\d+)\sKnockout\sBounty\sAwards?\s+)?
-                        (Add-On:\s[%(LS)s](?P<ADDON>[%(NUM)s]+)\s+)?
-                        (Rebuy:\s[%(LS)s](?P<REBUYAMT>[%(NUM)s]+)\s+)?
+                        (Add-On:\s[%(LS)s]?(?P<ADDON>[%(NUM)s]+)(\sFTP|\sT\$|\sPlay\sChips)?\s+)?
+                        (Rebuy:\s[%(LS)s]?(?P<REBUYAMT>[%(NUM)s]+)(\sFTP|\sT\$|\sPlay\sChips)?\s+)?
                         ((?P<P1NAME>.{2,15})\sperformed\s(?P<PADDONS>\d+)\sAdd-Ons?\s+)?
                         ((?P<P2NAME>.{2,15})\sperformed\s(?P<PREBUYS>\d+)\sRebuys?\s+)?
                         (Buy-In\sChips:\s(?P<CHIPS>\d+)\s+)?

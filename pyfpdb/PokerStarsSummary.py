@@ -77,12 +77,12 @@ class PokerStarsSummary(TourneySummary):
                         ((?P<LIMIT>No\sLimit|NO\sLIMIT|Limit|LIMIT|Pot\sLimit|POT\sLIMIT|Pot\sLimit\sPre\-Flop,\sNo\sLimit\sPost\-Flop)\s)?
                         (?P<GAME>Hold\'em|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Omaha|Omaha\sHi/Lo|Badugi|Triple\sDraw\s2\-7\sLowball|Single\sDraw\s2\-7\sLowball|5\sCard\sDraw|5\sCard\sOmaha(\sHi/Lo)?|Courchevel(\sHi/Lo)?|HORSE|8\-Game|HOSE|Mixed\sOmaha\sH/L|Mixed\sHold\'em|Mixed\sPLH/PLO|Mixed\sNLH/PLO|Triple\sStud)\s+
                         (?P<DESC>[ a-zA-Z]+\s+)?
-                        (Buy-In:\s(?P<CURRENCY>[%(LS)s]?)(?P<BUYIN>[,.0-9]+)(\/[%(LS)s]?(?P<FEE>[,.0-9]+))?(\/[%(LS)s]?(?P<BOUNTY>[,.0-9]+))?(?P<CUR>\s(%(LEGAL_ISO)s))?\s+)?
+                        (Buy-In:\s(?P<CURRENCY>[%(LS)s]?)(?P<BUYIN>[,.0-9]+)(\s(?P<CURRENCY1>FPP))?(\/[%(LS)s]?(?P<FEE>[,.0-9]+))?(\/[%(LS)s]?(?P<BOUNTY>[,.0-9]+))?(?P<CUR>\s(%(LEGAL_ISO)s))?\s+)?
                         (?P<ENTRIES>[0-9]+)\splayers\s+
                         ([%(LS)s]?(?P<ADDED>[,.\d]+)(\s(%(LEGAL_ISO)s))?\sadded\sto\sthe\sprize\spool\sby\sPokerStars(\.com)?\s+)?
                         (Total\sPrize\sPool:\s[%(LS)s]?(?P<PRIZEPOOL>[,.0-9]+)(\s(%(LEGAL_ISO)s))?\s+)?
-                        (?P<SATELLITE>Target\sTournament\s\#(?P<TARGTOURNO>[0-9]+)\s
-                        Buy-In:\s(?P<TARGCURRENCY>[%(LS)s]?)(?P<TARGBUYIN>[,.0-9]+)(\/[%(LS)s]?(?P<TARGFEE>[,.0-9]+))?(\/[%(LS)s]?(?P<TARGBOUNTY>[,.0-9]+))?(?P<TARGCUR>\s(%(LEGAL_ISO)s))?\s+)?
+                        (?P<SATELLITE>Target\sTournament\s\#(?P<TARGTOURNO>[0-9]+)\s+
+                         (Buy-In:\s(?P<TARGCURRENCY>[%(LS)s]?)(?P<TARGBUYIN>[,.0-9]+)(\/[%(LS)s]?(?P<TARGFEE>[,.0-9]+))?(\/[%(LS)s]?(?P<TARGBOUNTY>[,.0-9]+))?(?P<TARGCUR>\s(%(LEGAL_ISO)s))?\s+)?)?
                         ([0-9]+\stickets?\sto\sthe\starget\stournament\s+)?
                         Tournament\sstarted\s+(-\s)?
                         (?P<DATETIME>.*$)
@@ -124,7 +124,7 @@ class PokerStarsSummary(TourneySummary):
     re_XLSTourneyInfo['Target ID'] = re.compile(r'(?P<TARGET>[0-9]+)?')
     re_XLSTourneyInfo['Qualified'] = re.compile(r'(?P<WONTICKET>\*\\\/\*)?')
 
-    re_Player = re.compile(u"""(?P<RANK>[0-9]+):\s(?P<NAME>.+?)\s\(.+?\),(\s)?((?P<CUR>[%(LS)s]?)(?P<WINNINGS>[,.0-9]+))?(?P<STILLPLAYING>still\splaying)?((?P<TICKET>Tournament\sTicket)\s\(WSOP\sStep\s(?P<LEVEL>\d)\))?(?P<QUALIFIED>\s\(qualified\sfor\sthe\starget\stournament\))?(\s+)?""" % substitutions)
+    re_Player = re.compile(u"""(?P<RANK>[0-9]+):\s(?P<NAME>.+?)\s\(.+?\),(\s)?((?P<CUR>[%(LS)s]?)(?P<WINNINGS>[,.0-9]+)(\s(?P<CUR1>FPP))?)?(?P<STILLPLAYING>still\splaying)?((?P<TICKET>Tournament\sTicket)\s\(WSOP\sStep\s(?P<LEVEL>\d)\))?(?P<QUALIFIED>\s\(qualified\sfor\sthe\starget\stournament\))?(\s+)?""" % substitutions)
     re_HTMLPlayer = re.compile(ur"<h2>All\s+(?P<SNG>(Regular|Sit & Go))\s?Tournaments\splayed\sby\s'(<b>)?(?P<NAME>.+?)':?</h2>")
     re_XLSPlayer = re.compile(r'All\s(?P<SNG>(Regular|(Heads\sup\s)?Sit\s&\sGo))\sTournaments\splayed\sby\s\'(?P<NAME>.+?)\'')
     
@@ -358,7 +358,7 @@ class PokerStarsSummary(TourneySummary):
         if mg['CURRENCY'] == "$":     self.buyinCurrency="USD"
         elif mg['CURRENCY'] == u"€":  self.buyinCurrency="EUR"
         elif mg['CURRENCY'] == u"£":  self.buyinCurrency="GBP"
-        elif mg['CURRENCY'] == "FPP": self.buyinCurrency="PSFP"
+        elif mg['CURRENCY1'] == "FPP": self.buyinCurrency="PSFP"
         elif not mg['CURRENCY']:      self.buyinCurrency="play"
         if self.buyin == 0:           self.buyinCurrency="FREE"
         self.currency = self.buyinCurrency
@@ -386,7 +386,7 @@ class PokerStarsSummary(TourneySummary):
                 if mg['CUR'] == "$":     self.currency="USD"
                 elif mg['CUR'] == u"€":  self.currency="EUR"
                 elif mg['CUR'] == u"£":  self.currency="GBP"
-                elif mg['CUR'] == "FPP": self.currency="PSFP"
+                elif mg['CUR1'] == "FPP": self.currency="PSFP"
 
             if 'STILLPLAYING' in mg and mg['STILLPLAYING'] != None:
                 #print "stillplaying"
