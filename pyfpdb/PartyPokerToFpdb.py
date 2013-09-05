@@ -91,6 +91,7 @@ class PartyPoker(HandHistoryConverter):
     # Static regexes
     re_GameInfo = re.compile(u"""
             \*{5}\sHand\sHistory\s(F|f)or\sGame\s(?P<HID>\d+)\s\*{5}\s+
+            (.+?\shas\sleft\sthe\stable\.\s+)?
             ((?P<CURRENCY>[%(LS)s]))?\s*
             (
              ([%(LS)s]?(?P<SB>[%(NUM)s]+)/[%(LS)s]?(?P<BB>[%(NUM)s]+)\s*(?:%(LEGAL_ISO)s)?\s+((?P<LIMIT3>NL|PL|FL|)\s+)?)|
@@ -154,6 +155,7 @@ class PartyPoker(HandHistoryConverter):
     re_Disconnected  = re.compile('Connection\sLost\sdue\sto\ssome\sreason\s?', re.MULTILINE)
     re_GameStartLine = re.compile('Game\s\#\d+\sstarts', re.MULTILINE)
     re_PreliminaryHand = re.compile(r"Buy-in  - ")
+    re_emailedHand = re.compile(r'\*\*\sSummary\s\*\*')
 
     def allHandsAsList(self):
         list = HandHistoryConverter.allHandsAsList(self)
@@ -162,6 +164,10 @@ class PartyPoker(HandHistoryConverter):
         return filter(lambda text: len(text.strip()), list)
 
     def compilePlayerRegexs(self,  hand):
+        if self.re_emailedHand.search(hand.handText):
+            emailedHand = True
+        else:
+            emailedHand = False
         players = set([player[1] for player in hand.players])
         if not players <= self.compiledPlayers: # x <= y means 'x is subset of y'
             self.compiledPlayers = players
@@ -171,16 +177,16 @@ class PartyPoker(HandHistoryConverter):
                 'BRAX' : u"\[\(\)\]"
                     }
             self.re_PostSB = re.compile(
-                r"%(PLYR)s posts small blind [%(BRAX)s]?%(CUR_SYM)s(?P<SB>[.,0-9]+)\s*%(CUR)s[%(BRAX)s]?\."
+                r"%(PLYR)s posts small blind [%(BRAX)s]?%(CUR_SYM)s?(?P<SB>[.,0-9]+)\s*(%(CUR)s)?[%(BRAX)s]?\.?\s*$"
                 %  subst, re.MULTILINE)
             self.re_PostBB = re.compile(
-                r"%(PLYR)s posts big blind [%(BRAX)s]?%(CUR_SYM)s(?P<BB>[.,0-9]+)\s*%(CUR)s[%(BRAX)s]?\."
+                r"%(PLYR)s posts big blind [%(BRAX)s]?%(CUR_SYM)s?(?P<BB>[.,0-9]+)\s*(%(CUR)s)?[%(BRAX)s]?\.?\s*$"
                 %  subst, re.MULTILINE)
             self.re_PostDead = re.compile(
-                r"%(PLYR)s posts big blind \+ dead [%(BRAX)s]?%(CUR_SYM)s?(?P<BBNDEAD>[.,0-9]+)\s*%(CUR_SYM)s?[%(BRAX)s]?\." %  subst,
+                r"%(PLYR)s posts big blind \+ dead [%(BRAX)s]?%(CUR_SYM)s?(?P<BBNDEAD>[.,0-9]+)\s*%(CUR_SYM)s?[%(BRAX)s]?\.?\s*$" %  subst,
                 re.MULTILINE)
             self.re_Antes = re.compile(
-                r"%(PLYR)s posts ante [%(BRAX)s]?%(CUR_SYM)s(?P<ANTE>[.,0-9]+)\s*%(CUR)s[%(BRAX)s]?" %  subst,
+                r"%(PLYR)s posts ante [%(BRAX)s]?%(CUR_SYM)s(?P<ANTE>[.,0-9]+)\s*%(CUR)s[%(BRAX)s]?\.?\s*$" %  subst,
                 re.MULTILINE)
             self.re_HeroCards = re.compile(
                 r"Dealt to %(PLYR)s \[\s*(?P<NEWCARDS>.+)\s*\]" % subst,
@@ -188,14 +194,28 @@ class PartyPoker(HandHistoryConverter):
             self.re_Action = re.compile(u"""
                 %(PLYR)s\s+(?P<ATYPE>bets|checks|raises|completes|bring-ins|calls|folds|is\sall-In|double\sbets)
                 (?:\s+[%(BRAX)s]?\s?%(CUR_SYM)s?(?P<BET>[.,\d]+)\s*(%(CUR)s)?\s?[%(BRAX)s]?)?
+                (\sto\s[.,\d]+)?
                 \.?\s*$""" %  subst, re.MULTILINE|re.VERBOSE)
-            self.re_ShownCards = re.compile(
-                r"%s (?P<SHOWED>(?:doesn\'t )?shows?) "  %  player_re +
-                r"\[ *(?P<CARDS>.+) *\](?P<COMBINATION>.+)\.",
-                re.MULTILINE)
-            self.re_CollectPot = re.compile(
-                r"""%(PLYR)s\s+wins\s+(Lo\s\()?%(CUR_SYM)s?(?P<POT>[.,\d]+)\s*(%(CUR)s)?\)?""" %  subst,
-                re.MULTILINE|re.VERBOSE)
+            if not emailedHand:
+                self.re_ShownCards = re.compile(
+                    r"%s (?P<SHOWED>(?:doesn\'t )?shows?) "  %  player_re +
+                    r"\[ *(?P<CARDS>.+) *\](?P<COMBINATION>.+)\.",
+                    re.MULTILINE)
+            else:
+                #Michow111 balance $113, bet $50, collected $110.25, net +$60.25 [ 8h 9h ] [ a straight, seven to jack -- Jc,Td,9h,8h,7c ]
+                #babunchik balance $0, lost $50 [ Kd Js ] [ a pair of jacks -- Kd,Js,Jc,Td,7c ]
+                self.re_ShownCards = re.compile(
+                    r"%s balance.*"  %  player_re +
+                    r"\[ (?P<CARDS>.+) \] *\[ *(?P<COMBINATION>.+) \-\-",
+                    re.MULTILINE)
+            if not emailedHand:
+                self.re_CollectPot = re.compile(
+                    r"""%(PLYR)s\s+wins\s+(Lo\s\()?%(CUR_SYM)s?(?P<POT>[.,\d]+)\s*(%(CUR)s)?\)?""" %  subst,
+                    re.MULTILINE|re.VERBOSE)
+            else:
+                self.re_CollectPot = re.compile(
+                    r"""%(PLYR)s(\sbalance\s%(CUR_SYM)s?[.,\d]+,)(\sbet\s%(CUR_SYM)s?[.,\d]+,)(\scollected\s%(CUR_SYM)s?(?P<POT>[.,\d]+),)""" %  subst,
+                    re.MULTILINE|re.VERBOSE)
 
     def readSupportedGames(self):
         return [["ring", "hold", "nl"],
@@ -481,9 +501,9 @@ class PartyPoker(HandHistoryConverter):
         if hand.gametype['base'] in ("hold"):
             m =  re.search(r"\*{2} Dealing down cards \*{2}"
                            r"(?P<PREFLOP>.+?)"
-                           r"(?:\*{2} Dealing Flop \*{2} (?P<FLOP>\[ \S\S, \S\S, \S\S \].+?))?"
-                           r"(?:\*{2} Dealing Turn \*{2} (?P<TURN>\[ \S\S \].+?))?"
-                           r"(?:\*{2} Dealing River \*{2} (?P<RIVER>\[ \S\S \].+?))?$"
+                           r"(?:\*{2} Dealing Flop \*{2} (:?\s*)?(?P<FLOP>\[ \S\S, \S\S, \S\S \].+?))?"
+                           r"(?:\*{2} Dealing Turn \*{2} (:?\s*)?(?P<TURN>\[ \S\S \].+?))?"
+                           r"(?:\*{2} Dealing River \*{2} (:?\s*)?(?P<RIVER>\[ \S\S \].+?))?$"
                             , hand.handText,re.DOTALL)
         elif hand.gametype['base'] in ("stud"):
             m =  re.search(
@@ -596,7 +616,7 @@ class PartyPoker(HandHistoryConverter):
         m = self.re_Action.finditer(hand.streets[street])
         for action in m:
             acts = action.groupdict()
-            #print "DEBUG: acts: %s" % acts
+            #print "DEBUG: acts: %s %s" % (street, acts)
             playerName = action.group('PNAME')
             amount = self.clearMoneyString(action.group('BET')) if action.group('BET') else None
             actionType = action.group('ATYPE')
@@ -621,7 +641,8 @@ class PartyPoker(HandHistoryConverter):
             elif actionType == 'bring-ins':
                 hand.addBringIn( playerName, amount)
             elif actionType == 'is all-In':
-                hand.addAllIn(street, playerName, amount)
+                if amount!=None:
+                    hand.addAllIn(street, playerName, amount)
             else:
                 log.error((_("PartyPokerToFpdb: Unimplemented %s: '%s' '%s'") + " hid:%s") % ("readAction", playerName, actionType, hand.handid))
                 raise FpdbParseError
@@ -636,11 +657,12 @@ class PartyPoker(HandHistoryConverter):
             hand.addCollectPot(player=m.group('PNAME'),pot=self.clearMoneyString(m.group('POT')))
 
     def readShownCards(self,hand):
+        
         for m in self.re_ShownCards.finditer(hand.handText):
             if m.group('CARDS') is not None:
                 cards = renderCards(m.group('CARDS'))
-
-                mucked = m.group('SHOWED') != "show"
+                
+                mucked = 'SHOWED' in m.groupdict() and m.group('SHOWED') != "show"
 
                 hand.addShownCards(cards=cards, player=m.group('PNAME'), shown=True, mucked=mucked, string=m.group('COMBINATION'))
 
