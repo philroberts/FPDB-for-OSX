@@ -1,0 +1,36 @@
+***** Hand History For Game 12566995177 *****
+0.50/1 Texas Hold'em Game Table (NL)  -  Sun Jan 20 13:58:07 EST 2013
+Table Table Calarasi  (Real Money) -- Seat 4 is the button
+Total number of players : 6/6
+Seat 1: Player0 ($30)
+Seat 2: Hero ($100)
+Seat 3: Player1 ($100)
+Seat 4: Player2 ($95)
+Seat 5: Player3 ($137.41)
+Seat 6: Player4 ($191.91)
+Player3 posts small blind (0.5)
+Player4 posts big blind (1.0)
+** Dealing down cards **
+Dealt to Hero Name [ Ad, 5d ]
+Hero Name raises 3.0 to 3.0
+Player2 calls (3.0)
+Player3 folds
+Player4 folds
+** Dealing Flop ** :  [ 9h, Kh, Qc ]
+Hero checks
+Player2 checks
+** Dealing Turn ** :  [ 9d ] 
+Hero checks
+Player2 checks
+** Dealing River ** :  [ 2d ] 
+Hero checks
+Player2 checks
+** Summary **
+Main Pot: $7.13 Rake: $0.37
+Board: [ 9h Kh Qc 9d 2d ]
+Player0 balance $30, sits out
+Hero Name balance $100.57, bet $3, collected $3.57, net +$0.57 [ Ad 5d ] [ a pair of nines -- Ad,Kh,Qc,9h,9d ]
+Player1 balance $100, sits out
+Player2 balance $95.56, bet $3, collected $3.56, net +$0.56 [ As Th ] [ a pair of nines -- As,Kh,Qc,9h,9d ]
+Player3 balance $136.91, lost $0.5 (folded)
+Player4 balance $190.91, lost $1 (folded)

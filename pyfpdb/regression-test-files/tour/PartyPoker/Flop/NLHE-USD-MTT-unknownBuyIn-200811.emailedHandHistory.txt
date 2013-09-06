@@ -1,0 +1,42 @@
+***** Hand History For Game 7538093562 *****
+800/1600 Tourney Texas Hold'em Game Table (NL)  (MTT Tournament #42974198)  -  Fri Nov 14 21:05:24 EST 2008
+Table Table 524881  (Real Money) -- Seat 1 is the button
+Total number of players : 8
+Seat 1: Player0 (66829)
+Seat 3: Player1 (32543)
+Seat 4: Player2 (21348)
+Seat 5: Player3 (35828)
+Seat 6: Player4 (29631)
+Seat 7: Player5 (36960)
+Seat 8: Player6 (24458)
+Seat 9: Hero (33690)
+Player0 posts ante (50)
+Player1 posts ante (50)
+Player2 posts ante (50)
+Player3 posts ante (50)
+Player4 posts ante (50)
+Player5 posts ante (50)
+Player6 posts ante (50)
+Hero posts ante (50)
+Player1 posts small blind (800)
+Player2 posts big blind (1600)
+** Dealing down cards **
+Dealt to Hero [ Jh, Ks ]
+Player3 folds
+Player4 folds
+Player5 folds
+Player6 folds
+Hero raises 3800 to 3800
+Player0 folds
+Player1 folds
+Player2 folds
+** Summary **
+Main Pot: 4400
+Player0 balance 66779, lost 50 (folded)
+Player1 balance 31693, lost 850 (folded)
+Player2 balance 19698, lost 1650 (folded)
+Player3 balance 35778, lost 50 (folded)
+Player4 balance 29581, lost 50 (folded)
+Player5 balance 36910, lost 50 (folded)
+Player6 balance 24408, lost 50 (folded)
+Hero balance 36440, bet 3850, collected 6600, net +2750
