@@ -46,6 +46,7 @@ class PartyPoker(HandHistoryConverter):
     games = {                         # base, category
                    "Texas Hold'em" : ('hold','holdem'),
                            'Omaha' : ('hold','omahahi'),
+                        'Omaha Hi' : ('hold','omahahi'),
                      'Omaha Hi-Lo' : ('hold','omahahilo'),
                "7 Card Stud Hi-Lo" : ('stud','studhilo'),
                      "7 Card Stud" : ('stud','studhi'),
@@ -98,7 +99,7 @@ class PartyPoker(HandHistoryConverter):
              ((?P<CASHBI>[%(NUM)s]+)\s*(?:%(LEGAL_ISO)s)?\s*)(?P<LIMIT2>(NL|PL|FL|))?\s*
             )
             (Tourney\s*)?
-            (?P<GAME>(Texas\sHold\'em|Omaha\sHi-Lo|Omaha|7\sCard\sStud\sHi-Lo|7\sCard\sStud|Double\sHold\'em))\s*
+            (?P<GAME>(Texas\sHold\'em|Omaha\sHi-Lo|Omaha(\sHi)?|7\sCard\sStud\sHi-Lo|7\sCard\sStud|Double\sHold\'em))\s*
             (Game\sTable\s*)?
             (
              (\((?P<LIMIT>(NL|PL|FL|))\)\s*)?
@@ -120,7 +121,7 @@ class PartyPoker(HandHistoryConverter):
     re_GameInfoTrny     = re.compile(u"""
             \*{5}\sHand\sHistory\s(F|f)or\sGame\s(?P<HID>\d+)\s\*{5}\s+
             (?P<LIMIT>(NL|PL|FL|))\s*
-            (?P<GAME>(Texas\sHold\'em|Omaha\sHi-Lo|Omaha|7\sCard\sStud\sHi-Lo|7\sCard\sStud|Double\sHold\'em))\s+
+            (?P<GAME>(Texas\sHold\'em|Omaha\sHi-Lo|Omaha(\sHi)?|7\sCard\sStud\sHi-Lo|7\sCard\sStud|Double\sHold\'em))\s+
             (?:(?P<BUYIN>[%(LS)s]?[%(NUM)s]+)\s*(?P<BUYIN_CURRENCY>%(LEGAL_ISO)s)?\s*Buy-in\s+)?
             Trny:\s?(?P<TOURNO>\d+)\s+
             Level:\s*(?P<LEVEL>\d+)\s+
@@ -134,7 +135,7 @@ class PartyPoker(HandHistoryConverter):
             """ % substitutions, re.VERBOSE | re.UNICODE)
 
     re_PlayerInfo   = re.compile(u"""
-          (S|s)eat\s(?P<SEAT>\d+):\s
+          (S|s)eat\s?(?P<SEAT>\d+):\s
           (?P<PNAME>.*)\s
           \(\s*[%(LS)s]?(?P<CASH>[%(NUM)s]+)\s*(?:%(LEGAL_ISO)s|)\s*\)
           """ % substitutions, re.VERBOSE| re.UNICODE)
@@ -189,7 +190,7 @@ class PartyPoker(HandHistoryConverter):
                 re.MULTILINE)
             self.re_Action = re.compile(u"""
                 (?P<PNAME>.+?)\s(?P<ATYPE>bets|checks|raises|completes|bring-ins|calls|folds|is\sall-In|double\sbets)
-                (?:\s+[%(BRAX)s]?\s?%(CUR_SYM)s?(?P<BET>[.,\d]+)\s*(%(CUR)s)?\s?[%(BRAX)s]?)?
+                (?:\s*[%(BRAX)s]?\s?%(CUR_SYM)s?(?P<BET>[.,\d]+)\s*(%(CUR)s)?\s?[%(BRAX)s]?)?
                 (\sto\s[.,\d]+)?
                 \.?\s*$""" %  subst, re.MULTILINE|re.VERBOSE)
             if not hand.emailedHand:
@@ -493,7 +494,7 @@ class PartyPoker(HandHistoryConverter):
             #if a zero stacked player is just joined the table in this very hand then set his stack to maxKnownStack
             for p in zeroStackPlayers:
                 if p[1] in match_JoiningPlayers:
-                    p[2] = self.clearMoneyString(maxKnownStack)
+                    p[2] = self.clearMoneyString(str(maxKnownStack))
                 if not p[1] in match_LeavingPlayers:
                     hand.addPlayer(p[0],p[1],p[2])
 
@@ -514,7 +515,7 @@ class PartyPoker(HandHistoryConverter):
                     # The commented out code above is 'correct' unless the unseated player is the only BB
                     # I'm willing to live with the unseated player being placed in the lowest seat for now.
                     newPlayerSeat = findFirstEmptySeat(1)
-                    hand.addPlayer(newPlayerSeat,player,self.clearMoneyString(maxKnownStack))
+                    hand.addPlayer(newPlayerSeat,player,self.clearMoneyString(str(maxKnownStack)))
 
     def markStreets(self, hand):
         if hand.gametype['base'] in ("hold"):
