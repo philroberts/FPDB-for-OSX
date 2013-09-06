@@ -35,8 +35,8 @@ class PartyPoker(HandHistoryConverter):
     codepage = ("utf8", "cp1252")
     siteId = 9
     filetype = "text"
-    sym        = {'USD': "\$", 'EUR': u"\u20ac", 'T$': ""}
-    currencies = {"\$": "USD", "$": "USD", u"\xe2\x82\xac": "EUR", u"\u20ac": "EUR", '': "T$"}
+    sym        = {'USD': "\$", 'EUR': u"\u20ac", 'T$': "", 'play':'play'}
+    currencies = {"\$": "USD", "$": "USD", u"\xe2\x82\xac": "EUR", u"\u20ac": "EUR", '': "T$", 'play':'play'}
     substitutions = {
                      'LEGAL_ISO' : "USD|EUR",            # legal ISO currency codes
                             'LS' : u"\$|\u20ac|\xe2\x82\xac|",    # Currency symbols - Euro(cp1252, utf-8)
@@ -91,7 +91,7 @@ class PartyPoker(HandHistoryConverter):
     # Static regexes
     re_GameInfo = re.compile(u"""
             \*{5}\sHand\sHistory\s(F|f)or\sGame\s(?P<HID>\d+)\s\*{5}\s+
-            (.+?\shas\sleft\sthe\stable\.\s+)?
+            (.+?\shas\sleft\sthe\stable\.\s+)*
             ((?P<CURRENCY>[%(LS)s]))?\s*
             (
              ([%(LS)s]?(?P<SB>[%(NUM)s]+)/[%(LS)s]?(?P<BB>[%(NUM)s]+)\s*(?:%(LEGAL_ISO)s)?\s+((?P<LIMIT3>NL|PL|FL|)\s+)?)|
@@ -102,7 +102,7 @@ class PartyPoker(HandHistoryConverter):
             (Game\sTable\s*)?
             (
              (\((?P<LIMIT>(NL|PL|FL|))\)\s*)?
-             (\(STT\sTournament\s\#(?P<TOURNO>\d+)\)\s*)?
+             (\((?P<SNG>STT|MTT)\sTournament\s\#(?P<TOURNO>\d+)\)\s*)?
             )?
             \s*-\s*
             (?P<DATETIME>.+)
@@ -164,10 +164,6 @@ class PartyPoker(HandHistoryConverter):
         return filter(lambda text: len(text.strip()), list)
 
     def compilePlayerRegexs(self,  hand):
-        if self.re_emailedHand.search(hand.handText):
-            emailedHand = True
-        else:
-            emailedHand = False
         players = set([player[1] for player in hand.players])
         if not players <= self.compiledPlayers: # x <= y means 'x is subset of y'
             self.compiledPlayers = players
@@ -192,11 +188,11 @@ class PartyPoker(HandHistoryConverter):
                 r"Dealt to %(PLYR)s \[\s*(?P<NEWCARDS>.+)\s*\]" % subst,
                 re.MULTILINE)
             self.re_Action = re.compile(u"""
-                %(PLYR)s\s+(?P<ATYPE>bets|checks|raises|completes|bring-ins|calls|folds|is\sall-In|double\sbets)
+                (?P<PNAME>.+?)\s(?P<ATYPE>bets|checks|raises|completes|bring-ins|calls|folds|is\sall-In|double\sbets)
                 (?:\s+[%(BRAX)s]?\s?%(CUR_SYM)s?(?P<BET>[.,\d]+)\s*(%(CUR)s)?\s?[%(BRAX)s]?)?
                 (\sto\s[.,\d]+)?
                 \.?\s*$""" %  subst, re.MULTILINE|re.VERBOSE)
-            if not emailedHand:
+            if not hand.emailedHand:
                 self.re_ShownCards = re.compile(
                     r"%s (?P<SHOWED>(?:doesn\'t )?shows?) "  %  player_re +
                     r"\[ *(?P<CARDS>.+) *\](?P<COMBINATION>.+)\.",
@@ -205,10 +201,10 @@ class PartyPoker(HandHistoryConverter):
                 #Michow111 balance $113, bet $50, collected $110.25, net +$60.25 [ 8h 9h ] [ a straight, seven to jack -- Jc,Td,9h,8h,7c ]
                 #babunchik balance $0, lost $50 [ Kd Js ] [ a pair of jacks -- Kd,Js,Jc,Td,7c ]
                 self.re_ShownCards = re.compile(
-                    r"%s balance.*"  %  player_re +
+                    r"%(PLYR)s balance.*"  %  subst +
                     r"\[ (?P<CARDS>.+) \] *\[ *(?P<COMBINATION>.+) \-\-",
                     re.MULTILINE)
-            if not emailedHand:
+            if not hand.emailedHand:
                 self.re_CollectPot = re.compile(
                     r"""%(PLYR)s\s+wins\s+(Lo\s\()?%(CUR_SYM)s?(?P<POT>[.,\d]+)\s*(%(CUR)s)?\)?""" %  subst,
                     re.MULTILINE|re.VERBOSE)
@@ -337,8 +333,12 @@ class PartyPoker(HandHistoryConverter):
     def readHandInfo(self, hand):
         info, m2 = {}, None
         hand.handText = hand.handText.replace(u'\x00', u'')
+        if self.re_emailedHand.search(hand.handText):
+            hand.emailedHand = True
+        else:
+            hand.emailedHand = False
         m  = self.re_HandInfo.search(hand.handText,re.DOTALL)
-        if hand.gametype['type'] == 'ring':
+        if hand.gametype['type'] == 'ring' or hand.emailedHand:
             m2 = self.re_GameInfo.search(hand.handText)
         else:
             m2 = self.re_GameInfoTrny.search(hand.handText)
@@ -350,7 +350,6 @@ class PartyPoker(HandHistoryConverter):
         info.update(m2.groupdict())
 
         for key in info:
-            pass
             if key == 'DATETIME':
                 #Saturday, July 25, 07:53:52 EDT 2009
                 #Thursday, July 30, 21:40:41 MSKS 2009
@@ -386,22 +385,29 @@ class PartyPoker(HandHistoryConverter):
                 hand.buttonpos = info[key]
             if key == 'TOURNO':
                 hand.tourNo = info[key]
+                if hand.emailedHand:
+                    hand.buyin = 0
+                    hand.fee = 0
+                    hand.buyinCurrency = "NA"
             if key == 'TABLE_ID_WRAPPER':
                 if info[key] == '#':
                     # FIXME: there is no such property in Hand class
                     self.isSNG = True
             if key == 'BUYIN':
-                if info[key] == None:
+                if info.get('TABLE')!= None and 'Freeroll' in info.get('TABLE'):
                     # Freeroll tourney
                     hand.buyin = 0
                     hand.fee = 0
                     hand.buyinCurrency = "FREE"
-                    hand.isKO = False
+                elif info[key] == None:
+                    # Freeroll tourney
+                    hand.buyin = 0
+                    hand.fee = 0
+                    hand.buyinCurrency = "NA"
                 elif hand.tourNo != None:
                     hand.buyin = 0
                     hand.fee = 0
-                    hand.buyinCurrency = "FREE"
-                    hand.isKO = False
+                    hand.buyinCurrency = "NA"
                     if info[key].find("$")!=-1:
                         hand.buyinCurrency="USD"
                     elif info[key].find(u"€")!=-1:
@@ -438,14 +444,27 @@ class PartyPoker(HandHistoryConverter):
         m = self.re_PlayerInfo.finditer(hand.handText)
         maxKnownStack = 0
         zeroStackPlayers = []
+        self.playerMap = {}
         for a in m:
+            pname = a.group('PNAME')
+            if hand.emailedHand:
+                
+                subst = {'PLYR': re.escape(a.group('PNAME')), 'SPACENAME': "(.+)? "}
+                re_PlayerName = re.compile(
+                        r"""%(PLYR)s(?P<PNAMEEXTRA>%(SPACENAME)s)balance\s""" %  subst,
+                        re.MULTILINE|re.VERBOSE)
+                m1 = re_PlayerName.search(hand.handText)
+                if m1 and len(m1.group('PNAMEEXTRA'))>1:
+                    pname = a.group('PNAME') + m1.group('PNAMEEXTRA')
+                    pname = pname.strip()
+                    self.playerMap[a.group('PNAME')] = pname
             if a.group('CASH') > '0':
                 #record max known stack for use with players with unknown stack
                 maxKnownStack = max(a.group('CASH'),maxKnownStack)
-                hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), self.clearMoneyString(a.group('CASH')))
+                hand.addPlayer(int(a.group('SEAT')), pname, self.clearMoneyString(a.group('CASH')))
             else:
                 #zero stacked players are added later
-                zeroStackPlayers.append([int(a.group('SEAT')), a.group('PNAME'), self.clearMoneyString(a.group('CASH'))])
+                zeroStackPlayers.append([int(a.group('SEAT')), pname, self.clearMoneyString(a.group('CASH'))])
         if hand.gametype['type'] == 'ring':
             #finds first vacant seat after an exact seat
             def findFirstEmptySeat(startSeat):
@@ -618,6 +637,8 @@ class PartyPoker(HandHistoryConverter):
             acts = action.groupdict()
             #print "DEBUG: acts: %s %s" % (street, acts)
             playerName = action.group('PNAME')
+            if self.playerMap.get(playerName):
+                playerName = self.playerMap.get(playerName)
             amount = self.clearMoneyString(action.group('BET')) if action.group('BET') else None
             actionType = action.group('ATYPE')
 
