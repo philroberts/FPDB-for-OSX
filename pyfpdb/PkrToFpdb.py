@@ -65,7 +65,7 @@ class Pkr(HandHistoryConverter):
           Game\sType:\s(?P<GAME>HOLD'EM|OMAHA|OMAHA\sHI/LO)\s
           Limit\sType:\s(?P<LIMIT>NO\sLIMIT|LIMIT|POT\sLIMIT)\s
           Table\sType:\s(RING|TOURNAMENT)\s
-          Money\sType:\s(REAL\sMONEY|TOURNAMENT\sCHIPS)\s
+          Money\sType:\s(?P<MONEY>PLAY\sMONEY|REAL\sMONEY|TOURNAMENT\sCHIPS)\s
           Blinds\sare\snow\s(?P<CURRENCY>%(LS)s|)?
           (?P<SB>[%(NUM)s]+)\s?/\s?(%(LS)s)?
           (?P<BB>[%(NUM)s]+)
@@ -154,7 +154,10 @@ class Pkr(HandHistoryConverter):
         if 'BB' in mg:
             info['bb'] = self.clearMoneyString(mg['BB'])
         if 'CURRENCY' in mg:
-            info['currency'] = self.currencies[mg['CURRENCY']]
+            if 'MONEY'!='PLAY MONEY':
+                info['currency'] = self.currencies[mg['CURRENCY']]
+            else:
+                info['currency'] = 'play'
         if 'TOURNO' in mg and mg['TOURNO'] is not None:
             info['type'] = 'tour'
         else:
