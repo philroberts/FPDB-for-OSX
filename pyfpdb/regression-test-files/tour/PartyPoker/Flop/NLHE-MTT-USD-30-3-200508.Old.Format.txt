@@ -1,0 +1,39 @@
+#Game No : 2621679197 
+***** Hand History for Game 2621679197 *****
+NL Texas Hold'em $30 Buy-in  + $3 Entry Fee  Trny:15286975 Level:4 Blinds(50/100) - Tuesday, August 30, 00:26:01 EDT 2005
+Table Table  11277 (Real Money)
+Seat 4 is the button
+Total number of players : 8 
+Seat 2: Player0 ( $1902 )
+Seat 3: Player1 ( $1255 )
+Seat 4: Player2 ( $1260 )
+Seat 6: Hero ( $645 )
+Seat 7: Player3 ( $625 )
+Seat 8: Player4 ( $675 )
+Seat 9: Player5 ( $1290 )
+Seat 10: Player6 ( $348 )
+Trny:15286975 Level:4
+Blinds(50/100)
+** Dealing down cards **
+Dealt to Hero [  Td 9c ]
+Player4 folds.
+Player5 folds.
+Player6 folds.
+Player0 folds.
+Player1 folds.
+Player2 folds.
+Hero calls [50].
+Player3 checks.
+** Dealing Flop ** [ 9h, Qs, Tc ]
+>You have options at Table  11531 Table!.
+Hero bets [125].
+Player3 raises [300].
+Hero is all-In  [420]
+Player3 is all-In  [225]
+** Dealing Turn ** [ 6d ]
+** Dealing River ** [ 5s ]
+>You have options at Table  12772 Table!.
+Player3 shows [ 8s, Jd ] a straight, eight to queen.
+Hero shows [ Td, 9c ] two pairs, tens and nines.
+Hero wins 20 chips from  side pot #1  with two pairs, tens and nines.
+Player3 wins 1250 chips from  the main pot  with a straight, eight to queen.

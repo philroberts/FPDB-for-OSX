@@ -123,6 +123,7 @@ class PartyPoker(HandHistoryConverter):
             (?P<LIMIT>(NL|PL|FL|))\s*
             (?P<GAME>(Texas\sHold\'em|Omaha\sHi-Lo|Omaha(\sHi)?|7\sCard\sStud\sHi-Lo|7\sCard\sStud|Double\sHold\'em))\s+
             (?:(?P<BUYIN>[%(LS)s]?[%(NUM)s]+)\s*(?P<BUYIN_CURRENCY>%(LEGAL_ISO)s)?\s*Buy-in\s+)?
+            (\+\s(?P<FEE>[%(LS)s]?[%(NUM)s]+)\sEntry\sFee\s+)?
             Trny:\s?(?P<TOURNO>\d+)\s+
             Level:\s*(?P<LEVEL>\d+)\s+
             ((Blinds|Stakes)(?:-Antes)?)\(
@@ -418,6 +419,9 @@ class PartyPoker(HandHistoryConverter):
                         raise FpdbParseError
                     info[key] = self.clearMoneyString(info[key].strip(u'$€'))
                     hand.buyin = int(100*Decimal(info[key]))
+                    if 'FEE' in info and info['FEE']!=None:
+                        info['FEE'] = self.clearMoneyString(info['FEE'].strip(u'$€'))
+                        hand.fee = int(100*Decimal(info['FEE']))
             if key == 'LEVEL':
                 hand.level = info[key]
             if key == 'PLAY' and info['PLAY'] != 'Real':
@@ -663,7 +667,7 @@ class PartyPoker(HandHistoryConverter):
             elif actionType == 'bring-ins':
                 hand.addBringIn( playerName, amount)
             elif actionType == 'is all-In':
-                if amount!=None:
+                if amount:
                     hand.addAllIn(street, playerName, amount)
             else:
                 log.error((_("PartyPokerToFpdb: Unimplemented %s: '%s' '%s'") + " hid:%s") % ("readAction", playerName, actionType, hand.handid))
