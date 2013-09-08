@@ -457,7 +457,7 @@ class PartyPoker(HandHistoryConverter):
                 
                 subst = {'PLYR': re.escape(a.group('PNAME')), 'SPACENAME': "\s(.+)? "}
                 re_PlayerName = re.compile(
-                        r"""%(PLYR)s(?P<PNAMEEXTRA>%(SPACENAME)s)balance\s""" %  subst,
+                        r"""^%(PLYR)s(?P<PNAMEEXTRA>%(SPACENAME)s)balance\s""" %  subst,
                         re.MULTILINE|re.VERBOSE)
                 m1 = re_PlayerName.search(hand.handText)
                 if m1 and len(m1.group('PNAMEEXTRA'))>1:
