@@ -42,7 +42,7 @@ class PartyPoker(HandHistoryConverter):
                             'LS' : u"\$|\u20ac|\xe2\x82\xac|",    # Currency symbols - Euro(cp1252, utf-8)
                            'NUM' : u".,\d",
                     }
-    limits = { 'NL':'nl', 'PL':'pl', '':'fl', 'FL':'fl' }
+    limits = { 'NL':'nl', 'PL':'pl', '':'fl', 'FL':'fl', 'Limit':'fl' }
     games = {                         # base, category
                    "Texas Hold'em" : ('hold','holdem'),
                            'Omaha' : ('hold','omahahi'),
@@ -53,7 +53,7 @@ class PartyPoker(HandHistoryConverter):
                   "Double Hold'em" : ('hold','2_holdem'),
             }
 
-    Lim_Blinds = {  '0.04': ('0.01', '0.02'),        '0.08': ('0.02', '0.04'),
+    Lim_Blinds = {      '0.04': ('0.01', '0.02'),    '0.08': ('0.02', '0.04'),
                         '0.10': ('0.02', '0.05'),    '0.20': ('0.05', '0.10'),
                         '0.30': ('0.07', '0.15'),    '0.50': ('0.10', '0.25'),
                         '1.00': ('0.25', '0.50'),       '1': ('0.25', '0.50'),
@@ -93,6 +93,7 @@ class PartyPoker(HandHistoryConverter):
     re_GameInfo = re.compile(u"""
             \*{5}\sHand\sHistory\s(F|f)or\sGame\s(?P<HID>\d+)\s\*{5}\s+
             (.+?\shas\sleft\sthe\stable\.\s+)*
+            (.+?\sfinished\sin\s\d+\splace\.\s+)*
             ((?P<CURRENCY>[%(LS)s]))?\s*
             (
              ([%(LS)s]?(?P<SB>[%(NUM)s]+)/[%(LS)s]?(?P<BB>[%(NUM)s]+)\s*(?:%(LEGAL_ISO)s)?\s+((?P<LIMIT3>NL|PL|FL|)\s+)?)|
@@ -102,7 +103,7 @@ class PartyPoker(HandHistoryConverter):
             (?P<GAME>(Texas\sHold\'em|Omaha\sHi-Lo|Omaha(\sHi)?|7\sCard\sStud\sHi-Lo|7\sCard\sStud|Double\sHold\'em))\s*
             (Game\sTable\s*)?
             (
-             (\((?P<LIMIT>(NL|PL|FL|))\)\s*)?
+             (\((?P<LIMIT>(NL|PL|FL|Limit|))\)\s*)?
              (\((?P<SNG>STT|MTT)\sTournament\s\#(?P<TOURNO>\d+)\)\s*)?
             )?
             \s*-\s*
@@ -454,7 +455,7 @@ class PartyPoker(HandHistoryConverter):
             pname = a.group('PNAME')
             if hand.emailedHand:
                 
-                subst = {'PLYR': re.escape(a.group('PNAME')), 'SPACENAME': "(.+)? "}
+                subst = {'PLYR': re.escape(a.group('PNAME')), 'SPACENAME': "\s(.+)? "}
                 re_PlayerName = re.compile(
                         r"""%(PLYR)s(?P<PNAMEEXTRA>%(SPACENAME)s)balance\s""" %  subst,
                         re.MULTILINE|re.VERBOSE)
