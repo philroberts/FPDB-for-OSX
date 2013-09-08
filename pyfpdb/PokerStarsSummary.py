@@ -35,14 +35,18 @@ class PokerStarsSummary(TourneySummary):
                               "Hold'em" : ('hold','holdem'), 
                                 'Omaha' : ('hold','omahahi'),
                           'Omaha Hi/Lo' : ('hold','omahahilo'),
+                            'Omaha H/L' : ('hold','omahahilo'),
                          '5 Card Omaha' : ('hold', '5_omahahi'),
                    '5 Card Omaha Hi/Lo' : ('hold', '5_omaha8'),
+                     '5 Card Omaha H/L' : ('hold', '5_omaha8'),
                            'Courchevel' : ('hold', 'cour_hi'),
                      'Courchevel Hi/Lo' : ('hold', 'cour_hilo'),
+                       'Courchevel H/L' : ('hold', 'cour_hilo'),
                                  'Razz' : ('stud','razz'), 
                                  'RAZZ' : ('stud','razz'),
                           '7 Card Stud' : ('stud','studhi'),
                     '7 Card Stud Hi/Lo' : ('stud','studhilo'),
+                      '7 Card Stud H/L' : ('stud','studhilo'),
                                'Badugi' : ('draw','badugi'),
               'Triple Draw 2-7 Lowball' : ('draw','27_3draw'),
               'Single Draw 2-7 Lowball' : ('draw','27_1draw'),
@@ -60,6 +64,11 @@ class PokerStarsSummary(TourneySummary):
                         'Mixed NLH/NLO' : ('mixed','nlh_nlo'),
                       'Mixed Omaha H/L' : ('mixed','plo_lo'),
                        'Mixed Hold\'em' : ('mixed','mholdem'),
+                        'PLH/PLO Mixed' : ('mixed','plh_plo'),
+                        'NLH/PLO Mixed' : ('mixed','nlh_plo'),
+                        'NLH/NLO Mixed' : ('mixed','nlh_nlo'),
+                      'Omaha H/L Mixed' : ('mixed','plo_lo'),
+                       'Hold\'em Mixed' : ('mixed','mholdem'),
                           'Triple Stud' : ('mixed','3stud'),
                }
 
@@ -93,7 +102,7 @@ class PokerStarsSummary(TourneySummary):
                         ur'(<td>(?P<TOURNAME>.*)</td>)?' \
                         ur'<td align="right">' \
                         ur'(?P<LIMIT>[ a-zA-Z\-]+)\s' \
-                        ur'(?P<GAME>Hold\'em|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Omaha|Omaha\sHi/Lo|Badugi|Triple\sDraw\s2\-7(\sLowball)?|Single\sDraw\s2\-7(\sLowball)?|5\sCard\sDraw|5\sCard\sOmaha(\sHi/Lo)?|Courchevel(\sHi/Lo)?|HORSE|Horse|8\-Game|HOSE|Hose|Mixed\sOmaha\sH/L|Mixed\sHold\'em|Mixed\sPLH/PLO|Mixed\sNLH/PLO|Triple\sStud|Mixed\sNLH/NLO)</td>' \
+                        ur'(?P<GAME>Hold\'em|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sH/L|Omaha|Omaha\sH/L|Badugi|Triple\sDraw\s2\-7(\sLowball)?|Single\sDraw\s2\-7(\sLowball)?|5\sCard\sDraw|5\sCard\sOmaha(\sH/L)?|Courchevel(\sH/L)?|HORSE|Horse|8\-Game|HOSE|Hose|Omaha\sH/L\sMixed|Hold\'em\sMixed|PLH/PLO\sMixed|NLH/PLO\sMixed|Triple\sStud|NLH/NLO\sMixed)</td>' \
                         ur'<td.*?>(?P<CURRENCY>(%(LEGAL_ISO)s)?)(&nbsp;)?</td>' \
                         ur'<td.*?>(?P<BUYIN>([,.0-9]+|Freeroll))(?P<FPPBUYIN>\sFPP)?</td>' \
                         ur'<td align="right".*?>(?P<REBUYADDON>[,.0-9]+)</td>' \
@@ -112,7 +121,7 @@ class PokerStarsSummary(TourneySummary):
     re_XLSTourneyInfo['Tourney'] = re.compile(r'(?P<TOURNO>[0-9]+)')
     re_XLSTourneyInfo['Name'] = re.compile(ur'(?P<TOURNAME>.*)')
     re_XLSTourneyInfo['Game'] = re.compile(ur'(?P<LIMIT>[ a-zA-Z\-]+)\s' \
-                                           ur'(?P<GAME>Hold\'em|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Omaha|Omaha\sHi/Lo|Badugi|Triple\sDraw\s2\-7(\sLowball)?|Single\sDraw\s2\-7(\sLowball)?|5\sCard\sDraw|5\sCard\sOmaha(\sHi/Lo)?|Courchevel(\sHi/Lo)?|HORSE|Horse|8\-Game|HOSE|Hose|Mixed\sOmaha\sH/L|Mixed\sHold\'em|Mixed\sPLH/PLO|Mixed\sNLH/PLO|Triple\sStud|Mixed\sNLH/NLO)')
+                                           ur'(?P<GAME>Hold\'em|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sH/L|Omaha|Omaha\sH/L|Badugi|Triple\sDraw\s2\-7(\sLowball)?|Single\sDraw\s2\-7(\sLowball)?|5\sCard\sDraw|5\sCard\sOmaha(\sH/L)?|Courchevel(\sH/L)?|HORSE|Horse|8\-Game|HOSE|Hose|Omaha\sH/L\sMixed|Hold\'em\sMixed|PLH/PLO\sMixed|NLH/PLO\sMixed|Triple\sStud|NLH/NLO\sMixed)')
     re_XLSTourneyInfo['Currency'] = re.compile(ur'(?P<CURRENCY>(%(LEGAL_ISO)s)?)' % substitutions)
     re_XLSTourneyInfo['Buy-In'] = re.compile(ur'(?P<BUYIN>([,.0-9]+|Freeroll))(?P<FPPBUYIN>\sFPP)?')
     re_XLSTourneyInfo['ReBuys'] = re.compile(r'(?P<REBUYADDON>[,.0-9]+)')
