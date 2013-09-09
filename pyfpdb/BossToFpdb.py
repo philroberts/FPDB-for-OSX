@@ -389,7 +389,10 @@ class Boss(HandHistoryConverter):
                 hand.addCheck( street, action.group('PNAME'))
             elif action.group('ATYPE') == 'ACTION_CALL':
                 bet = action.group('BET') 
-                hand.addCallTo(street, action.group('PNAME'), bet )
+                if Decimal(bet.replace(u',', u''))< hand.lastBet[street]:
+                    hand.addCall(street, action.group('PNAME'), bet )
+                else:
+                    hand.addCallTo(street, action.group('PNAME'), bet )
             elif action.group('ATYPE') == 'ACTION_RAISE':
                 bet = action.group('BET') 
                 hand.addRaiseTo( street, action.group('PNAME'), bet)
