@@ -229,7 +229,7 @@ class FullTiltPokerSummary(TourneySummary):
             if 'payout amount' in info and info['payout amount']:
                 m5 = self.re_WinningsXLS.search(info['payout amount'])
                 if m5:
-                    winnings = int(100*Decimal(self.clearMoneyString(a5.group('WINNINGS'))))
+                    winnings = int(100*Decimal(self.clearMoneyString(m5.group('WINNINGS'))))
                     self.currency = self.setCurrency(m5, self.currency)
                 
             if self.isAddOn:
