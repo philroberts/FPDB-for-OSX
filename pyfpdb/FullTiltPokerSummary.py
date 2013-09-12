@@ -229,20 +229,22 @@ class FullTiltPokerSummary(TourneySummary):
             if 'payout amount' in info and info['payout amount']:
                 m5 = self.re_WinningsXLS.search(info['payout amount'])
                 if m5:
-                    winnings = int(100*Decimal(self.clearMoneyString(m5.group('WINNINGS'))))
+                    winnings = int(100*Decimal(self.clearMoneyString(a5.group('WINNINGS'))))
                     self.currency = self.setCurrency(m5, self.currency)
                 
             if self.isAddOn:
-                m6 = self.re_WinningsXLS.search(info['addons'])
-                if m6:
-                    addOnAmt = int(100*Decimal(self.clearMoneyString(m6.group('WINNINGS'))))
-                    addOnCount = addOnAmt/self.addOnCost
+                addOnAmt = 0
+                m6 = self.re_WinningsXLS.finditer(info['addons'])
+                for a6 in m6:
+                    addOnAmt += int(100*Decimal(self.clearMoneyString(a6.group('WINNINGS'))))
+                addOnCount = addOnAmt/self.addOnCost
                 
             if self.isRebuy:
-                m7 = self.re_WinningsXLS.search(info['rebuys'])
-                if m7:
-                    rebuyAmt = int(100*Decimal(self.clearMoneyString(m7.group('WINNINGS'))))
-                    rebuyCount = rebuyAmt/self.rebuyCost
+                rebuyAmt = 0
+                m7 = self.re_WinningsXLS.finditer(info['rebuys'])
+                for a7 in m7:
+                    rebuyAmt += int(100*Decimal(self.clearMoneyString(a7.group('WINNINGS'))))
+                rebuyCount = rebuyAmt/self.rebuyCost
                 
             if 'total bounty amount' in info and info['total bounty amount']:
                 m8 = self.re_WinningsXLS.search(info['total bounty amount'])
