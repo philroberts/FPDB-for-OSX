@@ -131,7 +131,7 @@ class FullTiltPokerSummary(TourneySummary):
     re_Speed    = re.compile("(?P<SPEED>(Turbo|Super\sTurbo|Escalator))", re.MULTILINE)
     re_Multi    = re.compile("(?P<MULTI>(Multi-Entry|Re-Entry))", re.MULTILINE)
     re_Chance   = re.compile("((?P<CHANCE>\d)x\sChance)", re.MULTILINE)
-    re_Player = re.compile(u"""(?P<RANK>[\d]+):\s(?P<NAME>[^,\r\n]{2,15})(,\s(?P<CURRENCY>[%(LS)s])?(?P<WINNINGS>[.\d]+)(\s(?P<CURRENCY1>FTP|T\$|Play\sChips))?)?(,\s(?P<TICKET>Step\s(?P<LEVEL>\d)\sTicket))?""" % substitutions)
+    re_Player = re.compile(u"""(?P<RANK>[\d]+):\s(?P<NAME>[^,\r\n]{2,15})(,\s(?P<CURRENCY>[%(LS)s])?(?P<WINNINGS>[%(NUM)s]+)(\s(?P<CURRENCY1>FTP|T\$|Play\sChips))?)?(,\s(?P<TICKET>Step\s(?P<LEVEL>\d)\sTicket))?""" % substitutions)
     re_Finished = re.compile(u"""(?P<NAME>[^,\r\n]{2,15}) finished in (?P<RANK>[\d]+)\S\S place""")
     #19-Aug-2013 15:32
     re_HeroXLS = re.compile(r'Player\sTournament\sReport\sfor\s(?P<NAME>.*?)\s\(.*\)') 
