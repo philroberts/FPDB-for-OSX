@@ -393,7 +393,7 @@ class FullTiltPokerSummary(TourneySummary):
                 koCount = 0
     
                 if 'WINNINGS' in mg and mg['WINNINGS'] != None:
-                    winnings = int(100*Decimal(mg['WINNINGS']))
+                    int(100*Decimal(self.clearMoneyString(mg['WINNINGS'])))
                     if 'CURRENCY' in mg and mg['CURRENCY'] != None:
                         if mg['CURRENCY'] == "$":     self.currency="USD"
                         elif mg['CURRENCY'] == u"€":  self.currency="EUR"
