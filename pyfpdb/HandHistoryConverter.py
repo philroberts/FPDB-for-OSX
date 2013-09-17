@@ -419,7 +419,7 @@ or None if we fail to get the info """
         if hand.rake < 0 and (not hand.roundPenny or hand.rake < round):
             log.error(_("hhc.getRake(): '%s': Amount collected (%s) is greater than the pot (%s)") % (hand.handid,str(hand.totalcollected), str(hand.totalpot)))
             raise FpdbParseError
-        elif hand.totalpot > 0 and Decimal(hand.totalpot/4) < hand.rake:
+        elif hand.totalpot > 0 and Decimal(hand.totalpot/4) < hand.rake and not hand.fastFold:
             log.error(_("hhc.getRake(): '%s': Suspiciously high rake (%s) > 25 pct of pot (%s)") % (hand.handid,str(hand.rake), str(hand.totalpot)))
             raise FpdbParseError
 

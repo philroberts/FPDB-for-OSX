@@ -1,0 +1,20 @@
+** Hand # 5029053937 starting - 2013-09-07 02:30:38
+** Position PLO HU 47 - €50 Max [Omaha] (0.25|0.50 PL - Cash Game) Real Money
+
+Hero sitting in seat 1 with €49.50[Dealer]
+Player0 sitting in seat 2 with €50.50
+Hero posted the small blind - €0.25
+Player0 posted the big blind - €0.50
+
+** Dealing cards to Hero: Qh, 9c, 2h, Ah
+Hero raised to €1.25
+Player0 called - €1.00
+
+** Dealing the flop: As, Ad, 8c
+Player0 checked
+Hero bet - €1.50
+Player0 folded
+Hero mucks: 
+Hero wins €4.35 from the main pot
+
+Rake: €0.15

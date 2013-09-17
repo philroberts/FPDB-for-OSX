@@ -277,7 +277,11 @@ class IdentifySite:
                 re_SplitHands = re.compile(u'\*{2}\sGame\sID\s')
                 if re_SplitHands.search( m1.group()):
                     f.site.line_delimiter = None
-                    f.site.re_SplitHands = re.compile(u'\n\n\n\*{2}\sGame\sID\s')
+                    f.site.re_SplitHands = re.compile(u'End\sof\sgame\s\d+')
+                re_SplitHands = re.compile(u'\*{2}\sHand\s\#\s')
+                if re_SplitHands.search( m1.group()):
+                    f.site.line_delimiter = None
+                    f.site.re_SplitHands = re.compile(u'Rake:\s[^\s]+')
                 m3 = f.site.re_HeroCards1.search(whole_file)
                 if m3:
                     f.hero = m3.group('PNAME')
