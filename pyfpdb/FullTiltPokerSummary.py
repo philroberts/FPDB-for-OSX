@@ -316,7 +316,7 @@ class FullTiltPokerSummary(TourneySummary):
             self.tourneyName = mg['TOURNAMENT']
             if mg['TOURPAREN'] != None:
                 self.tourneyName += ' ' + mg['TOURPAREN']
-            entryId = self.readTourneyName(mg['TOURNAMENT'])
+            entryId = self.readTourneyName(mg['TOURNAMENT'], mg['MATCHNO'])
             
         tableAttributes = None
         if mg['TABLEATTRIBUTES'] != None and mg['TOURPAREN'] != None:
@@ -456,14 +456,14 @@ class FullTiltPokerSummary(TourneySummary):
         elif m.group('CURRENCY2') == 'Play Chips': currency="play"
         return currency        
     
-    def readTourneyName(self, tourneyName):
+    def readTourneyName(self, tourneyName, matchNo=None):
         entryId = 1
         n = self.re_TourneyExtraInfo.search(tourneyName)
         if n.group('SNG') is not None:
             self.isSng = True
-        if "Rush" in mg['TOURNAMENT']:
+        if "Rush" in tourneyName:
             self.isFast = True
-        if "On Demand" in mg['TOURNAMENT']:
+        if "On Demand" in tourneyName:
             self.isOnDemand = True
         if n.group('SPECIAL') is not None :
             special = n.group('SPECIAL')
@@ -473,8 +473,8 @@ class FullTiltPokerSummary(TourneySummary):
                 self.isKO = True
             elif re.search("Matrix", special):
                 self.isMatrix = True
-                if mg['MATCHNO'] != None:
-                    entryId = int(mg['MATCHNO'])
+                if matchNo != None:
+                    entryId = int(matchNo)
                 else:
                     entryId = 5
             elif special == "Shootout":

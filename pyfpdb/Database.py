@@ -3387,15 +3387,27 @@ class Database:
 
         return result
     
-    def defaultTourneyTypeValue(self, objVal, dbVal, objField):
-        if ((not objVal) or 
-           (objField=='maxSeats' and objVal>dbVal) or 
-           ((objField,objVal)==('buyinCurrency','NA')) or 
-           ((objField,objVal)==('stack','Regular')) or
-           ((objField,objVal)==('speed','Normal'))
+    def defaultTourneyTypeValue(self, value1, value2, field):
+        if ((not value1) or 
+           (field=='maxSeats' and value1>value2) or 
+           ((field,value1)==('buyinCurrency','NA')) or 
+           ((field,value1)==('stack','Regular')) or
+           ((field,value1)==('speed','Normal')) or
+           (field=='koBounty' and value1)
            ):
             return True
-        return False        
+        return False
+    
+    def updateObjectValue(self, obj, dbVal, objVal, objField):
+        if (objField=='koBounty' and objVal>dbVal and dbVal!=0):
+            if objVal%dbVal==0:
+                setattr(obj, objField, dbVal)
+                koCounts = getattr(obj, 'koCounts')
+                for pname, kos in koCounts.iteritems():
+                    koCount = objVal/dbVal
+                    obj.koCounts.update( {pname : [koCount] } )
+        else:
+            setattr(obj, objField, dbVal)
     
     def createOrUpdateTourneyType(self, obj):
         ttid, _ttid, updateDb = None, None, False
@@ -3430,8 +3442,8 @@ class Database:
                 objField, dbField = ev
                 objVal, dbVal = getattr(obj, objField), resultDict[dbField]
                 if self.defaultTourneyTypeValue(objVal, dbVal, objField) and dbVal:#DB has this value but object doesnt, so update object
-                    setattr(obj, objField, dbVal)
-                elif objVal and (dbVal != objVal):#object has this value but DB doesnt, so update DB
+                    self.updateObjectValue(obj, dbVal, objVal, objField)
+                elif self.defaultTourneyTypeValue(dbVal, objVal, objField) and objVal:#object has this value but DB doesnt, so update DB
                     updateDb=True
                     oldttid = ttid
         if not result or updateDb:
