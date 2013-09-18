@@ -197,7 +197,7 @@ class PokerStarsSummary(TourneySummary):
         #self.addPlayer(rank, name, winnings, self.currency, rebuyCount, addOnCount, koCount)
         
     def parseSummaryXLS(self):
-        info = self.summaryText
+        info = self.summaryText[0]
         m = self.re_XLSPlayer.search(info['header'])
         if m==None:
             tmp1 = info['header']
@@ -323,7 +323,8 @@ class PokerStarsSummary(TourneySummary):
                 rebuyCount = rebuyAddOnAmt/self.rebuyCost
                 
             if 'KOS' in info and info['KOS'] != None:
-                winnings += int(100*Decimal(self.clearMoneyString(info['KOS'])))
+                self.koBounty += int(100*Decimal(self.clearMoneyString(info['KOS'])))
+                self.isKO, koCount = True, 1
                     
             self.addPlayer(rank, name, winnings, self.currency, rebuyCount, addOnCount, koCount)
 

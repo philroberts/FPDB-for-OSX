@@ -159,7 +159,7 @@ class FullTiltPokerSummary(TourneySummary):
             raise FpdbParseError(_("parseSummary FAIL"))
         
     def parseSummaryXLS(self):
-        info = self.summaryText
+        info = self.summaryText[0]
         m = self.re_HeroXLS.search(info['header'])
         if m==None:
             tmp1 = info['header']
@@ -217,48 +217,55 @@ class FullTiltPokerSummary(TourneySummary):
         if 'rebuys' in info and info['rebuys']:
             self.isRebuy   = True
             self.rebuyCost = self.buyin
+        
+        koAmt, entryId = 0, 1
+        for entry in self.summaryText:
+            if info.get('NAME')!=None and entry.get('position'): 
+                name = info['NAME']
+                rank = int(Decimal(entry['position']))
+                winnings = 0
+                rebuyCount = 0
+                addOnCount = 0
+                koCount = 0
+                entryId += 1
 
-        if info.get('NAME')!=None and info.get('position'): 
-            name = info['NAME']
-            rank = int(Decimal(info['position']))
-            winnings = 0
-            rebuyCount = 0
-            addOnCount = 0
-            koCount = 0
-            
-            if 'payout amount' in info and info['payout amount']:
-                m5 = self.re_WinningsXLS.search(info['payout amount'])
-                if m5:
-                    winnings = int(100*Decimal(self.clearMoneyString(m5.group('WINNINGS'))))
-                    self.currency = self.setCurrency(m5, self.currency)
-                
-            if self.isAddOn:
-                addOnAmt = 0
-                m6 = self.re_WinningsXLS.finditer(info['addons'])
-                for a6 in m6:
-                    addOnAmt += int(100*Decimal(self.clearMoneyString(a6.group('WINNINGS'))))
-                addOnCount = addOnAmt/self.addOnCost
-                
-            if self.isRebuy:
-                rebuyAmt = 0
-                m7 = self.re_WinningsXLS.finditer(info['rebuys'])
-                for a7 in m7:
-                    rebuyAmt += int(100*Decimal(self.clearMoneyString(a7.group('WINNINGS'))))
-                rebuyCount = rebuyAmt/self.rebuyCost
-                
-            if 'total bounty amount' in info and info['total bounty amount']:
-                m8 = self.re_WinningsXLS.search(info['total bounty amount'])
-                if m8:
-                    winnings += int(100*Decimal(self.clearMoneyString(m8.group('WINNINGS'))))
-                    self.currency = self.setCurrency(m8, self.currency)
-                
-            if 'pro bounty amount' in info and info['pro bounty amount']:
-                m9 = self.re_WinningsXLS.search(info['pro bounty amount'])
-                if m9:
-                    winnings += int(100*Decimal(self.clearMoneyString(m9.group('WINNINGS'))))
-                    self.currency = self.setCurrency(m9, self.currency)
-                  
-            self.addPlayer(rank, name, winnings, self.currency, rebuyCount, addOnCount, koCount, info['entries'])
+                if 'payout amount' in entry and entry['payout amount']:
+                    m5 = self.re_WinningsXLS.search(entry['payout amount'])
+                    if m5:
+                        winnings = int(100*Decimal(self.clearMoneyString(m5.group('WINNINGS'))))
+                        self.currency = self.setCurrency(m5, self.currency)
+                    
+                if self.isAddOn:
+                    addOnAmt = 0
+                    m6 = self.re_WinningsXLS.finditer(entry['addons'])
+                    for a6 in m6:
+                        addOnAmt += int(100*Decimal(self.clearMoneyString(a6.group('WINNINGS'))))
+                    addOnCount = addOnAmt/self.addOnCost
+                    
+                if self.isRebuy:
+                    rebuyAmt = 0
+                    m7 = self.re_WinningsXLS.finditer(entry['rebuys'])
+                    for a7 in m7:
+                        rebuyAmt += int(100*Decimal(self.clearMoneyString(a7.group('WINNINGS'))))
+                    rebuyCount = rebuyAmt/self.rebuyCost
+                    
+                if 'total bounty amount' in entry and entry['total bounty amount']:
+                    m8 = self.re_WinningsXLS.search(entry['total bounty amount'])
+                    if m8:
+                        self.koBounty += int(100*Decimal(self.clearMoneyString(m8.group('WINNINGS'))))
+                        self.currency = self.setCurrency(m8, self.currency)
+                    
+                if 'pro bounty amount' in entry and entry['pro bounty amount']:
+                    m9 = self.re_WinningsXLS.search(entry['pro bounty amount'])
+                    if m9:
+                        self.koBounty += int(100*Decimal(self.clearMoneyString(m9.group('WINNINGS'))))
+                        self.currency = self.setCurrency(m9, self.currency)
+                        
+                if self.koBounty and not self.isKO:
+                    self.isKO = True
+                    koCount = 1
+                      
+                self.addPlayer(rank, name, winnings, self.currency, rebuyCount, addOnCount, koCount, entryId)            
 
     def parseSummaryFile(self):
         m = self.re_TourneyInfo.search(self.summaryText[:2000])

@@ -337,13 +337,12 @@ winnings    (int) the money the player ended the tourney with (can be 0, or -1 i
         for row in rows:
             data = dict(zip(keys, row))
             data['header'] = header
-            if entries.get(data[tourNoField])==None:
-                entries[data[tourNoField]] = 1
-            else:
-                entries[data[tourNoField]] += 1 
-            data['entries'] = entries[data[tourNoField]]
             if len(data[tourNoField])>0:
-                summaryTexts.append(data)
+                if entries.get(data[tourNoField])==None:
+                    entries[data[tourNoField]] = []
+                entries[data[tourNoField]].append(data)
+        for k, item in entries.iteritems():
+            summaryTexts.append(item)
         return summaryTexts
 
     @staticmethod
