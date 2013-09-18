@@ -380,7 +380,7 @@ class PokerTracker(HandHistoryConverter):
                     hand.tablename = re.split(",", info[key])[0]
                     hand.tablename = hand.tablename.strip()
                 if 'Blaze' in hand.tablename:
-                    hand.gametype['zoom'] = True
+                    hand.gametype['fast'] = True
                 if self.sitename == 'Microgaming':
                     m3 = self.re_Max.search(hand.tablename)
                     if m3 and m3.group('MAX'):
