@@ -27,12 +27,18 @@ import codecs
 import Database
 import Configuration
 import logging
+try:
+    import xlrd
+except:
+    xlrd = None
 # logging has been set up in fpdb.py or HUD_main.py, use their settings:
 log = logging.getLogger("parser")
 
-re_SplitArchive  = {}
+re_SplitArchive, re_XLS  = {}, {}
 re_SplitArchive['PokerStars'] = re.compile(r'(?P<SPLIT>^Hand #(\d+)\s*$)', re.MULTILINE)
 re_SplitArchive['Fulltilt'] = re.compile(r'(?P<SPLIT>(\*{20}\s#\s\d+\s\*{20,25}\s?)|(BEGIN\s*FullTiltPoker))', re.MULTILINE)
+re_XLS['PokerStars'] = re.compile(r'Tournaments\splayed\sby\s\'.+?\'')
+re_XLS['Fulltilt'] = re.compile(r'Player\sTournament\sReport\sfor\s.+?\s\(.*\)')
 
 class FPDBFile:
     path = ""
@@ -202,6 +208,11 @@ class IdentifySite:
                     self.filelist[path] = fobj
 
     def read_file(self, in_path):
+        if in_path.endswith('.xls') or in_path.endswith('.xlsx') and xlrd:
+            wb = xlrd.open_workbook(in_path)
+            sh = wb.sheet_by_index(0)
+            header = sh.cell(0,0).value
+            return header, 'utf-8'
         for kodec in self.codepage:
             try:
                 infile = codecs.open(in_path, 'r', kodec)
@@ -237,11 +248,20 @@ class IdentifySite:
 
         for id, site in self.sitelist.iteritems():
             if site.summary:
-                m = site.re_SumIdentify.search(whole_file)
-                if m:
-                    f.site = site
-                    f.ftype = "summary"
-                    return f
+                if path.endswith('.xls') or path.endswith('.xlsx'):
+                    filter_name = site.filter_name
+                    if filter_name in ('Fulltilt', 'PokerStars'):
+                        m2 = re_XLS[filter_name].search(whole_file)
+                        if m2:
+                            f.site = site
+                            f.ftype = "summary"
+                            return f
+                else:
+                    m3 = site.re_SumIdentify.search(whole_file)
+                    if m3:
+                        f.site = site
+                        f.ftype = "summary"
+                        return f
                 
         m1 = self.re_Identify_PT.search(whole_file)
         m2 = self.re_SumIdentify_PT.search(whole_file[:100])
@@ -257,7 +277,11 @@ class IdentifySite:
                 re_SplitHands = re.compile(u'\*{2}\sGame\sID\s')
                 if re_SplitHands.search( m1.group()):
                     f.site.line_delimiter = None
-                    f.site.re_SplitHands = re.compile(u'\n\n\n\*{2}\sGame\sID\s')
+                    f.site.re_SplitHands = re.compile(u'End\sof\sgame\s\d+')
+                re_SplitHands = re.compile(u'\*{2}\sHand\s\#\s')
+                if re_SplitHands.search( m1.group()):
+                    f.site.line_delimiter = None
+                    f.site.re_SplitHands = re.compile(u'Rake:\s[^\s]+')
                 m3 = f.site.re_HeroCards1.search(whole_file)
                 if m3:
                     f.hero = m3.group('PNAME')

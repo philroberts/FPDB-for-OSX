@@ -1,0 +1,144 @@
+** Game ID 4962892238 Version:4 starting - 2013-07-13 03:24:59
+** Heads Up (Turbo)(10146282):Table 1 [Multi Table Hold'em] (10|20 NL - MTT seats:2 ) Real Money
+
+- Hero sitting in seat 1 with 1500.00 at end 1340.00
+- Player0 sitting in seat 2 with 1500.00 at end 1660.00 [Dealer]
+
+Player0 posted the small blind - 10.00
+Hero posted the big blind - 20.00
+** Dealing card to Hero: 10 of c, 9 of s
+Player0 called - 10.00
+Hero bet - 60.00
+Player0 called - 60.00
+** Dealing the flop: 3 of s, 2 of c, 2 of d
+Hero bet - 80.00
+Player0 raised - 400.00
+Hero folded
+Player0 mucks:
+Player0 wins 640.00 from the main pot
+
+End of game 4962892238
+
+
+** Game ID 4962892477 Version:4 starting - 2013-07-13 03:25:14
+** Heads Up (Turbo)(10146282):Table 1 [Multi Table Hold'em] (10|20 NL - MTT seats:2 ) Real Money
+
+- Hero sitting in seat 1 with 1340.00 at end 1380.00 [Dealer]
+- Player0 sitting in seat 2 with 1660.00 at end 1620.00
+
+Hero posted the small blind - 10.00
+Player0 posted the big blind - 20.00
+** Dealing card to Hero: 9 of h, J of d
+Hero raised - 30.00
+Player0 called - 20.00
+** Dealing the flop: 3 of c, K of h, 5 of s
+Player0 checked
+Hero bet - 40.00
+Player0 folded
+Hero mucks:
+Hero wins 120.00 from the main pot
+
+End of game 4962892477
+
+
+** Game ID 4962892594 Version:4 starting - 2013-07-13 03:25:34
+** Heads Up (Turbo)(10146282):Table 1 [Multi Table Hold'em] (10|20 NL - MTT seats:2 ) Real Money
+
+- Hero sitting in seat 1 with 1380.00 at end 1360.00
+- Player0 sitting in seat 2 with 1620.00 at end 1640.00 [Dealer]
+
+Player0 posted the small blind - 10.00
+Hero posted the big blind - 20.00
+** Dealing card to Hero: 7 of h, 5 of s
+Player0 called - 10.00
+Hero checked
+** Dealing the flop: A of h, 10 of s, 4 of s
+Hero checked
+Player0 checked
+** Dealing the turn: A of c
+Hero checked
+Player0 checked
+** Dealing the river: K of h
+Hero checked
+Player0 checked
+Hero shows: 7 of h, 5 of s
+Player0 shows: 2 of c, 2 of s
+Player0 wins 40.00 from the main pot
+
+End of game 4962892594
+
+
+** Game ID 4962892804 Version:4 starting - 2013-07-13 03:25:41
+** Heads Up (Turbo)(10146282):Table 1 [Multi Table Hold'em] (10|20 NL - MTT seats:2 ) Real Money
+
+- Hero sitting in seat 1 with 1360.00 at end 1350.00 [Dealer]
+- Player0 sitting in seat 2 with 1640.00 at end 1650.00
+
+Hero posted the small blind - 10.00
+Player0 posted the big blind - 20.00
+** Dealing card to Hero: 4 of d, 9 of s
+Hero folded
+Player0 mucks:
+Player0 wins 30.00 from the main pot
+
+End of game 4962892804
+
+
+** Game ID 4962892831 Version:4 starting - 2013-07-13 03:26:44
+** Heads Up (Turbo)(10146282):Table 1 [Multi Table Hold'em] (10|20 NL - MTT seats:2 ) Real Money
+
+- Hero sitting in seat 1 with 1350.00 at end 360.00
+- Player0 sitting in seat 2 with 1650.00 at end 2640.00 [Dealer]
+
+Player0 posted the small blind - 10.00
+Hero posted the big blind - 20.00
+** Dealing card to Hero: Q of s, A of s
+Player0 called - 10.00
+Hero bet - 60.00
+Player0 called - 60.00
+** Dealing the flop: J of h, 4 of d, J of s
+Hero bet - 70.00
+Player0 raised - 140.00
+Hero called - 70.00
+** Dealing the turn: J of c
+Hero checked
+Player0 bet - 440.00
+Hero called - 440.00
+** Dealing the river: 10 of d
+Hero checked
+Player0 bet - 330.00
+Hero called - 330.00
+Player0 shows: 7 of h, 10 of s
+Hero mucks: Q of s, A of s
+Player0 wins 1980.00 from the main pot
+
+End of game 4962892831
+
+
+** Game ID 4962893417 Version:4 starting - 2013-07-13 03:27:17
+** Heads Up (Turbo)(10146282):Table 1 [Multi Table Hold'em] (10|20 NL - MTT seats:2 ) Real Money
+
+- Hero sitting in seat 1 with 360.00 at end 0.00 [Dealer]
+- Player0 sitting in seat 2 with 2640.00 at end 3000.00
+
+Hero posted the small blind - 10.00
+Player0 posted the big blind - 20.00
+** Dealing card to Hero: 9 of s, 9 of c
+Hero raised - 30.00
+Player0 called - 20.00
+** Dealing the flop: 2 of d, A of c, J of s
+Player0 checked
+Hero checked
+** Dealing the turn: 6 of s
+Player0 bet - 80.00
+Hero called - 80.00
+** Dealing the river: 8 of c
+Player0 bet - 240.00
+Hero went all-in - 240.00
+Hero shows: 9 of s, 9 of c
+Player0 shows: 6 of h, 2 of h
+Player0 wins 720.00 from the main pot
+
+End of game 4962893417
+
+

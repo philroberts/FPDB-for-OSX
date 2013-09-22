@@ -35,24 +35,25 @@ class PartyPoker(HandHistoryConverter):
     codepage = ("utf8", "cp1252")
     siteId = 9
     filetype = "text"
-    sym        = {'USD': "\$", 'EUR': u"\u20ac", 'T$': ""}
-    currencies = {"\$": "USD", "$": "USD", u"\xe2\x82\xac": "EUR", u"\u20ac": "EUR", '': "T$"}
+    sym        = {'USD': "\$", 'EUR': u"\u20ac", 'T$': "", 'play':'play'}
+    currencies = {"\$": "USD", "$": "USD", u"\xe2\x82\xac": "EUR", u"\u20ac": "EUR", '': "T$", 'play':'play'}
     substitutions = {
                      'LEGAL_ISO' : "USD|EUR",            # legal ISO currency codes
                             'LS' : u"\$|\u20ac|\xe2\x82\xac|",    # Currency symbols - Euro(cp1252, utf-8)
                            'NUM' : u".,\d",
                     }
-    limits = { 'NL':'nl', 'PL':'pl', '':'fl', 'FL':'fl' }
+    limits = { 'NL':'nl', 'PL':'pl', '':'fl', 'FL':'fl', 'Limit':'fl' }
     games = {                         # base, category
                    "Texas Hold'em" : ('hold','holdem'),
                            'Omaha' : ('hold','omahahi'),
+                        'Omaha Hi' : ('hold','omahahi'),
                      'Omaha Hi-Lo' : ('hold','omahahilo'),
                "7 Card Stud Hi-Lo" : ('stud','studhilo'),
                      "7 Card Stud" : ('stud','studhi'),
                   "Double Hold'em" : ('hold','2_holdem'),
             }
 
-    Lim_Blinds = {  '0.04': ('0.01', '0.02'),        '0.08': ('0.02', '0.04'),
+    Lim_Blinds = {      '0.04': ('0.01', '0.02'),    '0.08': ('0.02', '0.04'),
                         '0.10': ('0.02', '0.05'),    '0.20': ('0.05', '0.10'),
                         '0.30': ('0.07', '0.15'),    '0.50': ('0.10', '0.25'),
                         '1.00': ('0.25', '0.50'),       '1': ('0.25', '0.50'),
@@ -91,17 +92,19 @@ class PartyPoker(HandHistoryConverter):
     # Static regexes
     re_GameInfo = re.compile(u"""
             \*{5}\sHand\sHistory\s(F|f)or\sGame\s(?P<HID>\d+)\s\*{5}\s+
+            (.+?\shas\sleft\sthe\stable\.\s+)*
+            (.+?\sfinished\sin\s\d+\splace\.\s+)*
             ((?P<CURRENCY>[%(LS)s]))?\s*
             (
              ([%(LS)s]?(?P<SB>[%(NUM)s]+)/[%(LS)s]?(?P<BB>[%(NUM)s]+)\s*(?:%(LEGAL_ISO)s)?\s+((?P<LIMIT3>NL|PL|FL|)\s+)?)|
              ((?P<CASHBI>[%(NUM)s]+)\s*(?:%(LEGAL_ISO)s)?\s*)(?P<LIMIT2>(NL|PL|FL|))?\s*
             )
             (Tourney\s*)?
-            (?P<GAME>(Texas\sHold\'em|Omaha\sHi-Lo|Omaha|7\sCard\sStud\sHi-Lo|7\sCard\sStud|Double\sHold\'em))\s*
+            (?P<GAME>(Texas\sHold\'em|Omaha\sHi-Lo|Omaha(\sHi)?|7\sCard\sStud\sHi-Lo|7\sCard\sStud|Double\sHold\'em))\s*
             (Game\sTable\s*)?
             (
-             (\((?P<LIMIT>(NL|PL|FL|))\)\s*)?
-             (\(STT\sTournament\s\#(?P<TOURNO>\d+)\)\s*)?
+             (\((?P<LIMIT>(NL|PL|FL|Limit|))\)\s*)?
+             (\((?P<SNG>STT|MTT)\sTournament\s\#(?P<TOURNO>\d+)\)\s*)?
             )?
             \s*-\s*
             (?P<DATETIME>.+)
@@ -119,8 +122,9 @@ class PartyPoker(HandHistoryConverter):
     re_GameInfoTrny     = re.compile(u"""
             \*{5}\sHand\sHistory\s(F|f)or\sGame\s(?P<HID>\d+)\s\*{5}\s+
             (?P<LIMIT>(NL|PL|FL|))\s*
-            (?P<GAME>(Texas\sHold\'em|Omaha\sHi-Lo|Omaha|7\sCard\sStud\sHi-Lo|7\sCard\sStud|Double\sHold\'em))\s+
+            (?P<GAME>(Texas\sHold\'em|Omaha\sHi-Lo|Omaha(\sHi)?|7\sCard\sStud\sHi-Lo|7\sCard\sStud|Double\sHold\'em))\s+
             (?:(?P<BUYIN>[%(LS)s]?[%(NUM)s]+)\s*(?P<BUYIN_CURRENCY>%(LEGAL_ISO)s)?\s*Buy-in\s+)?
+            (\+\s(?P<FEE>[%(LS)s]?[%(NUM)s]+)\sEntry\sFee\s+)?
             Trny:\s?(?P<TOURNO>\d+)\s+
             Level:\s*(?P<LEVEL>\d+)\s+
             ((Blinds|Stakes)(?:-Antes)?)\(
@@ -133,7 +137,7 @@ class PartyPoker(HandHistoryConverter):
             """ % substitutions, re.VERBOSE | re.UNICODE)
 
     re_PlayerInfo   = re.compile(u"""
-          (S|s)eat\s(?P<SEAT>\d+):\s
+          (S|s)eat\s?(?P<SEAT>\d+):\s
           (?P<PNAME>.*)\s
           \(\s*[%(LS)s]?(?P<CASH>[%(NUM)s]+)\s*(?:%(LEGAL_ISO)s|)\s*\)
           """ % substitutions, re.VERBOSE| re.UNICODE)
@@ -154,6 +158,7 @@ class PartyPoker(HandHistoryConverter):
     re_Disconnected  = re.compile('Connection\sLost\sdue\sto\ssome\sreason\s?', re.MULTILINE)
     re_GameStartLine = re.compile('Game\s\#\d+\sstarts', re.MULTILINE)
     re_PreliminaryHand = re.compile(r"Buy-in  - ")
+    re_emailedHand = re.compile(r'\*\*\sSummary\s\*\*')
 
     def allHandsAsList(self):
         list = HandHistoryConverter.allHandsAsList(self)
@@ -171,31 +176,45 @@ class PartyPoker(HandHistoryConverter):
                 'BRAX' : u"\[\(\)\]"
                     }
             self.re_PostSB = re.compile(
-                r"%(PLYR)s posts small blind [%(BRAX)s]?%(CUR_SYM)s(?P<SB>[.,0-9]+)\s*%(CUR)s[%(BRAX)s]?\."
+                r"%(PLYR)s posts small blind [%(BRAX)s]?%(CUR_SYM)s?(?P<SB>[.,0-9]+)\s*(%(CUR)s)?[%(BRAX)s]?\.?\s*$"
                 %  subst, re.MULTILINE)
             self.re_PostBB = re.compile(
-                r"%(PLYR)s posts big blind [%(BRAX)s]?%(CUR_SYM)s(?P<BB>[.,0-9]+)\s*%(CUR)s[%(BRAX)s]?\."
+                r"%(PLYR)s posts big blind [%(BRAX)s]?%(CUR_SYM)s?(?P<BB>[.,0-9]+)\s*(%(CUR)s)?[%(BRAX)s]?\.?\s*$"
                 %  subst, re.MULTILINE)
             self.re_PostDead = re.compile(
-                r"%(PLYR)s posts big blind \+ dead [%(BRAX)s]?%(CUR_SYM)s?(?P<BBNDEAD>[.,0-9]+)\s*%(CUR_SYM)s?[%(BRAX)s]?\." %  subst,
+                r"%(PLYR)s posts big blind \+ dead [%(BRAX)s]?%(CUR_SYM)s?(?P<BBNDEAD>[.,0-9]+)\s*%(CUR_SYM)s?[%(BRAX)s]?\.?\s*$" %  subst,
                 re.MULTILINE)
             self.re_Antes = re.compile(
-                r"%(PLYR)s posts ante [%(BRAX)s]?%(CUR_SYM)s(?P<ANTE>[.,0-9]+)\s*%(CUR)s[%(BRAX)s]?" %  subst,
+                r"%(PLYR)s posts ante [%(BRAX)s]?%(CUR_SYM)s(?P<ANTE>[.,0-9]+)\s*%(CUR)s[%(BRAX)s]?\.?\s*$" %  subst,
                 re.MULTILINE)
             self.re_HeroCards = re.compile(
                 r"Dealt to %(PLYR)s \[\s*(?P<NEWCARDS>.+)\s*\]" % subst,
                 re.MULTILINE)
             self.re_Action = re.compile(u"""
-                %(PLYR)s\s+(?P<ATYPE>bets|checks|raises|completes|bring-ins|calls|folds|is\sall-In|double\sbets)
-                (?:\s+[%(BRAX)s]?\s?%(CUR_SYM)s?(?P<BET>[.,\d]+)\s*(%(CUR)s)?\s?[%(BRAX)s]?)?
+                (?P<PNAME>.+?)\s(?P<ATYPE>bets|checks|raises|completes|bring-ins|calls|folds|is\sall-In|double\sbets)
+                (?:\s*[%(BRAX)s]?\s?%(CUR_SYM)s?(?P<BET>[.,\d]+)\s*(%(CUR)s)?\s?[%(BRAX)s]?)?
+                (\sto\s[.,\d]+)?
                 \.?\s*$""" %  subst, re.MULTILINE|re.VERBOSE)
-            self.re_ShownCards = re.compile(
-                r"%s (?P<SHOWED>(?:doesn\'t )?shows?) "  %  player_re +
-                r"\[ *(?P<CARDS>.+) *\](?P<COMBINATION>.+)\.",
-                re.MULTILINE)
-            self.re_CollectPot = re.compile(
-                r"""%(PLYR)s\s+wins\s+(Lo\s\()?%(CUR_SYM)s?(?P<POT>[.,\d]+)\s*(%(CUR)s)?\)?""" %  subst,
-                re.MULTILINE|re.VERBOSE)
+            if not hand.emailedHand:
+                self.re_ShownCards = re.compile(
+                    r"%s (?P<SHOWED>(?:doesn\'t )?shows?) "  %  player_re +
+                    r"\[ *(?P<CARDS>.+) *\](?P<COMBINATION>.+)\.",
+                    re.MULTILINE)
+            else:
+                #Michow111 balance $113, bet $50, collected $110.25, net +$60.25 [ 8h 9h ] [ a straight, seven to jack -- Jc,Td,9h,8h,7c ]
+                #babunchik balance $0, lost $50 [ Kd Js ] [ a pair of jacks -- Kd,Js,Jc,Td,7c ]
+                self.re_ShownCards = re.compile(
+                    r"%(PLYR)s balance.*"  %  subst +
+                    r"\[ (?P<CARDS>.+) \] *\[ *(?P<COMBINATION>.+) \-\-",
+                    re.MULTILINE)
+            if not hand.emailedHand:
+                self.re_CollectPot = re.compile(
+                    r"""%(PLYR)s\s+wins\s+(Lo\s\()?%(CUR_SYM)s?(?P<POT>[.,\d]+)\s*(%(CUR)s)?\)?""" %  subst,
+                    re.MULTILINE|re.VERBOSE)
+            else:
+                self.re_CollectPot = re.compile(
+                    r"""%(PLYR)s(\sbalance\s%(CUR_SYM)s?[.,\d]+,)(\sbet\s%(CUR_SYM)s?[.,\d]+,)(\scollected\s%(CUR_SYM)s?(?P<POT>[.,\d]+),)""" %  subst,
+                    re.MULTILINE|re.VERBOSE)
 
     def readSupportedGames(self):
         return [["ring", "hold", "nl"],
@@ -317,8 +336,12 @@ class PartyPoker(HandHistoryConverter):
     def readHandInfo(self, hand):
         info, m2 = {}, None
         hand.handText = hand.handText.replace(u'\x00', u'')
+        if self.re_emailedHand.search(hand.handText):
+            hand.emailedHand = True
+        else:
+            hand.emailedHand = False
         m  = self.re_HandInfo.search(hand.handText,re.DOTALL)
-        if hand.gametype['type'] == 'ring':
+        if hand.gametype['type'] == 'ring' or hand.emailedHand:
             m2 = self.re_GameInfo.search(hand.handText)
         else:
             m2 = self.re_GameInfoTrny.search(hand.handText)
@@ -330,7 +353,6 @@ class PartyPoker(HandHistoryConverter):
         info.update(m2.groupdict())
 
         for key in info:
-            pass
             if key == 'DATETIME':
                 #Saturday, July 25, 07:53:52 EDT 2009
                 #Thursday, July 30, 21:40:41 MSKS 2009
@@ -366,22 +388,29 @@ class PartyPoker(HandHistoryConverter):
                 hand.buttonpos = info[key]
             if key == 'TOURNO':
                 hand.tourNo = info[key]
+                if hand.emailedHand:
+                    hand.buyin = 0
+                    hand.fee = 0
+                    hand.buyinCurrency = "NA"
             if key == 'TABLE_ID_WRAPPER':
                 if info[key] == '#':
                     # FIXME: there is no such property in Hand class
                     self.isSNG = True
             if key == 'BUYIN':
-                if info[key] == None:
+                if info.get('TABLE')!= None and 'Freeroll' in info.get('TABLE'):
                     # Freeroll tourney
                     hand.buyin = 0
                     hand.fee = 0
                     hand.buyinCurrency = "FREE"
-                    hand.isKO = False
+                elif info[key] == None:
+                    # Freeroll tourney
+                    hand.buyin = 0
+                    hand.fee = 0
+                    hand.buyinCurrency = "NA"
                 elif hand.tourNo != None:
                     hand.buyin = 0
                     hand.fee = 0
-                    hand.buyinCurrency = "FREE"
-                    hand.isKO = False
+                    hand.buyinCurrency = "NA"
                     if info[key].find("$")!=-1:
                         hand.buyinCurrency="USD"
                     elif info[key].find(u"€")!=-1:
@@ -391,6 +420,9 @@ class PartyPoker(HandHistoryConverter):
                         raise FpdbParseError
                     info[key] = self.clearMoneyString(info[key].strip(u'$€'))
                     hand.buyin = int(100*Decimal(info[key]))
+                    if 'FEE' in info and info['FEE']!=None:
+                        info['FEE'] = self.clearMoneyString(info['FEE'].strip(u'$€'))
+                        hand.fee = int(100*Decimal(info['FEE']))
             if key == 'LEVEL':
                 hand.level = info[key]
             if key == 'PLAY' and info['PLAY'] != 'Real':
@@ -418,14 +450,27 @@ class PartyPoker(HandHistoryConverter):
         m = self.re_PlayerInfo.finditer(hand.handText)
         maxKnownStack = 0
         zeroStackPlayers = []
+        self.playerMap = {}
         for a in m:
+            pname = a.group('PNAME')
+            if hand.emailedHand:
+                
+                subst = {'PLYR': re.escape(a.group('PNAME')), 'SPACENAME': "\s(.+)? "}
+                re_PlayerName = re.compile(
+                        r"""^%(PLYR)s(?P<PNAMEEXTRA>%(SPACENAME)s)balance\s""" %  subst,
+                        re.MULTILINE|re.VERBOSE)
+                m1 = re_PlayerName.search(hand.handText)
+                if m1 and len(m1.group('PNAMEEXTRA'))>1:
+                    pname = a.group('PNAME') + m1.group('PNAMEEXTRA')
+                    pname = pname.strip()
+                    self.playerMap[a.group('PNAME')] = pname
             if a.group('CASH') > '0':
                 #record max known stack for use with players with unknown stack
                 maxKnownStack = max(a.group('CASH'),maxKnownStack)
-                hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), self.clearMoneyString(a.group('CASH')))
+                hand.addPlayer(int(a.group('SEAT')), pname, self.clearMoneyString(a.group('CASH')))
             else:
                 #zero stacked players are added later
-                zeroStackPlayers.append([int(a.group('SEAT')), a.group('PNAME'), self.clearMoneyString(a.group('CASH'))])
+                zeroStackPlayers.append([int(a.group('SEAT')), pname, self.clearMoneyString(a.group('CASH'))])
         if hand.gametype['type'] == 'ring':
             #finds first vacant seat after an exact seat
             def findFirstEmptySeat(startSeat):
@@ -454,7 +499,7 @@ class PartyPoker(HandHistoryConverter):
             #if a zero stacked player is just joined the table in this very hand then set his stack to maxKnownStack
             for p in zeroStackPlayers:
                 if p[1] in match_JoiningPlayers:
-                    p[2] = self.clearMoneyString(maxKnownStack)
+                    p[2] = self.clearMoneyString(str(maxKnownStack))
                 if not p[1] in match_LeavingPlayers:
                     hand.addPlayer(p[0],p[1],p[2])
 
@@ -475,15 +520,15 @@ class PartyPoker(HandHistoryConverter):
                     # The commented out code above is 'correct' unless the unseated player is the only BB
                     # I'm willing to live with the unseated player being placed in the lowest seat for now.
                     newPlayerSeat = findFirstEmptySeat(1)
-                    hand.addPlayer(newPlayerSeat,player,self.clearMoneyString(maxKnownStack))
+                    hand.addPlayer(newPlayerSeat,player,self.clearMoneyString(str(maxKnownStack)))
 
     def markStreets(self, hand):
         if hand.gametype['base'] in ("hold"):
             m =  re.search(r"\*{2} Dealing down cards \*{2}"
                            r"(?P<PREFLOP>.+?)"
-                           r"(?:\*{2} Dealing Flop \*{2} (?P<FLOP>\[ \S\S, \S\S, \S\S \].+?))?"
-                           r"(?:\*{2} Dealing Turn \*{2} (?P<TURN>\[ \S\S \].+?))?"
-                           r"(?:\*{2} Dealing River \*{2} (?P<RIVER>\[ \S\S \].+?))?$"
+                           r"(?:\*{2} Dealing Flop \*{2} (:?\s*)?(?P<FLOP>\[ \S\S, \S\S, \S\S \].+?))?"
+                           r"(?:\*{2} Dealing Turn \*{2} (:?\s*)?(?P<TURN>\[ \S\S \].+?))?"
+                           r"(?:\*{2} Dealing River \*{2} (:?\s*)?(?P<RIVER>\[ \S\S \].+?))?$"
                             , hand.handText,re.DOTALL)
         elif hand.gametype['base'] in ("stud"):
             m =  re.search(
@@ -596,8 +641,10 @@ class PartyPoker(HandHistoryConverter):
         m = self.re_Action.finditer(hand.streets[street])
         for action in m:
             acts = action.groupdict()
-            #print "DEBUG: acts: %s" % acts
+            #print "DEBUG: acts: %s %s" % (street, acts)
             playerName = action.group('PNAME')
+            if self.playerMap.get(playerName):
+                playerName = self.playerMap.get(playerName)
             amount = self.clearMoneyString(action.group('BET')) if action.group('BET') else None
             actionType = action.group('ATYPE')
 
@@ -621,7 +668,8 @@ class PartyPoker(HandHistoryConverter):
             elif actionType == 'bring-ins':
                 hand.addBringIn( playerName, amount)
             elif actionType == 'is all-In':
-                hand.addAllIn(street, playerName, amount)
+                if amount:
+                    hand.addAllIn(street, playerName, amount)
             else:
                 log.error((_("PartyPokerToFpdb: Unimplemented %s: '%s' '%s'") + " hid:%s") % ("readAction", playerName, actionType, hand.handid))
                 raise FpdbParseError
@@ -636,11 +684,12 @@ class PartyPoker(HandHistoryConverter):
             hand.addCollectPot(player=m.group('PNAME'),pot=self.clearMoneyString(m.group('POT')))
 
     def readShownCards(self,hand):
+        
         for m in self.re_ShownCards.finditer(hand.handText):
             if m.group('CARDS') is not None:
                 cards = renderCards(m.group('CARDS'))
-
-                mucked = m.group('SHOWED') != "show"
+                
+                mucked = 'SHOWED' in m.groupdict() and m.group('SHOWED') != "show"
 
                 hand.addShownCards(cards=cards, player=m.group('PNAME'), shown=True, mucked=mucked, string=m.group('COMBINATION'))
 

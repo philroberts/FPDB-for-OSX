@@ -60,6 +60,7 @@ class Hand(object):
         self.saveActions = self.config.get_import_parameters().get('saveActions')
         self.callHud    = self.config.get_import_parameters().get("callFpdbHud")
         self.cacheSessions = self.config.get_import_parameters().get("cacheSessions")
+        self.publicDB = self.config.get_import_parameters().get("publicDB")
         self.sitename = sitename
         self.siteId = self.config.get_site_id(sitename)
         self.stats = DerivedStats.DerivedStats()
@@ -172,6 +173,7 @@ class Hand(object):
         self.totalcollected = None
         self.rake = None
         self.roundPenny = False
+        self.fastFold = False
         # currency symbol for this hand
         self.sym = self.SYMBOL[self.gametype['currency']] # save typing! delete this attr when done
         self.pot.setSym(self.sym)
@@ -299,7 +301,7 @@ class Hand(object):
         self.handspots = self.stats.getHandsPots()
         
     def getHandId(self, db, id):
-        if db.isDuplicate(self.dbid_gt, self.hands['siteHandNo'], self.hands['heroSeat']):
+        if db.isDuplicate(self.siteId, self.hands['siteHandNo'], self.hands['heroSeat'], self.publicDB):
             #log.debug(_("Hand.insert(): hid #: %s is a duplicate") % hh['siteHandNo'])
             self.is_duplicate = True  # i.e. don't update hudcache
             next = id

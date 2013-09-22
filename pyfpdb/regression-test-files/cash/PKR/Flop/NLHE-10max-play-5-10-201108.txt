@@ -1,0 +1,65 @@
+Table #39445538 - Crown Crusader
+Starting Hand #1830698145
+Start time of hand: 26 Aug 2011 15:20:36
+Last Hand #1830696613
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: RING
+Money Type: PLAY MONEY
+Blinds are now $5 / $10
+Button is at seat 4
+Seat 2: Hero - $800
+Seat 3: Player0 - $0 (away from table)
+Seat 4: Player1 - $3,895
+Seat 5: Player2 - $2,250
+Seat 6: Player3 - $965
+Seat 7: Player4 - $8,382.50
+Seat 8: Player5 - $1,000
+Seat 9: Player6 - $770
+Seat 10: Player7 - $3,825
+Shuffling Deck
+Moving Button to seat 5
+Player3 posts small blind ($5)
+Player4 posts big blind ($10)
+Player5 posts $10
+Hero posts $10
+Dealing Cards
+Dealing [3 h][K s] to Hero
+Player5 checks
+Player6 calls $10
+Player7 raises to $510
+Player7 laughs his *** off.
+Hero folds
+Player1 raises to $1,010
+Player2 folds
+Player3 folds
+Player4 folds
+Player5 folds
+Player6 folds
+Player6 admits he's a chicken!
+Player7 raises to $3,825 (all-in)
+Player1 calls $3,825
+Pot sizes: $7,695
+Player1 shows [6 d][A c]
+Player7 shows [T c][T d]
+Player6 can't believe himself.
+Dealing Flop [2 c][8 c][A h]
+Pot sizes: $7,695
+Dealing Turn [9 d]
+Pot sizes: $7,695
+Dealing River [Q d]
+Pot sizes: $7,695
+Player7 has One Pair: Tens
+Player1 has One Pair: Aces
+Player1 wins $7,695 with: One Pair: Aces
+Player6 admits he's a chicken!
+Seat 2: Hero - $790
+Seat 3: Player0 - $0
+Seat 4: Player1 - $7,765
+Seat 5: Player2 - $2,250
+Seat 6: Player3 - $960
+Seat 7: Player4 - $8,372.50
+Seat 8: Player5 - $990
+Seat 9: Player6 - $760
+Seat 10: Player7 - $0
+End of Hand #1830698145

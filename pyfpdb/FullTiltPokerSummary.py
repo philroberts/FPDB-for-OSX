@@ -28,9 +28,10 @@ from HandHistoryConverter import *
 from TourneySummary import *
 
 class FullTiltPokerSummary(TourneySummary):
-    limits = { 'No Limit':'nl', 'Pot Limit':'pl', 'Limit':'fl', 'LIMIT':'fl' }
+    limits = { 'No Limit':'nl', 'Pot Limit':'pl', 'Limit':'fl', 'LIMIT':'fl', 'NL':'nl', 'PL':'pl', 'Fixed':'fl'}
     games = {                          # base, category
                               "Hold'em" : ('hold','holdem'), 
+                               "Holdem" : ('hold','holdem'), 
                                 'Omaha' : ('hold','omahahi'),
                              'Omaha Hi' : ('hold','omahahi'),
                           'Omaha Hi/Lo' : ('hold','omahahilo'),
@@ -42,9 +43,12 @@ class FullTiltPokerSummary(TourneySummary):
                                  'Razz' : ('stud','razz'), 
                                  'RAZZ' : ('stud','razz'),
                           '7 Card Stud' : ('stud','studhi'),
+                               '7 Stud' : ('stud','studhi'),
                               'Stud Hi' : ('stud','studhi'),
+                         '7 Stud Hi/Lo' : ('stud','studhilo'),
                     '7 Card Stud Hi/Lo' : ('stud','studhilo'),
                              'Stud H/L' : ('stud','studhilo'),
+                          '5-Card Stud' : ('stud', '5_studhi'),
                           '5 Card Stud' : ('stud', '5_studhi'),
                        '5-Card Stud Hi' : ('stud', '5_studhi'),
                                'Badugi' : ('draw','badugi'),
@@ -52,6 +56,10 @@ class FullTiltPokerSummary(TourneySummary):
               'Triple Draw 2-7 Lowball' : ('draw','27_3draw'),
                       '2-7 Triple Draw' : ('draw','27_3draw'),
                           '5 Card Draw' : ('draw','fivedraw'),
+                               '7-Game' : ('mixed','7game'),
+                               '8-Game' : ('mixed','8game'),
+                               '9-Game' : ('mixed','9game'),
+                              '10-Game' : ('mixed','10game'),
                          '7-Game Mixed' : ('mixed','7game'),
                          '8-Game Mixed' : ('mixed','8game'),
                          '9-Game Mixed' : ('mixed','9game'),
@@ -73,6 +81,11 @@ class FullTiltPokerSummary(TourneySummary):
                            'TAB' : u"-\u2013'\s\da-zA-Z#_\.",      # legal characters for tablename
                            'NUM' : u".,\dKM",                    # legal characters in number format
                     }
+    
+    months = { 'January':1, 'Jan':1, 'February':2, 'Feb':2, 'March':3, 'Mar':3,
+                 'April':4, 'Apr':4, 'May':5, 'May':5, 'June':6, 'Jun':6,
+                  'July':7, 'Jul':7, 'August':8, 'Aug':8, 'September':9, 'Sep':9,
+               'October':10, 'Oct':10, 'November':11, 'Nov':11, 'December':12, 'Dec':12}
 
     re_Identify = re.compile(u'Full\sTilt\sPoker\.fr\sTournament|Full\sTilt\sPoker\sTournament\sSummary')
     re_TourNo = re.compile("\#(?P<TOURNO>[0-9]+),")
@@ -85,8 +98,8 @@ class FullTiltPokerSummary(TourneySummary):
                         (Buy-In:\s[%(LS)s]?(?P<BUYIN>[%(NUM)s]+)(\sFTP|\sT\$|\sPlay\sChips)?(\s\+\s[%(LS)s]?(?P<FEE>[%(NUM)s]+)(\sFTP|\sT\$|\sPlay\sChips)?)?\s+)?
                         (Knockout\sBounty:\s[%(LS)s](?P<KOBOUNTY>[%(NUM)s]+)\s+)?
                         ((?P<PNAMEBOUNTIES>.{2,15})\sreceived\s(?P<PBOUNTIES>\d+)\sKnockout\sBounty\sAwards?\s+)?
-                        (Add-On:\s[%(LS)s](?P<ADDON>[%(NUM)s]+)\s+)?
-                        (Rebuy:\s[%(LS)s](?P<REBUYAMT>[%(NUM)s]+)\s+)?
+                        (Add-On:\s[%(LS)s]?(?P<ADDON>[%(NUM)s]+)(\sFTP|\sT\$|\sPlay\sChips)?\s+)?
+                        (Rebuy:\s[%(LS)s]?(?P<REBUYAMT>[%(NUM)s]+)(\sFTP|\sT\$|\sPlay\sChips)?\s+)?
                         ((?P<P1NAME>.{2,15})\sperformed\s(?P<PADDONS>\d+)\sAdd-Ons?\s+)?
                         ((?P<P2NAME>.{2,15})\sperformed\s(?P<PREBUYS>\d+)\sRebuys?\s+)?
                         (Buy-In\sChips:\s(?P<CHIPS>\d+)\s+)?
@@ -118,19 +131,143 @@ class FullTiltPokerSummary(TourneySummary):
     re_Speed    = re.compile("(?P<SPEED>(Turbo|Super\sTurbo|Escalator))", re.MULTILINE)
     re_Multi    = re.compile("(?P<MULTI>(Multi-Entry|Re-Entry))", re.MULTILINE)
     re_Chance   = re.compile("((?P<CHANCE>\d)x\sChance)", re.MULTILINE)
-    re_Player = re.compile(u"""(?P<RANK>[\d]+):\s(?P<NAME>[^,\r\n]{2,15})(,\s(?P<CURRENCY>[%(LS)s])?(?P<WINNINGS>[.\d]+)(\s(?P<CURRENCY1>FTP|T\$|Play\sChips))?)?(,\s(?P<TICKET>Step\s(?P<LEVEL>\d)\sTicket))?""" % substitutions)
+    re_Player = re.compile(u"""(?P<RANK>[\d]+):\s(?P<NAME>[^,\r\n]{2,15})(,\s(?P<CURRENCY>[%(LS)s])?(?P<WINNINGS>[%(NUM)s]+)(\s(?P<CURRENCY1>FTP|T\$|Play\sChips))?)?(,\s(?P<TICKET>Step\s(?P<LEVEL>\d)\sTicket))?""" % substitutions)
     re_Finished = re.compile(u"""(?P<NAME>[^,\r\n]{2,15}) finished in (?P<RANK>[\d]+)\S\S place""")
-
-    re_DateTime = re.compile("\[(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)")
-
+    #19-Aug-2013 15:32
+    re_HeroXLS = re.compile(r'Player\sTournament\sReport\sfor\s(?P<NAME>.*?)\s\(.*\)') 
+    re_DateTimeXLS = re.compile("(?P<D>[0-9]{2})\-(?P<M>\w+)\-(?P<Y>[0-9]{4})\s(?P<H>[0-9]+):(?P<MIN>[0-9]+)")
+    re_GameXLS = re.compile(u"""(?P<GAME>Hold\'?em|Irish|Courchevel\sHi|Razz|RAZZ|5(-|\s)Card\sStud(\sHi)?|7(\sCard)?\sStud|7(\sCard)?\sStud\sHi/Lo|Stud\sH/L|Stud\sHi|Omaha|((5|6)\sCard\s)?Omaha\sHi|Omaha\sHi/Lo|Omaha\sH/L|2\-7\sSingle\sDraw|Badugi|Triple\sDraw\s2\-7\sLowball|2\-7\sTriple\sDraw|5\sCard\sDraw|\d+\-Game(\sMixed)?|HORSE|HA|HEROS|HO|HOE|HORSE|HOSE|OA|OE|SE)
+                                (\-(?P<LIMIT>NL|PL|Fixed))?
+                             """,re.VERBOSE|re.MULTILINE|re.DOTALL)
+    re_BuyInXLS = re.compile("(?P<CURRENCY1>[%(LS)s])?(?P<BUYIN>[%(NUM)s]+)(\s(?P<CURRENCY2>(FTP|T\$|Play\sChips)))?(\s\+\s[%(LS)s]?(?P<FEE>[%(NUM)s]+)(\sFTP|\sT\$|\sPlay\sChips)?)?" % substitutions)
+    re_WinningsXLS = re.compile("(?P<CURRENCY1>[%(LS)s])?(?P<WINNINGS>[%(NUM)s]+)(\s?(?P<CURRENCY2>(FTP|T\$|Play\sChips)))?" % substitutions)
+    
     codepage = ["utf-16", "cp1252", "utf-8"]
 
     @staticmethod
     def getSplitRe(self, head):
         re_SplitTourneys = re.compile("^Full Tilt Poker Tournament Summary")
+        self.hhtype = "summary"
         return re_SplitTourneys
-
+    
     def parseSummary(self):
+        if self.hhtype == "summary":
+            self.parseSummaryFile()
+        elif self.hhtype == "xls":
+            self.parseSummaryXLS()
+        else:
+            raise FpdbParseError(_("parseSummary FAIL"))
+        
+    def parseSummaryXLS(self):
+        info = self.summaryText[0]
+        m = self.re_HeroXLS.search(info['header'])
+        if m==None:
+            tmp1 = info['header']
+            tmp2 = str(info)[0:200]
+            log.error(_("FullTiltPokerSummary.parseSummaryXLS: '%s' '%s") % (tmp1, tmp2))
+            raise FpdbParseError
+        info.update(m.groupdict())
+        if 'SNG' in info:
+            self.isSng = True
+        if 'tournament key' in info:
+            self.tourNo = info['tournament key']
+        if 'tournament name' in info: 
+            self.tourneyName = info['tournament name']
+            self.readTourneyName(self.tourneyName)
+        if 'tournament start datetime' in info: 
+            m1 = self.re_DateTimeXLS.finditer(info['tournament start datetime'])
+            datetimestr = "2000/01/01 12:00:00"  # default used if time not found
+            for a in m1:
+                month = self.months[a.group('M')]
+                datetimestr = "%s/%s/%s %s:%s:%s" % (a.group('Y'),month,a.group('D'),a.group('H'),a.group('MIN'),'0')
+            self.startTime = datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S") # also timezone at end, e.g. " ET"
+            self.startTime = HandHistoryConverter.changeTimezone(self.startTime, "ET", "UTC")
+        if 'tournament end datetime' in info:
+            m2 = self.re_DateTimeXLS.finditer(info['tournament end datetime'])
+            datetimestr = "2000/01/01 12:00:00"  # default used if time not found
+            for a in m2:
+                month = self.months[a.group('M')]
+                datetimestr = "%s/%s/%s %s:%s:%s" % (a.group('Y'),month,a.group('D'),a.group('H'),a.group('MIN'),'0')
+            self.endTime = datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S") # also timezone at end, e.g. " ET"
+            self.endTime = HandHistoryConverter.changeTimezone(self.endTime, "ET", "UTC")
+        if 'game type desc' in info:
+            m3 = self.re_GameXLS.search(info['game type desc'])
+            if m3:
+                self.gametype['category']  = self.games[m3.group('GAME')][1]
+                if m3.group('LIMIT') != None:
+                    self.gametype['limitType'] = self.limits[m3.group('LIMIT')]
+                else:
+                    self.gametype['limitType'] = 'mx'
+            else:
+                log.error(_("FullTiltPokerSummary.parseSummaryXLS Game '%s' not found") % info['game type desc'])
+                raise FpdbParseError
+        if 'buy in amount' in info:
+            m4 = self.re_BuyInXLS.search(info['buy in amount'])
+            if m4:
+                if m4.group('BUYIN')!=None:
+                    self.buyin = int(100*Decimal(self.clearMoneyString(m4.group('BUYIN'))))
+                if m4.group('FEE')!=None:
+                    self.fee   = int(100*Decimal(self.clearMoneyString(m4.group('FEE'))))
+                self.buyinCurrency = self.setCurrency(m4, self.buyinCurrency)
+                self.currency = self.buyinCurrency
+                if self.buyin ==0: self.buyinCurrency="FREE"
+        if 'addons' in info and info['addons']:
+            self.isAddOn   = True
+            self.addOnCost = self.buyin
+        if 'rebuys' in info and info['rebuys']:
+            self.isRebuy   = True
+            self.rebuyCost = self.buyin
+        
+        koAmt, entryId = 0, 1
+        for entry in self.summaryText:
+            if info.get('NAME')!=None and entry.get('position'): 
+                name = info['NAME']
+                rank = int(Decimal(entry['position']))
+                winnings = 0
+                rebuyCount = 0
+                addOnCount = 0
+                koCount = 0
+                entryId += 1
+
+                if 'payout amount' in entry and entry['payout amount']:
+                    m5 = self.re_WinningsXLS.search(entry['payout amount'])
+                    if m5:
+                        winnings = int(100*Decimal(self.clearMoneyString(m5.group('WINNINGS'))))
+                        self.currency = self.setCurrency(m5, self.currency)
+                    
+                if self.isAddOn:
+                    addOnAmt = 0
+                    m6 = self.re_WinningsXLS.finditer(entry['addons'])
+                    for a6 in m6:
+                        addOnAmt += int(100*Decimal(self.clearMoneyString(a6.group('WINNINGS'))))
+                    addOnCount = addOnAmt/self.addOnCost
+                    
+                if self.isRebuy:
+                    rebuyAmt = 0
+                    m7 = self.re_WinningsXLS.finditer(entry['rebuys'])
+                    for a7 in m7:
+                        rebuyAmt += int(100*Decimal(self.clearMoneyString(a7.group('WINNINGS'))))
+                    rebuyCount = rebuyAmt/self.rebuyCost
+                    
+                if 'total bounty amount' in entry and entry['total bounty amount']:
+                    m8 = self.re_WinningsXLS.search(entry['total bounty amount'])
+                    if m8:
+                        self.koBounty += int(100*Decimal(self.clearMoneyString(m8.group('WINNINGS'))))
+                        self.currency = self.setCurrency(m8, self.currency)
+                    
+                if 'pro bounty amount' in entry and entry['pro bounty amount']:
+                    m9 = self.re_WinningsXLS.search(entry['pro bounty amount'])
+                    if m9:
+                        self.koBounty += int(100*Decimal(self.clearMoneyString(m9.group('WINNINGS'))))
+                        self.currency = self.setCurrency(m9, self.currency)
+                        
+                if self.koBounty and not self.isKO:
+                    self.isKO = True
+                    koCount = 1
+                      
+                self.addPlayer(rank, name, winnings, self.currency, rebuyCount, addOnCount, koCount, entryId)            
+
+    def parseSummaryFile(self):
         m = self.re_TourneyInfo.search(self.summaryText[:2000])
         if m == None:
             tmp = self.summaryText[0:200]
@@ -174,45 +311,12 @@ class FullTiltPokerSummary(TourneySummary):
         if 'SATELLITE' in mg and mg['SATELLITE'] != None:
             self.isSatellite = True
         
-        entryId = 1    
+        entryId = 1
         if mg['TOURNAMENT'] != None:
             self.tourneyName = mg['TOURNAMENT']
             if mg['TOURPAREN'] != None:
                 self.tourneyName += ' ' + mg['TOURPAREN']
-            n = self.re_TourneyExtraInfo.search(mg['TOURNAMENT'])
-            if n.group('SNG') is not None:
-                self.isSng = True
-            if "Rush" in mg['TOURNAMENT']:
-                self.isFast = True
-            if "On Demand" in mg['TOURNAMENT']:
-                self.isOnDemand = True
-            if n.group('SPECIAL') is not None :
-                special = n.group('SPECIAL')
-                if special == "Rebuy":
-                    self.isRebuy = True
-                if special == "KO":
-                    self.isKO = True
-                if re.search("Matrix", special):
-                    self.isMatrix = True
-                    if mg['MATCHNO'] != None:
-                        entryId = int(mg['MATCHNO'])
-                    else:
-                        entryId = 5
-                if special == "Shootout":
-                    self.isShootout = True
-            if n.group('GUARANTEE')!=None:
-                self.isGuarantee = True
-            if self.isGuarantee and n.group('BUYINGUAR')!=None:
-                self.guaranteeAmt = int(100*Decimal(self.clearMoneyString(n.group('BUYINGUAR'))))
-            if n.group('STEP')!=None:
-                self.isStep = True
-            if n.group('STEPNO')!=None:
-                self.stepNo = int(n.group('STEPNO'))
-            if self.isMatrix:
-                self.buyin = self.prizepool / self.entries
-                buyinfee = int(100*Decimal(self.clearMoneyString(n.group('BUYINGUAR'))))
-                self.fee = buyinfee - self.buyin
-                self.isSng = True
+            entryId = self.readTourneyName(mg['TOURNAMENT'], mg['MATCHNO'])
             
         tableAttributes = None
         if mg['TABLEATTRIBUTES'] != None and mg['TOURPAREN'] != None:
@@ -277,7 +381,7 @@ class FullTiltPokerSummary(TourneySummary):
         elif mg['CURRENCY'] == u"€":  self.buyinCurrency="EUR"
         elif mg['CURRENCY'] == "FPP": self.buyinCurrency="FTFP"
         elif mg['CURRENCY'] == "FTP": self.buyinCurrency="FTFP"
-        elif mg['CURRENCY'] == "T$":  self.buyinCurrency="FTFP"
+        elif mg['CURRENCY'] == "T$":  self.buyinCurrency="USD"
         elif mg['CURRENCY'] == 'Play Chips': self.buyinCurrency="play"
         if self.buyin ==0:            self.buyinCurrency="FREE"
         self.currency = self.buyinCurrency
@@ -296,14 +400,14 @@ class FullTiltPokerSummary(TourneySummary):
                 koCount = 0
     
                 if 'WINNINGS' in mg and mg['WINNINGS'] != None:
-                    winnings = int(100*Decimal(mg['WINNINGS']))
+                    int(100*Decimal(self.clearMoneyString(mg['WINNINGS'])))
                     if 'CURRENCY' in mg and mg['CURRENCY'] != None:
                         if mg['CURRENCY'] == "$":     self.currency="USD"
                         elif mg['CURRENCY'] == u"€":  self.currency="EUR"
                     elif 'CURRENCY1' in mg and mg['CURRENCY1'] != None:
                         if mg['CURRENCY1'] == "FPP": self.currency="FTFP"
                         elif mg['CURRENCY1'] == "FTP": self.currency="FTFP"
-                        elif mg['CURRENCY1'] == "T$": self.currency="FTFP"
+                        elif mg['CURRENCY1'] == "T$": self.currency="USD"
                         elif mg['CURRENCY1'] == "Play Chips": self.currency="play"
                     
                 if name in rebuyCounts:
@@ -342,3 +446,62 @@ class FullTiltPokerSummary(TourneySummary):
                 name = a.group('NAME')
                 rank = a.group('RANK')
                 self.addPlayer(rank, name, winnings, self.currency, 0, 0, 0)
+                
+    def setCurrency(self, m, currency=None):
+        if m.group('CURRENCY1') == "$":     currency="USD"
+        elif m.group('CURRENCY1') == u"€":  currency="EUR"
+        elif m.group('CURRENCY2') == "FPP": currency="FTFP"
+        elif m.group('CURRENCY2') == "FTP": currency="FTFP"
+        elif m.group('CURRENCY2') == "T$":  currency="USD"
+        elif m.group('CURRENCY2') == 'Play Chips': currency="play"
+        return currency        
+    
+    def readTourneyName(self, tourneyName, matchNo=None):
+        entryId = 1
+        n = self.re_TourneyExtraInfo.search(tourneyName)
+        if n.group('SNG') is not None:
+            self.isSng = True
+        if "Rush" in tourneyName:
+            self.isFast = True
+        if "On Demand" in tourneyName:
+            self.isOnDemand = True
+        if n.group('SPECIAL') is not None :
+            special = n.group('SPECIAL')
+            if special == "Rebuy":
+                self.isRebuy = True
+            elif special == "KO":
+                self.isKO = True
+            elif re.search("Matrix", special):
+                self.isMatrix = True
+                if matchNo != None:
+                    entryId = int(matchNo)
+                else:
+                    entryId = 5
+            elif special == "Shootout":
+                self.isShootout = True
+            elif special in ('Heads Up', 'Heads-Up', 'Head\'s Up'):
+                self.maxseats = 2
+        if n.group('SPEED1') is not None :
+            if n.group('SPEED1')=='Super Turbo':
+                self.speed = 'Hyper'
+            else:
+                self.speed = n.group('SPEED1')
+        if n.group('SPEED2') is not None :
+            if n.group('SPEED2')=='Super Turbo':
+                self.speed = 'Hyper'
+            else:
+                self.speed = n.group('SPEED2')
+        if n.group('GUARANTEE')!=None:
+            self.isGuarantee = True
+        if self.isGuarantee and n.group('BUYINGUAR')!=None:
+            self.guaranteeAmt = int(100*Decimal(self.clearMoneyString(n.group('BUYINGUAR'))))
+        if n.group('STEP')!=None:
+            self.isStep = True
+        if n.group('STEPNO')!=None:
+            self.stepNo = int(n.group('STEPNO'))
+        if self.isMatrix:
+            self.buyin = self.prizepool / self.entries
+            buyinfee = int(100*Decimal(self.clearMoneyString(n.group('BUYINGUAR'))))
+            self.fee = buyinfee - self.buyin
+            self.isSng = True
+        return entryId

@@ -1,0 +1,32 @@
+#Game No : 4687559040
+***** Hand History for Game 11443748272 *****
+$1,000 USD PL  Omaha Hi-Saturday,February 18, 01:10:59 EST 2012
+Table Table  167070 (No DP) ( Real Money )
+Seat 4 is the button
+Total number of players : 6/6
+seat1: Player0 ( $664.25 USD )
+seat2: Hero ( $2,127.50 USD )
+seat3: Player1 ( $1,132 USD )
+seat4: Player2 ( $3,296.12 USD )
+seat5: Player4 ( $200 USD )
+seat6: Player3 ( $1,005 USD )
+Player3 posts small blind [$5 USD].
+Hero posts big blind [$10 USD].
+** Dealing down cards **
+Dealt to Hero [ Js, Ad, 8c, 6d ]
+Player2 folds
+Player3 raises[ $25 USD ]
+Hero calls[ $20 USD ]
+** Dealing Flop ** [ Qd, 7c, Ac ]
+Player3 bets[ $40 USD ]
+Hero calls[ $40 USD ]
+** Dealing Turn ** [ 3d ]
+Player3 checks
+Hero bets[ $113 USD ]
+Player3 calls[ $113 USD ]
+** Dealing River ** [ 3h ]
+Player3 checks
+Hero checks
+Player3 shows [ Kc, 5c, 7s, Ks ]two pairs, Kings and Threes.
+Hero shows [ Js, Ad, 8c, 6d ]two pairs, Aces and Threes.
+Hero wins $364 USD from the main pot with two pairs, Aces and Threes.

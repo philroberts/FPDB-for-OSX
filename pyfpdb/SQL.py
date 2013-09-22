@@ -3533,7 +3533,7 @@ class Sql:
                         street3Raises INT,
                         street4Raises INT)
                         """
-
+            
         if db_server == 'mysql':
             self.query['addTourneyIndex'] = """ALTER TABLE Tourneys ADD UNIQUE INDEX siteTourneyNo(siteTourneyNo, tourneyTypeId)"""
         elif db_server == 'postgresql':
@@ -3542,11 +3542,11 @@ class Sql:
             self.query['addTourneyIndex'] = """CREATE UNIQUE INDEX siteTourneyNo ON Tourneys (siteTourneyNo, tourneyTypeId)"""
 
         if db_server == 'mysql':
-            self.query['addHandsIndex'] = """ALTER TABLE Hands ADD UNIQUE INDEX siteHandNo(gametypeId, siteHandNo, heroSeat)"""
+            self.query['addHandsIndex'] = """ALTER TABLE Hands ADD UNIQUE INDEX siteHandNo(siteHandNo, gametypeId<heroseat>)"""
         elif db_server == 'postgresql':
-            self.query['addHandsIndex'] = """CREATE UNIQUE INDEX siteHandNo ON Hands (gametypeId, siteHandNo, heroSeat)"""
+            self.query['addHandsIndex'] = """CREATE UNIQUE INDEX siteHandNo ON Hands (siteHandNo, gametypeId<heroseat>)"""
         elif db_server == 'sqlite':
-            self.query['addHandsIndex'] = """CREATE UNIQUE INDEX siteHandNo ON Hands (gametypeId, siteHandNo, heroSeat)"""
+            self.query['addHandsIndex'] = """CREATE UNIQUE INDEX siteHandNo ON Hands (siteHandNo, gametypeId<heroseat>)"""
             
         if db_server == 'mysql':
             self.query['addPlayersSeat'] = """ALTER TABLE HandsPlayers ADD UNIQUE INDEX playerSeat_idx(handId, seatNo)"""
@@ -4617,8 +4617,8 @@ class Sql:
                             ,max(gt.bigBlind)                                                       AS maxbigblind
                             /*,<hcgametypeId>                                                         AS gtid*/
                             ,<position>                                                             AS plposition
-                            ,count(1)                                                               AS n
                             ,gt.fast                                                                AS fast
+                            ,count(1)                                                               AS n
                             ,case when sum(cast(hp.street0VPIChance as <signed>integer)) = 0 then -999
                                   else 100.0*sum(cast(hp.street0VPI as <signed>integer))/sum(cast(hp.street0VPIChance as <signed>integer))
                              end                                                                    AS vpip
@@ -4747,6 +4747,7 @@ class Sql:
                               <groupbyseats>
                               ,plposition
                               ,upper(gt.limitType)
+                              ,gt.fast
                               ,s.name
                       having 1 = 1 <havingclause>
                       order by pname
@@ -4760,6 +4761,7 @@ class Sql:
                               <orderbyhgametypeId>
                               ,upper(gt.limitType) desc
                               ,maxbigblind desc
+                              ,gt.fast
                               ,s.name
                       """
         elif db_server == 'postgresql':
@@ -4774,8 +4776,8 @@ class Sql:
                             ,max(gt.bigBlind)                                                       AS maxbigblind
                             /*,<hcgametypeId>                                                       AS gtid*/
                             ,<position>                                                             AS plposition
-                            ,count(1)                                                               AS n
                             ,gt.fast                                                                AS fast
+                            ,count(1)                                                               AS n
                             ,case when sum(cast(hp.street0VPIChance as <signed>integer)) = 0 then -999
                                   else 100.0*sum(cast(hp.street0VPI as <signed>integer))/sum(cast(hp.street0VPIChance as <signed>integer))
                              end                                                                    AS vpip
@@ -4915,6 +4917,7 @@ class Sql:
                               <groupbyseats>
                               ,plposition
                               ,upper(gt.limitType)
+                              ,gt.fast
                               ,s.name
                       having 1 = 1 <havingclause>
                       order by pname
@@ -4929,6 +4932,7 @@ class Sql:
                               <orderbyhgametypeId>
                               ,upper(gt.limitType) desc
                               ,maxbigblind desc
+                              ,gt.fast
                               ,s.name
                       """
         elif db_server == 'sqlite':
@@ -4943,8 +4947,8 @@ class Sql:
                             ,max(gt.bigBlind)                                                       AS maxbigblind
                             /*,<hcgametypeId>                                                       AS gtid*/
                             ,<position>                                                             AS plposition
-                            ,count(1)                                                               AS n
                             ,gt.fast                                                                AS fast
+                            ,count(1)                                                               AS n
                             ,case when sum(cast(hp.street0VPIChance as <signed>integer)) = 0 then -999
                                   else 100.0*sum(cast(hp.street0VPI as <signed>integer))/sum(cast(hp.street0VPIChance as <signed>integer))
                              end                                                                    AS vpip
@@ -5072,6 +5076,7 @@ class Sql:
                               <groupbyseats>
                               ,plposition
                               ,upper(gt.limitType)
+                              ,gt.fast
                               ,s.name
                       having 1 = 1 <havingclause>
                       order by hp.playerId
@@ -5086,6 +5091,7 @@ class Sql:
                               <orderbyhgametypeId>
                               ,upper(gt.limitType) desc
                               ,max(gt.bigBlind) desc
+                              ,gt.fast
                               ,s.name
                       """
 
@@ -8709,8 +8715,9 @@ class Sql:
                                                smallBlind, bigBlind, smallBet, bigBet, maxSeats, ante, buyinType, fast, newToGame, homeGame)
                                            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
 
-        self.query['isAlreadyInDB'] = """SELECT id FROM Hands 
-                                         WHERE gametypeId=%s AND siteHandNo=%s AND heroSeat=%s
+        self.query['isAlreadyInDB'] = """SELECT H.id FROM Hands H
+                                         INNER JOIN Gametypes G ON (H.gametypeId = G.id)
+                                         WHERE siteHandNo=%s AND G.siteId=%s<heroSeat>
         """
         
         self.query['getTourneyTypeIdByTourneyNo'] = """SELECT tt.id,
@@ -8867,8 +8874,8 @@ class Sql:
         self.query['insertTourney'] = """INSERT INTO Tourneys
                                             (tourneyTypeId, sessionId, siteTourneyNo, entries, prizepool,
                                              startTime, endTime, tourneyName, totalRebuyCount, totalAddOnCount,
-                                             added, addedCurrency)
-                                        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                                             comment, commentTs, added, addedCurrency)
+                                        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
         """
         
         self.query['updateTourney'] = """UPDATE Tourneys

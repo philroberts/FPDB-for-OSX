@@ -86,6 +86,7 @@ class Boss(HandHistoryConverter):
     re_Antes            = re.compile(r'^<ACTION TYPE="HAND_ANTE" PLAYER="%s" VALUE="(?P<ANTE>[.0-9]+)"></ACTION>' % player_re, re.MULTILINE)
     re_BringIn          = re.compile(r"^%s: brings[- ]in( low|) for \$?(?P<BRINGIN>[.0-9]+)" % player_re, re.MULTILINE)
     re_FlopPot          = re.compile(r'^<ACTION TYPE="HAND_BOARD" VALUE="BOARD_FLOP" POT="(?P<POT>[.0-9]+)"', re.MULTILINE)
+    re_DrawPot          = re.compile(r'^<ACTION TYPE="HAND_BOARD" POT="(?P<POT>[.0-9]+)"', re.MULTILINE)
     re_ShowDownPot      = re.compile(r'^<SHOWDOWN NAME="HAND_SHOWDOWN" POT="(?P<POT>[.0-9]+)"', re.MULTILINE)
     re_PostBoth         = re.compile(r'^<ACTION TYPE="HAND_BLINDS" PLAYER="%s" KIND="HAND_AB" VALUE="(?P<SBBB>[.0-9]+)"></ACTION>' %  player_re, re.MULTILINE)
     
@@ -106,11 +107,19 @@ class Boss(HandHistoryConverter):
         return [["ring", "hold", "nl"],
                 ["ring", "hold", "pl"],
                 ["ring", "hold", "fl"],
-                ["ring", "stud", "fl"],
+                
                 ["ring", "draw", "fl"],
+                ["ring", "draw", "pl"],
+                ["ring", "draw", "nl"],
+                
                 ["tour", "hold", "fl"],
                 ["tour", "hold", "pl"],
                 ["tour", "hold", "nl"],
+                
+                ["tour", "draw", "fl"],
+                ["tour", "draw", "pl"],
+                ["tour", "draw", "nl"],
+                
                ]
 
     def determineGameType(self, handText):
@@ -380,7 +389,10 @@ class Boss(HandHistoryConverter):
                 hand.addCheck( street, action.group('PNAME'))
             elif action.group('ATYPE') == 'ACTION_CALL':
                 bet = action.group('BET') 
-                hand.addCallTo(street, action.group('PNAME'), bet )
+                if Decimal(bet.replace(u',', u''))< hand.lastBet[street]:
+                    hand.addCall(street, action.group('PNAME'), bet )
+                else:
+                    hand.addCallTo(street, action.group('PNAME'), bet )
             elif action.group('ATYPE') == 'ACTION_RAISE':
                 bet = action.group('BET') 
                 hand.addRaiseTo( street, action.group('PNAME'), bet)
@@ -408,7 +420,7 @@ class Boss(HandHistoryConverter):
         self.calculateAntes(street, hand)
                 
     def calculateAntes(self, street, hand):
-        if street in ('PREFLOP', 'DEAL', 'THIRD'):
+        if street in ('PREFLOP', 'DEAL'):
             contributed = sum(hand.pot.committed.values()) + sum(hand.pot.common.values())
             committed = sorted([ (v,k) for (k,v) in hand.pot.committed.items()])
             try:
@@ -418,7 +430,10 @@ class Boss(HandHistoryConverter):
             except IndexError, e:
                 log.error(_("BossToFpdb.calculateAntes(): '%s': Major failure while calculating pot: '%s'") % (self.handid, e))
                 raise FpdbParseError
-            m = self.re_FlopPot.search(hand.handText)
+            if street=='DEAL':
+                m = self.re_DrawPot.search(hand.handText)
+            else:
+                m = self.re_FlopPot.search(hand.handText)
             if not m:
                 m = self.re_ShowDownPot.search(hand.handText)
             if m:

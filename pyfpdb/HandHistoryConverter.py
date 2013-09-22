@@ -419,7 +419,7 @@ or None if we fail to get the info """
         if hand.rake < 0 and (not hand.roundPenny or hand.rake < round):
             log.error(_("hhc.getRake(): '%s': Amount collected (%s) is greater than the pot (%s)") % (hand.handid,str(hand.totalcollected), str(hand.totalpot)))
             raise FpdbParseError
-        elif hand.totalpot > 0 and Decimal(hand.totalpot/4) < hand.rake:
+        elif hand.totalpot > 0 and Decimal(hand.totalpot/4) < hand.rake and not hand.fastFold:
             log.error(_("hhc.getRake(): '%s': Suspiciously high rake (%s) > 25 pct of pot (%s)") % (hand.handid,str(hand.rake), str(hand.totalpot)))
             raise FpdbParseError
 
@@ -550,7 +550,7 @@ or None if we fail to get the info """
 
         if givenTimezone in ("ET", "EST", "EDT"):
             givenTZ = timezone('US/Eastern')
-        elif givenTimezone in ("CET", "CEST", "MESZ", "HAEC"):
+        elif givenTimezone in ("CET", "CEST", "MEZ", "MESZ", "HAEC"):
             #since CEST will only be used in summer time it's ok to treat it as identical to CET.
             givenTZ = timezone('Europe/Berlin')
             #Note: Daylight Saving Time is standardised across the EU so this should be fine
@@ -587,8 +587,10 @@ or None if we fail to get the info """
             givenTZ = timezone('America/Bogota')
         elif givenTimezone in ('EET', 'EEST'): # Eastern European Time
             givenTZ = timezone('Europe/Bucharest')
-        elif givenTimezone in ('MSK', 'MESZ', 'MSKS', 'GST'): # Moscow Standard Time
+        elif givenTimezone in ('MSK', 'MESZ', 'MSKS', 'MSD'): # Moscow Standard Time
             givenTZ = timezone('Europe/Moscow')
+        elif givenTimezone == 'GST':
+            givenTZ = timezone('Asia/Dubai')
         elif givenTimezone in ('YEKT','YEKST'):
             givenTZ = timezone('Asia/Yekaterinburg')
         elif givenTimezone in ('KRAT','KRAST'):
@@ -601,11 +603,11 @@ or None if we fail to get the info """
             givenTZ = timezone('Australia/West')
         elif givenTimezone == 'JST': # Japan Standard Time
             givenTZ = timezone('Asia/Tokyo')
-        elif givenTimezone == 'AWST': # Australian Western Standard Time
+        elif givenTimezone in ('AWST', 'AWT'):  # Australian Western Standard Time
             givenTZ = timezone('Australia/West')
-        elif givenTimezone == 'ACST': # Australian Central Standard Time
+        elif givenTimezone in ('ACST', 'ACT'): # Australian Central Standard Time
             givenTZ = timezone('Australia/Darwin')
-        elif givenTimezone == 'AEST': # Australian Eastern Standard Time
+        elif givenTimezone in ('AEST', 'AET'): # Australian Eastern Standard Time
             # Each State on the East Coast has different DSTs.
             # Melbournce is out because I don't like AFL, Queensland doesn't have DST
             # ACT is full of politicians and Tasmania will never notice.

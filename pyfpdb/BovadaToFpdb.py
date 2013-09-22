@@ -72,16 +72,21 @@ class Bovada(HandHistoryConverter):
                                "HOLDEM" : ('hold','holdem'),
                                 'OMAHA' : ('hold','omahahi'),
                            'OMAHA HiLo' : ('hold','omahahilo'),
-                                '7CARD' : ('stud', 'studhi'),
-                           '7CARD HiLo' : ('stud', 'studhilo'),
+                             'OMAHA_HL' : ('hold','omahahilo'),
+                                '7CARD' : ('stud','studhi'),
+                           '7CARD HiLo' : ('stud','studhilo'),
+                             '7CARD_HL' : ('hold','studhilo'),
+                      'HOLDEMZonePoker' : ('hold','holdem'),
+                       'OMAHAZonePoker' : ('hold','omahahi'),
+                      
                }
     currencies = {'$':'USD', '':'T$'}
 
     # Static regexes
     re_GameInfo     = re.compile(u"""
           (Bovada|Bodog(\sUK|\sCanada|88)?)\sHand\s\#C?(?P<HID>[0-9]+):?\s+
-          (TBL\#(?P<TABLE>.+?)\s)?
-          (?P<GAME>HOLDEM|OMAHA|7CARD|7CARD\sHiLo|OMAHA\sHiLo)\s+
+          ((?P<ZONE>Zone\sPoker\sID|TBL)\#(?P<TABLE>.+?)\s)?
+          (?P<GAME>HOLDEM|OMAHA|OMAHA_HL|7CARD|7CARD\sHiLo|OMAHA\sHiLo|7CARD_HL|HOLDEMZonePoker|OMAHAZonePoker)\s+
           (Tournament\s\#                # open paren of tournament info Tournament #2194767 TBL#1, 
           (?P<TOURNO>\d+)\sTBL\#(?P<TABLENO>\d+),
           \s)?
@@ -196,6 +201,11 @@ class Bovada(HandHistoryConverter):
         if 'CURRENCY' in mg and mg['CURRENCY'] is not None:
             info['currency'] = self.currencies[mg['CURRENCY']]
             
+        if 'Zone' in mg['GAME']:
+            info['fast'] = True
+        else:
+            info['fast'] = False
+            
         if info['limitType'] == 'fl' and info['bb'] is not None:
             if info['type'] == 'ring':
                 try:
@@ -267,8 +277,10 @@ class Bovada(HandHistoryConverter):
             if key == 'TABLE':
                 if info.get('TABLENO'):
                     hand.tablename = info.get('TABLENO')
+                elif info['ZONE'] and 'Zone' in info['ZONE']:
+                    hand.tablename = info['ZONE'] + ' ' +info[key]
                 else:
-                    hand.tablename = info[key]
+                    hand.tablename = info[key]        
             if key == 'MAX' and info[key] != None:
                 hand.maxseats = int(info[key])
             if key == 'HU' and info[key] != None:
@@ -317,9 +329,14 @@ class Bovada(HandHistoryConverter):
         if hand.gametype['base'] == "hold":
             street, firststreet = 'PREFLOP', 'PREFLOP'
         else:
-            street, firststreet = 'THIRD', 'THIRD'   
+            street, firststreet = 'THIRD', 'THIRD'  
+        m = self.re_Action.finditer(self.re_Hole_Third.split(hand.handText)[0])
+        allinblind = 0
+        for action in m:
+            if action.group('ATYPE') == ' All-in':
+                allinblind+=1
         m = self.re_Action.finditer(self.re_Hole_Third.split(hand.handText)[-1])
-        dealtIn = len(hand.players)# - len(hand.sitout)
+        dealtIn = len(hand.players) - allinblind
         streetactions, streetno, players, i, contenders, bets = 0, 1, dealtIn, 0, dealtIn, 0
         for action in m:
             acts = action.groupdict()
@@ -483,7 +500,7 @@ class Bovada(HandHistoryConverter):
             acts = action.groupdict()
             #print "DEBUG: %s, %s, %s" % (street, acts['PNAME'], acts['ATYPE']), action.group('BET')
             player = self.playerSeatFromPosition('BovadaToFpdb.readAction', hand.handid, action.group('PNAME'))
-            if action.group('ATYPE') not in (' Fold', ' Card dealt to a spot', ' Big blind/Bring in') and not hand.allInBlind:
+            if action.group('ATYPE') not in (' Checks', ' Fold', ' Card dealt to a spot', ' Big blind/Bring in') and not hand.allInBlind:
                 hand.setUncalledBets(False)
             if action.group('ATYPE') == ' Fold':
                 hand.addFold( street, player)

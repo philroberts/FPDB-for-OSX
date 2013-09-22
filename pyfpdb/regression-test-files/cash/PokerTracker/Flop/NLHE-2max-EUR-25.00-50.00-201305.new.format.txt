@@ -1,0 +1,20 @@
+** Game ID 4908778359 Version:3 starting - 2013-05-28 16:44:14
+** Anonymous (Heads Up) - €5K Max [Hold'em] (25|50 NL - € Cash Game seats:2 badbeat ) Real Money
+
+- Player 1 sitting in seat 1 with €14785.00 at end €14585.00 [Dealer]
+- Hero sitting in seat 2 with €5000.00 at end €5199.00
+
+Player 1 posted the small blind - €25.00
+Hero posted the big blind - €50.00
+** Dealing card to Hero: A of c, 6 of d
+Player 1 raised - €75.00
+Hero called - €50.00
+** Dealing the flop: 6 of s, 10 of h, 6 of c
+Hero checked
+Player 1 bet - €100.00
+Hero raised - €350.00
+Player 1 folded
+Hero mucks:
+Hero wins €649.00 from the main pot
+
+End of game 4908778359

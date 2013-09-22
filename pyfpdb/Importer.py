@@ -37,6 +37,11 @@ import Configuration
 import IdentifySite
 from Exceptions import FpdbParseError, FpdbHandDuplicate
 
+try:
+    import xlrd
+except:
+    xlrd = None
+
 if __name__ == "__main__":
     Configuration.set_logfile("fpdb-log.txt")
 # logging has been set up in fpdb.py or HUD_main.py, use their settings:
@@ -545,42 +550,24 @@ class Importer:
                 fpdbfile.ftype = "hh"
 
     def _import_summary_file(self, fpdbfile):
-        (stored, duplicates, partial, errors, ttime) = (0, 0, 0, 0, time())
+        (stored, duplicates, partial, errors, imported, ttime) = (0, 0, 0, 0, 0, time())
         mod = __import__(fpdbfile.site.summary)
         obj = getattr(mod, fpdbfile.site.summary, None)
         if callable(obj):
             if self.caller: self.progressNotify()
-            errors = 0
-            imported = 0
-
-            foabs = obj.readFile(obj, fpdbfile.path)
-            if len(foabs) == 0:
+            summaryTexts = self.readFile(obj, fpdbfile.path, fpdbfile.site.name)
+            if summaryTexts is None:
                 log.error("Found: '%s' with 0 characters... skipping" % fpbdfile.path)
-                return (0, 1) # File had 0 characters
-            re_Split = obj.getSplitRe(obj,foabs[:1000])
-            summaryTexts = re.split(re_Split, foabs)
-
-            # The summary files tend to have a header or footer
-            # Remove the first and/or last entry if it has < 100 characters
-            if not len(summaryTexts[0]):
-                del summaryTexts[0]
-
-            if len(summaryTexts)>1:
-                if len(summaryTexts[-1]) <= 100:
-                    summaryTexts.pop()
-                    log.warn(_("Importer._import_summary_file: Removing text < 100 characters from end of file"))
-
-                if len(summaryTexts[0]) <= 130:
-                    del summaryTexts[0]
-                    log.warn(_("Importer._import_summary_file: Removing text < 100 characters from start of file"))
-
+                return (0, 0, 0, 1, time()) # File had 0 characters
             ####Lock Placeholder####
             for j, summaryText in enumerate(summaryTexts, start=1):
                 doinsert = len(summaryTexts)==j
                 try:
-                    conv = obj(db=self.database, config=self.config, siteName=fpdbfile.site.name, summaryText=summaryText, in_path = fpdbfile.path)
+                    conv = obj(db=self.database, config=self.config, siteName=fpdbfile.site.name, summaryText=summaryText, in_path = fpdbfile.path, header=summaryTexts[0])
                     self.database.resetBulkCache(False)
                     conv.insertOrUpdate(printtest = self.settings['testData'])
+                except Exceptions.FpdbHandPartial, e:
+                    partial += 1
                 except FpdbParseError, e:
                     log.error(_("Summary import parse error in file: %s") % fpdbfile.path)
                     errors += 1
@@ -588,14 +575,43 @@ class Importer:
                     print _("Finished importing %s/%s tournament summaries") %(j, len(summaryTexts))
                 imported = j
             ####Lock Placeholder####
-
         ttime = time() - ttime
-        return (imported - errors, duplicates, partial, errors, ttime)
+        return (imported - errors - partial, duplicates, partial, errors, ttime)
 
     def progressNotify(self):
         "A callback to the interface while events are pending"
         while gtk.events_pending():
             gtk.main_iteration(False)
+            
+    def readFile(self, obj, filename, site):
+        if filename.endswith('.xls') or filename.endswith('.xlsx') and xlrd:
+            obj.hhtype = "xls"
+            if site=='PokerStars':
+                tourNoField = 'Tourney'
+            else:
+                tourNoField = 'tournament key'
+            summaryTexts = obj.summaries_from_excel(filename, tourNoField)
+        else:
+            foabs = obj.readFile(obj, filename)
+            if foabs is None:
+                return None
+            re_Split = obj.getSplitRe(obj,foabs)
+            summaryTexts = re.split(re_Split, foabs)
+            
+            # The summary files tend to have a header or footer
+            # Remove the first and/or last entry if it has < 100 characters
+            if not len(summaryTexts[0]):
+                del summaryTexts[0]
+            
+            if len(summaryTexts)>1:
+                if len(summaryTexts[-1]) <= 100:
+                    summaryTexts.pop()
+                    log.warn(_("TourneyImport: Removing text < 100 characters from end of file"))
+    
+                if len(summaryTexts[0]) <= 130:
+                    del summaryTexts[0]
+                    log.warn(_("TourneyImport: Removing text < 100 characters from start of file"))
+        return summaryTexts 
         
 class ProgressBar:
 

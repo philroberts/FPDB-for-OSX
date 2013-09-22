@@ -1,0 +1,40 @@
+Hand#3389E587C7000012 - $5 Heads-up PL Omaha Hi-Lo Turbo T15042503 -- CASH -- $5 + $0.25 -- 2 Max -- Table 1 -- 0/10/20 PL OmahaHiLo -- 2013/07/16 - 10:38:40
+Dealer: Seat 8
+Seat 3: Player0 (1,640 in chips) 
+Seat 8: Hero (1,360 in chips) 
+Hero: posts small blind 10
+Player0: posts big blind 20
+Dealt to Hero [5s,3c,4s,5c]
+Hero: raises to 60
+Player0: calls 40
+*** FLOP *** [4d,2h,Jc]
+Player0: checks
+Hero: bets 80
+Player0: calls 80
+*** TURN *** [8h]
+Player0: checks
+Hero: bets 187
+Player0: calls 187
+*** RIVER *** [Qs]
+Player0: checks
+Hero: checks
+***SHOW DOWN***
+Hero: shows [5s 3c 4s 5c] (Pair of Fives  )
+Player0: shows [As Kh Ah Ac] (Pair of Aces  )
+Player0 wins high pot 327 with Pair of Aces   
+Hero wins low pot 327 with  
+
+
+Hand#3389E587C7000013 - $5 Heads-up PL Omaha Hi-Lo Turbo T15042503 -- CASH -- $5 + $0.25 -- 2 Max -- Table 1 -- 0/10/20 PL OmahaHiLo -- 2013/07/16 - 10:39:27
+Dealer: Seat 3
+Seat 3: Player0 (1,640 in chips) 
+Seat 8: Hero (1,360 in chips) 
+Player0: posts small blind 10
+Hero: posts big blind 20
+Dealt to Hero [7h,3c,Th,Ac]
+Player0: folds
+Hero: returns uncalled bet 10
+***SHOW DOWN***
+Hero: mucks
+Hero wins high pot 20 
+There is no low hand

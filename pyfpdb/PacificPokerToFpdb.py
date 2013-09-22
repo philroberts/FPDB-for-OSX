@@ -93,7 +93,7 @@ class PacificPoker(HandHistoryConverter):
     re_GameInfo     = re.compile(u"""
           (\#Game\sNo\s:\s[0-9]+\\n)?
           \*\*\*\*\*\sCassava\sHand\sHistory\sfor\sGame\s(?P<HID>[0-9]+)\s\*\*\*\*\*\\n
-          (?P<CURRENCY1>%(LS)s)?(?P<SB>[%(NUM)s]+)\s?(?P<CURRENCY2>%(LS)s)?/(%(LS)s)?(?P<BB>[%(NUM)s]+)\s?(%(LS)s)?\sBlinds\s
+          (?P<CURRENCY1>%(LS)s)?\s?(?P<SB>[%(NUM)s]+)\s?(?P<CURRENCY2>%(LS)s)?/(%(LS)s)?\s?(?P<BB>[%(NUM)s]+)\s?(%(LS)s)?\sBlinds\s
           (?P<LIMIT>No\sLimit|Fix\sLimit|Pot\sLimit)\s
           (?P<GAME>Holdem|Omaha|OmahaHL|Hold\'em|Omaha\sHi/Lo|OmahaHL|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Badugi|Triple\sDraw\s2\-7\sLowball|Single\sDraw\s2\-7\sLowball|5\sCard\sDraw)
           \s-\s\*\*\*\s
@@ -104,7 +104,7 @@ class PacificPoker(HandHistoryConverter):
     re_PlayerInfo   = re.compile(u"""
           ^Seat\s(?P<SEAT>[0-9]+):\s
           (?P<PNAME>.*)\s
-          \(\s(%(LS)s)?(?P<CASH>[%(NUM)s]+)\s?(%(LS)s)?\s\)""" % substitutions, 
+          \(\s(%(LS)s)?\s?(?P<CASH>[%(NUM)s]+)\s?(%(LS)s)?\s\)""" % substitutions, 
           re.MULTILINE|re.VERBOSE)
 
     re_HandInfo     = re.compile("""
@@ -114,7 +114,7 @@ class PacificPoker(HandHistoryConverter):
             (Tournament\s\#(?P<TOURNO>\d+)\s
               (
                 (?P<BUYIN>(
-                  ((?P<BIAMT>(%(LS)s)?[%(NUM)s]+\s?(%(LS)s)?)(\s\+\s?(?P<BIRAKE>(%(LS)s)?[%(NUM)s]+\s?(%(LS)s)?))?)
+                  ((?P<BIAMT>(%(LS)s)?\s?[%(NUM)s]+\s?(%(LS)s)?)(\s\+\s?(?P<BIRAKE>(%(LS)s)?\s?[%(NUM)s]+\s?(%(LS)s)?))?)
                   |
                   (Free)
                   |
@@ -140,24 +140,24 @@ class PacificPoker(HandHistoryConverter):
     re_DateTime     = re.compile("""(?P<D>[0-9]{2})\s(?P<M>[0-9]{2})\s(?P<Y>[0-9]{4})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)""", re.MULTILINE)
 
     short_subst = {'PLYR': r'(?P<PNAME>.+?)', 'CUR': '\$?', 'NUM' : u".,\d\xa0"}
-    re_PostSB           = re.compile(r"^%(PLYR)s posts small blind \[(%(CUR)s)?(?P<SB>[%(NUM)s]+)\s?(%(CUR)s)?\]" %  substitutions, re.MULTILINE)
-    re_PostBB           = re.compile(r"^%(PLYR)s posts big blind \[(%(CUR)s)?(?P<BB>[%(NUM)s]+)\s?(%(CUR)s)?\]" %  substitutions, re.MULTILINE)
-    re_Antes            = re.compile(r"^%(PLYR)s posts (the\s)?ante \[(%(CUR)s)?(?P<ANTE>[%(NUM)s]+)\s?(%(CUR)s)?\]" % substitutions, re.MULTILINE)
+    re_PostSB           = re.compile(r"^%(PLYR)s posts small blind \[(%(CUR)s)?\s?(?P<SB>[%(NUM)s]+)\s?(%(CUR)s)?\]" %  substitutions, re.MULTILINE)
+    re_PostBB           = re.compile(r"^%(PLYR)s posts big blind \[(%(CUR)s)?\s?(?P<BB>[%(NUM)s]+)\s?(%(CUR)s)?\]" %  substitutions, re.MULTILINE)
+    re_Antes            = re.compile(r"^%(PLYR)s posts (the\s)?ante \[(%(CUR)s)?\s?(?P<ANTE>[%(NUM)s]+)\s?(%(CUR)s)?\]" % substitutions, re.MULTILINE)
     # TODO: unknown in available hand histories for pacificpoker:
-    re_BringIn          = re.compile(r"^%(PLYR)s: brings[- ]in( low|) for (%(CUR)s)?(?P<BRINGIN>[%(NUM)s]+)\s?(%(CUR)s)?" % substitutions, re.MULTILINE)
-    re_PostBoth         = re.compile(r"^%(PLYR)s posts dead blind \[(%(CUR)s)?(?P<SBBB>[%(NUM)s]+)\s?(%(CUR)s)?\s\+\s(%(CUR)s)?[%(NUM)s]+\s?(%(CUR)s)?\]" %  substitutions, re.MULTILINE)
+    re_BringIn          = re.compile(r"^%(PLYR)s: brings[- ]in( low|) for (%(CUR)s)?\s?(?P<BRINGIN>[%(NUM)s]+)\s?(%(CUR)s)?" % substitutions, re.MULTILINE)
+    re_PostBoth         = re.compile(r"^%(PLYR)s posts dead blind \[(%(CUR)s)?\s?(?P<SBBB>[%(NUM)s]+)\s?(%(CUR)s)?\s\+\s(%(CUR)s)?\s?[%(NUM)s]+\s?(%(CUR)s)?\]" %  substitutions, re.MULTILINE)
     re_HeroCards        = re.compile(r"^Dealt to %(PLYR)s( \[\s(?P<NEWCARDS>.+?)\s\])" % substitutions, re.MULTILINE)
     re_Action           = re.compile(r"""
                         ^%(PLYR)s(?P<ATYPE>\sbets|\schecks|\sraises|\scalls|\sfolds|\sdiscards|\sstands\spat)
-                        (\s\[(%(CUR)s)?(?P<BET>[%(NUM)s]+)\s?(%(CUR)s)?\])?
+                        (\s\[(%(CUR)s)?\s?(?P<BET>[%(NUM)s]+)\s?(%(CUR)s)?\])?
                         (\s*and\sis\sall.in)?
-                        (\s*and\shas\sreached\sthe\s[%(CUR)s\d\.]+\scap)?
+                        (\s*and\shas\sreached\sthe\s[%(CUR)s\s?\d\.]+\scap)?
                         (\s*cards?(\s\[(?P<DISCARDED>.+?)\])?)?\s*$"""
                          %  substitutions, re.MULTILINE|re.VERBOSE)
     re_ShowdownAction   = re.compile(r"^%s shows \[(?P<CARDS>.*)\]" % substitutions['PLYR'], re.MULTILINE)
     re_sitsOut          = re.compile("^%s sits out" %  substitutions['PLYR'], re.MULTILINE)
     re_ShownCards       = re.compile("^%s ?(?P<SHOWED>shows|mucks) \[ (?P<CARDS>.*) \]$" %  substitutions['PLYR'], re.MULTILINE)
-    re_CollectPot       = re.compile(r"^%(PLYR)s collected \[ (%(CUR)s)?(?P<POT>[%(NUM)s]+)\s?(%(CUR)s)? \]$" %  substitutions, re.MULTILINE)
+    re_CollectPot       = re.compile(r"^%(PLYR)s collected \[ (%(CUR)s)?\s?(?P<POT>[%(NUM)s]+)\s?(%(CUR)s)? \]$" %  substitutions, re.MULTILINE)
 
     def compilePlayerRegexs(self,  hand):
         pass
@@ -501,6 +501,8 @@ class PacificPoker(HandHistoryConverter):
         cards = cards.replace(u'D', 'T')
         cards = cards.replace(u't', 'h')
         cards = cards.replace(u'p', 's')
+        cards = cards.replace(u'e', 'd')
+        cards = cards.replace(u'o', 'h')
         
         cards = cards.split(', ')
         return cards

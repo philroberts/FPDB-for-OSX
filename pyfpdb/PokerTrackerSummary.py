@@ -57,12 +57,14 @@ class PokerTrackerSummary(TourneySummary):
                         Finished:\s(?P<DATETIME1>.+?)\s+
                         Buyin:\s(?P<CURRENCY>[%(LS)s]?)(?P<BUYIN>[,.0-9]+)\s+
                         Fee:\s[%(LS)s]?(?P<FEE>[,.0-9]+)\s+
+                        (Rebuy:\s[%(LS)s]?(?P<REBUYAMT>[,.0-9]+)\s+)?
+                        (Addon:\s[%(LS)s]?(?P<ADDON>[,.0-9]+)\s+)?
                         Table\sType:\s(?P<TYPE>.+?)\s+
                         Tourney\sType:\s(?P<LIMIT>No\sLimit|Limit|LIMIT|Pot\sLimit)\s+
                         Players:\s(?P<ENTRIES>\d+)\s+
                         """ % substitutions ,re.VERBOSE|re.MULTILINE)
 
-    re_Player = re.compile(u"""Place:\s(?P<RANK>[0-9]+),\sPlayer:\s(?P<NAME>.*),\sWon:\s(?P<CUR>[%(LS)s]?)(?P<WINNINGS>[,.0-9]+),""" % substitutions)
+    re_Player = re.compile(u"""Place:\s(?P<RANK>[0-9]+),\sPlayer:\s(?P<NAME>.*),\sWon:\s(?P<CUR>[%(LS)s]?)(?P<WINNINGS>[,.0-9]+),( Rebuys: (?P<REBUYS>\d+),)?( Addons: (?P<ADDONS>\d+),)?""" % substitutions)
     
     re_DateTime1    = re.compile("""(?P<Y>[0-9]{4})\-(?P<M>[0-9]{2})\-(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)""", re.MULTILINE)
     re_DateTime2    = re.compile("""(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})\/(?P<Y>[0-9]{4})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)""", re.MULTILINE)
@@ -86,7 +88,7 @@ class PokerTrackerSummary(TourneySummary):
 
         mg = m.groupdict()
         if 'SITE'    in mg:
-            self.siteName = mg['SITE']
+            self.siteName = mg['SITE'].replace('MicroGaming', 'Microgaming')
             self.siteId   = self.SITEIDS.get(self.siteName)
             if self.siteId is None:
                 tmp = self.summaryText[0:200]
@@ -103,11 +105,17 @@ class PokerTrackerSummary(TourneySummary):
             self.buyin = int(100*Decimal(self.clearMoneyString(mg['BUYIN'])))
         if mg['FEE'] != None:
             self.fee   = int(100*Decimal(self.clearMoneyString(mg['FEE'])))
+        if 'REBUYAMT'in mg and mg['REBUYAMT'] != None:
+            self.isRebuy   = True
+            self.rebuyCost = int(100*Decimal(self.clearMoneyString(mg['REBUYAMT'])))
+        if 'ADDON' in mg and mg['ADDON'] != None:
+            self.isAddOn = True
+            self.addOnCost = int(100*Decimal(self.clearMoneyString(mg['ADDON'])))
         if 'ENTRIES'   in mg:
             self.entries = mg['ENTRIES']
             self.prizepool = int(Decimal(self.clearMoneyString(mg['BUYIN']))) * int(self.entries)
         if 'DATETIME'  in mg: 
-            if self.siteName == 'iPoker':
+            if self.siteName in ('iPoker', 'Microgaming'):
                 m1 = self.re_DateTime1.finditer(mg['DATETIME'])
             elif self.siteName == 'Merge':
                 m1 = self.re_DateTime2.finditer(mg['DATETIME'])
@@ -138,6 +146,12 @@ class PokerTrackerSummary(TourneySummary):
 
             if 'WINNINGS' in mg and mg['WINNINGS'] != None:
                 winnings = int(100*Decimal(mg['WINNINGS']))
+                
+            if 'REBUYS' in mg and mg['REBUYS']!=None:
+                rebuyCount = int(mg['REBUYS'])
+                
+            if 'ADDONS' in mg and mg['ADDONS']!=None:
+                addOnCount = int(mg['ADDONS'])
                 
             if 'CUR' in mg and mg['CUR'] != None:
                 if mg['CUR'] == "$":     self.currency="USD"

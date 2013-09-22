@@ -1,0 +1,49 @@
+** Game ID 4961261341 Version:4 starting - 2013-07-11 14:36:41
+** Rebuy (16,000 Guaranteed)(10124058):Table 11 [Multi Table Hold'em] (100|200 NL - MTT seats:9 ) Real Money
+
+- Player0 sitting in seat 1 with 11800.00 at end 11580.00
+- Player1 sitting in seat 2 with 17400.00 at end 18160.00
+- Player2 sitting in seat 3 with 19610.00 at end 19590.00
+- Player3 sitting in seat 4 with 14450.00 at end 14230.00
+- Player4 sitting in seat 5 with 15675.00 at end 15655.00
+- Player5 sitting in seat 6 with 19795.00 at end 19775.00
+- Hero sitting in seat 7 with 9900.00 at end 9880.00
+- Player6 sitting in seat 8 with 10790.00 at end 10770.00
+- Player7 sitting in seat 9 with 21310.00 at end 21090.00 [Dealer]
+
+Player0 posted ante - 20.00
+Player1 posted ante - 20.00
+Player2 posted ante - 20.00
+Player3 posted ante - 20.00
+Player4 posted ante - 20.00
+Player5 posted ante - 20.00
+Hero posted ante - 20.00
+Player6 posted ante - 20.00
+Player7 posted ante - 20.00
+Player0 posted the small blind - 100.00
+Player1 posted the big blind - 200.00
+** Dealing card to Hero: J of s, 9 of d
+Player2 folded
+Player3 called - 200.00
+Player4 folded
+Player5 folded
+Hero folded
+Player6 folded
+Player7 called - 200.00
+Player0 called - 100.00
+Player1 checked
+** Dealing the flop: K of d, 2 of s, 10 of d
+Player0 checked
+Player1 checked
+Player3 checked
+Player7 checked
+** Dealing the turn: K of h
+Player0 checked
+Player1 bet - 600.00
+Player3 folded
+Player7 folded
+Player0 folded
+Player1 mucks:
+Player1 wins 1580.00 from the main pot
+
+End of game 4961261341

@@ -42,6 +42,12 @@ from HandHistoryConverter import HandHistoryConverter
 
 log = logging.getLogger("parser")
 
+try:
+    import xlrd
+except:
+    xlrd = None
+    log.info(_("xlrd not found. Required for importing Excel tourney results files"))
+
 class TourneySummary(object):
 
 ################################################################
@@ -56,7 +62,7 @@ class TourneySummary(object):
                'Cake':17, 'Entraction':18, 'BetOnline':19, 'Microgaming':20, 'Bovada':21, 'Enet':22}
 
 
-    def __init__(self, db, config, siteName, summaryText, in_path='-', builtFrom="HHC"):
+    def __init__(self, db, config, siteName, summaryText, in_path='-', builtFrom="HHC", header=""):
         self.db = db
         self.config = config
         self.siteName = siteName
@@ -64,6 +70,7 @@ class TourneySummary(object):
         if siteName in self.SITEIDS:
             self.siteId = self.SITEIDS[siteName]
         self.in_path = in_path
+        self.header = header
         
         self.summaryText = summaryText
         self.tourneyName = None
@@ -314,13 +321,34 @@ winnings    (int) the money the player ended the tourney with (can be 0, or -1 i
 
     def printSummary(self):
         self.writeSummary(sys.stdout)
+        
+    @staticmethod            
+    def summaries_from_excel(filenameXLS, tourNoField):
+        wb = xlrd.open_workbook(filenameXLS)
+        sh = wb.sheet_by_index(0)
+        summaryTexts, rows, header, keys, entries = [], [], None, None, {}
+        for rownum in xrange(sh.nrows):
+            if rownum==0:
+                header = sh.row_values(rownum)[0]
+            elif tourNoField in sh.row_values(rownum):
+                keys = [unicode(c).encode('utf-8') for c in sh.row_values(rownum)]
+            elif keys!=None:
+                rows.append([unicode(c).encode('utf-8') for c in sh.row_values(rownum)])
+        for row in rows:
+            data = dict(zip(keys, row))
+            data['header'] = header
+            if len(data[tourNoField])>0:
+                if entries.get(data[tourNoField])==None:
+                    entries[data[tourNoField]] = []
+                entries[data[tourNoField]].append(data)
+        for k, item in entries.iteritems():
+            summaryTexts.append(item)
+        return summaryTexts
 
     @staticmethod
     def readFile(self, filename):
-        codepage = ["utf16", "utf8", "cp1252"]
         whole_file = None
-
-        for kodec in codepage:
+        for kodec in self.codepage:
             try:
                 in_fh = codecs.open(filename, 'r', kodec)
                 whole_file = in_fh.read()
@@ -332,4 +360,4 @@ winnings    (int) the money the player ended the tourney with (can be 0, or -1 i
                 log.warning("TS.readFile: '%s' : '%s'" % (filename, e))
 
         return whole_file
-
+        

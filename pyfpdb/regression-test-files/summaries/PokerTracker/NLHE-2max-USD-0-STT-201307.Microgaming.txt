@@ -1,0 +1,14 @@
+PokerTracker 4 Tournament Summary
+Site: MicroGaming
+Game: Holdem
+Tournament #: 10146282
+Started: 2013/07/13 08:24:59
+Finished: 2013/07/13 08:27:17
+Buyin: $0.00
+Fee: $0.00
+Table Type: STT (2 max) SNG
+Tourney Type: No Limit
+Players: 2
+
+Place: 1, Player: Player0, Won: $0.00,
+Place: 2, Player: Hero, Won: $0.00,

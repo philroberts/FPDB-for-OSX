@@ -56,6 +56,7 @@ class PokerStars(HandHistoryConverter):
                         '6.00': ('1.00', '3.00'),         '6': ('1.00', '3.00'),
                         '8.00': ('2.00', '4.00'),         '8': ('2.00', '4.00'),
                        '10.00': ('2.00', '5.00'),        '10': ('2.00', '5.00'),
+                       '16.00': ('4.00', '8.00'),        '16': ('4.00', '8.00'),
                        '20.00': ('5.00', '10.00'),       '20': ('5.00', '10.00'),
                        '30.00': ('10.00', '15.00'),      '30': ('10.00', '15.00'),
                        '40.00': ('10.00', '20.00'),      '40': ('10.00', '20.00'),
@@ -119,7 +120,7 @@ class PokerStars(HandHistoryConverter):
           (?P<GAME>Hold\'em|HOLD\'EM|Razz|RAZZ|7\sCard\sStud|7\sCARD\sSTUD|7\sCard\sStud\sHi/Lo|7\sCARD\sSTUD\sHI/LO|Omaha|OMAHA|Omaha\sHi/Lo|OMAHA\sHI/LO|Badugi|Triple\sDraw\s2\-7\sLowball|Single\sDraw\s2\-7\sLowball|5\sCard\sDraw|5\sCard\sOmaha(\sHi/Lo)?|Courchevel(\sHi/Lo)?)\s
           (?P<LIMIT>No\sLimit|NO\sLIMIT|Limit|LIMIT|Pot\sLimit|POT\sLIMIT|Pot\sLimit\sPre\-Flop,\sNo\sLimit\sPost\-Flop)\)?,?\s
           (-\s)?
-          (?P<SHOOTOUT>Match.*)?
+          (?P<SHOOTOUT>Match.*,\s)?
           (Level\s(?P<LEVEL>[IVXLC]+)\s)?
           \(?                            # open paren of the stakes
           (?P<CURRENCY>%(LS)s|)?
@@ -408,7 +409,7 @@ class PokerStars(HandHistoryConverter):
         # PREFLOP = ** Dealing down cards **
         # This re fails if,  say, river is missing; then we don't get the ** that starts the river.
         if hand.gametype['base'] in ("hold"):
-            m =  re.search(r"\*\*\* HOLE CARDS \*\*\*(?P<PREFLOP>.+(?=\*\*\* (FIRST\s)?FLOP \*\*\*)|.+)"
+            m =  re.search(r"\*\*\* HOLE CARDS \*\*\*(?P<PREFLOP>(.+(?P<FLOPET>\[\S\S\]))?.+(?=\*\*\* (FIRST\s)?FLOP \*\*\*)|.+)"
                        r"(\*\*\* FLOP \*\*\*(?P<FLOP> \[\S\S \S\S \S\S\].+(?=\*\*\* (FIRST\s)?TURN \*\*\*)|.+))?"
                        r"(\*\*\* TURN \*\*\* \[\S\S \S\S \S\S] (?P<TURN>\[\S\S\].+(?=\*\*\* (FIRST\s)?RIVER \*\*\*)|.+))?"
                        r"(\*\*\* RIVER \*\*\* \[\S\S \S\S \S\S \S\S] (?P<RIVER>\[\S\S\].+))?"
@@ -439,7 +440,7 @@ class PokerStars(HandHistoryConverter):
         hand.addStreets(m)
 
     def readCommunityCards(self, hand, street): # street has been matched by markStreets, so exists in this hand
-        if street in ('FLOP','TURN','RIVER'):   # a list of streets which get dealt community cards (i.e. all but PREFLOP)
+        if street in ('FLOP','TURN','RIVER') or street=='FLOPET' and hand.streets.get('FLOP')==None:   # a list of streets which get dealt community cards (i.e. all but PREFLOP)
             #print "DEBUG readCommunityCards:", street, hand.streets.group(street)
             m = self.re_Board.search(hand.streets[street])
             hand.setCommunityCards(street, m.group('CARDS').split(' '))
