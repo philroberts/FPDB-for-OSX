@@ -95,12 +95,14 @@ class BetOnline(HandHistoryConverter):
                        'BetOnline Poker': 'BetOnline',
                              'PayNoRake': 'PayNoRake',
                        'ActionPoker.com': 'ActionPoker',
-                            'Gear Poker': 'GearPoker'
+                            'Gear Poker': 'GearPoker',
+                'SportsBetting.ag Poker': 'SportsBetting.ag',
+                          'Tiger Gaming': 'Tiger Gaming'
                } # Legal mixed games
 
     # Static regexes
     re_GameInfo     = re.compile(u"""
-          (?P<SKIN>BetOnline\sPoker|PayNoRake|ActionPoker\.com|Gear\sPoker)\sGame\s\#(?P<HID>[0-9]+):\s+
+          (?P<SKIN>BetOnline\sPoker|PayNoRake|ActionPoker\.com|Gear\sPoker|SportsBetting\.ag\sPoker|Tiger\sGaming)\sGame\s\#(?P<HID>[0-9]+):\s+
           (\{.*\}\s+)?(Tournament\s\#                # open paren of tournament info
           (?P<TOURNO>\d+):\s?
           # here's how I plan to use LS
@@ -138,7 +140,7 @@ class BetOnline(HandHistoryConverter):
           (Seat\s\#(?P<BUTTON>\d+)\sis\sthe\sbutton)?""", 
           re.MULTILINE|re.VERBOSE)
 
-    re_Identify     = re.compile(u'(BetOnline\sPoker|PayNoRake|ActionPoker\.com|Gear\sPoker)\sGame\s\#\d+')
+    re_Identify     = re.compile(u'(BetOnline\sPoker|PayNoRake|ActionPoker\.com|Gear\sPoker|SportsBetting\.ag\sPoker|Tiger\sGaming)\sGame\s\#\d+')
     re_SplitHands   = re.compile('\n\n\n+')
     re_TailSplitHands   = re.compile('(\n\n\n+)')
     re_Button       = re.compile('Seat #(?P<BUTTON>\d+) is the button', re.MULTILINE)
@@ -286,6 +288,8 @@ class BetOnline(HandHistoryConverter):
                         tz = a.group('TZ')  # just assume ET??
                         if tz == 'GMT Standard Time':
                             time_zone = 'GMT'
+                        elif tz in ('Pacific Daylight Time', 'Pacific Standard Time'):
+                            time_zone = 'PT'
                         else:
                             time_zone = 'ET'
                 else:
