@@ -90,7 +90,7 @@ fpdb can normally started by selecting run_fpdb.py from the fpdb folder.
 3.3 install beautifulsoup
 -------------------------
 
-Get the installer here: http://www.crummy.com/software/BeautifulSoup/download/3.x/BeautifulSoup-3.2.1.tar.gz
+Get the installer here: https://pypi.python.org/packages/source/x/xlrd/xlrd-0.9.2.tar.gz
 
 Unpack
 
@@ -98,7 +98,18 @@ from a terminal window:
 a) cd to the BeautifulSoup-3.2.1 folder
 b) install as follows: "python setup.py install"
 
-3.4/ next steps
+3.4 install xlrd
+----------------
+
+Get the installer here: http://www.crummy.com/software/BeautifulSoup/download/3.x/BeautifulSoup-3.2.1.tar.gz
+
+Unpack
+
+from a terminal window:
+a) cd to the xlrd-0.9.2 folder
+b) install as follows: "python setup.py install"
+
+3.5/ next steps
 ---------------
 
 If you are fpdb developer who wants to build an exe package, go to Step 6 now.
