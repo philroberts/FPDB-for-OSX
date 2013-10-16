@@ -607,6 +607,7 @@ class Database:
             self.day_start = float(gen['day_start'])
             
         self.sessionTimeout = float(self.import_options['sessionTimeout'])
+        self.publicDB = self.import_options['publicDB']
 
         # where possible avoid creating new SQL instance by using the global one passed in
         if sql is None:
@@ -639,7 +640,6 @@ class Database:
             self.build_full_hudcache = not self.import_options['fastStoreHudCache']
             self.cacheSessions = self.import_options['cacheSessions']
             self.callHud = self.import_options['callFpdbHud']
-            self.publicDB = self.import_options['publicDB']
 
             #self.hud_hero_style = 'T'  # Duplicate set of vars just for hero - not used yet.
             #self.hud_hero_hands = 2000 # Idea is that you might want all-time stats for others
