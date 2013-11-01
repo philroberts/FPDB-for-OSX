@@ -683,7 +683,7 @@ class Fulltilt(HandHistoryConverter):
     def getTableTitleRe(type, table_name=None, tournament = None, table_number=None):
         "Returns string to search in windows titles"
         if type=="tour":
-            regex = "Tournament " + re.escape(str(tournament)) + ", Table " + re.escape(str(table_number))
+            regex = "Tournament " + re.escape(str(tournament)) + "( - Entry \d+)?, Table " + re.escape(str(table_number))
         else:
             regex = re.escape(str(table_name))
         log.info("Fulltilt.getTableTitleRe: table_name='%s' tournament='%s' table_number='%s'" % (table_name, tournament, table_number))
