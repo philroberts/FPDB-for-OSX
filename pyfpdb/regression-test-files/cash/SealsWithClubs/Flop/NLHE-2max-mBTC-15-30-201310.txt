@@ -1,0 +1,15 @@
+Hand #11442832-1 - 2013-10-31 07:53:57
+Game: NL Hold'em (600 - 3000) - Blinds 15/30
+Site: Seals With Clubs
+Table: NLHE HU 15/30 #2
+Seat 1: Hero11 (1346.42) - waiting for big blind
+Seat 2: Villian (2798.10)
+Villian has the dealer button
+Villian posts small blind 15
+Hero11 posts big blind 30
+** Hole Cards **
+Dealt to Hero11 [4c Tc]
+Villian folds
+Hero11 refunded 15
+Hero11 wins Pot (30)
+Rake (0)
