@@ -34,31 +34,32 @@ class iPokerSummary(TourneySummary):
                     }
     currencies = { u'€':'EUR', '$':'USD', '':'T$', u'£':'GBP', 'RSD': 'RSD'}
 
-    limits = { 'No Limit':'nl', 'Pot Limit':'pl', 'Limit':'fl', 'LIMIT':'fl' }
-
     months = { 'Jan':1, 'Feb':2, 'Mar':3, 'Apr':4, 'May':5, 'Jun':6, 'Jul':7, 'Aug':8, 'Sep':9, 'Oct':10, 'Nov':11, 'Dec':12}
-
+    
+    limits = { 'No limit':'nl', 
+              'Pot limit':'pl', 
+                  'Limit':'fl',
+                     'NL':'nl',
+                     'SL':'nl',
+                    u'БЛ':'nl',
+                     'PL':'pl',
+                     'LP':'pl',
+                      'L':'fl',
+                     'LZ':'fl',
+                  }
     games = {              # base, category
-                '7 Card Stud L' : ('stud','studhi'),
-                '5 Card Stud L' : ('stud','5_studhi'),
-                    'Holdem NL' : ('hold','holdem'),
-                   u'Holdem БЛ' : ('hold','holdem'),
-                    'Holdem SL' : ('hold','holdem'), #Spanish NL
-                    'Holdem LZ' : ('hold','holdem'), #Limit
-                    'Holdem PL' : ('hold','holdem'), #Limit
-                     'Holdem L' : ('hold','holdem'),
-                     'Omaha PL' : ('hold','omahahi'),
-               'Omaha Hi-Lo PL' : ('hold','omahahilo'),
-                     'Omaha LP' : ('hold','omahahi'),
-                      'Omaha L' : ('hold','omahahi'),
-               'Omaha Hi-Lo LP' : ('hold','omahahilo'),
-                'Omaha Hi-Lo L' : ('hold','omahahilo'),
+                '7 Card Stud' : ('stud','studhi'),
+                '5 Card Stud' : ('stud','5_studhi'),
+                     'Holdem' : ('hold','holdem'),
+                      'Omaha' : ('hold','omahahi'),
+                'Omaha Hi-Lo' : ('hold','omahahilo'),
             }
     
     re_Identify = re.compile(u'<game\sgamecode=')
 
     re_GameType = re.compile(ur"""
-            <gametype>(?P<GAME>(5|7)\sCard\sStud\sL|Holdem\s(NL|SL|L|LZ|PL|БЛ)|Omaha\s(L|PL|LP)|Omaha\sHi\-Lo\s(L|PL|LP)|LH\s(?P<LSB>[%(NUM)s]+)/(?P<LBB>[%(NUM)s]+).+?)(\s(%(LS)s)?(?P<SB>[%(NUM)s]+)/(%(LS)s)?(?P<BB>[%(NUM)s]+))?</gametype>\s+?
+            <gametype>(?P<GAME>((?P<CATEGORY>(5|7)\sCard\sStud|Holdem|Omaha|Omaha\sHi\-Lo)\s(?P<LIMIT>NL|SL|L|LZ|PL|БЛ|LP|No\slimit|Pot\slimit|Limit))|LH\s(?P<LSB>[%(NUM)s]+)/(?P<LBB>[%(NUM)s]+).+?)
+            (\s(%(LS)s)?(?P<SB>[%(NUM)s]+)/(%(LS)s)?(?P<BB>[%(NUM)s]+))?(\sAnte\s(%(LS)s)?(?P<ANTE>[%(NUM)s]+))?</gametype>\s+?
             <tablename>(?P<TABLE>.+)?</tablename>\s+?
             (<(tablecurrency|tournamentcurrency)>.*</(tablecurrency|tournamentcurrency)>\s+?)?
             <duration>.+</duration>\s+?
@@ -107,17 +108,9 @@ class iPokerSummary(TourneySummary):
             tourney = True
 #                self.gametype['limitType'] = 
         if 'GAME' in mg:
-            self.gametype['category'] = self.games[mg['GAME']][1]
-
-        if self.games[mg['GAME']][0] == 'stud':
-            self.gametype['limitType']  = 'fl'
-        if self.games[mg['GAME']][0] == 'hold':
-            if mg['GAME'][-2:] == 'NL' or mg['GAME'][-2:] == 'SL' or mg['GAME'][-2:] == u'БЛ':
-                self.gametype['limitType']  = 'nl'
-            elif mg['GAME'][-2:] == 'PL' or mg['GAME'][-2:] == 'LP':
-                self.gametype['limitType'] = 'pl'
-            else:
-                self.gametype['limitType'] = 'fl'
+            (self.gametype['base'], self.gametype['category']) = self.games[mg['CATEGORY']]
+        if 'LIMIT' in mg:
+            self.gametype['limitType'] = self.limits[mg['LIMIT']]
 
         m2 = self.re_DateTime1.search(mg['DATETIME'])
         if m2:

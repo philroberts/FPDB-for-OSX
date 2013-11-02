@@ -73,6 +73,7 @@ class Site:
             self.summary = None
         self.line_delimiter = self.getDelimiter(filter_name)
         self.line_addendum  = self.getAddendum(filter_name)
+        self.spaces  = filter_name == 'Entraction'
         self.getHeroRegex(obj, filter_name)
         
     def getDelimiter(self, filter_name):
@@ -274,14 +275,16 @@ class IdentifySite:
             f.site = Site('PokerTracker', filter, filter_name, summary, obj)
             if m1:
                 f.ftype = "hh"
-                re_SplitHands = re.compile(u'\*{2}\sGame\sID\s')
-                if re_SplitHands.search( m1.group()):
+                if re.search(u'\*{2}\sGame\sID\s', m1.group()):
                     f.site.line_delimiter = None
                     f.site.re_SplitHands = re.compile(u'End\sof\sgame\s\d+')
-                re_SplitHands = re.compile(u'\*{2}\sHand\s\#\s')
-                if re_SplitHands.search( m1.group()):
+                elif re.search(u'\*{2}\sHand\s\#\s', m1.group()):
                     f.site.line_delimiter = None
                     f.site.re_SplitHands = re.compile(u'Rake:\s[^\s]+')
+                elif re.search(u'Server\spoker\d+\.ipoker\.com', whole_file[:250]):
+                    f.site.line_delimiter = None
+                    f.site.spaces = True
+                    f.site.re_SplitHands = re.compile(u'GAME\s\#')
                 m3 = f.site.re_HeroCards1.search(whole_file)
                 if m3:
                     f.hero = m3.group('PNAME')

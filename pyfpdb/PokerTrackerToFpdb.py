@@ -94,7 +94,7 @@ class PokerTracker(HandHistoryConverter):
     re_GameInfo1     = re.compile(u"""
           (?P<SITE>GAME\s\#|MERGE_GAME\s\#)(?P<HID>[0-9\-]+):\s+
           (?P<GAME>Holdem|Texas\sHold\'em|Omaha|Omaha\sHi|Omaha\sHi/Lo)\s\s?
-          (?P<LIMIT>PL|NL|FL|No\sLimit|Limit|LIMIT|Pot\sLimit)\s\s?
+          ((?P<LIMIT>PL|NL|FL|No\sLimit|Limit|LIMIT|Pot\sLimit)\s\s?)?
           (?P<TOUR>Tournament)?
           (                            # open paren of the stakes
           (?P<CURRENCY>%(LS)s|)?
@@ -132,7 +132,7 @@ class PokerTracker(HandHistoryConverter):
     re_PlayerInfo1   = re.compile(u"""
           ^Seat\s(?P<SEAT>[0-9]+):\s
           (?P<PNAME>.*)\s
-          \((%(LS)s)?(?P<CASH>[%(NUM)s]+)(\sin\schips)?\)
+          \((?P<CURRENCY>%(LS)s)?(?P<CASH>[%(NUM)s]+)(\sin\schips)?\)
           (?P<BUTTON>\sDEALER)?""" % substitutions, 
           re.MULTILINE|re.VERBOSE)
     
@@ -168,15 +168,15 @@ class PokerTracker(HandHistoryConverter):
 
     # These used to be compiled per player, but regression tests say
     # we don't have to, and it makes life faster.
-    re_PostSB            = re.compile(r"^%(PLYR)s:? ((posts|posted) the small blind( of)?|Post SB) (\- )?%(CUR)s(?P<SB>[%(NUM)s]+)" %  substitutions, re.MULTILINE)
-    re_PostBB            = re.compile(r"^%(PLYR)s:? ((posts|posted) the big blind( of)?|posts the dead blind of|Post BB) (\- )?%(CUR)s(?P<BB>[%(NUM)s]+)" %  substitutions, re.MULTILINE)
-    re_Antes             = re.compile(r"^%(PLYR)s:? ((posts|posted) (the )?ante( of)?|Post Ante) (\- )?%(CUR)s(?P<ANTE>[%(NUM)s]+)" % substitutions, re.MULTILINE)
-    re_PostBoth1         = re.compile(r"^%(PLYR)s:? (posts|Post|Post DB) %(CUR)s(?P<SBBB>[%(NUM)s]+)" %  substitutions, re.MULTILINE)
+    re_PostSB            = re.compile(r"^%(PLYR)s:? ((posts|posted) the small blind( of)?|(Post )?SB) (\- )?%(CUR)s(?P<SB>[%(NUM)s]+)" %  substitutions, re.MULTILINE)
+    re_PostBB            = re.compile(r"^%(PLYR)s:? ((posts|posted) the big blind( of)?|posts the dead blind of|(Post )?BB) (\- )?%(CUR)s(?P<BB>[%(NUM)s]+)" %  substitutions, re.MULTILINE)
+    re_Antes             = re.compile(r"^%(PLYR)s:? ((posts|posted) (the )?ante( of)?|(Post )?Ante) (\- )?%(CUR)s(?P<ANTE>[%(NUM)s]+)" % substitutions, re.MULTILINE)
+    re_PostBoth1         = re.compile(r"^%(PLYR)s:? (posts|Post|(Post )?DB) %(CUR)s(?P<SBBB>[%(NUM)s]+)" %  substitutions, re.MULTILINE)
     re_PostBoth2         = re.compile(r"^%(PLYR)s:? posted to play \- %(CUR)s(?P<SBBB>[%(NUM)s]+)" %  substitutions, re.MULTILINE)
     re_HeroCards1        = re.compile(r"^Dealt to %(PLYR)s(?: \[(?P<OLDCARDS>.+?)\])?( \[(?P<NEWCARDS>.+?)\])" % substitutions, re.MULTILINE)
     re_HeroCards2        = re.compile(r"rd(s)? to %(PLYR)s: (?P<OLDCARDS>NONE)?(?P<NEWCARDS>.+)\n" % substitutions, re.MULTILINE)
     re_Action1           = re.compile(r"""
-                        ^%(PLYR)s:?(?P<ATYPE>\sbets|\schecks|\sraises|\scalls|\sfolds|\sBet|\sCheck|\sRaise|\sCall|\sFold|\sAllin)
+                        ^%(PLYR)s:?(?P<ATYPE>\sbets|\schecks|\sraises|\scalls|\sfolds|\sBet|\sCheck|\sRaise(\sto)?|\sCall|\sFold|\sAllin)
                         (?P<RAISETO>\s\(NF\))?
                         (\sto)?(\s%(CUR)s(?P<BET>[%(NUM)s]+))?  # the number discarded goes in <BET>
                         \s*(and\sis\sall.in)?
@@ -236,10 +236,15 @@ class PokerTracker(HandHistoryConverter):
         
         mg = m.groupdict()
         #print 'DEBUG determineGameType', '%r' % mg
-        if 'LIMIT' in mg:
+        if 'LIMIT' in mg and mg['LIMIT'] != None:
             info['limitType'] = self.limits[mg['LIMIT']]
         if 'GAME' in mg:
             (info['base'], info['category']) = self.games[mg['GAME']]
+            if mg['LIMIT'] == None:
+                if info['category']=='omahahi':
+                    info['limitType'] = 'pl'
+                elif info['category']=='holdem':
+                    info['limitType'] = 'nl'
         if 'SB' in mg:
             info['sb'] = self.clearMoneyString(mg['SB'])
         if 'BB' in mg:
@@ -247,6 +252,9 @@ class PokerTracker(HandHistoryConverter):
         if 'CURRENCY' in mg and mg['CURRENCY'] is not None:
             if self.sitename == 'Microgaming' and not mg['CURRENCY']:
                 m1 = self.re_Currency.search(mg['TABLE'])
+                if m1: mg['CURRENCY'] = m1.group('CURRENCY')
+            if self.sitename == 'iPoker' and not mg['CURRENCY']:
+                m1 = self.re_PlayerInfo1.search(handText)
                 if m1: mg['CURRENCY'] = m1.group('CURRENCY')
             info['currency'] = self.currencies[mg['CURRENCY']]
         if 'MIXED' in mg:
@@ -291,6 +299,7 @@ class PokerTracker(HandHistoryConverter):
             m2 = self.re_GameInfo3.search(hand.handText)
         if (m is None and self.sitename not in ('Everest', 'Microgaming')) or m2 is None:
             tmp = hand.handText[0:200]
+            print hand.handText
             log.error(_("PokerTrackerToFpdb.readHandInfo: '%s'") % tmp)
             raise FpdbParseError
         
@@ -422,6 +431,8 @@ class PokerTracker(HandHistoryConverter):
             hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), a.group('CASH'))
             if a.group('BUTTON')!=None:
                 hand.buttonpos = int(a.group('SEAT'))
+        if len(hand.players)==1:
+            raise FpdbHandPartial(_("Hand '%s' was cancelled.") % hand.handid)
 
     def markStreets(self, hand):
 
@@ -593,11 +604,11 @@ class PokerTracker(HandHistoryConverter):
                 hand.addCheck( street, action.group('PNAME'))
             elif action.group('ATYPE') in (' calls', ' Call', ' called'):
                 hand.addCall( street, action.group('PNAME'), action.group('BET') )
-            elif action.group('ATYPE') in (' raises', ' Raise', ' raised', ' raised to'):
+            elif action.group('ATYPE') in (' raises', ' Raise', ' raised', ' raised to', ' Raise to'):
                 amount = Decimal(self.clearMoneyString(action.group('BET')))
                 if self.sitename == 'Merge':
                     hand.addRaiseTo( street, action.group('PNAME'), action.group('BET') )
-                elif self.sitename == 'Microgaming':
+                elif self.sitename == 'Microgaming' or action.group('ATYPE')==' Raise to':
                     hand.addCallandRaise(street, action.group('PNAME'), action.group('BET') )
                 else:
                     if curr_pot > amount:
