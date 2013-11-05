@@ -454,6 +454,8 @@ class PacificPoker(HandHistoryConverter):
                     if not hand.allInBlind:
                         if not (hand.stacks[action.group('PNAME')]==0 and action.group('ATYPE') ==' calls' ):
                             hand.setUncalledBets(False)
+                        if (hand.stacks[action.group('PNAME')]==0 and action.group('ATYPE') ==' raises' ):
+                            hand.checkForUncalled = True
             else:
                 raise FpdbHandPartial("Partial hand history: '%s', '%s' not in hand.stacks" % (hand.handid, action.group('PNAME')))
             

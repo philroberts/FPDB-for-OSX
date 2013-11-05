@@ -81,6 +81,7 @@ class Hand(object):
         self.buttonpos = 0
         self.runItTimes = 0
         self.uncalledbets = False
+        self.checkForUncalled = False
         self.adjustCollected = False
 
         #tourney stuff
@@ -884,24 +885,24 @@ class Hand(object):
         if self.adjustCollected:
             self.stats.awardPots(self)
         
-        def gettempcontainers():
-            (collected, collectees, totalcollected) = ([], {}, 0)
-            for i,v in enumerate(self.collected):
-                totalcollected += Decimal(v[1])
-                collected.append([v[0], Decimal(v[1])])
-            for k, j in self.collectees.iteritems():
-                collectees[k] = j
-            return collected, collectees, totalcollected
+        def gettempcontainers(collected, collectees):
+            (collectedCopy, collecteesCopy, totalcollected) = ([], {}, 0)
+            for i,v in enumerate(sorted(collected, key=lambda collectee: collectee[1], reverse=True)):
+                if Decimal(v[1])!=0:
+                    totalcollected += Decimal(v[1])
+                    collectedCopy.append([v[0], Decimal(v[1])])
+            for k, j in collectees.iteritems():
+                if j!=0: collecteesCopy[k] = j
+            return collectedCopy, collecteesCopy, totalcollected
         
-        collected, collectees, totalcollected = gettempcontainers()
-        if ((self.uncalledbets and len(self.pot.returned)>0) or 
-            (self.totalpot - totalcollected < 0)):
-            for i,v in enumerate(self.collected):
+        collected, collectees, totalcollected = gettempcontainers(self.collected, self.collectees)
+        if (self.uncalledbets or ((self.totalpot - totalcollected < 0) and self.checkForUncalled)):
+            for i,v in enumerate(sorted(self.collected, key=lambda collectee: collectee[1], reverse=True)):
                 if v[0] in self.pot.returned: 
                     collected[i][1] = Decimal(v[1]) - self.pot.returned[v[0]]
                     collectees[v[0]] -= self.pot.returned[v[0]]
                     self.pot.returned[v[0]] = 0
-            (self.collected, self.collectees) = (collected, collectees)
+            (self.collected, self.collectees, self.totalcollected) = gettempcontainers(collected, collectees)
 
         # This gives us the amount collected, i.e. after rake
         if self.totalcollected is None:
