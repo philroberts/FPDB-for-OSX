@@ -254,8 +254,11 @@ class DerivedStats():
 
         # Winnings is a non-negative value of money collected from the pot, which already includes the
         # rake taken out. hand.collectees is Decimal, database requires cents
-        num_collectees = len(hand.collectees)
-        for player, winnings in hand.collectees.iteritems():
+        collectees = {}
+        for k, j in hand.collectees.iteritems():
+            if j>0: collectees[k] = j
+        num_collectees = len(collectees)
+        for player, winnings in collectees.iteritems():
             collectee_stats = self.handsplayers.get(player)
             collectee_stats['winnings'] = int(100 * winnings)
             #FIXME: This is pretty dodgy, rake = hand.rake/#collectees

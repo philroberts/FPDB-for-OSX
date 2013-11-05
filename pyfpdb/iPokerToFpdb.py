@@ -334,7 +334,7 @@ class iPoker(HandHistoryConverter):
         m = self.re_PlayerInfo.finditer(hand.handText)
         for a in m:
             ag = a.groupdict()
-            plist[a.group('PNAME')] = [int(a.group('SEAT')), self.clearMoneyString(a.group('CASH')), a.group('WIN'), False]
+            plist[a.group('PNAME')] = [int(a.group('SEAT')), self.clearMoneyString(a.group('CASH')), self.clearMoneyString(a.group('WIN')), False]
             re_sitout = re.compile(r'<action no="[0-9]+" player="' + re.escape(a.group('PNAME')) + '" type="9"')
             if re_sitout.search(hand.handText):
                 if hand.gametype['type'] == "ring" :
@@ -355,8 +355,8 @@ class iPoker(HandHistoryConverter):
         for pname in plist:
             seat, stack, win, sitout = plist[pname]
             hand.addPlayer(seat, pname, stack, None, sitout)
-            if win != '0':
-                self.playerWinnings[pname] = self.clearMoneyString(win)
+            if Decimal(win) != 0:
+                self.playerWinnings[pname] = win
                 
         if hand.maxseats==None:
             if self.info['type'] == 'tour' and self.maxseats==0:

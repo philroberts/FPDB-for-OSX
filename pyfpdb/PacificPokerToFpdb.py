@@ -428,7 +428,7 @@ class PacificPoker(HandHistoryConverter):
         m = self.re_Action.finditer(hand.streets[street])
         for action in m:
             acts = action.groupdict()
-            if street not in ('PREFLOP', 'DEAL') and not hand.allInBlind:
+            if street not in ('PREFLOP', 'DEAL'):
                 hand.setUncalledBets(False)
             #print "DEBUG: acts: %s" %acts
             bet = self.clearMoneyString(action.group('BET')) if action.group('BET') else None
@@ -439,10 +439,8 @@ class PacificPoker(HandHistoryConverter):
                     hand.addCheck( street, action.group('PNAME'))
                 elif action.group('ATYPE') == ' calls':
                     hand.addCall( street, action.group('PNAME'), bet)
-                    self.allInBlind(hand, street, action, action.group('ATYPE'))
                 elif action.group('ATYPE') == ' raises':
                     hand.addCallandRaise( street, action.group('PNAME'), bet)
-                    self.allInBlind(hand, street, action, action.group('ATYPE'))
                 elif action.group('ATYPE') == ' bets':
                     hand.addBet( street, action.group('PNAME'), bet )
                 elif action.group('ATYPE') == ' discards':
@@ -451,16 +449,24 @@ class PacificPoker(HandHistoryConverter):
                     hand.addStandsPat( street, action.group('PNAME'))
                 else:
                     print (_("DEBUG:") + " " + _("Unimplemented %s: '%s' '%s'") % ("readAction", action.group('PNAME'), action.group('ATYPE')))
+                
+                if action.group('ATYPE') not in (' checks', ' folds'):
+                    if not hand.allInBlind:
+                        if not (hand.stacks[action.group('PNAME')]==0 and action.group('ATYPE') ==' calls' ):
+                            hand.setUncalledBets(False)
             else:
                 raise FpdbHandPartial("Partial hand history: '%s', '%s' not in hand.stacks" % (hand.handid, action.group('PNAME')))
             
     def allInBlind(self, hand, street, action, actiontype):
         if street in ('PREFLOP', 'DEAL'):
-            if not hand.allInBlind and actiontype in (' raises', ' calls'):
-                hand.setUncalledBets(False)
             if hand.stacks[action.group('PNAME')]==0:
-                hand.setUncalledBets(True)
-                hand.allInBlind = True
+                if actiontype=='ante':
+                    if action.group('PNAME') in [p for (p,b) in hand.posted]:
+                        hand.setUncalledBets(True)
+                        hand.allInBlind = True
+                elif actiontype in ('secondsb', 'big blind', 'both') and not self.re_Antes.search(hand.handText):
+                    hand.setUncalledBets(True)
+                    hand.allInBlind = True
 
     def readShowdownActions(self, hand):
         # TODO: pick up mucks also??

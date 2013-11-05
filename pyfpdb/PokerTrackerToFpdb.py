@@ -506,9 +506,12 @@ class PokerTracker(HandHistoryConverter):
                     
         if self.sitename == 'Microgaming':
             for a in self.re_PostBoth2.finditer(hand.handText):
-                bet = self.clearMoneyString(a.group('SBBB'))
-                amount = str(Decimal(bet) + Decimal(bet)/2)
-                hand.addBlind(a.group('PNAME'), 'both', amount)
+                if self.clearMoneyString(a.group('SBBB')) == hand.gametype['sb']:
+                    hand.addBlind(a.group('PNAME'), 'secondsb', self.clearMoneyString(a.group('SBBB')))
+                else:
+                    bet = self.clearMoneyString(a.group('SBBB'))
+                    amount = str(Decimal(bet) + Decimal(bet)/2)
+                    hand.addBlind(a.group('PNAME'), 'both', amount)
             for a in self.re_Action2.finditer(self.re_Hole.split(hand.handText)[0]):
                 if a.group('ATYPE') == ' went all-in':
                     amount = Decimal(self.clearMoneyString(a.group('BET')))
@@ -619,7 +622,10 @@ class PokerTracker(HandHistoryConverter):
                         hand.addRaiseTo( street, action.group('PNAME'), action.group('BET') )
                 curr_pot = amount
             elif action.group('ATYPE') in (' bets', ' Bet', ' bet'):
-                hand.addBet( street, action.group('PNAME'), action.group('BET') )
+                if self.sitename == 'Microgaming' and street in ('PREFLOP', 'THIRD', 'DEAL'):
+                    hand.addCallandRaise(street, action.group('PNAME'), action.group('BET') )
+                else:
+                    hand.addBet( street, action.group('PNAME'), action.group('BET') )
             elif action.group('ATYPE') in (' Allin', ' went all-in'):
                 amount = Decimal(self.clearMoneyString(action.group('BET')))
                 hand.addAllIn(street, action.group('PNAME'), action.group('BET'))

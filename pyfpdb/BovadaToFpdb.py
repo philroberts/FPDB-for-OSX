@@ -143,6 +143,7 @@ class Bovada(HandHistoryConverter):
     re_Stakes           = re.compile(r"RING\s-\s(?P<CURRENCY>%(LS)s|)?(?P<SB>[%(NUM)s]+)-(%(LS)s)?(?P<BB>[%(NUM)s]+)\s-\s" % substitutions)
     re_Summary          = re.compile(r"\*\*\*\sSUMMARY\s\*\*\*")
     re_Hole_Third       = re.compile(r"\*\*\*\s(3RD\sSTREET|HOLE\sCARDS)\s\*\*\*")
+    re_ReturnBet        = re.compile(r"Return\suncalled\sportion", re.MULTILINE)
     #Small Blind : Hand result $19
     
     def compilePlayerRegexs(self,  hand):
@@ -403,7 +404,8 @@ class Bovada(HandHistoryConverter):
         
     def readBlinds(self, hand):
         sb, bb = None, None
-        hand.setUncalledBets(True)
+        if not self.re_ReturnBet.search(hand.handText):
+            hand.setUncalledBets(True)
         for a in self.re_PostSB.finditer(hand.handText):
             player = self.playerSeatFromPosition('BovadaToFpdb.readBlinds.postSB', hand.handid, a.group('PNAME'))
             hand.addBlind(player, 'small blind', self.clearMoneyString(a.group('SB')))
@@ -530,7 +532,7 @@ class Bovada(HandHistoryConverter):
     def allInBlind(self, hand, street, action, actiontype):
         if street in ('PREFLOP', 'DEAL'):
             player = self.playerSeatFromPosition('BovadaToFpdb.allInBlind', hand.handid, action.group('PNAME'))
-            if hand.stacks[player]==0:
+            if hand.stacks[player]==0 and not self.re_ReturnBet.search(hand.handText):
                 hand.setUncalledBets(True)
                 hand.allInBlind = True
 

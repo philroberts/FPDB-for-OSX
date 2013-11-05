@@ -1,0 +1,61 @@
+<session sessioncode="0">
+  <general>
+    <mode>real</mode>
+    <gametype>Holdem NL £0.05/£0.10</gametype>
+    <tablename>Gelofo, 754744691</tablename>
+    <tablecurrency>GBP</tablecurrency>
+    <duration>N/A</duration>
+    <gamecount>N/A</gamecount>
+    <startdate>2013-07-27 21:56:06</startdate>
+    <currency>GBP</currency>
+<nickname>gortaleva</nickname>
+    <bets>N/A</bets>
+    <wins>N/A</wins>
+    <chipsin>N/A</chipsin>
+    <chipsout>N/A</chipsout>
+    <ipoints>N/A</ipoints>
+    <statuspoints>N/A</statuspoints>
+    <awardpoints>N/A</awardpoints>
+    <is_asian>[is_asian]</is_asian>
+  </general>
+  <game gamecode="4988874195">
+    <general>
+<startdate>2013-07-30 18:26:02</startdate>
+      <players>
+        <player seat="1" name="Certusjr" chips="£10.66" dealer="0" win="£0" bet="£0.05" rebuy="0" addon="0" />
+        <player seat="3" name="SudenUniMC" chips="£10" dealer="0" win="£0" bet="£0.10" rebuy="0" addon="0" />
+        <player seat="5" name="gortaleva" chips="£7.22" dealer="0" win="£0.46" bet="£6.50" rebuy="0" addon="0" />
+        <player seat="6" name="P0k3rkIng2k" chips="£6.04" dealer="0" win="£11.42" bet="£6.04" rebuy="0" addon="0" />
+        <player seat="8" name="RotozeyIV" chips="£13.47" dealer="0" win="£0" bet="£0" rebuy="0" addon="0" />
+        <player seat="10" name="TtheFish" chips="£14.40" dealer="1" win="£0" bet="£0" rebuy="0" addon="0" />
+      </players>
+    </general>
+    <round no="0">
+      <action no="1" player="Certusjr" type="1" sum="£0.05" cards="[cards]" />
+      <action no="2" player="SudenUniMC" type="2" sum="£0.10" cards="[cards]" />
+    </round>
+    <round no="1">
+      <cards type="Pocket" player="Certusjr">X X</cards>
+      <action no="6" player="Certusjr" type="0" sum="£0" cards="" />
+      <cards type="Pocket" player="SudenUniMC">X X</cards>
+      <action no="7" player="SudenUniMC" type="0" sum="£0" cards="" />
+      <cards type="Pocket" player="gortaleva">CA HQ</cards>
+      <action no="3" player="gortaleva" type="23" sum="£0.40" cards="" />
+      <action no="8" player="gortaleva" type="23" sum="£6.50" cards="" />
+      <cards type="Pocket" player="P0k3rkIng2k">DK SK</cards>
+      <action no="4" player="P0k3rkIng2k" type="23" sum="£1.20" cards="" />
+      <action no="9" player="P0k3rkIng2k" type="7" sum="£4.84" cards="" />
+      <cards type="Pocket" player="TtheFish">X X</cards>
+      <action no="5" player="TtheFish" type="0" sum="£0" cards="" />
+    </round>
+    <round no="2">
+      <cards type="Flop" player="">D5 C7 D9</cards>
+    </round>
+    <round no="3">
+      <cards type="Turn" player="">DJ</cards>
+    </round>
+    <round no="4">
+      <cards type="River" player="">DQ</cards>
+    </round>
+  </game>
+</session>
