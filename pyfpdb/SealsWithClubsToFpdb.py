@@ -59,8 +59,7 @@ class SealsWithClubs(HandHistoryConverter):
     re_PlayerInfo   = re.compile(ur"""
         ^\s?Seat\s+(?P<SEAT>\d+):\s*
         (?P<PNAME>.*)\s+
-        \((?P<CASH>[.\d]+)\)\s*
-        (?P<SITOUT>-\s*waiting)?""" % substitutions, 
+        \((?P<CASH>[.\d]+)\)""" % substitutions, 
         re.MULTILINE|re.VERBOSE)
 
     re_HandInfo = re.compile(ur"""^Table:\s(?P<TABLE>.+?((?P<HU>HU)|((?P<MAX>\d+)max)).*)""",re.MULTILINE|re.VERBOSE)
@@ -207,7 +206,7 @@ class SealsWithClubs(HandHistoryConverter):
         log.debug("readPlayerStacks")
         m = self.re_PlayerInfo.finditer(hand.handText)
         for a in m:
-            hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), a.group('CASH'), None, a.group('SITOUT'))
+            hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), a.group('CASH'), None)
 
     def markStreets(self, hand):
 
