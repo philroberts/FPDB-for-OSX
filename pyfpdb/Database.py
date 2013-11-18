@@ -901,6 +901,7 @@ class Database:
 
     def close_connection(self):
         self.connection.close()
+        self.__connected = False
 
     def disconnect(self, due_to_error=False):
         """Disconnects the DB (rolls back if param is true, otherwise commits"""
