@@ -2844,11 +2844,7 @@ class Database:
             for k, cashplayer in self.cc.iteritems():
                 for session in cashplayer:
                     hid = session['hid']
-                    sc = self.sc.get(hid)
-                    if sc is not None:
-                        sid = sc['id']
-                    else:
-                        sid = None
+                    sid = self.sc.get(hid)['id']
                     lower = session['startTime'] - THRESHOLD
                     upper = session['endTime']   + THRESHOLD
                     row = [lower, upper] + list(k[:2])
@@ -2886,8 +2882,6 @@ class Database:
                                 if  end < n['endTime']: 
                                     end = n['endTime']
                             else:   end = n['endTime']
-                            if not sid and n['sessionId']:
-                                sid = n['id']
                             for idx in range(len(CACHE_KEYS)):
                                 line[idx] += int(n['line'][idx])
                         row = [sid, start, end] + list(k[:2]) + line 
@@ -2922,36 +2916,30 @@ class Database:
                         tourplayer['ids'].append(hid)
                 else:
                     self.tc[k] = {'startTime' : None,
-                                          'endTime' : None,
-                                              'hid' : hid,
-                                              'ids' : []}
+                                    'endTime' : None,
+                                        'hid' : hid,
+                                        'ids' : []}
                     self.tc[k]['line'] = line
                     if pids[p]==heroes[0]:
                         self.tc[k]['ids'].append(hid)
 
                 if not self.tc[k]['startTime'] or startTime < self.tc[k]['startTime']:
                     self.tc[k]['startTime']  = startTime
+                    self.tc[k]['hid'] = hid
                 if not self.tc[k]['endTime'] or startTime > self.tc[k]['endTime']:
                     self.tc[k]['endTime']    = startTime
                 
         if doinsert:
-            update_TC = self.sql.query['update_TC']
-            update_TC = update_TC.replace('%s', self.sql.query['placeholder'])
-            insert_TC = self.sql.query['insert_TC']
-            insert_TC = insert_TC.replace('%s', self.sql.query['placeholder'])
-            select_TC = self.sql.query['select_TC']
-            select_TC = select_TC.replace('%s', self.sql.query['placeholder'])
+            update_TC = self.sql.query['update_TC'].replace('%s', self.sql.query['placeholder'])
+            insert_TC = self.sql.query['insert_TC'].replace('%s', self.sql.query['placeholder'])
+            select_TC = self.sql.query['select_TC'].replace('%s', self.sql.query['placeholder'])
+            update_SC_T = self.sql.query['update_SC_T'].replace('%s', self.sql.query['placeholder'])
+            update_SC_H = self.sql.query['update_SC_H'].replace('%s', self.sql.query['placeholder'])
             
             inserts = []
             c = self.get_cursor()
             for k, tc in self.tc.iteritems():
-                hid = tc['hid']
-                sc = self.sc.get(hid)
-                if sc is not None:
-                    sid = sc['id']
-                    tc['sid'] = sid
-                else:
-                    sid = None
+                sc = self.sc.get(tc['hid'])
                 if self.backend == self.SQLITE:
                     tc['startTime'] = datetime.strptime(tc['startTime'], '%Y-%m-%d %H:%M:%S')
                     tc['endTime']   = datetime.strptime(tc['endTime'], '%Y-%m-%d %H:%M:%S')
@@ -2959,31 +2947,31 @@ class Database:
                     tc['startTime'] = tc['startTime'].replace(tzinfo=None)
                     tc['endTime']   = tc['endTime'].replace(tzinfo=None)
                 c.execute(select_TC, k)
-                result = c.fetchone()
-                id, start, end = None, None, None
-                if result:
-                    id, start, end = result
-                self.tc[k]['id'] = id
-                update = not start or not end
-                if (update or (tc['startTime']<start and tc['endTime']>end)):
-                    q = update_TC.replace('<UPDATE>', 'startTime=%s, endTime=%s,')
-                    row = [tc['startTime'], tc['endTime']] + tc['line'] + list(k[:2])
-                elif tc['startTime']<start:
-                    q = update_TC.replace('<UPDATE>', 'startTime=%s, ')
-                    row = [tc['startTime']] + tc['line'] + list(k[:2])
-                elif tc['endTime']>end:
-                    q = update_TC.replace('<UPDATE>', 'endTime=%s, ')
-                    row = [tc['endTime']] + tc['line'] + list(k[:2])
-                else:
-                    q = update_TC.replace('<UPDATE>', '')
-                    row = tc['line'] + list(k[:2])
-                
-                num = c.execute(q, row)
-                # Try to do the update first. Do insert it did not work
-                if ((self.backend == self.PGSQL and c.statusmessage != "UPDATE 1")
-                        or (self.backend == self.MYSQL_INNODB and num == 0)
-                        or (self.backend == self.SQLITE and num.rowcount == 0)):
-                    row = [sid, tc['startTime'], tc['endTime']] + list(k[:2]) + tc['line']
+                r = self.fetchallDict(c)
+                num = len(r)
+                if (num == 1):
+                    update = not r[0]['startTime'] or not r[0]['endTime']
+                    if (update or (tc['startTime']<r[0]['startTime'] and tc['endTime']>r[0]['endTime'])):
+                        q = update_TC.replace('<UPDATE>', 'sessionId=%s, startTime=%s, endTime=%s,')
+                        row = [sc['id'], tc['startTime'], tc['endTime']] + tc['line'] + list(k[:2])
+                    elif tc['startTime']<r[0]['startTime']:
+                        q = update_TC.replace('<UPDATE>', 'sessionId=%s, startTime=%s, ')
+                        row = [sc['id'], tc['startTime']] + tc['line'] + list(k[:2])
+                    elif tc['endTime']>r[0]['endTime']:
+                        q = update_TC.replace('<UPDATE>', 'endTime=%s, ')
+                        row = [r[0]['sessionId'], tc['endTime']] + tc['line'] + list(k[:2])
+                    else:
+                        q = update_TC.replace('<UPDATE>', '')
+                        row = tc['line'] + list(k[:2])
+                    c.execute(q, row)
+                    if tc['startTime']<r[0]['startTime'] and r[0]['sessionId']!=sc['id']:
+                        c.execute(update_SC_T, (sc['id'], r[0]['sessionId']))
+                        c.execute(update_SC_H, (sc['id'], r[0]['sessionId']))
+                        if (sc['wid'],sc['mid'])!=(r[0]['weekId'],r[0]['monthId']):
+                            self.wmold.add((r[0]['weekId'],r[0]['monthId']))
+                            self.wmnew.add((sc['wid'],sc['mid']))
+                elif (num == 0):
+                    row = [sc['id'], tc['startTime'], tc['endTime']] + list(k[:2]) + tc['line']
                     #append to the bulk inserts
                     inserts.append(row)
                 

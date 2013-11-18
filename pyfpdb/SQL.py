@@ -8038,8 +8038,9 @@ class Sql:
                     AND playerId=%s"""
                     
         self.query['select_TC'] = """
-                    SELECT id, startTime, endTime
-                    FROM TourCache
+                    SELECT id, sessionId, startTime, endTime, weekId, monthId
+                    FROM TourCache TC
+                    INNER JOIN SessionsCache SC ON (TC.sessionId = SC.id)
                     WHERE tourneyId=%s
                     AND playerId=%s"""
                     
