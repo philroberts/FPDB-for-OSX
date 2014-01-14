@@ -452,11 +452,11 @@ class DerivedStats():
                     if len(board['board']) > 1: 
                         boardId = n + 1
                     else: boardId = n
-                    if board['allin'] and len([p for p in players if p in holecards and u'0x' not in holecards[p]['cards'][n]]) > 0:
-                        if not startstreet: startstreet = street
+                    holeshow = [holecards[p]['hole'] for p in players if self.handsplayers[p]['sawShowdown'] and u'0x' not in holecards[p]['cards'][n]]
+                    if len(holeshow) > 0 and (board['allin'] or hand.publicDB):
+                        if board['allin'] and not startstreet: startstreet = street
                         bcards = [str(b) for b in board['board'][n]]
                         b = bcards + (5 - len(board['board'][n])) * ['__']
-                        holeshow = [holecards[p]['hole'] for p in players if self.handsplayers[p]['sawShowdown'] and u'0x' not in holecards[p]['cards'][n]]
                         if len(holeshow)> 1:
                             evs = pokereval.poker_eval(game = evalgame, iterations = Card.iter[streetId] ,pockets = holeshow ,dead = [], board = b)
                             equities = [e['ev'] for e in evs['eval']]
