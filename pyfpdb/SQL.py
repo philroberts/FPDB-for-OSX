@@ -7907,8 +7907,8 @@ class Sql:
                     FROM SessionsCache SC
                     INNER JOIN WeeksCache WC ON (SC.weekId = WC.id)
                     INNER JOIN MonthsCache MC ON (SC.monthId = MC.id)
-                    WHERE sessionEnd>=%s
-                    AND sessionStart<=%s"""
+                    WHERE (sessionEnd>=%s AND sessionStart<=%s)
+                    <TOURSELECT>"""
                     
         self.query['select_WC'] = """
                     SELECT id
@@ -8038,9 +8038,8 @@ class Sql:
                     AND playerId=%s"""
                     
         self.query['select_TC'] = """
-                    SELECT id, sessionId, startTime, endTime, weekId, monthId
+                    SELECT id, startTime, endTime
                     FROM TourCache TC
-                    INNER JOIN SessionsCache SC ON (TC.sessionId = SC.id)
                     WHERE tourneyId=%s
                     AND playerId=%s"""
                     

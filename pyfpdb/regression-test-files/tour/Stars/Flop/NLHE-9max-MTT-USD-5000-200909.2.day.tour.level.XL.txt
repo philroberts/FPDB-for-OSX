@@ -1,0 +1,36 @@
+PokerStars Hand #33135583131: Tournament #200909045, $5000+$200 USD Hold'em No Limit - Level XL (60000/120000) - 2005/08/22 2:26:06 ET
+Table '200909045 90' 9-max Seat #3 is the button
+Seat 1: Player0 (12274288 in chips) 
+Seat 3: Player1 (13626010 in chips) 
+Seat 4: Hero (10291231 in chips) 
+Seat 5: Player2 (6688471 in chips) 
+Player0: posts the ante 15000
+Player1: posts the ante 15000
+Hero: posts the ante 15000
+Player2: posts the ante 15000
+Hero: posts small blind 60000
+Player2: posts big blind 120000
+*** HOLE CARDS ***
+Dealt to Hero [Th Td]
+Player0: folds 
+Player1: raises 161010 to 281010
+Hero: raises 563434 to 844444
+Player2: folds 
+Player1: raises 955556 to 1800000
+Hero: raises 8476231 to 10276231 and is all-in
+Player1: calls 8476231
+*** FLOP *** [Jh Kh 4s]
+*** TURN *** [Jh Kh 4s] [3d]
+*** RIVER *** [Jh Kh 4s 3d] [Qc]
+*** SHOW DOWN ***
+Hero: shows [Th Td] (a pair of Tens)
+Player1: shows [Kd Ks] (three of a kind, Kings)
+Player1 said, "gg Dan :("
+Player1 collected 20732462 from pot
+*** SUMMARY ***
+Total pot 20732462 | Rake 0 
+Board [Jh Kh 4s 3d Qc]
+Seat 1: Player0 folded before Flop (didn't bet)
+Seat 3: Player1 (button) showed [Kd Ks] and won (20732462) with three of a kind, Kings
+Seat 4: Hero (small blind) showed [Th Td] and lost with a pair of Tens
+Seat 5: Player2 (big blind) folded before Flop

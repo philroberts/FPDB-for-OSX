@@ -2600,7 +2600,7 @@ class Database:
                 c.executemany(insert_hudcache, inserts)
             self.commit()
             
-    def storeSessionsCache(self, hid, pids, startTime, heroes, tz_name, doinsert = False):
+    def storeSessionsCache(self, hid, pids, startTime, tid, heroes, tz_name, doinsert = False):
         """Update cached sessions. If no record exists, do an insert"""
         THRESHOLD     = timedelta(seconds=int(self.sessionTimeout * 60))
         if tz_name in pytz.common_timezones:
@@ -2641,14 +2641,16 @@ class Database:
                     hand['weekStart']  = weekStart
                     hand['monthStart'] = monthStart
                 hand['ids'] = [hid]
+                hand['tourneys'] = set()
         
         id = []
         if hand:
             lower = hand['startTime']-THRESHOLD
             upper = hand['startTime']+THRESHOLD
             for i in range(len(self.sc['bk'])):
-                if ((lower  <= self.sc['bk'][i]['sessionEnd'])
-                and (upper  >= self.sc['bk'][i]['sessionStart'])):
+                if (((lower  <= self.sc['bk'][i]['sessionEnd'])
+                and  (upper  >= self.sc['bk'][i]['sessionStart']))
+                or   (tid in self.sc['bk'][i]['tourneys'])):
                     if ((hand['startTime'] <= self.sc['bk'][i]['sessionEnd']) 
                     and (hand['startTime'] >= self.sc['bk'][i]['sessionStart'])):
                          id.append(i)
@@ -2663,6 +2665,7 @@ class Database:
             if len(id) == 1:
                 j = id[0]
                 self.sc['bk'][j]['ids'] += [hid]
+                if tid: self.sc['bk'][i]['tourneys'].add(tid)
             elif len(id) == 2:
                 j, k = id
                 if  self.sc['bk'][j]['sessionStart'] < self.sc['bk'][k]['sessionStart']:
@@ -2674,11 +2677,14 @@ class Database:
                 sh = self.sc['bk'].pop(k)
                 self.sc['bk'][j]['ids'] += [hid]
                 self.sc['bk'][j]['ids'] += sh['ids']
+                if tid: self.sc['bk'][i]['tourneys'].add(tid)
+                self.sc['bk'][i]['tourneys'].union(sh['tourneys'])
             elif len(id) == 0:
                 j = len(self.sc['bk'])
                 hand['id'] = None
                 hand['sessionStart'] = hand['startTime']
                 hand['sessionEnd']   = hand['startTime']
+                if tid: hand['tourneys'].add(tid)
                 self.sc['bk'].append(hand)
         
         if doinsert:
@@ -2698,6 +2704,12 @@ class Database:
             for i in range(len(self.sc['bk'])):
                 lower = self.sc['bk'][i]['sessionStart'] - THRESHOLD
                 upper = self.sc['bk'][i]['sessionEnd']   + THRESHOLD
+                tourneys = self.sc['bk'][i]['tourneys']
+                if (self.sc['bk'][i]['tourneys']):
+                    toursql = 'OR SC.id in (SELECT DISTINCT sessionId FROM Tourneys T WHERE T.id in (%s))' % ', '.join(str(t) for t in tourneys)
+                    select_SC = select_SC.replace('<TOURSELECT>', toursql)
+                else:
+                    select_SC = select_SC.replace('<TOURSELECT>', '')
                 c.execute(select_SC, (lower, upper))
                 r = self.fetchallDict(c)
                 num = len(r)
@@ -2934,8 +2946,6 @@ class Database:
             update_TC = self.sql.query['update_TC'].replace('%s', self.sql.query['placeholder'])
             insert_TC = self.sql.query['insert_TC'].replace('%s', self.sql.query['placeholder'])
             select_TC = self.sql.query['select_TC'].replace('%s', self.sql.query['placeholder'])
-            update_SC_T = self.sql.query['update_SC_T'].replace('%s', self.sql.query['placeholder'])
-            update_SC_H = self.sql.query['update_SC_H'].replace('%s', self.sql.query['placeholder'])
             
             inserts = []
             c = self.get_cursor()
@@ -2953,24 +2963,18 @@ class Database:
                 if (num == 1):
                     update = not r[0]['startTime'] or not r[0]['endTime']
                     if (update or (tc['startTime']<r[0]['startTime'] and tc['endTime']>r[0]['endTime'])):
-                        q = update_TC.replace('<UPDATE>', 'sessionId=%s, startTime=%s, endTime=%s,')
-                        row = [sc['id'], tc['startTime'], tc['endTime']] + tc['line'] + list(k[:2])
+                        q = update_TC.replace('<UPDATE>', 'startTime=%s, endTime=%s,')
+                        row = [tc['startTime'], tc['endTime']] + tc['line'] + list(k[:2])
                     elif tc['startTime']<r[0]['startTime']:
-                        q = update_TC.replace('<UPDATE>', 'sessionId=%s, startTime=%s, ')
-                        row = [sc['id'], tc['startTime']] + tc['line'] + list(k[:2])
+                        q = update_TC.replace('<UPDATE>', 'startTime=%s, ')
+                        row = [tc['startTime']] + tc['line'] + list(k[:2])
                     elif tc['endTime']>r[0]['endTime']:
                         q = update_TC.replace('<UPDATE>', 'endTime=%s, ')
-                        row = [r[0]['sessionId'], tc['endTime']] + tc['line'] + list(k[:2])
+                        row = [tc['endTime']] + tc['line'] + list(k[:2])
                     else:
                         q = update_TC.replace('<UPDATE>', '')
                         row = tc['line'] + list(k[:2])
                     c.execute(q, row)
-                    if tc['startTime']<r[0]['startTime'] and r[0]['sessionId']!=sc['id']:
-                        c.execute(update_SC_T, (sc['id'], r[0]['sessionId']))
-                        c.execute(update_SC_H, (sc['id'], r[0]['sessionId']))
-                        if (sc['wid'],sc['mid'])!=(r[0]['weekId'],r[0]['monthId']):
-                            self.wmold.add((r[0]['weekId'],r[0]['monthId']))
-                            self.wmnew.add((sc['wid'],sc['mid']))
                 elif (num == 0):
                     row = [sc['id'], tc['startTime'], tc['endTime']] + list(k[:2]) + tc['line']
                     #append to the bulk inserts

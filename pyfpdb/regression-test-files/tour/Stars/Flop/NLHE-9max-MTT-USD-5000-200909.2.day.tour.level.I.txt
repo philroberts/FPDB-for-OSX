@@ -1,0 +1,47 @@
+PokerStars Hand #33080240044: Tournament #200909045, $5000+$200 USD Hold'em No Limit - Level I (25/50) - 2005/08/20 17:02:17 ET
+Table '200909045 198' 9-max Seat #2 is the button
+Seat 1: Player3 (20000 in chips) is sitting out
+Seat 2: Player4 (20330 in chips) 
+Seat 3: Player5 (19950 in chips) 
+Seat 4: Hero (20000 in chips) 
+Seat 5: Player6 (20000 in chips) 
+Seat 6: Player7 (19720 in chips) 
+Seat 7: Player8 (20000 in chips) 
+Seat 8: Player9 (20000 in chips) 
+Seat 9: Player10 (20000 in chips) 
+Player5: posts small blind 25
+Hero: posts big blind 50
+*** HOLE CARDS ***
+Dealt to Hero [Ah 4c]
+Player6: folds 
+Player7: raises 75 to 125
+Player8: folds 
+Player9: folds 
+Player10: folds 
+Player3: folds 
+Player4: folds 
+Player5: calls 100
+Hero: folds 
+*** FLOP *** [Tc 4d Th]
+Player5: checks 
+Player7: bets 155
+Player5: calls 155
+*** TURN *** [Tc 4d Th] [3c]
+Player5: checks 
+Player7: bets 375
+Player5: folds 
+Uncalled bet (375) returned to Player7
+Player7 collected 610 from pot
+Player7: doesn't show hand 
+*** SUMMARY ***
+Total pot 610 | Rake 0 
+Board [Tc 4d Th 3c]
+Seat 1: Player3 folded before Flop (didn't bet)
+Seat 2: Player4 (button) folded before Flop (didn't bet)
+Seat 3: Player5 (small blind) folded on the Turn
+Seat 4: Hero (big blind) folded before Flop
+Seat 5: Player6 folded before Flop (didn't bet)
+Seat 6: Player7 collected (610)
+Seat 7: Player8 folded before Flop (didn't bet)
+Seat 8: Player9 folded before Flop (didn't bet)
+Seat 9: Player10 folded before Flop (didn't bet)
