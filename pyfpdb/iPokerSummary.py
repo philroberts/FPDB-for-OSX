@@ -71,7 +71,7 @@ class iPokerSummary(TourneySummary):
 
     re_GameInfoTrny = re.compile(r"""
                 <tournamentname>(?P<NAME>.+?)</tournamentname><place>(?P<PLACE>.+?)</place>
-                <buyin>(?P<BUYIN>(?P<BIAMT>.+?)(\+(?P<BIRAKE>.+?))?)</buyin>\s+?
+                <buyin>(?P<BUYIN>(?P<BIAMT>.+?)(\+(?P<BIRAKE>.+?))?(\+(?P<BIRAKE1>.+?))?)</buyin>\s+?
                 <totalbuyin>(?P<TOTBUYIN>.*)</totalbuyin>\s+?
                 <ipoints>.+?</ipoints>\s+?
                 <win>(?P<CURRENCY>%(LS)s)?(?P<WIN>([%(NUM)s]+)|.+?)</win>
@@ -163,6 +163,8 @@ class iPokerSummary(TourneySummary):
                 if mg2['BIAMT'] and mg2['BIRAKE']:
                     self.buyin =  int(100*self.convert_to_decimal(mg2['BIAMT']))
                     self.fee   =  int(100*self.convert_to_decimal(mg2['BIRAKE']))
+                    if mg2['BIRAKE1']:
+                        self.buyin += int(100*self.convert_to_decimal(mg2['BIRAKE1']))
                 else:
                     self.buyin = 0
                     self.fee   = 0

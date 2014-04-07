@@ -153,7 +153,7 @@ class iPoker(HandHistoryConverter):
             """ % substitutions, re.MULTILINE|re.VERBOSE)
     re_GameInfoTrny = re.compile(r"""(?P<HEAD>
                 <tournamentname>.+?<place>(?P<PLACE>.+?)</place>
-                <buyin>(?P<BUYIN>(?P<BIAMT>.+?)(\+(?P<BIRAKE>.+?))?)</buyin>\s+?
+                <buyin>(?P<BUYIN>(?P<BIAMT>.+?)(\+(?P<BIRAKE>.+?))?(\+(?P<BIRAKE1>.+?))?)</buyin>\s+?
                 <totalbuyin>(?P<TOTBUYIN>.*)</totalbuyin>\s+?
                 <ipoints>.+?</ipoints>\s+?
                 <win>(%(LS)s)?(?P<WIN>([%(NUM)s]+)|.+?)</win>\s+?)
@@ -264,6 +264,8 @@ class iPoker(HandHistoryConverter):
                         mg['BIAMT'] = m4.group('BUYIN')
                         self.tinfo['fee']   = int(100*Decimal(self.clearMoneyString(mg['BIRAKE'])))
                         self.tinfo['buyin'] = int(100*Decimal(self.clearMoneyString(mg['BIAMT'])))
+                        if mg['BIRAKE1']:
+                            self.tinfo['buyin'] += int(100*Decimal(self.clearMoneyString(mg['BIRAKE1'].strip(u'$€£'))))
                     # FIXME: <place> and <win> not parsed at the moment.
                     #  NOTE: Both place and win can have the value N/A
             if self.tinfo['buyin'] == 0:

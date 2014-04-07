@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+	<session sessioncode="6231386447">  
+			<general>  
+	    	<mode>real</mode>
+	      		<gametype>Holdem NL</gametype>  
+	          <tablename>Twister $1 SNG, 825200070</tablename>
+	          <tournamentcurrency></tournamentcurrency>  
+	          <duration>00:01</duration>  
+	          <gamecount>4</gamecount>  
+	          <startdate>07-Apr-2014 00:57:23</startdate>  
+	          <currency>USD</currency>  
+	          <nickname>Hero</nickname>  
+	          <bets>560</bets>  
+	          <wins>60</wins>  
+	          <chipsin>0</chipsin>
+			  		<chipsout>0</chipsout>
+			  		<ipoints>0</ipoints>
+        		<statuspoints>1.40</statuspoints>
+			  		<awardpoints>0</awardpoints>
+	          <tournamentname>Twister $1 SNG</tournamentname><place>3</place><buyin>$0.67+$0.07+$0.26</buyin> <totalbuyin>$1.00</totalbuyin> <ipoints>0</ipoints> <win>$0.00</win> <statuspoints>1.40</statuspoints> <awardpoints>0</awardpoints>  
+	    </general>  
+	    <game gamecode="5631758947">
+		 <general>
+		  <startdate>07-Apr-2014 00:57:23</startdate>		  
+		  <players>
+		   <player seat="3" name="Player0" chips="500" dealer="1" win="130" bet="80" rebuy="0" addon="0" reg_code="-"/><player seat="6" name="Player1" chips="500" dealer="0" win="0" bet="10" rebuy="0" addon="0" reg_code="-"/><player seat="10" name="Hero" chips="500" dealer="0" win="0" bet="40" rebuy="0" addon="0" reg_code="6231386447"/>
+		  </players>
+		 </general>
+		 <round no="0">
+	 <action no="1" player="Player1" type="1" sum="10" cards="[cards]"/><action no="2" player="Hero" type="2" sum="20" cards="[cards]"/>
+	</round>
+	<round no="1">
+	 <cards type="Pocket" player="Player0">X X</cards><action no="3" player="Player0" type="3" sum="20" cards=""/><cards type="Pocket" player="Player1">X X</cards><action no="4" player="Player1" type="0" sum="0" cards=""/><cards type="Pocket" player="Hero">C5 D3</cards><action no="5" player="Hero" type="4" sum="0" cards=""/>
+	</round>
+	<round no="2">
+	 <cards type="Flop" player="">H4 D4 S8</cards><action no="7" player="Player0" type="3" sum="20" cards=""/><action no="6" player="Hero" type="5" sum="20" cards=""/>
+	</round>
+	<round no="3">
+	 <cards type="Turn" player="">HQ</cards><action no="9" player="Player0" type="5" sum="40" cards=""/><action no="8" player="Hero" type="4" sum="0" cards=""/><action no="10" player="Hero" type="0" sum="0" cards=""/>
+	</round>
+	
+		</game><game gamecode="5631759012">
+		 <general>
+		  <startdate>07-Apr-2014 00:58:09</startdate>		  
+		  <players>
+		   <player seat="3" name="Player0" chips="550" dealer="0" win="0" bet="20" rebuy="0" addon="0" reg_code="-"/><player seat="6" name="Player1" chips="490" dealer="1" win="0" bet="0" rebuy="0" addon="0" reg_code="-"/><player seat="10" name="Hero" chips="460" dealer="0" win="60" bet="40" rebuy="0" addon="0" reg_code="6231386447"/>
+		  </players>
+		 </general>
+		 <round no="0">
+	 <action no="2" player="Player0" type="2" sum="20" cards="[cards]"/><action no="1" player="Hero" type="1" sum="10" cards="[cards]"/>
+	</round>
+	<round no="1">
+	 <cards type="Pocket" player="Player0">X X</cards><action no="5" player="Player0" type="4" sum="0" cards=""/><cards type="Pocket" player="Player1">X X</cards><action no="3" player="Player1" type="0" sum="0" cards=""/><cards type="Pocket" player="Hero">SK S9</cards><action no="4" player="Hero" type="3" sum="10" cards=""/>
+	</round>
+	<round no="2">
+	 <cards type="Flop" player="">H4 C10 CJ</cards><action no="7" player="Player0" type="4" sum="0" cards=""/><action no="6" player="Hero" type="4" sum="0" cards=""/>
+	</round>
+	<round no="3">
+	 <cards type="Turn" player="">HJ</cards><action no="9" player="Player0" type="0" sum="0" cards=""/><action no="8" player="Hero" type="5" sum="20" cards=""/>
+	</round>
+	
+		</game><game gamecode="5631759050">
+		 <general>
+		  <startdate>07-Apr-2014 00:58:36</startdate>		  
+		  <players>
+		   <player seat="3" name="Player0" chips="530" dealer="0" win="0" bet="10" rebuy="0" addon="0" reg_code="-"/><player seat="6" name="Player1" chips="490" dealer="0" win="30" bet="20" rebuy="0" addon="0" reg_code="-"/><player seat="10" name="Hero" chips="480" dealer="1" win="0" bet="0" rebuy="0" addon="0" reg_code="6231386447"/>
+		  </players>
+		 </general>
+		 <round no="0">
+	 <action no="1" player="Player0" type="1" sum="10" cards="[cards]"/><action no="2" player="Player1" type="2" sum="20" cards="[cards]"/>
+	</round>
+	<round no="1">
+	 <cards type="Pocket" player="Player0">X X</cards><action no="4" player="Player0" type="0" sum="0" cards=""/><cards type="Pocket" player="Player1">X X</cards><cards type="Pocket" player="Hero">H2 D6</cards><action no="3" player="Hero" type="0" sum="0" cards=""/>
+	</round>
+	
+		</game><game gamecode="5631759065">
+		 <general>
+		  <startdate>07-Apr-2014 00:58:49</startdate>		  
+		  <players>
+		   <player seat="3" name="Player0" chips="520" dealer="1" win="1,060" bet="520" rebuy="0" addon="0" reg_code="-"/><player seat="6" name="Player1" chips="500" dealer="0" win="0" bet="60" rebuy="0" addon="0" reg_code="-"/><player seat="10" name="Hero" chips="480" dealer="0" win="0" bet="480" rebuy="0" addon="0" reg_code="6231386447"/>
+		  </players>
+		 </general>
+		 <round no="0">
+	 <action no="1" player="Player1" type="1" sum="10" cards="[cards]"/><action no="2" player="Hero" type="2" sum="20" cards="[cards]"/>
+	</round>
+	<round no="1">
+	 <cards type="Pocket" player="Player0">CA HA</cards><action no="3" player="Player0" type="23" sum="60" cards=""/><action no="6" player="Player0" type="23" sum="520" cards=""/><cards type="Pocket" player="Player1">X X</cards><action no="4" player="Player1" type="3" sum="50" cards=""/><action no="7" player="Player1" type="0" sum="0" cards=""/><cards type="Pocket" player="Hero">H5 C5</cards><action no="5" player="Hero" type="23" sum="120" cards=""/><action no="8" player="Hero" type="7" sum="360" cards=""/>
+	</round>
+	<round no="2">
+	 <cards type="Flop" player="">CK D6 S4</cards>
+	</round>
+	<round no="3">
+	 <cards type="Turn" player="">H2</cards>
+	</round>
+	<round no="4">
+	 <cards type="River" player="">SA</cards>
+	</round>
+	
+		</game>  
+	</session>
