@@ -163,7 +163,7 @@ class iPokerSummary(TourneySummary):
                 if mg2['BIAMT'] and mg2['BIRAKE']:
                     self.buyin =  int(100*self.convert_to_decimal(mg2['BIAMT']))
                     self.fee   =  int(100*self.convert_to_decimal(mg2['BIRAKE']))
-                    if mg2['BIRAKE1']:
+                    if 'BIRAKE1' in mg2 and mg2['BIRAKE1']:
                         self.buyin += int(100*self.convert_to_decimal(mg2['BIRAKE1']))
                 else:
                     self.buyin = 0

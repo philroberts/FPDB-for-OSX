@@ -264,7 +264,7 @@ class iPoker(HandHistoryConverter):
                         mg['BIAMT'] = m4.group('BUYIN')
                         self.tinfo['fee']   = int(100*Decimal(self.clearMoneyString(mg['BIRAKE'])))
                         self.tinfo['buyin'] = int(100*Decimal(self.clearMoneyString(mg['BIAMT'])))
-                        if mg['BIRAKE1']:
+                        if 'BIRAKE1' in mg and mg['BIRAKE1']:
                             self.tinfo['buyin'] += int(100*Decimal(self.clearMoneyString(mg['BIRAKE1'].strip(u'$€£'))))
                     # FIXME: <place> and <win> not parsed at the moment.
                     #  NOTE: Both place and win can have the value N/A
