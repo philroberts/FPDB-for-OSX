@@ -1,0 +1,27 @@
+FullTiltPoker Game #579366587: $200 + $10 Heads Up Sit & Go (3795352), Table 1 - 40/80 - Limit Omaha H/L - 21:27:00 ET - 2006/04/19
+Seat 1: Hero (1,320)
+Seat 2: Player0 (1,680)
+Player0 posts the small blind of 20
+Hero posts the big blind of 40
+The button is in seat #2
+*** HOLE CARDS ***
+Dealt to Hero [5c Jc Ad Th]
+Player0 raises to 80
+Hero raises to 120
+Player0 calls 40
+*** FLOP *** [Qc 8c 4s]
+Hero bets 40
+Player0 has 15 seconds left to act
+Player0 calls 40
+*** TURN *** [Qc 8c 4s] [8h]
+Hero bets 80
+Player0 folds
+Uncalled bet of 80 returned to Hero
+Hero mucks
+Hero wins the pot (320)
+*** SUMMARY ***
+Duration 40s
+Total pot 320 | Rake 0
+Board: [Qc 8c 4s 8h]
+Seat 1: Hero (big blind) collected (320)
+Seat 2: Player0 (small blind) folded on the Turn

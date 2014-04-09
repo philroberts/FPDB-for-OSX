@@ -3382,7 +3382,8 @@ class Database:
     
     def defaultTourneyTypeValue(self, value1, value2, field):
         if ((not value1) or 
-           (field=='maxSeats' and value1>value2) or 
+           (field=='maxseats' and value1>value2) or 
+           (field=='limitType' and value2=='mx') or 
            ((field,value1)==('buyinCurrency','NA')) or 
            ((field,value1)==('stack','Regular')) or
            ((field,value1)==('speed','Normal')) or
@@ -3404,6 +3405,7 @@ class Database:
     
     def createOrUpdateTourneyType(self, obj):
         ttid, _ttid, updateDb = None, None, False
+        setattr(obj, 'limitType', obj.gametype['limitType'])
         cursor = self.get_cursor()
         q = self.sql.query['getTourneyTypeIdByTourneyNo'].replace('%s', self.sql.query['placeholder'])
         cursor.execute(q, (obj.tourNo, obj.siteId))
@@ -3412,7 +3414,7 @@ class Database:
         if result != None:
             columnNames=[desc[0] for desc in cursor.description]
             if self.backend == self.PGSQL:
-                expectedValues = (('buyin', 'buyin'), ('fee', 'fee'), ('buyinCurrency', 'currency'),('isSng', 'sng'), ('maxseats', 'maxseats')
+                expectedValues = (('buyin', 'buyin'), ('fee', 'fee'), ('buyinCurrency', 'currency'), ('limitType', 'limitType'), ('isSng', 'sng'), ('maxseats', 'maxseats')
                              , ('isKO', 'knockout'), ('koBounty', 'kobounty'), ('isRebuy', 'rebuy'), ('rebuyCost', 'rebuycost')
                              , ('isAddOn', 'addon'), ('addOnCost','addoncost'), ('speed', 'speed'), ('isShootout', 'shootout')
                              , ('isMatrix', 'matrix'), ('isFast', 'fast'), ('stack', 'stack'), ('isStep', 'step'), ('stepNo', 'stepno')
@@ -3421,8 +3423,8 @@ class Database:
                              , ('timeAmt', 'timeamt'), ('isSatellite', 'satellite'), ('isDoubleOrNothing', 'doubleornothing'), ('isCashOut', 'cashout')
                              , ('isOnDemand', 'ondemand'), ('isFlighted', 'flighted'), ('isGuarantee', 'guarantee'), ('guaranteeAmt', 'guaranteeamt'))
             else:
-                expectedValues = (('buyin', 'buyin'), ('fee', 'fee'), ('buyinCurrency', 'currency'),('isSng', 'sng'), ('maxseats', 'maxSeats')
-                             , ('isKO', 'knockout'), ('koBounty', 'koBounty'), ('isRebuy', 'rebuy'), ('rebuyCost', 'rebuyCost')
+                expectedValues = (('buyin', 'buyin'), ('fee', 'fee'), ('buyinCurrency', 'currency'), ('limitType', 'limitType'), ('isSng', 'sng')
+                             , ('maxseats', 'maxSeats'), ('isKO', 'knockout'), ('koBounty', 'koBounty'), ('isRebuy', 'rebuy'), ('rebuyCost', 'rebuyCost')
                              , ('isAddOn', 'addOn'), ('addOnCost','addOnCost'), ('speed', 'speed'), ('isShootout', 'shootout') 
                              , ('isMatrix', 'matrix'), ('isFast', 'fast'), ('stack', 'stack'), ('isStep', 'step'), ('stepNo', 'stepNo')
                              , ('isChance', 'chance'), ('chanceCount', 'chanceCount'), ('isMultiEntry', 'multiEntry'), ('isReEntry', 'reEntry')
@@ -3441,11 +3443,13 @@ class Database:
                     oldttid = ttid
         if not result or updateDb:
             if obj.gametype['mix']!='none':
-                category = obj.gametype['mix']
+                category, limitType = obj.gametype['mix'], 'mx'
+            elif result != None and resultDict['limitType']=='mx':
+                category, limitType = resultDict['category'], 'mx'
             else:
-                category = obj.gametype['category']
+                category, limitType = obj.gametype['category'], obj.gametype['limitType']
             row = (obj.siteId, obj.buyinCurrency, obj.buyin, obj.fee, category,
-                   obj.gametype['limitType'], obj.maxseats, obj.isSng, obj.isKO, obj.koBounty,
+                   limitType, obj.maxseats, obj.isSng, obj.isKO, obj.koBounty,
                    obj.isRebuy, obj.rebuyCost, obj.isAddOn, obj.addOnCost, obj.speed, obj.isShootout, 
                    obj.isMatrix, obj.isFast, obj.stack, obj.isStep, obj.stepNo, obj.isChance, obj.chanceCount,
                    obj.isMultiEntry, obj.isReEntry, obj.isHomeGame, obj.isNewToGame, obj.isFifty50, obj.isTime,
