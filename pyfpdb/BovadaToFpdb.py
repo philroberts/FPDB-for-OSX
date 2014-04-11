@@ -140,7 +140,7 @@ class Bovada(HandHistoryConverter):
     re_CollectPot       = re.compile(r"^%(PLYR)s (\s?\[ME\]\s)?: Hand (R|r)esult(\-Side (P|p)ot)? %(CUR)s(?P<POT>[%(NUM)s]+)" %  substitutions, re.MULTILINE)
     re_Dealt            = re.compile(r"^%(PLYR)s (\s?\[ME\]\s)?: Card dealt to a spot" % substitutions, re.MULTILINE)
     re_Buyin            = re.compile(r"(\s-\s\d+\s-\s(?P<TOURNAME>.+?))?\s-\s(?P<BUYIN>(?P<BIAMT>[%(LS)s\d\.]+)-(?P<BIRAKE>[%(LS)s\d\.]+)?)\s-\s" % substitutions)
-    re_Stakes           = re.compile(r"RING\s-\s(?P<CURRENCY>%(LS)s|)?(?P<SB>[%(NUM)s]+)-(%(LS)s)?(?P<BB>[%(NUM)s]+)\s-\s" % substitutions)
+    re_Stakes           = re.compile(r"RING\s-\s(?P<CURRENCY>%(LS)s|)?(?P<SB>[%(NUM)s]+)-(%(LS)s)?(?P<BB>[%(NUM)s]+)" % substitutions)
     re_Summary          = re.compile(r"\*\*\*\sSUMMARY\s\*\*\*")
     re_Hole_Third       = re.compile(r"\*\*\*\s(3RD\sSTREET|HOLE\sCARDS)\s\*\*\*")
     re_ReturnBet        = re.compile(r"Return\suncalled\sportion", re.MULTILINE)
@@ -189,9 +189,9 @@ class Bovada(HandHistoryConverter):
             (info['base'], info['category']) = self.games[mg['GAME']]
             
         if 'SB' in mg:
-            info['sb'] = mg['SB']
+            info['sb'] = self.clearMoneyString(mg['SB'])
         if 'BB' in mg:
-            info['bb'] = mg['BB']
+            info['bb'] = self.clearMoneyString(mg['BB'])
             
         if 'TOURNO' in mg and mg['TOURNO'] is not None:
             info['type'] = 'tour'
@@ -211,15 +211,15 @@ class Bovada(HandHistoryConverter):
         if info['limitType'] == 'fl' and info['bb'] is not None:
             if info['type'] == 'ring':
                 try:
-                    info['sb'] = self.Lim_Blinds[mg['BB']][0]
-                    info['bb'] = self.Lim_Blinds[mg['BB']][1]
+                    info['sb'] = self.Lim_Blinds[info['bb']][0]
+                    info['bb'] = self.Lim_Blinds[info['bb']][1]
                 except KeyError:
                     tmp = handText[0:200]
-                    log.error(_("PokerStarsToFpdb.determineGameType: Lim_Blinds has no lookup for '%s' - '%s'") % (mg['BB'], tmp))
+                    log.error(_("BovadaToFpdb.determineGameType: Lim_Blinds has no lookup for '%s' - '%s'") % (mg['BB'], tmp))
                     raise FpdbParseError
             else:
-                info['sb'] = str((Decimal(mg['SB'])/2).quantize(Decimal("0.01")))
-                info['bb'] = str(Decimal(mg['SB']).quantize(Decimal("0.01")))   
+                info['sb'] = str((Decimal(info['sb'])/2).quantize(Decimal("0.01")))
+                info['bb'] = str(Decimal(info['sb']).quantize(Decimal("0.01")))   
 
         return info
 

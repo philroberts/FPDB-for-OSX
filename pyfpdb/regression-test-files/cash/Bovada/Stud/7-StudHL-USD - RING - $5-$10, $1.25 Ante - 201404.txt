@@ -1,0 +1,86 @@
+Bovada Hand #2844383701 TBL#7794710 7CARD HiLo Fixed Limit - 2014-04-06 19:50:19
+Seat+1: $154.75 in chips
+Seat+2: $193.75 in chips
+Seat+3: $121.50 in chips
+Seat+4: $65.88 in chips
+Seat+5 [ME]: $200 in chips
+Seat+6: $167.50 in chips
+Seat+7: $100 in chips
+Seat+8: $195 in chips
+Seat+5 [ME] : Ante chip $1.25 
+Seat+1 : Ante chip $1.25 
+Seat+2 : Ante chip $1.25 
+Seat+8 : Ante chip $1.25 
+Seat+3 : Ante chip $1.25 
+Seat+4 : Ante chip $1.25 
+Seat+6 : Ante chip $1.25 
+Seat+7 : Ante chip $1.25 
+*** 3RD STREET ***
+Seat+1 : Card dealt to a spot [7d 9c 3d] 
+Seat+2 : Card dealt to a spot [5c 2h 6c] 
+Seat+3 : Card dealt to a spot [3s 6d Kh] 
+Seat+4 : Card dealt to a spot [Kc 6s 9h] 
+Seat+5 [ME] : Card dealt to a spot [Ad Qd 2d] 
+Seat+6 : Card dealt to a spot [Ah Kd Jd] 
+Seat+7 : Card dealt to a spot [9s Tc Jh] 
+Seat+8 : Card dealt to a spot [5h Qc Qs] 
+Seat+5 [ME] : Bring_in chip $2.50 
+Seat+6 : Folds
+Seat+7 : Folds
+Seat+8 : Raises $5 to $5
+Seat+1 : Folds
+Seat+2 : Calls $5 
+Seat+3 : Folds
+Seat+4 : Folds
+Seat+5 [ME] : Raises $7.50 to $10
+Seat+8 : Calls $5 
+Seat+2 : Calls $5 
+*** 4TH STREET ***
+Seat+2 : Card dealt to a spot [3h] 
+Seat+5 [ME] : Card dealt to a spot [2c] 
+Seat+8 : Card dealt to a spot [3c] 
+Seat+5 [ME] : Bets $5 
+Seat+8 : Calls $5 
+Seat+2 : Raises $10 to $10
+Seat+5 [ME] : Calls $5 
+Seat+8 : Calls $5 
+*** 5TH STREET ***
+Seat+2 : Card dealt to a spot [5s] 
+Seat+5 [ME] : Card dealt to a spot [Td] 
+Seat+8 : Card dealt to a spot [4d] 
+Seat+5 [ME] : Checks
+Seat+8 : Checks
+Seat+2 : Bets $10 
+Seat+5 [ME] : Calls $10 
+Seat+8 : Calls $10 
+*** 6TH STREET ***
+Seat+2 : Card dealt to a spot [7c] 
+Seat+5 [ME] : Card dealt to a spot [Js] 
+Seat+8 : Card dealt to a spot [8d] 
+Seat+5 [ME] : Checks
+Seat+8 : Checks
+Seat+2 : Bets $10 
+Seat+5 [ME] : Calls $10 
+Seat+8 : Calls $10 
+*** RIVER ***
+Seat+2 : Card dealt to a spot [8h] 
+Seat+5 [ME] : Card dealt to a spot [Ks] 
+Seat+8 : Card dealt to a spot [Th] 
+Seat+5 [ME] : Bets $10 
+Seat+8 : Folds
+Seat+2 : Calls $10 
+Seat+5 [ME] : Showdown [Ad Ks Qd Js Td] (Straight)
+Seat+2 : Showdown [5s 5c 8h 7c 6c 2h 3h 5c 6c 7c] (One pair)
+Seat+2 : Hand result $73.50 
+Seat+5 [ME] : Hand result $73.50 
+*** SUMMARY ***
+Total Pot($150)
+Seat+1:  Folded on the 3rd STREET
+Seat+2:   with One pair [5c 2h 6c 3h 5s 7c 8h-5s 5c 8h 7c 6c] LO $73.50 [5c 2h 6c 3h 5s 7c 8h-2h 3h 5c 6c 7c]
+Seat+3:  Folded on the 3rd STREET
+Seat+4:  Folded on the 3rd STREET
+Seat+5:  HI $73.50  with Straight [Ad Qd 2d 2c Td Js Ks-Ad Ks Qd Js Td]  
+Seat+6:  Folded on the 3rd STREET
+Seat+7:  Folded on the 3rd STREET
+Seat+8:  Folded on the RIVER
+
