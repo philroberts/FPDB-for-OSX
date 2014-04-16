@@ -150,7 +150,7 @@ class Fulltilt(HandHistoryConverter):
     re_PlayerInfo   = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.{2,15}) \([%(LS)s]?(?P<CASH>[%(NUM)s]+)\)(?P<SITOUT>, is sitting out)?$' % substitutions, re.MULTILINE)
     re_SummarySitout = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.{2,15}?) (\(button\) )?is sitting out?$' % substitutions, re.MULTILINE)
     re_Board        = re.compile(r"\[(?P<CARDS>.+)\]")
-    re_Mixed        = re.compile(r'\s\-\s(?P<MIXED>7\-Game|8\-Game|9\-Game|10\-Game|HA|HEROS|HO|HOE|HORSE|HOSE|OA|OE|SE)\s\-\s', re.VERBOSE)
+    re_Mixed        = re.compile(r'\s\-\s(?P<MIXED>\d+\-Game|HA|HEROS|HO|HOE|HORSE|HOSE|OA|OE|SE)\s\-\s', re.VERBOSE)
     re_Max          = re.compile("(?P<MAX>\d+)( max|handed)?", re.MULTILINE)
     re_HeadsUp      = re.compile("heads up", re.MULTILINE)
     re_buyinType    = re.compile("(?P<BUYINTYPE>deep|shallow)", re.MULTILINE)
@@ -249,6 +249,7 @@ class Fulltilt(HandHistoryConverter):
                    '8-Game' : '8game',
                    '9-Game' : '9game',
                   '10-Game' : '10game',
+                  '25-Game' : '25game',
                        'HA' : 'ha',
                     'HEROS' : 'heros',
                        'HO' : 'ho',

@@ -55,15 +55,18 @@ class FullTiltPokerSummary(TourneySummary):
                       '2-7 Single Draw' : ('draw','27_1draw'),
               'Triple Draw 2-7 Lowball' : ('draw','27_3draw'),
                       '2-7 Triple Draw' : ('draw','27_3draw'),
+                      'A-5 Triple Draw' : ('draw','a5_3draw'),
                           '5 Card Draw' : ('draw','fivedraw'),
                                '7-Game' : ('mixed','7game'),
                                '8-Game' : ('mixed','8game'),
                                '9-Game' : ('mixed','9game'),
                               '10-Game' : ('mixed','10game'),
+                              '25-Game' : ('mixed','25game'),
                          '7-Game Mixed' : ('mixed','7game'),
                          '8-Game Mixed' : ('mixed','8game'),
                          '9-Game Mixed' : ('mixed','9game'),
                         '10-Game Mixed' : ('mixed','10game'),
+                        '25-Game Mixed' : ('mixed','25game'),
                                    'HA' : ('mixed','ha'),
                                 'HEROS' : ('mixed','heros'),
                                    'HO' : ('mixed','ho'),
@@ -93,7 +96,7 @@ class FullTiltPokerSummary(TourneySummary):
                         \s(?P<TOURNAMENT>.+?)\s(\((?P<TOURPAREN>.+)\)\s+)?
                         \((?P<TOURNO>[0-9]+)\)
                         (\s+)?(\sMatch\s(?P<MATCHNO>\d)\s)?
-                        (?P<GAME>Hold\'em|Irish|Courchevel\sHi|Razz|RAZZ|5(-|\s)Card\sStud(\sHi)?|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Stud\sH/L|Stud\sHi|Omaha|((5|6)\sCard\s)?Omaha\sHi|Omaha\sHi/Lo|Omaha\sH/L|2\-7\sSingle\sDraw|Badugi|Triple\sDraw\s2\-7\sLowball|2\-7\sTriple\sDraw|5\sCard\sDraw|\d+\-Game\sMixed|HORSE|HA|HEROS|HO|HOE|HORSE|HOSE|OA|OE|SE)\s+
+                        (?P<GAME>Hold\'em|Irish|Courchevel\sHi|Razz|RAZZ|5(-|\s)Card\sStud(\sHi)?|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Stud\sH/L|Stud\sHi|Omaha|((5|6)\sCard\s)?Omaha\sHi|Omaha\sHi/Lo|Omaha\sH/L|2\-7\sSingle\sDraw|Badugi|Triple\sDraw\s2\-7\sLowball|2\-7\sTriple\sDraw|5\sCard\sDraw|A-5\sTriple\sDraw|\d+\-Game(\sMixed)?|HORSE|HA|HEROS|HO|HOE|HORSE|HOSE|OA|OE|SE)\s+
                         ((?P<LIMIT>No\sLimit|Limit|LIMIT|Pot\sLimit)\s+)?(\((?P<TABLEATTRIBUTES>.+)\)\s+)?
                         (Buy-In:\s[%(LS)s]?(?P<BUYIN>[%(NUM)s]+)(\sFTP|\sT\$|\sPlay\sChips)?(\s\+\s[%(LS)s]?(?P<FEE>[%(NUM)s]+)(\sFTP|\sT\$|\sPlay\sChips)?)?\s+)?
                         (Knockout\sBounty:\s[%(LS)s](?P<KOBOUNTY>[%(NUM)s]+)\s+)?
