@@ -430,13 +430,6 @@ class PartyPoker(HandHistoryConverter):
                 hand.gametype['currency'] = 'play'
             if key == 'MAX' and info[key] is not None:
                 hand.maxseats = int(info[key])
-        
-        enetStart = datetime.datetime.strptime('20120101000000','%Y%m%d%H%M%S')
-        enetStart = HandHistoryConverter.changeTimezone(enetStart, "ET", "UTC")    
-        if hand.startTime > enetStart and len(hand.handid)<10:
-            message = _("Converted Enet Hand")
-            raise FpdbHandPartial("Partial hand history: %s" % message)
-
 
     def readButton(self, hand):
         m = self.re_Button.search(hand.handText)
