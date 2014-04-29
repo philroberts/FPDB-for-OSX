@@ -81,6 +81,7 @@ class iPokerSummary(TourneySummary):
     re_DateTime1 = re.compile("""(?P<D>[0-9]{2})\-(?P<M>[a-zA-Z]{3})\-(?P<Y>[0-9]{4})\s+(?P<H>[0-9]+):(?P<MIN>[0-9]+)(:(?P<S>[0-9]+))?""", re.MULTILINE)
     re_DateTime2 = re.compile("""(?P<D>[0-9]{2})\/(?P<M>[0-9]{2})\/(?P<Y>[0-9]{4})\s+(?P<H>[0-9]+):(?P<MIN>[0-9]+)(:(?P<S>[0-9]+))?""", re.MULTILINE)
     re_Place     = re.compile("\d+")
+    re_FPP       = re.compile(r'Pts\s')
     
     codepage = ["utf-8"]
 
@@ -165,6 +166,8 @@ class iPokerSummary(TourneySummary):
                     self.fee   =  int(100*self.convert_to_decimal(mg2['BIRAKE']))
                     if 'BIRAKE1' in mg2 and mg2['BIRAKE1']:
                         self.buyin += int(100*self.convert_to_decimal(mg2['BIRAKE1']))
+                    if self.re_FPP.match(mg2['BIAMT']):
+                        self.buyinCurrency = 'FPP'
                 else:
                     self.buyin = 0
                     self.fee   = 0

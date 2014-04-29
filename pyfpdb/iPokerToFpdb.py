@@ -174,7 +174,9 @@ class iPoker(HandHistoryConverter):
     re_DateTime1 = re.compile("""(?P<D>[0-9]{2})\-(?P<M>[a-zA-Z]{3})\-(?P<Y>[0-9]{4})\s+(?P<H>[0-9]+):(?P<MIN>[0-9]+)(:(?P<S>[0-9]+))?""", re.MULTILINE)
     re_DateTime2 = re.compile("""(?P<D>[0-9]{2})\/(?P<M>[0-9]{2})\/(?P<Y>[0-9]{4})\s+(?P<H>[0-9]+):(?P<MIN>[0-9]+)(:(?P<S>[0-9]+))?""", re.MULTILINE)
     re_MaxSeats = re.compile(r'(?P<SEATS>[0-9]+) Max', re.MULTILINE)
-
+    re_non_decimal = re.compile(r'[^\d.,]+')
+    re_FPP = re.compile(r'Pts\s')
+    
     def compilePlayerRegexs(self, hand):
         pass
 
@@ -255,17 +257,19 @@ class iPoker(HandHistoryConverter):
                     if m3:
                         mg = m3.groupdict()
                     elif mg['BIAMT']: mg['BIRAKE'] = '0'
+                if self.re_FPP.match(mg['BIAMT']):
+                    self.tinfo['buyinCurrency'] = 'FPP'
                 if mg['BIRAKE']:
                     #FIXME: tournament no looks liek it is in the table name
-                    mg['BIRAKE'] = self.clearMoneyString(mg['BIRAKE'].strip(u'$€£'))
-                    mg['BIAMT']  = self.clearMoneyString(mg['BIAMT'].strip(u'$€£'))
+                    mg['BIRAKE'] = self.clearMoneyString(self.re_non_decimal.sub('',mg['BIRAKE']))
+                    mg['BIAMT']  = self.clearMoneyString(self.re_non_decimal.sub('',mg['BIAMT']))
                     m4 = self.re_Buyin.search(mg['BIAMT'])
                     if m4:
                         mg['BIAMT'] = m4.group('BUYIN')
-                        self.tinfo['fee']   = int(100*Decimal(self.clearMoneyString(mg['BIRAKE'])))
-                        self.tinfo['buyin'] = int(100*Decimal(self.clearMoneyString(mg['BIAMT'])))
+                        self.tinfo['fee']   = int(100*Decimal(self.clearMoneyString(self.re_non_decimal.sub('',mg['BIRAKE']))))
+                        self.tinfo['buyin'] = int(100*Decimal(self.clearMoneyString(self.re_non_decimal.sub('',mg['BIAMT']))))
                         if 'BIRAKE1' in mg and mg['BIRAKE1']:
-                            self.tinfo['buyin'] += int(100*Decimal(self.clearMoneyString(mg['BIRAKE1'].strip(u'$€£'))))
+                            self.tinfo['buyin'] += int(100*Decimal(self.clearMoneyString(self.re_non_decimal.sub('',mg['BIRAKE1']))))
                     # FIXME: <place> and <win> not parsed at the moment.
                     #  NOTE: Both place and win can have the value N/A
             if self.tinfo['buyin'] == 0:
