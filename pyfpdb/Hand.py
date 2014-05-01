@@ -881,6 +881,8 @@ class Hand(object):
                     self.sitout.add(p[1])
                 else:
                     self.removePlayer(p[1])
+        if len(self.players)<2:
+            raise FpdbHandPartial(_("Less than 2 players - Assuming hand '%s' was cancelled.") % (self.handid))
             
     def setUncalledBets(self, value):
         self.uncalledbets = value                
