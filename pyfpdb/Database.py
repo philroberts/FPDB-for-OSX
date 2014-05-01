@@ -2665,7 +2665,7 @@ class Database:
             if len(id) == 1:
                 j = id[0]
                 self.sc['bk'][j]['ids'] += [hid]
-                if tid: self.sc['bk'][i]['tourneys'].add(tid)
+                if tid: self.sc['bk'][j]['tourneys'].add(tid)
             elif len(id) == 2:
                 j, k = id
                 if  self.sc['bk'][j]['sessionStart'] < self.sc['bk'][k]['sessionStart']:
@@ -2677,8 +2677,8 @@ class Database:
                 sh = self.sc['bk'].pop(k)
                 self.sc['bk'][j]['ids'] += [hid]
                 self.sc['bk'][j]['ids'] += sh['ids']
-                if tid: self.sc['bk'][i]['tourneys'].add(tid)
-                self.sc['bk'][i]['tourneys'].union(sh['tourneys'])
+                if tid: self.sc['bk'][j]['tourneys'].add(tid)
+                self.sc['bk'][j]['tourneys'].union(sh['tourneys'])
             elif len(id) == 0:
                 j = len(self.sc['bk'])
                 hand['id'] = None
