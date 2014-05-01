@@ -110,11 +110,11 @@ class FullTiltPokerSummary(TourneySummary):
                         (Rebuy\sChips:\s(?P<REBUYCHIPS>\d+)\s+)?
                         (?P<ENTRIES>[0-9]+)\sEntries\s+
                         (Total\sAdd-Ons:\s(?P<ADDONS>\d+)\s+)?
-                        (Total\sRebuys:\s(?P<REBUYS>\d+)\s+)?
+                        (Total\sRebuys:\s(?P<REBUYS>\d+)\s*)?
                         (Total\sPrize\sPool:\s[%(LS)s]?(?P<PRIZEPOOL>[%(NUM)s]+)(\sFTP|\sT\$|\sPlay\sChips)?\s+)?
                         (?P<SATELLITE>Top\s(\d+\s)?finishers?\sreceives?\s.+\s+)?
                         (Target\sTournament\s.+\s+)?
-                        Tournament\sstarted:\s(?P<DATETIME>((?P<Y>[\d]{4})\/(?P<M>[\d]{2})\/(?P<D>[\d]+)\s+(?P<H>[\d]+):(?P<MIN>[\d]+):(?P<S>[\d]+)\s??(?P<TZ>[A-Z]+)\s|\w+,\s(?P<MONTH>\w+)\s(?P<DAY>\d+),\s(?P<YEAR>[\d]{4})\s(?P<HOUR>\d+):(?P<MIN2>\d+)))
+                        Tournament\sstarted:\s(?P<DATETIME>((?P<Y>[\d]{4})\/(?P<M>[\d]{2})\/(?P<D>[\d]+)\s+(?P<H>[\d]+):(?P<MIN>[\d]+):(?P<S>[\d]+)\s?(?P<TZ>[A-Z]+)\s|\w+,\s(?P<MONTH>\w+)\s(?P<DAY>\d+),\s(?P<YEAR>[\d]{4})\s(?P<HOUR>\d+):(?P<MIN2>\d+)))
                                """ % substitutions ,re.VERBOSE|re.MULTILINE|re.DOTALL)
     
     re_TourneyExtraInfo = re.compile('''(((?P<SPEED1>(Turbo|Super\sTurbo|Escalator))\s?)?
@@ -196,11 +196,13 @@ class FullTiltPokerSummary(TourneySummary):
         if 'game type desc' in info:
             m3 = self.re_GameXLS.search(info['game type desc'])
             if m3:
-                self.gametype['category']  = self.games[m3.group('GAME')][1]
+                base, self.gametype['category']  = self.games[m3.group('GAME')]
                 if m3.group('LIMIT') != None:
                     self.gametype['limitType'] = self.limits[m3.group('LIMIT')]
-                else:
+                elif base=='mixed':
                     self.gametype['limitType'] = 'mx'
+                else:
+                    self.gametype['limitType'] = 'nl'
             else:
                 log.error(_("FullTiltPokerSummary.parseSummaryXLS Game '%s' not found") % info['game type desc'])
                 raise FpdbParseError
@@ -278,16 +280,20 @@ class FullTiltPokerSummary(TourneySummary):
             raise FpdbParseError
 
         #print "DEBUG: m.groupdict(): %s" % m.groupdict()
+        base = None
         rebuyCounts = {}
         addOnCounts = {}
         koCounts = {}
         mg = m.groupdict()
         if 'TOURNO'    in mg: self.tourNo = mg['TOURNO']
+        if 'GAME'      in mg: 
+            base, self.gametype['category'] = self.games[mg['GAME']]
         if 'LIMIT'     in mg and mg['LIMIT'] != None:
             self.gametype['limitType'] = self.limits[mg['LIMIT']]
-        else:
+        elif base=='mixed':
             self.gametype['limitType'] = 'mx'
-        if 'GAME'      in mg: self.gametype['category']  = self.games[mg['GAME']][1]
+        else:
+            self.gametype['limitType'] = 'nl'
         if mg['BUYIN'] != None:
             self.buyin = int(100*Decimal(self.clearMoneyString(mg['BUYIN'])))
         if mg['FEE'] != None:

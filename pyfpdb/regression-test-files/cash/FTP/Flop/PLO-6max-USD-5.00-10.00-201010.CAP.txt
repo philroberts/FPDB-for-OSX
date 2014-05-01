@@ -1,0 +1,42 @@
+Full Tilt Poker Game #24378450480: Table Pam (6 max) - $5/$10 - $400 Pot Limit Omaha Hi - 15:35:09 ET - 2010/10/02
+Seat 1: Hero ($400)
+Seat 2: Player0 ($2,848.70)
+Seat 4: Player1 ($1,796.10)
+Seat 5: Player2 ($705)
+Seat 6: Player3 ($977.50)
+Player3 posts the small blind of $5
+Hero posts the big blind of $10
+The button is in seat #5
+*** HOLE CARDS ***
+Dealt to Hero [9h 2h 5d Tc]
+Player0 raises to $22.50
+Player1 calls $22.50
+Player2 raises to $105
+Player3 calls $100
+Hero folds
+Player0 has 15 seconds left to act
+Player0 calls $82.50
+Player1 calls $82.50
+*** FLOP *** [Td 6c Qs]
+Player3 checks
+Player0 bets $295, and is capped
+Player1 has 15 seconds left to act
+Player1 folds
+Player2 calls $295, and is capped
+Player3 folds
+Player0 shows [Jc Qd Ks 8h]
+Player2 shows [3s Ad 6d Ah]
+*** TURN *** [Td 6c Qs] [2d]
+Player4 sits down
+*** RIVER *** [Td 6c Qs 2d] [2c]
+Player0 shows two pair, Queens and Twos
+Player2 shows two pair, Aces and Twos
+Player2 wins the pot ($1,017) with two pair, Aces and Twos
+*** SUMMARY ***
+Total pot $1,020 | Rake $3
+Board: [Td 6c Qs 2d 2c]
+Seat 1: Hero (big blind) folded before the Flop
+Seat 2: Player0 showed [Jc Qd Ks 8h] and lost with two pair, Queens and Twos
+Seat 4: Player1 folded on the Flop
+Seat 5: Player2 (button) showed [3s Ad 6d Ah] and won ($1,017) with two pair, Aces and Twos
+Seat 6: Player3 (small blind) folded on the Flop
