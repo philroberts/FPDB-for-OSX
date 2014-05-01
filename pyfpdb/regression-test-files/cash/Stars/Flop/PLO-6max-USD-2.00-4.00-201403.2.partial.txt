@@ -1,0 +1,108 @@
+PokerStars Hand #112824228684:  Omaha Pot Limit ($2/$4 USD) - 2014/03/05 16:34:05 ET
+Table 'Tantalus V' 6-max Seat #4 is the button
+Seat 1: Player0 ($169.21 in chips) 
+Seat 2: Player1 ($125.64 in chips) 
+Seat 3: Player2 ($803.20 in chips) 
+Seat 4: Player3 ($422.11 in chips) 
+Seat 5: Player4 ($386.16 in chips) 
+Seat 6: Player5 ($424.29 in chips) 
+Player4: posts small blind $2
+Player5: posts big blind $4
+*** HOLE CARDS ***
+Player0: folds 
+Player1: folds 
+Player2: folds 
+Player3: raises $6 to $10
+Player4: folds 
+Player5: raises $22 to $32
+Player3: calls $22
+*** FLOP *** [Js 3d 
+
+PokerStars Hand #112824184047:  Omaha Pot Limit ($2/$4 USD) - 2014/03/05 16:33:20 ET
+Table 'Tantalus V' 6-max Seat #3 is the button
+Seat 1: Player0 ($189.21 in chips) 
+Seat 2: Player1 ($125.64 in chips) 
+Seat 3: Player2 ($803.20 in chips) 
+Seat 4: Player3 ($424.11 in chips) 
+Seat 5: Player4 ($366.05 in chips) 
+Seat 6: Player5 ($424.29 in chips) 
+Player3: posts small blind $2
+Player4: posts big blind $4
+*** HOLE CARDS ***
+Player5: folds 
+Player0: raises $4 to $8
+Player1: folds 
+Player2: folds 
+Player3: folds 
+Player4: calls $4
+*** FLOP *** [Tc 9s 6d]
+Player4: checks 
+Player0
+
+PokerStars Hand #112825406535:  Omaha Pot Limit ($2/$4 USD) - 2014/03/05 16:54:33 ET
+Table 'Tantalus V' 6-max Seat #2 is the button
+Seat 1: Player7 ($1095.50 in chips) 
+Seat 2: Player6 ($262.73 in chips) 
+Seat 3: Player2 ($760.17 in chips) 
+Seat 4: Player3 ($686.34 in chips) 
+Seat 5: Player8 ($400 in chips) 
+Seat 6: Player5 ($400 in chips) 
+Player2: posts small blind $2
+Player3: posts big blind $4
+*** HOLE CARDS ***
+Player8: raises $10 to $14
+Player5: raises $34 to $48
+Player7: folds 
+Player6: folds 
+Player2: folds 
+Player3: folds 
+Player8: calls $34
+*** FLOP *** [Qc 4s 9s]
+Player8: checks 
+Player5: checks 
+*** TURN *** [Qc 4s 9s] [2s]
+Player8: bets $56
+Player5: folds 
+Uncalled bet ($56) returned to Player8
+Player8 collected $99.20 from pot
+Player8: doesn't show hand 
+*** SUMMARY ***
+Total pot $102 | Rake $2.80 
+Board [Qc 4s 9s 2s]
+Seat 1: Player7 folded before Flop (didn't bet)
+Seat 2: Player6 (button) folded before Flop (didn't bet)
+Seat 3: Player2 (small blind) folded before Flop
+Seat 4: Player3 (big blind) folded before Flop
+Seat 5: Player8 collected ($99.20)
+Seat 6: Player5 folded on the Turn
+
+
+PokerStars Hand #112825191734:  Omaha Pot Limit ($2/$4 USD) - 2014/03/05 16:50:46 ET
+Table 'Tantalus V' 6-max Seat #5 is the button
+Seat 1: Player7 ($698.30 in chips) 
+Seat 2: Player6 ($335.20 in chips) 
+Seat 3: Player2 ($688.50 in chips) 
+Seat 4: Player3 ($686.34 in chips) 
+Seat 5: Player8 ($400 in chips) 
+Seat 6: Player5 ($400 in chips) 
+Player5: posts small blind $2
+Player7: posts big blind $4
+*** HOLE CARDS ***
+Player6: folds 
+Player2: raises $8 to $12
+Player3: folds 
+Player8: folds 
+Player5: folds 
+Player7: folds 
+Uncalled bet ($8) returned to Player2
+Player2 collected $10 from pot
+*** SUMMARY ***
+Total pot $10 | Rake $0 
+Seat 1: Player7 (big blind) folded before Flop
+Seat 2: Player6 folded before Flop (didn't bet)
+Seat 3: Player2 collected ($10)
+Seat 4: Player3 folded before Flop (didn't bet)
+Seat 5: Player8 (button) folded before Flop (didn't bet)
+Seat 6: Player5 (small blind) folded before Flop
+
+

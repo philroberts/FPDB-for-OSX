@@ -381,8 +381,11 @@ class PokerStars(HandHistoryConverter):
             log.info('readButton: ' + _('not found'))
 
     def readPlayerStacks(self, hand):
-        log.debug("readPlayerStacks")
-        m = self.re_PlayerInfo.finditer(hand.handText)
+        handsplit = hand.handText.split('*** SUMMARY ***')
+        if len(handsplit)!=2:
+            raise FpdbHandPartial(_("Hand is not cleanly split into pre and post Summary %s.") % hand.handid)
+        pre, post = handsplit
+        m = self.re_PlayerInfo.finditer(pre)
         for a in m:
             hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), a.group('CASH'), None, a.group('SITOUT'))
 
