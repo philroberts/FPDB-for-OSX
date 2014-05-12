@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+	<session sessioncode="6249559275">  
+			<general>  
+	    	<mode>real</mode>
+	      		<gametype>7 Card Stud Hi-Lo L €0.05/€0.10</gametype>  
+	          <tablename>Beignon, 826907366</tablename>
+	          <tablecurrency>EUR</tablecurrency>  
+	          <duration>00:14</duration>  
+	          <gamecount>5</gamecount>  
+	          <startdate>2014-05-10 18:02:19</startdate>  
+	          <currency>USD</currency>  
+	          <nickname>Hero</nickname>  
+	          <bets>€1.45</bets>  
+	          <wins>€2.66</wins>  
+	          <chipsin>€2.86</chipsin>
+			  		<chipsout>€4.07</chipsout>
+			  		<ipoints>1.70</ipoints>
+        		<statuspoints>1.70</statuspoints>
+			  		<awardpoints>1.70</awardpoints>
+	            
+	    </general>  
+	    <game gamecode="5710054735">
+		 <general>
+		  <startdate>2014-05-10 18:02:19</startdate>		  
+		  <players>
+		   <player seat="1" name="Player0" chips="€1" dealer="1" win="€0" bet="€0.41" rebuy="0" addon="0" reg_code="-"/><player seat="6" name="Hero" chips="€2.86" dealer="0" win="€0.79" bet="€0.41" rebuy="0" addon="0" reg_code="-"/>
+		  </players>
+		 </general>
+		 <round no="0">
+	 <action no="1" player="Player0" type="15" sum="€0.01" cards="[cards]"/><action no="2" player="Hero" type="15" sum="€0.01" cards="[cards]"/>
+	</round>
+	<round no="1">
+	 
+	</round>
+	<round no="2">
+	 <cards type="Third Street" player="Player0">D7 D4 DK</cards><action no="4" player="Player0" type="3" sum="€0.05" cards=""/><cards type="Third Street" player="Hero">CA D5 H4</cards><action no="3" player="Hero" type="5" sum="€0.05" cards=""/>
+	</round>
+	<round no="3">
+	 <cards type="Fourth Street" player="Player0">C3</cards><action no="5" player="Player0" type="4" sum="€0" cards=""/><action no="7" player="Player0" type="3" sum="€0.05" cards=""/><cards type="Fourth Street" player="Hero">H7</cards><action no="6" player="Hero" type="5" sum="€0.05" cards=""/>
+	</round>
+	<round no="4">
+	 <cards type="Fifth Street" player="Player0">H9</cards><action no="8" player="Player0" type="4" sum="€0" cards=""/><action no="10" player="Player0" type="3" sum="€0.10" cards=""/><cards type="Fifth Street" player="Hero">S8</cards><action no="9" player="Hero" type="5" sum="€0.10" cards=""/>
+	</round>
+	<round no="5">
+	 <cards type="Sixth Street" player="Player0">DA</cards><action no="12" player="Player0" type="3" sum="€0.10" cards=""/><cards type="Sixth Street" player="Hero">C4</cards><action no="11" player="Hero" type="5" sum="€0.10" cards=""/>
+	</round>
+	<round no="6">
+	 <cards type="River" player="Player0">CJ</cards><action no="14" player="Player0" type="3" sum="€0.10" cards=""/><cards type="River" player="Hero">S7</cards><action no="13" player="Hero" type="5" sum="€0.10" cards=""/>
+	</round>
+	
+		</game><game gamecode="5710056302">
+		 <general>
+		  <startdate>2014-05-10 18:03:14</startdate>		  
+		  <players>
+		   <player seat="1" name="Player0" chips="€0.59" dealer="1" win="€0" bet="€0.59" rebuy="0" addon="0" reg_code="-"/><player seat="6" name="Hero" chips="€3.24" dealer="0" win="€1.14" bet="€0.59" rebuy="0" addon="0" reg_code="-"/>
+		  </players>
+		 </general>
+		 <round no="0">
+	 <action no="1" player="Player0" type="15" sum="€0.01" cards="[cards]"/><action no="2" player="Hero" type="15" sum="€0.01" cards="[cards]"/>
+	</round>
+	<round no="1">
+	 
+	</round>
+	<round no="2">
+	 <cards type="Third Street" player="Player0">CQ C10 H8</cards><action no="3" player="Player0" type="16" sum="€0.02" cards=""/><cards type="Third Street" player="Hero">C3 D9 H9</cards><action no="4" player="Hero" type="3" sum="€0.02" cards=""/>
+	</round>
+	<round no="3">
+	 <cards type="Fourth Street" player="Player0">CJ</cards><action no="5" player="Player0" type="5" sum="€0.05" cards=""/><cards type="Fourth Street" player="Hero">H7</cards><action no="6" player="Hero" type="3" sum="€0.05" cards=""/>
+	</round>
+	<round no="4">
+	 <cards type="Fifth Street" player="Player0">DJ</cards><action no="7" player="Player0" type="5" sum="€0.10" cards=""/><cards type="Fifth Street" player="Hero">D7</cards><action no="8" player="Hero" type="3" sum="€0.10" cards=""/>
+	</round>
+	<round no="5">
+	 <cards type="Sixth Street" player="Player0">D2</cards><action no="10" player="Player0" type="23" sum="€0.20" cards=""/><action no="12" player="Player0" type="3" sum="€0.10" cards=""/><cards type="Sixth Street" player="Hero">S9</cards><action no="9" player="Hero" type="5" sum="€0.10" cards=""/><action no="11" player="Hero" type="23" sum="€0.30" cards=""/>
+	</round>
+	<round no="6">
+	 <cards type="River" player="Player0">SQ</cards><action no="14" player="Player0" type="7" sum="€0.11" cards=""/><cards type="River" player="Hero">H2</cards><action no="13" player="Hero" type="5" sum="€0.10" cards=""/><action no="15" player="Hero" type="3" sum="€0.01" cards=""/>
+	</round>
+	
+		</game><game gamecode="5710077134">
+		 <general>
+		  <startdate>2014-05-10 18:12:52</startdate>		  
+		  <players>
+		   <player seat="1" name="Player0" chips="€1" dealer="1" win="€0.04" bet="€0.03" rebuy="0" addon="0" reg_code="-"/><player seat="6" name="Hero" chips="€3.79" dealer="0" win="€0" bet="€0.01" rebuy="0" addon="0" reg_code="-"/>
+		  </players>
+		 </general>
+		 <round no="0">
+	 <action no="1" player="Player0" type="15" sum="€0.01" cards="[cards]"/><action no="2" player="Hero" type="15" sum="€0.01" cards="[cards]"/>
+	</round>
+	<round no="1">
+	 
+	</round>
+	<round no="2">
+	 <cards type="Third Street" player="Player0">X X D2</cards><action no="3" player="Player0" type="16" sum="€0.02" cards=""/><cards type="Third Street" player="Hero">S6 C10 H7</cards><action no="4" player="Hero" type="0" sum="€0" cards=""/>
+	</round>
+	
+		</game><game gamecode="5710078165">
+		 <general>
+		  <startdate>2014-05-10 18:13:11</startdate>		  
+		  <players>
+		   <player seat="1" name="Player0" chips="€1.01" dealer="1" win="€0" bet="€0.38" rebuy="0" addon="0" reg_code="-"/><player seat="6" name="Hero" chips="€3.78" dealer="0" win="€0.73" bet="€0.38" rebuy="0" addon="0" reg_code="-"/>
+		  </players>
+		 </general>
+		 <round no="0">
+	 <action no="1" player="Player0" type="15" sum="€0.01" cards="[cards]"/><action no="2" player="Hero" type="15" sum="€0.01" cards="[cards]"/>
+	</round>
+	<round no="1">
+	 
+	</round>
+	<round no="2">
+	 <cards type="Third Street" player="Player0">S9 D3 C3</cards><action no="3" player="Player0" type="16" sum="€0.02" cards=""/><cards type="Third Street" player="Hero">C7 H2 S6</cards><action no="4" player="Hero" type="3" sum="€0.02" cards=""/>
+	</round>
+	<round no="3">
+	 <cards type="Fourth Street" player="Player0">D8</cards><action no="5" player="Player0" type="4" sum="€0" cards=""/><action no="7" player="Player0" type="3" sum="€0.05" cards=""/><cards type="Fourth Street" player="Hero">S7</cards><action no="6" player="Hero" type="5" sum="€0.05" cards=""/>
+	</round>
+	<round no="4">
+	 <cards type="Fifth Street" player="Player0">H7</cards><action no="8" player="Player0" type="4" sum="€0" cards=""/><action no="10" player="Player0" type="3" sum="€0.10" cards=""/><cards type="Fifth Street" player="Hero">C2</cards><action no="9" player="Hero" type="5" sum="€0.10" cards=""/>
+	</round>
+	<round no="5">
+	 <cards type="Sixth Street" player="Player0">S10</cards><action no="12" player="Player0" type="3" sum="€0.10" cards=""/><cards type="Sixth Street" player="Hero">DQ</cards><action no="11" player="Hero" type="5" sum="€0.10" cards=""/>
+	</round>
+	<round no="6">
+	 <cards type="River" player="Player0">CA</cards><action no="14" player="Player0" type="3" sum="€0.10" cards=""/><cards type="River" player="Hero">C10</cards><action no="13" player="Hero" type="5" sum="€0.10" cards=""/>
+	</round>
+	
+		</game><game gamecode="5710079903">
+		 <general>
+		  <startdate>2014-05-10 18:14:04</startdate>		  
+		  <players>
+		   <player seat="1" name="Player0" chips="€0.63" dealer="1" win="€0.17" bet="€0.11" rebuy="0" addon="0" reg_code="-"/><player seat="6" name="Hero" chips="€4.13" dealer="0" win="€0" bet="€0.06" rebuy="0" addon="0" reg_code="-"/>
+		  </players>
+		 </general>
+		 <round no="0">
+	 <action no="1" player="Player0" type="15" sum="€0.01" cards="[cards]"/><action no="2" player="Hero" type="15" sum="€0.01" cards="[cards]"/>
+	</round>
+	<round no="1">
+	 
+	</round>
+	<round no="2">
+	 <cards type="Third Street" player="Player0">X X S9</cards><action no="3" player="Player0" type="5" sum="€0.05" cards=""/><cards type="Third Street" player="Hero">C4 SK DK</cards><action no="4" player="Hero" type="3" sum="€0.05" cards=""/>
+	</round>
+	<round no="3">
+	 <cards type="Fourth Street" player="Player0">HA</cards><action no="5" player="Player0" type="5" sum="€0.05" cards=""/><cards type="Fourth Street" player="Hero">DJ</cards><action no="6" player="Hero" type="0" sum="€0" cards=""/>
+	</round>
+	
+		</game>  
+	</session>

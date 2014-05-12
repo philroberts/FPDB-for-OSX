@@ -49,6 +49,7 @@ class iPokerSummary(TourneySummary):
                   }
     games = {              # base, category
                 '7 Card Stud' : ('stud','studhi'),
+          '7 Card Stud Hi-Lo' : ('stud','studhilo'),
                 '5 Card Stud' : ('stud','5_studhi'),
                      'Holdem' : ('hold','holdem'),
                       'Omaha' : ('hold','omahahi'),
@@ -58,7 +59,7 @@ class iPokerSummary(TourneySummary):
     re_Identify = re.compile(u'<game\sgamecode=')
 
     re_GameType = re.compile(ur"""
-            <gametype>(?P<GAME>((?P<CATEGORY>(5|7)\sCard\sStud|Holdem|Omaha|Omaha\sHi\-Lo)\s(?P<LIMIT>NL|SL|L|LZ|PL|БЛ|LP|No\slimit|Pot\slimit|Limit))|LH\s(?P<LSB>[%(NUM)s]+)/(?P<LBB>[%(NUM)s]+).+?)
+            <gametype>(?P<GAME>((?P<CATEGORY>(5|7)\sCard\sStud(\sHi\-Lo)?|Holdem|Omaha(\sHi\-Lo)?)\s(?P<LIMIT>NL|SL|L|LZ|PL|БЛ|LP|No\slimit|Pot\slimit|Limit))|LH\s(?P<LSB>[%(NUM)s]+)/(?P<LBB>[%(NUM)s]+).+?)
             (\s(%(LS)s)?(?P<SB>[%(NUM)s]+)/(%(LS)s)?(?P<BB>[%(NUM)s]+))?(\sAnte\s(%(LS)s)?(?P<ANTE>[%(NUM)s]+))?</gametype>\s+?
             <tablename>(?P<TABLE>.+)?</tablename>\s+?
             (<(tablecurrency|tournamentcurrency)>.*</(tablecurrency|tournamentcurrency)>\s+?)?
