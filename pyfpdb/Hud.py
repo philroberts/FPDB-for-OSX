@@ -83,15 +83,15 @@ class Hud:
 
         # Just throw error and die if any serious config issues are discovered
         if self.supported_games_parameters == None:
-            log.error(_("No <game_stat_set> found for %s games for type %s."+"\n") % (self.poker_game, self.game_type))
+            log.error(_("No <game_stat_set> found for %s games for type %s.\n") % (self.poker_game, self.game_type))
             return
             
         if self.layout_set == None:
-            log.error(_("No layout found for %s games for site %s."+"\n") % (self.game_type, self.table.site))
+            log.error(_("No layout found for %s games for site %s.\n") % (self.game_type, self.table.site))
             return
                        
         if self.max not in self.layout_set.layout:
-            log.error(_("No layout found for %d-max %s games for site %s."+"\n") % (self.max, self.game_type, self.table.site))
+            log.error(_("No layout found for %d-max %s games for site %s.\n") % (self.max, self.game_type, self.table.site))
             return
         else:
             self.layout = copy.deepcopy(self.layout_set.layout[self.max]) # deepcopy required here, because self.layout is used

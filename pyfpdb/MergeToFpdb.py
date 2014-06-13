@@ -660,7 +660,7 @@ or None if we fail to get the info """
         message = False
         m = self.re_Connection.search(hand.handText)
         if m:
-            message = _("Found %s. Hand missing information." % m.group('TYPE'))
+            message = _("Found %s. Hand missing information.") % m.group('TYPE')
         m = self.re_LeaveTable.search(hand.handText)
         if m:
             message = _("Found LEAVE. Player left table before hand completed")
