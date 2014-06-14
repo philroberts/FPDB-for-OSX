@@ -12,6 +12,7 @@ msgmerge --update locale/fpdb-es_ES.po locale/fpdb-en_GB.pot
 msgmerge --update locale/fpdb-fr_FR.po locale/fpdb-en_GB.pot
 msgmerge --update locale/fpdb-hu_HU.po locale/fpdb-en_GB.pot
 msgmerge --update locale/fpdb-it_IT.po locale/fpdb-en_GB.pot
+msgmerge --update locale/fpdb-ja_JP.po locale/fpdb-en_GB.pot
 msgmerge --update locale/fpdb-lt_LT.po locale/fpdb-en_GB.pot
 msgmerge --update locale/fpdb-nl_NL.po locale/fpdb-en_GB.pot
 msgmerge --update locale/fpdb-pl_PL.po locale/fpdb-en_GB.pot
@@ -28,6 +29,7 @@ msgfmt -c --check-accelerators locale/fpdb-es_ES.po
 msgfmt -c --check-accelerators locale/fpdb-fr_FR.po
 msgfmt -c --check-accelerators locale/fpdb-hu_HU.po
 msgfmt -c --check-accelerators locale/fpdb-it_IT.po
+msgfmt -c --check-accelerators locale/fpdb-ja_JP.po
 msgfmt -c --check-accelerators locale/fpdb-lt_LT.po
 msgfmt -c --check-accelerators locale/fpdb-nl_NL.po
 msgfmt -c --check-accelerators locale/fpdb-pl_PL.po
@@ -47,6 +49,7 @@ msgfmt --output-file=locale/es/LC_MESSAGES/fpdb.mo locale/fpdb-es_ES.po
 msgfmt --output-file=locale/fr/LC_MESSAGES/fpdb.mo locale/fpdb-fr_FR.po
 msgfmt --output-file=locale/hu/LC_MESSAGES/fpdb.mo locale/fpdb-hu_HU.po
 msgfmt --output-file=locale/it/LC_MESSAGES/fpdb.mo locale/fpdb-it_IT.po
+msgfmt --output-file=locale/ja/LC_MESSAGES/fpdb.mo locale/fpdb-ja_JP.po
 msgfmt --output-file=locale/lt/LC_MESSAGES/fpdb.mo locale/fpdb-lt_LT.po
 msgfmt --output-file=locale/nl/LC_MESSAGES/fpdb.mo locale/fpdb-nl_NL.po
 msgfmt --output-file=locale/pl/LC_MESSAGES/fpdb.mo locale/fpdb-pl_PL.po
