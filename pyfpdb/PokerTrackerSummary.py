@@ -30,7 +30,7 @@ class PokerTrackerSummary(TourneySummary):
     hhtype = "summary"
     limits = { 'NL':'nl', 'No Limit':'nl', 'Pot Limit':'pl', 'PL': 'pl', 'FL': 'fl', 'Limit':'fl', 'LIMIT':'fl' }
     games = {                          # base, category
-                              "Hold'em" : ('hold','holdem'), 
+                              "Hold'em" : ('hold','holdem'),
                         "Texas Hold'em" : ('hold','holdem'),
                                "Holdem" : ('hold','holdem'),
                                 'Omaha' : ('hold','omahahi'),
@@ -65,7 +65,7 @@ class PokerTrackerSummary(TourneySummary):
                         """ % substitutions ,re.VERBOSE|re.MULTILINE)
 
     re_Player = re.compile(u"""Place:\s(?P<RANK>[0-9]+),\sPlayer:\s(?P<NAME>.*),\sWon:\s(?P<CUR>[%(LS)s]?)(?P<WINNINGS>[,.0-9]+),( Rebuys: (?P<REBUYS>\d+),)?( Addons: (?P<ADDONS>\d+),)?""" % substitutions)
-    
+
     re_DateTime1    = re.compile("""(?P<Y>[0-9]{4})\-(?P<M>[0-9]{2})\-(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)""", re.MULTILINE)
     re_DateTime2    = re.compile("""(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})\/(?P<Y>[0-9]{4})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)""", re.MULTILINE)
     re_DateTime3    = re.compile("""(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)[\- ]+(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})""", re.MULTILINE)
@@ -76,7 +76,7 @@ class PokerTrackerSummary(TourneySummary):
     def getSplitRe(self, head):
         re_SplitTourneys = re.compile("PokerTracker")
         return re_SplitTourneys
-    
+
     def parseSummary(self):
         m = self.re_TourneyInfo.search(self.summaryText)
         if m == None:
@@ -114,7 +114,7 @@ class PokerTrackerSummary(TourneySummary):
         if 'ENTRIES'   in mg:
             self.entries = mg['ENTRIES']
             self.prizepool = int(Decimal(self.clearMoneyString(mg['BUYIN']))) * int(self.entries)
-        if 'DATETIME'  in mg: 
+        if 'DATETIME'  in mg:
             if self.siteName in ('iPoker', 'Microgaming'):
                 m1 = self.re_DateTime1.finditer(mg['DATETIME'])
             elif self.siteName == 'Merge':
@@ -124,7 +124,7 @@ class PokerTrackerSummary(TourneySummary):
         datetimestr = "2000/01/01 00:00:00"  # default used if time not found
         for a in m1:
             datetimestr = "%s/%s/%s %s:%s:%s" % (a.group('Y'), a.group('M'),a.group('D'),a.group('H'),a.group('MIN'),a.group('S'))
-            
+
         self.startTime = datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S") # also timezone at end, e.g. " ET"
 
         if mg['CURRENCY'] == "$":     self.buyinCurrency="USD"
@@ -146,13 +146,13 @@ class PokerTrackerSummary(TourneySummary):
 
             if 'WINNINGS' in mg and mg['WINNINGS'] != None:
                 winnings = int(100*Decimal(mg['WINNINGS']))
-                
+
             if 'REBUYS' in mg and mg['REBUYS']!=None:
                 rebuyCount = int(mg['REBUYS'])
-                
+
             if 'ADDONS' in mg and mg['ADDONS']!=None:
                 addOnCount = int(mg['ADDONS'])
-                
+
             if 'CUR' in mg and mg['CUR'] != None:
                 if mg['CUR'] == "$":     self.currency="USD"
                 elif mg['CUR'] == u"€":  self.currency="EUR"
