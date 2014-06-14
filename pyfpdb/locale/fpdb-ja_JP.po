@@ -1,0 +1,4106 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR ORGANIZATION
+# TAKAHASHI Kaoru <kaoru@kaisei.org>, 2014.
+#
+# 提案などはひゃっほう掲示板 かgithubへ
+#  <http://jbbs.shitaraba.net/bbs/read.cgi/game/15823/1378036486/>
+#
+# 翻訳しないもの
+#   __str__ メソッドの中
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Free Poker Database\n"
+"POT-Creation-Date: 2014-06-14 15:06+JST\n"
+"PO-Revision-Date: 2014-06-15 03:46+0900\n"
+"Last-Translator: TAKAHASHI Kaoru <kaoru@kaisei.org>\n"
+"Language-Team: Fpdb\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Generated-By: pygettext.py 1.5\n"
+
+#: AbsoluteToFpdb.py:163
+msgid "AbsoluteToFpdb.determineGameType: '%s'"
+msgstr "AbsoluteToFpdb.determineGameType: '%s'"
+
+#: AbsoluteToFpdb.py:217
+msgid ""
+"AbsoluteToFpdb.determineGameType: Lim_Blinds has no lookup for '%s' - '%s'"
+msgstr "AbsoluteToFpdb.determineGameType: Lim_Blinds から '%s' - '%s' が引けません"
+
+#: AbsoluteToFpdb.py:235
+msgid "AbsoluteToFpdb.readHandInfo: '%s'"
+msgstr "AbsoluteToFpdb.readHandInfo: '%s'"
+
+#: AbsoluteToFpdb.py:238
+msgid ""
+"AbsoluteToFpdb.readHandInfo: File name didn't match re_*InfoFromFilename"
+msgstr "AbsoluteToFpdb.readHandInfo: ファイル名が re_*InfoFromFilename にマッチしません"
+
+#: AbsoluteToFpdb.py:310 CakeToFpdb.py:298 EnetToFpdb.py:307
+#: EverleafToFpdb.py:241 MicrogamingToFpdb.py:235 OnGameToFpdb.py:396
+#: PokerStarsToFpdb.py:456 PokerTrackerToFpdb.py:468
+#: SealsWithClubsToFpdb.py:243 WinamaxToFpdb.py:375
+msgid "reading antes"
+msgstr "アンティ読込中"
+
+#: AbsoluteToFpdb.py:319 BetfairToFpdb.py:160
+msgid "Player bringing in: %s for %s"
+msgstr ""
+
+#: AbsoluteToFpdb.py:322 EverleafToFpdb.py:253
+msgid "No bringin found."
+msgstr "ブリングインが見つかりません。"
+
+#: AbsoluteToFpdb.py:329 EverleafToFpdb.py:260
+msgid "No small blind"
+msgstr ""
+
+#: AbsoluteToFpdb.py:375 EverleafToFpdb.py:287
+msgid "%s cannot read all stud/razz hands yet."
+msgstr ""
+
+#: AbsoluteToFpdb.py:402 BetOnlineToFpdb.py:580 BetfairToFpdb.py:197
+#: BossToFpdb.py:419 BovadaToFpdb.py:530 CakeToFpdb.py:361 EnetToFpdb.py:371
+#: EntractionToFpdb.py:324 EverestToFpdb.py:293 EverestToFpdb.py:294
+#: EverleafToFpdb.py:312 FulltiltToFpdb.py:648 MergeToFpdb.py:634
+#: MicrogamingToFpdb.py:373 OnGameToFpdb.py:458 PacificPokerToFpdb.py:451
+#: PkrToFpdb.py:331 PokerStarsToFpdb.py:538 PokerTrackerToFpdb.py:636
+#: SealsWithClubsToFpdb.py:290 WinamaxToFpdb.py:425 iPokerToFpdb.py:538
+msgid "Unimplemented %s: '%s' '%s'"
+msgstr "未実装 %s: '%s' '%s'"
+
+#: Anonymise.py:54
+msgid "Could not find file %s"
+msgstr "ファイルが見つかりません %s"
+
+#: Anonymise.py:60
+msgid "Output being written to %s"
+msgstr "出力はファイル %s へ書き込まれます"
+
+#: Aux_Base.py:265
+msgid "Aux_Seats.save_layout called - this shouldn't happen"
+msgstr "Aux_Seats.save_layout がコールされました - 発生すべきではありません"
+
+#: Aux_Base.py:266
+msgid "save_layout method should be handled in the aux"
+msgstr "save_layout メソッドはaux中で処理されるべきです"
+
+#: Aux_Base.py:315
+msgid "Error finding hero seat."
+msgstr "Error Heroの座席が見つかりません。"
+
+#: Aux_Hud.py:306
+msgid "All Time"
+msgstr "全期間"
+
+#: Aux_Hud.py:306 Aux_Hud.py:307 Aux_Hud.py:308
+msgid "Since:"
+msgstr "期間:"
+
+#: Aux_Hud.py:307
+msgid "Session"
+msgstr "このセッション"
+
+#: Aux_Hud.py:311
+msgid "Any Number"
+msgstr "どれでも"
+
+#: Aux_Hud.py:311 Aux_Hud.py:312 Aux_Hud.py:313
+msgid "Number of Seats:"
+msgstr "席数"
+
+#: Aux_Hud.py:312 Aux_Hud.py:346 Aux_Hud.py:363
+msgid "Custom"
+msgstr "指定する"
+
+#: Aux_Hud.py:313
+msgid "Exact"
+msgstr "同一"
+
+#: Aux_Hud.py:316
+msgid "For This Blind Level Only"
+msgstr "このブラインドレベルのみ"
+
+#: Aux_Hud.py:317 Aux_Hud.py:318 Aux_Hud.py:319
+msgid "%s to %s * Current Blinds"
+msgstr "%s 〜 %s * 現在のブラインド"
+
+#: Aux_Hud.py:320
+msgid "All Levels"
+msgstr "全レベル"
+
+#: Aux_Hud.py:335
+msgid "Restart This HUD"
+msgstr "このHUDを再起動する"
+
+#: Aux_Hud.py:336
+msgid "Save HUD Layout"
+msgstr "HUD配置を保存する"
+
+#: Aux_Hud.py:337
+msgid "Stop this HUD"
+msgstr "このHUDを停止する"
+
+#: Aux_Hud.py:338
+msgid "Close"
+msgstr "閉じる"
+
+#: Aux_Hud.py:342
+msgid "Show Player Stats for"
+msgstr "プレイヤー統計を表示"
+
+#: Aux_Hud.py:349 Aux_Hud.py:366
+msgid "To"
+msgstr "〜"
+
+#: Aux_Hud.py:359
+msgid "Show Opponent Stats for"
+msgstr "対戦相手の統計を表示"
+
+#: BetOnlineToFpdb.py:209
+msgid "BetOnlineToFpdb.determineGameType: '%s'"
+msgstr "BetOnlineToFpdb.determineGameType: '%s'"
+
+#: BetOnlineToFpdb.py:212
+msgid "Partial hand history: 'Player joining table'"
+msgstr "部分的なハンド履歴: 'Player joining table'"
+
+#: BetOnlineToFpdb.py:250
+msgid ""
+"BetOnlineToFpdb.determineGameType: Lim_Blinds has no lookup for '%s' - '%s'"
+msgstr ""
+
+#: BetOnlineToFpdb.py:267
+msgid "BetOnlineToFpdb.readHandInfo: '%s'"
+msgstr "BetOnlineToFpdb.readHandInfo: '%s'"
+
+#: BetOnlineToFpdb.py:329
+msgid "BetOnlineToFpdb.readHandInfo: Failed to detect currency."
+msgstr "BetOnlineToFpdb.readHandInfo: 通貨の自動判別に失敗。"
+
+#: BetOnlineToFpdb.py:329
+msgid "Hand ID"
+msgstr "ハンドID"
+
+#: BetOnlineToFpdb.py:360 BovadaToFpdb.py:177
+msgid "Partial hand history"
+msgstr "部分的なハンド履歴"
+
+#: BetOnlineToFpdb.py:367 CakeToFpdb.py:266 EnetToFpdb.py:276
+#: EntractionToFpdb.py:242 OnGameToFpdb.py:366 PacificPokerToFpdb.py:310
+#: PartyPokerToFpdb.py:439 PokerStarsToFpdb.py:381 PokerTrackerToFpdb.py:422
+#: SealsWithClubsToFpdb.py:203 WinamaxToFpdb.py:342
+msgid "not found"
+msgstr ""
+
+#: BetOnlineToFpdb.py:485
+msgid "Partial hand history: 'No blind info'"
+msgstr "部分的なハンド履歴: 'No blind info'"
+
+#: BetOnlineToFpdb.py:580 BetfairToFpdb.py:197 BossToFpdb.py:419
+#: BovadaToFpdb.py:530 CakeToFpdb.py:361 EnetToFpdb.py:371
+#: EntractionToFpdb.py:324 FulltiltToFpdb.py:648 GuiAutoImport.py:210
+#: GuiPositionalStats.py:140 GuiStove.py:221 GuiStove.py:225 GuiStove.py:229
+#: GuiStove.py:233 GuiStove.py:240 GuiStove.py:242 Hand.py:1143
+#: IdentifySite.py:207 ImapFetcher.py:44 ImapFetcher.py:53
+#: MicrogamingToFpdb.py:373 OnGameToFpdb.py:458 PacificPokerToFpdb.py:451
+#: PkrToFpdb.py:331 PokerStarsToFpdb.py:538 PokerTrackerToFpdb.py:636
+#: SealsWithClubsToFpdb.py:290 WinamaxToFpdb.py:425 iPokerToFpdb.py:538
+msgid "DEBUG:"
+msgstr "DEBUG:"
+
+#: BetfairToFpdb.py:76
+msgid "BetfairToFpdb.determineGameType: '%s'"
+msgstr "BetfairToFpdb.determineGameType: '%s'"
+
+#: BetfairToFpdb.py:108
+msgid "BetfairToFpdb.readHandInfo: '%s'"
+msgstr "BetfairToFpdb.readHandInfo: '%s'"
+
+#: BetfairToFpdb.py:123
+msgid "Less than 2 players found in hand %s."
+msgstr "2名以下のハンド %s が見つかりました。"
+
+#: BetfairToFpdb.py:163
+msgid "No bringin found"
+msgstr "ブリングインが見つかりません"
+
+#: BossToFpdb.py:130
+msgid "BossToFpdb.determineGameType: '%s'"
+msgstr "BossToFpdb.determineGameType: '%s'"
+
+#: BossToFpdb.py:168
+msgid "BossToFpdb.determineGameType: Lim_Blinds has no lookup for '%s' - '%s'"
+msgstr ""
+
+#: BossToFpdb.py:182
+msgid "BossToFpdb.readHandInfo: '%s'"
+msgstr "BossToFpdb.readHandInfo: '%s'"
+
+#: BossToFpdb.py:431
+msgid ""
+"BossToFpdb.calculateAntes(): '%s': Major failure while calculating pot: '%s'"
+msgstr ""
+
+#: BovadaSummary.py:57
+msgid "BovadaSummary.parseSummary: '%s'"
+msgstr "BovadaSummary.parseSummary: '%s'"
+
+#: BovadaSummary.py:67
+msgid ""
+"BovadaSummary.parseSummary: Text does not appear to be a tournament '%s'"
+msgstr ""
+
+#: BovadaSummary.py:108
+msgid "BovadaSummary.parseSummary: Failed to detect currency"
+msgstr "BovadaSummary.parseSummary: 通貨の自動判別に失敗"
+
+#: BovadaToFpdb.py:171
+msgid "BovadaToFpdb.determineGameType: '%s'"
+msgstr "BovadaToFpdb.determineGameType: '%s'"
+
+#: BovadaToFpdb.py:218
+msgid ""
+"BovadaToFpdb.determineGameType: Lim_Blinds has no lookup for '%s' - '%s'"
+msgstr ""
+
+#: BovadaToFpdb.py:231
+msgid "BovadaToFpdb.readHandInfo: '%s'"
+msgstr "BovadaToFpdb.readHandInfo: '%s'"
+
+#: BovadaToFpdb.py:266
+msgid "BovadaToFpdb.readHandInfo: Failed to detect currency."
+msgstr "BovadaToFpdb.readHandInfo: 通貨の自動判別に失敗"
+
+#: BovadaToFpdb.py:316
+msgid "BovadaToFpdb.readPlayerStacks: '%s'"
+msgstr "BovadaToFpdb.readPlayerStacks: '%s'"
+
+#: BovadaToFpdb.py:324
+msgid "Hand.%s: '%s' unknown player seat from position: '%s'"
+msgstr ""
+
+#: CakeToFpdb.py:147
+msgid "CakeToFpdb.determineGameType: '%s'"
+msgstr "CakeToFpdb.determineGameType: '%s'"
+
+#: CakeToFpdb.py:189
+msgid "CakeToFpdb.determineGameType: Lim_Blinds has no lookup for '%s' - '%s'"
+msgstr ""
+
+#: CakeToFpdb.py:202
+msgid "CakeToFpdb.readHandInfo: '%s'"
+msgstr "CakeToFpdb.readHandInfo: '%s'"
+
+#: CakeToFpdb.py:243
+msgid "CakeToFpdb.readHandInfo: Failed to detect currency."
+msgstr "CakeToFpdb.readHandInfo: 通貨の自動判別に失敗。"
+
+#: Card.py:499
+msgid "Convert list ID to card (e.g. 1 to 2h)"
+msgstr ""
+
+#: Card.py:500
+msgid "Convert card to list ID (e.g. 2h to 1)"
+msgstr ""
+
+#: Card.py:504
+msgid "Enter list ID:"
+msgstr "リストIDを入力:"
+
+#: Card.py:505
+msgid "Card:"
+msgstr "カード:"
+
+#: Card.py:508
+msgid "Enter card:"
+msgstr ""
+
+#: Card.py:509
+msgid "Encoded card:"
+msgstr ""
+
+#: Card.py:511
+msgid "Please enter 1 or 2"
+msgstr "1か2を入力してください"
+
+#: Charset.py:46 Charset.py:61 Charset.py:76
+msgid "Could not convert: \"%s\""
+msgstr "変換できません: \"%s\""
+
+#: Charset.py:49 Charset.py:64 Charset.py:79
+msgid "Could not encode: \"%s\""
+msgstr "エンコードできません: \"%s\""
+
+#: Configuration.py:172 Configuration.py:179 fpdb.pyw:975
+msgid "Config file has been created at %s."
+msgstr "設定ファイル %s が作成されました。"
+
+#: Configuration.py:192
+msgid "No %r found in \"%r\" or \"%r\"."
+msgstr ""
+
+#: Configuration.py:193
+msgid "Config file has been created at %r."
+msgstr "設定ファイルは %r に作成されました。"
+
+#: Configuration.py:196 Configuration.py:197
+msgid "Error copying .example config file, cannot fall back. Exiting."
+msgstr ""
+
+#: Configuration.py:201
+msgid "No %s found, cannot fall back. Exiting."
+msgstr ""
+
+#: Configuration.py:219
+msgid "Could not setup log file %s"
+msgstr "ログファイル %s が準備できません"
+
+#: Configuration.py:229 Database.py:804 Database.py:805
+msgid "Creating directory: '%s'"
+msgstr "ディレクトリを作成しています: '%s'"
+
+#: Configuration.py:261
+msgid "Default encoding set to US-ASCII, defaulting to CP1252 instead."
+msgstr "既定の文字エンコーディングをUS-ASCIIからCP1252に変更します。"
+
+#: Configuration.py:261
+msgid "Please report this problem."
+msgstr "この問題をバグ報告してください"
+
+#: Configuration.py:641
+msgid "config.general: adding %s = %s"
+msgstr ""
+
+#: Configuration.py:688 Configuration.py:689
+msgid "bad number in xalignment was ignored"
+msgstr ""
+
+#: Configuration.py:744 Configuration.py:751 Configuration.py:770
+#: Configuration.py:777
+msgid "Invalid config value for %s, defaulting to %s"
+msgstr "無効な設定値 %s を既定値 %s"
+
+#: Configuration.py:817 Configuration.py:818
+msgid "Configuration file %s not found. Using defaults."
+msgstr ""
+
+#: Configuration.py:844
+msgid "Reading configuration file %s"
+msgstr ""
+
+#: Configuration.py:852
+msgid "Error parsing %s."
+msgstr ""
+
+#: Configuration.py:852 Configuration.py:978
+msgid "See error log file."
+msgstr "エラーログファイルを見てください"
+
+#: Configuration.py:978
+msgid "Error parsing example configuration file %s."
+msgstr ""
+
+#: Database.py:69
+msgid "Not using sqlalchemy connection pool."
+msgstr "sqlalchemyのコネクションプールを使いません"
+
+#: Database.py:76
+msgid "Not using numpy to define variance in sqlite."
+msgstr ""
+
+#: Database.py:749
+msgid "*** WARNING UNKNOWN MYSQL ERROR:"
+msgstr "*** WARNING 不明なMYSQLエラー:"
+
+#: Database.py:809
+msgid "Connecting to SQLite: %s"
+msgstr "SQLiteに接続中: %s"
+
+#: Database.py:822
+msgid "Some database functions will not work without NumPy support"
+msgstr ""
+
+#: Database.py:848
+msgid "Outdated or too new database version (%s)."
+msgstr ""
+
+#: Database.py:848 Database.py:859
+msgid "Please recreate tables."
+msgstr "DBテーブルを再作成してください"
+
+#: Database.py:854
+msgid "Recreating tables."
+msgstr "DBテーブルを再作成中。"
+
+#: Database.py:854 Database.py:859
+msgid "Failed to read settings table."
+msgstr "DBテーブルから設定の読み込みに失敗しました"
+
+#: Database.py:880
+msgid "commit %s failed: info=%s value=%s"
+msgstr "commit %s faild: info=%s value=%s"
+
+#: Database.py:884
+msgid "commit failed"
+msgstr "commit failed"
+
+#: Database.py:1256
+msgid "ERROR: query %s result does not have player_id as first column"
+msgstr "ERROR: クエリ %s の結果に player_id がありません"
+
+#: Database.py:1308
+msgid "getLastInsertId(): problem fetching insert_id? ret=%d"
+msgstr "getLastInsertId(): 取得時の問題 insert_id? ret=%d"
+
+#: Database.py:1320
+msgid "getLastInsertId(%s): problem fetching lastval? row=%d"
+msgstr "getLastInsertId(%s): 取得時の問題 lastval? row=%d"
+
+#: Database.py:1327
+msgid "getLastInsertId(): unknown backend: %d"
+msgstr "getLastInsertId(): 不明なバックエンド: %d"
+
+#: Database.py:1332
+msgid "*** Database get_last_insert_id error: "
+msgstr "*** Database get_last_insert_id error: "
+
+#: Database.py:1385
+msgid "warning: drop pg fk %s_%s_fkey failed: %s, continuing ..."
+msgstr "warning: drop pg fk %s_%s_fkey 失敗: %s, 続行します ..."
+
+#: Database.py:1389
+msgid "warning: constraint %s_%s_fkey not dropped: %s, continuing ..."
+msgstr "warning: constraint %s_%s_fkey drop されていません: %s, 続行します ..."
+
+#: Database.py:1397
+msgid "dropping mysql index "
+msgstr "MySQL indexをdropしています"
+
+#: Database.py:1403
+msgid "    drop index failed: "
+msgstr "    drop index failed: "
+
+#: Database.py:1408
+msgid "dropping pg index "
+msgstr "PostgreSQL indexをdropしています "
+
+#: Database.py:1421
+msgid "warning: drop index %s_%s_idx failed: %s, continuing ..."
+msgstr "warning: drop index %s_%s_idx 失敗: %s, 続行します ..."
+
+#: Database.py:1425
+msgid "warning: index %s_%s_idx not dropped %s, continuing ..."
+msgstr "warning: index %s_%s_idx が drop されていません %s, 続行します ..."
+
+#: Database.py:1434
+msgid "prepare import took %s seconds"
+msgstr "インポート準備に %s 秒かかりました"
+
+#: Database.py:1465 Database.py:1473
+msgid "Creating foreign key "
+msgstr "foreign key 作成中"
+
+#: Database.py:1471 Database.py:1480 Database.py:1492
+msgid "Create foreign key failed: "
+msgstr "foreign key作成失敗:"
+
+#: Database.py:1487
+msgid "Creating MySQL index %s %s"
+msgstr "MySQL index作成中 %s %s"
+
+#: Database.py:1496
+msgid "Creating PostgreSQL index "
+msgstr "PostgreSQL index 作成中"
+
+#: Database.py:1501
+msgid "Create index failed: "
+msgstr "create index失敗:"
+
+#: Database.py:1509
+msgid "After import took %s seconds"
+msgstr ""
+
+#: Database.py:1543
+msgid "Finished recreating tables"
+msgstr "DBテーブル再生成が完了しました"
+
+#: Database.py:1626 Database.py:1637
+msgid "***Error dropping tables:"
+msgstr "***Error DBテーブルドロップ中:"
+
+#: Database.py:1655
+msgid "Creating index %s %s"
+msgstr "index作成中 %s %s"
+
+#: Database.py:1675 Database.py:1682 Database.py:1690
+msgid "Dropping index:"
+msgstr "indexドロップ中:"
+
+#: Database.py:1680 Database.py:1688 Database.py:1695
+msgid "Drop index failed:"
+msgstr "indexドロップ失敗:"
+
+#: Database.py:1710 Database.py:1750
+msgid "set_isolation_level failed:"
+msgstr "set_isolation_level 失敗:"
+
+#: Database.py:1727 Database.py:1735
+msgid "Creating foreign key:"
+msgstr "foreign key作成中:"
+
+#: Database.py:1733 Database.py:1742
+msgid "Create foreign key failed:"
+msgstr "foreign key作成失敗:"
+
+#: Database.py:1774 Database.py:1782
+msgid "Dropping foreign key:"
+msgstr "foreign keyドロップ中:"
+
+#: Database.py:1778 Database.py:1797
+msgid "Drop foreign key %s_%s_fkey failed: %s, continuing ..."
+msgstr "Drop foreign key %s_%s_fkey 失敗: %s, 続行します ..."
+
+#: Database.py:1778 Database.py:1797 Database.py:1801 fpdb.pyw:1450
+msgid "Warning:"
+msgstr "Warning:"
+
+#: Database.py:1794
+msgid "dropped foreign key %s_%s_fkey, continuing ..."
+msgstr "foreign key %s_%s_fkey ドロップしました, 続行します ..."
+
+#: Database.py:1801
+msgid "constraint %s_%s_fkey not dropped: %s, continuing ..."
+msgstr "constraint %s_%s_fkey ドロップしません: %s, 続行します ..."
+
+#: Database.py:2281
+msgid "Error rebuilding hudcache:"
+msgstr "Error HUDキャッシュ再構築:"
+
+#: Database.py:2293 Database.py:2299
+msgid "Error during analyze:"
+msgstr "Error データベース最適化中:"
+
+#: Database.py:2303
+msgid "Analyze took %.1f seconds"
+msgstr "データベース最適化に %.1f 秒かかりました"
+
+#: Database.py:2313 Database.py:2319
+msgid "Error during vacuum:"
+msgstr "Error データベースの不要領域を掃除中:"
+
+#: Database.py:2323
+msgid "Vacuum took %.1f seconds"
+msgstr "データベース不要領域の掃除に %.1f 秒かかりました"
+
+#: Database.py:2358
+msgid "Error during lock_for_insert:"
+msgstr "Error lock_for_insert 実行中:"
+
+#: Database.py:3811
+msgid "cards ="
+msgstr ""
+
+#: Database.py:3814
+msgid "get_stats took: %4.3f seconds"
+msgstr "get_stats 所要時間: %4.3f 秒"
+
+#: Database.py:3816
+msgid "Press ENTER to continue."
+msgstr "続けるにはENTERを押してください"
+
+#: EnetToFpdb.py:160
+msgid "EnetToFpdb.determineGameType: '%s'"
+msgstr "EnetToFpdb.determineGameType: '%s'"
+
+#: EnetToFpdb.py:191
+msgid "EnetToFpdb.determineGameType: Lim_Blinds has no lookup for '%s' - '%s'"
+msgstr ""
+
+#: EnetToFpdb.py:205
+msgid "EnetToFpdb.readHandInfo: '%s'"
+msgstr "EnetToFpdb.readHandInfo: '%s'"
+
+#: EnetToFpdb.py:252
+msgid "EnetToFpdb.readHandInfo: Failed to detect currency."
+msgstr "EnetToFpdb.readHandInfo: 通貨の自動判別に失敗しました。"
+
+#: EntractionToFpdb.py:134
+msgid "EntractionToFpdb.determineGameType: '%s'"
+msgstr "EntractionToFpdb.determineGameType: '%s'"
+
+#: EntractionToFpdb.py:165 PokerStarsToFpdb.py:262
+msgid ""
+"PokerStarsToFpdb.determineGameType: Lim_Blinds has no lookup for '%s' - '%s'"
+msgstr ""
+
+#: EntractionToFpdb.py:184
+msgid "EntractionToFpdb.readHandInfo: '%s'"
+msgstr "EntractionToFpdb.readHandInfo: '%s'"
+
+#: EntractionToFpdb.py:218
+msgid "EntractionToFpdb.readHandInfo: Failed to detect currency."
+msgstr "EntractionToFpdb.readHandInfo: 通貨の自動判別に失敗しました。"
+
+#: EverestToFpdb.py:105
+msgid ""
+"EverestToFpdb.determineGameType: Unable to recognise gametype from: '%s'"
+msgstr ""
+
+#: EverestToFpdb.py:166
+msgid "EverestToFpdb.readHandInfo: '%s'"
+msgstr "EverestToFpdb.readHandInfo: '%s'"
+
+#: EverleafToFpdb.py:122
+msgid "EverleafToFpdb.determineGameType: '%s'"
+msgstr "EverleafToFpdb.determineGameType: '%s'"
+
+#: EverleafToFpdb.py:157
+msgid ""
+"EverleafToFpdb.determineGameType: Lim_Blinds has no lookup for '%s' - '%s'"
+msgstr ""
+
+#: EverleafToFpdb.py:170
+msgid "EverleafToFpdb.readHandInfo: '%s'"
+msgstr "EverleafToFpdb.readHandInfo: '%s'"
+
+#: Filters.py:58
+msgid "Single Draw 2-7 Lowball"
+msgstr "2-7シングルドロー"
+
+#: Filters.py:59
+msgid "Triple Draw 2-7 Lowball"
+msgstr "2-7トリプルドロー"
+
+#: Filters.py:60
+msgid "Triple Draw A-5 Lowball"
+msgstr "A-5トリプルドロー"
+
+#: Filters.py:61
+msgid "5 Card Stud"
+msgstr "5カードスタッド"
+
+#: Filters.py:62
+msgid "Badugi"
+msgstr "Badugi"
+
+#: Filters.py:63
+msgid "5 Card Draw"
+msgstr "5カードドロー"
+
+#: Filters.py:64
+msgid "Hold'em"
+msgstr "テキサスホールデム"
+
+#: Filters.py:65
+msgid "Omaha"
+msgstr "オマハ"
+
+#: Filters.py:66
+msgid "Omaha Hi/Lo"
+msgstr "オマハH/L"
+
+#: Filters.py:67
+msgid "Razz"
+msgstr "Razz"
+
+#: Filters.py:68
+msgid "7 Card Stud"
+msgstr "7カードスタッド"
+
+#: Filters.py:69
+msgid "7 Card Stud Hi/Lo"
+msgstr "7カードスタッドH/L"
+
+#: Filters.py:70
+msgid "5 Card Omaha"
+msgstr "5カードオマハ"
+
+#: Filters.py:71
+msgid "5 Card Omaha Hi/Lo"
+msgstr "5カードオマハ H/L"
+
+#: Filters.py:72
+msgid "Courchevel"
+msgstr "クールシュベル"
+
+#: Filters.py:73
+msgid "Courchevel Hi/Lo"
+msgstr "クールシュベルH/L"
+
+#: Filters.py:74
+msgid "Double hold'em"
+msgstr "ダブルホールデム"
+
+#: Filters.py:75
+msgid "Irish"
+msgstr "アイリッシュ"
+
+#: Filters.py:76
+msgid "6 Card Omaha"
+msgstr "6カードオマハ"
+
+#: Filters.py:79
+msgid "US Dollar"
+msgstr "USドル"
+
+#: Filters.py:80
+msgid "Euro"
+msgstr "ユーロ"
+
+#: Filters.py:81
+msgid "Tournament Dollar"
+msgstr "トーナメントドル"
+
+#: Filters.py:82
+msgid "Play Money"
+msgstr "プレイマネー"
+
+#: Filters.py:86
+msgid "Show _Limits"
+msgstr "リミット別に表示(_L)"
+
+#: Filters.py:86 Filters.py:87 Filters.py:88 Filters.py:89
+msgid "All"
+msgstr "すべて選択"
+
+#: Filters.py:86 Filters.py:87 Filters.py:88 Filters.py:89
+msgid "None"
+msgstr "すべて解除"
+
+#: Filters.py:90
+msgid "Show Number of _Players"
+msgstr "プレイヤー人数別に表示(_P)"
+
+#: Filters.py:90 TourneyFilters.py:52
+msgid "And:"
+msgstr "から:"
+
+#: Filters.py:90 TourneyFilters.py:52
+msgid "Between:"
+msgstr " "
+
+#: Filters.py:91 GuiPrefs.py:33
+msgid "Games"
+msgstr ""
+
+#: Filters.py:91 GuiPrefs.py:33
+msgid "Sites"
+msgstr "ポーカーサイト"
+
+#: Filters.py:91 TourneyFilters.py:51
+msgid "Hero:"
+msgstr "Hero:"
+
+#: Filters.py:92
+msgid "Limits:"
+msgstr ""
+
+#: Filters.py:92
+msgid "Positions:"
+msgstr "ポジション:"
+
+#: Filters.py:92 TourneyFilters.py:51
+msgid "Number of Players:"
+msgstr "プレイヤー数:"
+
+#: Filters.py:93
+msgid "Grouping:"
+msgstr "分類:"
+
+#: Filters.py:93
+msgid "Show Position Stats"
+msgstr "ポジション別に表示"
+
+#: Filters.py:94
+msgid "Currencies"
+msgstr "通貨"
+
+#: Filters.py:94 TourneyFilters.py:52
+msgid "Date:"
+msgstr "日付:"
+
+#: Filters.py:95
+msgid "All Players"
+msgstr "すべてのプレイヤー"
+
+#: Filters.py:95 GuiRingPlayerStats.py:43
+msgid "Hole Cards"
+msgstr "ホールカード"
+
+#: Filters.py:96
+msgid "Ring"
+msgstr "リング"
+
+#: Filters.py:96
+msgid "Tourney"
+msgstr "トーナメント"
+
+#: Filters.py:146 TourneyFilters.py:99
+msgid "Either 0 or more than one site matched for %s"
+msgstr ""
+
+#: Filters.py:566
+msgid "self.sites[%s] set to %s"
+msgstr "self.site[%s] を %s に設定"
+
+#: Filters.py:659
+msgid "self.limit[%s] set to %s"
+msgstr "self.limit[%s] を %s に設定"
+
+#: Filters.py:837
+msgid "self.seats[%s] set to %s"
+msgstr "self.seats[%s] を %s に設定"
+
+#: Filters.py:843
+msgid "self.groups[%s] set to %s"
+msgstr "self.groups[%s] を %s に設定"
+
+#: Filters.py:860 Filters.py:917 Filters.py:947 Filters.py:974 Filters.py:1020
+#: Filters.py:1081 Filters.py:1106 Filters.py:1156 Filters.py:1266
+#: Filters.py:1323 Filters.py:1362 Filters.py:1421 Filters.py:1603
+msgid "hide"
+msgstr "隠す"
+
+#: Filters.py:867 Filters.py:1581 Filters.py:1590 Filters.py:1610
+msgid "hide all"
+msgstr "すべて隠す"
+
+#: Filters.py:874 GuiLogView.py:99 GuiPositionalStats.py:62
+msgid "Refresh"
+msgstr "再表示"
+
+#: Filters.py:896
+msgid "Min # Hands:"
+msgstr "最低ハンド数:"
+
+#: Filters.py:964
+msgid "INFO: No tourney types returned from database"
+msgstr "INFO: トーナメント種別がデータベースにありません"
+
+#: Filters.py:965
+msgid "No tourney types returned from database"
+msgstr "トーナメント種別がデータベースにありません"
+
+#: Filters.py:1007 Filters.py:1240
+msgid "INFO: No games returned from database"
+msgstr "INFO: データベースからゲームが見つかりません"
+
+#: Filters.py:1008 Filters.py:1241
+msgid "No games returned from database"
+msgstr "データベースからゲームが見つかりません"
+
+#: Filters.py:1069
+msgid "INFO"
+msgstr "INFO"
+
+#: Filters.py:1069 Filters.py:1070
+msgid "No positions returned from database"
+msgstr "データベースからポジションが見つかりません"
+
+#: Filters.py:1147
+msgid "No currencies returned from database"
+msgstr "データベースから通貨が見つかりません"
+
+#: Filters.py:1263
+msgid "Graphing Options:"
+msgstr "グラフのオプション:"
+
+#: Filters.py:1281
+msgid "Show Graph In:"
+msgstr "グラフの表示単位:"
+
+#: Filters.py:1297
+msgid "Showdown Winnings"
+msgstr "ショーダウン勝利:"
+
+#: Filters.py:1305
+msgid "Non-Showdown Winnings"
+msgstr "非ショーダウン勝利:"
+
+#: Filters.py:1312
+msgid "EV"
+msgstr "EV"
+
+#: Filters.py:1434
+msgid "From:"
+msgstr "開始日:"
+
+#: Filters.py:1443
+msgid "To:"
+msgstr "終了日:"
+
+#: Filters.py:1585 Filters.py:1600
+msgid "show all"
+msgstr "すべて表示"
+
+#: Filters.py:1593
+msgid "show"
+msgstr "表示"
+
+#: Filters.py:1615 fpdb.pyw:827
+msgid "Pick a date"
+msgstr ""
+
+#: Filters.py:1634 fpdb.pyw:833
+msgid "Done"
+msgstr "完了"
+
+#: FullTiltPokerSummary.py:162 PokerStarsSummary.py:177
+msgid "parseSummary FAIL"
+msgstr "parseSummary FAIL"
+
+#: FullTiltPokerSummary.py:170
+msgid "FullTiltPokerSummary.parseSummaryXLS: '%s' '%s"
+msgstr "FullTiltPokerSummary.parseSummaryXLS: '%s' '%s"
+
+#: FullTiltPokerSummary.py:207
+msgid "FullTiltPokerSummary.parseSummaryXLS Game '%s' not found"
+msgstr "FullTiltPokerSummary.parseSummaryXLS ゲーム '%s' が見つかりません"
+
+#: FullTiltPokerSummary.py:279
+msgid "FullTiltPokerSummary.parseSummary: '%s'"
+msgstr "FullTiltPokerSummary.parseSummary: '%s'"
+
+#: FullTiltPokerSummary.py:383
+msgid "Unable to locate currency"
+msgstr ""
+
+#: FulltiltToFpdb.py:218
+msgid "FulltiltToFpdb.determineGameType: '%s'"
+msgstr "FulltiltToFpdb.determineGameType: '%s'"
+
+#: FulltiltToFpdb.py:299
+msgid ""
+"FulltiltToFpdb.determineGameType: Lim_Blinds has no lookup for '%s' - '%s'"
+msgstr ""
+
+#: FulltiltToFpdb.py:312
+msgid "FulltiltToFpdb.readHandInfo: '%s'"
+msgstr "FulltiltToFpdb.readHandInfo: '%s'"
+
+#: FulltiltToFpdb.py:348 PokerStarsToFpdb.py:374 PokerTrackerToFpdb.py:415
+#: PokerTrackerToFpdb.py:435 SealsWithClubsToFpdb.py:193
+msgid "Hand '%s' was cancelled."
+msgstr "ハンド '%s' は取り消されました."
+
+#: FulltiltToFpdb.py:472 PokerStarsToFpdb.py:386 WinamaxToFpdb.py:308
+msgid "Hand is not cleanly split into pre and post Summary %s."
+msgstr "ハンドは正常に2分割できませんでした、サマリ %s"
+
+#: FulltiltToFpdb.py:498
+msgid "No players detected in hand %s."
+msgstr "ハンド %s で自動判別できたプレイヤーがいません。"
+
+#: FulltiltToFpdb.py:586
+msgid "%s Failed to detect button (hand #%s cancelled?)"
+msgstr "%s ボタン自動判別に失敗しました (ハンド #%s はキャンセル済かも?)"
+
+#: GuiAutoImport.py:90
+msgid "Time between imports in seconds:"
+msgstr "インポート間隔(秒):"
+
+#: GuiAutoImport.py:122 GuiAutoImport.py:200 GuiAutoImport.py:314
+msgid "Start _Auto Import"
+msgstr "自動インポートを開始する(_A)"
+
+#: GuiAutoImport.py:126
+msgid "Detect Directories"
+msgstr "ディレクトリ自動判別"
+
+#: GuiAutoImport.py:145
+msgid "Auto Import Ready."
+msgstr "自動インポートの準備完了"
+
+#: GuiAutoImport.py:162 fpdb.pyw:760
+msgid "Please choose the path that you want to Auto Import"
+msgstr "自動インポートの対象ディレクトリを選択してください"
+
+#: GuiAutoImport.py:187
+msgid "_Auto Import Running"
+msgstr "自動インポート実行中(_A)"
+
+#: GuiAutoImport.py:198 GuiAutoImport.py:252
+msgid "Stop _Auto Import"
+msgstr "自動インポートを停止する(_A)"
+
+#: GuiAutoImport.py:210
+msgid "Detecting hand history directory for site: '%s'"
+msgstr "ハンド履歴ディレクトリを自動判別しています。ポーカーサイト: '%s'"
+
+#: GuiAutoImport.py:250
+msgid "Global lock taken ... Auto Import Started."
+msgstr "ロックを取得 ... 自動インポートを開始しました。"
+
+#: GuiAutoImport.py:271
+msgid "*** %s was not found"
+msgstr "*** %s は見つかりません"
+
+#: GuiAutoImport.py:275
+msgid "opening pipe to HUD"
+msgstr "HUDへのパイプを開いています"
+
+#: GuiAutoImport.py:287
+msgid "*** GuiAutoImport Error opening pipe:"
+msgstr "*** GuiAutoImport Error opening pipe:"
+
+#: GuiAutoImport.py:291
+msgid "Add %s import directory %s"
+msgstr "%s インポート対象ディレクトリに %s を追加"
+
+#: GuiAutoImport.py:299
+msgid "Auto Import aborted."
+msgstr "自動インポートは中断されました。"
+
+#: GuiAutoImport.py:299
+msgid "Global lock not available."
+msgstr "ロックは有効ではありません"
+
+#: GuiAutoImport.py:305
+msgid "Stopping Auto Import."
+msgstr "自動インポートを停止中。"
+
+#: GuiAutoImport.py:305 fpdb.pyw:1127
+msgid "Global lock released."
+msgstr "ロックを解放しました。"
+
+#: GuiAutoImport.py:307
+msgid "HUD already terminated."
+msgstr "HUDはすでに終了しています"
+
+#: GuiAutoImport.py:307
+msgid "Stop Auto Import"
+msgstr "自動インポートを停止"
+
+#: GuiAutoImport.py:327
+msgid "%s auto-import:"
+msgstr "%s 自動インポート対象:"
+
+#: GuiAutoImport.py:340
+msgid "Browse..."
+msgstr "参照..."
+
+#: GuiBulkImport.py:66 GuiTourneyImport.py:333 Importer.py:670
+msgid "Importing"
+msgstr "インポート中"
+
+#: GuiBulkImport.py:97 GuiBulkImport.py:214
+msgid ""
+"Bulk import done: Stored: %d, Duplicates: %d, Partial: %d, Errors: %d, Time: "
+"%s seconds, Stored/second: %.0f"
+msgstr ""
+"一括インポート完了: 保存済: %d, 重複: %d, 部分的: %d, エラー: %d, 所要時間: %s "
+"秒, 1秒あたり保存件数: %.0f"
+
+#: GuiBulkImport.py:104
+msgid "Import Complete"
+msgstr "インポート完了"
+
+#: GuiBulkImport.py:109
+msgid "bulk import aborted - global lock not available"
+msgstr "一括インポートを中断しました - ロックは無効です"
+
+#: GuiBulkImport.py:146 GuiTourneyImport.py:140 fpdb.pyw:918
+msgid "_Bulk Import"
+msgstr "一括インポート(_B)"
+
+#: GuiBulkImport.py:148 GuiTourneyImport.py:142
+msgid "Import clicked"
+msgstr "インポートがクリックされました"
+
+#: GuiBulkImport.py:158
+msgid "Waiting..."
+msgstr "待機中..."
+
+#: GuiBulkImport.py:186 GuiTourneyImport.py:379 ImapFetcher.py:172
+msgid "USAGE:"
+msgstr "使い方:"
+
+#: GuiDatabase.py:110
+msgid "_Add"
+msgstr "追加(_A)"
+
+#: GuiDatabase.py:114
+msgid "_Refresh"
+msgstr "再表示(_R)"
+
+#: GuiDatabase.py:118
+msgid "Type"
+msgstr ""
+
+#: GuiDatabase.py:119 GuiTourneyPlayerStats.py:81
+msgid "Name"
+msgstr ""
+
+#: GuiDatabase.py:120
+msgid "Description"
+msgstr "詳細"
+
+#: GuiDatabase.py:121 GuiDatabase.py:451 GuiImapFetcher.py:109
+msgid "Username"
+msgstr "ユーザ名"
+
+#: GuiDatabase.py:122 GuiDatabase.py:458 GuiImapFetcher.py:109
+msgid "Password"
+msgstr "パスワード"
+
+#: GuiDatabase.py:123
+msgid "Host"
+msgstr "ホスト"
+
+#: GuiDatabase.py:124
+msgid "Open"
+msgstr ""
+
+#: GuiDatabase.py:125
+msgid "Status"
+msgstr ""
+
+#: GuiDatabase.py:259
+msgid "Testing database connections ... "
+msgstr "データベース接続をテスト中 ... "
+
+#: GuiDatabase.py:286
+msgid "finished."
+msgstr "完了。"
+
+#: GuiDatabase.py:296
+msgid "loadDbs error: "
+msgstr ""
+
+#: GuiDatabase.py:317 GuiDatabase.py:319 GuiRingPlayerStats.py:418
+msgid "error"
+msgstr "エラー"
+
+#: GuiDatabase.py:364
+msgid "trying to connect to:"
+msgstr "接続しています:"
+
+#: GuiDatabase.py:367
+msgid "connected ok"
+msgstr "接続OK"
+
+#: GuiDatabase.py:374
+msgid "not connected but no exception"
+msgstr "接続できませんが例外が上がっていません"
+
+#: GuiDatabase.py:376 fpdb.pyw:1033
+msgid ""
+"MySQL Server reports: Access denied. Are your permissions set correctly?"
+msgstr "MySQL Server reports: パーミッションは正しく設定されていますか?"
+
+#: GuiDatabase.py:380 fpdb.pyw:1035
+msgid "MySQL client reports: 2002 or 2003 error. Unable to connect - "
+msgstr "MySQL client reports: 2002 もしくは 2003 エラー。接続できません - "
+
+#: GuiDatabase.py:381 fpdb.pyw:1036
+msgid "Please check that the MySQL service has been started"
+msgstr "MySQLサービスが起動しているか確認してください"
+
+#: GuiDatabase.py:385 fpdb.pyw:1038
+msgid ""
+"PostgreSQL Server reports: Access denied. Are your permissions set correctly?"
+msgstr ""
+"PostgreSQL Server reports: アクセス拒否。パーミッションは正しく設定されていま"
+"すか?"
+
+#: GuiDatabase.py:388 fpdb.pyw:1040
+msgid "PostgreSQL client reports: Unable to connect - "
+msgstr "PostgreSQL client reports: 接続できません - "
+
+#: GuiDatabase.py:389 fpdb.pyw:1041
+msgid "Please check that the PostgreSQL service has been started"
+msgstr "PostgreSQLサービスが起動しているか確認してください"
+
+#: GuiDatabase.py:399
+msgid "db connection to %s, %s, %s, %s, %s failed: %s"
+msgstr "DB接続  %s, %s, %s, %s, %s 失敗: %s"
+
+#: GuiDatabase.py:407
+msgid "AddDB starting"
+msgstr "AddDB開始"
+
+#: GuiDatabase.py:416
+msgid "Add New Database"
+msgstr "新しいデータベースを追加"
+
+#: GuiDatabase.py:426
+msgid "DB Type"
+msgstr "データベースタイプ"
+
+#: GuiDatabase.py:436
+msgid "DB Name"
+msgstr "データベース名"
+
+#: GuiDatabase.py:444
+msgid "DB Description"
+msgstr "データベース詳細"
+
+#: GuiDatabase.py:465
+msgid "Host Computer"
+msgstr "ホスト"
+
+#: GuiDatabase.py:484
+msgid "addDB.run: response is %s, accept is %s"
+msgstr ""
+
+#: GuiDatabase.py:498
+msgid "start creating new db"
+msgstr ""
+
+#: GuiDatabase.py:517
+msgid "tested new db, result=%s"
+msgstr "新dbテスト result=%s"
+
+#: GuiDatabase.py:520
+msgid "Database created"
+msgstr "データベースが作成されました"
+
+#: GuiDatabase.py:523
+msgid "Database creation failed"
+msgstr "データベース作成に失敗しました"
+
+#: GuiDatabase.py:536
+msgid "check_fields: starting"
+msgstr ""
+
+#: GuiDatabase.py:542
+msgid "No Database Name given"
+msgstr ""
+
+#: GuiDatabase.py:545
+msgid "No Database Description given"
+msgstr ""
+
+#: GuiDatabase.py:548
+msgid "No Username given"
+msgstr ""
+
+#: GuiDatabase.py:551
+msgid "No Password given"
+msgstr ""
+
+#: GuiDatabase.py:554
+msgid "No Host given"
+msgstr ""
+
+#: GuiDatabase.py:568
+msgid "Unknown Database Type selected"
+msgstr ""
+
+#: GuiDatabase.py:572
+msgid "check_fields: open dialog"
+msgstr ""
+
+#: GuiDatabase.py:581
+msgid "Do you want to try again?"
+msgstr "もう一度?"
+
+#: GuiDatabase.py:694 GuiDatabase.py:699 fpdb.pyw:301
+msgid "Maintain Databases"
+msgstr "データベースの保守"
+
+#: GuiGraphViewer.py:42 GuiTourneyGraphViewer.py:47
+msgid ""
+"Failed to load libs for graphing, graphing will not function. Please install "
+"numpy and matplotlib if you want to use graphs."
+msgstr ""
+
+#: GuiGraphViewer.py:43 GuiTourneyGraphViewer.py:48
+msgid ""
+"This is of no consequence for other parts of the program, e.g. import and "
+"HUD are NOT affected by this problem."
+msgstr ""
+
+#: GuiGraphViewer.py:78 GuiTourneyGraphViewer.py:80
+msgid "Refresh _Graph"
+msgstr "グラフの再表示(_G)"
+
+#: GuiGraphViewer.py:80 GuiTourneyGraphViewer.py:82
+msgid "_Export to File"
+msgstr "ファイルにエクスポート(_E)"
+
+#: GuiGraphViewer.py:156 GuiPositionalStats.py:171 GuiRingPlayerStats.py:283
+#: GuiSessionViewer.py:204 GuiTourneyGraphViewer.py:148
+#: GuiTourneyPlayerStats.py:243
+msgid "No sites selected - defaulting to PokerStars"
+msgstr "ポーカーサイトが選択されていません - 初期設定のPokerStarsにします"
+
+#: GuiGraphViewer.py:161 GuiPositionalStats.py:174 GuiRingPlayerStats.py:286
+#: GuiSessionViewer.py:213 GuiTourneyGraphViewer.py:153
+#: GuiTourneyPlayerStats.py:246
+msgid "No player ids found"
+msgstr "プレイヤーIDが見つかりません"
+
+#: GuiGraphViewer.py:166 GuiPositionalStats.py:177 GuiRingPlayerStats.py:289
+#: GuiSessionViewer.py:216
+msgid "No limits found"
+msgstr "リミットが見つかりません"
+
+#: GuiGraphViewer.py:176 GuiTourneyGraphViewer.py:163
+msgid "Graph generated in: %s"
+msgstr "グラフを描画しました: %s秒"
+
+#: GuiGraphViewer.py:179 GuiGraphViewer.py:207 GuiGraphViewer.py:223
+msgid "Hands"
+msgstr "ハンド数"
+
+#: GuiGraphViewer.py:184 GuiTourneyGraphViewer.py:171
+msgid "No Data for Player(s) Found"
+msgstr "プレイヤーのデータが見つかりません"
+
+#: GuiGraphViewer.py:207 GuiGraphViewer.py:223 GuiTourneyGraphViewer.py:194
+#: GuiTourneyGraphViewer.py:204
+msgid "Profit"
+msgstr "収益"
+
+#: GuiGraphViewer.py:208 GuiGraphViewer.py:218
+msgid "Showdown"
+msgstr "ショーダウン"
+
+#: GuiGraphViewer.py:209 GuiGraphViewer.py:220
+msgid "Non-showdown"
+msgstr "非ショーダウン"
+
+#: GuiGraphViewer.py:214
+msgid "Profit graph for ring games"
+msgstr "収益グラフ"
+
+#: GuiGraphViewer.py:222
+msgid "All-in EV"
+msgstr "オールインEV"
+
+#: GuiGraphViewer.py:329 GuiTourneyGraphViewer.py:256
+msgid "Please choose the directory you wish to export to:"
+msgstr "export先のディレクトリを選択してください"
+
+#: GuiGraphViewer.py:343 GuiTourneyGraphViewer.py:269
+msgid "Closed, no graph exported"
+msgstr ""
+
+#: GuiGraphViewer.py:357 GuiTourneyGraphViewer.py:287
+msgid "Graph created"
+msgstr "グラフは描画されました"
+
+#: GuiHandViewer.py:141
+msgid "Load Hands"
+msgstr "ハンドを読込"
+
+#: GuiImapFetcher.py:39
+msgid "To cancel just close this tab."
+msgstr "キャンセルするにはこのタブを閉じてください。"
+
+#: GuiImapFetcher.py:42
+msgid "_Save"
+msgstr "保存(_S)"
+
+#: GuiImapFetcher.py:46
+msgid "_Import All"
+msgstr "すべてインポート(_I)"
+
+#: GuiImapFetcher.py:50
+msgid "If you change the config you must save before importing"
+msgstr "設定変更した場合はインポートをする前に設定を保存してください"
+
+#: GuiImapFetcher.py:88
+msgid "Starting import. Please wait."
+msgstr "インポート開始。お待ちください。"
+
+#: GuiImapFetcher.py:93
+msgid "Finished import without error."
+msgstr "インポートが正常終了しました。"
+
+#: GuiImapFetcher.py:96
+msgid ""
+"Login to mailserver failed: please check mailserver, username and password"
+msgstr ""
+"メールサーバへのログインに失敗しました: メールサーバ・ユーザ名・パスワードを"
+"確認してください"
+
+#: GuiImapFetcher.py:99
+msgid ""
+"Could not connect to mailserver: check mailserver and use SSL settings and "
+"internet connectivity"
+msgstr ""
+"メールサーバに接続できません: メールサーバの設定・SSL接続の設定・インターネッ"
+"ト接続を確認してください"
+
+#: GuiImapFetcher.py:109
+msgid "Fetch Type"
+msgstr "形式"
+
+#: GuiImapFetcher.py:109
+msgid "Mail Folder"
+msgstr "IMAPフォルダ"
+
+#: GuiImapFetcher.py:109
+msgid "Mail Server"
+msgstr "メールサーバ(IMAP)"
+
+#: GuiImapFetcher.py:109
+msgid "Use SSL"
+msgstr "SSL接続を利用する"
+
+#: GuiImapFetcher.py:109 GuiTourneyPlayerStats.py:74 fpdb.pyw:673
+msgid "Site"
+msgstr "ポーカーサイト"
+
+#: GuiImapFetcher.py:141
+msgid "Yes"
+msgstr "はい"
+
+#: GuiImapFetcher.py:142
+msgid "No"
+msgstr "いいえ"
+
+#: GuiLogView.py:41
+msgid "Fpdb Errors"
+msgstr "FPDBエラー"
+
+#: GuiLogView.py:42
+msgid "Fpdb Log"
+msgstr "FPDBログ"
+
+#: GuiLogView.py:43
+msgid "HUD Errors"
+msgstr "HUDエラー"
+
+#: GuiLogView.py:44
+msgid "HUD Log"
+msgstr "HUDログ"
+
+#: GuiLogView.py:45
+msgid "fpdb.exe log"
+msgstr "fpdb.exeログ"
+
+#: GuiLogView.py:46
+msgid "HUD_main.exe Log"
+msgstr "HUD_main.exeログ"
+
+#: GuiLogView.py:57
+msgid "Log Messages"
+msgstr "ログメッセージ"
+
+#: GuiLogView.py:104
+msgid "Copy to Clipboard"
+msgstr "クリップボードにコピー"
+
+#: GuiLogView.py:117
+msgid "Date/Time"
+msgstr "日時"
+
+#: GuiLogView.py:118
+msgid "Module"
+msgstr "モジュール"
+
+#: GuiLogView.py:119
+msgid "Level"
+msgstr "重要度レベル"
+
+#: GuiLogView.py:120
+msgid "Text"
+msgstr "ログテキスト"
+
+#: GuiLogView.py:236 GuiLogView.py:241
+msgid "Log Viewer"
+msgstr "ログビューア"
+
+#: GuiPositionalStats.py:140
+msgid "activesite set to %s"
+msgstr ""
+
+#: GuiPositionalStats.py:328
+msgid "Positional Stats page displayed in %4.2f seconds"
+msgstr "ポジション別統計ページの表示に %4.2f 秒かかりました"
+
+#: GuiPrefs.py:31
+msgid "Databases"
+msgstr "データベース"
+
+#: GuiPrefs.py:31
+msgid "General"
+msgstr "全般"
+
+#: GuiPrefs.py:32
+msgid "Import"
+msgstr "インポート"
+
+#: GuiPrefs.py:32 fpdb.pyw:1134
+msgid "HUD"
+msgstr "HUD"
+
+#: GuiPrefs.py:34
+msgid "Popup Windows"
+msgstr "ポップアップウィンドウ"
+
+#: GuiPrefs.py:34
+msgid "Window"
+msgstr "ウィンドウ"
+
+#: GuiPrefs.py:35
+msgid "Popup Name"
+msgstr "ポップアップ名"
+
+#: GuiPrefs.py:35
+msgid "Stat"
+msgstr "統計"
+
+#: GuiPrefs.py:36 GuiPrefs.py:42
+msgid "Stat Name"
+msgstr ""
+
+#: GuiPrefs.py:37
+msgid "Auxiliary Windows"
+msgstr "外部ウィンドウ"
+
+#: GuiPrefs.py:37
+msgid "Stud mucked"
+msgstr "Stud mucked"
+
+#: GuiPrefs.py:38
+msgid "Hand History Converters"
+msgstr "ハンド履歴変換"
+
+#: GuiPrefs.py:38
+msgid "Mucked"
+msgstr "Mucked"
+
+#: GuiPrefs.py:39
+msgid "Field Type"
+msgstr "フィールドのデータ型"
+
+#: GuiPrefs.py:39 fpdb.pyw:1164
+msgid "Ring Player Stats"
+msgstr "リングプレイヤー統計"
+
+#: GuiPrefs.py:40
+msgid "Column Heading"
+msgstr "列見出し"
+
+#: GuiPrefs.py:40
+msgid "Left/Right Align"
+msgstr "左右調整"
+
+#: GuiPrefs.py:41
+msgid "Show in Position Stats"
+msgstr ""
+
+#: GuiPrefs.py:41
+msgid "Show in Summaries"
+msgstr ""
+
+#: GuiPrefs.py:42
+msgid "Format"
+msgstr "書式"
+
+#: GuiPrefs.py:72
+msgid "Setting"
+msgstr "設定項目"
+
+#: GuiPrefs.py:78
+msgid "Value (double-click to change)"
+msgstr "設定値(ダブルクリックで変更)"
+
+#: GuiPrefs.py:179 GuiPrefs.py:184 fpdb.pyw:277
+msgid "Advanced Preferences"
+msgstr "高度な設定"
+
+#: GuiRingPlayerStats.py:42
+msgid "Type of Game"
+msgstr "ゲームタイプ"
+
+#: GuiRingPlayerStats.py:44
+msgid "Position"
+msgstr "ポジション"
+
+#: GuiRingPlayerStats.py:45 Stats.py:274 Stats.py:283
+msgid "Player Name"
+msgstr "プレイヤー名"
+
+#: GuiRingPlayerStats.py:46 Stats.py:473 Stats.py:482
+msgid "Number of hands seen"
+msgstr "配られたハンド数"
+
+#: GuiRingPlayerStats.py:47
+msgid "Number of Seats"
+msgstr "席数"
+
+#: GuiRingPlayerStats.py:48 Stats.py:295 Stats.py:302
+msgid "Voluntarily put in preflop/3rd street %"
+msgstr "プリフロップ/3rdストリートでの自主的参加率"
+
+#: GuiRingPlayerStats.py:49 Stats.py:314 Stats.py:322
+msgid "Preflop/3rd street raise %"
+msgstr "プリフロップ/3rdストリート)レイズ率"
+
+#: GuiRingPlayerStats.py:50 Stats.py:579 Stats.py:586
+msgid "% 3 bet preflop/3rd street"
+msgstr "3bet率(プリフロップ/3rdストリート)"
+
+#: GuiRingPlayerStats.py:51 Stats.py:597 Stats.py:604
+msgid "% 4 bet preflop/3rd street"
+msgstr "4bet率(プリフロップ/3rdストリート)"
+
+#: GuiRingPlayerStats.py:52 Stats.py:844 Stats.py:851
+msgid "% fold to 3 bet preflop/3rd street"
+msgstr "3betに対するフォールド率"
+
+#: GuiRingPlayerStats.py:53 Stats.py:862 Stats.py:869
+msgid "% fold to 4 bet preflop/3rd street"
+msgstr "4betに対するフォールド率"
+
+#: GuiRingPlayerStats.py:54 Stats.py:1001 Stats.py:1008
+msgid "Aggression factor"
+msgstr "アグレッシブ係数(AF)"
+
+#: GuiRingPlayerStats.py:55 Stats.py:977 Stats.py:984
+msgid "Post-flop aggression frequency"
+msgstr "ポストフロップでのアグレッシブ度"
+
+#: GuiRingPlayerStats.py:56 Stats.py:1044 Stats.py:1051
+msgid "% continuation bet"
+msgstr "コンディニュエーションベット率(CB)"
+
+#: GuiRingPlayerStats.py:57
+msgid "% Raise First In / % Raise when first to bet"
+msgstr "% オープンレイズ率 / % "
+
+#: GuiRingPlayerStats.py:58 Stats.py:494
+msgid "% steal attempted"
+msgstr "% スチール率"
+
+#: GuiRingPlayerStats.py:59 Stats.py:826 Stats.py:833
+msgid "% called a raise preflop"
+msgstr "% プリフロップでのレイズへのコール率"
+
+#: GuiRingPlayerStats.py:60 Stats.py:442 Stats.py:451
+msgid "Flop/4th street seen %"
+msgstr "フロップ/4thストリートを見た %"
+
+#: GuiRingPlayerStats.py:61
+msgid "Saw Showdown / River"
+msgstr "ショーダウンを見た / リバー"
+
+#: GuiRingPlayerStats.py:62 Stats.py:334 Stats.py:342
+msgid "% went to showdown when seen flop/4th street"
+msgstr "% フロップ/4thストリート以降のショウダウン率"
+
+#: GuiRingPlayerStats.py:63 Stats.py:880 Stats.py:887
+msgid "% won money when seen flop/4th street"
+msgstr "% フロップ/4thストリート以降の勝率"
+
+#: GuiRingPlayerStats.py:64 Stats.py:354 Stats.py:362
+msgid "% won some money at showdown"
+msgstr "% ショーダウン勝率"
+
+#: GuiRingPlayerStats.py:65 Stats.py:898 Stats.py:905
+msgid "Aggression frequency flop/4th street"
+msgstr "フロップ/4thストリートのアグレッシブ頻度"
+
+#: GuiRingPlayerStats.py:66 Stats.py:916 Stats.py:923
+msgid "Aggression frequency turn/5th street"
+msgstr "ターン/5thストリートのアグレッシブ頻度"
+
+#: GuiRingPlayerStats.py:67 Stats.py:934 Stats.py:941
+msgid "Aggression frequency river/6th street"
+msgstr "リバー/6thストリートのアグレッシブ頻度"
+
+#: GuiRingPlayerStats.py:69 Stats.py:148 Stats.py:150
+msgid "Total Profit"
+msgstr "総収益"
+
+#: GuiRingPlayerStats.py:70 Stats.py:398 Stats.py:407
+msgid "Big blinds won per 100 hands"
+msgstr "100ハンドあたりのビッグブラインド単位での収益"
+
+#: GuiRingPlayerStats.py:71
+msgid "Amount of rake paid"
+msgstr "支払ったレーキ総額"
+
+#: GuiRingPlayerStats.py:72
+msgid "Big blinds won per 100 hands when excluding rake"
+msgstr "レーキを除いた100ハンドあたりのビッグブラインド単位での収益"
+
+#: GuiRingPlayerStats.py:73 GuiRingPlayerStats.py:74
+msgid "Measure of uncertainty"
+msgstr "バラツキの尺度"
+
+#: GuiRingPlayerStats.py:124 GuiSessionViewer.py:82
+msgid "Hand Breakdown for all levels listed above"
+msgstr "上に表示された全レベルのハンド集計"
+
+#: GuiRingPlayerStats.py:145
+msgid "_Filters"
+msgstr "フィルタ(_F)"
+
+#: GuiRingPlayerStats.py:147 GuiTourneyPlayerStats.py:67
+msgid "_Refresh Stats"
+msgstr "統計を再計算(_R)"
+
+#: GuiRingPlayerStats.py:175
+msgid "Pocket pairs"
+msgstr "ポケットペア"
+
+#: GuiRingPlayerStats.py:176
+msgid "Suited"
+msgstr "スーテッド"
+
+#: GuiRingPlayerStats.py:177
+msgid "Suited connectors"
+msgstr "スーテッドコネクタ"
+
+#: GuiRingPlayerStats.py:178
+msgid "Offsuit"
+msgstr "オフスート"
+
+#: GuiRingPlayerStats.py:179
+msgid "Offsuit connectors"
+msgstr "オフスートコネクタ"
+
+#: GuiRingPlayerStats.py:354 GuiSessionViewer.py:249
+#: GuiTourneyPlayerStats.py:218
+msgid "Stats page displayed in %4.2f seconds"
+msgstr "統計ページ表示に %4.2f 秒かかりました"
+
+#: GuiRingPlayerStats.py:704
+msgid "Detailed Filters"
+msgstr "詳細なフィルタ"
+
+#: GuiRingPlayerStats.py:713
+msgid "Hand Filters:"
+msgstr "ハンドフィルタ:"
+
+#: GuiRingPlayerStats.py:729
+msgid "between"
+msgstr " "
+
+#: GuiRingPlayerStats.py:730
+msgid "and"
+msgstr "から"
+
+#: GuiRingPlayerStats.py:755
+msgid "Restrict to hand types:"
+msgstr "制限するハンド種別:"
+
+#: GuiSessionViewer.py:41
+msgid "Failed to load numpy and/or matplotlib in Session Viewer"
+msgstr ""
+
+#: GuiSessionViewer.py:153 GuiStove.py:70 fpdb.pyw:1429
+msgid "FPDB WARNING"
+msgstr "FPDB WARNING"
+
+#: GuiSessionViewer.py:207
+msgid "No games found"
+msgstr "ゲームが見つかりません"
+
+#: GuiSessionViewer.py:210
+msgid "No currencies found"
+msgstr "通貨が見つかりません"
+
+#: GuiSessionViewer.py:423
+msgid "all"
+msgstr ""
+
+#: GuiSessionViewer.py:452 WinTables.py:88 fpdb_prerun.py:101
+msgid "Error:"
+msgstr "エラー:"
+
+#: GuiSessionViewer.py:468
+msgid "Session candlestick graph"
+msgstr "セッションのローソク足グラフ"
+
+#: GuiSessionViewer.py:471
+msgid "Sessions"
+msgstr ""
+
+#: GuiStove.py:63
+msgid ""
+"Stove is a GUI mockup of a EV calculation page, and completely non "
+"functional."
+msgstr "ストーブはEV計算ページのGUIモックアップで、まったく使い物になりません。"
+
+#: GuiStove.py:64
+msgid ""
+"Unless you are interested in developing this feature, please ignore this "
+"page."
+msgstr "この機能の開発に興味がない場合は、このページを無視してください。"
+
+#: GuiStove.py:65
+msgid ""
+"If you are interested in developing the code further see GuiStove.py and "
+"Stove.py."
+msgstr "もし開発に興味があればGuiStove.pyとStove.pyをご覧ください。"
+
+#: GuiStove.py:66
+msgid "Thank you"
+msgstr "ありがとうございました"
+
+#: GuiStove.py:97
+msgid "Draw"
+msgstr "ドロー"
+
+#: GuiStove.py:104
+msgid "Stud"
+msgstr "スタッド"
+
+#: GuiStove.py:115
+msgid "Flop"
+msgstr "フロップ"
+
+#: GuiStove.py:134
+msgid "Gametype"
+msgstr ""
+
+#: GuiStove.py:137
+msgid "Players"
+msgstr "プレイヤー"
+
+#: GuiStove.py:143
+msgid "Input:"
+msgstr ""
+
+#: GuiStove.py:144
+msgid "Output:"
+msgstr ""
+
+#: GuiStove.py:170
+msgid "Board:"
+msgstr "ボード:"
+
+#: GuiStove.py:182
+msgid "Player1:"
+msgstr "プレイヤー1:"
+
+#: GuiStove.py:197
+msgid "Player2:"
+msgstr "プレイヤー2:"
+
+#: GuiStove.py:211
+msgid "Results"
+msgstr "結果"
+
+#: GuiStove.py:221 GuiStove.py:225 GuiStove.py:229 GuiStove.py:233
+msgid "called"
+msgstr ""
+
+#: GuiTourneyGraphViewer.py:167 GuiTourneyGraphViewer.py:194
+#: GuiTourneyGraphViewer.py:204
+msgid "Tournaments"
+msgstr "トーナメント数"
+
+#: GuiTourneyGraphViewer.py:201
+msgid "Tournament Results"
+msgstr "トーナメント結果"
+
+#: GuiTourneyImport.py:76 GuiTourneyImport.py:421
+msgid "Tourney import done: Stored: %d, Errors: %d in %s seconds - %.0f/sec"
+msgstr "トーナメントのインポート完了: 保存: %d, エラー: %d を %s 秒 - %.0f/秒"
+
+#: GuiTourneyImport.py:82
+msgid "tourney import aborted - global lock not available"
+msgstr "トーナメントのインポートが中断されました - ロックが取得できません"
+
+#: GuiTourneyImport.py:111
+msgid "Site filter:"
+msgstr "ポーカーサイトフィルタ:"
+
+#: GuiTourneyImport.py:186 Importer.py:241
+msgid "Attempted to add non-directory '%s' as an import directory"
+msgstr ""
+
+#: GuiTourneyImport.py:210
+msgid "Tourney Summary Import started at %s - %d files to import."
+msgstr "トーナメントサマリのインポートを開始 %s - %d ファイルをインポート。"
+
+#: GuiTourneyImport.py:255 Importer.py:609
+msgid "TourneyImport: Removing text < 100 characters from end of file"
+msgstr ""
+
+#: GuiTourneyImport.py:259 Importer.py:613
+msgid "TourneyImport: Removing text < 100 characters from start of file"
+msgstr ""
+
+#: GuiTourneyImport.py:269
+msgid "Tourney import parse error in file: %s"
+msgstr ""
+
+#: GuiTourneyImport.py:272 ImapFetcher.py:159 Importer.py:575
+msgid "Finished importing %s/%s tournament summaries"
+msgstr ""
+
+#: GuiTourneyImport.py:317 fpdb.pyw:326
+msgid "Number of Tourneys:"
+msgstr "トーナメント数:"
+
+#: GuiTourneyImport.py:380 GuiTourneyImport.py:381 GuiTourneyImport.py:382
+msgid "Filename"
+msgstr "ファイル名"
+
+#: GuiTourneyImport.py:398 ImapFetcher.py:176
+msgid "Need to define a converter"
+msgstr ""
+
+#: GuiTourneyImport.py:406
+msgid "Need a filename to import"
+msgstr ""
+
+#: GuiTourneyPlayerStats.py:76
+msgid "Cat."
+msgstr ""
+
+#: GuiTourneyPlayerStats.py:77
+msgid "Limit"
+msgstr ""
+
+#: GuiTourneyPlayerStats.py:78
+msgid "Curr."
+msgstr "通貨"
+
+#: GuiTourneyPlayerStats.py:79
+msgid "BuyIn"
+msgstr "バイイン"
+
+#: GuiTourneyPlayerStats.py:80
+msgid "Fee"
+msgstr "フィー"
+
+#: GuiTourneyPlayerStats.py:82
+msgid "#"
+msgstr ""
+
+#: GuiTourneyPlayerStats.py:83
+msgid "ITM%"
+msgstr "ITM%"
+
+#: GuiTourneyPlayerStats.py:84
+msgid "1st"
+msgstr "1位"
+
+#: GuiTourneyPlayerStats.py:85
+msgid "2nd"
+msgstr "2位"
+
+#: GuiTourneyPlayerStats.py:86
+msgid "3rd"
+msgstr "3位"
+
+#: GuiTourneyPlayerStats.py:87
+msgid "Rank?"
+msgstr "順位?"
+
+#: GuiTourneyPlayerStats.py:88
+msgid "Spent"
+msgstr ""
+
+#: GuiTourneyPlayerStats.py:89
+msgid "Won"
+msgstr ""
+
+#: GuiTourneyPlayerStats.py:90
+msgid "ROI%"
+msgstr "ROI%"
+
+#: GuiTourneyPlayerStats.py:91
+msgid "$/Tour"
+msgstr "$/トーナメント"
+
+#: GuiTourneyViewer.py:39
+msgid "Enter the tourney number you want to display:"
+msgstr "表示したいトーナメントIDを入力:"
+
+#: GuiTourneyViewer.py:45
+msgid "_Display"
+msgstr "表示(_D)"
+
+#: GuiTourneyViewer.py:52
+msgid "Display _Player"
+msgstr "プレイヤーを表示(_P)"
+
+#: GuiTourneyViewer.py:67
+msgid "Tournament not found."
+msgstr "トーナメントが見つかりません。"
+
+#: GuiTourneyViewer.py:67 GuiTourneyViewer.py:95
+msgid "Please ensure you imported it and selected the correct site."
+msgstr ""
+
+#: GuiTourneyViewer.py:95
+msgid "Player or tournament not found."
+msgstr "プレイヤーまたはトーナメントが見つかりません。"
+
+#: GuiTourneyViewer.py:109
+msgid "N/A"
+msgstr "N/A"
+
+#: GuiTourneyViewer.py:130
+msgid "invalid entry in tourney number - must enter numbers only"
+msgstr ""
+
+#: HUD_main.pyw:76 HUD_main.pyw:84 HUD_run_me.py:45
+msgid "HUD_main starting"
+msgstr "HUD_main 開始"
+
+#: HUD_main.pyw:76 HUD_run_me.py:51 TournamentTracker.py:307
+msgid "Using db name = %s"
+msgstr "db name = %s を使用"
+
+#: HUD_main.pyw:80 TournamentTracker.py:39 fpdb.pyw:1322
+msgid "Note: error output is being diverted to %s."
+msgstr ""
+
+#: HUD_main.pyw:81 TournamentTracker.py:40 fpdb.pyw:1323
+msgid "Any major error will be reported there _only_."
+msgstr ""
+
+#: HUD_main.pyw:118 HUD_run_me.py:62
+msgid "Closing this window will exit from the HUD."
+msgstr "このウィンドウを閉じるとHUDを終了"
+
+#: HUD_main.pyw:131
+msgid "client_moved event"
+msgstr ""
+
+#: HUD_main.pyw:135
+msgid "client_resized event"
+msgstr ""
+
+#: HUD_main.pyw:139
+msgid "client_destroyed event"
+msgstr ""
+
+#: HUD_main.pyw:146
+msgid "Table title changed, killing current hud"
+msgstr "卓タイトルが変更されました、現在のHUDを閉じています"
+
+#: HUD_main.pyw:150
+msgid "Moved to a new table, killing current hud"
+msgstr "新しい卓へ移動しました、現在のHUDを閉じています"
+
+#: HUD_main.pyw:154 fpdb.pyw:1102
+msgid "Quitting normally"
+msgstr "通常終了しています"
+
+#: HUD_main.pyw:158
+msgid "kill_hud event"
+msgstr "kill_hud event"
+
+#: HUD_main.pyw:162
+msgid "blacklist_hud event"
+msgstr "blacklist_hud event"
+
+#: HUD_main.pyw:206
+msgid "No enabled sites found"
+msgstr "有効なポーカーサイトがありません"
+
+#: HUD_main.pyw:214
+msgid "Aux disabled for site %s"
+msgstr "Auxはポーカーサイト%sでは無効"
+
+#: HUD_main.pyw:230
+msgid "Received hand no %s"
+msgstr "ハンドNO %s を受信しました"
+
+#: HUD_main.pyw:261
+msgid "database error: skipping %s"
+msgstr "データベースエラー: %s をスキップ"
+
+#: HUD_main.pyw:344
+msgid "%s was not found"
+msgstr "%s は見つかりません"
+
+#: HUD_main.pyw:345
+msgid "will not send hand"
+msgstr ""
+
+#: HUD_main.pyw:372
+msgid "hud not created yet, because hero is not seated for this hand"
+msgstr ""
+
+#: HUD_main.pyw:382
+msgid "HUD create: table name %s not found, skipping."
+msgstr "HUD create: 卓名 %s が見つかりません、スキップします。"
+
+#: HUD_main.pyw:394
+msgid "Table \"%s\" no longer exists"
+msgstr "卓 \"%s\" が存在しません"
+
+#: HUD_main.pyw:420
+msgid "Error resizing HUD for table: %s."
+msgstr "HUDのサイズ変更エラー 卓: %s。"
+
+#: HUD_main.pyw:431
+msgid "Error moving HUD for table: %s."
+msgstr "HUDの卓移動エラー 卓: %s。"
+
+#: HUD_main.pyw:445
+msgid "Error killing HUD for table: %s."
+msgstr "HUDの終了エラー 卓: %s。"
+
+#: HUD_main.pyw:470
+msgid "Error creating HUD for hand %s."
+msgstr "HUD作成エラー ハンド %s。"
+
+#: HUD_main.pyw:482
+msgid "Error updating HUD for hand %s."
+msgstr "HUD更新エラー ハンド %s。"
+
+#: HUD_run_me.py:66
+msgid "HUD Main Window"
+msgstr "HUDメインウィンドウ"
+
+#: Hand.py:184
+msgid "BB"
+msgstr "BB"
+
+#: Hand.py:185
+msgid "SB"
+msgstr "SB"
+
+#: Hand.py:186
+msgid "BUTTON POS"
+msgstr "BUTTON POS"
+
+#: Hand.py:187
+msgid "HAND NO."
+msgstr "HAND NO."
+
+#: Hand.py:188 TourneySummary.py:157
+msgid "SITE"
+msgstr "SITE"
+
+#: Hand.py:189
+msgid "TABLE NAME"
+msgstr "TABLE NAME"
+
+#: Hand.py:190 TourneySummary.py:167
+msgid "HERO"
+msgstr "HERO"
+
+#: Hand.py:191 TourneySummary.py:168
+msgid "MAX SEATS"
+msgstr "MAX SEATS"
+
+#: Hand.py:192
+msgid "LEVEL"
+msgstr "LEVEL"
+
+#: Hand.py:193 TourneySummary.py:173
+msgid "MIXED"
+msgstr "MIXED"
+
+#: Hand.py:194
+msgid "LAST BET"
+msgstr "LAST BET"
+
+#: Hand.py:195
+msgid "ACTION STREETS"
+msgstr "ACTION STREETS"
+
+#: Hand.py:196
+msgid "STREETS"
+msgstr "STREETS"
+
+#: Hand.py:197
+msgid "ALL STREETS"
+msgstr "ALL STREETS"
+
+#: Hand.py:198
+msgid "COMMUNITY STREETS"
+msgstr "COMMUNITY STREETS"
+
+#: Hand.py:199
+msgid "HOLE STREETS"
+msgstr "HOLE STREETS"
+
+#: Hand.py:200
+msgid "COUNTED SEATS"
+msgstr "COUNTED SEATS"
+
+#: Hand.py:201
+msgid "DEALT"
+msgstr "DEALT"
+
+#: Hand.py:202
+msgid "SHOWN"
+msgstr "SHOWN"
+
+#: Hand.py:203
+msgid "MUCKED"
+msgstr "MUCKED"
+
+#: Hand.py:204
+msgid "TOTAL POT"
+msgstr "TOTAL POT"
+
+#: Hand.py:205
+msgid "TOTAL COLLECTED"
+msgstr "TOTAL COLLECTED"
+
+#: Hand.py:206
+msgid "RAKE"
+msgstr "RAKE"
+
+#: Hand.py:207 TourneySummary.py:158
+msgid "START TIME"
+msgstr "START TIME"
+
+#: Hand.py:208
+msgid "TOURNAMENT NO"
+msgstr "TOURNAMENT NO"
+
+#: Hand.py:209 TourneySummary.py:163
+msgid "TOURNEY ID"
+msgstr "TOURNEY ID"
+
+#: Hand.py:210 TourneySummary.py:162
+msgid "TOURNEY TYPE ID"
+msgstr "TOURNEY TYPE ID"
+
+#: Hand.py:211 TourneySummary.py:164
+msgid "BUYIN"
+msgstr "BUYIN"
+
+#: Hand.py:212
+msgid "BUYIN CURRENCY"
+msgstr "BUYIN CURRENCY"
+
+#: Hand.py:213
+msgid "BUYIN CHIPS"
+msgstr "BUYIN CHIPS"
+
+#: Hand.py:214 TourneySummary.py:165
+msgid "FEE"
+msgstr "FEE"
+
+#: Hand.py:215
+msgid "IS REBUY"
+msgstr "IS REBUY"
+
+#: Hand.py:216
+msgid "IS ADDON"
+msgstr "IS ADDON"
+
+#: Hand.py:217
+msgid "IS KO"
+msgstr "IS KO"
+
+#: Hand.py:218 TourneySummary.py:185
+msgid "KO BOUNTY"
+msgstr "KO BOUNTY"
+
+#: Hand.py:219
+msgid "IS MATRIX"
+msgstr "IS MATRIX"
+
+#: Hand.py:220
+msgid "IS SHOOTOUT"
+msgstr "IS SHOOTOUT"
+
+#: Hand.py:223 TourneySummary.py:197
+msgid "PLAYERS"
+msgstr "PLAYERS"
+
+#: Hand.py:224
+msgid "STACKS"
+msgstr "STACKS"
+
+#: Hand.py:225
+msgid "POSTED"
+msgstr "POSTED"
+
+#: Hand.py:226
+msgid "POT"
+msgstr "POT"
+
+#: Hand.py:227
+msgid "SEATING"
+msgstr "SEATING"
+
+#: Hand.py:228
+msgid "GAMETYPE"
+msgstr "GAMETYPE"
+
+#: Hand.py:229
+msgid "ACTION"
+msgstr "ACTION"
+
+#: Hand.py:230
+msgid "COLLECTEES"
+msgstr "COLLECTEES"
+
+#: Hand.py:231
+msgid "BETS"
+msgstr "BETS"
+
+#: Hand.py:232
+msgid "BOARD"
+msgstr "BOARD"
+
+#: Hand.py:233
+msgid "DISCARDS"
+msgstr "DISCARDS"
+
+#: Hand.py:234
+msgid "HOLECARDS"
+msgstr "HOLECARDS"
+
+#: Hand.py:235
+msgid "TOURNEYS PLAYER IDS"
+msgstr "TOURNEYS PLAYER IDS"
+
+#: Hand.py:267
+msgid "Hand.addHoleCards: '%s': Major failure while adding holecards: '%s'"
+msgstr "Hand.addHoleCards: '%s': ホールカード追加中に失敗 '%s'"
+
+#: Hand.py:589
+msgid "First 100 characters: %s"
+msgstr "最初の100文字: %s"
+
+#: Hand.py:589
+msgid "Streets didn't match - Assuming hand '%s' was cancelled."
+msgstr ""
+
+#: Hand.py:598
+msgid "Hand.%s: '%s' unknown player: '%s'"
+msgstr ""
+
+#: Hand.py:696
+msgid "%s %s calls %s"
+msgstr ""
+
+#: Hand.py:783
+msgid "%s %s raise %s"
+msgstr ""
+
+#: Hand.py:794
+msgid "%s %s bets %s"
+msgstr ""
+
+#: Hand.py:817
+msgid "%s %s folds"
+msgstr ""
+
+#: Hand.py:826
+msgid "%s %s checks"
+msgstr ""
+
+#: Hand.py:885
+msgid "Less than 2 players - Assuming hand '%s' was cancelled."
+msgstr ""
+
+#: Hand.py:1053
+msgid ""
+"*** ERROR - HAND: calling writeGameLine with unexpected STARTTIME value, "
+"expecting datetime.date object, received:"
+msgstr "*** ERROR - HAND: writeGameLine が予期せぬ STARTTIME value, expecting datetime.date object, received で呼び出されました:"
+
+#: Hand.py:1054
+msgid ""
+"*** Make sure your HandHistoryConverter is setting hand.startTime properly!"
+msgstr "*** HandHistoryConverter が hand.startTime を正しく設定しているか確認してください!"
+
+#: Hand.py:1055
+msgid "*** Game String:"
+msgstr "*** Game String:"
+
+#: Hand.py:1143
+msgid "HoldemOmaha hand initialised for %s"
+msgstr "HoldemOmaha ハンド初期化 %s"
+
+#: Hand.py:1146
+msgid "Neither HHC nor DB+handID provided"
+msgstr "HHCもDB+handIDも用意されていません"
+
+#: Hand.py:1434
+msgid "Street 'DEAL' is empty. Was hand '%s' cancelled?"
+msgstr ""
+
+#: Hand.py:1690
+msgid "%s %s completes %s"
+msgstr "%s %s がコンプリート %s"
+
+#: Hand.py:1712
+msgid "Bringin: %s, %s"
+msgstr "ブリングイン: %s, %s"
+
+#: Hand.py:1907
+msgid ""
+"join_holecards: # of holecards should be either < 4, 4 or 7 - 5 and 6 should "
+"be impossible for anyone who is not a hero"
+msgstr "join_holecards: ホールカードは4枚以下か7枚であるべきです。Hero以外では5枚や6枚はあり得ません"
+
+#: Hand.py:1910
+msgid "join_holecards: Player '%s' appears not to have been dealt a card"
+msgstr "join_holecards: プレイヤー '%s' は存在していますが、カードが配られていません"
+
+#: Hand.py:1983 Hand.py:2001 Hand.py:2014
+msgid "Pot.end(): '%s': Major failure while calculating pot: '%s'"
+msgstr ""
+
+#: Hand.py:2030
+msgid "Error in printing Hand object"
+msgstr ""
+
+#: HandHistoryConverter.py:125
+msgid "Failed sanity check"
+msgstr ""
+
+#: HandHistoryConverter.py:133
+msgid "Hands list is:"
+msgstr ""
+
+#: HandHistoryConverter.py:134
+msgid "Parsing %d hands"
+msgstr ""
+
+#: HandHistoryConverter.py:150
+msgid "FpdbParseError for file '%s'"
+msgstr ""
+
+#: HandHistoryConverter.py:160
+msgid "Removing partially written hand & resetting index"
+msgstr ""
+
+#: HandHistoryConverter.py:163
+msgid "Read %d hands (%d failed) in %.3f seconds"
+msgstr ""
+
+#: HandHistoryConverter.py:169
+msgid "Summary file '%s' correctly parsed (took %.3f seconds)"
+msgstr ""
+
+#: HandHistoryConverter.py:171
+msgid "Error converting summary file '%s' (took %.3f seconds)"
+msgstr ""
+
+#: HandHistoryConverter.py:207
+msgid "Read no hands from file: '%s'"
+msgstr ""
+
+#: HandHistoryConverter.py:218
+msgid "Removing text < 50 characters & resetting index"
+msgstr ""
+
+#: HandHistoryConverter.py:223
+msgid "Could not identify as a %s hand"
+msgstr ""
+
+#: HandHistoryConverter.py:255 HandHistoryConverter.py:262
+msgid "%s Unsupported game type: %s"
+msgstr ""
+
+#: HandHistoryConverter.py:420
+msgid "hhc.getRake(): '%s': Amount collected (%s) is greater than the pot (%s)"
+msgstr ""
+
+#: HandHistoryConverter.py:423
+msgid "hhc.getRake(): '%s': Suspiciously high rake (%s) > 25 pct of pot (%s)"
+msgstr ""
+
+#: HandHistoryConverter.py:436
+msgid "Output and input files are the same, check config."
+msgstr ""
+
+#: HandHistoryConverter.py:469
+msgid "unable to read file with any codec in list!"
+msgstr ""
+
+#: HandHistoryConverter.py:541 HandHistoryConverter.py:542
+msgid "Unsupported target timezone: "
+msgstr "未サポートの対象タイムゾーン: "
+
+#: HandHistoryConverter.py:623
+msgid "Timezone conversion not supported"
+msgstr ""
+
+#: HandHistoryConverter.py:701 HandHistoryConverter.py:702
+msgid "Unable to create output directory %s for HHC!"
+msgstr ""
+
+#: HandHistoryConverter.py:704
+msgid "Created directory '%s'"
+msgstr "ディレクトリ '%s' を作成しました"
+
+#: HandHistoryConverter.py:708
+msgid "Output path %s couldn't be opened."
+msgstr ""
+
+#: Hud.py:193
+msgid "Creating hud from hand "
+msgstr "ハンド %s からHUDを生成中"
+
+#: IdentifySite.py:207
+msgid "siteId Failed for: %s"
+msgstr ""
+
+#: ImapFetcher.py:44 ImapFetcher.py:53
+msgid "Could not split tourneys"
+msgstr ""
+
+#: ImapFetcher.py:83
+msgid "Found %s eMails to fetch"
+msgstr "%s 通のEメールが見つかりました"
+
+#: ImapFetcher.py:103
+msgid "Finished downloading emails."
+msgstr "Eメールのダウンロードが完了しました。"
+
+#: ImapFetcher.py:109
+msgid "No Tournament summaries found."
+msgstr ""
+
+#: ImapFetcher.py:111
+msgid "Errors:"
+msgstr ""
+
+#: Importer.py:195
+msgid "Database ID for %s not found"
+msgstr ""
+
+#: Importer.py:197
+msgid "More than 1 Database ID found for %s"
+msgstr ""
+
+#: Importer.py:249
+msgid "Started at %s -- %d files to import. indexes: %s"
+msgstr ""
+
+#: Importer.py:415
+msgid "Converting %s"
+msgstr ""
+
+#: Importer.py:494
+msgid "Importer._import_hh_file: '%r' Fatal error: '%r'"
+msgstr "Importer._import_hh_file: '%r' 致命的エラー: '%r'"
+
+#: Importer.py:495
+msgid "'%r'"
+msgstr "'%r'"
+
+#: Importer.py:525
+msgid "fpdb_import: sending hand to hud"
+msgstr "fpdb_import: ハンドをHUDへ送信中"
+
+#: Importer.py:528
+msgid "Failed to send hand to HUD: %s"
+msgstr "HUDへのハンド送信に失敗: %s"
+
+#: Importer.py:572
+msgid "Summary import parse error in file: %s"
+msgstr "サマリインポートのパースエラー: %s"
+
+#: Importer.py:653 fpdb.pyw:325
+msgid "Number of Hands:"
+msgstr "ハンド数:"
+
+#: Importer.py:653 fpdb.pyw:328
+msgid "Database Statistics"
+msgstr "データベース統計情報"
+
+#: MergeSummary.py:121
+msgid "The tournament was not found or is invalid"
+msgstr "トーナメントが見つからないか無効です。"
+
+#: MergeSummary.py:135 MergeSummary.py:166
+msgid "MergeSummary.readHandInfo: '%s'"
+msgstr "MergeSummary.readHandInfo: '%s'"
+
+#: MergeSummary.py:154
+msgid "MergeSummary.determineGameType: HORSE found, unsupported"
+msgstr "MergeSummary.determineGameType: HORSE が見つかりました、未サポートです"
+
+#: MergeSummary.py:190
+msgid "MergeSummary.determineGameType: No match in SnG_Structures"
+msgstr ""
+
+#: MergeSummary.py:216
+msgid "MergeSummary.determineGameType: Muli-table SnG found, unsupported"
+msgstr "MergeSummary.determineGameType: マルチテーブルSnGが見つかりました、未サポートです"
+
+#: MergeSummary.py:402
+msgid "MergeSummary.parseSummaryFile: Could not parse summary file"
+msgstr "MergeSummary.parseSummaryFile: サマリファイルをパースできません"
+
+#: MergeToFpdb.py:195
+msgid "MergeToFpdb.determineGameType: '%s'"
+msgstr "MergeToFpdb.determineGameType: '%s'"
+
+#: MergeToFpdb.py:255
+msgid "MergeToFpdb.determineGameType: Lim_Blinds has no lookup for '%s' - '%s'"
+msgstr ""
+
+#: MergeToFpdb.py:264 MergeToFpdb.py:525
+msgid "MergeToFpdb.readHandInfo: '%s'"
+msgstr "MergeToFpdb.readHandInfo: '%s'"
+
+#: MergeToFpdb.py:347
+msgid "MergeToFpdb.readPlayerStacks: '%s' Seat:%s acts but not listed"
+msgstr "MergeToFpdb.readPlayerStacks: '%s' Seat:%s アクションしたが一覧にいない"
+
+#: MergeToFpdb.py:532
+msgid "MergeToFpdb.determineGameType: Multigametypes has no lookup for '%s'"
+msgstr ""
+
+#: MergeToFpdb.py:666
+msgid "Found LEAVE. Player left table before hand completed"
+msgstr ""
+
+#: MergeToFpdb.py:669
+msgid "Found CANCELLED"
+msgstr ""
+
+#: MergeToFpdb.py:671
+msgid "Failed to identify all streets"
+msgstr ""
+
+#: MergeToFpdb.py:673
+msgid "END_OF_HAND not found. No obvious reason"
+msgstr "END_OF_HAND が見つかりません。理由は不明"
+
+#: MicrogamingToFpdb.py:112
+msgid "MicrogamingToFpdb.determineGameType: '%s'"
+msgstr "MicrogamingToFpdb.determineGameType: '%s'"
+
+#: MicrogamingToFpdb.py:151
+msgid "MicrogamingToFpdb.readHandInfo: '%s'"
+msgstr "MicrogamingToFpdb.readHandInfo: '%s'"
+
+#: Mucked.py:280
+msgid "No Name"
+msgstr "名無し"
+
+#: OnGameToFpdb.py:191
+msgid "OnGameToFpdb.determineGameType: '%s'"
+msgstr "OnGameToFpdb.determineGameType: '%s'"
+
+#: OnGameToFpdb.py:215
+msgid "OnGameToFpdb.determineGameType: Limit not found in '%s'"
+msgstr "OnGameToFpdb.determineGameType: '%s' のリミットが見つかりません"
+
+#: OnGameToFpdb.py:236
+msgid ""
+"OnGameToFpdb.determineGameType: Lim_Blinds has no lookup for '%s' - '%s'"
+msgstr ""
+
+#: OnGameToFpdb.py:249
+msgid "OnGameToFpdb.readHandInfo: '%s'"
+msgstr "OnGameToFpdb.readHandInfo: '%s'"
+
+#: OnGameToFpdb.py:270 WinamaxToFpdb.py:214
+msgid "DATETIME not matched: '%s'"
+msgstr "DATETIME がマッチしません: '%s'"
+
+#: OnGameToFpdb.py:385 WinamaxToFpdb.py:362
+msgid "No small blinds found."
+msgstr "スモールブラインドが見つかりません"
+
+#: Options.py:31
+msgid "Send error messages to the console rather than the log file."
+msgstr "エラーメッセージをログファイルではなく端末へ送信する"
+
+#: Options.py:34
+msgid "Specifies a database name."
+msgstr "データベース名を指定"
+
+#: Options.py:37
+msgid "Specifies the full path to a configuration file."
+msgstr "フルパスで設定ファイルを指定"
+
+#: Options.py:40
+msgid ""
+"Indicates program was restarted with a different path (only allowed once)."
+msgstr "他のPATHから再起動されたことを明示する(一度だけ許可)"
+
+#: Options.py:43
+msgid "Module name for Hand History Converter"
+msgstr "ハンド履歴コンバータのモジュール名"
+
+#: Options.py:46
+msgid "A sitename"
+msgstr "ポーカーサイト名"
+
+#: Options.py:50
+msgid "Error logging level:"
+msgstr "ログ重要度レベル:"
+
+#: Options.py:53
+msgid "Print version information and exit."
+msgstr "バージョン情報を表示して終了"
+
+#: Options.py:55
+msgid "Force initial-run dialog"
+msgstr "強制的に初期設定ダイアログ"
+
+#: Options.py:57
+msgid "Print some useful one liners"
+msgstr "使い方を表示"
+
+#: Options.py:60
+msgid "Input file"
+msgstr "入力ファイル"
+
+#: Options.py:62
+msgid "Input directory"
+msgstr "入力ディレクトリ"
+
+#: Options.py:64
+msgid "Out path in quiet mode"
+msgstr "寡黙モードでの出力ファイル"
+
+#: Options.py:66
+msgid "File to be split is a PokerStars or Full Tilt Poker archive file"
+msgstr "分割したいPokerStarsもしくはFull Tilt Pokerアーカイブファイル"
+
+#: Options.py:68
+msgid "Developer option to print regression test data"
+msgstr "回帰テストデータを表示する開発者向けのオプション"
+
+#: Options.py:70
+msgid "How many hands do you want saved to each file. Default is 100"
+msgstr "何ファイルごとに保存するか、既定値は100"
+
+#: Options.py:72
+msgid "X location to open window"
+msgstr "開くウィンドウのX座標"
+
+#: Options.py:74
+msgid "Y location to open window"
+msgstr "開くウィンドウのY座標"
+
+#: Options.py:76
+msgid "Auto-start Auto-import"
+msgstr "自動インポートを自動的に開始"
+
+#: Options.py:78
+msgid "Start Minimized"
+msgstr "最小化して起動"
+
+#: Options.py:80
+msgid "Start Hidden"
+msgstr "隠れたまま起動"
+
+#: Options.py:127
+msgid "Alias '%s' unknown"
+msgstr "ポーカーサイトの別名 '%s' は不明です"
+
+#: Options.py:137
+msgid "press enter to end"
+msgstr "ENTERを押すと終了"
+
+#: P5sResultsParser.py:10
+msgid "You need to manually enter the playername"
+msgstr ""
+
+#: PacificPokerSummary.py:83
+msgid "PacificPokerSummary.parseSummary: '%s'"
+msgstr "PacificPokerSummary.parseSummary: '%s'"
+
+#: PacificPokerToFpdb.py:192
+msgid "PacificPokerToFpdb.determineGameType: '%s'"
+msgstr "PacificPokerToFpdb.determineGameType: '%s'"
+
+#: PacificPokerToFpdb.py:245
+msgid "PacificPokerToFpdb.readHandInfo: '%s'"
+msgstr "PacificPokerToFpdb.readHandInfo: '%s'"
+
+#: PacificPokerToFpdb.py:280
+msgid "PacificPokerToFpdb.readHandInfo: Failed to detect currency."
+msgstr "PacificPokerToFpdb.readHandInfo: 通貨の判別に失敗しました。"
+
+#: PartyPokerToFpdb.py:242
+msgid "Player Disconnected"
+msgstr "プレイヤーがDisconnectedです"
+
+#: PartyPokerToFpdb.py:246
+msgid "Table Closed"
+msgstr "卓が閉じられました"
+
+#: PartyPokerToFpdb.py:250
+msgid "Game start line"
+msgstr "ゲームのスタートライン"
+
+#: PartyPokerToFpdb.py:254
+msgid "Preliminary hand"
+msgstr "予備的なハンド"
+
+#: PartyPokerToFpdb.py:257
+msgid "PartyPokerToFpdb.determineGameType: '%s'"
+msgstr "PartyPokerToFpdb.determineGameType: '%s'"
+
+#: PartyPokerToFpdb.py:284
+msgid ""
+"PartyPokerToFpdb.determineGameType: NLim_Blinds_20bb has no lookup for '%s' "
+"- '%s'"
+msgstr ""
+
+#: PartyPokerToFpdb.py:293 PartyPokerToFpdb.py:327
+msgid ""
+"PartyPokerToFpdb.determineGameType: Lim_Blinds has no lookup for '%s' - '%s'"
+msgstr ""
+
+#: PartyPokerToFpdb.py:350
+msgid "PartyPokerToFpdb.readHandInfo: '%s'"
+msgstr "PartyPokerToFpdb.readHandInfo: '%s'"
+
+#: PartyPokerToFpdb.py:419
+msgid ""
+"PartyPokerToFpdb.readHandInfo: Failed to detect currency Hand ID: '%s' - '%s'"
+msgstr ""
+
+#: PartyPokerToFpdb.py:667
+msgid "PartyPokerToFpdb: Unimplemented %s: '%s' '%s'"
+msgstr "PartyPokerToFpdb: 未実装 %s: '%s' '%s'"
+
+#: PkrToFpdb.py:142
+msgid "PkrToFpdb.determineGameType: '%s'"
+msgstr "PkrToFpdb.determineGameType: '%s'"
+
+#: PkrToFpdb.py:174
+msgid "PkrToFpdb.readHandInfo: '%s'"
+msgstr "PkrToFpdb.readHandInfo: '%s'"
+
+#: PokerStarsSummary.py:180
+msgid ""
+"PokerStarsSummary.parseSummaryHtml: This file format is not yet supported"
+msgstr "PokerStarsSummary.parseSummaryHtml: このファイル形式はまだサポートしていません"
+
+#: PokerStarsSummary.py:205
+msgid "PokerStarsSummary.parseSummaryXLS: '%s' '%s"
+msgstr "PokerStarsSummary.parseSummaryXLS: '%s' '%s"
+
+#: PokerStarsSummary.py:214
+msgid "PokerStarsSummary.parseSummaryXLS Game '%s' not found"
+msgstr "PokerStarsSummary.parseSummaryXLS Game '%s' が見つかりません"
+
+#: PokerStarsSummary.py:226
+msgid "PokerStarsSummary.parseSummaryHtml: '%s' '%s"
+msgstr "PokerStarsSummary.parseSummaryHtml: '%s' '%s"
+
+#: PokerStarsSummary.py:335
+msgid "PokerStarsSummary.parseSummary: '%s'"
+msgstr "PokerStarsSummary.parseSummary: '%s'"
+
+#: PokerStarsToFpdb.py:218
+msgid "PokerStarsToFpdb.determineGameType: '%s'"
+msgstr "PokerStarsToFpdb.determineGameType: '%s'"
+
+#: PokerStarsToFpdb.py:276
+msgid "PokerStarsToFpdb.readHandInfo: '%s'"
+msgstr "PokerStarsToFpdb.readHandInfo: '%s'"
+
+#: PokerStarsToFpdb.py:323
+msgid "PokerStarsToFpdb.readHandInfo: Failed to detect currency."
+msgstr "PokerStarsToFpdb.readHandInfo: 通貨の自動判別に失敗。"
+
+#: PokerTrackerSummary.py:84
+msgid "PokerTrackerSummary.parseSummary: '%s'"
+msgstr "PokerTrackerSummary.parseSummary: '%s'"
+
+#: PokerTrackerSummary.py:95
+msgid "PokerTrackerSummary.parseSummary: Unsupported site summary '%s'"
+msgstr "PokerTrackerSummary.parseSummary: 未サポートのポーカーサイトサマリ '%s'"
+
+#: PokerTrackerToFpdb.py:219 PokerTrackerToFpdb.py:234
+msgid "PokerTrackerToFpdb.determineGameType: '%s'"
+msgstr "PokerTrackerToFpdb.determineGameType: '%s'"
+
+#: PokerTrackerToFpdb.py:278
+msgid ""
+"PokerTrackerToFpdb.determineGameType: Lim_Blinds has no lookup for '%s' - "
+"'%s'"
+msgstr "PokerTrackerToFpdb.determineGameType: Lim_Blinds から '%s' - '%s' が見つかりません"
+
+#: PokerTrackerToFpdb.py:303
+msgid "PokerTrackerToFpdb.readHandInfo: '%s'"
+msgstr "PokerTrackerToFpdb.readHandInfo: '%s'"
+
+#: PokerTrackerToFpdb.py:375
+msgid "PokerTrackerToFpdb.readHandInfo: Failed to detect currency."
+msgstr "PokerTrackerToFpdb.readHandInfo: 通貨の自動判別に失敗しました。"
+
+#: SealsWithClubsToFpdb.py:106
+msgid "SealsWithClubsToFpdb.determineGameType: '%s'"
+msgstr "SealsWithClubsToFpdb.determineGameType: '%s'"
+
+#: SealsWithClubsToFpdb.py:138
+msgid "SealsWithClubsToFpdb.readHandInfo: '%s'"
+msgstr "SealsWithClubsToFpdb.readHandInfo: '%s'"
+
+#: SitenameSummary.py:84 SitenameSummary.py:86
+msgid "Unable to recognise Tourney Info: '%s'"
+msgstr ""
+
+#: SitenameSummary.py:85
+msgid "Raising FpdbParseError"
+msgstr "FpdbParseError例外を投げています"
+
+#: SplitHandHistory.py:76 fpdb_prerun.py:65 fpdb_prerun.py:80
+msgid "File not found"
+msgstr ""
+
+#: SplitHandHistory.py:86
+msgid "%s processed"
+msgstr ""
+
+#: SplitHandHistory.py:105
+msgid "Invalid file number"
+msgstr ""
+
+#: SplitHandHistory.py:126
+msgid "Unexpected error processing file"
+msgstr ""
+
+#: SplitHandHistory.py:165
+msgid "End of file reached"
+msgstr ""
+
+#: Stats.py:159 Stats.py:166
+msgid "Player name"
+msgstr "プレイヤー名"
+
+#: Stats.py:215 Stats.py:235
+msgid "M ratio"
+msgstr "M値"
+
+#: Stats.py:248 Stats.py:267
+msgid "bb stack"
+msgstr "bbスタック"
+
+#: Stats.py:376 Stats.py:385
+msgid "Profit per 100 hands"
+msgstr "100ハンドあたりの収益"
+
+#: Stats.py:379 Stats.py:401 Stats.py:423
+msgid "exception calculating %s"
+msgstr ""
+
+#: Stats.py:420 Stats.py:429
+msgid "Big bets won per 100 hands"
+msgstr "PTBB/100ハンド"
+
+#: Stats.py:508
+msgid "% steal success"
+msgstr "% スチール成功率"
+
+#: Stats.py:522 Stats.py:529
+msgid "% folded SB to steal"
+msgstr "% スチールに対するSBでのフォールド率"
+
+#: Stats.py:540 Stats.py:547
+msgid "% folded BB to steal"
+msgstr "% スチールに対するBBでのフォールド率"
+
+#: Stats.py:561 Stats.py:568
+msgid "% folded blind to steal"
+msgstr "% スチールに対するフォールド率"
+
+#: Stats.py:615 Stats.py:622
+msgid "% cold 4 bet preflop/3rd street"
+msgstr "% プリフロップ/3rdストリートでの4betコール率"
+
+#: Stats.py:635 Stats.py:642
+msgid "4 bet range"
+msgstr "4betレンジ"
+
+#: Stats.py:654 Stats.py:661
+msgid "% call 3 bet"
+msgstr "% 3betコール率"
+
+#: Stats.py:673 Stats.py:680
+msgid "% DonkBetAndRaise flop/4th street"
+msgstr "% フロップ/4thストリートでのDonkBet率"
+
+#: Stats.py:692 Stats.py:699
+msgid "% DonkBetAndRaise turn/5th street"
+msgstr "% ターン/5thストリートでのDonkBet率"
+
+#: Stats.py:711 Stats.py:718
+msgid "% DonkBetAndRaise river/6th street"
+msgstr "% リバー/6thストリートでのDonkBet率"
+
+#: Stats.py:731
+msgid "% Fold to DonkBetAndRaise flop/4th street"
+msgstr "% フロップ/4thストリートでのDonkBetへのフォールド率"
+
+#: Stats.py:738
+msgid "% Fold DonkBetAndRaise flop/4th street"
+msgstr "% フロップ/4thストリートでのDonkBetへのフォールド率"
+
+#: Stats.py:750
+msgid "% Fold to DonkBetAndRaise turn"
+msgstr "% ターンでのDonkBetAndRaiseに対するフォールド率"
+
+#: Stats.py:757
+msgid "% Fold DonkBetAndRaise turn"
+msgstr "% ターンでのDonkBetAndRaiseに対するフォールド率"
+
+#: Stats.py:770
+msgid "% Fold to DonkBetAndRaise river"
+msgstr "% リバーでのDonkBetAndRaiseに対するフォールド率"
+
+#: Stats.py:777
+msgid "% Fold DonkBetAndRaise river"
+msgstr "% リバーでのDonkBetAndRaiseに対するフォールド率"
+
+#: Stats.py:789 Stats.py:796
+msgid "% squeeze preflop"
+msgstr "% プリフロップのスクイーズ率"
+
+#: Stats.py:808 Stats.py:815
+msgid "% raise to steal"
+msgstr "% スチールレイズ率"
+
+#: Stats.py:952 Stats.py:959
+msgid "Aggression frequency 7th street"
+msgstr "7thストリートでのアグレッシブ度"
+
+#: Stats.py:1024 Stats.py:1031
+msgid "Aggression factor pct"
+msgstr "アグレッシブ係数 pct"
+
+#: Stats.py:1062 Stats.py:1069
+msgid "% continuation bet flop/4th street"
+msgstr "% フロップ/4thストリートでのCBet率"
+
+#: Stats.py:1080 Stats.py:1087
+msgid "% continuation bet turn/5th street"
+msgstr "% ターン/5thストリートでのCBet率"
+
+#: Stats.py:1098 Stats.py:1105
+msgid "% continuation bet river/6th street"
+msgstr "% リバー/6thストリートでのCBet率"
+
+#: Stats.py:1116 Stats.py:1123
+msgid "% continuation bet 7th street"
+msgstr "% 6thストリートでのCBet率"
+
+#: Stats.py:1134 Stats.py:1141
+msgid "% fold frequency flop/4th street"
+msgstr "% フロップ/4th streetでのフォールド率"
+
+#: Stats.py:1152 Stats.py:1159
+msgid "% fold frequency turn/5th street"
+msgstr "% ターン/5th streetでのフォールド率"
+
+#: Stats.py:1170 Stats.py:1177
+msgid "% fold frequency river/6th street"
+msgstr "% リバー/6thストリートでのフォールド率"
+
+#: Stats.py:1188 Stats.py:1195
+msgid "% fold frequency 7th street"
+msgstr "% 7thストリートでのフォールド率"
+
+#: Stats.py:1206 Stats.py:1213
+msgid "% fold to continuation bet flop/4th street"
+msgstr "% フロップ/4thストリートでのCbetに対するフォールド率"
+
+#: Stats.py:1224 Stats.py:1231
+msgid "% fold to continuation bet turn/5th street"
+msgstr "% ターン/5thストリートでのCbetに対するフォールド率"
+
+#: Stats.py:1242 Stats.py:1249
+msgid "% fold to continuation bet river/6th street"
+msgstr "% リバー/6thストリートでのCbetに対するフォールド率"
+
+#: Stats.py:1260 Stats.py:1267
+msgid "% fold to continuation bet 7th street"
+msgstr "% 7thストリートでのCbetに対するフォールド率"
+
+#: Stats.py:1278 Stats.py:1285
+msgid "% check-raise flop/4th street"
+msgstr "% フロップ/4thストリートでのチェックレイズ"
+
+#: Stats.py:1296 Stats.py:1303
+msgid "% check-raise turn/5th street"
+msgstr "% ターン/5thストリートでのチェックレイズ"
+
+#: Stats.py:1314 Stats.py:1321
+msgid "% check-raise river/6th street"
+msgstr "% リバー/6thストリートでのチェックレイズ"
+
+#: Stats.py:1332 Stats.py:1339
+msgid "% check-raise 7th street"
+msgstr "% 7thストリートでのチェックレイズ"
+
+#: Stats.py:1377 Stats.py:1380
+msgid "Game abbreviation"
+msgstr "ゲーム省略??"
+
+#: Stats.py:1392
+msgid "Hands seen at this table"
+msgstr "ハンドこの卓で取得"
+
+#: Stats.py:1490
+msgid "Hands seen at this table\n"
+msgstr "ハンドこの卓で取得\n"
+
+#: Stats.py:1529
+msgid "Example stats. Player = %s, Hand = %s:"
+msgstr ""
+
+#: Stats.py:1535
+msgid "Legal stats:"
+msgstr ""
+
+#: Stats.py:1536
+msgid ""
+"(add _0 to name to display with 0 decimal places, _1 to display with 1, etc)"
+msgstr ""
+
+#: Stove.py:307
+msgid "No board given. Using Monte-Carlo simulation..."
+msgstr "ボードがありません。モンテカルロシミュレーションを使います..."
+
+#: TableWindow.py:154
+msgid "Can't find table %s"
+msgstr "卓 %s が見つかりません"
+
+#: Tables_Demo.py:63
+msgid "Fake HUD Main Window"
+msgstr "偽装 HUD 主ウィンドウ"
+
+#: Tables_Demo.py:93
+msgid "enter table name to find: "
+msgstr ""
+
+#: TournamentTracker.py:104
+msgid "FPDB Tournament Entry"
+msgstr ""
+
+#: TournamentTracker.py:144
+msgid "Closing this window will stop the Tournament Tracker"
+msgstr ""
+
+#: TournamentTracker.py:146
+msgid "Add Tournament"
+msgstr "トーナメントを追加"
+
+#: TournamentTracker.py:151
+msgid "FPDB Tournament Tracker"
+msgstr "FPDBトーナメントトラッカー"
+
+#: TournamentTracker.py:162
+msgid "Edit"
+msgstr "編集"
+
+#: TournamentTracker.py:165
+msgid "Rebuy"
+msgstr "リバイ"
+
+#: TournamentTracker.py:266
+msgid "Database error %s in hand %d. Skipping."
+msgstr "データベースエラー %s がハンド %dで起きました。スキップします。"
+
+#: TournamentTracker.py:276
+msgid "Could not find tournament %d in hand %d. Skipping."
+msgstr "トーナメント %d のハンド %d が見つかりません。スキップします。"
+
+#: TournamentTracker.py:299
+msgid "Table name %s not found, skipping."
+msgstr "卓 %s が見つかりません。スキップします。"
+
+#: TournamentTracker.py:306
+msgid "Tournament tracker starting"
+msgstr "トーナメントトラッカーを開始します"
+
+#: TourneyFilters.py:51
+msgid "Sites:"
+msgstr "ポーカーサイト:"
+
+#: TourneyFilters.py:53
+msgid "Tourney Type"
+msgstr "トーナメント種別"
+
+#: TourneySummary.py:49
+msgid "xlrd not found. Required for importing Excel tourney results files"
+msgstr ""
+"xlrdが見つかりません。Excelトーナメント結果ファイルのインポートに必要です。"
+
+#: TourneySummary.py:159
+msgid "END TIME"
+msgstr "END TIME"
+
+#: TourneySummary.py:160
+msgid "TOURNEY NAME"
+msgstr "TOURNEY NAME"
+
+#: TourneySummary.py:161
+msgid "TOURNEY NO"
+msgstr "TOURNEY NO"
+
+#: TourneySummary.py:166
+msgid "CURRENCY"
+msgstr "CURRENCY"
+
+#: TourneySummary.py:169
+msgid "ENTRIES"
+msgstr "ENTRIES"
+
+#: TourneySummary.py:170
+msgid "SPEED"
+msgstr "SPEED"
+
+#: TourneySummary.py:171
+msgid "PRIZE POOL"
+msgstr "PRIZE POOL"
+
+#: TourneySummary.py:172
+msgid "STARTING CHIP COUNT"
+msgstr "STARTING CHIP COUNT"
+
+#: TourneySummary.py:174
+msgid "REBUY"
+msgstr "REBUY"
+
+#: TourneySummary.py:175
+msgid "ADDON"
+msgstr "ADDON"
+
+#: TourneySummary.py:176
+msgid "KO"
+msgstr "KO"
+
+#: TourneySummary.py:177
+msgid "MATRIX"
+msgstr "MATRIX"
+
+#: TourneySummary.py:178
+msgid "SHOOTOUT"
+msgstr "SHOOTOUT"
+
+#: TourneySummary.py:179
+msgid "REBUY CHIPS"
+msgstr "REBUY CHIPS"
+
+#: TourneySummary.py:180
+msgid "ADDON CHIPS"
+msgstr "ADDON CHIPS"
+
+#: TourneySummary.py:181
+msgid "REBUY COST"
+msgstr "REBUY COST"
+
+#: TourneySummary.py:182
+msgid "ADDON COST"
+msgstr "ADDON COST"
+
+#: TourneySummary.py:183
+msgid "TOTAL REBUYS"
+msgstr "TOTAL REBUYS"
+
+#: TourneySummary.py:184
+msgid "TOTAL ADDONS"
+msgstr "TOTAL ADDONS"
+
+#: TourneySummary.py:186
+msgid "SNG"
+msgstr "SNG"
+
+#: TourneySummary.py:187
+msgid "SATELLITE"
+msgstr "SATELLITE"
+
+#: TourneySummary.py:188
+msgid "DOUBLE OR NOTHING"
+msgstr "DOUBLE OR NOTHING"
+
+#: TourneySummary.py:189
+msgid "GUARANTEE"
+msgstr "GUARANTEE"
+
+#: TourneySummary.py:190
+msgid "ADDED"
+msgstr "ADDED"
+
+#: TourneySummary.py:191
+msgid "ADDED CURRENCY"
+msgstr "ADDED CURRENCY"
+
+#: TourneySummary.py:192
+msgid "COMMENT"
+msgstr "COMMENT"
+
+#: TourneySummary.py:193
+msgid "COMMENT TIMESTAMP"
+msgstr "COMMENT TIMESTAMP"
+
+#: TourneySummary.py:196
+msgid "PLAYER IDS"
+msgstr "PLAYER ID"
+
+#: TourneySummary.py:198
+msgid "TOURNEYS PLAYERS IDS"
+msgstr "TOURNEYS PLAYERS IDS"
+
+#: TourneySummary.py:199
+msgid "RANKS"
+msgstr "RANKS"
+
+#: TourneySummary.py:200
+msgid "WINNINGS"
+msgstr "WINNINGS"
+
+#: TourneySummary.py:201
+msgid "WINNINGS CURRENCY"
+msgstr "WINNINGS CURRENCY"
+
+#: TourneySummary.py:202
+msgid "COUNT REBUYS"
+msgstr "COUNT REBUYS"
+
+#: TourneySummary.py:203
+msgid "COUNT ADDONS"
+msgstr "COUNT ADDONS"
+
+#: TourneySummary.py:204
+msgid "COUNT KO"
+msgstr "COUNT KO"
+
+#: TourneySummary.py:258
+msgid "Tourney Insert/Update done"
+msgstr "トーナメント Insert/Update 完了"
+
+#: TreeViewTooltips.py:108
+msgid ""
+"This module was developed and tested with version 2.8.18 of gtk.  You are "
+"using version %d.%d.%d.  Your milage may vary."
+msgstr "このモジュールはGTK 2.8.18でテスト・開発されています。"
+"あなたはGTK %d.%d.%dを利用しています。表示が異なる場合があります。"
+
+#: WinTables.py:85
+msgid "Window %s not found. Skipping."
+msgstr "ウィンドウ %s が見つかりません。スキップします。"
+
+#: WinTables.py:88
+msgid "%s doesn't exist."
+msgstr "%s が存在しません。"
+
+#: WinamaxSummary.py:143 WinamaxSummary.py:200
+msgid "WinamaxSummary.parseSummary: Gametype unknown defaulting to NLHE"
+msgstr ""
+"WinamaxSummary.parseSummary: Gametype が不明のため初期設定のNLホールデムとします"
+
+#: WinamaxSummary.py:186
+msgid "WinamaxSummary.parseSummaryFromFile: '%s'"
+msgstr "WinamaxSummary.parseSummaryFromFile: '%s'"
+
+#: WinamaxToFpdb.py:162
+msgid "WinamaxToFpdb.determineGameType: '%s'"
+msgstr "WinamaxToFpdb.determineGameType: '%s'"
+
+#: WinamaxToFpdb.py:182
+msgid "WinamaxToFpdb.determineGameType: Limit not found in %s."
+msgstr ""
+
+#: WinamaxToFpdb.py:202
+msgid "WinamaxToFpdb.readHandInfo: '%s'"
+msgstr "WinamaxToFpdb.readHandInfo: '%s'"
+
+#: WinamaxToFpdb.py:330
+msgid "Failed to add streets. handtext=%s"
+msgstr ""
+
+#: WinamaxToFpdb.py:394
+msgid "No hole cards found for %s"
+msgstr "ホールカードが見つかりません %s"
+
+#: WinamaxToFpdb.py:400
+msgid "Hero cards %s: %s"
+msgstr "Hero カード %s: %s"
+
+#: WinamaxToFpdb.py:444
+msgid "Read shown cards: %s"
+msgstr ""
+
+#: XTables.py:96
+msgid "No match in XTables for table '%s'."
+msgstr ""
+
+#: fpdb.pyw:76
+msgid "GuiStove not found. If you want to use it please install pypoker-eval."
+msgstr "GuiStoveが見つかりません。利用したい場合はpypoker-evalをインストールしてください。"
+
+#: fpdb.pyw:220
+msgid ""
+"You are free to change, and distribute original or changed versions of fpdb "
+"within the rules set out by the license"
+msgstr "あなたはライセンスで提示された規則に基づき、FPDBの原作または改変したバージョンを自由に配布できます"
+
+#: fpdb.pyw:221
+msgid "Please see the help screen for license information"
+msgstr "ライセンス情報はヘルプのタブ画面をご覧ください"
+
+#: fpdb.pyw:226
+msgid "... and others."
+msgstr "... とその他の人々。"
+
+#: fpdb.pyw:226
+msgid "See contributors.txt"
+msgstr "contributors.txtをご覧ください"
+
+#: fpdb.pyw:238
+msgid "Operating System"
+msgstr "OS"
+
+#: fpdb.pyw:245
+msgid "fpdb version"
+msgstr "fpdb バージョン"
+
+#: fpdb.pyw:246
+msgid "database used"
+msgstr "利用中のデータベースシステム"
+
+#: fpdb.pyw:247
+msgid "language"
+msgstr "言語"
+
+#: fpdb.pyw:248
+msgid "character encoding"
+msgstr "文字エンコーディング"
+
+#: fpdb.pyw:260
+msgid "Your config file is: "
+msgstr "設定ファイルは: "
+
+#: fpdb.pyw:265
+msgid "Version Information:"
+msgstr "バージョン情報:"
+
+#: fpdb.pyw:272
+msgid "Threads: "
+msgstr "スレッド: "
+
+#: fpdb.pyw:311
+msgid "saving updated db data"
+msgstr "更新したDBデータを保存中"
+
+#: fpdb.pyw:322 fpdb.pyw:529 fpdb.pyw:584 fpdb.pyw:625
+msgid ""
+"Cannot open Database Maintenance window because other windows have been "
+"opened. Re-start fpdb to use this option."
+msgstr "他のウィンドウが開いているため、データベースの保守ウィンドウが開けません。このオプションを使うためにはFPDBを再起動してください。"
+
+#: fpdb.pyw:327
+msgid "Number of TourneyTypes:"
+msgstr "トーナメント種別数"
+
+#: fpdb.pyw:338
+msgid "HUD Preferences - choose category"
+msgstr "HUD設定 - カテゴリ選択"
+
+#: fpdb.pyw:344
+msgid ""
+"Note that this does not load existing settings, but overwrites them (if you "
+"click save)."
+msgstr ""
+"注意!! これは既存の設定を読み込んでいません。保存すると上書きされてしまいま"
+"す。"
+
+#: fpdb.pyw:348
+msgid ""
+"Please select the game category for which you want to configure HUD stats:"
+msgstr "HUD統計を設定したいゲームの種類を選択してください"
+
+#: fpdb.pyw:402
+msgid "HUD Preferences - please choose your stats"
+msgstr "HUD 設定 - 統計を選んでください"
+
+#: fpdb.pyw:408
+msgid "Please choose the stats you wish to use in the below table."
+msgstr "下の表から使いたい統計を選んでください。"
+
+#: fpdb.pyw:420
+msgid ""
+"To configure things like colouring you will still have to use the Advanced "
+"Preferences dialogue or manually edit your HUD_config.xml."
+msgstr ""
+
+#: fpdb.pyw:508
+msgid "Confirm deleting and recreating tables"
+msgstr "DBテーブルの削除と再作成の確認"
+
+#: fpdb.pyw:509
+msgid "Please confirm that you want to (re-)create the tables."
+msgstr "本当にDBテーブルを(再)作成してよろしいですか?"
+
+#: fpdb.pyw:510
+msgid ""
+"If there already are tables in the database %s on %s they will be deleted "
+"and you will have to re-import your histories."
+msgstr "DBテーブルがデータベース%s(%s上)にすでに存在する場合、DBテーブルは削除され、ハンド履歴を再インポートする必要があります。"
+
+#: fpdb.pyw:511
+msgid "This may take a while."
+msgstr "これには時間がかかります。"
+
+#: fpdb.pyw:527
+msgid "User cancelled recreating tables"
+msgstr "DBテーブルの再作成がユーザによってキャンセルされました"
+
+#: fpdb.pyw:536
+msgid "Please confirm that you want to re-create the HUD cache."
+msgstr "HUDキャッシュを再生成してよろしいですか?"
+
+#: fpdb.pyw:544
+msgid " Hero's cache starts: "
+msgstr " Hero(あなた)のキャッシュ開始日: "
+
+#: fpdb.pyw:558
+msgid " Villains' cache starts: "
+msgstr " Villain(他プレイヤー達)のキャッシュ開始日: "
+
+#: fpdb.pyw:571
+msgid " Rebuilding HUD Cache ... "
+msgstr " HUDキャッシュを再構築中 ... "
+
+#: fpdb.pyw:579
+msgid "User cancelled rebuilding hud cache"
+msgstr "HUDキャッシュ再構築がユーザによってキャンセルされました"
+
+#: fpdb.pyw:593
+msgid "Confirm rebuilding database indexes"
+msgstr "データベースのインデックス再構築の確認"
+
+#: fpdb.pyw:594
+msgid "Please confirm that you want to rebuild the database indexes."
+msgstr "データベースのインデックスを再構築してよろしいですか?"
+
+#: fpdb.pyw:605
+msgid " Rebuilding Indexes ... "
+msgstr " インデックスを再構築しています ... "
+
+#: fpdb.pyw:610
+msgid " Cleaning Database ... "
+msgstr " データベースの不要領域を掃除しています ... "
+
+#: fpdb.pyw:615
+msgid " Analyzing Database ... "
+msgstr " データベースを最適化しています ... "
+
+#: fpdb.pyw:620
+msgid "User cancelled rebuilding db indexes"
+msgstr "データベースのインデックス再構築がユーザによってキャンセルされました"
+
+#: fpdb.pyw:655
+msgid "Site Preferences"
+msgstr "ポーカーサイト設定"
+
+#: fpdb.pyw:660
+msgid "Please select which sites you play on and enter your usernames."
+msgstr "プレイしているサイトとスクリーン名を入力してください"
+
+#: fpdb.pyw:673
+msgid "Hand History Path"
+msgstr "ハンド履歴ディレクトリ"
+
+#: fpdb.pyw:673
+msgid "Screen Name"
+msgstr "スクリーン名"
+
+#: fpdb.pyw:673
+msgid "Tournament Summary Path"
+msgstr "トーナメントサマリディレクトリ"
+
+#: fpdb.pyw:673 fpdb.pyw:732
+msgid "Detect"
+msgstr "自動判別"
+
+#: fpdb.pyw:794
+msgid "Click OK to close Fpdb"
+msgstr "FPDBを閉じるにはOKをクリック"
+
+#: fpdb.pyw:794
+msgid ""
+"Configuration settings have been updated, Fpdb needs to be restarted now"
+msgstr "設定は更新されました。FPDBを再起動する必要があります。"
+
+#: fpdb.pyw:798
+msgid "Re-start fpdb to load them."
+msgstr "ロードするにはFPDBを再起動してください。"
+
+#: fpdb.pyw:798
+msgid "Updated preferences have not been loaded because windows are open."
+msgstr "ウィンドウが開いているため、更新した設定項目はロードされていません。"
+
+#: fpdb.pyw:913
+msgid "_Configure"
+msgstr "設定(_C)"
+
+#: fpdb.pyw:914 fpdb.pyw:946
+msgid "_Quit"
+msgstr "終了(_Q)"
+
+#: fpdb.pyw:915
+msgid "_Site Settings"
+msgstr "ポーカーサイト設定(_S)"
+
+#: fpdb.pyw:916
+msgid "<control>F"
+msgstr "<control>F"
+
+#: fpdb.pyw:916
+msgid "_Preferences"
+msgstr "設定(_P)"
+
+#: fpdb.pyw:917
+msgid "_Import"
+msgstr "インポート(_I)"
+
+#: fpdb.pyw:918
+msgid "<control>B"
+msgstr "<control>B"
+
+#: fpdb.pyw:919
+msgid "<control>I"
+msgstr "<control>I"
+
+#: fpdb.pyw:919
+msgid "_Import through eMail/IMAP"
+msgstr "Eメール/IMAPでのインポート(_I)"
+
+#: fpdb.pyw:920
+msgid "_Cash"
+msgstr "リングゲーム(_C)"
+
+#: fpdb.pyw:921
+msgid "_HUD"
+msgstr "_HUD"
+
+#: fpdb.pyw:922
+msgid "_Tournament"
+msgstr "トーナメント(_T)"
+
+#: fpdb.pyw:923
+msgid "<control>A"
+msgstr "<control>A"
+
+#: fpdb.pyw:923
+msgid "_HUD and Auto Import"
+msgstr "HUDと自動インポート(_H)"
+
+#: fpdb.pyw:924
+msgid "<control>H"
+msgstr "<control>H"
+
+#: fpdb.pyw:924
+msgid "_HUD Stats Settings"
+msgstr "HUD統計設定(_H)"
+
+#: fpdb.pyw:925
+msgid "<control>G"
+msgstr "<control>G"
+
+#: fpdb.pyw:925
+msgid "_Graphs"
+msgstr "グラフ(_G)"
+
+#: fpdb.pyw:926 fpdb.pyw:1229
+msgid "Tourney Graphs"
+msgstr "トーナメントグラフ"
+
+#: fpdb.pyw:927
+msgid "Stove (preview)"
+msgstr "ストーブ(試作段階)"
+
+#: fpdb.pyw:928
+msgid "<control>P"
+msgstr "<control>P"
+
+#: fpdb.pyw:928
+msgid "Ring _Player Stats"
+msgstr "リングプレイヤー統計(_P)"
+
+#: fpdb.pyw:929
+msgid "<control>T"
+msgstr "<control>T"
+
+#: fpdb.pyw:929
+msgid "_Tourney Stats"
+msgstr "トーナメント統計(_T)"
+
+#: fpdb.pyw:930
+msgid "Tourney _Viewer"
+msgstr "トーナメントビューア(_V)"
+
+#: fpdb.pyw:931
+msgid "<control>O"
+msgstr "<control>O"
+
+#: fpdb.pyw:931
+msgid "P_ositional Stats (tabulated view)"
+msgstr "ポジション別統計表(_P)"
+
+#: fpdb.pyw:932
+msgid "<control>S"
+msgstr "<control>S"
+
+#: fpdb.pyw:932 fpdb.pyw:1188
+msgid "Session Stats"
+msgstr "セッション統計"
+
+#: fpdb.pyw:933
+msgid "Hand _Viewer"
+msgstr "ハンドビューア(_V)"
+
+#: fpdb.pyw:934
+msgid "_Maintenance"
+msgstr "保守(_M)"
+
+#: fpdb.pyw:935
+msgid "_Maintain Databases"
+msgstr "データベースの保守(_M)"
+
+#: fpdb.pyw:936
+msgid "Create or Recreate _Tables"
+msgstr "データベースのテーブル作成・再作成(_T)"
+
+#: fpdb.pyw:937
+msgid "Rebuild HUD Cache"
+msgstr "HUDキャッシュを再構築"
+
+#: fpdb.pyw:938
+msgid "Rebuild DB Indexes"
+msgstr "DBインデックスを再構築"
+
+#: fpdb.pyw:939
+msgid "_Statistics"
+msgstr "統計情報(_S)"
+
+#: fpdb.pyw:940
+msgid "Dump Database to Textfile (takes ALOT of time)"
+msgstr "データベースをテキストファイルにダンプ(時間がかかります)"
+
+#: fpdb.pyw:941
+msgid "_Help"
+msgstr "ヘルプ(_H)"
+
+#: fpdb.pyw:942
+msgid "_Log Messages"
+msgstr "ログメッセージ(_L)"
+
+#: fpdb.pyw:943
+msgid "_Help Tab"
+msgstr "ヘルプのタブ(_T)"
+
+#: fpdb.pyw:944
+msgid "A_bout, License, Copying"
+msgstr "Free Poker DBについて(_b)"
+
+#: fpdb.pyw:966
+msgid "There is an error in your config file %s"
+msgstr "あなたの設定ファイル %s にエラーがあります"
+
+#: fpdb.pyw:968
+msgid "CONFIG FILE ERROR"
+msgstr ""
+
+#: fpdb.pyw:972
+msgid "Logfile is %s"
+msgstr "ログファイルは %s"
+
+#: fpdb.pyw:974
+msgid "Config file"
+msgstr "設定ファイル"
+
+#: fpdb.pyw:976
+msgid ""
+"Enter your screen_name and hand history path in the Site Preferences window "
+"(Main menu) before trying to import hands."
+msgstr "ハンド履歴をインポートする前に、あなたのスクリーン名とハンド履歴ディレクトリをポーカーサイト設定ウィンドウ(メインメーニュー)を入力してください。"
+
+#: fpdb.pyw:979
+msgid "Strong Warning - Local configuration out of date"
+msgstr "Strong Warning - 古い設定です"
+
+#: fpdb.pyw:982
+msgid "Your local configuration file needs to be updated."
+msgstr "あなたの設定ファイルは更新する必要があります"
+
+#: fpdb.pyw:986
+msgid ""
+"This error is not necessarily fatal but it is strongly recommended that you "
+"update the configuration."
+msgstr "このエラーは致命的ではありませんが、設定を更新することを強くお勧めします。"
+
+#: fpdb.pyw:990
+msgid ""
+"To create a new configuration, see fpdb.sourceforge.net/apps/mediawiki/fpdb/"
+"index.php?title=Reset_Configuration"
+msgstr "新しい設定ファイルを作るには "
+"http://sourceforge.net/apps/mediawiki/fpdb/index.php?title=Reset_Configuration""を参照してください。"
+
+#: fpdb.pyw:994
+msgid ""
+"A new configuration will destroy all personal settings (hud layout, site "
+"folders, screennames, favourite seats)"
+msgstr "新しい設定は個人的設定をすべて破壊します (HUD配置・ポーカーサイト・スクリーン名・座席など)"
+
+#: fpdb.pyw:998
+msgid "To keep existing personal settings, you must edit the local file."
+msgstr "個人的設定を残すには、ファイルを編集する必要があります。"
+
+#: fpdb.pyw:1002
+msgid "See the release note for information about the edits needed"
+msgstr "編集についてはリリースノートを参照してください"
+
+#: fpdb.pyw:1031
+msgid "Connected to SQLite: %s"
+msgstr "SQLiteに接続中: %s"
+
+#: fpdb.pyw:1049
+msgid "Strong Warning - Invalid database version"
+msgstr "Strong Warning - 無効なデータベースバージョンです"
+
+#: fpdb.pyw:1052
+msgid "An invalid DB version or missing tables have been detected."
+msgstr "無効なデータベースバージョンかDBテーブルの欠落を検出しました"
+
+#: fpdb.pyw:1056
+msgid ""
+"This error is not necessarily fatal but it is strongly recommended that you "
+"recreate the tables by using the Database menu."
+msgstr "このエラーは致命的ではありませんが、データベースのテーブル再作成をすることを強くお勧めします。"
+
+#: fpdb.pyw:1060
+msgid ""
+"Not doing this will likely lead to misbehaviour including fpdb crashes, "
+"corrupt data etc."
+msgstr "再作成しない場合、データ欠落などを伴うFPDBのクラッシュを引き起こします。"
+
+#: fpdb.pyw:1074
+msgid "Status: Connected to %s database named %s on host %s"
+msgstr "Status: %s のデータベース %s に接続しました、ホストは%sです"
+
+#: fpdb.pyw:1089
+msgid "Global lock taken by %s"
+msgstr "ロックは%sによって取得されています"
+
+#: fpdb.pyw:1092
+msgid "Failed to get global lock, it is currently held by %s"
+msgstr "ロックを取得できません。%s によってロックが取得されています"
+
+#: fpdb.pyw:1144
+msgid "Bulk Import"
+msgstr "一括インポート"
+
+#: fpdb.pyw:1151
+msgid "Tournament Results Import"
+msgstr "トーナメント結果インポート"
+
+#: fpdb.pyw:1157
+msgid "eMail Import"
+msgstr "Eメールインポート"
+
+#: fpdb.pyw:1170
+msgid "Tourney Stats"
+msgstr "トーナメント統計"
+
+#: fpdb.pyw:1176
+msgid "Tourney Viewer"
+msgstr "トーナメントビューア"
+
+#: fpdb.pyw:1182
+msgid "Positional Stats"
+msgstr "ポジション別統計"
+
+#: fpdb.pyw:1194
+msgid "Hand Viewer"
+msgstr "ハンドビューア"
+
+#: fpdb.pyw:1198
+msgid ""
+"Fpdb needs translators!\n"
+"If you speak another language and have a few minutes or more to spare get in "
+"touch by emailing steffen@schaumburger.info\n"
+"\n"
+"Welcome to Fpdb!\n"
+"To be notified of new snapshots and releases go to https://lists.sourceforge."
+"net/lists/listinfo/fpdb-announce and subscribe.\n"
+"If you want to follow development more closely go to https://lists."
+"sourceforge.net/lists/listinfo/fpdb-main and subscribe.\n"
+"\n"
+"This program is currently in an alpha-state, so our database format is still "
+"sometimes changed.\n"
+"You should therefore always keep your hand history files so that you can re-"
+"import after an update, if necessary.\n"
+"\n"
+"For documentation please visit our website/wiki at http://fpdb.sourceforge."
+"net/.\n"
+"If you need help click on Contact - Get Help on our website.\n"
+"Please note that default.conf is no longer needed nor used, all "
+"configuration now happens in HUD_config.xml.\n"
+"\n"
+"This program is free/libre open source software licensed partially under the "
+"AGPL3, and partially under GPL2 or later.\n"
+"The Windows installer package includes code licensed under the MIT license.\n"
+"You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0."
+"txt and mit.txt in the fpdb installation directory."
+msgstr "FPDBへようこそ!\n"
+"新しいスナップショットとリリース版の告知が欲しい方は"
+"https://lists.sourceforge.net/lists/listinfo/fpdb-announce を購読してください。\n"
+"開発をより深く追い掛けたい方は"
+"https://lists.sourceforge.net/lists/listinfo/fpdb-main を購読してください。\n"
+"\n"
+"このプログラムは現在アルファ版で、データベースの設計はしばしば変更されます。\n"
+"必要に応じてFPDBの更新後に再インポートするためには、ハンド履歴ファイルを削除せず保管しておく必要があります。\n"
+"\n"
+"文書は我々のウェブサイト http://fpdb.sourceforge.net/ のWikiをご覧ください。\n"
+"もし助けが必要ならば我々のウェブサイトの Contact - Get Help を訪れてください。\n"
+"注意:かつての設定ファイルdefault.conf はもう不要です。すべての設定はHUD_config.xmlにあります。\n"
+"\n"
+"このプログラムはオープンソースの自由なソフトウェアで、"
+"AGPLでライセンスされる部分とGPL2以降でライセンスされる部分があります。\n"
+"Windows用インストーラパッケージはMITライセンスのコードを含みます。\n"
+"ライセンスの全文はFPDBインストールディレクトリ中の"
+"agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt, mit.txtにあります。"
+
+#: fpdb.pyw:1215
+msgid "Help"
+msgstr "ヘルプ"
+
+#: fpdb.pyw:1222
+msgid "Graphs"
+msgstr "グラフ"
+
+#: fpdb.pyw:1236
+msgid "Stove"
+msgstr "ストーブ"
+
+#: fpdb.pyw:1350
+msgid "fpdb starting ..."
+msgstr "fpdb を開始しています ..."
+
+#: fpdb.pyw:1449
+msgid "Unknown Site"
+msgstr "不明なポーカーサイト"
+
+#: fpdb.pyw:1450
+msgid "Unable to find site '%s'"
+msgstr "ポーカーサイト '%s' が見つかりません"
+
+#: fpdb_prerun.py:67
+msgid ""
+"Unable to load PyGTK modules required for GUI. Please install PyCairo, "
+"PyGObject, and PyGTK from www.pygtk.org."
+msgstr ""
+"GUIに必要なPyGTKモジュールが読み込めません。PyCairo, PyGObject, PyGTKをインス"
+"トールしてください。"
+
+#: fpdb_prerun.py:69
+msgid ""
+"We appear to be running in Windows, but the Windows Python Extensions are "
+"not loading. Please install the PYWIN32 package from http://sourceforge.net/"
+"projects/pywin32/"
+msgstr ""
+"Windows上で実行されているようですが、Windows Python拡張がロードされていませ"
+"ん。PYWIN32パッケージをインストールしてください。http://sourceforge.net/"
+"projects/pywin32/"
+
+#: fpdb_prerun.py:71
+msgid ""
+"Unable to import PYTZ library. Please install PYTZ from http://pypi.python."
+"org/pypi/pytz/"
+msgstr ""
+"import PYTZに失敗しました。PYTZをインストールしてください。http://pypi."
+"python.org/pypi/pytz/"
+
+#: fpdb_prerun.py:171
+msgid "Python 2.6-2.7 not found, please install python 2.6 or 2.7 for fpdb."
+msgstr "Python 2.6〜2.7が見つかりません、Python 2.6か2.7をFPDB用にインストールしてください。"
+
+#: iPokerSummary.py:99
+msgid "iPokerSummary.determineGameType: '%s'"
+msgstr "iPokerSummary.determineGameType: '%s'"
+
+#: iPokerSummary.py:107 iPokerSummary.py:183
+msgid ""
+"iPokerSummary.determineGameType: Text does not appear to be a tournament '%s'"
+msgstr ""
+
+#: iPokerToFpdb.py:209
+msgid "iPokerToFpdb.determineGameType: '%s'"
+msgstr "iPokerToFpdb.determineGameType: '%s'"
+
+#: iPokerToFpdb.py:294
+msgid ""
+"iPokerToFpdb.determineGameType: Lim_Blinds has no lookup for '%s' - '%s'"
+msgstr ""
+
+#: iPokerToFpdb.py:303
+msgid "iPokerToFpdb.readHandInfo: '%s'"
+msgstr "iPokerToFpdb.readHandInfo: '%s'"
+
+#: interlocks.py:52
+msgid "lock already held by:"
+msgstr "ロックは既に取得されています:"
+
+#: windows_make_bats.py:30
+msgid "This script is only for Windows."
+msgstr "このスクリプトはWindows用です。"
+
+#: windows_make_bats.py:57
+msgid "Install gtk or edit the path manually."
+msgstr "GTKをインストールするか、環境変数PATHを編集してください。"
+
+#: windows_make_bats.py:57
+msgid "No gtk directories found in your path."
+msgstr "PATHにGTKのフォルダが見つかりません"
+
+#~ msgid "n Days"
+#~ msgstr "日前から"
+
+#~ msgid "Force layout"
+#~ msgstr "レイアウトを強制指定"
+
+#~ msgid "Please select site"
+#~ msgstr "DBテーブルを再作成してください"
+
+#~ msgid "Number of threads:"
+#~ msgstr "スレッド数:"
+
+#~ msgid "Hands/file:"
+#~ msgstr "ハンド/ファイル:"
+
+#~ msgid "Hand processing starting."
+#~ msgstr "ハンド処理を開始。"
+
+#~ msgid "Reposition StatWindows"
+#~ msgstr "統計ウィンドウの再配置"
+
+#~ msgid "For Multiple Blind Levels:"
+#~ msgstr "複数ブラインドレベル:"
+
+#~ msgid "Updating config file"
+#~ msgstr "設定ファイルを更新中"
+
+#~ msgid "HUD process overloaded, skipping this hand."
+#~ msgstr "HUDプロセスが過負荷のため、このハンドをスキップします。"
+
+#~ msgid "_Site Preferences"
+#~ msgstr "ポーカーサイト設定(_S)"
+
+#~ msgid "_Advanced Preferences"
+#~ msgstr "高度な設定(_A)"
+
+#~ msgid "Tournament _Results Import"
+#~ msgstr "トーナメント結果インポート(_R)"
+
+#~ msgid "_Viewers"
+#~ msgstr "ビューア(_V)"
+
+#~ msgid "_Auto Import and HUD"
+#~ msgstr "自動インポートとHUD(_A)"
+
+#~ msgid "_Database"
+#~ msgstr "データベース(_D)"
+
+#~ msgid "Auto Import"
+#~ msgstr "自動インポート"
+
+#~ msgid "No need to rebuild hudcache."
+#~ msgstr "HUDキャッシュの再構築は不要です。"
