@@ -89,7 +89,7 @@ class GuiLogView:
         hb1 = gtk.HBox(False, 0)
         grp = None
         for logf in LOGFILES:
-            rb = gtk.RadioButton(group=grp, label=logf[0], use_underline=True)
+            rb = gtk.RadioButton(group=grp, label=logf[0], use_underline=False)
             if grp is None: grp = rb
             rb.set_active(logf[2])
             rb.connect('clicked', self.__set_logfile, logf[0])
