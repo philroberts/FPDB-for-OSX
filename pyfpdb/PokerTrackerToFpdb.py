@@ -2,17 +2,17 @@
 # -*- coding: utf-8 -*-
 #
 #    Copyright 2008-2012, Chaz Littlejohn
-#    
+#
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
 #    the Free Software Foundation; either version 2 of the License, or
 #    (at your option) any later version.
-#    
+#
 #    This program is distributed in the hope that it will be useful,
 #    but WITHOUT ANY WARRANTY; without even the implied warranty of
 #    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 #    GNU General Public License for more details.
-#    
+#
 #    You should have received a copy of the GNU General Public License
 #    along with this program; if not, write to the Free Software
 #    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
@@ -45,7 +45,7 @@ class PokerTracker(HandHistoryConverter):
                             'CUR': u"(\$|\xe2\x82\xac|\u20ac||\£|)",
                           'BRKTS': r'(\(button\) |\(small blind\) |\(big blind\) |\(button\) \(small blind\) |\(button\) \(big blind\) )?',
                     }
-                    
+
     # translations from captured groups to fpdb info strings
     Lim_Blinds = {      '0.04': ('0.01', '0.02'),         '0.08': ('0.02', '0.04'),
                         '0.10': ('0.02', '0.05'),         '0.20': ('0.05', '0.10'),
@@ -72,7 +72,7 @@ class PokerTracker(HandHistoryConverter):
 
     limits = { 'NL':'nl', 'No Limit':'nl', 'Pot Limit':'pl', 'PL': 'pl', 'FL': 'fl', 'Limit':'fl', 'LIMIT':'fl' }
     games = {                          # base, category
-                              "Hold'em" : ('hold','holdem'), 
+                              "Hold'em" : ('hold','holdem'),
                         "Texas Hold'em" : ('hold','holdem'),
                                "Holdem" : ('hold','holdem'),
                                 'Omaha' : ('hold','omahahi'),
@@ -84,7 +84,7 @@ class PokerTracker(HandHistoryConverter):
                          'MERGE_GAME #' : ('Merge', 12),
                           '** Game ID ' : ('Microgaming', 20),
                            '** Hand # ' : ('Microgaming', 20)
-             
+
              }
     currencies = { u'€':'EUR', '$':'USD', '':'T$', u'£':'GBP' }
 
@@ -105,7 +105,7 @@ class PokerTracker(HandHistoryConverter):
           )?\s                        # close paren of the stakes
           (?P<DATETIME>.*$)
         """ % substitutions, re.MULTILINE|re.VERBOSE)
-    
+
     re_GameInfo2     = re.compile(u"""
           EverestPoker\sGame\s\#(?P<HID>[0-9]+):\s+
           (?P<TOUR>Tourney\sID:\s(?P<TOURNO>\d+),\s)?
@@ -120,7 +120,7 @@ class PokerTracker(HandHistoryConverter):
           (-\s)?
           (?P<DATETIME>.*$)
         """ % substitutions, re.MULTILINE|re.VERBOSE)
-    
+
     re_GameInfo3     = re.compile(u"""
           (?P<HID>[0-9]+)(\sVersion:\d)?\sstarting\s\-\s(?P<DATETIME>.*$)\s
           \*\*(?P<TOUR>.+(?P<SPEED>(Turbo|Hyper))?\((?P<TOURNO>\d+)\):Table)?\s(?P<TABLE>.+)\s
@@ -133,14 +133,14 @@ class PokerTracker(HandHistoryConverter):
           ^Seat\s(?P<SEAT>[0-9]+):\s
           (?P<PNAME>.*)\s
           \((?P<CURRENCY>%(LS)s)?(?P<CASH>[%(NUM)s]+)(\sin\schips)?\)
-          (?P<BUTTON>\sDEALER)?""" % substitutions, 
+          (?P<BUTTON>\sDEALER)?""" % substitutions,
           re.MULTILINE|re.VERBOSE)
-    
+
     re_PlayerInfo2   = re.compile(u"""
           ^(\-\s)?(?P<PNAME>.*)\s
           sitting\sin\sseat\s(?P<SEAT>[0-9]+)\swith\s
           (%(LS)s)?(?P<CASH>[%(NUM)s]+)
-          (?P<BUTTON>\s?\[Dealer\])?""" % substitutions, 
+          (?P<BUTTON>\s?\[Dealer\])?""" % substitutions,
           re.MULTILINE|re.VERBOSE)
 
     re_HandInfo_Tour     = re.compile("""
@@ -148,7 +148,7 @@ class PokerTracker(HandHistoryConverter):
           (?P<TOUR>\(Tournament:\s(.+)?\sBuy\-In:\s(?P<BUYIN>(?P<BIAMT>[%(LS)s\d\.]+)\+?(?P<BIRAKE>[%(LS)s\d\.]+))\))
           """ % substitutions
           , re.MULTILINE|re.VERBOSE)
-    
+
     re_HandInfo_Cash     = re.compile("""
           ^Table\s(?P<TABLE>[^\n]+)
           (,\sSeats\s(?P<MAX>\d+))?""" % substitutions
@@ -218,10 +218,10 @@ class PokerTracker(HandHistoryConverter):
             tmp = handText[0:200]
             log.error(_("PokerTrackerToFpdb.determineGameType: '%s'") % tmp)
             raise FpdbParseError
-        
+
         self.sitename = self.sites[m.group('SITE')][0]
         self.siteId   = self.sites[m.group('SITE')][1] # Needs to match id entry in Sites database
-        
+
         info = {}
         if self.sitename in ('iPoker', 'Merge'):
             m = self.re_GameInfo1.search(handText)
@@ -233,7 +233,7 @@ class PokerTracker(HandHistoryConverter):
             tmp = handText[0:200]
             log.error(_("PokerTrackerToFpdb.determineGameType: '%s'") % tmp)
             raise FpdbParseError
-        
+
         mg = m.groupdict()
         #print 'DEBUG determineGameType', '%r' % mg
         if 'LIMIT' in mg and mg['LIMIT'] != None:
@@ -259,7 +259,7 @@ class PokerTracker(HandHistoryConverter):
             info['currency'] = self.currencies[mg['CURRENCY']]
         if 'MIXED' in mg:
             if mg['MIXED'] is not None: info['mix'] = self.mixes[mg['MIXED']]
-                
+
         if 'TOUR' in mg and mg['TOUR'] is not None:
             info['type'] = 'tour'
             info['currency'] = 'T$'
@@ -302,11 +302,11 @@ class PokerTracker(HandHistoryConverter):
             print hand.handText
             log.error(_("PokerTrackerToFpdb.readHandInfo: '%s'") % tmp)
             raise FpdbParseError
-        
+
         if self.sitename not in ('Everest', 'Microgaming'):
             info.update(m.groupdict())
         info.update(m2.groupdict())
-        
+
         if self.sitename != 'Everest':
             hand.setUncalledBets(True)
 
@@ -374,10 +374,10 @@ class PokerTracker(HandHistoryConverter):
                                 #FIXME: handle other currencies, play money
                                 log.error(_("PokerTrackerToFpdb.readHandInfo: Failed to detect currency.") + " Hand ID: %s: '%s'" % (hand.handid, info[key]))
                                 raise FpdbParseError
-    
+
                             info['BIAMT'] = info['BIAMT'].strip(u'$€£')
                             info['BIRAKE'] = info['BIRAKE'].strip(u'$€£')
-    
+
                             hand.buyin = int(100*Decimal(info['BIAMT']))
                             hand.fee = int(100*Decimal(info['BIRAKE']))
             if key == 'TABLE':
@@ -407,13 +407,13 @@ class PokerTracker(HandHistoryConverter):
             if key == 'PLAY' and info['PLAY'] is not None and info['PLAY']=='Play':
 #                hand.currency = 'play' # overrides previously set value
                 hand.gametype['currency'] = 'play'
-                
+
         if self.re_FastFold.search(hand.handText):
             hand.fastFold = True
-                
+
         if self.re_Cancelled.search(hand.handText):
             raise FpdbHandPartial(_("Hand '%s' was cancelled.") % hand.handid)
-    
+
     def readButton(self, hand):
         m = self.re_Button.search(hand.handText)
         if m:
@@ -471,7 +471,7 @@ class PokerTracker(HandHistoryConverter):
             #~ logging.debug("hand.addAnte(%s,%s)" %(player.group('PNAME'), player.group('ANTE')))
             self.adjustMergeTourneyStack(hand, player.group('PNAME'), player.group('ANTE'))
             hand.addAnte(player.group('PNAME'), player.group('ANTE'))
-        
+
     def readBlinds(self, hand):
         liveBlind, bb, sb = True, None, None
         for a in self.re_PostSB.finditer(hand.handText):
@@ -503,7 +503,7 @@ class PokerTracker(HandHistoryConverter):
                     hand.addBlind(a.group('PNAME'), 'both', bb)
                 else:
                     hand.addBlind(a.group('PNAME'), 'big blind', bb)
-                    
+
         if self.sitename == 'Microgaming':
             for a in self.re_PostBoth2.finditer(hand.handText):
                 if self.clearMoneyString(a.group('SBBB')) == hand.gametype['sb']:
@@ -526,7 +526,7 @@ class PokerTracker(HandHistoryConverter):
             for a in self.re_PostBoth1.finditer(hand.handText):
                 self.adjustMergeTourneyStack(hand, a.group('PNAME'), a.group('SBBB'))
                 hand.addBlind(a.group('PNAME'), 'both', self.clearMoneyString(a.group('SBBB')))
-            
+
         # FIXME
         # The following should only trigger when a small blind is missing in a tournament, or the sb/bb is ALL_IN
         # see http://sourceforge.net/apps/mantisbt/fpdb/view.php?id=115
@@ -634,13 +634,13 @@ class PokerTracker(HandHistoryConverter):
                 curr_pot = amount
             else:
                 print (_("DEBUG:") + " " + _("Unimplemented %s: '%s' '%s'") % ("readAction", action.group('PNAME'), action.group('ATYPE')))
-                
+
     def allInBlind(self, hand, street, action, actiontype):
         if street in ('PREFLOP', 'DEAL'):
             player = action.group('PNAME')
             if hand.stacks[player]==0:
                 hand.setUncalledBets(True)
-                
+
     def adjustMergeTourneyStack(self, hand, player, amount):
         if self.sitename == 'Merge':
             amount = Decimal(self.clearMoneyString(amount))
@@ -659,7 +659,7 @@ class PokerTracker(HandHistoryConverter):
         else:
             for m in self.re_CollectPot1.finditer(hand.handText):
                 hand.addCollectPot(player=m.group('PNAME'),pot=re.sub(u',',u'',m.group('POT')))
-                
+
     def readShowdownActions(self, hand):
         pass
 
@@ -685,4 +685,3 @@ class PokerTracker(HandHistoryConverter):
 
                 #print "DEBUG: hand.addShownCards(%s, %s, %s, %s)" %(cards, m.group('PNAME'), shown, mucked)
                 hand.addShownCards(cards=cards, player=m.group('PNAME'), shown=shown, mucked=mucked)
- 
