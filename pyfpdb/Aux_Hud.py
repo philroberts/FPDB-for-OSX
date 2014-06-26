@@ -305,7 +305,7 @@ class Simple_table_popup_menu(gtk.Window):
         stat_range_combo_dict = {} #[position][screentext, field value]
         stat_range_combo_dict[0] = ((_('Since:')+" "+_('All Time')), "A")
         stat_range_combo_dict[1] = ((_('Since:')+" "+_('Session')), "S")
-        stat_range_combo_dict[2] = ((_('Since:')+" "+_('%s Days' % "n")+" - - >"), "T")
+        stat_range_combo_dict[2] = ((_('Since:')+" "+_('n Days')+" - - >"), "T")
 #combobox seatsstyle
         seats_style_combo_dict = {} #[position][screentext, field value]
         seats_style_combo_dict[0] = ((_('Number of Seats:')+" "+_('Any Number')), "A")
@@ -320,7 +320,7 @@ class Simple_table_popup_menu(gtk.Window):
         multiplier_combo_dict[4] = (_('All Levels'), 10000)
 #ComboBox - set max seats
         cb_max_dict = {} #[position][screentext, field value]
-        cb_max_dict[0] = (_('Force layout'+'...'),None)
+        cb_max_dict[0] = (_('Force layout')+'...',None)
         pos = 1
         for i in (sorted(self.parentwin.hud.layout_set.layout)):
             cb_max_dict[pos]= (('%d-max' % i), i)
@@ -336,7 +336,7 @@ class Simple_table_popup_menu(gtk.Window):
         vbox1.pack_start(self.build_button(_('Save HUD Layout'), gtk.STOCK_SAVE, "save"))
         vbox1.pack_start(self.build_button(_('Stop this HUD'), gtk.STOCK_STOP, "blacklist"))
         vbox1.pack_start(self.build_button(_('Close'), gtk.STOCK_CLOSE, "close"))
-        vbox1.pack_start(self.build_label(_('')))
+        vbox1.pack_start(self.build_label(''))
         vbox1.pack_start(self.build_combo_and_set_active('new_max_seats', cb_max_dict))
         
         vbox2.pack_start(self.build_label(_('Show Player Stats for')))
