@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# -*- coding: UTF-8 -*-
 #    Copyright 2012, Chaz Littlejohn
 #    
 #    This program is free software; you can redistribute it and/or modify
