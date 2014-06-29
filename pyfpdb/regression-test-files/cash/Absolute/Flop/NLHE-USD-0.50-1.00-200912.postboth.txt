@@ -1,0 +1,33 @@
+Stage #1797821771: Holdem  No Limit $1 - 2009-12-14 17:14:02 (ET)
+Table: WILLOW ST (Real Money) Seat #4 is the dealer
+Seat 4 - Player0 ($148.70 in chips)
+Seat 5 - Player1 ($37.17 in chips)
+Seat 6 - Hero ($100 in chips)
+Seat 2 - Player2 ($20 in chips)
+Seat 3 - Player3 ($55.75 in chips)
+Player1 - Posts small blind $0.50
+Hero - Posts big blind $1
+Player2 - Posts $1 dead $0.50
+*** POCKET CARDS ***
+Dealt to Hero [Ac 3h] 
+Player2 - Checks
+Player3 - Folds
+Player0 - Folds
+Player1 - Raises $3.50 to $4
+Hero - Folds
+Player2 - Calls $3
+*** FLOP *** [9d Ad 3s]
+Player1 - Bets $6
+Player2 - Folds
+Player1 - returned ($6) : not called
+*** SHOW DOWN ***
+Player1 - Does not show
+Player1 Collects $8.55 from main pot
+*** SUMMARY ***
+Total Pot($9.50) | Rake ($0.45) | Jackpot Rake ($0.50)
+Board [9d Ad 3s]
+Seat 2: Player2 Folded on the FLOP
+Seat 3: Player3 Folded on the POCKET CARDS
+Seat 4: Player0 (dealer) Folded on the POCKET CARDS
+Seat 5: Player1 (small blind) collected Total ($8.55) HI:($8.55)  [Does not show] 
+Seat 6: Hero (big blind) Folded on the POCKET CARDS

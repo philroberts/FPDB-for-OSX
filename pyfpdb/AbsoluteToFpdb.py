@@ -73,7 +73,7 @@ class Absolute(HandHistoryConverter):
     re_GameInfo = re.compile( ur"""
               ^Stage\s+\#C?(?P<HID>[0-9]+):?\s+
               (?:Tourney\ ID\ (?P<TRNY_ID>\d+)\s+)?
-              (?P<GAME>Holdem|Seven\ Card\ Hi\/Lo|HORSE)\s+
+              (?P<GAME>Holdem|Seven\ Card\ Hi\/Lo|HORSE|Omaha)\s+
               (?P<TRNY_TYPE>\(1\son\s1\)|Single\ Tournament|Multi\ Normal\ Tournament|)\s*
               (?P<LIMIT>No\ Limit|Pot\ Limit|Normal|)\s?
               (?P<CURRENCY>\$|\s€|)
@@ -121,9 +121,9 @@ class Absolute(HandHistoryConverter):
             #(?P<CURRENCY>\$| €|)(?P<BB>[0-9]*[.0-9]+)
             self.re_PostSB          = re.compile(ur"^%s - Posts small blind (?:\$| €|)(?P<SB>[,.0-9]+)" % player_re, re.MULTILINE)
             self.re_PostBB          = re.compile(ur"^%s - Posts big blind (?:\$| €|)(?P<BB>[.,0-9]+)" % player_re, re.MULTILINE)
-            self.re_Post            = re.compile(ur"^%s - Posts (?:\$| €|)(?P<BB>[.,0-9]+)" % player_re, re.MULTILINE)
+            self.re_Post            = re.compile(ur"^%s - Posts (?:\$| €|)(?P<BB>[.,0-9]+)$" % player_re, re.MULTILINE)
             # TODO: Absolute posting when coming in new: %s - Posts $0.02 .. should that be a new Post line? where do we need to add support for that? *confused*
-            self.re_PostBoth        = re.compile(ur"^%s - Posts dead (?:\$| €|)(?P<SBBB>[,.0-9]+)" % player_re, re.MULTILINE)
+            self.re_PostBoth        = re.compile(ur"^%s - Posts (?:\$| €|)(?P<BB>[,.0-9]+) dead (?:\$| €|)(?P<SB>[,.0-9]+)" % player_re, re.MULTILINE)
             self.re_Action          = re.compile(ur"^%s - (?P<ATYPE>Bets |Raises |All-In |All-In\(Raise\) |Calls |Folds|Checks)?\$?(?P<BET>[,.0-9]+)?" % player_re, re.MULTILINE)
             self.re_ShowdownAction  = re.compile(ur"^%s - Shows \[(?P<CARDS>.*)\]" % player_re, re.MULTILINE)
             self.re_CollectPot      = re.compile(ur"^Seat [0-9]: %s(?: \(dealer\)|)(?: \(big blind\)| \(small blind\)|) (?:won|collected) Total \((?:\$| €|)(?P<POT>[,.0-9]+)\)" % player_re, re.MULTILINE)
@@ -332,7 +332,9 @@ class Absolute(HandHistoryConverter):
             hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
             hand.setUncalledBets(Decimal(a.group('BB')))
         for a in self.re_PostBoth.finditer(hand.handText):
-            hand.addBlind(a.group('PNAME'), 'both', a.group('SBBB'))
+            hand.setUncalledBets(None)
+            amount = str(Decimal(a.group('BB')) + Decimal(a.group('SB')))
+            hand.addBlind(a.group('PNAME'), 'both', amount)
         for a in self.re_Post.finditer(hand.handText):
             hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
 
