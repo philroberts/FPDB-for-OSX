@@ -1,0 +1,31 @@
+Game # 1850568849 - Texas Hold'em No Limit EUR 0.10/0.20 - Table "Tranemo"
+
+Players(max 6):
+Player0                     (EUR 27.88 in seat 1)
+Hero                        (EUR 21.70 in seat 2)
+Player1                     (EUR 4.32 in seat 3)
+Player2                     (EUR 8.85 in seat 4)
+Player3                     (EUR 26.56 in seat 5)
+Player4                     (EUR 53.85 in seat 6)
+
+Dealer:                     Player4
+Small Blind:                Player0    (0.10)
+Big Blind:                  Hero       (0.20)
+
+hero was dealt:             4c - 5c
+
+Player1                     All-In      (4.32)
+Player2                     Fold        
+Player4                     Fold        
+Player0                     Fold        
+Hero                        Fold        
+Player1                     Payback     (4.12)
+
+Player1 didn't show hand
+
+Player1 wins:               EUR 0.50
+Rake:                       EUR 0.00
+
+Game ended 2010-09-08 00:14:25 BST
+
+

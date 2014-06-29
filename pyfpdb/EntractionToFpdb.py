@@ -298,7 +298,7 @@ class Entraction(HandHistoryConverter):
             if street in hand.streets.keys():
                 m = self.re_HeroCards.finditer(hand.streets[street])
                 for found in m:
-                    hand.hero = found.group('PNAME')
+                    hand.hero = [p[1] for p in hand.players if p[1].lower()==found.group('PNAME').lower()][0]
                     newcards = found.group('CARDS').split(' - ')
                     hand.addHoleCards(street, hand.hero, closed=newcards, shown=False, mucked=False, dealt=True)
 
