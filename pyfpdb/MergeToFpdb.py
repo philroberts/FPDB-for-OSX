@@ -191,9 +191,12 @@ class Merge(HandHistoryConverter):
         if gametype is None:
             gametype = self.determineGameType(whole_file)
             if gametype is None:
-                tmp = handText[0:200]
-                log.error(_("MergeToFpdb.determineGameType: '%s'") % tmp)
-                raise FpdbParseError
+                if not re.search('<description', whole_file):
+                    raise FpdbHandPartial("Partial hand history: No <desription> tag")
+                else:
+                    tmp = handText[0:200]
+                    log.error(_("MergeToFpdb.determineGameType: '%s'") % tmp)
+                    raise FpdbParseError
             else:
                 if 'mix' in gametype and gametype['mix']!=None:
                     self.mergeMultigametypes(handText)
