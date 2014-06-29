@@ -312,7 +312,8 @@ class PacificPoker(HandHistoryConverter):
     def readPlayerStacks(self, hand):
         m = self.re_PlayerInfo.finditer(hand.handText)
         for a in m:
-            #print "DEBUG: Seat[", a.group('SEAT'), "]; PNAME[", a.group('PNAME'), "]; CASH[", a.group('CASH'), "]"
+            if (len(a.group('PNAME'))==0):
+                raise FpdbHandPartial("Partial hand history: %s" % hand.handid)
             hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), self.clearMoneyString(a.group('CASH')))
 
     def markStreets(self, hand):

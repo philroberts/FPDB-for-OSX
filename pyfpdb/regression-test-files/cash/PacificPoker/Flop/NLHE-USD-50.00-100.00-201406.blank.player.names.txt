@@ -1,0 +1,18 @@
+#Game No : 315882986
+***** 888poker Hand History for Game 315882986 *****
+$50/$100 Blinds No Limit Holdem - *** 28 06 2014 12:36:16
+Table Yakima 6 Max (Real Money)
+Seat 6 is the button
+Total number of players : 2
+Seat 2:  ( $895 )
+Seat 6:  ( $600 )
+ posts small blind [$50]
+ posts big blind [$100]
+** Dealing down cards **
+Dealt to  [ 8s, 8d ]
+ raises [$550]
+ folds
+** Summary **
+ did not show his hand
+ collected [ $200 ]
+ 
