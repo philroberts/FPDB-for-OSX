@@ -2,17 +2,17 @@
 # -*- coding: utf-8 -*-
 #
 #    Copyright 2008-2011, Chaz Littlejohn
-#
+#    
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
 #    the Free Software Foundation; either version 2 of the License, or
 #    (at your option) any later version.
-#
+#    
 #    This program is distributed in the hope that it will be useful,
 #    but WITHOUT ANY WARRANTY; without even the implied warranty of
 #    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 #    GNU General Public License for more details.
-#
+#    
 #    You should have received a copy of the GNU General Public License
 #    along with this program; if not, write to the Free Software
 #    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
@@ -44,7 +44,7 @@ class BetOnline(HandHistoryConverter):
                      'PLYR': r'(?P<PNAME>.+?)',
                      'NUM' :u".,\d",
                     }
-
+                    
     # translations from captured groups to fpdb info strings
     Lim_Blinds = {  '0.04': ('0.01', '0.02'),        '0.08': ('0.02', '0.04'),
                         '0.10': ('0.02', '0.05'),    '0.20': ('0.05', '0.10'),
@@ -69,10 +69,10 @@ class BetOnline(HandHistoryConverter):
 
     limits = { 'No Limit':'nl', 'Pot Limit':'pl', 'Limit':'fl', 'LIMIT':'fl' }
     games = {                          # base, category
-                              "Hold'em" : ('hold','holdem'),
+                              "Hold'em" : ('hold','holdem'), 
                                 'Omaha' : ('hold','omahahi'),
                           'Omaha Hi/Lo' : ('hold','omahahilo'),
-                                 'Razz' : ('stud','razz'),
+                                 'Razz' : ('stud','razz'), 
                           '7 Card Stud' : ('stud','studhi'),
                     '7 Card Stud Hi/Lo' : ('stud','studhilo'),
                                'Badugi' : ('draw','badugi'),
@@ -90,7 +90,7 @@ class BetOnline(HandHistoryConverter):
                            'Triple Stud': '3stud'
                } # Legal mixed games
     currencies = { u'€':'EUR', '$':'USD', '':'T$' }
-
+    
     skins = {
                        'BetOnline Poker': 'BetOnline',
                              'PayNoRake': 'PayNoRake',
@@ -124,20 +124,20 @@ class BetOnline(HandHistoryConverter):
     re_PlayerInfo   = re.compile(u"""
           ^Seat\s(?P<SEAT>[0-9]+):\s
           (?P<PNAME>.*)\s
-          \((%(LS)s)?(?P<CASH>[%(NUM)s]+)\sin\s[cC]hips\)""" % substitutions,
+          \((%(LS)s)?(?P<CASH>[%(NUM)s]+)\sin\s[cC]hips\)""" % substitutions, 
           re.MULTILINE|re.VERBOSE)
 
     re_HandInfo1     = re.compile("""
           ^Table\s\'(?P<TABLE>[\/,\.\-\ &%\$\#a-zA-Z\d\'\(\)]+)\'\s
           ((?P<MAX>\d+)-max\s)?
           (?P<MONEY>\((Play\sMoney|Real\sMoney)\)\s)?
-          (Seat\s\#(?P<BUTTON>\d+)\sis\sthe\sbutton)?""",
+          (Seat\s\#(?P<BUTTON>\d+)\sis\sthe\sbutton)?""", 
           re.MULTILINE|re.VERBOSE)
-
+    
     re_HandInfo2     = re.compile("""
           ^Table\s(?P<TABLE>[\/,\.\-\ &%\$\#a-zA-Z\d\']+)\s
           (?P<MONEY>\((Play\sMoney|Real\sMoney)\)\s)?
-          (Seat\s\#(?P<BUTTON>\d+)\sis\sthe\sbutton)?""",
+          (Seat\s\#(?P<BUTTON>\d+)\sis\sthe\sbutton)?""", 
           re.MULTILINE|re.VERBOSE)
 
     re_Identify     = re.compile(u'(BetOnline\sPoker|PayNoRake|ActionPoker\.com|Gear\sPoker|SportsBetting\.ag\sPoker|Tiger\sGaming)\sGame\s\#\d+')
@@ -146,7 +146,7 @@ class BetOnline(HandHistoryConverter):
     re_Button       = re.compile('Seat #(?P<BUTTON>\d+) is the button', re.MULTILINE)
     re_Board1        = re.compile(r"Board \[(?P<FLOP>\S\S\S? \S\S\S? \S\S\S?)?\s?(?P<TURN>\S\S\S?)?\s?(?P<RIVER>\S\S\S?)?\]")
     re_Board2        = re.compile(r"\[(?P<CARDS>.+)\]")
-
+    
 
 
     re_DateTime1     = re.compile("""(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+)(:(?P<S>[0-9]+))?\s(?P<TZ>.*$)""", re.MULTILINE)
@@ -191,7 +191,7 @@ class BetOnline(HandHistoryConverter):
                 ["tour", "hold", "fl"],
 
                 #["tour", "stud", "fl"],
-
+                
                 #["tour", "draw", "fl"],
                 #["tour", "draw", "pl"],
                 #["tour", "draw", "nl"],
@@ -234,7 +234,7 @@ class BetOnline(HandHistoryConverter):
             info['currency'] = 'USD'
         if 'MIXED' in mg:
             if mg['MIXED'] is not None: info['mix'] = self.mixes[mg['MIXED']]
-
+                
         if 'TOURNO' in mg and mg['TOURNO'] is None:
             info['type'] = 'ring'
         else:
@@ -276,7 +276,7 @@ class BetOnline(HandHistoryConverter):
                 #2008/11/12 10:00:48 CET [2008/11/12 4:00:48 ET] # (both dates are parsed so ET date overrides the other)
                 #2008/08/17 - 01:14:43 (ET)
                 #2008/09/07 06:23:14 ET
-
+                
                 datetimestr, time_zone = "2000/01/01 00:00:00", 'ET'  # default used if time not found
                 if self.skin not in ('ActionPoker', 'GearPoker'):
                     m1 = self.re_DateTime1.finditer(info[key])
@@ -358,7 +358,7 @@ class BetOnline(HandHistoryConverter):
                 hand.maxseats = int(info[key])
         if not self.re_Board1.search(hand.handText) and self.skin not in ('ActionPoker', 'GearPoker'):
             raise FpdbHandPartial("readHandInfo: " + _("Partial hand history") + ": '%s'" % hand.handid)
-
+    
     def readButton(self, hand):
         m = self.re_Button.search(hand.handText)
         if m:
@@ -375,7 +375,7 @@ class BetOnline(HandHistoryConverter):
     def markStreets(self, hand):
 
         # There is no marker between deal and draw in Stars single draw games
-        #  this upsets the accounting, incorrectly sets handsPlayers.cardxx and
+        #  this upsets the accounting, incorrectly sets handsPlayers.cardxx and 
         #  in consequence the mucked-display is incorrect.
         # Attempt to fix by inserting a DRAW marker into the hand text attribute
 
@@ -455,13 +455,13 @@ class BetOnline(HandHistoryConverter):
         for player in m:
             pname = self.unknownPlayer(hand, a.group('PNAME'))
             hand.addAnte(pname, self.clearMoneyString(player.group('ANTE')))
-
+    
     def readBringIn(self, hand):
         m = self.re_BringIn.search(hand.handText,re.DOTALL)
         if m:
             #~ logging.debug("readBringIn: %s for %s" %(m.group('PNAME'),  m.group('BRINGIN')))
             hand.addBringIn(m.group('PNAME'),  self.clearMoneyString(m.group('BRINGIN')))
-
+        
     def readBlinds(self, hand):
         liveBlind = True
         for a in self.re_PostSB.finditer(hand.handText):
@@ -492,7 +492,7 @@ class BetOnline(HandHistoryConverter):
             amount = str(Decimal(sbbb) + Decimal(sbbb)/2)
             hand.addBlind(pname, 'both', amount)
         self.fixActionBlinds(hand)
-
+                
     def fixActionBlinds(self, hand):
         # FIXME
         # The following should only trigger when a small blind is missing in ActionPoker hands, or the sb/bb is ALL_IN
@@ -510,7 +510,7 @@ class BetOnline(HandHistoryConverter):
                     hand.gametype['bb'] = str(int(Decimal(hand.gametype['sb']))*2)
                 else:
                     hand.gametype['sb'] = str(int(Decimal(hand.gametype['bb']))/2)
-
+            
     def unknownPlayer(self, hand, pname):
         if pname == 'Unknown player' or not pname:
             if not pname: pname = 'Dead'
@@ -582,7 +582,7 @@ class BetOnline(HandHistoryConverter):
 
     def readShowdownActions(self, hand):
 # TODO: pick up mucks also??
-        for shows in self.re_ShowdownAction.finditer(hand.handText):
+        for shows in self.re_ShowdownAction.finditer(hand.handText):            
             cards = shows.group('CARDS').split(' ')
             cards = [c[:-1].replace('10', 'T') + c[-1].lower() for c in cards]
             hand.addShownCards(cards, shows.group('PNAME'))

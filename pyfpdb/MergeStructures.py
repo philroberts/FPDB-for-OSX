@@ -2,17 +2,17 @@
 # -*- coding: utf-8 -*-
 #
 #    Copyright 2010-2013, Chaz Littlejohn
-#
+#    
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
 #    the Free Software Foundation; either version 2 of the License, or
 #    (at your option) any later version.
-#
+#    
 #    This program is distributed in the hope that it will be useful,
 #    but WITHOUT ANY WARRANTY; without even the implied warranty of
 #    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 #    GNU General Public License for more details.
-#
+#    
 #    You should have received a copy of the GNU General Public License
 #    along with this program; if not, write to the Free Software
 #    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
@@ -23,12 +23,12 @@ from datetime import datetime
 import pytz
 
 class MergeStructures:
-
+    
     def __init__(self):
         self.versions = [pytz.utc.localize(datetime.strptime(d, "%Y/%m/%d %H:%M:%S")) for d in ("2013/05/28 00:00:00",)]
         self.versions.append(datetime.utcnow().replace(tzinfo = pytz.utc))
         self.SnG_Structures = []
-        self.SnG_Structures.append({
+        self.SnG_Structures.append({  
                             '$1 NL Holdem Double Up - 10 Handed'    : {'buyIn': 1,   'fee': 0.08, 'currency': 'USD', 'seats': 10, 'multi': False, 'payoutCurrency': 'USD', 'payouts': (2,2,2,2,2)},
                             '$1 PL Omaha Double Up - 10 Handed'     : {'buyIn': 1,   'fee': 0.08, 'currency': 'USD', 'seats': 10, 'multi': False, 'payoutCurrency': 'USD', 'payouts': (2,2,2,2,2)},
                             '$10 Bounty SnG - 6 Handed'             : {'buyIn': 5,   'fee': 1,    'currency': 'USD', 'seats': 6, 'multi': False, 'payoutCurrency': 'USD', 'payouts': (21, 9)},
@@ -448,9 +448,11 @@ class MergeStructures:
                             'Turbo 45 Man - $11': {'buyIn': 10.17, 'fee': 0.83, 'currency': 'USD', 'seats': 9, 'max': 45, 'multi': True, 'speed': 'Turbo', 'payoutCurrency': 'USD', 'payouts': (142.79, 97.94, 75.06, 57.21, 40.73, 27.45, 16.47)},
                             'Turbo 45 Man - $5.5': {'buyIn': 5.04, 'fee': 0.46, 'currency': 'USD', 'seats': 9, 'max': 45, 'multi': True, 'speed': 'Turbo', 'payoutCurrency': 'USD', 'payouts': (70.77, 48.54, 37.20, 28.35, 20.18, 13.6, 8.16)},
                             })
-
+        
     def lookupSnG(self, key, startTime):
         for i in range(len(self.versions)):
             if startTime < self.versions[i]:
                 struct = self.SnG_Structures[i].get(key)
                 return struct
+        
+    

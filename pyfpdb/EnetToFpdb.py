@@ -2,17 +2,17 @@
 # -*- coding: utf-8 -*-
 #
 #    Copyright 2012, Chaz Littlejohn
-#
+#    
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
 #    the Free Software Foundation; either version 2 of the License, or
 #    (at your option) any later version.
-#
+#    
 #    This program is distributed in the hope that it will be useful,
 #    but WITHOUT ANY WARRANTY; without even the implied warranty of
 #    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 #    GNU General Public License for more details.
-#
+#    
 #    You should have received a copy of the GNU General Public License
 #    along with this program; if not, write to the Free Software
 #    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
@@ -46,7 +46,7 @@ class Enet(HandHistoryConverter):
                           'BRKTS': r'(\(dealer\) |\(small blind\) |\(big blind\) |\(dealer\)\(small blind\) |\(dealer\)\(big blind\) | )?',
                            'NUM' : r'.,\d',
                     }
-
+                    
     # translations from captured groups to fpdb info strings
     Lim_Blinds = {      '0.04': ('0.01', '0.02'),         '0.08': ('0.02', '0.04'),
                         '0.10': ('0.02', '0.05'),         '0.20': ('0.05', '0.10'),
@@ -99,14 +99,14 @@ class Enet(HandHistoryConverter):
     re_PlayerInfo   = re.compile(u"""
           ^Seat\s(?P<SEAT>[0-9]+):\s
           (?P<PNAME>.*)\s
-          \((%(LS)s)?(?P<CASH>[%(NUM)s]+)\sin\schips\)""" % substitutions,
+          \((%(LS)s)?(?P<CASH>[%(NUM)s]+)\sin\schips\)""" % substitutions, 
           re.MULTILINE|re.VERBOSE)
 
     re_HandInfo     = re.compile("""
           ^Table\s\'(?P<TABLE>.+?)\s\-\s(?P<LIMIT>No\sLimit|Limit|Pot\sLimit)\)?\'\s
           ((?P<MAX>\d+)-max\s)?
           (?P<PLAY>\(Play\sMoney\)\s)?
-          (Seat\s\#(?P<BUTTON>\d+)\sis\sthe\sbutton)?""",
+          (Seat\s\#(?P<BUTTON>\d+)\sis\sthe\sbutton)?""", 
           re.MULTILINE|re.VERBOSE)
 
     re_Identify     = re.compile(u'^Game\s\#\d+:')
@@ -172,12 +172,12 @@ class Enet(HandHistoryConverter):
             info['bb'] = self.clearMoneyString(mg['BB'])
         if 'CURRENCY' in mg:
             info['currency'] = self.currencies[mg['CURRENCY']]
-
+                
         if 'TOURNO' in mg and mg['TOURNO'] is None:
             info['type'] = 'ring'
         else:
             info['type'] = 'tour'
-
+            
         if not mg['CURRENCY'] and info['type']=='ring':
             info['currency'] = 'play'
 
@@ -192,7 +192,7 @@ class Enet(HandHistoryConverter):
                     raise FpdbParseError
             else:
                 info['sb'] = str((Decimal(self.clearMoneyString(mg['SB']))/2).quantize(Decimal("0.01")))
-                info['bb'] = str(Decimal(self.clearMoneyString(mg['SB'])).quantize(Decimal("0.01")))
+                info['bb'] = str(Decimal(self.clearMoneyString(mg['SB'])).quantize(Decimal("0.01")))    
 
         return info
 
@@ -267,7 +267,7 @@ class Enet(HandHistoryConverter):
                 hand.buttonpos = info[key]
             if key == 'MAX' and info[key] != None:
                 hand.maxseats = int(info[key])
-
+    
     def readButton(self, hand):
         m = self.re_Button.search(hand.handText)
         if m:
@@ -284,7 +284,7 @@ class Enet(HandHistoryConverter):
     def markStreets(self, hand):
 
         # There is no marker between deal and draw in Stars single draw games
-        #  this upsets the accounting, incorrectly sets handsPlayers.cardxx and
+        #  this upsets the accounting, incorrectly sets handsPlayers.cardxx and 
         #  in consequence the mucked-display is incorrect.
         # PREFLOP = ** Dealing down cards **
         # This re fails if,  say, river is missing; then we don't get the ** that starts the river.
@@ -309,13 +309,13 @@ class Enet(HandHistoryConverter):
         for player in m:
             #~ logging.debug("hand.addAnte(%s,%s)" %(player.group('PNAME'), player.group('ANTE')))
             hand.addAnte(player.group('PNAME'), self.clearMoneyString(player.group('ANTE')))
-
+    
     def readBringIn(self, hand):
         m = self.re_BringIn.search(hand.handText,re.DOTALL)
         if m:
             #~ logging.debug("readBringIn: %s for %s" %(m.group('PNAME'),  m.group('BRINGIN')))
             hand.addBringIn(m.group('PNAME'),  self.clearMoneyString(m.group('BRINGIN')))
-
+        
     def readBlinds(self, hand):
         liveBlind = True
         for a in self.re_PostSB.finditer(hand.handText):
@@ -374,7 +374,7 @@ class Enet(HandHistoryConverter):
     def readShowdownActions(self, hand):
 # TODO: pick up mucks also??
         for shows in self.re_ShowdownAction.finditer(hand.handText):
-            cards = shows.group('CARDS')
+            cards = shows.group('CARDS')  
             cards = [cards[i:i+2] for i in range(len(cards)) if i%2==0 and i+2<=len(cards)]
             hand.addShownCards(cards, shows.group('PNAME'))
 
@@ -400,5 +400,5 @@ class Enet(HandHistoryConverter):
                 elif m.group('SHOWED') == "mucked": mucked = True
 
                 #print "DEBUG: hand.addShownCards(%s, %s, %s, %s)" %(cards, m.group('PNAME'), shown, mucked)
-                hand.addShownCards(cards=cards, player=m.group('PNAME'), shown=shown, mucked=mucked, string=string)
-
+                hand.addShownCards(cards=cards, player=m.group('PNAME'), shown=shown, mucked=mucked, string=string)          
+    

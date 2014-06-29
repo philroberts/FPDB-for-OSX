@@ -95,7 +95,7 @@ def cash_renderer_cell_func(tree_column, cell, model, tree_iter, data):
     else:
         cell.set_property('foreground', 'darkgreen')
     cell.set_property('text', coldata)
-
+    
 def reset_style_render_func(tree_column, cell, model, iter, data):
     cell.set_property('foreground', None)
     cell.set_property('text', model.get_value(iter, data))
@@ -117,7 +117,7 @@ class GuiHandViewer:
 
         self.db = Database.Database(self.config, sql=self.sql)
 
-
+        
         filters_display = { "Heroes"    : True,
                     "Sites"     : True,
                     "Games"     : True,
@@ -136,7 +136,7 @@ class GuiHandViewer:
                     "Button1"   : True,
                     "Button2"   : False
                   }
-
+        
         self.filters = Filters.Filters(self.db, self.config, self.sql, display = filters_display)
         self.filters.registerButton1Name(_("Load Hands"))
         self.filters.registerButton1Callback(self.loadHands)
@@ -172,7 +172,7 @@ class GuiHandViewer:
         #      table display. Sooner or later we should probably use one or the other.
         self.deck_instance = Deck.Deck(self.config, height=42, width=30)
         card_images = self.init_card_images(self.config)
-
+       
     def init_card_images(self, config):
         suits = ('s', 'h', 'd', 'c')
         ranks = (14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2)
@@ -192,9 +192,9 @@ class GuiHandViewer:
         self.reload_hands(hand_ids)
 
     def get_hand_ids_from_date_range(self, start, end, save_date = False):
-        """Returns the handids in the given date range and in the filters.
+        """Returns the handids in the given date range and in the filters. 
             Set save_data to true if you want to keep the start and end date if no other date is specified through the filters by the user."""
-
+            
         if save_date:
             self.date_from = start
             self.date_to = end
@@ -203,10 +203,10 @@ class GuiHandViewer:
                 self.date_from = None
             if end != self.filters.MAX_DATE:
                 self.date_to = None
-
+            
         if self.date_from != None and start == self.filters.MIN_DATE:
             start = self.date_from
-
+            
         if self.date_to != None and end == self.filters.MAX_DATE:
             end = self.date_to
 
@@ -238,7 +238,7 @@ class GuiHandViewer:
             return 0
 
     def sorthand(self, model, iter1, iter2):
-        hand1 = self.hands[int(model.get_value(iter1, self.colnum['HandId']))]
+        hand1 = self.hands[int(model.get_value(iter1, self.colnum['HandId']))]         
         hand2 = self.hands[int(model.get_value(iter2, self.colnum['HandId']))]
         base1 = hand1.gametype['base']
         base2 = hand2.gametype['base']
@@ -256,7 +256,7 @@ class GuiHandViewer:
 
         a = self.rankedhand(model.get_value(iter1, 0), hand1.gametype['category'])
         b = self.rankedhand(model.get_value(iter2, 0), hand2.gametype['category'])
-
+        
         if a < b:
             return -1
         elif a > b:
@@ -272,20 +272,20 @@ class GuiHandViewer:
             return -1
         elif a > b:
             return 1
-
+        
         return 0
-
+    
     def sort_pos(self, model, iter1, iter2, col):
         a = self.__get_sortable_int_from_pos__(model.get_value(iter1, col))
         b = self.__get_sortable_int_from_pos__(model.get_value(iter2, col))
-
+        
         if a < b:
             return -1
         elif a > b:
             return 1
-
+        
         return 0
-
+        
     def __get_sortable_int_from_pos__(self, pos):
         if pos == 'B':
             return 8
@@ -293,13 +293,13 @@ class GuiHandViewer:
             return 9
         else:
             return int(pos)
-
+    
     def reload_hands(self, handids):
         self.hands = {}
         for handid in handids:
             self.hands[handid] = self.importhand(handid)
         self.refreshHands()
-
+    
     def copyHandToClipboard(self, view, event, hand):
         handText = StringIO()
         hand.writeHand(handText)
@@ -368,7 +368,7 @@ class GuiHandViewer:
         self.view.insert_column_with_data_func(-1, 'Bet', numcell, reset_style_render_func, self.colnum['Bet'])
         self.view.insert_column_with_data_func(-1, 'Net', numcell, cash_renderer_cell_func, self.colnum['Net'])
         self.view.insert_column_with_data_func(-1, 'Game', textcell, reset_style_render_func ,self.colnum['Game'])
-
+        
         self.liststore.set_sort_func(self.colnum['Street0'], self.sorthand)
         self.liststore.set_sort_func(self.colnum['Pos'], self.sort_pos, self.colnum['Pos'])
         self.liststore.set_sort_func(self.colnum['Net'], self.sort_float, self.colnum['Net'])
@@ -400,36 +400,36 @@ class GuiHandViewer:
                 board.extend(hand.board['FLOP'])
                 board.extend(hand.board['TURN'])
                 board.extend(hand.board['RIVER'])
-
+                
                 pre_actions = hand.get_actions_short(hero, 'PREFLOP')
                 post_actions = ''
                 if 'F' not in pre_actions:      #if player hasen't folded preflop
                     post_actions = hand.get_actions_short_streets(hero, 'FLOP', 'TURN', 'RIVER')
-
-                row = [hand.getStakesAsString(), pos, hand.join_holecards(hero), pre_actions, ' '.join(board), post_actions, str(won), str(bet),
+                
+                row = [hand.getStakesAsString(), pos, hand.join_holecards(hero), pre_actions, ' '.join(board), post_actions, str(won), str(bet), 
                        str(net), gt, handid]
-
+                
             elif hand.gametype['base'] == 'stud':
-                third = " ".join(hand.holecards['THIRD'][hero][0]) + " " + " ".join(hand.holecards['THIRD'][hero][1])
+                third = " ".join(hand.holecards['THIRD'][hero][0]) + " " + " ".join(hand.holecards['THIRD'][hero][1]) 
                 #ugh - fix the stud join_holecards function so we can retrieve sanely
                 later_streets= []
                 later_streets.extend(hand.holecards['FOURTH'] [hero][0])
                 later_streets.extend(hand.holecards['FIFTH']  [hero][0])
                 later_streets.extend(hand.holecards['SIXTH']  [hero][0])
                 later_streets.extend(hand.holecards['SEVENTH'][hero][0])
-
+                
                 pre_actions = hand.get_actions_short(hero, 'THIRD')
                 post_actions = ''
                 if 'F' not in pre_actions:
                     post_actions = hand.get_actions_short_streets(hero, 'FOURTH', 'FIFTH', 'SIXTH', 'SEVENTH')
-
-                row = [hand.getStakesAsString(), pos, third, pre_actions, ' '.join(later_streets), post_actions, str(won), str(bet), str(net),
+                    
+                row = [hand.getStakesAsString(), pos, third, pre_actions, ' '.join(later_streets), post_actions, str(won), str(bet), str(net), 
                        gt, handid]
-
+                
             elif hand.gametype['base'] == 'draw':
-                row = [hand.getStakesAsString(), pos, hand.join_holecards(hero,street='DEAL'), hand.get_actions_short(hero, 'DEAL'), None, None,
+                row = [hand.getStakesAsString(), pos, hand.join_holecards(hero,street='DEAL'), hand.get_actions_short(hero, 'DEAL'), None, None, 
                        str(won), str(bet), str(net), gt, handid]
-
+            
             if self.is_row_in_card_filter(row):
                 self.liststore.append(row)
         #self.viewfilter.set_visible_func(self.viewfilter_visible_cb)
@@ -443,12 +443,12 @@ class GuiHandViewer:
     def is_row_in_card_filter(self, row):
         """ Returns true if the cards of the given row are in the card filter """
         #Does work but all cards that should NOT be displayed have to be clicked.
-        card_filter = self.filters.getCards()
+        card_filter = self.filters.getCards() 
         hcs = row[self.colnum['Street0']].split(' ')
-
+        
         if '0x' in hcs:      #if cards are unknown return True
             return True
-
+        
         gt = row[self.colnum['Game']]
 
         if gt not in ('holdem', 'omahahi', 'omahahilo'): return True
@@ -471,7 +471,7 @@ class GuiHandViewer:
             currency="£"
         else:
             currency = hand.gametype['currency']
-
+            
         replayer = GuiReplayer.GuiReplayer(self.config, self.sql, self.main_window)
 
         replayer.currency = currency
@@ -497,7 +497,7 @@ class GuiHandViewer:
 
     '''
     #This code would use pango markup instead of pix for the cards and renderers
-
+    
     def refreshHands(self, handids):
         self.hands = {}
         for handid in handids:
@@ -565,7 +565,7 @@ class GuiHandViewer:
             if hero in hand.pot.committed.keys():
                 bet = hand.pot.committed[hero]
             net = self.get_net_pango_markup(won - bet)
-
+            
             gt =  hand.gametype['category']
             row = []
             if hand.gametype['base'] == 'hold':
@@ -575,7 +575,7 @@ class GuiHandViewer:
                 river = hand.get_cards_pango_markup(hand.board["RIVER"])
                 row = [hole, flop, turn, river, None, net, gt, handid]
             elif hand.gametype['base'] == 'stud':
-                third = hand.get_cards_pango_markup(hand.holecards['THIRD'][hero][0]) + " " + hand.get_cards_pango_markup(hand.holecards['THIRD'][hero][1])
+                third = hand.get_cards_pango_markup(hand.holecards['THIRD'][hero][0]) + " " + hand.get_cards_pango_markup(hand.holecards['THIRD'][hero][1]) 
                 #ugh - fix the stud join_holecards function so we can retrieve sanely
                 fourth  = hand.get_cards_pango_markup(hand.holecards['FOURTH'] [hero][0])
                 fifth   = hand.get_cards_pango_markup(hand.holecards['FIFTH']  [hero][0])
