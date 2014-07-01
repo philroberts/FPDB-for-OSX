@@ -387,11 +387,10 @@ class Absolute(HandHistoryConverter):
         """Reads lines where holecards are reported in a showdown"""
         for m in self.re_ShowdownAction.finditer(hand.handText):
             if m.group('CARDS') is not None:
-                cards = m.group('CARDS')
-                cards = cards.split(' ') 
+                newcards = [validCard(card) for card in m.group('CARDS').split(' ') if card != 'H']
                 string = m.group('STRING')
                 (shown, mucked) = (True, False)
-                hand.addShownCards(cards=cards, player=m.group('PNAME'), shown=shown, mucked=mucked, string=string)
+                hand.addShownCards(cards=newcards, player=m.group('PNAME'), shown=shown, mucked=mucked, string=string)
 
     def readCollectPot(self,hand):
         for m in self.re_CollectPot.finditer(hand.handText):
