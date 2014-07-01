@@ -1,0 +1,36 @@
+Stage #1773383021: Holdem  No Limit $1, $0.25 ante - 2009-11-30 15:50:12 (ET)
+Table: QUAIL AVE (Real Money) Seat #5 is the dealer
+Seat 5 - RABIATOR ($98 in chips)
+Seat 6 - CAPTAIN_HADOK ($104.25 in chips)
+Seat 1 - INVERTIBLE ($100 in chips)
+Seat 2 - PUREGAMBLER ($178.45 in chips)
+Seat 3 - CISK ($48.20 in chips)
+Seat 4 - KWOKMAN007 ($180.90 in chips)
+INVERTIBLE - Ante $0.25
+PUREGAMBLER - Ante $0.25
+CISK - Ante $0.25
+KWOKMAN007 - Ante $0.25
+RABIATOR - Ante $0.25
+CAPTAIN_HADOK - Ante $0.25
+CAPTAIN_HADOK - Posts small blind $0.50
+INVERTIBLE - Posts big blind $1
+*** POCKET CARDS ***
+Dealt to INVERTIBLE [7h Qd] 
+PUREGAMBLER - Folds
+CISK - Folds
+KWOKMAN007 - Raises $2 to $2
+RABIATOR - Folds
+CAPTAIN_HADOK - Folds
+INVERTIBLE - Folds
+KWOKMAN007 - returned ($1) : not called
+*** SHOW DOWN ***
+KWOKMAN007 - Does not show
+KWOKMAN007 Collects $4 from main pot
+*** SUMMARY ***
+Total Pot($4)
+Seat 1: INVERTIBLE (big blind) Folded on the POCKET CARDS
+Seat 2: PUREGAMBLER Folded on the POCKET CARDS
+Seat 3: CISK Folded on the POCKET CARDS
+Seat 4: KWOKMAN007 collected Total ($4) 
+Seat 5: RABIATOR (dealer) Folded on the POCKET CARDS
+Seat 6: CAPTAIN_HADOK (small blind) Folded on the POCKET CARDS

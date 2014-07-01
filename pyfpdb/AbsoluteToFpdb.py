@@ -62,7 +62,7 @@ class Absolute(HandHistoryConverter):
                   }
 
     # Static regexes
-    re_Identify = re.compile(u'Stage\s#[A-Z0-9]+:')
+    re_Identify = re.compile(u'Stage\s+\#C?[0-9]+')
     re_SplitHands  = re.compile(r"\n\n+")
     re_TailSplitHands  = re.compile(r"(\nn\n+)")
     #Stage #1571362962: Holdem  No Limit $0.02 - 2009-08-05 15:24:06 (ET)
@@ -77,7 +77,8 @@ class Absolute(HandHistoryConverter):
               (?P<TRNY_TYPE>\(1\son\s1\)|Single\ Tournament|Multi\ Normal\ Tournament|)\s*
               (?P<LIMIT>No\ Limit|Pot\ Limit|Normal|)\s?
               (?P<CURRENCY>\$|\s€|)
-              (?P<SB>[.,0-9]+)/?(?:\$|\s€|)(?P<BB>[.,0-9]+)?
+              (?P<SB>[.,0-9]+)(/(?:\$|\s€|)(?P<BB>[.,0-9]+))?
+              (,\s(?:\$|\s€|)(?P<ANTE>[.,0-9]+)\sante)?
               \s+
               ((?P<TTYPE>(Turbo))\s+)?-\s+
               ((?P<DATETIME>\d\d\d\d-\d\d-\d\d\ \d\d:\d\d:\d\d)(\.\d+)?)\s+
@@ -91,14 +92,6 @@ class Absolute(HandHistoryConverter):
             re.MULTILINE)
 
     re_HandInfo = re_GameInfo
-
-    # on HORSE STUD games, the table name isn't in the hand info!
-    re_RingInfoFromFilename = re.compile(ur".*IHH([0-9]+) (?P<TABLE>.*) -")
-    re_TrnyInfoFromFilename = re.compile(
-            ur"IHH\s?([0-9]+) (?P<TRNY_NAME>.*) "\
-            ur"ID (?P<TRNY_ID>\d+)\s?(\((?P<TABLE>\d+)\))? .* "\
-            ur"(?:\$|\s€|)(?P<BUYIN>[0-9.]+)\s*\+\s*(?:\$|\s€|)(?P<FEE>[0-9.]+)"
-            )
 
     # TODO: that's not the right way to match for "dead" dealer is it?
     re_Button = re.compile(ur"Seat #(?P<BUTTON>[0-9]) is the ?[dead]* dealer$", re.MULTILINE)
@@ -117,7 +110,6 @@ class Absolute(HandHistoryConverter):
             # we need to recompile the player regexs.
             self.compiledPlayers = players
             player_re = "(?P<PNAME>" + "|".join(map(re.escape, players)) + ")"
-            log.debug("player_re: "+ player_re)
             #(?P<CURRENCY>\$| €|)(?P<BB>[0-9]*[.0-9]+)
             self.re_PostSB          = re.compile(ur"^%s - Posts small blind (?:\$| €|)(?P<SB>[,.0-9]+)" % player_re, re.MULTILINE)
             self.re_PostBB          = re.compile(ur"^%s - Posts big blind (?:\$| €|)(?P<BB>[.,0-9]+)" % player_re, re.MULTILINE)
@@ -125,11 +117,11 @@ class Absolute(HandHistoryConverter):
             # TODO: Absolute posting when coming in new: %s - Posts $0.02 .. should that be a new Post line? where do we need to add support for that? *confused*
             self.re_PostBoth        = re.compile(ur"^%s - Posts (?:\$| €|)(?P<BB>[,.0-9]+) dead (?:\$| €|)(?P<SB>[,.0-9]+)" % player_re, re.MULTILINE)
             self.re_Action          = re.compile(ur"^%s - (?P<ATYPE>Bets |Raises |All-In |All-In\(Raise\) |Calls |Folds|Checks)?\$?(?P<BET>[,.0-9]+)?" % player_re, re.MULTILINE)
-            self.re_ShowdownAction  = re.compile(ur"^%s - Shows \[(?P<CARDS>.*)\]" % player_re, re.MULTILINE)
+            self.re_ShowdownAction  = re.compile(ur"^%s - Shows \[(?P<CARDS>.*)\] \((?P<STRING>.+?)\)" % player_re, re.MULTILINE)
             self.re_CollectPot      = re.compile(ur"^Seat [0-9]: %s(?: \(dealer\)|)(?: \(big blind\)| \(small blind\)|) (?:won|collected) Total \((?:\$| €|)(?P<POT>[,.0-9]+)\)" % player_re, re.MULTILINE)
             self.re_Antes           = re.compile(ur"^%s - Ante (?:\$| €|)(?P<ANTE>[,.0-9]+)" % player_re, re.MULTILINE)
             self.re_BringIn         = re.compile(ur"^%s - Bring-In (?:\$| €|)(?P<BRINGIN>[.0-9]+)\." % player_re, re.MULTILINE)
-            self.re_HeroCards       = re.compile(ur"^(Dealt to )?%s - Pocket \[(?P<CARDS>.*)\]" % player_re, re.MULTILINE)
+            self.re_HeroCards       = re.compile(ur"^(Dealt to )?%s (- Pocket )?\[(?P<CARDS>.*)\]" % player_re, re.MULTILINE)
 
     def readSupportedGames(self):
         return [["ring", "hold", "nl"],
@@ -220,40 +212,27 @@ class Absolute(HandHistoryConverter):
 
 
     def readHandInfo(self, hand):
-        is_trny = hand.gametype['type']=='tour'
-
         m = self.re_HandInfo.search(hand.handText)
-        fname_re = self.re_TrnyInfoFromFilename if is_trny \
-                   else self.re_RingInfoFromFilename
-        fname_info = fname_re.search(self.in_path)
-
         #print "DEBUG: fname_info.groupdict(): %s" %(fname_info.groupdict())
+        if m is None:
+            tmp = hand.handText[0:200]
+            log.error(_("AbsoluteToFpdb.readHandInfo: '%s'") % tmp)
+            raise FpdbParseError
 
-        if m is None or fname_info is None:
-            if m is None:
-                tmp = hand.handText[0:200]
-                log.error(_("AbsoluteToFpdb.readHandInfo: '%s'") % tmp)
-                raise FpdbParseError
-            elif fname_info is None and is_trny:
-                log.error(_("AbsoluteToFpdb.readHandInfo: File name didn't match re_*InfoFromFilename"))
-                raise FpdbParseError
-
-        log.debug("HID %s, Table %s" % (m.group('HID'),  m.group('TABLE')))
         hand.handid =  m.group('HID')
         if m.group('TABLE'):
             hand.tablename = m.group('TABLE')
-        elif fname_info:
-            hand.tablename = fname_info.group('TABLE')
         else:
             hand.tablename = 'TABLE'
 
         hand.startTime = datetime.datetime.strptime(m.group('DATETIME'), "%Y-%m-%d %H:%M:%S")
 
-        if is_trny:
-            hand.fee = fname_info.group('FEE')
-            hand.buyin = fname_info.group('BUYIN')
+        if hand.gametype['type']=='tour':
+            hand.buyin = 0
+            hand.fee = 0
+            hand.buyinCurrency="NA"
+            hand.maxseats = None  
             hand.tourNo = m.group('TRNY_ID')
-            hand.tourneyComment = fname_info.group('TRNY_NAME')
 
         # assume 6-max unless we have proof it's a larger/smaller game, 
         #since absolute doesn't give seat max info
@@ -286,12 +265,12 @@ class Absolute(HandHistoryConverter):
                     r"(\*\*\* RIVER \*\*\*(?P<RIVER>.+))?", hand.handText, re.DOTALL)
 
         elif hand.gametype['base'] == 'stud': # TODO: Not implemented yet
-            m =     re.search(r"(?P<ANTES>.+(?=\*\* 3rd STREET \*\*)|.+)"
-                           r"(\*\* 3rd STREET \*\*(?P<THIRD>.+(?=\*\*\*\* 4TH STREET \*\*\*\*)|.+))?"
-                           r"(\*\*\*\* 4TH STREET \*\*\*\*(?P<FOURTH>.+(?=\*\*\*\* 5TH STREET \*\*\*\*)|.+))?"
-                           r"(\*\*\*\* 5TH STREET \*\*\*\*(?P<FIFTH>.+(?=\*\*\*\* 6TH STREET \*\*\*\*)|.+))?"
-                           r"(\*\*\*\* 6TH STREET \*\*\*\*(?P<SIXTH>.+(?=\*\*\*\* RIVER \*\*\*\*)|.+))?"
-                           r"(\*\*\*\* RIVER \*\*\*\*(?P<SEVENTH>.+))?", hand.handText,re.DOTALL)
+            m =     re.search(r"(?P<ANTES>.+(?=\*\*\* 3rd STREET \*\*\*)|.+)"
+                           r"(\*\*\* 3rd STREET \*\*\*(?P<THIRD>.+(?=\*\*\* 4TH STREET \*\*\*)|.+))?"
+                           r"(\*\*\* 4TH STREET \*\*\*(?P<FOURTH>.+(?=\*\*\* 5TH STREET \*\*\*)|.+))?"
+                           r"(\*\*\* 5TH STREET \*\*\*(?P<FIFTH>.+(?=\*\*\* 6TH STREET \*\*\*)|.+))?"
+                           r"(\*\*\* 6TH STREET \*\*\*(?P<SIXTH>.+(?=\*\*\* RIVER \*\*\*)|.+))?"
+                           r"(\*\*\* RIVER \*\*\*(?P<SEVENTH>.+))?", hand.handText,re.DOTALL)
         hand.addStreets(m)
 
     def readCommunityCards(self, hand, street):
@@ -406,13 +385,13 @@ class Absolute(HandHistoryConverter):
 
     def readShowdownActions(self, hand):
         """Reads lines where holecards are reported in a showdown"""
-        log.debug("readShowdownActions")
-        for shows in self.re_ShowdownAction.finditer(hand.handText):
-            cards = shows.group('CARDS')
-            cards = [validCard(card) for card in cards.split(' ') if card != 'H']
-            log.debug("readShowdownActions %s %s" %(cards, shows.group('PNAME')))
-            hand.addShownCards(cards, shows.group('PNAME'))
-
+        for m in self.re_ShowdownAction.finditer(hand.handText):
+            if m.group('CARDS') is not None:
+                cards = m.group('CARDS')
+                cards = cards.split(' ') 
+                string = m.group('STRING')
+                (shown, mucked) = (True, False)
+                hand.addShownCards(cards=cards, player=m.group('PNAME'), shown=shown, mucked=mucked, string=string)
 
     def readCollectPot(self,hand):
         for m in self.re_CollectPot.finditer(hand.handText):
@@ -420,19 +399,8 @@ class Absolute(HandHistoryConverter):
             hand.addCollectPot(player=m.group('PNAME'),pot=pot)
 
     def readShownCards(self,hand):
-        """Reads lines where hole & board cards are mixed to form a hand (summary lines)"""
-        for m in self.re_CollectPot.finditer(hand.handText):
-            try:
-                if m.group('CARDS') is not None:
-                    cards = m.group('CARDS')
-                    cards = [validCard(card) for card in cards.split(' ')  if card != 'H']
-                    player = m.group('PNAME')
-                    log.debug("readShownCards %s cards=%s" % (player, cards))
-                    print cards
-    #                hand.addShownCards(cards=None, player=m.group('PNAME'), holeandboard=cards)
-                    hand.addShownCards(cards=cards, player=m.group('PNAME'))
-            except IndexError:
-                pass # there's no "PLAYER - Mucks" at AP that I can see
+        pass
+
 
 def validCard(card):
     card = card.strip()
