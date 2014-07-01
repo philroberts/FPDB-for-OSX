@@ -1,0 +1,47 @@
+Table #30733293 - Tropicalian 1
+Starting Hand #1441724618
+Start time of hand: 01 Sep 2010 14:22:36
+Last Hand #1441723984
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: RING
+Money Type: REAL MONEY
+Blinds are now $1/$2
+Button is at seat 4
+Seat 1: Player0 - $202.75
+Seat 3: Hero - $481.89
+Seat 4: Player1 - $38
+Seat 5: Player2 - $464.51
+Moving Button to seat 5
+Player0 posts small blind ($1)
+Hero posts big blind ($2)
+Shuffling Deck
+Dealing Cards
+Dealing [qs][2s] to Hero
+Player1 calls $2
+Player2 folds
+Player0 folds
+Hero checks
+Dealing Flop [4s][qc][2c]
+Hero checks
+Player3 brings $200 to table 30733293
+Player1 bets $5
+Hero raises to $16.25
+Player1 calls $16.25
+Dealing Turn [4c]
+Hero bets $25
+Player1 calls $19.75 (all-in)
+Returning $5.25 to Hero uncalled
+Hero shows [qs][2s]
+Player1 shows [5s][4d]
+Dealing River [6d]
+Taking Rake of $2 from pot 1
+Hero has Two Pairs: Queens, 4s
+Player1 has Three of a Kind: 4s
+Player1 wins $75 with: Three of a Kind: 4s
+Seat 1: Player0 - $201.75
+Seat 3: Hero - $443.89
+Seat 4: Player1 - $75
+Seat 5: Player2 - $464.51
+Seat 6: airezim - $200
+End Of Hand #1441724618

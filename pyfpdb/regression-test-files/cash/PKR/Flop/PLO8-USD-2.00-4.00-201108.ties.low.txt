@@ -1,0 +1,50 @@
+Table #39429846 - Montego Bay
+Starting Hand #1830508295
+Start time of hand: 26 Aug 2011 11:24:50
+Last Hand #1830508102
+Game Type: OMAHA HI/LO
+Limit Type: POT LIMIT
+Table Type: RING
+Money Type: REAL MONEY
+Blinds are now $2 / $4
+Button is at seat 5
+Seat 1: Hero - $402
+Seat 5: Player0 - $213.90
+Seat 6: Player1 - $491.70
+Shuffling Deck
+Moving Button to seat 6
+Hero posts small blind ($2)
+Player0 posts big blind ($4)
+Dealing Cards
+Dealing [9 d][5 d][7 h][3 s] to Hero
+Player1 folds
+Hero raises to $12
+Player0 calls $12
+Pot sizes: $24
+Dealing Flop [3 d][2 c][8 s]
+Hero bets $16
+Player0 calls $16
+Pot sizes: $56
+Dealing Turn [A c]
+Hero checks
+Player0 checks
+Pot sizes: $56
+Dealing River [4 h]
+Hero bets $42
+Player0 calls $42
+Pot sizes: $140
+Taking Rake of $1 from pot 1
+Hero shows [9 d][5 d][7 h][3 s]
+Hero has Straight, 5 high 
+Hero has low hand: A2345
+Player0 shows [A h][K d][7 d][5 h]
+Player0 has Straight, 5 high 
+Player0 has low hand: A2345
+Hero ties, and wins $34.75 with high hand: Straight, 5 high 
+Player0 ties, and wins $34.75 with high hand: Straight, 5 high 
+Hero ties $34.75 with low hand: A2345
+Player0 ties $34.75 with low hand: A2345
+Seat 1: Hero - $401.50
+Seat 5: Player0 - $213.40
+Seat 6: Player1 - $491.70
+End of Hand #1830508295

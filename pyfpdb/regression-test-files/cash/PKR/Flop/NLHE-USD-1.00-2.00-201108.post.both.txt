@@ -1,0 +1,48 @@
+Table #39445473 - Top Pair
+Starting Hand #1830834560
+Start time of hand: 26 Aug 2011 17:39:25
+Last Hand #1830834322
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: RING
+Money Type: REAL MONEY
+Blinds are now $1 / $2
+Button is at seat 4
+Seat 1: Player0 - $209.15
+Seat 2: Player1 - $200
+Seat 3: Hero - $249.09
+Seat 4: Player2 - $297.17
+Seat 5: Player3 - $200 (away from table)
+Seat 6: Player4 - $314.60
+Shuffling Deck
+Moving Button to seat 6
+Player0 posts small blind ($1)
+Player1 posts big blind ($2)
+Player2 posts $2
+Player2 posts $1 dead
+Dealing Cards
+Dealing [K h][2 c] to Hero
+Hero folds
+Player2 checks
+Player4 folds
+Player0 folds
+Player1 checks
+Pot sizes: $6
+Dealing Flop [3 c][3 s][Q h]
+Player1 checks
+Player2 checks
+Pot sizes: $6
+Dealing Turn [5 s]
+Player1 bets $2
+Player2 folds
+Pot sizes: $6
+Taking Rake of $0.30 from pot 1
+Player1 doesn't show
+Player1 wins $5.70
+Seat 1: Player0 - $208.15
+Seat 2: Player1 - $203.70
+Seat 3: Hero - $249.09
+Seat 4: Player2 - $294.17
+Seat 5: Player3 - $200
+Seat 6: Player4 - $314.60
+End of Hand #1830834560

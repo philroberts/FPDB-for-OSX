@@ -90,7 +90,7 @@ class Pkr(HandHistoryConverter):
     re_Button       = re.compile('Seat #(?P<BUTTON>\d+) is the button', re.MULTILINE)
     re_Board        = re.compile(r"(?P<CARDS>\[.+\])")
     re_Cards        = re.compile(r"\[(?P<CARD>.+?)\]")
-    re_Partial      = re.compile(u'Starting\sHand\s\#\d+')
+    re_Partial      = re.compile(u'Table\s\#\d+\s\-\s')
 #        self.re_setHandInfoRegex('.*#(?P<HID>[0-9]+): Table (?P<TABLE>[ a-zA-Z]+) - \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) - (?P<GAMETYPE>.*) - (?P<HR>[0-9]+):(?P<MIN>[0-9]+) ET - (?P<YEAR>[0-9]+)/(?P<MON>[0-9]+)/(?P<DAY>[0-9]+)Table (?P<TABLE>[ a-zA-Z]+)\nSeat (?P<BUTTON>[0-9]+)')    
 
     re_DateTime     = re.compile("""(?P<D>[0-9]{2}) (?P<M>\w+) (?P<Y>[0-9]{4}) (?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)""", re.MULTILINE)
@@ -104,18 +104,17 @@ class Pkr(HandHistoryConverter):
             subst = {'PLYR': player_re, 'CUR': self.sym[hand.gametype['currency']], 'NUM' : u".,\d",}
             self.re_PostSB    = re.compile(r"^%(PLYR)s posts small blind \(%(CUR)s(?P<SB>[%(NUM)s]+)\)" %  subst, re.MULTILINE)
             # FIXME: Sionel posts $0.04 is a second big blind in a different format.
-            self.re_PostBB    = re.compile(r"^%(PLYR)s posts (big blind \()?%(CUR)s(?P<BB>[%(NUM)s]+)\)?" %  subst, re.MULTILINE)
+            self.re_PostBB    = re.compile(r"^%(PLYR)s posts big blind \(%(CUR)s(?P<BB>[%(NUM)s]+)\)" %  subst, re.MULTILINE)
             self.re_Antes     = re.compile(r"^%(PLYR)s posts ante of %(CUR)s(?P<ANTE>[%(NUM)s]+)" % subst, re.MULTILINE)
             self.re_BringIn   = re.compile(r"^%(PLYR)s brings[- ]in( low|) for %(CUR)s(?P<BRINGIN>[%(NUM)s]+)" % subst, re.MULTILINE)
-            self.re_PostBoth  = re.compile(r"^%(PLYR)s posts small \& big blinds %(CUR)s(?P<SBBB>[%(NUM)s]+)" %  subst, re.MULTILINE)
-            self.re_PostDead  = re.compile(r"^%(PLYR)s posts %(CUR)s(?P<SB>[%(NUM)s]+) dead" %  subst, re.MULTILINE)
+            self.re_Post      = re.compile(r"^%(PLYR)s posts %(CUR)s(?P<BB>[%(NUM)s]+)$" %  subst, re.MULTILINE)
             self.re_HeroCards = re.compile(r"^Dealing( (?P<OLDCARDS>\[.+\]))?( (?P<NEWCARDS>\[.+\])) to %(PLYR)s" % subst, re.MULTILINE)
             self.re_Action    = re.compile(r"""
                         ^%(PLYR)s(?P<ATYPE>\sbets|\schecks|\sraises|\scalls|\sfolds)(\sto)?
                         (\s(%(CUR)s)?(?P<BET>[%(NUM)s]+))?(\s\(all\-in\))?\s*$
                         """ %  subst, re.MULTILINE|re.VERBOSE)
             self.re_ShowdownAction   = re.compile(r"^%(PLYR)s shows (?P<CARDS>\[.+\])" % subst, re.MULTILINE)
-            self.re_CollectPot       = re.compile(r"^%(PLYR)s (ties( side pot \#\d)?, and )?wins %(CUR)s(?P<POT>[%(NUM)s]+)" %  subst, re.MULTILINE)
+            self.re_CollectPot       = re.compile(r"^%(PLYR)s (ties( side pot \#\d)?, and )?(ties|wins) %(CUR)s(?P<POT>[%(NUM)s]+)" %  subst, re.MULTILINE)
             self.re_sitsOut          = re.compile("^%s sits out" %  player_re, re.MULTILINE)
             self.re_ShownCards       = re.compile("^Seat (?P<SEAT>[0-9]+): %s (\(.*\) )?(?P<SHOWED>showed|mucked) (?P<CARDS>\[.+\])" %  player_re, re.MULTILINE)
 
@@ -245,9 +244,9 @@ class Pkr(HandHistoryConverter):
         # This re fails if,  say, river is missing; then we don't get the ** that starts the river.
         if hand.gametype['base'] in ("hold"):
             m =  re.search(r"Dealing Cards(?P<PREFLOP>.+(?=Dealing Flop)|.+)"
-                       r"(Dealing Flop (?P<FLOP>(\[\S\S \S\S \S\S\]|\[\S \S\]\[\S \S\]\[\S \S\]).+(?=Dealing\sTurn)|.+))?"
-                       r"(Dealing Turn (?P<TURN>\[\S ?\S\].+(?=Dealing\sRiver)|.+))?"
-                       r"(Dealing River (?P<RIVER>\[\S ?\S\].+))?", hand.handText,re.DOTALL)
+                       r"(Dealing Flop (?P<FLOP>(\[\S\S \S\S \S\S\]|\[\S \S\]\[\S \S\]\[\S \S\]|\[\S\S\]\[\S\S\]\[\S\S\]).+(?=Dealing\sTurn)|.+))?"
+                       r"(Dealing Turn (?P<TURN>(\[\S\S\]|\[\S \S\]).+(?=Dealing\sRiver)|.+))?"
+                       r"(Dealing River (?P<RIVER>(\[\S\S\]|\[\S \S\]).+))?", hand.handText,re.DOTALL)
         hand.addStreets(m)
 
     def readCommunityCards(self, hand, street): # street has been matched by markStreets, so exists in this hand
@@ -279,10 +278,15 @@ class Pkr(HandHistoryConverter):
             hand.addBlind(None, None, None)
         for a in self.re_PostBB.finditer(hand.handText):
             hand.addBlind(a.group('PNAME'), 'big blind', self.clearMoneyString(a.group('BB')))
-        for a in self.re_PostDead.finditer(hand.handText):
-            hand.addBlind(a.group('PNAME'), 'secondsb', self.clearMoneyString(a.group('SB')))
-        for a in self.re_PostBoth.finditer(hand.handText):
-            hand.addBlind(a.group('PNAME'), 'both', self.clearMoneyString(a.group('SBBB')))
+        for a in self.re_Post.finditer(hand.handText):
+            bb = Decimal(self.clearMoneyString(a.group('BB')))
+            subst = {'PLYR': "(?P<PNAME>" + re.escape(a.group('PNAME')) + ")", 'CUR': self.sym[hand.gametype['currency']], 'NUM' : u".,\d"}
+            if not re.search(r"^%(PLYR)s posts %(CUR)s(?P<SB>[%(NUM)s]+) dead$" %  subst, hand.handText, re.MULTILINE):
+                hand.addBlind(a.group('PNAME'), 'big blind', self.clearMoneyString(a.group('BB')))
+            elif (bb==0):
+                hand.addBlind(a.group('PNAME'), 'secondsb', str(Decimal(hand.gametype['bb'])/2))
+            else:
+                hand.addBlind(a.group('PNAME'), 'both', str(bb + bb/2))
 
     def readHeroCards(self, hand):
 #    streets PREFLOP, PREDRAW, and THIRD are special cases beacause
