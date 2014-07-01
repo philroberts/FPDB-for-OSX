@@ -84,7 +84,7 @@ class iPokerSummary(TourneySummary):
     re_Place     = re.compile("\d+")
     re_FPP       = re.compile(r'Pts\s')
     
-    codepage = ["utf-8"]
+    codepage = ["utf8", "cp1252"]
 
     @staticmethod
     def getSplitRe(self, head):
