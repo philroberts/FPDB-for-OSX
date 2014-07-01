@@ -1,0 +1,51 @@
+----PRIMA.DAT----
+
+<Game id="3063530490" date="2010-01-04 18:08:29" unicodetablename="QgBCAC0AUABoAGUAbgBvAG0AZQBuAGEAbAA=" tablename="BB-Phenomenal" stakes="0.50|1.00" betlimit="NL" tabletype="Cash Game" gametypeid="1" gametype="Hold&apos;em" realmoney="true" currencysymbol="IAAkAA==" rake="78" playerseat="0" betamount="0" istournament="0">
+   <Seats>
+      <Seat num="1" alias="Player0" unicodealias="cgBpAGcAaAB0AG4AYQBtAGUA" balance="120.01" endbalance="129.75" dealer="true"/>
+      <Seat num="2" alias="Player1" unicodealias="UwBhAG4AZwBvAGwAdABlAG4AOAA3AA==" balance="122.36" endbalance="121.86"/>
+      <Seat num="3" alias="Player2" unicodealias="RQB5AGQAYQBsAHYAdQByAA==" balance="103.15" endbalance="102.15"/>
+      <Seat num="4" alias="Player3" unicodealias="XwBwAG8AbgBjAGgAbwBfAA==" balance="4.76" endbalance="0.00"/>
+      <Seat num="5" alias="Player4" unicodealias="TQBvAFMAdQBGAGEARwBsAA==" balance="101.50" endbalance="101.50"/>
+      <Seat num="6" alias="Player5" unicodealias="dABpAGIAbwBfAHMAdQBkAA==" balance="44.40" endbalance="39.64"/>
+   </Seats>
+   <Gameplay>
+      <Action seq="1" type="SmallBlind" seat="2" value="0.50"/>
+      <Action seq="2" type="BigBlind" seat="3" value="1.00"/>
+      <Action seq="3" type="AllIn" seat="4" value="4.76"/>
+      <Action seq="4" type="Fold" seat="5"/>
+      <Action seq="5" type="Call" seat="6" value="4.76"/>
+      <Action seq="6" type="Call" seat="1" value="4.76"/>
+      <Action seq="7" type="Fold" seat="2"/>
+      <Action seq="8" type="Fold" seat="3"/>
+      <Action seq="9" type="DealFlop">
+         <Card value="10" suit="s" id="9"/>
+         <Card value="8" suit="h" id="46"/>
+         <Card value="K" suit="d" id="38"/>
+      </Action>
+      <Action seq="10" type="Check" seat="6"/>
+      <Action seq="11" type="Check" seat="1"/>
+      <Action seq="12" type="DealTurn">
+         <Card value="A" suit="d" id="26"/>
+      </Action>
+      <Action seq="13" type="Check" seat="6"/>
+      <Action seq="14" type="Bet" seat="1" value="8.75"/>
+      <Action seq="15" type="Fold" seat="6"/>
+      <Action seq="16" type="DealRiver">
+         <Card value="5" suit="d" id="30"/>
+      </Action>
+      <Action seq="17" type="ShowCards" seat="4">
+         <Card value="A" suit="c" id="13"/>
+         <Card value="6" suit="d" id="31"/>
+      </Action>
+      <Action seq="18" type="ShowCards" seat="1">
+         <Card value="A" suit="h" id="39"/>
+         <Card value="10" suit="h" id="48"/>
+      </Action>
+      <Action type="Win">
+         <Seat num="1" amount="14.50" pot="0" type="" lowhandwin="0"/>
+      </Action>
+   </Gameplay>
+</Game>
+
+ExtendedTableName: BB-Phenomenal [143546]
