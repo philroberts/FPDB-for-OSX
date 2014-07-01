@@ -851,20 +851,6 @@ class Hand(object):
             self.collectees[player] = Decimal(pot)
         else:
             self.collectees[player] += Decimal(pot)
-
-
-    def addShownCards(self, cards, player, holeandboard=None, shown=True, mucked=False, string=None):
-        """ For when a player shows cards for any reason (for showdown or out of choice).
-            Card ranks will be uppercased """
-        log.debug("addShownCards %s hole=%s all=%s" % (player, cards,  holeandboard))
-        if cards is not None:
-            self.addHoleCards(cards,player,shown, mucked)
-            if string is not None:
-                self.showdownStrings[player] = string
-        elif holeandboard is not None:
-            holeandboard = set([self.card(c) for c in holeandboard])
-            board = set([c for s in self.board.values() for c in s])
-            self.addHoleCards(holeandboard.difference(board),player,shown, mucked)
             
     def sittingOut(self):
         dealtIn = set()
@@ -1626,6 +1612,7 @@ class StudHand(Hand):
             hhc.readAntes(self)
             hhc.readBringIn(self)
             hhc.readHeroCards(self)
+            hhc.readShowdownActions(self)
             # Read actions in street order
             for street in self.actionStreets:
                 if street == 'BLINDSANTES': continue # OMG--sometime someone folds in the ante round
