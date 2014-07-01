@@ -1,0 +1,34 @@
+PokerStars Game #1003659126: Hold'em No Limit ($1/$2) - 2009/10/12 - 23:45:12 (ET)
+Table 'Waikiki' 10-max Seat #1 is the button
+Seat 1: Player0 ($200 in chips)
+Seat 2: Player1 ($200 in chips)
+Seat 3: Player2 ($445.80 in chips)
+Seat 4: Player3 ($158.10 in chips)
+Seat 5: Hero ($329.49 in chips)
+Seat 6: Player4 ($171.83 in chips)
+Player1: posts small blind $1 
+Player2: posts big blind $2
+*** HOLE CARDS ***
+Dealt to Hero [Jc 4s]
+Player3: folds
+Hero: folds
+Player4: folds
+Player0: raises $6 to $6
+Player1: folds
+Player2: calls $4
+*** FLOP *** [6s 2c 4h]
+Player2: checks
+Player0: checks
+*** TURN *** [6s 2c 4h] [3s]
+Player2: bets $7.50
+Player0: folds
+Player2 collected $12.35 from pot
+Player2: doesn't show hand 
+*** SUMMARY ***
+Total pot $12.35 | Rake $0.65
+Seat 1: Player0 (button) folded on the Turn
+Seat 2: Player1 (small blind) folded before Flop
+Seat 3: Player2 (big blind) collected ($12.35)
+Seat 4: Player3 folded before Flop
+Seat 5: Hero folded before Flop
+Seat 6: Player4 folded before Flop
