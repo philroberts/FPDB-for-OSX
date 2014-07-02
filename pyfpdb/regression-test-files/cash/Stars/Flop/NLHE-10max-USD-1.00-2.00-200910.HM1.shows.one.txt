@@ -1,0 +1,43 @@
+PokerStars Game #1002775011: Hold'em No Limit ($1/$2) - 2009/10/12 - 13:51:22 (ET)
+Table 'SpinningWheel' 10-max Seat #3 is the button
+Seat 1: Player0 ($216.60 in chips)
+Seat 2: Player1 ($396.20 in chips)
+Seat 3: Hero ($568.28 in chips)
+Seat 4: Player2 ($202.75 in chips)
+Seat 5: Player3 ($478.15 in chips)
+Seat 6: Player4 ($104.55 in chips)
+Player2: posts small blind $1 
+Player3: posts big blind $2
+*** HOLE CARDS ***
+Dealt to Hero [Qh Th]
+Player4: folds
+Player0: folds
+Player1: raises $6 to $6
+Hero: calls $6
+Player2: folds
+Player3: calls $4
+*** FLOP *** [6d 9c Jd]
+Player3: checks
+Player1: bets $8
+Hero: calls $8
+Player3: calls $8
+*** TURN *** [6d 9c Jd] [5s]
+Player3: checks
+Player1: bets $30
+Hero: folds
+Player3: calls $30
+*** RIVER *** [6d 9c Jd 5s] [6c]
+Player3: checks
+Player1: bets $56
+Player3: folds
+*** SHOW DOWN ***
+Player1: shows [XX Qs] ()
+Player1 collected $100 from pot
+*** SUMMARY ***
+Total pot $100 | Rake $3
+Seat 1: Player0 folded before Flop
+Seat 2: Player1 showed [XX Qs] and won ($100)
+Seat 3: Hero (button) folded on the Turn
+Seat 4: Player2 (small blind) folded before Flop
+Seat 5: Player3 (big blind) folded on the River
+Seat 6: Player4 folded before Flop

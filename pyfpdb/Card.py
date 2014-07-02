@@ -20,10 +20,10 @@ import L10n
 _ = L10n.get_translation()
 
 card_map = { "0": 0, "2": 2, "3" : 3, "4" : 4, "5" : 5, "6" : 6, "7" : 7, "8" : 8,
-            "9" : 9, "T" : 10, "J" : 11, "Q" : 12, "K" : 13, "A" : 14, "n": 0, "N": 0}
+            "9" : 9, "T" : 10, "J" : 11, "Q" : 12, "K" : 13, "A" : 14}
 
 card_map_low = { "0": 0, "A":1, "2": 2, "3" : 3, "4" : 4, "5" : 5, "6" : 6, "7" : 7, "8" : 8,
-            "9" : 9, "T" : 10, "J" : 11, "Q" : 12, "K" : 13, "n": 0, "N": 0}
+            "9" : 9, "T" : 10, "J" : 11, "Q" : 12, "K" : 13}
 
 card_map_abbr = [
                  ["AA" ,"AKs","AQs","AJs","ATs","A9s","A8s","A7s","A6s","A5s","A4s","A3s","A2s"],
@@ -108,8 +108,8 @@ def decodeStartHandValue(game, value):
 def calcStartCards(hand, player):
     hcs = hand.join_holecards(player, asList=True)
     if hand.gametype['category'] == 'holdem':
-        value1 = card_map[hcs[0][0]]
-        value2 = card_map[hcs[1][0]]
+        value1 = card_map.get(hcs[0][0])
+        value2 = card_map.get(hcs[1][0])
         return twoStartCards(value1, hcs[0][1], value2, hcs[1][1])
     elif hand.gametype['category'] == 'razz':
         idx = encodeRazzStartHand(hcs)
@@ -493,7 +493,10 @@ def encodeRazzStartHand(cards):
     '(TT)T':1180,'(JJ)J':1181,'(QQ)Q':1182,'(KK)K':1183,
     }
     #print "DEBUG: encodeRazzList['%s']: %s" % (startHand, encodeRazzList[startHand])
-    return encodeRazzList[startHand]
+    idx = encodeRazzList.get(startHand)
+    if idx:
+        return idx
+    return 0
 
 if __name__ == '__main__':
     print("1) "+_("Convert list ID to card (e.g. 1 to 2h)"))

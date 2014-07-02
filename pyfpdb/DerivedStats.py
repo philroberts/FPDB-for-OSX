@@ -378,14 +378,11 @@ class DerivedStats():
         hiLoKey = {'h': [('h', 'hi')], 'l': [('l', 'low')], 's': [('h', 'hi'),('l', 'low')], 'r': [('l', 'hi')]}
         boards = self.getBoardsDict(hand, base, streets) 
         for player in hand.players:
-            hole, cards, bcards = [], [], []
             pname = player[1]
             hp = self.handsplayers.get(pname)
             if evalgame:
-                hcs = hand.join_holecards(pname, asList=True)
-                hole = hcs[hrange[-1][0]:hrange[-1][1]]                            
+                hcs = hand.join_holecards(pname, asList=True)                          
                 holecards[pname] = {}
-                holecards[pname]['hole'] = [str(c) for c in hole]
                 holecards[pname]['cards'] = []
                 holecards[pname]['eq'] = 0
                 holecards[pname]['committed'] = 0
@@ -398,26 +395,18 @@ class DerivedStats():
                     if ((pname==hand.hero and streetSeen) or (hp['showed'] and streetSeen) or hp['sawShowdown']):
                         boardId, hl, rankId, value, _cards = 0, 'n', 1, 0, None
                         for n in range(len(board['board'])):
-                            if len(board['board']) > 1: 
-                                boardId = n + 1
-                            else: boardId = n
-                            if base!='hold':
-                                hole = hcs[hrange[streetId][0]:hrange[streetId][1]]  
-                            cards = [str(c) for c in hole if Card.encodeCardList.get(c)!=None or c=='0x']
-                            if board['board'][n]: bcards = [str(b) for b in board['board'][n]]
-                            else                : bcards = []
-                            if 'omaha' not in evalgame:
-                                if board['board'][n]:
-                                    cards = hole + board['board'][n]
-                                    cards  = [str(c) for c in cards]
-                                    bcards = []
-                            if base=='hold':
-                                holecards[pname]['cards'] += [cards]
-                            
+                            boardId   = (n + 1) if (len(board['board']) > 1) else n
+                            streetIdx = -1 if base=='hold' else streetId
+                            cards     = hcs[hrange[streetIdx][0]:hrange[streetIdx][1]]
+                            cards    += board['board'][n] if (board['board'][n] and 'omaha' not in evalgame) else []
+                            bcards    = board['board'][n] if (board['board'][n] and 'omaha' in evalgame) else []
+                            cards     = [str(c) if Card.encodeCardList.get(c) else '0x' for c in cards]
+                            bcards    = [str(b) if Card.encodeCardList.get(b) else '0x' for b in bcards]
+                            holecards[pname]['hole'] = cards[hrange[streetIdx][0]:hrange[streetIdx][1]]
+                            holecards[pname]['cards'] += [cards]
                             notnull  = ('0x' not in cards)
                             postflop = (base=='hold' and len(board['board'][n])>=3)
                             maxcards = (base!='hold' and len(cards)>=5)
-                            #print pname, street, streetId, cards, notnull, postflop, maxcards
                             if notnull and (postflop or maxcards):
                                 for hl, side in hiLoKey[hilo]:
                                     value, rank = pokereval.best(side, cards, bcards)
