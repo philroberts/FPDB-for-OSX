@@ -658,6 +658,8 @@ or None if we fail to get the info """
             money = money.replace('K', '000')
         if 'M' in money:
             money = money.replace('M', '000000')
+        if 'B' in money:
+            money = money.replace('B', '000000000')
         if money[-1] in ('.', ','):
             money = money[:-1]
         if len(money) < 3:

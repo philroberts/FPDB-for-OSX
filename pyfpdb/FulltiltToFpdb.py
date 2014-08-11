@@ -36,7 +36,7 @@ class Fulltilt(HandHistoryConverter):
     substitutions = {
                      'LEGAL_ISO' : "USD|EUR|GBP|CAD|FPP",       # legal ISO currency codes
                             'LS' : u"\$|\u20AC|\xe2\x82\xac|",  # legal currency symbols - Euro(cp1252, utf-8)
-                           'NUM' : u".,\dKM",                     # legal characters in number format
+                           'NUM' : u".,\dKMB",                     # legal characters in number format
                     }
 
     Lim_Blinds = {  '0.04': ('0.01', '0.02'),    '0.10': ('0.02', '0.05'),     '0.20': ('0.05', '0.10'),

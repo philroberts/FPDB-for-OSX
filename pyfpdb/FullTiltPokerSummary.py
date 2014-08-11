@@ -82,7 +82,7 @@ class FullTiltPokerSummary(TourneySummary):
                      'LEGAL_ISO' : "USD|EUR|GBP|CAD|FPP|FTP",      # legal ISO currency codes
                             'LS' : u"\$|\xe2\x82\xac|\u20ac|", # legal currency symbols - Euro(cp1252, utf-8)
                            'TAB' : u"-\u2013'\s\da-zA-Z#_\.",      # legal characters for tablename
-                           'NUM' : u".,\dKM",                    # legal characters in number format
+                           'NUM' : u".,\dKMB",                    # legal characters in number format
                     }
     
     months = { 'January':1, 'Jan':1, 'February':2, 'Feb':2, 'March':3, 'Mar':3,
