@@ -1,0 +1,61 @@
+Full Tilt Poker Game #34541726731: $300 Flipout (272237051), Table 1 - NL Hold'em - 2B/2B Ante 2B - 04:46:00 ET - 2014/08/07
+Seat 1: Player0 (3,000)
+Seat 2: Player1 (3,000)
+Seat 3: Player2 (3,000)
+Seat 4: Player3 (3,000)
+Seat 5: Player4 (3,000)
+Seat 6: Player5 (3,000)
+Seat 7: Player6 (3,000)
+Seat 8: Player7 (3,000)
+Seat 9: Hero (3,000)
+Player0 antes 3,000, and is all in
+Player1 antes 3,000, and is all in
+Player2 antes 3,000, and is all in
+Player3 antes 3,000, and is all in
+Player4 antes 3,000, and is all in
+Player5 antes 3,000, and is all in
+Player6 antes 3,000, and is all in
+Player7 antes 3,000, and is all in
+Hero antes 3,000, and is all in
+Player0 checks
+Player1 checks
+The button is in seat #9
+*** HOLE CARDS ***
+Dealt to Hero [Tc 9d]
+Player0 shows [9s 3c]
+Player1 shows [8c 4h]
+Player2 shows [9h 6s]
+Player3 shows [Js Th]
+Player4 shows [3h 3s]
+Player5 shows [2c 2d]
+Player6 shows [3d Qh]
+Player7 shows [Jc Jh]
+Hero shows [Tc 9d]
+*** FLOP *** [4s 8h Ts] (Total Pot: 27,000, 9 Players, 9 All-In)
+*** TURN *** [4s 8h Ts] [5h] (Total Pot: 27,000, 9 Players, 9 All-In)
+*** RIVER *** [4s 8h Ts 5h] [6d] (Total Pot: 27,000, 9 Players, 9 All-In)
+Player0 shows Ten Nine high
+Player1 shows two pair, Eights and Fours
+Player2 shows a pair of Sixes
+Player3 shows a pair of Tens
+Player4 shows a pair of Threes
+Player5 shows a pair of Twos
+Player6 shows Queen Ten high
+Player7 shows a pair of Jacks
+Hero shows a pair of Tens
+Player1 wins the pot (27,000) with two pair, Eights and Fours
+*** SUMMARY ***
+Total pot 27,000 | Rake 0
+Board: [4s 8h Ts 5h 6d]
+Seat 1: Player0 (small blind) showed [9s 3c] and lost with Ten Nine high
+Seat 2: Player1 (big blind) showed [8c 4h] and won (27,000) with two pair, Eights and Fours
+Seat 3: Player2 showed [9h 6s] and lost with a pair of Sixes
+Seat 4: Player3 showed [Js Th] and lost with a pair of Tens
+Seat 5: Player4 showed [3h 3s] and lost with a pair of Threes
+Seat 6: Player5 showed [2c 2d] and lost with a pair of Twos
+Seat 7: Player6 showed [3d Qh] and lost with Queen Ten high
+Seat 8: Player7 showed [Jc Jh] and lost with a pair of Jacks
+Seat 9: Hero (button) showed [Tc 9d] and lost with a pair of Tens
+
+
+
