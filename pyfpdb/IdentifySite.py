@@ -35,8 +35,8 @@ except:
 log = logging.getLogger("parser")
 
 re_SplitArchive, re_XLS  = {}, {}
-re_SplitArchive['PokerStars'] = re.compile(r'(?P<SPLIT>^Hand #(\d+)\s*$)', re.MULTILINE)
-re_SplitArchive['Fulltilt'] = re.compile(r'(?P<SPLIT>(\*{20}\s#\s\d+\s\*{20,25}\s?)|((BEGIN\n)?FullTiltPoker.+\n\nSeat))', re.MULTILINE)
+re_SplitArchive['PokerStars'] = re.compile(r'(?P<DIVIDER>^Hand #(\d+)\s*$)', re.MULTILINE)
+re_SplitArchive['Fulltilt'] = re.compile(r'(?P<DIVIDER>(\*{20}\s#\s\d+\s\*{20,25}\s?))|((?P<HEAD>(BEGIN)?\n)?FullTiltPoker.+\n\nSeat)', re.MULTILINE)
 re_XLS['PokerStars'] = re.compile(r'Tournaments\splayed\sby\s\'.+?\'')
 re_XLS['Fulltilt'] = re.compile(r'Player\sTournament\sReport\sfor\s.+?\s\(.*\)')
 
@@ -46,7 +46,8 @@ class FPDBFile:
     site = None
     kodec = None
     archive = False
-    archiveSplit = ''
+    archiveHead = False
+    archiveDivider = False
     gametype = False
     hero = '-'
 
@@ -235,7 +236,10 @@ class IdentifySite:
                 m1 = re_SplitArchive[filter_name].search(whole_file.replace('\r\n', '\n'))
                 if m1:
                     f.archive = True
-                    f.archiveSplit = m1.group('SPLIT')
+                    if 'DIVIDER' in m1.groupdict() and m1.group('DIVIDER'):
+                        f.archiveDivider = True  
+                    if 'HEAD' in m1.groupdict() and m1.group('HEAD'):
+                        f.archiveHead = True   
             if m:
                 f.site = site
                 f.ftype = "hh"
