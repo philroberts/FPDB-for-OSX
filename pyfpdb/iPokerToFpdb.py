@@ -71,7 +71,7 @@ class iPoker(HandHistoryConverter):
                      'PL':'pl',
                      'LP':'pl',
                       'L':'fl',
-                     'LZ':'fl',
+                     'LZ':'nl',
                   }
     games = {              # base, category
                 '7 Card Stud' : ('stud','studhi'),
