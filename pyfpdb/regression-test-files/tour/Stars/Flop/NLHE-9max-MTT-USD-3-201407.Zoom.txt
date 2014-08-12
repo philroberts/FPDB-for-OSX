@@ -1,0 +1,47 @@
+PokerStars Hand #118997670409: Zoom Tournament #932545562, $3.00+$0.30 USD Hold'em No Limit - Level X (100/200) - 2014/07/20 9:26:31 ET
+Table '932545562 1644' 9-max Seat #1 is the button
+Seat 1: Player0 (12399 in chips) 
+Seat 2: Player1 (4275 in chips) 
+Seat 3: Player2 (4445 in chips) 
+Seat 4: Player3 (6970 in chips) 
+Seat 5: Player4 (5491 in chips) 
+Seat 6: Player5 (18502 in chips) 
+Seat 7: Hero (6145 in chips) 
+Seat 8: Player6 (9270 in chips) 
+Seat 9: Player7 (8351 in chips) 
+Player0: posts the ante 25
+Player1: posts the ante 25
+Player2: posts the ante 25
+Player3: posts the ante 25
+Player4: posts the ante 25
+Player5: posts the ante 25
+Hero: posts the ante 25
+Player6: posts the ante 25
+Player7: posts the ante 25
+Player1: posts small blind 100
+Player2: posts big blind 200
+*** HOLE CARDS ***
+Dealt to Hero [Th 4c]
+Player3: folds 
+Player4: raises 200 to 400
+Player5: folds 
+Hero: folds 
+Player6: folds 
+Player7: folds 
+Player0: folds 
+Player1: folds 
+Player2: folds 
+Uncalled bet (200) returned to Player4
+Player4 collected 725 from pot
+Player4: doesn't show hand 
+*** SUMMARY ***
+Total pot 725 | Rake 0 
+Seat 1: Player0 (button) folded before Flop (didn't bet)
+Seat 2: Player1 (small blind) folded before Flop
+Seat 3: Player2 (big blind) folded before Flop
+Seat 4: Player3 folded before Flop (didn't bet)
+Seat 5: Player4 collected (725)
+Seat 6: Player5 folded before Flop (didn't bet)
+Seat 7: Hero folded before Flop (didn't bet)
+Seat 8: Player6 folded before Flop (didn't bet)
+Seat 9: Player7 folded before Flop (didn't bet)

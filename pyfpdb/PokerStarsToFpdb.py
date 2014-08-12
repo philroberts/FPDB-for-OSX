@@ -111,7 +111,7 @@ class PokerStars(HandHistoryConverter):
     # Static regexes
     re_GameInfo     = re.compile(u"""
           (PokerStars|POKERSTARS)(?P<TITLE>\sGame|\sHand|\sHome\sGame|\sHome\sGame\sHand|Game|\sZoom\sHand|\sGAME)\s\#(?P<HID>[0-9]+):\s+
-          (\{.*\}\s+)?(Tournament\s\#                # open paren of tournament info
+          (\{.*\}\s+)?((?P<TOUR>(Zoom\s)?Tournament)\s\#                # open paren of tournament info
           (?P<TOURNO>\d+),\s
           # here's how I plan to use LS
           (?P<BUYIN>(?P<BIAMT>[%(LS)s\d\.]+)?\+?(?P<BIRAKE>[%(LS)s\d\.]+)?\+?(?P<BOUNTY>[%(LS)s\d\.]+)?\s?(?P<TOUR_ISO>%(LEGAL_ISO)s)?|Freeroll)\s+)?
@@ -248,6 +248,8 @@ class PokerStars(HandHistoryConverter):
             info['type'] = 'ring'
         else:
             info['type'] = 'tour'
+            if 'ZOOM' in mg['TOUR']:
+                info['fast'] = True
             
         if not mg['CURRENCY'] and info['type']=='ring':
             info['currency'] = 'play'
