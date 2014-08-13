@@ -1,0 +1,3238 @@
+Bovada Hand #2902233667 TBL#8747464 OMAHA HiLo Pot Limit - 2014-08-05 00:56:59
+Seat 1: Dealer ($2.73 in chips)
+Seat 2: Small Blind ($2.55 in chips)
+Seat 3: Big Blind ($6.95 in chips)
+Seat 4: UTG ($3.79 in chips)
+Seat 5: UTG+1 ($1.78 in chips)
+Seat 6: UTG+2 ($4.37 in chips)
+Seat 7: UTG+3 ($5.43 in chips)
+Seat 8: UTG+4 ($6.38 in chips)
+Seat 9: UTG+5 [ME] ($5 in chips)
+Dealer : Set dealer/Bring in spot [1] 
+Small Blind : Ante/Small Blind $0.02 
+Big Blind : Big blind/Bring in $0.05 
+UTG+5  [ME] : Posts chip $0.05 
+*** HOLE CARDS ***
+Dealer : Card dealt to a spot [Jc Ts Tc Qh] 
+Small Blind : Card dealt to a spot [8s 4d 2c 2s] 
+Big Blind : Card dealt to a spot [Th 3s 4h 8c] 
+UTG : Card dealt to a spot [Jh 5s 6c 3d] 
+UTG+1 : Card dealt to a spot [6d Qd 9c Qs] 
+UTG+2 : Card dealt to a spot [4s 5d Ah Kh] 
+UTG+3 : Card dealt to a spot [9s Kc 7h 7d] 
+UTG+4 : Card dealt to a spot [8h Ac 3h 3c] 
+UTG+5  [ME] : Card dealt to a spot [6h Jd Qc 2h] 
+UTG : Folds
+UTG+1 : Calls $0.05 
+UTG+2 : Calls $0.05 
+UTG+3 : Folds
+UTG+4 : Raises $0.10 to $0.10
+UTG+5  [ME] : Folds
+Dealer : Calls $0.10 
+Small Blind : Calls $0.08 
+Big Blind : Folds
+UTG+1 : Calls $0.05 
+UTG+2 : Calls $0.05 
+*** FLOP *** [9d 7c 4c]
+Small Blind : Checks
+UTG+1 : Checks
+UTG+2 : Checks
+UTG+4 : Bets $0.60 
+Dealer : Calls $0.60 
+Small Blind : Folds
+UTG+1 : Folds
+UTG+2 : Folds
+*** TURN *** [9d 7c 4c] [7s]
+UTG+4 : Bets $1.80 
+Dealer : Folds
+UTG+4 : Return uncalled portion of bet $1.80 
+UTG+4 : Does not show [8h Ac 3h 3c] (Two pair)
+UTG+4 : Hand result $1.71 
+*** SUMMARY ***
+Total Pot($1.80)
+Board [9d 7c 4c 7s ]
+Seat+1: Dealer Folded on the TURN
+Seat+2: Small Blind Folded on the FLOP
+Seat+3: Big Blind Folded before the FLOP
+Seat+4: UTG Folded before the FLOP
+Seat+5: UTG+1 Folded on the FLOP
+Seat+6: UTG+2 Folded on the FLOP
+Seat+7: UTG+3 Folded before the FLOP
+Seat+8: UTG+4 HI $1.71 [Does not show]  
+Seat+9: UTG+5 Folded before the FLOP
+
+
+Bovada Hand #2902234353 TBL#8747464 OMAHA HiLo Pot Limit - 2014-08-05 00:58:12
+Seat 1: UTG+5 ($2.03 in chips)
+Seat 2: Dealer ($2.45 in chips)
+Seat 3: Small Blind ($6.90 in chips)
+Seat 4: Big Blind ($3.79 in chips)
+Seat 5: UTG ($1.68 in chips)
+Seat 6: UTG+1 ($4.27 in chips)
+Seat 7: UTG+2 ($5.43 in chips)
+Seat 8: UTG+3 ($7.39 in chips)
+Seat 9: UTG+4 [ME] ($4.95 in chips)
+Dealer : Set dealer/Bring in spot [2] 
+Small Blind : Ante/Small Blind $0.02 
+Big Blind : Big blind/Bring in $0.05 
+*** HOLE CARDS ***
+UTG+5 : Card dealt to a spot [Kh Ks 5d 4h] 
+Dealer : Card dealt to a spot [2h Qs 4s Jc] 
+Small Blind : Card dealt to a spot [4d Ah Jh 7h] 
+Big Blind : Card dealt to a spot [6h 2c 6d Th] 
+UTG : Card dealt to a spot [Qh Kd 9s 6s] 
+UTG+1 : Card dealt to a spot [9d 8h 2s 7d] 
+UTG+2 : Card dealt to a spot [5s 3d Ad 7s] 
+UTG+3 : Card dealt to a spot [8s 7c 9h Ts] 
+UTG+4  [ME] : Card dealt to a spot [Qc Qd 3h Td] 
+UTG : Folds
+UTG+1 : Calls $0.05 
+UTG+2 : Calls $0.05 
+UTG+3 : Calls $0.05 
+UTG+4  [ME] : Folds
+UTG+5 : Calls $0.05 
+Dealer : Folds
+Small Blind : Calls $0.03 
+Big Blind : Checks
+*** FLOP *** [6c 2d 8c]
+Small Blind : Bets $0.13 
+Big Blind : Folds
+UTG+1 : Calls $0.13 
+UTG+2 : Calls $0.13 
+UTG+3 : Raises $0.26 to $0.26
+UTG+5 : Calls $0.26 
+Small Blind : Calls $0.13 
+UTG+1 : Calls $0.13 
+UTG+2 : Raises $1.73 to $1.86
+UTG+3 : Calls $1.60 
+UTG+5 : Folds
+Small Blind : Folds
+UTG+1 : Calls $1.60 
+*** TURN *** [6c 2d 8c] [3s]
+UTG+1 : Checks
+UTG+2 : Checks
+UTG+3 : Checks
+*** RIVER *** [6c 2d 8c 3s] [Tc]
+UTG+1 : All-in $2.36 
+UTG+2 : Calls $2.36 
+UTG+3 : Calls $2.36 
+UTG+1 : Showdown [9d 7d 6c 8c Tc 8h 7d 6c 2d 3s] (Straight)
+UTG+2 : Showdown [3d Ad 8c 3s Tc 5s Ad 6c 2d 3s] (One pair)
+UTG+3 : Showdown [7c 9h 6c 8c Tc 8s 7c 6c 2d 3s] (Straight)
+UTG+1 : Hand result $3.21 
+UTG+2 : Hand result $6.40 
+UTG+3 : Hand result $3.20 
+*** SUMMARY ***
+Total Pot($13.48)
+Board [6c 2d 8c 3s Tc]
+Seat+1: UTG+5 Folded on the FLOP
+Seat+2: Dealer Folded before the FLOP
+Seat+3: Small Blind Folded on the FLOP
+Seat+4: Big Blind Folded on the FLOP
+Seat+5: UTG Folded before the FLOP
+Seat+6: UTG+1 HI $3.21  with Straight [9d 8h 2s 7d-9d 7d 6c 8c Tc]  [9d 8h 2s 7d-8h 7d 6c 2d 3s]
+Seat+7: UTG+2  with One pair [5s 3d Ad 7s-3d Ad 8c 3s Tc] LO $6.40 [5s 3d Ad 7s-5s Ad 6c 2d 3s]
+Seat+8: UTG+3 HI $3.20  with Straight [8s 7c 9h Ts-7c 9h 6c 8c Tc]  [8s 7c 9h Ts-8s 7c 6c 2d 3s]
+Seat+9: UTG+4 Folded before the FLOP
+
+
+Bovada Hand #2902235417 TBL#8747464 OMAHA HiLo Pot Limit - 2014-08-05 01:00:05
+Seat 1: UTG+4 ($1.72 in chips)
+Seat 2: UTG+5 ($2.45 in chips)
+Seat 3: Dealer ($6.59 in chips)
+Seat 4: Small Blind ($3.74 in chips)
+Seat 5: Big Blind ($1.68 in chips)
+Seat 6: UTG ($3.21 in chips)
+Seat 7: UTG+1 ($7.56 in chips)
+Seat 8: UTG+2 ($6.32 in chips)
+Seat 9: UTG+3 [ME] ($4.95 in chips)
+Dealer : Set dealer/Bring in spot [3] 
+Small Blind : Ante/Small Blind $0.02 
+Big Blind : Big blind/Bring in $0.05 
+*** HOLE CARDS ***
+UTG+4 : Card dealt to a spot [8d Jc 3c 7s] 
+UTG+5 : Card dealt to a spot [Jd Kd 5s 9s] 
+Dealer : Card dealt to a spot [2h 5h 9c 8s] 
+Small Blind : Card dealt to a spot [Ts 8c Kh Ks] 
+Big Blind : Card dealt to a spot [Qc 5c As 3h] 
+UTG : Card dealt to a spot [8h 4s 3s Tc] 
+UTG+1 : Card dealt to a spot [Qs Ac 9d 6c] 
+UTG+2 : Card dealt to a spot [6h 2c 2d 7c] 
+UTG+3  [ME] : Card dealt to a spot [Ah 4d 3d Td] 
+UTG : Calls $0.05 
+UTG+1 : Calls $0.05 
+UTG+2 : Calls $0.05 
+UTG+3  [ME] : Folds
+UTG+4 : Folds
+UTG+5 : Folds
+Dealer : Folds
+Small Blind : Calls $0.03 
+Big Blind : Checks
+*** FLOP *** [5d 4h 2s]
+Small Blind : Checks
+Big Blind : Checks
+UTG : Checks
+UTG+1 : Bets $0.12 
+UTG+2 : Calls $0.12 
+Small Blind : Folds
+Big Blind : Calls $0.12 
+UTG : Calls $0.12 
+*** TURN *** [5d 4h 2s] [7d]
+Big Blind : Bets $0.73 
+UTG : Calls $0.73 
+UTG+1 : Folds
+UTG+2 : Calls $0.73 
+*** RIVER *** [5d 4h 2s 7d] [Qd]
+Big Blind : All-in $0.78 
+UTG : Folds
+UTG+2 : Folds
+Big Blind : Return uncalled portion of bet $0.78 
+Big Blind : Does not show [Qc 5c As 3h] (Straight)
+Big Blind : Hand result $2.78 
+*** SUMMARY ***
+Total Pot($2.92)
+Board [5d 4h 2s 7d Qd]
+Seat+1: UTG+4 Folded before the FLOP
+Seat+2: UTG+5 Folded before the FLOP
+Seat+3: Dealer Folded before the FLOP
+Seat+4: Small Blind Folded on the FLOP
+Seat+5: Big Blind HI $2.78 [Does not show]  
+Seat+6: UTG Folded on the RIVER
+Seat+7: UTG+1 Folded on the TURN
+Seat+8: UTG+2 Folded on the RIVER
+Seat+9: UTG+3 Folded before the FLOP
+
+
+Bovada Hand #2902236276 TBL#8747464 OMAHA HiLo Pot Limit - 2014-08-05 01:01:34
+Seat 1: UTG+3 ($1.72 in chips)
+Seat 2: UTG+4 ($2.45 in chips)
+Seat 3: UTG+5 ($6.59 in chips)
+Seat 4: Dealer ($3.69 in chips)
+Seat 5: Small Blind ($3.56 in chips)
+Seat 6: Big Blind ($2.31 in chips)
+Seat 7: UTG ($7.39 in chips)
+Seat 8: UTG+1 ($5.42 in chips)
+Seat 9: UTG+2 [ME] ($4.95 in chips)
+Dealer : Set dealer/Bring in spot [4] 
+Small Blind : Ante/Small Blind $0.02 
+Big Blind : Big blind/Bring in $0.05 
+*** HOLE CARDS ***
+UTG+3 : Card dealt to a spot [7c Jc 3c Ac] 
+UTG+4 : Card dealt to a spot [8d 7h 9d Qd] 
+UTG+5 : Card dealt to a spot [4d Ad As 2s] 
+Dealer : Card dealt to a spot [4h Kc 3h 7s] 
+Small Blind : Card dealt to a spot [2d 9c Ks 9s] 
+Big Blind : Card dealt to a spot [Ts Kd 6d Kh] 
+UTG : Card dealt to a spot [5s 4s Tc 2c] 
+UTG+1 : Card dealt to a spot [8c Jh 7d 2h] 
+UTG+2  [ME] : Card dealt to a spot [3d 8s 4c 6s] 
+UTG : Calls $0.05 
+UTG+1 : Folds
+UTG+2  [ME] : Folds
+UTG+3 : Raises $0.11 to $0.11
+UTG+4 : Folds
+UTG+5 : Raises $0.30 to $0.30
+Dealer : Folds
+Small Blind : Folds
+Big Blind : Calls $0.25 
+UTG : Folds
+UTG+3 : Calls $0.19 
+*** FLOP *** [Td 8h Qc]
+Big Blind : Checks
+UTG+3 : Checks
+UTG+5 : Bets $0.76 
+Big Blind : Folds
+UTG+3 : Calls $0.76 
+*** TURN *** [Td 8h Qc] [Qs]
+UTG+3 : Checks
+UTG+5 : Bets $2.49 
+UTG+3 : Folds
+UTG+5 : Return uncalled portion of bet $2.49 
+UTG+5 : Does not show [4d Ad As 2s] (Two pair)
+UTG+5 : Hand result $2.37 
+Big Blind : Seat sit out
+*** SUMMARY ***
+Total Pot($2.49)
+Board [Td 8h Qc Qs ]
+Seat+1: UTG+3 Folded on the TURN
+Seat+2: UTG+4 Folded before the FLOP
+Seat+3: UTG+5 HI $2.37 [Does not show]  
+Seat+4: Dealer Folded before the FLOP
+Seat+5: Small Blind Folded before the FLOP
+Seat+6: Big Blind Folded on the FLOP
+Seat+7: UTG Folded before the FLOP
+Seat+8: UTG+1 Folded before the FLOP
+Seat+9: UTG+2 Folded before the FLOP
+
+
+Bovada Hand #2902236874 TBL#8747464 OMAHA HiLo Pot Limit - 2014-08-05 01:02:37
+Seat 1: UTG+2 ($0.66 in chips)
+Seat 2: UTG+3 ($2.45 in chips)
+Seat 3: UTG+4 ($7.90 in chips)
+Seat 4: UTG+5 ($3.69 in chips)
+Seat 5: Dealer ($3.54 in chips)
+Seat 7: Big Blind ($7.34 in chips)
+Seat 8: UTG ($5.42 in chips)
+Seat 9: UTG+1 [ME] ($4.95 in chips)
+Dealer : Set dealer/Bring in spot [5] 
+Big Blind : Big blind/Bring in $0.05 
+*** HOLE CARDS ***
+UTG+2 : Card dealt to a spot [Kc 6c 6s 7s] 
+UTG+3 : Card dealt to a spot [Jd 6h 5h 8h] 
+UTG+4 : Card dealt to a spot [2s 5s 4s 6d] 
+UTG+5 : Card dealt to a spot [9h 4d 9s 2c] 
+Dealer : Card dealt to a spot [Qc 2d 8d 3c] 
+Big Blind : Card dealt to a spot [9c Kd Qd 7d] 
+UTG : Card dealt to a spot [Jh 3h 8c 2h] 
+UTG+1  [ME] : Card dealt to a spot [Jc Th 4h Js] 
+UTG : Calls $0.05 
+UTG+1  [ME] : Folds
+UTG+2 : Calls $0.05 
+UTG+3 : Folds
+UTG+4 : Calls $0.05 
+UTG+5 : Folds
+Dealer : Calls $0.05 
+Big Blind : Checks
+*** FLOP *** [9d 7c As]
+Big Blind : Checks
+UTG : Bets $0.25 
+UTG+2 : Folds
+UTG+4 : Folds
+Dealer : Folds
+Big Blind : Folds
+UTG : Return uncalled portion of bet $0.25 
+UTG : Does not show [Jh 3h 8c 2h] (High Card)
+UTG : Hand result $0.24 
+*** SUMMARY ***
+Total Pot($0.25)
+Board [9d 7c As  ]
+Seat+1: UTG+2 Folded on the FLOP
+Seat+2: UTG+3 Folded before the FLOP
+Seat+3: UTG+4 Folded on the FLOP
+Seat+4: UTG+5 Folded before the FLOP
+Seat+5: Dealer Folded on the FLOP
+Seat+7: Big Blind Folded on the FLOP
+Seat+8: UTG HI $0.24 [Does not show]  
+Seat+9: UTG+1 Folded before the FLOP
+
+
+Bovada Hand #2902237475 TBL#8747464 OMAHA HiLo Pot Limit - 2014-08-05 01:03:40
+Seat 1: UTG+1 ($0.61 in chips)
+Seat 2: UTG+2 ($2.45 in chips)
+Seat 3: UTG+3 ($7.85 in chips)
+Seat 4: UTG+4 ($3.69 in chips)
+Seat 5: UTG+5 ($3.49 in chips)
+Seat 7: Small Blind ($7.29 in chips)
+Seat 8: Big Blind ($5.61 in chips)
+Seat 9: UTG [ME] ($4.95 in chips)
+Set dealer/Bring in spot
+Small Blind : Ante/Small Blind $0.02 
+Big Blind : Big blind/Bring in $0.05 
+*** HOLE CARDS ***
+UTG+1 : Card dealt to a spot [5c 8h Qd 6d] 
+UTG+2 : Card dealt to a spot [7d Kh 9h Th] 
+UTG+3 : Card dealt to a spot [6s 9s 3s Qs] 
+UTG+4 : Card dealt to a spot [5s 7h 3d 8d] 
+UTG+5 : Card dealt to a spot [Ts Tc 9c 6c] 
+Small Blind : Card dealt to a spot [Jh 7s Kd 8s] 
+Big Blind : Card dealt to a spot [Jc 4s 2h 3c] 
+UTG  [ME] : Card dealt to a spot [Qh 2c 5d 4d] 
+UTG  [ME] : Folds
+UTG+1 : Folds
+UTG+2 : Folds
+UTG+3 : Folds
+UTG+4 : Folds
+UTG+5 : Folds
+Small Blind : Calls $0.03 
+Big Blind : Checks
+*** FLOP *** [8c Ks Kc]
+Small Blind : Bets $0.10 
+Big Blind : Calls $0.10 
+*** TURN *** [8c Ks Kc] [3h]
+Small Blind : Bets $0.30 
+Big Blind : Calls $0.30 
+*** RIVER *** [8c Ks Kc 3h] [Js]
+Seat re-join
+Small Blind : Bets $0.45 
+Big Blind : Calls $0.45 
+Small Blind : Showdown [Jh Kd Ks Kc Js] (Full House)
+Big Blind : Mucks [Jc 4s 2h 3c] (Two pair)
+Small Blind : Hand result $1.71 
+*** SUMMARY ***
+Total Pot($1.80)
+Board [8c Ks Kc 3h Js]
+Seat+1: UTG+1 Folded before the FLOP
+Seat+2: UTG+2 Folded before the FLOP
+Seat+3: UTG+3 Folded before the FLOP
+Seat+4: UTG+4 Folded before the FLOP
+Seat+5: UTG+5 Folded before the FLOP
+Seat+7: Small Blind HI $1.71  with Full House [Jh 7s Kd 8s-Jh Kd Ks Kc Js]  
+Seat+8: Big Blind [Mucked] [Jc 4s 2h 3c   ]  
+Seat+9: UTG Folded before the FLOP
+
+
+Bovada Hand #2902238171 TBL#8747464 OMAHA HiLo Pot Limit - 2014-08-05 01:04:57
+Seat 1: UTG ($0.61 in chips)
+Seat 2: UTG+1 ($2.45 in chips)
+Seat 3: UTG+2 ($7.85 in chips)
+Seat 4: UTG+3 ($3.69 in chips)
+Seat 5: UTG+4 ($3.49 in chips)
+Seat 6: UTG+5 ($2.01 in chips)
+Seat 7: Dealer ($8.10 in chips)
+Seat 8: Small Blind ($4.71 in chips)
+Seat 9: Big Blind [ME] ($4.95 in chips)
+Dealer : Set dealer/Bring in spot [7] 
+Small Blind : Ante/Small Blind $0.02 
+Big Blind  [ME] : Big blind/Bring in $0.05 
+UTG+5 : Posts chip $0.02 
+*** HOLE CARDS ***
+UTG : Card dealt to a spot [9h 3h Ac Qs] 
+UTG+1 : Card dealt to a spot [4s Qh 7d Jd] 
+UTG+2 : Card dealt to a spot [6h 5s 9s 8d] 
+UTG+3 : Card dealt to a spot [Ad 3s 6d Ah] 
+UTG+4 : Card dealt to a spot [Kh 4c 5h 7h] 
+UTG+5 : Card dealt to a spot [5d 3c Tc Kc] 
+Dealer : Card dealt to a spot [7s 8s As Jh] 
+Small Blind : Card dealt to a spot [3d 6c Qd Ks] 
+Big Blind  [ME] : Card dealt to a spot [4d 8c 2c Th] 
+UTG : Raises $0.10 to $0.10
+UTG+1 : Folds
+UTG+2 : Folds
+UTG+3 : Raises $0.39 to $0.39
+UTG+4 : Folds
+UTG+5 : Calls $0.37 
+Dealer : Folds (auth)
+Small Blind : Folds
+Dealer : Seat stand
+Dealer : Table leave user
+Big Blind  [ME] : Folds
+UTG : Calls $0.29 
+*** FLOP *** [Qc 9d 9c]
+UTG : All-in $0.22 
+UTG+3 : Calls $0.22 
+UTG+5 : Calls $0.22 
+*** TURN *** [Qc 9d 9c] [Kd]
+UTG+3 : Checks
+UTG+5 : All-in $1.40 
+UTG+3 : Folds
+UTG+5 : Return uncalled portion of bet $1.40 
+*** RIVER *** [Qc 9d 9c Kd] [2h]
+UTG : Showdown [9h Qs Qc 9d 9c] (Full House)
+UTG+5 : Showdown [Tc Kc 9d 9c Kd] (Two pair)
+UTG : Hand result $1.81 
+*** SUMMARY ***
+Total Pot($1.90)
+Board [Qc 9d 9c Kd 2h]
+Seat+1: UTG HI $1.81  with Full House [9h 3h Qs-9h Qs Qc 9d 9c]  
+Seat+2: UTG+1 Folded before the FLOP
+Seat+3: UTG+2 Folded before the FLOP
+Seat+4: UTG+3 Folded on the TURN
+Seat+5: UTG+4 Folded before the FLOP
+Seat+6: UTG+5 lost with Two pair [5d 3c Tc Kc-Tc Kc 9d 9c Kd]  
+Seat+7: Dealer Folded before the FLOP
+Seat+8: Small Blind Folded before the FLOP
+Seat+9: Big Blind Folded before the FLOP
+
+
+Bovada Hand #2902238626 TBL#8747464 OMAHA HiLo Pot Limit - 2014-08-05 01:05:48
+Seat 1: Big Blind ($1.81 in chips)
+Seat 2: UTG ($2.45 in chips)
+Seat 3: UTG+1 ($7.85 in chips)
+Seat 4: UTG+2 ($3.08 in chips)
+Seat 5: UTG+3 ($3.49 in chips)
+Seat 6: UTG+4 ($1.40 in chips)
+Seat 8: Dealer ($4.69 in chips)
+Seat 9: Small Blind [ME] ($4.90 in chips)
+Dealer : Set dealer/Bring in spot [8] 
+Small Blind  [ME] : Ante/Small Blind $0.02 
+Big Blind : Big blind/Bring in $0.05 
+*** HOLE CARDS ***
+Big Blind : Card dealt to a spot [6h Ah 9d 9s] 
+UTG : Card dealt to a spot [8h 2h Qh Ac] 
+UTG+1 : Card dealt to a spot [Kh 3c 5d 3s] 
+UTG+2 : Card dealt to a spot [7h 4h Ts Tc] 
+UTG+3 : Card dealt to a spot [8d 4s 7c 6d] 
+UTG+4 : Card dealt to a spot [Ad 2c 5c Ks] 
+Dealer : Card dealt to a spot [Th Kd 6s 2s] 
+Small Blind  [ME] : Card dealt to a spot [Jd 5s 3d Jc] 
+UTG : Calls $0.05 
+UTG+1 : Folds
+UTG+2 : Folds
+UTG+3 : Folds
+UTG+4 : Raises $0.22 to $0.22
+Dealer : Folds
+Small Blind  [ME] : Folds
+Big Blind : Calls $0.17 
+UTG : Calls $0.17 
+*** FLOP *** [4c Jh 2d]
+Big Blind : Checks
+UTG : Checks
+UTG+4 : Bets $0.68 
+Big Blind : Folds
+UTG : Folds
+UTG+4 : Return uncalled portion of bet $0.68 
+UTG+4 : Does not show [Ad 2c 5c Ks] (One pair)
+UTG+4 : Hand result $0.65 
+*** SUMMARY ***
+Total Pot($0.68)
+Board [4c Jh 2d  ]
+Seat+1: Big Blind Folded on the FLOP
+Seat+2: UTG Folded on the FLOP
+Seat+3: UTG+1 Folded before the FLOP
+Seat+4: UTG+2 Folded before the FLOP
+Seat+5: UTG+3 Folded before the FLOP
+Seat+6: UTG+4 HI $0.65 [Does not show]  
+Seat+8: Dealer Folded before the FLOP
+Seat+9: Small Blind Folded before the FLOP
+
+
+Bovada Hand #2902239195 TBL#8747464 OMAHA HiLo Pot Limit - 2014-08-05 01:06:50
+Seat 1: Small Blind ($1.59 in chips)
+Seat 2: Big Blind ($2.23 in chips)
+Seat 3: UTG ($7.85 in chips)
+Seat 4: UTG+1 ($3.08 in chips)
+Seat 5: UTG+2 ($3.49 in chips)
+Seat 6: UTG+3 ($1.83 in chips)
+Seat 8: UTG+4 ($4.69 in chips)
+Seat 9: Dealer [ME] ($4.88 in chips)
+Dealer  [ME] : Set dealer/Bring in spot [9] 
+Small Blind : Ante/Small Blind $0.02 
+Big Blind : Big blind/Bring in $0.05 
+*** HOLE CARDS ***
+Small Blind : Card dealt to a spot [2d Jh Qh Kc] 
+Big Blind : Card dealt to a spot [Kd 8d 8s Jd] 
+UTG : Card dealt to a spot [Qs Kh Td 5d] 
+UTG+1 : Card dealt to a spot [Ah 3s 5c Tc] 
+UTG+2 : Card dealt to a spot [Ts 2c 8c Jc] 
+UTG+3 : Card dealt to a spot [9d 9s 2s Ks] 
+UTG+4 : Card dealt to a spot [Qc 9c 7d Th] 
+Dealer  [ME] : Card dealt to a spot [Ad 4h 2h 5h] 
+UTG : Folds
+UTG+1 : Raises $0.15 to $0.15
+UTG+2 : Folds
+UTG+3 : Folds
+UTG+4 : Folds
+Dealer  [ME] : Calls $0.15 
+Small Blind : Folds
+Big Blind : Calls $0.10 
+*** FLOP *** [7c 5s 6s]
+Big Blind : Checks
+UTG+1 : Checks
+Dealer  [ME] : Checks
+*** TURN *** [7c 5s 6s] [6c]
+Big Blind : Checks
+UTG+1 : Checks
+Dealer  [ME] : Checks
+*** RIVER *** [7c 5s 6s 6c] [9h]
+Big Blind : Checks
+UTG+1 : Checks
+Dealer  [ME] : Checks
+Big Blind : Showdown [8d 8s 6s 6c 9h] (Two pair)
+UTG+1 : Showdown [Ah 5c 5s 6s 6c Ah 3s 7c 5s 6s] (Two pair)
+Dealer  [ME] : Showdown [Ad 5h 5s 6s 6c Ad 2h 7c 5s 6s] (Two pair)
+Big Blind : Hand result $0.23 
+Dealer  [ME] : Hand result $0.22 
+*** SUMMARY ***
+Total Pot($0.47)
+Board [7c 5s 6s 6c 9h]
+Seat+1: Small Blind Folded before the FLOP
+Seat+2: Big Blind HI $0.23  with Two pair [Kd 8d 8s Jd-8d 8s 6s 6c 9h]  
+Seat+3: UTG Folded before the FLOP
+Seat+4: UTG+1 lost with Two pair [Ah 3s 5c Tc-Ah 5c 5s 6s 6c]  [Ah 3s 5c Tc-Ah 3s 7c 5s 6s]
+Seat+5: UTG+2 Folded before the FLOP
+Seat+6: UTG+3 Folded before the FLOP
+Seat+8: UTG+4 Folded before the FLOP
+Seat+9: Dealer  with Two pair [Ad 4h 2h 5h-Ad 5h 5s 6s 6c] LO $0.22 [Ad 4h 2h 5h-Ad 2h 7c 5s 6s]
+
+
+Bovada Hand #2902239825 TBL#8747464 OMAHA HiLo Pot Limit - 2014-08-05 01:07:58
+Seat 1: Dealer ($1.57 in chips)
+Seat 2: Small Blind ($2.31 in chips)
+Seat 3: Big Blind ($7.85 in chips)
+Seat 4: UTG ($2.93 in chips)
+Seat 5: UTG+1 ($3.49 in chips)
+Seat 6: UTG+2 ($1.83 in chips)
+Seat 8: UTG+3 ($4.69 in chips)
+Seat 9: UTG+4 [ME] ($4.95 in chips)
+Dealer : Set dealer/Bring in spot [1] 
+Table enter user
+Small Blind : Ante/Small Blind $0.02 
+Big Blind : Big blind/Bring in $0.05 
+*** HOLE CARDS ***
+Dealer : Card dealt to a spot [3d 8c Th Ac] 
+Small Blind : Card dealt to a spot [Tc 6s Ts 7c] 
+Big Blind : Card dealt to a spot [4h Ad Qc Jc] 
+UTG : Card dealt to a spot [2h Js 8d Qh] 
+UTG+1 : Card dealt to a spot [4s 2s 8h 6c] 
+UTG+2 : Card dealt to a spot [4c Kh 9d 2d] 
+UTG+3 : Card dealt to a spot [Kc 6d Kd 5d] 
+UTG+4  [ME] : Card dealt to a spot [Td Qd 3c 6h] 
+Seat sit down
+Table deposit $1.50 
+UTG : Folds
+UTG+1 : Folds
+UTG+2 : Calls $0.05 
+UTG+3 : Calls $0.05 
+Table enter user
+UTG+4  [ME] : Folds
+Dealer : Raises $0.13 to $0.13
+Small Blind : Folds
+Big Blind : Calls $0.08 
+UTG+2 : Calls $0.08 
+UTG+3 : Calls $0.08 
+*** FLOP *** [7h Ah 3h]
+Big Blind : Checks
+UTG+2 : Bets $0.54 
+UTG+3 : Folds
+Dealer : Folds
+Big Blind : Folds
+UTG+2 : Return uncalled portion of bet $0.54 
+UTG+2 : Does not show [4c Kh 9d 2d] (High Card)
+UTG+2 : Hand result $0.52 
+Seat sit out
+*** SUMMARY ***
+Total Pot($0.54)
+Board [7h Ah 3h  ]
+Seat+1: Dealer Folded on the FLOP
+Seat+2: Small Blind Folded before the FLOP
+Seat+3: Big Blind Folded on the FLOP
+Seat+4: UTG Folded before the FLOP
+Seat+5: UTG+1 Folded before the FLOP
+Seat+6: UTG+2 HI $0.52 [Does not show]  
+Seat+8: UTG+3 Folded on the FLOP
+Seat+9: UTG+4 Folded before the FLOP
+
+
+Bovada Hand #2902240569 TBL#8747464 OMAHA HiLo Pot Limit - 2014-08-05 01:09:19
+Seat 1: UTG+4 ($1.44 in chips)
+Seat 2: Dealer ($2.29 in chips)
+Seat 3: Small Blind ($7.72 in chips)
+Seat 4: Big Blind ($2.93 in chips)
+Seat 5: UTG ($3.49 in chips)
+Seat 6: UTG+1 ($2.22 in chips)
+Seat 8: UTG+2 ($4.56 in chips)
+Seat 9: UTG+3 [ME] ($4.95 in chips)
+Dealer : Set dealer/Bring in spot [2] 
+Small Blind : Ante/Small Blind $0.02 
+Big Blind : Big blind/Bring in $0.05 
+*** HOLE CARDS ***
+UTG+4 : Card dealt to a spot [5c 8s 3d 4d] 
+Dealer : Card dealt to a spot [Ac Jh Qd 6c] 
+Small Blind : Card dealt to a spot [As Kd Ts 6h] 
+Big Blind : Card dealt to a spot [Js 7d Tc 4c] 
+UTG : Card dealt to a spot [9h Jc 3c 5s] 
+UTG+1 : Card dealt to a spot [7h 9d 7c 2h] 
+UTG+2 : Card dealt to a spot [9s 7s Qs Kh] 
+UTG+3  [ME] : Card dealt to a spot [Qc 2d Kc Qh] 
+UTG : Folds
+UTG+1 : Calls $0.05 
+UTG+2 : Folds
+UTG+3  [ME] : Folds
+UTG+4 : Calls $0.05 
+Dealer : Calls $0.05 
+Small Blind : Calls $0.03 
+Big Blind : Checks
+*** FLOP *** [8d 3s 6s]
+Small Blind : Checks
+Big Blind : Checks
+UTG+1 : Bets $0.05 
+UTG+4 : Raises $0.20 to $0.20
+Dealer : Folds
+Small Blind : Calls $0.20 
+Big Blind : Folds
+UTG+1 : Calls $0.15 
+*** TURN *** [8d 3s 6s] [Ad]
+Small Blind : Bets $0.44 
+UTG+1 : Calls $0.44 
+UTG+4 : Calls $0.44 
+*** RIVER *** [8d 3s 6s Ad] [4h]
+Small Blind : Checks
+UTG+1 : Checks
+UTG+4 : Checks
+Small Blind : Showdown [As 6h 8d 6s Ad As 6h 8d 3s 4h] (Two pair)
+UTG+1 : Showdown [7h 7c 8d 6s Ad 7h 2h 3s Ad 4h] (One pair)
+UTG+4 : Showdown [8s 4d 8d Ad 4h 5c 4d 3s 6s Ad] (Two pair)
+UTG+4 : Hand result $1.03 
+Small Blind : Hand result $1.04 
+UTG+1 : Table deposit $0.68 
+*** SUMMARY ***
+Total Pot($2.17)
+Board [8d 3s 6s Ad 4h]
+Seat+1: UTG+4  with Two pair [5c 8s 3d 4d-8s 4d 8d Ad 4h] LO $1.03 [5c 8s 3d 4d-5c 4d 3s 6s Ad]
+Seat+2: Dealer Folded on the FLOP
+Seat+3: Small Blind HI $1.04  with Two pair [As Kd Ts 6h-As 6h 8d 6s Ad]  [As Kd Ts 6h-As 6h 8d 3s 4h]
+Seat+4: Big Blind Folded on the FLOP
+Seat+5: UTG Folded before the FLOP
+Seat+6: UTG+1 lost with One pair [7h 9d 7c 2h-7h 7c 8d 6s Ad]  [7h 9d 7c 2h-7h 2h 3s Ad 4h]
+Seat+8: UTG+2 Folded before the FLOP
+Seat+9: UTG+3 Folded before the FLOP
+
+
+Bovada Hand #2902241752 TBL#8747464 OMAHA HiLo Pot Limit - 2014-08-05 01:11:31
+Seat 1: UTG+3 ($1.78 in chips)
+Seat 2: UTG+4 ($2.24 in chips)
+Seat 3: Dealer ($8.07 in chips)
+Seat 4: Small Blind ($2.88 in chips)
+Seat 5: Big Blind ($3.49 in chips)
+Seat 6: UTG ($2.21 in chips)
+Seat 8: UTG+1 ($4.56 in chips)
+Seat 9: UTG+2 [ME] ($4.95 in chips)
+Dealer : Set dealer/Bring in spot [3] 
+Small Blind : Ante/Small Blind $0.02 
+Big Blind : Big blind/Bring in $0.05 
+*** HOLE CARDS ***
+UTG+3 : Card dealt to a spot [7d As 5s Jc] 
+UTG+4 : Card dealt to a spot [6c 4d 7s 6h] 
+Dealer : Card dealt to a spot [8s Qh Qs 5c] 
+Small Blind : Card dealt to a spot [Td 3s 3d 5d] 
+Big Blind : Card dealt to a spot [Kh 8h Ts 2h] 
+UTG : Card dealt to a spot [3c 7h 2c Ad] 
+UTG+1 : Card dealt to a spot [9c 8c 7c Kd] 
+UTG+2  [ME] : Card dealt to a spot [6s Jh 5h 8d] 
+UTG : Calls $0.05 
+UTG+1 : Folds
+UTG+2  [ME] : Folds (timeout)
+UTG+2  [ME] : Seat sit out
+UTG+3 : Calls $0.05 
+UTG+4 : Calls $0.05 
+Dealer : Folds
+Small Blind : Calls $0.03 
+Big Blind : Checks
+*** FLOP *** [Ks 9s 6d]
+Small Blind : Checks
+Big Blind : Checks
+UTG : Checks
+UTG+3 : Bets $0.12 
+UTG+4 : Calls $0.12 
+Small Blind : Folds
+Big Blind : Folds
+UTG : Calls $0.12 
+*** TURN *** [Ks 9s 6d] [Th]
+UTG : Checks
+UTG+3 : Checks
+UTG+4 : Checks
+*** RIVER *** [Ks 9s 6d Th] [4c]
+UTG : Checks
+UTG+3 : Checks
+UTG+4 : Bets $0.05 
+UTG : Folds
+UTG+3 : Folds
+UTG+4 : Return uncalled portion of bet $0.05 
+UTG+4 : Does not show [6c 4d 7s 6h] (Three of a kind)
+UTG+4 : Hand result $0.58 
+*** SUMMARY ***
+Total Pot($0.61)
+Board [Ks 9s 6d Th 4c]
+Seat+1: UTG+3 Folded on the RIVER
+Seat+2: UTG+4 HI $0.58 [Does not show]  
+Seat+3: Dealer Folded before the FLOP
+Seat+4: Small Blind Folded on the FLOP
+Seat+5: Big Blind Folded on the FLOP
+Seat+6: UTG Folded on the RIVER
+Seat+8: UTG+1 Folded before the FLOP
+Seat+9: UTG+2 Folded before the FLOP
+
+
+Bovada Hand #2902243401 TBL#8747464 OMAHA HiLo Pot Limit - 2014-08-05 01:14:32
+Seat 1: UTG+1 ($0.98 in chips)
+Seat 2: UTG+2 ($2.65 in chips)
+Seat 4: UTG+3 ($2.83 in chips)
+Seat 5: Dealer ($4.77 in chips)
+Seat 6: Small Blind ($1.87 in chips)
+Seat 8: Big Blind ($3.83 in chips)
+Seat 9: UTG [ME] ($4.95 in chips)
+Dealer : Set dealer/Bring in spot [5] 
+Small Blind : Ante/Small Blind $0.02 
+Big Blind : Big blind/Bring in $0.05 
+*** HOLE CARDS ***
+UTG+1 : Card dealt to a spot [Ad Jh Ac 2h] 
+UTG+2 : Card dealt to a spot [Kd 8s 3s 5d] 
+UTG+3 : Card dealt to a spot [4d Th 2d Ts] 
+Dealer : Card dealt to a spot [5c Ah 5s 4s] 
+Small Blind : Card dealt to a spot [7s 6d Qd 6c] 
+Big Blind : Card dealt to a spot [3c 7h 7c 6s] 
+UTG  [ME] : Card dealt to a spot [8h 5h Qc Tc] 
+Table deposit $1.50 
+UTG  [ME] : Folds
+UTG+1 : Raises $0.17 to $0.17
+UTG+2 : Folds
+UTG+3 : Folds
+Dealer : Folds
+Small Blind : Calls $0.15 
+Big Blind : Calls $0.12 
+*** FLOP *** [8c 6h 9h]
+Small Blind : Checks
+Big Blind : Checks
+UTG+1 : Bets $0.51 
+Small Blind : Calls $0.51 
+Big Blind : Calls $0.51 
+*** TURN *** [8c 6h 9h] [Jd]
+Small Blind : Checks
+Big Blind : Checks
+UTG+1 : All-in $0.30 
+Small Blind : Calls $0.30 
+Big Blind : Calls $0.30 
+*** RIVER *** [8c 6h 9h Jd] [9c]
+Small Blind : All-in $0.89 
+Big Blind : Folds
+Small Blind : Return uncalled portion of bet $0.89 
+Small Blind : Showdown [6d 6c 6h 9h 9c] (Full House)
+UTG+1 : Showdown [Ad Ac 9h Jd 9c] (Two pair)
+Small Blind : Hand result $2.80 
+Dealer : Seat sit out
+UTG+1 : Seat sit out
+*** SUMMARY ***
+Total Pot($2.94)
+Board [8c 6h 9h Jd 9c]
+Seat+1: UTG+1 lost with Two pair [Ad Jh 2h-Ad Ac 9h Jd 9c]  
+Seat+2: UTG+2 Folded before the FLOP
+Seat+4: UTG+3 Folded before the FLOP
+Seat+5: Dealer Folded before the FLOP
+Seat+6: Small Blind HI $2.80  with Full House [7s 6d Qd 6c-6d 6c 6h 9h 9c]  
+Seat+8: Big Blind Folded on the RIVER
+Seat+9: UTG Folded before the FLOP
+
+
+Bovada Hand #2902244112 TBL#8747464 OMAHA HiLo Pot Limit - 2014-08-05 01:15:48
+Seat 2: UTG ($2.65 in chips)
+Seat 4: UTG+1 ($2.83 in chips)
+Seat 6: Dealer ($3.69 in chips)
+Seat 8: Small Blind ($2.85 in chips)
+Seat 9: Big Blind [ME] ($4.95 in chips)
+Dealer : Set dealer/Bring in spot [6] 
+Seat stand
+Table leave user
+Small Blind : Ante/Small Blind $0.02 
+Big Blind  [ME] : Big blind/Bring in $0.05 
+*** HOLE CARDS ***
+UTG : Card dealt to a spot [Kh Jc 2d 8h] 
+UTG+1 : Card dealt to a spot [5s Kd Qd 8s] 
+Dealer : Card dealt to a spot [4d 5h 6c Qh] 
+Small Blind : Card dealt to a spot [As 7c 8c Ac] 
+Big Blind  [ME] : Card dealt to a spot [7d 5d 3s 8d] 
+UTG : Folds
+UTG+1 : Folds
+Dealer : Calls $0.05 
+Seat re-join
+Small Blind : Raises $0.18 to $0.20
+Seat re-join
+Big Blind  [ME] : Folds
+Dealer : Calls $0.15 
+*** FLOP *** [Jd 7s Tc]
+Small Blind : Bets $0.45 
+Dealer : Folds
+Small Blind : Return uncalled portion of bet $0.45 
+Small Blind : Does not show [As 7c 8c Ac] (One pair)
+Small Blind : Hand result $0.43 
+*** SUMMARY ***
+Total Pot($0.45)
+Board [Jd 7s Tc  ]
+Seat+2: UTG Folded before the FLOP
+Seat+4: UTG+1 Folded before the FLOP
+Seat+6: Dealer Folded on the FLOP
+Seat+8: Small Blind HI $0.43 [Does not show]  
+Seat+9: Big Blind Folded before the FLOP
+
+
+Bovada Hand #2902244789 TBL#8747464 OMAHA HiLo Pot Limit - 2014-08-05 01:17:02
+Seat 2: Big Blind ($2.65 in chips)
+Seat 4: UTG ($2.83 in chips)
+Seat 5: UTG+1 ($4.77 in chips)
+Seat 6: UTG+2 ($3.49 in chips)
+Seat 7: UTG+3 ($1.50 in chips)
+Seat 8: Dealer ($3.08 in chips)
+Seat 9: Small Blind [ME] ($4.90 in chips)
+Dealer : Set dealer/Bring in spot [8] 
+Small Blind  [ME] : Ante/Small Blind $0.02 
+Big Blind : Big blind/Bring in $0.05 
+UTG+3 : Posts chip $0.05 
+*** HOLE CARDS ***
+Big Blind : Card dealt to a spot [Kh 5s 3d Ah] 
+UTG : Card dealt to a spot [Jh Th 5c Jd] 
+UTG+1 : Card dealt to a spot [4c 2h 6s 5h] 
+UTG+2 : Card dealt to a spot [Qs 8s 9h 7d] 
+UTG+3 : Card dealt to a spot [Ks 2s 4s Js] 
+Dealer : Card dealt to a spot [7s 8d Kc 5d] 
+Small Blind  [ME] : Card dealt to a spot [Jc 9s Ac Qd] 
+UTG : Folds
+UTG+1 : Calls $0.05 
+UTG+2 : Calls $0.05 
+UTG+3 : Checks
+Dealer : Calls $0.05 
+Small Blind  [ME] : Calls $0.03 
+Big Blind : Checks
+*** FLOP *** [8c 2c 3s]
+Small Blind  [ME] : Checks
+Big Blind : Checks
+UTG+1 : Checks
+UTG+2 : Checks
+UTG+3 : Checks
+Dealer : Checks
+*** TURN *** [8c 2c 3s] [Tc]
+Small Blind  [ME] : Checks
+Big Blind : Checks
+UTG+1 : Checks
+UTG+2 : Checks
+UTG+3 : Checks
+Dealer : Checks
+*** RIVER *** [8c 2c 3s Tc] [Ad]
+Table enter user
+Small Blind  [ME] : Bets $0.30 
+Big Blind : Folds
+UTG+1 : Calls $0.30 
+UTG+2 : Folds
+UTG+3 : Folds
+Dealer : Folds
+Small Blind  [ME] : Showdown [Jc Ac 8c 2c Tc] (Flush)
+UTG+1 : Showdown [4c 5h 2c 3s Ad 4c 5h 2c 3s Ad] (Straight)
+UTG+1 : Hand result $0.43 
+Small Blind  [ME] : Hand result $0.43 
+*** SUMMARY ***
+Total Pot($0.90)
+Board [8c 2c 3s Tc Ad]
+Seat+2: Big Blind Folded on the RIVER
+Seat+4: UTG Folded before the FLOP
+Seat+5: UTG+1  with Straight [4c 2h 6s 5h-4c 5h 2c 3s Ad] LO $0.43 [4c 2h 6s 5h-4c 5h 2c 3s Ad]
+Seat+6: UTG+2 Folded on the RIVER
+Seat+7: UTG+3 Folded on the RIVER
+Seat+8: Dealer Folded on the RIVER
+Seat+9: Small Blind HI $0.43  with Flush [Jc 9s Qd-Jc Ac 8c 2c Tc]  
+
+
+Bovada Hand #2902245653 TBL#8747464 OMAHA HiLo Pot Limit - 2014-08-05 01:18:39
+Seat 2: Small Blind ($2.60 in chips)
+Seat 3: Big Blind ($3 in chips)
+Seat 4: UTG ($2.83 in chips)
+Seat 5: UTG+1 ($4.85 in chips)
+Seat 6: UTG+2 ($3.44 in chips)
+Seat 7: UTG+3 ($1.45 in chips)
+Seat 8: UTG+4 ($3.03 in chips)
+Seat 9: Dealer [ME] ($4.98 in chips)
+Dealer  [ME] : Set dealer/Bring in spot [9] 
+Small Blind : Ante/Small Blind $0.02 
+Big Blind : Big blind/Bring in $0.05 
+*** HOLE CARDS ***
+Small Blind : Card dealt to a spot [Jc 6h Ad 6s] 
+Big Blind : Card dealt to a spot [5h 3c 4h 2c] 
+UTG : Card dealt to a spot [8h Qd Qs 4d] 
+UTG+1 : Card dealt to a spot [2d Ks 7d As] 
+UTG+2 : Card dealt to a spot [6d 7c Ts 7h] 
+UTG+3 : Card dealt to a spot [8c Jh Th 3d] 
+UTG+4 : Card dealt to a spot [Kh 3s 5s Ah] 
+Dealer  [ME] : Card dealt to a spot [7s Tc Qc Td] 
+Table enter user
+UTG : Folds
+UTG+1 : Calls $0.05 
+UTG+2 : Calls $0.05 
+UTG+3 : Folds
+Table enter user
+UTG+4 : Raises $0.27 to $0.27
+Seat sit down
+Dealer  [ME] : Folds
+Small Blind : Folds
+Table deposit $3.41 
+Big Blind : Calls $0.22 
+UTG+1 : Calls $0.22 
+UTG+2 : Calls $0.22 
+*** FLOP *** [8d Jd 6c]
+Big Blind : Checks
+UTG+1 : Checks
+Table leave user
+UTG+2 : Checks
+UTG+4 : Bets $1.10 
+Big Blind : Calls $1.10 
+UTG+1 : Folds
+UTG+2 : Folds
+*** TURN *** [8d Jd 6c] [2s]
+Big Blind : Checks
+UTG+4 : All-in $1.66 
+Table leave user
+Big Blind : All-in $1.63 
+UTG+4 : Return uncalled portion of bet $0.03 
+*** RIVER *** [8d Jd 6c 2s] [9h]
+Big Blind : Showdown [5h 2c Jd 2s 9h 3c 4h 8d 6c 2s] (One pair)
+UTG+4 : Showdown [Kh Ah 8d Jd 9h 3s Ah 8d 6c 2s] (High Card)
+Big Blind : Hand result $3.12 
+UTG+4 : Hand result $3.12 
+Table enter user
+UTG : Seat sit out
+*** SUMMARY ***
+Total Pot($6.56)
+Board [8d Jd 6c 2s 9h]
+Seat+2: Small Blind Folded before the FLOP
+Seat+3: Big Blind HI $3.12  with One pair [5h 3c 4h 2c-5h 2c Jd 2s 9h]  [5h 3c 4h 2c-3c 4h 8d 6c 2s]
+Seat+4: UTG Folded before the FLOP
+Seat+5: UTG+1 Folded on the FLOP
+Seat+6: UTG+2 Folded on the FLOP
+Seat+7: UTG+3 Folded before the FLOP
+Seat+8: UTG+4  with High Card [Kh 3s 5s Ah-Kh Ah 8d Jd 9h] LO $3.12 [Kh 3s 5s Ah-3s Ah 8d 6c 2s]
+Seat+9: Dealer Folded before the FLOP
+
+
+Bovada Hand #2902246344 TBL#8747464 OMAHA HiLo Pot Limit - 2014-08-05 01:19:58
+Seat 1: UTG+4 ($3.41 in chips)
+Seat 2: Dealer ($2.58 in chips)
+Seat 3: Small Blind ($3.12 in chips)
+Seat 5: Big Blind ($4.58 in chips)
+Seat 6: UTG ($3.17 in chips)
+Seat 7: UTG+1 ($1.45 in chips)
+Seat 8: UTG+2 ($3.15 in chips)
+Seat 9: UTG+3 [ME] ($4.98 in chips)
+Dealer : Set dealer/Bring in spot [2] 
+Small Blind : Ante/Small Blind $0.02 
+Big Blind : Big blind/Bring in $0.05 
+UTG+4 : Posts chip $0.05 
+*** HOLE CARDS ***
+UTG+4 : Card dealt to a spot [Ts 9s 5c Td] 
+Dealer : Card dealt to a spot [As 5h Ah 8c] 
+Small Blind : Card dealt to a spot [4c 3c 8d 2s] 
+Big Blind : Card dealt to a spot [7c 9d Kd Ad] 
+UTG : Card dealt to a spot [Tc Ac 3s 7h] 
+UTG+1 : Card dealt to a spot [6h 6d Jh 2d] 
+UTG+2 : Card dealt to a spot [Qh Jc 7d Jd] 
+UTG+3  [ME] : Card dealt to a spot [2h Ks Qc Kh] 
+UTG : Calls $0.05 
+UTG+1 : Folds
+UTG+2 : Calls $0.05 
+UTG+3  [ME] : Folds
+UTG+4 : Checks
+Dealer : Calls $0.05 
+Small Blind : Calls $0.03 
+Big Blind : Checks
+*** FLOP *** [2c 6s 8h]
+Small Blind : Checks
+Big Blind : Checks
+UTG : Bets $0.30 
+UTG+2 : Folds
+UTG+4 : Calls $0.30 
+Dealer : Calls $0.30 
+Small Blind : Calls $0.30 
+Big Blind : Folds
+*** TURN *** [2c 6s 8h] [6c]
+Small Blind : Checks
+UTG : Bets $1.50 
+UTG+2 : Table deposit $1.90 
+UTG+4 : Folds
+Dealer : Folds
+Small Blind : Calls $1.50 
+*** RIVER *** [2c 6s 8h 6c] [Th]
+Small Blind : Checks
+UTG : All-in $1.32 
+Small Blind : All-in $1.27 
+UTG : Return uncalled portion of bet $0.05 
+UTG : Showdown [Tc Ac 6s 6c Th] (Two pair)
+Small Blind : Mucks [4c 3c 8d 2s] (Two pair)
+UTG : Hand result $6.69 
+Small Blind : Seat sit out
+*** SUMMARY ***
+Total Pot($7.04)
+Board [2c 6s 8h 6c Th]
+Seat+1: UTG+4 Folded on the TURN
+Seat+2: Dealer Folded on the TURN
+Seat+3: Small Blind [Mucked] [4c 3c 8d 2s   ]  
+Seat+5: Big Blind Folded on the FLOP
+Seat+6: UTG HI $3.35  with Two pair [Tc Ac 3s 7h-Tc Ac 6s 6c Th] LO $3.34 
+Seat+7: UTG+1 Folded before the FLOP
+Seat+8: UTG+2 Folded on the FLOP
+Seat+9: UTG+3 Folded before the FLOP
+
+
+Bovada Hand #2902247207 TBL#8747464 OMAHA HiLo Pot Limit - 2014-08-05 01:21:32
+Seat 1: UTG+3 ($3.06 in chips)
+Seat 2: UTG+4 ($2.23 in chips)
+Seat 5: Small Blind ($4.53 in chips)
+Seat 6: Big Blind ($6.74 in chips)
+Seat 7: UTG ($1.45 in chips)
+Seat 8: UTG+1 ($5 in chips)
+Seat 9: UTG+2 [ME] ($4.98 in chips)
+Set dealer/Bring in spot
+Small Blind : Ante/Small Blind $0.02 
+Big Blind : Big blind/Bring in $0.05 
+*** HOLE CARDS ***
+UTG+3 : Card dealt to a spot [Jh As 3d 9s] 
+UTG+4 : Card dealt to a spot [2c 4s 6c Qs] 
+Small Blind : Card dealt to a spot [8c 5h 3s Qd] 
+Big Blind : Card dealt to a spot [9d 5c 8h 2h] 
+UTG : Card dealt to a spot [Ts Ks 7d 3h] 
+UTG+1 : Card dealt to a spot [Jd 4c Tc 2s] 
+UTG+2  [ME] : Card dealt to a spot [8d 5s Qc 8s] 
+UTG : Folds
+UTG+1 : Calls $0.05 
+UTG+2  [ME] : Folds
+Table deposit $3 
+Seat re-join
+UTG+3 : Calls $0.05 
+UTG+4 : Calls $0.05 
+Small Blind : Folds
+Big Blind : Checks
+*** FLOP *** [7c 3c Ad]
+Big Blind : Checks
+UTG+1 : Checks
+UTG+3 : Checks
+UTG+4 : Checks
+*** TURN *** [7c 3c Ad] [4h]
+Big Blind : Bets $0.22 
+UTG+1 : Calls $0.22 
+UTG+3 : Folds
+UTG+4 : Folds
+*** RIVER *** [7c 3c Ad 4h] [9c]
+Big Blind : Bets $0.66 
+UTG+1 : Calls $0.66 
+Big Blind : Showdown [5c 2h 3c Ad 4h 5c 2h 3c Ad 4h] (Straight)
+UTG+1 : Showdown [4c Tc 7c 3c 9c 4c 2s 7c 3c Ad] (Flush)
+Big Blind : Hand result $0.94 
+UTG+1 : Hand result $0.95 
+*** SUMMARY ***
+Total Pot($1.98)
+Board [7c 3c Ad 4h 9c]
+Seat+1: UTG+3 Folded on the TURN
+Seat+2: UTG+4 Folded on the TURN
+Seat+5: Small Blind Folded before the FLOP
+Seat+6: Big Blind  with Straight [9d 5c 8h 2h-5c 2h 3c Ad 4h] LO $0.94 [9d 5c 8h 2h-5c 2h 3c Ad 4h]
+Seat+7: UTG Folded before the FLOP
+Seat+8: UTG+1 HI $0.95  with Flush [Jd 4c Tc 2s-4c Tc 7c 3c 9c]  [Jd 4c Tc 2s-4c 2s 7c 3c Ad]
+Seat+9: UTG+2 Folded before the FLOP
+
+
+Bovada Hand #2902247832 TBL#8747464 OMAHA HiLo Pot Limit - 2014-08-05 01:22:43
+Seat 1: UTG+2 ($3.01 in chips)
+Seat 2: UTG+3 ($2.18 in chips)
+Seat 3: UTG+4 ($3 in chips)
+Seat 5: Dealer ($4.51 in chips)
+Seat 6: Small Blind ($6.75 in chips)
+Seat 7: Big Blind ($1.45 in chips)
+Seat 8: UTG ($5.02 in chips)
+Seat 9: UTG+1 [ME] ($4.98 in chips)
+Dealer : Set dealer/Bring in spot [5] 
+Small Blind : Ante/Small Blind $0.02 
+Big Blind : Big blind/Bring in $0.05 
+*** HOLE CARDS ***
+UTG+2 : Card dealt to a spot [5h 2d Qd Ts] 
+UTG+3 : Card dealt to a spot [Ac 3h 7d 6c] 
+UTG+4 : Card dealt to a spot [8d 6h Td Qh] 
+Dealer : Card dealt to a spot [6d 3d Jc Ks] 
+Small Blind : Card dealt to a spot [Jd 7s 2h Th] 
+Big Blind : Card dealt to a spot [4c 8s 4s Qs] 
+UTG : Card dealt to a spot [9h 3s Kc Ad] 
+UTG+1  [ME] : Card dealt to a spot [7c 5d Kd 4h] 
+UTG : Raises $0.10 to $0.10
+UTG+1  [ME] : Folds
+UTG+2 : Folds
+UTG+3 : Calls $0.10 
+UTG+4 : Calls $0.10 
+Dealer : Folds
+Small Blind : Calls $0.08 
+Big Blind : Calls $0.05 
+*** FLOP *** [Js Ah As]
+Small Blind : Checks
+Big Blind : Checks
+UTG : Bets $0.05 
+UTG+3 : Calls $0.05 
+UTG+4 : Folds
+Small Blind : Folds
+Big Blind : Calls $0.05 
+*** TURN *** [Js Ah As] [5c]
+Big Blind : Checks
+UTG : Bets $0.05 
+UTG+3 : Calls $0.05 
+Big Blind : Calls $0.05 
+*** RIVER *** [Js Ah As 5c] [8h]
+Big Blind : Checks
+UTG : Bets $0.05 
+UTG+3 : Calls $0.05 
+Big Blind : Folds
+UTG : Showdown [Kc Ad Js Ah As] (Three of a kind)
+UTG+3 : Showdown [Ac 7d Js Ah As 3h 6c Ah 5c 8h] (Three of a kind)
+UTG+3 : Hand result $0.43 
+UTG : Hand result $0.43 
+*** SUMMARY ***
+Total Pot($0.90)
+Board [Js Ah As 5c 8h]
+Seat+1: UTG+2 Folded before the FLOP
+Seat+2: UTG+3  with Three of a kind [Ac 3h 7d 6c   ] LO $0.43 [Ac 3h 7d 6c-3h 6c Ah 5c 8h]
+Seat+3: UTG+4 Folded on the FLOP
+Seat+5: Dealer Folded before the FLOP
+Seat+6: Small Blind Folded on the FLOP
+Seat+7: Big Blind Folded on the RIVER
+Seat+8: UTG HI $0.43  with Three of a kind [9h 3s Kc Ad-Kc Ad Js Ah As]  
+Seat+9: UTG+1 Folded before the FLOP
+
+
+Bovada Hand #2902248533 TBL#8747464 OMAHA HiLo Pot Limit - 2014-08-05 01:23:58
+Seat 1: UTG+1 ($3.01 in chips)
+Seat 2: UTG+2 ($2.36 in chips)
+Seat 3: UTG+3 ($2.90 in chips)
+Seat 5: UTG+4 ($4.51 in chips)
+Seat 6: Dealer ($6.65 in chips)
+Seat 7: Small Blind ($1.25 in chips)
+Seat 8: Big Blind ($5.20 in chips)
+Seat 9: UTG [ME] ($4.98 in chips)
+Dealer : Set dealer/Bring in spot [6] 
+Small Blind : Ante/Small Blind $0.02 
+Big Blind : Big blind/Bring in $0.05 
+*** HOLE CARDS ***
+UTG+1 : Card dealt to a spot [3s 2d 6d 5d] 
+UTG+2 : Card dealt to a spot [3h 2h 7d 9d] 
+UTG+3 : Card dealt to a spot [2c Qc 4h 9h] 
+UTG+4 : Card dealt to a spot [7s 8d 5c Ac] 
+Dealer : Card dealt to a spot [8c Qh Jd 4d] 
+Small Blind : Card dealt to a spot [8s 5s As 5h] 
+Big Blind : Card dealt to a spot [Kc Jc 4s 3d] 
+UTG  [ME] : Card dealt to a spot [Kh 6h 9s Js] 
+UTG  [ME] : Folds
+UTG+1 : Calls $0.05 
+UTG+2 : Calls $0.05 
+UTG+3 : Calls $0.05 
+UTG+4 : Calls $0.05 
+Dealer : Calls $0.05 
+Small Blind : Calls $0.03 
+Big Blind : Checks
+*** FLOP *** [6c 7c Td]
+Small Blind : Checks
+Big Blind : Bets $0.05 
+UTG+1 : Calls $0.05 
+UTG+2 : Calls $0.05 
+UTG+3 : Calls $0.05 
+UTG+4 : Calls $0.05 
+Dealer : Calls $0.05 
+Small Blind : Calls $0.05 
+*** TURN *** [6c 7c Td] [Jh]
+Small Blind : Checks
+Big Blind : Checks
+UTG+1 : Checks
+UTG+2 : Checks
+UTG+3 : Checks
+UTG+4 : Checks
+Dealer : Checks
+*** RIVER *** [6c 7c Td Jh] [8h]
+Small Blind : Checks
+Big Blind : Checks
+UTG+1 : Checks
+UTG+2 : Checks
+UTG+3 : Bets $0.70 
+UTG+4 : Folds
+Dealer : Folds
+Small Blind : Folds
+Big Blind : Folds
+UTG+1 : Folds
+UTG+2 : Calls $0.70 
+UTG+3 : Showdown [Qc 9h Td Jh 8h 2c 4h 6c 7c 8h] (Straight)
+UTG+2 : Showdown [7d 9d Td Jh 8h 3h 2h 6c 7c 8h] (Straight)
+UTG+2 : Hand result $1 
+UTG+3 : Hand result $1 
+*** SUMMARY ***
+Total Pot($2.10)
+Board [6c 7c Td Jh 8h]
+Seat+1: UTG+1 Folded on the RIVER
+Seat+2: UTG+2  with Straight [3h 2h 7d 9d-7d 9d Td Jh 8h] LO $1 [3h 2h 7d 9d-3h 2h 6c 7c 8h]
+Seat+3: UTG+3 HI $1  with Straight [2c Qc 4h 9h-Qc 9h Td Jh 8h]  [2c Qc 4h 9h-2c 4h 6c 7c 8h]
+Seat+5: UTG+4 Folded on the RIVER
+Seat+6: Dealer Folded on the RIVER
+Seat+7: Small Blind Folded on the RIVER
+Seat+8: Big Blind Folded on the RIVER
+Seat+9: UTG Folded before the FLOP
+
+
+Bovada Hand #2902249427 TBL#8747464 OMAHA HiLo Pot Limit - 2014-08-05 01:25:39
+Seat 1: UTG ($2.91 in chips)
+Seat 2: UTG+1 ($2.56 in chips)
+Seat 3: UTG+2 ($3.10 in chips)
+Seat 5: UTG+3 ($4.41 in chips)
+Seat 6: UTG+4 ($6.55 in chips)
+Seat 7: Dealer ($1.15 in chips)
+Seat 8: Small Blind ($5.10 in chips)
+Seat 9: Big Blind [ME] ($4.98 in chips)
+Dealer : Set dealer/Bring in spot [7] 
+Small Blind : Ante/Small Blind $0.02 
+Big Blind  [ME] : Big blind/Bring in $0.05 
+*** HOLE CARDS ***
+UTG : Card dealt to a spot [Ad 4c 6s 4d] 
+UTG+1 : Card dealt to a spot [5c 8c Qh Ah] 
+UTG+2 : Card dealt to a spot [5h Ac Js Jh] 
+UTG+3 : Card dealt to a spot [3c 6d Ks 6c] 
+UTG+4 : Card dealt to a spot [7h Kd 3d 6h] 
+Dealer : Card dealt to a spot [Kh 2s 2h Qs] 
+Small Blind : Card dealt to a spot [9d 9h 4h 2d] 
+Big Blind  [ME] : Card dealt to a spot [As 8d 7d Jc] 
+UTG : Calls $0.05 
+UTG+1 : Folds
+UTG+2 : Calls $0.05 
+UTG+3 : Folds
+UTG+4 : Calls $0.05 
+Dealer : Folds
+Small Blind : Calls $0.03 
+Big Blind  [ME] : Checks
+*** FLOP *** [Kc 4s 9c]
+Small Blind : Bets $0.10 
+Big Blind  [ME] : Folds
+UTG : Calls $0.10 
+UTG+2 : Folds
+UTG+4 : Folds
+*** TURN *** [Kc 4s 9c] [9s]
+Small Blind : Checks
+UTG : Bets $0.38 
+Small Blind : Calls $0.38 
+*** RIVER *** [Kc 4s 9c 9s] [Qc]
+Small Blind : Checks
+UTG : Bets $0.80 
+Small Blind : Raises $1.60 to $1.60
+UTG : Calls $0.80 
+Small Blind : Showdown [9d 9h Kc 9c 9s] (Four of a kind)
+UTG : Mucks [Ad 4c 6s 4d] (Full House)
+Small Blind : Hand result $4.19 
+*** SUMMARY ***
+Total Pot($4.41)
+Board [Kc 4s 9c 9s Qc]
+Seat+1: UTG [Mucked] [Ad 4c 6s 4d   ]  
+Seat+2: UTG+1 Folded before the FLOP
+Seat+3: UTG+2 Folded on the FLOP
+Seat+5: UTG+3 Folded before the FLOP
+Seat+6: UTG+4 Folded on the FLOP
+Seat+7: Dealer Folded before the FLOP
+Seat+8: Small Blind HI $4.19  with Four of a kind [9d 9h 4h 2d-9d 9h Kc 9c 9s]  
+Seat+9: Big Blind Folded on the FLOP
+
+
+Bovada Hand #2902250448 TBL#8747464 OMAHA HiLo Pot Limit - 2014-08-05 01:27:33
+Seat 1: Big Blind ($0.78 in chips)
+Seat 2: UTG ($2.56 in chips)
+Seat 3: UTG+1 ($3.05 in chips)
+Seat 5: UTG+2 ($4.41 in chips)
+Seat 6: UTG+3 ($6.50 in chips)
+Seat 7: UTG+4 ($1.15 in chips)
+Seat 8: Dealer ($7.16 in chips)
+Seat 9: Small Blind [ME] ($4.93 in chips)
+Dealer : Set dealer/Bring in spot [8] 
+Small Blind  [ME] : Ante/Small Blind $0.02 
+Big Blind : Big blind/Bring in $0.05 
+*** HOLE CARDS ***
+Big Blind : Card dealt to a spot [Ts 8h 5d Qd] 
+UTG : Card dealt to a spot [3h 2d As Ah] 
+UTG+1 : Card dealt to a spot [Ks 6s 6c 3s] 
+UTG+2 : Card dealt to a spot [2h 3d Kc 6h] 
+UTG+3 : Card dealt to a spot [6d 7c 9s 5h] 
+UTG+4 : Card dealt to a spot [4c Jd Qh Js] 
+Dealer : Card dealt to a spot [7d Qc Ad 8s] 
+Small Blind  [ME] : Card dealt to a spot [5s Tc 4d 9c] 
+UTG : Calls $0.05 
+UTG+1 : Calls $0.05 
+UTG+2 : Calls $0.05 
+UTG+3 : Calls $0.05 
+UTG+4 : Folds
+Dealer : Calls $0.05 
+Small Blind  [ME] : Calls $0.03 
+Big Blind : Checks
+*** FLOP *** [5c Kh Jc]
+Small Blind  [ME] : Checks (timeout)
+Big Blind : Checks
+UTG : Checks
+UTG+1 : Checks
+UTG+2 : Checks
+UTG+3 : Checks
+Dealer : Checks
+*** TURN *** [5c Kh Jc] [7s]
+Small Blind  [ME] : Checks
+Big Blind : Checks
+UTG : Checks
+UTG+1 : Checks
+UTG+2 : Checks
+UTG+3 : Checks
+Dealer : Checks
+*** RIVER *** [5c Kh Jc 7s] [Th]
+Small Blind  [ME] : Checks
+Big Blind : Checks
+UTG : Checks
+UTG+1 : Checks
+UTG+2 : Checks
+UTG+3 : Checks
+Dealer : Bets $0.35 
+Small Blind  [ME] : Folds
+Big Blind : Folds
+UTG : Folds
+UTG+1 : Folds
+UTG+2 : Folds
+UTG+3 : Folds
+Dealer : Return uncalled portion of bet $0.35 
+Dealer : Does not show [7d Qc Ad 8s] (Straight)
+Dealer : Hand result $0.34 
+*** SUMMARY ***
+Total Pot($0.35)
+Board [5c Kh Jc 7s Th]
+Seat+1: Big Blind Folded on the RIVER
+Seat+2: UTG Folded on the RIVER
+Seat+3: UTG+1 Folded on the RIVER
+Seat+5: UTG+2 Folded on the RIVER
+Seat+6: UTG+3 Folded on the RIVER
+Seat+7: UTG+4 Folded before the FLOP
+Seat+8: Dealer HI $0.34 [Does not show]  
+Seat+9: Small Blind Folded on the RIVER
+
+
+Bovada Hand #2902251636 TBL#8747464 OMAHA HiLo Pot Limit - 2014-08-05 01:29:51
+Seat 1: Small Blind ($0.73 in chips)
+Seat 2: Big Blind ($2.51 in chips)
+Seat 3: UTG ($3 in chips)
+Seat 5: UTG+1 ($4.36 in chips)
+Seat 6: UTG+2 ($6.45 in chips)
+Seat 7: UTG+3 ($1.15 in chips)
+Seat 8: UTG+4 ($7.45 in chips)
+Seat 9: Dealer [ME] ($4.88 in chips)
+Dealer  [ME] : Set dealer/Bring in spot [9] 
+Small Blind : Ante/Small Blind $0.02 
+Big Blind : Big blind/Bring in $0.05 
+*** HOLE CARDS ***
+Small Blind : Card dealt to a spot [8s 2s Th 3h] 
+Big Blind : Card dealt to a spot [9s 5s Td 9c] 
+UTG : Card dealt to a spot [7h Qc Tc 7d] 
+UTG+1 : Card dealt to a spot [Ts Kh 9d 5h] 
+UTG+2 : Card dealt to a spot [9h 8h Kd 2d] 
+UTG+3 : Card dealt to a spot [3c Qh As Ac] 
+UTG+4 : Card dealt to a spot [8d 6d 4d 3d] 
+Dealer  [ME] : Card dealt to a spot [6h Qs 4c Jd] 
+UTG : Folds
+UTG+1 : Folds
+UTG+2 : Calls $0.05 
+UTG+3 : Raises $0.22 to $0.22
+UTG+4 : Calls $0.22 
+Dealer  [ME] : Folds
+Small Blind : Calls $0.20 
+Big Blind : Folds
+UTG+2 : Calls $0.17 
+*** FLOP *** [Jh 4h 6s]
+Small Blind : Checks
+UTG+2 : Checks
+UTG+3 : All-in $0.93 
+UTG+4 : Calls $0.93 
+Small Blind : All-in $0.51 
+UTG+2 : Calls $0.93 
+*** TURN *** [Jh 4h 6s] [2h]
+UTG+2 : Checks
+UTG+4 : Checks
+*** RIVER *** [Jh 4h 6s 2h] [Js]
+UTG+2 : Checks
+UTG+4 : Checks
+Small Blind : Showdown [Th 3h Jh 4h 2h 8s 3h 4h 6s 2h] (Flush)
+UTG+2 : Showdown [9h 8h Jh 4h 2h] (Flush)
+UTG+3 : Showdown [As Ac Jh 6s Js 3c As 4h 6s 2h] (Two pair)
+UTG+4 : Mucks [8d 6d 4d 3d] (Two pair)
+UTG+2 : Hand result-Side pot $0.60 
+UTG+3 : Hand result-Side pot $0.60 
+Small Blind : Hand result $1.41 
+UTG+3 : Hand result $1.41 
+*** SUMMARY ***
+Total Pot($4.23)
+Board [Jh 4h 6s 2h Js]
+Seat+1: Small Blind HI $1.41  with Flush [8s 2s Th 3h-Th 3h Jh 4h 2h]  [8s 2s Th 3h-8s 3h 4h 6s 2h]
+Seat+2: Big Blind Folded before the FLOP
+Seat+3: UTG Folded before the FLOP
+Seat+5: UTG+1 Folded before the FLOP
+Seat+6: UTG+2 HI $0.60  with Flush [9h 8h Kd 2d-9h 8h Jh 4h 2h]  
+Seat+7: UTG+3  with Two pair [3c Qh As-As Ac Jh 6s Js] LO $2.01 [3c Qh As Ac-3c As 4h 6s 2h]
+Seat+8: UTG+4 [Mucked] [8d 6d 4d 3d   ]  
+Seat+9: Dealer Folded before the FLOP
+
+
+Bovada Hand #2902252277 TBL#8747464 OMAHA HiLo Pot Limit - 2014-08-05 01:31:06
+Seat 1: Dealer ($1.41 in chips)
+Seat 2: Small Blind ($2.46 in chips)
+Seat 3: Big Blind ($3 in chips)
+Seat 5: UTG ($4.36 in chips)
+Seat 6: UTG+1 ($5.90 in chips)
+Seat 7: UTG+2 ($2.01 in chips)
+Seat 8: UTG+3 ($6.30 in chips)
+Seat 9: UTG+4 [ME] ($4.88 in chips)
+Dealer : Set dealer/Bring in spot [1] 
+Small Blind : Ante/Small Blind $0.02 
+Big Blind : Big blind/Bring in $0.05 
+*** HOLE CARDS ***
+Dealer : Card dealt to a spot [6s 9h 3s Td] 
+Small Blind : Card dealt to a spot [Jh 8h Ah 9s] 
+Big Blind : Card dealt to a spot [5c Ks Kc 3d] 
+UTG : Card dealt to a spot [3h 2s 6c 7h] 
+UTG+1 : Card dealt to a spot [5d Qd Tc 8d] 
+UTG+2 : Card dealt to a spot [As Jc Qs Kh] 
+UTG+3 : Card dealt to a spot [6d 2h Ad 9d] 
+UTG+4  [ME] : Card dealt to a spot [Jd 4s Js Th] 
+UTG : Calls $0.05 
+UTG+1 : Calls $0.05 
+UTG+2 : Calls $0.05 
+UTG+3 : Raises $0.32 to $0.32
+UTG+4  [ME] : Folds
+Dealer : Folds
+Small Blind : Folds
+Big Blind : Calls $0.27 
+UTG : Folds
+UTG+1 : Calls $0.27 
+UTG+2 : Calls $0.27 
+*** FLOP *** [Qh 5s 7c]
+Big Blind : Checks
+UTG+1 : Checks
+UTG+2 : Checks
+UTG+3 : Bets $1.35 
+Big Blind : Folds
+UTG+1 : Calls $1.35 
+UTG+2 : All-in(raise) $1.69 to $1.69
+UTG+3 : Calls $0.34 
+UTG+1 : Calls $0.34 
+*** TURN *** [Qh 5s 7c] [6h]
+UTG+1 : Checks
+UTG+3 : All-in $4.29 
+UTG+1 : All-in $3.89 
+UTG+3 : Return uncalled portion of bet $0.40 
+*** RIVER *** [Qh 5s 7c 6h] [8c]
+UTG+1 : Showdown [Qd 8d Qh 7c 8c] (Two pair)
+UTG+2 : Showdown [As Qs Qh 7c 8c] (One pair)
+UTG+3 : Showdown [6d 9d 5s 7c 8c 2h Ad 5s 7c 6h] (Straight)
+UTG+3 : Hand result-Side pot $7.40 
+UTG+3 : Hand result $6.09 
+UTG+2 : Table deposit $1.50 
+UTG+1 : Seat sit out
+*** SUMMARY ***
+Total Pot($14.20)
+Board [Qh 5s 7c 6h 8c]
+Seat+1: Dealer Folded before the FLOP
+Seat+2: Small Blind Folded before the FLOP
+Seat+3: Big Blind Folded on the FLOP
+Seat+5: UTG Folded before the FLOP
+Seat+6: UTG+1 lost with Two pair [5d Qd Tc 8d-Qd 8d Qh 7c 8c]  
+Seat+7: UTG+2 lost with One pair [As Jc Qs Kh-As Qs Qh 7c 8c]  
+Seat+8: UTG+3 HI $6.75  with Straight [6d 2h Ad 9d-6d 9d 5s 7c 8c] LO $6.74 [6d 2h Ad 9d-2h Ad 5s 7c 6h]
+Seat+9: UTG+4 Folded before the FLOP
+
+
+Bovada Hand #2902252838 TBL#8747464 OMAHA HiLo Pot Limit - 2014-08-05 01:32:11
+Seat 1: UTG+3 ($1.41 in chips)
+Seat 2: Dealer ($2.44 in chips)
+Seat 3: Small Blind ($2.68 in chips)
+Seat 5: Big Blind ($4.31 in chips)
+Seat 7: UTG ($1.50 in chips)
+Seat 8: UTG+1 ($13.89 in chips)
+Seat 9: UTG+2 [ME] ($4.88 in chips)
+Dealer : Set dealer/Bring in spot [2] 
+Small Blind : Ante/Small Blind $0.02 
+Big Blind : Big blind/Bring in $0.05 
+*** HOLE CARDS ***
+UTG+3 : Card dealt to a spot [7d Qd 6c 7h] 
+Dealer : Card dealt to a spot [9d Qh 2c 9s] 
+Small Blind : Card dealt to a spot [Ks 2h Th Js] 
+Big Blind : Card dealt to a spot [Ah Jc Qs 3c] 
+UTG : Card dealt to a spot [9h 4c Qc 5h] 
+UTG+1 : Card dealt to a spot [2d 7c 6h 3s] 
+UTG+2  [ME] : Card dealt to a spot [5s Jd Td 3h] 
+UTG : Folds
+Seat stand
+Table leave user
+UTG+1 : Calls $0.05 
+UTG+2  [ME] : Folds
+UTG+3 : Calls $0.05 
+Dealer : Folds
+Small Blind : Calls $0.03 
+Big Blind : Checks
+*** FLOP *** [Kc Kd 5d]
+Seat sit down
+Small Blind : Checks
+Big Blind : Checks
+UTG+1 : Checks
+UTG+3 : Checks
+*** TURN *** [Kc Kd 5d] [6d]
+Small Blind : Checks
+Table deposit $3 
+Big Blind : Checks
+UTG+1 : Bets $0.05 
+UTG+3 : Calls $0.05 
+Small Blind : Calls $0.05 
+Big Blind : Folds
+*** RIVER *** [Kc Kd 5d 6d] [Ad]
+Small Blind : Checks
+UTG+1 : Bets $0.35 
+UTG+3 : Raises $0.70 to $0.70
+Small Blind : Folds
+UTG+1 : Calls $0.35 
+UTG+3 : Showdown [7d Qd Kd 6d Ad] (Flush)
+UTG+1 : Showdown [7c 6h Kc Kd 6d 2d 3s 5d 6d Ad] (Two pair)
+UTG+3 : Hand result $0.84 
+UTG+1 : Hand result $0.83 
+*** SUMMARY ***
+Total Pot($1.75)
+Board [Kc Kd 5d 6d Ad]
+Seat+1: UTG+3 HI $0.84  with Flush [7d Qd 6c 7h-7d Qd Kd 6d Ad]  
+Seat+2: Dealer Folded before the FLOP
+Seat+3: Small Blind Folded on the RIVER
+Seat+5: Big Blind Folded on the TURN
+Seat+7: UTG Folded before the FLOP
+Seat+8: UTG+1  with Two pair [2d 7c 6h 3s-7c 6h Kc Kd 6d] LO $0.83 [2d 7c 6h 3s-2d 3s 5d 6d Ad]
+Seat+9: UTG+2 Folded before the FLOP
+
+
+Bovada Hand #2902253333 TBL#8747464 OMAHA HiLo Pot Limit - 2014-08-05 01:33:06
+Seat 1: UTG+3 ($1.45 in chips)
+Seat 2: UTG+4 ($2.44 in chips)
+Seat 3: Dealer ($2.58 in chips)
+Seat 5: Small Blind ($4.26 in chips)
+Seat 6: Big Blind ($3 in chips)
+Seat 7: UTG ($1.50 in chips)
+Seat 8: UTG+1 ($13.92 in chips)
+Seat 9: UTG+2 [ME] ($4.88 in chips)
+Dealer : Set dealer/Bring in spot [3] 
+Small Blind : Ante/Small Blind $0.02 
+Big Blind : Big blind/Bring in $0.05 
+*** HOLE CARDS ***
+UTG+3 : Card dealt to a spot [9c Jc Js Kd] 
+UTG+4 : Card dealt to a spot [3h 5h Qh 3c] 
+Dealer : Card dealt to a spot [2h 5c Ad 6h] 
+Small Blind : Card dealt to a spot [Jh 7s 7d 2s] 
+Big Blind : Card dealt to a spot [Jd Kc 7h 6d] 
+UTG : Card dealt to a spot [4s 6c 5d Ah] 
+UTG+1 : Card dealt to a spot [Ac Tc 8d As] 
+UTG+2  [ME] : Card dealt to a spot [4c 8h 2d 9h] 
+UTG : Calls $0.05 
+UTG+1 : Raises $0.22 to $0.22
+UTG+2  [ME] : Folds
+UTG+3 : Calls $0.22 
+UTG+4 : Folds
+Seat re-join
+Dealer : Calls $0.22 
+Small Blind : Folds
+UTG+4 : Seat stand
+UTG+4 : Table leave user
+Big Blind : Folds
+UTG : Calls $0.17 
+*** FLOP *** [Ks 6s 2c]
+Seat stand
+Table leave user
+UTG : Checks
+UTG+1 : Bets $0.95 
+Table enter user
+UTG+3 : Folds
+Dealer : Raises $1.90 to $1.90
+Seat sit down
+UTG : All-in $1.28 
+UTG+1 : Calls $0.95 
+*** TURN *** [Ks 6s 2c] [4h]
+Table deposit $1.50 
+UTG+1 : Checks
+Dealer : All-in $0.46 
+UTG+1 : Calls $0.46 
+*** RIVER *** [Ks 6s 2c 4h] [4d]
+Dealer : Showdown [Ad 6h 6s 4h 4d 5c Ad 6s 2c 4h] (Two pair)
+UTG : Showdown [4s 6c 6s 4h 4d 5d Ah 6s 2c 4h] (Full House)
+UTG+1 : Showdown [Ac As Ks 4h 4d] (Two pair)
+Dealer : Hand result-Side pot $1.03 
+UTG+1 : Hand result-Side pot $1.03 
+Dealer : Hand result $1.13 
+UTG : Hand result $3.42 
+Table enter user
+*** SUMMARY ***
+Total Pot($6.95)
+Board [Ks 6s 2c 4h 4d]
+Seat+1: UTG+3 Folded on the FLOP
+Seat+2: UTG+4 Folded before the FLOP
+Seat+3: Dealer  with Two pair [2h 5c Ad 6h-Ad 6h 6s 4h 4d] LO $2.16 [2h 5c Ad 6h-5c Ad 6s 2c 4h]
+Seat+5: Small Blind Folded before the FLOP
+Seat+6: Big Blind Folded before the FLOP
+Seat+7: UTG HI $2.29  with Full House [4s 6c 5d Ah-4s 6c 6s 4h 4d] LO $1.13 [4s 6c 5d Ah-5d Ah 6s 2c 4h]
+Seat+8: UTG+1 HI $1.03  with Two pair [Ac Tc 8d As   ]  
+Seat+9: UTG+2 Folded before the FLOP
+
+
+Bovada Hand #2902253784 TBL#8747464 OMAHA HiLo Pot Limit - 2014-08-05 01:33:59
+Seat 1: UTG+2 ($1.23 in chips)
+Seat 3: UTG+3 ($2.16 in chips)
+Seat 4: UTG+4 ($1.50 in chips)
+Seat 5: Dealer ($4.24 in chips)
+Seat 6: Small Blind ($2.95 in chips)
+Seat 7: Big Blind ($3.42 in chips)
+Seat 8: UTG ($12.37 in chips)
+Seat 9: UTG+1 [ME] ($4.88 in chips)
+Dealer : Set dealer/Bring in spot [5] 
+Small Blind : Ante/Small Blind $0.02 
+Big Blind : Big blind/Bring in $0.05 
+UTG+4 : Posts chip $0.05 
+*** HOLE CARDS ***
+UTG+2 : Card dealt to a spot [Qc 5h 8d Ac] 
+UTG+3 : Card dealt to a spot [Qd Kh 3d 4d] 
+UTG+4 : Card dealt to a spot [4c 2s 5c 6s] 
+Dealer : Card dealt to a spot [Qh Js 2c Td] 
+Small Blind : Card dealt to a spot [6h 6c 7c 7d] 
+Big Blind : Card dealt to a spot [Qs Jd Tc 4h] 
+UTG : Card dealt to a spot [4s 2d Ts Jh] 
+UTG+1  [ME] : Card dealt to a spot [8h 9h As 9c] 
+Table enter user
+Seat sit down
+UTG : Calls $0.05 
+Table deposit $5 
+UTG+1  [ME] : Folds
+UTG+2 : Calls $0.05 
+Table enter user
+UTG+3 : Calls $0.05 
+UTG+4 : Checks
+Dealer : Folds
+Small Blind : Calls $0.03 
+Big Blind : Checks
+*** FLOP *** [3s 6d 9d]
+Table enter user
+Small Blind : Bets $0.10 
+Big Blind : Folds
+UTG : Calls $0.10 
+UTG+2 : Calls $0.10 
+UTG+3 : Calls $0.10 
+UTG+4 : Calls $0.10 
+*** TURN *** [3s 6d 9d] [7h]
+Small Blind : Bets $0.35 
+UTG : Calls $0.35 
+UTG+2 : Calls $0.35 
+UTG+3 : Calls $0.35 
+UTG+4 : Calls $0.35 
+*** RIVER *** [3s 6d 9d 7h] [3c]
+Small Blind : All-in $2.45 
+UTG : Folds
+UTG+2 : Folds
+UTG+3 : Folds
+UTG+4 : All-in $1 
+Small Blind : Return uncalled portion of bet $1.45 
+Small Blind : Showdown [7c 7d 3s 7h 3c] (Full House)
+UTG+4 : Showdown [4c 5c 3s 6d 7h 4c 2s 3s 6d 7h] (Straight)
+UTG+4 : Hand result $2.16 
+Small Blind : Hand result $2.17 
+*** SUMMARY ***
+Total Pot($4.55)
+Board [3s 6d 9d 7h 3c]
+Seat+1: UTG+2 Folded on the RIVER
+Seat+3: UTG+3 Folded on the RIVER
+Seat+4: UTG+4  with Straight [4c 2s 5c 6s-4c 5c 3s 6d 7h] LO $2.16 [4c 2s 5c 6s-4c 2s 3s 6d 7h]
+Seat+5: Dealer Folded before the FLOP
+Seat+6: Small Blind HI $2.17  with Full House [6h 6c 7c 7d-7c 7d 3s 7h 3c]  
+Seat+7: Big Blind Folded on the FLOP
+Seat+8: UTG Folded on the RIVER
+Seat+9: UTG+1 Folded before the FLOP
+
+
+Bovada Hand #2902254570 TBL#8747464 OMAHA HiLo Pot Limit - 2014-08-05 01:35:30
+Seat 1: UTG+1 ($0.73 in chips)
+Seat 3: UTG+2 ($1.66 in chips)
+Seat 4: UTG+3 ($2.16 in chips)
+Seat 5: UTG+4 ($4.24 in chips)
+Seat 6: Dealer ($3.62 in chips)
+Seat 7: Small Blind ($3.37 in chips)
+Seat 8: Big Blind ($11.87 in chips)
+Seat 9: UTG [ME] ($4.88 in chips)
+Dealer : Set dealer/Bring in spot [6] 
+Small Blind : Ante/Small Blind $0.02 
+Big Blind : Big blind/Bring in $0.05 
+*** HOLE CARDS ***
+UTG+1 : Card dealt to a spot [Ah 9d 5s Ks] 
+UTG+2 : Card dealt to a spot [Qd 5d Qs 6d] 
+UTG+3 : Card dealt to a spot [2h 5h 7c 6h] 
+UTG+4 : Card dealt to a spot [8s 9h Kd 3h] 
+Dealer : Card dealt to a spot [2c Jd Jh Ts] 
+Small Blind : Card dealt to a spot [Td 9c 8d 2s] 
+Big Blind : Card dealt to a spot [6c 8c 3d 2d] 
+UTG  [ME] : Card dealt to a spot [Kc Jc 9s 3c] 
+UTG  [ME] : Folds
+UTG+1 : Folds
+UTG+2 : Calls $0.05 
+UTG+3 : Folds
+UTG+4 : Folds
+Dealer : Calls $0.05 
+Small Blind : Folds
+Big Blind : Checks
+*** FLOP *** [Ac 6s Kh]
+Table leave user
+Big Blind : Checks
+UTG+2 : Checks
+Dealer : Checks
+*** TURN *** [Ac 6s Kh] [8h]
+Big Blind : Bets $0.17 
+UTG+2 : Folds
+Dealer : Folds
+Big Blind : Return uncalled portion of bet $0.17 
+Big Blind : Does not show [6c 8c 3d 2d] (Two pair)
+Big Blind : Hand result $0.17 
+*** SUMMARY ***
+Total Pot($0.17)
+Board [Ac 6s Kh 8h ]
+Seat+1: UTG+1 Folded before the FLOP
+Seat+3: UTG+2 Folded on the TURN
+Seat+4: UTG+3 Folded before the FLOP
+Seat+5: UTG+4 Folded before the FLOP
+Seat+6: Dealer Folded on the TURN
+Seat+7: Small Blind Folded before the FLOP
+Seat+8: Big Blind HI $0.17 [Does not show]  
+Seat+9: UTG Folded before the FLOP
+
+
+Bovada Hand #2902254898 TBL#8747464 OMAHA HiLo Pot Limit - 2014-08-05 01:36:07
+Seat 1: UTG ($0.73 in chips)
+Seat 3: UTG+1 ($1.61 in chips)
+Seat 4: UTG+2 ($2.16 in chips)
+Seat 5: UTG+3 ($4.24 in chips)
+Seat 6: UTG+4 ($3.57 in chips)
+Seat 7: Dealer ($3.35 in chips)
+Seat 8: Small Blind ($11.99 in chips)
+Seat 9: Big Blind [ME] ($4.88 in chips)
+Dealer : Set dealer/Bring in spot [7] 
+Small Blind : Ante/Small Blind $0.02 
+Big Blind  [ME] : Big blind/Bring in $0.05 
+*** HOLE CARDS ***
+UTG : Card dealt to a spot [2h Th 3h 6h] 
+UTG+1 : Card dealt to a spot [8h 2c Ks 3s] 
+UTG+2 : Card dealt to a spot [Td 9h 8d 4s] 
+UTG+3 : Card dealt to a spot [7c Qh 5d Kh] 
+UTG+4 : Card dealt to a spot [8c Jd Js Ts] 
+Dealer : Card dealt to a spot [6d Kd 7s As] 
+Small Blind : Card dealt to a spot [2s Ad Tc Qs] 
+Big Blind  [ME] : Card dealt to a spot [3c Qd 4h Kc] 
+UTG : Calls $0.05 
+UTG+1 : Calls $0.05 
+UTG+2 : Folds
+UTG+3 : Folds
+UTG+4 : Calls $0.05 
+Dealer : Folds
+Small Blind : Raises $0.13 to $0.15
+Big Blind  [ME] : Folds
+UTG : Calls $0.10 
+UTG+1 : Calls $0.10 
+UTG+4 : Calls $0.10 
+*** FLOP *** [7h 6c Qc]
+Small Blind : Bets $0.32 
+UTG : Folds
+UTG+1 : Calls $0.32 
+UTG+4 : Folds
+*** TURN *** [7h 6c Qc] [5s]
+Small Blind : Bets $1.29 
+UTG+1 : All-in $1.14 
+Small Blind : Return uncalled portion of bet $0.15 
+*** RIVER *** [7h 6c Qc 5s] [9d]
+UTG+1 : Showdown [8h Ks 7h Qc 9d 2c 3s 7h 6c 5s] (High Card)
+Small Blind : Showdown [Ad Qs 7h Qc 9d 2s Ad 7h 6c 5s] (One pair)
+Small Blind : Hand result $3.40 
+UTG+1 : Seat sit out
+*** SUMMARY ***
+Total Pot($3.57)
+Board [7h 6c Qc 5s 9d]
+Seat+1: UTG Folded on the FLOP
+Seat+3: UTG+1 lost with High Card [8h 2c Ks 3s-8h Ks 7h Qc 9d]  [8h 2c Ks 3s-2c 3s 7h 6c 5s]
+Seat+4: UTG+2 Folded before the FLOP
+Seat+5: UTG+3 Folded before the FLOP
+Seat+6: UTG+4 Folded on the FLOP
+Seat+7: Dealer Folded before the FLOP
+Seat+8: Small Blind HI $1.70  with One pair [2s Ad Tc Qs-Ad Qs 7h Qc 9d] LO $1.70 [2s Ad Tc Qs-2s Ad 7h 6c 5s]
+Seat+9: Big Blind Folded before the FLOP
+
+
+Bovada Hand #2902255536 TBL#8747464 OMAHA HiLo Pot Limit - 2014-08-05 01:37:21
+Seat 1: Big Blind ($0.58 in chips)
+Seat 4: UTG ($2.16 in chips)
+Seat 5: UTG+1 ($4.24 in chips)
+Seat 6: UTG+2 ($3.42 in chips)
+Seat 7: UTG+3 ($3.35 in chips)
+Seat 8: Dealer ($13.78 in chips)
+Seat 9: Small Blind [ME] ($4.83 in chips)
+Dealer : Set dealer/Bring in spot [8] 
+Small Blind  [ME] : Ante/Small Blind $0.02 
+Big Blind : Big blind/Bring in $0.05 
+*** HOLE CARDS ***
+Big Blind : Card dealt to a spot [5d 8h Qh 9h] 
+UTG : Card dealt to a spot [9s Kh 2d Qd] 
+UTG+1 : Card dealt to a spot [Ad 6s 9c 6c] 
+UTG+2 : Card dealt to a spot [8d 2s 4d Tc] 
+UTG+3 : Card dealt to a spot [4s 5c Ac Ah] 
+Dealer : Card dealt to a spot [Qc 7c Kc 6d] 
+Small Blind  [ME] : Card dealt to a spot [7s Td 3c 3s] 
+UTG : Folds
+UTG+1 : Folds
+UTG+2 : Calls $0.05 
+Table deposit $3 
+Seat re-join
+UTG+3 : Raises $0.20 to $0.20
+Dealer : Folds
+Small Blind  [ME] : Folds
+Big Blind : Folds
+UTG+2 : Folds
+UTG+3 : Return uncalled portion of bet $0.15 
+UTG+3 : Does not show [4s 5c Ac Ah] (High Card)
+UTG+3 : Hand result $0.17 
+*** SUMMARY ***
+Total Pot($0.17)
+Seat+1: Big Blind Folded before the FLOP
+Seat+4: UTG Folded before the FLOP
+Seat+5: UTG+1 Folded before the FLOP
+Seat+6: UTG+2 Folded before the FLOP
+Seat+7: UTG+3 HI $0.17 [Does not show]  
+Seat+8: Dealer Folded before the FLOP
+Seat+9: Small Blind Folded before the FLOP
+
+
+Bovada Hand #2902255845 TBL#8747464 OMAHA HiLo Pot Limit - 2014-08-05 01:37:55
+Seat 1: Small Blind ($0.53 in chips)
+Seat 2: Big Blind ($5 in chips)
+Seat 3: UTG ($3 in chips)
+Seat 4: UTG+1 ($2.16 in chips)
+Seat 5: UTG+2 ($4.24 in chips)
+Seat 6: UTG+3 ($3.37 in chips)
+Seat 7: UTG+4 ($3.47 in chips)
+Seat 8: UTG+5 ($13.78 in chips)
+Seat 9: Dealer [ME] ($4.81 in chips)
+Dealer  [ME] : Set dealer/Bring in spot [9] 
+Small Blind : Ante/Small Blind $0.02 
+Big Blind : Big blind/Bring in $0.05 
+*** HOLE CARDS ***
+Small Blind : Card dealt to a spot [Kc 3d 5h Ac] 
+Big Blind : Card dealt to a spot [6s 6h 3s 7h] 
+UTG : Card dealt to a spot [5d 8h 4h Qh] 
+UTG+1 : Card dealt to a spot [Th 2s Qc 9s] 
+UTG+2 : Card dealt to a spot [Jh Ks 6c Ad] 
+UTG+3 : Card dealt to a spot [4s 4c Jd 7s] 
+UTG+4 : Card dealt to a spot [As 9c 3c 3h] 
+UTG+5 : Card dealt to a spot [4d Ts 9d 7d] 
+Dealer  [ME] : Card dealt to a spot [2c Ah 6d Td] 
+UTG : Folds
+UTG+1 : Folds
+UTG+2 : Folds
+UTG+3 : Folds
+UTG+4 : Calls $0.05 
+UTG+5 : Folds
+Dealer  [ME] : Calls $0.05 
+Small Blind : Calls $0.03 
+Big Blind : Checks
+*** FLOP *** [2h Qs 7c]
+Small Blind : Bets $0.15 
+Big Blind : Folds
+UTG+4 : Calls $0.15 
+Dealer  [ME] : Folds
+*** TURN *** [2h Qs 7c] [2d]
+Small Blind : Checks
+UTG+4 : Checks
+*** RIVER *** [2h Qs 7c 2d] [Js]
+Small Blind : Checks
+UTG+4 : Checks
+Small Blind : Showdown [Kc Ac 2h Qs 2d] (One pair)
+UTG+4 : Showdown [3c 3h 2h Qs 2d] (Two pair)
+UTG+4 : Hand result $0.48 
+*** SUMMARY ***
+Total Pot($0.50)
+Board [2h Qs 7c 2d Js]
+Seat+1: Small Blind lost with One pair [Kc 3d 5h-Kc Ac 2h Qs 2d]  
+Seat+2: Big Blind Folded on the FLOP
+Seat+3: UTG Folded before the FLOP
+Seat+4: UTG+1 Folded before the FLOP
+Seat+5: UTG+2 Folded before the FLOP
+Seat+6: UTG+3 Folded before the FLOP
+Seat+7: UTG+4 HI $0.48  with Two pair [As 9c 3c 3h-3c 3h 2h Qs 2d]  
+Seat+8: UTG+5 Folded before the FLOP
+Seat+9: Dealer Folded on the FLOP
+
+
+Bovada Hand #2902256243 TBL#8747464 OMAHA HiLo Pot Limit - 2014-08-05 01:38:43
+Seat 1: Dealer ($0.33 in chips)
+Seat 2: Small Blind ($4.95 in chips)
+Seat 3: Big Blind ($3 in chips)
+Seat 4: UTG ($2.16 in chips)
+Seat 5: UTG+1 ($4.24 in chips)
+Seat 6: UTG+2 ($3.37 in chips)
+Seat 7: UTG+3 ($3.75 in chips)
+Seat 8: UTG+4 ($13.78 in chips)
+Seat 9: UTG+5 [ME] ($4.76 in chips)
+Dealer : Set dealer/Bring in spot [1] 
+Small Blind : Ante/Small Blind $0.02 
+Big Blind : Big blind/Bring in $0.05 
+*** HOLE CARDS ***
+Dealer : Card dealt to a spot [Ts Kh 2s Jc] 
+Small Blind : Card dealt to a spot [3d Ad 4s 8d] 
+Big Blind : Card dealt to a spot [Ks Th 5s 2h] 
+UTG : Card dealt to a spot [Ah 3h 9s 7d] 
+UTG+1 : Card dealt to a spot [6d As 9d 5c] 
+UTG+2 : Card dealt to a spot [7h 8c 7s 3c] 
+UTG+3 : Card dealt to a spot [2c 2d Qs Kc] 
+UTG+4 : Card dealt to a spot [4d 4h Ac 7c] 
+UTG+5  [ME] : Card dealt to a spot [Jh 3s 6s Kd] 
+UTG : Calls $0.05 
+UTG+1 : Folds
+UTG+2 : Folds
+UTG+3 : Folds
+UTG+4 : Calls $0.05 
+UTG+5  [ME] : Folds
+Dealer : Folds
+Small Blind : Calls $0.03 
+Big Blind : Checks
+*** FLOP *** [8h 5d Qh]
+Small Blind : Checks
+Big Blind : Checks
+UTG : Checks
+UTG+4 : Bets $0.05 
+Small Blind : Calls $0.05 
+Big Blind : Folds
+UTG : Calls $0.05 
+*** TURN *** [8h 5d Qh] [Qd]
+Small Blind : Checks
+UTG : Checks
+UTG+4 : Bets $0.05 
+Small Blind : Calls $0.05 
+UTG : Folds
+*** RIVER *** [8h 5d Qh Qd] [5h]
+Small Blind : Checks
+UTG+4 : Checks
+Small Blind : Showdown [Ad 8d 8h Qh Qd] (Two pair)
+UTG+4 : Mucks [4d 4h Ac 7c] (Two pair)
+Small Blind : Hand result $0.43 
+*** SUMMARY ***
+Total Pot($0.45)
+Board [8h 5d Qh Qd 5h]
+Seat+1: Dealer Folded before the FLOP
+Seat+2: Small Blind HI $0.43  with Two pair [3d Ad 4s 8d-Ad 8d 8h Qh Qd]  
+Seat+3: Big Blind Folded on the FLOP
+Seat+4: UTG Folded on the TURN
+Seat+5: UTG+1 Folded before the FLOP
+Seat+6: UTG+2 Folded before the FLOP
+Seat+7: UTG+3 Folded before the FLOP
+Seat+8: UTG+4 [Mucked] [4d 4h 7c   ]  
+Seat+9: UTG+5 Folded before the FLOP
+
+
+Bovada Hand #2902256725 TBL#8747464 OMAHA HiLo Pot Limit - 2014-08-05 01:39:37
+Seat 1: UTG+5 ($0.33 in chips)
+Seat 2: Dealer ($5.23 in chips)
+Seat 3: Small Blind ($2.95 in chips)
+Seat 4: Big Blind ($2.06 in chips)
+Seat 5: UTG ($4.24 in chips)
+Seat 6: UTG+1 ($3.37 in chips)
+Seat 7: UTG+2 ($3.75 in chips)
+Seat 8: UTG+3 ($13.63 in chips)
+Seat 9: UTG+4 [ME] ($4.76 in chips)
+Dealer : Set dealer/Bring in spot [2] 
+Small Blind : Ante/Small Blind $0.02 
+Big Blind : Big blind/Bring in $0.05 
+*** HOLE CARDS ***
+UTG+5 : Card dealt to a spot [7h 4c Kh Ks] 
+Dealer : Card dealt to a spot [Ac 3d Ah 8s] 
+Small Blind : Card dealt to a spot [Qs 4s Qc 6h] 
+Big Blind : Card dealt to a spot [8d 4d 5s 2d] 
+UTG : Card dealt to a spot [6d 8h 5c Kd] 
+UTG+1 : Card dealt to a spot [Ts Qd 6s 7c] 
+UTG+2 : Card dealt to a spot [7d 5h Qh 3c] 
+UTG+3 : Card dealt to a spot [Kc 5d 2c Th] 
+UTG+4  [ME] : Card dealt to a spot [3h 9d Ad Tc] 
+UTG : Folds
+UTG+1 : Folds
+UTG+2 : Folds
+UTG+3 : Calls $0.05 
+UTG+4  [ME] : Calls $0.05 
+UTG+5 : Calls $0.05 
+Dealer : Raises $0.25 to $0.25
+Small Blind : Calls $0.23 
+Big Blind : Folds
+UTG+3 : Folds
+UTG+4  [ME] : Calls $0.20 
+UTG+5 : Calls $0.20 
+*** FLOP *** [9h 8c 2s]
+Small Blind : Checks
+UTG+4  [ME] : Checks
+UTG+5 : Checks
+Dealer : Bets $1 
+Small Blind : Folds
+UTG+4  [ME] : Calls $1 
+UTG+5 : Folds
+*** TURN *** [9h 8c 2s] [Jh]
+UTG+4  [ME] : Checks
+Dealer : Bets $3.10 
+UTG+4  [ME] : Calls $3.10 
+*** RIVER *** [9h 8c 2s Jh] [4h]
+UTG+4  [ME] : Checks
+Dealer : All-in $0.88 
+UTG+4  [ME] : All-in $0.41 
+Dealer : Return uncalled portion of bet $0.47 
+Dealer : Showdown [Ac Ah 9h 8c Jh] (One pair)
+UTG+4  [ME] : Showdown [9d Ad 9h 8c Jh 3h Ad 8c 2s 4h] (One pair)
+Dealer : Hand result $7.22 
+UTG+4  [ME] : Hand result $2.40 
+*** SUMMARY ***
+Total Pot($10.12)
+Board [9h 8c 2s Jh 4h]
+Seat+1: UTG+5 Folded on the FLOP
+Seat+2: Dealer HI $4.82  with One pair [Ac 3d Ah 8s   ] LO $2.40 
+Seat+3: Small Blind Folded on the FLOP
+Seat+4: Big Blind Folded before the FLOP
+Seat+5: UTG Folded before the FLOP
+Seat+6: UTG+1 Folded before the FLOP
+Seat+7: UTG+2 Folded before the FLOP
+Seat+8: UTG+3 Folded before the FLOP
+Seat+9: UTG+4  with One pair [3h 9d Ad Tc-9d Ad 9h 8c Jh] LO $2.40 [3h 9d Ad Tc-3h Ad 8c 2s 4h]
+
+
+Bovada Hand #2902257572 TBL#8747464 OMAHA HiLo Pot Limit - 2014-08-05 01:41:17
+Seat 1: UTG+4 ($0.08 in chips)
+Seat 2: UTG+5 ($7.69 in chips)
+Seat 3: Dealer ($2.70 in chips)
+Seat 4: Small Blind ($2.01 in chips)
+Seat 5: Big Blind ($4.24 in chips)
+Seat 6: UTG ($3.37 in chips)
+Seat 7: UTG+1 ($3.75 in chips)
+Seat 8: UTG+2 ($13.58 in chips)
+Seat 9: UTG+3 [ME] ($2.40 in chips)
+Dealer : Set dealer/Bring in spot [3] 
+Small Blind : Ante/Small Blind $0.02 
+Big Blind : Big blind/Bring in $0.05 
+*** HOLE CARDS ***
+UTG+4 : Card dealt to a spot [Th Kc 3h 8c] 
+UTG+5 : Card dealt to a spot [4c 2c 9c 6s] 
+Dealer : Card dealt to a spot [3c 2h Ac 5s] 
+Small Blind : Card dealt to a spot [As 5h 4d Ah] 
+Big Blind : Card dealt to a spot [3s 8d Qh Qd] 
+UTG : Card dealt to a spot [7c Js Kh Qs] 
+UTG+1 : Card dealt to a spot [Qc 9s 6d Ad] 
+UTG+2 : Card dealt to a spot [7h 7d 4s Ks] 
+UTG+3  [ME] : Card dealt to a spot [6h 8s 5c 9h] 
+UTG : Folds
+UTG+1 : Folds
+UTG+2 : Calls $0.05 
+UTG+3  [ME] : Calls $0.05 
+UTG+4 : Folds
+UTG+5 : Folds
+Dealer : Raises $0.27 to $0.27
+Small Blind : Calls $0.25 
+Big Blind : Folds
+UTG+2 : Calls $0.22 
+UTG+3  [ME] : Calls $0.22 
+*** FLOP *** [Jc 2d 7s]
+Small Blind : Checks
+UTG+2 : Checks
+UTG+3  [ME] : Checks
+Dealer : Bets $1.13 
+Small Blind : Folds
+UTG+2 : Raises $4.52 to $4.52
+UTG+3  [ME] : Folds
+Dealer : All-in $1.30 
+UTG+2 : Return uncalled portion of bet $2.09 
+*** TURN *** [Jc 2d 7s] [Ts]
+*** RIVER *** [Jc 2d 7s Ts] [8h]
+Dealer : Showdown [2h Ac Jc 2d Ts 3c Ac 2d 7s 8h] (One pair)
+UTG+2 : Showdown [7h 7d Jc 7s Ts] (Three of a kind)
+Dealer : Hand result $2.85 
+UTG+2 : Hand result $2.85 
+*** SUMMARY ***
+Total Pot($5.99)
+Board [Jc 2d 7s Ts 8h]
+Seat+1: UTG+4 Folded before the FLOP
+Seat+2: UTG+5 Folded before the FLOP
+Seat+3: Dealer  with One pair [3c 2h 5s-2h Ac Jc 2d Ts] LO $2.85 [3c 2h Ac 5s-3c 2d 7s 8h]
+Seat+4: Small Blind Folded on the FLOP
+Seat+5: Big Blind Folded before the FLOP
+Seat+6: UTG Folded before the FLOP
+Seat+7: UTG+1 Folded before the FLOP
+Seat+8: UTG+2 HI $2.85  with Three of a kind [7h 7d 4s Ks-7h 7d Jc 7s Ts]  
+Seat+9: UTG+3 Folded on the FLOP
+
+
+Bovada Hand #2902258035 TBL#8747464 OMAHA HiLo Pot Limit - 2014-08-05 01:42:14
+Seat 1: UTG+3 ($0.08 in chips)
+Seat 2: UTG+4 ($7.69 in chips)
+Seat 3: UTG+5 ($2.85 in chips)
+Seat 4: Dealer ($1.74 in chips)
+Seat 5: Small Blind ($4.19 in chips)
+Seat 6: Big Blind ($3.37 in chips)
+Seat 7: UTG ($3.75 in chips)
+Seat 8: UTG+1 ($13.73 in chips)
+Seat 9: UTG+2 [ME] ($2.13 in chips)
+Dealer : Set dealer/Bring in spot [4] 
+Small Blind : Ante/Small Blind $0.02 
+Big Blind : Big blind/Bring in $0.05 
+*** HOLE CARDS ***
+UTG+3 : Card dealt to a spot [5s Ks 9h 3s] 
+UTG+4 : Card dealt to a spot [8s 2c Jh Qh] 
+UTG+5 : Card dealt to a spot [Jc 3h 4c Kc] 
+Dealer : Card dealt to a spot [Qd 8c 4s 9c] 
+Small Blind : Card dealt to a spot [4d 7h 2d Qc] 
+Big Blind : Card dealt to a spot [7d 4h Kh Ad] 
+UTG : Card dealt to a spot [7s Jd 2s Tc] 
+UTG+1 : Card dealt to a spot [2h Th 5c Td] 
+UTG+2  [ME] : Card dealt to a spot [8d Ac 6s 8h] 
+UTG : Folds
+UTG+1 : Calls $0.05 
+UTG+2  [ME] : Folds
+UTG+3 : Folds
+UTG+4 : Folds
+UTG+5 : Calls $0.05 
+Dealer : Folds
+Small Blind : Folds
+Big Blind : Raises $0.05 to $0.10
+UTG+1 : Calls $0.05 
+UTG+5 : Calls $0.05 
+*** FLOP *** [3d 9s 3c]
+Big Blind : Checks
+UTG+1 : Bets $0.05 
+UTG+5 : Raises $0.47 to $0.47
+Big Blind : Folds
+UTG+1 : Folds
+UTG+5 : Return uncalled portion of bet $0.42 
+UTG+5 : Does not show [Jc 3h 4c Kc] (Three of a kind)
+UTG+5 : Hand result $0.40 
+*** SUMMARY ***
+Total Pot($0.42)
+Board [3d 9s 3c  ]
+Seat+1: UTG+3 Folded before the FLOP
+Seat+2: UTG+4 Folded before the FLOP
+Seat+3: UTG+5 HI $0.40 [Does not show]  
+Seat+4: Dealer Folded before the FLOP
+Seat+5: Small Blind Folded before the FLOP
+Seat+6: Big Blind Folded on the FLOP
+Seat+7: UTG Folded before the FLOP
+Seat+8: UTG+1 Folded on the FLOP
+Seat+9: UTG+2 Folded before the FLOP
+
+
+Bovada Hand #2902258394 TBL#8747464 OMAHA HiLo Pot Limit - 2014-08-05 01:42:56
+Seat 1: UTG+2 ($0.08 in chips)
+Seat 2: UTG+3 ($7.69 in chips)
+Seat 3: UTG+4 ($3.10 in chips)
+Seat 4: UTG+5 ($1.74 in chips)
+Seat 5: Dealer ($4.17 in chips)
+Seat 6: Small Blind ($3.27 in chips)
+Seat 7: Big Blind ($3.75 in chips)
+Seat 8: UTG ($13.58 in chips)
+Seat 9: UTG+1 [ME] ($2.13 in chips)
+Dealer : Set dealer/Bring in spot [5] 
+Small Blind : Ante/Small Blind $0.02 
+Big Blind : Big blind/Bring in $0.05 
+*** HOLE CARDS ***
+UTG+2 : Card dealt to a spot [Qs 8h Kh 4h] 
+UTG+3 : Card dealt to a spot [Jc 9c 3d 9h] 
+UTG+4 : Card dealt to a spot [5c 7c 7d Qc] 
+UTG+5 : Card dealt to a spot [5h 6d Ad 2c] 
+Dealer : Card dealt to a spot [9s 9d Ac As] 
+Small Blind : Card dealt to a spot [2d 7h Ah 3h] 
+Big Blind : Card dealt to a spot [Ts 2s 4d Ks] 
+UTG : Card dealt to a spot [5d 8d Jd Tc] 
+UTG+1  [ME] : Card dealt to a spot [5s Td 2h Th] 
+UTG : Folds
+UTG+1  [ME] : Folds
+UTG+2 : Folds
+UTG+3 : Folds
+UTG+4 : Folds
+UTG+5 : Calls $0.05 
+Dealer : Calls $0.05 
+Small Blind : Raises $0.13 to $0.15
+Big Blind : Folds
+UTG+5 : Calls $0.10 
+Table leave user
+Dealer : Calls $0.10 
+*** FLOP *** [4s Kc 3s]
+Small Blind : Bets $0.15 
+UTG+5 : Calls $0.15 
+Dealer : Calls $0.15 
+*** TURN *** [4s Kc 3s] [7s]
+Small Blind : Bets $0.47 
+UTG+5 : Calls $0.47 
+Dealer : Calls $0.47 
+*** RIVER *** [4s Kc 3s 7s] [4c]
+Small Blind : Bets $1.18 
+UTG+5 : All-in $0.97 
+Dealer : Calls $1.18 
+Small Blind : Showdown [7h Ah 4s 7s 4c 2d Ah 4s 3s 7s] (Two pair)
+UTG+5 : Showdown [5h 6d 4s 3s 7s Ad 2c 4s 3s 7s] (Straight)
+Dealer : Showdown [9s As 4s 3s 7s] (Flush)
+Dealer : Hand result-Side pot $0.20 
+Small Blind : Hand result-Side pot $0.20 
+UTG+5 : Hand result $1.25 
+Dealer : Hand result $2.51 
+Small Blind : Hand result $1.25 
+*** SUMMARY ***
+Total Pot($5.69)
+Board [4s Kc 3s 7s 4c]
+Seat+1: UTG+2 Folded before the FLOP
+Seat+2: UTG+3 Folded before the FLOP
+Seat+3: UTG+4 Folded before the FLOP
+Seat+4: UTG+5  with Straight [5h 6d Ad 2c-5h 6d 4s 3s 7s] LO $1.25 [5h 6d Ad 2c-Ad 2c 4s 3s 7s]
+Seat+5: Dealer HI $2.71  with Flush [9s 9d As-9s As 4s 3s 7s]  
+Seat+6: Small Blind  with Two pair [2d 7h Ah 3h-7h Ah 4s 7s 4c] LO $1.45 [2d 7h Ah 3h-2d Ah 4s 3s 7s]
+Seat+7: Big Blind Folded before the FLOP
+Seat+8: UTG Folded before the FLOP
+Seat+9: UTG+1 Folded before the FLOP
+
+
+Bovada Hand #2902258900 TBL#8747464 OMAHA HiLo Pot Limit - 2014-08-05 01:43:58
+Seat 1: UTG+1 ($0.08 in chips)
+Seat 2: UTG+2 ($7.69 in chips)
+Seat 3: UTG+3 ($3.10 in chips)
+Seat 4: UTG+4 ($1.25 in chips)
+Seat 5: UTG+5 ($4.93 in chips)
+Seat 6: Dealer ($2.77 in chips)
+Seat 7: Small Blind ($3.70 in chips)
+Seat 8: Big Blind ($13.58 in chips)
+Seat 9: UTG [ME] ($2.13 in chips)
+Dealer : Set dealer/Bring in spot [6] 
+Small Blind : Ante/Small Blind $0.02 
+Big Blind : Big blind/Bring in $0.05 
+*** HOLE CARDS ***
+UTG+1 : Card dealt to a spot [Jh 2c 7d 4h] 
+UTG+2 : Card dealt to a spot [5s 6h 5c 7s] 
+UTG+3 : Card dealt to a spot [Ac 3h 9c 9h] 
+UTG+4 : Card dealt to a spot [Js Qh 4s Td] 
+UTG+5 : Card dealt to a spot [7c 2d 5h Qd] 
+Dealer : Card dealt to a spot [8s Qc Tc 5d] 
+Small Blind : Card dealt to a spot [Kc 3d Ad Jd] 
+Big Blind : Card dealt to a spot [8h Kd Qs Kh] 
+UTG  [ME] : Card dealt to a spot [8c 9d 4c 3s] 
+UTG  [ME] : Calls $0.05 
+UTG+1 : Folds
+UTG+2 : Folds
+UTG+3 : Calls $0.05 
+UTG+4 : Folds
+UTG+5 : Folds
+Dealer : Folds
+Small Blind : Calls $0.03 
+Big Blind : Checks
+*** FLOP *** [Ts 2s 8d]
+Small Blind : Checks
+Big Blind : Checks
+UTG  [ME] : Checks
+UTG+3 : Bets $0.20 
+Small Blind : Calls $0.20 
+Big Blind : Folds
+UTG  [ME] : Calls $0.20 
+*** TURN *** [Ts 2s 8d] [Ah]
+Small Blind : Checks
+UTG  [ME] : Checks
+UTG+3 : Checks
+*** RIVER *** [Ts 2s 8d Ah] [Ks]
+Small Blind : Checks
+UTG  [ME] : Bets $0.45 
+UTG+3 : Folds
+Small Blind : Folds
+UTG  [ME] : Return uncalled portion of bet $0.45 
+UTG  [ME] : Does not show [8c 9d 4c 3s] (One pair)
+UTG  [ME] : Hand result $0.76 
+*** SUMMARY ***
+Total Pot($0.80)
+Board [Ts 2s 8d Ah Ks]
+Seat+1: UTG+1 Folded before the FLOP
+Seat+2: UTG+2 Folded before the FLOP
+Seat+3: UTG+3 Folded on the RIVER
+Seat+4: UTG+4 Folded before the FLOP
+Seat+5: UTG+5 Folded before the FLOP
+Seat+6: Dealer Folded before the FLOP
+Seat+7: Small Blind Folded on the RIVER
+Seat+8: Big Blind Folded on the FLOP
+Seat+9: UTG HI $0.76 [Does not show]  
+
+
+Bovada Hand #2902259613 TBL#8747464 OMAHA HiLo Pot Limit - 2014-08-05 01:45:24
+Seat 1: UTG ($0.08 in chips)
+Seat 2: UTG+1 ($7.69 in chips)
+Seat 3: UTG+2 ($2.85 in chips)
+Seat 4: UTG+3 ($1.25 in chips)
+Seat 5: UTG+4 ($4.93 in chips)
+Seat 6: UTG+5 ($2.77 in chips)
+Seat 7: Dealer ($3.45 in chips)
+Seat 8: Small Blind ($13.53 in chips)
+Seat 9: Big Blind [ME] ($2.64 in chips)
+Dealer : Set dealer/Bring in spot [7] 
+Small Blind : Ante/Small Blind $0.02 
+Big Blind  [ME] : Big blind/Bring in $0.05 
+*** HOLE CARDS ***
+UTG : Card dealt to a spot [Js Td Kd 2h] 
+UTG+1 : Card dealt to a spot [7h 6h 9s Tc] 
+UTG+2 : Card dealt to a spot [Jh Jd 3c Qs] 
+UTG+3 : Card dealt to a spot [8h As Ac 6s] 
+UTG+4 : Card dealt to a spot [8d 7c 6c Kh] 
+UTG+5 : Card dealt to a spot [2s 5d 7d 6d] 
+Dealer : Card dealt to a spot [Ah 2c 4h 8c] 
+Small Blind : Card dealt to a spot [3s 5h 4c Qd] 
+Big Blind  [ME] : Card dealt to a spot [9c Ts 9h Qc] 
+UTG : Calls $0.05 
+UTG+1 : Folds
+UTG+2 : Calls $0.05 
+UTG+3 : Calls $0.05 
+UTG+4 : Folds
+UTG+5 : Calls $0.05 
+Dealer : Raises $0.15 to $0.15
+Small Blind : Calls $0.13 
+Big Blind  [ME] : Calls $0.10 
+UTG : All-in $0.03 
+UTG+2 : Calls $0.10 
+UTG+3 : Calls $0.10 
+UTG+5 : Folds
+*** FLOP *** [Qh 5c 8s]
+Small Blind : Checks
+Big Blind  [ME] : Checks
+UTG+2 : Checks
+UTG+3 : Checks
+Dealer : Bets $0.20 
+Small Blind : Calls $0.20 
+Big Blind  [ME] : Calls $0.20 
+UTG+2 : Folds
+UTG+3 : Folds
+*** TURN *** [Qh 5c 8s] [3h]
+Small Blind : Bets $0.15 
+Big Blind  [ME] : Folds
+Dealer : Raises $1.93 to $1.93
+Small Blind : Calls $1.78 
+*** RIVER *** [Qh 5c 8s 3h] [Jc]
+Small Blind : Checks
+Dealer : Checks
+Small Blind : Showdown [5h Qd Qh 5c Jc] (Two pair)
+UTG : Mucks [Js Td Kd 2h] (One pair)
+Dealer : Showdown [Ah 8c Qh 8s Jc Ah 2c 5c 8s 3h] (One pair)
+Dealer : Hand result-Side pot $2.29 
+Small Blind : Hand result-Side pot $2.29 
+Dealer : Hand result $0.25 
+Small Blind : Hand result $0.25 
+UTG : Seat sit out
+*** SUMMARY ***
+Total Pot($5.34)
+Board [Qh 5c 8s 3h Jc]
+Seat+1: UTG [Mucked] [Js Td Kd 2h   ]  
+Seat+2: UTG+1 Folded before the FLOP
+Seat+3: UTG+2 Folded on the FLOP
+Seat+4: UTG+3 Folded on the FLOP
+Seat+5: UTG+4 Folded before the FLOP
+Seat+6: UTG+5 Folded before the FLOP
+Seat+7: Dealer  with One pair [Ah 2c 4h 8c-Ah 8c Qh 8s Jc] LO $2.54 [Ah 2c 4h 8c-Ah 2c 5c 8s 3h]
+Seat+8: Small Blind HI $2.54  with Two pair [3s 5h 4c Qd-5h Qd Qh 5c Jc]  
+Seat+9: Big Blind Folded on the TURN
+
+
+Bovada Hand #2902260511 TBL#8747464 OMAHA HiLo Pot Limit - 2014-08-05 01:47:09
+Seat 2: Big Blind ($7.69 in chips)
+Seat 3: UTG ($2.70 in chips)
+Seat 4: UTG+1 ($1.10 in chips)
+Seat 5: UTG+2 ($4.93 in chips)
+Seat 6: UTG+3 ($2.72 in chips)
+Seat 7: UTG+4 ($3.71 in chips)
+Seat 8: Dealer ($13.79 in chips)
+Seat 9: Small Blind [ME] ($2.29 in chips)
+Dealer : Set dealer/Bring in spot [8] 
+Small Blind  [ME] : Ante/Small Blind $0.02 
+Big Blind : Big blind/Bring in $0.05 
+*** HOLE CARDS ***
+Big Blind : Card dealt to a spot [6c Jd Kh 3h] 
+UTG : Card dealt to a spot [4s Qd Th 3s] 
+UTG+1 : Card dealt to a spot [8h 3d Js 3c] 
+UTG+2 : Card dealt to a spot [Td 9d 6h 2s] 
+UTG+3 : Card dealt to a spot [7c 6s 5d 2d] 
+UTG+4 : Card dealt to a spot [4d 7s Kd As] 
+Dealer : Card dealt to a spot [9h 8c 4h Ks] 
+Small Blind  [ME] : Card dealt to a spot [2h 5s Jc 5c] 
+Seat stand
+Table leave user
+UTG : Calls $0.05 
+UTG+1 : Folds
+UTG+2 : Folds
+UTG+3 : Calls $0.05 
+UTG+4 : Calls $0.05 
+Dealer : Folds
+Small Blind  [ME] : Calls $0.03 
+Big Blind : Checks
+*** FLOP *** [8d 4c Ac]
+Small Blind  [ME] : Checks
+Big Blind : Checks
+UTG : Checks
+Table enter user
+UTG+3 : Bets $0.12 
+UTG+4 : Folds
+Seat sit down
+Table deposit $1.50 
+Small Blind  [ME] : Calls $0.12 
+Big Blind : Folds
+UTG : Folds
+*** TURN *** [8d 4c Ac] [Ad]
+Small Blind  [ME] : Checks
+UTG+3 : Bets $0.29 
+Small Blind  [ME] : Calls $0.29 
+*** RIVER *** [8d 4c Ac Ad] [Qs]
+Small Blind  [ME] : Checks
+UTG+3 : Checks
+Small Blind  [ME] : Showdown [5s 5c Ac Ad Qs 2h 5s 8d 4c Ac] (Two pair)
+UTG+3 : Showdown [7c 6s Ac Ad Qs 5d 2d 8d 4c Ac] (One pair)
+UTG+3 : Hand result $0.25 
+Small Blind  [ME] : Hand result $0.77 
+*** SUMMARY ***
+Total Pot($1.07)
+Board [8d 4c Ac Ad Qs]
+Seat+2: Big Blind Folded on the FLOP
+Seat+3: UTG Folded on the FLOP
+Seat+4: UTG+1 Folded before the FLOP
+Seat+5: UTG+2 Folded before the FLOP
+Seat+6: UTG+3  with One pair [7c 6s 5d 2d-7c 6s Ac Ad Qs] LO $0.25 [7c 6s 5d 2d-5d 2d 8d 4c]
+Seat+7: UTG+4 Folded on the FLOP
+Seat+8: Dealer Folded before the FLOP
+Seat+9: Small Blind HI $0.52  with Two pair [2h 5s Jc 5c-5s 5c Ac Ad Qs] LO $0.25 [2h 5s Jc 5c-2h 5s 8d 4c]
+
+
+Bovada Hand #2902261280 TBL#8747464 OMAHA HiLo Pot Limit - 2014-08-05 01:48:39
+Seat 2: Small Blind ($7.64 in chips)
+Seat 3: Big Blind ($2.65 in chips)
+Seat 4: UTG ($1.10 in chips)
+Seat 5: UTG+1 ($4.93 in chips)
+Seat 6: UTG+2 ($2.51 in chips)
+Seat 7: UTG+3 ($3.66 in chips)
+Seat 8: UTG+4 ($13.79 in chips)
+Seat 9: Dealer [ME] ($2.60 in chips)
+Dealer  [ME] : Set dealer/Bring in spot [9] 
+Small Blind : Ante/Small Blind $0.02 
+Big Blind : Big blind/Bring in $0.05 
+*** HOLE CARDS ***
+Small Blind : Card dealt to a spot [Kc 3d 9c 6c] 
+Big Blind : Card dealt to a spot [9d 3s 8c 6h] 
+UTG : Card dealt to a spot [2h Jd Kh 4h] 
+UTG+1 : Card dealt to a spot [6d 6s 3c 2d] 
+UTG+2 : Card dealt to a spot [Th Qh 8h 5c] 
+UTG+3 : Card dealt to a spot [4d Ac 7d Jc] 
+UTG+4 : Card dealt to a spot [5h 7h Js 7c] 
+Dealer  [ME] : Card dealt to a spot [Qc Td Qd Ks] 
+UTG : Calls $0.05 
+UTG+1 : Calls $0.05 
+UTG+2 : Folds
+UTG+3 : Calls $0.05 
+UTG+4 : Calls $0.05 
+Dealer  [ME] : Calls $0.05 
+Small Blind : Folds
+Big Blind : Checks
+*** FLOP *** [4c 3h Ts]
+Big Blind : Checks
+UTG : Checks
+UTG+1 : Checks
+UTG+3 : Checks
+UTG+4 : Checks
+Dealer  [ME] : Checks
+*** TURN *** [4c 3h Ts] [Ad]
+Big Blind : Checks
+UTG : Checks
+UTG+1 : Checks
+UTG+3 : Checks
+UTG+4 : Checks
+Dealer  [ME] : Checks
+*** RIVER *** [4c 3h Ts Ad] [Tc]
+Big Blind : Checks
+UTG : Checks
+UTG+1 : Checks
+UTG+3 : Checks
+UTG+4 : Checks
+Dealer  [ME] : Checks
+Big Blind : Showdown [9d 3s 3h Ts Tc 8c 6h 4c 3h Ad] (Two pair)
+UTG : Showdown [Kh 4h 4c Ts Tc] (Two pair)
+UTG+1 : Showdown [6d 6s Ts Ad Tc 6d 2d 4c 3h Ad] (Two pair)
+UTG+3 : Showdown [Ac Jc Ts Ad Tc] (Two pair)
+UTG+4 : Mucks [5h 7h Js 7c] (Two pair)
+Dealer  [ME] : Showdown [Td Ks Ts Ad Tc] (Three of a kind)
+UTG+1 : Hand result $0.15 
+Dealer  [ME] : Hand result $0.16 
+*** SUMMARY ***
+Total Pot($0.32)
+Board [4c 3h Ts Ad Tc]
+Seat+2: Small Blind Folded before the FLOP
+Seat+3: Big Blind lost with Two pair [9d 3s 8c 6h-9d 3s 3h Ts Tc]  [9d 3s 8c 6h-8c 6h 4c 3h Ad]
+Seat+4: UTG lost with Two pair [2h Jd Kh 4h-Kh 4h 4c Ts Tc]  
+Seat+5: UTG+1  with Two pair [6d 6s 3c 2d-6d 6s Ts Ad Tc] LO $0.15 [6d 6s 3c 2d-6d 2d 4c 3h Ad]
+Seat+6: UTG+2 Folded before the FLOP
+Seat+7: UTG+3 lost with Two pair [4d Ac 7d Jc   ]  
+Seat+8: UTG+4 [Mucked] [5h 7h Js 7c   ]  
+Seat+9: Dealer HI $0.16  with Three of a kind [Qc Td Qd Ks-Td Ks Ts Ad Tc]  
+
+
+Bovada Hand #2902262110 TBL#8747464 OMAHA HiLo Pot Limit - 2014-08-05 01:50:23
+Seat 1: UTG+5 ($1.50 in chips)
+Seat 2: Dealer ($7.62 in chips)
+Seat 3: Small Blind ($2.60 in chips)
+Seat 4: Big Blind ($1.05 in chips)
+Seat 5: UTG ($5.03 in chips)
+Seat 6: UTG+1 ($2.51 in chips)
+Seat 7: UTG+2 ($3.61 in chips)
+Seat 8: UTG+3 ($13.74 in chips)
+Seat 9: UTG+4 [ME] ($2.71 in chips)
+Dealer : Set dealer/Bring in spot [2] 
+Small Blind : Ante/Small Blind $0.02 
+Big Blind : Big blind/Bring in $0.05 
+UTG+5 : Posts chip $0.05 
+*** HOLE CARDS ***
+UTG+5 : Card dealt to a spot [Jh Kh 2d 5d] 
+Dealer : Card dealt to a spot [7d Ah 3s 3c] 
+Small Blind : Card dealt to a spot [Kd 6c Qd As] 
+Big Blind : Card dealt to a spot [7c 8h Tc 7s] 
+UTG : Card dealt to a spot [9d Qc Jc 8d] 
+UTG+1 : Card dealt to a spot [8c 7h Jd 2s] 
+UTG+2 : Card dealt to a spot [Qs 6h 3d 9h] 
+UTG+3 : Card dealt to a spot [4h Ts 8s 4d] 
+UTG+4  [ME] : Card dealt to a spot [5c 6s Th Ad] 
+UTG : Folds
+UTG+1 : Folds
+UTG+2 : Folds
+UTG+3 : Folds
+UTG+4  [ME] : Folds
+UTG+5 : Checks
+UTG : Seat stand
+UTG : Table leave user
+Dealer : Calls $0.05 
+Small Blind : Calls $0.03 
+Big Blind : Checks
+*** FLOP *** [4c Js 9s]
+Small Blind : Checks
+Big Blind : Checks
+UTG+5 : Checks
+Dealer : Checks
+*** TURN *** [4c Js 9s] [3h]
+Small Blind : Checks
+Big Blind : Checks
+UTG+5 : Bets $0.15 
+Dealer : Calls $0.15 
+Small Blind : Calls $0.15 
+Big Blind : Folds
+*** RIVER *** [4c Js 9s 3h] [Qh]
+Small Blind : Checks
+UTG+5 : Checks
+Table enter user
+Dealer : Checks
+Small Blind : Showdown [Qd As Js 9s Qh] (One pair)
+Seat sit down
+UTG+5 : Mucks [Jh Kh 2d 5d] (One pair)
+Dealer : Showdown [3s 3c Js 3h Qh] (Three of a kind)
+Dealer : Hand result $0.62 
+Seat stand
+Table leave user
+Table enter user
+*** SUMMARY ***
+Total Pot($0.65)
+Board [4c Js 9s 3h Qh]
+Seat+1: UTG+5 [Mucked] [Jh Kh 2d 5d   ]  
+Seat+2: Dealer HI $0.62  with Three of a kind [7d Ah 3s 3c-3s 3c Js 3h Qh]  
+Seat+3: Small Blind lost with One pair [Kd 6c Qd As-Qd As Js 9s Qh]  
+Seat+4: Big Blind Folded on the TURN
+Seat+5: UTG Folded before the FLOP
+Seat+6: UTG+1 Folded before the FLOP
+Seat+7: UTG+2 Folded before the FLOP
+Seat+8: UTG+3 Folded before the FLOP
+Seat+9: UTG+4 Folded before the FLOP
+
+
+Bovada Hand #2902262733 TBL#8747464 OMAHA HiLo Pot Limit - 2014-08-05 01:51:44
+Seat 1: UTG+3 ($1.30 in chips)
+Seat 2: UTG+4 ($8.04 in chips)
+Seat 3: Dealer ($2.40 in chips)
+Seat 4: Small Blind ($1 in chips)
+Seat 6: Big Blind ($2.51 in chips)
+Seat 7: UTG ($3.61 in chips)
+Seat 8: UTG+1 ($13.74 in chips)
+Seat 9: UTG+2 [ME] ($2.71 in chips)
+Dealer : Set dealer/Bring in spot [3] 
+Seat sit down
+Small Blind : Ante/Small Blind $0.02 
+Big Blind : Big blind/Bring in $0.05 
+*** HOLE CARDS ***
+UTG+3 : Card dealt to a spot [Th 9c Ac 7d] 
+UTG+4 : Card dealt to a spot [Ah 7h 6c 6d] 
+Dealer : Card dealt to a spot [7s 8h Tc Qh] 
+Small Blind : Card dealt to a spot [4c 3d Td 3c] 
+Big Blind : Card dealt to a spot [Kd Qc Qd 2s] 
+UTG : Card dealt to a spot [2h Js 3s 3h] 
+UTG+1 : Card dealt to a spot [6h 8c 5s Ts] 
+UTG+2  [ME] : Card dealt to a spot [8d 9s Ks 8s] 
+UTG : Calls $0.05 
+Seat stand
+Table leave user
+UTG+1 : Folds
+UTG+2  [ME] : Folds
+UTG+3 : Calls $0.05 
+UTG+4 : Folds
+Dealer : Calls $0.05 
+Small Blind : Calls $0.03 
+Big Blind : Checks
+*** FLOP *** [5d 7c 2c]
+Small Blind : Checks
+Big Blind : Checks
+UTG : Checks
+UTG+3 : Checks
+Dealer : Checks
+*** TURN *** [5d 7c 2c] [2d]
+Small Blind : Checks
+Big Blind : Bets $0.25 
+UTG : Folds
+UTG+3 : Calls $0.25 
+Dealer : Folds
+Small Blind : Calls $0.25 
+*** RIVER *** [5d 7c 2c 2d] [Jd]
+Small Blind : Checks
+Big Blind : Bets $0.20 
+UTG+3 : Folds
+Small Blind : Calls $0.20 
+Big Blind : Showdown [Kd Qd 5d 2d Jd] (Flush)
+Small Blind : Showdown [3d Td 5d 2d Jd 4c 3d 5d 7c 2c] (Flush)
+Small Blind : Hand result $0.66 
+Big Blind : Hand result $0.67 
+*** SUMMARY ***
+Total Pot($1.40)
+Board [5d 7c 2c 2d Jd]
+Seat+1: UTG+3 Folded on the RIVER
+Seat+2: UTG+4 Folded before the FLOP
+Seat+3: Dealer Folded on the TURN
+Seat+4: Small Blind  with Flush [4c 3d Td 3c-3d Td 5d 2d Jd] LO $0.66 [4c 3d Td 3c-4c 3d 5d 7c 2c]
+Seat+6: Big Blind HI $0.67  with Flush [Kd Qc Qd 2s-Kd Qd 5d 2d Jd]  
+Seat+7: UTG Folded on the TURN
+Seat+8: UTG+1 Folded before the FLOP
+Seat+9: UTG+2 Folded before the FLOP
+
+
+Bovada Hand #2902263429 TBL#8747464 OMAHA HiLo Pot Limit - 2014-08-05 01:53:11
+Seat 1: UTG+2 ($1 in chips)
+Seat 2: UTG+3 ($8.04 in chips)
+Seat 3: UTG+4 ($2.35 in chips)
+Seat 4: Dealer ($1.16 in chips)
+Seat 6: Small Blind ($2.68 in chips)
+Seat 7: Big Blind ($3.56 in chips)
+Seat 8: UTG ($13.74 in chips)
+Seat 9: UTG+1 [ME] ($2.71 in chips)
+Dealer : Set dealer/Bring in spot [4] 
+Small Blind : Ante/Small Blind $0.02 
+Big Blind : Big blind/Bring in $0.05 
+*** HOLE CARDS ***
+UTG+2 : Card dealt to a spot [2c Qc Th 4s] 
+UTG+3 : Card dealt to a spot [Ah Qs 3c Jh] 
+UTG+4 : Card dealt to a spot [Ts 9c Jc 9d] 
+Dealer : Card dealt to a spot [Qd 8s 7h 7d] 
+Small Blind : Card dealt to a spot [6s 5d 9s Tc] 
+Big Blind : Card dealt to a spot [As 4c 7c 4d] 
+UTG : Card dealt to a spot [6d 2h 2s 6c] 
+UTG+1  [ME] : Card dealt to a spot [5c 5s 2d 9h] 
+UTG : Folds
+UTG+1  [ME] : Folds (timeout)
+UTG+1  [ME] : Seat sit out
+UTG+2 : Calls $0.05 
+UTG+3 : Raises $0.22 to $0.22
+UTG+4 : Calls $0.22 
+Dealer : Folds
+Small Blind : Folds
+Big Blind : Folds
+UTG+2 : Calls $0.17 
+*** FLOP *** [Kc 8h 5h]
+UTG+1  [ME] : Seat re-join
+UTG+2 : Checks
+UTG+3 : Bets $0.73 
+UTG+4 : Calls $0.73 
+UTG+2 : Folds
+*** TURN *** [Kc 8h 5h] [Ad]
+UTG+3 : Bets $2.19 
+UTG+4 : Folds
+UTG+3 : Return uncalled portion of bet $2.19 
+UTG+3 : Does not show [Ah Qs 3c Jh] (One pair)
+UTG+3 : Hand result $2.09 
+*** SUMMARY ***
+Total Pot($2.19)
+Board [Kc 8h 5h Ad ]
+Seat+1: UTG+2 Folded on the FLOP
+Seat+2: UTG+3 HI $2.09 [Does not show]  
+Seat+3: UTG+4 Folded on the TURN
+Seat+4: Dealer Folded before the FLOP
+Seat+6: Small Blind Folded before the FLOP
+Seat+7: Big Blind Folded before the FLOP
+Seat+8: UTG Folded before the FLOP
+Seat+9: UTG+1 Folded before the FLOP
+
+
+Bovada Hand #2902264218 TBL#8747464 OMAHA HiLo Pot Limit - 2014-08-05 01:54:48
+Seat 1: UTG+1 ($0.78 in chips)
+Seat 2: UTG+2 ($9.18 in chips)
+Seat 3: UTG+3 ($1.40 in chips)
+Seat 4: UTG+4 ($1.16 in chips)
+Seat 6: Dealer ($2.66 in chips)
+Seat 7: Small Blind ($3.51 in chips)
+Seat 8: Big Blind ($13.74 in chips)
+Seat 9: UTG [ME] ($2.71 in chips)
+Dealer : Set dealer/Bring in spot [6] 
+Small Blind : Ante/Small Blind $0.02 
+Big Blind : Big blind/Bring in $0.05 
+*** HOLE CARDS ***
+UTG+1 : Card dealt to a spot [Ad As 5s 6d] 
+UTG+2 : Card dealt to a spot [4c Td 2s Qd] 
+UTG+3 : Card dealt to a spot [Qc 2h Th 7h] 
+UTG+4 : Card dealt to a spot [6c 2d 3s 5h] 
+Dealer : Card dealt to a spot [Kh Ks 9s Qh] 
+Small Blind : Card dealt to a spot [7s 6s 8s 5d] 
+Big Blind : Card dealt to a spot [4d 9d Jd 7c] 
+UTG  [ME] : Card dealt to a spot [9h 3d 4h Kd] 
+UTG  [ME] : Folds
+UTG+1 : Calls $0.05 
+UTG+2 : Folds
+UTG+3 : Folds
+UTG+4 : Calls $0.05 
+Dealer : Raises $0.20 to $0.20
+Small Blind : Folds
+Big Blind : Folds
+UTG+1 : Calls $0.15 
+UTG+4 : Folds
+*** FLOP *** [6h Js Ts]
+UTG+1 : Checks
+Dealer : Bets $0.52 
+UTG+1 : Calls $0.52 
+*** TURN *** [6h Js Ts] [7d]
+UTG+1 : Checks
+Dealer : Bets $0.10 
+UTG+1 : All-in $0.06 
+Dealer : Return uncalled portion of bet $0.04 
+*** RIVER *** [6h Js Ts 7d] [2c]
+UTG+1 : Showdown [Ad As Js Ts 7d Ad 5s 6h 7d 2c] (One pair)
+Dealer : Showdown [Kh Ks Js Ts 7d] (One pair)
+UTG+1 : Hand result $1.60 
+*** SUMMARY ***
+Total Pot($1.68)
+Board [6h Js Ts 7d 2c]
+Seat+1: UTG+1 HI $0.80  with One pair [Ad As 5s 6d-Ad As Js Ts 7d] LO $0.80 [Ad As 5s 6d-Ad 5s 6h 7d 2c]
+Seat+2: UTG+2 Folded before the FLOP
+Seat+3: UTG+3 Folded before the FLOP
+Seat+4: UTG+4 Folded before the FLOP
+Seat+6: Dealer lost with One pair [Kh Ks 9s Qh-Kh Ks Js Ts 7d]  
+Seat+7: Small Blind Folded before the FLOP
+Seat+8: Big Blind Folded before the FLOP
+Seat+9: UTG Folded before the FLOP
+
+
+Bovada Hand #2902264556 TBL#8747464 OMAHA HiLo Pot Limit - 2014-08-05 01:55:34
+Seat 1: UTG ($1.60 in chips)
+Seat 2: UTG+1 ($9.18 in chips)
+Seat 3: UTG+2 ($1.40 in chips)
+Seat 4: UTG+3 ($1.11 in chips)
+Seat 6: UTG+4 ($1.88 in chips)
+Seat 7: Dealer ($3.49 in chips)
+Seat 8: Small Blind ($13.69 in chips)
+Seat 9: Big Blind [ME] ($2.71 in chips)
+Dealer : Set dealer/Bring in spot [7] 
+Small Blind : Ante/Small Blind $0.02 
+Big Blind  [ME] : Big blind/Bring in $0.05 
+*** HOLE CARDS ***
+UTG : Card dealt to a spot [5d Kh 6s 8s] 
+UTG+1 : Card dealt to a spot [4d 8c 9h 7h] 
+UTG+2 : Card dealt to a spot [Kc Qc 9c Qd] 
+UTG+3 : Card dealt to a spot [Kd 6h Tc 3s] 
+UTG+4 : Card dealt to a spot [Ks 3d 7c Ad] 
+Dealer : Card dealt to a spot [Td 4h Jc Qh] 
+Small Blind : Card dealt to a spot [3c 4s 5c 8h] 
+Big Blind  [ME] : Card dealt to a spot [5h Qs Ts Ac] 
+UTG : Calls $0.05 
+UTG+1 : Folds
+UTG+2 : Calls $0.05 
+UTG+3 : Folds
+UTG+4 : Raises $0.10 to $0.10
+Dealer : Folds
+Small Blind : Calls $0.08 
+Big Blind  [ME] : Calls $0.05 
+UTG : Calls $0.05 
+UTG+2 : Calls $0.05 
+*** FLOP *** [7s 9d 2s]
+Small Blind : Checks
+Big Blind  [ME] : Checks
+UTG : Checks
+UTG+2 : Checks
+UTG+4 : Bets $0.20 
+Small Blind : Calls $0.20 
+Big Blind  [ME] : Calls $0.20 
+UTG : Calls $0.20 
+UTG+2 : Folds
+*** TURN *** [7s 9d 2s] [4c]
+Table enter user
+Small Blind : Checks
+Seat sit down
+Seat stand
+Big Blind  [ME] : Checks (timeout)
+UTG : Checks
+Seat sit down
+UTG+4 : Bets $0.75 
+Seat stand
+Small Blind : Folds
+Big Blind  [ME] : Folds
+UTG : Calls $0.75 
+*** RIVER *** [7s 9d 2s 4c] [As]
+Seat sit down
+UTG : All-in $0.55 
+UTG+4 : Calls $0.55 
+UTG : Showdown [6s 8s 7s 2s As 5d 6s 2s 4c As] (Flush)
+UTG+4 : Mucks [Ks 3d 7c Ad] (Two pair)
+UTG : Hand result $3.71 
+Table deposit $5 
+*** SUMMARY ***
+Total Pot($3.90)
+Board [7s 9d 2s 4c As]
+Seat+1: UTG HI $1.86  with Flush [5d Kh 6s 8s-6s 8s 7s 2s As] LO $1.85 [5d Kh 6s 8s-5d 6s 2s 4c As]
+Seat+2: UTG+1 Folded before the FLOP
+Seat+3: UTG+2 Folded on the FLOP
+Seat+4: UTG+3 Folded before the FLOP
+Seat+6: UTG+4 [Mucked] [Ks 3d 7c Ad   ]  
+Seat+7: Dealer Folded before the FLOP
+Seat+8: Small Blind Folded on the TURN
+Seat+9: Big Blind Folded on the TURN
+
+
+Bovada Hand #2902265645 TBL#8747464 OMAHA HiLo Pot Limit - 2014-08-05 01:57:57
+Seat 1: Big Blind ($3.71 in chips)
+Seat 2: UTG ($9.18 in chips)
+Seat 3: UTG+1 ($1.30 in chips)
+Seat 4: UTG+2 ($1.11 in chips)
+Seat 5: UTG+3 ($5 in chips)
+Seat 6: UTG+4 ($0.28 in chips)
+Seat 7: UTG+5 ($3.49 in chips)
+Seat 8: Dealer ($13.39 in chips)
+Seat 9: Small Blind [ME] ($2.41 in chips)
+Dealer : Set dealer/Bring in spot [8] 
+Small Blind  [ME] : Ante/Small Blind $0.02 
+Big Blind : Big blind/Bring in $0.05 
+UTG+3 : Posts chip $0.05 
+*** HOLE CARDS ***
+Big Blind : Card dealt to a spot [Th 7h Kc Jd] 
+UTG : Card dealt to a spot [7s Ad Jc 8s] 
+UTG+1 : Card dealt to a spot [Jh 8d 6c 6s] 
+UTG+2 : Card dealt to a spot [Ah 8c 4c Td] 
+UTG+3 : Card dealt to a spot [Qh 2d Kh 7d] 
+UTG+4 : Card dealt to a spot [9d Qs 4s 4d] 
+UTG+5 : Card dealt to a spot [5c Kd 6h 2c] 
+Dealer : Card dealt to a spot [5s 2s 5d As] 
+Small Blind  [ME] : Card dealt to a spot [3h Js 4h 7c] 
+UTG : Folds
+UTG+1 : Folds
+UTG+2 : Calls $0.05 
+UTG+3 : Checks
+UTG+4 : Folds
+UTG+5 : Folds
+Dealer : Raises $0.27 to $0.27
+Small Blind  [ME] : Folds
+Big Blind : Folds
+UTG+2 : Folds
+UTG+3 : Folds
+Dealer : Return uncalled portion of bet $0.22 
+Dealer : Does not show [5s 2s 5d As] (High Card)
+Dealer : Hand result $0.22 
+*** SUMMARY ***
+Total Pot($0.22)
+Seat+1: Big Blind Folded before the FLOP
+Seat+2: UTG Folded before the FLOP
+Seat+3: UTG+1 Folded before the FLOP
+Seat+4: UTG+2 Folded before the FLOP
+Seat+5: UTG+3 Folded before the FLOP
+Seat+6: UTG+4 Folded before the FLOP
+Seat+7: UTG+5 Folded before the FLOP
+Seat+8: Dealer HI $0.22 [Does not show]  
+Seat+9: Small Blind Folded before the FLOP
+
+
+Bovada Hand #2902266035 TBL#8747464 OMAHA HiLo Pot Limit - 2014-08-05 01:58:48
+Seat 1: Small Blind ($3.66 in chips)
+Seat 2: Big Blind ($9.18 in chips)
+Seat 3: UTG ($1.30 in chips)
+Seat 4: UTG+1 ($1.06 in chips)
+Seat 5: UTG+2 ($4.95 in chips)
+Seat 6: UTG+3 ($0.28 in chips)
+Seat 7: UTG+4 ($3.49 in chips)
+Seat 8: UTG+5 ($13.56 in chips)
+Seat 9: Dealer [ME] ($2.39 in chips)
+Dealer  [ME] : Set dealer/Bring in spot [9] 
+Small Blind : Ante/Small Blind $0.02 
+Big Blind : Big blind/Bring in $0.05 
+*** HOLE CARDS ***
+Small Blind : Card dealt to a spot [Qh 9s Ah Qs] 
+Big Blind : Card dealt to a spot [5d 8d 3s 3d] 
+UTG : Card dealt to a spot [Ad 3c Td As] 
+UTG+1 : Card dealt to a spot [Ts Kd 7d 9h] 
+UTG+2 : Card dealt to a spot [6h 6d 4d 2h] 
+UTG+3 : Card dealt to a spot [4h 7h Tc Qd] 
+UTG+4 : Card dealt to a spot [9c 3h 2d 7s] 
+UTG+5 : Card dealt to a spot [6s 2c Th Jd] 
+Dealer  [ME] : Card dealt to a spot [Ac 8c 7c 8h] 
+UTG : Raises $0.17 to $0.17
+UTG+1 : Folds
+UTG+2 : Folds
+UTG+3 : Folds
+UTG+4 : Folds
+UTG+5 : Folds
+Dealer  [ME] : Folds
+Small Blind : Calls $0.15 
+Big Blind : Folds
+*** FLOP *** [Jc Jh 5s]
+Small Blind : Checks
+UTG : Bets $0.19 
+Small Blind : Calls $0.19 
+*** TURN *** [Jc Jh 5s] [Kh]
+Small Blind : Checks
+UTG : Bets $0.38 
+Small Blind : Calls $0.38 
+*** RIVER *** [Jc Jh 5s Kh] [Ks]
+Small Blind : Checks
+UTG : Checks
+Small Blind : Showdown [Qh Qs Jc Kh Ks] (Two pair)
+UTG : Showdown [Ad As Jc Kh Ks] (Two pair)
+UTG : Hand result $1.46 
+*** SUMMARY ***
+Total Pot($1.53)
+Board [Jc Jh 5s Kh Ks]
+Seat+1: Small Blind lost with Two pair [Qh 9s Ah Qs-Qh Qs Jc Kh Ks]  
+Seat+2: Big Blind Folded before the FLOP
+Seat+3: UTG HI $1.46  with Two pair [Ad 3c Td As-Ad As Jc Kh Ks]  
+Seat+4: UTG+1 Folded before the FLOP
+Seat+5: UTG+2 Folded before the FLOP
+Seat+6: UTG+3 Folded before the FLOP
+Seat+7: UTG+4 Folded before the FLOP
+Seat+8: UTG+5 Folded before the FLOP
+Seat+9: Dealer Folded before the FLOP
+
+
+Bovada Hand #2902266598 TBL#8747464 OMAHA HiLo Pot Limit - 2014-08-05 02:00:02
+Seat 1: Dealer ($2.92 in chips)
+Seat 2: Small Blind ($9.13 in chips)
+Seat 3: Big Blind ($2.02 in chips)
+Seat 4: UTG ($1.06 in chips)
+Seat 5: UTG+1 ($4.95 in chips)
+Seat 6: UTG+2 ($0.28 in chips)
+Seat 7: UTG+3 ($3.49 in chips)
+Seat 8: UTG+4 ($13.56 in chips)
+Seat 9: UTG+5 [ME] ($2.39 in chips)
+Dealer : Set dealer/Bring in spot [1] 
+Small Blind : Ante/Small Blind $0.02 
+Big Blind : Big blind/Bring in $0.05 
+*** HOLE CARDS ***
+Dealer : Card dealt to a spot [8s 9c 6d 4h] 
+Small Blind : Card dealt to a spot [Kc Ah 2d 4c] 
+Big Blind : Card dealt to a spot [4d Jc Tc 9d] 
+UTG : Card dealt to a spot [6h 6s 8d 3h] 
+UTG+1 : Card dealt to a spot [7s 3c 9h Td] 
+UTG+2 : Card dealt to a spot [Jd 8c Js Jh] 
+UTG+3 : Card dealt to a spot [2s 4s Kh Ac] 
+UTG+4 : Card dealt to a spot [As 6c 9s 7h] 
+UTG+5  [ME] : Card dealt to a spot [Qh 5h Qs Kd] 
+UTG : Folds
+UTG+1 : Folds
+UTG+2 : Folds
+UTG+3 : Calls $0.05 
+UTG+4 : Calls $0.05 
+UTG+5  [ME] : Folds
+Dealer : Calls $0.05 
+Small Blind : Calls $0.03 
+Big Blind : Checks
+*** FLOP *** [Qd 3s Qc]
+Table leave user
+Small Blind : Checks
+Big Blind : Checks
+UTG+3 : Checks
+UTG+4 : Checks
+Dealer : Checks
+*** TURN *** [Qd 3s Qc] [7d]
+Small Blind : Checks
+Big Blind : Checks
+UTG+3 : Checks
+UTG+4 : Checks
+Dealer : Checks
+*** RIVER *** [Qd 3s Qc 7d] [Ad]
+Small Blind : Bets $0.25 
+Big Blind : Calls $0.25 
+UTG+3 : Calls $0.25 
+UTG+4 : Folds
+Dealer : Folds
+Small Blind : Showdown [Kc Ah Qd Qc Ad 2d 4c 3s 7d Ad] (Two pair)
+Big Blind : Showdown [4d 9d Qd 7d Ad] (Flush)
+UTG+3 : Showdown [Kh Ac Qd Qc Ad 2s 4s 3s 7d Ad] (Two pair)
+Small Blind : Hand result $0.23 
+Big Blind : Hand result $0.49 
+UTG+3 : Hand result $0.23 
+*** SUMMARY ***
+Total Pot($1)
+Board [Qd 3s Qc 7d Ad]
+Seat+1: Dealer Folded on the RIVER
+Seat+2: Small Blind  with Two pair [Kc Ah 2d 4c-Kc Ah Qd Qc Ad] LO $0.23 [Kc Ah 2d 4c-2d 4c 3s 7d Ad]
+Seat+3: Big Blind HI $0.49  with Flush [4d Jc Tc 9d-4d 9d Qd 7d Ad]  
+Seat+4: UTG Folded before the FLOP
+Seat+5: UTG+1 Folded before the FLOP
+Seat+6: UTG+2 Folded before the FLOP
+Seat+7: UTG+3  with Two pair [2s 4s Kh-Kh Ac Qd Qc Ad] LO $0.23 [2s 4s Kh Ac-2s 4s 3s 7d Ad]
+Seat+8: UTG+4 Folded on the RIVER
+Seat+9: UTG+5 Folded before the FLOP
+
+
+Bovada Hand #2902267286 TBL#8747464 OMAHA HiLo Pot Limit - 2014-08-05 02:01:35
+Seat 1: UTG+5 ($2.87 in chips)
+Seat 2: Dealer ($9.06 in chips)
+Seat 3: Small Blind ($2.21 in chips)
+Seat 4: Big Blind ($1.06 in chips)
+Seat 5: UTG ($4.95 in chips)
+Seat 6: UTG+1 ($0.28 in chips)
+Seat 7: UTG+2 ($3.42 in chips)
+Seat 8: UTG+3 ($13.51 in chips)
+Seat 9: UTG+4 [ME] ($2.39 in chips)
+Dealer : Set dealer/Bring in spot [2] 
+Small Blind : Ante/Small Blind $0.02 
+Big Blind : Big blind/Bring in $0.05 
+*** HOLE CARDS ***
+UTG+5 : Card dealt to a spot [6c 2c 6d Ah] 
+Dealer : Card dealt to a spot [4h As Ac 9c] 
+Small Blind : Card dealt to a spot [6h 5s 3d 5c] 
+Big Blind : Card dealt to a spot [7d 7s 8c 6s] 
+UTG : Card dealt to a spot [8s Td Th Js] 
+UTG+1 : Card dealt to a spot [Jh 9s 8d Ks] 
+UTG+2 : Card dealt to a spot [Ad 3h 7h Qd] 
+UTG+3 : Card dealt to a spot [Kc Jd Kh Qs] 
+UTG+4  [ME] : Card dealt to a spot [Tc 4d 2s 8h] 
+UTG : Folds
+UTG+1 : Raises $0.17 to $0.17
+UTG+2 : Calls $0.17 
+UTG+3 : Folds
+UTG+4  [ME] : Folds
+UTG+5 : Calls $0.17 
+Dealer : Raises $0.92 to $0.92
+Small Blind : Folds
+Big Blind : Folds
+UTG+1 : All-in $0.11 
+UTG+2 : Folds
+UTG+5 : Calls $0.75 
+*** FLOP *** [3s 5d 7c]
+UTG+5 : Checks
+Dealer : Bets $2.36 
+UTG+5 : All-in $1.95 
+Dealer : Return uncalled portion of bet $0.41 
+*** TURN *** [3s 5d 7c] [4s]
+*** RIVER *** [3s 5d 7c 4s] [Jc]
+UTG+5 : Showdown [2c 6d 3s 5d 4s 2c Ah 3s 5d 4s] (Straight)
+Dealer : Showdown [As Ac 5d 7c Jc 4h As 3s 5d 7c] (One pair)
+UTG+1 : Showdown [Jh Ks 5d 7c Jc] (One pair)
+UTG+5 : Hand result-Side pot $4.93 
+UTG+5 : Hand result $1.02 
+UTG+1 : Seat sit out
+*** SUMMARY ***
+Total Pot($6.26)
+Board [3s 5d 7c 4s Jc]
+Seat+1: UTG+5 HI $2.98  with Straight [6c 2c 6d Ah-2c 6d 3s 5d 4s] LO $2.97 [6c 2c 6d Ah-2c Ah 3s 5d 4s]
+Seat+2: Dealer lost with One pair [4h As 9c-As Ac 5d 7c Jc]  [4h As Ac 9c-4h As 3s 5d 7c]
+Seat+3: Small Blind Folded before the FLOP
+Seat+4: Big Blind Folded before the FLOP
+Seat+5: UTG Folded before the FLOP
+Seat+6: UTG+1 lost with One pair [Jh 9s 8d Ks-Jh Ks 5d 7c Jc]  
+Seat+7: UTG+2 Folded before the FLOP
+Seat+8: UTG+3 Folded before the FLOP
+Seat+9: UTG+4 Folded before the FLOP
+
+
+Bovada Hand #2902267703 TBL#8747464 OMAHA HiLo Pot Limit - 2014-08-05 02:02:26
+Seat 1: UTG+3 ($5.95 in chips)
+Seat 2: UTG+4 ($6.19 in chips)
+Seat 3: Dealer ($2.19 in chips)
+Seat 4: Small Blind ($1.01 in chips)
+Seat 5: Big Blind ($4.95 in chips)
+Seat 7: UTG ($3.25 in chips)
+Seat 8: UTG+1 ($13.51 in chips)
+Seat 9: UTG+2 [ME] ($2.39 in chips)
+Dealer : Set dealer/Bring in spot [3] 
+Small Blind : Ante/Small Blind $0.02 
+Big Blind : Big blind/Bring in $0.05 
+*** HOLE CARDS ***
+UTG+3 : Card dealt to a spot [Qd Qc 4c 7h] 
+UTG+4 : Card dealt to a spot [3d As 7c Jd] 
+Dealer : Card dealt to a spot [9s Ad Td 6d] 
+Small Blind : Card dealt to a spot [4d 4h 5s 6s] 
+Big Blind : Card dealt to a spot [Th Jh 8c 2c] 
+UTG : Card dealt to a spot [6c 5c 8h Js] 
+UTG+1 : Card dealt to a spot [Tc 9c 2d 8d] 
+UTG+2  [ME] : Card dealt to a spot [Ah 9h Kc 2h] 
+Seat stand
+Table leave user
+UTG : Folds
+UTG+1 : Calls $0.05 
+UTG+2  [ME] : Calls $0.05 
+UTG+3 : Calls $0.05 
+UTG+4 : Calls $0.05 
+Dealer : Calls $0.05 
+Small Blind : Calls $0.03 
+Big Blind : Checks
+*** FLOP *** [Kh 3h 4s]
+Small Blind : Checks
+Big Blind : Checks
+UTG+1 : Checks
+UTG+2  [ME] : Bets $0.35 
+UTG+3 : Folds
+UTG+4 : Folds
+Dealer : Folds
+Small Blind : Calls $0.35 
+Big Blind : Folds
+UTG+1 : Folds
+*** TURN *** [Kh 3h 4s] [2s]
+Small Blind : Checks
+UTG+2  [ME] : Checks
+*** RIVER *** [Kh 3h 4s 2s] [3s]
+Small Blind : All-in $0.61 
+UTG+2  [ME] : Calls $0.61 
+Small Blind : Showdown [5s 6s 4s 2s 3s 5s 6s 3h 4s 2s] (Straight Flush)
+Table enter user
+UTG+2  [ME] : Mucks [Ah 9h Kc 2h] (Two pair)
+Small Blind : Hand result $2.16 
+Seat sit down
+*** SUMMARY ***
+Total Pot($2.27)
+Board [Kh 3h 4s 2s 3s]
+Seat+1: UTG+3 Folded on the FLOP
+Seat+2: UTG+4 Folded on the FLOP
+Seat+3: Dealer Folded on the FLOP
+Seat+4: Small Blind HI $1.08  with Straight Flush [4d 4h 5s 6s-5s 6s 4s 2s 3s] LO $1.08 [4d 4h 5s 6s-5s 6s 3h 4s 2s]
+Seat+5: Big Blind Folded on the FLOP
+Seat+7: UTG Folded before the FLOP
+Seat+8: UTG+1 Folded on the FLOP
+Seat+9: UTG+2 [Mucked] [Ah 9h Kc 2h   ]  
+
+
+Bovada Hand #2902268213 TBL#8747464 OMAHA HiLo Pot Limit - 2014-08-05 02:03:34
+Seat 1: UTG+2 ($5.90 in chips)
+Seat 2: UTG+3 ($6.14 in chips)
+Seat 3: UTG+4 ($2.14 in chips)
+Seat 4: Dealer ($2.16 in chips)
+Seat 5: Small Blind ($4.90 in chips)
+Seat 7: Big Blind ($3.25 in chips)
+Seat 8: UTG ($13.46 in chips)
+Seat 9: UTG+1 [ME] ($1.38 in chips)
+Dealer : Set dealer/Bring in spot [4] 
+Small Blind : Ante/Small Blind $0.02 
+Table deposit $5 
+Big Blind : Big blind/Bring in $0.05 
+*** HOLE CARDS ***
+UTG+2 : Card dealt to a spot [Kh Ks 2h 5s] 
+UTG+3 : Card dealt to a spot [2s 8s Qh Qd] 
+UTG+4 : Card dealt to a spot [Js 8c Tc 6s] 
+Dealer : Card dealt to a spot [Jd 7h 4h 4c] 
+Small Blind : Card dealt to a spot [Th Jc 5h 3s] 
+Big Blind : Card dealt to a spot [6h Ad 5d 6c] 
+UTG : Card dealt to a spot [3h Ac Kd Td] 
+UTG+1  [ME] : Card dealt to a spot [Kc 8d 4s 7s] 
+UTG : Calls $0.05 
+UTG+1  [ME] : Folds
+UTG+2 : Calls $0.05 
+UTG+3 : Folds
+Table enter user
+UTG+4 : Calls $0.05 
+Dealer : Folds
+UTG+1  [ME] : Seat stand
+UTG+1  [ME] : Table leave user
+Small Blind : Calls $0.03 
+Big Blind : Checks
+*** FLOP *** [7c Jh 2c]
+Small Blind : Checks
+Big Blind : Checks
+UTG : Bets $0.25 
+UTG+2 : Calls $0.25 
+UTG+4 : Calls $0.25 
+Small Blind : Folds
+Big Blind : Folds
+*** TURN *** [7c Jh 2c] [Qs]
+UTG : Bets $1 
+UTG+2 : Folds
+Table enter user
+Table enter user
+UTG+4 : Calls $1 
+*** RIVER *** [7c Jh 2c Qs] [Ah]
+Seat sit down
+UTG : Bets $3 
+UTG+4 : All-in $0.84 
+UTG : Return uncalled portion of bet $2.16 
+UTG : Showdown [Kd Td Jh Qs Ah] (Straight)
+UTG+4 : Showdown [Js Tc Jh Qs Ah 8c 6s 7c 2c Ah] (One pair)
+UTG+4 : Hand result $2.22 
+UTG : Hand result $2.23 
+*** SUMMARY ***
+Total Pot($4.68)
+Board [7c Jh 2c Qs Ah]
+Seat+1: UTG+2 Folded on the TURN
+Seat+2: UTG+3 Folded before the FLOP
+Seat+3: UTG+4  with One pair [Js 8c Tc 6s-Js Tc Jh Qs Ah] LO $2.22 [Js 8c Tc 6s-8c 6s 7c 2c Ah]
+Seat+4: Dealer Folded before the FLOP
+Seat+5: Small Blind Folded on the FLOP
+Seat+7: Big Blind Folded on the FLOP
+Seat+8: UTG HI $2.23  with Straight [3h Ac Kd Td-Kd Td Jh Qs Ah]  
+Seat+9: UTG+1 Folded before the FLOP
+

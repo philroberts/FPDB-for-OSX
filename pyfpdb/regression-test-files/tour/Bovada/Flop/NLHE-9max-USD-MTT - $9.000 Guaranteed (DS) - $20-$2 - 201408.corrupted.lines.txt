@@ -1,0 +1,5020 @@
+Bovada Hand #3031585570: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 1 (10/20) - 2014-08-06 21:46:09
+Seat 1: Big Blind (3,000 in chips)
+Seat 2: UTG (3,000 in chips)
+Seat 3: UTG+1 (3,000 in chips)
+Seat 4: UTG+2 (3,000 in chips)
+Seat 5: UTG+3 (3,000 in chips)
+Seat 6: UTG+4 (3,000 in chips)
+Seat 7: UTG+5 (3,000 in chips)
+Seat 8: Dealer [ME] (3,000 in chips)
+Seat 9: Small Blind (3,000 in chips)
+Dealer [ME] : Table enter user
+UTG+4 : Table enter user
+UTG+5 : Table enter user
+UTG+2 : Table enter user
+Big Blind : Table enter user
+UTG+1 : Table enter user
+Small Blind : Table enter user
+UTG+3 : Table enter user
+UTG : Table enter user
+Big Blind : Draw for dealer [Td] 
+UTG : Draw for dealer [Th] 
+UTG+1 : Draw for dealer [4d] 
+UTG+2 : Draw for dealer [8h] 
+UTG+3 : Draw for dealer [3s] 
+UTG+4 : Draw for dealer [7c] 
+UTG+5 : Draw for dealer [Jd] 
+Dealer [ME] : Draw for dealer [Kd] 
+Small Blind : Draw for dealer [5s] 
+Dealer [ME] : Set dealer/Bring in spot [8] 
+Small Blind : Ante/Small blind 10 
+Big Blind : Big blind/Bring in 20 
+*** HOLE CARDS ***
+Big Blind : Card dealt to a spot [Ts 8d] 
+UTG : Card dealt to a spot [9h 8s] 
+UTG+1 : Card dealt to a spot [Qs Ac] 
+UTG+2 : Card dealt to a spot [Jd 3s] 
+UTG+3 : Card dealt to a spot [6h 3d] 
+UTG+4 : Card dealt to a spot [4s Kd] 
+UTG+5 : Card dealt to a spot [7d 4c] 
+Dealer [ME] : Card dealt to a spot [Qd Ad] 
+Small Blind : Card dealt to a spot [9c 8h] 
+UTG : Folds
+UTG+1 : Raises 40 to 40
+UTG+2 : Folds
+UTG+3 : Folds
+UTG+4 : Folds
+UTG+5 : Folds
+Dealer [ME] : Call 40 
+Small Blind : Call 30 
+Big Blind : Folds
+*** FLOP *** [Kc 2d As]
+Small Blind : Checks
+UTG+1 : Bets 70 
+Dealer [ME] : Call 70 
+Small Blind : Sit out
+Small Blind : Folds(timeout)
+*** TURN *** [Kc 2d As] [5s]
+Small Blind : Re-join
+UTG+1 : Bets 200 
+Dealer [ME] : Call 200 
+*** RIVER *** [Kc 2d As 5s] [Jc]
+UTG+1 : Checks
+Dealer [ME] : Checks
+UTG+1 : Showdown [As Ac Kc Qs Jc] (One pair)
+Dealer [ME] : Showdown [As Ad Kc Qd Jc] (One pair)
+UTG+1 : Hand Result 340 
+Dealer [ME] : Hand Result 340 
+*** SUMMARY ***
+Total Pot(680)
+Board [Kc 2d As 5s Jc]
+Seat+1: Big Blind Folded before the FLOP
+Seat+2: UTG Folded before the FLOP
+Seat+3: UTG+1 340  with One pair [Qs Ac-As Ac Kc Qs Jc]  
+Seat+4: UTG+2 Folded before the FLOP
+Seat+5: UTG+3 Folded before the FLOP
+Seat+6: UTG+4 Folded before the FLOP
+Seat+7: UTG+5 Folded before the FLOP
+Seat+8: Dealer 340  with One pair [Qd Ad-As Ad Kc Qd Jc]  
+Seat+9: Small Blind Folded on the FLOP
+
+
+Bovada Hand #3031588137: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 1 (10/20) - 2014-08-06 21:48:00
+Seat 1: Small Blind (2,980 in chips)
+Seat 2: Big Blind (3,000 in chips)
+Seat 3: UTG (3,030 in chips)
+Seat 4: UTG+1 (3,000 in chips)
+Seat 5: UTG+2 (3,000 in chips)
+Seat 6: UTG+3 (3,000 in chips)
+Seat 8: UTG+4 [ME] (3,030 in chips)
+Seat 9: Dealer (2,960 in chips)
+Dealer : Set dealer/Bring in spot [9] 
+Small Blind : Ante/Small blind 10 
+Big Blind : Big blind/Bring in 20 
+*** HOLE CARDS ***
+Small Blind : Card dealt to a spot [7s 3c] 
+Big Blind : Card dealt to a spot [7c Jh] 
+UTG : Card dealt to a spot [Kd 4c] 
+UTG+1 : Card dealt to a spot [Td 2h] 
+UTG+2 : Card dealt to a spot [9s Ac] 
+UTG+3 : Card dealt to a spot [5s 9h] 
+UTG+4 [ME] : Card dealt to a spot [5d 2s] 
+Dealer : Card dealt to a spot [4s Js] 
+UTG : Folds
+UTG+1 : Folds
+UTG+2 : Call 20 
+UTG+3 : Folds
+UTG+4 [ME] : Folds
+Dealer : Folds
+Small Blind : Folds
+Big Blind : Checks
+*** FLOP *** [Qs 6d Qc]
+Big Blind : Checks
+UTG+2 : Checks
+*** TURN *** [Qs 6d Qc] [4h]
+Big Blind : Checks
+UTG+2 : Bets 50 
+Big Blind : Folds
+UTG+2 : Return uncalled portion of bet 50 
+UTG+2 : Does not show [9s Ac] (One pair)
+UTG+2 : Hand Result 50 
+*** SUMMARY ***
+Total Pot(50)
+Board [Qs 6d Qc 4h ]
+Seat+1: Small Blind Folded before the FLOP
+Seat+2: Big Blind Folded on the TURN
+Seat+3: UTG Folded before the FLOP
+Seat+4: UTG+1 Folded before the FLOP
+Seat+5: UTG+2 50 [Does not show]  
+Seat+6: UTG+3 Folded before the FLOP
+Seat+8: UTG+4 Folded before the FLOP
+Seat+9: Dealer Folded before the FLOP
+
+
+Bovada Hand #3031589003: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 1 (10/20) - 2014-08-06 21:48:57
+Seat 1: Dealer (2,970 in chips)
+Seat 2: Small Blind (2,980 in chips)
+Seat 3: Big Blind (3,030 in chips)
+Seat 4: UTG (3,000 in chips)
+Seat 5: UTG+1 (3,030 in chips)
+Seat 6: UTG+2 (3,000 in chips)
+Seat 7: UTG+3 (3,000 in chips)
+Seat 8: UTG+4 [ME] (3,030 in chips)
+Seat 9: UTG+5 (2,960 in chips)
+Dealer : Set dealer/Bring in spot [1] 
+Small Blind : Ante/Small blind 10 
+Big Blind : Big blind/Bring in 20 
+*** HOLE CARDS ***
+Dealer : Card dealt to a spot [Ts 3h] 
+Small Blind : Card dealt to a spot [4s 9h] 
+Big Blind : Card dealt to a spot [Td 6h] 
+UTG : Card dealt to a spot [Qs Qh] 
+UTG+1 : Card dealt to a spot [2d 5h] 
+UTG+2 : Card dealt to a spot [Kd Ks] 
+UTG+3 : Card dealt to a spot [7s As] 
+UTG+4 [ME] : Card dealt to a spot [8d Th] 
+UTG+5 : Card dealt to a spot [4c 7d] 
+UTG : Raises 60 to 60
+UTG+1 : Folds
+UTG+2 : Raises 100 to 100
+UTG+3 : Folds
+UTG+4 [ME] : Folds
+UTG+5 : Folds
+Dealer : Folds
+Small Blind : Folds
+Big Blind : Folds
+UTG : All-in(raise) 2940 to 3000
+UTG+2 : All-in 2900 
+*** FLOP *** [Jh 9c Qd]
+*** TURN *** [Jh 9c Qd] [4d]
+*** RIVER *** [Jh 9c Qd 4d] [8c]
+UTG : Showdown [Qs Qh Qd Jh 9c] (Three of a kind)
+UTG+2 : Showdown [Ks Kd Qd Jh 9c] (One pair)
+UTG : Hand Result 6030 
+UTG+2 : Ranking 132 
+UTG+2 : Ranking 132 
+UTG+2 : Ranking 132 
+UTG+2 : Ranking 132 
+UTG+2 : Stand
+*** SUMMARY ***
+Total Pot(6030)
+Board [Jh 9c Qd 4d 8c]
+Seat+1: Dealer Folded before the FLOP
+Seat+2: Small Blind Folded before the FLOP
+Seat+3: Big Blind Folded before the FLOP
+Seat+4: UTG 6030  with Three of a kind [Qs Qh-Qs Qh Qd Jh 9c]  
+Seat+5: UTG+1 Folded before the FLOP
+Seat+6: UTG+2 lose with One pair [Kd Ks-Ks Kd Qd Jh 9c]  
+Seat+7: UTG+3 Folded before the FLOP
+Seat+8: UTG+4 Folded before the FLOP
+Seat+9: UTG+5 Folded before the FLOP
+
+
+Bovada Hand #3031589906: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 1 (10/20) - 2014-08-06 21:49:57
+Seat 1: UTG+4 (2,970 in chips)
+Seat 2: Dealer (2,970 in chips)
+Seat 3: Small Blind (3,010 in chips)
+Seat 4: Big Blind (6,030 in chips)
+Seat 5: UTG (3,030 in chips)
+Seat 7: UTG+1 (3,000 in chips)
+Seat 8: UTG+2 [ME] (3,030 in chips)
+Seat 9: UTG+3 (2,960 in chips)
+Dealer : Set dealer/Bring in spot [2] 
+Small Blind : Ante/Small blind 10 
+Big Blind : Big blind/Bring in 20 
+*** HOLE CARDS ***
+UTG+4 : Card dealt to a spot [Kd 3c] 
+Dealer : Card dealt to a spot [2s 8d] 
+Small Blind : Card dealt to a spot [2h 4d] 
+Big Blind : Card dealt to a spot [8c 3s] 
+UTG : Card dealt to a spot [Qc Jh] 
+UTG+1 : Card dealt to a spot [Qh 5h] 
+UTG+2 [ME] : Card dealt to a spot [5c Ad] 
+UTG+3 : Card dealt to a spot [7c 6s] 
+UTG : Call 20 
+UTG+1 : Folds
+UTG+2 [ME] : Folds
+UTG+3 : Call 20 
+UTG+4 : Folds
+Dealer : Folds
+Small Blind : Folds
+Big Blind : Checks
+*** FLOP *** [Ah 5s Td]
+Big Blind : Checks
+UTG : Checks
+UTG+3 : Bets 40 
+Big Blind : Folds
+UTG : Call 40 
+*** TURN *** [Ah 5s Td] [6d]
+UTG : Checks
+UTG+3 : Bets 100 
+UTG : Call 100 
+*** RIVER *** [Ah 5s Td 6d] [9d]
+UTG : Checks
+UTG+3 : Checks
+UTG : Showdown [Ah Qc Jh Td 9d] (High Card)
+UTG+3 : Showdown [6s 6d Ah Td 9d] (One pair)
+UTG+3 : Hand Result 350 
+*** SUMMARY ***
+Total Pot(350)
+Board [Ah 5s Td 6d 9d]
+Seat+1: UTG+4 Folded before the FLOP
+Seat+2: Dealer Folded before the FLOP
+Seat+3: Small Blind Folded before the FLOP
+Seat+4: Big Blind Folded on the FLOP
+Seat+5: UTG lose with High Card [Qc Jh-Ah Qc Jh Td 9d]  
+Seat+7: UTG+1 Folded before the FLOP
+Seat+8: UTG+2 Folded before the FLOP
+Seat+9: UTG+3 350  with One pair [7c 6s-6s 6d Ah Td 9d]  
+
+
+Bovada Hand #3031591187: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 1 (10/20) - 2014-08-06 21:51:24
+Seat 2: UTG+4 (2,970 in chips)
+Seat 3: Dealer (3,000 in chips)
+Seat 4: Small Blind (6,010 in chips)
+Seat 5: Big Blind (2,870 in chips)
+Seat 6: UTG (3,000 in chips)
+Seat 7: UTG+1 (3,000 in chips)
+Seat 8: UTG+2 [ME] (3,030 in chips)
+Seat 9: UTG+3 (3,150 in chips)
+Dealer : Set dealer/Bring in spot [3] 
+Small Blind : Ante/Small blind 10 
+Big Blind : Big blind/Bring in 20 
+*** HOLE CARDS ***
+UTG+4 : Card dealt to a spot [Kc Ah] 
+Dealer : Card dealt to a spot [2h Qc] 
+Small Blind : Card dealt to a spot [Jc 5d] 
+Big Blind : Card dealt to a spot [3s 8s] 
+UTG : Card dealt to a spot [3c 6s] 
+UTG+1 : Card dealt to a spot [Th 2s] 
+UTG+2 [ME] : Card dealt to a spot [Ad 7d] 
+UTG+3 : Card dealt to a spot [3d 8c] 
+UTG : Folds
+UTG+1 : Folds
+UTG+2 [ME] : Raises 50 to 50
+UTG+3 : Folds
+UTG+4 : Call 50 
+Dealer : Folds
+Small Blind : Folds
+Big Blind : Call 30 
+*** FLOP *** [5h 5c Ac]
+Big Blind : Checks
+UTG+2 [ME] : Bets 80 
+UTG+4 : Raises 200 to 200
+Big Blind : Folds
+UTG+2 [ME] : Call 120 
+*** TURN *** [5h 5c Ac] [9d]
+UTG+2 [ME] : Checks
+UTG+4 : Bets 245 
+UTG+2 [ME] : Call 245 
+*** RIVER *** [5h 5c Ac 9d] [8d]
+UTG+2 [ME] : Checks
+UTG+4 : Bets 695 
+UTG+2 [ME] : Call 695 
+UTG+4 : Showdown [Ah Ac 5h 5c Kc] (Two pair)
+UTG+2 [ME] : Mucks [Ad 7d] (Two pair)
+UTG+4 : Hand Result 2440 
+*** SUMMARY ***
+Total Pot(2440)
+Board [5h 5c Ac 9d 8d]
+Seat+2: UTG+4 2440  with Two pair [Kc Ah-Ah Ac 5h 5c Kc]  
+Seat+3: Dealer Folded before the FLOP
+Seat+4: Small Blind Folded before the FLOP
+Seat+5: Big Blind Folded on the FLOP
+Seat+6: UTG Folded before the FLOP
+Seat+7: UTG+1 Folded before the FLOP
+Seat+8: UTG+2 [Mucked] [Ad 7d ]  
+Seat+9: UTG+3 Folded before the FLOP
+
+
+Bovada Hand #3031592991: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 1 (10/20) - 2014-08-06 21:53:21
+Seat 1: UTG+3 (3,000 in chips)
+Seat 3: UTG+4 (3,000 in chips)
+Seat 4: Dealer (6,000 in chips)
+Seat 5: Small Blind (2,820 in chips)
+Seat 6: Big Blind (3,000 in chips)
+Seat 7: UTG (3,000 in chips)
+Seat 8: UTG+1 [ME] (1,840 in chips)
+Seat 9: UTG+2 (3,150 in chips)
+Dealer : Set dealer/Bring in spot [4] 
+Small Blind : Ante/Small blind 10 
+Big Blind : Big blind/Bring in 20 
+*** HOLE CARDS ***
+UTG+3 : Card dealt to a spot [6c Jd] 
+UTG+4 : Card dealt to a spot [Qh 3h] 
+Dealer : Card dealt to a spot [6d 4s] 
+Small Blind : Card dealt to a spot [7s 9c] 
+Big Blind : Card dealt to a spot [Th Kd] 
+UTG : Card dealt to a spot [8s 3c] 
+UTG+1 [ME] : Card dealt to a spot [5c 9d] 
+UTG+2 : Card dealt to a spot [Ac 5h] 
+UTG : Folds
+UTG+1 [ME] : Folds
+UTG+2 : Call 20 
+UTG+3 : Folds
+UTG+4 : Folds
+Dealer : Folds
+Small Blind : Call 10 
+Big Blind : Checks
+*** FLOP *** [2d 7d 8h]
+Small Blind : Checks
+Big Blind : Checks
+UTG+2 : Checks
+*** TURN *** [2d 7d 8h] [Ad]
+Small Blind : Bets 60 
+Big Blind : Call 60 
+UTG+2 : Call 60 
+*** RIVER *** [2d 7d 8h Ad] [2s]
+Small Blind : Bets 240 
+Big Blind : Folds
+UTG+2 : Call 240 
+Small Blind : Showdown [7s 7d 2s 2d Ad] (Two pair)
+UTG+2 : Showdown [Ad Ac 2s 2d 8h] (Two pair)
+UTG+2 : Hand Result 720 
+*** SUMMARY ***
+Total Pot(720)
+Board [2d 7d 8h Ad 2s]
+Seat+1: UTG+3 Folded before the FLOP
+Seat+3: UTG+4 Folded before the FLOP
+Seat+4: Dealer Folded before the FLOP
+Seat+5: Small Blind lose with Two pair [7s 9c-7s 7d 2s 2d Ad]  
+Seat+6: Big Blind Folded on the RIVER
+Seat+7: UTG Folded before the FLOP
+Seat+8: UTG+1 Folded before the FLOP
+Seat+9: UTG+2 720  with Two pair [Ac 5h-Ad Ac 2s 2d 8h]  
+
+
+Bovada Hand #3031594107: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 1 (10/20) - 2014-08-06 21:54:33
+Seat 1: UTG+2 (3,000 in chips)
+Seat 3: UTG+3 (3,000 in chips)
+Seat 4: UTG+4 (6,000 in chips)
+Seat 5: Dealer (2,500 in chips)
+Seat 6: Small Blind (2,920 in chips)
+Seat 7: Big Blind (3,000 in chips)
+Seat 8: UTG [ME] (1,840 in chips)
+Seat 9: UTG+1 (3,550 in chips)
+Dealer : Set dealer/Bring in spot [5] 
+Small Blind : Ante/Small blind 10 
+Big Blind : Big blind/Bring in 20 
+*** HOLE CARDS ***
+UTG+2 : Card dealt to a spot [9s 6d] 
+UTG+3 : Card dealt to a spot [Kd Th] 
+UTG+4 : Card dealt to a spot [Kh 4s] 
+Dealer : Card dealt to a spot [Ad Jd] 
+Small Blind : Card dealt to a spot [2c 3h] 
+Big Blind : Card dealt to a spot [4d 6h] 
+UTG [ME] : Card dealt to a spot [5s 8h] 
+UTG+1 : Card dealt to a spot [7h Qc] 
+UTG [ME] : Folds
+UTG+1 : Folds
+UTG+2 : Call 20 
+UTG+3 : Folds
+UTG+4 : Folds
+Dealer : Call 20 
+Small Blind : Call 10 
+Big Blind : Checks
+*** FLOP *** [3d 8s 5h]
+Small Blind : Checks
+Big Blind : Checks
+UTG+2 : Checks(timeout)
+Dealer : Bets 98 
+Small Blind : Call 98 
+Big Blind : Raises 380 to 380
+UTG+2 : Folds
+UTG+2 : Sit out
+Dealer : Folds
+Small Blind : Folds
+Big Blind : Return uncalled portion of bet 282 
+Big Blind : Does not show [4d 6h] (High Card)
+Big Blind : Hand Result 374 
+UTG+2 : Re-join
+*** SUMMARY ***
+Total Pot(374)
+Board [3d 8s 5h  ]
+Seat+1: UTG+2 Folded on the FLOP
+Seat+3: UTG+3 Folded before the FLOP
+Seat+4: UTG+4 Folded before the FLOP
+Seat+5: Dealer Folded on the FLOP
+Seat+6: Small Blind Folded on the FLOP
+Seat+7: Big Blind 374 [Does not show]  
+Seat+8: UTG Folded before the FLOP
+Seat+9: UTG+1 Folded before the FLOP
+
+
+Bovada Hand #3031595948: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 1 (10/20) - 2014-08-06 21:56:30
+Seat 1: UTG+1 (2,980 in chips)
+Seat 2: UTG+2 (3,000 in chips)
+Seat 3: UTG+3 (3,000 in chips)
+Seat 4: UTG+4 (6,000 in chips)
+Seat 5: UTG+5 (2,382 in chips)
+Seat 6: Dealer (2,802 in chips)
+Seat 7: Small Blind (3,256 in chips)
+Seat 8: Big Blind [ME] (1,840 in chips)
+Seat 9: UTG (3,550 in chips)
+Dealer : Set dealer/Bring in spot [6] 
+Small Blind : Ante/Small blind 10 
+Big Blind [ME] : Big blind/Bring in 20 
+*** HOLE CARDS ***
+UTG+1 : Card dealt to a spot [Th 4s] 
+UTG+2 : Card dealt to a spot [3c 2c] 
+UTG+3 : Card dealt to a spot [5s Kc] 
+UTG+4 : Card dealt to a spot [Jd Ks] 
+UTG+5 : Card dealt to a spot [Jh 3d] 
+Dealer : Card dealt to a spot [Ad 7s] 
+Small Blind : Card dealt to a spot [Tc Td] 
+Big Blind [ME] : Card dealt to a spot [Ac Ah] 
+UTG : Card dealt to a spot [3h 4d] 
+UTG : Folds
+UTG+1 : Folds
+UTG+2 : Call 20 
+UTG+3 : Folds
+UTG+4 : Call 20 
+UTG+5 : Folds
+Dealer : Call 20 
+Small Blind : Raises 90 to 100
+Big Blind [ME] : Raises 230 to 250
+UTG+2 : Folds
+UTG+4 : Folds
+Dealer : Folds
+Small Blind : Call 150 
+*** FLOP *** [Jc Qh 5c]
+Small Blind : Checks
+Big Blind [ME] : Bets 300 
+Small Blind : Folds
+Big Blind [ME] : Return uncalled portion of bet 300 
+Big Blind [ME] : Does not show [Ac Ah] (One pair)
+Big Blind [ME] : Hand Result 560 
+*** SUMMARY ***
+Total Pot(560)
+Board [Jc Qh 5c  ]
+Seat+1: UTG+1 Folded before the FLOP
+Seat+2: UTG+2 Folded before the FLOP
+Seat+3: UTG+3 Folded before the FLOP
+Seat+4: UTG+4 Folded before the FLOP
+Seat+5: UTG+5 Folded before the FLOP
+Seat+6: Dealer Folded before the FLOP
+Seat+7: Small Blind Folded on the FLOP
+Seat+8: Big Blind 560 [Does not show]  
+Seat+9: UTG Folded before the FLOP
+
+
+Bovada Hand #3031596975: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 2 (20/40) - 2014-08-06 21:57:36
+Seat 1: UTG (2,980 in chips)
+Seat 2: UTG+1 (2,980 in chips)
+Seat 3: UTG+2 (3,000 in chips)
+Seat 4: UTG+3 (5,980 in chips)
+Seat 6: UTG+4 (2,782 in chips)
+Seat 7: Dealer (3,006 in chips)
+Seat 8: Small Blind [ME] (2,150 in chips)
+Seat 9: Big Blind (3,550 in chips)
+Dealer : Set dealer/Bring in spot [7] 
+Small Blind [ME] : Ante/Small blind 20 
+Big Blind : Big blind/Bring in 40 
+*** HOLE CARDS ***
+UTG : Card dealt to a spot [Jh Js] 
+UTG+1 : Card dealt to a spot [Qs 6d] 
+UTG+2 : Card dealt to a spot [4s Qd] 
+UTG+3 : Card dealt to a spot [Ts Qh] 
+UTG+4 : Card dealt to a spot [6c 5s] 
+Dealer : Card dealt to a spot [6s 4c] 
+Small Blind [ME] : Card dealt to a spot [Td Ah] 
+Big Blind : Card dealt to a spot [4h 9h] 
+UTG : Raises 140 to 140
+UTG+1 : Folds
+UTG+2 : Folds
+UTG+3 : Folds
+UTG+4 : Call 140 
+Dealer : Folds
+Small Blind [ME] : Folds
+Big Blind : Call 100 
+*** FLOP *** [Jc Tc 3h]
+Big Blind : Checks
+UTG : Bets 440 
+UTG+4 : Folds
+Big Blind : Folds
+UTG : Return uncalled portion of bet 440 
+UTG : Does not show [Jh Js] (Three of a kind)
+UTG : Hand Result 440 
+*** SUMMARY ***
+Total Pot(440)
+Board [Jc Tc 3h  ]
+Seat+1: UTG 440 [Does not show]  
+Seat+2: UTG+1 Folded before the FLOP
+Seat+3: UTG+2 Folded before the FLOP
+Seat+4: UTG+3 Folded before the FLOP
+Seat+6: UTG+4 Folded on the FLOP
+Seat+7: Dealer Folded before the FLOP
+Seat+8: Small Blind Folded before the FLOP
+Seat+9: Big Blind Folded on the FLOP
+
+
+Bovada Hand #3031597836: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 2 (20/40) - 2014-08-06 21:58:33
+Seat 1: Big Blind (3,280 in chips)
+Seat 2: UTG (2,980 in chips)
+Seat 3: UTG+1 (3,000 in chips)
+Seat 4: UTG+2 (5,980 in chips)
+Seat 5: UTG+3 (3,000 in chips)
+Seat 6: UTG+4 (2,642 in chips)
+Seat 7: UTG+5 (3,006 in chips)
+Seat 8: Dealer [ME] (2,130 in chips)
+Seat 9: Small Blind (3,410 in chips)
+Dealer [ME] : Set dealer/Bring in spot [8] 
+Small Blind : Ante/Small blind 20 
+Big Blind : Big blind/Bring in 40 
+*** HOLE CARDS ***
+Big Blind : Card dealt to a spot [2h 3d] 
+UTG : Card dealt to a spot [9s 4c] 
+UTG+1 : Card dealt to a spot [3s 8d] 
+UTG+2 : Card dealt to a spot [8s 6d] 
+UTG+3 : Card dealt to a spot [6h Tc] 
+UTG+4 : Card dealt to a spot [5s 4h] 
+UTG+5 : Card dealt to a spot [Jd Kd] 
+Dealer [ME] : Card dealt to a spot [Ks Js] 
+Small Blind : Card dealt to a spot [3h 7d] 
+UTG : Folds
+UTG+1 : Folds
+UTG+2 : Folds
+UTG+3 : Folds
+UTG+4 : Folds
+UTG+5 : Raises 80 to 80
+Dealer [ME] : Call 80 
+Small Blind : Folds
+Big Blind : Call 40 
+*** FLOP *** [Qs 5d 9d]
+Big Blind : Checks
+UTG+5 : Bets 160 
+Dealer [ME] : Call 160 
+Big Blind : Folds
+*** TURN *** [Qs 5d 9d] [Qc]
+UTG+5 : Bets 240 
+Dealer [ME] : Folds
+UTG+5 : Return uncalled portion of bet 240 
+UTG+5 : Does not show [Jd Kd] (One pair)
+UTG+5 : Hand Result 580 
+*** SUMMARY ***
+Total Pot(580)
+Board [Qs 5d 9d Qc ]
+Seat+1: Big Blind Folded on the FLOP
+Seat+2: UTG Folded before the FLOP
+Seat+3: UTG+1 Folded before the FLOP
+Seat+4: UTG+2 Folded before the FLOP
+Seat+5: UTG+3 Folded before the FLOP
+Seat+6: UTG+4 Folded before the FLOP
+Seat+7: UTG+5 580 [Does not show]  
+Seat+8: Dealer Folded on the TURN
+Seat+9: Small Blind Folded before the FLOP
+
+
+Bovada Hand #3031599071: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 2 (20/40) - 2014-08-06 21:59:54
+Seat 1: Small Blind (3,200 in chips)
+Seat 2: Big Blind (2,980 in chips)
+Seat 3: UTG (3,000 in chips)
+Seat 4: UTG+1 (5,980 in chips)
+Seat 5: UTG+2 (3,000 in chips)
+Seat 6: UTG+3 (2,642 in chips)
+Seat 7: UTG+4 (3,346 in chips)
+Seat 8: UTG+5 [ME] (1,890 in chips)
+Seat 9: Dealer (3,390 in chips)
+Dealer : Set dealer/Bring in spot [9] 
+Small Blind : Ante/Small blind 20 
+Big Blind : Big blind/Bring in 40 
+*** HOLE CARDS ***
+Small Blind : Card dealt to a spot [Js Ts] 
+Big Blind : Card dealt to a spot [5d 8d] 
+UTG : Card dealt to a spot [Jd Kc] 
+UTG+1 : Card dealt to a spot [Ks 5s] 
+UTG+2 : Card dealt to a spot [Ac Ad] 
+UTG+3 : Card dealt to a spot [3c 9d] 
+UTG+4 : Card dealt to a spot [6c Jh] 
+UTG+5 [ME] : Card dealt to a spot [8c 3s] 
+Dealer : Card dealt to a spot [6s Ah] 
+UTG : Folds
+UTG+1 : Folds
+UTG+2 : Raises 80 to 80
+UTG+3 : Folds
+UTG+4 : Folds
+UTG+5 [ME] : Folds
+Dealer : Call 80 
+Small Blind : Call 60 
+Big Blind : Call 40 
+*** FLOP *** [Tc Jc Td]
+Small Blind : Bets 320 
+Big Blind : Folds
+UTG+2 : Call 320 
+Dealer : Folds
+*** TURN *** [Tc Jc Td] [8s]
+Small Blind : Bets 445 
+Small Blind : Bets 445 
+Small Blind : Bets 445 
+Small Blind : Bets 445 
+UTG+2 : Call 445 
+UTG+2 : Call 445 
+UTG+2 : Call 445 
+UTG+2 : Call 445 
+*** RIVER *** [Tc Jc Td 8s] [7s]
+Small Blind : Bets 1273 
+UTG+2 : Call(timeout) 1273 
+Small Blind : Showdown [Ts Td Tc Js Jc] (Full House)
+UTG+2 : Mucks [Ac Ad] (Two pair)
+Small Blind : Hand Result 4396 
+*** SUMMARY ***
+Total Pot(4396)
+Board [Tc Jc Td 8s 7s]
+Seat+1: Small Blind 4396  with Full House [Js Ts-Ts Td Tc Js Jc]  
+Seat+2: Big Blind Folded on the FLOP
+Seat+3: UTG Folded before the FLOP
+Seat+4: UTG+1 Folded before the FLOP
+Seat+5: UTG+2 [Mucked] [Ac Ad ]  
+Seat+6: UTG+3 Folded before the FLOP
+Seat+7: UTG+4 Folded before the FLOP
+Seat+8: UTG+5 Folded before the FLOP
+Seat+9: Dealer Folded on the FLOP
+
+
+Bovada Hand #3031601424: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 2 (20/40) - 2014-08-06 22:02:33
+Seat 1: Dealer (5,478 in chips)
+Seat 2: Small Blind (2,900 in chips)
+Seat 3: Big Blind (3,000 in chips)
+Seat 4: UTG (5,980 in chips)
+Seat 5: UTG+1 (882 in chips)
+Seat 6: UTG+2 (2,642 in chips)
+Seat 7: UTG+3 (3,346 in chips)
+Seat 8: UTG+4 [ME] (1,890 in chips)
+Seat 9: UTG+5 (3,310 in chips)
+Dealer : Set dealer/Bring in spot [1] 
+Small Blind : Ante/Small blind 20 
+Big Blind : Big blind/Bring in 40 
+*** HOLE CARDS ***
+Dealer : Card dealt to a spot [9c 4s] 
+Small Blind : Card dealt to a spot [Kc Kd] 
+Big Blind : Card dealt to a spot [2c 6c] 
+UTG : Card dealt to a spot [Qc Ac] 
+UTG+1 : Card dealt to a spot [Td Tc] 
+UTG+2 : Card dealt to a spot [5h 6s] 
+UTG+3 : Card dealt to a spot [Qh 7s] 
+UTG+4 [ME] : Card dealt to a spot [8s Ts] 
+UTG+5 : Card dealt to a spot [6h 3s] 
+UTG : Raises 120 to 120
+UTG+1 : All-in(raise) 882 to 882
+UTG+2 : Folds
+UTG+3 : Folds
+UTG+4 [ME] : Folds
+UTG+5 : Folds
+Dealer : Folds
+Small Blind : Call 862 
+Big Blind : Folds
+UTG : Raises 5356 to 5476
+Small Blind : All-in 2018 
+UTG : Return uncalled portion of bet 2576 
+*** FLOP *** [3h 3c Jc]
+*** TURN *** [3h 3c Jc] [Jd]
+*** RIVER *** [3h 3c Jc Jd] [Jh]
+Small Blind : Showdown [Jh Jd Jc Kd Kc] (Full House)
+UTG : Showdown [Jh Jd Jc 3h 3c] (Full House)
+UTG+1 : Showdown [Jh Jd Jc Td Tc] (Full House)
+Small Blind : Hand Result-Side Pot 4036 
+Small Blind : Hand Result 2686 
+UTG+1 : Ranking 182 
+UTG+1 : Stand
+*** SUMMARY ***
+Total Pot(6722)
+Board [3h 3c Jc Jd Jh]
+Seat+1: Dealer Folded before the FLOP
+Seat+2: Small Blind 6722  with Full House [Kc Kd-Jh Jd Jc Kd Kc]  
+Seat+3: Big Blind Folded before the FLOP
+Seat+4: UTG lose with Full House [Qc Ac-Jh Jd Jc 3h 3c]  
+Seat+5: UTG+1 lose with Full House [Td Tc-Jh Jd Jc Td Tc]  
+Seat+6: UTG+2 Folded before the FLOP
+Seat+7: UTG+3 Folded before the FLOP
+Seat+8: UTG+4 Folded before the FLOP
+Seat+9: UTG+5 Folded before the FLOP
+
+
+Bovada Hand #3031602445: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 2 (20/40) - 2014-08-06 22:03:48
+Seat 1: UTG+4 (5,478 in chips)
+Seat 2: Dealer (6,722 in chips)
+Seat 3: Small Blind (2,960 in chips)
+Seat 4: Big Blind (3,080 in chips)
+Seat 6: UTG (2,642 in chips)
+Seat 7: UTG+1 (3,346 in chips)
+Seat 8: UTG+2 [ME] (1,890 in chips)
+Seat 9: UTG+3 (3,310 in chips)
+Dealer : Set dealer/Bring in spot [2] 
+Small Blind : Ante/Small blind 20 
+Big Blind : Big blind/Bring in 40 
+*** HOLE CARDS ***
+UTG+4 : Card dealt to a spot [4h Tc] 
+Dealer : Card dealt to a spot [8d Kd] 
+Small Blind : Card dealt to a spot [6s 5s] 
+Big Blind : Card dealt to a spot [Qd 2h] 
+UTG : Card dealt to a spot [Td 9s] 
+UTG+1 : Card dealt to a spot [2s 8h] 
+UTG+2 [ME] : Card dealt to a spot [Th Ks] 
+UTG+3 : Card dealt to a spot [Ah Qs] 
+UTG : Raises 120 to 120
+UTG+1 : Folds
+UTG+2 [ME] : Folds
+UTG+3 : Raises 240 to 240
+UTG+4 : Folds
+Dealer : Folds
+UTG : Table leave user
+Small Blind : Folds
+Big Blind : Folds
+UTG : Sit out
+UTG : Folds(auth-disconnect)
+UTG+3 : Return uncalled portion of bet 120 
+UTG+3 : Does not show [Ah Qs] (High Card)
+UTG+3 : Hand Result 300 
+*** SUMMARY ***
+Total Pot(300)
+Seat+1: UTG+4 Folded before the FLOP
+Seat+2: Dealer Folded before the FLOP
+Seat+3: Small Blind Folded before the FLOP
+Seat+4: Big Blind Folded before the FLOP
+Seat+6: UTG Folded before the FLOP
+Seat+7: UTG+1 Folded before the FLOP
+Seat+8: UTG+2 Folded before the FLOP
+Seat+9: UTG+3 300 [Does not show]  
+
+
+Bovada Hand #3031603686: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 2 (20/40) - 2014-08-06 22:05:12
+Seat 1: UTG+3 (5,478 in chips)
+Seat 2: UTG+4 (6,722 in chips)
+Seat 3: Dealer (2,940 in chips)
+Seat 4: Small Blind (3,040 in chips)
+Seat 6: Big Blind (2,522 in chips)
+Seat 7: UTG (3,346 in chips)
+Seat 8: UTG+1 [ME] (1,890 in chips)
+Seat 9: UTG+2 (3,490 in chips)
+Dealer : Set dealer/Bring in spot [3] 
+Small Blind : Ante/Small blind 20 
+Big Blind : Big blind/Bring in 40 
+*** HOLE CARDS ***
+UTG+3 : Card dealt to a spot [Kd 7s] 
+UTG+4 : Card dealt to a spot [Td 7h] 
+Dealer : Card dealt to a spot [As 8c] 
+Small Blind : Card dealt to a spot [Kh Js] 
+Big Blind : Card dealt to a spot [Qs 4c] 
+UTG : Card dealt to a spot [Ts 6s] 
+UTG+1 [ME] : Card dealt to a spot [Ad 5c] 
+UTG+2 : Card dealt to a spot [9d 2s] 
+UTG : Folds
+UTG+1 [ME] : Folds
+UTG+2 : Folds
+UTG+3 : Call 40 
+UTG+4 : Call 40 
+Dealer : Folds
+Small Blind : Call 20 
+Big Blind : Fold(Blind Disconnected)
+*** FLOP *** [Jd Ah Qd]
+Big Blind : Table enter user
+Big Blind : Re-join
+Small Blind : Checks
+UTG+3 : Checks
+UTG+4 : Bets 40 
+Small Blind : Call 40 
+UTG+3 : Folds
+*** TURN *** [Jd Ah Qd] [Qh]
+Small Blind : Checks
+UTG+4 : Checks
+*** RIVER *** [Jd Ah Qd Qh] [6c]
+Small Blind : Checks
+UTG+4 : Checks
+Small Blind : Showdown [Qh Qd Js Jd Ah] (Two pair)
+UTG+4 : Mucks [Td 7h] (One pair)
+Small Blind : Hand Result 240 
+*** SUMMARY ***
+Total Pot(240)
+Board [Jd Ah Qd Qh 6c]
+Seat+1: UTG+3 Folded on the FLOP
+Seat+2: UTG+4 [Mucked] [Td 7h ]  
+Seat+3: Dealer Folded before the FLOP
+Seat+4: Small Blind 240  with Two pair [Kh Js-Qh Qd Js Jd Ah]  
+Seat+6: Big Blind Folded before the FLOP
+Seat+7: UTG Folded before the FLOP
+Seat+8: UTG+1 Folded before the FLOP
+Seat+9: UTG+2 Folded before the FLOP
+
+
+Bovada Hand #3031605605: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 2 (20/40) - 2014-08-06 22:07:21
+Seat 1: UTG+2 (5,438 in chips)
+Seat 2: UTG+3 (6,642 in chips)
+Seat 3: UTG+4 (2,940 in chips)
+Seat 4: Dealer (3,200 in chips)
+Seat 6: Small Blind (2,482 in chips)
+Seat 7: Big Blind (3,346 in chips)
+Seat 8: UTG [ME] (1,890 in chips)
+Seat 9: UTG+1 (3,490 in chips)
+Dealer : Set dealer/Bring in spot [4] 
+Small Blind : Ante/Small blind 20 
+Big Blind : Big blind/Bring in 40 
+*** HOLE CARDS ***
+UTG+2 : Card dealt to a spot [As 3d] 
+UTG+3 : Card dealt to a spot [8h 6h] 
+UTG+4 : Card dealt to a spot [6d Tc] 
+Dealer : Card dealt to a spot [8d Qh] 
+Small Blind : Card dealt to a spot [Ad 4s] 
+Big Blind : Card dealt to a spot [Jh Qc] 
+UTG [ME] : Card dealt to a spot [4d 5h] 
+UTG+1 : Card dealt to a spot [6c 5c] 
+UTG [ME] : Folds
+UTG+1 : Call 40 
+UTG+2 : Call 40 
+UTG+3 : Call 40 
+UTG+4 : Folds
+Dealer : Folds
+Small Blind : Call 20 
+Big Blind : Checks
+*** FLOP *** [2h 2s 7d]
+Small Blind : Checks
+Big Blind : Checks
+UTG+1 : Bets 135 
+UTG+1 : Bets 135 
+UTG+1 : Bets 135 
+UTG+1 : Bets 135 
+UTG+2 : Folds
+UTG+3 : Folds
+Small Blind : Folds
+Big Blind : Folds
+UTG+1 : Return uncalled portion of bet 135 
+UTG+1 : Return uncalled portion of bet 135 
+UTG+1 : Return uncalled portion of bet 135 
+UTG+1 : Return uncalled portion of bet 135 
+UTG+1 : Does not show [6c 5c] (One pair)
+UTG+1 : Hand Result 200 
+*** SUMMARY ***
+Total Pot(200)
+Board [2h 2s 7d  ]
+Seat+1: UTG+2 Folded on the FLOP
+Seat+2: UTG+3 Folded on the FLOP
+Seat+3: UTG+4 Folded before the FLOP
+Seat+4: Dealer Folded before the FLOP
+Seat+6: Small Blind Folded on the FLOP
+Seat+7: Big Blind Folded on the FLOP
+Seat+8: UTG Folded before the FLOP
+Seat+9: UTG+1 200 [Does not show]  
+
+
+Bovada Hand #3031606640: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 2 (20/40) - 2014-08-06 22:08:27
+Seat 1: UTG+1 (5,398 in chips)
+Seat 2: UTG+2 (6,602 in chips)
+Seat 3: UTG+3 (2,940 in chips)
+Seat 4: UTG+4 (3,200 in chips)
+Seat 5: UTG+5 (3,000 in chips)
+Seat 6: Dealer (2,442 in chips)
+Seat 7: Small Blind (3,306 in chips)
+Seat 8: Big Blind [ME] (1,890 in chips)
+Seat 9: UTG (3,650 in chips)
+Dealer : Set dealer/Bring in spot [6] 
+Small Blind : Ante/Small blind 20 
+Big Blind [ME] : Big blind/Bring in 40 
+*** HOLE CARDS ***
+UTG+1 : Card dealt to a spot [Tc Ts] 
+UTG+2 : Card dealt to a spot [9d Qd] 
+UTG+3 : Card dealt to a spot [6d Jd] 
+UTG+4 : Card dealt to a spot [7d 7h] 
+UTG+5 : Card dealt to a spot [5s 8d] 
+Dealer : Card dealt to a spot [Kc 5d] 
+Small Blind : Card dealt to a spot [Qc 2s] 
+Big Blind [ME] : Card dealt to a spot [Ac 2c] 
+UTG : Card dealt to a spot [9c 7s] 
+UTG : Folds
+UTG+1 : Raises 140 to 140
+UTG+2 : Call 140 
+UTG+3 : Folds
+UTG+4 : Call 140 
+UTG+5 : Folds
+Dealer : Folds
+Small Blind : Folds
+Big Blind [ME] : Call 100 
+*** FLOP *** [9h 8c Ah]
+Big Blind [ME] : Checks
+UTG+1 : Bets 136 
+UTG+1 : Bets 136 
+UTG+1 : Bets 136 
+UTG+1 : Bets 136 
+UTG+2 : Call 136 
+UTG+2 : Call 136 
+UTG+2 : Call 136 
+UTG+2 : Call 136 
+UTG+4 : Folds
+Big Blind [ME] : Call 136 
+Big Blind [ME] : Call 136 
+Big Blind [ME] : Call 136 
+Big Blind [ME] : Call 136 
+*** TURN *** [9h 8c Ah] [6c]
+Big Blind [ME] : Checks
+UTG+1 : Checks
+UTG+2 : Bets 200 
+Big Blind [ME] : Call 200 
+UTG+1 : Call 200 
+*** RIVER *** [9h 8c Ah 6c] [4s]
+Big Blind [ME] : Checks
+UTG+1 : Checks
+UTG+2 : Checks
+Big Blind [ME] : Showdown [Ah Ac 9h 8c 6c] (One pair)
+UTG+1 : Mucks [Tc Ts] (One pair)
+UTG+2 : Mucks [9d Qd] (One pair)
+Big Blind [ME] : Hand Result 1588 
+Big Blind [ME] : Hand Result 1588 
+Big Blind [ME] : Hand Result 1588 
+*** SUMMARY ***
+Total Pot(1588)
+Board [9h 8c Ah 6c 4s]
+Seat+1: UTG+1 [Mucked] [Tc Ts ]  
+Seat+2: UTG+2 [Mucked] [9d Qd ]  
+Seat+3: UTG+3 Folded before the FLOP
+Seat+4: UTG+4 Folded on the FLOP
+Seat+5: UTG+5 Folded before the FLOP
+Seat+6: Dealer Folded before the FLOP
+Seat+7: Small Blind Folded before the FLOP
+Seat+8: Big Blind 1588  with One pair [Ac 2c-Ah Ac 9h 8c 6c]  
+Seat+9: UTG Folded before the FLOP
+
+
+Bovada Hand #3031608039: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 3 (30/60) - 2014-08-06 22:10:00
+Seat 1: UTG (4,922 in chips)
+Seat 2: UTG+1 (6,126 in chips)
+Seat 3: UTG+2 (2,940 in chips)
+Seat 4: UTG+3 (3,060 in chips)
+Seat 5: UTG+4 (3,000 in chips)
+Seat 6: UTG+5 (2,442 in chips)
+Seat 7: Dealer (3,286 in chips)
+Seat 8: Small Blind [ME] (3,002 in chips)
+Seat 9: Big Blind (3,650 in chips)
+Dealer : Set dealer/Bring in spot [7] 
+Small Blind [ME] : Ante/Small blind 30 
+Big Blind : Big blind/Bring in 60 
+*** HOLE CARDS ***
+UTG : Card dealt to a spot [7h 7c] 
+UTG+1 : Card dealt to a spot [Jd Jh] 
+UTG+2 : Card dealt to a spot [4h Js] 
+UTG+3 : Card dealt to a spot [7s 6d] 
+UTG+4 : Card dealt to a spot [Kd 8h] 
+UTG+5 : Card dealt to a spot [8s 2c] 
+Dealer : Card dealt to a spot [Ad 3s] 
+Small Blind [ME] : Card dealt to a spot [9s 4d] 
+Big Blind : Card dealt to a spot [6h Tc] 
+UTG : Raises 120 to 120
+UTG+1 : Raises 300 to 300
+UTG+2 : Folds
+UTG+3 : Folds
+UTG+4 : Raises 600 to 600
+UTG+5 : Folds
+Dealer : Folds
+Small Blind [ME] : Folds
+Big Blind : Folds
+UTG : Call 480 
+UTG+1 : Call 300 
+*** FLOP *** [9d 4s 3c]
+UTG : Checks(timeout)
+UTG+1 : Bets 600 
+UTG+4 : Folds
+UTG : Folds
+UTG+1 : Return uncalled portion of bet 600 
+UTG+1 : Showdown [Jh Jd 9d 4s 3c] (One pair)
+UTG+1 : Hand Result 1890 
+*** SUMMARY ***
+Total Pot(1890)
+Board [9d 4s 3c  ]
+Seat+1: UTG Folded on the FLOP
+Seat+2: UTG+1 1890  with One pair [Jd Jh-Jh Jd 9d 4s 3c]  
+Seat+3: UTG+2 Folded before the FLOP
+Seat+4: UTG+3 Folded before the FLOP
+Seat+5: UTG+4 Folded on the FLOP
+Seat+6: UTG+5 Folded before the FLOP
+Seat+7: Dealer Folded before the FLOP
+Seat+8: Small Blind Folded before the FLOP
+Seat+9: Big Blind Folded before the FLOP
+
+
+Bovada Hand #3031609982: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 3 (30/60) - 2014-08-06 22:12:06
+Seat 1: Big Blind (4,322 in chips)
+Seat 2: UTG (7,416 in chips)
+Seat 3: UTG+1 (2,940 in chips)
+Seat 4: UTG+2 (3,060 in chips)
+Seat 5: UTG+3 (2,400 in chips)
+Seat 6: UTG+4 (2,442 in chips)
+Seat 7: UTG+5 (3,286 in chips)
+Seat 8: Dealer [ME] (2,972 in chips)
+Seat 9: Small Blind (3,590 in chips)
+Dealer [ME] : Set dealer/Bring in spot [8] 
+Small Blind : Ante/Small blind 30 
+Big Blind : Big blind/Bring in 60 
+*** HOLE CARDS ***
+Big Blind : Card dealt to a spot [Ah 5h] 
+UTG : Card dealt to a spot [9h 3d] 
+UTG+1 : Card dealt to a spot [2c 8s] 
+UTG+2 : Card dealt to a spot [7c Jd] 
+UTG+3 : Card dealt to a spot [6c 6s] 
+UTG+4 : Card dealt to a spot [Th Qh] 
+UTG+5 : Card dealt to a spot [As Ac] 
+Dealer [ME] : Card dealt to a spot [Td Qs] 
+Small Blind : Card dealt to a spot [2h 5c] 
+UTG : Folds
+UTG+1 : Folds
+UTG+2 : Folds
+UTG+3 : Raises 210 to 210
+UTG+4 : Call 210 
+UTG+5 : Raises 580 to 580
+Dealer [ME] : Folds
+Small Blind : Folds
+Big Blind : Call 520 
+UTG+3 : Raises 740 to 950
+UTG+4 : Folds
+UTG+5 : All-in(raise) 2706 to 3286
+Big Blind : Folds
+UTG+3 : All-in 1450 
+UTG+3 : All-in 1450 
+UTG+3 : All-in 1450 
+UTG+3 : All-in 1450 
+UTG+5 : Return uncalled portion of bet 886 
+*** FLOP *** [4c 7s 4h]
+*** TURN *** [4c 7s 4h] [4d]
+*** RIVER *** [4c 7s 4h 4d] [Kd]
+UTG+3 : Showdown [4h 4d 4c 6s 6c] (Full House)
+UTG+5 : Showdown [4h 4d 4c As Ac] (Full House)
+UTG+5 : Hand Result 5620 
+UTG+3 : Ranking 214 
+UTG+3 : Stand
+*** SUMMARY ***
+Total Pot(5620)
+Board [4c 7s 4h 4d Kd]
+Seat+1: Big Blind Folded before the FLOP
+Seat+2: UTG Folded before the FLOP
+Seat+3: UTG+1 Folded before the FLOP
+Seat+4: UTG+2 Folded before the FLOP
+Seat+5: UTG+3 lose with Full House [6c 6s-4h 4d 4c 6s 6c]  
+Seat+6: UTG+4 Folded before the FLOP
+Seat+7: UTG+5 5620  with Full House [As Ac-4h 4d 4c As Ac]  
+Seat+8: Dealer Folded before the FLOP
+Seat+9: Small Blind Folded before the FLOP
+
+
+Bovada Hand #3031611454: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 3 (30/60) - 2014-08-06 22:13:45
+Seat 1: Small Blind (3,742 in chips)
+Seat 2: Big Blind (7,416 in chips)
+Seat 3: UTG (2,940 in chips)
+Seat 4: UTG+1 (3,060 in chips)
+Seat 6: UTG+2 (2,232 in chips)
+Seat 7: UTG+3 (6,506 in chips)
+Seat 8: UTG+4 [ME] (2,972 in chips)
+Seat 9: Dealer (3,560 in chips)
+Dealer : Set dealer/Bring in spot [9] 
+Small Blind : Ante/Small blind 30 
+Big Blind : Big blind/Bring in 60 
+*** HOLE CARDS ***
+Small Blind : Card dealt to a spot [6c Ts] 
+Big Blind : Card dealt to a spot [Ac 5d] 
+UTG : Card dealt to a spot [5h 6d] 
+UTG+1 : Card dealt to a spot [7h Th] 
+UTG+2 : Card dealt to a spot [Kh Ah] 
+UTG+3 : Card dealt to a spot [Qc 7c] 
+UTG+4 [ME] : Card dealt to a spot [4d 9h] 
+Dealer : Card dealt to a spot [Js 3c] 
+UTG : Folds
+UTG+1 : Folds
+UTG+2 : Raises 180 to 180
+UTG+3 : Folds
+UTG+4 [ME] : Folds
+Dealer : Folds
+Small Blind : Folds
+Big Blind : Call 120 
+*** FLOP *** [2d As 9d]
+Big Blind : Bets 180 
+UTG+2 : Raises 450 to 450
+UTG+2 : Raises 450 to 450
+UTG+2 : Raises 450 to 450
+UTG+2 : Raises 450 to 450
+UTG+2 : Raises 450 to 450
+UTG+2 : Raises 450 to 450
+UTG+2 : Raises 450 to 450
+UTG+2 : Raises 450 to 450
+UTG+2 : Raises 450 to 450
+UTG+2 : Raises 450 to 450
+UTG+2 : Raises 450 to 450
+UTG+2 : Raises 450 to 450
+UTG+2 : Raises 450 to 450
+UTG+2 : Raises 450 to 450
+UTG+2 : Raises 450 to 450
+UTG+2 : Raises 450 to 450
+Big Blind : Call 270 
+*** TURN *** [2d As 9d] [6s]
+Big Blind : Bets 540 
+UTG+2 : All-in(raise) 1602 to 1602
+UTG+2 : All-in(raise) 1602 to 1602
+UTG+2 : All-in(raise) 1602 to 1602
+UTG+2 : All-in(raise) 1602 to 1602
+UTG+2 : All-in(raise) 1602 to 1602
+UTG+2 : All-in(raise) 1602 to 1602
+UTG+2 : All-in(raise) 1602 to 1602
+UTG+2 : All-in(raise) 1602 to 1602
+UTG+2 : All-in(raise) 1602 to 1602
+Big Blind : Call 1062 
+*** RIVER *** [2d As 9d 6s] [5c]
+Big Blind : Showdown [As Ac 5d 5c 9d] (Two pair)
+UTG+2 : Showdown [As Ah Kh 9d 6s] (One pair)
+Big Blind : Hand Result 4494 
+UTG+2 : Ranking 220 
+UTG+2 : Stand
+*** SUMMARY ***
+Total Pot(4494)
+Board [2d As 9d 6s 5c]
+Seat+1: Small Blind Folded before the FLOP
+Seat+2: Big Blind 4494  with Two pair [Ac 5d-As Ac 5d 5c 9d]  
+Seat+3: UTG Folded before the FLOP
+Seat+4: UTG+1 Folded before the FLOP
+Seat+6: UTG+2 lose with One pair [Kh Ah-As Ah Kh 9d 6s]  
+Seat+7: UTG+3 Folded before the FLOP
+Seat+8: UTG+4 Folded before the FLOP
+Seat+9: Dealer Folded before the FLOP
+
+
+Bovada Hand #3031612565: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 3 (30/60) - 2014-08-06 22:14:57
+Seat 1: Dealer (3,712 in chips)
+Seat 2: Small Blind (9,678 in chips)
+Seat 3: Big Blind (2,940 in chips)
+Seat 4: UTG (3,060 in chips)
+Seat 5: UTG+1 (3,000 in chips)
+Seat 7: UTG+2 (6,506 in chips)
+Seat 8: UTG+3 [ME] (2,972 in chips)
+Seat 9: UTG+4 (3,560 in chips)
+Dealer : Set dealer/Bring in spot [1] 
+Small Blind : Ante/Small blind 30 
+Big Blind : Big blind/Bring in 60 
+*** HOLE CARDS ***
+Dealer : Card dealt to a spot [2c Jc] 
+Small Blind : Card dealt to a spot [Js 8c] 
+Big Blind : Card dealt to a spot [Ks 7h] 
+UTG : Card dealt to a spot [Qh 8d] 
+UTG+1 : Card dealt to a spot [7s 9h] 
+UTG+2 : Card dealt to a spot [Td 5c] 
+UTG+3 [ME] : Card dealt to a spot [9s 4h] 
+UTG+4 : Card dealt to a spot [Qd 3d] 
+UTG : Folds
+UTG+1 : Folds
+UTG+2 : Folds
+UTG+3 [ME] : Folds
+UTG+4 : Raises 240 to 240
+Dealer : Folds
+Small Blind : Folds
+Big Blind : Folds
+UTG+4 : Return uncalled portion of bet 180 
+UTG+4 : Does not show [Qd 3d] (High Card)
+UTG+4 : Hand Result 150 
+*** SUMMARY ***
+Total Pot(150)
+Seat+1: Dealer Folded before the FLOP
+Seat+2: Small Blind Folded before the FLOP
+Seat+3: Big Blind Folded before the FLOP
+Seat+4: UTG Folded before the FLOP
+Seat+5: UTG+1 Folded before the FLOP
+Seat+7: UTG+2 Folded before the FLOP
+Seat+8: UTG+3 Folded before the FLOP
+Seat+9: UTG+4 150 [Does not show]  
+
+
+Bovada Hand #3031613514: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 3 (30/60) - 2014-08-06 22:16:00
+Seat 1: UTG+5 (3,712 in chips)
+Seat 2: Dealer (9,648 in chips)
+Seat 3: Small Blind (2,880 in chips)
+Seat 4: Big Blind (3,060 in chips)
+Seat 5: UTG (3,000 in chips)
+Seat 6: UTG+1 (3,000 in chips)
+Seat 7: UTG+2 (6,506 in chips)
+Seat 8: UTG+3 [ME] (2,972 in chips)
+Seat 9: UTG+4 (3,650 in chips)
+Dealer : Set dealer/Bring in spot [2] 
+Small Blind : Ante/Small blind 30 
+Big Blind : Big blind/Bring in 60 
+*** HOLE CARDS ***
+UTG+5 : Card dealt to a spot [Kd 6h] 
+Dealer : Card dealt to a spot [9h 2d] 
+Small Blind : Card dealt to a spot [Ks 5s] 
+Big Blind : Card dealt to a spot [7h 3s] 
+UTG : Card dealt to a spot [Th Kh] 
+UTG+1 : Card dealt to a spot [4d Qh] 
+UTG+2 : Card dealt to a spot [3h 9d] 
+UTG+3 [ME] : Card dealt to a spot [Qd Jd] 
+UTG+4 : Card dealt to a spot [9s 2s] 
+UTG : Raises 210 to 210
+UTG+1 : Folds
+UTG+2 : Folds
+UTG+3 [ME] : Call 210 
+UTG+4 : Folds
+UTG+5 : Folds
+Dealer : Folds
+Small Blind : Folds
+Big Blind : Folds
+*** FLOP *** [Qs Td 6d]
+UTG : Checks
+UTG+3 [ME] : Bets 255 
+UTG : Call 255 
+*** TURN *** [Qs Td 6d] [8d]
+UTG : Checks
+UTG+3 [ME] : Bets 870 
+UTG : Folds
+UTG+3 [ME] : Return uncalled portion of bet 870 
+UTG+3 [ME] : Does not show [Qd Jd] (Flush)
+UTG+3 [ME] : Hand Result 1020 
+*** SUMMARY ***
+Total Pot(1020)
+Board [Qs Td 6d 8d ]
+Seat+1: UTG+5 Folded before the FLOP
+Seat+2: Dealer Folded before the FLOP
+Seat+3: Small Blind Folded before the FLOP
+Seat+4: Big Blind Folded before the FLOP
+Seat+5: UTG Folded on the TURN
+Seat+6: UTG+1 Folded before the FLOP
+Seat+7: UTG+2 Folded before the FLOP
+Seat+8: UTG+3 1020 [Does not show]  
+Seat+9: UTG+4 Folded before the FLOP
+
+
+Bovada Hand #3031614786: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 3 (30/60) - 2014-08-06 22:17:24
+Seat 1: UTG+4 (3,712 in chips)
+Seat 2: UTG+5 (9,648 in chips)
+Seat 3: Dealer (2,850 in chips)
+Seat 4: Small Blind (3,000 in chips)
+Seat 5: Big Blind (2,535 in chips)
+Seat 6: UTG (3,000 in chips)
+Seat 7: UTG+1 (6,506 in chips)
+Seat 8: UTG+2 [ME] (3,527 in chips)
+Seat 9: UTG+3 (3,650 in chips)
+Dealer : Set dealer/Bring in spot [3] 
+Small Blind : Ante/Small blind 30 
+Big Blind : Big blind/Bring in 60 
+*** HOLE CARDS ***
+UTG+4 : Card dealt to a spot [6c 6d] 
+UTG+5 : Card dealt to a spot [Qc Jc] 
+Dealer : Card dealt to a spot [7h 9c] 
+Small Blind : Card dealt to a spot [Ad Ah] 
+Big Blind : Card dealt to a spot [7c 4d] 
+UTG : Card dealt to a spot [Ks Qs] 
+UTG+1 : Card dealt to a spot [8c 8d] 
+UTG+2 [ME] : Card dealt to a spot [5d 2c] 
+UTG+3 : Card dealt to a spot [4s Kd] 
+UTG : Raises 180 to 180
+UTG+1 : Call 180 
+UTG+2 [ME] : Folds
+UTG+3 : Folds
+UTG+4 : Call 180 
+UTG+5 : Raises 480 to 480
+Dealer : Folds
+Small Blind : Call 450 
+Small Blind : Call 450 
+Small Blind : Call 450 
+Small Blind : Call 450 
+Big Blind : Folds
+UTG : Call 300 
+UTG+1 : Call 300 
+UTG+4 : Call 300 
+*** FLOP *** [Ac 3c 2s]
+Small Blind : Checks
+UTG : Checks
+UTG+1 : Checks
+UTG+4 : Checks
+UTG+5 : Bets 300 
+Small Blind : Call 300 
+UTG : Folds
+UTG+1 : Folds
+UTG+4 : Folds
+*** TURN *** [Ac 3c 2s] [Kc]
+Small Blind : Bets 1530 
+Small Blind : Bets 1530 
+Small Blind : Bets 1530 
+UTG+5 : Raises 3060 to 3060
+Small Blind : All-in 690 
+UTG+5 : Return uncalled portion of bet 840 
+*** RIVER *** [Ac 3c 2s Kc] [5c]
+UTG+5 : Showdown [Ac Kc Qc Jc 5c] (Flush)
+Small Blind : Showdown [Ah Ad Ac Kc 5c] (Three of a kind)
+UTG+5 : Hand Result 7500 
+Small Blind : Ranking 224 
+Small Blind : Stand
+*** SUMMARY ***
+Total Pot(7500)
+Board [Ac 3c 2s Kc 5c]
+Seat+1: UTG+4 Folded on the FLOP
+Seat+2: UTG+5 7500  with Flush [Qc Jc-Ac Kc Qc Jc 5c]  
+Seat+3: Dealer Folded before the FLOP
+Seat+4: Small Blind lose with Three of a kind [Ad Ah-Ah Ad Ac Kc 5c]  
+Seat+5: Big Blind Folded before the FLOP
+Seat+6: UTG Folded on the FLOP
+Seat+7: UTG+1 Folded on the FLOP
+Seat+8: UTG+2 Folded before the FLOP
+Seat+9: UTG+3 Folded before the FLOP
+
+
+Bovada Hand #3031616990: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 3 (30/60) - 2014-08-06 22:19:51
+Seat 1: UTG+3 (3,232 in chips)
+Seat 2: UTG+4 (14,148 in chips)
+Seat 3: UTG+5 (2,850 in chips)
+Seat 5: Small Blind (2,475 in chips)
+Seat 6: Big Blind (2,520 in chips)
+Seat 7: UTG (6,026 in chips)
+Seat 8: UTG+1 [ME] (3,527 in chips)
+Seat 9: UTG+2 (3,650 in chips)
+Small Blind : Ante/Small blind 30 
+Big Blind : Big blind/Bring in 60 
+*** HOLE CARDS ***
+UTG+3 : Card dealt to a spot [Qd 8d] 
+UTG+4 : Card dealt to a spot [Jd Kh] 
+UTG+5 : Card dealt to a spot [3d 7c] 
+Small Blind : Card dealt to a spot [Tc 4d] 
+Big Blind : Card dealt to a spot [2h 9s] 
+UTG : Card dealt to a spot [7d 9h] 
+UTG+1 [ME] : Card dealt to a spot [Ts 5c] 
+UTG+2 : Card dealt to a spot [3s Td] 
+UTG : Folds
+UTG+1 [ME] : Folds
+UTG+2 : Folds
+UTG+3 : Call 60 
+UTG+4 : Call 60 
+UTG+5 : Folds
+Small Blind : Folds
+Big Blind : Checks
+*** FLOP *** [Ac 9c 4s]
+Big Blind : Checks
+UTG+3 : Checks
+UTG+4 : Checks
+*** TURN *** [Ac 9c 4s] [Qs]
+Big Blind : Checks
+UTG+3 : Checks
+UTG+4 : Bets 180 
+Big Blind : Folds
+UTG+3 : Call 180 
+*** RIVER *** [Ac 9c 4s Qs] [6h]
+UTG+3 : Checks
+UTG+4 : Bets 639 
+UTG+3 : Call 639 
+UTG+4 : Showdown [Ac Kh Qs Jd 9c] (High Card)
+UTG+3 : Showdown [Qs Qd Ac 9c 8d] (One pair)
+UTG+3 : Hand Result 1848 
+*** SUMMARY ***
+Total Pot(1848)
+Board [Ac 9c 4s Qs 6h]
+Seat+1: UTG+3 1848  with One pair [Qd 8d-Qs Qd Ac 9c 8d]  
+Seat+2: UTG+4 lose with High Card [Jd Kh-Ac Kh Qs Jd 9c]  
+Seat+3: UTG+5 Folded before the FLOP
+Seat+5: Small Blind Folded before the FLOP
+Seat+6: Big Blind Folded on the TURN
+Seat+7: UTG Folded before the FLOP
+Seat+8: UTG+1 Folded before the FLOP
+Seat+9: UTG+2 Folded before the FLOP
+
+
+Bovada Hand #3031619051: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 4 (40/80) - 2014-08-06 22:22:06
+Seat 1: UTG+2 (4,201 in chips)
+Seat 2: UTG+3 (13,269 in chips)
+Seat 4: UTG+4 (3,000 in chips)
+Seat 5: Dealer (2,445 in chips)
+Seat 6: Small Blind (2,460 in chips)
+Seat 7: Big Blind (6,026 in chips)
+Seat 8: UTG [ME] (3,527 in chips)
+Seat 9: UTG+1 (3,650 in chips)
+Dealer : Set dealer/Bring in spot [5] 
+Small Blind : Ante/Small blind 40 
+Big Blind : Big blind/Bring in 80 
+*** HOLE CARDS ***
+UTG+2 : Card dealt to a spot [Th 6h] 
+UTG+3 : Card dealt to a spot [Js 3h] 
+UTG+4 : Card dealt to a spot [Kd 9s] 
+Dealer : Card dealt to a spot [3s 9h] 
+Small Blind : Card dealt to a spot [7c Jh] 
+Big Blind : Card dealt to a spot [4s 2s] 
+UTG [ME] : Card dealt to a spot [5h 7d] 
+UTG+1 : Card dealt to a spot [Ks 4d] 
+UTG [ME] : Folds
+UTG+1 : Folds
+UTG+2 : Call 80 
+UTG+3 : Folds
+UTG+4 : Folds
+Dealer : Folds
+Small Blind : Folds
+Big Blind : Checks
+*** FLOP *** [3d 8d Ac]
+Big Blind : Checks
+UTG+2 : Checks
+*** TURN *** [3d 8d Ac] [5d]
+Big Blind : Bets 105 
+UTG+2 : Folds
+Big Blind : Return uncalled portion of bet 105 
+Big Blind : Does not show [4s 2s] (Straight)
+Big Blind : Hand Result 200 
+*** SUMMARY ***
+Total Pot(200)
+Board [3d 8d Ac 5d ]
+Seat+1: UTG+2 Folded on the TURN
+Seat+2: UTG+3 Folded before the FLOP
+Seat+4: UTG+4 Folded before the FLOP
+Seat+5: Dealer Folded before the FLOP
+Seat+6: Small Blind Folded before the FLOP
+Seat+7: Big Blind 200 [Does not show]  
+Seat+8: UTG Folded before the FLOP
+Seat+9: UTG+1 Folded before the FLOP
+
+
+Bovada Hand #3031620460: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 4 (40/80) - 2014-08-06 22:23:39
+Seat 1: UTG+1 (4,121 in chips)
+Seat 2: UTG+2 (13,269 in chips)
+Seat 4: UTG+3 (3,000 in chips)
+Seat 5: UTG+4 (2,445 in chips)
+Seat 6: Dealer (2,420 in chips)
+Seat 7: Small Blind (6,146 in chips)
+Seat 8: Big Blind [ME] (3,527 in chips)
+Seat 9: UTG (3,650 in chips)
+Dealer : Set dealer/Bring in spot [6] 
+Small Blind : Ante/Small blind 40 
+Big Blind [ME] : Big blind/Bring in 80 
+*** HOLE CARDS ***
+UTG+1 : Card dealt to a spot [9s Ts] 
+UTG+2 : Card dealt to a spot [3h Jc] 
+UTG+3 : Card dealt to a spot [4c Js] 
+UTG+4 : Card dealt to a spot [7s Qs] 
+Dealer : Card dealt to a spot [Qd 5c] 
+Small Blind : Card dealt to a spot [Kd 4s] 
+Big Blind [ME] : Card dealt to a spot [4d 2h] 
+UTG : Card dealt to a spot [5h Th] 
+UTG : Folds
+UTG+1 : Raises 160 to 160
+UTG+2 : Folds
+UTG+3 : Folds
+UTG+4 : Call 160 
+Dealer : Folds
+Small Blind : Folds
+Big Blind [ME] : Folds
+*** FLOP *** [8d Qc Td]
+UTG+1 : Checks
+UTG+4 : Bets 440 
+UTG+1 : Call 440 
+*** TURN *** [8d Qc Td] [Ac]
+UTG+1 : Checks
+UTG+4 : Checks
+*** RIVER *** [8d Qc Td Ac] [Ah]
+UTG+1 : Bets 660 
+UTG+4 : Call 660 
+UTG+1 : Showdown [Ah Ac Ts Td Qc] (Two pair)
+UTG+4 : Showdown [Ah Ac Qs Qc Td] (Two pair)
+UTG+4 : Hand Result 2640 
+*** SUMMARY ***
+Total Pot(2640)
+Board [8d Qc Td Ac Ah]
+Seat+1: UTG+1 lose with Two pair [9s Ts-Ah Ac Ts Td Qc]  
+Seat+2: UTG+2 Folded before the FLOP
+Seat+4: UTG+3 Folded before the FLOP
+Seat+5: UTG+4 2640  with Two pair [7s Qs-Ah Ac Qs Qc Td]  
+Seat+6: Dealer Folded before the FLOP
+Seat+7: Small Blind Folded before the FLOP
+Seat+8: Big Blind Folded before the FLOP
+Seat+9: UTG Folded before the FLOP
+
+
+Bovada Hand #3031621693: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 4 (40/80) - 2014-08-06 22:25:00
+Seat 1: UTG (2,861 in chips)
+Seat 2: UTG+1 (13,269 in chips)
+Seat 3: UTG+2 (3,000 in chips)
+Seat 4: UTG+3 (3,000 in chips)
+Seat 5: UTG+4 (3,825 in chips)
+Seat 6: UTG+5 (2,420 in chips)
+Seat 7: Dealer (6,106 in chips)
+Seat 8: Small Blind [ME] (3,447 in chips)
+Seat 9: Big Blind (3,650 in chips)
+Dealer : Set dealer/Bring in spot [7] 
+Small Blind [ME] : Ante/Small blind 40 
+Big Blind : Big blind/Bring in 80 
+*** HOLE CARDS ***
+UTG : Card dealt to a spot [3c 7h] 
+UTG+1 : Card dealt to a spot [3h 9s] 
+UTG+2 : Card dealt to a spot [8c 4h] 
+UTG+3 : Card dealt to a spot [Jd 7c] 
+UTG+4 : Card dealt to a spot [Kd 5s] 
+UTG+5 : Card dealt to a spot [8d 2h] 
+Dealer : Card dealt to a spot [Th Kh] 
+Small Blind [ME] : Card dealt to a spot [6s Jh] 
+Big Blind : Card dealt to a spot [8s 3d] 
+UTG : Call 80 
+UTG+1 : Folds
+UTG+2 : Folds
+UTG+3 : Folds
+UTG+4 : Folds
+UTG+5 : Folds
+Dealer : Call 80 
+Small Blind [ME] : Folds
+Big Blind : Checks
+*** FLOP *** [Qd 9h 2c]
+Big Blind : Bets 240 
+UTG : Folds
+Dealer : Call 240 
+*** TURN *** [Qd 9h 2c] [6d]
+Big Blind : Bets 426 
+Dealer : Folds
+Big Blind : Return uncalled portion of bet 426 
+Big Blind : Does not show [8s 3d] (High Card)
+Big Blind : Hand Result 760 
+*** SUMMARY ***
+Total Pot(760)
+Board [Qd 9h 2c 6d ]
+Seat+1: UTG Folded on the FLOP
+Seat+2: UTG+1 Folded before the FLOP
+Seat+3: UTG+2 Folded before the FLOP
+Seat+4: UTG+3 Folded before the FLOP
+Seat+5: UTG+4 Folded before the FLOP
+Seat+6: UTG+5 Folded before the FLOP
+Seat+7: Dealer Folded on the TURN
+Seat+8: Small Blind Folded before the FLOP
+Seat+9: Big Blind 760 [Does not show]  
+
+
+Bovada Hand #3031622910: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 4 (40/80) - 2014-08-06 22:26:21
+Seat 1: Big Blind (2,781 in chips)
+Seat 2: UTG (13,269 in chips)
+Seat 3: UTG+1 (3,000 in chips)
+Seat 4: UTG+2 (3,000 in chips)
+Seat 5: UTG+3 (3,825 in chips)
+Seat 6: UTG+4 (2,420 in chips)
+Seat 7: UTG+5 (5,786 in chips)
+Seat 8: Dealer [ME] (3,407 in chips)
+Seat 9: Small Blind (4,090 in chips)
+Dealer [ME] : Set dealer/Bring in spot [8] 
+Small Blind : Ante/Small blind 40 
+Big Blind : Big blind/Bring in 80 
+*** HOLE CARDS ***
+Big Blind : Card dealt to a spot [Ad Td] 
+UTG : Card dealt to a spot [2d 2s] 
+UTG+1 : Card dealt to a spot [2c 9h] 
+UTG+2 : Card dealt to a spot [3d 5d] 
+UTG+3 : Card dealt to a spot [7h Qc] 
+UTG+4 : Card dealt to a spot [5s 6d] 
+UTG+5 : Card dealt to a spot [8s 4d] 
+Dealer [ME] : Card dealt to a spot [Ac 7s] 
+Small Blind : Card dealt to a spot [Kc 8d] 
+UTG : Call 80 
+UTG+1 : Folds
+UTG+2 : Folds
+UTG+3 : Folds
+UTG+4 : Folds
+UTG+5 : Folds
+Dealer [ME] : Folds
+Small Blind : Call 40 
+Big Blind : Raises 240 to 320
+UTG : Folds
+Small Blind : Folds
+Big Blind : Return uncalled portion of bet 240 
+Big Blind : Does not show [Ad Td] (High Card)
+Big Blind : Hand Result 240 
+*** SUMMARY ***
+Total Pot(240)
+Seat+1: Big Blind 240 [Does not show]  
+Seat+2: UTG Folded before the FLOP
+Seat+3: UTG+1 Folded before the FLOP
+Seat+4: UTG+2 Folded before the FLOP
+Seat+5: UTG+3 Folded before the FLOP
+Seat+6: UTG+4 Folded before the FLOP
+Seat+7: UTG+5 Folded before the FLOP
+Seat+8: Dealer Folded before the FLOP
+Seat+9: Small Blind Folded before the FLOP
+
+
+Bovada Hand #3031624363: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 4 (40/80) - 2014-08-06 22:28:00
+Seat 1: Small Blind (2,941 in chips)
+Seat 2: Big Blind (13,189 in chips)
+Seat 3: UTG (3,000 in chips)
+Seat 4: UTG+1 (3,000 in chips)
+Seat 5: UTG+2 (3,825 in chips)
+Seat 6: UTG+3 (2,420 in chips)
+Seat 7: UTG+4 (5,786 in chips)
+Seat 8: UTG+5 [ME] (3,407 in chips)
+Seat 9: Dealer (4,010 in chips)
+Dealer : Set dealer/Bring in spot [9] 
+Small Blind : Ante/Small blind 40 
+Big Blind : Big blind/Bring in 80 
+*** HOLE CARDS ***
+Small Blind : Card dealt to a spot [Kh 6s] 
+Big Blind : Card dealt to a spot [Ac 3c] 
+UTG : Card dealt to a spot [Jh 2s] 
+UTG+1 : Card dealt to a spot [2h 9s] 
+UTG+2 : Card dealt to a spot [7h 5s] 
+UTG+3 : Card dealt to a spot [5d 9h] 
+UTG+4 : Card dealt to a spot [4s 6c] 
+UTG+5 [ME] : Card dealt to a spot [Ah Tc] 
+Dealer : Card dealt to a spot [Ts Qd] 
+UTG : Folds
+UTG+1 : Folds
+UTG+2 : Folds
+UTG+3 : Folds
+UTG+4 : Folds
+UTG+5 [ME] : Raises 200 to 200
+Dealer : Call 200 
+Small Blind : Folds
+Big Blind : Call 120 
+*** FLOP *** [Qs 7c Td]
+Big Blind : Checks
+UTG+5 [ME] : Bets 320 
+Dealer : Table leave user
+Dealer : Table enter user
+Dealer : Sit out
+Dealer : Folds(timeout)
+Big Blind : Folds
+UTG+5 [ME] : Return uncalled portion of bet 320 
+UTG+5 [ME] : Does not show [Ah Tc] (One pair)
+UTG+5 [ME] : Hand Result 640 
+Dealer : Re-join
+*** SUMMARY ***
+Total Pot(640)
+Board [Qs 7c Td  ]
+Seat+1: Small Blind Folded before the FLOP
+Seat+2: Big Blind Folded on the FLOP
+Seat+3: UTG Folded before the FLOP
+Seat+4: UTG+1 Folded before the FLOP
+Seat+5: UTG+2 Folded before the FLOP
+Seat+6: UTG+3 Folded before the FLOP
+Seat+7: UTG+4 Folded before the FLOP
+Seat+8: UTG+5 640 [Does not show]  
+Seat+9: Dealer Folded on the FLOP
+
+
+Bovada Hand #3031625867: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 4 (40/80) - 2014-08-06 22:29:42
+Seat 1: Dealer (2,901 in chips)
+Seat 2: Small Blind (12,989 in chips)
+Seat 3: Big Blind (3,000 in chips)
+Seat 4: UTG (3,000 in chips)
+Seat 5: UTG+1 (3,825 in chips)
+Seat 6: UTG+2 (2,420 in chips)
+Seat 7: UTG+3 (5,786 in chips)
+Seat 8: UTG+4 [ME] (3,847 in chips)
+Seat 9: UTG+5 (3,810 in chips)
+Dealer : Set dealer/Bring in spot [1] 
+Small Blind : Ante/Small blind 40 
+Big Blind : Big blind/Bring in 80 
+*** HOLE CARDS ***
+Dealer : Card dealt to a spot [5c 5h] 
+Small Blind : Card dealt to a spot [7d Ah] 
+Big Blind : Card dealt to a spot [Qd 4s] 
+UTG : Card dealt to a spot [Tc 2h] 
+UTG+1 : Card dealt to a spot [6d 7h] 
+UTG+2 : Card dealt to a spot [6h Jd] 
+UTG+3 : Card dealt to a spot [8s 4h] 
+UTG+4 [ME] : Card dealt to a spot [8h Qs] 
+UTG+5 : Card dealt to a spot [Qc Ad] 
+UTG : Folds
+UTG+1 : Folds
+UTG+2 : Folds
+UTG+3 : Folds
+UTG+4 [ME] : Folds
+UTG+5 : Raises 480 to 480
+Dealer : Call 480 
+Small Blind : Call 440 
+Big Blind : Folds
+*** FLOP *** [6s 9c 3s]
+Small Blind : Bets 720 
+UTG+5 : Sit out
+UTG+5 : Folds(timeout)
+Dealer : Folds
+Small Blind : Return uncalled portion of bet 720 
+Small Blind : Does not show [7d Ah] (High Card)
+Small Blind : Hand Result 1520 
+Small Blind : Hand Result 1520 
+Small Blind : Hand Result 1520 
+*** SUMMARY ***
+Total Pot(1520)
+Board [6s 9c 3s  ]
+Seat+1: Dealer Folded on the FLOP
+Seat+2: Small Blind 1520 [Does not show]  
+Seat+3: Big Blind Folded before the FLOP
+Seat+4: UTG Folded before the FLOP
+Seat+5: UTG+1 Folded before the FLOP
+Seat+6: UTG+2 Folded before the FLOP
+Seat+7: UTG+3 Folded before the FLOP
+Seat+8: UTG+4 Folded before the FLOP
+Seat+9: UTG+5 Folded on the FLOP
+
+
+Bovada Hand #3031627302: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 4 (40/80) - 2014-08-06 22:31:18
+Seat 1: UTG+5 (2,421 in chips)
+Seat 2: Dealer (14,029 in chips)
+Seat 3: Small Blind (2,920 in chips)
+Seat 4: Big Blind (3,000 in chips)
+Seat 5: UTG (3,825 in chips)
+Seat 6: UTG+1 (2,420 in chips)
+Seat 7: UTG+2 (5,786 in chips)
+Seat 8: UTG+3 [ME] (3,847 in chips)
+Seat 9: UTG+4 (3,330 in chips)
+Dealer : Set dealer/Bring in spot [2] 
+Small Blind : Ante/Small blind 40 
+Big Blind : Big blind/Bring in 80 
+*** HOLE CARDS ***
+UTG+5 : Card dealt to a spot [7c Kh] 
+Dealer : Card dealt to a spot [5c 7h] 
+Small Blind : Card dealt to a spot [3s 2d] 
+Big Blind : Card dealt to a spot [Qs Qc] 
+UTG : Card dealt to a spot [7d 8c] 
+UTG+1 : Card dealt to a spot [Jh Jc] 
+UTG+2 : Card dealt to a spot [4h 2h] 
+UTG+3 [ME] : Card dealt to a spot [7s Ah] 
+UTG+4 : Card dealt to a spot [Qd 3c] 
+UTG : Folds
+UTG+4 : Re-join
+UTG+1 : Raises 240 to 240
+UTG+2 : Folds
+UTG+3 [ME] : Folds
+UTG+4 : Folds
+UTG+5 : Folds
+Dealer : Folds
+Small Blind : Folds
+Big Blind : Raises 400 to 480
+UTG+4 : Table leave user
+UTG+1 : All-in(raise) 2180 to 2420
+UTG+4 : Table enter user
+Big Blind : Call 1940 
+*** FLOP *** [5s Js Kc]
+*** TURN *** [5s Js Kc] [9h]
+*** RIVER *** [5s Js Kc 9h] [5d]
+Big Blind : Showdown [Qs Qc 5s 5d Kc] (Two pair)
+UTG+1 : Showdown [Js Jh Jc 5s 5d] (Full House)
+UTG+1 : Hand Result 4880 
+*** SUMMARY ***
+Total Pot(4880)
+Board [5s Js Kc 9h 5d]
+Seat+1: UTG+5 Folded before the FLOP
+Seat+2: Dealer Folded before the FLOP
+Seat+3: Small Blind Folded before the FLOP
+Seat+4: Big Blind lose with Two pair [Qs Qc-Qs Qc 5s 5d Kc]  
+Seat+5: UTG Folded before the FLOP
+Seat+6: UTG+1 4880  with Full House [Jh Jc-Js Jh Jc 5s 5d]  
+Seat+7: UTG+2 Folded before the FLOP
+Seat+8: UTG+3 Folded before the FLOP
+Seat+9: UTG+4 Folded before the FLOP
+
+
+Bovada Hand #3031628624: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 4 (40/80) - 2014-08-06 22:32:51
+Seat 1: UTG+4 (2,421 in chips)
+Seat 2: UTG+5 (14,029 in chips)
+Seat 3: Dealer (2,880 in chips)
+Seat 4: Small Blind (580 in chips)
+Seat 5: Big Blind (3,825 in chips)
+Seat 6: UTG (4,880 in chips)
+Seat 7: UTG+1 (5,786 in chips)
+Seat 8: UTG+2 [ME] (3,847 in chips)
+Seat 9: UTG+3 (3,330 in chips)
+Dealer : Set dealer/Bring in spot [3] 
+Small Blind : Ante/Small blind 40 
+Big Blind : Big blind/Bring in 80 
+*** HOLE CARDS ***
+UTG+4 : Card dealt to a spot [2c 5s] 
+UTG+5 : Card dealt to a spot [5c Kc] 
+Dealer : Card dealt to a spot [Ad 4s] 
+Small Blind : Card dealt to a spot [3d 2s] 
+Big Blind : Card dealt to a spot [Kh 2d] 
+UTG : Card dealt to a spot [8d 3s] 
+UTG+1 : Card dealt to a spot [8c Jd] 
+UTG+2 [ME] : Card dealt to a spot [Jh 8h] 
+UTG+3 : Card dealt to a spot [7h As] 
+UTG : Folds
+UTG+1 : Folds
+UTG+2 [ME] : Folds
+UTG+3 : Call 80 
+UTG+4 : Folds
+UTG+5 : Call 80 
+Dealer : Call 80 
+Small Blind : Folds
+Big Blind : Checks
+*** FLOP *** [Ac 4c Js]
+Big Blind : Checks
+UTG+3 : Bets 240 
+UTG+5 : Call 240 
+Dealer : Raises 480 to 480
+Big Blind : Folds
+UTG+3 : Call 240 
+UTG+5 : Call 240 
+*** TURN *** [Ac 4c Js] [Td]
+UTG+3 : Bets 640 
+UTG+5 : Call 640 
+Dealer : All-in(raise) 2320 to 2320
+UTG+3 : Folds
+UTG+5 : Call 1680 
+*** RIVER *** [Ac 4c Js Td] [Ts]
+UTG+5 : Showdown [Ts Td Ac Kc Js] (One pair)
+Dealer : Showdown [Ad Ac Ts Td Js] (Two pair)
+Dealer : Hand Result 7080 
+*** SUMMARY ***
+Total Pot(7080)
+Board [Ac 4c Js Td Ts]
+Seat+1: UTG+4 Folded before the FLOP
+Seat+2: UTG+5 lose with One pair [5c Kc-Ts Td Ac Kc Js]  
+Seat+3: Dealer 7080  with Two pair [Ad 4s-Ad Ac Ts Td Js]  
+Seat+4: Small Blind Folded before the FLOP
+Seat+5: Big Blind Folded on the FLOP
+Seat+6: UTG Folded before the FLOP
+Seat+7: UTG+1 Folded before the FLOP
+Seat+8: UTG+2 Folded before the FLOP
+Seat+9: UTG+3 Folded on the TURN
+
+
+Bovada Hand #3031629990: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 5 (50/100) - 2014-08-06 22:34:27
+Seat 1: UTG+3 (2,421 in chips)
+Seat 2: UTG+4 (11,149 in chips)
+Seat 3: UTG+5 (7,080 in chips)
+Seat 4: Dealer (540 in chips)
+Seat 5: Small Blind (3,745 in chips)
+Seat 6: Big Blind (4,880 in chips)
+Seat 7: UTG (5,786 in chips)
+Seat 8: UTG+1 [ME] (3,847 in chips)
+Seat 9: UTG+2 (2,130 in chips)
+Dealer : Set dealer/Bring in spot [4] 
+Small Blind : Ante/Small blind 50 
+Big Blind : Big blind/Bring in 100 
+*** HOLE CARDS ***
+UTG+3 : Card dealt to a spot [As 2h] 
+UTG+4 : Card dealt to a spot [Jd Tc] 
+UTG+5 : Card dealt to a spot [Ad 3h] 
+Dealer : Card dealt to a spot [2d 6c] 
+Small Blind : Card dealt to a spot [6d 6s] 
+Big Blind : Card dealt to a spot [Td 5c] 
+UTG : Card dealt to a spot [Ac Qs] 
+UTG+1 [ME] : Card dealt to a spot [Ks 9c] 
+UTG+2 : Card dealt to a spot [Ah 3s] 
+UTG : Raises 250 to 250
+UTG+1 [ME] : Folds
+UTG+2 : Folds
+UTG+3 : Sit out
+UTG+3 : Folds(timeout)
+UTG+3 : Re-join
+UTG+4 : Call 250 
+UTG+5 : Folds
+Dealer : Folds
+Small Blind : Call 200 
+Big Blind : Folds
+*** FLOP *** [Qd 5s 2c]
+Small Blind : Checks
+UTG : Bets 505 
+UTG+4 : Folds
+Small Blind : Call 505 
+*** TURN *** [Qd 5s 2c] [5h]
+Small Blind : Checks
+UTG : Bets 1202 
+Small Blind : All-in(raise) 2990 to 2990
+UTG : Call 1788 
+*** RIVER *** [Qd 5s 2c 5h] [8d]
+Small Blind : Showdown [6s 6d 5s 5h Qd] (Two pair)
+UTG : Showdown [Qs Qd 5s 5h Ac] (Two pair)
+UTG : Hand Result 7840 
+Small Blind : Ranking 237 
+Small Blind : Stand
+*** SUMMARY ***
+Total Pot(7840)
+Board [Qd 5s 2c 5h 8d]
+Seat+1: UTG+3 Folded before the FLOP
+Seat+2: UTG+4 Folded on the FLOP
+Seat+3: UTG+5 Folded before the FLOP
+Seat+4: Dealer Folded before the FLOP
+Seat+5: Small Blind lose with Two pair [6d 6s-6s 6d 5s 5h Qd]  
+Seat+6: Big Blind Folded before the FLOP
+Seat+7: UTG 7840  with Two pair [Ac Qs-Qs Qd 5s 5h Ac]  
+Seat+8: UTG+1 Folded before the FLOP
+Seat+9: UTG+2 Folded before the FLOP
+
+
+Bovada Hand #3031631614: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 5 (50/100) - 2014-08-06 22:36:21
+Seat 1: UTG+2 (2,421 in chips)
+Seat 2: UTG+3 (10,899 in chips)
+Seat 3: UTG+4 (7,080 in chips)
+Seat 4: UTG+5 (540 in chips)
+Seat 6: Small Blind (4,780 in chips)
+Seat 7: Big Blind (9,881 in chips)
+Seat 8: UTG [ME] (3,847 in chips)
+Seat 9: UTG+1 (2,130 in chips)
+Small Blind : Ante/Small blind 50 
+Big Blind : Big blind/Bring in 100 
+*** HOLE CARDS ***
+UTG+2 : Card dealt to a spot [Ts Kd] 
+UTG+3 : Card dealt to a spot [2c Ad] 
+UTG+4 : Card dealt to a spot [5h 7h] 
+UTG+5 : Card dealt to a spot [As Qd] 
+Small Blind : Card dealt to a spot [4c 7s] 
+Big Blind : Card dealt to a spot [Tc 8h] 
+UTG [ME] : Card dealt to a spot [7d 4d] 
+UTG+1 : Card dealt to a spot [5d Kh] 
+UTG [ME] : Folds
+UTG+1 : Folds
+UTG+2 : Call 100 
+UTG+3 : Folds
+UTG+4 : Call 100 
+UTG+5 : Raises 275 to 275
+Small Blind : Folds
+Big Blind : Folds
+UTG+2 : Call 175 
+UTG+4 : Call 175 
+*** FLOP *** [8d Ac 4s]
+UTG+2 : Checks
+UTG+4 : Bets 300 
+UTG+5 : All-in 265 
+UTG+2 : Folds
+UTG+4 : Return uncalled portion of bet 35 
+*** TURN *** [8d Ac 4s] [Jc]
+*** RIVER *** [8d Ac 4s Jc] [8c]
+UTG+4 : Showdown [8d 8c Ac Jc 7h] (One pair)
+UTG+5 : Showdown [As Ac 8d 8c Qd] (Two pair)
+UTG+5 : Hand Result 1505 
+UTG+5 : Hand Result 1505 
+UTG+5 : Hand Result 1505 
+*** SUMMARY ***
+Total Pot(1505)
+Board [8d Ac 4s Jc 8c]
+Seat+1: UTG+2 Folded on the FLOP
+Seat+2: UTG+3 Folded before the FLOP
+Seat+3: UTG+4 lose with One pair [5h 7h-8d 8c Ac Jc 7h]  
+Seat+4: UTG+5 1505  with Two pair [As Qd-As Ac 8d 8c Qd]  
+Seat+6: Small Blind Folded before the FLOP
+Seat+7: Big Blind Folded before the FLOP
+Seat+8: UTG Folded before the FLOP
+Seat+9: UTG+1 Folded before the FLOP
+
+
+Bovada Hand #3031632680: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 5 (50/100) - 2014-08-06 22:37:30
+Seat 1: UTG+1 (2,146 in chips)
+Seat 2: UTG+2 (10,899 in chips)
+Seat 3: UTG+3 (6,540 in chips)
+Seat 4: UTG+4 (1,505 in chips)
+Seat 6: Dealer (4,730 in chips)
+Seat 7: Small Blind (9,781 in chips)
+Seat 8: Big Blind [ME] (3,847 in chips)
+Seat 9: UTG (2,130 in chips)
+Dealer : Set dealer/Bring in spot [6] 
+Small Blind : Ante/Small blind 50 
+Big Blind [ME] : Big blind/Bring in 100 
+*** HOLE CARDS ***
+UTG+1 : Card dealt to a spot [Jh 9s] 
+UTG+2 : Card dealt to a spot [4d 9c] 
+UTG+3 : Card dealt to a spot [5d Jc] 
+UTG+4 : Card dealt to a spot [5s Kh] 
+Dealer : Card dealt to a spot [8s Js] 
+Small Blind : Card dealt to a spot [8c 2d] 
+Big Blind [ME] : Card dealt to a spot [Qc 7c] 
+UTG : Card dealt to a spot [2c 2h] 
+UTG : Raises 300 to 300
+UTG+1 : Folds
+UTG+2 : Folds
+UTG+3 : Folds
+UTG+4 : Folds
+Dealer : Folds
+Small Blind : Folds
+Big Blind [ME] : Folds
+UTG : Return uncalled portion of bet 200 
+UTG : Does not show [2c 2h] (High Card)
+UTG : Hand Result 250 
+*** SUMMARY ***
+Total Pot(250)
+Seat+1: UTG+1 Folded before the FLOP
+Seat+2: UTG+2 Folded before the FLOP
+Seat+3: UTG+3 Folded before the FLOP
+Seat+4: UTG+4 Folded before the FLOP
+Seat+6: Dealer Folded before the FLOP
+Seat+7: Small Blind Folded before the FLOP
+Seat+8: Big Blind Folded before the FLOP
+Seat+9: UTG 250 [Does not show]  
+
+
+Bovada Hand #3031633112: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 5 (50/100) - 2014-08-06 22:38:03
+Seat 1: UTG (2,146 in chips)
+Seat 2: UTG+1 (10,899 in chips)
+Seat 3: UTG+2 (6,540 in chips)
+Seat 4: UTG+3 (1,505 in chips)
+Seat 6: UTG+4 (4,730 in chips)
+Seat 7: Dealer (9,731 in chips)
+Seat 8: Small Blind [ME] (3,747 in chips)
+Seat 9: Big Blind (2,280 in chips)
+Dealer : Set dealer/Bring in spot [7] 
+Small Blind [ME] : Ante/Small blind 50 
+Big Blind : Big blind/Bring in 100 
+*** HOLE CARDS ***
+UTG : Card dealt to a spot [Td 3c] 
+UTG+1 : Card dealt to a spot [5c Kh] 
+UTG+2 : Card dealt to a spot [Ad Jc] 
+UTG+3 : Card dealt to a spot [Ks 3s] 
+UTG+4 : Card dealt to a spot [Qd 5d] 
+Dealer : Card dealt to a spot [Ah 7s] 
+Small Blind [ME] : Card dealt to a spot [Qc 6d] 
+Big Blind : Card dealt to a spot [Jh Kd] 
+UTG : Folds
+UTG+1 : Folds
+UTG+2 : Raises 200 to 200
+UTG+3 : Folds
+UTG+4 : Folds
+Dealer : Folds
+Small Blind [ME] : Folds
+Big Blind : Raises 300 to 400
+UTG+2 : All-in(raise) 6340 to 6540
+Big Blind : All-in 1880 
+UTG+2 : Return uncalled portion of bet 4260 
+*** FLOP *** [As 4h 4s]
+*** TURN *** [As 4h 4s] [4d]
+*** RIVER *** [As 4h 4s 4d] [9s]
+UTG+2 : Showdown [4s 4h 4d As Ad] (Full House)
+Big Blind : Showdown [4s 4h 4d As Kd] (Three of a kind)
+UTG+2 : Hand Result 4610 
+Big Blind : Ranking 232 
+Big Blind : Stand
+*** SUMMARY ***
+Total Pot(4610)
+Board [As 4h 4s 4d 9s]
+Seat+1: UTG Folded before the FLOP
+Seat+2: UTG+1 Folded before the FLOP
+Seat+3: UTG+2 4610  with Full House [Ad Jc-4s 4h 4d As Ad]  
+Seat+4: UTG+3 Folded before the FLOP
+Seat+6: UTG+4 Folded before the FLOP
+Seat+7: Dealer Folded before the FLOP
+Seat+8: Small Blind Folded before the FLOP
+Seat+9: Big Blind lose with Three of a kind [Jh Kd-4s 4h 4d As Kd]  
+
+
+Bovada Hand #3031633896: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 5 (50/100) - 2014-08-06 22:38:54
+Seat 1: Big Blind (2,146 in chips)
+Seat 2: UTG (10,899 in chips)
+Seat 3: UTG+1 (8,870 in chips)
+Seat 4: UTG+2 (1,505 in chips)
+Seat 5: UTG+3 (3,000 in chips)
+Seat 6: UTG+4 (4,730 in chips)
+Seat 7: UTG+5 (9,731 in chips)
+Seat 8: Dealer [ME] (3,697 in chips)
+Dealer [ME] : Set dealer/Bring in spot [8] 
+Big Blind : Big blind/Bring in 100 
+*** HOLE CARDS ***
+Big Blind : Card dealt to a spot [Ah 6d] 
+UTG : Card dealt to a spot [Qd Tc] 
+UTG+1 : Card dealt to a spot [9d As] 
+UTG+2 : Card dealt to a spot [3c 4c] 
+UTG+3 : Card dealt to a spot [8h Jd] 
+UTG+4 : Card dealt to a spot [Th 5d] 
+UTG+5 : Card dealt to a spot [3h 6c] 
+Dealer [ME] : Card dealt to a spot [8s Js] 
+UTG : Call 100 
+UTG+1 : Call 100 
+UTG+2 : Folds
+UTG+3 : Folds
+UTG+4 : Folds
+UTG+5 : Folds
+Dealer [ME] : Call 100 
+Big Blind : Checks
+*** FLOP *** [7s 6s Kc]
+Big Blind : Checks
+UTG : Checks
+UTG+1 : Checks
+Dealer [ME] : Bets 300 
+Big Blind : Folds
+UTG : Folds
+UTG+1 : Folds
+Dealer [ME] : Return uncalled portion of bet 300 
+Dealer [ME] : Does not show [8s Js] (High Card)
+Dealer [ME] : Hand Result 400 
+*** SUMMARY ***
+Total Pot(400)
+Board [7s 6s Kc  ]
+Seat+1: Big Blind Folded on the FLOP
+Seat+2: UTG Folded on the FLOP
+Seat+3: UTG+1 Folded on the FLOP
+Seat+4: UTG+2 Folded before the FLOP
+Seat+5: UTG+3 Folded before the FLOP
+Seat+6: UTG+4 Folded before the FLOP
+Seat+7: UTG+5 Folded before the FLOP
+Seat+8: Dealer 400 [Does not show]  
+
+
+Bovada Hand #3031635136: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 5 (50/100) - 2014-08-06 22:40:15
+Seat 1: Small Blind (2,046 in chips)
+Seat 2: Big Blind (10,799 in chips)
+Seat 3: UTG (8,770 in chips)
+Seat 4: UTG+1 (1,505 in chips)
+Seat 5: UTG+2 (3,000 in chips)
+Seat 6: UTG+3 (4,730 in chips)
+Seat 7: UTG+4 (9,731 in chips)
+Seat 8: UTG+5 [ME] (3,997 in chips)
+Small Blind : Ante/Small blind 50 
+Big Blind : Big blind/Bring in 100 
+*** HOLE CARDS ***
+Small Blind : Card dealt to a spot [Ad 3d] 
+Big Blind : Card dealt to a spot [Ah 6c] 
+UTG : Card dealt to a spot [7h Js] 
+UTG+1 : Card dealt to a spot [2s As] 
+UTG+2 : Card dealt to a spot [Tc 3c] 
+UTG+3 : Card dealt to a spot [Kh Qd] 
+UTG+4 : Card dealt to a spot [2d 2h] 
+UTG+5 [ME] : Card dealt to a spot [6s Ts] 
+UTG : Folds
+UTG+1 : Folds
+UTG+2 : Folds
+UTG+3 : Raises 240 to 240
+UTG+4 : Call 240 
+UTG+5 [ME] : Folds
+Small Blind : Call 190 
+Big Blind : Call 140 
+*** FLOP *** [2c 3h 4d]
+Small Blind : Checks
+Big Blind : Checks
+UTG+3 : Checks
+UTG+4 : Bets 800 
+Small Blind : All-in(raise) 1806 to 1806
+Big Blind : Folds
+UTG+3 : Folds
+UTG+4 : Call 1006 
+*** TURN *** [2c 3h 4d] [5h]
+*** RIVER *** [2c 3h 4d 5h] [8c]
+Small Blind : Showdown [5h 4d 3h 2c Ad] (Straight)
+UTG+4 : Showdown [2h 2d 2c 8c 5h] (Three of a kind)
+Small Blind : Hand Result 4572 
+*** SUMMARY ***
+Total Pot(4572)
+Board [2c 3h 4d 5h 8c]
+Seat+1: Small Blind 4572  with Straight [Ad 3d-5h 4d 3h 2c Ad]  
+Seat+2: Big Blind Folded on the FLOP
+Seat+3: UTG Folded before the FLOP
+Seat+4: UTG+1 Folded before the FLOP
+Seat+5: UTG+2 Folded before the FLOP
+Seat+6: UTG+3 Folded on the FLOP
+Seat+7: UTG+4 lose with Three of a kind [2d 2h-2h 2d 2c 8c 5h]  
+Seat+8: UTG+5 Folded before the FLOP
+
+
+Bovada Hand #3031636677: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 5 (50/100) - 2014-08-06 22:41:57
+Seat 1: Dealer (4,572 in chips)
+Seat 2: Small Blind (10,559 in chips)
+Seat 3: Big Blind (8,770 in chips)
+Seat 4: UTG (1,505 in chips)
+Seat 5: UTG+1 (3,000 in chips)
+Seat 6: UTG+2 (4,490 in chips)
+Seat 7: UTG+3 (7,685 in chips)
+Seat 8: UTG+4 [ME] (3,997 in chips)
+Dealer : Set dealer/Bring in spot [1] 
+Small Blind : Ante/Small blind 50 
+Big Blind : Big blind/Bring in 100 
+*** HOLE CARDS ***
+Dealer : Card dealt to a spot [Th 7h] 
+Small Blind : Card dealt to a spot [4c Jd] 
+Big Blind : Card dealt to a spot [Jh 9c] 
+UTG : Card dealt to a spot [Ad Ac] 
+UTG+1 : Card dealt to a spot [7s 6h] 
+UTG+2 : Card dealt to a spot [8c 8h] 
+UTG+3 : Card dealt to a spot [4d 5h] 
+UTG+4 [ME] : Card dealt to a spot [As 2s] 
+UTG : Raises 250 to 250
+UTG+1 : Folds
+UTG+2 : Folds
+UTG+3 : Folds
+UTG+4 [ME] : Folds
+Dealer : Folds
+Small Blind : Folds
+Big Blind : Folds
+UTG : Return uncalled portion of bet 150 
+UTG : Does not show [Ad Ac] (High Card)
+UTG : Hand Result 250 
+*** SUMMARY ***
+Total Pot(250)
+Seat+1: Dealer Folded before the FLOP
+Seat+2: Small Blind Folded before the FLOP
+Seat+3: Big Blind Folded before the FLOP
+Seat+4: UTG 250 [Does not show]  
+Seat+5: UTG+1 Folded before the FLOP
+Seat+6: UTG+2 Folded before the FLOP
+Seat+7: UTG+3 Folded before the FLOP
+Seat+8: UTG+4 Folded before the FLOP
+
+
+Bovada Hand #3031637075: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 5 (50/100) - 2014-08-06 22:42:24
+Seat 1: UTG+4 (4,572 in chips)
+Seat 2: Dealer (10,509 in chips)
+Seat 3: Small Blind (8,670 in chips)
+Seat 4: Big Blind (1,655 in chips)
+Seat 5: UTG (3,000 in chips)
+Seat 6: UTG+1 (4,490 in chips)
+Seat 7: UTG+2 (7,685 in chips)
+Seat 8: UTG+3 [ME] (3,997 in chips)
+Dealer : Set dealer/Bring in spot [2] 
+Small Blind : Ante/Small blind 50 
+Big Blind : Big blind/Bring in 100 
+*** HOLE CARDS ***
+UTG+4 : Card dealt to a spot [Qs 4h] 
+Dealer : Card dealt to a spot [9c Js] 
+Small Blind : Card dealt to a spot [2c Kc] 
+Big Blind : Card dealt to a spot [Ts Kh] 
+UTG : Card dealt to a spot [8d 9h] 
+UTG+1 : Card dealt to a spot [3d 6s] 
+UTG+2 : Card dealt to a spot [6c 7s] 
+UTG+3 [ME] : Card dealt to a spot [3h Qh] 
+UTG : Folds
+UTG+1 : Folds
+UTG+2 : Folds
+UTG+3 [ME] : Folds
+UTG+4 : Sit out
+UTG+4 : Folds(timeout)
+Dealer : Call 100 
+Small Blind : Call 50 
+Big Blind : Raises 175 to 275
+Dealer : Call 175 
+Small Blind : Folds
+*** FLOP *** [Jh Jc 7h]
+Big Blind : Checks
+Dealer : Checks
+*** TURN *** [Jh Jc 7h] [7c]
+Big Blind : Bets 100 
+UTG+4 : Re-join
+Dealer : Raises 266 to 266
+Big Blind : Folds
+Dealer : Return uncalled portion of bet 166 
+Dealer : Does not show [9c Js] (Full House)
+Dealer : Hand Result 850 
+*** SUMMARY ***
+Total Pot(850)
+Board [Jh Jc 7h 7c ]
+Seat+1: UTG+4 Folded before the FLOP
+Seat+2: Dealer 850 [Does not show]  
+Seat+3: Small Blind Folded before the FLOP
+Seat+4: Big Blind Folded on the TURN
+Seat+5: UTG Folded before the FLOP
+Seat+6: UTG+1 Folded before the FLOP
+Seat+7: UTG+2 Folded before the FLOP
+Seat+8: UTG+3 Folded before the FLOP
+
+
+Bovada Hand #3031638960: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 5 (50/100) - 2014-08-06 22:44:30
+Seat 1: UTG+4 (4,572 in chips)
+Seat 2: UTG+5 (10,984 in chips)
+Seat 3: Dealer (8,570 in chips)
+Seat 4: Small Blind (1,280 in chips)
+Seat 5: Big Blind (3,000 in chips)
+Seat 6: UTG (4,490 in chips)
+Seat 7: UTG+1 (7,685 in chips)
+Seat 8: UTG+2 [ME] (3,997 in chips)
+Seat 9: UTG+3 (3,000 in chips)
+Dealer : Set dealer/Bring in spot [3] 
+Small Blind : Ante/Small blind 50 
+Big Blind : Big blind/Bring in 100 
+*** HOLE CARDS ***
+UTG+4 : Card dealt to a spot [Ah 5c] 
+UTG+5 : Card dealt to a spot [8s 5h] 
+Dealer : Card dealt to a spot [Jh 2s] 
+Small Blind : Card dealt to a spot [Kh 3d] 
+Big Blind : Card dealt to a spot [Qs Ks] 
+UTG : Card dealt to a spot [Kc 6d] 
+UTG+1 : Card dealt to a spot [5s 6h] 
+UTG+2 [ME] : Card dealt to a spot [Td As] 
+UTG+3 : Card dealt to a spot [2d Kd] 
+UTG : Folds
+UTG+1 : Folds
+UTG+2 [ME] : Raises 250 to 250
+UTG+3 : Folds
+UTG+4 : Call 250 
+UTG+5 : Folds
+Dealer : Folds
+Small Blind : Folds
+Big Blind : Call 150 
+*** FLOP *** [8h 7c Ac]
+Big Blind : Checks
+UTG+2 [ME] : Bets 400 
+UTG+4 : Call 400 
+Big Blind : Folds
+*** TURN *** [8h 7c Ac] [Ts]
+UTG+2 [ME] : Bets 1000 
+UTG+4 : Folds
+UTG+2 [ME] : Return uncalled portion of bet 1000 
+UTG+2 [ME] : Does not show [Td As] (Two pair)
+UTG+2 [ME] : Hand Result 1600 
+UTG+2 [ME] : Hand Result 1600 
+UTG+2 [ME] : Hand Result 1600 
+*** SUMMARY ***
+Total Pot(1600)
+Board [8h 7c Ac Ts ]
+Seat+1: UTG+4 Folded on the TURN
+Seat+2: UTG+5 Folded before the FLOP
+Seat+3: Dealer Folded before the FLOP
+Seat+4: Small Blind Folded before the FLOP
+Seat+5: Big Blind Folded on the FLOP
+Seat+6: UTG Folded before the FLOP
+Seat+7: UTG+1 Folded before the FLOP
+Seat+8: UTG+2 1600 [Does not show]  
+Seat+9: UTG+3 Folded before the FLOP
+
+
+Bovada Hand #3031645648: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 6 (75/150) - 2014-08-06 22:52:10
+Seat 1: UTG+3 (3,922 in chips)
+Seat 2: UTG+4 (10,984 in chips)
+Seat 3: UTG+5 (8,570 in chips)
+Seat 4: Dealer (1,230 in chips)
+Seat 5: Small Blind (2,750 in chips)
+Seat 6: Big Blind (4,490 in chips)
+Seat 7: UTG (7,685 in chips)
+Seat 8: UTG+1 [ME] (4,947 in chips)
+Seat 9: UTG+2 (3,000 in chips)
+Dealer : Set dealer/Bring in spot [4] 
+Small Blind : Ante/Small blind 75 
+Big Blind : Big blind/Bring in 150 
+*** HOLE CARDS ***
+UTG+3 : Card dealt to a spot [4d 5d] 
+UTG+4 : Card dealt to a spot [Qc 3d] 
+UTG+5 : Card dealt to a spot [7c Ah] 
+Dealer : Card dealt to a spot [Kh 5c] 
+Small Blind : Card dealt to a spot [3s Qh] 
+Big Blind : Card dealt to a spot [Tc Qs] 
+UTG : Card dealt to a spot [6c 2h] 
+UTG+1 [ME] : Card dealt to a spot [4s 7s] 
+UTG+2 : Card dealt to a spot [As Th] 
+UTG : Folds
+UTG+1 [ME] : Folds
+UTG+2 : Call 150 
+UTG+3 : Call 150 
+UTG+4 : Folds
+UTG+5 : Call 150 
+Dealer : Folds
+Small Blind : Call 75 
+Big Blind : Checks
+*** FLOP *** [Ts 2c 3h]
+Small Blind : Bets 150 
+Big Blind : Raises 450 to 450
+Big Blind : Raises 450 to 450
+Big Blind : Raises 450 to 450
+Big Blind : Raises 450 to 450
+Big Blind : Raises 450 to 450
+Big Blind : Raises 450 to 450
+Big Blind : Raises 450 to 450
+Big Blind : Raises 450 to 450
+Big Blind : Raises 450 to 450
+Big Blind : Raises 450 to 450
+Big Blind : Raises 450 to 450
+Big Blind : Raises 450 to 450
+Big Blind : Raises 450 to 450
+Big Blind : Raises 450 to 450
+Big Blind : Raises 450 to 450
+Big Blind : Raises 450 to 450
+UTG+2 : Raises 750 to 750
+UTG+3 : Call 750 
+UTG+5 : Folds
+Small Blind : Folds
+Big Blind : Folds
+*** TURN *** [Ts 2c 3h] [Ad]
+UTG+2 : Checks
+UTG+3 : All-in 3022 
+UTG+2 : All-in 2100 
+UTG+3 : Return uncalled portion of bet 922 
+*** RIVER *** [Ts 2c 3h Ad] [5s]
+UTG+3 : Showdown [5s 4d 3h 2c Ad] (Straight)
+UTG+2 : Showdown [As Ad Ts Th 5s] (Two pair)
+UTG+3 : Hand Result 7050 
+UTG+2 : Ranking 239 
+UTG+2 : Stand
+*** SUMMARY ***
+Total Pot(7050)
+Board [Ts 2c 3h Ad 5s]
+Seat+1: UTG+3 7050  with Straight [4d 5d-5s 4d 3h 2c Ad]  
+Seat+2: UTG+4 Folded before the FLOP
+Seat+3: UTG+5 Folded on the FLOP
+Seat+4: Dealer Folded before the FLOP
+Seat+5: Small Blind Folded on the FLOP
+Seat+6: Big Blind Folded on the FLOP
+Seat+7: UTG Folded before the FLOP
+Seat+8: UTG+1 Folded before the FLOP
+Seat+9: UTG+2 lose with Two pair [As Th-As Ad Ts Th 5s]  
+
+
+Bovada Hand #3031647463: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 6 (75/150) - 2014-08-06 22:54:13
+Seat 1: UTG+1 (7,972 in chips)
+Seat 2: UTG+2 (10,984 in chips)
+Seat 3: UTG+3 (8,420 in chips)
+Seat 4: UTG+4 (1,230 in chips)
+Seat 5: Dealer (2,450 in chips)
+Seat 6: Small Blind (3,890 in chips)
+Seat 7: Big Blind (7,685 in chips)
+Seat 8: UTG [ME] (4,947 in chips)
+Dealer : Set dealer/Bring in spot [5] 
+Small Blind : Ante/Small blind 75 
+Big Blind : Big blind/Bring in 150 
+*** HOLE CARDS ***
+UTG+1 : Card dealt to a spot [7c 7s] 
+UTG+2 : Card dealt to a spot [2h 6h] 
+UTG+3 : Card dealt to a spot [8d Jh] 
+UTG+4 : Card dealt to a spot [Kd 5s] 
+Dealer : Card dealt to a spot [Ad 4h] 
+Small Blind : Card dealt to a spot [5c Qh] 
+Big Blind : Card dealt to a spot [5d 4c] 
+UTG [ME] : Card dealt to a spot [6s Ah] 
+UTG [ME] : Folds
+UTG+1 : Call 150 
+UTG+2 : Folds
+UTG+3 : Folds
+UTG+4 : All-in(raise) 1230 to 1230
+Dealer : Folds
+Small Blind : Folds
+Big Blind : Folds
+UTG+1 : Call 1080 
+*** FLOP *** [5h Jd Qs]
+*** TURN *** [5h Jd Qs] [2c]
+*** RIVER *** [5h Jd Qs 2c] [7d]
+UTG+1 : Showdown [7s 7d 7c Qs Jd] (Three of a kind)
+UTG+4 : Showdown [5s 5h Kd Qs Jd] (One pair)
+UTG+1 : Hand Result 2685 
+UTG+4 : Ranking 235 
+UTG+4 : Stand
+*** SUMMARY ***
+Total Pot(2685)
+Board [5h Jd Qs 2c 7d]
+Seat+1: UTG+1 2685  with Three of a kind [7c 7s-7s 7d 7c Qs Jd]  
+Seat+2: UTG+2 Folded before the FLOP
+Seat+3: UTG+3 Folded before the FLOP
+Seat+4: UTG+4 lose with One pair [Kd 5s-5s 5h Kd Qs Jd]  
+Seat+5: Dealer Folded before the FLOP
+Seat+6: Small Blind Folded before the FLOP
+Seat+7: Big Blind Folded before the FLOP
+Seat+8: UTG Folded before the FLOP
+
+
+Bovada Hand #3031648675: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 6 (75/150) - 2014-08-06 22:55:34
+Seat 1: UTG+1 (9,427 in chips)
+Seat 2: UTG+2 (10,984 in chips)
+Seat 3: UTG+3 (8,420 in chips)
+Seat 5: UTG+4 (2,450 in chips)
+Seat 6: Dealer (3,815 in chips)
+Seat 7: Small Blind (7,535 in chips)
+Seat 8: Big Blind [ME] (4,947 in chips)
+Seat 9: UTG (3,000 in chips)
+Dealer : Set dealer/Bring in spot [6] 
+Small Blind : Ante/Small blind 75 
+Big Blind [ME] : Big blind/Bring in 150 
+*** HOLE CARDS ***
+UTG+1 : Card dealt to a spot [4h 8h] 
+UTG+2 : Card dealt to a spot [Th Qh] 
+UTG+3 : Card dealt to a spot [2d Tc] 
+UTG+4 : Card dealt to a spot [8c 6s] 
+Dealer : Card dealt to a spot [6c 4c] 
+Small Blind : Card dealt to a spot [Jh 7c] 
+Big Blind [ME] : Card dealt to a spot [Kh 9s] 
+UTG : Card dealt to a spot [6h 3c] 
+UTG : Folds
+UTG+1 : Call 150 
+UTG+2 : Call 150 
+UTG+3 : Folds
+UTG+4 : Folds
+Dealer : Folds
+Small Blind : Call 75 
+Big Blind [ME] : Checks
+*** FLOP *** [3s Qs 3h]
+Small Blind : Checks
+Big Blind [ME] : Checks
+UTG+1 : Checks
+UTG+2 : Bets 450 
+UTG+2 : Bets 450 
+UTG+2 : Bets 450 
+UTG+2 : Bets 450 
+Small Blind : Folds
+Big Blind [ME] : Folds
+UTG+1 : Folds
+UTG+2 : Return uncalled portion of bet 450 
+UTG+2 : Return uncalled portion of bet 450 
+UTG+2 : Return uncalled portion of bet 450 
+UTG+2 : Return uncalled portion of bet 450 
+UTG+2 : Does not show [Th Qh] Show1 [Qh] (Two pair)
+UTG+2 : Hand Result 600 
+*** SUMMARY ***
+Total Pot(600)
+Board [3s Qs 3h  ]
+Seat+1: UTG+1 Folded on the FLOP
+Seat+2: UTG+2 600 [Does not show]  
+Seat+3: UTG+3 Folded before the FLOP
+Seat+5: UTG+4 Folded before the FLOP
+Seat+6: Dealer Folded before the FLOP
+Seat+7: Small Blind Folded on the FLOP
+Seat+8: Big Blind Folded on the FLOP
+Seat+9: UTG Folded before the FLOP
+
+
+Bovada Hand #3031649848: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 6 (75/150) - 2014-08-06 22:56:55
+Seat 1: UTG (9,277 in chips)
+Seat 2: UTG+1 (11,434 in chips)
+Seat 3: UTG+2 (8,420 in chips)
+Seat 5: UTG+3 (2,450 in chips)
+Seat 6: UTG+4 (3,815 in chips)
+Seat 7: Dealer (7,385 in chips)
+Seat 8: Small Blind [ME] (4,797 in chips)
+Seat 9: Big Blind (3,000 in chips)
+Dealer : Set dealer/Bring in spot [7] 
+Small Blind [ME] : Ante/Small blind 75 
+Big Blind : Big blind/Bring in 150 
+*** HOLE CARDS ***
+UTG : Card dealt to a spot [8d 9h] 
+UTG+1 : Card dealt to a spot [3c Qs] 
+UTG+2 : Card dealt to a spot [Qd Kh] 
+UTG+3 : Card dealt to a spot [3d 2d] 
+UTG+4 : Card dealt to a spot [Ks Td] 
+Dealer : Card dealt to a spot [9s 7h] 
+Small Blind [ME] : Card dealt to a spot [4d 7d] 
+Big Blind : Card dealt to a spot [5d 3h] 
+UTG : Call 150 
+UTG+1 : Folds
+UTG+2 : Call 150 
+UTG+3 : Folds
+UTG+4 : Folds
+Dealer : Folds
+Small Blind [ME] : Call 75 
+Big Blind : Checks
+*** FLOP *** [4s Ad 7s]
+Small Blind [ME] : Checks
+Big Blind : Checks
+UTG : Checks
+UTG+2 : Checks
+*** TURN *** [4s Ad 7s] [Qh]
+Small Blind [ME] : Bets 300 
+Big Blind : Folds
+UTG : Folds
+UTG+2 : Call 300 
+*** RIVER *** [4s Ad 7s Qh] [6s]
+Small Blind [ME] : Checks
+UTG+2 : Checks
+Small Blind [ME] : Showdown [7s 7d 4s 4d Ad] (Two pair)
+UTG+2 : Mucks [Qd Kh] (One pair)
+Small Blind [ME] : Hand Result 1200 
+*** SUMMARY ***
+Total Pot(1200)
+Board [4s Ad 7s Qh 6s]
+Seat+1: UTG Folded on the TURN
+Seat+2: UTG+1 Folded before the FLOP
+Seat+3: UTG+2 [Mucked] [Qd Kh ]  
+Seat+5: UTG+3 Folded before the FLOP
+Seat+6: UTG+4 Folded before the FLOP
+Seat+7: Dealer Folded before the FLOP
+Seat+8: Small Blind 1200  with Two pair [4d 7d-7s 7d 4s 4d Ad]  
+Seat+9: Big Blind Folded on the TURN
+
+
+Bovada Hand #3031651174: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 6 (75/150) - 2014-08-06 22:58:28
+Seat 1: Big Blind (9,127 in chips)
+Seat 2: UTG (11,434 in chips)
+Seat 3: UTG+1 (7,970 in chips)
+Seat 4: UTG+2 (3,000 in chips)
+Seat 5: UTG+3 (2,450 in chips)
+Seat 6: UTG+4 (3,815 in chips)
+Seat 7: UTG+5 (7,385 in chips)
+Seat 8: Dealer [ME] (5,547 in chips)
+Seat 9: Small Blind (2,850 in chips)
+Dealer [ME] : Set dealer/Bring in spot [8] 
+Small Blind : Ante/Small blind 75 
+Big Blind : Big blind/Bring in 150 
+*** HOLE CARDS ***
+Big Blind : Card dealt to a spot [7s Qc] 
+UTG : Card dealt to a spot [Ks 2d] 
+UTG+1 : Card dealt to a spot [9h 8h] 
+UTG+2 : Card dealt to a spot [As 6s] 
+UTG+3 : Card dealt to a spot [7h Td] 
+UTG+4 : Card dealt to a spot [6c 4s] 
+UTG+5 : Card dealt to a spot [4c Ac] 
+Dealer [ME] : Card dealt to a spot [5s 6h] 
+Small Blind : Card dealt to a spot [Th Kh] 
+UTG : Folds
+UTG+1 : Folds
+UTG+2 : Raises 450 to 450
+UTG+2 : Raises 450 to 450
+UTG+2 : Raises 450 to 450
+UTG+2 : Raises 450 to 450
+UTG+2 : Raises 450 to 450
+UTG+2 : Raises 450 to 450
+UTG+2 : Raises 450 to 450
+UTG+2 : Raises 450 to 450
+UTG+2 : Raises 450 to 450
+UTG+2 : Raises 450 to 450
+UTG+2 : Raises 450 to 450
+UTG+2 : Raises 450 to 450
+UTG+2 : Raises 450 to 450
+UTG+2 : Raises 450 to 450
+UTG+2 : Raises 450 to 450
+UTG+2 : Raises 450 to 450
+UTG+3 : Folds
+UTG+4 : Folds
+UTG+5 : Folds
+Dealer [ME] : Folds
+Small Blind : Folds
+Big Blind : Folds
+UTG+2 : Return uncalled portion of bet 300 
+UTG+2 : Does not show [As 6s] (High Card)
+UTG+2 : Hand Result 375 
+*** SUMMARY ***
+Total Pot(375)
+Seat+1: Big Blind Folded before the FLOP
+Seat+2: UTG Folded before the FLOP
+Seat+3: UTG+1 Folded before the FLOP
+Seat+4: UTG+2 375 [Does not show]  
+Seat+5: UTG+3 Folded before the FLOP
+Seat+6: UTG+4 Folded before the FLOP
+Seat+7: UTG+5 Folded before the FLOP
+Seat+8: Dealer Folded before the FLOP
+Seat+9: Small Blind Folded before the FLOP
+
+
+Bovada Hand #3031651586: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 6 (75/150) - 2014-08-06 22:58:58
+Seat 1: Small Blind (8,977 in chips)
+Seat 2: Big Blind (11,434 in chips)
+Seat 3: UTG (7,970 in chips)
+Seat 4: UTG+1 (3,225 in chips)
+Seat 5: UTG+2 (2,450 in chips)
+Seat 6: UTG+3 (3,815 in chips)
+Seat 7: UTG+4 (7,385 in chips)
+Seat 8: UTG+5 [ME] (5,547 in chips)
+Seat 9: Dealer (2,775 in chips)
+Dealer : Set dealer/Bring in spot [9] 
+Small Blind : Ante/Small blind 75 
+Big Blind : Big blind/Bring in 150 
+*** HOLE CARDS ***
+Small Blind : Card dealt to a spot [9d Jd] 
+Big Blind : Card dealt to a spot [Qh 3d] 
+UTG : Card dealt to a spot [Qd 2d] 
+UTG+1 : Card dealt to a spot [8s 4c] 
+UTG+2 : Card dealt to a spot [Kc 4d] 
+UTG+3 : Card dealt to a spot [9c 7s] 
+UTG+4 : Card dealt to a spot [Ac 6c] 
+UTG+5 [ME] : Card dealt to a spot [8c 2c] 
+Dealer : Card dealt to a spot [Kd 6d] 
+UTG : Folds
+UTG+1 : Folds
+UTG+2 : Folds
+UTG+3 : Folds
+UTG+4 : Raises 360 to 360
+UTG+5 [ME] : Folds
+Dealer : Folds
+Small Blind : Call 285 
+Big Blind : Folds
+*** FLOP *** [5d Ad Th]
+Small Blind : Checks
+UTG+4 : Bets 505 
+Small Blind : Call 505 
+*** TURN *** [5d Ad Th] [2h]
+Small Blind : Checks
+UTG+4 : Bets 1101 
+Small Blind : Folds
+UTG+4 : Return uncalled portion of bet 1101 
+UTG+4 : Does not show [Ac 6c] (One pair)
+UTG+4 : Hand Result 1880 
+*** SUMMARY ***
+Total Pot(1880)
+Board [5d Ad Th 2h ]
+Seat+1: Small Blind Folded on the TURN
+Seat+2: Big Blind Folded before the FLOP
+Seat+3: UTG Folded before the FLOP
+Seat+4: UTG+1 Folded before the FLOP
+Seat+5: UTG+2 Folded before the FLOP
+Seat+6: UTG+3 Folded before the FLOP
+Seat+7: UTG+4 1880 [Does not show]  
+Seat+8: UTG+5 Folded before the FLOP
+Seat+9: Dealer Folded before the FLOP
+
+
+Bovada Hand #3031652672: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 6 (75/150) - 2014-08-06 23:00:13
+Seat 1: Dealer (8,112 in chips)
+Seat 2: Small Blind (11,284 in chips)
+Seat 3: Big Blind (7,970 in chips)
+Seat 4: UTG (3,225 in chips)
+Seat 5: UTG+1 (2,450 in chips)
+Seat 6: UTG+2 (3,815 in chips)
+Seat 7: UTG+3 (8,400 in chips)
+Seat 8: UTG+4 [ME] (5,547 in chips)
+Seat 9: UTG+5 (2,775 in chips)
+Dealer : Set dealer/Bring in spot [1] 
+Small Blind : Ante/Small blind 75 
+Big Blind : Big blind/Bring in 150 
+*** HOLE CARDS ***
+Dealer : Card dealt to a spot [7c Th] 
+Small Blind : Card dealt to a spot [6c 9c] 
+Big Blind : Card dealt to a spot [2c Ah] 
+UTG : Card dealt to a spot [9d 8s] 
+UTG+1 : Card dealt to a spot [Qs 4h] 
+UTG+2 : Card dealt to a spot [Td 3h] 
+UTG+3 : Card dealt to a spot [3c 4c] 
+UTG+4 [ME] : Card dealt to a spot [Kd Kh] 
+UTG+5 : Card dealt to a spot [8c 9s] 
+UTG : Folds
+UTG+1 : Folds
+UTG+2 : Folds
+UTG+3 : Raises 300 to 300
+UTG+4 [ME] : Raises 750 to 750
+UTG+5 : Folds
+Dealer : Folds
+Small Blind : Folds
+Big Blind : Folds
+UTG+3 : Call 450 
+UTG+3 : Call 450 
+UTG+3 : Call 450 
+UTG+3 : Call 450 
+*** FLOP *** [Ks 2d 8d]
+UTG+3 : Checks
+UTG+4 [ME] : Checks
+*** TURN *** [Ks 2d 8d] [7d]
+UTG+3 : Checks
+UTG+4 [ME] : Bets 862 
+UTG+3 : Folds
+UTG+4 [ME] : Return uncalled portion of bet 862 
+UTG+4 [ME] : Does not show [Kd Kh] (Three of a kind)
+UTG+4 [ME] : Hand Result 1725 
+*** SUMMARY ***
+Total Pot(1725)
+Board [Ks 2d 8d 7d ]
+Seat+1: Dealer Folded before the FLOP
+Seat+2: Small Blind Folded before the FLOP
+Seat+3: Big Blind Folded before the FLOP
+Seat+4: UTG Folded before the FLOP
+Seat+5: UTG+1 Folded before the FLOP
+Seat+6: UTG+2 Folded before the FLOP
+Seat+7: UTG+3 Folded on the TURN
+Seat+8: UTG+4 1725 [Does not show]  
+Seat+9: UTG+5 Folded before the FLOP
+
+
+Bovada Hand #3031653803: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 6 (75/150) - 2014-08-06 23:01:31
+Seat 1: UTG+5 (8,112 in chips)
+Seat 2: Dealer (11,209 in chips)
+Seat 3: Small Blind (7,820 in chips)
+Seat 4: Big Blind (3,225 in chips)
+Seat 5: UTG (2,450 in chips)
+Seat 6: UTG+1 (3,815 in chips)
+Seat 7: UTG+2 (7,650 in chips)
+Seat 8: UTG+3 [ME] (6,522 in chips)
+Seat 9: UTG+4 (2,775 in chips)
+Dealer : Set dealer/Bring in spot [2] 
+Small Blind : Ante/Small blind 75 
+Big Blind : Big blind/Bring in 150 
+*** HOLE CARDS ***
+UTG+5 : Card dealt to a spot [Qs 4c] 
+Dealer : Card dealt to a spot [9d 6c] 
+Small Blind : Card dealt to a spot [8c 2h] 
+Big Blind : Card dealt to a spot [Ah 7s] 
+UTG : Card dealt to a spot [8s Jd] 
+UTG+1 : Card dealt to a spot [9c Ks] 
+UTG+2 : Card dealt to a spot [9h 5d] 
+UTG+3 [ME] : Card dealt to a spot [6d Js] 
+UTG+4 : Card dealt to a spot [Ad 8d] 
+UTG : Folds
+UTG+1 : Table leave user
+UTG+1 : Table enter user
+UTG+1 : Folds
+UTG+2 : Folds
+UTG+3 [ME] : Folds
+UTG+4 : Folds
+UTG+5 : Folds
+Dealer : Folds
+Small Blind : Folds
+Big Blind : Does not show [Ah 7s] (High Card)
+Big Blind : Hand Result 225 
+*** SUMMARY ***
+Total Pot(225)
+Seat+1: UTG+5 Folded before the FLOP
+Seat+2: Dealer Folded before the FLOP
+Seat+3: Small Blind Folded before the FLOP
+Seat+4: Big Blind 225 [Does not show]  
+Seat+5: UTG Folded before the FLOP
+Seat+6: UTG+1 Folded before the FLOP
+Seat+7: UTG+2 Folded before the FLOP
+Seat+8: UTG+3 Folded before the FLOP
+Seat+9: UTG+4 Folded before the FLOP
+
+
+Bovada Hand #3031655048: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 6 (75/150) - 2014-08-06 23:02:55
+Seat 1: UTG+4 (8,112 in chips)
+Seat 2: UTG+5 (11,209 in chips)
+Seat 3: Dealer (7,745 in chips)
+Seat 4: Small Blind (3,300 in chips)
+Seat 5: Big Blind (2,450 in chips)
+Seat 6: UTG (3,815 in chips)
+Seat 7: UTG+1 (7,650 in chips)
+Seat 8: UTG+2 [ME] (6,522 in chips)
+Seat 9: UTG+3 (2,775 in chips)
+Dealer : Set dealer/Bring in spot [3] 
+Small Blind : Ante/Small blind 75 
+Big Blind : Big blind/Bring in 150 
+*** HOLE CARDS ***
+UTG+4 : Card dealt to a spot [Kc Th] 
+UTG+5 : Card dealt to a spot [5d 5s] 
+Dealer : Card dealt to a spot [9h 5c] 
+Small Blind : Card dealt to a spot [8h 4c] 
+Big Blind : Card dealt to a spot [3h Qs] 
+UTG : Card dealt to a spot [Ac 7d] 
+UTG+1 : Card dealt to a spot [Kd Td] 
+UTG+2 [ME] : Card dealt to a spot [6d Ts] 
+UTG+3 : Card dealt to a spot [8s 6c] 
+UTG : Folds
+UTG+1 : Raises 300 to 300
+UTG+2 [ME] : Folds
+UTG+3 : Folds
+UTG+4 : Call 300 
+UTG+5 : Call 300 
+Dealer : Folds
+Small Blind : Folds
+Big Blind : Folds
+*** FLOP *** [2h Jd 9s]
+UTG+1 : Bets 505 
+UTG+4 : Call 505 
+UTG+5 : Folds
+*** TURN *** [2h Jd 9s] [3c]
+UTG+1 : Bets 1101 
+UTG+4 : Folds
+UTG+1 : Return uncalled portion of bet 1101 
+UTG+1 : Does not show [Kd Td] (High Card)
+UTG+1 : Hand Result 2135 
+*** SUMMARY ***
+Total Pot(2135)
+Board [2h Jd 9s 3c ]
+Seat+1: UTG+4 Folded on the TURN
+Seat+2: UTG+5 Folded on the FLOP
+Seat+3: Dealer Folded before the FLOP
+Seat+4: Small Blind Folded before the FLOP
+Seat+5: Big Blind Folded before the FLOP
+Seat+6: UTG Folded before the FLOP
+Seat+7: UTG+1 2135 [Does not show]  
+Seat+8: UTG+2 Folded before the FLOP
+Seat+9: UTG+3 Folded before the FLOP
+
+
+Bovada Hand #3031656142: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 7 (100/200) - 2014-08-06 23:04:10
+Seat 1: UTG+3 (7,307 in chips)
+Seat 2: UTG+4 (10,909 in chips)
+Seat 3: UTG+5 (7,745 in chips)
+Seat 4: Dealer (3,225 in chips)
+Seat 5: Small Blind (2,300 in chips)
+Seat 6: Big Blind (3,815 in chips)
+Seat 7: UTG (8,980 in chips)
+Seat 8: UTG+1 [ME] (6,522 in chips)
+Seat 9: UTG+2 (2,775 in chips)
+Dealer : Set dealer/Bring in spot [4] 
+Small Blind : Ante/Small blind 100 
+Big Blind : Big blind/Bring in 200 
+*** HOLE CARDS ***
+UTG+3 : Card dealt to a spot [8d 6h] 
+UTG+4 : Card dealt to a spot [5d As] 
+UTG+5 : Card dealt to a spot [8h 4s] 
+Dealer : Card dealt to a spot [5s 9d] 
+Small Blind : Card dealt to a spot [7c Td] 
+Big Blind : Card dealt to a spot [Qh Qd] 
+UTG : Card dealt to a spot [Kc 7s] 
+UTG+1 [ME] : Card dealt to a spot [2c Js] 
+UTG+2 : Card dealt to a spot [7d Kd] 
+UTG : Folds
+UTG+1 [ME] : Folds
+UTG+2 : Folds
+UTG+3 : Folds
+UTG+4 : Folds
+UTG+5 : Folds
+Dealer : Folds
+Small Blind : Call 100 
+Big Blind : Raises 400 to 600
+Small Blind : Folds
+Big Blind : Return uncalled portion of bet 400 
+Big Blind : Does not show [Qh Qd] (High Card)
+Big Blind : Hand Result 400 
+*** SUMMARY ***
+Total Pot(400)
+Seat+1: UTG+3 Folded before the FLOP
+Seat+2: UTG+4 Folded before the FLOP
+Seat+3: UTG+5 Folded before the FLOP
+Seat+4: Dealer Folded before the FLOP
+Seat+5: Small Blind Folded before the FLOP
+Seat+6: Big Blind 400 [Does not show]  
+Seat+7: UTG Folded before the FLOP
+Seat+8: UTG+1 Folded before the FLOP
+Seat+9: UTG+2 Folded before the FLOP
+
+
+Bovada Hand #3031657341: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 7 (100/200) - 2014-08-06 23:05:31
+Seat 1: UTG+2 (7,307 in chips)
+Seat 2: UTG+3 (10,909 in chips)
+Seat 3: UTG+4 (7,745 in chips)
+Seat 4: UTG+5 (3,225 in chips)
+Seat 5: Dealer (2,100 in chips)
+Seat 6: Small Blind (4,015 in chips)
+Seat 7: Big Blind (8,980 in chips)
+Seat 8: UTG [ME] (6,522 in chips)
+Seat 9: UTG+1 (2,775 in chips)
+Dealer : Set dealer/Bring in spot [5] 
+Small Blind : Ante/Small blind 100 
+Big Blind : Big blind/Bring in 200 
+*** HOLE CARDS ***
+UTG+2 : Card dealt to a spot [Jc Jh] 
+UTG+3 : Card dealt to a spot [As Td] 
+UTG+4 : Card dealt to a spot [6s 6c] 
+UTG+5 : Card dealt to a spot [Qh 7s] 
+Dealer : Card dealt to a spot [Ac Tc] 
+Small Blind : Card dealt to a spot [7d 5d] 
+Big Blind : Card dealt to a spot [Kd 5s] 
+UTG [ME] : Card dealt to a spot [Qd Kh] 
+UTG+1 : Card dealt to a spot [8h 3d] 
+UTG [ME] : Folds
+UTG+1 : Folds
+UTG+2 : Call 200 
+UTG+3 : Raises 400 to 400
+UTG+4 : Call 400 
+UTG+5 : Folds
+Dealer : Call 400 
+Small Blind : Call 300 
+Big Blind : Folds
+UTG+2 : Call 200 
+*** FLOP *** [4h 2d Ad]
+Small Blind : Checks
+UTG+2 : Checks
+UTG+3 : Bets 800 
+UTG+4 : Folds
+Dealer : Folds
+Small Blind : All-in(raise) 3615 to 3615
+UTG+2 : Folds
+UTG+3 : Call 2815 
+*** TURN *** [4h 2d Ad] [8c]
+*** RIVER *** [4h 2d Ad 8c] [6h]
+UTG+3 : Showdown [As Ad Td 8c 6h] (One pair)
+Small Blind : Showdown [8c 7d 6h 5d 4h] (Straight)
+Small Blind : Hand Result 9430 
+*** SUMMARY ***
+Total Pot(9430)
+Board [4h 2d Ad 8c 6h]
+Seat+1: UTG+2 Folded on the FLOP
+Seat+2: UTG+3 lose with One pair [As Td-As Ad Td 8c 6h]  
+Seat+3: UTG+4 Folded on the FLOP
+Seat+4: UTG+5 Folded before the FLOP
+Seat+5: Dealer Folded on the FLOP
+Seat+6: Small Blind 9430  with Straight [7d 5d-8c 7d 6h 5d 4h]  
+Seat+7: Big Blind Folded before the FLOP
+Seat+8: UTG Folded before the FLOP
+Seat+9: UTG+1 Folded before the FLOP
+
+
+Bovada Hand #3031659683: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 7 (100/200) - 2014-08-06 23:08:16
+Seat 1: UTG+1 (6,907 in chips)
+Seat 2: UTG+2 (6,894 in chips)
+Seat 3: UTG+3 (7,345 in chips)
+Seat 4: UTG+4 (3,225 in chips)
+Seat 5: UTG+5 (1,700 in chips)
+Seat 6: Dealer (9,430 in chips)
+Seat 7: Small Blind (8,780 in chips)
+Seat 8: Big Blind [ME] (6,522 in chips)
+Seat 9: UTG (2,775 in chips)
+Dealer : Set dealer/Bring in spot [6] 
+Small Blind : Ante/Small blind 100 
+Big Blind [ME] : Big blind/Bring in 200 
+*** HOLE CARDS ***
+UTG+1 : Card dealt to a spot [7s Kd] 
+UTG+2 : Card dealt to a spot [3c 6d] 
+UTG+3 : Card dealt to a spot [As 4d] 
+UTG+4 : Card dealt to a spot [Qs Ac] 
+UTG+5 : Card dealt to a spot [5s 9s] 
+Dealer : Card dealt to a spot [6c 2s] 
+Small Blind : Card dealt to a spot [Ts 8d] 
+Big Blind [ME] : Card dealt to a spot [Kc Tc] 
+UTG : Card dealt to a spot [Jc 3h] 
+UTG : Folds
+UTG+1 : Folds
+UTG+2 : Folds
+UTG+3 : Folds
+UTG+4 : Raises 600 to 600
+UTG+5 : Folds
+Dealer : Folds
+Small Blind : Folds
+Big Blind [ME] : Call 400 
+*** FLOP *** [6h Qd Ad]
+Big Blind [ME] : Checks
+UTG+4 : Bets 800 
+Big Blind [ME] : Raises 3700 to 3700
+UTG+4 : All-in 1825 
+Big Blind [ME] : Return uncalled portion of bet 1075 
+*** TURN *** [6h Qd Ad] [9h]
+*** RIVER *** [6h Qd Ad 9h] [6s]
+UTG+4 : Showdown [Ad Ac Qs Qd 9h] (Two pair)
+Big Blind [ME] : Showdown [6s 6h Ad Kc Qd] (One pair)
+UTG+4 : Hand Result 6550 
+*** SUMMARY ***
+Total Pot(6550)
+Board [6h Qd Ad 9h 6s]
+Seat+1: UTG+1 Folded before the FLOP
+Seat+2: UTG+2 Folded before the FLOP
+Seat+3: UTG+3 Folded before the FLOP
+Seat+4: UTG+4 6550  with Two pair [Qs Ac-Ad Ac Qs Qd 9h]  
+Seat+5: UTG+5 Folded before the FLOP
+Seat+6: Dealer Folded before the FLOP
+Seat+7: Small Blind Folded before the FLOP
+Seat+8: Big Blind lose with One pair [Kc Tc-6s 6h Ad Kc Qd]  
+Seat+9: UTG Folded before the FLOP
+
+
+Bovada Hand #3031660593: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 7 (100/200) - 2014-08-06 23:09:25
+Seat 1: UTG (6,907 in chips)
+Seat 2: UTG+1 (6,894 in chips)
+Seat 3: UTG+2 (7,345 in chips)
+Seat 4: UTG+3 (6,550 in chips)
+Seat 6: UTG+4 (9,430 in chips)
+Seat 7: Dealer (8,680 in chips)
+Seat 8: Small Blind [ME] (3,297 in chips)
+Seat 9: Big Blind (2,775 in chips)
+Dealer : Set dealer/Bring in spot [7] 
+Small Blind [ME] : Ante/Small blind 100 
+Big Blind : Big blind/Bring in 200 
+*** HOLE CARDS ***
+UTG : Card dealt to a spot [Jd 3d] 
+UTG+1 : Card dealt to a spot [4c Qh] 
+UTG+2 : Card dealt to a spot [6s Td] 
+UTG+3 : Card dealt to a spot [Ad 9s] 
+UTG+4 : Card dealt to a spot [Ah 3c] 
+Dealer : Card dealt to a spot [Js As] 
+Small Blind [ME] : Card dealt to a spot [5h 3h] 
+Big Blind : Card dealt to a spot [Ac 2s] 
+UTG : Folds
+UTG+1 : Folds
+UTG+2 : Folds
+UTG+3 : Raises 600 to 600
+UTG+4 : Folds
+Dealer : Raises 1599 to 1599
+Dealer : Raises 1599 to 1599
+Dealer : Raises 1599 to 1599
+Dealer : Raises 1599 to 1599
+Dealer : Raises 1599 to 1599
+Dealer : Raises 1599 to 1599
+Dealer : Raises 1599 to 1599
+Dealer : Raises 1599 to 1599
+Dealer : Raises 1599 to 1599
+Small Blind [ME] : Folds
+Big Blind : Folds
+UTG+3 : Call 999 
+*** FLOP *** [9d Qd 8s]
+UTG+3 : Checks
+Dealer : Bets 1989 
+UTG+3 : All-in(raise) 4951 to 4951
+Dealer : Folds
+UTG+3 : Return uncalled portion of bet 2962 
+UTG+3 : Does not show [Ad 9s] (One pair)
+UTG+3 : Hand Result 7476 
+*** SUMMARY ***
+Total Pot(7476)
+Board [9d Qd 8s  ]
+Seat+1: UTG Folded before the FLOP
+Seat+2: UTG+1 Folded before the FLOP
+Seat+3: UTG+2 Folded before the FLOP
+Seat+4: UTG+3 7476 [Does not show]  
+Seat+6: UTG+4 Folded before the FLOP
+Seat+7: Dealer Folded on the FLOP
+Seat+8: Small Blind Folded before the FLOP
+Seat+9: Big Blind Folded before the FLOP
+
+
+Bovada Hand #3031661781: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 7 (100/200) - 2014-08-06 23:10:52
+Seat 1: Big Blind (6,907 in chips)
+Seat 2: UTG (6,894 in chips)
+Seat 3: UTG+1 (7,345 in chips)
+Seat 4: UTG+2 (10,438 in chips)
+Seat 5: UTG+3 (3,000 in chips)
+Seat 6: UTG+4 (9,430 in chips)
+Seat 7: UTG+5 (5,092 in chips)
+Seat 8: Dealer [ME] (3,197 in chips)
+Seat 9: Small Blind (2,575 in chips)
+Dealer [ME] : Set dealer/Bring in spot [8] 
+Small Blind : Ante/Small blind 100 
+Big Blind : Big blind/Bring in 200 
+*** HOLE CARDS ***
+Big Blind : Card dealt to a spot [Qc 3c] 
+UTG : Card dealt to a spot [9h Ts] 
+UTG+1 : Card dealt to a spot [Th Ah] 
+UTG+2 : Card dealt to a spot [2d 5h] 
+UTG+3 : Card dealt to a spot [Ad 5s] 
+UTG+4 : Card dealt to a spot [9s 8h] 
+UTG+5 : Card dealt to a spot [Qs Tc] 
+Dealer [ME] : Card dealt to a spot [8d 7d] 
+Small Blind : Card dealt to a spot [Jd Jh] 
+UTG : Folds
+UTG+1 : Raises 400 to 400
+UTG+2 : Folds
+UTG+3 : Folds
+UTG+4 : Folds
+UTG+5 : Folds
+Dealer [ME] : Call 400 
+Small Blind : All-in(raise) 2475 to 2575
+Big Blind : Folds
+UTG+1 : Call 2175 
+Dealer [ME] : Folds
+*** FLOP *** [4h Kc 2s]
+*** TURN *** [4h Kc 2s] [9d]
+*** RIVER *** [4h Kc 2s 9d] [4s]
+UTG+1 : Showdown [4s 4h Ah Kc Th] (One pair)
+Small Blind : Showdown [Jh Jd 4s 4h Kc] (Two pair)
+Small Blind : Hand Result 5750 
+*** SUMMARY ***
+Total Pot(5750)
+Board [4h Kc 2s 9d 4s]
+Seat+1: Big Blind Folded before the FLOP
+Seat+2: UTG Folded before the FLOP
+Seat+3: UTG+1 lose with One pair [Th Ah-4s 4h Ah Kc Th]  
+Seat+4: UTG+2 Folded before the FLOP
+Seat+5: UTG+3 Folded before the FLOP
+Seat+6: UTG+4 Folded before the FLOP
+Seat+7: UTG+5 Folded before the FLOP
+Seat+8: Dealer Folded before the FLOP
+Seat+9: Small Blind 5750  with Two pair [Jd Jh-Jh Jd 4s 4h Kc]  
+
+
+Bovada Hand #3031662709: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 7 (100/200) - 2014-08-06 23:12:04
+Seat 1: Small Blind (6,707 in chips)
+Seat 2: Big Blind (6,894 in chips)
+Seat 3: UTG (4,770 in chips)
+Seat 4: UTG+1 (10,438 in chips)
+Seat 5: UTG+2 (3,000 in chips)
+Seat 6: UTG+3 (9,430 in chips)
+Seat 8: UTG+4 [ME] (2,797 in chips)
+Seat 9: Dealer (5,750 in chips)
+Dealer : Set dealer/Bring in spot [9] 
+Small Blind : Ante/Small blind 100 
+Big Blind : Big blind/Bring in 200 
+*** HOLE CARDS ***
+Small Blind : Card dealt to a spot [Kh Jd] 
+Big Blind : Card dealt to a spot [Th 4c] 
+UTG : Card dealt to a spot [2d Ks] 
+UTG+1 : Card dealt to a spot [8d 9s] 
+UTG+2 : Card dealt to a spot [Ac 8h] 
+UTG+3 : Card dealt to a spot [4d 9h] 
+UTG+4 [ME] : Card dealt to a spot [3h 9d] 
+Dealer : Card dealt to a spot [5h Qd] 
+UTG : Folds
+UTG+1 : Folds
+UTG+2 : Folds
+UTG+3 : Folds
+UTG+4 [ME] : Folds
+Dealer : Folds
+Small Blind : Call 100 
+Big Blind : Checks
+*** FLOP *** [Ts 7d 5d]
+Small Blind : Checks
+Big Blind : Bets 400 
+Small Blind : Call 400 
+*** TURN *** [Ts 7d 5d] [7c]
+Small Blind : Checks
+Big Blind : Bets 200 
+Small Blind : Call 200 
+*** RIVER *** [Ts 7d 5d 7c] [5s]
+Small Blind : Checks
+Big Blind : Checks
+Small Blind : Showdown [7d 7c 5s 5d Kh] (Two pair)
+Big Blind : Showdown [Ts Th 7d 7c 5d] (Two pair)
+Big Blind : Hand Result 1600 
+Big Blind : Hand Result 1600 
+Big Blind : Hand Result 1600 
+*** SUMMARY ***
+Total Pot(1600)
+Board [Ts 7d 5d 7c 5s]
+Seat+1: Small Blind lose with Two pair [Kh Jd-7d 7c 5s 5d Kh]  
+Seat+2: Big Blind 1600  with Two pair [Th 4c-Ts Th 7d 7c 5d]  
+Seat+3: UTG Folded before the FLOP
+Seat+4: UTG+1 Folded before the FLOP
+Seat+5: UTG+2 Folded before the FLOP
+Seat+6: UTG+3 Folded before the FLOP
+Seat+8: UTG+4 Folded before the FLOP
+Seat+9: Dealer Folded before the FLOP
+
+
+Bovada Hand #3031663382: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 7 (100/200) - 2014-08-06 23:12:55
+Seat 1: Dealer (5,907 in chips)
+Seat 2: Small Blind (7,694 in chips)
+Seat 3: Big Blind (4,770 in chips)
+Seat 4: UTG (10,438 in chips)
+Seat 5: UTG+1 (3,000 in chips)
+Seat 6: UTG+2 (9,430 in chips)
+Seat 8: UTG+3 [ME] (2,797 in chips)
+Seat 9: UTG+4 (5,750 in chips)
+Dealer : Set dealer/Bring in spot [1] 
+Small Blind : Ante/Small blind 100 
+Big Blind : Big blind/Bring in 200 
+*** HOLE CARDS ***
+Dealer : Card dealt to a spot [6c 2c] 
+Small Blind : Card dealt to a spot [Jc As] 
+Big Blind : Card dealt to a spot [Qd Ah] 
+UTG : Card dealt to a spot [5d Ts] 
+UTG+1 : Card dealt to a spot [4c 5s] 
+UTG+2 : Card dealt to a spot [Tc 2s] 
+UTG+3 [ME] : Card dealt to a spot [3s 8h] 
+UTG+4 : Card dealt to a spot [9h Kc] 
+UTG : Folds
+UTG+1 : Folds
+UTG+2 : Folds
+UTG+3 [ME] : Folds
+UTG+4 : Folds
+Dealer : Folds
+Small Blind : Raises 336 to 436
+Big Blind : Call 236 
+*** FLOP *** [8s 4d Th]
+Small Blind : Checks
+Big Blind : Checks
+*** TURN *** [8s 4d Th] [Qs]
+Small Blind : Bets 400 
+Big Blind : Call 400 
+*** RIVER *** [8s 4d Th Qs] [9c]
+Small Blind : Bets 5200 
+Big Blind : All-in 3934 
+Small Blind : Return uncalled portion of bet 1266 
+Small Blind : Showdown [Qs Jc Th 9c 8s] (Straight)
+Big Blind : Showdown [Qs Qd Ah Th 9c] (One pair)
+Small Blind : Hand Result 9540 
+Big Blind : Ranking 211 
+Big Blind : Stand
+*** SUMMARY ***
+Total Pot(9540)
+Board [8s 4d Th Qs 9c]
+Seat+1: Dealer Folded before the FLOP
+Seat+2: Small Blind 9540  with Straight [Jc As-Qs Jc Th 9c 8s]  
+Seat+3: Big Blind lose with One pair [Qd Ah-Qs Qd Ah Th 9c]  
+Seat+4: UTG Folded before the FLOP
+Seat+5: UTG+1 Folded before the FLOP
+Seat+6: UTG+2 Folded before the FLOP
+Seat+8: UTG+3 Folded before the FLOP
+Seat+9: UTG+4 Folded before the FLOP
+
+
+Bovada Hand #3031664505: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 7 (100/200) - 2014-08-06 23:14:19
+Seat 1: UTG+4 (5,907 in chips)
+Seat 2: Dealer (12,464 in chips)
+Seat 4: Big Blind (10,438 in chips)
+Seat 5: UTG (3,000 in chips)
+Seat 6: UTG+1 (9,430 in chips)
+Seat 8: UTG+2 [ME] (2,797 in chips)
+Seat 9: UTG+3 (5,750 in chips)
+Dealer : Set dealer/Bring in spot [2] 
+Big Blind : Big blind/Bring in 200 
+*** HOLE CARDS ***
+UTG+4 : Card dealt to a spot [4h 2h] 
+Dealer : Card dealt to a spot [Jh Th] 
+Big Blind : Card dealt to a spot [8c 6c] 
+UTG : Card dealt to a spot [Qs 8d] 
+UTG+1 : Card dealt to a spot [Kc 6s] 
+UTG+2 [ME] : Card dealt to a spot [2s Ah] 
+UTG+3 : Card dealt to a spot [6h Jd] 
+UTG : Folds
+UTG+1 : Folds
+UTG+2 [ME] : Folds
+UTG+3 : Folds
+UTG+4 : Folds
+Dealer : Raises 400 to 400
+Big Blind : Call 200 
+*** FLOP *** [6d 9d 7h]
+Big Blind : Checks
+Dealer : Checks
+*** TURN *** [6d 9d 7h] [4d]
+Big Blind : Checks
+Dealer : Checks
+*** RIVER *** [6d 9d 7h 4d] [Ks]
+Big Blind : Checks
+Dealer : Checks
+Big Blind : Showdown [6d 6c Ks 9d 8c] (One pair)
+Dealer : Mucks [Jh Th] (High Card)
+Big Blind : Hand Result 800 
+*** SUMMARY ***
+Total Pot(800)
+Board [6d 9d 7h 4d Ks]
+Seat+1: UTG+4 Folded before the FLOP
+Seat+2: Dealer [Mucked] [Jh Th ]  
+Seat+4: Big Blind 800  with One pair [8c 6c-6d 6c Ks 9d 8c]  
+Seat+5: UTG Folded before the FLOP
+Seat+6: UTG+1 Folded before the FLOP
+Seat+8: UTG+2 Folded before the FLOP
+Seat+9: UTG+3 Folded before the FLOP
+
+
+Bovada Hand #3031665140: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 7 (100/200) - 2014-08-06 23:15:07
+Seat 1: UTG+3 (5,907 in chips)
+Seat 2: UTG+4 (12,064 in chips)
+Seat 4: Small Blind (10,838 in chips)
+Seat 5: Big Blind (3,000 in chips)
+Seat 6: UTG (9,430 in chips)
+Seat 8: UTG+1 [ME] (2,797 in chips)
+Seat 9: UTG+2 (5,750 in chips)
+Small Blind : Ante/Small blind 100 
+Big Blind : Big blind/Bring in 200 
+*** HOLE CARDS ***
+UTG+3 : Card dealt to a spot [2s 2h] 
+UTG+4 : Card dealt to a spot [6d 3s] 
+Small Blind : Card dealt to a spot [Kc 4d] 
+Big Blind : Card dealt to a spot [Th 6c] 
+UTG : Card dealt to a spot [6h 5c] 
+UTG+1 [ME] : Card dealt to a spot [9s Ks] 
+UTG+2 : Card dealt to a spot [9h 7s] 
+UTG : Folds
+UTG+1 [ME] : Folds
+UTG+2 : Folds
+UTG+3 : Call 200 
+UTG+4 : Folds
+Small Blind : Folds
+Big Blind : Checks
+*** FLOP *** [8c 3d Jc]
+Big Blind : Checks
+UTG+3 : Checks
+*** TURN *** [8c 3d Jc] [Qh]
+Big Blind : Checks
+UTG+3 : Checks
+*** RIVER *** [8c 3d Jc Qh] [5d]
+Big Blind : Checks
+UTG+3 : Checks
+Big Blind : Showdown [Qh Jc Th 8c 6c] (High Card)
+UTG+3 : Showdown [2s 2h Qh Jc 8c] (One pair)
+UTG+3 : Hand Result 500 
+*** SUMMARY ***
+Total Pot(500)
+Board [8c 3d Jc Qh 5d]
+Seat+1: UTG+3 500  with One pair [2s 2h-2s 2h Qh Jc 8c]  
+Seat+2: UTG+4 Folded before the FLOP
+Seat+4: Small Blind Folded before the FLOP
+Seat+5: Big Blind lose with High Card [Th 6c-Qh Jc Th 8c 6c]  
+Seat+6: UTG Folded before the FLOP
+Seat+8: UTG+1 Folded before the FLOP
+Seat+9: UTG+2 Folded before the FLOP
+
+
+Bovada Hand #3031666180: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 8 (125/250) - 2014-08-06 23:16:25
+Seat 1: UTG+2 (6,207 in chips)
+Seat 2: UTG+3 (12,064 in chips)
+Seat 3: UTG+4 (2,956 in chips)
+Seat 4: Dealer (10,738 in chips)
+Seat 5: Small Blind (2,800 in chips)
+Seat 6: Big Blind (9,430 in chips)
+Seat 8: UTG [ME] (2,797 in chips)
+Seat 9: UTG+1 (5,750 in chips)
+Dealer : Set dealer/Bring in spot [4] 
+UTG+2 : Ante chip 25 
+UTG+3 : Ante chip 25 
+UTG+4 : Ante chip 25 
+Dealer : Ante chip 25 
+Small Blind : Ante chip 25 
+Big Blind : Ante chip 25 
+UTG [ME] : Ante chip 25 
+UTG+1 : Ante chip 25 
+Small Blind : Ante/Small blind 125 
+Small Blind : Ante/Small blind 125 
+Small Blind : Ante/Small blind 125 
+Small Blind : Ante/Small blind 125 
+Big Blind : Big blind/Bring in 250 
+*** HOLE CARDS ***
+UTG+2 : Card dealt to a spot [Jc 5s] 
+UTG+3 : Card dealt to a spot [Ks Kd] 
+UTG+4 : Card dealt to a spot [3h 9d] 
+Dealer : Card dealt to a spot [7c 2d] 
+Small Blind : Card dealt to a spot [Qd 4d] 
+Big Blind : Card dealt to a spot [4h 9c] 
+UTG [ME] : Card dealt to a spot [Qc 7s] 
+UTG+1 : Card dealt to a spot [Tc 9h] 
+UTG [ME] : Folds
+UTG+1 : Folds
+UTG+2 : Folds
+UTG+3 : Raises 760 to 760
+UTG+4 : Folds
+Dealer : Folds
+Small Blind : Folds
+Big Blind : Folds
+UTG+3 : Return uncalled portion of bet 510 
+UTG+3 : Showdown(High Card)
+UTG+3 : Hand Result 825 
+*** SUMMARY ***
+Total Pot(825)
+Seat+1: UTG+2 Folded before the FLOP
+Seat+2: UTG+3 825  with High Card [Ks Kd ]  
+Seat+3: UTG+4 Folded before the FLOP
+Seat+4: Dealer Folded before the FLOP
+Seat+5: Small Blind Folded before the FLOP
+Seat+6: Big Blind Folded before the FLOP
+Seat+8: UTG Folded before the FLOP
+Seat+9: UTG+1 Folded before the FLOP
+
+
+Bovada Hand #3031666821: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 8 (125/250) - 2014-08-06 23:17:13
+Seat 1: UTG+1 (6,182 in chips)
+Seat 2: UTG+2 (12,614 in chips)
+Seat 3: UTG+3 (2,931 in chips)
+Seat 4: UTG+4 (10,713 in chips)
+Seat 5: Dealer (2,650 in chips)
+Seat 6: Small Blind (9,155 in chips)
+Seat 8: Big Blind [ME] (2,772 in chips)
+Seat 9: UTG (5,725 in chips)
+Dealer : Set dealer/Bring in spot [5] 
+UTG+1 : Ante chip 25 
+UTG+2 : Ante chip 25 
+UTG+3 : Ante chip 25 
+UTG+4 : Ante chip 25 
+Dealer : Ante chip 25 
+Small Blind : Ante chip 25 
+Big Blind [ME] : Ante chip 25 
+UTG : Ante chip 25 
+Small Blind : Ante/Small blind 125 
+Small Blind : Ante/Small blind 125 
+Small Blind : Ante/Small blind 125 
+Small Blind : Ante/Small blind 125 
+Big Blind [ME] : Big blind/Bring in 250 
+*** HOLE CARDS ***
+UTG+1 : Card dealt to a spot [7h 5h] 
+UTG+2 : Card dealt to a spot [Jc Kh] 
+UTG+3 : Card dealt to a spot [7s 2s] 
+UTG+4 : Card dealt to a spot [4s 7c] 
+Dealer : Card dealt to a spot [Ks 9c] 
+Small Blind : Card dealt to a spot [8h 3s] 
+Big Blind [ME] : Card dealt to a spot [2c 8d] 
+UTG : Card dealt to a spot [Jd 8s] 
+UTG : Folds
+UTG+1 : Call 250 
+UTG+2 : Raises 500 to 500
+UTG+3 : Folds
+UTG+4 : Folds
+Dealer : Folds
+Small Blind : Folds
+Big Blind [ME] : Folds
+UTG+1 : Call 250 
+*** FLOP *** [2h 9s Th]
+UTG+1 : Checks
+UTG+2 : Bets 750 
+UTG+1 : Folds
+UTG+2 : Return uncalled portion of bet 750 
+UTG+2 : Does not show [Jc Kh] (High Card)
+UTG+2 : Hand Result 1575 
+UTG+2 : Hand Result 1575 
+UTG+2 : Hand Result 1575 
+*** SUMMARY ***
+Total Pot(1575)
+Board [2h 9s Th  ]
+Seat+1: UTG+1 Folded on the FLOP
+Seat+2: UTG+2 1575 [Does not show]  
+Seat+3: UTG+3 Folded before the FLOP
+Seat+4: UTG+4 Folded before the FLOP
+Seat+5: Dealer Folded before the FLOP
+Seat+6: Small Blind Folded before the FLOP
+Seat+8: Big Blind Folded before the FLOP
+Seat+9: UTG Folded before the FLOP
+
+
+Bovada Hand #3031667610: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 8 (125/250) - 2014-08-06 23:18:16
+Seat 1: UTG (5,657 in chips)
+Seat 2: UTG+1 (13,664 in chips)
+Seat 3: UTG+2 (2,906 in chips)
+Seat 4: UTG+3 (10,688 in chips)
+Seat 5: UTG+4 (2,625 in chips)
+Seat 6: Dealer (9,005 in chips)
+Seat 8: Small Blind [ME] (2,497 in chips)
+Seat 9: Big Blind (5,700 in chips)
+Dealer : Set dealer/Bring in spot [6] 
+UTG : Ante chip 25 
+UTG+1 : Ante chip 25 
+UTG+2 : Ante chip 25 
+UTG+3 : Ante chip 25 
+UTG+4 : Ante chip 25 
+Dealer : Ante chip 25 
+Small Blind [ME] : Ante chip 25 
+Big Blind : Ante chip 25 
+Small Blind [ME] : Ante/Small blind 125 
+Small Blind [ME] : Ante/Small blind 125 
+Small Blind [ME] : Ante/Small blind 125 
+Small Blind [ME] : Ante/Small blind 125 
+Big Blind : Big blind/Bring in 250 
+*** HOLE CARDS ***
+UTG : Card dealt to a spot [4c Kc] 
+UTG+1 : Card dealt to a spot [2h 7h] 
+UTG+2 : Card dealt to a spot [Js Th] 
+UTG+3 : Card dealt to a spot [3h 8c] 
+UTG+4 : Card dealt to a spot [Jd Qc] 
+Dealer : Card dealt to a spot [6h Ac] 
+Small Blind [ME] : Card dealt to a spot [9h 6d] 
+Big Blind : Card dealt to a spot [5s 2d] 
+UTG : Call 250 
+UTG+1 : Folds
+UTG+2 : Raises 500 to 500
+UTG+3 : Folds
+UTG+4 : Folds
+Dealer : Folds
+Small Blind [ME] : Folds
+Big Blind : Folds
+UTG : Call 250 
+*** FLOP *** [2s 9s Td]
+UTG : Checks
+UTG+2 : All-in 2381 
+UTG : Folds
+UTG+2 : Return uncalled portion of bet 2381 
+UTG+2 : Does not show [Js Th] (One pair)
+UTG+2 : Hand Result 1575 
+UTG+2 : Hand Result 1575 
+UTG+2 : Hand Result 1575 
+*** SUMMARY ***
+Total Pot(1575)
+Board [2s 9s Td  ]
+Seat+1: UTG Folded on the FLOP
+Seat+2: UTG+1 Folded before the FLOP
+Seat+3: UTG+2 1575 [Does not show]  
+Seat+4: UTG+3 Folded before the FLOP
+Seat+5: UTG+4 Folded before the FLOP
+Seat+6: Dealer Folded before the FLOP
+Seat+8: Small Blind Folded before the FLOP
+Seat+9: Big Blind Folded before the FLOP
+
+
+Bovada Hand #3031668114: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 8 (125/250) - 2014-08-06 23:18:55
+Seat 1: Big Blind (5,132 in chips)
+Seat 2: UTG (13,639 in chips)
+Seat 3: UTG+1 (3,956 in chips)
+Seat 4: UTG+2 (10,663 in chips)
+Seat 5: UTG+3 (2,600 in chips)
+Seat 6: UTG+4 (8,980 in chips)
+Seat 8: Dealer [ME] (2,347 in chips)
+Seat 9: Small Blind (5,425 in chips)
+Dealer [ME] : Set dealer/Bring in spot [8] 
+Big Blind : Ante chip 25 
+UTG : Ante chip 25 
+UTG+1 : Ante chip 25 
+UTG+2 : Ante chip 25 
+UTG+3 : Ante chip 25 
+UTG+4 : Ante chip 25 
+Dealer [ME] : Ante chip 25 
+Small Blind : Ante chip 25 
+Small Blind : Ante/Small blind 125 
+Small Blind : Ante/Small blind 125 
+Small Blind : Ante/Small blind 125 
+Small Blind : Ante/Small blind 125 
+Big Blind : Big blind/Bring in 250 
+*** HOLE CARDS ***
+Big Blind : Card dealt to a spot [2d 4c] 
+UTG : Card dealt to a spot [4h Kd] 
+UTG+1 : Card dealt to a spot [Tc 8c] 
+UTG+2 : Card dealt to a spot [6d 4d] 
+UTG+3 : Card dealt to a spot [Ts 6h] 
+UTG+4 : Card dealt to a spot [7d 9d] 
+Dealer [ME] : Card dealt to a spot [2c 2h] 
+Small Blind : Card dealt to a spot [Kh 6s] 
+UTG : Folds
+UTG+1 : Call 250 
+UTG+2 : Folds
+UTG+3 : Folds
+UTG+4 : Folds
+Dealer [ME] : All-in(raise) 2322 to 2322
+Small Blind : Folds
+Big Blind : Folds
+UTG+1 : Folds
+Dealer [ME] : Return uncalled portion of bet 2072 
+Dealer [ME] : Does not show [2c 2h] (High Card)
+Dealer [ME] : Hand Result 1075 
+*** SUMMARY ***
+Total Pot(1075)
+Seat+1: Big Blind Folded before the FLOP
+Seat+2: UTG Folded before the FLOP
+Seat+3: UTG+1 Folded before the FLOP
+Seat+4: UTG+2 Folded before the FLOP
+Seat+5: UTG+3 Folded before the FLOP
+Seat+6: UTG+4 Folded before the FLOP
+Seat+8: Dealer 1075 [Does not show]  
+Seat+9: Small Blind Folded before the FLOP
+
+
+Bovada Hand #3031668499: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 8 (125/250) - 2014-08-06 23:19:25
+Seat 1: Small Blind (4,857 in chips)
+Seat 2: Big Blind (13,614 in chips)
+Seat 3: UTG (3,681 in chips)
+Seat 4: UTG+1 (10,638 in chips)
+Seat 5: UTG+2 (2,575 in chips)
+Seat 6: UTG+3 (8,955 in chips)
+Seat 8: UTG+4 [ME] (3,147 in chips)
+Seat 9: Dealer (5,275 in chips)
+Dealer : Set dealer/Bring in spot [9] 
+Small Blind : Ante chip 25 
+Big Blind : Ante chip 25 
+UTG : Ante chip 25 
+UTG+1 : Ante chip 25 
+UTG+2 : Ante chip 25 
+UTG+3 : Ante chip 25 
+UTG+4 [ME] : Ante chip 25 
+Dealer : Ante chip 25 
+Small Blind : Ante/Small blind 125 
+Small Blind : Ante/Small blind 125 
+Small Blind : Ante/Small blind 125 
+Small Blind : Ante/Small blind 125 
+Big Blind : Big blind/Bring in 250 
+*** HOLE CARDS ***
+Small Blind : Card dealt to a spot [Js Jc] 
+Big Blind : Card dealt to a spot [8c Qh] 
+UTG : Card dealt to a spot [7s Ah] 
+UTG+1 : Card dealt to a spot [2h 4h] 
+UTG+2 : Card dealt to a spot [Qs Jh] 
+UTG+3 : Card dealt to a spot [9h Th] 
+UTG+4 [ME] : Card dealt to a spot [2s Ac] 
+Dealer : Card dealt to a spot [5d 3s] 
+UTG : Folds
+UTG+1 : Folds
+UTG+2 : All-in(raise) 2550 to 2550
+UTG+3 : Folds
+UTG+4 [ME] : Folds
+Dealer : Folds
+Small Blind : All-in(raise) 4707 to 4832
+Big Blind : Folds
+Small Blind : Return uncalled portion of bet 2282 
+*** FLOP *** [7d 8s Kh]
+*** TURN *** [7d 8s Kh] [4d]
+*** RIVER *** [7d 8s Kh 4d] [Qc]
+Small Blind : Showdown [Js Jc Kh Qc 8s] (One pair)
+UTG+2 : Showdown [Qs Qc Kh Jh 8s] (One pair)
+UTG+2 : Hand Result 5550 
+*** SUMMARY ***
+Total Pot(5550)
+Board [7d 8s Kh 4d Qc]
+Seat+1: Small Blind lose with One pair [Js Jc-Js Jc Kh Qc 8s]  
+Seat+2: Big Blind Folded before the FLOP
+Seat+3: UTG Folded before the FLOP
+Seat+4: UTG+1 Folded before the FLOP
+Seat+5: UTG+2 5550  with One pair [Qs Jh-Qs Qc Kh Jh 8s]  
+Seat+6: UTG+3 Folded before the FLOP
+Seat+8: UTG+4 Folded before the FLOP
+Seat+9: Dealer Folded before the FLOP
+
+
+Bovada Hand #3031668979: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 8 (125/250) - 2014-08-06 23:20:01
+Seat 1: Dealer (2,282 in chips)
+Seat 2: Small Blind (13,339 in chips)
+Seat 3: Big Blind (3,656 in chips)
+Seat 4: UTG (10,613 in chips)
+Seat 5: UTG+1 (5,550 in chips)
+Seat 6: UTG+2 (8,930 in chips)
+Seat 8: UTG+3 [ME] (3,122 in chips)
+Seat 9: UTG+4 (5,250 in chips)
+Dealer : Set dealer/Bring in spot [1] 
+Dealer : Ante chip 25 
+Small Blind : Ante chip 25 
+Big Blind : Ante chip 25 
+UTG : Ante chip 25 
+UTG+1 : Ante chip 25 
+UTG+2 : Ante chip 25 
+UTG+3 [ME] : Ante chip 25 
+UTG+4 : Ante chip 25 
+Small Blind : Ante/Small blind 125 
+Small Blind : Ante/Small blind 125 
+Small Blind : Ante/Small blind 125 
+Small Blind : Ante/Small blind 125 
+Big Blind : Big blind/Bring in 250 
+*** HOLE CARDS ***
+Dealer : Card dealt to a spot [7d Tc] 
+Small Blind : Card dealt to a spot [Jc Jd] 
+Big Blind : Card dealt to a spot [8d Ad] 
+UTG : Card dealt to a spot [Ks 3h] 
+UTG+1 : Card dealt to a spot [2s 3s] 
+UTG+2 : Card dealt to a spot [8h Js] 
+UTG+3 [ME] : Card dealt to a spot [6c 9s] 
+UTG+4 : Card dealt to a spot [Kh 8c] 
+UTG : Folds
+UTG+1 : Folds
+UTG+2 : Folds
+UTG+3 [ME] : Folds
+UTG+4 : Folds
+Dealer : Folds
+Small Blind : Raises 375 to 500
+Big Blind : Call 250 
+*** FLOP *** [As Qs Kd]
+Small Blind : Bets 250 
+Big Blind : Raises 1008 to 1008
+Small Blind : Call 758 
+*** TURN *** [As Qs Kd] [Qd]
+Small Blind : Bets 2000 
+Big Blind : All-in(raise) 2123 to 2123
+Small Blind : Call 123 
+*** RIVER *** [As Qs Kd Qd] [Ts]
+Small Blind : Showdown [As Kd Qs Jd Ts] (Straight)
+Big Blind : Showdown [As Ad Qs Qd Kd] (Two pair)
+Small Blind : Hand Result 7462 
+Big Blind : Ranking 196 
+Big Blind : Stand
+*** SUMMARY ***
+Total Pot(7462)
+Board [As Qs Kd Qd Ts]
+Seat+1: Dealer Folded before the FLOP
+Seat+2: Small Blind 7462  with Straight [Jc Jd-As Kd Qs Jd Ts]  
+Seat+3: Big Blind lose with Two pair [8d Ad-As Ad Qs Qd Kd]  
+Seat+4: UTG Folded before the FLOP
+Seat+5: UTG+1 Folded before the FLOP
+Seat+6: UTG+2 Folded before the FLOP
+Seat+8: UTG+3 Folded before the FLOP
+Seat+9: UTG+4 Folded before the FLOP
+
+
+Bovada Hand #3031669719: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 8 (125/250) - 2014-08-06 23:21:01
+Seat 1: UTG+4 (2,257 in chips)
+Seat 2: Dealer (17,145 in chips)
+Seat 4: Big Blind (10,588 in chips)
+Seat 5: UTG (5,525 in chips)
+Seat 6: UTG+1 (8,905 in chips)
+Seat 8: UTG+2 [ME] (3,097 in chips)
+Seat 9: UTG+3 (5,225 in chips)
+Dealer : Set dealer/Bring in spot [2] 
+UTG+4 : Ante chip 25 
+Dealer : Ante chip 25 
+Big Blind : Ante chip 25 
+UTG : Ante chip 25 
+UTG+1 : Ante chip 25 
+UTG+2 [ME] : Ante chip 25 
+UTG+3 : Ante chip 25 
+Big Blind : Big blind/Bring in 250 
+*** HOLE CARDS ***
+UTG+4 : Card dealt to a spot [8c 4c] 
+Dealer : Card dealt to a spot [8d Ts] 
+Big Blind : Card dealt to a spot [Kd As] 
+UTG : Card dealt to a spot [4d 2s] 
+UTG+1 : Card dealt to a spot [Qc 6h] 
+UTG+2 [ME] : Card dealt to a spot [9h 2d] 
+UTG+3 : Card dealt to a spot [Qh 5s] 
+UTG : Folds
+UTG+1 : Folds
+UTG+2 [ME] : Folds
+UTG+3 : Folds
+UTG+4 : Folds
+Dealer : Call 250 
+Big Blind : Raises 750 to 1000
+Dealer : Folds
+Big Blind : Return uncalled portion of bet 750 
+Big Blind : Showdown(High Card)
+Big Blind : Hand Result 675 
+*** SUMMARY ***
+Total Pot(675)
+Seat+1: UTG+4 Folded before the FLOP
+Seat+2: Dealer Folded before the FLOP
+Seat+4: Big Blind 675  with High Card [Kd As ]  
+Seat+5: UTG Folded before the FLOP
+Seat+6: UTG+1 Folded before the FLOP
+Seat+8: UTG+2 Folded before the FLOP
+Seat+9: UTG+3 Folded before the FLOP
+
+
+Bovada Hand #3031670370: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 8 (125/250) - 2014-08-06 23:21:52
+Seat 2: UTG+4 (16,870 in chips)
+Seat 3: Dealer (3,000 in chips)
+Seat 4: Small Blind (10,988 in chips)
+Seat 5: Big Blind (5,500 in chips)
+Seat 6: UTG (8,880 in chips)
+Seat 7: UTG+1 (5,917 in chips)
+Seat 8: UTG+2 [ME] (3,072 in chips)
+Seat 9: UTG+3 (5,200 in chips)
+Dealer : Set dealer/Bring in spot [3] 
+UTG+4 : Ante chip 25 
+Dealer : Ante chip 25 
+Small Blind : Ante chip 25 
+Big Blind : Ante chip 25 
+UTG : Ante chip 25 
+UTG+1 : Ante chip 25 
+UTG+2 [ME] : Ante chip 25 
+UTG+3 : Ante chip 25 
+Small Blind : Ante/Small blind 125 
+Small Blind : Ante/Small blind 125 
+Small Blind : Ante/Small blind 125 
+Small Blind : Ante/Small blind 125 
+Big Blind : Big blind/Bring in 250 
+*** HOLE CARDS ***
+UTG+4 : Card dealt to a spot [Qh 6h] 
+Dealer : Card dealt to a spot [2d 2s] 
+Small Blind : Card dealt to a spot [Kh 3c] 
+Big Blind : Card dealt to a spot [Ad Kc] 
+UTG : Card dealt to a spot [Qd Tc] 
+UTG+1 : Card dealt to a spot [Jd 4s] 
+UTG+2 [ME] : Card dealt to a spot [7h 4d] 
+UTG+3 : Card dealt to a spot [6c Js] 
+UTG : Folds
+UTG+1 : Folds
+UTG+2 [ME] : Folds
+UTG+3 : Folds
+UTG+4 : Call 250 
+Dealer : All-in(raise) 2975 to 2975
+Small Blind : Folds
+Big Blind : All-in(raise) 5225 to 5475
+UTG+4 : Folds
+Big Blind : Return uncalled portion of bet 2500 
+*** FLOP *** [7c 6d Qs]
+*** TURN *** [7c 6d Qs] [9d]
+*** RIVER *** [7c 6d Qs 9d] [2c]
+Dealer : Showdown [2s 2d 2c Qs 9d] (Three of a kind)
+Big Blind : Showdown [Ad Kc Qs 9d 7c] (High Card)
+Dealer : Hand Result 6525 
+*** SUMMARY ***
+Total Pot(6525)
+Board [7c 6d Qs 9d 2c]
+Seat+2: UTG+4 Folded before the FLOP
+Seat+3: Dealer 6525  with Three of a kind [2d 2s-2s 2d 2c Qs 9d]  
+Seat+4: Small Blind Folded before the FLOP
+Seat+5: Big Blind lose with High Card [Ad Kc-Ad Kc Qs 9d 7c]  
+Seat+6: UTG Folded before the FLOP
+Seat+7: UTG+1 Folded before the FLOP
+Seat+8: UTG+2 Folded before the FLOP
+Seat+9: UTG+3 Folded before the FLOP
+
+
+Bovada Hand #3031670851: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 8 (125/250) - 2014-08-06 23:22:31
+Seat 2: UTG+3 (16,595 in chips)
+Seat 3: UTG+4 (6,525 in chips)
+Seat 4: Dealer (10,838 in chips)
+Seat 5: Small Blind (2,500 in chips)
+Seat 6: Big Blind (8,855 in chips)
+Seat 7: UTG (5,892 in chips)
+Seat 8: UTG+1 [ME] (3,047 in chips)
+Seat 9: UTG+2 (5,175 in chips)
+Dealer : Set dealer/Bring in spot [4] 
+UTG+3 : Ante chip 25 
+UTG+4 : Ante chip 25 
+Dealer : Ante chip 25 
+Small Blind : Ante chip 25 
+Big Blind : Ante chip 25 
+UTG : Ante chip 25 
+UTG+1 [ME] : Ante chip 25 
+UTG+2 : Ante chip 25 
+Small Blind : Ante/Small blind 125 
+Small Blind : Ante/Small blind 125 
+Small Blind : Ante/Small blind 125 
+Small Blind : Ante/Small blind 125 
+Big Blind : Big blind/Bring in 250 
+*** HOLE CARDS ***
+UTG+3 : Card dealt to a spot [Qh Jc] 
+UTG+4 : Card dealt to a spot [2s 3h] 
+Dealer : Card dealt to a spot [Th 4h] 
+Small Blind : Card dealt to a spot [Jd 8c] 
+Big Blind : Card dealt to a spot [3d 2h] 
+UTG : Card dealt to a spot [7c Qc] 
+UTG+1 [ME] : Card dealt to a spot [7s 6h] 
+UTG+2 : Card dealt to a spot [5h 2d] 
+UTG : Folds
+UTG+1 [ME] : Folds
+UTG+2 : Folds
+UTG+3 : Raises 750 to 750
+UTG+4 : Folds
+Dealer : Folds
+Small Blind : Folds
+Big Blind : Folds
+UTG+3 : Return uncalled portion of bet 500 
+UTG+3 : Does not show [Qh Jc] (High Card)
+UTG+3 : Hand Result 825 
+UTG : Re-join
+*** SUMMARY ***
+Total Pot(825)
+Seat+2: UTG+3 825 [Does not show]  
+Seat+3: UTG+4 Folded before the FLOP
+Seat+4: Dealer Folded before the FLOP
+Seat+5: Small Blind Folded before the FLOP
+Seat+6: Big Blind Folded before the FLOP
+Seat+7: UTG Folded before the FLOP
+Seat+8: UTG+1 Folded before the FLOP
+Seat+9: UTG+2 Folded before the FLOP
+
+
+Bovada Hand #3031671418: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 8 (125/250) - 2014-08-06 23:23:13
+Seat 2: UTG+2 (17,145 in chips)
+Seat 3: UTG+3 (6,500 in chips)
+Seat 4: UTG+4 (10,813 in chips)
+Seat 5: Dealer (2,350 in chips)
+Seat 6: Small Blind (8,580 in chips)
+Seat 7: Big Blind (5,867 in chips)
+Seat 8: UTG [ME] (3,022 in chips)
+Seat 9: UTG+1 (5,150 in chips)
+Dealer : Set dealer/Bring in spot [5] 
+UTG+2 : Ante chip 25 
+UTG+3 : Ante chip 25 
+UTG+4 : Ante chip 25 
+Dealer : Ante chip 25 
+Small Blind : Ante chip 25 
+Big Blind : Ante chip 25 
+UTG [ME] : Ante chip 25 
+UTG+1 : Ante chip 25 
+Small Blind : Ante/Small blind 125 
+Small Blind : Ante/Small blind 125 
+Small Blind : Ante/Small blind 125 
+Small Blind : Ante/Small blind 125 
+Big Blind : Big blind/Bring in 250 
+*** HOLE CARDS ***
+UTG+2 : Card dealt to a spot [Ah 5h] 
+UTG+3 : Card dealt to a spot [9c 7h] 
+UTG+4 : Card dealt to a spot [2h Qd] 
+Dealer : Card dealt to a spot [9s 9d] 
+Small Blind : Card dealt to a spot [As Ks] 
+Big Blind : Card dealt to a spot [7c 7d] 
+UTG [ME] : Card dealt to a spot [2s Ts] 
+UTG+1 : Card dealt to a spot [Kc 4c] 
+UTG [ME] : Folds
+UTG+1 : Folds
+UTG+2 : Call 250 
+UTG+3 : Folds
+UTG+4 : Folds
+Dealer : All-in(raise) 2325 to 2325
+Small Blind : Raises 4275 to 4400
+Big Blind : Folds
+UTG+2 : Folds
+Small Blind : Return uncalled portion of bet 2075 
+*** FLOP *** [Ac Th 4d]
+*** TURN *** [Ac Th 4d] [Td]
+*** RIVER *** [Ac Th 4d Td] [3d]
+Dealer : Showdown [Th Td 9s 9d Ac] (Two pair)
+Small Blind : Showdown [As Ac Th Td Ks] (Two pair)
+Small Blind : Hand Result 5350 
+Dealer : Ranking 187 
+Dealer : Stand
+*** SUMMARY ***
+Total Pot(5350)
+Board [Ac Th 4d Td 3d]
+Seat+2: UTG+2 Folded before the FLOP
+Seat+3: UTG+3 Folded before the FLOP
+Seat+4: UTG+4 Folded before the FLOP
+Seat+5: Dealer lose with Two pair [9s 9d-Th Td 9s 9d Ac]  
+Seat+6: Small Blind 5350  with Two pair [As Ks-As Ac Th Td Ks]  
+Seat+7: Big Blind Folded before the FLOP
+Seat+8: UTG Folded before the FLOP
+Seat+9: UTG+1 Folded before the FLOP
+
+
+Bovada Hand #3031672117: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 8 (125/250) - 2014-08-06 23:24:07
+Seat 2: UTG+1 (16,870 in chips)
+Seat 3: UTG+2 (6,475 in chips)
+Seat 4: UTG+3 (10,788 in chips)
+Seat 6: Dealer (11,580 in chips)
+Seat 7: Small Blind (5,592 in chips)
+Seat 8: Big Blind [ME] (2,997 in chips)
+Seat 9: UTG (5,125 in chips)
+Dealer : Set dealer/Bring in spot [6] 
+UTG+1 : Ante chip 25 
+UTG+2 : Ante chip 25 
+UTG+3 : Ante chip 25 
+Dealer : Ante chip 25 
+Small Blind : Ante chip 25 
+Big Blind [ME] : Ante chip 25 
+UTG : Ante chip 25 
+Small Blind : Ante/Small blind 125 
+Small Blind : Ante/Small blind 125 
+Small Blind : Ante/Small blind 125 
+Small Blind : Ante/Small blind 125 
+Big Blind [ME] : Big blind/Bring in 250 
+*** HOLE CARDS ***
+UTG+1 : Card dealt to a spot [8h Ks] 
+UTG+2 : Card dealt to a spot [Kc 6s] 
+UTG+3 : Card dealt to a spot [9s Kd] 
+Dealer : Card dealt to a spot [Qh Qc] 
+Small Blind : Card dealt to a spot [7d Jc] 
+Big Blind [ME] : Card dealt to a spot [8d 2s] 
+UTG : Card dealt to a spot [2h 7h] 
+UTG : Folds
+UTG+1 : Folds
+UTG+2 : Folds
+UTG+3 : Folds
+Dealer : Raises 500 to 500
+Small Blind : Folds
+Big Blind [ME] : Folds
+Dealer : Return uncalled portion of bet 250 
+Dealer : Does not show [Qh Qc] (High Card)
+Dealer : Hand Result 800 
+*** SUMMARY ***
+Total Pot(800)
+Seat+2: UTG+1 Folded before the FLOP
+Seat+3: UTG+2 Folded before the FLOP
+Seat+4: UTG+3 Folded before the FLOP
+Seat+6: Dealer 800 [Does not show]  
+Seat+7: Small Blind Folded before the FLOP
+Seat+8: Big Blind Folded before the FLOP
+Seat+9: UTG Folded before the FLOP
+
+
+Bovada Hand #3031672466: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 8 (125/250) - 2014-08-06 23:24:34
+Seat 2: UTG (16,845 in chips)
+Seat 3: UTG+1 (6,450 in chips)
+Seat 4: UTG+2 (10,763 in chips)
+Seat 5: UTG+3 (23,293 in chips)
+Seat 6: UTG+4 (12,105 in chips)
+Seat 7: Dealer (5,442 in chips)
+Seat 8: Small Blind [ME] (2,722 in chips)
+Seat 9: Big Blind (5,100 in chips)
+Dealer : Set dealer/Bring in spot [7] 
+UTG : Ante chip 25 
+UTG+1 : Ante chip 25 
+UTG+2 : Ante chip 25 
+UTG+3 : Ante chip 25 
+UTG+4 : Ante chip 25 
+Dealer : Ante chip 25 
+Small Blind [ME] : Ante chip 25 
+Big Blind : Ante chip 25 
+Small Blind [ME] : Ante/Small blind 125 
+Small Blind [ME] : Ante/Small blind 125 
+Small Blind [ME] : Ante/Small blind 125 
+Small Blind [ME] : Ante/Small blind 125 
+Big Blind : Big blind/Bring in 250 
+*** HOLE CARDS ***
+UTG : Card dealt to a spot [3c Jc] 
+UTG+1 : Card dealt to a spot [4h 5s] 
+UTG+2 : Card dealt to a spot [8h Td] 
+UTG+3 : Card dealt to a spot [Jh Th] 
+UTG+4 : Card dealt to a spot [9c Ac] 
+Dealer : Card dealt to a spot [7s 9d] 
+Small Blind [ME] : Card dealt to a spot [Qd 2h] 
+Big Blind : Card dealt to a spot [2s As] 
+UTG : Folds
+UTG+1 : Folds
+UTG+2 : Folds
+UTG+3 : Raises 500 to 500
+UTG+4 : Folds
+Dealer : Folds
+Small Blind [ME] : Folds
+Big Blind : Call 250 
+*** FLOP *** [Tc 7h Qc]
+Big Blind : Checks
+UTG+3 : Bets 662 
+Big Blind : Folds
+UTG+3 : Return uncalled portion of bet 662 
+UTG+3 : Does not show [Jh Th] (One pair)
+UTG+3 : Hand Result 1325 
+UTG+3 : Hand Result 1325 
+UTG+3 : Hand Result 1325 
+UTG+3 : Hand Result 1325 
+*** SUMMARY ***
+Total Pot(1325)
+Board [Tc 7h Qc  ]
+Seat+2: UTG Folded before the FLOP
+Seat+3: UTG+1 Folded before the FLOP
+Seat+4: UTG+2 Folded before the FLOP
+Seat+5: UTG+3 1325 [Does not show]  
+Seat+6: UTG+4 Folded before the FLOP
+Seat+7: Dealer Folded before the FLOP
+Seat+8: Small Blind Folded before the FLOP
+Seat+9: Big Blind Folded on the FLOP
+
+
+Bovada Hand #3031673646: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 8 (125/250) - 2014-08-06 23:26:04
+Seat 2: Big Blind (16,820 in chips)
+Seat 3: UTG (6,425 in chips)
+Seat 4: UTG+1 (10,738 in chips)
+Seat 5: UTG+2 (24,093 in chips)
+Seat 6: UTG+3 (12,080 in chips)
+Seat 7: UTG+4 (5,417 in chips)
+Seat 8: Dealer [ME] (2,572 in chips)
+Seat 9: Small Blind (4,575 in chips)
+Dealer [ME] : Set dealer/Bring in spot [8] 
+Big Blind : Ante chip 25 
+UTG : Ante chip 25 
+UTG+1 : Ante chip 25 
+UTG+2 : Ante chip 25 
+UTG+3 : Ante chip 25 
+UTG+4 : Ante chip 25 
+Dealer [ME] : Ante chip 25 
+Small Blind : Ante chip 25 
+Small Blind : Ante/Small blind 125 
+Small Blind : Ante/Small blind 125 
+Small Blind : Ante/Small blind 125 
+Small Blind : Ante/Small blind 125 
+Big Blind : Big blind/Bring in 250 
+*** HOLE CARDS ***
+Big Blind : Card dealt to a spot [4s 7c] 
+UTG : Card dealt to a spot [5d 2s] 
+UTG+1 : Card dealt to a spot [9d 3c] 
+UTG+2 : Card dealt to a spot [8s As] 
+UTG+3 : Card dealt to a spot [Js Tc] 
+UTG+4 : Card dealt to a spot [7d Qc] 
+Dealer [ME] : Card dealt to a spot [6c 2d] 
+Small Blind : Card dealt to a spot [Kc Td] 
+UTG : Folds
+UTG+1 : Folds
+UTG+2 : Raises 500 to 500
+UTG+3 : Folds
+UTG+4 : Folds
+Dealer [ME] : Folds
+Small Blind : Folds
+Big Blind : Folds
+UTG+2 : Return uncalled portion of bet 250 
+UTG+2 : Does not show [8s As] (High Card)
+UTG+2 : Hand Result 825 
+*** SUMMARY ***
+Total Pot(825)
+Seat+2: Big Blind Folded before the FLOP
+Seat+3: UTG Folded before the FLOP
+Seat+4: UTG+1 Folded before the FLOP
+Seat+5: UTG+2 825 [Does not show]  
+Seat+6: UTG+3 Folded before the FLOP
+Seat+7: UTG+4 Folded before the FLOP
+Seat+8: Dealer Folded before the FLOP
+Seat+9: Small Blind Folded before the FLOP
+
+
+Bovada Hand #3031674412: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 8 (125/250) - 2014-08-06 23:27:07
+Seat 2: Small Blind (16,545 in chips)
+Seat 3: Big Blind (6,400 in chips)
+Seat 4: UTG (10,713 in chips)
+Seat 5: UTG+1 (24,643 in chips)
+Seat 6: UTG+2 (12,055 in chips)
+Seat 7: UTG+3 (5,392 in chips)
+Seat 8: UTG+4 [ME] (2,547 in chips)
+Seat 9: Dealer (4,425 in chips)
+Dealer : Set dealer/Bring in spot [9] 
+Small Blind : Ante chip 25 
+Big Blind : Ante chip 25 
+UTG : Ante chip 25 
+UTG+1 : Ante chip 25 
+UTG+2 : Ante chip 25 
+UTG+3 : Ante chip 25 
+UTG+4 [ME] : Ante chip 25 
+Dealer : Ante chip 25 
+Small Blind : Ante/Small blind 125 
+Small Blind : Ante/Small blind 125 
+Small Blind : Ante/Small blind 125 
+Small Blind : Ante/Small blind 125 
+Big Blind : Big blind/Bring in 250 
+*** HOLE CARDS ***
+Small Blind : Card dealt to a spot [Jd Kh] 
+Big Blind : Card dealt to a spot [6c Jh] 
+UTG : Card dealt to a spot [6s 5c] 
+UTG+1 : Card dealt to a spot [7d 8d] 
+UTG+2 : Card dealt to a spot [Ts Td] 
+UTG+3 : Card dealt to a spot [7c 9d] 
+UTG+4 [ME] : Card dealt to a spot [Tc 8s] 
+Dealer : Card dealt to a spot [9s 9h] 
+UTG : Folds
+UTG+1 : Raises 500 to 500
+UTG+2 : Call 500 
+UTG+3 : Folds
+UTG+4 [ME] : Folds
+Dealer : All-in(raise) 4400 to 4400
+Small Blind : Folds
+Big Blind : Folds
+UTG+1 : Folds
+UTG+2 : Call 3900 
+*** FLOP *** [Qc Qh Jc]
+*** TURN *** [Qc Qh Jc] [Js]
+*** RIVER *** [Qc Qh Jc Js] [8c]
+UTG+2 : Showdown [Qh Qc Js Jc Ts] (Two pair)
+Dealer : Showdown [Qh Qc Js Jc 9s] (Two pair)
+UTG+2 : Hand Result 9875 
+Dealer : Ranking 179 
+Dealer : Stand
+*** SUMMARY ***
+Total Pot(9875)
+Board [Qc Qh Jc Js 8c]
+Seat+2: Small Blind Folded before the FLOP
+Seat+3: Big Blind Folded before the FLOP
+Seat+4: UTG Folded before the FLOP
+Seat+5: UTG+1 Folded before the FLOP
+Seat+6: UTG+2 9875  with Two pair [Ts Td-Qh Qc Js Jc Ts]  
+Seat+7: UTG+3 Folded before the FLOP
+Seat+8: UTG+4 Folded before the FLOP
+Seat+9: Dealer lose with Two pair [9s 9h-Qh Qc Js Jc 9s]  
+
+
+Bovada Hand #3031675479: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 9 (150/300) - 2014-08-06 23:28:28
+Seat 2: Dealer (16,395 in chips)
+Seat 3: Small Blind (6,125 in chips)
+Seat 4: Big Blind (10,688 in chips)
+Seat 5: UTG (24,118 in chips)
+Seat 6: UTG+1 (17,505 in chips)
+Seat 7: UTG+2 (5,367 in chips)
+Seat 8: UTG+3 [ME] (2,522 in chips)
+Dealer : Set dealer/Bring in spot [2] 
+Dealer : Ante chip 30 
+Small Blind : Ante chip 30 
+Big Blind : Ante chip 30 
+UTG : Ante chip 30 
+UTG+1 : Ante chip 30 
+UTG+2 : Ante chip 30 
+UTG+3 [ME] : Ante chip 30 
+Small Blind : Ante/Small blind 150 
+Big Blind : Big blind/Bring in 300 
+*** HOLE CARDS ***
+Dealer : Card dealt to a spot [2d 3d] 
+Small Blind : Card dealt to a spot [As 5c] 
+Big Blind : Card dealt to a spot [Kh Ts] 
+UTG : Card dealt to a spot [Th Qs] 
+UTG+1 : Card dealt to a spot [Td 4s] 
+UTG+2 : Card dealt to a spot [Ad Jh] 
+UTG+3 [ME] : Card dealt to a spot [7s 2h] 
+UTG : Folds
+UTG+1 : Folds
+UTG+2 : Sit out
+UTG+2 : Folds(timeout)
+UTG+3 [ME] : Folds
+Dealer : Raises 600 to 600
+Small Blind : Folds
+Big Blind : Call 300 
+*** FLOP *** [5d 9c Qc]
+Big Blind : Checks
+Dealer : Checks
+*** TURN *** [5d 9c Qc] [8d]
+Big Blind : Checks
+Dealer : Bets 600 
+Big Blind : Call 600 
+*** RIVER *** [5d 9c Qc 8d] [Ah]
+Big Blind : Checks
+Dealer : Checks
+Big Blind : Showdown [Ah Kh Qc Ts 9c] (High Card)
+Dealer : Mucks [2d 3d] (High Card)
+Big Blind : Hand Result 2760 
+*** SUMMARY ***
+Total Pot(2760)
+Board [5d 9c Qc 8d Ah]
+Seat+2: Dealer [Mucked] [2d 3d ]  
+Seat+3: Small Blind Folded before the FLOP
+Seat+4: Big Blind 2760  with High Card [Kh Ts-Ah Kh Qc Ts 9c]  
+Seat+5: UTG Folded before the FLOP
+Seat+6: UTG+1 Folded before the FLOP
+Seat+7: UTG+2 Folded before the FLOP
+Seat+8: UTG+3 Folded before the FLOP
+
+
+Bovada Hand #3031676712: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 9 (150/300) - 2014-08-06 23:30:04
+Seat 1: UTG+3 (12,574 in chips)
+Seat 2: UTG+4 (15,165 in chips)
+Seat 3: Dealer (5,945 in chips)
+Seat 4: Small Blind (12,218 in chips)
+Seat 5: Big Blind (24,088 in chips)
+Seat 6: UTG (17,475 in chips)
+Seat 7: UTG+1 (5,337 in chips)
+Seat 8: UTG+2 [ME] (2,492 in chips)
+Dealer : Set dealer/Bring in spot [3] 
+UTG+3 : Ante chip 30 
+UTG+4 : Ante chip 30 
+Dealer : Ante chip 30 
+Small Blind : Ante chip 30 
+Big Blind : Ante chip 30 
+UTG : Ante chip 30 
+UTG+1 : Ante chip 30 
+UTG+2 [ME] : Ante chip 30 
+Small Blind : Ante/Small blind 150 
+Big Blind : Big blind/Bring in 300 
+*** HOLE CARDS ***
+UTG+3 : Card dealt to a spot [Th As] 
+UTG+4 : Card dealt to a spot [Js Qd] 
+Dealer : Card dealt to a spot [2s 6h] 
+Small Blind : Card dealt to a spot [Qc 2d] 
+Big Blind : Card dealt to a spot [Ks 2c] 
+UTG : Card dealt to a spot [7s 8s] 
+UTG+1 : Card dealt to a spot [6c Kc] 
+UTG+2 [ME] : Card dealt to a spot [7h Jc] 
+UTG+1 : Re-join
+UTG : Raises 600 to 600
+UTG+1 : Raises 900 to 900
+UTG+2 [ME] : Folds
+UTG+3 : Folds
+UTG+4 : Call 900 
+Dealer : Folds
+Small Blind : Folds
+Big Blind : Folds
+UTG : Call 300 
+*** FLOP *** [Kh 8h 4d]
+UTG : Checks
+UTG+1 : Bets 300 
+UTG+4 : Call 300 
+UTG : Call 300 
+*** TURN *** [Kh 8h 4d] [9s]
+UTG : Checks
+UTG+1 : All-in 4107 
+UTG+4 : Folds
+UTG : Folds
+UTG+1 : Return uncalled portion of bet 4107 
+UTG+1 : Does not show [6c Kc] (One pair)
+UTG+1 : Hand Result 4290 
+*** SUMMARY ***
+Total Pot(4290)
+Board [Kh 8h 4d 9s ]
+Seat+1: UTG+3 Folded before the FLOP
+Seat+2: UTG+4 Folded on the TURN
+Seat+3: Dealer Folded before the FLOP
+Seat+4: Small Blind Folded before the FLOP
+Seat+5: Big Blind Folded before the FLOP
+Seat+6: UTG Folded on the TURN
+Seat+7: UTG+1 4290 [Does not show]  
+Seat+8: UTG+2 Folded before the FLOP
+
+
+Bovada Hand #3031678478: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 9 (150/300) - 2014-08-06 23:32:25
+Seat 1: UTG+2 (12,544 in chips)
+Seat 2: UTG+3 (13,935 in chips)
+Seat 3: UTG+4 (5,915 in chips)
+Seat 4: Dealer (12,038 in chips)
+Seat 5: Small Blind (23,758 in chips)
+Seat 6: Big Blind (16,245 in chips)
+Seat 7: UTG (8,397 in chips)
+Seat 8: UTG+1 [ME] (2,462 in chips)
+Dealer : Set dealer/Bring in spot [4] 
+UTG+2 : Ante chip 30 
+UTG+3 : Ante chip 30 
+UTG+4 : Ante chip 30 
+Dealer : Ante chip 30 
+Small Blind : Ante chip 30 
+Big Blind : Ante chip 30 
+UTG : Ante chip 30 
+UTG+1 [ME] : Ante chip 30 
+Small Blind : Ante/Small blind 150 
+Big Blind : Big blind/Bring in 300 
+*** HOLE CARDS ***
+UTG+2 : Card dealt to a spot [9h 6s] 
+UTG+3 : Card dealt to a spot [5d Qh] 
+UTG+4 : Card dealt to a spot [8h 6h] 
+Dealer : Card dealt to a spot [Td 3h] 
+Small Blind : Card dealt to a spot [8d As] 
+Big Blind : Card dealt to a spot [Jh 7s] 
+UTG : Card dealt to a spot [4s Ts] 
+UTG+1 [ME] : Card dealt to a spot [7d 4d] 
+UTG : Folds
+UTG+1 [ME] : Folds
+UTG+2 : Folds
+UTG+3 : Folds
+UTG+4 : Raises 800 to 800
+Dealer : Folds
+Small Blind : Folds
+Big Blind : Folds
+UTG+4 : Return uncalled portion of bet 500 
+UTG+4 : Does not show [8h 6h] (High Card)
+UTG+4 : Hand Result 990 
+*** SUMMARY ***
+Total Pot(990)
+Seat+1: UTG+2 Folded before the FLOP
+Seat+2: UTG+3 Folded before the FLOP
+Seat+3: UTG+4 990 [Does not show]  
+Seat+4: Dealer Folded before the FLOP
+Seat+5: Small Blind Folded before the FLOP
+Seat+6: Big Blind Folded before the FLOP
+Seat+7: UTG Folded before the FLOP
+Seat+8: UTG+1 Folded before the FLOP
+
+
+Bovada Hand #3031678893: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 9 (150/300) - 2014-08-06 23:32:55
+Seat 1: UTG+2 (12,514 in chips)
+Seat 2: UTG+3 (13,905 in chips)
+Seat 3: UTG+4 (6,575 in chips)
+Seat 4: UTG+5 (12,008 in chips)
+Seat 5: Dealer (23,578 in chips)
+Seat 6: Small Blind (15,915 in chips)
+Seat 7: Big Blind (8,367 in chips)
+Seat 8: UTG [ME] (2,432 in chips)
+Seat 9: UTG+1 (3,000 in chips)
+Dealer : Set dealer/Bring in spot [5] 
+UTG+2 : Ante chip 30 
+UTG+3 : Ante chip 30 
+UTG+4 : Ante chip 30 
+UTG+5 : Ante chip 30 
+Dealer : Ante chip 30 
+Small Blind : Ante chip 30 
+Big Blind : Ante chip 30 
+UTG [ME] : Ante chip 30 
+UTG+1 : Ante chip 30 
+UTG+1 : Table enter user
+Small Blind : Ante/Small blind 150 
+Big Blind : Big blind/Bring in 300 
+*** HOLE CARDS ***
+UTG+2 : Card dealt to a spot [Jh 6d] 
+UTG+3 : Card dealt to a spot [7s Qs] 
+UTG+4 : Card dealt to a spot [2s 3d] 
+UTG+5 : Card dealt to a spot [6h 9d] 
+Dealer : Card dealt to a spot [6s 6c] 
+Small Blind : Card dealt to a spot [4d Js] 
+Big Blind : Card dealt to a spot [Ah 8d] 
+UTG [ME] : Card dealt to a spot [4s 9s] 
+UTG+1 : Card dealt to a spot [4c Qh] 
+UTG [ME] : Folds
+UTG+1 : Sit out
+UTG+1 : Folds(timeout)
+UTG+2 : Folds
+UTG+3 : Folds
+UTG+4 : Folds
+UTG+5 : Folds
+Dealer : Raises 600 to 600
+Small Blind : Folds
+UTG+1 : Re-join
+Big Blind : Call 300 
+*** FLOP *** [9h 7d Th]
+Big Blind : Bets 300 
+Dealer : Call 300 
+*** TURN *** [9h 7d Th] [Ad]
+Big Blind : Bets 2220 
+Dealer : Folds
+Big Blind : Return uncalled portion of bet 2220 
+Big Blind : Does not show [Ah 8d] (One pair)
+Big Blind : Hand Result 2220 
+*** SUMMARY ***
+Total Pot(2220)
+Board [9h 7d Th Ad ]
+Seat+1: UTG+2 Folded before the FLOP
+Seat+2: UTG+3 Folded before the FLOP
+Seat+3: UTG+4 Folded before the FLOP
+Seat+4: UTG+5 Folded before the FLOP
+Seat+5: Dealer Folded on the TURN
+Seat+6: Small Blind Folded before the FLOP
+Seat+7: Big Blind 2220 [Does not show]  
+Seat+8: UTG Folded before the FLOP
+Seat+9: UTG+1 Folded before the FLOP
+
+
+Bovada Hand #3031680337: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 9 (150/300) - 2014-08-06 23:34:49
+Seat 1: UTG+1 (12,484 in chips)
+Seat 2: UTG+2 (13,875 in chips)
+Seat 3: UTG+3 (6,545 in chips)
+Seat 5: UTG+4 (22,648 in chips)
+Seat 6: Dealer (15,735 in chips)
+Seat 7: Small Blind (9,657 in chips)
+Seat 8: Big Blind [ME] (2,402 in chips)
+Seat 9: UTG (2,970 in chips)
+Dealer : Set dealer/Bring in spot [6] 
+UTG+1 : Ante chip 30 
+UTG+2 : Ante chip 30 
+UTG+3 : Ante chip 30 
+UTG+4 : Ante chip 30 
+Dealer : Ante chip 30 
+Small Blind : Ante chip 30 
+Big Blind [ME] : Ante chip 30 
+UTG : Ante chip 30 
+Small Blind : Ante/Small blind 150 
+Big Blind [ME] : Big blind/Bring in 300 
+*** HOLE CARDS ***
+UTG+1 : Card dealt to a spot [2d Qs] 
+UTG+2 : Card dealt to a spot [4h 4d] 
+UTG+3 : Card dealt to a spot [6c Th] 
+UTG+4 : Card dealt to a spot [8h 6s] 
+Dealer : Card dealt to a spot [4s 5c] 
+Small Blind : Card dealt to a spot [9s Tc] 
+Big Blind [ME] : Card dealt to a spot [8s 5h] 
+UTG : Card dealt to a spot [7d 2h] 
+UTG : Sit out
+UTG : Folds(timeout)
+UTG+1 : Folds
+UTG+2 : Call 300 
+UTG+3 : Folds
+UTG+4 : Folds
+Dealer : Folds
+Small Blind : Call 150 
+Big Blind [ME] : Checks
+*** FLOP *** [Kc 2c 5s]
+Small Blind : Checks
+Big Blind [ME] : Checks
+UTG+2 : Bets 600 
+Small Blind : Folds
+Big Blind [ME] : All-in(raise) 2072 to 2072
+UTG+2 : Call 1472 
+UTG+2 : Call 1472 
+UTG+2 : Call 1472 
+UTG+2 : Call 1472 
+*** TURN *** [Kc 2c 5s] [Ad]
+*** RIVER *** [Kc 2c 5s Ad] [9h]
+UTG+2 : Showdown [4h 4d Ad Kc 9h] (One pair)
+Big Blind [ME] : Showdown [5s 5h Ad Kc 9h] (One pair)
+Big Blind [ME] : Hand Result 5284 
+*** SUMMARY ***
+Total Pot(5284)
+Board [Kc 2c 5s Ad 9h]
+Seat+1: UTG+1 Folded before the FLOP
+Seat+2: UTG+2 lose with One pair [4h 4d-4h 4d Ad Kc 9h]  
+Seat+3: UTG+3 Folded before the FLOP
+Seat+5: UTG+4 Folded before the FLOP
+Seat+6: Dealer Folded before the FLOP
+Seat+7: Small Blind Folded on the FLOP
+Seat+8: Big Blind 5284  with One pair [8s 5h-5s 5h Ad Kc 9h]  
+Seat+9: UTG Folded before the FLOP
+
+
+Bovada Hand #3031681556: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 9 (150/300) - 2014-08-06 23:36:19
+Seat 1: UTG (12,454 in chips)
+Seat 2: UTG+1 (11,473 in chips)
+Seat 3: UTG+2 (6,515 in chips)
+Seat 5: UTG+3 (22,618 in chips)
+Seat 6: UTG+4 (15,705 in chips)
+Seat 7: Dealer (9,327 in chips)
+Seat 8: Small Blind [ME] (5,284 in chips)
+Seat 9: Big Blind (2,940 in chips)
+Dealer : Set dealer/Bring in spot [7] 
+UTG : Ante chip 30 
+UTG+1 : Ante chip 30 
+UTG+2 : Ante chip 30 
+UTG+3 : Ante chip 30 
+UTG+4 : Ante chip 30 
+Dealer : Ante chip 30 
+Small Blind [ME] : Ante chip 30 
+Big Blind : Ante chip 30 
+Small Blind [ME] : Ante/Small blind 150 
+Big Blind : Big blind/Bring in 300 
+*** HOLE CARDS ***
+UTG : Card dealt to a spot [2d Ah] 
+UTG+1 : Card dealt to a spot [9h 7d] 
+UTG+2 : Card dealt to a spot [Kd Ks] 
+UTG+3 : Card dealt to a spot [4d Qd] 
+UTG+4 : Card dealt to a spot [8c Jd] 
+Dealer : Card dealt to a spot [9c 4s] 
+Small Blind [ME] : Card dealt to a spot [3h 2h] 
+Big Blind : Card dealt to a spot [Kh 6s] 
+UTG : Folds
+UTG+1 : Folds
+UTG+2 : Raises 900 to 900
+UTG+3 : Folds
+UTG+4 : Folds
+Dealer : Folds
+Small Blind [ME] : Folds
+Big Blind : Folds
+UTG+2 : Return uncalled portion of bet 600 
+UTG+2 : Showdown(High Card)
+UTG+2 : Hand Result 990 
+*** SUMMARY ***
+Total Pot(990)
+Seat+1: UTG Folded before the FLOP
+Seat+2: UTG+1 Folded before the FLOP
+Seat+3: UTG+2 990  with High Card [Kd Ks ]  
+Seat+5: UTG+3 Folded before the FLOP
+Seat+6: UTG+4 Folded before the FLOP
+Seat+7: Dealer Folded before the FLOP
+Seat+8: Small Blind Folded before the FLOP
+Seat+9: Big Blind Folded before the FLOP
+
+
+Bovada Hand #3031682196: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 9 (150/300) - 2014-08-06 23:37:04
+Seat 1: Big Blind (12,424 in chips)
+Seat 2: UTG (11,443 in chips)
+Seat 3: UTG+1 (7,175 in chips)
+Seat 5: UTG+2 (22,588 in chips)
+Seat 6: UTG+3 (15,675 in chips)
+Seat 7: UTG+4 (9,297 in chips)
+Seat 8: Dealer [ME] (5,104 in chips)
+Seat 9: Small Blind (2,610 in chips)
+Dealer [ME] : Set dealer/Bring in spot [8] 
+Big Blind : Ante chip 30 
+UTG : Ante chip 30 
+UTG+1 : Ante chip 30 
+UTG+2 : Ante chip 30 
+UTG+3 : Ante chip 30 
+UTG+4 : Ante chip 30 
+Dealer [ME] : Ante chip 30 
+Small Blind : Ante chip 30 
+Small Blind : Ante/Small blind 150 
+Big Blind : Big blind/Bring in 300 
+*** HOLE CARDS ***
+Big Blind : Card dealt to a spot [Td 4d] 
+UTG : Card dealt to a spot [3s 4h] 
+UTG+1 : Card dealt to a spot [Kd 8s] 
+UTG+2 : Card dealt to a spot [9h 3c] 
+UTG+3 : Card dealt to a spot [7s 6c] 
+UTG+4 : Card dealt to a spot [2d 5s] 
+Dealer [ME] : Card dealt to a spot [Ts 6s] 
+Small Blind : Card dealt to a spot [4c Ks] 
+UTG : Folds
+UTG+1 : Folds
+UTG+2 : Folds
+UTG+3 : Folds
+UTG+4 : Folds
+Dealer [ME] : Folds
+Small Blind : Folds
+Big Blind : Does not show [Td 4d] (High Card)
+Big Blind : Hand Result 690 
+*** SUMMARY ***
+Total Pot(690)
+Seat+1: Big Blind 690 [Does not show]  
+Seat+2: UTG Folded before the FLOP
+Seat+3: UTG+1 Folded before the FLOP
+Seat+5: UTG+2 Folded before the FLOP
+Seat+6: UTG+3 Folded before the FLOP
+Seat+7: UTG+4 Folded before the FLOP
+Seat+8: Dealer Folded before the FLOP
+Seat+9: Small Blind Folded before the FLOP
+
+
+Bovada Hand #3031682467: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 9 (150/300) - 2014-08-06 23:37:25
+Seat 1: Small Blind (12,784 in chips)
+Seat 2: Big Blind (11,413 in chips)
+Seat 3: UTG (7,145 in chips)
+Seat 5: UTG+1 (22,558 in chips)
+Seat 6: UTG+2 (15,645 in chips)
+Seat 7: UTG+3 (9,267 in chips)
+Seat 8: UTG+4 [ME] (5,074 in chips)
+Seat 9: Dealer (2,430 in chips)
+Dealer : Set dealer/Bring in spot [9] 
+Small Blind : Ante chip 30 
+Big Blind : Ante chip 30 
+UTG : Ante chip 30 
+UTG+1 : Ante chip 30 
+UTG+2 : Ante chip 30 
+UTG+3 : Ante chip 30 
+UTG+4 [ME] : Ante chip 30 
+Dealer : Ante chip 30 
+Small Blind : Ante/Small blind 150 
+Big Blind : Big blind/Bring in 300 
+*** HOLE CARDS ***
+Small Blind : Card dealt to a spot [9d 4s] 
+Big Blind : Card dealt to a spot [6h Jc] 
+UTG : Card dealt to a spot [Kc Kd] 
+UTG+1 : Card dealt to a spot [Ad 2d] 
+UTG+2 : Card dealt to a spot [8s 8d] 
+UTG+3 : Card dealt to a spot [3d Js] 
+UTG+4 [ME] : Card dealt to a spot [3h Ks] 
+Dealer : Card dealt to a spot [7s Ts] 
+UTG : Raises 900 to 900
+UTG+1 : Folds
+UTG+2 : Folds
+UTG+3 : Folds
+UTG+4 [ME] : Folds
+Dealer : Folds
+Small Blind : Folds
+Big Blind : Folds
+UTG : Return uncalled portion of bet 600 
+UTG : Does not show [Kc Kd] (High Card)
+UTG : Hand Result 990 
+UTG+3 : Sit out
+Dealer : Table enter user
+*** SUMMARY ***
+Total Pot(990)
+Seat+1: Small Blind Folded before the FLOP
+Seat+2: Big Blind Folded before the FLOP
+Seat+3: UTG 990 [Does not show]  
+Seat+5: UTG+1 Folded before the FLOP
+Seat+6: UTG+2 Folded before the FLOP
+Seat+7: UTG+3 Folded before the FLOP
+Seat+8: UTG+4 Folded before the FLOP
+Seat+9: Dealer Folded before the FLOP
+
+
+Bovada Hand #3031683017: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 9 (150/300) - 2014-08-06 23:38:07
+Seat 1: Dealer (12,604 in chips)
+Seat 2: Small Blind (11,083 in chips)
+Seat 3: Big Blind (7,805 in chips)
+Seat 5: UTG (22,528 in chips)
+Seat 6: UTG+1 (15,615 in chips)
+Seat 7: UTG+2 (9,237 in chips)
+Seat 8: UTG+3 [ME] (5,044 in chips)
+Seat 9: UTG+4 (2,400 in chips)
+Dealer : Set dealer/Bring in spot [1] 
+Dealer : Ante chip 30 
+Small Blind : Ante chip 30 
+Big Blind : Ante chip 30 
+UTG : Ante chip 30 
+UTG+1 : Ante chip 30 
+UTG+2 : Ante chip 30 
+UTG+3 [ME] : Ante chip 30 
+UTG+4 : Ante chip 30 
+Small Blind : Ante/Small blind 150 
+Big Blind : Big blind/Bring in 300 
+*** HOLE CARDS ***
+Dealer : Card dealt to a spot [Th 8s] 
+Small Blind : Card dealt to a spot [Jd 9h] 
+Big Blind : Card dealt to a spot [Ks Ts] 
+UTG : Card dealt to a spot [Kh 3d] 
+UTG+1 : Card dealt to a spot [7s 4s] 
+UTG+2 : Card dealt to a spot [3h 6c] 
+UTG+3 [ME] : Card dealt to a spot [Jc 4d] 
+UTG+4 : Card dealt to a spot [3c 6d] 
+UTG+4 : Re-join
+UTG : Folds
+UTG+1 : Folds
+UTG+2 : Folds
+UTG+3 [ME] : Folds
+UTG+4 : Folds
+Dealer : Folds
+Small Blind : Call 150 
+Big Blind : Raises 750 to 1050
+Small Blind : Folds
+Big Blind : Return uncalled portion of bet 750 
+Big Blind : Does not show [Ks Ts] (High Card)
+Big Blind : Hand Result 840 
+*** SUMMARY ***
+Total Pot(840)
+Seat+1: Dealer Folded before the FLOP
+Seat+2: Small Blind Folded before the FLOP
+Seat+3: Big Blind 840 [Does not show]  
+Seat+5: UTG Folded before the FLOP
+Seat+6: UTG+1 Folded before the FLOP
+Seat+7: UTG+2 Folded before the FLOP
+Seat+8: UTG+3 Folded before the FLOP
+Seat+9: UTG+4 Folded before the FLOP
+
+
+Bovada Hand #3031683912: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 9 (150/300) - 2014-08-06 23:39:16
+Seat 1: UTG+4 (12,574 in chips)
+Seat 2: Dealer (10,753 in chips)
+Seat 3: Small Blind (8,315 in chips)
+Seat 5: Big Blind (22,498 in chips)
+Seat 6: UTG (15,585 in chips)
+Seat 7: UTG+1 (9,207 in chips)
+Seat 8: UTG+2 [ME] (5,014 in chips)
+Seat 9: UTG+3 (2,370 in chips)
+Dealer : Set dealer/Bring in spot [2] 
+UTG+4 : Ante chip 30 
+Dealer : Ante chip 30 
+Small Blind : Ante chip 30 
+Big Blind : Ante chip 30 
+UTG : Ante chip 30 
+UTG+1 : Ante chip 30 
+UTG+2 [ME] : Ante chip 30 
+UTG+3 : Ante chip 30 
+Small Blind : Ante/Small blind 150 
+Big Blind : Big blind/Bring in 300 
+*** HOLE CARDS ***
+UTG+4 : Card dealt to a spot [5s Kc] 
+Dealer : Card dealt to a spot [5c 3d] 
+Small Blind : Card dealt to a spot [3s 3h] 
+Big Blind : Card dealt to a spot [9c Ks] 
+UTG : Card dealt to a spot [4d 8h] 
+UTG+1 : Card dealt to a spot [7s Jd] 
+UTG+2 [ME] : Card dealt to a spot [4s Js] 
+UTG+3 : Card dealt to a spot [8d 6h] 
+UTG : Folds
+UTG+1 : Folds
+UTG+2 [ME] : Folds
+UTG+3 : Folds
+UTG+4 : Raises 625 to 625
+Dealer : Folds
+Small Blind : Call 475 
+UTG+1 : Re-join
+Big Blind : Folds
+*** FLOP *** [Ts Ad 2h]
+Small Blind : Checks
+UTG+4 : Bets 875 
+Small Blind : Folds
+UTG+4 : Return uncalled portion of bet 875 
+UTG+4 : Does not show [5s Kc] (High Card)
+UTG+4 : Hand Result 1790 
+*** SUMMARY ***
+Total Pot(1790)
+Board [Ts Ad 2h  ]
+Seat+1: UTG+4 1790 [Does not show]  
+Seat+2: Dealer Folded before the FLOP
+Seat+3: Small Blind Folded on the FLOP
+Seat+5: Big Blind Folded before the FLOP
+Seat+6: UTG Folded before the FLOP
+Seat+7: UTG+1 Folded before the FLOP
+Seat+8: UTG+2 Folded before the FLOP
+Seat+9: UTG+3 Folded before the FLOP
+
+
+Bovada Hand #3031684612: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 10 (200/400) - 2014-08-06 23:40:10
+Seat 1: UTG+3 (13,709 in chips)
+Seat 2: UTG+4 (10,723 in chips)
+Seat 3: Dealer (7,660 in chips)
+Seat 5: Small Blind (22,168 in chips)
+Seat 6: Big Blind (15,555 in chips)
+Seat 7: UTG (9,177 in chips)
+Seat 8: UTG+1 [ME] (4,984 in chips)
+Seat 9: UTG+2 (2,340 in chips)
+Dealer : Set dealer/Bring in spot [3] 
+UTG+3 : Ante chip 40 
+UTG+4 : Ante chip 40 
+Dealer : Ante chip 40 
+Small Blind : Ante chip 40 
+Big Blind : Ante chip 40 
+UTG : Ante chip 40 
+UTG+1 [ME] : Ante chip 40 
+UTG+2 : Ante chip 40 
+Small Blind : Ante/Small blind 200 
+Big Blind : Big blind/Bring in 400 
+*** HOLE CARDS ***
+UTG+3 : Card dealt to a spot [8s Ks] 
+UTG+4 : Card dealt to a spot [6s 5d] 
+Dealer : Card dealt to a spot [As Kd] 
+Small Blind : Card dealt to a spot [Jc Js] 
+Big Blind : Card dealt to a spot [Ac 7h] 
+UTG : Card dealt to a spot [Ad Tc] 
+UTG+1 [ME] : Card dealt to a spot [Qc 7d] 
+UTG+2 : Card dealt to a spot [4h Qd] 
+UTG : Call 400 
+UTG+1 [ME] : Folds
+UTG+2 : Folds
+UTG+3 : Folds
+UTG+4 : Folds
+Dealer : All-in(raise) 7620 to 7620
+Small Blind : All-in(raise) 21928 to 22128
+Big Blind : Folds
+UTG : Folds
+Small Blind : Return uncalled portion of bet 14508 
+*** FLOP *** [Td Ah 4s]
+*** TURN *** [Td Ah 4s] [2s]
+*** RIVER *** [Td Ah 4s 2s] [Qh]
+Dealer : Showdown [As Ah Kd Qh Td] (One pair)
+Small Blind : Showdown [Js Jc Ah Qh Td] (One pair)
+Dealer : Hand Result 16360 
+*** SUMMARY ***
+Total Pot(16360)
+Board [Td Ah 4s 2s Qh]
+Seat+1: UTG+3 Folded before the FLOP
+Seat+2: UTG+4 Folded before the FLOP
+Seat+3: Dealer 16360  with One pair [As Kd-As Ah Kd Qh Td]  
+Seat+5: Small Blind lose with One pair [Jc Js-Js Jc Ah Qh Td]  
+Seat+6: Big Blind Folded before the FLOP
+Seat+7: UTG Folded before the FLOP
+Seat+8: UTG+1 Folded before the FLOP
+Seat+9: UTG+2 Folded before the FLOP
+
+
+Bovada Hand #3031685289: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 10 (200/400) - 2014-08-06 23:41:04
+Seat 1: UTG+2 (13,669 in chips)
+Seat 3: UTG+3 (16,360 in chips)
+Seat 5: Dealer (14,508 in chips)
+Seat 6: Small Blind (15,115 in chips)
+Seat 7: Big Blind (8,737 in chips)
+Seat 8: UTG [ME] (4,944 in chips)
+Seat 9: UTG+1 (2,300 in chips)
+Dealer : Set dealer/Bring in spot [5] 
+UTG+2 : Ante chip 40 
+UTG+3 : Ante chip 40 
+Dealer : Ante chip 40 
+Small Blind : Ante chip 40 
+Big Blind : Ante chip 40 
+UTG [ME] : Ante chip 40 
+UTG+1 : Ante chip 40 
+Small Blind : Ante/Small blind 200 
+Big Blind : Big blind/Bring in 400 
+*** HOLE CARDS ***
+UTG+2 : Card dealt to a spot [Ac Ad] 
+UTG+3 : Card dealt to a spot [Js As] 
+Dealer : Card dealt to a spot [Kc Jh] 
+Small Blind : Card dealt to a spot [Kd 5h] 
+Big Blind : Card dealt to a spot [6h 2s] 
+UTG [ME] : Card dealt to a spot [Qd 7s] 
+UTG+1 : Card dealt to a spot [2h 4c] 
+UTG [ME] : Folds
+UTG+1 : Folds
+UTG+2 : Raises 800 to 800
+UTG+3 : Call 800 
+Dealer : Folds
+Small Blind : Folds
+Big Blind : Folds
+*** FLOP *** [4s Jd 3h]
+UTG+2 : Bets 1195 
+UTG+3 : Raises 3095 to 3095
+UTG+2 : Call 1900 
+*** TURN *** [4s Jd 3h] [6c]
+UTG+2 : Checks
+UTG+3 : Bets 12410 
+UTG+2 : All-in 9734 
+UTG+3 : Return uncalled portion of bet 2676 
+*** RIVER *** [4s Jd 3h 6c] [7d]
+UTG+2 : Showdown [Ad Ac Jd 7d 6c] (One pair)
+UTG+3 : Showdown [Js Jd As 7d 6c] (One pair)
+UTG+2 : Hand Result 28138 
+*** SUMMARY ***
+Total Pot(28138)
+Board [4s Jd 3h 6c 7d]
+Seat+1: UTG+2 28138  with One pair [Ac Ad-Ad Ac Jd 7d 6c]  
+Seat+3: UTG+3 lose with One pair [Js As-Js Jd As 7d 6c]  
+Seat+5: Dealer Folded before the FLOP
+Seat+6: Small Blind Folded before the FLOP
+Seat+7: Big Blind Folded before the FLOP
+Seat+8: UTG Folded before the FLOP
+Seat+9: UTG+1 Folded before the FLOP
+
+
+Bovada Hand #3031686151: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 10 (200/400) - 2014-08-06 23:42:13
+Seat 1: UTG+1 (28,138 in chips)
+Seat 3: UTG+2 (2,691 in chips)
+Seat 4: UTG+3 (17,700 in chips)
+Seat 5: UTG+4 (14,468 in chips)
+Seat 6: Dealer (14,875 in chips)
+Seat 7: Small Blind (8,297 in chips)
+Seat 8: Big Blind [ME] (4,904 in chips)
+Seat 9: UTG (2,260 in chips)
+Dealer : Set dealer/Bring in spot [6] 
+UTG+1 : Ante chip 40 
+UTG+2 : Ante chip 40 
+UTG+3 : Ante chip 40 
+UTG+4 : Ante chip 40 
+Dealer : Ante chip 40 
+Small Blind : Ante chip 40 
+Big Blind [ME] : Ante chip 40 
+UTG : Ante chip 40 
+Small Blind : Ante/Small blind 200 
+Big Blind [ME] : Big blind/Bring in 400 
+*** HOLE CARDS ***
+UTG+1 : Card dealt to a spot [Kd Ks] 
+UTG+2 : Card dealt to a spot [Tc 8s] 
+UTG+3 : Card dealt to a spot [Qd 2c] 
+UTG+4 : Card dealt to a spot [Qs 6d] 
+Dealer : Card dealt to a spot [4d Kh] 
+Small Blind : Card dealt to a spot [Ad 5h] 
+Big Blind [ME] : Card dealt to a spot [3c 6h] 
+UTG : Card dealt to a spot [Kc Th] 
+UTG : All-in(raise) 2220 to 2220
+UTG+1 : Raises 7580 to 7580
+UTG+2 : Folds
+UTG+3 : Folds
+UTG+4 : Folds
+Dealer : Folds
+Small Blind : Sit out
+Small Blind : Folds(timeout)
+Big Blind [ME] : Folds
+UTG+1 : Return uncalled portion of bet 5360 
+*** FLOP *** [As 9h 9d]
+*** TURN *** [As 9h 9d] [Ah]
+*** RIVER *** [As 9h 9d Ah] [7d]
+UTG+1 : Showdown [As Ah Ks Kd 9h] (Two pair)
+UTG : Showdown [As Ah 9h 9d Kc] (Two pair)
+UTG+1 : Hand Result 5360 
+UTG : Ranking 141 
+UTG : Stand
+*** SUMMARY ***
+Total Pot(5360)
+Board [As 9h 9d Ah 7d]
+Seat+1: UTG+1 5360  with Two pair [Kd Ks-As Ah Ks Kd 9h]  
+Seat+3: UTG+2 Folded before the FLOP
+Seat+4: UTG+3 Folded before the FLOP
+Seat+5: UTG+4 Folded before the FLOP
+Seat+6: Dealer Folded before the FLOP
+Seat+7: Small Blind Folded before the FLOP
+Seat+8: Big Blind Folded before the FLOP
+Seat+9: UTG lose with Two pair [Kc Th-As Ah 9h 9d Kc]  
+
+
+Bovada Hand #3031687060: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 10 (200/400) - 2014-08-06 23:43:25
+Seat 1: Big Blind (31,238 in chips)
+Seat 3: UTG (2,651 in chips)
+Seat 4: UTG+1 (17,660 in chips)
+Seat 5: UTG+2 (14,428 in chips)
+Seat 6: UTG+3 (14,835 in chips)
+Seat 7: Dealer (8,057 in chips)
+Seat 8: Small Blind [ME] (4,464 in chips)
+Dealer : Set dealer/Bring in spot [7] 
+Big Blind : Ante chip 40 
+UTG : Ante chip 40 
+UTG+1 : Ante chip 40 
+UTG+2 : Ante chip 40 
+UTG+3 : Ante chip 40 
+Dealer : Ante chip 40 
+Small Blind [ME] : Ante chip 40 
+Small Blind [ME] : Ante/Small blind 200 
+Big Blind : Big blind/Bring in 400 
+*** HOLE CARDS ***
+Big Blind : Card dealt to a spot [5d Qs] 
+UTG : Card dealt to a spot [Jd 6s] 
+UTG+1 : Card dealt to a spot [5c Kd] 
+UTG+2 : Card dealt to a spot [Ah 7c] 
+UTG+3 : Card dealt to a spot [7h Qc] 
+Dealer : Card dealt to a spot [4d Ad] 
+Small Blind [ME] : Card dealt to a spot [3c As] 
+UTG : Folds
+UTG+1 : Folds
+UTG+2 : Raises 800 to 800
+UTG+3 : Folds
+Dealer : Folds
+Small Blind [ME] : Folds
+Big Blind : Folds
+UTG+2 : Return uncalled portion of bet 400 
+UTG+2 : Does not show [Ah 7c] (High Card)
+UTG+2 : Hand Result 1280 
+Dealer : Re-join
+*** SUMMARY ***
+Total Pot(1280)
+Seat+1: Big Blind Folded before the FLOP
+Seat+3: UTG Folded before the FLOP
+Seat+4: UTG+1 Folded before the FLOP
+Seat+5: UTG+2 1280 [Does not show]  
+Seat+6: UTG+3 Folded before the FLOP
+Seat+7: Dealer Folded before the FLOP
+Seat+8: Small Blind Folded before the FLOP
+
+
+Bovada Hand #3031687388: HOLDEM Tournament #8660111 TBL#11, No Limit- Level 10 (200/400) - 2014-08-06 23:43:52
+Seat 1: Small Blind (30,798 in chips)
+Seat 3: Big Blind (2,611 in chips)
+Seat 4: UTG (17,620 in chips)
+Seat 5: UTG+1 (15,268 in chips)
+Seat 6: UTG+2 (14,795 in chips)
+Seat 7: UTG+3 (8,017 in chips)
+Seat 8: Dealer [ME] (4,224 in chips)
+Dealer [ME] : Set dealer/Bring in spot [8] 
+Small Blind : Ante chip 40 
+Big Blind : Ante chip 40 
+UTG : Ante chip 40 
+UTG+1 : Ante chip 40 
+UTG+2 : Ante chip 40 
+UTG+3 : Ante chip 40 
+Dealer [ME] : Ante chip 40 
+Small Blind : Ante/Small blind 200 
+Big Blind : Big blind/Bring in 400 
+*** HOLE CARDS ***
+Small Blind : Card dealt to a spot [4h Js] 
+Big Blind : Card dealt to a spot [3h 5h] 
+UTG : Card dealt to a spot [6h Jh] 
+UTG+1 : Card dealt to a spot [5d Ts] 
+UTG+2 : Card dealt to a spot [9d 9s] 
+UTG+3 : Card dealt to a spot [4s 2d] 
+Dealer [ME] : Card dealt to a spot [Qc As] 
+UTG : Folds
+UTG+1 : Folds
+UTG+2 : Raises 800 to 800
+UTG+3 : Folds
+Dealer [ME] : All-in(raise) 4184 to 4184
+Small Blind : Folds
+Big Blind : Folds
+UTG+2 : Call 3384 
+*** FLOP *** [Kh 3c 7s]
+*** TURN *** [Kh 3c 7s] [8s]
+*** RIVER *** [Kh 3c 7s 8s] [5s]
+UTG+2 : Showdown [9s 9d Kh 8s 7s] (One pair)
+Dealer [ME] : Showdown [As Kh Qc 8s 7s] (High Card)
+UTG+2 : Hand Result 9248 
+Dealer [ME] : Ranking 137 
+Dealer [ME] : Ranking 137 
+Dealer [ME] : Ranking 137 
+Dealer [ME] : Ranking 137 
+Dealer [ME] : Stand
+*** SUMMARY ***
+Total Pot(9248)
+Board [Kh 3c 7s 8s 5s]
+Seat+1: Small Blind Folded before the FLOP
+Seat+3: Big Blind Folded before the FLOP
+Seat+4: UTG Folded before the FLOP
+Seat+5: UTG+1 Folded before the FLOP
+Seat+6: UTG+2 9248  with One pair [9d 9s-9s 9d Kh 8s 7s]  
+Seat+7: UTG+3 Folded before the FLOP
+Seat+8: Dealer lose with High Card [Qc As-As Kh Qc 8s 7s]  
+
