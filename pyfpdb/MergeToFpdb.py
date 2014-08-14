@@ -115,13 +115,13 @@ class Merge(HandHistoryConverter):
     re_Identify = re.compile(u'<game\sid=\"[0-9]+\-[0-9]+\"\sstarttime')
     re_SplitHands = re.compile(r'</game>\n+(?=<)')
     re_TailSplitHands = re.compile(r'(</game>)')
-    re_GameInfo = re.compile(r'<description type="(?P<GAME>Holdem|Omaha|Omaha|Omaha\sH/L8|2\-7\sLowball|A\-5\sLowball|Badugi|5\-Draw\sw/Joker|5\-Draw|7\-Stud|7\-Stud\sH/L8|5\-Stud|Razz|HORSE|RASH|HA|HO|SHOE|HOSE|HAR)(?P<TYPE>\sTournament)?" stakes="(?P<LIMIT>[a-zA-Z ]+)(\s\(?\$?(?P<SB>[.0-9]+)?/?\$?(?P<BB>[.0-9]+)?(?P<blah>.*)\)?)?"(\sversion="\d+")?/>', re.MULTILINE)
+    re_GameInfo = re.compile(r'<description type="(?P<GAME>Holdem|Omaha|Omaha|Omaha\sH/L8|2\-7\sLowball|A\-5\sLowball|Badugi|5\-Draw\sw/Joker|5\-Draw|7\-Stud|7\-Stud\sH/L8|5\-Stud|Razz|HORSE|RASH|HA|HO|SHOE|HOSE|HAR)(?P<TYPE>\sTournament)?" stakes="(?P<LIMIT>[a-zA-Z ]+)(\s\(?\$?(?P<SB>[.0-9]+)?/?\$?(?P<BB>[.0-9]+)?(?P<blah>.*)\)?)?"(\sversion="\d+")?\s?/>', re.MULTILINE)
     # <game id="46154255-645" starttime="20111230232051" numholecards="2" gametype="1" seats="9" realmoney="false" data="20111230|Play Money (46154255)|46154255|46154255-645|false">
     # <game id="46165919-1" starttime="20111230161824" numholecards="2" gametype="23" seats="10" realmoney="true" data="20111230|Fun Step 1|46165833-1|46165919-1|true">
     # <game id="46289039-1" starttime="20120101200100" numholecards="2" gametype="23" seats="9" realmoney="true" data="20120101|$200 Freeroll - NL Holdem - 20%3A00|46245544-1|46289039-1|true">
-    re_HandInfo = re.compile(r'<game id="(?P<HID1>[0-9]+)-(?P<HID2>[0-9]+)" starttime="(?P<DATETIME>.+?)" numholecards="[0-9]+" gametype="[0-9]+" (multigametype="(?P<MULTIGAMETYPE>\d+)" )?(seats="(?P<SEATS>[0-9]+)" )?realmoney="(?P<REALMONEY>(true|false))" data="[0-9]+[|:](?P<TABLENAME>[^|:]+)[|:](?P<TDATA>[^|:]+)[|:]?.*>', re.MULTILINE)
-    re_Button = re.compile(r'<players dealer="(?P<BUTTON>[0-9]+)">')
-    re_PlayerInfo = re.compile(r'<player seat="(?P<SEAT>[0-9]+)" nickname="(?P<PNAME>.+)" balance="\$(?P<CASH>[.0-9]+)" dealtin="(?P<DEALTIN>(true|false))" />', re.MULTILINE)
+    re_HandInfo = re.compile(r'<game id="(?P<HID1>[0-9]+)-(?P<HID2>[0-9]+)" starttime="(?P<DATETIME>.+?)" numholecards="[0-9]+" gametype="[0-9]+" (multigametype="(?P<MULTIGAMETYPE>\d+)" )?(seats="(?P<SEATS>[0-9]+)" )?realmoney="(?P<REALMONEY>(true|false))" (data="[0-9]+[|:](?P<TABLENAME>[^|:]+)[|:](?P<TDATA>[^|:]+)[|:]?)?.*>', re.MULTILINE)
+    re_Button = re.compile(r'<players dealer="(?P<BUTTON>[0-9]+)"\s?>')
+    re_PlayerInfo = re.compile(r'<player seat="(?P<SEAT>[0-9]+)" nickname="(?P<PNAME>.+)" balance="\$?(?P<CASH>[.0-9]+)" dealtin="(?P<DEALTIN>(true|false))" />', re.MULTILINE)
     re_Board = re.compile(r'<cards type="COMMUNITY" cards="(?P<CARDS>[^"]+)"', re.MULTILINE)
     re_Buyin = re.compile(r'\$(?P<BUYIN>[.,0-9]+)\s(?P<TYPE>Freeroll|Satellite|Guaranteed)?', re.MULTILINE)
     re_secondGame = re.compile(r'\$?(?P<SB>[.0-9]+)?/?\$?(?P<BB>[.0-9]+)', re.MULTILINE)
@@ -129,21 +129,21 @@ class Merge(HandHistoryConverter):
     # The following are also static regexes: there is no need to call
     # compilePlayerRegexes (which does nothing), since players are identified
     # not by name but by seat number
-    re_PostSB = re.compile(r'<event sequence="[0-9]+" type="SMALL_BLIND" (?P<TIMESTAMP>timestamp="[0-9]+" )?player="(?P<PSEAT>[0-9])" amount="(?P<SB>[.0-9]+)"/>', re.MULTILINE)
-    re_PostBB = re.compile(r'<event sequence="[0-9]+" type="(BIG_BLIND|INITIAL_BLIND)" (?P<TIMESTAMP>timestamp="[0-9]+" )?player="(?P<PSEAT>[0-9])" amount="(?P<BB>[.0-9]+)"/>', re.MULTILINE)
-    re_PostBoth = re.compile(r'<event sequence="[0-9]+" type="RETURN_BLIND" (?P<TIMESTAMP>timestamp="[0-9]+" )?player="(?P<PSEAT>[0-9])" amount="(?P<SBBB>[.0-9]+)"/>', re.MULTILINE)
-    re_Antes = re.compile(r'<event sequence="[0-9]+" type="ANTE" (?P<TIMESTAMP>timestamp="\d+" )?player="(?P<PSEAT>[0-9])" amount="(?P<ANTE>[.0-9]+)"/>', re.MULTILINE)
-    re_BringIn = re.compile(r'<event sequence="[0-9]+" type="BRING_IN" (?P<TIMESTAMP>timestamp="\d+" )?player="(?P<PSEAT>[0-9])" amount="(?P<BRINGIN>[.0-9]+)"/>', re.MULTILINE)
+    re_PostSB = re.compile(r'<event sequence="[0-9]+" type="SMALL_BLIND" (?P<TIMESTAMP>timestamp="[0-9]+" )?player="(?P<PSEAT>[0-9])" amount="(?P<SB>[.0-9]+)"\s?/>', re.MULTILINE)
+    re_PostBB = re.compile(r'<event sequence="[0-9]+" type="(BIG_BLIND|INITIAL_BLIND)" (?P<TIMESTAMP>timestamp="[0-9]+" )?player="(?P<PSEAT>[0-9])" amount="(?P<BB>[.0-9]+)"\s?/>', re.MULTILINE)
+    re_PostBoth = re.compile(r'<event sequence="[0-9]+" type="RETURN_BLIND" (?P<TIMESTAMP>timestamp="[0-9]+" )?player="(?P<PSEAT>[0-9])" amount="(?P<SBBB>[.0-9]+)"\s?/>', re.MULTILINE)
+    re_Antes = re.compile(r'<event sequence="[0-9]+" type="ANTE" (?P<TIMESTAMP>timestamp="\d+" )?player="(?P<PSEAT>[0-9])" amount="(?P<ANTE>[.0-9]+)"\s?/>', re.MULTILINE)
+    re_BringIn = re.compile(r'<event sequence="[0-9]+" type="BRING_IN" (?P<TIMESTAMP>timestamp="\d+" )?player="(?P<PSEAT>[0-9])" amount="(?P<BRINGIN>[.0-9]+)"\s?/>', re.MULTILINE)
     re_HeroCards = re.compile(r'<cards type="(HOLE|DRAW_DRAWN_CARDS)" cards="(?P<CARDS>.+)" player="(?P<PSEAT>[0-9])"', re.MULTILINE)
-    re_Action = re.compile(r'<event sequence="[0-9]+" type="(?P<ATYPE>FOLD|CHECK|CALL|BET|RAISE|ALL_IN|SIT_OUT|DRAW|COMPLETE)"( timestamp="(?P<TIMESTAMP>[0-9]+)")? player="(?P<PSEAT>[0-9])"( amount="(?P<BET>[.0-9]+)")?( text="(?P<TXT>.+)")?/>', re.MULTILINE)
-    re_AllActions = re.compile(r'<event sequence="[0-9]+" type="(?P<ATYPE>FOLD|CHECK|CALL|BET|RAISE|ALL_IN|SIT_OUT|DRAW|COMPLETE|BIG_BLIND|INITIAL_BLIND|SMALL_BLIND|RETURN_BLIND|BRING_IN|ANTE)"( timestamp="(?P<TIMESTAMP>[0-9]+)")? player="(?P<PSEAT>[0-9])"( amount="(?P<BET>[.0-9]+)")?( text="(?P<TXT>.+)")?/>', re.MULTILINE)
+    re_Action = re.compile(r'<event sequence="[0-9]+" type="(?P<ATYPE>FOLD|CHECK|CALL|BET|RAISE|ALL_IN|SIT_OUT|DRAW|COMPLETE)"( timestamp="(?P<TIMESTAMP>[0-9]+)")? player="(?P<PSEAT>[0-9])"( amount="(?P<BET>[.0-9]+)")?( text="(?P<TXT>.+)")?\s?/>', re.MULTILINE)
+    re_AllActions = re.compile(r'<event sequence="[0-9]+" type="(?P<ATYPE>FOLD|CHECK|CALL|BET|RAISE|ALL_IN|SIT_OUT|DRAW|COMPLETE|BIG_BLIND|INITIAL_BLIND|SMALL_BLIND|RETURN_BLIND|BRING_IN|ANTE)"( timestamp="(?P<TIMESTAMP>[0-9]+)")? player="(?P<PSEAT>[0-9])"( amount="(?P<BET>[.0-9]+)")?( text="(?P<TXT>.+)")?\s?/>', re.MULTILINE)
     re_CollectPot = re.compile(r'<winner amount="(?P<POT>[.0-9]+)" uncalled="(?P<UNCALLED>false|true)" potnumber="[0-9]+" player="(?P<PSEAT>[0-9])"', re.MULTILINE)
-    re_SitsOut = re.compile(r'<event sequence="[0-9]+" type="SIT_OUT" player="(?P<PSEAT>[0-9])"/>', re.MULTILINE)
-    re_ShownCards     = re.compile(r'<cards type="(?P<SHOWED>SHOWN|MUCKED)" cards="(?P<CARDS>.+)" player="(?P<PSEAT>[0-9])"/>', re.MULTILINE)
-    re_Connection  = re.compile(r'<event sequence="[0-9]+" type="(?P<TYPE>RECONNECTED|DISCONNECTED)" timestamp="[0-9]+" player="[0-9]"/>', re.MULTILINE)
-    re_Cancelled   = re.compile(r'<event sequence="\d+" type="GAME_CANCELLED" timestamp="\d+"/>', re.MULTILINE)
-    re_LeaveTable  = re.compile(r'<event sequence="\d+" type="LEAVE" timestamp="\d+" player="\d"/>', re.MULTILINE)
-    re_PlayerOut   = re.compile(r'<event sequence="\d+" type="(PLAYER_OUT|LEAVE)" timestamp="\d+" player="(?P<PSEAT>[0-9])"/>', re.MULTILINE)
+    re_SitsOut = re.compile(r'<event sequence="[0-9]+" type="SIT_OUT" player="(?P<PSEAT>[0-9])"\s?/>', re.MULTILINE)
+    re_ShownCards     = re.compile(r'<cards type="(?P<SHOWED>SHOWN|MUCKED)" cards="(?P<CARDS>.+)" player="(?P<PSEAT>[0-9])"\s?/>', re.MULTILINE)
+    re_Connection  = re.compile(r'<event sequence="[0-9]+" type="(?P<TYPE>RECONNECTED|DISCONNECTED)" timestamp="[0-9]+" player="[0-9]"\s?/>', re.MULTILINE)
+    re_Cancelled   = re.compile(r'<event sequence="\d+" type="GAME_CANCELLED" timestamp="\d+"\s?/>', re.MULTILINE)
+    re_LeaveTable  = re.compile(r'<event sequence="\d+" type="LEAVE" timestamp="\d+" player="\d"\s?/>', re.MULTILINE)
+    re_PlayerOut   = re.compile(r'<event sequence="\d+" type="(PLAYER_OUT|LEAVE)" timestamp="\d+" player="(?P<PSEAT>[0-9])"\s?/>', re.MULTILINE)
     re_EndOfHand   = re.compile(r'<round id="END_OF_GAME"', re.MULTILINE)
     re_DateTime    = re.compile(r'(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)', re.MULTILINE)
     re_PlayMoney   = re.compile(r'realmoney="false"')
@@ -314,8 +314,11 @@ or None if we fail to get the info """
                     hand.maxseats = int(m.group('SEATS'))                    
         else:
             #log.debug("HID %s-%s, Table %s" % (m.group('HID1'), m.group('HID2'), m.group('TABLENAME')))
-            hand.tablename = m.group('TABLENAME')
             hand.maxseats = None
+            if  m.group('TABLENAME')!=None:
+                hand.tablename = m.group('TABLENAME')
+            else:
+                hand.tablename = self.base_name
             if m.group('SEATS')!=None:
                 hand.maxseats = int(m.group('SEATS')) 
         # Check that the hand is complete up to the awarding of the pot; if
@@ -370,28 +373,28 @@ or None if we fail to get the info """
 
     def markStreets(self, hand):
         if hand.gametype['base'] == 'hold':
-            m = re.search(r'<round id="PREFLOP" sequence="[0-9]+">(?P<PREFLOP>.+(?=<round id="POSTFLOP")|.+)'
-                         r'(<round id="POSTFLOP" sequence="[0-9]+">(?P<FLOP>.+(?=<round id="POSTTURN")|.+))?'
-                         r'(<round id="POSTTURN" sequence="[0-9]+">(?P<TURN>.+(?=<round id="POSTRIVER")|.+))?'
-                         r'(<round id="POSTRIVER" sequence="[0-9]+">(?P<RIVER>.+))?', hand.handText, re.DOTALL)
+            m = re.search(r'<round id="PREFLOP" sequence="[0-9]+"\s?>(?P<PREFLOP>.+(?=<round id="POSTFLOP")|.+)'
+                         r'(<round id="POSTFLOP" sequence="[0-9]+"\s?>(?P<FLOP>.+(?=<round id="POSTTURN")|.+))?'
+                         r'(<round id="POSTTURN" sequence="[0-9]+"\s?>(?P<TURN>.+(?=<round id="POSTRIVER")|.+))?'
+                         r'(<round id="POSTRIVER" sequence="[0-9]+"\s?>(?P<RIVER>.+))?', hand.handText, re.DOTALL)
         elif hand.gametype['base'] == 'draw':
             if hand.gametype['category'] in ('27_3draw','badugi','a5_3draw'):
                 m =  re.search(r'(?P<PREDEAL>.+(?=<round id="PRE_FIRST_DRAW" sequence="[0-9]+">)|.+)'
-                           r'(<round id="PRE_FIRST_DRAW" sequence="[0-9]+">(?P<DEAL>.+(?=<round id="FIRST_DRAW" sequence="[0-9]+">)|.+))?'
-                           r'(<round id="FIRST_DRAW" sequence="[0-9]+">(?P<DRAWONE>.+(?=<round id="SECOND_DRAW" sequence="[0-9]+">)|.+))?'
-                           r'(<round id="SECOND_DRAW" sequence="[0-9]+">(?P<DRAWTWO>.+(?=<round id="THIRD_DRAW" sequence="[0-9]+">)|.+))?'
-                           r'(<round id="THIRD_DRAW" sequence="[0-9]+">(?P<DRAWTHREE>.+))?', hand.handText,re.DOTALL)
+                           r'(<round id="PRE_FIRST_DRAW" sequence="[0-9]+"\s?>(?P<DEAL>.+(?=<round id="FIRST_DRAW" sequence="[0-9]+">)|.+))?'
+                           r'(<round id="FIRST_DRAW" sequence="[0-9]+"\s?>(?P<DRAWONE>.+(?=<round id="SECOND_DRAW" sequence="[0-9]+">)|.+))?'
+                           r'(<round id="SECOND_DRAW" sequence="[0-9]+"\s?>(?P<DRAWTWO>.+(?=<round id="THIRD_DRAW" sequence="[0-9]+">)|.+))?'
+                           r'(<round id="THIRD_DRAW" sequence="[0-9]+"\s?>(?P<DRAWTHREE>.+))?', hand.handText,re.DOTALL)
             else:
-                m =  re.search(r'(?P<PREDEAL>.+(?=<round id="PRE_FIRST_DRAW" sequence="[0-9]+">)|.+)'
-                           r'(<round id="PRE_FIRST_DRAW" sequence="[0-9]+">(?P<DEAL>.+(?=<round id="FIRST_DRAW" sequence="[0-9]+">)|.+))?'
-                           r'(<round id="FIRST_DRAW" sequence="[0-9]+">(?P<DRAWONE>.+(?=<round id="SECOND_DRAW" sequence="[0-9]+">)|.+))?', hand.handText,re.DOTALL)
+                m =  re.search(r'(?P<PREDEAL>.+(?=<round id="PRE_FIRST_DRAW" sequence="[0-9]+"\s?>)|.+)'
+                           r'(<round id="PRE_FIRST_DRAW" sequence="[0-9]+"\s?>(?P<DEAL>.+(?=<round id="FIRST_DRAW" sequence="[0-9]+">)|.+))?'
+                           r'(<round id="FIRST_DRAW" sequence="[0-9]+"\s?>(?P<DRAWONE>.+(?=<round id="SECOND_DRAW" sequence="[0-9]+">)|.+))?', hand.handText,re.DOTALL)
         elif hand.gametype['base'] == 'stud':
-            m =  re.search(r'(?P<ANTES>.+(?=<round id="BRING_IN" sequence="[0-9]+">)|.+)'
-                       r'(<round id="BRING_IN" sequence="[0-9]+">(?P<THIRD>.+(?=<round id="FOURTH_STREET" sequence="[0-9]+">)|.+))?'
-                       r'(<round id="FOURTH_STREET" sequence="[0-9]+">(?P<FOURTH>.+(?=<round id="FIFTH_STREET" sequence="[0-9]+">)|.+))?'
-                       r'(<round id="FIFTH_STREET" sequence="[0-9]+">(?P<FIFTH>.+(?=<round id="SIXTH_STREET" sequence="[0-9]+">)|.+))?'
-                       r'(<round id="SIXTH_STREET" sequence="[0-9]+">(?P<SIXTH>.+(?=<round id="SEVENTH_STREET" sequence="[0-9]+">)|.+))?'
-                       r'(<round id="SEVENTH_STREET" sequence="[0-9]+">(?P<SEVENTH>.+))?', hand.handText,re.DOTALL)
+            m =  re.search(r'(?P<ANTES>.+(?=<round id="BRING_IN" sequence="[0-9]+"\s?>)|.+)'
+                       r'(<round id="BRING_IN" sequence="[0-9]+"\s?>(?P<THIRD>.+(?=<round id="FOURTH_STREET" sequence="[0-9]+">)|.+))?'
+                       r'(<round id="FOURTH_STREET" sequence="[0-9]+"\s?>(?P<FOURTH>.+(?=<round id="FIFTH_STREET" sequence="[0-9]+">)|.+))?'
+                       r'(<round id="FIFTH_STREET" sequence="[0-9]+"\s?>(?P<FIFTH>.+(?=<round id="SIXTH_STREET" sequence="[0-9]+">)|.+))?'
+                       r'(<round id="SIXTH_STREET" sequence="[0-9]+"\s?>(?P<SIXTH>.+(?=<round id="SEVENTH_STREET" sequence="[0-9]+">)|.+))?'
+                       r'(<round id="SEVENTH_STREET" sequence="[0-9]+"\s?>(?P<SEVENTH>.+))?', hand.handText,re.DOTALL)
         if m == None:
             self.determineErrorType(hand, "markStreets")
         hand.addStreets(m)
