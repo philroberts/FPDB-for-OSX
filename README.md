@@ -16,8 +16,11 @@ around with Cocoa.
 How?
 ----
 
-Grab the code from this git branch and proceed as in
-[the fpdb git guide](http://sourceforge.net/apps/mediawiki/fpdb/index.php?title=Install_With_Git).
+Grab the code from this git branch.  Install dependencies - I use macports,
+and have the following installed: librsvg, poker-eval, py27-matplotlib,
+py27-pygtk, py27-pyobjc-quartz, xorg-server.  I had to build pypokereval
+myself to add python 2.7 support.  Previously I've used the 2.6 versions
+of everything and that worked fine too.
 You will also need to build the _axlib_ framework included in the
 pyfpdb/axlib/ directory.  This framework is used to access some
 windowing notifications that aren't available directly in python or
