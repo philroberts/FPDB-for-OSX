@@ -1,0 +1,29 @@
+Bovada Hand #3050116136: OMAHA HiLo Tournament #9483062 TBL#1, Pot Limit- Level 2 (15/30) - 2014-09-07 04:24:27
+Seat 1: Big Blind [ME] (830 in chips)
+Seat 2: Dealer (2,170 in chips)
+Dealer : Set dealer/Bring in spot [2] 
+Dealer : Ante/Small blind 15 
+Big Blind [ME] : Big blind/Bring in 30 
+*** HOLE CARDS ***
+Big Blind [ME] : Card dealt to a spot [7h 2s Kc 8h] 
+Dealer : Card dealt to a spot [2c Td 6h 7c] 
+Dealer : Call 15 
+Big Blind [ME] : Checks
+*** FLOP *** [Js 7s 5s]
+Big Blind [ME] : Checks
+Dealer : Checks
+*** TURN *** [Js 7s 5s] [3d]
+Big Blind [ME] : Checks
+Dealer : Checks
+*** RIVER *** [Js 7s 5s 3d] [9d]
+Big Blind [ME] : Checks
+Dealer : Checks
+Big Blind [ME] : Showdown [7h Kc Js 7s 9d 2s 8h 7s 5s 3d] (One pair)
+Dealer : Showdown [Td 7c Js 7s 9d 2c 6h 7s 5s 3d] (One pair)
+Big Blind [ME] : Hand Result 30 
+Dealer : Hand Result 30 
+*** SUMMARY ***
+Total Pot(60)
+Board [Js 7s 5s 3d 9d]
+Seat+1: Big Blind HI 30  with One pair [7h 2s Kc 8h-7h Kc Js 7s 9d]  [7h 2s Kc 8h-2s 8h 7s 5s 3d]
+Seat+2: Dealer  with One pair [2c Td 6h 7c-Td 7c Js 7s 9d] LOW 30 [2c Td 6h 7c-2c 6h 7s 5s 3d]

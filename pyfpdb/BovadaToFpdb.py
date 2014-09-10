@@ -157,7 +157,7 @@ class Bovada(HandHistoryConverter):
                 (\sHI)?\s(%(LS)s)?(?P<POT1>[%(NUM)s]+)?
                 (?P<STRING>[a-zA-Z ]+)
                 (?P<CARDS1>\[[-a-zA-Z0-9 ]+\])
-                (\sLO\s(%(LS)s)?(?P<POT2>[%(NUM)s]+))?
+                (\sLOW?\s(%(LS)s)?(?P<POT2>[%(NUM)s]+))?
                 """ % subst, re.MULTILINE|re.VERBOSE)
 
     def readSupportedGames(self):
