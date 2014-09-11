@@ -119,7 +119,7 @@ class Merge(HandHistoryConverter):
     # <game id="46154255-645" starttime="20111230232051" numholecards="2" gametype="1" seats="9" realmoney="false" data="20111230|Play Money (46154255)|46154255|46154255-645|false">
     # <game id="46165919-1" starttime="20111230161824" numholecards="2" gametype="23" seats="10" realmoney="true" data="20111230|Fun Step 1|46165833-1|46165919-1|true">
     # <game id="46289039-1" starttime="20120101200100" numholecards="2" gametype="23" seats="9" realmoney="true" data="20120101|$200 Freeroll - NL Holdem - 20%3A00|46245544-1|46289039-1|true">
-    re_HandInfo = re.compile(r'<game id="(?P<HID1>[0-9]+)-(?P<HID2>[0-9]+)" starttime="(?P<DATETIME>.+?)" numholecards="[0-9]+" gametype="[0-9]+" (multigametype="(?P<MULTIGAMETYPE>\d+)" )?(seats="(?P<SEATS>[0-9]+)" )?realmoney="(?P<REALMONEY>(true|false))" (data="[0-9]+[|:](?P<TABLENAME>[^|:]+)[|:](?P<TDATA>[^|:]+)[|:]?)?.*>', re.MULTILINE)
+    re_HandInfo = re.compile(r'<game id="(?P<HID1>[0-9]+)-(?P<HID2>[0-9]+)" starttime="(?P<DATETIME>.+?)" numholecards="[0-9]+" gametype="[0-9]+" (multigametype="(?P<MULTIGAMETYPE1>\d+)" )?(seats="(?P<SEATS>[0-9]+)" )?realmoney="(?P<REALMONEY>(true|false))" (multigametype="(?P<MULTIGAMETYPE2>\d+)" )?(data="[0-9]+[|:](?P<TABLENAME>[^|:]+)[|:](?P<TDATA>[^|:]+)[|:]?)?.*>', re.MULTILINE)
     re_Button = re.compile(r'<players dealer="(?P<BUTTON>[0-9]+)"\s?>')
     re_PlayerInfo = re.compile(r'<player seat="(?P<SEAT>[0-9]+)" nickname="(?P<PNAME>.+)" balance="\$?(?P<CASH>[.0-9]+)" dealtin="(?P<DEALTIN>(true|false))" />', re.MULTILINE)
     re_Board = re.compile(r'<cards type="COMMUNITY" cards="(?P<CARDS>[^"]+)"', re.MULTILINE)
@@ -380,20 +380,20 @@ or None if we fail to get the info """
         elif hand.gametype['base'] == 'draw':
             if hand.gametype['category'] in ('27_3draw','badugi','a5_3draw'):
                 m =  re.search(r'(?P<PREDEAL>.+(?=<round id="PRE_FIRST_DRAW" sequence="[0-9]+">)|.+)'
-                           r'(<round id="PRE_FIRST_DRAW" sequence="[0-9]+"\s?>(?P<DEAL>.+(?=<round id="FIRST_DRAW" sequence="[0-9]+">)|.+))?'
-                           r'(<round id="FIRST_DRAW" sequence="[0-9]+"\s?>(?P<DRAWONE>.+(?=<round id="SECOND_DRAW" sequence="[0-9]+">)|.+))?'
-                           r'(<round id="SECOND_DRAW" sequence="[0-9]+"\s?>(?P<DRAWTWO>.+(?=<round id="THIRD_DRAW" sequence="[0-9]+">)|.+))?'
+                           r'(<round id="PRE_FIRST_DRAW" sequence="[0-9]+"\s?>(?P<DEAL>.+(?=<round id="FIRST_DRAW")|.+))?'
+                           r'(<round id="FIRST_DRAW" sequence="[0-9]+"\s?>(?P<DRAWONE>.+(?=<round id="SECOND_DRAW")|.+))?'
+                           r'(<round id="SECOND_DRAW" sequence="[0-9]+"\s?>(?P<DRAWTWO>.+(?=<round id="THIRD_DRAW")|.+))?'
                            r'(<round id="THIRD_DRAW" sequence="[0-9]+"\s?>(?P<DRAWTHREE>.+))?', hand.handText,re.DOTALL)
             else:
                 m =  re.search(r'(?P<PREDEAL>.+(?=<round id="PRE_FIRST_DRAW" sequence="[0-9]+"\s?>)|.+)'
-                           r'(<round id="PRE_FIRST_DRAW" sequence="[0-9]+"\s?>(?P<DEAL>.+(?=<round id="FIRST_DRAW" sequence="[0-9]+">)|.+))?'
-                           r'(<round id="FIRST_DRAW" sequence="[0-9]+"\s?>(?P<DRAWONE>.+(?=<round id="SECOND_DRAW" sequence="[0-9]+">)|.+))?', hand.handText,re.DOTALL)
+                           r'(<round id="PRE_FIRST_DRAW" sequence="[0-9]+"\s?>(?P<DEAL>.+(?=<round id="FIRST_DRAW")|.+))?'
+                           r'(<round id="FIRST_DRAW" sequence="[0-9]+"\s?>(?P<DRAWONE>.+(?=<round id="SECOND_DRAW")|.+))?', hand.handText,re.DOTALL)
         elif hand.gametype['base'] == 'stud':
             m =  re.search(r'(?P<ANTES>.+(?=<round id="BRING_IN" sequence="[0-9]+"\s?>)|.+)'
-                       r'(<round id="BRING_IN" sequence="[0-9]+"\s?>(?P<THIRD>.+(?=<round id="FOURTH_STREET" sequence="[0-9]+">)|.+))?'
-                       r'(<round id="FOURTH_STREET" sequence="[0-9]+"\s?>(?P<FOURTH>.+(?=<round id="FIFTH_STREET" sequence="[0-9]+">)|.+))?'
-                       r'(<round id="FIFTH_STREET" sequence="[0-9]+"\s?>(?P<FIFTH>.+(?=<round id="SIXTH_STREET" sequence="[0-9]+">)|.+))?'
-                       r'(<round id="SIXTH_STREET" sequence="[0-9]+"\s?>(?P<SIXTH>.+(?=<round id="SEVENTH_STREET" sequence="[0-9]+">)|.+))?'
+                       r'(<round id="BRING_IN" sequence="[0-9]+"\s?>(?P<THIRD>.+(?=<round id="FOURTH_STREET")|.+))?'
+                       r'(<round id="FOURTH_STREET" sequence="[0-9]+"\s?>(?P<FOURTH>.+(?=<round id="FIFTH_STREET")|.+))?'
+                       r'(<round id="FIFTH_STREET" sequence="[0-9]+"\s?>(?P<FIFTH>.+(?=<round id="SIXTH_STREET")|.+))?'
+                       r'(<round id="SIXTH_STREET" sequence="[0-9]+"\s?>(?P<SIXTH>.+(?=<round id="SEVENTH_STREET")|.+))?'
                        r'(<round id="SEVENTH_STREET" sequence="[0-9]+"\s?>(?P<SEVENTH>.+))?', hand.handText,re.DOTALL)
         if m == None:
             self.determineErrorType(hand, "markStreets")
@@ -530,12 +530,13 @@ or None if we fail to get the info """
             tmp = handText[0:200]
             log.error(_("MergeToFpdb.readHandInfo: '%s'") % tmp)
             raise FpdbParseError
-        if m2.group('MULTIGAMETYPE'):
+        multigametype = m2.group('MULTIGAMETYPE1') if m2.group('MULTIGAMETYPE1') else m2.group('MULTIGAMETYPE2')
+        if multigametype:
             try:
-                (self.info['base'], self.info['category']) = self.Multigametypes[m2.group('MULTIGAMETYPE')]
+                (self.info['base'], self.info['category']) = self.Multigametypes[multigametype]
             except KeyError:
                 tmp = handText[0:200]
-                log.error(_("MergeToFpdb.determineGameType: Multigametypes has no lookup for '%s'") % m2.group('MULTIGAMETYPE'))
+                log.error(_("MergeToFpdb.determineGameType: Multigametypes has no lookup for '%s'") % multigametype)
                 raise FpdbParseError
                     
     def adjustMergeTourneyStack(self, hand, player, amount):
