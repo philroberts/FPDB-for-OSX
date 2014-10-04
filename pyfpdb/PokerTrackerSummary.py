@@ -138,7 +138,7 @@ class PokerTrackerSummary(TourneySummary):
             koCount = 0
 
             if 'WINNINGS' in mg and mg['WINNINGS'] != None:
-                winnings = int(100*Decimal(mg['WINNINGS']))
+                winnings = int(100*Decimal(self.clearMoneyString(mg['WINNINGS'])))
                 
             if 'REBUYS' in mg and mg['REBUYS']!=None:
                 rebuyCount = int(mg['REBUYS'])
