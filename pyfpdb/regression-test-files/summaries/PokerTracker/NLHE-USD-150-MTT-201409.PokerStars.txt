@@ -1,0 +1,19 @@
+PokerTracker 4 Tournament Summary
+Site: PokerStars
+Game: Holdem
+Tournament #: 974430003
+Started: 2014/09/28 22:33:43
+Finished: 2014/09/28 23:11:33
+Buyin: $150.00
+Fee: $12.00
+Table Type: MTT (6 max) DEEP
+Tourney Type: No Limit
+Players: 613
+
+Place: 0, Player: Player0, Won: $0.00,
+Place: 0, Player: Player1, Won: $0.00,
+Place: 0, Player: Player2, Won: $0.00,
+Place: 0, Player: Player3, Won: $0.00,
+Place: 0, Player: Player4, Won: $0.00,
+Place: 0, Player: Player5, Won: $0.00,
+Place: 613, Player: Hero, Won: $0.00,
