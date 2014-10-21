@@ -18,9 +18,9 @@
 import L10n
 _ = L10n.get_translation()
 
-import pygtk
-pygtk.require('2.0')
-import gtk
+from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import (QFrame, QHBoxLayout, QLabel, QScrollArea, QSizePolicy,
+                             QSplitter, QVBoxLayout, QWidget)
 import sys
 from time import time
 
@@ -32,10 +32,9 @@ try:
     calluse = not 'matplotlib' in sys.modules
     import matplotlib
     if calluse:
-        matplotlib.use('GTKCairo')
+        matplotlib.use('qt5agg')
     from matplotlib.figure import Figure
-    from matplotlib.backends.backend_gtk import FigureCanvasGTK as FigureCanvas
-    from matplotlib.backends.backend_gtkagg import NavigationToolbar2GTKAgg as NavigationToolbar
+    from matplotlib.backends.backend_qt5agg import FigureCanvas
     from matplotlib.font_manager import FontProperties
     from numpy import cumsum
 except ImportError, inst:
@@ -44,15 +43,14 @@ except ImportError, inst:
     print "ImportError: %s" % inst.args
 
 
-class GuiGraphViewer:
+class GuiGraphViewer(QSplitter):
 
     def __init__(self, querylist, config, parent, debug=True):
-        """Constructor for GraphViewer"""
+        QSplitter.__init__(self, parent)
         self.sql = querylist
         self.conf = config
         self.debug = debug
         self.parent = parent
-        #print "start of GraphViewer constructor"
         self.db = Database.Database(self.conf, sql=self.sql)
 
 
@@ -80,20 +78,17 @@ class GuiGraphViewer:
         self.filters.registerButton2Name(_("_Export to File"))
         self.filters.registerButton2Callback(self.exportGraph)
 
-        self.mainHBox = gtk.HBox(False, 0)
-        self.mainHBox.show()
+        scroll = QScrollArea()
+        scroll.setSizePolicy(QSizePolicy.Minimum, QSizePolicy.Expanding)
+        scroll.setWidget(self.filters)
+        self.addWidget(scroll)
 
-        self.leftPanelBox = self.filters.get_vbox()
-
-        self.hpane = gtk.HPaned()
-        self.hpane.pack1(self.leftPanelBox)
-        self.mainHBox.add(self.hpane)
-        # hierarchy:  self.mainHBox / self.hpane / self.graphBox / self.canvas / self.fig / self.ax
-
-        self.graphBox = gtk.VBox(False, 0)
-        self.graphBox.show()
-        self.hpane.pack2(self.graphBox)
-        self.hpane.show()
+        frame = QFrame()
+        self.graphBox = QVBoxLayout()
+        frame.setLayout(self.graphBox)
+        self.addWidget(frame)
+        self.setStretchFactor(0, 0)
+        self.setStretchFactor(1, 1)
 
         self.fig = None
         #self.exportButton.set_sensitive(False)
@@ -103,27 +98,23 @@ class GuiGraphViewer:
 
         self.db.rollback()
 
-    def get_vbox(self):
-        """returns the vbox of this thread"""
-        return self.mainHBox
-    #end def get_vbox
-
     def clearGraphData(self):
         try:
             if self.canvas:
-                self.graphBox.remove(self.canvas)
+                self.graphBox.removeWidget(self.canvas)
         except:
             pass
 
         if self.fig != None:
             self.fig.clear()
-        self.fig = Figure(figsize=(5,4), dpi=100)
+        self.fig = Figure(figsize=(5.0,4.0), dpi=100)
         if self.canvas is not None:
             self.canvas.destroy()
 
-        self.canvas = FigureCanvas(self.fig)  # a gtk.DrawingArea
+        self.canvas = FigureCanvas(self.fig)
+        self.canvas.setParent(self)
 
-    def generateGraph(self, widget, data):
+    def generateGraph(self, widget):
         self.clearGraphData()
 
         sitenos = []
@@ -180,7 +171,7 @@ class GuiGraphViewer:
         # SET LABEL FOR X AXIS
         self.ax.set_ylabel(graphops['dspin'])
         self.ax.grid(color='g', linestyle=':', linewidth=0.2)
-        if green == None or green == []:
+        if green is None or len(green) == 0:
             self.ax.set_title(_("No Data for Player(s) Found"))
             green = ([    0.,     0.,     0.,     0.,   500.,  1000.,   900.,   800.,
                         700.,   600.,   500.,   400.,   300.,   200.,   100.,     0.,
@@ -207,8 +198,7 @@ class GuiGraphViewer:
             self.ax.plot(green, color='green', label=_('Hands') + ': %d\n' % len(green) + _('Profit') + ': %.2f' % green[-1])
             self.ax.plot(blue, color='blue', label=_('Showdown') + ': $%.2f' %(blue[-1]))
             self.ax.plot(red, color='red', label=_('Non-showdown') + ': $%.2f' %(red[-1]))
-            self.graphBox.add(self.canvas)
-            self.canvas.show()
+            self.graphBox.addWidget(self.canvas)
             self.canvas.draw()
         else:
             self.ax.set_title((_("Profit graph for ring games")+names))
@@ -229,13 +219,9 @@ class GuiGraphViewer:
 
             legend = self.ax.legend(handles, labels, loc='upper left', fancybox=True, shadow=True, prop=FontProperties(size='smaller'))
             legend.draggable(True)
-            
-            self.graphBox.add(self.canvas)
-            self.canvas.show()
+            self.graphBox.addWidget(self.canvas)
             self.canvas.draw()
             #self.exportButton.set_sensitive(True)
-
-    #end of def showClicked
 
 
     def getRingProfitGraph(self, names, sites, limits, games, currencies, units):
@@ -307,7 +293,7 @@ class GuiGraphViewer:
         self.db.rollback()
 
         if len(winnings) == 0:
-            return (None, None, None)
+            return (None, None, None, None)
 
         green = map(lambda x:float(x[1]), winnings)
         blue  = map(lambda x: float(x[1]) if x[2] == True  else 0.0, winnings)
@@ -317,8 +303,7 @@ class GuiGraphViewer:
         blueline  = cumsum(blue)
         redline   = cumsum(red)
         orangeline = cumsum(orange)
-        return (greenline/100, blueline/100, redline/100,orangeline/100)
-        #end of def getRingProfitGraph
+        return (greenline/100, blueline/100, redline/100, orangeline/100)
 
     def exportGraph (self, widget, data):
         if self.fig is None:
@@ -360,3 +345,24 @@ class GuiGraphViewer:
         diainfo.destroy()
         
     #end of def exportGraph
+
+if __name__ == "__main__":
+    import Configuration
+    config = Configuration.Config()
+
+    settings = {}
+
+    settings.update(config.get_db_parameters())
+    settings.update(config.get_import_parameters())
+    settings.update(config.get_default_paths())
+
+    from PyQt5.QtWidgets import QApplication, QMainWindow
+    app = QApplication([])
+    import SQL
+    sql = SQL.Sql(db_server=settings['db-server'])
+    i = GuiGraphViewer(sql, config, None, None)
+    main_window = QMainWindow()
+    main_window.setCentralWidget(i)
+    main_window.show()
+    main_window.resize(1400, 800)
+    app.exec_()
