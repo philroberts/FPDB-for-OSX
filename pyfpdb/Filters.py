@@ -350,9 +350,9 @@ class Filters(QWidget):
 
     def getSeats(self):
         if 'from' in self.sbSeats:
-            self.seats['from'] = self.sbSeats['from'].get_value_as_int()
+            self.seats['from'] = self.sbSeats['from'].value()
         if 'to' in self.sbSeats:
-            self.seats['to'] = self.sbSeats['to'].get_value_as_int()
+            self.seats['to'] = self.sbSeats['to'].value()
         return self.seats
 
     def getGroups(self):
@@ -405,12 +405,8 @@ class Filters(QWidget):
     def __set_hero_name(self, name, site):
         self.heroes[site] = unicode(name)
 
-    def __set_num_hands(self, w, val):
-        try:
-            self.numHands = int(w.get_text())
-        except:
-            self.numHands = 0
-        #log.debug("setting numHands:", self.numHands)
+    def __set_num_hands(self, val):
+        self.numHands = val
 
     def createSiteLine(self, hbox, site):
         cb = QCheckBox(site)
@@ -751,12 +747,12 @@ class Filters(QWidget):
                     if self.types[cb.get_children()[0].get_text()] == 'ring':
                         cb.set_active(False)
 
-    def __set_seat_select(self, w, seat):
-        self.seats[seat] = w.get_active()
+    def __set_seat_select(self, checkState, seat):
+        self.seats[seat] = checkState
         log.debug( _("self.seats[%s] set to %s") %(seat, self.seats[seat]) )
 
-    def __set_group_select(self, w, group):
-        self.groups[group] = w.get_active()
+    def __set_group_select(self, checkState, group):
+        self.groups[group] = checkState
         log.debug( _("self.groups[%s] set to %s") %(group, self.groups[group]) )
 
     def __set_displayin_select(self, w, ops):
@@ -778,7 +774,7 @@ class Filters(QWidget):
             hbox = QHBoxLayout()
             vbox1.addLayout(hbox)
             cb = QCheckBox(self.filterText['groupsall'])
-            cb.clicked.connect(self.__set_group_select)
+            cb.clicked.connect(partial(self.__set_group_select, group='allplayers'))
             hbox.addWidget(cb)
             self.sbGroups['allplayers'] = cb
             self.groups['allplayers'] = False
@@ -786,11 +782,10 @@ class Filters(QWidget):
             lbl = QLabel(_('Min # Hands:'))
             hbox.addWidget(lbl)
 
-            phands = QLineEdit("0")
+            phands = QSpinBox()
+            phands.setMaximum(1e9)
             hbox.addWidget(phands)
-            phands.changed.connect(self.__set_num_hands)
-#        top_hbox.addWidget(showb)
-    #end def fillPlayerFrame
+            phands.valueChanged.connect(self.__set_num_hands)
 
     def fillSitesFrame(self, frame):
         vbox1 = QVBoxLayout()
@@ -1111,21 +1106,20 @@ class Filters(QWidget):
         adj1 = QSpinBox()
         adj1.setRange(2, 10)
         adj1.setValue(2)
-        adj1.valueChanged.connect(self.__seats_changed)
+        adj1.valueChanged.connect(partial(self.__seats_changed, 'from'))
 
         adj2 = QSpinBox()
         adj2.setRange(2, 10)
         adj2.setValue(10)
-        adj2.valueChanged.connect(self.__seats_changed)
+        adj2.valueChanged.connect(partial(self.__seats_changed, 'to'))
 
         hbox.addWidget(lbl_from)
-        hbox.addWidget(lbl_to)
         hbox.addWidget(adj1)
+        hbox.addWidget(lbl_to)
         hbox.addWidget(adj2)
 
         self.sbSeats['from'] = adj1
         self.sbSeats['to']   = adj2
-    #end def fillSeatsFrame
 
     def fillGroupsFrame(self, frame, display):
         vbox1 = QVBoxLayout()
@@ -1138,7 +1132,7 @@ class Filters(QWidget):
         hbox = QHBoxLayout()
         vbox1.addLayout(hbox)
         cb = QCheckBox(self.filterText['posnshow'])
-        cb.clicked.connect(self.__set_group_select)
+        cb.clicked.connect(partial(self.__set_group_select, group='posn'))
         hbox.addWidget(cb)
         self.sbGroups['posn'] = cb
         self.groups['posn'] = False
@@ -1147,7 +1141,7 @@ class Filters(QWidget):
             hbox = QHBoxLayout()
             vbox1.addLayout(hbox)
             cb = QCheckBox(self.filterText['seatsshow'])
-            cb.clicked.connect(self.__set_seat_select)
+            cb.clicked.connect(partial(self.__set_seat_select, seat='show'))
             hbox.addWidget(cb)
             self.sbSeats['show'] = cb
             self.seats['show'] = False
@@ -1370,14 +1364,14 @@ class Filters(QWidget):
                 self.start_date.setDate(newDate)
         dlg.accept()
 
-    def __seats_changed(self, widget, which):
-        seats_from = self.sbSeats['from'].get_value_as_int()
-        seats_to = self.sbSeats['to'].get_value_as_int()
+    def __seats_changed(self, value, which):
+        seats_from = self.sbSeats['from'].value()
+        seats_to = self.sbSeats['to'].value()
         if (seats_from > seats_to):
             if (which == 'from'):
-                self.sbSeats['to'].set_value(seats_from)
+                self.sbSeats['to'].setValue(seats_from)
             else:
-                self.sbSeats['from'].set_value(seats_to)
+                self.sbSeats['from'].setValue(seats_to)
 
 if __name__ == '__main__':
     config = Configuration.Config(file = "HUD_config.test.xml")

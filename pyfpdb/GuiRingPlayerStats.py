@@ -19,20 +19,20 @@ import L10n
 _ = L10n.get_translation()
 
 import traceback
-import pygtk
-pygtk.require('2.0')
-import gtk
 import os
 import sys
 from time import time, strftime
+
+from PyQt5.QtCore import (QStringListModel, Qt)
+from PyQt5.QtGui import (QStandardItem, QStandardItemModel)
+from PyQt5.QtWidgets import (QCheckBox, QDialog, QDialogButtonBox, QFrame,
+                             QGridLayout, QHBoxLayout, QLabel, QSpinBox,
+                             QSplitter, QTableView, QVBoxLayout, QWidget)
 
 import Card
 import Database
 import Filters
 import Charset
-
-from TreeViewTooltips import TreeViewTooltips
-
 
 #colalias,colshowsumm,colshowposn,colheading,colxalign,colformat,coltype = 0,1,2,3,4,5,6
 #new order in config file:
@@ -71,34 +71,14 @@ onlinehelp = {'Game':_('Type of Game'),
               'Rake($)':_('Amount of rake paid'),
               'bbxr/100':_('Big blinds won per 100 hands when excluding rake'),
               'Variance':_('Measure of uncertainty'),
-              'Std. Dev':_('Measure of uncertainty')
+              'Std. Dev.':_('Measure of uncertainty')
               } 
 
 
-
-class DemoTips(TreeViewTooltips):
-
-    def __init__(self, customer_column):
-        # call base class init
-        TreeViewTooltips.__init__(self)
-
-    def get_tooltip(self, view, column, path):
-        model = view.get_model()
-        cards = model[path][0]
-        title=column.get_title()
-        if (title == 'Hand' or title == 'Game'): display=''     #no tooltips on headers                   
-        else: display='<big>%s for %s</big>\n<i>%s</i>' % (title,cards,onlinehelp[title])
-        return (display)
-
-    def location(self, x, y, w, h):
-        # this will place the tooltip above and to the right
-        return x + 30, y - (h + 10)
-        
-        
-
-class GuiRingPlayerStats:
+class GuiRingPlayerStats(QSplitter):
 
     def __init__(self, config, querylist, mainwin, debug=True):
+        QSplitter.__init__(self, None)
         self.debug = debug
         self.conf = config
         self.main_window = mainwin
@@ -183,25 +163,16 @@ class GuiRingPlayerStats:
         self.detailFilters = []   # the data used to enhance the sql select
         self.cardsFilters = []
         
-        #self.main_hbox = gtk.HBox(False, 0)
-        #self.main_hbox.show()
-        self.main_hbox = gtk.HPaned()
+        self.stats_frame = QFrame()
+        self.stats_frame.setLayout(QVBoxLayout())
 
-        self.stats_frame = gtk.Frame()
-        self.stats_frame.show()
+        self.stats_vbox = QSplitter(Qt.Vertical)
+        self.stats_frame.layout().addWidget(self.stats_vbox)
 
-        self.stats_vbox = gtk.VPaned()
-        self.stats_vbox.show()
-        self.stats_frame.add(self.stats_vbox)
-        self.top_pane_height = 0
-        self.height_inc = None
-        # self.fillStatsFrame(self.stats_vbox)
-
-        #self.main_hbox.pack_start(self.filters.get_vbox())
-        #self.main_hbox.pack_start(self.stats_frame, expand=True, fill=True)
-        self.main_hbox.pack1(self.filters.get_vbox())
-        self.main_hbox.pack2(self.stats_frame)
-        self.main_hbox.show()
+        self.addWidget(self.filters)
+        self.addWidget(self.stats_frame)
+        self.setStretchFactor(0, 0)
+        self.setStretchFactor(1, 1)
 
         # Make sure Hand column is not displayed.
         hand_column = (x for x in self.columns if x[0] == 'hand').next()
@@ -217,43 +188,20 @@ class GuiRingPlayerStats:
         if rfi_column[colshowposn] and steals_column[colshowposn]:
             steals_column[colshowposn] = False
 
-        self.last_pos = -1
-
-
-    def get_vbox(self):
-        """returns the vbox of this thread"""
-        return self.main_hbox
-    #end def get_vbox
-
-    def refreshStats(self, widget, data):
-        #self.last_pos = self.stats_vbox.get_position()
-        self.height_inc = None
-        #old_len = 0
-        #if self.liststore:
-        #    old_len = len(self.liststore[0])
-        try: self.stats_vbox.destroy()
-        except AttributeError: pass
+    def refreshStats(self, widget):
         self.liststore = []
         self.listcols = []
-        self.stats_vbox = gtk.VPaned()
-        self.stats_vbox.show()
-        self.stats_frame.add(self.stats_vbox)
+        self.stats_frame.layout().removeWidget(self.stats_vbox)
+        self.stats_vbox.setParent(None)
+        self.stats_vbox = QSplitter(Qt.Vertical)
+        self.stats_frame.layout().addWidget(self.stats_vbox)
         self.fillStatsFrame(self.stats_vbox)
 
-        # set height of top pane
-        # (tried 2 ways, guesstimate using ratio of old to new number of rows and sum of
-        #  heights of parts)
-        new_len = 0
         if self.liststore:
-            #new_len = len(self.liststore[0])
-            #print "setting to", self.top_pane_height + self.height_inc
-            self.stats_vbox.set_position(self.top_pane_height + self.height_inc)
-        #if self.last_pos > 0:
-        #    if old_len > 0 and new_len > 0 and new_len <= 10:
-        #        self.stats_vbox.set_position(self.last_pos * (new_len+1.9)/(old_len+1.9))
-        #    else:
-        #        self.stats_vbox.set_position(self.last_pos)
-    #end def refreshStats
+            topsize = self.stats_vbox.widget(0).sizeHint().height()
+            self.stats_vbox.setSizes([topsize, self.stats_vbox.height() - topsize])
+            self.stats_vbox.setStretchFactor(0, 0)
+            self.stats_vbox.setStretchFactor(1, 1)
 
     def fillStatsFrame(self, vbox):
         sites = self.filters.getSites()
@@ -290,27 +238,19 @@ class GuiRingPlayerStats:
             return
 
         self.createStatsTable(vbox, playerids, sitenos, limits, type, seats, groups, dates, games, currencies)
-    #end def fillStatsFrame
 
     def createStatsTable(self, vbox, playerids, sitenos, limits, type, seats, groups, dates, games, currencies):
         startTime = time()
         show_detail = True
 
-        # Scrolled window for summary table
-        swin = gtk.ScrolledWindow(hadjustment=None, vadjustment=None)
-        swin.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-        vbox.pack1(swin) #, resize=True)  don't use resize, self.height_inc relies on initial 
-                         # height of pane being correct for one row
-
-        # Display summary table at top of page
-        # 3rd parameter passes extra flags, currently includes:
-        #   holecards - whether to display card breakdown (True/False)
-        #   numhands  - min number hands required when displaying all players
-        #   gridnum   - index for grid data structures
+#        # Display summary table at top of page
+#        # 3rd parameter passes extra flags, currently includes:
+#        #   holecards - whether to display card breakdown (True/False)
+#        #   numhands  - min number hands required when displaying all players
+#        #   gridnum   - index for grid data structures
         flags = [False, self.filters.getNumHands(), 0]
-        self.addGrid(swin, 'playerDetailedStats', flags, playerids
+        self.addGrid(vbox, 'playerDetailedStats', flags, playerids
                     ,sitenos, limits, type, seats, groups, dates, games, currencies)
-        swin.show()
 
         if 'allplayers' in groups and groups['allplayers']:
             # can't currently do this combination so skip detailed table
@@ -318,45 +258,26 @@ class GuiRingPlayerStats:
 
         if show_detail: 
             # Separator
-            vbox2 = gtk.VBox(False, 0)
-            heading = gtk.Label(self.filterText['handhead'])
-            heading.show()
-            vbox2.pack_start(heading, expand=False, padding=3)
-
-            # Scrolled window for detailed table (display by hand)
-            swin2 = gtk.ScrolledWindow(hadjustment=None, vadjustment=None)
-            swin2.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-            swin2.show()
-            vbox2.pack_start(swin2, expand=True, padding=3)
-            vbox.pack2(vbox2)
-            vbox2.show()
+            frame = QWidget()
+            vbox2 = QVBoxLayout()
+            vbox2.setContentsMargins(0,0,0,0)
+            frame.setLayout(vbox2)
+            vbox.addWidget(frame)
+            heading = QLabel(self.filterText['handhead'])
+            heading.setAlignment(Qt.AlignHCenter)
+            vbox2.addWidget(heading)
 
             # Detailed table
             flags[0] = True
             flags[2] = 1
-            self.addGrid(swin2, 'playerDetailedStats', flags, playerids
+            self.addGrid(vbox2, 'playerDetailedStats', flags, playerids
                         ,sitenos, limits, type, seats, groups, dates, games, currencies)
-
-        if self.height_inc is None:
-            self.height_inc = 0
-            # need this to check whether scrollbar is visible:
-            while gtk.events_pending(): # see http://faq.pygtk.org/index.py?req=index for more hints (3.7)
-                gtk.main_iteration(False)
-            hs = swin.get_hscrollbar()
-            if hs is not None:
-                #print "hs vis", hs.get_property('visible'), hs.get_property('visible').__class__
-                if hs.get_property('visible'):
-                    self.height_inc = hs.size_request()[1] + swin.style_get_property('scrollbar-spacing')
-            #print "hh set to", self.height_inc
-            self.stats_vbox.set_position(self.top_pane_height + self.height_inc)
 
         self.db.rollback()
         print (_("Stats page displayed in %4.2f seconds") % (time() - startTime))
-    #end def createStatsTable
 
     def reset_style_render_func(self, treeviewcolumn, cell, model, iter):
         cell.set_property('foreground', None)
-    #end def reset_style_render_func
 
     def ledger_style_render_func(self, tvcol, cell, model, iter):
         str = cell.get_property('text')
@@ -367,8 +288,6 @@ class GuiRingPlayerStats:
             cell.set_property('foreground', 'red')
         else:
             cell.set_property('foreground', 'darkgreen')
-
-        return
 
     def sortnums(self, model, iter1, iter2, nums):
         ret = 0
@@ -422,14 +341,12 @@ class GuiRingPlayerStats:
 
     def addGrid(self, vbox, query, flags, playerids, sitenos, limits, type, seats, groups, dates, games, currencies):
         counter = 0
-        row = 0
         sqlrow = 0
         if not flags:  holecards,grid = False,0
         else:          holecards,grid = flags[0],flags[2]
 
         tmp = self.sql.query[query]
         tmp = self.refineQuery(tmp, flags, playerids, sitenos, limits, type, seats, groups, dates, games, currencies)
-        #print "DEBUG: query: %s" % tmp
         self.cursor.execute(tmp)
         result = self.cursor.fetchall()
         colnames = [desc[0].lower() for desc in self.cursor.description]
@@ -441,17 +358,11 @@ class GuiRingPlayerStats:
         hgametypeid_idx = colnames.index('hgametypeid')
 
         assert len(self.liststore) == grid, "len(self.liststore)="+str(len(self.liststore))+" grid-1="+str(grid)
-        self.liststore.append( gtk.ListStore(*([str] * len(self.cols_to_show))) )
-        view = gtk.TreeView(model=self.liststore[grid])
-        view.set_grid_lines(gtk.TREE_VIEW_GRID_LINES_BOTH)
-        #vbox.pack_start(view, expand=False, padding=3)
-        vbox.add(view)
-        textcell = gtk.CellRendererText()
-        textcell50 = gtk.CellRendererText()
-        textcell50.set_property('xalign', 0.5)
-        numcell = gtk.CellRendererText()
-        numcell.set_property('xalign', 1.0)
-        assert len(self.listcols) == grid
+        view = QTableView()
+        self.liststore.append(QStandardItemModel(0, len(self.cols_to_show), view))
+        view.setModel(self.liststore[grid])
+        view.verticalHeader().hide()
+        vbox.addWidget(view)
         self.listcols.append( [] )
 
         # Create header row   eg column: ("game",     True, "Game",     0.0, "%s")
@@ -460,33 +371,8 @@ class GuiRingPlayerStats:
                 s = [x for x in self.columns if x[colalias] == 'hand'][0][colheading]
             else:
                 s = column[colheading]
-            self.listcols[grid].append(gtk.TreeViewColumn(s))
-            view.append_column(self.listcols[grid][col])
-            if column[colformat] == '%s':
-                if column[colxalign] == 0.0:
-                    self.listcols[grid][col].pack_start(textcell, expand=True)
-                    self.listcols[grid][col].add_attribute(textcell, 'text', col)
-                    cellrend = textcell
-                else:
-                    self.listcols[grid][col].pack_start(textcell50, expand=True)
-                    self.listcols[grid][col].add_attribute(textcell50, 'text', col)
-                    cellrend = textcell50
-                self.listcols[grid][col].set_expand(True)
-            else:
-                self.listcols[grid][col].pack_start(numcell, expand=True)
-                self.listcols[grid][col].add_attribute(numcell, 'text', col)
-                self.listcols[grid][col].set_expand(True)
-                cellrend = numcell
-                #self.listcols[grid][col].set_alignment(column[colxalign]) # no effect?
-            self.listcols[grid][col].set_clickable(True)
-            self.listcols[grid][col].connect("clicked", self.sortcols, (col,grid))
-            if col == 0:
-                self.listcols[grid][col].set_sort_order(gtk.SORT_DESCENDING)
-                self.listcols[grid][col].set_sort_indicator(True)
-            if column[coltype] == 'cash':
-                self.listcols[grid][col].set_cell_data_func(numcell, self.ledger_style_render_func)
-            else:
-                self.listcols[grid][col].set_cell_data_func(cellrend, self.reset_style_render_func)
+            self.listcols[grid].append(s)
+        self.liststore[grid].setHorizontalHeaderLabels(self.listcols[grid])
 
         rows = len(result) # +1 for title row
 
@@ -525,24 +411,19 @@ class GuiRingPlayerStats:
                                 value += ' ' + fast_names[result[sqlrow][colnames.index('name')]]
                     else:
                         continue
+                item = QStandardItem('')
                 if value != None and value != -999:
-                    treerow.append(column[colformat] % value)
-                else:
-                    treerow.append(' ')
-            iter = self.liststore[grid].append(treerow)
-            #print treerow
+                    item = QStandardItem(column[colformat] % value)
+                item.setEditable(False)
+                item.setTextAlignment(Qt.AlignRight)
+                if column[colalias] != 'game':
+                    item.setToolTip('<big>%s for %s</big><br/><i>%s</i>' % (column[colheading],treerow[0].text(),onlinehelp[column[colheading]]))
+                treerow.append(item)
+            self.liststore[grid].appendRow(treerow)
             sqlrow += 1
-            row += 1
-        tips = DemoTips(column[colformat])
-        tips.add_view(view)     
 
-        vbox.show_all()
-        view.show()
-        if len(self.liststore) == 1:
-            #print "view hieght is ", view.get_allocation().height, view.size_request(), view.get_visible_rect().height, view.get_vadjustment().get_value()
-            self.top_pane_height = view.size_request()[1]
-            #print "saved ", self.top_pane_height
-    #end def addGrid
+        view.resizeColumnsToContents()
+        view.setSortingEnabled(True) # do this after resizing columns, otherwise it leaves room for the sorting triangle in every heading
 
     def refineQuery(self, query, flags, playerids, sitenos, limits, type, seats, groups, dates, games, currencies):
         having = ''
@@ -696,95 +577,94 @@ class GuiRingPlayerStats:
             query = query.replace("<position>", "gt.base")
             plposition_column[colshow] = False
 
-        #print "query =\n", query
         return(query)
-    #end def refineQuery
 
-    def showDetailFilter(self, widget, data):
-        detailDialog = gtk.Dialog(title=_("Detailed Filters"), parent=self.main_window
-                                 ,flags=gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT
-                                 ,buttons=(gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT,
-                                           gtk.STOCK_OK, gtk.RESPONSE_ACCEPT))
+    def showDetailFilter(self, checkState):
+        detailDialog = QDialog(self.main_window)
+        detailDialog.setWindowTitle(_("Detailed Filters"))
 
-        handbox = gtk.VBox(True, 0)
-        detailDialog.vbox.pack_start(handbox, False, False, 0)
-        handbox.show()
+        handbox = QVBoxLayout()
+        detailDialog.setLayout(handbox)
 
-        label = gtk.Label(_("Hand Filters:"))
-        handbox.add(label)
-        label.show()
+        label = QLabel(_("Hand Filters:"))
+        handbox.addWidget(label)
+        label.setAlignment(Qt.AlignCenter)
 
         betweenFilters = []
-        def add_hbox():
-            hbox = gtk.HBox(False, 0)
-            handbox.pack_start(hbox, False, False, 0)
-            hbox.show()
-            return hbox
 
-        for htest in self.handtests:
-            hbox = add_hbox()
-            cb = gtk.CheckButton()
-            lbl_from = gtk.Label(htest[1])
-            lbl_from.set_alignment(xalign=0.0, yalign=0.5)
-            lbl_tween = gtk.Label(_('between'))
-            lbl_to   = gtk.Label(_('and'))
-            adj1 = gtk.Adjustment(value=htest[2], lower=0, upper=10, step_incr=1, page_incr=1, page_size=0)
-            sb1 = gtk.SpinButton(adjustment=adj1, climb_rate=0.0, digits=0)
-            adj2 = gtk.Adjustment(value=htest[3], lower=2, upper=10, step_incr=1, page_incr=1, page_size=0)
-            sb2 = gtk.SpinButton(adjustment=adj2, climb_rate=0.0, digits=0)
+        grid = QGridLayout()
+        handbox.addLayout(grid)
+        for row, htest in enumerate(self.handtests):
+            cb = QCheckBox()
+            lbl_from = QLabel(htest[1])
+            lbl_tween = QLabel(_('between'))
+            lbl_to   = QLabel(_('and'))
+            sb1 = QSpinBox()
+            sb1.setRange(0, 10)
+            sb1.setValue(htest[2])
+            sb2 = QSpinBox()
+            sb2.setRange(2, 10)
+            sb2.setValue(htest[3])
 
             for df in [x for x in self.detailFilters if x[0] == htest[0]]:
-                cb.set_active(True)
+                cb.setChecked(True)
 
-            hbox.pack_start(cb, expand=False, padding=3)
-            hbox.pack_start(lbl_from, expand=True, padding=3)
-            hbox.pack_start(lbl_tween, expand=False, padding=3)
-            hbox.pack_start(sb1, False, False, 0)
-            hbox.pack_start(lbl_to, expand=False, padding=3)
-            hbox.pack_start(sb2, False, False, 0)
-
-            cb.show()
-            lbl_from.show()
-            lbl_tween.show()
-            sb1.show()
-            lbl_to.show()
-            sb2.show()
+            grid.addWidget(cb, row, 0)
+            grid.addWidget(lbl_from, row, 1, Qt.AlignLeft)
+            grid.addWidget(lbl_tween, row, 2)
+            grid.addWidget(sb1, row, 3)
+            grid.addWidget(lbl_to, row, 4)
+            grid.addWidget(sb2, row, 5)
 
             htest[4:7] = [cb,sb1,sb2]
 
-        label = gtk.Label(_('Restrict to hand types:'))
-        handbox.add(label)
-        label.show()
+        label = QLabel(_('Restrict to hand types:'))
+        handbox.addWidget(label)
         for ctest in self.cardstests:
-            hbox = add_hbox()
-            cb = gtk.CheckButton()
+            hbox = QHBoxLayout()
+            handbox.addLayout(hbox)
+            cb = QCheckBox()
             if ctest[0] in self.cardsFilters:
-                cb.set_active(True)
-            label = gtk.Label(ctest[1])
-            hbox.pack_start(cb, expand=False, padding=3)
-            hbox.pack_start(label, expand=True, padding=3)
-            cb.show()
-            label.show()
+                cb.setChecked(True)
+            label = QLabel(ctest[1])
+            hbox.addWidget(cb)
+            hbox.addWidget(label)
             ctest[2:3] = [cb]
-        response = detailDialog.run()
+        btnBox = QDialogButtonBox(QDialogButtonBox.Ok | QDialogButtonBox.Cancel)
+        handbox.addWidget(btnBox)
+        btnBox.accepted.connect(detailDialog.accept)
+        btnBox.rejected.connect(detailDialog.reject)
+        response = detailDialog.exec_()
 
-        if response == gtk.RESPONSE_ACCEPT:
+        if response:
             self.detailFilters = []
             for ht in self.handtests:
-                if ht[4].get_active():
-                    self.detailFilters.append( (ht[0], ht[5].get_value_as_int(), ht[6].get_value_as_int()) )
-                ht[2],ht[3] = ht[5].get_value_as_int(), ht[6].get_value_as_int()
-            print "detailFilters =", self.detailFilters
+                if ht[4].isChecked():
+                    self.detailFilters.append( (ht[0], ht[5].value(), ht[6].value()) )
+                ht[2],ht[3] = ht[5].value(), ht[6].value()
             self.cardsFilters = []
             for ct in self.cardstests:
-                if ct[2].get_active():
+                if ct[2].isChecked():
                     self.cardsFilters.append(ct[0])
-            print "cardsFilters =", self.cardsFilters
-            self.refreshStats(None, None)
+            self.refreshStats(None)
 
-        detailDialog.destroy()
+if __name__ == "__main__":
+    import Configuration
+    config = Configuration.Config()
 
+    settings = {}
 
+    settings.update(config.get_db_parameters())
+    settings.update(config.get_import_parameters())
+    settings.update(config.get_default_paths())
 
-
-
+    from PyQt5.QtWidgets import QApplication, QMainWindow
+    app = QApplication([])
+    import SQL
+    sql = SQL.Sql(db_server=settings['db-server'])
+    main_window = QMainWindow()
+    i = GuiRingPlayerStats(config, sql, main_window)
+    main_window.setCentralWidget(i)
+    main_window.show()
+    main_window.resize(1400, 800)
+    app.exec_()
