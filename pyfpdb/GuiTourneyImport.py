@@ -27,12 +27,6 @@ import datetime
 import codecs
 import re
 
-#    pyGTK modules
-import pygtk
-pygtk.require('2.0')
-import gtk
-import gobject
-
 #    fpdb/FreePokerTools modules
 import Configuration
 import Database

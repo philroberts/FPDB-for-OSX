@@ -18,9 +18,6 @@
 import L10n
 _ = L10n.get_translation()
 
-import pygtk
-pygtk.require('2.0')
-import gtk
 import os
 import sys
 import traceback
@@ -36,10 +33,9 @@ try:
     calluse = not 'matplotlib' in sys.modules
     import matplotlib
     if calluse:
-        matplotlib.use('GTKCairo')
+        matplotlib.use('qt5agg')
     from matplotlib.figure import Figure
-    from matplotlib.backends.backend_gtk import FigureCanvasGTK as FigureCanvas
-    from matplotlib.backends.backend_gtkagg import NavigationToolbar2GTKAgg as NavigationToolbar
+    from matplotlib.backends.backend_qt5agg import FigureCanvas
     from matplotlib.font_manager import FontProperties
     from numpy import arange, cumsum
     from pylab import *

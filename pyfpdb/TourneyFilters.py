@@ -20,10 +20,6 @@
 import L10n
 _ = L10n.get_translation()
 
-import pygtk
-pygtk.require('2.0')
-import gtk
-import gobject
 #import os
 #import sys
 #from optparse import OptionParser

@@ -36,7 +36,6 @@ from PyQt5.QtWidgets import (QApplication, QFrame, QLabel, QSplitter, QTableView
                              QVBoxLayout)
 
 import math
-import gobject
 
 from cStringIO import StringIO
 

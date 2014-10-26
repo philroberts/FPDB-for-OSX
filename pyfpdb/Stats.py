@@ -58,9 +58,6 @@ import sys
 from decimal import Decimal   # needed by hand_instance in m_ratio
 
 
-#    pyGTK modules
-import pygtk
-import gtk
 import re
 
 #    FreePokerTools modules
