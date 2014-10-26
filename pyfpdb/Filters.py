@@ -28,8 +28,6 @@ import os
 import sys
 from optparse import OptionParser
 from time import gmtime, mktime, strftime, strptime, localtime
-import gobject
-import pango
 from functools import partial
 #import pokereval
 
