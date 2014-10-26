@@ -28,11 +28,12 @@ import Database
 import SQL
 import Deck
 
-import pygtk
-pygtk.require('2.0')
-import gtk
+from PyQt5.QtCore import (QPoint, QRect, Qt, QTimer)
+from PyQt5.QtGui import (QColor, QImage, QPainter)
+from PyQt5.QtWidgets import (QHBoxLayout, QPushButton, QSlider, QVBoxLayout,
+                             QWidget)
+
 import math
-import gobject
 from decimal_wrapper import Decimal
 
 import copy
@@ -48,9 +49,11 @@ global card_images
 card_images = 53 * [0]
 
 
-class GuiReplayer:
+class GuiReplayer(QWidget):
     """A Replayer to replay hands."""
     def __init__(self, config, querylist, mainwin, options = None, debug=True):
+        QWidget.__init__(self, None)
+        self.setFixedSize(800, 680)
         self.debug = debug
         self.conf = config
         self.main_window = mainwin
@@ -59,204 +62,135 @@ class GuiReplayer:
         self.db = Database.Database(self.conf, sql=self.sql)
         self.states = [] # List with all table states.
 
-        self.window = gtk.Window()
-        self.window.set_title("FPDB Hand Replayer")
+        self.setWindowTitle("FPDB Hand Replayer")
         
-        self.replayBox = gtk.VBox(False, 0)
-        self.replayBox.show()
+        self.replayBox = QVBoxLayout()
+        self.setLayout(self.replayBox)
+
+        self.replayBox.addStretch()
+
+        self.buttonBox = QHBoxLayout()
+        self.startButton = QPushButton("Start")
+        self.startButton.clicked.connect(self.start_clicked)
+        self.flopButton = QPushButton("Flop")
+        self.flopButton.clicked.connect(self.flop_clicked)
+        self.turnButton = QPushButton("Turn")
+        self.turnButton.clicked.connect(self.turn_clicked)
+        self.riverButton = QPushButton("River")
+        self.riverButton.clicked.connect(self.river_clicked)
+        self.endButton = QPushButton("End")
+        self.endButton.clicked.connect(self.end_clicked)
+        self.playPauseButton = QPushButton("Play")
+        self.playPauseButton.clicked.connect(self.play_clicked)
+        self.buttonBox.addWidget(self.startButton)
+        self.buttonBox.addWidget(self.flopButton)
+        self.buttonBox.addWidget(self.turnButton)
+        self.buttonBox.addWidget(self.riverButton)
+        self.buttonBox.addWidget(self.endButton)
+        self.buttonBox.addWidget(self.playPauseButton)
         
-        self.window.add(self.replayBox)
+        self.replayBox.addLayout(self.buttonBox)
 
+        self.stateSlider = QSlider(Qt.Horizontal)
+        self.stateSlider.valueChanged.connect(self.slider_changed)
 
-        self.area=gtk.DrawingArea()
-        self.pangolayout = self.area.create_pango_layout("")
-        self.area.connect("expose-event", self.area_expose)
-        self.style = self.area.get_style()
-        self.gc = self.style.fg_gc[gtk.STATE_NORMAL]
-        self.area.show()
-
-        self.replayBox.pack_start(self.area, False)
-
-        self.buttonBox = gtk.HButtonBox()
-        self.buttonBox.set_layout(gtk.BUTTONBOX_SPREAD)
-        self.startButton = gtk.Button()
-        image = gtk.Image()
-        image.set_from_stock(gtk.STOCK_MEDIA_PREVIOUS, gtk.ICON_SIZE_BUTTON)
-        self.startButton.set_image(image)
-        self.startButton.connect("clicked", self.start_clicked)
-        self.flopButton = gtk.Button("Flop")
-        self.flopButton.connect("clicked", self.flop_clicked)
-        self.turnButton = gtk.Button("Turn")
-        self.turnButton.connect("clicked", self.turn_clicked)
-        self.riverButton = gtk.Button("River")
-        self.riverButton.connect("clicked", self.river_clicked)
-        self.endButton = gtk.Button()
-        image = gtk.Image()
-        image.set_from_stock(gtk.STOCK_MEDIA_NEXT, gtk.ICON_SIZE_BUTTON)
-        self.endButton.set_image(image)
-        self.endButton.connect("clicked", self.end_clicked)
-        self.playPauseButton = gtk.Button()
-        image = gtk.Image()
-        image.set_from_stock(gtk.STOCK_MEDIA_PLAY, gtk.ICON_SIZE_BUTTON)
-        self.playPauseButton.set_image(image)
-        self.playPauseButton.connect("clicked", self.play_clicked)
-        self.buttonBox.add(self.startButton)
-        self.buttonBox.add(self.flopButton)
-        self.buttonBox.add(self.turnButton)
-        self.buttonBox.add(self.riverButton)
-        self.buttonBox.add(self.endButton)
-        self.buttonBox.add(self.playPauseButton)
-        self.buttonBox.show_all()
+        self.replayBox.addWidget(self.stateSlider, False)
         
-        self.replayBox.pack_start(self.buttonBox, False)
-
-        self.state = gtk.Adjustment(0, 0, 0, 1)
-        self.stateSlider = gtk.HScale(self.state)
-        self.stateSlider.connect("format_value", lambda x,y: "")
-        self.stateSlider.set_digits(0)
-        self.handler_id = self.state.connect("value_changed", self.slider_changed)
-        self.stateSlider.show()
-
-        self.replayBox.pack_start(self.stateSlider, False)
-        
-        self.window.show_all()
-        
-        self.window.connect('destroy', self.on_destroy)
-
         self.playing = False
 
         self.tableImage = None
         self.playerBackdrop = None
         self.cardImages = None
-        #NOTE: There are two caches of card images as I haven't found a way to
-        #      replicate the copy_area() function from Pixbuf in the Pixmap class
-        #      cardImages is used for the tables display card_images is used for the
-        #      table display. Sooner or later we should probably use one or the other.
         self.deck_inst = Deck.Deck(self.conf, height=CARD_HEIGHT, width=CARD_WIDTH)
-        card_images = self.init_card_images(self.conf)
+        self.show()
 
-    def init_card_images(self, config):
-        suits = ('s', 'h', 'd', 'c')
-        ranks = (14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2)
-
-        for j in range(0, 13):
-            for i in range(0, 4):
-                loc = Card.cardFromValueSuit(ranks[j], suits[i])
-                card_im = self.deck_inst.card(suits[i], ranks[j])
-                #must use copy(), method_instance not usable in global variable
-                card_images[loc] = card_im.copy()
-        back_im = self.deck_inst.back()
-        card_images[0] = back_im.copy()
-        return card_images
-
-
-    def area_expose(self, area, event):
-        self.style = self.area.get_style()
-        self.gc = self.style.fg_gc[gtk.STATE_NORMAL]
-
+    def paintEvent(self, event):
         if self.tableImage is None or self.playerBackdrop is None:
             try:
-                self.playerBackdrop = gtk.gdk.pixbuf_new_from_file(os.path.join(self.conf.graphics_path, u"playerbackdrop.png"))
-                self.tableImage = gtk.gdk.pixbuf_new_from_file(os.path.join(self.conf.graphics_path, u"Table.png"))
-                self.area.set_size_request(self.tableImage.get_width(), self.tableImage.get_height())
+                self.playerBackdrop = QImage(os.path.join(self.conf.graphics_path, u"playerbackdrop.png"))
+                self.tableImage = QImage(os.path.join(self.conf.graphics_path, u"Table.png"))
             except:
                 return
         if self.cardImages is None:
             self.cardwidth = CARD_WIDTH
             self.cardheight = CARD_HEIGHT
-            self.cardImages = [gtk.gdk.Pixmap(self.area.window, self.cardwidth, self.cardheight) for i in range(53)]
+            self.cardImages = [None] * 53
             suits = ('s', 'h', 'd', 'c')
             ranks = (14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2)
             for j in range(0, 13):
                 for i in range(0, 4):
                     index = Card.cardFromValueSuit(ranks[j], suits[i])
-                    image = self.deck_inst.card(suits[i], ranks[j])
-                    self.cardImages[index].draw_pixbuf(self.gc, image, 0, 0, 0, 0, -1, -1)
-            back_im = self.deck_inst.back()
-            self.cardImages[0].draw_pixbuf(self.gc, back_im, 0, 0, 0, 0, -1,-1)
+                    self.cardImages[index] = self.deck_inst.card(suits[i], ranks[j])
+            self.cardImages[0] = self.deck_inst.back()
 
-        self.area.window.draw_pixbuf(self.gc, self.tableImage, 0, 0, 0, 0)
+        if not event.rect().intersects(QRect(0, 0, self.tableImage.width(), self.tableImage.height())):
+            return
+
+        painter = QPainter(self)
+        painter.drawImage(QPoint(0,0), self.tableImage)
 
         if len(self.states) == 0:
             return
 
-        state = self.states[int(self.state.get_value())]
+        state = self.states[self.stateSlider.value()]
 
         padding = 6
-        communityLeft = int(self.tableImage.get_width() / 2 - 2.5 * self.cardwidth - 2 * padding)
-        communityTop = int(self.tableImage.get_height() / 2 - 1.5 * self.cardheight)
+        communityLeft = int(self.tableImage.width() / 2 - 2.5 * self.cardwidth - 2 * padding)
+        communityTop = int(self.tableImage.height() / 2 - 1.5 * self.cardheight)
 
-        cm = self.gc.get_colormap() #create colormap toi be able to play with colours
-
-        color = cm.alloc_color("white") #defaults to black
-        self.gc.set_foreground(color)
-
-        convertx = lambda x: int(x * self.tableImage.get_width() * 0.8) + self.tableImage.get_width() / 2
-        converty = lambda y: int(y * self.tableImage.get_height() * 0.6) + self.tableImage.get_height() / 2
+        convertx = lambda x: int(x * self.tableImage.width() * 0.8) + self.tableImage.width() / 2
+        converty = lambda y: int(y * self.tableImage.height() * 0.6) + self.tableImage.height() / 2
 
         for player in state.players.values():
             playerx = convertx(player.x)
             playery = converty(player.y)
-            self.area.window.draw_pixbuf(self.gc, self.playerBackdrop, 0, 0, playerx - self.playerBackdrop.get_width() / 2, playery - padding / 2)
+            painter.drawImage(QPoint(playerx - self.playerBackdrop.width() / 2, playery - padding / 2), self.playerBackdrop)
             if player.action=="folds":
-                color = cm.alloc_color("grey") #player has folded => greyed out
-                self.gc.set_foreground(color)
+                painter.setPen(QColor("grey"))
             else:
-                color = cm.alloc_color("white") #player is live
-                self.gc.set_foreground(color)
+                painter.setPen(QColor("white"))
                 if state.gametype == 'holdem':
                     cardIndex = Card.encodeCard(player.holecards[0:2])
-                    self.area.window.draw_drawable(self.gc, self.cardImages[cardIndex], 0, 0, playerx - self.cardwidth - padding / 2, playery - self.cardheight, -1, -1)
+                    painter.drawPixmap(QPoint(playerx - self.cardwidth - padding / 2, playery - self.cardheight), self.cardImages[cardIndex])
                     cardIndex = Card.encodeCard(player.holecards[3:5])
-                    self.area.window.draw_drawable(self.gc, self.cardImages[cardIndex], 0, 0, playerx + padding / 2, playery - self.cardheight, -1, -1)
+                    painter.drawPixmap(QPoint(playerx + padding / 2, playery - self.cardheight), self.cardImages[cardIndex])
                 elif state.gametype in ('omahahi', 'omahahilo'):
                     cardIndex = Card.encodeCard(player.holecards[0:2])
-                    self.area.window.draw_drawable(self.gc, self.cardImages[cardIndex], 0, 0, playerx - 2 * self.cardwidth - 3 * padding / 2, playery - self.cardheight, -1, -1)
+                    painter.drawPixmap(QPoint(playerx - 2 * self.cardwidth - 3 * padding / 2, playery - self.cardheight), self.cardImages[cardIndex])
                     cardIndex = Card.encodeCard(player.holecards[3:5])
-                    self.area.window.draw_drawable(self.gc, self.cardImages[cardIndex], 0, 0, playerx - self.cardwidth - padding / 2, playery - self.cardheight, -1, -1)
+                    painter.drawPixmap(QPoint(playerx - self.cardwidth - padding / 2, playery - self.cardheight), self.cardImages[cardIndex])
                     cardIndex = Card.encodeCard(player.holecards[6:8])
-                    self.area.window.draw_drawable(self.gc, self.cardImages[cardIndex], 0, 0, playerx + padding / 2, playery - self.cardheight, -1, -1)
+                    painter.drawPixmap(QPoint(playerx + padding / 2, playery - self.cardheight), self.cardImages[cardIndex])
                     cardIndex = Card.encodeCard(player.holecards[9:11])
-                    self.area.window.draw_drawable(self.gc, self.cardImages[cardIndex], 0, 0, playerx + self.cardwidth + 3 * padding / 2, playery - self.cardheight, -1, -1)
+                    painter.drawPixmap(QPoint(playerx + self.cardwidth + 3 * padding / 2, playery - self.cardheight), self.cardImages[cardIndex])
 
-            color_string = '#FFFFFF'
-            background_color = ''
-            self.pangolayout.set_markup('<span foreground="%s" size="medium">%s %s%.2f</span>' % (color_string, player.name, self.currency, player.stack))
-            self.area.window.draw_layout(self.gc, playerx - self.pangolayout.get_pixel_size()[0] / 2, playery, self.pangolayout)
+            painter.drawText(QRect(playerx - 100, playery, 200, 20), Qt.AlignCenter, '%s %s%.2f' % (player.name, self.currency, player.stack))
 
             if player.justacted:
-                color_string = '#FF0000'
-                background_color = 'background="#000000" '
-                self.pangolayout.set_markup('<span foreground="%s" size="medium">%s</span>' % (color_string, player.action))
-                self.area.window.draw_layout(self.gc, playerx - self.pangolayout.get_pixel_size()[0] / 2, playery + self.pangolayout.get_pixel_size()[1], self.pangolayout)
+                painter.setPen(QColor("yellow"))
+                painter.drawText(QRect(playerx - 50, playery + 15, 100, 20), Qt.AlignCenter, player.action)
             else:
-                color_string = '#FFFF00'
-                background_color = ''
+                painter.setPen(QColor("white"))
             if player.chips != 0:  #displays amount
-                self.pangolayout.set_markup('<span foreground="%s" %s weight="heavy" size="large">%s%.2f</span>' % (color_string, background_color, self.currency, player.chips))
-                self.area.window.draw_layout(self.gc, convertx(player.x * .65) - self.pangolayout.get_pixel_size()[0] / 2, converty(player.y * 0.65), self.pangolayout)
+                painter.drawText(QRect(convertx(player.x * .65) - 100, converty(player.y * 0.65), 200, 20), Qt.AlignCenter, '%s%.2f' % (self.currency, player.chips))
 
-        color_string = '#FFFFFF'
+        painter.setPen(QColor("white"))
 
-        self.pangolayout.set_markup('<span foreground="%s" size="large">%s%.2f</span>' % (color_string, self.currency, state.pot)) #displays pot
-        self.area.window.draw_layout(self.gc,self.tableImage.get_width() / 2 - self.pangolayout.get_pixel_size()[0] / 2, self.tableImage.get_height() / 2, self.pangolayout)
+        painter.drawText(QRect(self.tableImage.width() / 2 - 100, self.tableImage.height() / 2 - 20, 200, 40), Qt.AlignCenter, '%s%.2f' % (self.currency, state.pot))
 
         if state.showFlop:
             cardIndex = Card.encodeCard(state.flop[0])
-            self.area.window.draw_drawable(self.gc, self.cardImages[cardIndex], 0, 0, communityLeft, communityTop, -1, -1)
+            painter.drawPixmap(QPoint(communityLeft, communityTop), self.cardImages[cardIndex])
             cardIndex = Card.encodeCard(state.flop[1])
-            self.area.window.draw_drawable(self.gc, self.cardImages[cardIndex], 0, 0, communityLeft + self.cardwidth + padding, communityTop, -1, -1)
+            painter.drawPixmap(QPoint(communityLeft + self.cardwidth + padding, communityTop), self.cardImages[cardIndex])
             cardIndex = Card.encodeCard(state.flop[2])
-            self.area.window.draw_drawable(self.gc, self.cardImages[cardIndex], 0, 0, communityLeft + 2 * (self.cardwidth + padding), communityTop, -1, -1)
+            painter.drawPixmap(QPoint(communityLeft + 2 * (self.cardwidth + padding), communityTop), self.cardImages[cardIndex])
         if state.showTurn:
             cardIndex = Card.encodeCard(state.turn[0])
-            self.area.window.draw_drawable(self.gc, self.cardImages[cardIndex], 0, 0, communityLeft + 3 * (self.cardwidth + padding), communityTop, -1, -1)
+            painter.drawPixmap(QPoint(communityLeft + 3 * (self.cardwidth + padding), communityTop), self.cardImages[cardIndex])
         if state.showRiver:
             cardIndex = Card.encodeCard(state.river[0])
-            self.area.window.draw_drawable(self.gc, self.cardImages[cardIndex], 0, 0, communityLeft + 4 * (self.cardwidth + padding), communityTop, -1, -1)
-
-        color = cm.alloc_color("black")      #we don't want to draw the filters and others in red
-        self.gc.set_foreground(color)
+            painter.drawPixmap(QPoint(communityLeft + 4 * (self.cardwidth + padding), communityTop), self.cardImages[cardIndex])
 
     def play_hand(self, hand):
         # hand.writeHand()  # Print handhistory to stdout -> should be an option in the GUI
@@ -274,32 +208,22 @@ class GuiReplayer:
         state.endHand(hand.collectees)
         self.states.append(state)
         
-        self.state.set_value(0)
-        self.state.set_upper(len(self.states) - 1)
-        self.state.value_changed()
+        self.stateSlider.setMaximum(len(self.states) - 1)
+        self.stateSlider.setValue(0)
 
     def increment_state(self):
-        if self.state.get_value() == self.state.get_upper():
+        if self.stateSlider.value() == self.stateSlider.maximum():
             self.playing = False
-            image = gtk.Image()
-            image.set_from_stock(gtk.STOCK_MEDIA_PLAY, gtk.ICON_SIZE_BUTTON)
-            self.playPauseButton.set_image(image)
+            self.playPauseButton.setText("Play")
 
         if not self.playing:
             return False
 
-        self.state.set_value(self.state.get_value() + 1)
+        self.stateSlider.setValue(self.stateSlider.value() + 1)
         return True
     
-    def on_destroy(self, window):
-        """ Prevent replayer from continue playing after window is closed """
-        self.state.disconnect(self.handler_id)
-
     def slider_changed(self, adjustment):
-        alloc = self.area.get_allocation()
-        rect = gtk.gdk.Rectangle(0, 0, alloc.width, alloc.height)
-        self.area.window.invalidate_rect(rect, True)    #make sure we refresh the whole screen
-        self.area.window.process_updates(True)
+        self.update()
 
     def importhand(self, handid=1):
 
@@ -309,31 +233,32 @@ class GuiReplayer:
 
     def play_clicked(self, button):
         self.playing = not self.playing
-        image = gtk.Image()
         if self.playing:
-            image.set_from_stock(gtk.STOCK_MEDIA_PAUSE, gtk.ICON_SIZE_BUTTON)
-            gobject.timeout_add(1000, self.increment_state)
+            self.playPauseButton.setText("Pause")
+            self.playTimer = QTimer()
+            self.playTimer.timeout.connect(self.increment_state)
+            self.playTimer.start(1000)
         else:
-            image.set_from_stock(gtk.STOCK_MEDIA_PLAY, gtk.ICON_SIZE_BUTTON)
-        self.playPauseButton.set_image(image)
+            self.playPauseButton.setText("Play")
+            self.playTimer = None
     def start_clicked(self, button):
-        self.state.set_value(0)
+        self.stateSlider.setValue(0)
     def end_clicked(self, button):
-        self.state.set_value(self.state.get_upper())
+        self.stateSlider.setValue(self.stateSlider.maximum())
     def flop_clicked(self, button):
         for i in range(0, len(self.states)):
             if self.states[i].showFlop:
-                self.state.set_value(i)
+                self.stateSlider.setValue(i)
                 break
     def turn_clicked(self, button):
         for i in range(0, len(self.states)):
             if self.states[i].showTurn:
-                self.state.set_value(i)
+                self.stateSlider.setValue(i)
                 break
     def river_clicked(self, button):
         for i in range(0, len(self.states)):
             if self.states[i].showRiver:
-                self.state.set_value(i)
+                self.stateSlider.setValue(i)
                 break
 
 # ICM code originally grabbed from http://svn.gna.org/svn/pokersource/trunk/icm-calculator/icm-webservice.py
@@ -469,41 +394,25 @@ class Player:
         self.x         = 0.5 * math.cos(2 * self.seat * math.pi / hand.maxseats)
         self.y         = 0.5 * math.sin(2 * self.seat * math.pi / hand.maxseats)
 
-def main(argv=None):
-    """main can also be called in the python interpreter, by supplying the command line as the argument."""
-    if argv is None:
-        argv = sys.argv[1:]
-
-    def destroy(*args):  # call back for terminating the main eventloop
-        gtk.main_quit()
-
-    Configuration.set_logfile("fpdb-log.txt")
-    import Options
-
-    (options, argv) = Options.fpdb_options()
-
-    if options.usage == True:
-        #Print usage examples and exit
-        sys.exit(0)
-
-    if options.sitename:
-        options.sitename = Options.site_alias(options.sitename)
-        if options.sitename == False:
-            usage()
-
-    config = Configuration.Config(file = "HUD_config.test.xml")
-    db = Database.Database(config)
-    sql = SQL.Sql(db_server = 'sqlite')
-
-    main_window = gtk.Window()
-    main_window.connect('destroy', destroy)
-
-    replayer = GuiReplayer(config, sql, main_window, options=options, debug=True)
-
-    main_window.add(replayer.get_vbox())
-    main_window.set_default_size(800,800)
-    main_window.show()
-    gtk.main()
-
 if __name__ == '__main__':
-    sys.exit(main())
+    config = Configuration.Config()
+    db = Database.Database(config)
+    sql = SQL.Sql(db_server = config.get_db_parameters()['db-server'])
+
+    from PyQt5.QtWidgets import QApplication, QMainWindow
+    app = QApplication([])
+
+    replayer = GuiReplayer(config, sql, None, debug=True)
+    h = Hand.hand_factory(1, config, db)
+    if h.gametype['currency']=="USD":    #TODO: check if there are others ..
+        replayer.currency="$"
+    elif hand.gametype['currency']=="EUR":
+        replayer.currency="\xe2\x82\xac"
+    elif hand.gametype['currency']=="GBP":
+        replayer.currency="£"
+    else:
+        replayer.currency = hand.gametype['currency']
+
+    replayer.play_hand(h)
+
+    app.exec_()

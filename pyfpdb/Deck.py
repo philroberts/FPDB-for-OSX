@@ -14,7 +14,10 @@ images and returns it as a dict of pixbufs.
 """
 
 import os
-import gtk
+
+from PyQt5.QtCore import QRectF
+from PyQt5.QtGui import (QPixmap, QPainter)
+from PyQt5.QtSvg import QSvgRenderer
 
 class Deck(object):
     def __init__(self, config, deck_type=u'colour', card_back=u'back04', width=30, height=42):
@@ -42,11 +45,11 @@ class Deck(object):
     
     
     def __load_svg(self, path):
-        # pixbuf_new_from_file_at_size apparently not working
-        # so load full size and scale_simple instead
-        temp_buf = gtk.gdk.pixbuf_new_from_file(path)
-        pb = temp_buf.scale_simple(self.__width, self.__height, gtk.gdk.INTERP_HYPER)
-        return pb
+        renderer = QSvgRenderer(path)
+        pm = QPixmap(self.__width, self.__height)
+        painter = QPainter(pm)
+        renderer.render(painter, QRectF(pm.rect()))
+        return pm
 
     def __load_suit(self, suit_key):
         sd = dict()
@@ -79,7 +82,7 @@ class Deck(object):
     
     def get_all_card_images(self):
         #returns a 4x13-element dictionary of every card image + index-0 = card back
-        # each element is a gtk.gdk.Pixbuf
+        # each element is a QPixmap
         card_images = dict()
 
         for suit in ('s', 'h', 'd', 'c'):

@@ -31,9 +31,10 @@ import SQL
 import Filters
 import Deck
 
-import pygtk
-pygtk.require('2.0')
-import gtk
+from PyQt5.QtGui import (QStandardItem, QStandardItemModel)
+from PyQt5.QtWidgets import (QApplication, QFrame, QLabel, QSplitter, QTableView,
+                             QVBoxLayout)
+
 import math
 import gobject
 
@@ -101,8 +102,9 @@ def reset_style_render_func(tree_column, cell, model, iter, data):
     cell.set_property('text', model.get_value(iter, data))
 
 
-class GuiHandViewer:
+class GuiHandViewer(QSplitter):
     def __init__(self, config, querylist, mainwin, options = None, debug=True):
+        QSplitter.__init__(self, mainwin)
         self.debug = debug
         self.config = config
         self.main_window = mainwin
@@ -110,6 +112,7 @@ class GuiHandViewer:
         self.replayer = None
         self.date_from = None
         self.date_to = None
+        self.view = None
 
         # These are temporary variables until it becomes possible
         # to select() a Hand object from the database
@@ -146,20 +149,15 @@ class GuiHandViewer:
 
         # hierarchy:  self.mainHBox / self.hpane / self.handsVBox / self.area
 
-        self.mainHBox = gtk.HBox(False, 0)
-        self.mainHBox.show()
+        self.handsFrame = QFrame()
+        self.handsVBox = QVBoxLayout()
+        self.handsFrame.setLayout(self.handsVBox)
 
-        self.leftPanelBox = self.filters.get_vbox()
+        self.addWidget(self.filters)
+        self.addWidget(self.handsFrame)
+        self.setStretchFactor(0, 0)
+        self.setStretchFactor(1, 1)
 
-        self.hpane = gtk.HPaned()
-        self.hpane.pack1(self.leftPanelBox)
-        self.mainHBox.add(self.hpane)
-
-        self.handsVBox = gtk.VBox(False, 0)
-        self.handsVBox.show()
-
-        self.hpane.pack2(self.handsVBox)
-        self.hpane.show()
 
         self.playing = False
 
@@ -187,7 +185,7 @@ class GuiHandViewer:
         card_images[0] = back_image.copy()
         return card_images
 
-    def loadHands(self, button, userdata):
+    def loadHands(self, checkState):
         hand_ids = self.get_hand_ids_from_date_range(self.filters.getDates()[0], self.filters.getDates()[1])
         self.reload_hands(hand_ids)
 
@@ -206,7 +204,7 @@ class GuiHandViewer:
             
         if self.date_from != None and start == self.filters.MIN_DATE:
             start = self.date_from
-            
+
         if self.date_to != None and end == self.filters.MAX_DATE:
             end = self.date_to
 
@@ -303,8 +301,7 @@ class GuiHandViewer:
     def copyHandToClipboard(self, view, event, hand):
         handText = StringIO()
         hand.writeHand(handText)
-        clipboard = gtk.Clipboard(display=gtk.gdk.display_get_default(), selection="CLIPBOARD")
-        clipboard.set_text(handText.getvalue(), len=-1)
+        QApplication.clipboard().setText(handText.getvalue())
 
     def contextMenu(self, view, event):
         if(event.button != 3):
@@ -322,14 +319,6 @@ class GuiHandViewer:
         return False
 
     def refreshHands(self):
-        try:
-            self.handsWindow.destroy()
-        except:
-            pass
-        self.handsWindow = gtk.ScrolledWindow(hadjustment=None, vadjustment=None)
-        self.handsWindow.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-        self.handsVBox.pack_end(self.handsWindow)
-
         # Dict of colnames and their column idx in the model/ListStore
         self.colnum = {
                   'Stakes'       : 0,
@@ -344,44 +333,20 @@ class GuiHandViewer:
                   'Game'         : 9,
                   'HandId'       : 10,
                  }
-        self.liststore = gtk.ListStore(*([str] * len(self.colnum)))
-        self.view = gtk.TreeView()
-        self.view.set_grid_lines(gtk.TREE_VIEW_GRID_LINES_BOTH)
-        self.handsWindow.add(self.view)
+        if self.view:
+            self.handsVBox.removeWidget(self.view)
+            self.view.setParent(None)
+        self.view = QTableView()
+        self.handsVBox.addWidget(self.view)
+        self.liststore = QStandardItemModel(0, len(self.colnum), self.view)
 
-        #self.viewfilter = self.liststore.filter_new()                  #if a filter is used, the sorting doesnt work anymore!! As GtkTreeModelFilter does NOT implement GtkTreeSortable
-        #self.view.set_model(self.viewfilter)
-        self.view.set_model(self.liststore)
-        textcell = gtk.CellRendererText()
-        numcell = gtk.CellRendererText()
-        numcell.set_property('xalign', 1.0)
-        pixbuf   = gtk.CellRendererPixbuf()
-        pixbuf.set_property('xalign', 0.0)
+        self.view.setModel(self.liststore)
+        self.view.verticalHeader().hide()
+        self.liststore.setHorizontalHeaderLabels(
+            ['Stakes', 'Pos', 'Street0', 'Action0', 'Street1-4', 'Action1-4',
+             'Won', 'Bet', 'Net', 'Game', 'HandId'])
 
-        self.view.insert_column_with_data_func(-1, 'Stakes', textcell, reset_style_render_func ,self.colnum['Stakes'])
-        self.view.insert_column_with_data_func(-1, 'Pos', textcell, reset_style_render_func ,self.colnum['Pos'])
-        self.view.insert_column_with_data_func(-1, 'Street 0', pixbuf, card_renderer_cell_func, self.colnum['Street0'])
-        self.view.insert_column_with_data_func(-1, 'Action 0', textcell, reset_style_render_func ,self.colnum['Action0'])
-        self.view.insert_column_with_data_func(-1, 'Street 1-4', pixbuf, card_renderer_cell_func, self.colnum['Street1-4'])
-        self.view.insert_column_with_data_func(-1, 'Action 1-4', textcell, reset_style_render_func ,self.colnum['Action1-4'])
-        self.view.insert_column_with_data_func(-1, 'Won', numcell, reset_style_render_func, self.colnum['Won'])
-        self.view.insert_column_with_data_func(-1, 'Bet', numcell, reset_style_render_func, self.colnum['Bet'])
-        self.view.insert_column_with_data_func(-1, 'Net', numcell, cash_renderer_cell_func, self.colnum['Net'])
-        self.view.insert_column_with_data_func(-1, 'Game', textcell, reset_style_render_func ,self.colnum['Game'])
-        
-        self.liststore.set_sort_func(self.colnum['Street0'], self.sorthand)
-        self.liststore.set_sort_func(self.colnum['Pos'], self.sort_pos, self.colnum['Pos'])
-        self.liststore.set_sort_func(self.colnum['Net'], self.sort_float, self.colnum['Net'])
-        self.liststore.set_sort_func(self.colnum['Bet'], self.sort_float, self.colnum['Bet'])
-        self.view.get_column(self.colnum['Street0']).set_sort_column_id(self.colnum['Street0'])
-        self.view.get_column(self.colnum['Net']).set_sort_column_id(self.colnum['Net'])
-        self.view.get_column(self.colnum['Bet']).set_sort_column_id(self.colnum['Bet'])
-        self.view.get_column(self.colnum['Pos']).set_sort_column_id(self.colnum['Pos'])
-
-        #selection = self.view.get_selection()
-        #selection.set_select_function(self.select_hand, None, True)     #listen on selection (single click)
-        self.view.connect('row-activated', self.row_activated)           #listen to double klick
-        self.view.connect('button-press-event', self.contextMenu)
+        self.view.doubleClicked.connect(self.row_activated)
 
         for handid, hand in self.hands.items():
             hero = self.filters.getHeroes()[hand.sitename]
@@ -407,7 +372,7 @@ class GuiHandViewer:
                     post_actions = hand.get_actions_short_streets(hero, 'FLOP', 'TURN', 'RIVER')
                 
                 row = [hand.getStakesAsString(), pos, hand.join_holecards(hero), pre_actions, ' '.join(board), post_actions, str(won), str(bet), 
-                       str(net), gt, handid]
+                       str(net), gt, str(handid)]
                 
             elif hand.gametype['base'] == 'stud':
                 third = " ".join(hand.holecards['THIRD'][hero][0]) + " " + " ".join(hand.holecards['THIRD'][hero][1]) 
@@ -424,16 +389,19 @@ class GuiHandViewer:
                     post_actions = hand.get_actions_short_streets(hero, 'FOURTH', 'FIFTH', 'SIXTH', 'SEVENTH')
                     
                 row = [hand.getStakesAsString(), pos, third, pre_actions, ' '.join(later_streets), post_actions, str(won), str(bet), str(net), 
-                       gt, handid]
+                       gt, str(handid)]
                 
             elif hand.gametype['base'] == 'draw':
                 row = [hand.getStakesAsString(), pos, hand.join_holecards(hero,street='DEAL'), hand.get_actions_short(hero, 'DEAL'), None, None, 
-                       str(won), str(bet), str(net), gt, handid]
-            
+                       str(won), str(bet), str(net), gt, str(handid)]
+
             if self.is_row_in_card_filter(row):
-                self.liststore.append(row)
-        #self.viewfilter.set_visible_func(self.viewfilter_visible_cb)
-        self.handsWindow.show_all()
+                modelrow = [QStandardItem(r) for r in row]
+                for item in modelrow:
+                    item.setEditable(False)
+                self.liststore.appendRow(modelrow)
+        self.view.resizeColumnsToContents()
+        self.view.setSortingEnabled(True) # do this after resizing columns, otherwise it leaves room for the sorting triangle in every heading
 
     def filter_cards_cb(self, card):
         if hasattr(self, 'hands'):     #Do not call refresh if only filters are refreshed and no hands have been loaded yet
@@ -460,9 +428,8 @@ class GuiHandViewer:
         return False if card_filter[abbr] == False else True
 
     #def select_hand(self, selection, model, path, is_selected, userdata):    #function head for single click event
-    def row_activated(self, view, path, column):
-        model = view.get_model()
-        hand = self.hands[int(model.get_value(model.get_iter(path), self.colnum['HandId']))]
+    def row_activated(self, index):
+        hand = self.hands[int(index.sibling(index.row(), self.colnum['HandId']).data())]
         if hand.gametype['currency']=="USD":    #TODO: check if there are others ..
             currency="$"
         elif hand.gametype['currency']=="EUR":
@@ -472,17 +439,10 @@ class GuiHandViewer:
         else:
             currency = hand.gametype['currency']
             
-        replayer = GuiReplayer.GuiReplayer(self.config, self.sql, self.main_window)
+        self.replayer = GuiReplayer.GuiReplayer(self.config, self.sql, self.main_window)
 
-        replayer.currency = currency
-        replayer.play_hand(hand)
-        return True
-
-
-    def get_vbox(self):
-        """returns the vbox of this thread"""
-        return self.mainHBox
-
+        self.replayer.currency = currency
+        self.replayer.play_hand(hand)
 
     def importhand(self, handid=1):
         # Fetch hand info
@@ -598,3 +558,24 @@ class GuiHandViewer:
             ret = str(net)
         return ret
     '''
+
+if __name__ == "__main__":
+    import Configuration
+    config = Configuration.Config()
+
+    settings = {}
+
+    settings.update(config.get_db_parameters())
+    settings.update(config.get_import_parameters())
+    settings.update(config.get_default_paths())
+
+    from PyQt5.QtWidgets import QApplication, QMainWindow
+    app = QApplication([])
+    import SQL
+    sql = SQL.Sql(db_server=settings['db-server'])
+    main_window = QMainWindow()
+    i = GuiHandViewer(config, sql, main_window)
+    main_window.setCentralWidget(i)
+    main_window.show()
+    main_window.resize(1400, 800)
+    app.exec_()

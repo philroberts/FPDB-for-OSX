@@ -437,24 +437,23 @@ class Filters(QWidget):
     
     def createPositionLine(self, hbox, pos, pos_text):
         cb = QCheckBox(pos_text.replace("_", "__"))
-        cb.clicked.connect(self.__set_position_select)
+        cb.stateChanged.connect(partial(self.__set_position_select, pos=pos))
         hbox.addWidget(cb)
         if pos != "none":
-            cb.setEnabled(True)
+            cb.setChecked(True)
         return cb
-    #end def createPositionLine
 
-    def createCardsWidget(self, hbox):
+    def createCardsWidget(self, grid):
+        grid.setSpacing(0)
         for i in range(0,13):
-            vbox = QVBoxLayout()
             for j in range(0,13):
                 abbr = Card.card_map_abbr[j][i]
                 b = QPushButton("")
-                b.clicked.connect(self.__toggle_card_select)
+                b.setStyleSheet("QPushButton {border-width:0;margin:6;padding:0;}")
+                b.clicked.connect(partial(self.__toggle_card_select, widget=b, card=abbr))
                 self.cards[abbr] = False # NOTE: This is flippped in __toggle_card_select below
-                self.__toggle_card_select(b)
-                vbox.addWidget(b)
-            hbox.addLayout(vbox)
+                self.__toggle_card_select(False, widget=b, card=abbr)
+                grid.addWidget(b, j, i)
 
     def createCardsControls(self, hbox):
         selections = ["All", "Suited", "Off Suit"]
@@ -500,26 +499,24 @@ class Filters(QWidget):
             else:                # when we turn a pos off, turn 'all' off if it's on
                 if self.cbAllGames and self.cbAllGames.isChecked():
                     self.cbAllGames.setChecked(False)
-    #end def __set_game_select
 
-    def __set_position_select(self, w, pos):      
+    def __set_position_select(self, checkState, pos):      
         if (pos == 'all'):
-            if (w.get_active()):
+            if checkState:
                 for cb in self.cbPositions.values():
-                    cb.set_active(True)
+                    cb.setChecked(True)
         elif (pos == 'none'):
-            if (w.get_active()):
+            if checkState:
                 for cb in self.cbPositions.values():
-                    cb.set_active(False)
+                    cb.setChecked(False)
         else:
-            self.positions[pos] = w.get_active()
-            if (w.get_active()): # when we turn a pos on, turn 'none' off if it's on
-                if (self.cbNoPositions and self.cbNoPositions.get_active()):
-                    self.cbNoPositions.set_active(False)
+            self.positions[pos] = checkState
+            if checkState: # when we turn a pos on, turn 'none' off if it's on
+                if (self.cbNoPositions and self.cbNoPositions.isChecked()):
+                    self.cbNoPositions.setChecked(False)
             else:                # when we turn a pos off, turn 'all' off if it's on
-                if (self.cbAllPositions and self.cbAllPositions.get_active()):
-                    self.cbAllPositions.set_active(False)
-    #end def __set_position_select
+                if (self.cbAllPositions and self.cbAllPositions.isChecked()):
+                    self.cbAllPositions.setChecked(False)
 
     def __card_select_bgcolor(self, card, selected):
         s_on  = "red"
@@ -532,11 +529,11 @@ class Filters(QWidget):
         if card[2] == 's': return s_on if selected else s_off
         if card[2] == 'o': return o_on if selected else o_off
 
-    def __toggle_card_select(self, w):
-        card="AA" # FIXME
-        font_size = "xx-small"
-        markup = "<span size='%s'>%s</span>" % (font_size, card)
-        w.setText(card)
+    def __toggle_card_select(self, checkstate, widget, card):
+        font = widget.font()
+        font.setPointSize(10)
+        widget.setFont(font)
+        widget.setText(card)
 
         self.cards[card] = (self.cards[card] == False)
 
@@ -914,9 +911,9 @@ class Filters(QWidget):
         vbox1 = QVBoxLayout()
         frame.setLayout(vbox1)
 
-        hbox = QHBoxLayout()
-        vbox1.addLayout(hbox)
-        self.createCardsWidget(hbox)
+        grid = QGridLayout()
+        vbox1.addLayout(grid)
+        self.createCardsWidget(grid)
 
         # Additional controls for bulk changing card selection
         hbox = QHBoxLayout()
