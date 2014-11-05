@@ -141,6 +141,13 @@ class HUD_main(QObject):
 
     def timerEvent(self, event):
         self.check_tables()
+        if self.config.os_family == "Mac":
+            for hud in self.hud_dict.values():
+                for aw in hud.aux_windows:
+                    for w in aw.m_windows.values():
+                        if w.isVisible():
+                            hud.table.topify(w)
+
 
     def client_moved(self, widget, hud):
         log.debug(_("client_moved event"))
