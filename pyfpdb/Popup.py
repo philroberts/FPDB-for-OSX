@@ -29,15 +29,24 @@ import logging
 # logging has been set up in fpdb.py or HUD_main.py, use their settings:
 log = logging.getLogger("hud")
 
-#    pyGTK modules
-import gtk
+import ctypes
+
+try:
+    from AppKit import NSView, NSWindowAbove
+except ImportError:
+    NSView = None
+
+from PyQt5.QtGui import QCursor
+from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import QGridLayout, QLabel, QVBoxLayout, QWidget
 
 #    FreePokerTools modules
 import Stats
 
-class Popup(gtk.Window):
+class Popup(QWidget):
 
     def __init__(self, seat = None, stat_dict = None, win = None, pop = None, hand_instance = None, config = None, parent_popup = None):
+        super(Popup, self).__init__(parent_popup or win, Qt.Window | Qt.FramelessWindowHint | Qt.WindowDoesNotAcceptFocus)
         self.seat = seat
         self.stat_dict = stat_dict
         self.win = win
@@ -46,37 +55,27 @@ class Popup(gtk.Window):
         self.config = config
         self.parent_popup = parent_popup #parent's instance only used if this popup is a child of another popup
         self.submenu_count = 0 #used to keep track of active submenus - only one at once allowed
-        super(Popup, self).__init__()
-        
-        self.set_destroy_with_parent(True)
 
-#    Most (all?) popups want a label and eb, so let's create them here
-        self.eb = gtk.EventBox()
-        self.add(self.eb)
-
-        self.eb.modify_bg(gtk.STATE_NORMAL, self.win.aw.bgcolor)
-        self.eb.modify_fg(gtk.STATE_NORMAL, self.win.aw.fgcolor)
-
-#    They will also usually want to be undecorated, default colors, etc.
-        self.set_decorated(False)
-        self.set_property("skip-taskbar-hint", True)
-        self.set_focus_on_map(False)
-        self.set_focus(None)
-
+        self.create()
+        self.show()
         #child popups are positioned at the mouse pointer and must be killed if
         # the parent is killed
-        if self.parent_popup:
-            self.set_position(gtk.WIN_POS_MOUSE)
-            self.set_transient_for(self.parent_popup)
+        parent = parent_popup or win
+        if config.os_family == 'Mac' and NSView is not None:
+            selfwinid = self.effectiveWinId()
+            selfcvp = ctypes.c_void_p(int(selfwinid))
+            selfview = NSView(c_void_p=selfcvp)
+            parentwinid = parent.effectiveWinId()
+            parentcvp = ctypes.c_void_p(int(parentwinid))
+            parentview = NSView(c_void_p=parentcvp)
+            parentview.window().addChildWindow_ordered_(selfview.window(), NSWindowAbove)
         else:
-            self.set_position(gtk.WIN_POS_CENTER_ON_PARENT)
-            self.set_transient_for(win)
-            
-        self.set_destroy_with_parent(True)
-        self.create()
+            self.windowHandle().setTransientParent(self.parent_popup.windowHandle())
+        parent.destroyed.connect(self.destroy)
+        self.move(QCursor.pos())
 
 #    Every popup window needs one of these
-    def button_press_cb(self, widget, event, *args):
+    def mousePressEvent(self, event):
         """Handle button clicks on the popup window."""
 #    Any button click gets rid of popup.
         self.destroy_pop()
@@ -111,8 +110,9 @@ class default(Popup):
         if player_id is None:
             self.destroy_pop()
             
-        self.lab = gtk.Label()
-        self.eb.add(self.lab)
+        self.lab = QLabel()
+        self.setLayout(QVBoxLayout())
+        self.layout().addWidget(self.lab)
                
         text,tip_text = "",""
         for stat in self.pop.pu_stats:
@@ -129,13 +129,8 @@ class default(Popup):
         tip_text = tip_text[:-1]
         text = text[:-1]
         
-        self.lab.set_text(text)
+        self.lab.setText(text)
         Stats.do_tip(self.lab, tip_text)
-        self.lab.modify_bg(gtk.STATE_NORMAL, self.win.aw.bgcolor)
-        self.lab.modify_fg(gtk.STATE_NORMAL, self.win.aw.fgcolor)
-        self.eb.connect("button_press_event", self.button_press_cb)
-        self.show_all()
-
 
 class Submenu(Popup):
 #fixme refactor this class, too much repeat code
@@ -153,18 +148,10 @@ class Submenu(Popup):
         if number_of_items < 1:
             self.destroy_pop()
 
-        #Put an eventbox into an eventbox - this allows an all-round
-        #border to be created
-        self.inner_box = gtk.EventBox()
-        self.inner_box.set_border_width(1)
-        self.inner_box.modify_bg(gtk.STATE_NORMAL, self.win.aw.bgcolor)
-        self.inner_box.modify_fg(gtk.STATE_NORMAL, self.win.aw.fgcolor)
-        #set outerbox colour to grey, and attach innerbox
-        self.eb.modify_bg(gtk.STATE_NORMAL, gtk.gdk.Color("#303030"))
-        self.eb.add(self.inner_box)
-        
-        self.grid = gtk.Table(number_of_items,3,False)
-        self.inner_box.add(self.grid)
+        self.grid = QGridLayout()
+        self.grid.setContentsMargins(0, 0, 0, 0)
+        self.grid.setSpacing(0)
+        self.setLayout(self.grid)
         
         grid_line = {}
         row = 1
@@ -172,78 +159,52 @@ class Submenu(Popup):
         for stat,submenu_to_run in self.pop.pu_stats_submenu:
 
             grid_line[row]={}
-            grid_line[row]['eb'] = gtk.EventBox()
-            grid_line[row]['lab'] = gtk.Label()
-            grid_line[row]['eb'].add(grid_line[row]['lab'])
-            grid_line[row]['eb'].modify_bg(gtk.STATE_NORMAL, self.win.aw.bgcolor)
-            grid_line[row]['eb'].modify_fg(gtk.STATE_NORMAL, self.win.aw.fgcolor)
-            grid_line[row]['lab'].modify_bg(gtk.STATE_NORMAL, self.win.aw.bgcolor)
-            grid_line[row]['lab'].modify_fg(gtk.STATE_NORMAL, self.win.aw.fgcolor)
-            grid_line[row]['lab'].set_alignment(xalign=0, yalign=1)
-            grid_line[row]['lab'].set_padding(2,0)
+            grid_line[row]['lab'] = QLabel()
                         
             number = Stats.do_stat(
                     self.stat_dict, player = int(player_id),stat = stat, hand_instance = self.hand_instance)
             if number:
                 grid_line[row]['text'] = number[3]
-                grid_line[row]['lab'].set_text(number[3])
+                grid_line[row]['lab'].setText(number[3])
                 Stats.do_tip(grid_line[row]['lab'], number[5] + " " + number[4])
             else:
                 grid_line[row]['text'] = stat
-                grid_line[row]['lab'].set_text(stat)            
+                grid_line[row]['lab'].setText(stat)
 
             if row == 1:
                 #put an "x" close label onto the popup, invert bg/fg
                 # the window can also be closed by clicking on any non-menu label
                 # but this "x" is added incase the menu is entirely non-menu labels
                 
-                grid_line[row]['x'] = gtk.EventBox()
-                xlab = gtk.Label()
-                xlab.set_text("x")
-                xlab.modify_bg(gtk.STATE_NORMAL, self.win.aw.fgcolor)
-                xlab.modify_fg(gtk.STATE_NORMAL, self.win.aw.bgcolor) 
-                grid_line[row]['x'].add(xlab)
-                grid_line[row]['x'].modify_bg(gtk.STATE_NORMAL, self.win.aw.fgcolor)
-                grid_line[row]['x'].modify_fg(gtk.STATE_NORMAL, self.win.aw.bgcolor)
-                #grid_line[row]['x'].set_border_width(2)
-                self.grid.attach(grid_line[row]['x'], 2, 3, row-1, row)
-                grid_line[row]['x'].connect("button_press_event", self.submenu_press_cb, "_destroy")
+                xlab = QLabel("x")
+                xlab.setStyleSheet("background:%s;color:%s;" % (self.win.aw.fgcolor, self.win.aw.bgcolor))
+                grid_line[row]['x'] = xlab
+                self.grid.addWidget(grid_line[row]['x'], row-1, 2)
                 
             if submenu_to_run:
-                grid_line[row]['arrow_object'] = gtk.EventBox()
-                lab = gtk.Label()
-                lab.set_text(">")
-                lab.modify_bg(gtk.STATE_NORMAL, self.win.aw.bgcolor)
-                lab.modify_fg(gtk.STATE_NORMAL, self.win.aw.fgcolor)
-                lab.set_alignment(xalign=0.75, yalign=0.5)
-                grid_line[row]['arrow_object'].add(lab)
-                grid_line[row]['arrow_object'].modify_bg(gtk.STATE_NORMAL, self.win.aw.bgcolor)
-                grid_line[row]['arrow_object'].modify_fg(gtk.STATE_NORMAL, self.win.aw.fgcolor)
-                grid_line[row]['arrow_object'].connect("button_press_event", self.submenu_press_cb, submenu_to_run)
+                lab = QLabel(">")
+                grid_line[row]['arrow_object'] = lab
+                lab.submenu = submenu_to_run
+                grid_line[row]['lab'].submenu = submenu_to_run
                 if row == 1:
-                    self.grid.attach(grid_line[row]['arrow_object'], 1, 2, row-1, row)
+                    self.grid.addWidget(grid_line[row]['arrow_object'], row-1, 1)
                 else:
-                    self.grid.attach(grid_line[row]['arrow_object'], 1, 3, row-1, row)
-                grid_line[row]['eb'].connect("button_press_event", self.submenu_press_cb, submenu_to_run)
-            else:
-                grid_line[row]['eb'].connect("button_press_event", self.button_press_cb)
+                    self.grid.addWidget(grid_line[row]['arrow_object'], row-1, 1, 1, 2)
 
-            self.grid.attach(grid_line[row]['eb'], 0, 1, row-1, row)
+            self.grid.addWidget(grid_line[row]['lab'], row-1, 0)
                 
             row += 1
 
-        self.show_all()
-
-
-    def submenu_press_cb(self, widget, event, *args):
-        """Handle button clicks in the FPDB main menu event box."""
-
-        popup_to_run = args[0]
-        if popup_to_run == "_destroy":
+    def mousePressEvent(self, event):
+        widget = self.childAt(event.pos())
+        submenu = "_destroy"
+        if hasattr(widget, 'submenu'):
+            submenu = widget.submenu
+        if submenu == "_destroy":
             self.destroy_pop()
             return
         if self.submenu_count < 1: # only 1 popup allowed to be open at this level
-            popup_factory(self.seat,self.stat_dict, self.win, self.config.popup_windows[popup_to_run], self.hand_instance, self.config, self)
+            popup_factory(self.seat,self.stat_dict, self.win, self.config.popup_windows[submenu], self.hand_instance, self.config, self)
             
 class Multicol(Popup):
 #like a default, but will flow into columns of 16 items
@@ -263,10 +224,9 @@ class Multicol(Popup):
         if number_of_items < 1:
             self.destroy_pop()
 
-        number_of_cols = number_of_items / 16.
-        if number_of_cols != round((number_of_items / 16.),0):
+        number_of_cols = number_of_items / 16
+        if number_of_cols % 16:
             number_of_cols += 1
-        number_of_cols = int(number_of_cols)
 
         number_per_col = number_of_items / float(number_of_cols)
 
@@ -275,9 +235,9 @@ class Multicol(Popup):
         #number_per_col = int(number_per_col)
         number_per_col = 16
 
-        self.grid = gtk.Table(1,int(number_of_cols),False)
-        self.grid.set_col_spacings(5)
-        self.eb.add(self.grid)
+        self.grid = QGridLayout()
+        self.setLayout(self.grid)
+        self.grid.setHorizontalSpacing(5)
 
         col_index,row_index  = 0,0
         text, tip_text = {},{}
@@ -306,17 +266,9 @@ class Multicol(Popup):
                 text[col_index] += "\n"
 
         for i in text:
-            contentbox = gtk.EventBox()
-            contentbox.modify_bg(gtk.STATE_NORMAL, self.win.aw.bgcolor)
-            contentbox.connect("button_press_event", self.button_press_cb)
-            contentlab = gtk.Label()
-            contentbox.add(contentlab)
-            contentlab.set_text(text[i][:-1])
-            contentlab.modify_fg(gtk.STATE_NORMAL, self.win.aw.fgcolor)
+            contentlab = QLabel(text[i][:-1])
             Stats.do_tip(contentlab, tip_text[i][:-1])
-            self.grid.attach(contentbox, int(i), int(i)+1, 0, 1)
-
-        self.show_all()
+            self.grid.addWidget(contentlab, 0, int(i))
 
             
 def popup_factory(seat = None, stat_dict = None, win = None, pop = None, hand_instance = None, config = None, parent_popup = None):

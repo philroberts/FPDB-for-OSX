@@ -31,9 +31,7 @@ import logging
 # logging has been set up in fpdb.py or HUD_main.py, use their settings:
 log = logging.getLogger("hud")
 
-#    pyGTK modules
-import pygtk
-import gtk
+from PyQt5.QtGui import QWindow
 
 #    Other Library modules
 import win32gui
@@ -93,7 +91,7 @@ class Table(Table_Window):
         self.number = hwnd
         if self.gdkhandle is None:
             try:   # Windows likes this here - Linux doesn't
-                self.gdkhandle = gtk.gdk.window_foreign_new(self.number)
+                self.gdkhandle = QWindow.fromWinId(self.number)
             except AttributeError:
                 pass
 
@@ -179,10 +177,10 @@ class Table(Table_Window):
         #window.set_accept_focus(False)
 
         if self.gdkhandle is None:
-            self.gdkhandle = gtk.gdk.window_foreign_new(int(self.number))
+            self.gdkhandle = QWindow.fromWinId(int(self.number))
         #    Then call set_transient_for on the gdk handle of the HUD window
         #    with the gdk handle of the table window as the argument.
-        window.window.set_transient_for(self.gdkhandle)
+        window.windowHandle().setTransientParent(self.gdkhandle)
         
 
 def win_enum_handler(hwnd, titles):

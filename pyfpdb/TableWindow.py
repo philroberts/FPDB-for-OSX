@@ -34,10 +34,6 @@ import re
 import logging
 from time import time, sleep
 
-#    pyGTK modules
-import gtk
-import gobject
-
 #    FreePokerTools modules
 import Configuration
 from HandHistoryConverter import getTableTitleRe
@@ -68,35 +64,6 @@ limit_game_names = { #fpdb name      Stars Name   FTP Name
 #    A window title might have our table name + one of these words/
 #    phrases. If it has this word in the title, it is not a table.
 bad_words = ('History for table:', 'HUD:', 'Chat:', 'FPDBHUD', 'Lobby')
-
-#    Here are the custom signals we define for allowing the 'client watcher'
-#    thread to communicate with the gui thread. Any time a poker client is
-#    is moved, resized, or closed one of these signals is emitted to the
-#    HUD main window.
-gobject.signal_new("client_moved", gtk.Window,
-                   gobject.SIGNAL_RUN_LAST,
-                   gobject.TYPE_NONE,
-                   (gobject.TYPE_PYOBJECT,))
-
-gobject.signal_new("client_resized", gtk.Window,
-                   gobject.SIGNAL_RUN_LAST,
-                   gobject.TYPE_NONE,
-                   (gobject.TYPE_PYOBJECT,))
-
-gobject.signal_new("client_destroyed", gtk.Window,
-                   gobject.SIGNAL_RUN_LAST,
-                   gobject.TYPE_NONE,
-                   (gobject.TYPE_PYOBJECT,))
-
-gobject.signal_new("game_changed", gtk.Window,
-                   gobject.SIGNAL_RUN_LAST,
-                   gobject.TYPE_NONE,
-                   (gobject.TYPE_PYOBJECT,))
-
-gobject.signal_new("table_changed", gtk.Window,
-                   gobject.SIGNAL_RUN_LAST,
-                   gobject.TYPE_NONE,
-                   (gobject.TYPE_PYOBJECT,))
 
 #    Each TableWindow object must have the following attributes correctly populated:
 #    tw.name = the table name from the title bar, which must to match the table name
@@ -218,18 +185,7 @@ class Table_Window(object):
 #    determine if the client has been moved or resized. check_table()
 #    also checks and signals if the client has been closed. 
     def check_table(self, hud):
-        result = self.check_size()
-        if result != False:
-            hud.parent.main_window.emit(result, hud)
-            if result == "client_destroyed":
-                return True
-
-        result = self.check_loc()
-        if result != False:
-            hud.parent.main_window.emit(result, hud)
-            if result == "client_destroyed":
-                return True
-        return True
+        return self.check_size() or self.check_loc()
 
 ####################################################################
 #    "check" methods. They use the corresponding get method, update the
