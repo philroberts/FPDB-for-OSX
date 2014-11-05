@@ -50,7 +50,7 @@ class SealsWithClubs(HandHistoryConverter):
     # Static regexes
     re_GameInfo = re.compile(ur"""Hand\s*\#(?P<HID>\d+)-\d+\s*-\s*(?P<DATETIME>[\-:\d ]+)\s*
                          Game:\s*(?P<LIMIT>(NL|PL|Limit))\s*(?P<GAME>(Hold'em|Omaha|Omaha\ Hi-Lo))
-                         \s*\(\d+\s*-\s*(?P<BUYIN>\d+)\)\s*-\s*
+                         \s*\([\d\.]+\s*-\s*(?P<BUYIN>\d+)\)\s*-\s*
                          (Blinds|Stakes)\s*(?P<SB>[\d\.]+)/(?P<BB>[\d.]+)\s*
                          Site:\s+Seals\s+With\s+Clubs\s*
                          (Table:\sL\w+\s\d+max\s(?P<SB1>[\d\.]+)/(?P<BB1>[\d.]+))?""",re.VERBOSE)
