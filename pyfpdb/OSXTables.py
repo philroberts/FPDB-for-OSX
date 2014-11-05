@@ -63,9 +63,7 @@ class Table(Table_Window):
             return None
   
     def get_geometry(self):
-
-        WinList = CGWindowListCreate(0,0)
-        WinListDict = CGWindowListCreateDescriptionFromArray(WinList)
+        WinListDict = CGWindowListCreateDescriptionFromArray((self.number,))
 
         for d in WinListDict:
             if d[kCGWindowNumber] == self.number:
@@ -77,8 +75,7 @@ class Table(Table_Window):
         return None
 
     def get_window_title(self):
-        WinList = CGWindowListCreate(0,0)
-        WinListDict = CGWindowListCreateDescriptionFromArray(WinList)
+        WinListDict = CGWindowListCreateDescriptionFromArray((self.number,))
 
         for d in WinListDict:
             if d[kCGWindowNumber] == self.number:
