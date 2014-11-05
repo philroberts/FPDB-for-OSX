@@ -314,4 +314,3 @@ class SealsWithClubs(HandHistoryConverter):
         log.debug("Seals.getTableTitleRe: table_name='%s' tournament='%s' table_number='%s'" % (table_name, tournament, table_number))
         log.debug("Seals.getTableTitleRe: returns: '%s'" % (regex))
         return regex
-    
