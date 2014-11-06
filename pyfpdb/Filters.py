@@ -453,7 +453,7 @@ class Filters(QWidget):
         return(cb)
 
     def createLimitLine(self, hbox, limit, ltext):
-        cb = QCheckBox(str(ltext))
+        cb = QCheckBox(ltext)
         cb.stateChanged.connect(partial(self.__set_limit_select, limit=limit))
         hbox.addWidget(cb)
         if limit != "none":
