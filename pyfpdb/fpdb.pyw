@@ -1187,6 +1187,15 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
             
         self.load_profile(create_db=True)
         
+        if self.config.install_method == 'app':
+            for site in self.config.supported_sites.values():
+                if site.screen_name != "YOUR SCREEN NAME HERE":
+                    break
+            else: # No site has a screen name set
+                options.initialRun = True
+                self.display_config_created_dialogue = True
+                self.display_site_preferences = True
+
         if options.initialRun and self.display_site_preferences:
             self.dia_site_preferences(None,None)
             self.display_site_preferences=False
@@ -1294,12 +1303,10 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
             self.window.present()
 
     def info_box(self, str1, str2):
-        diapath = gtk.MessageDialog(parent=self.window, flags=gtk.DIALOG_DESTROY_WITH_PARENT, type=gtk.MESSAGE_INFO,
-                                    buttons=(gtk.BUTTONS_OK), message_format=str1)
-        diapath.format_secondary_text(str2)
-        response = diapath.run()
-        diapath.destroy()
-        return response
+        diapath = QMessageBox(self)
+        diapath.setWindowTitle(str1)
+        diapath.setText(str2)
+        return diapath.exec_()
 
     def warning_box(self, string, diatitle=_("FPDB WARNING")):
         return QMessageBox(QMessageBox.Warning, diatitle, string).exec_()
