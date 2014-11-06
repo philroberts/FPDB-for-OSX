@@ -143,7 +143,7 @@ class Classic_stat(Aux_Hud.Simple_stat):
             except: pass
         self.set_color(fg=fg,bg=None)
         
-        statstring = "%s%s%s" % (self.hudprefix, str(self.number[1]), self.hudsuffix)
+        statstring = "%s%s%s" % (self.hudprefix, unicode(self.number[1]), self.hudsuffix)
         self.lab.setText(statstring)
         
         tip = "%s\n%s\n%s, %s" % (stat_dict[player_id]['screen_name'], self.number[5], self.number[3], self.number[4])

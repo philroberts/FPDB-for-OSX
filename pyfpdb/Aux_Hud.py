@@ -195,7 +195,7 @@ class Simple_stat(object):
         self.lab.stat_dict = stat_dict
         self.number = Stats.do_stat(stat_dict, player_id, self.stat, self.hud.hand_instance)
         if self.number:
-            self.lab.setText(str(self.number[1]))
+            self.lab.setText(unicode(self.number[1]))
 
     def set_color(self, fg=None, bg=None):
         ss = ""
