@@ -47,7 +47,8 @@ def importName(module_name, name):
 
     try:
         module = __import__(module_name, globals(), locals(), [name])
-    except:
+    except Exception as e:
+        log.error("Could not load hud module %s: %s" % (module_name, e))
         return None
     return(getattr(module, name))
 
