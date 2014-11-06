@@ -73,13 +73,15 @@ CONFIG_VERSION = 83
 # PYTHON_VERSION (n.n)
 
 if hasattr(sys, "frozen"):
-    INSTALL_METHOD = "exe"
+    if platform.system() == 'Windows':
+        INSTALL_METHOD = "exe"
+    elif platform.system() == 'Darwin':
+        INSTALL_METHOD = "app"
 else:
     INSTALL_METHOD = "source"
 
-if INSTALL_METHOD == "exe":
-    temp = os.path.dirname(unicode(sys.executable, sys.getfilesystemencoding())) # should be exe path to \fpdbroot\pyfpdb
-    FPDB_ROOT_PATH = os.path.join(temp, os.pardir)   # go up one level (to fpdbroot)
+if INSTALL_METHOD == "exe" or INSTALL_METHOD == "app":
+    FPDB_ROOT_PATH = os.path.dirname(unicode(sys.executable, sys.getfilesystemencoding())) # should be exe path to \fpdbroot\pyfpdb
 elif sys.path[0] == "": # we are probably running directly (>>>import Configuration)
     temp = os.getcwdu() # should be ./pyfpdb
     FPDB_ROOT_PATH = os.path.join(temp, os.pardir)   # go up one level (to fpdbroot)
@@ -1723,7 +1725,7 @@ if __name__== "__main__":
     print "gui_cash_stats =", c.gui_cash_stats
 
     print "\n----------- ENVIRONMENT CONSTANTS -----------"
-    print "Configuration.install_method {source,exe} =", INSTALL_METHOD
+    print "Configuration.install_method {source,exe,app} =", INSTALL_METHOD
     print "Configuration.fpdb_root_path =", FPDB_ROOT_PATH, type(FPDB_ROOT_PATH)
     print "Configuration.graphics_path =", GRAPHICS_PATH, type(GRAPHICS_PATH)
     print "Configuration.appdata_path =", APPDATA_PATH, type(APPDATA_PATH)

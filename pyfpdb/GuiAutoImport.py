@@ -201,6 +201,9 @@ class GuiAutoImport(QWidget):
                         path = self.config.pyfpdb_path
                         command = "HUD_main.exe"
                         bs = 0
+                    elif self.config.install_method == "app":
+                        command = os.path.join(sys.path[0], "HUD_main")
+                        bs = 1
                     elif os.name == 'nt':
                         path = sys.path[0].replace('\\','\\\\')
                         if win32console.GetConsoleWindow() == 0:
