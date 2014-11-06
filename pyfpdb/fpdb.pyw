@@ -633,7 +633,7 @@ class fpdb(QMainWindow):
     def dia_site_preferences(self, widget, data=None):
         dia = QDialog(self)
         dia.setWindowTitle(_("Site Preferences"))
-        dia.resize(750,550)
+        dia.resize(950,550)
         label = QLabel(_("Please select which sites you play on and enter your usernames."))
         dia.setLayout(QVBoxLayout())
         dia.layout().addWidget(label)
