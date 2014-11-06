@@ -31,6 +31,8 @@ import os
 import objc
 import ctypes
 
+import AppKit # Work around some pyinstaller weirdness.
+
 from AppKit import NSView, NSWindowAbove
 from Quartz.CoreGraphics import (CGWindowListCreate,
                                  CGWindowListCreateDescriptionFromArray,
