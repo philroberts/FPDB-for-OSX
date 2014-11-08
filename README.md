@@ -46,7 +46,7 @@ possibly `hash -r` in case your shell has the system python command
 cached.
 
 Now you should be able to start fpdb like this:
-`run_fpdb.py`
+`./run_fpdb.py`
 
 Caveats/Known Bugs
 ------------------
