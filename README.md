@@ -41,7 +41,7 @@ pypokereval.  I had to build pypokereval myself to add python 2.7
 support, so if you can't be bothered with that you'll want to
 substitute the py26 versions of the above.
 
-Next you'll have to run `port select --set python python27` and
+Next you'll have to run `sudo port select --set python python27` and
 possibly `hash -r` in case your shell has the system python command
 cached.
 
