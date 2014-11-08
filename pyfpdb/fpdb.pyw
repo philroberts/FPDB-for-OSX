@@ -39,7 +39,12 @@ import logging
 
 from PyQt5.QtCore import (QCoreApplication, Qt)
 from PyQt5.QtGui import (QScreen,)
-from PyQt5.QtWidgets import (QAction, QApplication, QLabel, QMainWindow, QTabWidget, QHBoxLayout, QVBoxLayout, QGridLayout, QScrollArea, QCheckBox, QLineEdit, QPushButton, QDialog, QDialogButtonBox, QFileDialog, QMessageBox)
+from PyQt5.QtWidgets import (QAction, QApplication, QCheckBox,
+                             QDialog, QDialogButtonBox, QFileDialog,
+                             QGridLayout, QHBoxLayout, QInputDialog,
+                             QLabel, QLineEdit, QMainWindow,
+                             QMessageBox, QPushButton, QScrollArea,
+                             QTabWidget, QVBoxLayout)
 
 import interlocks
 
