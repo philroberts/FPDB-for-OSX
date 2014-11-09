@@ -37,10 +37,11 @@ cl_options = string.join(sys.argv[1:])
 
 import logging
 
-from PyQt5.QtCore import (QCoreApplication, Qt)
+from PyQt5.QtCore import (QCoreApplication, QDate, Qt)
 from PyQt5.QtGui import (QScreen,)
-from PyQt5.QtWidgets import (QAction, QApplication, QCheckBox,
-                             QDialog, QDialogButtonBox, QFileDialog,
+from PyQt5.QtWidgets import (QAction, QApplication, QCalendarWidget,
+                             QCheckBox, QDateEdit, QDialog,
+                             QDialogButtonBox, QFileDialog,
                              QGridLayout, QHBoxLayout, QInputDialog,
                              QLabel, QLineEdit, QMainWindow,
                              QMessageBox, QPushButton, QScrollArea,
@@ -488,122 +489,97 @@ class fpdb(QMainWindow):
     def dia_recreate_tables(self, widget, data=None):
         """Dialogue that asks user to confirm that he wants to delete and recreate the tables"""
         if self.obtain_global_lock("fpdb.dia_recreate_tables"):  # returns true if successful
-            dia_confirm = gtk.MessageDialog(parent=self.window, flags=gtk.DIALOG_DESTROY_WITH_PARENT, type=gtk.MESSAGE_WARNING,
-                    buttons=(gtk.BUTTONS_YES_NO), message_format=_("Confirm deleting and recreating tables"))
+            dia_confirm = QMessageBox(QMessageBox.Warning, "Wipe DB", _("Confirm deleting and recreating tables"), QMessageBox.Yes | QMessageBox.No, self)
             diastring = _("Please confirm that you want to (re-)create the tables.") \
                         + " " + (_("If there already are tables in the database %s on %s they will be deleted and you will have to re-import your histories.") % (self.db.database, self.db.host)) + "\n"\
                         + _("This may take a while.")
-            dia_confirm.format_secondary_text(diastring)  # todo: make above string with bold for db, host and deleted
-            # disable windowclose, do not want the the underlying processing interrupted mid-process
-            dia_confirm.set_deletable(False)
+            dia_confirm.setInformativeText(diastring)  # todo: make above string with bold for db, host and deleted
+            response = dia_confirm.exec_()
 
-            response = dia_confirm.run()
-            dia_confirm.destroy()
-            if response == gtk.RESPONSE_YES:
+            if response == QMessageBox.Yes:
                 self.db.recreate_tables()
                 # find any guibulkimport/guiautoimport windows and clear cache:
                 for t in self.threads:
                     if isinstance(t, GuiBulkImport.GuiBulkImport) or isinstance(t, GuiAutoImport.GuiAutoImport):
                         t.importer.database.resetCache()
                 self.release_global_lock()
-            elif response == gtk.RESPONSE_NO:
+            else:
                 self.release_global_lock()
                 print _('User cancelled recreating tables')
         else:
             self.warning_box(_("Cannot open Database Maintenance window because other windows have been opened. Re-start fpdb to use this option."))
 
-    #end def dia_recreate_tables
-
     def dia_recreate_hudcache(self, widget, data=None):
         if self.obtain_global_lock("dia_recreate_hudcache"):
-            self.dia_confirm = gtk.MessageDialog(parent=self.window, flags=gtk.DIALOG_DESTROY_WITH_PARENT, type=gtk.MESSAGE_WARNING, buttons=(gtk.BUTTONS_YES_NO), message_format="Confirm recreating HUD cache")
-            diastring = _("Please confirm that you want to re-create the HUD cache.")
-            self.dia_confirm.format_secondary_text(diastring)
-            # disable windowclose, do not want the the underlying processing interrupted mid-process
-            self.dia_confirm.set_deletable(False)
+            self.dia_confirm = QDialog()
+            self.dia_confirm.setWindowTitle("Confirm recreating HUD cache")
+            self.dia_confirm.setLayout(QVBoxLayout())
+            self.dia_confirm.layout().addWidget(QLabel(_("Please confirm that you want to re-create the HUD cache.")))
 
-            hb1 = gtk.HBox(True, 1)
-            self.h_start_date = gtk.Entry(max=12)
-            self.h_start_date.set_text(self.db.get_hero_hudcache_start())
+            hb1 = QHBoxLayout()
+            self.h_start_date = QDateEdit(QDate.fromString(self.db.get_hero_hudcache_start(), "yyyy-MM-dd"))
             lbl = QLabel(_(" Hero's cache starts: "))
-            btn = QPushButton()
-            btn.set_image(gtk.image_new_from_stock(gtk.STOCK_INDEX, gtk.ICON_SIZE_BUTTON))
-            btn.connect('clicked', self.__calendar_dialog, self.h_start_date)
+            btn = QPushButton("Cal")
+            btn.clicked.connect(partial(self.__calendar_dialog, entry=self.h_start_date))
 
-            hb1.pack_start(lbl, expand=True, padding=3)
-            hb1.pack_start(self.h_start_date, expand=True, padding=2)
-            hb1.pack_start(btn, expand=False, padding=3)
-            self.dia_confirm.vbox.add(hb1)
-            hb1.show_all()
+            hb1.addWidget(lbl)
+            hb1.addStretch()
+            hb1.addWidget(self.h_start_date)
+            hb1.addWidget(btn)
+            self.dia_confirm.layout().addLayout(hb1)
 
-            hb2 = gtk.HBox(True, 1)
-            self.start_date = gtk.Entry(max=12)
-            self.start_date.set_text(self.db.get_hero_hudcache_start())
+            hb2 = QHBoxLayout()
+            self.start_date = QDateEdit(QDate.fromString(self.db.get_hero_hudcache_start(), "yyyy-MM-dd"))
             lbl = QLabel(_(" Villains' cache starts: "))
-            btn = QPushButton()
-            btn.set_image(gtk.image_new_from_stock(gtk.STOCK_INDEX, gtk.ICON_SIZE_BUTTON))
-            btn.connect('clicked', self.__calendar_dialog, self.start_date)
+            btn = QPushButton("Cal")
+            btn.clicked.connect(partial(self.__calendar_dialog, entry=self.start_date))
 
-            hb2.pack_start(lbl, expand=True, padding=3)
-            hb2.pack_start(self.start_date, expand=True, padding=2)
-            hb2.pack_start(btn, expand=False, padding=3)
-            self.dia_confirm.vbox.add(hb2)
-            hb2.show_all()
+            hb2.addWidget(lbl)
+            hb2.addStretch()
+            hb2.addWidget(self.start_date)
+            hb2.addWidget(btn)
+            self.dia_confirm.layout().addLayout(hb2)
 
-            response = self.dia_confirm.run()
-            if response == gtk.RESPONSE_YES:
-                lbl = QLabel(_(" Rebuilding HUD Cache ... "))
-                self.dia_confirm.vbox.add(lbl)
-                lbl.show()
-                while gtk.events_pending():
-                    gtk.main_iteration_do(False)
+            btns = QDialogButtonBox(QDialogButtonBox.Yes | QDialogButtonBox.No)
+            self.dia_confirm.layout().addWidget(btns)
+            btns.accepted.connect(self.dia_confirm.accept)
+            btns.rejected.connect(self.dia_confirm.reject)
 
-                self.db.rebuild_cache(self.h_start_date.get_text(), self.start_date.get_text())
-            elif response == gtk.RESPONSE_NO:
+            response = self.dia_confirm.exec_()
+            if response:
+                print _(" Rebuilding HUD Cache ... ")
+
+                self.db.rebuild_cache(self.h_start_date.date().toString("yyyy-MM-dd"), self.start_date.date().toString("yyyy-MM-dd"))
+            else:
                 print _('User cancelled rebuilding hud cache')
 
-            self.dia_confirm.destroy()
             self.release_global_lock()
         else:
             self.warning_box(_("Cannot open Database Maintenance window because other windows have been opened. Re-start fpdb to use this option."))
 
-
     def dia_rebuild_indexes(self, widget, data=None):
         if self.obtain_global_lock("dia_rebuild_indexes"):
-            self.dia_confirm = gtk.MessageDialog(parent=self.window,
-                                                 flags=gtk.DIALOG_DESTROY_WITH_PARENT,
-                                                 type=gtk.MESSAGE_WARNING,
-                                                 buttons=(gtk.BUTTONS_YES_NO),
-                                                 message_format=_("Confirm rebuilding database indexes"))
+            self.dia_confirm = QMessageBox(QMessageBox.Warning,
+                                           "Rebuild DB",
+                                           _("Confirm rebuilding database indexes"),
+                                           QMessageBox.Yes | QMessageBox.No,
+                                           self)
             diastring = _("Please confirm that you want to rebuild the database indexes.")
-            self.dia_confirm.format_secondary_text(diastring)
-            lbl = QLabel()
-            self.dia_confirm.vbox.add(lbl)
-            lbl.show()
-            # disable windowclose, do not want the the underlying processing interrupted mid-process
-            self.dia_confirm.set_deletable(False)
+            self.dia_confirm.setInformativeText(diastring)
 
-            response = self.dia_confirm.run()
-            if response == gtk.RESPONSE_YES:
-                
-                lbl.set_text(_(" Rebuilding Indexes ... "))
-                while gtk.events_pending():
-                    gtk.main_iteration_do(False)
+            response = self.dia_confirm.exec_()
+            if response == QMessageBox.Yes:
+                print _(" Rebuilding Indexes ... ")
                 self.db.rebuild_indexes()
 
-                lbl.set_text(_(" Cleaning Database ... "))
-                while gtk.events_pending():
-                    gtk.main_iteration_do(False)
+                print _(" Cleaning Database ... ")
                 self.db.vacuumDB()
 
-                lbl.set_text(_(" Analyzing Database ... "))
-                while gtk.events_pending():
-                    gtk.main_iteration_do(False)
+                print _(" Analyzing Database ... ")
                 self.db.analyzeDB()
-            elif response == gtk.RESPONSE_NO:
+            else:
                 print _('User cancelled rebuilding db indexes')
 
-            self.dia_confirm.destroy()
             self.release_global_lock()
         else:
             self.warning_box(_("Cannot open Database Maintenance window because other windows have been opened. Re-start fpdb to use this option."))
@@ -777,27 +753,21 @@ class fpdb(QMainWindow):
             pass
 
     def __calendar_dialog(self, widget, entry):
-# do not alter the modality of the parent
-#        self.dia_confirm.set_modal(False)
-        d = gtk.Window(gtk.WINDOW_TOPLEVEL)
-        d.set_transient_for(self.dia_confirm)
-        d.set_destroy_with_parent(True)
-        d.set_modal(True)
+        d = QDialog(self.dia_confirm)
+        d.setWindowTitle(_('Pick a date'))
 
-        d.set_title(_('Pick a date'))
-
-        vb = gtk.VBox()
-        cal = gtk.Calendar()
-        vb.pack_start(cal, expand=False, padding=0)
+        vb = QVBoxLayout()
+        d.setLayout(vb)
+        cal = QCalendarWidget()
+        vb.addWidget(cal)
 
         btn = QPushButton(_('Done'))
-        btn.connect('clicked', self.__get_date, cal, entry, d)
+        btn.clicked.connect(partial(self.__get_date, calendar=cal, entry=entry, win=d))
 
-        vb.pack_start(btn, expand=False, padding=4)
+        vb.addWidget(btn)
 
-        d.add(vb)
-        d.set_position(gtk.WIN_POS_MOUSE)
-        d.show_all()
+        d.exec_()
+        return
 
     def __get_dates(self):
         t1 = self.h_start_date.get_text()
@@ -809,13 +779,10 @@ class fpdb(QMainWindow):
         return (t1, t2)
 
     def __get_date(self, widget, calendar, entry, win):
-        # year and day are correct, month is 0..11
-        (year, month, day) = calendar.get_date()
-        month += 1
-        ds = '%04d-%02d-%02d' % (year, month, day)
-        entry.set_text(ds)
-        win.destroy()
-        self.dia_confirm.set_modal(True)
+        newDate = calendar.selectedDate()
+        entry.setDate(newDate)
+
+        win.accept()
 
     def createMenuBar(self):
         mb = self.menuBar()
@@ -857,10 +824,10 @@ class fpdb(QMainWindow):
         #tournamentMenu.addAction(makeAction(_('Tourney _Viewer'), self.tab_tourney_viewer_stats))
 
         maintenanceMenu.addAction(makeAction(_('_Statistics'), self.dia_database_stats, 'View Database Statistics'))
-        #maintenanceMenu.addAction(makeAction(_('Create or Recreate _Tables'), self.dia_recreate_tables)
-        #maintenanceMenu.addAction(makeAction(_('Rebuild HUD Cache'), self.dia_recreate_hudcache))
-        #maintenanceMenu.addAction(makeAction(_('Rebuild DB Indexes'), self.dia_rebuild_indexes))
-        #maintenanceMenu.addAction(makeAction(_('Dump Database to Textfile (takes ALOT of time)'), self.dia_dump_db))
+        maintenanceMenu.addAction(makeAction(_('Create or Recreate _Tables'), self.dia_recreate_tables))
+        maintenanceMenu.addAction(makeAction(_('Rebuild HUD Cache'), self.dia_recreate_hudcache))
+        maintenanceMenu.addAction(makeAction(_('Rebuild DB Indexes'), self.dia_rebuild_indexes))
+        maintenanceMenu.addAction(makeAction(_('Dump Database to Textfile (takes ALOT of time)'), self.dia_dump_db))
 
         helpMenu.addAction(makeAction(_('_Log Messages'), self.dia_logs, 'Log and Debug Messages'))
         helpMenu.addAction(makeAction(_('_Help Tab'), self.tab_main_help))
