@@ -852,7 +852,7 @@ class fpdb(QMainWindow):
         cashMenu.addAction(makeAction(_('Session Stats'), self.tab_session_stats))
         #cashMenu.addAction(makeAction(_('Stove (preview)'), self.tabStove))
 
-        #tournamentMenu.addAction(makeAction(_('Tourney Graphs'), self.tabTourneyGraphViewer))
+        tournamentMenu.addAction(makeAction(_('Tourney Graphs'), self.tabTourneyGraphViewer))
         #tournamentMenu.addAction(makeAction(_('_Tourney Stats'), self.tab_tourney_player_stats))
         #tournamentMenu.addAction(makeAction(_('Tourney _Viewer'), self.tab_tourney_viewer_stats))
 
@@ -1117,10 +1117,9 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
 
     def tabTourneyGraphViewer(self, widget, data=None):
         """opens a graph viewer tab"""
-        new_gv_thread = GuiTourneyGraphViewer.GuiTourneyGraphViewer(self.sql, self.config, self.window)
+        new_gv_thread = GuiTourneyGraphViewer.GuiTourneyGraphViewer(self.sql, self.config, self)
         self.threads.append(new_gv_thread)
-        gv_tab = new_gv_thread.get_vbox()
-        self.add_and_display_tab(gv_tab, _("Tourney Graphs"))
+        self.add_and_display_tab(new_gv_thread, _("Tourney Graphs"))
 
     def tabStove(self, widget, data=None):
         """opens a tab for poker stove"""
