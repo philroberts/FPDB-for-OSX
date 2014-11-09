@@ -20,13 +20,18 @@ _ = L10n.get_translation()
 
 from time import time, strftime
 
+from PyQt5.QtCore import Qt
+from PyQt5.QtGui import (QStandardItem, QStandardItemModel)
+from PyQt5.QtWidgets import (QFrame, QSplitter, QTableView, QVBoxLayout)
+
 import Charset
 import TourneyFilters
 
 colalias,colshow,colheading,colxalign,colformat,coltype = 0,1,2,3,4,5
 
-class GuiTourneyPlayerStats:
+class GuiTourneyPlayerStats(QSplitter):
     def __init__(self, config, db, sql, mainwin, debug=True):
+        QSplitter.__init__(self, mainwin)
         self.conf = config
         self.db = db
         self.cursor = self.db.cursor
@@ -34,8 +39,8 @@ class GuiTourneyPlayerStats:
         self.main_window = mainwin
         self.debug = debug
         
-        self.liststore = []   # gtk.ListStore[]         stores the contents of the grids
-        self.listcols = []    # gtk.TreeViewColumn[][]  stores the columns in the grids
+        self.liststore = [] # QStandardItemModel[] stores the contents of the grids
+        self.listcols = []
         
         filters_display = { "Heroes"    : True,
                             "Sites"     : True,
@@ -55,8 +60,6 @@ class GuiTourneyPlayerStats:
         self.stats_frame = None
         self.stats_vbox = None
         self.detailFilters = []   # the data used to enhance the sql select
-
-        self.main_hbox = gtk.HPaned()
 
         self.filters = TourneyFilters.TourneyFilters(self.db, self.conf, self.sql, display = filters_display)
         #self.filters.registerButton1Name(_("_Filters"))
@@ -87,35 +90,28 @@ class GuiTourneyPlayerStats:
                        , ["roi",            True,  _("ROI%"),    1.0, "%3.0f", "str"]
                        , ["profitPerTourney", True,_("$/Tour"),  1.0, "%3.2f", "str"]]
                        
-        self.stats_frame = gtk.Frame()
-        self.stats_frame.show()
+        self.stats_frame = QFrame()
+        self.stats_frame.setLayout(QVBoxLayout())
 
-        self.stats_vbox = gtk.VPaned()
-        self.stats_vbox.show()
-        self.stats_frame.add(self.stats_vbox)
+        self.stats_vbox = QSplitter(Qt.Vertical)
+        self.stats_frame.layout().addWidget(self.stats_vbox)
         # self.fillStatsFrame(self.stats_vbox)
 
         #self.main_hbox.pack_start(self.filters.get_vbox())
         #self.main_hbox.pack_start(self.stats_frame, expand=True, fill=True)
-        self.main_hbox.pack1(self.filters.get_vbox())
-        self.main_hbox.pack2(self.stats_frame)
-        self.main_hbox.show()
-    #end def __init__
+        self.addWidget(self.filters)
+        self.addWidget(self.stats_frame)
+        self.setStretchFactor(0, 0)
+        self.setStretchFactor(1, 1)
 
     def addGrid(self, vbox, query, numTourneys, tourneyTypes, playerids, sitenos, seats):
-        #print "start of addGrid query", query
-        #print "start of addGrid. numTourneys:",numTourneys,"tourneyTypes:", tourneyTypes, "playerids:",playerids
-        counter = 0
-        row = 0
         sqlrow = 0
         grid=numTourneys #TODO: should this be numTourneyTypes?
         
         query = self.sql.query[query]
         query = self.refineQuery(query, numTourneys, tourneyTypes, playerids, sitenos, seats)
-        #print "DEBUG:\n%s" % query
         self.cursor.execute(query)
         result = self.cursor.fetchall()
-        #print "result of the big query in addGrid:",result
         colnames = [desc[0] for desc in self.cursor.description]
 
         # pre-fetch some constant values:
@@ -124,16 +120,11 @@ class GuiTourneyPlayerStats:
         self.cols_to_show = self.columns #TODO do i need above 2 lines?
         
         assert len(self.liststore) == grid, "len(self.liststore)="+str(len(self.liststore))+" grid-1="+str(grid)
-        self.liststore.append( gtk.ListStore(*([str] * len(self.cols_to_show))) )
-        view = gtk.TreeView(model=self.liststore[grid])
-        view.set_grid_lines(gtk.TREE_VIEW_GRID_LINES_BOTH)
-        #vbox.pack_start(view, expand=False, padding=3)
-        vbox.add(view)
-        textcell = gtk.CellRendererText()
-        textcell50 = gtk.CellRendererText()
-        textcell50.set_property('xalign', 0.5)
-        numcell = gtk.CellRendererText()
-        numcell.set_property('xalign', 1.0)
+        view = QTableView()
+        self.liststore.append(QStandardItemModel(0, len(self.cols_to_show), view))
+        view.setModel(self.liststore[grid])
+        view.verticalHeader().hide()
+        vbox.addWidget(view)
         assert len(self.listcols) == grid
         self.listcols.append( [] )
 
@@ -143,33 +134,8 @@ class GuiTourneyPlayerStats:
                 s = [x for x in self.columns if x[colalias] == 'hand'][0][colheading]
             else:
                 s = column[colheading]
-            self.listcols[grid].append(gtk.TreeViewColumn(s))
-            view.append_column(self.listcols[grid][col])
-            if column[colformat] == '%s':
-                if column[colxalign] == 0.0:
-                    self.listcols[grid][col].pack_start(textcell, expand=True)
-                    self.listcols[grid][col].add_attribute(textcell, 'text', col)
-                    cellrend = textcell
-                else:
-                    self.listcols[grid][col].pack_start(textcell50, expand=True)
-                    self.listcols[grid][col].add_attribute(textcell50, 'text', col)
-                    cellrend = textcell50
-                self.listcols[grid][col].set_expand(True)
-            else:
-                self.listcols[grid][col].pack_start(numcell, expand=True)
-                self.listcols[grid][col].add_attribute(numcell, 'text', col)
-                self.listcols[grid][col].set_expand(True)
-                cellrend = numcell
-                #self.listcols[grid][col].set_alignment(column[colxalign]) # no effect?
-            self.listcols[grid][col].set_clickable(True)
-            self.listcols[grid][col].connect("clicked", self.sortCols, (col,grid))
-            if col == 0:
-                self.listcols[grid][col].set_sort_order(gtk.SORT_DESCENDING)
-                self.listcols[grid][col].set_sort_indicator(True)
-            if column[coltype] == 'cash':
-                self.listcols[grid][col].set_cell_data_func(numcell, self.ledger_style_render_func)
-            else:
-                self.listcols[grid][col].set_cell_data_func(cellrend, self.reset_style_render_func)
+            self.listcols[grid].append(s)
+        self.liststore[grid].setHorizontalHeaderLabels(self.listcols[grid])
 
         rows = len(result) # +1 for title row
 
@@ -188,32 +154,25 @@ class GuiTourneyPlayerStats:
                             value = value + ' ' + 'Super Turbo'
                         else:
                             value = value + ' ' + result[sqlrow][colnames.index('speed')]
+                item = QStandardItem('')
                 if value != None and value != -999:
-                    treerow.append(column[colformat] % value)
-                else:
-                    treerow.append(' ')
-            #print "addGrid, just before end of big for. grid:",grid,"treerow:",treerow
-            iter = self.liststore[grid].append(treerow)
+                    item = QStandardItem(column[colformat] % value)
+                item.setEditable(False)
+                item.setTextAlignment(Qt.AlignRight)
+                treerow.append(item)
+            self.liststore[grid].appendRow(treerow)
             sqlrow += 1
-            row += 1
-        vbox.show_all()
-    #end def addGrid
+
+        view.resizeColumnsToContents()
+        view.setSortingEnabled(True)
 
     def createStatsTable(self, vbox, tourneyTypes, playerids, sitenos, seats):
         startTime = time()
-        show_detail = True
-
-        # Scrolled window for summary table
-        swin = gtk.ScrolledWindow(hadjustment=None, vadjustment=None)
-        swin.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-        swin.show()
-        vbox.pack1(swin)
 
         numTourneys = self.filters.getNumTourneys()
-        self.addGrid(swin, 'tourneyPlayerDetailedStats', numTourneys, tourneyTypes, playerids, sitenos, seats)
+        self.addGrid(vbox, 'tourneyPlayerDetailedStats', numTourneys, tourneyTypes, playerids, sitenos, seats)
 
         print _("Stats page displayed in %4.2f seconds") % (time() - startTime)
-    #end def createStatsTable
 
     def fillStatsFrame(self, vbox):
         tourneyTypes = self.filters.getTourneyTypes()
@@ -244,13 +203,7 @@ class GuiTourneyPlayerStats:
             return
         
         self.createStatsTable(vbox, tourneyTypes, playerids, sitenos, seats)
-    #end def fillStatsFrame
 
-    def get_vbox(self):
-        """returns the vbox of this thread"""
-        return self.main_hbox
-    #end def get_vbox
-    
     def refineQuery(self, query, numTourneys, tourneyTypes, playerids, sitenos, seats):
         having = ''
         
@@ -275,7 +228,7 @@ class GuiTourneyPlayerStats:
         for m in self.filters.display.items():
             if m[0] == 'Sites' and m[1]:
                 for n in sitenos:
-                        q.append(n)
+                    q.append(n)
                 if len(q) > 0:
                     sitetest = str(tuple(q))
                     sitetest = sitetest.replace("L", "")
@@ -328,26 +281,22 @@ class GuiTourneyPlayerStats:
         query = query.replace("<enddate_test>", end_date)
 
         return(query)
-    #end def refineQuery
 
-    def refreshStats(self, widget, data):
-        self.last_pos = self.stats_vbox.get_position()
-        try: self.stats_vbox.destroy()
-        except AttributeError: pass
+    def refreshStats(self, widget):
+#        self.last_pos = self.stats_vbox.get_position()
+        self.stats_frame.layout().removeWidget(self.stats_vbox)
+        self.stats_vbox.setParent(None)
         self.liststore = []
         self.listcols = []
         #self.stats_vbox = gtk.VBox(False, 0)
-        self.stats_vbox = gtk.VPaned()
-        self.stats_vbox.show()
-        self.stats_frame.add(self.stats_vbox)
+        self.stats_vbox = QSplitter(Qt.Vertical)
+        self.stats_frame.layout().addWidget(self.stats_vbox)
         self.fillStatsFrame(self.stats_vbox)
-        if self.last_pos > 0:
-            self.stats_vbox.set_position(self.last_pos)
-    #end def refreshStats
+#        if self.last_pos > 0:
+#            self.stats_vbox.set_position(self.last_pos)
     
     def reset_style_render_func(self, treeviewcolumn, cell, model, iter):
         cell.set_property('foreground', None)
-    #end def reset_style_render_func
 
     def sortCols(self, col, nums):
         #This doesn't actually work yet - clicking heading in top section sorts bottom section :-(
@@ -363,5 +312,26 @@ class GuiTourneyPlayerStats:
         self.listcols[grid][n].set_sort_indicator(True)
         # use this   listcols[col].set_sort_indicator(True)
         # to turn indicator off for other cols
-    #end def sortCols
-#end class GuiTourneyPlayerStats
+
+if __name__ == "__main__":
+    import Configuration
+    config = Configuration.Config()
+
+    settings = {}
+
+    settings.update(config.get_db_parameters())
+    settings.update(config.get_import_parameters())
+    settings.update(config.get_default_paths())
+
+    from PyQt5.QtWidgets import QApplication, QMainWindow
+    app = QApplication([])
+    import SQL
+    sql = SQL.Sql(db_server=settings['db-server'])
+    import Database
+    db= Database.Database(config, sql)
+    main_window = QMainWindow()
+    i = GuiTourneyPlayerStats(config, db, sql, main_window)
+    main_window.setCentralWidget(i)
+    main_window.show()
+    main_window.resize(1400, 800)
+    app.exec_()

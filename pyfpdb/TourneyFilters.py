@@ -29,6 +29,9 @@ from time import gmtime, mktime, strftime, strptime
 import logging #logging has been set up in fpdb.py or HUD_main.py, use their settings:
 log = logging.getLogger("filter")
 
+from PyQt5.QtCore import QDate
+from PyQt5.QtWidgets import (QDateEdit, QGroupBox, QPushButton)
+
 #import Configuration
 #import Database
 #import SQL
@@ -37,6 +40,7 @@ import Filters
 
 class TourneyFilters(Filters.Filters):
     def __init__(self, db, config, qdict, display = {}, debug=True):
+        Filters.Filters.__init__(self, db, config, qdict, display, debug)
         self.debug = debug
         self.db = db
         self.cursor = db.cursor
@@ -53,27 +57,8 @@ class TourneyFilters(Filters.Filters):
         if 'day_start' in gen:
             self.day_start = float(gen['day_start'])
 
-        self.sw = gtk.ScrolledWindow()
-        self.sw.set_border_width(0)
-        self.sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-        self.sw.set_size_request(370, 300)
-
-        # Outer Packing box
-        self.mainVBox = gtk.VBox(False, 0)
-        self.sw.add_with_viewport(self.mainVBox)
-        self.sw.show()
-
         self.label = {}
         self.callback = {}
-
-        self.make_filter()
-    #end def __init__
-    
-    def __refresh(self, widget, entry): #identical with Filters
-        for w in self.mainVBox.get_children():
-            w.destroy()
-        self.make_filter()
-    #end def __refresh
 
     def make_filter(self):
         self.tourneyTypes = {}
@@ -95,73 +80,44 @@ class TourneyFilters(Filters.Filters):
                 log.debug(_("Either 0 or more than one site matched for %s") % site)
 
         # For use in date ranges.
-        self.start_date = gtk.Entry(max=12)
-        self.end_date = gtk.Entry(max=12)
-        self.start_date.set_property('editable', False)
-        self.end_date.set_property('editable', False)
+        self.start_date = QDateEdit(QDate(1970,1,1))
+        self.end_date = QDateEdit(QDate(2100,1,1))
 
         # For use in groups etc
         #self.sbGroups = {}
         self.numTourneys = 0
 
-        playerFrame = gtk.Frame()
-        playerFrame.set_label_align(0.0, 0.0)
-        vbox = gtk.VBox(False, 0)
+        playerFrame = QGroupBox(self.filterText['playerstitle'])
+        self.fillPlayerFrame(playerFrame, self.display)
+        self.layout().addWidget(playerFrame)
 
-        self.fillPlayerFrame(vbox, self.display)
-        playerFrame.add(vbox)
-
-        sitesFrame = gtk.Frame()
-        sitesFrame.set_label_align(0.0, 0.0)
-        vbox = gtk.VBox(False, 0)
-
-        self.fillSitesFrame(vbox)
-        sitesFrame.add(vbox)
+        sitesFrame = QGroupBox(self.filterText['sitestitle'])
+        self.fillSitesFrame(sitesFrame)
+        self.layout().addWidget(sitesFrame)
 
         # Tourney types
-        tourneyTypesFrame = gtk.Frame()
-        tourneyTypesFrame.set_label_align(0.0, 0.0)
-        tourneyTypesFrame.show()
-        vbox = gtk.VBox(False, 0)
-
-        self.fillTourneyTypesFrame(vbox)
-        tourneyTypesFrame.add(vbox)
+        tourneyTypesFrame = QGroupBox(_('Tourney Type'))
+        self.fillTourneyTypesFrame(tourneyTypesFrame)
+        #self.layout().addWidget(tourneyTypesFrame)
 
         # Seats
-        seatsFrame = gtk.Frame()
-        seatsFrame.show()
-        vbox = gtk.VBox(False, 0)
+        seatsFrame = QGroupBox(self.filterText['seatstitle'])
+        self.layout().addWidget(seatsFrame)
         self.sbSeats = {}
-
-        self.fillSeatsFrame(vbox, self.display)
-        seatsFrame.add(vbox)
+        self.fillSeatsFrame(seatsFrame)
 
         # Date
-        dateFrame = gtk.Frame()
-        dateFrame.set_label_align(0.0, 0.0)
-        dateFrame.show()
-        vbox = gtk.VBox(False, 0)
-
-        self.fillDateFrame(vbox)
-        dateFrame.add(vbox)
+        dateFrame = QGroupBox(self.filterText['datestitle'])
+        self.layout().addWidget(dateFrame)
+        self.fillDateFrame(dateFrame)
 
         # Buttons
         #self.Button1=gtk.Button("Unnamed 1")
         #self.Button1.set_sensitive(False)
 
-        self.Button2=gtk.Button("Unnamed 2")
-        self.Button2.set_sensitive(False)
-
-        expand = False
-        self.mainVBox.pack_start(playerFrame, expand)
-        self.mainVBox.pack_start(sitesFrame, expand)
-        self.mainVBox.pack_start(seatsFrame, expand)
-        self.mainVBox.pack_start(dateFrame, expand)
-        self.mainVBox.pack_start(gtk.VBox(False, 0))
-        #self.mainVBox.pack_start(self.Button1, expand)
-        self.mainVBox.pack_start(self.Button2, expand)
-
-        self.mainVBox.show_all()
+        self.Button2=QPushButton("Unnamed 2")
+        self.Button2.setEnabled(False)
+        self.layout().addWidget(self.Button2)
 
         # Should do this cleaner
         if "Heroes" not in self.display or self.display["Heroes"] == False:
@@ -190,5 +146,39 @@ class TourneyFilters(Filters.Filters):
 
         # make sure any locks on db are released:
         self.db.rollback()
-    #end def make_filter
-#end class TourneyFilters
+
+if __name__ == '__main__':
+    import Configuration
+    config = Configuration.Config(file = "HUD_config.test.xml")
+    import Database
+    db = Database.Database(config)
+
+    import SQL
+    qdict = SQL.Sql(db_server = 'sqlite')
+
+    filters_display = { "Heroes"    : True,
+                        "Sites"     : True,
+                        "Games"     : False,
+                        "Cards"     : False,
+                        "Currencies": False,
+                        "Limits"    : False,
+                        "LimitSep"  : False,
+                        "LimitType" : False,
+                        "Type"      : False,
+                        "UseType"   : 'tour',
+                        "Seats"     : True,
+                        "SeatSep"   : False,
+                        "Dates"     : True,
+                        "GraphOps"  : False,
+                        "Groups"    : False,
+                        "Button1"   : False,
+                        "Button2"   : True
+                          }
+
+    from PyQt5.QtWidgets import QMainWindow, QApplication
+    app = QApplication([])
+    i = TourneyFilters(db, config, qdict, display = filters_display)
+    main_window = QMainWindow()
+    main_window.setCentralWidget(i)
+    main_window.show()
+    app.exec_()

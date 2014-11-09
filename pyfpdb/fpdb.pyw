@@ -853,7 +853,7 @@ class fpdb(QMainWindow):
         #cashMenu.addAction(makeAction(_('Stove (preview)'), self.tabStove))
 
         tournamentMenu.addAction(makeAction(_('Tourney Graphs'), self.tabTourneyGraphViewer))
-        #tournamentMenu.addAction(makeAction(_('_Tourney Stats'), self.tab_tourney_player_stats))
+        tournamentMenu.addAction(makeAction(_('_Tourney Stats'), self.tab_tourney_player_stats))
         #tournamentMenu.addAction(makeAction(_('Tourney _Viewer'), self.tab_tourney_viewer_stats))
 
         maintenanceMenu.addAction(makeAction(_('_Statistics'), self.dia_database_stats, 'View Database Statistics'))
@@ -1061,10 +1061,9 @@ class fpdb(QMainWindow):
         self.add_and_display_tab(new_ps_thread, _("Ring Player Stats"))
 
     def tab_tourney_player_stats(self, widget, data=None):
-        new_ps_thread = GuiTourneyPlayerStats.GuiTourneyPlayerStats(self.config, self.db, self.sql, self.window)
+        new_ps_thread = GuiTourneyPlayerStats.GuiTourneyPlayerStats(self.config, self.db, self.sql, self)
         self.threads.append(new_ps_thread)
-        ps_tab=new_ps_thread.get_vbox()
-        self.add_and_display_tab(ps_tab, _("Tourney Stats"))
+        self.add_and_display_tab(new_ps_thread, _("Tourney Stats"))
 
     def tab_tourney_viewer_stats(self, widget, data=None):
         new_thread = GuiTourneyViewer.GuiTourneyViewer(self.config, self.db, self.sql, self.window)

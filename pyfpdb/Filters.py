@@ -19,9 +19,10 @@ import L10n
 _ = L10n.get_translation()
 
 from PyQt5.QtCore import QDate
-from PyQt5.QtWidgets import (QCalendarWidget, QCheckBox, QCompleter, QDateEdit,
-                             QDialog, QFrame, QGridLayout, QGroupBox, QHBoxLayout,
-                             QLabel, QLineEdit, QPushButton, QRadioButton,
+from PyQt5.QtWidgets import (QCalendarWidget, QCheckBox, QCompleter,
+                             QDateEdit, QDialog, QGridLayout,
+                             QGroupBox, QHBoxLayout, QLabel,
+                             QLineEdit, QPushButton, QRadioButton,
                              QSpinBox, QVBoxLayout, QWidget)
 
 from time import gmtime, mktime, strftime, strptime
@@ -405,9 +406,9 @@ class Filters(QWidget):
 
     def createTourneyTypeLine(self, hbox, tourneyType):
         cb = QCheckBox(str(tourneyType))
-        cb.connect('clicked', self.__set_tourney_type_select, tourneyType)
-        hbox.pack_start(cb, False, False, 0)
-        cb.set_active(True)
+        cb.clicked.connect(partial(self.__set_tourney_type_select, tourneyType=tourneyType))
+        hbox.addWidget(cb)
+        cb.setChecked(True)
 
     def createGameLine(self, hbox, game, gtext):
         cb = QCheckBox(gtext.replace("_", "__"))
@@ -783,26 +784,15 @@ class Filters(QWidget):
             #    print "Either 0 or more than one site matched - EEK"
 
     def fillTourneyTypesFrame(self, vbox):
-        top_hbox = QHBoxLayout()
-        vbox.pack_start(top_hbox, False, False, 0)
-        lbl_title = QLabel(self.filterText['tourneyTypesTitle'])
-        lbl_title.set_alignment(xalign=0.0, yalign=0.5)
-        top_hbox.pack_start(lbl_title, expand=True, padding=3)
-        showb = QPushButton(label=_("hide"), stock=None, use_underline=True)
-        showb.set_alignment(xalign=1.0, yalign=0.5)
-        showb.connect('clicked', self.__toggle_box, 'tourneyTypes')
-        self.toggles['tourneyTypes'] = showb
-        top_hbox.pack_start(showb, expand=False, padding=1)
-
         vbox1 = QVBoxLayout()
-        vbox.pack_start(vbox1, False, False, 0)
+        vbox.setLayout(vbox1)
         self.boxes['tourneyTypes'] = vbox1
 
         result = self.db.getTourneyTypesIds()
         if len(result) >= 1:
             for line in result:
                 hbox = QHBoxLayout()
-                vbox1.pack_start(hbox, False, True, 0)
+                vbox1.addLayout(hbox)
                 self.createTourneyTypeLine(hbox, line[0])
         else:
             print _("INFO: No tourney types returned from database")
