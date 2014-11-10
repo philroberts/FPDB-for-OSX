@@ -51,6 +51,13 @@ Now you should be able to start fpdb like this:
 Caveats/Known Bugs
 ------------------
 
-Too many to list.  This should be considered alpha software at best.
+Almost all of the basic functionality has now been ported.  Exceptions:
+
+* Configure -> HUD Stats Settings.  This probably merits a rework.
+* Import -> Import through eMail/IMAP.  Is this solving a real problem?  I'll port this when someone tells me they use it.
+* Cash -> Positional Stats.  This seems to replicate functionality available in Ring Player Stats.  Again, I'll port this when someone complains.
+* Cash -> Stove.  This doesn't do anything useful anyway.
+* Tournament -> Tourney Viewer.  Unless I'm missing something, this is not very functional yet anyway.
+
 Please report any problems using the
 [github issue tracker](https://github.com/philroberts/FPDB-for-OSX/issues).
