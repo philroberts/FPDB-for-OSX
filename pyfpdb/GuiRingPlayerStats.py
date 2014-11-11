@@ -375,7 +375,8 @@ class GuiRingPlayerStats(QSplitter):
                         sortValue = float(value)
                 item.setData(sortValue, Qt.UserRole)
                 item.setEditable(False)
-                item.setTextAlignment(Qt.AlignRight)
+                if col != 0:
+                    item.setTextAlignment(Qt.AlignRight)
                 if column[colalias] != 'game':
                     item.setToolTip('<big>%s for %s</big><br/><i>%s</i>' % (column[colheading],treerow[0].text(),onlinehelp[column[colheading]]))
                 treerow.append(item)
