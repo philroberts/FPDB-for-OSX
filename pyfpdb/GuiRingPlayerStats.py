@@ -289,56 +289,6 @@ class GuiRingPlayerStats(QSplitter):
         else:
             cell.set_property('foreground', 'darkgreen')
 
-    def sortnums(self, model, iter1, iter2, nums):
-        ret = 0
-        (n, grid) = nums
-        a = self.liststore[grid].get_value(iter1, n)
-        b = self.liststore[grid].get_value(iter2, n)
-        if 'f' in self.cols_to_show[n][4]:
-            try:     a = float(a)
-            except:  a = 0.0
-            try:     b = float(b)
-            except:  b = 0.0
-        if n == 0 and grid == 1: #make sure it only works on the starting hands
-            a1,a2,a3 = ranks[a[0]], ranks[a[1]], (a+'o')[2]
-            b1,b2,b3 = ranks[b[0]], ranks[b[1]], (b+'o')[2]
-            if a1 > b1 or ( a1 == b1 and (a2 > b2 or (a2 == b2 and a3 > b3) ) ):
-                ret = 1
-            else:
-                ret = -1
-        else:
-            if a < b:
-                ret = -1
-            elif a == b:
-                ret = 0
-            else:
-                ret = 1
-        #print "n =", n, "iter1[n] =", self.liststore[grid].get_value(iter1,n), "iter2[n] =", self.liststore[grid].get_value(iter2,n), "ret =", ret
-
-        return(ret)
-
-    def sortcols(self, col, nums):
-        try:
-            #This doesn't actually work yet - clicking heading in top section sorts bottom section :-(
-            (n, grid) = nums
-            if not col.get_sort_indicator() or col.get_sort_order() == gtk.SORT_ASCENDING:
-                col.set_sort_order(gtk.SORT_DESCENDING)
-            else:
-                col.set_sort_order(gtk.SORT_ASCENDING)
-            self.liststore[grid].set_sort_column_id(n, col.get_sort_order())
-            self.liststore[grid].set_sort_func(n, self.sortnums, (n,grid))
-            for i in xrange(len(self.listcols[grid])):
-                self.listcols[grid][i].set_sort_indicator(False)
-            self.listcols[grid][n].set_sort_indicator(True)
-            # use this   listcols[col].set_sort_indicator(True)
-            # to turn indicator off for other cols
-        except:
-            err = traceback.extract_tb(sys.exc_info()[2])
-            print ("***sortcols " + _("error") + ": " + str(sys.exc_info()[1]))
-            print "\n".join( [e[0]+':'+str(e[1])+" "+e[2] for e in err] )
-    #end def sortcols
-    
-
     def addGrid(self, vbox, query, flags, playerids, sitenos, limits, type, seats, groups, dates, games, currencies):
         counter = 0
         sqlrow = 0
@@ -360,6 +310,7 @@ class GuiRingPlayerStats(QSplitter):
         assert len(self.liststore) == grid, "len(self.liststore)="+str(len(self.liststore))+" grid-1="+str(grid)
         view = QTableView()
         self.liststore.append(QStandardItemModel(0, len(self.cols_to_show), view))
+        self.liststore[grid].setSortRole(Qt.UserRole)
         view.setModel(self.liststore[grid])
         view.verticalHeader().hide()
         vbox.addWidget(view)
@@ -412,8 +363,17 @@ class GuiRingPlayerStats(QSplitter):
                     else:
                         continue
                 item = QStandardItem('')
+                sortValue = -1e9
                 if value != None and value != -999:
                     item = QStandardItem(column[colformat] % value)
+                    if col == 0: # starting hand/gametype
+                        if grid == 0: # gametype
+                            sortValue = value
+                        else: # starting hand
+                            sortValue = 1000 * ranks[value[0]] + 10 * ranks[value[1]] + (1 if len(value) == 3 and value[2] == 's' else 0)
+                    else:
+                        sortValue = float(value)
+                item.setData(sortValue, Qt.UserRole)
                 item.setEditable(False)
                 item.setTextAlignment(Qt.AlignRight)
                 if column[colalias] != 'game':
