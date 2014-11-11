@@ -31,7 +31,8 @@ import SQL
 import Filters
 import Deck
 
-from PyQt5.QtGui import (QStandardItem, QStandardItemModel)
+from PyQt5.QtCore import Qt
+from PyQt5.QtGui import (QPainter, QPixmap, QStandardItem, QStandardItemModel)
 from PyQt5.QtWidgets import (QApplication, QFrame, QLabel, QSplitter, QTableView,
                              QVBoxLayout)
 
@@ -54,11 +55,9 @@ pp = pprint.PrettyPrinter(indent=4)
 global card_images
 card_images = 53 * [0]
 
-def card_renderer_cell_func(tree_column, cell, model, tree_iter, data):
+def card_renderer_cell_func(coldata):
     card_width  = 30
     card_height = 42
-    col = data
-    coldata = model.get_value(tree_iter, col)
     if coldata == None or coldata == '':
         coldata = "0x"
     coldata = coldata.replace("'","")
@@ -66,22 +65,16 @@ def card_renderer_cell_func(tree_column, cell, model, tree_iter, data):
     coldata = coldata.replace("]","")
     coldata = coldata.replace("'","")
     coldata = coldata.replace(",","")
-    #print "DEBUG: coldata: %s" % (coldata)
     cards = [Card.encodeCard(c) for c in coldata.split(' ')]
     n_cards = len(cards)
 
-    #print "DEBUG: cards: %s" % cards
-    pixbuf = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, True, 8, card_width * n_cards, card_height)
-    if pixbuf:
-        x = 0 # x coord where the next card starts in scratch
-        for card in cards:
-            if card == None or card ==0:
-                card_images[0].copy_area(0, 0, card_width, card_height, pixbuf, x, 0)
-
-            card_images[card].copy_area(0, 0, card_width, card_height, pixbuf, x, 0)
-            x = x + card_width
-    cell.set_property('pixbuf', pixbuf)
-
+    pixbuf = QPixmap(card_width * n_cards, card_height)
+    painter = QPainter(pixbuf)
+    x = 0 # x coord where the next card starts in pixbuf
+    for card in cards:
+        painter.drawPixmap(x, 0, card_images[card])
+        x += card_width
+    return pixbuf
 
 # This function is a duplicate of 'ledger_style_render_func' in GuiRingPlayerStats
 # TODO: Pull generic cell formatting functions into something common.
@@ -396,9 +389,13 @@ class GuiHandViewer(QSplitter):
 
             if self.is_row_in_card_filter(row):
                 modelrow = [QStandardItem(r) for r in row]
-                for item in modelrow:
+                for index, item in enumerate(modelrow):
                     item.setEditable(False)
+                    if index in (self.colnum['Street0'], self.colnum['Street1-4']):
+                        item.setData(card_renderer_cell_func(item.data(Qt.DisplayRole)), Qt.DecorationRole)
+                        item.setData("", Qt.DisplayRole)
                 self.liststore.appendRow(modelrow)
+        self.view.resizeRowsToContents()
         self.view.resizeColumnsToContents()
         self.view.setSortingEnabled(True) # do this after resizing columns, otherwise it leaves room for the sorting triangle in every heading
 
