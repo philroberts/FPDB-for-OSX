@@ -385,6 +385,7 @@ class GuiRingPlayerStats(QSplitter):
 
         view.resizeColumnsToContents()
         view.setSortingEnabled(True) # do this after resizing columns, otherwise it leaves room for the sorting triangle in every heading
+        view.resizeColumnToContents(0) # we want room for the sorting triangle in column 0 where it starts.
 
     def refineQuery(self, query, flags, playerids, sitenos, limits, type, seats, groups, dates, games, currencies):
         having = ''
