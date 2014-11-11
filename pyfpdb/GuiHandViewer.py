@@ -331,6 +331,7 @@ class GuiHandViewer(QSplitter):
         self.view = QTableView()
         self.handsVBox.addWidget(self.view)
         self.liststore = QStandardItemModel(0, len(self.colnum), self.view)
+        self.liststore.setSortRole(Qt.UserRole)
 
         self.view.setModel(self.liststore)
         self.view.verticalHeader().hide()
@@ -394,6 +395,8 @@ class GuiHandViewer(QSplitter):
                     if index in (self.colnum['Street0'], self.colnum['Street1-4']):
                         item.setData(card_renderer_cell_func(item.data(Qt.DisplayRole)), Qt.DecorationRole)
                         item.setData("", Qt.DisplayRole)
+                    if index in (self.colnum['Bet'], self.colnum['Net']):
+                        item.setData(float(item.data(Qt.DisplayRole)), Qt.UserRole)
                 self.liststore.appendRow(modelrow)
         self.view.resizeRowsToContents()
         self.view.resizeColumnsToContents()
