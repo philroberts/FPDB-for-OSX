@@ -200,12 +200,12 @@ class Simple_stat(object):
             self.lab.setText(unicode(self.number[1]))
 
     def set_color(self, fg=None, bg=None):
-        ss = ""
+        ss = "QLabel{"
         if fg:
             ss += "color: %s;" % fg
         if bg:
             ss += "background: %s;" % bg
-        self.lab.setStyleSheet(ss)
+        self.lab.setStyleSheet(ss + "}")
 
 class Simple_label(QLabel): pass
 
