@@ -329,6 +329,7 @@ class GuiHandViewer(QSplitter):
             self.handsVBox.removeWidget(self.view)
             self.view.setParent(None)
         self.view = QTableView()
+        self.view.setSelectionBehavior(QTableView.SelectRows)
         self.handsVBox.addWidget(self.view)
         self.liststore = QStandardItemModel(0, len(self.colnum), self.view)
         self.liststore.setSortRole(Qt.UserRole)

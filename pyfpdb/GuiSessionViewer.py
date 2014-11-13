@@ -445,6 +445,7 @@ class GuiSessionViewer(QSplitter):
         self.view = QTableView()
         self.view.setModel(self.liststore)
         self.view.verticalHeader().hide()
+        self.view.setSelectionBehavior(QTableView.SelectRows)
         frame.layout().addWidget(self.view)
         self.view.doubleClicked.connect(self.row_activated)
 
