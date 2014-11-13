@@ -134,6 +134,7 @@ class Seat_Window(QWidget):
 
     def button_release_left(self, event):
         self.lastPos = None
+        self.aw.configure_event_cb(self, self.seat)
     def button_release_middle(self, event): pass #subclass will define this
     def button_release_right(self, event):  pass #subclass will define this
     
@@ -265,7 +266,7 @@ class Aux_Seats(Aux_Window):
         log.error(_("save_layout method should be handled in the aux"))
 
 
-    def configure_event_cb(self, widget, event, i, *args):
+    def configure_event_cb(self, widget, i):
         """
         This method updates the current location for each statblock.
         This method is needed to record moves for an individual block.
@@ -273,8 +274,8 @@ class Aux_Seats(Aux_Window):
         This is not optimal, but isn't easy to work around. fixme.
         """
         if (i): 
-            new_abs_position = widget.get_position() #absolute value of the new position
-            new_position = (new_abs_position[0]-self.hud.table.x, new_abs_position[1]-self.hud.table.y)
+            new_abs_position = widget.pos() #absolute value of the new position
+            new_position = (new_abs_position.x()-self.hud.table.x, new_abs_position.y()-self.hud.table.y)
             self.positions[i] = new_position     #write this back to our map
             if i != "common":
                 self.hud.layout.location[self.adj[i]] = new_position #update the hud-level dict, so other aux can be told
