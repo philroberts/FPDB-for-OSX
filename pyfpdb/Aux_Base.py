@@ -104,6 +104,7 @@ class Seat_Window(QWidget):
         self.aw = aw
         self.seat = seat
         self.resize(10,10)
+        self.setAttribute(Qt.WA_AlwaysShowToolTips)
         self.show()
 
     def mousePressEvent(self, event):
