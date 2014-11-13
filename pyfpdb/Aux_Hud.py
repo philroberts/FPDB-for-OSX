@@ -154,8 +154,9 @@ class Simple_Stat_Window(Aux_Base.Seat_Window):
     def create_contents(self, i):
         self.setStyleSheet("background:%s;color:%s;" % (self.aw.bgcolor, self.aw.fgcolor))
         self.grid = QGridLayout()
-        self.grid.setSpacing(2)
-        self.grid.setContentsMargins(0, 0, 0, 0)
+        self.grid.setHorizontalSpacing(4)
+        self.grid.setVerticalSpacing(1)
+        self.grid.setContentsMargins(2, 2, 2, 2)
         self.setLayout(self.grid)
         self.stat_box = [ [None]*self.aw.ncols for i in range(self.aw.nrows) ]
 
@@ -183,6 +184,7 @@ class Simple_stat(object):
     def __init__(self, stat, seat, popup, game_stat_config=None, aw=None):
         self.stat = stat
         self.lab = aw.aw_class_label("xxx") # xxx is used as initial value because longer labels don't shrink
+        self.lab.setAlignment(Qt.AlignCenter)
         self.lab.aw_seat = seat
         self.lab.aw_popup = popup
         self.lab.stat_dict = None
