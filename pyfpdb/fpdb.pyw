@@ -86,6 +86,7 @@ Configuration.set_logfile("fpdb-log.txt")
 log = logging.getLogger("fpdb")
 
 try:
+    assert not hasattr(sys, 'frozen') # We're surely not in a git repo if this fails
     import subprocess
     VERSION = subprocess.Popen(["git", "describe", "--tags", "--dirty"], stdout=subprocess.PIPE).communicate()[0]
     VERSION = VERSION[:-1]
