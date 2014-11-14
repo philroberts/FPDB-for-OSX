@@ -14,12 +14,16 @@ bunch of libraries, and install and run an X server.  This irks me.
 There was recently some talk on the fpdb mailing list suggesting a
 port to Qt would make Windows development easier too.
 
-Another win is that it should now be possible to build an OSX app for
-distribution using pyinstaller.  This is almost, but not quite, ready
-for an alpha release.
+Another win is that it is now possible to build an OSX app for
+distribution using pyinstaller.
 
 How?
 ----
+
+If you just want to try the prebuilt app, check the
+[wiki](https://github.com/philroberts/FPDB-for-OSX/wiki/Initial-install).
+
+Otherwise, read on:
 
 Grab the code from this git branch.  Install dependencies - I use
 macports to install things on mac.
