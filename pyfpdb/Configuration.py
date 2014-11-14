@@ -166,7 +166,7 @@ def get_config(file_name, fallback = True):
             if os.path.exists(file_name + '.example'):
                 example_path = file_name + '.example'
             else:
-                example_path = "pyfpdb/" + file_name + '.example'
+                example_path = os.path.join(PYFPDB_PATH, file_name + '.example')
         if not config_found and fallback:
             try:
                 shutil.copyfile(example_path, config_path)
