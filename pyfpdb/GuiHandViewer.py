@@ -1,19 +1,19 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-#Copyright 2010-2011 Maxime Grandchamp
-#This program is free software: you can redistribute it and/or modify
-#it under the terms of the GNU Affero General Public License as published by
-#the Free Software Foundation, version 3 of the License.
+# Copyright 2010-2011 Maxime Grandchamp
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published by
+# the Free Software Foundation, version 3 of the License.
 #
-#This program is distributed in the hope that it will be useful,
-#but WITHOUT ANY WARRANTY; without even the implied warranty of
-#MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-#GNU General Public License for more details.
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
 #
-#You should have received a copy of the GNU Affero General Public License
-#along with this program. If not, see <http://www.gnu.org/licenses/>.
-#In the "official" distribution you can find the license in agpl-3.0.txt.
+# You should have received a copy of the GNU Affero General Public License
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
+# In the "official" distribution you can find the license in agpl-3.0.txt.
 #
 
 
@@ -22,6 +22,7 @@
 import L10n
 _ = L10n.get_translation()
 
+from functools import partial
 
 import Hand
 import Card
@@ -33,71 +34,19 @@ import Deck
 
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import (QPainter, QPixmap, QStandardItem, QStandardItemModel)
-from PyQt5.QtWidgets import (QApplication, QFrame, QLabel, QSplitter, QTableView,
-                             QVBoxLayout)
-
-import math
+from PyQt5.QtWidgets import (QApplication, QFrame, QSplitter, QMenu,
+                             QTableView, QVBoxLayout)
 
 from cStringIO import StringIO
-
-import copy
 
 import GuiReplayer
 
 import pprint
 pp = pprint.PrettyPrinter(indent=4)
 
-# The ListView renderer data function requires a function signature of
-# renderer_cell_func(tree_column, cell, model, tree_iter, data)
-# Placing the function into the Replayer object changes the call singature
-# card_images has been made global to facilitate this.
-
-global card_images
-card_images = 53 * [0]
-
-def card_renderer_cell_func(coldata):
-    card_width  = 30
-    card_height = 42
-    if coldata == None or coldata == '':
-        coldata = "0x"
-    coldata = coldata.replace("'","")
-    coldata = coldata.replace("[","")
-    coldata = coldata.replace("]","")
-    coldata = coldata.replace("'","")
-    coldata = coldata.replace(",","")
-    cards = [Card.encodeCard(c) for c in coldata.split(' ')]
-    n_cards = len(cards)
-
-    pixbuf = QPixmap(card_width * n_cards, card_height)
-    painter = QPainter(pixbuf)
-    x = 0 # x coord where the next card starts in pixbuf
-    for card in cards:
-        painter.drawPixmap(x, 0, card_images[card])
-        x += card_width
-    return pixbuf
-
-# This function is a duplicate of 'ledger_style_render_func' in GuiRingPlayerStats
-# TODO: Pull generic cell formatting functions into something common.
-def cash_renderer_cell_func(tree_column, cell, model, tree_iter, data):
-    col = data
-    coldata = model.get_value(tree_iter, col)
-    if '-' in coldata:
-        coldata = coldata.replace("-", "")
-        coldata = "(%s)" %(coldata)
-        cell.set_property('foreground', 'red')
-    else:
-        cell.set_property('foreground', 'darkgreen')
-    cell.set_property('text', coldata)
-    
-def reset_style_render_func(tree_column, cell, model, iter, data):
-    cell.set_property('foreground', None)
-    cell.set_property('text', model.get_value(iter, data))
-
-
 class GuiHandViewer(QSplitter):
-    def __init__(self, config, querylist, mainwin, options = None, debug=True):
+    def __init__(self, config, querylist, mainwin):
         QSplitter.__init__(self, mainwin)
-        self.debug = debug
         self.config = config
         self.main_window = mainwin
         self.sql = querylist
@@ -136,10 +85,6 @@ class GuiHandViewer(QSplitter):
         self.filters.registerButton1Name(_("Load Hands"))
         self.filters.registerButton1Callback(self.loadHands)
         self.filters.registerCardsCallback(self.filter_cards_cb)
-        #self.filters.registerButton2Name(_("temp"))
-        #self.filters.registerButton2Callback(self.temp())
-
-        # hierarchy:  self.mainHBox / self.hpane / self.handsVBox / self.area
 
         self.handsFrame = QFrame()
         self.handsVBox = QVBoxLayout()
@@ -155,26 +100,21 @@ class GuiHandViewer(QSplitter):
 
         self.tableImage = None
         self.playerBackdrop = None
-        self.cardImages = None
-        #NOTE: There are two caches of card images as I haven't found a way to
-        #      replicate the copy_area() function from Pixbuf in the Pixmap class
-        #      cardImages is used for the tables display card_images is used for the
-        #      table display. Sooner or later we should probably use one or the other.
         self.deck_instance = Deck.Deck(self.config, height=42, width=30)
-        card_images = self.init_card_images(self.config)
+        self.cardImages = self.init_card_images()
        
-    def init_card_images(self, config):
+    def init_card_images(self):
         suits = ('s', 'h', 'd', 'c')
         ranks = (14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2)
 
+        card_images = [0]*53
         for j in range(0, 13):
             for i in range(0, 4):
                 loc = Card.cardFromValueSuit(ranks[j], suits[i])
                 card_image = self.deck_instance.card(suits[i], ranks[j])
-                #must use copy(), method_instance not usable in global variable
-                card_images[loc] = card_image.copy()
+                card_images[loc] = card_image
         back_image = self.deck_instance.back()
-        card_images[0] = back_image.copy()
+        card_images[0] = back_image
         return card_images
 
     def loadHands(self, checkState):
@@ -194,10 +134,10 @@ class GuiHandViewer(QSplitter):
             if end != self.filters.MAX_DATE:
                 self.date_to = None
             
-        if self.date_from != None and start == self.filters.MIN_DATE:
+        if self.date_from is not None and start == self.filters.MIN_DATE:
             start = self.date_from
 
-        if self.date_to != None and end == self.filters.MAX_DATE:
+        if self.date_to is not None and end == self.filters.MAX_DATE:
             end = self.date_to
 
         q = self.db.sql.query['handsInRange']
@@ -254,61 +194,25 @@ class GuiHandViewer(QSplitter):
 
         return 0
 
-    def sort_float(self, model, iter1, iter2, col):
-        a = float(model.get_value(iter1, col))
-        b = float(model.get_value(iter2, col))
-
-        if a < b:
-            return -1
-        elif a > b:
-            return 1
-        
-        return 0
-    
-    def sort_pos(self, model, iter1, iter2, col):
-        a = self.__get_sortable_int_from_pos__(model.get_value(iter1, col))
-        b = self.__get_sortable_int_from_pos__(model.get_value(iter2, col))
-        
-        if a < b:
-            return -1
-        elif a > b:
-            return 1
-        
-        return 0
-        
-    def __get_sortable_int_from_pos__(self, pos):
-        if pos == 'B':
-            return 8
-        if pos == 'S':
-            return 9
-        else:
-            return int(pos)
-    
     def reload_hands(self, handids):
         self.hands = {}
         for handid in handids:
             self.hands[handid] = self.importhand(handid)
         self.refreshHands()
     
-    def copyHandToClipboard(self, view, event, hand):
+    def copyHandToClipboard(self, checkState, hand):
         handText = StringIO()
         hand.writeHand(handText)
         QApplication.clipboard().setText(handText.getvalue())
 
-    def contextMenu(self, view, event):
-        if(event.button != 3):
-            return False
-        coords = event.get_coords()
-        path = view.get_path_at_pos(int(coords[0]), int(coords[1]))
-        model = view.get_model()
-        hand = self.hands[int(model.get_value(model.get_iter(path[0]), self.colnum['HandId']))]
-        m = gtk.Menu()
-        i = gtk.MenuItem('Copy to clipboard')
-        i.connect('button-press-event', self.copyHandToClipboard, hand)
-        i.show()
-        m.append(i)
-        m.popup(None, None, None, event.button, event.time, None)
-        return False
+    def contextMenu(self, event):
+        index = self.view.currentIndex()
+        hand = self.hands[int(index.sibling(index.row(), self.colnum['HandId']).data())]
+        m = QMenu()
+        copyAction = m.addAction('Copy to clipboard')
+        copyAction.triggered.connect(partial(self.copyHandToClipboard, hand=hand))
+        m.move(event.globalPos())
+        m.exec_()
 
     def refreshHands(self):
         # Dict of colnames and their column idx in the model/ListStore
@@ -341,6 +245,7 @@ class GuiHandViewer(QSplitter):
              'Won', 'Bet', 'Net', 'Game', 'HandId'])
 
         self.view.doubleClicked.connect(self.row_activated)
+        self.view.contextMenuEvent = self.contextMenu
 
         for handid, hand in self.hands.items():
             hero = self.filters.getHeroes()[hand.sitename]
@@ -370,7 +275,7 @@ class GuiHandViewer(QSplitter):
                 
             elif hand.gametype['base'] == 'stud':
                 third = " ".join(hand.holecards['THIRD'][hero][0]) + " " + " ".join(hand.holecards['THIRD'][hero][1]) 
-                #ugh - fix the stud join_holecards function so we can retrieve sanely
+                # ugh - fix the stud join_holecards function so we can retrieve sanely
                 later_streets= []
                 later_streets.extend(hand.holecards['FOURTH'] [hero][0])
                 later_streets.extend(hand.holecards['FIFTH']  [hero][0])
@@ -394,7 +299,7 @@ class GuiHandViewer(QSplitter):
                 for index, item in enumerate(modelrow):
                     item.setEditable(False)
                     if index in (self.colnum['Street0'], self.colnum['Street1-4']):
-                        item.setData(card_renderer_cell_func(item.data(Qt.DisplayRole)), Qt.DecorationRole)
+                        item.setData(self.render_cards(item.data(Qt.DisplayRole)), Qt.DecorationRole)
                         item.setData("", Qt.DisplayRole)
                     if index in (self.colnum['Bet'], self.colnum['Net']):
                         item.setData(float(item.data(Qt.DisplayRole)), Qt.UserRole)
@@ -410,7 +315,7 @@ class GuiHandViewer(QSplitter):
 
     def is_row_in_card_filter(self, row):
         """ Returns true if the cards of the given row are in the card filter """
-        #Does work but all cards that should NOT be displayed have to be clicked.
+        # Does work but all cards that should NOT be displayed have to be clicked.
         card_filter = self.filters.getCards() 
         hcs = row[self.colnum['Street0']].split(' ')
         
@@ -425,9 +330,8 @@ class GuiHandViewer(QSplitter):
         value2 = Card.card_map[hcs[1][0]]
         idx = Card.twoStartCards(value1, hcs[0][1], value2, hcs[1][1])
         abbr = Card.twoStartCardString(idx)
-        return False if card_filter[abbr] == False else True
+        return card_filter[abbr]
 
-    #def select_hand(self, selection, model, path, is_selected, userdata):    #function head for single click event
     def row_activated(self, index):
         hand = self.hands[int(index.sibling(index.row(), self.colnum['HandId']).data())]
         if hand.gametype['currency']=="USD":    #TODO: check if there are others ..
@@ -455,112 +359,29 @@ class GuiHandViewer(QSplitter):
         h.hero = self.filters.getHeroes()[h.sitename]
         return h
 
-    '''
-    #This code would use pango markup instead of pix for the cards and renderers
+    def render_cards(self, cardstring):
+        card_width  = 30
+        card_height = 42
+        if cardstring is None or cardstring == '':
+            cardstring = "0x"
+        cardstring = cardstring.replace("'","")
+        cardstring = cardstring.replace("[","")
+        cardstring = cardstring.replace("]","")
+        cardstring = cardstring.replace("'","")
+        cardstring = cardstring.replace(",","")
+        cards = [Card.encodeCard(c) for c in cardstring.split(' ')]
+        n_cards = len(cards)
     
-    def refreshHands(self, handids):
-        self.hands = {}
-        for handid in handids:
-            self.hands[handid] = self.importhand(handid)
+        pixbuf = QPixmap(card_width * n_cards, card_height)
+        painter = QPainter(pixbuf)
+        x = 0 # x coord where the next card starts in pixbuf
+        for card in cards:
+            painter.drawPixmap(x, 0, self.cardImages[card])
+            x += card_width
+        return pixbuf
 
-        try:
-            self.handsWindow.destroy()
-        except:
-            pass
-        self.handsWindow = gtk.ScrolledWindow(hadjustment=None, vadjustment=None)
-        self.handsWindow.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-        self.handsVBox.pack_end(self.handsWindow)
-        cols = [
-                str,    # Street0 cards
-                str,    # Street1 cards
-                str,    # Street2 cards
-                str,    # Street3 cards
-                str,    # Street4 cards
-                str,    # Net
-                str,    # Gametype
-                str,    # Hand Id
-                ]
-        # Dict of colnames and their column idx in the model/ListStore
-        self.colnum = {
-                  'Street0'      : 0,
-                  'Street1'      : 1,
-                  'Street2'      : 2,
-                  'Street3'      : 3,
-                  'Street4'      : 4,
-                  '+/-'          : 5,
-                  'Game'         : 6,
-                  'HID'          : 7,
-                 }
-        self.liststore = gtk.ListStore(*cols)
-        self.view = gtk.TreeView()
-        self.view.set_grid_lines(gtk.TREE_VIEW_GRID_LINES_BOTH)
-        self.handsWindow.add(self.view)
-
-        self.viewfilter = self.liststore.filter_new()
-        self.view.set_model(self.viewfilter)
-        text = gtk.CellRendererText()
-
-        self.view.insert_column_with_attributes(-1, 'Street 0', text, markup = self.colnum['Street0'])
-        self.view.insert_column_with_attributes(-1, 'Street 1', text, markup = self.colnum['Street1'])
-        self.view.insert_column_with_attributes(-1, 'Street 2', text, markup = self.colnum['Street2'])
-        self.view.insert_column_with_attributes(-1, 'Street 3', text, markup = self.colnum['Street3'])
-        self.view.insert_column_with_attributes(-1, 'Street 4', text, markup = self.colnum['Street4'])
-        self.view.insert_column_with_attributes(-1, '+/-', text, markup = self.colnum['+/-'])
-        self.view.insert_column_with_attributes(-1, 'Game', text, text = self.colnum['Game'])
-
-        self.liststore.set_sort_func(self.colnum['Street0'], self.sorthand)
-        self.liststore.set_sort_func(self.colnum['+/-'], self.sort_float)
-        self.view.get_column(self.colnum['Street0']).set_sort_column_id(self.colnum['Street0'])
-        self.view.get_column(self.colnum['+/-']).set_sort_column_id(self.colnum['+/-'])
-
-        selection = self.view.get_selection()
-        selection.set_select_function(self.select_hand, None, True)
-
-        for handid, hand in self.hands.items():
-            hero = self.filters.getHeroes()[hand.sitename]
-            won = 0
-            if hero in hand.collectees.keys():
-                won = hand.collectees[hero]
-            bet = 0
-            if hero in hand.pot.committed.keys():
-                bet = hand.pot.committed[hero]
-            net = self.get_net_pango_markup(won - bet)
-            
-            gt =  hand.gametype['category']
-            row = []
-            if hand.gametype['base'] == 'hold':
-                hole = hand.get_cards_pango_markup(hand.holecards['PREFLOP'][hero][1])
-                flop = hand.get_cards_pango_markup(hand.board["FLOP"])
-                turn = hand.get_cards_pango_markup(hand.board["TURN"])
-                river = hand.get_cards_pango_markup(hand.board["RIVER"])
-                row = [hole, flop, turn, river, None, net, gt, handid]
-            elif hand.gametype['base'] == 'stud':
-                third = hand.get_cards_pango_markup(hand.holecards['THIRD'][hero][0]) + " " + hand.get_cards_pango_markup(hand.holecards['THIRD'][hero][1]) 
-                #ugh - fix the stud join_holecards function so we can retrieve sanely
-                fourth  = hand.get_cards_pango_markup(hand.holecards['FOURTH'] [hero][0])
-                fifth   = hand.get_cards_pango_markup(hand.holecards['FIFTH']  [hero][0])
-                sixth   = hand.get_cards_pango_markup(hand.holecards['SIXTH']  [hero][0])
-                seventh = hand.get_cards_pango_markup(hand.holecards['SEVENTH'][hero][0])
-                row = [third, fourth, fifth, sixth, seventh, net, gt, handid]
-            elif hand.gametype['base'] == 'draw':
-                row = [hand.get_cards_pango_markup(hand.holecards['DEAL'][hero][0]), None, None, None, None, net, gt, handid]
-            #print "DEBUG: row: %s" % row
-            self.liststore.append(row)
-        self.viewfilter.set_visible_func(self.viewfilter_visible_cb)
-        self.handsWindow.show_all()
-
-    def get_net_pango_markup(self, net):
-        """Pango marks up the +/- value ... putting negative values in () and coloring them red.
-            used instead of cash_renderer_cell_func because the render function renders the foreground of all columns and not just the one needed """
-        if net < 0:
-            ret = '<span foreground="red">(%s)</span>' %(net*-1)
-        else:
-            ret = str(net)
-        return ret
-    '''
 
 if __name__ == "__main__":
-    import Configuration
     config = Configuration.Config()
 
     settings = {}
@@ -569,9 +390,8 @@ if __name__ == "__main__":
     settings.update(config.get_import_parameters())
     settings.update(config.get_default_paths())
 
-    from PyQt5.QtWidgets import QApplication, QMainWindow
+    from PyQt5.QtWidgets import QMainWindow
     app = QApplication([])
-    import SQL
     sql = SQL.Sql(db_server=settings['db-server'])
     main_window = QMainWindow()
     i = GuiHandViewer(config, sql, main_window)
