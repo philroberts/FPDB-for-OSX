@@ -28,12 +28,12 @@ class Deck(object):
         self.__cards = dict({ 's': None, 'h': None, 'd': None, 'c': None })
         self.__card_back = None
         self.__rank_vals = dict()
-        #
+
         for sk in self.__cards:
             self.__load_suit(sk)
-        #
+
         self.__card_back = self.__load_svg(self.__backfile)
-        #
+
         self.__create_rank_lookups()
 
     def __create_rank_lookups(self):
@@ -81,8 +81,8 @@ class Deck(object):
         return self.__rank_vals[key]
     
     def get_all_card_images(self):
-        #returns a 4x13-element dictionary of every card image + index-0 = card back
-        # each element is a QPixmap
+        # returns a 4x13-element dictionary of every card image +
+        # index-0 = card back each element is a QPixmap
         card_images = dict()
 
         for suit in ('s', 'h', 'd', 'c'):
@@ -95,4 +95,3 @@ class Deck(object):
         # index of an array.
         card_images[0] = self.back()
         return card_images
-        
