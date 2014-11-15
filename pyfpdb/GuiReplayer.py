@@ -1,19 +1,19 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-#Copyright 2010-2011 Maxime Grandchamp
-#This program is free software: you can redistribute it and/or modify
-#it under the terms of the GNU Affero General Public License as published by
-#the Free Software Foundation, version 3 of the License.
+# Copyright 2010-2011 Maxime Grandchamp
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published by
+# the Free Software Foundation, version 3 of the License.
 #
-#This program is distributed in the hope that it will be useful,
-#but WITHOUT ANY WARRANTY; without even the implied warranty of
-#MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-#GNU General Public License for more details.
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
 #
-#You should have received a copy of the GNU Affero General Public License
-#along with this program. If not, see <http://www.gnu.org/licenses/>.
-#In the "official" distribution you can find the license in agpl-3.0.txt.
+# You should have received a copy of the GNU Affero General Public License
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
+# In the "official" distribution you can find the license in agpl-3.0.txt.
 
 # Note that this now contains the replayer only! The list of hands has been moved to GuiHandViewer by zarturo.
 
@@ -37,7 +37,6 @@ import math
 from decimal_wrapper import Decimal
 
 import copy
-import sys
 import os
 
 import pprint
@@ -45,16 +44,12 @@ pp = pprint.PrettyPrinter(indent=4)
 
 CARD_HEIGHT = 42
 CARD_WIDTH = 30
-global card_images
-card_images = 53 * [0]
-
 
 class GuiReplayer(QWidget):
     """A Replayer to replay hands."""
-    def __init__(self, config, querylist, mainwin, options = None, debug=True):
+    def __init__(self, config, querylist, mainwin):
         QWidget.__init__(self, None)
         self.setFixedSize(800, 680)
-        self.debug = debug
         self.conf = config
         self.main_window = mainwin
         self.sql = querylist
@@ -151,20 +146,36 @@ class GuiReplayer(QWidget):
                 painter.setPen(QColor("white"))
                 if state.gametype == 'holdem':
                     cardIndex = Card.encodeCard(player.holecards[0:2])
-                    painter.drawPixmap(QPoint(playerx - self.cardwidth - padding / 2, playery - self.cardheight), self.cardImages[cardIndex])
+                    painter.drawPixmap(QPoint(playerx - self.cardwidth - padding / 2,
+                                              playery - self.cardheight),
+                                       self.cardImages[cardIndex])
                     cardIndex = Card.encodeCard(player.holecards[3:5])
-                    painter.drawPixmap(QPoint(playerx + padding / 2, playery - self.cardheight), self.cardImages[cardIndex])
+                    painter.drawPixmap(QPoint(playerx + padding / 2,
+                                              playery - self.cardheight),
+                                       self.cardImages[cardIndex])
                 elif state.gametype in ('omahahi', 'omahahilo'):
                     cardIndex = Card.encodeCard(player.holecards[0:2])
-                    painter.drawPixmap(QPoint(playerx - 2 * self.cardwidth - 3 * padding / 2, playery - self.cardheight), self.cardImages[cardIndex])
+                    painter.drawPixmap(QPoint(playerx - 2 * self.cardwidth - 3 * padding / 2,
+                                              playery - self.cardheight),
+                                       self.cardImages[cardIndex])
                     cardIndex = Card.encodeCard(player.holecards[3:5])
-                    painter.drawPixmap(QPoint(playerx - self.cardwidth - padding / 2, playery - self.cardheight), self.cardImages[cardIndex])
+                    painter.drawPixmap(QPoint(playerx - self.cardwidth - padding / 2,
+                                              playery - self.cardheight),
+                                       self.cardImages[cardIndex])
                     cardIndex = Card.encodeCard(player.holecards[6:8])
-                    painter.drawPixmap(QPoint(playerx + padding / 2, playery - self.cardheight), self.cardImages[cardIndex])
+                    painter.drawPixmap(QPoint(playerx + padding / 2,
+                                              playery - self.cardheight),
+                                       self.cardImages[cardIndex])
                     cardIndex = Card.encodeCard(player.holecards[9:11])
-                    painter.drawPixmap(QPoint(playerx + self.cardwidth + 3 * padding / 2, playery - self.cardheight), self.cardImages[cardIndex])
+                    painter.drawPixmap(QPoint(playerx + self.cardwidth + 3 * padding / 2,
+                                              playery - self.cardheight),
+                                       self.cardImages[cardIndex])
 
-            painter.drawText(QRect(playerx - 100, playery, 200, 20), Qt.AlignCenter, '%s %s%.2f' % (player.name, self.currency, player.stack))
+            painter.drawText(QRect(playerx - 100, playery, 200, 20),
+                             Qt.AlignCenter,
+                             '%s %s%.2f' % (player.name,
+                                            self.currency,
+                                            player.stack))
 
             if player.justacted:
                 painter.setPen(QColor("yellow"))
@@ -172,11 +183,21 @@ class GuiReplayer(QWidget):
             else:
                 painter.setPen(QColor("white"))
             if player.chips != 0:  #displays amount
-                painter.drawText(QRect(convertx(player.x * .65) - 100, converty(player.y * 0.65), 200, 20), Qt.AlignCenter, '%s%.2f' % (self.currency, player.chips))
+                painter.drawText(QRect(convertx(player.x * .65) - 100,
+                                       converty(player.y * 0.65),
+                                       200,
+                                       20),
+                                 Qt.AlignCenter,
+                                 '%s%.2f' % (self.currency, player.chips))
 
         painter.setPen(QColor("white"))
 
-        painter.drawText(QRect(self.tableImage.width() / 2 - 100, self.tableImage.height() / 2 - 20, 200, 40), Qt.AlignCenter, '%s%.2f' % (self.currency, state.pot))
+        painter.drawText(QRect(self.tableImage.width() / 2 - 100,
+                               self.tableImage.height() / 2 - 20,
+                               200,
+                               40),
+                         Qt.AlignCenter,
+                         '%s%.2f' % (self.currency, state.pot))
 
         if state.showFlop:
             cardIndex = Card.encodeCard(state.flop[0])
@@ -216,13 +237,10 @@ class GuiReplayer(QWidget):
             self.playing = False
             self.playPauseButton.setText("Play")
 
-        if not self.playing:
-            return False
-
-        self.stateSlider.setValue(self.stateSlider.value() + 1)
-        return True
+        if self.playing:
+            self.stateSlider.setValue(self.stateSlider.value() + 1)
     
-    def slider_changed(self, adjustment):
+    def slider_changed(self, value):
         self.update()
 
     def importhand(self, handid=1):
@@ -231,7 +249,7 @@ class GuiReplayer(QWidget):
         
         return h
 
-    def play_clicked(self, button):
+    def play_clicked(self, checkState):
         self.playing = not self.playing
         if self.playing:
             self.playPauseButton.setText("Pause")
@@ -241,21 +259,26 @@ class GuiReplayer(QWidget):
         else:
             self.playPauseButton.setText("Play")
             self.playTimer = None
-    def start_clicked(self, button):
+
+    def start_clicked(self, checkState):
         self.stateSlider.setValue(0)
-    def end_clicked(self, button):
+
+    def end_clicked(self, checkState):
         self.stateSlider.setValue(self.stateSlider.maximum())
-    def flop_clicked(self, button):
+
+    def flop_clicked(self, checkState):
         for i in range(0, len(self.states)):
             if self.states[i].showFlop:
                 self.stateSlider.setValue(i)
                 break
-    def turn_clicked(self, button):
+
+    def turn_clicked(self, checkState):
         for i in range(0, len(self.states)):
             if self.states[i].showTurn:
                 self.stateSlider.setValue(i)
                 break
-    def river_clicked(self, button):
+
+    def river_clicked(self, checkState):
         for i in range(0, len(self.states)):
             if self.states[i].showRiver:
                 self.stateSlider.setValue(i)
@@ -272,8 +295,8 @@ class ICM:
         self.prepare()
     def prepare(self):
         total = sum(self.stacks)
-        for k,v in enumerate(stacks):
-            self.equities.append(round(Decimal(str(self.getEquities(total, k,0))),4))
+        for k in self.stacks:
+            self.equities.append(round(Decimal(str(self.getEquities(total, k, 0))), 4))
     def getEquities(self, total, player, depth):
         D = Decimal
         eq = D(self.stacks[player]) / total * D(str(self.payouts[depth]))
@@ -399,19 +422,19 @@ if __name__ == '__main__':
     db = Database.Database(config)
     sql = SQL.Sql(db_server = config.get_db_parameters()['db-server'])
 
-    from PyQt5.QtWidgets import QApplication, QMainWindow
+    from PyQt5.QtWidgets import QApplication
     app = QApplication([])
 
-    replayer = GuiReplayer(config, sql, None, debug=True)
+    replayer = GuiReplayer(config, sql, None)
     h = Hand.hand_factory(1, config, db)
     if h.gametype['currency']=="USD":    #TODO: check if there are others ..
         replayer.currency="$"
-    elif hand.gametype['currency']=="EUR":
+    elif h.gametype['currency']=="EUR":
         replayer.currency="\xe2\x82\xac"
-    elif hand.gametype['currency']=="GBP":
+    elif h.gametype['currency']=="GBP":
         replayer.currency="£"
     else:
-        replayer.currency = hand.gametype['currency']
+        replayer.currency = h.gametype['currency']
 
     replayer.play_hand(h)
 
