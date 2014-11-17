@@ -64,10 +64,17 @@ class GuiPrefs(QDialog):
                 self.addTreeRows(self.root, elem)
         self.layout().addWidget(self.configView)
         self.configView.resizeColumnToContents(0)
+
+        self.configView.itemChanged.connect(self.updateConf)
         btns = QDialogButtonBox(QDialogButtonBox.Save | QDialogButtonBox.Cancel, self)
         btns.accepted.connect(self.accept)
         btns.rejected.connect(self.reject)
         self.layout().addWidget(btns)
+
+    def updateConf(self, item, column):
+        if column != 1:
+            return
+        item.data(1, Qt.UserRole).value = item.data(1, Qt.DisplayRole)
 
     def rewriteText(self, s):
         upd = False
@@ -92,6 +99,7 @@ class GuiPrefs(QDialog):
                 for i in xrange(node.attributes.length):
                     localName,updated = self.rewriteText( node.attributes.item(i).localName )
                     attritem = QTreeWidgetItem(item, [localName, node.attributes.item(i).value])
+                    attritem.setData(1, Qt.UserRole, node.attributes.item(i))
                     attritem.setFlags(attritem.flags() | Qt.ItemIsEditable)
 
                     if node.attributes.item(i).localName in ('site_name', 'game_name', 'stat_name', 'name', 'db_server', 'site', 'col_name'):
