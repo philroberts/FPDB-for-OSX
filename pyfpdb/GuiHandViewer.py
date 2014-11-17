@@ -334,15 +334,15 @@ class GuiHandViewer(QSplitter):
 
     def row_activated(self, index):
         hand = self.hands[int(index.sibling(index.row(), self.colnum['HandId']).data())]
-        if hand.gametype['currency']=="USD":    #TODO: check if there are others ..
-            currency="$"
-        elif hand.gametype['currency']=="EUR":
-            currency="\xe2\x82\xac"
-        elif hand.gametype['currency']=="GBP":
-            currency="£"
+        if hand.gametype['currency'] == "USD":
+            currency = "$"
+        elif hand.gametype['currency'] == "EUR":
+            currency = u"€"
+        elif hand.gametype['currency'] == "GBP":
+            currency = u"£"
         else:
             currency = hand.gametype['currency']
-            
+
         self.replayer = GuiReplayer.GuiReplayer(self.config, self.sql, self.main_window)
 
         self.replayer.currency = currency

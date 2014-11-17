@@ -427,12 +427,12 @@ if __name__ == '__main__':
 
     replayer = GuiReplayer(config, sql, None)
     h = Hand.hand_factory(1, config, db)
-    if h.gametype['currency']=="USD":    #TODO: check if there are others ..
-        replayer.currency="$"
-    elif h.gametype['currency']=="EUR":
-        replayer.currency="\xe2\x82\xac"
-    elif h.gametype['currency']=="GBP":
-        replayer.currency="£"
+    if h.gametype['currency'] == "USD":    #TODO: check if there are others ..
+        replayer.currency = "$"
+    elif h.gametype['currency'] == "EUR":
+        replayer.currency = u"€"
+    elif h.gametype['currency'] == "GBP":
+        replayer.currency = u"£"
     else:
         replayer.currency = h.gametype['currency']
 
