@@ -366,11 +366,12 @@ class GuiRingPlayerStats(QSplitter):
                 sortValue = -1e9
                 if value != None and value != -999:
                     item = QStandardItem(column[colformat] % value)
-                    if col == 0: # starting hand/gametype
-                        if grid == 0: # gametype
-                            sortValue = value
-                        else: # starting hand
-                            sortValue = 1000 * ranks[value[0]] + 10 * ranks[value[1]] + (1 if len(value) == 3 and value[2] == 's' else 0)
+                    if column[colalias] == 'game' and holecards:
+                        sortValue = 1000 * ranks[value[0]] + 10 * ranks[value[1]] + (1 if len(value) == 3 and value[2] == 's' else 0)
+                    elif column[colalias] in ('game', 'pname'):
+                        sortValue = value
+                    elif column[colalias] == 'plposition':
+                        sortValue = ['BB', 'SB', 'Btn', '1', '2', '3', '4', '5', '6', '7'].index(value)
                     else:
                         sortValue = float(value)
                 item.setData(sortValue, Qt.UserRole)
