@@ -62,7 +62,7 @@ class SealsWithClubs(HandHistoryConverter):
         \((?P<CASH>[.\d]+)\)""" % substitutions, 
         re.MULTILINE|re.VERBOSE)
 
-    re_HandInfo = re.compile(ur"""^Table:\s(?P<TABLE>.+?((?P<HU>HU)|((?P<MAX>\d+)max)).*)""",re.MULTILINE|re.VERBOSE)
+    re_HandInfo = re.compile(ur"""^Table:\s(?P<TABLE>.+?((?P<HU>HU)|((?P<MAX>\d+)(max|half))).*)""",re.MULTILINE|re.VERBOSE)
 
     re_Identify     = re.compile(u"Site:\s*Seals\s*With\s*Clubs")
     re_SplitHands   = re.compile('(?:\s?\n){2,}')
