@@ -208,9 +208,11 @@ class fpdb(QMainWindow):
 
     def dia_about(self, widget, data=None):
         QMessageBox.about(self, "Free Poker Database (FPDB)",
-                          "\n".join([VERSION, "Copyright 2008-2013. See contributors.txt for details",
+                          "\n".join([VERSION,
+                                     "Copyright 2008-2013. See contributors.txt for details",
                                      _("You are free to change, and distribute original or changed versions of fpdb within the rules set out by the license"),
-                                     "http://fpdb.sourceforge.net/"]))
+                                     "http://fpdb.sourceforge.net/",
+                                     _("Your config file is: ") + self.config.file]))
         return
 
         dia.set_version(VERSION)
