@@ -72,7 +72,7 @@ class GuiGraphViewer(QSplitter):
                             "Button2"   : True
                           }
 
-        self.filters = Filters.Filters(self.db, self.conf, self.sql, display = filters_display)
+        self.filters = Filters.Filters(self.db, display = filters_display)
         self.filters.registerButton1Name(_("Refresh _Graph"))
         self.filters.registerButton1Callback(self.generateGraph)
         self.filters.registerButton2Name(_("_Export to File"))
@@ -127,20 +127,17 @@ class GuiGraphViewer(QSplitter):
         games   = self.filters.getGames()
         currencies = self.filters.getCurrencies()
         graphops = self.filters.getGraphOps()
+        display_in = "$" if "$" in graphops else "BB"
         names   = ""
 
-        for i in ('show', 'none'):
-            if i in limits:
-                limits.remove(i)
         # Which sites are selected?
         for site in sites:
-            if sites[site] == True:
-                sitenos.append(siteids[site])
-                _hname = Charset.to_utf8(heroes[site])
-                result = self.db.get_player_id(self.conf, site, _hname)
-                if result is not None:
-                    playerids.append(int(result))
-                    names = names + "\n"+_hname + " on "+site
+            sitenos.append(siteids[site])
+            _hname = Charset.to_utf8(heroes[site])
+            result = self.db.get_player_id(self.conf, site, _hname)
+            if result is not None:
+                playerids.append(int(result))
+                names = names + "\n"+_hname + " on "+site
 
         if not sitenos:
             #Should probably pop up here.
@@ -163,13 +160,13 @@ class GuiGraphViewer(QSplitter):
 
         #Get graph data from DB
         starttime = time()
-        (green, blue, red, orange) = self.getRingProfitGraph(playerids, sitenos, limits, games, currencies, graphops['dspin'])
+        (green, blue, red, orange) = self.getRingProfitGraph(playerids, sitenos, limits, games, currencies, display_in)
         print _("Graph generated in: %s") %(time() - starttime)
 
         #Set axis labels and grid overlay properites
         self.ax.set_xlabel(_("Hands"))
         # SET LABEL FOR X AXIS
-        self.ax.set_ylabel(graphops['dspin'])
+        self.ax.set_ylabel(display_in)
         self.ax.grid(color='g', linestyle=':', linewidth=0.2)
         if green is None or len(green) == 0:
             self.ax.set_title(_("No Data for Player(s) Found"))
@@ -204,13 +201,13 @@ class GuiGraphViewer(QSplitter):
             self.ax.set_title((_("Profit graph for ring games")+names))
 
             #Draw plot
-            if graphops['showdown'] == 'ON':
-                self.ax.plot(blue, color='blue', label=_('Showdown') + ' (%s): %.2f' %(graphops['dspin'], blue[-1]))
-            if graphops['nonshowdown'] == 'ON':
-                self.ax.plot(red, color='red', label=_('Non-showdown') + ' (%s): %.2f' %(graphops['dspin'], red[-1]))
-            if graphops['ev'] == 'ON':
-                self.ax.plot(orange, color='orange', label=_('All-in EV') + ' (%s): %.2f' %(graphops['dspin'], orange[-1]))
-            self.ax.plot(green, color='green', label=_('Hands') + ': %d\n' % len(green) + _('Profit') + ': (%s): %.2f' % (graphops['dspin'], green[-1]))
+            if 'showdown' in graphops:
+                self.ax.plot(blue, color='blue', label=_('Showdown') + ' (%s): %.2f' %(display_in, blue[-1]))
+            if 'nonshowdown' in graphops:
+                self.ax.plot(red, color='red', label=_('Non-showdown') + ' (%s): %.2f' %(display_in, red[-1]))
+            if 'ev'in graphops:
+                self.ax.plot(orange, color='orange', label=_('All-in EV') + ' (%s): %.2f' %(display_in, orange[-1]))
+            self.ax.plot(green, color='green', label=_('Hands') + ': %d\n' % len(green) + _('Profit') + ': (%s): %.2f' % (display_in, green[-1]))
 
             # order legend, greenline on top
             handles, labels = self.ax.get_legend_handles_labels()
@@ -243,14 +240,10 @@ class GuiGraphViewer(QSplitter):
         sitetest = str(tuple(sites))
         #nametest = nametest.replace("L", "")
 
-        q = []
         for m in self.filters.display.items():
             if m[0] == 'Games' and m[1]:
-                for n in games:
-                    if games[n]:
-                        q.append(n)
-                if len(q) > 0:
-                    gametest = str(tuple(q))
+                if len(games) > 0:
+                    gametest = str(tuple(games))
                     gametest = gametest.replace("L", "")
                     gametest = gametest.replace(",)",")")
                     gametest = gametest.replace("u'","'")
@@ -261,11 +254,7 @@ class GuiGraphViewer(QSplitter):
 
         limittest = self.filters.get_limits_where_clause(limits)
         
-        q = []
-        for n in currencies:
-            if currencies[n]:
-                q.append(n)
-        currencytest = str(tuple(q))
+        currencytest = str(tuple(currencies))
         currencytest = currencytest.replace(",)",")")
         currencytest = currencytest.replace("u'","'")
         currencytest = "AND gt.currency in %s" % currencytest

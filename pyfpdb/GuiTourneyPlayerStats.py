@@ -25,7 +25,7 @@ from PyQt5.QtGui import (QStandardItem, QStandardItemModel)
 from PyQt5.QtWidgets import (QFrame, QSplitter, QTableView, QVBoxLayout)
 
 import Charset
-import TourneyFilters
+import Filters
 
 colalias,colshow,colheading,colxalign,colformat,coltype = 0,1,2,3,4,5
 
@@ -61,7 +61,7 @@ class GuiTourneyPlayerStats(QSplitter):
         self.stats_vbox = None
         self.detailFilters = []   # the data used to enhance the sql select
 
-        self.filters = TourneyFilters.TourneyFilters(self.db, self.conf, self.sql, display = filters_display)
+        self.filters = Filters.Filters(self.db, display = filters_display)
         #self.filters.registerButton1Name(_("_Filters"))
         #self.filters.registerButton1Callback(self.showDetailFilter)
         self.filters.registerButton2Name(_("_Refresh Stats"))
@@ -187,12 +187,11 @@ class GuiTourneyPlayerStats(QSplitter):
 
         # Which sites are selected?
         for site in sites:
-            if sites[site] == True:
-                sitenos.append(siteids[site])
-                _hname = Charset.to_utf8(heroes[site])
-                result = self.db.get_player_id(self.conf, site, _hname)
-                if result is not None:
-                    playerids.append(int(result))
+            sitenos.append(siteids[site])
+            _hname = Charset.to_utf8(heroes[site])
+            result = self.db.get_player_id(self.conf, site, _hname)
+            if result is not None:
+                playerids.append(int(result))
 
         if not sitenos:
             #Should probably pop up here.
@@ -242,7 +241,7 @@ class GuiTourneyPlayerStats(QSplitter):
         
         if seats:
             query = query.replace('<seats_test>', 'between ' + str(seats['from']) + ' and ' + str(seats['to']))
-            if 'show' in seats and seats['show']:
+            if False: #'show' in seats and seats['show']: should be 'show' in groups but we don't even display the groups filter
                 query = query.replace('<groupbyseats>', ',h.seats')
                 query = query.replace('<orderbyseats>', ',h.seats')
             else:

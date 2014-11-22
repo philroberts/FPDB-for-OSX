@@ -73,7 +73,7 @@ class GuiTourneyGraphViewer(QSplitter):
                             "Button2"   : True
                           }
 
-        self.filters = Filters.Filters(self.db, self.conf, self.sql, display = filters_display)
+        self.filters = Filters.Filters(self.db, display = filters_display)
         self.filters.registerButton1Name(_("Refresh _Graph"))
         self.filters.registerButton1Callback(self.generateGraph)
         self.filters.registerButton2Name(_("_Export to File"))
@@ -125,12 +125,11 @@ class GuiTourneyGraphViewer(QSplitter):
 
         # Which sites are selected?
         for site in sites:
-            if sites[site]:
-                sitenos.append(siteids[site])
-                _hname = Charset.to_utf8(heroes[site])
-                result = self.db.get_player_id(self.conf, site, _hname)
-                if result is not None:
-                    playerids.append(int(result))
+            sitenos.append(siteids[site])
+            _hname = Charset.to_utf8(heroes[site])
+            result = self.db.get_player_id(self.conf, site, _hname)
+            if result is not None:
+                playerids.append(int(result))
 
         if not sitenos:
             #Should probably pop up here.

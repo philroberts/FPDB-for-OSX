@@ -55,7 +55,7 @@ class GuiPositionalStats:
                             "Button2"  :  False
                           }
 
-        self.filters = Filters.Filters(self.db, self.conf, self.sql, display = filters_display)
+        self.filters = Filters.Filters(self.db, display = filters_display)
         self.filters.registerButton1Name(_("Refresh"))
         self.filters.registerButton1Callback(self.refreshStats)
 
@@ -156,12 +156,11 @@ class GuiPositionalStats:
 
         # Which sites are selected?
         for site in sites:
-            if sites[site] == True:
-                sitenos.append(siteids[site])
-                _hname = Charset.to_utf8(heroes[site])
-                result = self.db.get_player_id(self.conf, site, _hname)
-                if result is not None:
-                    playerids.append(result)
+            sitenos.append(siteids[site])
+            _hname = Charset.to_utf8(heroes[site])
+            result = self.db.get_player_id(self.conf, site, _hname)
+            if result is not None:
+                playerids.append(result)
 
         if not sitenos:
             #Should probably pop up here.
@@ -263,8 +262,8 @@ class GuiPositionalStats:
                         rowprinted=1
                     elif result[sqlrow][0] != last_game:
                         value = ' '
-                    elif 'show' in seats and seats['show'] and result[sqlrow][avgcol] != last_seats:
-                        value = ' '
+#                    elif 'show' in seats and seats['show'] and result[sqlrow][avgcol] != last_seats: #FIXME 'show' in seats should now be 'show' in groups, but this class doesn't even use the group filters so it can never be set
+#                        value = ' '
                     else:
                         value = result[sqlrow][sqlcol]
                         rowprinted=1
@@ -336,7 +335,7 @@ class GuiPositionalStats:
 
         if seats:
             query = query.replace('<seats_test>', 'between ' + str(seats['from']) + ' and ' + str(seats['to']))
-            if 'show' in seats and seats['show']:
+            if False: #'show' in seats and seats['show']: should be 'show' in groups but we don't even show groups in filters
                 query = query.replace('<groupbyseats>', ',hc.activeSeats')
                 query = query.replace('<orderbyseats>', ',stats.AvgSeats')
             else:
@@ -351,63 +350,26 @@ class GuiPositionalStats:
 
         query = query.replace("<gtbigBlind_test>", bbtest)
 
-        groupLevels = "show" not in str(limits)
-        if groupLevels:
-            if self.db.backend == self.MYSQL_INNODB:
-                bigblindselect = """concat('$'
-                                          ,trim(leading ' ' from
-                                                case when min(gt.bigBlind) < 100 
-                                                     then format(min(gt.bigBlind)/100.0, 2)
-                                                     else format(min(gt.bigBlind)/100.0, 0)
-                                                end)
-                                          ,' - $'
-                                          ,trim(leading ' ' from
-                                                case when max(gt.bigBlind) < 100 
-                                                     then format(max(gt.bigBlind)/100.0, 2)
-                                                     else format(max(gt.bigBlind)/100.0, 0)
-                                                end)
-                                          ) """
-            else:
-                bigblindselect = """'$' ||
-                                    trim(leading ' ' from
-                                         case when min(gt.bigBlind) < 100
-                                              then to_char(min(gt.bigBlind)/100.0,'90D00')
-                                              else to_char(min(gt.bigBlind)/100.0,'999990')
-                                         end)
-                                    || ' - $' ||
-                                    trim(leading ' ' from
-                                         case when max(gt.bigBlind) < 100 
-                                              then to_char(max(gt.bigBlind)/100.0,'90D00')
-                                              else to_char(max(gt.bigBlind)/100.0,'999990')
-                                         end) """
-            bigblindselect = "cast('' as char)" # avoid odd effects when some posns and/or seats 
-                                                # are missing from some limits (dunno why cast is
-                                                # needed but it says "unknown type" otherwise?!
-            query = query.replace("<selectgt.bigBlind>", bigblindselect)
-            query = query.replace("<groupbygt.bigBlind>", "")
-            query = query.replace("<hcgametypeId>", "-1")
-            query = query.replace("<hgametypeId>", "-1")
+        if self.db.backend == self.MYSQL_INNODB:
+            bigblindselect = """concat('$', trim(leading ' ' from
+                                                 case when gt.bigBlind < 100
+                                                      then format(gt.bigBlind/100.0, 2)
+                                                      else format(gt.bigBlind/100.0, 0)
+                                                 end
+                                                ) )"""
+        elif self.db.backend == self.SQLITE:
+            bigblindselect = """gt.bigBlind || gt.limitType || ' ' || gt.currency"""
         else:
-            if self.db.backend == self.MYSQL_INNODB:
-                bigblindselect = """concat('$', trim(leading ' ' from
-                                                     case when gt.bigBlind < 100 
-                                                          then format(gt.bigBlind/100.0, 2)
-                                                          else format(gt.bigBlind/100.0, 0)
-                                                     end 
-                                                    ) )"""
-            elif self.db.backend == self.SQLITE:
-                bigblindselect = """gt.bigBlind || gt.limitType || ' ' || gt.currency"""
-            else:
-                bigblindselect = """'$' || trim(leading ' ' from
-                                                case when gt.bigBlind < 100 
-                                                     then to_char(gt.bigBlind/100.0,'90D00')
-                                                     else to_char(gt.bigBlind/100.0,'999990')
-                                                end 
-                                               ) """
-            query = query.replace("<selectgt.bigBlind>", bigblindselect)
-            query = query.replace("<groupbygt.bigBlind>", ",gt.bigBlind")
-            query = query.replace("<hcgametypeId>", "hc.gametypeId")
-            query = query.replace("<hgametypeId>", "h.gametypeId")
+            bigblindselect = """'$' || trim(leading ' ' from
+                                            case when gt.bigBlind < 100
+                                                 then to_char(gt.bigBlind/100.0,'90D00')
+                                                 else to_char(gt.bigBlind/100.0,'999990')
+                                            end
+                                           ) """
+        query = query.replace("<selectgt.bigBlind>", bigblindselect)
+        query = query.replace("<groupbygt.bigBlind>", ",gt.bigBlind")
+        query = query.replace("<hcgametypeId>", "hc.gametypeId")
+        query = query.replace("<hgametypeId>", "h.gametypeId")
 
         # Filter on dates
         query = query.replace("<datestest>", " between '" + dates[0] + "' and '" + dates[1] + "'")

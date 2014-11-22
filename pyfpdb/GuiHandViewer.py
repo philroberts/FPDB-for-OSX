@@ -51,8 +51,6 @@ class GuiHandViewer(QSplitter):
         self.main_window = mainwin
         self.sql = querylist
         self.replayer = None
-        self.date_from = None
-        self.date_to = None
         self.view = None
 
         # These are temporary variables until it becomes possible
@@ -81,7 +79,7 @@ class GuiHandViewer(QSplitter):
                     "Button2"   : False
                   }
         
-        self.filters = Filters.Filters(self.db, self.config, self.sql, display = filters_display)
+        self.filters = Filters.Filters(self.db, display = filters_display)
         self.filters.registerButton1Name(_("Load Hands"))
         self.filters.registerButton1Callback(self.loadHands)
         self.filters.registerCardsCallback(self.filter_cards_cb)
@@ -121,25 +119,7 @@ class GuiHandViewer(QSplitter):
         hand_ids = self.get_hand_ids_from_date_range(self.filters.getDates()[0], self.filters.getDates()[1])
         self.reload_hands(hand_ids)
 
-    def get_hand_ids_from_date_range(self, start, end, save_date = False):
-        """Returns the handids in the given date range and in the filters. 
-            Set save_data to true if you want to keep the start and end date if no other date is specified through the filters by the user."""
-            
-        if save_date:
-            self.date_from = start
-            self.date_to = end
-        else:
-            if start != self.filters.MIN_DATE:  #if date is ever changed by the user previously saved dates are deleted
-                self.date_from = None
-            if end != self.filters.MAX_DATE:
-                self.date_to = None
-            
-        if self.date_from is not None and start == self.filters.MIN_DATE:
-            start = self.date_from
-
-        if self.date_to is not None and end == self.filters.MAX_DATE:
-            end = self.date_to
-
+    def get_hand_ids_from_date_range(self, start, end):
         q = self.db.sql.query['handsInRange']
         q = q.replace('<datetest>', "between '" + start + "' and '" + end + "'")
         q = self.filters.replace_placeholders_with_filter_values(q)

@@ -101,7 +101,7 @@ class GuiSessionViewer(QSplitter):
                             "Button2"   : False
                           }
 
-        self.filters = Filters.Filters(self.db, self.conf, self.sql, display = filters_display)
+        self.filters = Filters.Filters(self.db, display = filters_display)
         self.filters.registerButton1Name("_Refresh")
         self.filters.registerButton1Callback(self.refreshStats)
 
@@ -161,18 +161,13 @@ class GuiSessionViewer(QSplitter):
         sitenos = []
         playerids = []
 
-        for i in ('show', 'none'):
-            if i in limits:
-                limits.remove(i)
-
         # Which sites are selected?
         for site in sites:
-            if sites[site] == True:
-                sitenos.append(siteids[site])
-                _hname = Charset.to_utf8(heroes[site])
-                result = self.db.get_player_id(self.conf, site, _hname)
-                if result is not None:
-                    playerids.append(result)
+            sitenos.append(siteids[site])
+            _hname = Charset.to_utf8(heroes[site])
+            result = self.db.get_player_id(self.conf, site, _hname)
+            if result is not None:
+                playerids.append(result)
 
         if not sitenos:
             #Should probably pop up here.
@@ -220,14 +215,10 @@ class GuiSessionViewer(QSplitter):
         start_date, end_date = self.filters.getDates()
         q = q.replace("<datestest>", " BETWEEN '" + start_date + "' AND '" + end_date + "'")
 
-        l = []
         for m in self.filters.display.items():
             if m[0] == 'Games' and m[1]:
-                for n in games:
-                    if games[n]:
-                        l.append(n)
-                if len(l) > 0:
-                    gametest = str(tuple(l))
+                if len(games) > 0:
+                    gametest = str(tuple(games))
                     gametest = gametest.replace("L", "")
                     gametest = gametest.replace(",)",")")
                     gametest = gametest.replace("u'","'")
@@ -239,11 +230,7 @@ class GuiSessionViewer(QSplitter):
         limittest = self.filters.get_limits_where_clause(limits)
         q = q.replace("<limit_test>", limittest)
 
-        l = []
-        for n in currencies:
-            if currencies[n]:
-                l.append(n)
-        currencytest = str(tuple(l))
+        currencytest = str(tuple(currencies))
         currencytest = currencytest.replace(",)",")")
         currencytest = currencytest.replace("u'","'")
         currencytest = "AND gt.currency in %s" % currencytest
@@ -467,7 +454,7 @@ class GuiSessionViewer(QSplitter):
             # at the edges of the date range are not included. A better solution may be possible.
             # Optionally the end date in the call below, which is a Long gets a '+1'.
             reformat = lambda t: strftime("%Y-%m-%d %H:%M:%S+00:00", gmtime(t))
-            handids = replayer.get_hand_ids_from_date_range(reformat(self.times[index.row()][0]), reformat(self.times[index.row()][1]), save_date = True)
+            handids = replayer.get_hand_ids_from_date_range(reformat(self.times[index.row()][0]), reformat(self.times[index.row()][1]))
             replayer.reload_hands(handids)
 
 if __name__ == '__main__':

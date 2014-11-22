@@ -1,19 +1,19 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-#Copyright 2008-2011 Steffen Schaumburg
-#This program is free software: you can redistribute it and/or modify
-#it under the terms of the GNU Affero General Public License as published by
-#the Free Software Foundation, version 3 of the License.
+# Copyright 2008-2011 Steffen Schaumburg
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published by
+# the Free Software Foundation, version 3 of the License.
 #
-#This program is distributed in the hope that it will be useful,
-#but WITHOUT ANY WARRANTY; without even the implied warranty of
-#MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-#GNU General Public License for more details.
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
 #
-#You should have received a copy of the GNU Affero General Public License
-#along with this program. If not, see <http://www.gnu.org/licenses/>.
-#In the "official" distribution you can find the license in agpl-3.0.txt.
+# You should have received a copy of the GNU Affero General Public License
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
+# In the "official" distribution you can find the license in agpl-3.0.txt.
 
 import L10n
 _ = L10n.get_translation()
@@ -42,12 +42,8 @@ if __name__ == "__main__":
 log = logging.getLogger("filter")
 
 class Filters(QWidget):
-    MIN_DATE = '1970-01-02 00:00:00'
-    MAX_DATE = '2100-12-12 23:59:59'
-    def __init__(self, db, config, qdict, display = {}, debug=True):
+    def __init__(self, db, display = {}):
         QWidget.__init__(self, None)
-        # config and qdict are now redundant
-        self.debug = debug
         self.db = db
         self.cursor = db.cursor
         self.sql = db.sql
@@ -101,27 +97,14 @@ class Filters(QWidget):
         if 'day_start' in gen:
             self.day_start = float(gen['day_start'])
 
-
-        # Outer Packing box
         self.setLayout(QVBoxLayout())
 
-        self.found = {'nl':False, 'fl':False, 'pl':False, 'cn':False, 'hp':False, 'ring':False, 'tour':False}
-        self.label = {}
         self.callback = {}
 
         self.make_filter()
         
     def make_filter(self):
-        self.sites  = {}
-        self.games  = {}
-        self.limits = {}
-        self.positions = {}
-        self.seats  = {}
-        self.groups = {}
         self.siteid = {}
-        self.heroes = {}
-        self.graphops = {}
-        self.currencies  = {}
         self.cards  = {}
 
         for site in self.conf.get_supported_sites():
@@ -131,29 +114,25 @@ class Filters(QWidget):
             if len(result) == 1:
                 self.siteid[site] = result[0][0]
             else:
-                log.debug(_("Either 0 or more than one site matched for %s") % site)
+                log.debug(_("Either 0 or more than one site matched for %s"), site)
 
         # For use in date ranges.
         self.start_date = QDateEdit(QDate(1970,1,1))
         self.end_date = QDateEdit(QDate(2100,1,1))
 
         # For use in groups etc
-        self.sbGroups = {}
-        self.numHands = 0
-
-        # for use in graphops
-        # dspin = display in '$' or 'B'
-        self.graphops['dspin'] = "$"
-        self.graphops['showdown'] = 'OFF'
-        self.graphops['nonshowdown'] = 'OFF'
-        self.graphops['ev'] = 'OFF'
+        self.cbGroups = {}
+        self.phands = None
 
         playerFrame = QGroupBox(self.filterText['playerstitle'])
+        self.leHeroes = {}
+
         self.fillPlayerFrame(playerFrame, self.display)
         self.layout().addWidget(playerFrame)
 
         # Sites
         sitesFrame = QGroupBox(self.filterText['sitestitle'])
+        self.cbSites = {}
 
         self.fillSitesFrame(sitesFrame)
         self.layout().addWidget(sitesFrame)
@@ -162,8 +141,6 @@ class Filters(QWidget):
         gamesFrame = QGroupBox(self.filterText['gamestitle'])
         self.layout().addWidget(gamesFrame)
         self.cbGames = {}
-        self.cbNoGames = None
-        self.cbAllGames = None
 
         self.fillGamesFrame(gamesFrame)
 
@@ -171,8 +148,6 @@ class Filters(QWidget):
         currenciesFrame = QGroupBox(self.filterText['currenciestitle'])
         self.layout().addWidget(currenciesFrame)
         self.cbCurrencies = {}
-        self.cbNoCurrencies = None
-        self.cbAllCurrencies = None
 
         self.fillCurrenciesFrame(currenciesFrame)
 
@@ -180,36 +155,25 @@ class Filters(QWidget):
         limitsFrame = QGroupBox(self.filterText['limitstitle'])
         self.layout().addWidget(limitsFrame)
         self.cbLimits = {}
-        self.cbNoLimits = None
-        self.cbAllLimits = None
-        self.cbFL = None
-        self.cbNL = None
-        self.cbPL = None
-        self.cbCN = None
-        self.cbHP = None
         self.rb = {}     # radio buttons for ring/tour
         self.type = None # ring/tour
-        self.types = {}  # list of all ring/tour values
-        self.num_limit_types = 0
 
         self.fillLimitsFrame(limitsFrame, self.display)
         
-        #Positions  
+        # Positions
         positionsFrame = QGroupBox(self.filterText['positionstitle'])
         self.layout().addWidget(positionsFrame)
         
         self.cbPositions = {}
-        self.cbNoPositions = None
-        self.cbAllPositions = None
 
         self.fillPositionsFrame(positionsFrame, self.display)
 
         # GraphOps
         graphopsFrame = QGroupBox(_("Graphing Options:"))
         self.layout().addWidget(graphopsFrame)
+        self.cbGraphops = {}
 
         self.fillGraphOpsFrame(graphopsFrame)
-
 
         # Seats
         seatsFrame = QGroupBox(self.filterText['seatstitle'])
@@ -274,83 +238,81 @@ class Filters(QWidget):
         if "Button2" not in self.display or self.display["Button2"] is False:
             self.Button2.hide()
 
-        if 'button1' in self.label and self.label['button1']:
-            self.Button1.set_label( self.label['button1'] )
-        if 'button2' in self.label and self.label['button2']:
-            self.Button2.set_label( self.label['button2'] )
-        if 'button1' in self.callback and self.callback['button1']:
-            self.Button1.connect("clicked", self.callback['button1'], "clicked")
-            self.Button1.set_sensitive(True)
-        if 'button2' in self.callback and self.callback['button2']:
-            self.Button2.connect("clicked", self.callback['button2'], "clicked")
-            self.Button2.set_sensitive(True)
-
         # make sure any locks on db are released:
         self.db.rollback()
 
-    def get_vbox(self):
-        """returns the vbox of this thread"""
-        return self.sw
-
     def getNumHands(self):
-        return self.numHands
+        if self.phands:
+            return self.phands.value()
+        return 0
 
     def getNumTourneys(self):
-        return self.numTourneys
+        return 0
 
     def getSites(self):
-        return self.sites
+        return [s for s in self.cbSites if self.cbSites[s].isChecked()]
     
     def getPositions(self):
-        return self.positions
+        return [p for p in self.cbPositions if self.cbPositions[p].isChecked()]
 
     def getTourneyTypes(self):
-        return self.tourneyTypes
+        return []
 
     def getGames(self):
-        return self.games
+        return [g for g in self.cbGames if self.cbGames[g].isChecked()]
 
     def getCards(self):
         return self.cards
 
     def getCurrencies(self):
-        return self.currencies
+        return [c for c in self.cbCurrencies if self.cbCurrencies[c].isChecked()]
 
     def getSiteIds(self):
         return self.siteid
 
     def getHeroes(self):
-        return self.heroes
+        return dict([(site, unicode(self.leHeroes[site].text())) for site in self.leHeroes])
 
     def getGraphOps(self):
-        return self.graphops
+        return [g for g in self.cbGraphops if self.cbGraphops[g].isChecked()]
 
     def getLimits(self):
-        ltuple = []
-        for l in self.limits:
-            if self.limits[l]:
-                ltuple.append(l)
-        return ltuple
+        return [l for l in self.cbLimits if self.cbLimits[l].isChecked()]
 
     def getType(self):
         return(self.type)
 
     def getSeats(self):
+        result = {}
         if 'from' in self.sbSeats:
-            self.seats['from'] = self.sbSeats['from'].value()
+            result['from'] = self.sbSeats['from'].value()
         if 'to' in self.sbSeats:
-            self.seats['to'] = self.sbSeats['to'].value()
-        return self.seats
+            result['to'] = self.sbSeats['to'].value()
+        return result
 
     def getGroups(self):
-        return self.groups
+        return [g for g in self.cbGroups if self.cbGroups[g].isChecked()]
 
     def getDates(self):
-        return self.__get_dates()
+        # self.day_start gives user's start of day in hours
+        offset = int(self.day_start * 3600)   # calc day_start in seconds
+
+        t1 = self.start_date.date()
+        t2 = self.end_date.date()
+
+        s1 = strptime(t1.toString("yyyy-MM-dd"), "%Y-%m-%d") # make time_struct
+        e1 = mktime(s1) + offset  # s1 is localtime, but returned time since epoch is UTC, then add the 
+        adj_t1 = strftime("%Y-%m-%d %H:%M:%S", gmtime(e1)) # make adjusted string including time
+
+        s2 = strptime(t2.toString("yyyy-MM-dd"), "%Y-%m-%d")
+        e2 = mktime(s2) + offset  # s2 is localtime, but returned time since epoch is UTC
+        e2 = e2 + 24 * 3600 - 1   # date test is inclusive, so add 23h 59m 59s to e2
+        adj_t2 = strftime("%Y-%m-%d %H:%M:%S", gmtime(e2))
+
+        return (adj_t1, adj_t2)
 
     def registerButton1Name(self, title):
         self.Button1.setText(title)
-        self.label['button1'] = title
 
     def registerButton1Callback(self, callback):
         self.Button1.clicked.connect(callback)
@@ -359,7 +321,6 @@ class Filters(QWidget):
 
     def registerButton2Name(self, title):
         self.Button2.setText(title)
-        self.label['button2'] = title
 
     def registerButton2Callback(self, callback):
         self.Button2.clicked.connect(callback)
@@ -369,62 +330,15 @@ class Filters(QWidget):
     def registerCardsCallback(self, callback):
         self.callback['cards'] = callback
 
-    def createPlayerLine(self, vbox, site, player):
-        log.debug('add:"%s"' % player)
-        label = QLabel(site +" id:")
-        vbox.addWidget(label)
-
-        hbox = QHBoxLayout()
-        vbox.addLayout(hbox)
-
-        pname = QLineEdit(player)
-        hbox.addWidget(pname)
-        pname.textChanged.connect(partial(self.__set_hero_name, site=site))
-
-        # Added EntryCompletion but maybe comboBoxEntry is more flexible? (e.g. multiple choices)
-        names = self.db.get_player_names(self.conf, self.siteid[site])  # (config=self.conf, site_id=None, like_player_name="%")
-        completer = QCompleter([Charset.to_gui(n[0]) for n in names])
-        pname.setCompleter(completer)
-
-        self.__set_hero_name(player, site)
-
-    def __set_hero_name(self, name, site):
-        self.heroes[site] = unicode(name)
-
-    def __set_num_hands(self, val):
-        self.numHands = val
-
-    def createSiteLine(self, hbox, site):
-        cb = QCheckBox(site)
-        cb.stateChanged.connect(partial(self.__set_site_select, site=site))
-        cb.setChecked(True)
-        hbox.addWidget(cb)
-
     def __set_tourney_type_select(self, w, tourneyType):
         self.tourneyTypes[tourneyType] = w.get_active()
-        log.debug("self.tourney_types[%s] set to %s" %(tourneyType, self.tourneyTypes[tourneyType]))
+        log.debug("self.tourney_types[%s] set to %s", tourneyType, self.tourneyTypes[tourneyType])
 
     def createTourneyTypeLine(self, hbox, tourneyType):
         cb = QCheckBox(str(tourneyType))
         cb.clicked.connect(partial(self.__set_tourney_type_select, tourneyType=tourneyType))
         hbox.addWidget(cb)
         cb.setChecked(True)
-
-    def createGameLine(self, hbox, game, gtext):
-        cb = QCheckBox(gtext.replace("_", "__"))
-        cb.stateChanged.connect(partial(self.__set_game_select, game=game))
-        hbox.addWidget(cb)
-        if game != "none":
-            cb.setChecked(True)
-        return(cb)
-    
-    def createPositionLine(self, hbox, pos, pos_text):
-        cb = QCheckBox(pos_text.replace("_", "__"))
-        cb.stateChanged.connect(partial(self.__set_position_select, pos=pos))
-        hbox.addWidget(cb)
-        if pos != "none":
-            cb.setChecked(True)
-        return cb
 
     def createCardsWidget(self, grid):
         grid.setSpacing(0)
@@ -445,62 +359,6 @@ class Filters(QWidget):
             cb.clicked.connect(self.__set_cards)
             hbox.addWidget(cb)
 
-    def createCurrencyLine(self, hbox, currency, ctext):
-        cb = QCheckBox(ctext.replace("_", "__"))
-        cb.stateChanged.connect(partial(self.__set_currency_select, currency=currency))
-        hbox.addWidget(cb)
-        if currency != "none" and currency != "all" and currency != "play":
-            cb.setChecked(True)
-        return(cb)
-
-    def createLimitLine(self, hbox, limit, ltext):
-        cb = QCheckBox(ltext)
-        cb.stateChanged.connect(partial(self.__set_limit_select, limit=limit))
-        hbox.addWidget(cb)
-        if limit != "none":
-            cb.setChecked(True)
-        return(cb)
-
-    def __set_site_select(self, checkState, site):
-        self.sites[site] = bool(checkState)
-        log.debug(_("self.sites[%s] set to %s") %(site, self.sites[site]))
-
-    def __set_game_select(self, checkState, game):
-        if game == 'all':
-            if checkState:
-                for cb in self.cbGames.values():
-                    cb.setChecked(True)
-        elif game == 'none':
-            if checkState:
-                for cb in self.cbGames.values():
-                    cb.setChecked(False)
-        else:
-            self.games[game] = bool(checkState)
-            if checkState: # when we turn a pos on, turn 'none' off if it's on
-                if self.cbNoGames and self.cbNoGames.isChecked():
-                    self.cbNoGames.setChecked(False)
-            else:                # when we turn a pos off, turn 'all' off if it's on
-                if self.cbAllGames and self.cbAllGames.isChecked():
-                    self.cbAllGames.setChecked(False)
-
-    def __set_position_select(self, checkState, pos):      
-        if (pos == 'all'):
-            if checkState:
-                for cb in self.cbPositions.values():
-                    cb.setChecked(True)
-        elif (pos == 'none'):
-            if checkState:
-                for cb in self.cbPositions.values():
-                    cb.setChecked(False)
-        else:
-            self.positions[pos] = checkState
-            if checkState: # when we turn a pos on, turn 'none' off if it's on
-                if (self.cbNoPositions and self.cbNoPositions.isChecked()):
-                    self.cbNoPositions.setChecked(False)
-            else:                # when we turn a pos off, turn 'all' off if it's on
-                if (self.cbAllPositions and self.cbAllPositions.isChecked()):
-                    self.cbAllPositions.setChecked(False)
-
     def __card_select_bgcolor(self, card, selected):
         s_on  = "red"
         s_off = "orange"
@@ -520,7 +378,7 @@ class Filters(QWidget):
 
         self.cards[card] = not self.cards[card]
 
-        bg_color = self.__card_select_bgcolor(card, self.cards[card])
+#        bg_color = self.__card_select_bgcolor(card, self.cards[card])
 
 #        style = w.get_style().copy()
 #        style.bg[gtk.STATE_NORMAL] = w.get_colormap().alloc(bg_color)
@@ -531,257 +389,52 @@ class Filters(QWidget):
     def __set_cards(self, w, val):
         print "DEBUG: val: %s = %s" %(val, w.get_active())
 
-    def __set_currency_select(self, checkState, currency):
-        if currency == 'all':
-            if checkState:
-                for cb in self.cbCurrencies.values():
-                    cb.setChecked(True)
-        elif currency == 'none':
-            if checkState:
-                for cb in self.cbCurrencies.values():
-                    cb.setChecked(False)
-        else:
-            self.currencies[currency] = bool(checkState)
-            if checkState: # when we turn a currency on, turn 'none' off if it's on
-                if self.cbNoCurrencies and self.cbNoCurrencies.isChecked():
-                    self.cbNoCurrencies.setChecked(False)
-            else:          # when we turn a currency off, turn 'all' off if it's on
-                if self.cbAllCurrencies and self.cbAllCurrencies.isChecked():
-                    self.cbAllCurrencies.setChecked(False)
+    def __set_checkboxes(self, checkState, checkBoxes, setState):
+        for checkbox in checkBoxes.values():
+            checkbox.setChecked(setState)
 
-    def __set_limit_select(self, checkState, limit):
-        self.limits[limit] = bool(checkState)
-        return
-        log.debug(_("self.limit[%s] set to %s") %(limit, self.limits[limit]))
-        if limit.isdigit() or (len(limit) > 2 and (limit[-2:] == 'nl' or limit[-2:] == 'fl' or limit[-2:] == 'pl' or limit[-2:] == 'cn')):
-            # turning a leaf limit on with 'None' checked turns 'None' off
-            if self.limits[limit]:
-                if self.cbNoLimits is not None:
-                    self.cbNoLimits.set_active(False)
-            # turning a leaf limit off with 'All' checked turns 'All' off
-            else:
-                if self.cbAllLimits is not None:
-                    self.cbAllLimits.set_active(False)
-            # turning off a leaf limit turns off the corresponding fl. nl, cn or pl
-            if not self.limits[limit]:
-                if (limit.isdigit() or (len(limit) > 2 and (limit[-2:] == 'fl'))):
-                    if self.cbFL is not None:
-                        self.cbFL.set_active(False)
-                elif (len(limit) > 2 and (limit[-2:] == 'nl')):
-                    if self.cbNL is not None:
-                        self.cbNL.set_active(False)
-                elif (len(limit) > 2 and (limit[-2:] == 'cn')):
-                    if self.cbCN is not None:
-                        self.cbCN.set_active(False)
-                else:
-                    if self.cbPL is not None:
-                        self.cbPL.set_active(False)
-        elif limit == "all":
-            if self.limits[limit]:
-                if self.num_limit_types == 1:
-                    for cb in self.cbLimits.values():
-                        cb.set_active(True)
-                else:
-                    if self.cbFL is not None:
-                        self.cbFL.set_active(True)
-                    if self.cbNL is not None:
-                        self.cbNL.set_active(True)
-                    if self.cbPL is not None:
-                        self.cbPL.set_active(True)
-                    if self.cbCN is not None:
-                        self.cbCN.set_active(True)
-        elif limit == "none":
-            if self.limits[limit]:
-                if self.num_limit_types > 1:
-                    if self.cbNL is not None:
-                        self.cbNL.set_active(False)
-                    if self.cbFL is not None:
-                        self.cbFL.set_active(False)
-                    if self.cbPL is not None:
-                        self.cbPL.set_active(False)
-                    if self.cbCN is not None:
-                        self.cbCN.set_active(False)
-            #
-            #   Finally, clean-up all individual limit checkboxes
-            #       needed because the overall limit checkbox may 
-            #       not be set, or num_limit_types == 1
-            #
-                for cb in self.cbLimits.values():
-                    cb.set_active(False)
-        elif limit == "fl":
-            if not self.limits[limit]:
-                # only toggle all fl limits off if they are all currently on
-                # this stops turning one off from cascading into 'fl' box off
-                # and then all fl limits being turned off
-                all_fl_on = True
-                for cb in self.cbLimits.values():
-                    t = cb.get_children()[0].get_text()
-                    if (t.isdigit() or ("fl" in t and len(t) > 2)):
-                        if not cb.get_active():
-                            all_fl_on = False
-            found = {'ring':False, 'tour':False}
-            for cb in self.cbLimits.values():
-                #print "cb label: ", cb.children()[0].get_text()
-                t = cb.get_children()[0].get_text()
-                if (t.isdigit() or ("fl" in t and len(t) > 2)):
-                    if self.limits[limit] or all_fl_on:
-                        cb.set_active(self.limits[limit])
-                    found[self.types[t]] = True
-            if self.limits[limit]:
-                if not found[self.type]:
-                    if self.type == 'ring':
-                        if 'tour' in self.rb:
-                            self.rb['tour'].set_active(True)
-                    elif self.type == 'tour':
-                        if 'ring' in self.rb:
-                            self.rb['ring'].set_active(True)
-        elif limit == "nl":
-            if not self.limits[limit]:
-                # only toggle all nl limits off if they are all currently on
-                # this stops turning one off from cascading into 'nl' box off
-                # and then all nl limits being turned off
-                all_nl_on = True
-                for cb in self.cbLimits.values():
-                    t = cb.get_children()[0].get_text()
-                    if "nl" in t and len(t) > 2:
-                        if not cb.get_active():
-                            all_nl_on = False
-            found = {'ring':False, 'tour':False}
-            for cb in self.cbLimits.values():
-                t = cb.get_children()[0].get_text()
-                if "nl" in t and len(t) > 2:
-                    if self.limits[limit] or all_nl_on:
-                        cb.set_active(self.limits[limit])
-                    found[self.types[t]] = True
-            if self.limits[limit]:
-                if not found[self.type]:
-                    if self.type == 'ring':
-                        if 'tour' in self.rb:
-                            self.rb['tour'].set_active(True)
-                    elif self.type == 'tour':
-                        if 'ring' in self.rb:
-                            self.rb['ring'].set_active(True)
-        elif limit == "pl":
-            if not self.limits[limit]:
-                # only toggle all nl limits off if they are all currently on
-                # this stops turning one off from cascading into 'nl' box off
-                # and then all nl limits being turned off
-                all_nl_on = True
-                for cb in self.cbLimits.values():
-                    t = cb.get_children()[0].get_text()
-                    if "pl" in t and len(t) > 2:
-                        if not cb.get_active():
-                            all_nl_on = False
-            found = {'ring':False, 'tour':False}
-            for cb in self.cbLimits.values():
-                t = cb.get_children()[0].get_text()
-                if "pl" in t and len(t) > 2:
-                    if self.limits[limit] or all_nl_on:
-                        cb.set_active(self.limits[limit])
-                    found[self.types[t]] = True
-            if self.limits[limit]:
-                if not found[self.type]:
-                    if self.type == 'ring':
-                        if 'tour' in self.rb:
-                            self.rb['tour'].set_active(True)
-                    elif self.type == 'tour':
-                        if 'ring' in self.rb:
-                            self.rb['ring'].set_active(True)
-        elif limit == "cn":
-            if not self.limits[limit]:
-                all_cn_on = True
-                for cb in self.cbLimits.values():
-                    t = cb.get_children()[0].get_text()
-                    if "cn" in t and len(t) > 2:
-                        if not cb.get_active():
-                            all_cn_on = False
-            found = {'ring':False, 'tour':False}
-            for cb in self.cbLimits.values():
-                t = cb.get_children()[0].get_text()
-                if "cn" in t and len(t) > 2:
-                    if self.limits[limit] or all_cn_on:
-                        cb.set_active(self.limits[limit])
-                    found[self.types[t]] = True
-            if self.limits[limit]:
-                if not found[self.type]:
-                    if self.type == 'ring':
-                        if 'tour' in self.rb:
-                            self.rb['tour'].set_active(True)
-                    elif self.type == 'tour':
-                        if 'ring' in self.rb:
-                            self.rb['ring'].set_active(True)
-        elif limit == "ring":
-            log.debug("set", limit, "to", self.limits[limit])
-            if self.limits[limit]:
-                self.type = "ring"
-                for cb in self.cbLimits.values():
-                    #print "cb label: ", cb.children()[0].get_text()
-                    if self.types[cb.get_children()[0].get_text()] == 'tour':
-                        cb.set_active(False)
-        elif limit == "tour":
-            log.debug( "set", limit, "to", self.limits[limit] )
-            if self.limits[limit]:
-                self.type = "tour"
-                for cb in self.cbLimits.values():
-                    #print "cb label: ", cb.children()[0].get_text()
-                    if self.types[cb.get_children()[0].get_text()] == 'ring':
-                        cb.set_active(False)
-
-    def __set_seat_select(self, checkState, seat):
-        self.seats[seat] = checkState
-        log.debug( _("self.seats[%s] set to %s") %(seat, self.seats[seat]) )
-
-    def __set_group_select(self, checkState, group):
-        self.groups[group] = checkState
-        log.debug( _("self.groups[%s] set to %s") %(group, self.groups[group]) )
-
-    def __set_displayin_select(self, w, ops):
-        self.graphops['dspin'] = ops
-
-    def __set_graphopscheck_select(self, checkState, data):
-        self.graphops[data] = "ON" if checkState else "OFF"
+    def __select_limit(self, checkState, limit):
+        for l, checkbox in self.cbLimits.items():
+            if l.endswith(limit):
+                checkbox.setChecked(True)
 
     def fillPlayerFrame(self, frame, display):
-        vbox1 = QVBoxLayout()
-        frame.setLayout(vbox1)
+        vbox = QVBoxLayout()
+        frame.setLayout(vbox)
 
         for site in self.conf.get_supported_sites():
             player = self.conf.supported_sites[site].screen_name
             _pname = Charset.to_gui(player)
-            self.createPlayerLine(vbox1, site, _pname)
+            vbox.addWidget(QLabel(site +" id:"))
+
+            self.leHeroes[site] = QLineEdit(_pname)
+            vbox.addWidget(self.leHeroes[site])
+
+            names = self.db.get_player_names(self.conf, self.siteid[site])
+            completer = QCompleter([Charset.to_gui(n[0]) for n in names])
+            self.leHeroes[site].setCompleter(completer)
 
         if "GroupsAll" in display and display["GroupsAll"]:
             hbox = QHBoxLayout()
-            vbox1.addLayout(hbox)
-            cb = QCheckBox(self.filterText['groupsall'])
-            cb.clicked.connect(partial(self.__set_group_select, group='allplayers'))
-            hbox.addWidget(cb)
-            self.sbGroups['allplayers'] = cb
-            self.groups['allplayers'] = False
+            vbox.addLayout(hbox)
+            self.cbGroups['allplayers'] = QCheckBox(self.filterText['groupsall'])
+            hbox.addWidget(self.cbGroups['allplayers'])
 
             lbl = QLabel(_('Min # Hands:'))
             hbox.addWidget(lbl)
 
-            phands = QSpinBox()
-            phands.setMaximum(1e9)
-            hbox.addWidget(phands)
-            phands.valueChanged.connect(self.__set_num_hands)
+            self.phands = QSpinBox()
+            self.phands.setMaximum(1e9)
+            hbox.addWidget(self.phands)
 
     def fillSitesFrame(self, frame):
-        vbox1 = QVBoxLayout()
-        frame.setLayout(vbox1)
+        vbox = QVBoxLayout()
+        frame.setLayout(vbox)
 
         for site in self.conf.get_supported_sites():
-            hbox = QHBoxLayout()
-            vbox1.addLayout(hbox)
-            self.createSiteLine(hbox, site)
-            # Get db site id for filtering later
-            #self.cursor.execute(self.sql.query['getSiteId'], (site,))
-            #result = self.db.cursor.fetchall()
-            #if len(result) == 1:
-            #    self.siteid[site] = result[0][0]
-            #else:
-            #    print "Either 0 or more than one site matched - EEK"
+            self.cbSites[site] = QCheckBox(site)
+            self.cbSites[site].setChecked(True)
+            vbox.addWidget(self.cbSites[site])
 
     def fillTourneyTypesFrame(self, vbox):
         vbox1 = QVBoxLayout()
@@ -806,35 +459,37 @@ class Filters(QWidget):
         result = self.db.cursor.fetchall()
         if len(result) >= 1:
             for line in sorted(result, key = lambda game: self.gameName[game[0]]):
-                hbox = QHBoxLayout()
-                vbox1.addLayout(hbox)
-                self.cbGames[line[0]] = self.createGameLine(hbox, line[0], self.gameName[line[0]])
+                self.cbGames[line[0]] = QCheckBox(self.gameName[line[0]])
+                self.cbGames[line[0]].setChecked(True)
+                vbox1.addWidget(self.cbGames[line[0]])
 
             if len(result) >= 2:
                 hbox = QHBoxLayout()
                 vbox1.addLayout(hbox)
-                vbox2 = QVBoxLayout()
-                hbox.addLayout(vbox2)
-                vbox3 = QVBoxLayout()
-                hbox.addLayout(vbox3)
+                hbox.addStretch()
 
-                hbox = QHBoxLayout()
-                vbox2.addLayout(hbox)
-                self.cbAllGames = self.createGameLine(hbox, 'all', self.filterText['gamesall'])
-                hbox = QHBoxLayout()
-                vbox3.addLayout(hbox)
-                self.cbNoGames = self.createGameLine(hbox, 'none', self.filterText['gamesnone'])
+                btnAll = QPushButton(self.filterText['gamesall'])
+                btnAll.clicked.connect(partial(self.__set_checkboxes,
+                                               checkBoxes=self.cbGames,
+                                               setState=True))
+                hbox.addWidget(btnAll)
+
+                btnNone = QPushButton(self.filterText['gamesnone'])
+                btnNone.clicked.connect(partial(self.__set_checkboxes,
+                                                checkBoxes=self.cbGames,
+                                                setState=False))
+                hbox.addWidget(btnNone)
+                hbox.addStretch()
         else:
             print _("INFO: No games returned from database")
             log.info(_("No games returned from database"))
-    #end def fillGamesFrame
     
     def fillPositionsFrame(self, frame, display):
         vbox1 = QVBoxLayout()
         frame.setLayout(vbox1)
 
-        #the following is not the fastest query (as it querys a table with potentialy a lot of data), so dont execute it if not necessary
-        if "Positions" not in display or display["Positions"] == False:
+        # the following is not the fastest query (as it querys a table with potentialy a lot of data), so dont execute it if not necessary
+        if "Positions" not in display or display["Positions"] is False:
             return
         
         #This takes too long if there are a couple of 100k hands in the DB
@@ -853,7 +508,9 @@ class Filters(QWidget):
                     vbox1.addLayout(hbox)
                     
                 line_str = str(line[0])
-                self.cbPositions[line_str] = self.createPositionLine(hbox, line_str, line_str)
+                self.cbPositions[line_str] = QCheckBox(line_str)
+                self.cbPositions[line_str].setChecked(True)
+                hbox.addWidget(self.cbPositions[line_str])
                 
                 v_count += 1
                 if v_count == COL_COUNT:    #set the counter to 0 if the line is full
@@ -868,14 +525,23 @@ class Filters(QWidget):
             if res_count > 1:
                 hbox = QHBoxLayout()
                 vbox1.addLayout(hbox)
-                self.cbAllPositions = self.createPositionLine(hbox, 'all', self.filterText['positionsall'])
-                self.cbNoPositions = self.createPositionLine(hbox, 'none', self.filterText['positionsnone'])
+                hbox.addStretch()
+
+                btnAll = QPushButton(self.filterText['positionsall'])
+                btnAll.clicked.connect(partial(self.__set_checkboxes,
+                                               checkBoxes=self.cbPositions,
+                                               setState=True))
+                hbox.addWidget(btnAll)
+
+                btnNone = QPushButton(self.filterText['positionsnone'])
+                btnNone.clicked.connect(partial(self.__set_checkboxes,
+                                                checkBoxes=self.cbPositions,
+                                                setState=False))
+                hbox.addWidget(btnNone)
+                hbox.addStretch()
         else:
             print(_("INFO") + ": " + _("No positions returned from database"))
             log.info(_("No positions returned from database"))
-        
-    #end def fillSitesFrame(self, vbox, display):
-
 
     def fillHoleCardsFrame(self, frame):
         vbox1 = QVBoxLayout()
@@ -898,35 +564,36 @@ class Filters(QWidget):
         result = self.db.cursor.fetchall()
         if len(result) >= 1:
             for line in result:
-                hbox = QHBoxLayout()
-                vbox1.addLayout(hbox)
                 if line[0] in self.currencyName:
                     cname = self.currencyName[line[0]]
                 else:
                     cname = line[0]
-                self.cbCurrencies[line[0]] = self.createCurrencyLine(hbox, line[0], cname)
+                self.cbCurrencies[line[0]] = QCheckBox(cname)
+                self.cbCurrencies[line[0]].setChecked(True)
+                vbox1.addWidget(self.cbCurrencies[line[0]])
 
             if len(result) >= 2:
                 hbox = QHBoxLayout()
                 vbox1.addLayout(hbox)
-                vbox2 = QVBoxLayout()
-                hbox.addLayout(vbox2)
-                vbox3 = QVBoxLayout()
-                hbox.addLayout(vbox3)
+                hbox.addStretch()
 
-                hbox = QHBoxLayout()
-                vbox2.addLayout(hbox)
-                self.cbAllCurrencies = self.createCurrencyLine(hbox, 'all', self.filterText['currenciesall'])
-                hbox = QHBoxLayout()
-                vbox3.addLayout(hbox)
-                self.cbNoCurrencies = self.createCurrencyLine(hbox, 'none', self.filterText['currenciesnone'])
+                btnAll = QPushButton(self.filterText['currenciesall'])
+                btnAll.clicked.connect(partial(self.__set_checkboxes,
+                                                     checkBoxes=self.cbCurrencies,
+                                                     setState=True))
+                hbox.addWidget(btnAll)
+
+                btnNone = QPushButton(self.filterText['currenciesnone'])
+                btnNone.clicked.connect(partial(self.__set_checkboxes,
+                                                     checkBoxes=self.cbCurrencies,
+                                                     setState=False))
+                hbox.addWidget(btnNone)
+                hbox.addStretch()
             else:
                 # There is only one currency. Select it, even if it's Play Money.
                 self.cbCurrencies[line[0]].setChecked(True)
         else:
-            #print "INFO: No currencies returned from database"
             log.info(_("No currencies returned from database"))
-    #end def fillCurrenciesFrame
 
     def fillLimitsFrame(self, frame, display):
         vbox1 = QVBoxLayout()
@@ -935,7 +602,8 @@ class Filters(QWidget):
         self.cursor.execute(self.sql.query['getCashLimits'])
         # selects  limitType, bigBlind
         result = self.db.cursor.fetchall()
-        self.found = {'nl':False, 'fl':False, 'pl':False, 'cn':False, 'hp':False, 'ring':False, 'tour':False}
+        limits_found = set()
+        types_found = set()
 
         if len(result) >= 1:
             hbox = QHBoxLayout()
@@ -955,73 +623,54 @@ class Filters(QWidget):
                     vbox3.addLayout(hbox)
                 if True:  #line[0] == 'ring':
                     name = str(line[2])+line[1]
-                    self.found[line[1]] = True
-                    self.cbLimits[name] = self.createLimitLine(hbox, name, name)
-                    self.types[name] = line[0]
-                self.found[line[0]] = True      # type is ring/tour
+                    limits_found.add(line[1])
+                    self.cbLimits[name] = QCheckBox(name)
+                    self.cbLimits[name].setChecked(True)
+                    hbox.addWidget(self.cbLimits[name])
+                types_found.add(line[0])      # type is ring/tour
                 self.type = line[0]        # if only one type, set it now
-            if "LimitSep" in display and display["LimitSep"] == True and len(result) >= 2:
+            if "LimitSep" in display and display["LimitSep"] and len(result) >= 2:
                 hbox = QHBoxLayout()
                 vbox1.addLayout(hbox)
-                vbox2 = QVBoxLayout()
-                hbox.addLayout(vbox2)
-                vbox3 = QVBoxLayout()
-                hbox.addLayout(vbox3)
+                hbox.addStretch()
 
-                hbox = QHBoxLayout()
-                vbox2.addLayout(hbox)
-                self.cbAllLimits = self.createLimitLine(hbox, 'all', self.filterText['limitsall'])
-                hbox = QHBoxLayout()
-                vbox2.addLayout(hbox)
-                self.cbNoLimits = self.createLimitLine(hbox, 'none', self.filterText['limitsnone'])
+                btnAll = QPushButton(self.filterText['limitsall'])
+                btnAll.clicked.connect(partial(self.__set_checkboxes,
+                                               checkBoxes=self.cbLimits,
+                                               setState=True))
+                hbox.addWidget(btnAll)
 
-                dest = vbox3  # for ring/tour buttons
-                if "LimitType" in display and display["LimitType"] == True:
-                    self.num_limit_types = 0
-                    if self.found['fl']:  self.num_limit_types = self.num_limit_types + 1
-                    if self.found['pl']:  self.num_limit_types = self.num_limit_types + 1
-                    if self.found['nl']:  self.num_limit_types = self.num_limit_types + 1
-                    if self.found['cn']:  self.num_limit_types = self.num_limit_types + 1
-                    if self.found['hp']:  self.num_limit_types = self.num_limit_types + 1
-                    if self.num_limit_types > 1:
-                        if self.found['fl']:
-                            hbox = QHBoxLayout()
-                            vbox3.addLayout(hbox)
-                            self.cbFL = self.createLimitLine(hbox, 'fl', self.filterText['limitsFL'])
-                        if self.found['nl']:
-                            hbox = QHBoxLayout()
-                            vbox3.addLayout(hbox)
-                            self.cbNL = self.createLimitLine(hbox, 'nl', self.filterText['limitsNL'])
-                        if self.found['pl']:
-                            hbox = QHBoxLayout()
-                            vbox3.addLayout(hbox)
-                            self.cbPL = self.createLimitLine(hbox, 'pl', self.filterText['limitsPL'])
-                        if self.found['cn']:
-                            hbox = QHBoxLayout()
-                            vbox3.addLayout(hbox)
-                            self.cbCN = self.createLimitLine(hbox, 'cn', self.filterText['limitsCN'])
-                        if self.found['hp']:
-                            hbox = QHBoxLayout()
-                            vbox3.addLayout(hbox)
-                            self.cbHP = self.createLimitLine(hbox, 'hp', self.filterText['limitsHP'])
+                btnNone = QPushButton(self.filterText['limitsnone'])
+                btnNone.clicked.connect(partial(self.__set_checkboxes,
+                                                checkBoxes=self.cbLimits,
+                                                setState=False))
+                hbox.addWidget(btnNone)
+
+                if "LimitType" in display and display["LimitType"] and len(limits_found) > 1:
+                    for limit in limits_found:
+                        btn = QPushButton(self.filterText['limits' + limit.upper()])
+                        btn.clicked.connect(partial(self.__select_limit, limit=limit))
+                        hbox.addWidget(btn)
+
+                hbox.addStretch()
         else:
             print _("INFO: No games returned from database")
             log.info(_("No games returned from database"))
 
-        if "Type" in display and display["Type"] and self.found['ring'] and self.found['tour']:
-            rb1 = QRadioButton(frame, self.filterText['ring'])
-            rb1.clicked.connect(self.__set_limit_select)
-            rb2 = QRadioButton(frame, self.filterText['tour'])
-            rb2.clicked.connect(self.__set_limit_select)
-            top_hbox.addWidget(rb1)
-            top_hbox.addWidget(rb2)
-
-            self.rb['ring'] = rb1
-            self.rb['tour'] = rb2
-            #print "about to set ring to true"
-            rb1.setChecked(True)
-            # set_active doesn't seem to call this for some reason so call manually:
-            self.__set_limit_select(rb1)
+        if "Type" in display and display["Type"] and 'ring' in types_found and 'tour' in types_found:
+            # rb1 = QRadioButton(frame, self.filterText['ring'])
+            # rb1.clicked.connect(self.__set_limit_select)
+            # rb2 = QRadioButton(frame, self.filterText['tour'])
+            # rb2.clicked.connect(self.__set_limit_select)
+            # top_hbox.addWidget(rb1)
+            # top_hbox.addWidget(rb2)
+            #
+            # self.rb['ring'] = rb1
+            # self.rb['tour'] = rb2
+            # #print "about to set ring to true"
+            # rb1.setChecked(True)
+            # # set_active doesn't seem to call this for some reason so call manually:
+            # self.__set_limit_select(rb1)
             self.type = 'ring'
 
     def fillGraphOpsFrame(self, frame):
@@ -1034,37 +683,25 @@ class Filters(QWidget):
         label = QLabel(_("Show Graph In:"))
         hbox1.addWidget(label)
 
-        button = QRadioButton("$$", frame)
-        hbox1.addWidget(button)
-        button.setChecked(True)
-        button.clicked.connect(partial(self.__set_displayin_select, ops='$'))
+        self.cbGraphops['$'] = QRadioButton("$$", frame)
+        hbox1.addWidget(self.cbGraphops['$'])
+        self.cbGraphops['$'].setChecked(True)
 
-        button = QRadioButton("BB", frame)
-        hbox1.addWidget(button)
-        button.clicked.connect(partial(self.__set_displayin_select, ops='BB'))
+        self.cbGraphops['BB'] = QRadioButton("BB", frame)
+        hbox1.addWidget(self.cbGraphops['BB'])
 
-        button = QCheckBox(_("Showdown Winnings"))
-        vbox1.addWidget(button)
-        # wouldn't it be awesome if there was a way to remember the state of things like
-        # this and be able to set it to what it was last time?
-        button.clicked.connect(partial(self.__set_graphopscheck_select, data='showdown'))
+        self.cbGraphops['showdown'] = QCheckBox(_("Showdown Winnings"))
+        vbox1.addWidget(self.cbGraphops['showdown'])
 
-        button = QCheckBox(_("Non-Showdown Winnings"))
-        vbox1.addWidget(button)
-        # ditto as 8 lines up :)
-        #button.set_active(True)
-        button.clicked.connect(partial(self.__set_graphopscheck_select, data='nonshowdown'))
+        self.cbGraphops['nonshowdown'] = QCheckBox(_("Non-Showdown Winnings"))
+        vbox1.addWidget(self.cbGraphops['nonshowdown'])
 
-        button = QCheckBox(_("EV"))
-        vbox1.addWidget(button)
-        button.clicked.connect(partial(self.__set_graphopscheck_select, data='ev'))
+        self.cbGraphops['ev'] = QCheckBox(_("EV"))
+        vbox1.addWidget(self.cbGraphops['ev'])
 
     def fillSeatsFrame(self, frame):
-        vbox1 = QVBoxLayout()
-        frame.setLayout(vbox1)
-
         hbox = QHBoxLayout()
-        vbox1.addLayout(hbox)
+        frame.setLayout(hbox)
 
         lbl_from = QLabel(self.filterText['seatsbetween'])
         lbl_to   = QLabel(self.filterText['seatsand'])
@@ -1088,29 +725,18 @@ class Filters(QWidget):
         self.sbSeats['to']   = adj2
 
     def fillGroupsFrame(self, frame, display):
-        vbox1 = QVBoxLayout()
-        frame.setLayout(vbox1)
+        vbox = QVBoxLayout()
+        frame.setLayout(vbox)
 
-        hbox = QHBoxLayout()
-        vbox1.addLayout(hbox)
-        cb = self.createLimitLine(hbox, 'show', self.filterText['limitsshow'])
+        self.cbGroups['limits'] = QCheckBox(self.filterText['limitsshow'])
+        vbox.addWidget(self.cbGroups['limits'])
 
-        hbox = QHBoxLayout()
-        vbox1.addLayout(hbox)
-        cb = QCheckBox(self.filterText['posnshow'])
-        cb.clicked.connect(partial(self.__set_group_select, group='posn'))
-        hbox.addWidget(cb)
-        self.sbGroups['posn'] = cb
-        self.groups['posn'] = False
+        self.cbGroups['posn'] = QCheckBox(self.filterText['posnshow'])
+        vbox.addWidget(self.cbGroups['posn'])
 
         if "SeatSep" in display and display["SeatSep"]:
-            hbox = QHBoxLayout()
-            vbox1.addLayout(hbox)
-            cb = QCheckBox(self.filterText['seatsshow'])
-            cb.clicked.connect(partial(self.__set_seat_select, seat='show'))
-            hbox.addWidget(cb)
-            self.sbSeats['show'] = cb
-            self.seats['show'] = False
+            self.cbGroups['seats'] = QCheckBox(self.filterText['seatsshow'])
+            vbox.addWidget(self.cbGroups['seats'])
 
     def fillDateFrame(self, frame):
         table = QGridLayout()
@@ -1118,13 +744,13 @@ class Filters(QWidget):
 
         lbl_start = QLabel(_('From:'))
         btn_start = QPushButton("Cal")
-        btn_start.clicked.connect(partial(self.__calendar_dialog, entry=self.start_date))
+        btn_start.clicked.connect(partial(self.__calendar_dialog, dateEdit=self.start_date))
         clr_start = QPushButton("Reset")
         clr_start.clicked.connect(self.__clear_start_date)
 
         lbl_end = QLabel(_('To:'))
         btn_end = QPushButton("Cal")
-        btn_end.clicked.connect(partial(self.__calendar_dialog, entry=self.end_date))
+        btn_end.clicked.connect(partial(self.__calendar_dialog, dateEdit=self.end_date))
         clr_end = QPushButton("Reset")
         clr_end.clicked.connect(self.__clear_end_date)
 
@@ -1191,16 +817,11 @@ class Filters(QWidget):
             <position_test>   HandsPlayers hp           whole clause       Positions
         """
         
-        #copyed from GuiRingPlayerStats withouth thinking if this could be done any better
         if '<game_test>' in query:
             games = self.getGames()    
-            q = []
 
-            for n in games:
-                if games[n]:
-                    q.append(n)
-            if len(q) > 0:
-                gametest = str(tuple(q))
+            if len(games) > 0:
+                gametest = str(tuple(games))
                 gametest = gametest.replace("L", "")
                 gametest = gametest.replace(",)",")")
                 gametest = gametest.replace("u'","'")
@@ -1211,9 +832,6 @@ class Filters(QWidget):
             
         if '<limit_test>' in query:  #copyed from GuiGraphView
             limits = self.getLimits()
-            for i in ('show', 'none'):
-                if i in limits:
-                    limits.remove(i)
             limittest = self.get_limits_where_clause(limits)
             query = query.replace('<limit_test>', limittest)
             
@@ -1225,29 +843,23 @@ class Filters(QWidget):
             playerids = []
 
             for site in sites:
-                if sites[site] == True:
-                    sitenos.append(siteids[site])
-                    _hname = Charset.to_utf8(heroes[site])
-                    result = self.db.get_player_id(self.conf, site, _hname)
-                    if result is not None:
-                        playerids.append(str(result))
+                sitenos.append(siteids[site])
+                _hname = Charset.to_utf8(heroes[site])
+                result = self.db.get_player_id(self.conf, site, _hname)
+                if result is not None:
+                    playerids.append(str(result))
             
             query = query.replace('<player_test>', '(' + ','.join(playerids) + ')')
             
         if '<position_test>' in query:
             positions = self.getPositions()
-            pos_list = []
             
-            for pos in positions:
-                if positions[pos]:
-                    pos_list.append(pos)
-            
-            positiontest = "AND hp.position in ('" + "','".join(pos_list) + "')"   #values must be set in '' because they can be strings as well as numbers
+            positiontest = "AND hp.position in ('" + "','".join(positions) + "')"   #values must be set in '' because they can be strings as well as numbers
             query = query.replace('<position_test>', positiontest)
 
         return query
 
-    def __calendar_dialog(self, widget, entry):
+    def __calendar_dialog(self, checkState, dateEdit):
         d = QDialog()
         d.setWindowTitle(_('Pick a date'))
 
@@ -1257,51 +869,26 @@ class Filters(QWidget):
         vb.addWidget(cal)
 
         btn = QPushButton(_('Done'))
-        btn.clicked.connect(partial(self.__get_date, dlg=d, calendar=cal, entry=entry))
+        btn.clicked.connect(partial(self.__get_date, dlg=d, calendar=cal, dateEdit=dateEdit))
 
         vb.addWidget(btn)
 
         d.exec_()
 
-    def __clear_start_date(self, w):
+    def __clear_start_date(self, checkState):
         self.start_date.setDate(QDate(1970,1,1))
 
-    def __clear_end_date(self, w):
+    def __clear_end_date(self, checkState):
         self.end_date.setDate(QDate(2100,1,1))
 
-    def __get_dates(self):
-        # self.day_start gives user's start of day in hours
-        offset = int(self.day_start * 3600)   # calc day_start in seconds
-
-        t1 = self.start_date.date()
-        t2 = self.end_date.date()
-
-        adj_t1 = self.MIN_DATE
-        adj_t2 = self.MAX_DATE
-        
-        if t1 != '':
-            s1 = strptime(t1.toString("yyyy-MM-dd"), "%Y-%m-%d") # make time_struct
-            e1 = mktime(s1) + offset  # s1 is localtime, but returned time since epoch is UTC, then add the 
-            adj_t1 = strftime("%Y-%m-%d %H:%M:%S", gmtime(e1)) # make adjusted string including time
-         
-        if t2 != '':   
-            s2 = strptime(t2.toString("yyyy-MM-dd"), "%Y-%m-%d")
-            e2 = mktime(s2) + offset  # s2 is localtime, but returned time since epoch is UTC
-            e2 = e2 + 24 * 3600 - 1   # date test is inclusive, so add 23h 59m 59s to e2
-            adj_t2 = strftime("%Y-%m-%d %H:%M:%S", gmtime(e2))
-            
-#        log.info("t1="+t1+" adj_t1="+adj_t1+'.')
-
-        return (adj_t1, adj_t2)
-
-    def __get_date(self, widget, dlg, calendar, entry):
+    def __get_date(self, checkState, dlg, calendar, dateEdit):
         newDate = calendar.selectedDate()
-        entry.setDate(newDate)
+        dateEdit.setDate(newDate)
 
         # if the opposite date is set, and now the start date is later
         # than the end date, modify the one we didn't just set to be
         # the same as the one we did just set
-        if (entry == self.start_date):
+        if dateEdit == self.start_date:
             end = self.end_date.date()
             if newDate > end:
                 self.end_date.setDate(newDate)
@@ -1314,8 +901,8 @@ class Filters(QWidget):
     def __seats_changed(self, value, which):
         seats_from = self.sbSeats['from'].value()
         seats_to = self.sbSeats['to'].value()
-        if (seats_from > seats_to):
-            if (which == 'from'):
+        if seats_from > seats_to:
+            if which == 'from':
                 self.sbSeats['to'].setValue(seats_from)
             else:
                 self.sbSeats['from'].setValue(seats_to)
@@ -1347,7 +934,7 @@ if __name__ == '__main__':
 
     from PyQt5.QtWidgets import QMainWindow, QApplication
     app = QApplication([])
-    i = Filters(db, config, qdict, display = filters_display)
+    i = Filters(db, display = filters_display)
     main_window = QMainWindow()
     main_window.setCentralWidget(i)
     main_window.show()

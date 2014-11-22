@@ -121,7 +121,7 @@ class GuiRingPlayerStats(QSplitter):
                             "Button2"   : True
                           }
 
-        self.filters = Filters.Filters(self.db, self.conf, self.sql, display = filters_display)
+        self.filters = Filters.Filters(self.db, display = filters_display)
         self.filters.registerButton1Name(_("_Filters"))
         self.filters.registerButton1Callback(self.showDetailFilter)
         self.filters.registerButton2Name(_("_Refresh Stats"))
@@ -219,12 +219,11 @@ class GuiRingPlayerStats(QSplitter):
 
         # Which sites are selected?
         for site in sites:
-            if sites[site] == True:
-                sitenos.append(siteids[site])
-                _hname = Charset.to_utf8(heroes[site])
-                result = self.db.get_player_id(self.conf, site, _hname)
-                if result is not None:
-                    playerids.append(int(result))
+            sitenos.append(siteids[site])
+            _hname = Charset.to_utf8(heroes[site])
+            result = self.db.get_player_id(self.conf, site, _hname)
+            if result is not None:
+                playerids.append(int(result))
 
         if not sitenos:
             #Should probably pop up here.
@@ -252,7 +251,7 @@ class GuiRingPlayerStats(QSplitter):
         self.addGrid(vbox, 'playerDetailedStats', flags, playerids
                     ,sitenos, limits, type, seats, groups, dates, games, currencies)
 
-        if 'allplayers' in groups and groups['allplayers']:
+        if 'allplayers' in groups:
             # can't currently do this combination so skip detailed table
             show_detail = False
 
@@ -303,7 +302,7 @@ class GuiRingPlayerStats(QSplitter):
 
         # pre-fetch some constant values:
         colshow = colshowsumm
-        if groups['posn']:  colshow = colshowposn 
+        if 'posn' in groups:  colshow = colshowposn
         self.cols_to_show = [x for x in self.columns if x[colshow]]
         hgametypeid_idx = colnames.index('hgametypeid')
 
@@ -397,12 +396,12 @@ class GuiRingPlayerStats(QSplitter):
             holecards = flags[0]
             numhands = flags[1]
         colshow = colshowsumm
-        if groups['posn']:  colshow = colshowposn 
+        if 'posn' in groups:  colshow = colshowposn
 
         pname_column = (x for x in self.columns if x[0] == 'pname').next()
-        if 'allplayers' in groups and groups['allplayers']:
+        if 'allplayers' in groups:
             nametest = "(hp.playerId)"
-            if holecards or groups['posn']:
+            if holecards or 'posn' in groups:
                 pname = "'all players'"
                 # set flag in self.columns to not show player name column
                 pname_column[colshow] = False
@@ -430,14 +429,10 @@ class GuiRingPlayerStats(QSplitter):
         query = query.replace("<havingclause>", having)
 
         gametest = ""
-        q = []
         for m in self.filters.display.items():
             if m[0] == 'Games' and m[1]:
-                for n in games:
-                    if games[n]:
-                        q.append(n)
-                if len(q) > 0:
-                    gametest = str(tuple(q))
+                if len(games) > 0:
+                    gametest = str(tuple(games))
                     gametest = gametest.replace("L", "")
                     gametest = gametest.replace(",)",")")
                     gametest = gametest.replace("u'","'")
@@ -446,11 +441,7 @@ class GuiRingPlayerStats(QSplitter):
                     gametest = "and gt.category IS NULL"
         query = query.replace("<game_test>", gametest)
         
-        q = []
-        for n in currencies:
-            if currencies[n]:
-                q.append(n)
-        currencytest = str(tuple(q))
+        currencytest = str(tuple(currencies))
         currencytest = currencytest.replace(",)",")")
         currencytest = currencytest.replace("u'","'")
         currencytest = "AND gt.currency in %s" % currencytest
@@ -474,7 +465,7 @@ class GuiRingPlayerStats(QSplitter):
         
         if seats:
             query = query.replace('<seats_test>', 'between ' + str(seats['from']) + ' and ' + str(seats['to']))
-            if 'show' in seats and seats['show']:
+            if 'seats' in groups:
                 query = query.replace('<groupbyseats>', ',h.seats')
                 query = query.replace('<orderbyseats>', ',h.seats')
             else:
@@ -497,7 +488,7 @@ class GuiRingPlayerStats(QSplitter):
                                    +    " end desc ")
         else:
             query = query.replace("<orderbyhgametypeId>", "")
-            groupLevels = "show" not in str(limits)
+            groupLevels = 'limits' not in groups
             if groupLevels:
                 query = query.replace("<hgametypeId>", "p.name")  # need to use p.name for sqlite posn stats to work
             else:
@@ -532,7 +523,7 @@ class GuiRingPlayerStats(QSplitter):
 
         # Group by position?
         plposition_column = (x for x in self.columns if x[0] == 'plposition').next()
-        if groups['posn']:
+        if 'posn' in groups:
             #query = query.replace("<position>", "case hp.position when '0' then 'Btn' else hp.position end")
             query = query.replace("<position>", "hp.position")
             plposition_column[colshow] = True
