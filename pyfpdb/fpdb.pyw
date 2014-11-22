@@ -797,33 +797,35 @@ class fpdb(QMainWindow):
         maintenanceMenu = mb.addMenu(_('_Maintenance'))
         helpMenu = mb.addMenu(_('_Help'))
         # Create actions
-        def makeAction(name, callback, tip=None):
+        def makeAction(name, callback, shortcut=None, tip=None):
             action = QAction(name, self)
+            if shortcut:
+                action.setShortcut(shortcut)
             if tip:
                 action.setToolTip(tip)
             action.triggered.connect(callback)
             return action
 
         configMenu.addAction(makeAction(_('_Site Settings'), self.dia_site_preferences))
-        configMenu.addAction(makeAction(_('_Preferences'), self.dia_advanced_preferences, 'Edit your preferences'))
+        configMenu.addAction(makeAction(_('_Preferences'), self.dia_advanced_preferences, tip='Edit your preferences'))
         #configMenu.addAction(makeAction(_('_HUD Stats Settings'), self.dia_hud_preferences))
         configMenu.addSeparator()
-        configMenu.addAction(makeAction(_('_Quit'), self.quit, 'Quit the Program'))
+        configMenu.addAction(makeAction(_('_Quit'), self.quit, 'Ctrl+Q', 'Quit the Program'))
 
-        importMenu.addAction(makeAction(_('_Bulk Import'), self.tab_bulk_import))
+        importMenu.addAction(makeAction(_('_Bulk Import'), self.tab_bulk_import, 'Ctrl+B'))
         #importMenu.addAction(makeAction(_('_Import through eMail/IMAP'), self.tab_imap_import))
 
-        hudMenu.addAction(makeAction(_('_HUD and Auto Import'), self.tab_auto_import))
+        hudMenu.addAction(makeAction(_('_HUD and Auto Import'), self.tab_auto_import, 'Ctrl+A'))
 
-        cashMenu.addAction(makeAction(_('_Graphs'), self.tabGraphViewer))
-        cashMenu.addAction(makeAction(_('Ring _Player Stats'), self.tab_ring_player_stats))
+        cashMenu.addAction(makeAction(_('_Graphs'), self.tabGraphViewer, 'Ctrl+G'))
+        cashMenu.addAction(makeAction(_('Ring _Player Stats'), self.tab_ring_player_stats, 'Ctrl+P'))
         cashMenu.addAction(makeAction(_('Hand _Viewer'), self.tab_hand_viewer))
         #cashMenu.addAction(makeAction(_('P_ositional Stats (tabulated view)'), self.tab_positional_stats))
-        cashMenu.addAction(makeAction(_('Session Stats'), self.tab_session_stats))
+        cashMenu.addAction(makeAction(_('Session Stats'), self.tab_session_stats, 'Ctrl+S'))
         #cashMenu.addAction(makeAction(_('Stove (preview)'), self.tabStove))
 
         tournamentMenu.addAction(makeAction(_('Tourney Graphs'), self.tabTourneyGraphViewer))
-        tournamentMenu.addAction(makeAction(_('_Tourney Stats'), self.tab_tourney_player_stats))
+        tournamentMenu.addAction(makeAction(_('_Tourney Stats'), self.tab_tourney_player_stats, 'Ctrl+T'))
         #tournamentMenu.addAction(makeAction(_('Tourney _Viewer'), self.tab_tourney_viewer_stats))
 
         maintenanceMenu.addAction(makeAction(_('_Statistics'), self.dia_database_stats, 'View Database Statistics'))
