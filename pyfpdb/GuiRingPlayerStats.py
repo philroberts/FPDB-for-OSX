@@ -132,7 +132,7 @@ class GuiRingPlayerStats(QSplitter):
         # added at the end of these lists during processing
         #                  sql test,              screen description,        min, max
         self.handtests = [  # already in filter class : ['h.seats', 'Number of Players', 2, 10]
-                          ['h.maxSeats',          'Size of Table',         2, 10]
+                          ['gt.maxSeats',         'Size of Table',         2, 10]
                          ,['h.playersVpi',        'Players who VPI',       0, 10]
                          ,['h.playersAtStreet1',  'Players at Flop',       0, 10]
                          ,['h.playersAtStreet2',  'Players at Turn',       0, 10]
