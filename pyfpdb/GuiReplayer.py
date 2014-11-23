@@ -215,6 +215,7 @@ class GuiReplayer(QWidget):
 
     def play_hand(self, hand):
         # hand.writeHand()  # Print handhistory to stdout -> should be an option in the GUI
+        self.currency = hand.sym
         actions = hand.allStreets
         state = TableState(hand)
         for action in actions:
@@ -427,14 +428,6 @@ if __name__ == '__main__':
 
     replayer = GuiReplayer(config, sql, None)
     h = Hand.hand_factory(1, config, db)
-    if h.gametype['currency'] == "USD":    #TODO: check if there are others ..
-        replayer.currency = "$"
-    elif h.gametype['currency'] == "EUR":
-        replayer.currency = u"€"
-    elif h.gametype['currency'] == "GBP":
-        replayer.currency = u"£"
-    else:
-        replayer.currency = h.gametype['currency']
 
     replayer.play_hand(h)
 
