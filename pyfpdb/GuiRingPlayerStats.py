@@ -1,29 +1,26 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-#Copyright 2008-2011 Steffen Schaumburg
-#This program is free software: you can redistribute it and/or modify
-#it under the terms of the GNU Affero General Public License as published by
-#the Free Software Foundation, version 3 of the License.
+# Copyright 2008-2011 Steffen Schaumburg
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published by
+# the Free Software Foundation, version 3 of the License.
 #
-#This program is distributed in the hope that it will be useful,
-#but WITHOUT ANY WARRANTY; without even the implied warranty of
-#MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-#GNU General Public License for more details.
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
 #
-#You should have received a copy of the GNU Affero General Public License
-#along with this program. If not, see <http://www.gnu.org/licenses/>.
-#In the "official" distribution you can find the license in agpl-3.0.txt.
+# You should have received a copy of the GNU Affero General Public License
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
+# In the "official" distribution you can find the license in agpl-3.0.txt.
 
 import L10n
 _ = L10n.get_translation()
 
-import traceback
-import os
-import sys
-from time import time, strftime
+from time import time
 
-from PyQt5.QtCore import (QStringListModel, Qt)
+from PyQt5.QtCore import Qt
 from PyQt5.QtGui import (QStandardItem, QStandardItemModel)
 from PyQt5.QtWidgets import (QCheckBox, QDialog, QDialogButtonBox, QFrame,
                              QGridLayout, QHBoxLayout, QLabel, QSpinBox,
@@ -34,8 +31,6 @@ import Database
 import Filters
 import Charset
 
-#colalias,colshowsumm,colshowposn,colheading,colxalign,colformat,coltype = 0,1,2,3,4,5,6
-#new order in config file:
 colalias,colheading,colshowsumm,colshowposn,colformat,coltype,colxalign = 0,1,2,3,4,5,6
 ranks = {'x':0, '2':2, '3':3, '4':4, '5':5, '6':6, '7':7, '8':8, '9':9, 'T':10, 'J':11, 'Q':12, 'K':13, 'A':14}
 fast_names = {'OnGame':'Strobe', 'PokerStars':'Zoom', 'Full Tilt Poker':'Rush', 'Bovada':'Zone'}
@@ -188,7 +183,7 @@ class GuiRingPlayerStats(QSplitter):
         if rfi_column[colshowposn] and steals_column[colshowposn]:
             steals_column[colshowposn] = False
 
-    def refreshStats(self, widget):
+    def refreshStats(self, checkState):
         self.liststore = []
         self.listcols = []
         self.stats_frame.layout().removeWidget(self.stats_vbox)
@@ -208,7 +203,6 @@ class GuiRingPlayerStats(QSplitter):
         heroes = self.filters.getHeroes()
         siteids = self.filters.getSiteIds()
         limits  = self.filters.getLimits()
-        type   = self.filters.getType()
         seats  = self.filters.getSeats()
         groups = self.filters.getGroups()
         dates = self.filters.getDates()
@@ -236,9 +230,9 @@ class GuiRingPlayerStats(QSplitter):
             print _("No limits found")
             return
 
-        self.createStatsTable(vbox, playerids, sitenos, limits, type, seats, groups, dates, games, currencies)
+        self.createStatsTable(vbox, playerids, sitenos, limits, seats, groups, dates, games, currencies)
 
-    def createStatsTable(self, vbox, playerids, sitenos, limits, type, seats, groups, dates, games, currencies):
+    def createStatsTable(self, vbox, playerids, sitenos, limits, seats, groups, dates, games, currencies):
         startTime = time()
         show_detail = True
 
@@ -249,7 +243,7 @@ class GuiRingPlayerStats(QSplitter):
 #        #   gridnum   - index for grid data structures
         flags = [False, self.filters.getNumHands(), 0]
         self.addGrid(vbox, 'playerDetailedStats', flags, playerids
-                    ,sitenos, limits, type, seats, groups, dates, games, currencies)
+                    ,sitenos, limits, seats, groups, dates, games, currencies)
 
         if 'allplayers' in groups:
             # can't currently do this combination so skip detailed table
@@ -270,32 +264,18 @@ class GuiRingPlayerStats(QSplitter):
             flags[0] = True
             flags[2] = 1
             self.addGrid(vbox2, 'playerDetailedStats', flags, playerids
-                        ,sitenos, limits, type, seats, groups, dates, games, currencies)
+                        ,sitenos, limits, seats, groups, dates, games, currencies)
 
         self.db.rollback()
         print (_("Stats page displayed in %4.2f seconds") % (time() - startTime))
 
-    def reset_style_render_func(self, treeviewcolumn, cell, model, iter):
-        cell.set_property('foreground', None)
-
-    def ledger_style_render_func(self, tvcol, cell, model, iter):
-        str = cell.get_property('text')
-        if '-' in str:
-            str = str.replace("-", "")
-            str = "(%s)" %(str)
-            cell.set_property('text', str)
-            cell.set_property('foreground', 'red')
-        else:
-            cell.set_property('foreground', 'darkgreen')
-
-    def addGrid(self, vbox, query, flags, playerids, sitenos, limits, type, seats, groups, dates, games, currencies):
-        counter = 0
+    def addGrid(self, vbox, query, flags, playerids, sitenos, limits, seats, groups, dates, games, currencies):
         sqlrow = 0
         if not flags:  holecards,grid = False,0
         else:          holecards,grid = flags[0],flags[2]
 
         tmp = self.sql.query[query]
-        tmp = self.refineQuery(tmp, flags, playerids, sitenos, limits, type, seats, groups, dates, games, currencies)
+        tmp = self.refineQuery(tmp, flags, playerids, sitenos, limits, seats, groups, dates, games, currencies)
         self.cursor.execute(tmp)
         result = self.cursor.fetchall()
         colnames = [desc[0].lower() for desc in self.cursor.description]
@@ -363,7 +343,7 @@ class GuiRingPlayerStats(QSplitter):
                         continue
                 item = QStandardItem('')
                 sortValue = -1e9
-                if value != None and value != -999:
+                if value is not None and value != -999:
                     item = QStandardItem(column[colformat] % value)
                     if column[colalias] == 'game' and holecards:
                         sortValue = 1000 * ranks[value[0]] + 10 * ranks[value[1]] + (1 if len(value) == 3 and value[2] == 's' else 0)
@@ -387,7 +367,7 @@ class GuiRingPlayerStats(QSplitter):
         view.setSortingEnabled(True) # do this after resizing columns, otherwise it leaves room for the sorting triangle in every heading
         view.resizeColumnToContents(0) # we want room for the sorting triangle in column 0 where it starts.
 
-    def refineQuery(self, query, flags, playerids, sitenos, limits, type, seats, groups, dates, games, currencies):
+    def refineQuery(self, query, flags, playerids, sitenos, limits, seats, groups, dates, games, currencies):
         having = ''
         if not flags:
             holecards = False
@@ -448,13 +428,10 @@ class GuiRingPlayerStats(QSplitter):
         query = query.replace("<currency_test>", currencytest)
 
         sitetest = ""
-        q = []
         for m in self.filters.display.items():
             if m[0] == 'Sites' and m[1]:
-                for n in sitenos:
-                        q.append(n)
-                if len(q) > 0:
-                    sitetest = str(tuple(q))
+                if len(sitenos) > 0:
+                    sitetest = str(tuple(sitenos))
                     sitetest = sitetest.replace("L", "")
                     sitetest = sitetest.replace(",)",")")
                     sitetest = sitetest.replace("u'","'")
@@ -496,7 +473,6 @@ class GuiRingPlayerStats(QSplitter):
 
         # process self.detailFilters (a list of tuples)
         flagtest = ''
-        #self.detailFilters = [('h.seats', 5, 6)]   # for debug
         if self.detailFilters:
             for f in self.detailFilters:
                 if len(f) == 3:
@@ -506,8 +482,8 @@ class GuiRingPlayerStats(QSplitter):
         if self.cardsFilters:
             cardstests = []
 
-            for filter in self.cardsFilters:
-                cardstests.append(filter)
+            for cardFilter in self.cardsFilters:
+                cardstests.append(cardFilter)
             cardstests = ''.join(('and (', ' or '.join(cardstests), ')'))
         else:
             cardstests = ''
@@ -524,7 +500,6 @@ class GuiRingPlayerStats(QSplitter):
         # Group by position?
         plposition_column = (x for x in self.columns if x[0] == 'plposition').next()
         if 'posn' in groups:
-            #query = query.replace("<position>", "case hp.position when '0' then 'Btn' else hp.position end")
             query = query.replace("<position>", "hp.position")
             plposition_column[colshow] = True
         else:
@@ -544,8 +519,6 @@ class GuiRingPlayerStats(QSplitter):
         handbox.addWidget(label)
         label.setAlignment(Qt.AlignCenter)
 
-        betweenFilters = []
-
         grid = QGridLayout()
         handbox.addLayout(grid)
         for row, htest in enumerate(self.handtests):
@@ -560,8 +533,10 @@ class GuiRingPlayerStats(QSplitter):
             sb2.setRange(2, 10)
             sb2.setValue(htest[3])
 
-            for df in [x for x in self.detailFilters if x[0] == htest[0]]:
-                cb.setChecked(True)
+            for df in self.detailFilters:
+                if df[0] == htest[0]:
+                    cb.setChecked(True)
+                    break
 
             grid.addWidget(cb, row, 0)
             grid.addWidget(lbl_from, row, 1, Qt.AlignLeft)
