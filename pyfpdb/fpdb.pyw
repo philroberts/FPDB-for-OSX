@@ -926,24 +926,10 @@ class fpdb(QMainWindow):
             self.db = None
 
         if self.db is not None and self.db.wrongDbVersion:
-            diaDbVersionWarning = gtk.Dialog(title=_("Strong Warning - Invalid database version"),
-                                             parent=None, flags=0, buttons=(gtk.STOCK_OK, gtk.RESPONSE_OK))
-
-            label = QLabel(_("An invalid DB version or missing tables have been detected."))
-            diaDbVersionWarning.vbox.add(label)
-            label.show()
-
-            label = QLabel(_("This error is not necessarily fatal but it is strongly recommended that you recreate the tables by using the Database menu."))
-            diaDbVersionWarning.vbox.add(label)
-            label.show()
-
-            label = QLabel(_("Not doing this will likely lead to misbehaviour including fpdb crashes, corrupt data etc."))
-            diaDbVersionWarning.vbox.add(label)
-            label.show()
-
-            response = diaDbVersionWarning.run()
-            diaDbVersionWarning.destroy()
-
+            diaDbVersionWarning = QMessageBox(QMessageBox.Warning, _("Strong Warning - Invalid database version"), _("An invalid DB version or missing tables have been detected."), QMessageBox.Ok, self)
+            diaDbVersionWarning.setInformativeText(_("This error is not necessarily fatal but it is strongly recommended that you recreate the tables by using the Database menu.")
+                                                   + "\n" +  _("Not doing this will likely lead to misbehaviour including fpdb crashes, corrupt data etc."))
+            diaDbVersionWarning.exec_()
         if self.db is not None and self.db.is_connected():
             self.statusBar().showMessage(_("Status: Connected to %s database named %s on host %s")
                                      % (self.db.get_backend_name(), self.db.database, self.db.host))
