@@ -202,11 +202,7 @@ class Filters(QWidget):
 
         # Buttons
         self.Button1 = QPushButton("Unnamed 1")
-        self.Button1.setEnabled(False)
-
         self.Button2 = QPushButton("Unnamed 2")
-        self.Button2.setEnabled(False)
-
         self.layout().addWidget(self.Button1)
         self.layout().addWidget(self.Button2)
 
