@@ -32,17 +32,14 @@ import SQL
 import Filters
 import Deck
 
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import QCoreApplication, QSortFilterProxyModel, Qt
 from PyQt5.QtGui import (QPainter, QPixmap, QStandardItem, QStandardItemModel)
-from PyQt5.QtWidgets import (QApplication, QFrame, QSplitter, QMenu,
-                             QTableView, QVBoxLayout)
+from PyQt5.QtWidgets import (QApplication, QFrame, QMenu, QProgressDialog,
+                             QSplitter, QTableView, QVBoxLayout)
 
 from cStringIO import StringIO
 
 import GuiReplayer
-
-import pprint
-pp = pprint.PrettyPrinter(indent=4)
 
 class GuiHandViewer(QSplitter):
     def __init__(self, config, querylist, mainwin):
@@ -51,11 +48,6 @@ class GuiHandViewer(QSplitter):
         self.main_window = mainwin
         self.sql = querylist
         self.replayer = None
-        self.view = None
-
-        # These are temporary variables until it becomes possible
-        # to select() a Hand object from the database
-        self.site="PokerStars"
 
         self.db = Database.Database(self.config, sql=self.sql)
 
@@ -100,6 +92,43 @@ class GuiHandViewer(QSplitter):
         self.playerBackdrop = None
         self.deck_instance = Deck.Deck(self.config, height=42, width=30)
         self.cardImages = self.init_card_images()
+
+        # Dict of colnames and their column idx in the model/ListStore
+        self.colnum = {
+                  'Stakes'       : 0,
+                  'Pos'          : 1,
+                  'Street0'      : 2,
+                  'Action0'      : 3,
+                  'Street1-4'    : 4,
+                  'Action1-4'    : 5,
+                  'Won'          : 6,
+                  'Bet'          : 7,
+                  'Net'          : 8,
+                  'Game'         : 9,
+                  'HandId'       : 10,
+                 }
+        self.view = QTableView()
+        self.view.setSelectionBehavior(QTableView.SelectRows)
+        self.handsVBox.addWidget(self.view)
+        self.model = QStandardItemModel(0, len(self.colnum), self.view)
+        self.filterModel = QSortFilterProxyModel()
+        self.filterModel.setSourceModel(self.model)
+        self.filterModel.setSortRole(Qt.UserRole)
+
+        self.view.setModel(self.filterModel)
+        self.view.verticalHeader().hide()
+        self.model.setHorizontalHeaderLabels(
+            ['Stakes', 'Pos', 'Street0', 'Action0', 'Street1-4', 'Action1-4',
+             'Won', 'Bet', 'Net', 'Game', 'HandId'])
+
+        self.view.doubleClicked.connect(self.row_activated)
+        self.view.contextMenuEvent = self.contextMenu
+        self.filterModel.rowsInserted.connect(lambda index, start, end: [self.view.resizeRowToContents(r) for r in xrange(start, end + 1)])
+        self.filterModel.filterAcceptsRow = lambda row, sourceParent: self.is_row_in_card_filter(row)
+
+        self.view.resizeColumnsToContents()
+        self.view.setSortingEnabled(True)
+
        
     def init_card_images(self):
         suits = ('s', 'h', 'd', 'c')
@@ -147,39 +176,80 @@ class GuiHandViewer(QSplitter):
         else:
             return 0
 
-    def sorthand(self, model, iter1, iter2):
-        hand1 = self.hands[int(model.get_value(iter1, self.colnum['HandId']))]         
-        hand2 = self.hands[int(model.get_value(iter2, self.colnum['HandId']))]
-        base1 = hand1.gametype['base']
-        base2 = hand2.gametype['base']
-        if base1 < base2:
-            return -1
-        elif base1 > base2:
-            return 1
-
-        cat1 = hand1.gametype['category']
-        cat2 = hand2.gametype['category']
-        if cat1 < cat2:
-            return -1
-        elif cat1 > cat2:
-            return 1
-
-        a = self.rankedhand(model.get_value(iter1, 0), hand1.gametype['category'])
-        b = self.rankedhand(model.get_value(iter2, 0), hand2.gametype['category'])
-        
-        if a < b:
-            return -1
-        elif a > b:
-            return 1
-
-        return 0
-
     def reload_hands(self, handids):
         self.hands = {}
-        for handid in handids:
+        self.model.removeRows(0, self.model.rowCount())
+        progress = QProgressDialog("Loading hands", "Abort", 0, len(handids), self)
+        progress.setValue(0)
+        progress.show()
+        for idx, handid in enumerate(handids):
+            if progress.wasCanceled():
+                break
             self.hands[handid] = self.importhand(handid)
-        self.refreshHands()
+            self.addHandRow(handid, self.hands[handid])
+            progress.setValue(idx + 1)
+            if idx % 10 == 0:
+                QCoreApplication.processEvents()
+                self.view.resizeColumnsToContents()
+        self.view.resizeColumnsToContents()
     
+    def addHandRow(self, handid, hand):
+        hero = self.filters.getHeroes()[hand.sitename]
+        won = 0
+        if hero in hand.collectees.keys():
+            won = hand.collectees[hero]
+        bet = 0
+        if hero in hand.pot.committed.keys():
+            bet = hand.pot.committed[hero]
+        net = won - bet
+        pos = hand.get_player_position(hero)
+        gt =  hand.gametype['category']
+        row = []
+        if hand.gametype['base'] == 'hold':
+            board =  []
+            board.extend(hand.board['FLOP'])
+            board.extend(hand.board['TURN'])
+            board.extend(hand.board['RIVER'])
+
+            pre_actions = hand.get_actions_short(hero, 'PREFLOP')
+            post_actions = ''
+            if 'F' not in pre_actions:      #if player hasen't folded preflop
+                post_actions = hand.get_actions_short_streets(hero, 'FLOP', 'TURN', 'RIVER')
+
+            row = [hand.getStakesAsString(), pos, hand.join_holecards(hero), pre_actions, ' '.join(board), post_actions, str(won), str(bet), 
+                   str(net), gt, str(handid)]
+        elif hand.gametype['base'] == 'stud':
+            third = " ".join(hand.holecards['THIRD'][hero][0]) + " " + " ".join(hand.holecards['THIRD'][hero][1]) 
+            # ugh - fix the stud join_holecards function so we can retrieve sanely
+            later_streets= []
+            later_streets.extend(hand.holecards['FOURTH'] [hero][0])
+            later_streets.extend(hand.holecards['FIFTH']  [hero][0])
+            later_streets.extend(hand.holecards['SIXTH']  [hero][0])
+            later_streets.extend(hand.holecards['SEVENTH'][hero][0])
+
+            pre_actions = hand.get_actions_short(hero, 'THIRD')
+            post_actions = ''
+            if 'F' not in pre_actions:
+                post_actions = hand.get_actions_short_streets(hero, 'FOURTH', 'FIFTH', 'SIXTH', 'SEVENTH')
+
+            row = [hand.getStakesAsString(), pos, third, pre_actions, ' '.join(later_streets), post_actions, str(won), str(bet), str(net), 
+                   gt, str(handid)]
+        elif hand.gametype['base'] == 'draw':
+            row = [hand.getStakesAsString(), pos, hand.join_holecards(hero,street='DEAL'), hand.get_actions_short(hero, 'DEAL'), None, None, 
+                   str(won), str(bet), str(net), gt, str(handid)]
+
+        modelrow = [QStandardItem(r) for r in row]
+        for index, item in enumerate(modelrow):
+            item.setEditable(False)
+            if index in (self.colnum['Street0'], self.colnum['Street1-4']):
+                cards = item.data(Qt.DisplayRole)
+                item.setData(self.render_cards(cards), Qt.DecorationRole)
+                item.setData("", Qt.DisplayRole)
+                item.setData(cards, Qt.UserRole + 1)
+            if index in (self.colnum['Bet'], self.colnum['Net'], self.colnum['Won']):
+                item.setData(float(item.data(Qt.DisplayRole)), Qt.UserRole)
+        self.model.appendRow(modelrow)
+
     def copyHandToClipboard(self, checkState, hand):
         handText = StringIO()
         hand.writeHand(handText)
@@ -194,115 +264,20 @@ class GuiHandViewer(QSplitter):
         m.move(event.globalPos())
         m.exec_()
 
-    def refreshHands(self):
-        # Dict of colnames and their column idx in the model/ListStore
-        self.colnum = {
-                  'Stakes'       : 0,
-                  'Pos'          : 1,
-                  'Street0'      : 2,
-                  'Action0'      : 3,
-                  'Street1-4'    : 4,
-                  'Action1-4'    : 5,
-                  'Won'          : 6,
-                  'Bet'          : 7,
-                  'Net'          : 8,
-                  'Game'         : 9,
-                  'HandId'       : 10,
-                 }
-        if self.view:
-            self.handsVBox.removeWidget(self.view)
-            self.view.setParent(None)
-        self.view = QTableView()
-        self.view.setSelectionBehavior(QTableView.SelectRows)
-        self.handsVBox.addWidget(self.view)
-        self.liststore = QStandardItemModel(0, len(self.colnum), self.view)
-        self.liststore.setSortRole(Qt.UserRole)
-
-        self.view.setModel(self.liststore)
-        self.view.verticalHeader().hide()
-        self.liststore.setHorizontalHeaderLabels(
-            ['Stakes', 'Pos', 'Street0', 'Action0', 'Street1-4', 'Action1-4',
-             'Won', 'Bet', 'Net', 'Game', 'HandId'])
-
-        self.view.doubleClicked.connect(self.row_activated)
-        self.view.contextMenuEvent = self.contextMenu
-
-        for handid, hand in self.hands.items():
-            hero = self.filters.getHeroes()[hand.sitename]
-            won = 0
-            if hero in hand.collectees.keys():
-                won = hand.collectees[hero]
-            bet = 0
-            if hero in hand.pot.committed.keys():
-                bet = hand.pot.committed[hero]
-            net = won - bet
-            pos = hand.get_player_position(hero)
-            gt =  hand.gametype['category']
-            row = []
-            if hand.gametype['base'] == 'hold':
-                board =  []
-                board.extend(hand.board['FLOP'])
-                board.extend(hand.board['TURN'])
-                board.extend(hand.board['RIVER'])
-                
-                pre_actions = hand.get_actions_short(hero, 'PREFLOP')
-                post_actions = ''
-                if 'F' not in pre_actions:      #if player hasen't folded preflop
-                    post_actions = hand.get_actions_short_streets(hero, 'FLOP', 'TURN', 'RIVER')
-                
-                row = [hand.getStakesAsString(), pos, hand.join_holecards(hero), pre_actions, ' '.join(board), post_actions, str(won), str(bet), 
-                       str(net), gt, str(handid)]
-                
-            elif hand.gametype['base'] == 'stud':
-                third = " ".join(hand.holecards['THIRD'][hero][0]) + " " + " ".join(hand.holecards['THIRD'][hero][1]) 
-                # ugh - fix the stud join_holecards function so we can retrieve sanely
-                later_streets= []
-                later_streets.extend(hand.holecards['FOURTH'] [hero][0])
-                later_streets.extend(hand.holecards['FIFTH']  [hero][0])
-                later_streets.extend(hand.holecards['SIXTH']  [hero][0])
-                later_streets.extend(hand.holecards['SEVENTH'][hero][0])
-                
-                pre_actions = hand.get_actions_short(hero, 'THIRD')
-                post_actions = ''
-                if 'F' not in pre_actions:
-                    post_actions = hand.get_actions_short_streets(hero, 'FOURTH', 'FIFTH', 'SIXTH', 'SEVENTH')
-                    
-                row = [hand.getStakesAsString(), pos, third, pre_actions, ' '.join(later_streets), post_actions, str(won), str(bet), str(net), 
-                       gt, str(handid)]
-                
-            elif hand.gametype['base'] == 'draw':
-                row = [hand.getStakesAsString(), pos, hand.join_holecards(hero,street='DEAL'), hand.get_actions_short(hero, 'DEAL'), None, None, 
-                       str(won), str(bet), str(net), gt, str(handid)]
-
-            if self.is_row_in_card_filter(row):
-                modelrow = [QStandardItem(r) for r in row]
-                for index, item in enumerate(modelrow):
-                    item.setEditable(False)
-                    if index in (self.colnum['Street0'], self.colnum['Street1-4']):
-                        item.setData(self.render_cards(item.data(Qt.DisplayRole)), Qt.DecorationRole)
-                        item.setData("", Qt.DisplayRole)
-                    if index in (self.colnum['Bet'], self.colnum['Net']):
-                        item.setData(float(item.data(Qt.DisplayRole)), Qt.UserRole)
-                self.liststore.appendRow(modelrow)
-        self.view.resizeRowsToContents()
-        self.view.resizeColumnsToContents()
-        self.view.setSortingEnabled(True) # do this after resizing columns, otherwise it leaves room for the sorting triangle in every heading
-
     def filter_cards_cb(self, card):
-        if hasattr(self, 'hands'):     #Do not call refresh if only filters are refreshed and no hands have been loaded yet
-            self.refreshHands()
-        #self.viewfilter.refilter()    #As the sorting doesnt work if this is used, a refresh is needed.
+        if hasattr(self, 'hands'):
+            self.filterModel.invalidateFilter()
 
-    def is_row_in_card_filter(self, row):
+    def is_row_in_card_filter(self, rownum):
         """ Returns true if the cards of the given row are in the card filter """
         # Does work but all cards that should NOT be displayed have to be clicked.
         card_filter = self.filters.getCards() 
-        hcs = row[self.colnum['Street0']].split(' ')
+        hcs = self.model.data(self.model.index(rownum, self.colnum['Street0']), Qt.UserRole + 1).split(' ')
         
         if '0x' in hcs:      #if cards are unknown return True
             return True
         
-        gt = row[self.colnum['Game']]
+        gt = self.model.data(self.model.index(rownum, self.colnum['Game']))
 
         if gt not in ('holdem', 'omahahi', 'omahahilo'): return True
         # Holdem: Compare the real start cards to the selected filter (ie. AhKh = AKs)
