@@ -24,8 +24,7 @@ import traceback
 from time import *
 from datetime import datetime
 
-from PyQt5.QtWidgets import (QFrame, QScrollArea, QSizePolicy,
-                             QSplitter, QVBoxLayout)
+from PyQt5.QtWidgets import (QFrame, QScrollArea, QSplitter, QVBoxLayout)
 
 import Database
 import Filters
@@ -80,7 +79,6 @@ class GuiTourneyGraphViewer(QSplitter):
         self.filters.registerButton2Callback(self.exportGraph)
 
         scroll = QScrollArea()
-        scroll.setSizePolicy(QSizePolicy.Minimum, QSizePolicy.Expanding)
         scroll.setWidget(self.filters)
         self.addWidget(scroll)
 

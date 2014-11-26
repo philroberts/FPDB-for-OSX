@@ -25,7 +25,7 @@ from time import time, strftime, localtime, gmtime
 
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import (QStandardItem, QStandardItemModel)
-from PyQt5.QtWidgets import (QFrame, QHBoxLayout, QLabel, QScrollArea, QSizePolicy,
+from PyQt5.QtWidgets import (QFrame, QHBoxLayout, QLabel, QScrollArea,
                              QSplitter, QTableView, QVBoxLayout, QWidget)
 
 try:
@@ -105,6 +105,9 @@ class GuiSessionViewer(QSplitter):
         self.filters.registerButton1Name("_Refresh")
         self.filters.registerButton1Callback(self.refreshStats)
 
+        scroll = QScrollArea()
+        scroll.setWidget(self.filters)
+
         # ToDo: store in config
         # ToDo: create popup to adjust column config
         # columns to display, keys match column name returned by sql, values in tuple are:
@@ -137,7 +140,7 @@ class GuiSessionViewer(QSplitter):
         self.graphBox = QFrame()
         self.graphBox.setLayout(QVBoxLayout())
 
-        self.addWidget(self.filters)
+        self.addWidget(scroll)
         self.addWidget(self.main_vbox)
         self.setStretchFactor(0, 0)
         self.setStretchFactor(1, 1)

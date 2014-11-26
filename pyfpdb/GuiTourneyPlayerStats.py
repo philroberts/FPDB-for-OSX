@@ -22,7 +22,8 @@ from time import time, strftime
 
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import (QStandardItem, QStandardItemModel)
-from PyQt5.QtWidgets import (QFrame, QSplitter, QTableView, QVBoxLayout)
+from PyQt5.QtWidgets import (QFrame, QScrollArea, QSplitter,
+                             QTableView, QVBoxLayout)
 
 import Charset
 import Filters
@@ -67,6 +68,9 @@ class GuiTourneyPlayerStats(QSplitter):
         self.filters.registerButton2Name(_("_Refresh Stats"))
         self.filters.registerButton2Callback(self.refreshStats)
         
+        scroll = QScrollArea()
+        scroll.setWidget(self.filters)
+
         # ToDo: store in config
         # ToDo: create popup to adjust column config
         # columns to display, keys match column name returned by sql, values in tuple are:
@@ -99,7 +103,7 @@ class GuiTourneyPlayerStats(QSplitter):
 
         #self.main_hbox.pack_start(self.filters.get_vbox())
         #self.main_hbox.pack_start(self.stats_frame, expand=True, fill=True)
-        self.addWidget(self.filters)
+        self.addWidget(scroll)
         self.addWidget(self.stats_frame)
         self.setStretchFactor(0, 0)
         self.setStretchFactor(1, 1)

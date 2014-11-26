@@ -34,8 +34,9 @@ import Deck
 
 from PyQt5.QtCore import QCoreApplication, QSortFilterProxyModel, Qt
 from PyQt5.QtGui import (QPainter, QPixmap, QStandardItem, QStandardItemModel)
-from PyQt5.QtWidgets import (QApplication, QFrame, QMenu, QProgressDialog,
-                             QSplitter, QTableView, QVBoxLayout)
+from PyQt5.QtWidgets import (QApplication, QFrame, QMenu,
+                             QProgressDialog, QScrollArea, QSplitter,
+                             QTableView, QVBoxLayout)
 
 from cStringIO import StringIO
 
@@ -76,11 +77,14 @@ class GuiHandViewer(QSplitter):
         self.filters.registerButton1Callback(self.loadHands)
         self.filters.registerCardsCallback(self.filter_cards_cb)
 
+        scroll = QScrollArea()
+        scroll.setWidget(self.filters)
+
         self.handsFrame = QFrame()
         self.handsVBox = QVBoxLayout()
         self.handsFrame.setLayout(self.handsVBox)
 
-        self.addWidget(self.filters)
+        self.addWidget(scroll)
         self.addWidget(self.handsFrame)
         self.setStretchFactor(0, 0)
         self.setStretchFactor(1, 1)

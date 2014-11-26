@@ -22,9 +22,10 @@ from time import time
 
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import (QStandardItem, QStandardItemModel)
-from PyQt5.QtWidgets import (QCheckBox, QDialog, QDialogButtonBox, QFrame,
-                             QGridLayout, QHBoxLayout, QLabel, QSpinBox,
-                             QSplitter, QTableView, QVBoxLayout, QWidget)
+from PyQt5.QtWidgets import (QCheckBox, QDialog, QDialogButtonBox,
+                             QFrame, QGridLayout, QHBoxLayout, QLabel,
+                             QScrollArea, QSpinBox, QSplitter,
+                             QTableView, QVBoxLayout, QWidget)
 
 import Card
 import Database
@@ -122,6 +123,9 @@ class GuiRingPlayerStats(QSplitter):
         self.filters.registerButton2Name(_("_Refresh Stats"))
         self.filters.registerButton2Callback(self.refreshStats)
 
+        scroll = QScrollArea()
+        scroll.setWidget(self.filters)
+
         # ToDo: store in config
         # ToDo: create popup to adjust column config
         # columns to display, keys match column name returned by sql, values in tuple are:
@@ -164,7 +168,7 @@ class GuiRingPlayerStats(QSplitter):
         self.stats_vbox = QSplitter(Qt.Vertical)
         self.stats_frame.layout().addWidget(self.stats_vbox)
 
-        self.addWidget(self.filters)
+        self.addWidget(scroll)
         self.addWidget(self.stats_frame)
         self.setStretchFactor(0, 0)
         self.setStretchFactor(1, 1)
