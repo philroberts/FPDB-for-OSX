@@ -420,22 +420,18 @@ class Hand(object):
             else:
                 dealt=False
                 mucked=True
-            if cardlist[0] == '':
-                pass
-            elif self.gametype['category'] == 'holdem':
-                self.addHoleCards('PREFLOP', row['name'], closed=cardlist[0:2], shown=False, mucked=mucked, dealt=dealt)
-            elif self.gametype['category'] in ('omahahi', 'omahahilo'):
-                self.addHoleCards('PREFLOP', row['name'], closed=cardlist[0:4], shown=False, mucked=mucked, dealt=dealt)
-            elif self.gametype['category'] in ('27_3draw', '27_1draw', 'fivedraw'):
-                self.addHoleCards('DEAL', row['name'], closed=cardlist[0:5], shown=False, mucked=mucked, dealt=dealt)
-            elif self.gametype['category'] in ('razz', 'studhi', 'studhilo'):
-                #print "DEBUG: cardlist: %s" % cardlist
-                # FIXME?: shown/dealt/mucked correct for the next method calls?
-                self.addHoleCards('THIRD',   row['name'], open=[cardlist[2]], closed=cardlist[0:2], shown=False, dealt=True)
-                self.addHoleCards('FOURTH',  row['name'], open=[cardlist[3]], closed=cardlist[0:3], shown=False, mucked=False)
-                self.addHoleCards('FIFTH',   row['name'], open=[cardlist[4]], closed=cardlist[0:4], shown=False, mucked=False)
-                self.addHoleCards('SIXTH',   row['name'], open=[cardlist[5]], closed=cardlist[0:5], shown=False, mucked=False)
-                self.addHoleCards('SEVENTH', row['name'], open=[cardlist[6]], closed=cardlist[0:6], shown=False, mucked=False)
+            if cardlist[0] != '':
+                game = Card.games[self.gametype['category']]
+                if game[0] == 'hold':
+                    self.addHoleCards('PREFLOP', row['name'], closed=cardlist[0:game[5][0][1]], shown=False, mucked=mucked, dealt=dealt)
+                elif game[0] == 'stud':
+                    streets = {v : k for k, v in game[3].items()}
+                    for streetidx, hrange in enumerate(game[5]):
+                        # FIXME shown/dealt/mucked might need some tweaking
+                        self.addHoleCards(streets[streetidx], row['name'], open=[cardlist[hrange[1] - 1]], closed=cardlist[0:hrange[1]-1], shown=False, mucked=False)
+                elif game[0] == 'draw':
+                    # FIXME add other streets?
+                    self.addHoleCards('DEAL', row['name'], closed=cardlist[0:game[5][0][1]], shown=False, mucked=mucked, dealt=dealt)
             if row['winnings'] > 0:
                 self.addCollectPot(row['name'], str(row['winnings']))
             if row['position'] == '0':
@@ -1178,7 +1174,6 @@ class HoldemOmahaHand(Hand):
                         hcs[i] = upper(hcs[i][0:1])+hcs[i][1:2]
                 except IndexError:
                     hcs = hcs[0:holeNo]
-                    pass
 
         if asList == False:
             return " ".join(hcs)
@@ -1471,31 +1466,30 @@ class DrawHand(Hand):
 
     def join_holecards(self, player, asList=False, street=False):
         """With asList = True it returns the set cards for a player including down cards if they aren't know"""
-        holecards = [u'0x']*20
+        handsize = Card.games[self.gametype['category']][5][0][1]
+        holecards = [u'0x']*(4 * handsize)
         
         for i, _street in enumerate(self.holeStreets):
             if player in self.holecards[_street].keys():
                 allhole = self.holecards[_street][player][1] + self.holecards[_street][player][0]
-                allhole = allhole[:5]
+                allhole = allhole[:handsize]
                 for c in range(len(allhole)):
-                    idx = c + (i*5)
+                    idx = c + i * handsize
                     holecards[idx] = allhole[c]
 
+        result = []
         if street == False:
-            if asList == False:
-                return " ".join(holecards)
-            else:
-                return holecards
-        if street in self.holeStreets:
+            result = holecards
+        elif street in self.holeStreets:
             if street == 'DEAL':
-                return holecards[0:5] if asList else " ".join(holecards[0:5])
+                result = holecards[0:handsize]
             elif street == 'DRAWONE':
-                return holecards[5:10] if asList else " ".join(holecards[5:10])
+                result = holecards[handsize:2 * handsize]
             elif street == 'DRAWTWO':
-                return holecards[10:15] if asList else " ".join(holecards[10:15])
+                result = holecards[2 * handsize:3 * handsize]
             elif street == 'DRAWTHREE':
-                return holecards[15:20] if asList else " ".join(holecards[15:20])
-
+                result = holecards[3 * handsize:4 * handsize]
+        return result if asList else " ".join(result)
 
     def writeHand(self, fh=sys.__stdout__):
         # PokerStars format.
