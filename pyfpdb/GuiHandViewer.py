@@ -89,11 +89,6 @@ class GuiHandViewer(QSplitter):
         self.setStretchFactor(0, 0)
         self.setStretchFactor(1, 1)
 
-
-        self.playing = False
-
-        self.tableImage = None
-        self.playerBackdrop = None
         self.deck_instance = Deck.Deck(self.config, height=42, width=30)
         self.cardImages = self.init_card_images()
 
