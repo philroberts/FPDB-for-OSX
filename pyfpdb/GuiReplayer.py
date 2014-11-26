@@ -227,7 +227,7 @@ class GuiReplayer(QWidget):
                 state.updateForAction(hand.actions[action][i])
                 self.states.append(state)
         state = copy.deepcopy(state)
-        state.endHand(hand.collectees)
+        state.endHand(hand.collectees, hand.pot.returned)
         self.states.append(state)
         
         self.stateSlider.setMaximum(len(self.states) - 1)
@@ -395,7 +395,7 @@ class TableState:
         else:
             print "unhandled action: " + str(action)
 
-    def endHand(self, collectees):
+    def endHand(self, collectees, returned):
         self.pot = Decimal(0)
         for player in self.players.values():
             player.justacted = False
@@ -405,6 +405,8 @@ class TableState:
             player.chips += amount
             player.action = "collected"
             player.justacted = True
+        for name, amount in returned.items():
+            self.players[name].stack += amount
 
 class Player:
     def __init__(self, hand, name, stack, seat):
