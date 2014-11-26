@@ -350,7 +350,10 @@ class GuiRingPlayerStats(QSplitter):
                 if value is not None and value != -999:
                     item = QStandardItem(column[colformat] % value)
                     if column[colalias] == 'game' and holecards:
-                        sortValue = 1000 * ranks[value[0]] + 10 * ranks[value[1]] + (1 if len(value) == 3 and value[2] == 's' else 0)
+                        if result[sqlrow][colnames.index('category')] == 'holdem':
+                            sortValue = 1000 * ranks[value[0]] + 10 * ranks[value[1]] + (1 if len(value) == 3 and value[2] == 's' else 0)
+                        else:
+                            sortValue = -1
                     elif column[colalias] in ('game', 'pname'):
                         sortValue = value
                     elif column[colalias] == 'plposition':
