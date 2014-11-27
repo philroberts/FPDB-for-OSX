@@ -45,7 +45,7 @@ CARD_WIDTH = 30
 
 class GuiReplayer(QWidget):
     """A Replayer to replay hands."""
-    def __init__(self, config, querylist, mainwin):
+    def __init__(self, config, querylist, mainwin, handlist):
         QWidget.__init__(self, None)
         self.setFixedSize(800, 680)
         self.conf = config
@@ -54,6 +54,8 @@ class GuiReplayer(QWidget):
 
         self.db = Database.Database(self.conf, sql=self.sql)
         self.states = [] # List with all table states.
+        self.handlist = handlist
+        self.handidx = 0
 
         self.setWindowTitle("FPDB Hand Replayer")
         
@@ -63,12 +65,16 @@ class GuiReplayer(QWidget):
         self.replayBox.addStretch()
 
         self.buttonBox = QHBoxLayout()
+        self.prevButton = QPushButton("Prev")
+        self.prevButton.clicked.connect(self.prev_clicked)
         self.startButton = QPushButton("Start")
         self.startButton.clicked.connect(self.start_clicked)
         self.endButton = QPushButton("End")
         self.endButton.clicked.connect(self.end_clicked)
         self.playPauseButton = QPushButton("Play")
         self.playPauseButton.clicked.connect(self.play_clicked)
+        self.nextButton = QPushButton("Next")
+        self.nextButton.clicked.connect(self.next_clicked)
 
         self.replayBox.addLayout(self.buttonBox)
 
@@ -183,10 +189,13 @@ class GuiReplayer(QWidget):
             cardIndex = Card.encodeCard(river)
             painter.drawPixmap(QPoint(communityLeft + 4 * (self.cardwidth + padding), communityTop), self.cardImages[cardIndex])
 
-    def play_hand(self, hand):
+    def play_hand(self, handidx):
+        self.handidx = handidx
+        hand = Hand.hand_factory(self.handlist[handidx], self.conf, self.db)
         # hand.writeHand()  # Print handhistory to stdout -> should be an option in the GUI
         self.currency = hand.sym
 
+        self.states = []
         state = TableState(hand)
         for street in hand.allStreets:
             if not hand.actions[street]:
@@ -201,10 +210,12 @@ class GuiReplayer(QWidget):
         state = copy.deepcopy(state)
         state.endHand(hand.collectees, hand.pot.returned)
         self.states.append(state)
-        
-        for btn in self.buttonBox.children():
-            self.buttonBox.removeWidget(btn)
-            btn.setParent(None)
+
+        # Clear and repopulate the row of buttons
+        for idx in reversed(range(self.buttonBox.count())):
+            self.buttonBox.takeAt(idx).widget().setParent(None)
+        self.buttonBox.addWidget(self.prevButton)
+        self.prevButton.setEnabled(self.handidx > 0)
         self.buttonBox.addWidget(self.startButton)
         for street in hand.actionStreets[1:]:
             btn = QPushButton(street.capitalize())
@@ -213,9 +224,12 @@ class GuiReplayer(QWidget):
             btn.setEnabled(bool(hand.actions[street]))
         self.buttonBox.addWidget(self.endButton)
         self.buttonBox.addWidget(self.playPauseButton)
+        self.buttonBox.addWidget(self.nextButton)
+        self.nextButton.setEnabled(self.handidx < len(self.handlist) - 1)
 
         self.stateSlider.setMaximum(len(self.states) - 1)
         self.stateSlider.setValue(0)
+        self.update()
 
     def increment_state(self):
         if self.stateSlider.value() == self.stateSlider.maximum():
@@ -250,6 +264,12 @@ class GuiReplayer(QWidget):
 
     def end_clicked(self, checkState):
         self.stateSlider.setValue(self.stateSlider.maximum())
+
+    def prev_clicked(self, checkState):
+        self.play_hand(self.handidx - 1)
+
+    def next_clicked(self, checkState):
+        self.play_hand(self.handidx + 1)
 
     def street_clicked(self, checkState, street):
         for i, state in enumerate(self.states):
@@ -405,10 +425,8 @@ if __name__ == '__main__':
 
     from PyQt5.QtWidgets import QApplication
     app = QApplication([])
-
-    replayer = GuiReplayer(config, sql, None)
-    h = Hand.hand_factory(1, config, db)
-
-    replayer.play_hand(h)
+    handlist = [10, 39, 40, 72, 369, 390]
+    replayer = GuiReplayer(config, sql, None, handlist)
+    replayer.play_hand(0)
 
     app.exec_()
