@@ -20,6 +20,7 @@
 import L10n
 _ = L10n.get_translation()
 
+from functools import partial
 
 import Hand
 import Card
@@ -38,9 +39,6 @@ from decimal_wrapper import Decimal
 
 import copy
 import os
-
-import pprint
-pp = pprint.PrettyPrinter(indent=4)
 
 CARD_HEIGHT = 42
 CARD_WIDTH = 30
@@ -67,30 +65,18 @@ class GuiReplayer(QWidget):
         self.buttonBox = QHBoxLayout()
         self.startButton = QPushButton("Start")
         self.startButton.clicked.connect(self.start_clicked)
-        self.flopButton = QPushButton("Flop")
-        self.flopButton.clicked.connect(self.flop_clicked)
-        self.turnButton = QPushButton("Turn")
-        self.turnButton.clicked.connect(self.turn_clicked)
-        self.riverButton = QPushButton("River")
-        self.riverButton.clicked.connect(self.river_clicked)
         self.endButton = QPushButton("End")
         self.endButton.clicked.connect(self.end_clicked)
         self.playPauseButton = QPushButton("Play")
         self.playPauseButton.clicked.connect(self.play_clicked)
-        self.buttonBox.addWidget(self.startButton)
-        self.buttonBox.addWidget(self.flopButton)
-        self.buttonBox.addWidget(self.turnButton)
-        self.buttonBox.addWidget(self.riverButton)
-        self.buttonBox.addWidget(self.endButton)
-        self.buttonBox.addWidget(self.playPauseButton)
-        
+
         self.replayBox.addLayout(self.buttonBox)
 
         self.stateSlider = QSlider(Qt.Horizontal)
         self.stateSlider.valueChanged.connect(self.slider_changed)
 
         self.replayBox.addWidget(self.stateSlider, False)
-        
+
         self.playing = False
 
         self.tableImage = None
@@ -144,32 +130,12 @@ class GuiReplayer(QWidget):
                 painter.setPen(QColor("grey"))
             else:
                 painter.setPen(QColor("white"))
-                if state.gametype == 'holdem':
-                    cardIndex = Card.encodeCard(player.holecards[0:2])
-                    painter.drawPixmap(QPoint(playerx - self.cardwidth - padding / 2,
-                                              playery - self.cardheight),
+                x = playerx - self.cardwidth * len(player.holecards) / 2
+                for card in player.holecards:
+                    cardIndex = Card.encodeCard(card)
+                    painter.drawPixmap(QPoint(x, playery - self.cardheight),
                                        self.cardImages[cardIndex])
-                    cardIndex = Card.encodeCard(player.holecards[3:5])
-                    painter.drawPixmap(QPoint(playerx + padding / 2,
-                                              playery - self.cardheight),
-                                       self.cardImages[cardIndex])
-                elif state.gametype in ('omahahi', 'omahahilo'):
-                    cardIndex = Card.encodeCard(player.holecards[0:2])
-                    painter.drawPixmap(QPoint(playerx - 2 * self.cardwidth - 3 * padding / 2,
-                                              playery - self.cardheight),
-                                       self.cardImages[cardIndex])
-                    cardIndex = Card.encodeCard(player.holecards[3:5])
-                    painter.drawPixmap(QPoint(playerx - self.cardwidth - padding / 2,
-                                              playery - self.cardheight),
-                                       self.cardImages[cardIndex])
-                    cardIndex = Card.encodeCard(player.holecards[6:8])
-                    painter.drawPixmap(QPoint(playerx + padding / 2,
-                                              playery - self.cardheight),
-                                       self.cardImages[cardIndex])
-                    cardIndex = Card.encodeCard(player.holecards[9:11])
-                    painter.drawPixmap(QPoint(playerx + self.cardwidth + 3 * padding / 2,
-                                              playery - self.cardheight),
-                                       self.cardImages[cardIndex])
+                    x += self.cardwidth
 
             painter.drawText(QRect(playerx - 100, playery, 200, 20),
                              Qt.AlignCenter,
@@ -182,7 +148,7 @@ class GuiReplayer(QWidget):
                 painter.drawText(QRect(playerx - 50, playery + 15, 100, 20), Qt.AlignCenter, player.action)
             else:
                 painter.setPen(QColor("white"))
-            if player.chips != 0:  #displays amount
+            if player.chips != 0:
                 painter.drawText(QRect(convertx(player.x * .65) - 100,
                                        converty(player.y * 0.65),
                                        200,
@@ -192,44 +158,62 @@ class GuiReplayer(QWidget):
 
         painter.setPen(QColor("white"))
 
-        painter.drawText(QRect(self.tableImage.width() / 2 - 100,
-                               self.tableImage.height() / 2 - 20,
-                               200,
-                               40),
-                         Qt.AlignCenter,
-                         '%s%.2f' % (self.currency, state.pot))
+        if state.pot > 0:
+            painter.drawText(QRect(self.tableImage.width() / 2 - 100,
+                                   self.tableImage.height() / 2 - 20,
+                                   200,
+                                   40),
+                             Qt.AlignCenter,
+                             '%s%.2f' % (self.currency, state.pot))
 
-        if state.showFlop:
-            cardIndex = Card.encodeCard(state.flop[0])
+        if state.street in ('FLOP', 'TURN', 'RIVER'):
+            flop = state.board['FLOP']
+            cardIndex = Card.encodeCard(flop[0])
             painter.drawPixmap(QPoint(communityLeft, communityTop), self.cardImages[cardIndex])
-            cardIndex = Card.encodeCard(state.flop[1])
+            cardIndex = Card.encodeCard(flop[1])
             painter.drawPixmap(QPoint(communityLeft + self.cardwidth + padding, communityTop), self.cardImages[cardIndex])
-            cardIndex = Card.encodeCard(state.flop[2])
+            cardIndex = Card.encodeCard(flop[2])
             painter.drawPixmap(QPoint(communityLeft + 2 * (self.cardwidth + padding), communityTop), self.cardImages[cardIndex])
-        if state.showTurn:
-            cardIndex = Card.encodeCard(state.turn[0])
+        if state.street in ('TURN', 'RIVER'):
+            turn = state.board['TURN'][0]
+            cardIndex = Card.encodeCard(turn)
             painter.drawPixmap(QPoint(communityLeft + 3 * (self.cardwidth + padding), communityTop), self.cardImages[cardIndex])
-        if state.showRiver:
-            cardIndex = Card.encodeCard(state.river[0])
+        if state.street == 'RIVER':
+            river = state.board['RIVER'][0]
+            cardIndex = Card.encodeCard(river)
             painter.drawPixmap(QPoint(communityLeft + 4 * (self.cardwidth + padding), communityTop), self.cardImages[cardIndex])
 
     def play_hand(self, hand):
         # hand.writeHand()  # Print handhistory to stdout -> should be an option in the GUI
         self.currency = hand.sym
-        actions = hand.allStreets
+
         state = TableState(hand)
-        for action in actions:
+        for street in hand.allStreets:
+            if not hand.actions[street]:
+                break
             state = copy.deepcopy(state)
-            if state.startPhase(action):
-                self.states.append(state)
-            for i in range(0,len(hand.actions[action])):
+            state.startPhase(street)
+            self.states.append(state)
+            for action in hand.actions[street]:
                 state = copy.deepcopy(state)
-                state.updateForAction(hand.actions[action][i])
+                state.updateForAction(action)
                 self.states.append(state)
         state = copy.deepcopy(state)
         state.endHand(hand.collectees, hand.pot.returned)
         self.states.append(state)
         
+        for btn in self.buttonBox.children():
+            self.buttonBox.removeWidget(btn)
+            btn.setParent(None)
+        self.buttonBox.addWidget(self.startButton)
+        for street in hand.actionStreets[1:]:
+            btn = QPushButton(street.capitalize())
+            self.buttonBox.addWidget(btn)
+            btn.clicked.connect(partial(self.street_clicked, street=street))
+            btn.setEnabled(bool(hand.actions[street]))
+        self.buttonBox.addWidget(self.endButton)
+        self.buttonBox.addWidget(self.playPauseButton)
+
         self.stateSlider.setMaximum(len(self.states) - 1)
         self.stateSlider.setValue(0)
 
@@ -267,21 +251,9 @@ class GuiReplayer(QWidget):
     def end_clicked(self, checkState):
         self.stateSlider.setValue(self.stateSlider.maximum())
 
-    def flop_clicked(self, checkState):
-        for i in range(0, len(self.states)):
-            if self.states[i].showFlop:
-                self.stateSlider.setValue(i)
-                break
-
-    def turn_clicked(self, checkState):
-        for i in range(0, len(self.states)):
-            if self.states[i].showTurn:
-                self.stateSlider.setValue(i)
-                break
-
-    def river_clicked(self, checkState):
-        for i in range(0, len(self.states)):
-            if self.states[i].showRiver:
+    def street_clicked(self, checkState, street):
+        for i, state in enumerate(self.states):
+            if state.street == street:
                 self.stateSlider.setValue(i)
                 break
 
@@ -314,15 +286,12 @@ class ICM:
 class TableState:
     def __init__(self, hand):
         self.pot = Decimal(0)
-        self.flop = hand.board["FLOP"]
-        self.turn = hand.board["TURN"]
-        self.river = hand.board["RIVER"]
-        self.showFlop = False
-        self.showTurn = False
-        self.showRiver = False
+        self.street = None
+        self.board = hand.board
         self.bet = Decimal(0)
         self.called = Decimal(0)
         self.gametype = hand.gametype['category']
+        self.gamebase = hand.gametype['base']
         # NOTE: Need a useful way to grab payouts
         #self.icm = ICM(stacks,payouts)
         #print icm.equities
@@ -333,17 +302,10 @@ class TableState:
             self.players[name] = Player(hand, name, chips, seat)
 
     def startPhase(self, phase):
-        if phase == "BLINDSANTES":
-            return True
-        if phase == "PREFLOP":
-            return False
-        if phase == "FLOP" and len(self.flop) == 0:
-            return False
-        if phase == "TURN" and len(self.turn) == 0:
-            return False
-        if phase == "RIVER" and len(self.river) == 0:
-            return False
-        
+        self.street = phase
+        if phase in ("BLINDSANTES", "PREFLOP", "DEAL"):
+            return
+
         for player in self.players.values():
             player.justacted = False
             if player.chips > self.called:
@@ -351,15 +313,10 @@ class TableState:
                 player.chips = self.called
             self.pot += player.chips
             player.chips = Decimal(0)
+            if phase in ("THIRD", "FOURTH", "FIFTH", "SIXTH", "SEVENTH"):
+                player.holecards = player.streetcards[self.street]
         self.bet = Decimal(0)
         self.called = Decimal(0)
-
-        if phase == "FLOP":
-            self.showFlop = True
-        elif phase == "TURN":
-            self.showTurn = True
-        elif phase == "RIVER":
-            self.showRiver = True
 
         return True
 
@@ -392,6 +349,16 @@ class TableState:
         elif action[1] == "ante":
             self.pot += action[2]
             player.stack -= action[2]
+        elif action[1] == "discards":
+            player.action += " " + str(action[2])
+            if len(action) > 3:
+                # Must be hero as we have discard information.  Update holecards now.
+                player.holecards = player.streetcards[self.street]
+        elif action[1] == "stands pat":
+            pass
+        elif action[1] == "bringin":
+            player.chips += action[2]
+            player.stack -= action[2]
         else:
             print "unhandled action: " + str(action)
 
@@ -400,6 +367,8 @@ class TableState:
         for player in self.players.values():
             player.justacted = False
             player.chips = Decimal(0)
+            if self.gamebase == 'draw':
+                player.holecards = player.streetcards[self.street]
         for name,amount in collectees.items():
             player = self.players[name]
             player.chips += amount
@@ -416,7 +385,16 @@ class Player:
         self.name      = name
         self.action    = None
         self.justacted = False
-        self.holecards = hand.join_holecards(name)
+        self.holecards = hand.join_holecards(name, asList=True)
+        self.streetcards = {}
+        if hand.gametype['base'] == 'draw':
+            for street in hand.actionStreets[1:]:
+                self.streetcards[street] = hand.join_holecards(name, asList=True, street=street)
+            self.holecards = self.streetcards[hand.actionStreets[1]]
+        elif hand.gametype['base'] == 'stud':
+            for i, street in enumerate(hand.actionStreets[1:]):
+                self.streetcards[street] = self.holecards[:i + 3]
+            self.holecards = self.streetcards[hand.actionStreets[1]]
         self.x         = 0.5 * math.cos(2 * self.seat * math.pi / hand.maxseats)
         self.y         = 0.5 * math.sin(2 * self.seat * math.pi / hand.maxseats)
 
