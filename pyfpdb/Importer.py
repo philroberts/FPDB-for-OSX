@@ -36,7 +36,7 @@ from PyQt5.QtCore import QCoreApplication
 import Database
 import Configuration
 import IdentifySite
-from Exceptions import FpdbParseError, FpdbHandDuplicate
+from Exceptions import FpdbParseError, FpdbHandDuplicate, FpdbHandPartial
 
 try:
     import xlrd
@@ -570,7 +570,7 @@ class Importer:
                     conv = obj(db=self.database, config=self.config, siteName=fpdbfile.site.name, summaryText=summaryText, in_path = fpdbfile.path, header=summaryTexts[0])
                     self.database.resetBulkCache(False)
                     conv.insertOrUpdate(printtest = self.settings['testData'])
-                except Exceptions.FpdbHandPartial, e:
+                except FpdbHandPartial, e:
                     partial += 1
                 except FpdbParseError, e:
                     log.error(_("Summary import parse error in file: %s") % fpdbfile.path)
