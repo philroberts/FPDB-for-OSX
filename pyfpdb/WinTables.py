@@ -131,6 +131,7 @@ class Table(Table_Window):
                 }
             else:
                 log.debug("newhud - WinTables window not found")
+                return None
         except AttributeError:
             return None
 

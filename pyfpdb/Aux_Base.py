@@ -105,7 +105,6 @@ class Seat_Window(QWidget):
         self.seat = seat
         self.resize(10,10)
         self.setAttribute(Qt.WA_AlwaysShowToolTips)
-        self.show()
 
     def mousePressEvent(self, event):
         if event.button() == Qt.LeftButton:
@@ -206,9 +205,11 @@ class Aux_Seats(Aux_Window):
             #      for hud's this is probably Aux_Hud.stat_window
             self.create_contents(self.m_windows[i], i)
 
+            self.m_windows[i].show() # ensure there is a native window handle for topify
+            self.m_windows[i].hide()
             self.hud.table.topify(self.m_windows[i])
-            if self.uses_timer:
-                self.m_windows[i].hide()
+            if not self.uses_timer:
+                self.m_windows[i].show()
                 
         self.hud.layout.height = self.hud.table.height
         self.hud.layout.width = self.hud.table.width
