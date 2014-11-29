@@ -1117,14 +1117,14 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
         defx, defy = 900, 720
         sg = QApplication.primaryScreen().availableGeometry()
         if sg.width() < defx:
-            defx = sx
+            defx = sg.width()
         if sg.height() < defy:
-            defy = sy
+            defy = sg.height()
         self.resize(defx, defy)
 
         # create our Main Menu Bar
         self.createMenuBar()
-        
+
         # create a tab bar
         self.nb = QTabWidget()
         self.setCentralWidget(self.nb)
