@@ -184,10 +184,10 @@ def get_config(file_name, fallback = True):
                     pass
 
 #    OK, fall back to the .example file, should be in the start dir
-    elif os.path.exists(file_name + ".example"):
+    elif os.path.exists(os.path.join(PYFPDB_PATH, file_name + '.example')):
         try:
             #print ""
-            example_path = file_name + ".example"
+            example_path = os.path.join(PYFPDB_PATH, file_name + '.example')
             if not config_found and fallback:
                 shutil.copyfile(example_path, config_path)
                 example_copy = True
