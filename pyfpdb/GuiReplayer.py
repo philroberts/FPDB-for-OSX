@@ -189,6 +189,20 @@ class GuiReplayer(QWidget):
             cardIndex = Card.encodeCard(river)
             painter.drawPixmap(QPoint(communityLeft + 4 * (self.cardwidth + padding), communityTop), self.cardImages[cardIndex])
 
+    def keyPressEvent(self, event):
+        if event.key() == Qt.Key_Left:
+            self.stateSlider.setValue(max(0, self.stateSlider.value() - 1))
+        elif event.key() == Qt.Key_Right:
+            self.stateSlider.setValue(min(self.stateSlider.maximum(), self.stateSlider.value() + 1))
+        elif event.key() == Qt.Key_Up:
+            if self.handidx < len(self.handlist) - 1:
+                self.play_hand(self.handidx + 1)
+        elif event.key() == Qt.Key_Down:
+            if self.handidx > 0:
+                self.play_hand(self.handidx - 1)
+        else:
+            QWidget.keyPressEvent(self, event)
+
     def play_hand(self, handidx):
         self.handidx = handidx
         hand = Hand.hand_factory(self.handlist[handidx], self.conf, self.db)
