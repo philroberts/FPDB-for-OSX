@@ -211,9 +211,16 @@ class GuiReplayer(QWidget):
 
         self.states = []
         state = TableState(hand)
+        seenStreets = []
         for street in hand.allStreets:
-            if not hand.actions[street]:
+            if state.called > 0:
+                for player in state.players.values():
+                    if player.stack == 0:
+                        state.allin = True
+                        break
+            if not hand.actions[street] and not state.allin:
                 break
+            seenStreets.append(street)
             state = copy.deepcopy(state)
             state.startPhase(street)
             self.states.append(state)
@@ -235,7 +242,7 @@ class GuiReplayer(QWidget):
             btn = QPushButton(street.capitalize())
             self.buttonBox.addWidget(btn)
             btn.clicked.connect(partial(self.street_clicked, street=street))
-            btn.setEnabled(bool(hand.actions[street]))
+            btn.setEnabled(street in seenStreets)
         self.buttonBox.addWidget(self.endButton)
         self.buttonBox.addWidget(self.playPauseButton)
         self.buttonBox.addWidget(self.nextButton)
@@ -326,6 +333,8 @@ class TableState:
         self.called = Decimal(0)
         self.gametype = hand.gametype['category']
         self.gamebase = hand.gametype['base']
+        self.allin = False
+        self.allinThisStreet = False
         # NOTE: Need a useful way to grab payouts
         #self.icm = ICM(stacks,payouts)
         #print icm.equities
@@ -351,8 +360,7 @@ class TableState:
                 player.holecards = player.streetcards[self.street]
         self.bet = Decimal(0)
         self.called = Decimal(0)
-
-        return True
+        self.allinThisStreet = False
 
     def updateForAction(self, action):
         for player in self.players.values():
@@ -364,7 +372,10 @@ class TableState:
         if action[1] == "folds" or action[1] == "checks":
             pass
         elif action[1] == "raises" or action[1] == "bets":
-            self.called = Decimal(0)
+            if self.allinThisStreet:
+                self.called = Decimal(self.bet)
+            else:
+                self.called = Decimal(0)
             diff = self.bet - player.chips
             self.bet += action[2]
             player.chips += action[2] + diff
@@ -395,6 +406,9 @@ class TableState:
             player.stack -= action[2]
         else:
             print "unhandled action: " + str(action)
+
+        if player.stack == 0:
+            self.allinThisStreet = True
 
     def endHand(self, collectees, returned):
         self.pot = Decimal(0)
