@@ -162,15 +162,6 @@ class Hud:
         
     def reposition_windows(self, *args): pass
 
-#    def debug_stat_windows(self, *args):
-##        print self.table, "\n", self.main_window.window.get_transient_for()
-#        for w in self.stat_windows:
-#            try:
-#                print self.stat_windows[w].window.window.get_transient_for()
-#            except AttributeError:
-#                print "this window doesnt have get_transient_for"
-
-
     def save_layout(self, *args):
 #    ask each aux to save its layout back to the config object
         [aux.save_layout() for aux in self.aux_windows]
