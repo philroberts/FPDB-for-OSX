@@ -475,6 +475,37 @@ class Hand(object):
             self.setCommunityCards('TURN', [cards[3]])
         if cards[4]:
             self.setCommunityCards('RIVER', [cards[4]])
+
+        if res['runittwice']:
+            # Get runItTwice boards
+            q = db.sql.query['singleHandBoards']
+            q = q.replace('%s', db.sql.query['placeholder'])
+            c.execute(q, (handId,))
+            boards = [dict(line) for line in [zip([ column[0].lower() for column in c.description], row) for row in c.fetchall()]]
+            for b in boards:
+                cards = map(Card.valueSuitFromCard, [b['boardcard1'], b['boardcard2'], b['boardcard3'], b['boardcard4'], b['boardcard5']])
+                if cards[0]:
+                    street = 'FLOP' + str(b['boardid'])
+                    self.setCommunityCards(street, cards[0:3])
+                    if 'FLOP' in self.allStreets:
+                        self.allStreets.remove('FLOP')
+                    self.allStreets.append(street)
+                    self.actions[street] = []
+                if cards[3]:
+                    street = 'TURN' + str(b['boardid'])
+                    self.setCommunityCards(street, [cards[3]])
+                    if 'TURN' in self.allStreets:
+                        self.allStreets.remove('TURN')
+                    self.allStreets.append(street)
+                    self.actions[street] = []
+                if cards[4]:
+                    street = 'RIVER' + str(b['boardid'])
+                    self.setCommunityCards(street, [cards[4]])
+                    if 'RIVER' in self.allStreets:
+                        self.allStreets.remove('RIVER')
+                    self.allStreets.append(street)
+                    self.actions[street] = []
+
         # playersVpi | playersAtStreet1 | playersAtStreet2 | playersAtStreet3 |
         # playersAtStreet4 | playersAtShowdown | street0Raises | street1Raises |
         # street2Raises | street3Raises | street4Raises | street1Pot | street2Pot |

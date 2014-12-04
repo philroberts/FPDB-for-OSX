@@ -6226,6 +6226,14 @@ class Sql:
                     WHERE id = %s"""
 
         ####################################
+        # Query to get run it twice boards for the replayer
+        ####################################
+        self.query['singleHandBoards'] = """
+                 SELECT b.*
+                    FROM Boards b
+                    WHERE handId = %s"""
+
+        ####################################
         # Query to get a single player hand for the replayer
         ####################################
         self.query['playerHand'] = """
