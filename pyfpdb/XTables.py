@@ -25,7 +25,6 @@ _ = L10n.get_translation()
 
 #    Standard Library modules
 import re
-import os
 import logging
 
 from PyQt5.QtGui import QWindow
@@ -68,17 +67,12 @@ class Table(Table_Window):
 #    given the self.search_string. Then populate self.number, self.title, 
 #    self.window, and self.parent (if required).
 
-        self.number = None
         self.wnck_table_w = None
-
-        # Flush GTK event loop before calling wnck.get_*
-        while gtk.events_pending():
-            gtk.main_iteration(False)
 
         for win in root.get_windows():
             w_title = win.get_name()
             if re.search(self.search_string, w_title, re.I):
-                log.info('"%s" matches: "%s"' % (w_title, self.search_string))
+                log.info('"%s" matches: "%s"', w_title, self.search_string)
                 title = w_title.replace('"', '')
                 if self.check_bad_words(title): continue
                 # XXX: If we could connect to 'window-closed' here, it
@@ -92,40 +86,7 @@ class Table(Table_Window):
                 break
 
         if self.number is None:
-            log.warning(_("No match in XTables for table '%s'.") % self.search_string)
-            return None
-
-#    def get_window_from_xid(self, id):
-#        for outside in root.query_tree().children:
-#            if outside.id == id:
-#                return (outside, outside.query_tree().parent)
-#            for inside in outside.query_tree().children:
-#                if inside.id == id:  # GNOME, Xfce
-#                    return (inside, inside.query_tree().parent)
-#                for wayinside in inside.query_tree().children:
-#                    if wayinside.id == id:  # KDE
-#                        parent = wayinside.query_tree().parent
-#                        return (wayinside, parent.query_tree().parent)
-#        return (None, None)
-
-    #def get_geometry(self):
-        #try:
-            #my_geo = self.window.get_geometry()
-            #if self.parent is None:
-                #return {'x'      : my_geo.x,
-                        #'y'      : my_geo.y,
-                        #'width'  : my_geo.width,
-                        #'height' : my_geo.height
-                       #}
-            #else:
-                #pa_geo = self.parent.get_geometry()
-                #return {'x'      : my_geo.x + pa_geo.x,
-                        #'y'      : my_geo.y + pa_geo.y,
-                        #'width'  : my_geo.width,
-                        #'height' : my_geo.height
-                       #}
-        #except:
-            #return None
+            log.warning(_("No match in XTables for table '%s'."), self.search_string)
 
     # This function serves a double purpose. It fetches the X geometry
     # information from the WnckWindow, which is the normal behaviour -

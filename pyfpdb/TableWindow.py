@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """Base class for interacting with poker client windows.
 
-There are currently subclasses for X and Windows.
+There are currently subclasses for X, OSX, and Windows.
 
 The class queries the poker client window for data of interest, such as
 size and location. It also controls the signals to alert the HUD when the
@@ -32,7 +32,7 @@ _ = L10n.get_translation()
 #    Standard Library modules
 import re
 import logging
-from time import time, sleep
+from time import sleep
 
 #    FreePokerTools modules
 import Configuration
@@ -118,7 +118,7 @@ class Table_Window(object):
         
         self.find_table_parameters()
         if not self.number:
-            log.error(_("Can't find table %s") % table_name)
+            log.error(_("Can't find table %s"), table_name)
 
 
         geo = self.get_geometry()
@@ -133,7 +133,6 @@ class Table_Window(object):
         self.game = self.get_game()
 
     def __str__(self):
-#    __str__ method for testing
         likely_attrs = ("number", "title", "site", "width", "height", "x", "y",
                         "tournament", "table", "gdkhandle", "window", "parent",
                         "key", "hud", "game", "search_string", "tableno_re")
@@ -176,7 +175,6 @@ class Table_Window(object):
             return False
               
         if mo is not None:
-            #print "get_table_no: mo=",mo.groups()
             return int(mo.group(1))
         return False
 
@@ -184,7 +182,7 @@ class Table_Window(object):
 #    check_table() is meant to be called by the hud periodically to
 #    determine if the client has been moved or resized. check_table()
 #    also checks and signals if the client has been closed. 
-    def check_table(self, hud):
+    def check_table(self):
         return self.check_size() or self.check_loc()
 
 ####################################################################
@@ -222,16 +220,14 @@ class Table_Window(object):
             return "client_destroyed"
 
         if self.x != new_geo['x'] or self.y != new_geo['y']: # window moved
-#            print self.x, self.y, new_geo['x'], new_geo['y']
             self.x      = new_geo['x']
             self.y      = new_geo['y']
             return "client_moved"
         return False  # no change
 
     def has_table_title_changed(self, hud):
-
         result = self.get_table_no()
-        if result != False and result != self.table:
+        if result is not False and result != self.table:
             self.table = result
             if hud is not None:
                 hud.parent.main_window.emit("table_changed", hud)

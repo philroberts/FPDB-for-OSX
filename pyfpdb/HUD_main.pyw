@@ -463,7 +463,7 @@ def idle_update(hud_main, new_hand_id, table_name, config):
 def idle_check_tables(hud_main):
     try:
         for tablename, hud in hud_main.hud_dict.items():
-            status = hud.table.check_table(hud)
+            status = hud.table.check_table()
             if status == "client_destroyed":
                 hud_main.client_destroyed(None, hud)
             elif status == "client_moved":

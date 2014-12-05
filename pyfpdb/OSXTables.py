@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-"""XWindows specific methods for TableWindows Class.
+"""OSX specific methods for TableWindows Class.
 """
 #    Copyright 2008 - 2011, Ray E. Barker
 
@@ -25,10 +25,8 @@ _ = L10n.get_translation()
 
 #    Standard Library modules
 import re
-import os
 
 #    Other Library modules
-import objc
 import ctypes
 
 import AppKit # Work around some pyinstaller weirdness.
