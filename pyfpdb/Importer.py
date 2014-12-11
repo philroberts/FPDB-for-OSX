@@ -436,10 +436,12 @@ class Importer:
             self.pos_in_file[file] = hhc.getLastCharacterRead()
             #Tally the results
             partial  = getattr(hhc, 'numPartial')
+            skipped  = getattr(hhc, 'numSkipped')
             errors   = getattr(hhc, 'numErrors')
             stored   = getattr(hhc, 'numHands')
             stored -= errors
             stored -= partial
+            stored -= skipped
             
             if stored > 0:
                 if self.caller: self.progressNotify()

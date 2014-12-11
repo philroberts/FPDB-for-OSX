@@ -79,6 +79,7 @@ except:
 import SQL
 import Database
 import Configuration
+import Card
 import Exceptions
 import Stats
 
@@ -480,6 +481,29 @@ class fpdb(QMainWindow):
         self.release_global_lock()
     #end def storeNewHudStatConfig
 
+    def dia_import_filters(self, checkState):
+        dia = QDialog()
+        dia.setWindowTitle("Skip these games when importing")
+        dia.setLayout(QVBoxLayout())
+        checkboxes = {}
+        filters = self.config.get_import_parameters()['importFilters']
+        for game in Card.games:
+            checkboxes[game] = QCheckBox(game)
+            dia.layout().addWidget(checkboxes[game])
+            if game in filters:
+                checkboxes[game].setChecked(True)
+        btns = QDialogButtonBox(QDialogButtonBox.Ok | QDialogButtonBox.Cancel)
+        dia.layout().addWidget(btns)
+        btns.accepted.connect(dia.accept)
+        btns.rejected.connect(dia.reject)
+        if dia.exec_():
+            filterGames = []
+            for game, cb in checkboxes.items():
+                if cb.isChecked():
+                    filterGames.append(game)
+            self.config.editImportFilters(",".join(filterGames))
+            self.config.save()
+
     def dia_dump_db(self, widget, data=None):
         filename = "database-dump.sql"
         result = self.db.dumpDatabase()
@@ -809,6 +833,7 @@ class fpdb(QMainWindow):
         configMenu.addAction(makeAction(_('_Site Settings'), self.dia_site_preferences))
         configMenu.addAction(makeAction(_('_Preferences'), self.dia_advanced_preferences, tip='Edit your preferences'))
         #configMenu.addAction(makeAction(_('_HUD Stats Settings'), self.dia_hud_preferences))
+        configMenu.addAction(makeAction('Import filters', self.dia_import_filters))
         configMenu.addSeparator()
         configMenu.addAction(makeAction(_('_Quit'), self.quit, 'Ctrl+Q', 'Quit the Program'))
 

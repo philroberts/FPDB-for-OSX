@@ -598,6 +598,10 @@ class Import:
         self.callFpdbHud        = string_to_bool(node.getAttribute("callFpdbHud")      , default=False)
         self.fastStoreHudCache  = string_to_bool(node.getAttribute("fastStoreHudCache"), default=False)
         self.saveStarsHH        = string_to_bool(node.getAttribute("saveStarsHH")      , default=False)
+        if node.getAttribute("importFilters"):
+            self.importFilters = node.getAttribute("importFilters").split(",")
+        else:
+            self.importFilters = []
 
     def __str__(self):
         return "    interval = %s\n    callFpdbHud = %s\n    saveActions = %s\n   cacheSessions = %s\n    publicDB = %s\n    sessionTimeout = %s\n    fastStoreHudCache = %s\n    ResultsDirectory = %s" \
@@ -1182,6 +1186,10 @@ class Config:
         statNodes = statsetNode.getElementsByTagName("stat") #TODO remove this line?
     #end def editStats
 
+    def editImportFilters(self, games):
+        self.imp.importFilters = games
+        imp_node = self.doc.getElementsByTagName("import")[-1]
+        imp_node.setAttribute("importFilters", games)
 
     def save_layout_set(self, ls, max, locations, width=None, height=None):
         #wid/height normally not specified when saving common from the mucked display
@@ -1453,6 +1461,9 @@ class Config:
 
         try:    imp['fastStoreHudCache'] = self.imp.fastStoreHudCache
         except:  imp['fastStoreHudCache'] = False
+
+        try:    imp['importFilters'] = self.imp.importFilters
+        except:  imp['importFilters'] = []
 
         return imp
 
