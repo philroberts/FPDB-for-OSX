@@ -329,7 +329,7 @@ class GuiSessionViewer(QSplitter):
             if hds > 0:
                 stime = strftime("%d/%m/%Y %H:%M", localtime(times[first_idx]))      # Formatted start time
                 etime = strftime("%d/%m/%Y %H:%M", localtime(times[last_idx]))       # Formatted end time
-                self.times.append((times[first_idx], times[last_idx]))
+                self.times.append((times[first_idx] - PADDING * 60, times[last_idx] + PADDING * 60))
                 minutesplayed = (times[last_idx] - times[first_idx])/60
                 minutesplayed = minutesplayed + PADDING
                 if minutesplayed == 0:
