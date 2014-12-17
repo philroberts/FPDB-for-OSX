@@ -67,19 +67,25 @@ class GuiReplayer(QWidget):
         self.buttonBox = QHBoxLayout()
         self.prevButton = QPushButton("Prev")
         self.prevButton.clicked.connect(self.prev_clicked)
+        self.prevButton.setFocusPolicy(Qt.NoFocus)
         self.startButton = QPushButton("Start")
         self.startButton.clicked.connect(self.start_clicked)
+        self.startButton.setFocusPolicy(Qt.NoFocus)
         self.endButton = QPushButton("End")
         self.endButton.clicked.connect(self.end_clicked)
+        self.endButton.setFocusPolicy(Qt.NoFocus)
         self.playPauseButton = QPushButton("Play")
         self.playPauseButton.clicked.connect(self.play_clicked)
+        self.playPauseButton.setFocusPolicy(Qt.NoFocus)
         self.nextButton = QPushButton("Next")
         self.nextButton.clicked.connect(self.next_clicked)
+        self.nextButton.setFocusPolicy(Qt.NoFocus)
 
         self.replayBox.addLayout(self.buttonBox)
 
         self.stateSlider = QSlider(Qt.Horizontal)
         self.stateSlider.valueChanged.connect(self.slider_changed)
+        self.stateSlider.setFocusPolicy(Qt.NoFocus)
 
         self.replayBox.addWidget(self.stateSlider, False)
 
@@ -241,6 +247,7 @@ class GuiReplayer(QWidget):
             self.buttonBox.addWidget(btn)
             btn.clicked.connect(partial(self.street_clicked, street=street))
             btn.setEnabled(street in seenStreets)
+            btn.setFocusPolicy(Qt.NoFocus)
         self.buttonBox.addWidget(self.endButton)
         self.buttonBox.addWidget(self.playPauseButton)
         self.buttonBox.addWidget(self.nextButton)
