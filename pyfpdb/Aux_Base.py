@@ -205,8 +205,7 @@ class Aux_Seats(Aux_Window):
             #      for hud's this is probably Aux_Hud.stat_window
             self.create_contents(self.m_windows[i], i)
 
-            self.m_windows[i].show() # ensure there is a native window handle for topify
-            self.m_windows[i].hide()
+            self.m_windows[i].create() # ensure there is a native window handle for topify
             self.hud.table.topify(self.m_windows[i])
             if not self.uses_timer:
                 self.m_windows[i].show()
