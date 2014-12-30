@@ -18,7 +18,7 @@
 import L10n
 _ = L10n.get_translation()
 
-from PyQt5.QtCore import QDate
+from PyQt5.QtCore import QDate, QDateTime
 from PyQt5.QtWidgets import (QCalendarWidget, QCheckBox, QCompleter,
                              QDateEdit, QDialog, QGridLayout,
                              QGroupBox, QHBoxLayout, QLabel,
@@ -296,16 +296,10 @@ class Filters(QWidget):
         t1 = self.start_date.date()
         t2 = self.end_date.date()
 
-        s1 = strptime(t1.toString("yyyy-MM-dd"), "%Y-%m-%d") # make time_struct
-        e1 = mktime(s1) + offset  # s1 is localtime, but returned time since epoch is UTC, then add the 
-        adj_t1 = strftime("%Y-%m-%d %H:%M:%S", gmtime(e1)) # make adjusted string including time
+        adj_t1 = QDateTime(t1).addSecs(offset)
+        adj_t2 = QDateTime(t2).addSecs(offset + 24 * 3600 - 1)
 
-        s2 = strptime(t2.toString("yyyy-MM-dd"), "%Y-%m-%d")
-        e2 = mktime(s2) + offset  # s2 is localtime, but returned time since epoch is UTC
-        e2 = e2 + 24 * 3600 - 1   # date test is inclusive, so add 23h 59m 59s to e2
-        adj_t2 = strftime("%Y-%m-%d %H:%M:%S", gmtime(e2))
-
-        return (adj_t1, adj_t2)
+        return (adj_t1.toUTC().toString("yyyy-MM-dd HH:mm:ss"), adj_t2.toUTC().toString("yyyy-MM-dd HH:mm:ss"))
 
     def registerButton1Name(self, title):
         self.Button1.setText(title)
