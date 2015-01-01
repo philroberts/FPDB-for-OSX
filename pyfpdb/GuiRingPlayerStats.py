@@ -363,7 +363,7 @@ class GuiRingPlayerStats(QSplitter):
                 item.setData(sortValue, Qt.UserRole)
                 item.setEditable(False)
                 if col != 0:
-                    item.setTextAlignment(Qt.AlignRight)
+                    item.setTextAlignment(Qt.AlignRight | Qt.AlignVCenter)
                 if column[colalias] != 'game':
                     item.setToolTip('<big>%s for %s</big><br/><i>%s</i>' % (column[colheading],treerow[0].text(),onlinehelp[column[colheading]]))
                 treerow.append(item)
@@ -373,6 +373,7 @@ class GuiRingPlayerStats(QSplitter):
         view.resizeColumnsToContents()
         view.setSortingEnabled(True) # do this after resizing columns, otherwise it leaves room for the sorting triangle in every heading
         view.resizeColumnToContents(0) # we want room for the sorting triangle in column 0 where it starts.
+        view.resizeRowsToContents()
 
     def refineQuery(self, query, flags, playerids, sitenos, limits, seats, groups, dates, games, currencies):
         having = ''
