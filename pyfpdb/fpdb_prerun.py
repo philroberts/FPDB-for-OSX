@@ -36,7 +36,7 @@ windows_modules_to_test =  ["win32gui",
                             "win32console",
                             "winpaths"]
 
-linux_modules_to_test = ["wnck"]
+linux_modules_to_test = ["xcffib", "xcffib.xproto"]
 mac_modules_to_test = []
 posix_modules_to_test = []
 
