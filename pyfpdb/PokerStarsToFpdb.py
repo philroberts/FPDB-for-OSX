@@ -110,9 +110,9 @@ class PokerStars(HandHistoryConverter):
 
     # Static regexes
     re_GameInfo     = re.compile(u"""
-          (PokerStars|POKERSTARS)(?P<TITLE>\sGame|\sHand|\sHome\sGame|\sHome\sGame\sHand|Game|\sZoom\sHand|\sGAME)\s\#(?P<HID>[0-9]+):\s+
+          (PokerStars|POKERSTARS|Hive\sPoker)(?P<TITLE>\sGame|\sHand|\sHome\sGame|\sHome\sGame\sHand|Game|\sZoom\sHand|\sGAME)\s\#(?P<HID>[0-9]+):\s+
           (\{.*\}\s+)?((?P<TOUR>(Zoom\s)?Tournament)\s\#                # open paren of tournament info
-          (?P<TOURNO>\d+),\s
+          (?P<TOURNO>\d+),\s(Table\s\#\d+,\s)?
           # here's how I plan to use LS
           (?P<BUYIN>(?P<BIAMT>[%(LS)s\d\.]+)?\+?(?P<BIRAKE>[%(LS)s\d\.]+)?\+?(?P<BOUNTY>[%(LS)s\d\.]+)?\s?(?P<TOUR_ISO>%(LEGAL_ISO)s)?|Freeroll)\s+)?
           # close paren of tournament info
@@ -121,9 +121,10 @@ class PokerStars(HandHistoryConverter):
           (?P<LIMIT>No\sLimit|NO\sLIMIT|Limit|LIMIT|Pot\sLimit|POT\sLIMIT|Pot\sLimit\sPre\-Flop,\sNo\sLimit\sPost\-Flop)\)?,?\s
           (-\s)?
           (?P<SHOOTOUT>Match.*,\s)?
-          (Level\s(?P<LEVEL>[IVXLC]+)\s)?
+          (Level\s(?P<LEVEL>[IVXLC\d]+)\s)?
           \(?                            # open paren of the stakes
           (?P<CURRENCY>%(LS)s|)?
+          (ante\s\d+,\s)?
           (?P<SB>[.0-9]+)/(%(LS)s)?
           (?P<BB>[.0-9]+)
           (?P<CAP>\s-\s[%(LS)s]?(?P<CAPAMT>[.0-9]+)\sCap\s-\s)?        # Optional Cap part
@@ -148,7 +149,7 @@ class PokerStars(HandHistoryConverter):
           (Seat\s\#(?P<BUTTON>\d+)\sis\sthe\sbutton)?""", 
           re.MULTILINE|re.VERBOSE)
 
-    re_Identify     = re.compile(u'(PokerStars|POKERSTARS)(\sGame|\sHand|\sHome\sGame|\sHome\sGame\sHand|Game|\sZoom\sHand|\sGAME)\s\#\d+:')
+    re_Identify     = re.compile(u'(PokerStars|POKERSTARS|Hive\sPoker)(\sGame|\sHand|\sHome\sGame|\sHome\sGame\sHand|Game|\sZoom\sHand|\sGAME)\s\#\d+:')
     re_SplitHands   = re.compile('(?:\s?\n){2,}')
     re_TailSplitHands   = re.compile('(\n\n\n+)')
     re_Button       = re.compile('Seat #(?P<BUTTON>\d+) is the button', re.MULTILINE)
