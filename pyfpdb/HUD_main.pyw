@@ -130,6 +130,7 @@ class HUD_main(QObject):
         self.vb = QVBoxLayout()
         self.main_window.setLayout(self.vb)
         self.label = QLabel(_('Closing this window will exit from the HUD.'))
+        self.main_window.closeEvent = lambda event: exit()
         self.vb.addWidget(self.label)
         self.main_window.setWindowTitle("HUD Main Window")
         cards = os.path.join(self.config.graphics_path,'fpdb-cards.png')
