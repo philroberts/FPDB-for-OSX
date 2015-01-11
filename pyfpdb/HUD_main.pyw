@@ -37,7 +37,7 @@ import time
 import string
 import logging
 
-from PyQt5.QtCore import (QCoreApplication, QMetaObject, QObject,
+from PyQt5.QtCore import (QCoreApplication, QMetaObject, QObject, Qt,
                           QThread, pyqtSignal)
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import (QApplication, QLabel, QMainWindow,
@@ -118,7 +118,7 @@ class HUD_main(QObject):
         self.stdinThread.start()
 
         # a main window
-        self.main_window = QWidget()
+        self.main_window = QWidget(None, Qt.Dialog)
 
         if options.xloc is not None or options.yloc is not None:
             if options.xloc is None:
