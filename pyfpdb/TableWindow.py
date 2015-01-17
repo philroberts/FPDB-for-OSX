@@ -118,7 +118,7 @@ class Table_Window(object):
         
         self.find_table_parameters()
         if not self.number:
-            log.error(_("Can't find table %s"), table_name)
+            log.error(_("Can't find table \"%s\" with search string \"%s\""), table_name, self.search_string)
 
 
         geo = self.get_geometry()
