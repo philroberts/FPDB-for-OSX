@@ -346,4 +346,4 @@ or None if we fail to get the info """
     def getTableTitleRe(type, table_name=None, tournament = None, table_number=None):
         if tournament:
             return re.escape("%s - Tournament ID: %s - " % (table_number, tournament))
-        return re.escape("%s -" % (table_name))
+        return "%s (\(\d+\) )?-" % (re.escape(table_name))
