@@ -128,6 +128,7 @@ class HUD_main(QObject):
             self.main_window.move(options.xloc,options.yloc)
         self.main_window.destroyed.connect(self.destroy)
         self.vb = QVBoxLayout()
+        self.vb.setContentsMargins(2, 0, 2, 0)
         self.main_window.setLayout(self.vb)
         self.label = QLabel(_('Closing this window will exit from the HUD.'))
         self.main_window.closeEvent = lambda event: exit()
