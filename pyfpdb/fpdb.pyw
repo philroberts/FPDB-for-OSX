@@ -28,6 +28,7 @@ if os.name == 'nt':
 
 print "Python " + sys.version[0:3] + '...'
 
+import codecs
 import traceback
 import Options
 import string
@@ -1189,7 +1190,7 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
             fileName = os.path.join(self.config.dir_log, 'fpdb-errors.txt')
             print((_("Note: error output is being diverted to %s.") % self.config.dir_log) + " " +
                   _("Any major error will be reported there _only_."))
-            errorFile = open(fileName, 'w', 0)
+            errorFile = codecs.open(fileName, 'w', 'utf-8')
             sys.stderr = errorFile
 
         # set up tray-icon and menu

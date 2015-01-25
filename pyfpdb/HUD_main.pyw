@@ -30,6 +30,7 @@ import L10n
 _ = L10n.init_translation()
 
 #    Standard Library modules
+import codecs
 import sys
 import os
 import thread
@@ -97,7 +98,7 @@ class HUD_main(QObject):
             fileName = os.path.join(self.config.dir_log, u'HUD-errors.txt')
             log.info(_("Note: error output is being diverted to %s.") % fileName)
             log.info(_("Any major error will be reported there _only_."))
-            errorFile = open(fileName, 'w', 0)
+            errorFile = codecs.open(fileName, 'w', 'utf-8')
             sys.stderr = errorFile
             log.info(_("HUD_main starting"))
         self.db_connection = Database.Database(self.config)
