@@ -321,10 +321,13 @@ class Flop_Mucked(Aux_Base.Aux_Seats, QObject):
     #
     # Thus the individual hands (cards for seat) are tuples
     def update_contents(self, container, i):
-
-        if not self.hud.cards.has_key(i): return
+        if type(i) is int:
+            hist_seat = self.hud.layout.hh_seats[i]
+        else:
+            hist_seat = i
+        if not self.hud.cards.has_key(hist_seat): return
         
-        cards = self.hud.cards[i]
+        cards = self.hud.cards[hist_seat]
         # Here we want to know how many cards the given seat showed;
         # board is considered a seat, and has the id 'common'
         # 'cards' on the other hand is a tuple. The format is:

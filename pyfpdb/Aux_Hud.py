@@ -185,7 +185,7 @@ class Simple_stat(object):
         self.stat = stat
         self.lab = aw.aw_class_label("xxx") # xxx is used as initial value because longer labels don't shrink
         self.lab.setAlignment(Qt.AlignCenter)
-        self.lab.aw_seat = seat
+        self.lab.aw_seat = aw.hud.layout.hh_seats[seat]
         self.lab.aw_popup = popup
         self.lab.stat_dict = None
         self.widget = self.lab
