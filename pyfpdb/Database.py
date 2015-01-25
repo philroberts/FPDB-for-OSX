@@ -3414,7 +3414,7 @@ class Database:
         if result != None:
             columnNames=[desc[0] for desc in cursor.description]
             if self.backend == self.PGSQL:
-                expectedValues = (('buyin', 'buyin'), ('fee', 'fee'), ('buyinCurrency', 'currency'), ('limitType', 'limitType'), ('isSng', 'sng'), ('maxseats', 'maxseats')
+                expectedValues = (('buyin', 'buyin'), ('fee', 'fee'), ('buyinCurrency', 'currency'), ('limitType', 'limittype'), ('isSng', 'sng'), ('maxseats', 'maxseats')
                              , ('isKO', 'knockout'), ('koBounty', 'kobounty'), ('isRebuy', 'rebuy'), ('rebuyCost', 'rebuycost')
                              , ('isAddOn', 'addon'), ('addOnCost','addoncost'), ('speed', 'speed'), ('isShootout', 'shootout')
                              , ('isMatrix', 'matrix'), ('isFast', 'fast'), ('stack', 'stack'), ('isStep', 'step'), ('stepNo', 'stepno')
