@@ -4,7 +4,8 @@ Qt branch notes
 This is a port of fpdb to Qt (specifically, PyQt5).  It is a work in
 progress.  Please
 [report](https://github.com/philroberts/FPDB-for-OSX/issues) bugs or
-missing features!
+missing features!  Note: despite the name of this repository, I have
+been publishing windows builds with releases for a while now.
 
 Why?
 ----
