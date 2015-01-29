@@ -94,7 +94,7 @@ class Classic_Stat_Window(Aux_Hud.Simple_Stat_Window):
             # show item, just in case it was hidden by the user
             self.show()
             
-    def button_press_middle(self, widget, event, *args):
+    def button_press_middle(self, event):
         self.hide()
 
 
