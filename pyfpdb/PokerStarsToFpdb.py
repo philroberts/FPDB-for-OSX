@@ -112,7 +112,7 @@ class PokerStars(HandHistoryConverter):
     re_GameInfo     = re.compile(u"""
           (PokerStars|POKERSTARS|Hive\sPoker)(?P<TITLE>\sGame|\sHand|\sHome\sGame|\sHome\sGame\sHand|Game|\sZoom\sHand|\sGAME)\s\#(?P<HID>[0-9]+):\s+
           (\{.*\}\s+)?((?P<TOUR>(Zoom\s)?Tournament)\s\#                # open paren of tournament info
-          (?P<TOURNO>\d+),\s(Table\s\#\d+,\s)?
+          (?P<TOURNO>\d+),\s(Table\s\#(?P<HIVETABLE>\d+),\s)?
           # here's how I plan to use LS
           (?P<BUYIN>(?P<BIAMT>[%(LS)s\d\.]+)?\+?(?P<BIRAKE>[%(LS)s\d\.]+)?\+?(?P<BOUNTY>[%(LS)s\d\.]+)?\s?(?P<TOUR_ISO>%(LEGAL_ISO)s)?|Freeroll)\s+)?
           # close paren of tournament info
@@ -361,7 +361,9 @@ class PokerStars(HandHistoryConverter):
                 hand.isShootout = True
             if key == 'TABLE':
                 tablesplit = re.split(" ", info[key])
-                if hand.tourNo != None and len(tablesplit)>1:
+                if info['TOURNO'] is not None and info['HIVETABLE'] is not None:
+                    hand.tablename = info['HIVETABLE']
+                elif hand.tourNo != None and len(tablesplit)>1:
                     hand.tablename = tablesplit[1]
                 else:
                     hand.tablename = info[key]
