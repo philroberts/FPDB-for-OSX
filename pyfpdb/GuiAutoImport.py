@@ -102,7 +102,7 @@ class GuiAutoImport(QWidget):
         self.textview.setReadOnly(True)
 
         self.doAutoImportBool = False
-        self.startButton = QCheckBox(_("Start _Auto Import"))
+        self.startButton = QCheckBox(_("Start Auto Import"))
         self.startButton.stateChanged.connect(self.startClicked)
         self.layout().addWidget(self.startButton)
         self.layout().addWidget(self.textview)
@@ -142,9 +142,9 @@ class GuiAutoImport(QWidget):
 
     def reset_startbutton(self):
         if self.pipe_to_hud is not None:
-            self.startButton.set_label(_(u'Stop _Auto Import'))
+            self.startButton.set_label(_(u'Stop Auto Import'))
         else:
-            self.startButton.set_label(_(u'Start _Auto Import'))
+            self.startButton.set_label(_(u'Start Auto Import'))
 
         return False
 

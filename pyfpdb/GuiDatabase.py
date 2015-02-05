@@ -101,11 +101,11 @@ class GuiDatabase:
             self.scrolledwindow.add(self.listview)
             h.pack_start(self.scrolledwindow, expand=True, fill=True, padding=0)
 
-            add_button = SideButton(_("_Add"), gtk.STOCK_ADD)
+            add_button = SideButton(_("Add"), gtk.STOCK_ADD)
             add_button.connect("clicked", self.addDB, None)
             vbtn.pack_start(add_button, False, False, 3)
 
-            refresh_button = SideButton(_("_Refresh"), gtk.STOCK_REFRESH)
+            refresh_button = SideButton(_("Refresh"), gtk.STOCK_REFRESH)
             refresh_button.connect("clicked", self.refresh, None)
             vbtn.pack_start(refresh_button, False, False, 3)
 

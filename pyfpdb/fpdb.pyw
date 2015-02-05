@@ -814,13 +814,13 @@ class fpdb(QMainWindow):
 
     def createMenuBar(self):
         mb = self.menuBar()
-        configMenu = mb.addMenu(_('_Configure'))
-        importMenu = mb.addMenu(_('_Import'))
-        hudMenu = mb.addMenu(_('_HUD'))
-        cashMenu = mb.addMenu(_('_Cash'))
-        tournamentMenu = mb.addMenu(_('_Tournament'))
-        maintenanceMenu = mb.addMenu(_('_Maintenance'))
-        helpMenu = mb.addMenu(_('_Help'))
+        configMenu = mb.addMenu(_('Configure'))
+        importMenu = mb.addMenu(_('Import'))
+        hudMenu = mb.addMenu(_('HUD'))
+        cashMenu = mb.addMenu(_('Cash'))
+        tournamentMenu = mb.addMenu(_('Tournament'))
+        maintenanceMenu = mb.addMenu(_('Maintenance'))
+        helpMenu = mb.addMenu(_('Help'))
         # Create actions
         def makeAction(name, callback, shortcut=None, tip=None):
             action = QAction(name, self)
@@ -831,39 +831,39 @@ class fpdb(QMainWindow):
             action.triggered.connect(callback)
             return action
 
-        configMenu.addAction(makeAction(_('_Site Settings'), self.dia_site_preferences))
-        configMenu.addAction(makeAction(_('_Preferences'), self.dia_advanced_preferences, tip='Edit your preferences'))
-        #configMenu.addAction(makeAction(_('_HUD Stats Settings'), self.dia_hud_preferences))
+        configMenu.addAction(makeAction(_('Site Settings'), self.dia_site_preferences))
+        configMenu.addAction(makeAction(_('Preferences'), self.dia_advanced_preferences, tip='Edit your preferences'))
+        #configMenu.addAction(makeAction(_('HUD Stats Settings'), self.dia_hud_preferences))
         configMenu.addAction(makeAction('Import filters', self.dia_import_filters))
         configMenu.addSeparator()
-        configMenu.addAction(makeAction(_('_Quit'), self.quit, 'Ctrl+Q', 'Quit the Program'))
+        configMenu.addAction(makeAction(_('Quit'), self.quit, 'Ctrl+Q', 'Quit the Program'))
 
-        importMenu.addAction(makeAction(_('_Bulk Import'), self.tab_bulk_import, 'Ctrl+B'))
+        importMenu.addAction(makeAction(_('Bulk Import'), self.tab_bulk_import, 'Ctrl+B'))
         #importMenu.addAction(makeAction(_('_Import through eMail/IMAP'), self.tab_imap_import))
 
-        hudMenu.addAction(makeAction(_('_HUD and Auto Import'), self.tab_auto_import, 'Ctrl+A'))
+        hudMenu.addAction(makeAction(_('HUD and Auto Import'), self.tab_auto_import, 'Ctrl+A'))
 
-        cashMenu.addAction(makeAction(_('_Graphs'), self.tabGraphViewer, 'Ctrl+G'))
-        cashMenu.addAction(makeAction(_('Ring _Player Stats'), self.tab_ring_player_stats, 'Ctrl+P'))
-        cashMenu.addAction(makeAction(_('Hand _Viewer'), self.tab_hand_viewer))
-        #cashMenu.addAction(makeAction(_('P_ositional Stats (tabulated view)'), self.tab_positional_stats))
+        cashMenu.addAction(makeAction(_('Graphs'), self.tabGraphViewer, 'Ctrl+G'))
+        cashMenu.addAction(makeAction(_('Ring Player Stats'), self.tab_ring_player_stats, 'Ctrl+P'))
+        cashMenu.addAction(makeAction(_('Hand Viewer'), self.tab_hand_viewer))
+        #cashMenu.addAction(makeAction(_('Positional Stats (tabulated view)'), self.tab_positional_stats))
         cashMenu.addAction(makeAction(_('Session Stats'), self.tab_session_stats, 'Ctrl+S'))
         #cashMenu.addAction(makeAction(_('Stove (preview)'), self.tabStove))
 
         tournamentMenu.addAction(makeAction(_('Tourney Graphs'), self.tabTourneyGraphViewer))
-        tournamentMenu.addAction(makeAction(_('_Tourney Stats'), self.tab_tourney_player_stats, 'Ctrl+T'))
-        #tournamentMenu.addAction(makeAction(_('Tourney _Viewer'), self.tab_tourney_viewer_stats))
+        tournamentMenu.addAction(makeAction(_('Tourney Stats'), self.tab_tourney_player_stats, 'Ctrl+T'))
+        #tournamentMenu.addAction(makeAction(_('Tourney Viewer'), self.tab_tourney_viewer_stats))
 
-        maintenanceMenu.addAction(makeAction(_('_Statistics'), self.dia_database_stats, 'View Database Statistics'))
-        maintenanceMenu.addAction(makeAction(_('Create or Recreate _Tables'), self.dia_recreate_tables))
+        maintenanceMenu.addAction(makeAction(_('Statistics'), self.dia_database_stats, 'View Database Statistics'))
+        maintenanceMenu.addAction(makeAction(_('Create or Recreate Tables'), self.dia_recreate_tables))
         maintenanceMenu.addAction(makeAction(_('Rebuild HUD Cache'), self.dia_recreate_hudcache))
         maintenanceMenu.addAction(makeAction(_('Rebuild DB Indexes'), self.dia_rebuild_indexes))
         maintenanceMenu.addAction(makeAction(_('Dump Database to Textfile (takes ALOT of time)'), self.dia_dump_db))
 
-        helpMenu.addAction(makeAction(_('_Log Messages'), self.dia_logs, 'Log and Debug Messages'))
-        helpMenu.addAction(makeAction(_('_Help Tab'), self.tab_main_help))
+        helpMenu.addAction(makeAction(_('Log Messages'), self.dia_logs, 'Log and Debug Messages'))
+        helpMenu.addAction(makeAction(_('Help Tab'), self.tab_main_help))
         helpMenu.addSeparator()
-        helpMenu.addAction(makeAction(_('A_bout, License, Copying'), self.dia_about, 'About the program'))
+        helpMenu.addAction(makeAction(_('About, License, Copying'), self.dia_about, 'About the program'))
 
     def load_profile(self, create_db=False):
         """Loads profile from the provided path name."""

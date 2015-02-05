@@ -78,11 +78,11 @@ class Filters(QWidget):
                             }
 
         # text used on screen stored here so that it can be configured
-        self.filterText = {'limitsall':_('All'), 'limitsnone':_('None'), 'limitsshow':_('Show _Limits')
+        self.filterText = {'limitsall':_('All'), 'limitsnone':_('None'), 'limitsshow':_('Show Limits')
                           ,'gamesall':_('All'), 'gamesnone':_('None')
                           ,'positionsall':_('All'), 'positionsnone':_('None')
                           ,'currenciesall':_('All'), 'currenciesnone':_('None')
-                          ,'seatsbetween':_('Between:'), 'seatsand':_('And:'), 'seatsshow':_('Show Number of _Players')
+                          ,'seatsbetween':_('Between:'), 'seatsand':_('And:'), 'seatsshow':_('Show Number of Players')
                           ,'playerstitle':_('Hero:'), 'sitestitle':(_('Sites')+':'), 'gamestitle':(_('Games')+':')
                           ,'limitstitle':_('Limits:'), 'positionstitle':_('Positions:'), 'seatstitle':_('Number of Players:')
                           ,'groupstitle':_('Grouping:'), 'posnshow':_('Show Position Stats')

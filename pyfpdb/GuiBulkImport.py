@@ -104,7 +104,7 @@ class GuiBulkImport(QWidget):
         hbox.addWidget(self.chooseButton)
         self.layout().addLayout(hbox)
 
-        self.load_button = QPushButton(_('_Bulk Import'))
+        self.load_button = QPushButton(_('Bulk Import'))
         self.load_button.clicked.connect(self.load_clicked)
         self.layout().addWidget(self.load_button)
 

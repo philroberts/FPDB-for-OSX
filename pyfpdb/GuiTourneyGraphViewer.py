@@ -73,9 +73,9 @@ class GuiTourneyGraphViewer(QSplitter):
                           }
 
         self.filters = Filters.Filters(self.db, display = filters_display)
-        self.filters.registerButton1Name(_("Refresh _Graph"))
+        self.filters.registerButton1Name(_("Refresh Graph"))
         self.filters.registerButton1Callback(self.generateGraph)
-        self.filters.registerButton2Name(_("_Export to File"))
+        self.filters.registerButton2Name(_("Export to File"))
         self.filters.registerButton2Callback(self.exportGraph)
 
         scroll = QScrollArea()

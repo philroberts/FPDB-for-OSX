@@ -118,9 +118,9 @@ class GuiRingPlayerStats(QSplitter):
                           }
 
         self.filters = Filters.Filters(self.db, display = filters_display)
-        self.filters.registerButton1Name(_("_Filters"))
+        self.filters.registerButton1Name(_("Filters"))
         self.filters.registerButton1Callback(self.showDetailFilter)
-        self.filters.registerButton2Name(_("_Refresh Stats"))
+        self.filters.registerButton2Name(_("Refresh Stats"))
         self.filters.registerButton2Callback(self.refreshStats)
 
         scroll = QScrollArea()
