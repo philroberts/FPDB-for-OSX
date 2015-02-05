@@ -515,7 +515,7 @@ class BetOnline(HandHistoryConverter):
         if pname == 'Unknown player' or not pname:
             if not pname: pname = 'Dead'
             if pname not in (p[1] for p in hand.players):
-                hand.addPlayer(0, pname, '0')
+                hand.addPlayer(-1, pname, '0')
         return pname
 
     def readHeroCards(self, hand):
