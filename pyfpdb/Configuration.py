@@ -73,13 +73,15 @@ CONFIG_VERSION = 83
 # PYTHON_VERSION (n.n)
 
 if hasattr(sys, "frozen"):
-    INSTALL_METHOD = "exe"
+    if platform.system() == 'Windows':
+        INSTALL_METHOD = "exe"
+    elif platform.system() == 'Darwin':
+        INSTALL_METHOD = "app"
 else:
     INSTALL_METHOD = "source"
 
-if INSTALL_METHOD == "exe":
-    temp = os.path.dirname(unicode(sys.executable, sys.getfilesystemencoding())) # should be exe path to \fpdbroot\pyfpdb
-    FPDB_ROOT_PATH = os.path.join(temp, os.pardir)   # go up one level (to fpdbroot)
+if INSTALL_METHOD == "exe" or INSTALL_METHOD == "app":
+    FPDB_ROOT_PATH = os.path.dirname(unicode(sys.executable, sys.getfilesystemencoding())) # should be exe path to \fpdbroot\pyfpdb
 elif sys.path[0] == "": # we are probably running directly (>>>import Configuration)
     temp = os.getcwdu() # should be ./pyfpdb
     FPDB_ROOT_PATH = os.path.join(temp, os.pardir)   # go up one level (to fpdbroot)
@@ -164,7 +166,7 @@ def get_config(file_name, fallback = True):
             if os.path.exists(file_name + '.example'):
                 example_path = file_name + '.example'
             else:
-                example_path = "pyfpdb/" + file_name + '.example'
+                example_path = os.path.join(PYFPDB_PATH, file_name + '.example')
         if not config_found and fallback:
             try:
                 shutil.copyfile(example_path, config_path)
@@ -182,10 +184,10 @@ def get_config(file_name, fallback = True):
                     pass
 
 #    OK, fall back to the .example file, should be in the start dir
-    elif os.path.exists(file_name + ".example"):
+    elif os.path.exists(os.path.join(PYFPDB_PATH, file_name + '.example')):
         try:
             #print ""
-            example_path = file_name + ".example"
+            example_path = os.path.join(PYFPDB_PATH, file_name + '.example')
             if not config_found and fallback:
                 shutil.copyfile(example_path, config_path)
                 example_copy = True
@@ -596,6 +598,10 @@ class Import:
         self.callFpdbHud        = string_to_bool(node.getAttribute("callFpdbHud")      , default=False)
         self.fastStoreHudCache  = string_to_bool(node.getAttribute("fastStoreHudCache"), default=False)
         self.saveStarsHH        = string_to_bool(node.getAttribute("saveStarsHH")      , default=False)
+        if node.getAttribute("importFilters"):
+            self.importFilters = node.getAttribute("importFilters").split(",")
+        else:
+            self.importFilters = []
 
     def __str__(self):
         return "    interval = %s\n    callFpdbHud = %s\n    saveActions = %s\n   cacheSessions = %s\n    publicDB = %s\n    sessionTimeout = %s\n    fastStoreHudCache = %s\n    ResultsDirectory = %s" \
@@ -1180,6 +1186,10 @@ class Config:
         statNodes = statsetNode.getElementsByTagName("stat") #TODO remove this line?
     #end def editStats
 
+    def editImportFilters(self, games):
+        self.imp.importFilters = games
+        imp_node = self.doc.getElementsByTagName("import")[-1]
+        imp_node.setAttribute("importFilters", games)
 
     def save_layout_set(self, ls, max, locations, width=None, height=None):
         #wid/height normally not specified when saving common from the mucked display
@@ -1452,6 +1462,9 @@ class Config:
         try:    imp['fastStoreHudCache'] = self.imp.fastStoreHudCache
         except:  imp['fastStoreHudCache'] = False
 
+        try:    imp['importFilters'] = self.imp.importFilters
+        except:  imp['importFilters'] = []
+
         return imp
 
     def get_default_paths(self, site = None):
@@ -1723,7 +1736,7 @@ if __name__== "__main__":
     print "gui_cash_stats =", c.gui_cash_stats
 
     print "\n----------- ENVIRONMENT CONSTANTS -----------"
-    print "Configuration.install_method {source,exe} =", INSTALL_METHOD
+    print "Configuration.install_method {source,exe,app} =", INSTALL_METHOD
     print "Configuration.fpdb_root_path =", FPDB_ROOT_PATH, type(FPDB_ROOT_PATH)
     print "Configuration.graphics_path =", GRAPHICS_PATH, type(GRAPHICS_PATH)
     print "Configuration.appdata_path =", APPDATA_PATH, type(APPDATA_PATH)

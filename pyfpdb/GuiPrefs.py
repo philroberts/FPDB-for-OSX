@@ -21,10 +21,9 @@ _ = L10n.get_translation()
 import xml.dom.minidom
 from xml.dom.minidom import Node
 
-import pygtk
-pygtk.require('2.0')
-import gtk
-import gobject
+from PyQt5.QtWidgets import (QDialog, QDialogButtonBox, QVBoxLayout, QTreeWidget,
+                             QTreeWidgetItem)
+from PyQt5.QtCore import Qt
 
 import Configuration
 
@@ -42,57 +41,40 @@ rewrite = { 'general' : _('General'),                   'supported_databases' : 
           , 'col_name' : _('Stat Name'),                'field_format' : _('Format')
           }
 
-class GuiPrefs:
+class GuiPrefs(QDialog):
 
-    def __init__(self, config, mainwin, dia, parentwin):
+    def __init__(self, config, parentwin):
+        QDialog.__init__(self, parentwin)
+        self.resize(600, 350)
         self.config = config
-        self.main_window = mainwin
-        self.dialog = dia
-        self.parent_window = parentwin #need to pass reference of parent, to set transient
+        self.setLayout(QVBoxLayout())
 
-        self.tree_box = gtk.ScrolledWindow()
-        self.tree_box.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
 
-        self.dialog.add(self.tree_box)
-        self.dialog.show()
-
-        self.doc = None
-        self.configStore = None
-        self.configView = None
-
-        self.fillFrames()
-
-    def fillFrames(self):
         self.doc = self.config.get_doc()
 
-        self.configStore = gtk.TreeStore(gobject.TYPE_PYOBJECT, gobject.TYPE_STRING, gobject.TYPE_STRING)
-        self.configView = gtk.TreeView(self.configStore)
-        self.configView.set_enable_tree_lines(True)
-
-        configColumn = gtk.TreeViewColumn(_("Setting"))
-        self.configView.append_column(configColumn)
-        cRender = gtk.CellRendererText()
-        configColumn.pack_start(cRender, True)
-        configColumn.add_attribute(cRender, 'text', 1)
-
-        configColumn = gtk.TreeViewColumn(_("Value (double-click to change)"))
-        self.configView.append_column(configColumn)
-        cRender = gtk.CellRendererText()
-        configColumn.pack_start(cRender, True)
-        configColumn.add_attribute(cRender, 'text', 2)
+        self.configView = QTreeWidget()
+        self.configView.setColumnCount(2)
+        self.configView.setHeaderLabels([_("Setting"), _("Value (double-click to change)")])
 
         if self.doc.documentElement.tagName == 'FreePokerToolsConfig':
-            self.configStore.clear()
-            self.root = self.configStore.append( None, [self.doc.documentElement, "fpdb", None] )
+            self.root = QTreeWidgetItem(["fpdb", None])
+            self.configView.addTopLevelItem(self.root)
+            self.root.setExpanded(True)
             for elem in self.doc.documentElement.childNodes:
-                iter = self.addTreeRows(self.root, elem)
-            if self.root != None:
-                self.configView.expand_row(self.configStore.get_path(self.root), False)
-            self.configView.connect("row-activated", self.rowChosen)
-            self.configView.show()
-            self.tree_box.add(self.configView)
-            self.tree_box.show()
-            self.dialog.show()
+                self.addTreeRows(self.root, elem)
+        self.layout().addWidget(self.configView)
+        self.configView.resizeColumnToContents(0)
+
+        self.configView.itemChanged.connect(self.updateConf)
+        btns = QDialogButtonBox(QDialogButtonBox.Save | QDialogButtonBox.Cancel, self)
+        btns.accepted.connect(self.accept)
+        btns.rejected.connect(self.reject)
+        self.layout().addWidget(btns)
+
+    def updateConf(self, item, column):
+        if column != 1:
+            return
+        item.data(1, Qt.UserRole).value = item.data(1, Qt.DisplayRole)
 
     def rewriteText(self, s):
         upd = False
@@ -110,87 +92,36 @@ class GuiPrefs:
         else:
             (setting, value) = ("?? "+node.nodeValue, "type="+str(node.nodeType))
         
-        #iter = self.configStore.append( parent, [node.nodeValue, None] )
-        iter = None
         if node.nodeType != node.TEXT_NODE and node.nodeType != node.COMMENT_NODE:
             name = ""
-            iter = self.configStore.append( parent, [node, setting, value] )
+            item = QTreeWidgetItem(parent, [setting, value])
             if node.hasAttributes():
                 for i in xrange(node.attributes.length):
                     localName,updated = self.rewriteText( node.attributes.item(i).localName )
-                    self.configStore.append( iter, [node, localName, node.attributes.item(i).value] )
+                    attritem = QTreeWidgetItem(item, [localName, node.attributes.item(i).value])
+                    attritem.setData(1, Qt.UserRole, node.attributes.item(i))
+                    attritem.setFlags(attritem.flags() | Qt.ItemIsEditable)
+
                     if node.attributes.item(i).localName in ('site_name', 'game_name', 'stat_name', 'name', 'db_server', 'site', 'col_name'):
                         name = " " + node.attributes.item(i).value
 
             label,updated = self.rewriteText(setting+name)
             if name != "" or updated:
-                self.configStore.set_value(iter, 1, label)
+                item.setData(0, 0, label)
 
             if node.hasChildNodes():
                 for elem in node.childNodes:
-                    self.addTreeRows(iter, elem)
-        return iter
-
-    def rowChosen(self, tview, path, something2, data=None):
-        # tview should= self.configStore
-        tmodel = tview.get_model()
-        iter = tmodel.get_iter(path)
-        if tmodel.iter_has_child(iter):
-            # toggle children display
-            if tview.row_expanded(path):
-                tview.collapse_row(tmodel.get_path(iter))
-            else:
-                tview.expand_row(tmodel.get_path(iter), False)
-        else:
-            # display value and allow edit
-            name = tmodel.get_value( iter, 1 )
-            val = tmodel.get_value( iter, 2 )
-            dia_edit = gtk.Dialog(name,
-                                  self.parent_window,
-                                  gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
-                                  (gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT,
-                                   gtk.STOCK_OK, gtk.RESPONSE_ACCEPT))
-            #dia_edit.set_default_size(350, 100)
-            entry = gtk.Entry()
-            if val:
-                entry.set_text(val)
-            entry.set_width_chars(40)
-            dia_edit.vbox.pack_start(entry, False, False, 0)
-            entry.show()
-            entry.connect("activate", self.__set_entry, dia_edit)
-            response = dia_edit.run()
-            if response == gtk.RESPONSE_ACCEPT:
-                # update configStore
-                new_val = entry.get_text()
-                tmodel.set_value(iter, 2, new_val)
-                tmodel.get_value(iter, 0).setAttribute(name, new_val)
-            dia_edit.destroy()
-
-    def __set_entry(self, w, dia=None):
-        if dia is not None:
-            dia.response(gtk.RESPONSE_ACCEPT)
+                    self.addTreeRows(item, elem)
 
 if __name__=="__main__":
     Configuration.set_logfile("fpdb-log.txt")
 
     config = Configuration.Config()
 
-    win = gtk.Window(gtk.WINDOW_TOPLEVEL)
-    win.set_title(_("Advanced Preferences"))
-    win.set_border_width(1)
-    win.set_default_size(600, 500)
-    win.set_resizable(True)
-
-    dia = gtk.Dialog(_("Advanced Preferences"),
-                     win,
-                     gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
-                     (gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT,
-                      gtk.STOCK_SAVE, gtk.RESPONSE_ACCEPT))
-    dia.set_default_size(700, 500)
-    pw=dia      #pass parent window 
-    prefs = GuiPrefs(config, win, dia.vbox,pw)
-    response = dia.run()
-    if response == gtk.RESPONSE_ACCEPT:
-        # save updated config
-        config.save()
-    dia.destroy()
+    from PyQt5.QtWidgets import QApplication, QMainWindow
+    app = QApplication([])
+    main_window = QMainWindow()
+    main_window.show()
+    prefs = GuiPrefs(config, main_window)
+    prefs.exec_()
+    app.exec_()

@@ -32,9 +32,8 @@ import logging
 # logging has been set up in fpdb.py or HUD_main.py, use their settings:
 log = logging.getLogger("hud")
 
-#    pyGTK modules
-import gtk
-import gobject
+from PyQt5.QtCore import Qt, QObject
+from PyQt5.QtWidgets import QWidget
 
 #   FPDB
 import Card
@@ -98,35 +97,46 @@ class Aux_Window(object):
                 return id
         return None
         
-class Seat_Window(gtk.Window):
-    """Subclass gtk.Window for the seat windows."""
+class Seat_Window(QWidget):
     def __init__(self, aw = None, seat = None):
-        super(Seat_Window, self).__init__()
+        super(Seat_Window, self).__init__(None, Qt.Window | Qt.FramelessWindowHint | Qt.WindowDoesNotAcceptFocus) # FIXME acceptfocus?  splashscreen?
+        self.lastPos = None
         self.aw = aw
         self.seat = seat
-        self.set_skip_taskbar_hint(True)  # invisible to taskbar
-        self.set_gravity(gtk.gdk.GRAVITY_STATIC)
-        self.set_decorated(False)    # kill titlebars
-        self.set_focus(None)
-        self.set_focus_on_map(False)
-        self.set_accept_focus(False)
-        self.connect("configure_event", self.aw.configure_event_cb, self.seat) #normally pointing at Aux_seats class
+        self.resize(10,10)
+        self.setAttribute(Qt.WA_AlwaysShowToolTips)
 
-    def button_press_cb(self, widget, event, *args):
-        """Handle button clicks in the event boxes."""
-        #double-click events should be avoided
-        # these are not working reliably on windows GTK 2.24 toolchain
+    def mousePressEvent(self, event):
+        if event.button() == Qt.LeftButton:
+            self.button_press_left(event)
+        elif event.button() == Qt.MiddleButton:
+            self.button_press_middle(event)
+        elif event.button() == Qt.RightButton:
+            self.button_press_right(event)
 
-        if event.button == 1:   # left button event
-            self.button_press_left(widget, event, *args)
-        elif event.button == 2:   # middle button event
-            self.button_press_middle(widget, event, *args)
-        elif event.button == 3:   # right button event
-            self.button_press_right(widget, event, *args)
+    def mouseReleaseEvent(self, event):
+        if event.button() == Qt.LeftButton:
+            self.button_release_left(event)
+        elif event.button() == Qt.MiddleButton:
+            self.button_release_middle(event)
+        elif event.button() == Qt.RightButton:
+            self.button_release_right(event)
 
-    def button_press_left(self, widget, event, *args): pass #superclass will define this
-    def button_press_middle(self, widget, event, *args): pass #superclass will define this 
-    def button_press_right(self, widget, event, *args):  pass #superclass will define this
+    def button_press_left(self, event):
+        self.lastPos = event.globalPos()
+    def button_press_middle(self, event): pass #subclass will define this
+    def button_press_right(self, event):  pass #subclass will define this
+
+    def mouseMoveEvent(self, event):
+        if self.lastPos is not None:
+            self.move(self.pos() + event.globalPos() - self.lastPos)
+            self.lastPos = event.globalPos()
+
+    def button_release_left(self, event):
+        self.lastPos = None
+        self.aw.configure_event_cb(self, self.seat)
+    def button_release_middle(self, event): pass #subclass will define this
+    def button_release_right(self, event):  pass #subclass will define this
     
     def create_contents(self, *args): pass
     def update_contents(self, *args): pass
@@ -135,9 +145,7 @@ class Aux_Seats(Aux_Window):
     """A super class to display an aux_window or a stat block at each seat."""
 
     def __init__(self, hud, config, params):
-        self.hud     = hud       # hud object that this aux window supports
-        self.config  = config    # configuration object for this aux window to use
-        self.params  = params    # dict aux params from config
+        super(Aux_Seats, self).__init__(hud, params, config)
         self.positions = {}      # dict of window positions. normalised for favourite seat and offset
                                  # but _not_ offset to the absolute screen position
         self.displayed = False   # the seat windows are displayed
@@ -185,29 +193,22 @@ class Aux_Seats(Aux_Window):
             else:
                 (x, y) = self.hud.layout.location[self.adj[i]]
                 self.m_windows[i] = self.aw_class_window(self, i)
-                self.m_windows[i].set_decorated(False)
-                self.m_windows[i].set_property("skip-taskbar-hint", True)
-                self.m_windows[i].set_focus_on_map(False)
-                self.m_windows[i].set_focus(None)
-                self.m_windows[i].set_accept_focus(False)
-                #self.m_windows[i].connect("configure_event", self.aw_class_window.configure_event_cb, i) ##self.aw_class_window will define this
                 self.positions[i] = self.create_scale_position(x, y)
                 self.m_windows[i].move(self.positions[i][0] + self.hud.table.x,
                                 self.positions[i][1] + self.hud.table.y)
                 self.hud.layout.location[self.adj[i]] = self.positions[i]
                 if self.params.has_key('opacity'):
-                    self.m_windows[i].set_opacity(float(self.params['opacity']))
+                    self.m_windows[i].setWindowOpacity(float(self.params['opacity']))
 
             # main action below - fill the created window with content
             #    the create_contents method is supplied by the subclass
             #      for hud's this is probably Aux_Hud.stat_window
             self.create_contents(self.m_windows[i], i)
 
-            self.m_windows[i].realize()
+            self.m_windows[i].create() # ensure there is a native window handle for topify
             self.hud.table.topify(self.m_windows[i])
-            self.m_windows[i].show_all()
-            if self.uses_timer:
-                self.m_windows[i].hide()
+            if not self.uses_timer:
+                self.m_windows[i].show()
                 
         self.hud.layout.height = self.hud.table.height
         self.hud.layout.width = self.hud.table.width
@@ -266,7 +267,7 @@ class Aux_Seats(Aux_Window):
         log.error(_("save_layout method should be handled in the aux"))
 
 
-    def configure_event_cb(self, widget, event, i, *args):
+    def configure_event_cb(self, widget, i):
         """
         This method updates the current location for each statblock.
         This method is needed to record moves for an individual block.
@@ -274,8 +275,8 @@ class Aux_Seats(Aux_Window):
         This is not optimal, but isn't easy to work around. fixme.
         """
         if (i): 
-            new_abs_position = widget.get_position() #absolute value of the new position
-            new_position = (new_abs_position[0]-self.hud.table.x, new_abs_position[1]-self.hud.table.y)
+            new_abs_position = widget.pos() #absolute value of the new position
+            new_position = (new_abs_position.x()-self.hud.table.x, new_abs_position.y()-self.hud.table.y)
             self.positions[i] = new_position     #write this back to our map
             if i != "common":
                 self.hud.layout.location[self.adj[i]] = new_position #update the hud-level dict, so other aux can be told

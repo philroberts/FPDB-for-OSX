@@ -31,16 +31,12 @@ import logging
 # logging has been set up in fpdb.py or HUD_main.py, use their settings:
 log = logging.getLogger("hud")
 
-#    pyGTK modules
-import pygtk
-import gtk
+from PyQt5.QtGui import QWindow
 
 #    Other Library modules
 import win32gui
-import win32process
 import win32api
 import win32con
-import win32security
 
 #    FreePokerTools modules
 from TableWindow import Table_Window
@@ -77,32 +73,21 @@ class Table(Table_Window):
                 if self.check_bad_words(titles[hwnd]):
                     continue
 
-                self.window = hwnd
+                self.number = hwnd
                 break
 
-        try:
-            if self.window == None:
-                log.error(_("Window %s not found. Skipping.") % self.search_string)
-                return None
-        except AttributeError:
-            log.error(_("Error:") + " " + _("%s doesn't exist.") % "self.window")
-            return None
+        if self.number is None:
+            log.error(_("Window %s not found. Skipping."), self.search_string)
+            return
 
-        self.title = titles[hwnd]
+        self.title = titles[self.number]
         self.hud = None
-        self.number = hwnd
-        if self.gdkhandle is None:
-            try:   # Windows likes this here - Linux doesn't
-                self.gdkhandle = gtk.gdk.window_foreign_new(self.number)
-            except AttributeError:
-                pass
+        self.gdkhandle = QWindow.fromWinId(self.number)
 
     def get_geometry(self):
         try:
             if win32gui.IsWindow(self.number):
                 (x, y, width, height) = win32gui.GetWindowRect(self.number)
-                #log.debug(("newhud - get_geo w h x y",str(width), str(height), str(x), str(y)))
-                #print "x=", x, "y=", y, "width=", width, "height=", height
                                 
                 # this apparently returns x = far left side of window, width = far right side of window, y = top of window, height = bottom of window
                 # so apparently we have to subtract x from "width" to get actual width, and y from "height" to get actual height ?
@@ -116,7 +101,7 @@ class Table(Table_Window):
                 width = width - x
                 height = height - y
                 
-                #determine system titlebar and border setting constant values
+                # determine system titlebar and border setting constant values
                 # see http://stackoverflow.com/questions/431470/window-border-width-and-height-in-win32-how-do-i-get-it
                 try:
                     self.b_width; self.tb_height
@@ -124,7 +109,7 @@ class Table(Table_Window):
                     self.b_width = win32api.GetSystemMetrics(win32con.SM_CXSIZEFRAME) # bordersize
                     self.tb_height = win32api.GetSystemMetrics(win32con.SM_CYCAPTION) # titlebar height (excl border)
 
-                #fixme - x and y must _not_ be adjusted by the b_width if the window has been maximised
+                # fixme - x and y must _not_ be adjusted by the b_width if the window has been maximised
                 return {
                     'x'      : int(x) + self.b_width,
                     'y'      : int(y) + self.tb_height + self.b_width,
@@ -133,57 +118,24 @@ class Table(Table_Window):
                 }
             else:
                 log.debug("newhud - WinTables window not found")
+                return None
         except AttributeError:
             return None
 
     def get_window_title(self):
-        try: # after window is destroyed, self.window = attribute error
-            return win32gui.GetWindowText(self.window)
-        except AttributeError:
-            return ""
-
-#    def get_nt_exe(self, hwnd):
-#        """Finds the name of the executable that the given window handle belongs to."""
-#
-#        # Request privileges to enable "debug process", so we can later use PROCESS_VM_READ, retardedly required to GetModuleFileNameEx()
-#        priv_flags = win32security.TOKEN_ADJUST_PRIVILEGES | win32security.TOKEN_QUERY
-#        hToken = win32security.OpenProcessToken (win32api.GetCurrentProcess(), priv_flags)
-#        # enable "debug process"
-#        privilege_id = win32security.LookupPrivilegeValue (None, win32security.SE_DEBUG_NAME)
-#        old_privs = win32security.AdjustTokenPrivileges (hToken, 0, [(privilege_id, win32security.SE_PRIVILEGE_ENABLED)])
-#
-#        # Open the process, and query it's filename
-#        processid = win32process.GetWindowThreadProcessId(hwnd)
-#        pshandle = win32api.OpenProcess(win32con.PROCESS_QUERY_INFORMATION | win32con.PROCESS_VM_READ, False, processid[1])
-#        exename = win32process.GetModuleFileNameEx(pshandle, 0)
-#
-#        # clean up
-#        win32api.CloseHandle(pshandle)
-#        win32api.CloseHandle(hToken)
-#
-#        return exename
+        return win32gui.GetWindowText(self.number)
 
     def topify(self, window):
-        """Set the specified gtk window to stayontop in MS Windows."""
+        """Set the specified Qt window to stayontop in MS Windows."""
 
-        """
-        self is the poker table window object (the poker client)
-        self.number is the windows handle
-        self.gdkhandle is a gdkhandle associated with the poker client
-         
-        window is a seat_window object from Mucked (a gtk window)
-        window.window is a gtk.gdk.window object
-        """
-        
-        #window.set_focus_on_map(False)
-        #window.set_accept_focus(False)
+        # self.number is the windows handle
+        # self.gdkhandle is a foreign QWindow associated with the poker client
+        # window is a seat_window object from Mucked (a Qt QWidget)
+        # window.windowHandle() is a QWindow object
 
         if self.gdkhandle is None:
-            self.gdkhandle = gtk.gdk.window_foreign_new(int(self.number))
-        #    Then call set_transient_for on the gdk handle of the HUD window
-        #    with the gdk handle of the table window as the argument.
-        window.window.set_transient_for(self.gdkhandle)
-        
+            self.gdkhandle = QWindow.fromWinId(int(self.number))
+        window.windowHandle().setTransientParent(self.gdkhandle)
 
 def win_enum_handler(hwnd, titles):
     titles[hwnd] = win32gui.GetWindowText(hwnd)

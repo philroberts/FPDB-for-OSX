@@ -18,9 +18,6 @@
 import L10n
 _ = L10n.get_translation()
 
-import pygtk
-pygtk.require('2.0')
-import gtk
 from imaplib import IMAP4
 from socket import gaierror
 
@@ -39,11 +36,11 @@ class GuiImapFetcher:
         label=gtk.Label(_("To cancel just close this tab."))
         self.buttonsHBox.add(label)
         
-        self.saveButton = gtk.Button(_("_Save"))
+        self.saveButton = gtk.Button(_("Save"))
         self.saveButton.connect('clicked', self.saveClicked)
         self.buttonsHBox.add(self.saveButton)
         
-        self.importAllButton = gtk.Button(_("_Import All"))
+        self.importAllButton = gtk.Button(_("Import All"))
         self.importAllButton.connect('clicked', self.importAllClicked)
         self.buttonsHBox.add(self.importAllButton)
         

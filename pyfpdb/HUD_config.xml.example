@@ -291,6 +291,7 @@
             <layout_set game_type="all" ls="winamax_default"/>
             <fav max="2" fav_seat="0"/>
             <fav max="4" fav_seat="0"/>
+            <fav max="5" fav_seat="0"/>
             <fav max="6" fav_seat="0"/>
             <fav max="7" fav_seat="0"/>
             <fav max="8" fav_seat="0"/>
@@ -1301,6 +1302,14 @@
                 <location seat="2" x="512" y="411"/>
                 <location seat="3" x="162" y="413"/>
                 <location seat="4" x="112" y="41"/>
+                <location common="1" x="323" y="232"/>
+            </layout>
+            <layout max="5" height="546" width="792">
+                <location seat="1" x="663" y="48"/>
+                <location seat="2" x="664" y="293"/>
+                <location seat="3" x="563" y="402"/>
+                <location seat="4" x="120" y="401"/>
+                <location seat="5" x="32" y="291"/>
                 <location common="1" x="323" y="232"/>
             </layout>
             <layout max="6" height="546" width="792">

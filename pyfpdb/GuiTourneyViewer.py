@@ -18,10 +18,6 @@
 import L10n
 _ = L10n.get_translation()
 
-import pygtk
-pygtk.require('2.0')
-import gtk
-
 class GuiTourneyViewer:
     def __init__(self, config, db, sql, mainwin, debug=True):
         self.db = db
@@ -42,14 +38,14 @@ class GuiTourneyViewer:
         self.entryTourney = gtk.Entry()
         self.interfaceHBox.add(self.entryTourney)
         
-        self.displayButton = gtk.Button(_("_Display"))
+        self.displayButton = gtk.Button(_("Display"))
         self.displayButton.connect('clicked', self.displayClicked)
         self.interfaceHBox.add(self.displayButton)
         
         self.entryPlayer = gtk.Entry()
         self.interfaceHBox.add(self.entryPlayer)
         
-        self.playerButton = gtk.Button(_("Display _Player"))
+        self.playerButton = gtk.Button(_("Display Player"))
         self.playerButton.connect('clicked', self.displayPlayerClicked)
         self.interfaceHBox.add(self.playerButton)
         

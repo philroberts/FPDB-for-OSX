@@ -179,7 +179,10 @@ class IdentifySite:
             summary = hhc.summaryImporter
             mod = __import__(filter)
             obj = getattr(mod, filter_name, None)
-            self.sitelist[obj.siteId] = Site(site, filter, filter_name, summary, obj)
+            try:
+                self.sitelist[obj.siteId] = Site(site, filter, filter_name, summary, obj)
+            except Exception as e:
+                log.warning("Failed to load HH importer: %s.  %s" % (filter_name, e))
         self.re_Identify_PT = getattr(__import__("PokerTrackerToFpdb"), "PokerTracker", None).re_Identify
         self.re_SumIdentify_PT = getattr(__import__("PokerTrackerSummary"), "PokerTrackerSummary", None).re_Identify
 
