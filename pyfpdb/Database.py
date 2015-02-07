@@ -3221,7 +3221,7 @@ class Database:
         q = self.sql.query['isAlreadyInDB'].replace('%s', self.sql.query['placeholder'])
         if publicDB:
             key = (siteHandNo, siteId, heroSeat)
-            q = q.replace('<heroSeat>', ' AND heroSeat=%s')
+            q = q.replace('<heroSeat>', ' AND heroSeat=%s').replace('%s', self.sql.query['placeholder'])
         else:
             key = (siteHandNo, siteId)
             q = q.replace('<heroSeat>', '')
