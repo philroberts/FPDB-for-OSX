@@ -152,7 +152,7 @@ class Simple_Stat_Window(Aux_Base.Seat_Window):
             pu.setStyleSheet("background:%s;color:%s;" % (self.aw.bgcolor, self.aw.fgcolor))
                     
     def create_contents(self, i):
-        self.setStyleSheet("background:%s;color:%s;" % (self.aw.bgcolor, self.aw.fgcolor))
+        self.setStyleSheet("QWidget{background:%s;color:%s;}QToolTip{}" % (self.aw.bgcolor, self.aw.fgcolor))
         self.grid = QGridLayout()
         self.grid.setHorizontalSpacing(4)
         self.grid.setVerticalSpacing(1)
