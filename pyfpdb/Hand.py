@@ -813,6 +813,8 @@ class Hand(object):
     def addFold(self, street, player):
         log.debug(_("%s %s folds"), street, player)
         self.checkPlayerExists(player, 'addFold')
+        if player in self.folded:
+            return
         self.folded.add(player)
         self.pot.addFold(player)
         self.actions[street].append((player, 'folds'))

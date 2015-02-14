@@ -65,7 +65,7 @@ class Pkr(HandHistoryConverter):
           Game\sType:\s(?P<GAME>HOLD'EM|OMAHA|OMAHA\sHI/LO)\s
           Limit\sType:\s(?P<LIMIT>NO\sLIMIT|LIMIT|POT\sLIMIT)\s
           Table\sType:\s(RING|TOURNAMENT)\s
-          Money\sType:\s(?P<MONEY>PLAY\sMONEY|REAL\sMONEY|TOURNAMENT\sCHIPS)\s
+          Money\sType:\s(?P<MONEY>PLAY\sMONEY|REAL\sMONEY|TOURNAMENT\sCHIPS|Real\smoney|Tournament\schips)\s
           Blinds\sare\snow\s(?P<CURRENCY>%(LS)s|)?
           (?P<SB>[%(NUM)s]+)\s?/\s?(%(LS)s)?
           (?P<BB>[%(NUM)s]+)
