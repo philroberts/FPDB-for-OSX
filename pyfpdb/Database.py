@@ -3412,9 +3412,8 @@ class Database:
         result=cursor.fetchone()
         
         if result != None:
-            columnNames=[desc[0] for desc in cursor.description]
-            if self.backend == self.PGSQL:
-                expectedValues = (('buyin', 'buyin'), ('fee', 'fee'), ('buyinCurrency', 'currency'), ('limitType', 'limittype'), ('isSng', 'sng'), ('maxseats', 'maxseats')
+            columnNames=[desc[0].lower() for desc in cursor.description]
+            expectedValues = (('buyin', 'buyin'), ('fee', 'fee'), ('buyinCurrency', 'currency'), ('limitType', 'limittype'), ('isSng', 'sng'), ('maxseats', 'maxseats')
                              , ('isKO', 'knockout'), ('koBounty', 'kobounty'), ('isRebuy', 'rebuy'), ('rebuyCost', 'rebuycost')
                              , ('isAddOn', 'addon'), ('addOnCost','addoncost'), ('speed', 'speed'), ('isShootout', 'shootout')
                              , ('isMatrix', 'matrix'), ('isFast', 'fast'), ('stack', 'stack'), ('isStep', 'step'), ('stepNo', 'stepno')
@@ -3422,15 +3421,6 @@ class Database:
                              , ('isHomeGame', 'homegame'), ('isNewToGame', 'newtogame'), ('isFifty50', 'fifty50'), ('isTime', 'time')
                              , ('timeAmt', 'timeamt'), ('isSatellite', 'satellite'), ('isDoubleOrNothing', 'doubleornothing'), ('isCashOut', 'cashout')
                              , ('isOnDemand', 'ondemand'), ('isFlighted', 'flighted'), ('isGuarantee', 'guarantee'), ('guaranteeAmt', 'guaranteeamt'))
-            else:
-                expectedValues = (('buyin', 'buyin'), ('fee', 'fee'), ('buyinCurrency', 'currency'), ('limitType', 'limitType'), ('isSng', 'sng')
-                             , ('maxseats', 'maxSeats'), ('isKO', 'knockout'), ('koBounty', 'koBounty'), ('isRebuy', 'rebuy'), ('rebuyCost', 'rebuyCost')
-                             , ('isAddOn', 'addOn'), ('addOnCost','addOnCost'), ('speed', 'speed'), ('isShootout', 'shootout') 
-                             , ('isMatrix', 'matrix'), ('isFast', 'fast'), ('stack', 'stack'), ('isStep', 'step'), ('stepNo', 'stepNo')
-                             , ('isChance', 'chance'), ('chanceCount', 'chanceCount'), ('isMultiEntry', 'multiEntry'), ('isReEntry', 'reEntry')
-                             , ('isHomeGame', 'homeGame'), ('isNewToGame', 'newToGame'), ('isFifty50', 'fifty50'), ('isTime', 'time')
-                             , ('timeAmt', 'timeAmt'), ('isSatellite', 'satellite'), ('isDoubleOrNothing', 'doubleOrNothing'), ('isCashOut', 'cashOut')
-                             , ('isOnDemand', 'onDemand'), ('isFlighted', 'flighted'), ('isGuarantee', 'guarantee'), ('guaranteeAmt', 'guaranteeAmt'))
             resultDict = dict(zip(columnNames, result))
             ttid = resultDict["id"]
             for ev in expectedValues:
@@ -3444,7 +3434,7 @@ class Database:
         if not result or updateDb:
             if obj.gametype['mix']!='none':
                 category, limitType = obj.gametype['mix'], 'mx'
-            elif result != None and resultDict['limitType']=='mx':
+            elif result != None and resultDict['limittype']=='mx':
                 category, limitType = resultDict['category'], 'mx'
             else:
                 category, limitType = obj.gametype['category'], obj.gametype['limitType']
