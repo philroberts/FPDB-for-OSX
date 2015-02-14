@@ -19,7 +19,7 @@
 import L10n
 _ = L10n.get_translation()
 import Card
-from decimal_wrapper import Decimal
+from decimal_wrapper import Decimal, ROUND_DOWN
 
 import sys
 import logging
@@ -549,7 +549,7 @@ class DerivedStats():
                 rake = (totalrake * (pot/hand.totalpot))
                 for w in win['hi']:
                     pname = list(players)[w]
-                    ppot  = str(((pot-rake)/len(win['hi'])).quantize(Decimal("0.01")))
+                    ppot  = str(((pot-rake)/len(win['hi'])).quantize(Decimal("0.01"), rounding=ROUND_DOWN))
                     hand.addCollectPot(player=pname,pot=ppot)
     
     def assembleHandsPots(self, hand):
