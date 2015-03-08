@@ -38,7 +38,7 @@ from PyQt5.QtWidgets import (QApplication, QFrame, QMenu,
                              QProgressDialog, QScrollArea, QSplitter,
                              QTableView, QVBoxLayout)
 
-from cStringIO import StringIO
+from StringIO import StringIO
 
 import GuiReplayer
 
