@@ -147,6 +147,8 @@ class HUD_main(QObject):
         if self.config.os_family == "Mac":
             for hud in self.hud_dict.values():
                 for aw in hud.aux_windows:
+                    if not hasattr(aw, 'm_windows'):
+                        continue
                     for w in aw.m_windows.values():
                         if w.isVisible():
                             hud.table.topify(w)
