@@ -50,10 +50,10 @@ class SealsWithClubs(HandHistoryConverter):
     # Static regexes
     re_GameInfo = re.compile(ur"""Hand\s*\#(?P<HID>\d+)-\d+\s*-\s*(?P<DATETIME>[\-:\d ]+)\s*
                          Game:\s*(?P<LIMIT>(NL|PL|Limit))\s*(?P<GAME>(Hold'em|Omaha|Omaha\ Hi-Lo))
-                         \s*\(\d+\s*-\s*(?P<BUYIN>\d+)\)\s*-\s*
+                         \s*\([\d\.]+\s*-\s*(?P<BUYIN>\d+)\)\s*-\s*
                          (Blinds|Stakes)\s*(?P<SB>[\d\.]+)/(?P<BB>[\d.]+)\s*
                          Site:\s+Seals\s+With\s+Clubs\s*
-                         (Table:\sL\w+\s\d+max\s(?P<SB1>[\d\.]+)/(?P<BB1>[\d.]+))?""",re.VERBOSE)
+                         (Table:\sL\w+\s\d+(max|half|deep)\s(?P<SB1>[\d\.]+)/(?P<BB1>[\d.]+))?""",re.VERBOSE)
     # TODO: for tournaments: (?P<BIAMT>[\d\.]+)\+(?P<BIRAKE>[\d\.]+)
 
     re_PlayerInfo   = re.compile(ur"""
@@ -62,7 +62,7 @@ class SealsWithClubs(HandHistoryConverter):
         \((?P<CASH>[.\d]+)\)""" % substitutions, 
         re.MULTILINE|re.VERBOSE)
 
-    re_HandInfo = re.compile(ur"""^Table:\s(?P<TABLE>.+?((?P<HU>HU)|((?P<MAX>\d+)max)).*)""",re.MULTILINE|re.VERBOSE)
+    re_HandInfo = re.compile(ur"""^Table:\s(?P<TABLE>(.+)?((?P<HU>HU)|((?P<MAX>\d+)(max|half|deep))|No Rake Micro Stakes).*)""",re.MULTILINE)
 
     re_Identify     = re.compile(u"Site:\s*Seals\s*With\s*Clubs")
     re_SplitHands   = re.compile('(?:\s?\n){2,}')
@@ -139,6 +139,8 @@ class SealsWithClubs(HandHistoryConverter):
             raise FpdbParseError
 
         info.update(m.groupdict())
+        if info['TABLE'] == "No Rake Micro Stakes":
+            info['MAX'] = '9'
         info.update(m2.groupdict())
 
         #log.debug("readHandInfo: %s" % info)
@@ -314,4 +316,3 @@ class SealsWithClubs(HandHistoryConverter):
         log.debug("Seals.getTableTitleRe: table_name='%s' tournament='%s' table_number='%s'" % (table_name, tournament, table_number))
         log.debug("Seals.getTableTitleRe: returns: '%s'" % (regex))
         return regex
-    

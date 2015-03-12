@@ -29,9 +29,9 @@ import logging
 # logging has been set up in fpdb.py or HUD_main.py, use their settings:
 log = logging.getLogger("hud")
 
-#    pyGTK modules
-import gtk
-import gobject
+from PyQt5.QtCore import QObject
+from PyQt5.QtGui import (QPainter, QPixmap)
+from PyQt5.QtWidgets import (QLabel, QVBoxLayout)
 
 #    FreePokerTools modules
 import Card
@@ -287,11 +287,12 @@ class Stud_cards:
                 self.seen_cards[(c, r)].set_from_pixbuf(self.card_images[0].copy())
                 self.eb[(c, r)].set_tooltip_text('')
 
-class Flop_Mucked(Aux_Base.Aux_Seats):
+class Flop_Mucked(Aux_Base.Aux_Seats, QObject):
     """Aux_Window class for displaying mucked cards for flop games."""
 
     def __init__(self, hud, config, params):
         super(Flop_Mucked, self).__init__(hud, config, params)
+        QObject.__init__(self)
         self.card_images = self.hud.parent.deck.get_all_card_images()
         self.card_height = self.hud.parent.hud_params["card_ht"]
         self.card_width = self.hud.parent.hud_params["card_wd"]
@@ -300,47 +301,43 @@ class Flop_Mucked(Aux_Base.Aux_Seats):
     def create_common(self, x, y):
         "Create the window for the board cards and do the initial population."
         w = self.aw_class_window(self, "common")
-        w.set_decorated(False)
-        w.set_property("skip-taskbar-hint", True)
-        w.set_focus_on_map(False)
-        w.set_focus(None)
-        w.set_accept_focus(False)
-        w.connect("configure_event", self.configure_event_cb, "common")
         self.positions["common"] = self.create_scale_position(x, y)
         w.move(self.positions["common"][0]+ self.hud.table.x,
                 self.positions["common"][1]+ self.hud.table.y)
         if self.params.has_key('opacity'):
-            w.set_opacity(float(self.params['opacity']))
+            w.setWindowOpacity(float(self.params['opacity']))
         return w
 
     def create_contents(self, container, i):
         """Create the widgets for showing the contents of the Aux_seats window."""
-        container.eb = gtk.EventBox()
-        container.eb.connect("button_press_event", self.button_press_cb, i)
-        container.add(container.eb)
-        container.seen_cards = gtk.image_new_from_pixbuf(self.card_images[0].copy())
-        container.eb.add(container.seen_cards)
+        container.seen_cards = QLabel()
+        container.seen_cards.setPixmap(self.card_images[0])
+        container.setLayout(QVBoxLayout())
+        container.layout().setContentsMargins(0, 0, 0, 0)
+        container.layout().addWidget(container.seen_cards)
 
     # NOTE: self.hud.cards is a dictionary of:
     # { seat_num: (card, card, [...]) }
     #
     # Thus the individual hands (cards for seat) are tuples
     def update_contents(self, container, i):
-
-        if not self.hud.cards.has_key(i): return
+        if type(i) is int:
+            hist_seat = self.hud.layout.hh_seats[i]
+        else:
+            hist_seat = i
+        if not self.hud.cards.has_key(hist_seat): return
         
-        cards = self.hud.cards[i]
+        cards = self.hud.cards[hist_seat]
         # Here we want to know how many cards the given seat showed;
         # board is considered a seat, and has the id 'common'
         # 'cards' on the other hand is a tuple. The format is:
         # (card_num, card_num, ...)
         n_cards = valid_cards(cards)
         if n_cards > 1:
-#    scratch is a working pixbuf, used to assemble the image
-            scratch = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB,
-                                        has_alpha=True, bits_per_sample=8,
-                                        width=int(self.card_width)*n_cards,
-                                        height=int(self.card_height))
+#    scratch is a working pixmap, used to assemble the image
+            scratch = QPixmap(int(self.card_width) * n_cards,
+                              int(self.card_height))
+            painter = QPainter(scratch)
             x = 0 # x coord where the next card starts in scratch
             for card in cards:
 #    concatenate each card image to scratch
@@ -353,21 +350,13 @@ class Flop_Mucked(Aux_Base.Aux_Seats):
                 # This gives us the card symbol again
                 (_rank, _suit) = Card.valueSuitFromCard(card)
                 _rank = Card.card_map[_rank]
-                # We copy the image data. Technically we __could__ use
-                # the pixmap directly but it seems there are some subtle
-                # races and explicitly creating a new pixbuf seems to
-                # work around most of them.
-                #
-                # We also should not use copy_area() but it is far
-                # easier to work with than _render_to_drawable()
-                px = self.card_images[_suit][_rank].copy()
-                px.copy_area(0, 0,
-                        px.get_width(), px.get_height(),
-                        scratch, x, 0)
-                x += px.get_width()
+                px = self.card_images[_suit][_rank]
+                painter.drawPixmap(x, 0, px)
+                x += px.width()
                 
+            painter.end()
             if container is not None:
-                container.seen_cards.set_from_pixbuf(scratch)
+                container.seen_cards.setPixmap(scratch)
                 container.resize(1,1)
                 container.move(self.positions[i][0] + self.hud.table.x,
                             self.positions[i][1] + self.hud.table.y)   # here is where I move back
@@ -378,7 +367,7 @@ class Flop_Mucked(Aux_Base.Aux_Seats):
                 id = self.get_id_from_seat(i)
                 # sc: had KeyError here with new table so added id != None test as a guess:
                 if id is not None:
-                    self.m_windows[i].eb.set_tooltip_text(self.hud.stat_dict[id]['screen_name'])
+                    self.m_windows[i].setToolTip(self.hud.stat_dict[id]['screen_name'])
                     
     def save_layout(self, *args):
         """Save new common position back to the layout element in the config file."""
@@ -406,17 +395,12 @@ class Flop_Mucked(Aux_Base.Aux_Seats):
 
         if self.displayed and float(self.params['timeout']) > 0:
             self.timer_on = True
-            gobject.timeout_add(int(1000*float(self.params['timeout'])), self.timed_out)
+            self.startTimer(int(1000*float(self.params['timeout'])))
 
-    def timed_out(self):
-#    this is the callback from the timeout
-#    if timer_on is False the user has cancelled the timer with a click
-#    so just return False to cancel the timer
-        if not self.timer_on:
-            return False
-        else:
+    def timerEvent(self, event):
+        self.killTimer(event.timerId())
+        if self.timer_on:
             self.hide()
-            return False
 
     def button_press_cb(self, widget, event, i, *args):
         """Handle button clicks in the event boxes."""

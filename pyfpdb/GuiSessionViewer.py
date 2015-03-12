@@ -19,21 +19,23 @@ import L10n
 _ = L10n.get_translation()
 
 import sys
-import pygtk
-pygtk.require('2.0')
-import gtk
 import os
 import traceback
 from time import time, strftime, localtime, gmtime
+
+from PyQt5.QtCore import Qt
+from PyQt5.QtGui import (QStandardItem, QStandardItemModel)
+from PyQt5.QtWidgets import (QFrame, QHBoxLayout, QLabel, QScrollArea,
+                             QSplitter, QTableView, QVBoxLayout, QWidget)
+
 try:
     calluse = not 'matplotlib' in sys.modules
     import matplotlib
     if calluse:
-        matplotlib.use('GTKCairo')
+        matplotlib.use('qt5agg')
     from matplotlib.figure import Figure
-    from matplotlib.backends.backend_gtk import FigureCanvasGTK as FigureCanvas
-    from matplotlib.backends.backend_gtkagg import NavigationToolbar2GTKAgg as NavigationToolbar
-    from matplotlib.finance import candlestick
+    from matplotlib.backends.backend_qt5agg import FigureCanvas
+    from matplotlib.finance import candlestick_ochl
 
     from numpy import diff, nonzero, sum, cumsum, max, min, append
 
@@ -50,8 +52,9 @@ import GuiHandViewer
 
 DEBUG = False
 
-class GuiSessionViewer:
+class GuiSessionViewer(QSplitter):
     def __init__(self, config, querylist, mainwin, owner, debug=True):
+        QSplitter.__init__(self, mainwin)
         self.debug = debug
         self.conf = config
         self.sql = querylist
@@ -98,9 +101,12 @@ class GuiSessionViewer:
                             "Button2"   : False
                           }
 
-        self.filters = Filters.Filters(self.db, self.conf, self.sql, display = filters_display)
+        self.filters = Filters.Filters(self.db, display = filters_display)
         self.filters.registerButton1Name("_Refresh")
         self.filters.registerButton1Callback(self.refreshStats)
+
+        scroll = QScrollArea()
+        scroll.setWidget(self.filters)
 
         # ToDo: store in config
         # ToDo: create popup to adjust column config
@@ -121,61 +127,33 @@ class GuiSessionViewer:
 
         self.detailFilters = []   # the data used to enhance the sql select
 
-        self.main_hbox = gtk.HPaned()
-
-        self.stats_frame = gtk.Frame()
-        self.stats_frame.show()
-
-        main_vbox = gtk.VPaned()
-        main_vbox.show()
-        self.graphBox = gtk.VBox(False, 0)
-        self.graphBox.set_size_request(400,400)
-        self.graphBox.show()
-        self.stats_vbox = gtk.VBox(False, 0)
-        self.stats_vbox.show()
-        self.stats_frame.add(self.stats_vbox)
-
-        self.main_hbox.pack1(self.filters.get_vbox())
-        self.main_hbox.pack2(main_vbox)
-        main_vbox.pack1(self.graphBox)
-        main_vbox.pack2(self.stats_frame)
-        self.main_hbox.show()
-
-        # make sure Hand column is not displayed
-        #[x for x in self.columns if x[0] == 'hand'][0][1] = False
-        # if DEBUG == False:
-        #     warning_string = _("Session Viewer is proof of concept code only, and contains many bugs.\n")
-        #     warning_string += _("Feel free to use the viewer, but there is no guarantee that the data is accurate.\n")
-        #     warning_string += _("If you are interested in developing the code further please contact us via the usual channels.\n")
-        #     warning_string += _("Thank you")
-        #     self.warning_box(warning_string)
-
-    def warning_box(self, str, diatitle=_("FPDB WARNING")):
-        diaWarning = gtk.Dialog(title=diatitle, parent=self.window, flags=gtk.DIALOG_DESTROY_WITH_PARENT, buttons=(gtk.STOCK_OK,gtk.RESPONSE_OK))
-
-        label = gtk.Label(str)
-        diaWarning.vbox.add(label)
-        label.show()
-
-        response = diaWarning.run()
-        diaWarning.destroy()
-        return response
-
-    def get_vbox(self):
-        """returns the vbox of this thread"""
-        return self.main_hbox
+        self.stats_frame = QFrame()
+        self.stats_frame.setLayout(QVBoxLayout())
+        self.view = None
+        heading = QLabel(self.filterText['handhead'])
+        heading.setAlignment(Qt.AlignCenter)
+        self.stats_frame.layout().addWidget(heading)
 
 
+        self.main_vbox = QSplitter(Qt.Vertical)
 
-    def refreshStats(self, widget, data):
-        try: self.stats_vbox.destroy()
-        except AttributeError: pass
-        self.stats_vbox = gtk.VBox(False, 0)
-        self.stats_vbox.show()
-        self.stats_frame.add(self.stats_vbox)
-        self.fillStatsFrame(self.stats_vbox)
+        self.graphBox = QFrame()
+        self.graphBox.setLayout(QVBoxLayout())
 
-    def fillStatsFrame(self, vbox):
+        self.addWidget(scroll)
+        self.addWidget(self.main_vbox)
+        self.setStretchFactor(0, 0)
+        self.setStretchFactor(1, 1)
+        self.main_vbox.addWidget(self.graphBox)
+        self.main_vbox.addWidget(self.stats_frame)
+
+    def refreshStats(self, checkState):
+        if self.view:
+            self.stats_frame.layout().removeWidget(self.view)
+            self.view.setParent(None)
+        self.fillStatsFrame(self.stats_frame)
+
+    def fillStatsFrame(self, frame):
         sites = self.filters.getSites()
         heroes = self.filters.getHeroes()
         siteids = self.filters.getSiteIds()
@@ -186,18 +164,13 @@ class GuiSessionViewer:
         sitenos = []
         playerids = []
 
-        for i in ('show', 'none'):
-            if i in limits:
-                limits.remove(i)
-
         # Which sites are selected?
         for site in sites:
-            if sites[site] == True:
-                sitenos.append(siteids[site])
-                _hname = Charset.to_utf8(heroes[site])
-                result = self.db.get_player_id(self.conf, site, _hname)
-                if result is not None:
-                    playerids.append(result)
+            sitenos.append(siteids[site])
+            _hname = Charset.to_utf8(heroes[site])
+            result = self.db.get_player_id(self.conf, site, _hname)
+            if result is not None:
+                playerids.append(result)
 
         if not sitenos:
             #Should probably pop up here.
@@ -216,9 +189,9 @@ class GuiSessionViewer:
             print _("No limits found")
             return
 
-        self.createStatsPane(vbox, playerids, sitenos, games, currencies, limits, seats)
+        self.createStatsPane(frame, playerids, sitenos, games, currencies, limits, seats)
 
-    def createStatsPane(self, vbox, playerids, sitenos, games, currencies, limits, seats):
+    def createStatsPane(self, frame, playerids, sitenos, games, currencies, limits, seats):
         starttime = time()
 
         (results, quotes) = self.generateDatasets(playerids, sitenos, games, currencies, limits, seats)
@@ -229,25 +202,10 @@ class GuiSessionViewer:
 
         self.generateGraph(quotes)
 
-        heading = gtk.Label(self.filterText['handhead'])
-        heading.show()
-        vbox.pack_start(heading, expand=False, padding=3)
-
-        # Scrolled window for detailed table (display by hand)
-        swin = gtk.ScrolledWindow(hadjustment=None, vadjustment=None)
-        swin.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-        swin.show()
-        vbox.pack_start(swin, expand=True, padding=3)
-
-        vbox1 = gtk.VBox(False, 0)
-        vbox1.show()
-        swin.add_with_viewport(vbox1)
-
-        self.addTable(vbox1, results)
+        self.addTable(frame, results)
 
         self.db.rollback()
         print _("Stats page displayed in %4.2f seconds") % (time() - starttime)
-    #end def fillStatsFrame(self, vbox):
 
     def generateDatasets(self, playerids, sitenos, games, currencies, limits, seats):
         if (DEBUG): print "DEBUG: Starting generateDatasets"
@@ -260,14 +218,10 @@ class GuiSessionViewer:
         start_date, end_date = self.filters.getDates()
         q = q.replace("<datestest>", " BETWEEN '" + start_date + "' AND '" + end_date + "'")
 
-        l = []
         for m in self.filters.display.items():
             if m[0] == 'Games' and m[1]:
-                for n in games:
-                    if games[n]:
-                        l.append(n)
-                if len(l) > 0:
-                    gametest = str(tuple(l))
+                if len(games) > 0:
+                    gametest = str(tuple(games))
                     gametest = gametest.replace("L", "")
                     gametest = gametest.replace(",)",")")
                     gametest = gametest.replace("u'","'")
@@ -279,11 +233,7 @@ class GuiSessionViewer:
         limittest = self.filters.get_limits_where_clause(limits)
         q = q.replace("<limit_test>", limittest)
 
-        l = []
-        for n in currencies:
-            if currencies[n]:
-                l.append(n)
-        currencytest = str(tuple(l))
+        currencytest = str(tuple(currencies))
         currencytest = currencytest.replace(",)",")")
         currencytest = currencytest.replace("u'","'")
         currencytest = "AND gt.currency in %s" % currencytest
@@ -379,7 +329,7 @@ class GuiSessionViewer:
             if hds > 0:
                 stime = strftime("%d/%m/%Y %H:%M", localtime(times[first_idx]))      # Formatted start time
                 etime = strftime("%d/%m/%Y %H:%M", localtime(times[last_idx]))       # Formatted end time
-                self.times.append((times[first_idx], times[last_idx]))
+                self.times.append((times[first_idx] - PADDING * 60, times[last_idx] + PADDING * 60))
                 minutesplayed = (times[last_idx] - times[first_idx])/60
                 minutesplayed = minutesplayed + PADDING
                 if minutesplayed == 0:
@@ -436,7 +386,8 @@ class GuiSessionViewer:
         try:
             try:
                 if self.canvas:
-                    self.graphBox.remove(self.canvas)
+                    self.graphBox.layout().removeWidget(self.canvas)
+                    self.canvas.setParent(None)
             except:
                 pass
 
@@ -446,7 +397,8 @@ class GuiSessionViewer:
             if self.canvas is not None:
                 self.canvas.destroy()
 
-            self.canvas = FigureCanvas(self.fig)  # a gtk.DrawingArea
+            self.canvas = FigureCanvas(self.fig)
+            self.canvas.setParent(self)
         except:
             err = traceback.extract_tb(sys.exc_info()[2])[-1]
             print _("Error:")+" "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
@@ -455,13 +407,6 @@ class GuiSessionViewer:
 
     def generateGraph(self, quotes):
         self.clearGraphData()
-
-        #print "DEBUG:"
-        #print "\tquotes = %s" % quotes
-
-        #for i in range(len(highs)):
-        #    print "DEBUG: (%s, %s, %s, %s)" %(lows[i], opens[i], closes[i], highs[i])
-        #    print "DEBUG: diffs h/l: %s o/c: %s" %(lows[i] - highs[i], opens[i] - closes[i])
 
         self.ax = self.fig.add_subplot(111)
 
@@ -472,48 +417,30 @@ class GuiSessionViewer:
         self.ax.set_ylabel("$", fontsize = 12)
         self.ax.grid(color='g', linestyle=':', linewidth=0.2)
 
-        candlestick(self.ax, quotes, width=0.50, colordown='r', colorup='g', alpha=1.00)
-        self.graphBox.add(self.canvas)
-        self.canvas.show()
+        candlestick_ochl(self.ax, quotes, width=0.50, colordown='r', colorup='g', alpha=1.00)
+        self.graphBox.layout().addWidget(self.canvas)
         self.canvas.draw()
 
-    def addTable(self, vbox, results):
-        row = 0
-        sqlrow = 0
+    def addTable(self, frame, results):
         colxalign,colheading = range(2)
 
-        self.liststore = gtk.ListStore(*([str] * len(self.columns)))
+        self.liststore = QStandardItemModel(0, len(self.columns))
+        self.liststore.setHorizontalHeaderLabels([column[colheading] for column in self.columns])
         for row in results:
-            iter = self.liststore.append(row)
+            listrow = [QStandardItem(str(r)) for r in row]
+            for item in listrow:
+                item.setEditable(False)
+            self.liststore.appendRow(listrow)
 
-        view = gtk.TreeView(model=self.liststore)
-        view.set_grid_lines(gtk.TREE_VIEW_GRID_LINES_BOTH)
-        vbox.add(view)
-        print view.connect("row-activated", self.row_activated)
-        cell05 = gtk.CellRendererText()
-        cell05.set_property('xalign', 0.5)
-        cell10 = gtk.CellRendererText()
-        cell10.set_property('xalign', 1.0)
-        listcols = []
+        self.view = QTableView()
+        self.view.setModel(self.liststore)
+        self.view.verticalHeader().hide()
+        self.view.setSelectionBehavior(QTableView.SelectRows)
+        frame.layout().addWidget(self.view)
+        self.view.doubleClicked.connect(self.row_activated)
 
-        # Create header row   eg column: ("game",     True, "Game",     0.0, "%s")
-        for col, column in enumerate(self.columns):
-            treeviewcolumn = gtk.TreeViewColumn(column[colheading])
-            listcols.append(treeviewcolumn)
-            treeviewcolumn.set_alignment(column[colxalign])
-            view.append_column(listcols[col])
-            if (column[colxalign] == 0.5):
-                cell = cell05
-            else:
-                cell = cell10
-            listcols[col].pack_start(cell, expand=True)
-            listcols[col].add_attribute(cell, 'text', col)
-            listcols[col].set_expand(True)
-
-        vbox.show_all()
-
-    def row_activated(self, view, path, column):
-        if path[0] < len(self.times):
+    def row_activated(self, index):
+        if index.row() < len(self.times):
             replayer = None
             for tabobject in self.owner.threads:
                 if isinstance(tabobject, GuiHandViewer.GuiHandViewer):
@@ -530,14 +457,27 @@ class GuiSessionViewer:
             # at the edges of the date range are not included. A better solution may be possible.
             # Optionally the end date in the call below, which is a Long gets a '+1'.
             reformat = lambda t: strftime("%Y-%m-%d %H:%M:%S+00:00", gmtime(t))
-            handids = replayer.get_hand_ids_from_date_range(reformat(self.times[path[0]][0]), reformat(self.times[path[0]][1]), save_date = True)
+            handids = replayer.get_hand_ids_from_date_range(reformat(self.times[index.row()][0]), reformat(self.times[index.row()][1]))
             replayer.reload_hands(handids)
 
-def main(argv=None):
-    Configuration.set_logfile("fpdb-log.txt")
-    config = Configuration.Config()
-    i = GuiBulkImport(settings, config)
-
 if __name__ == '__main__':
-    sys.exit(main())
+    import Configuration
+    config = Configuration.Config()
+
+    settings = {}
+
+    settings.update(config.get_db_parameters())
+    settings.update(config.get_import_parameters())
+    settings.update(config.get_default_paths())
+
+    from PyQt5.QtWidgets import QApplication, QMainWindow
+    app = QApplication([])
+    import SQL
+    sql = SQL.Sql(db_server=settings['db-server'])
+    i = GuiSessionViewer(config, sql, None, None)
+    main_window = QMainWindow()
+    main_window.setCentralWidget(i)
+    main_window.show()
+    main_window.resize(1400, 800)
+    app.exec_()
 

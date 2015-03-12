@@ -25,7 +25,7 @@ def set_translation(to_lang):
 
     try:
         trans = gettext.translation("fpdb", localedir="locale", languages=[to_lang])
-        trans.install()
+        trans.install(unicode=True)
         translation=_
     except IOError:
         translation=pass_through

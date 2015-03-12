@@ -74,5 +74,8 @@ class FpdbHandDuplicate(FpdbHandError):
 class FpdbHandPartial(FpdbParseError):
     pass
 
+class FpdbHandSkipped(FpdbParseError):
+    pass
+
 class FpdbEndOfFile(FpdbHandError):
     pass

@@ -129,6 +129,7 @@ HandHistoryConverter: '%(sitename)s'
         
         self.numHands = 0
         self.numPartial = 0
+        self.numSkipped = 0
         self.numErrors = 0
         lastParsed = None
         handsList = self.allHandsAsList()
@@ -146,6 +147,9 @@ HandHistoryConverter: '%(sitename)s'
                     self.numPartial += 1
                     lastParsed = 'partial'
                     log.debug("%s" % e)
+                except FpdbHandSkipped, e:
+                    self.numSkipped += 1
+                    lastParsed = 'skipped'
                 except FpdbParseError:
                     self.numErrors += 1
                     lastParsed = 'error'
@@ -234,6 +238,8 @@ HandHistoryConverter: '%(sitename)s'
             # TODO: not ideal, just trying to not error. Throw ParseException?
             self.numErrors += 1
         else:
+            if gametype['category'] in self.import_parameters['importFilters']:
+                raise FpdbHandSkipped("Skipped %s hand" % gametype['type'])
             # See if gametype is supported.
             if 'mix' not in gametype: gametype['mix'] = 'none'
             if 'ante' not in gametype: gametype['ante'] = 0

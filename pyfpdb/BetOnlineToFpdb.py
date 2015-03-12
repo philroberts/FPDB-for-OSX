@@ -159,7 +159,7 @@ class BetOnline(HandHistoryConverter):
     re_PostBoth         = re.compile(r"^%(PLYR)s: [Pp]ost dead (%(LS)s)?(?P<SBBB>[%(NUM)s]+)" %  substitutions, re.MULTILINE)
     re_HeroCards        = re.compile(r"^Dealt [Tt]o %(PLYR)s(?: \[(?P<OLDCARDS>.+?)\])?( \[(?P<NEWCARDS>.+?)\])" % substitutions, re.MULTILINE)
     re_Action           = re.compile(r"""
-                        ^%(PLYR)s:(?P<ATYPE>\s[Bb]ets|\s[Cc]hecks|\s[Rr]aises|\s[Cc]alls|\s[Ff]olds|\s[Dd]iscards|\s[Ss]tands\spat|\sReraises)
+                        ^%(PLYR)s:?(?P<ATYPE>\shas\sleft\sthe\stable|\s[Bb]ets|\s[Cc]hecks|\s[Rr]aises|\s[Cc]alls|\s[Ff]olds|\s[Dd]iscards|\s[Ss]tands\spat|\sReraises)
                         (\s(%(LS)s)?(?P<BET>[%(NUM)s]+))?(\sto\s(%(LS)s)?(?P<BETTO>[%(NUM)s]+))?  # the number discarded goes in <BET>
                         \s*(and\sis\s[Aa]ll.[Ii]n)?
                         (\son|\scards?)?
@@ -515,7 +515,7 @@ class BetOnline(HandHistoryConverter):
         if pname == 'Unknown player' or not pname:
             if not pname: pname = 'Dead'
             if pname not in (p[1] for p in hand.players):
-                hand.addPlayer(0, pname, '0')
+                hand.addPlayer(-1, pname, '0')
         return pname
 
     def readHeroCards(self, hand):
@@ -562,8 +562,9 @@ class BetOnline(HandHistoryConverter):
             acts = action.groupdict()
             #print "DEBUG: acts: %s" %acts
             pname = self.unknownPlayer(hand, action.group('PNAME'))
-            if action.group('ATYPE') in (' folds', ' Folds'):
-                hand.addFold( street, pname)
+            if action.group('ATYPE') in (' folds', ' Folds', ' has left the table'):
+                if pname in (p[1] for p in hand.players):
+                    hand.addFold(street, pname)
             elif action.group('ATYPE') in (' checks', ' Checks'):
                 hand.addCheck( street, pname)
             elif action.group('ATYPE') in (' calls', ' Calls'):

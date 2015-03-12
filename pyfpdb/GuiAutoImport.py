@@ -21,15 +21,14 @@ _ = L10n.get_translation()
 import subprocess
 import traceback
 
-import pygtk
-pygtk.require('2.0')
-import gtk
-import gobject
 import os
 import sys
 
 import logging
 
+from PyQt5.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QLabel, QSpinBox, QPushButton, QLineEdit, QTextEdit, QCheckBox, QFileDialog
+from PyQt5.QtCore import QTimer
+from PyQt5.QtGui import QTextCursor
 
 import Importer
 from optparse import OptionParser
@@ -46,9 +45,10 @@ if os.name == "nt":
     import win32console
 
 
-class GuiAutoImport:
+class GuiAutoImport(QWidget):
     def __init__(self, settings, config, sql = None, parent = None, cli = False):
-        self.importtimer = 0
+        QWidget.__init__(self, parent)
+        self.importtimer = None
         self.settings = settings
         self.config = config
         self.sql = sql
@@ -77,127 +77,74 @@ class GuiAutoImport:
             pass
 
     def setupGui(self):
-        self.mainVBox = gtk.VBox(False,1)
+        self.setLayout(QVBoxLayout())
 
-        hbox = gtk.HBox(True, 0) # contains 2 equal vboxes
-        self.mainVBox.pack_start(hbox, False, False, 0)
+        hbox = QHBoxLayout()
 
-        vbox1 = gtk.VBox(True, 0)
-        hbox.pack_start(vbox1, True, True, 0)
-        vbox2 = gtk.VBox(True, 0)
-        hbox.pack_start(vbox2, True, True, 0)
+        self.intervalLabel = QLabel(_("Time between imports in seconds:"))
 
-        self.intervalLabel = gtk.Label(_("Time between imports in seconds:"))
-        self.intervalLabel.set_alignment(xalign=1.0, yalign=0.5)
-        vbox1.pack_start(self.intervalLabel, False, True, 0)
+        self.intervalEntry = QSpinBox()
+        self.intervalEntry.setValue(int(self.config.get_import_parameters().get("interval")))
+        hbox.addWidget(self.intervalLabel)
+        hbox.addWidget(self.intervalEntry)
+        self.layout().addLayout(hbox)
 
-        hbox = gtk.HBox(False, 0)
-        vbox2.pack_start(hbox, False, True, 0)
-        self.intervalEntry = gtk.Entry()
-        self.intervalEntry.set_width_chars(4)
-        self.intervalEntry.set_text(str(self.config.get_import_parameters().get("interval")))
-        hbox.pack_start(self.intervalEntry, False, False, 0)
-        lbl1 = gtk.Label()
-        hbox.pack_start(lbl1, expand=False, fill=True)
-
-        lbl = gtk.Label('')
-        vbox1.pack_start(lbl, expand=False, fill=True)
-        lbl = gtk.Label('')
-        vbox2.pack_start(lbl, expand=False, fill=True)
+        hbox = QHBoxLayout()
+        vbox1 = QVBoxLayout()
+        vbox2 = QVBoxLayout()
+        hbox.addLayout(vbox1)
+        hbox.addLayout(vbox2)
+        self.layout().addLayout(hbox)
 
         self.addSites(vbox1, vbox2)
-        self.textbuffer = gtk.TextBuffer()
-        self.textview = gtk.TextView(self.textbuffer)
 
-        hbox = gtk.HBox(False, 0)
-        self.mainVBox.pack_start(hbox, expand=True, padding=3)
-
-        hbox = gtk.HBox(False, 0)
-        self.mainVBox.pack_start(hbox, expand=False, padding=3)
-
-        lbl1 = gtk.Label()
-        hbox.pack_start(lbl1, expand=True, fill=False)
+        self.textview = QTextEdit()
+        self.textview.setReadOnly(True)
 
         self.doAutoImportBool = False
-        self.startButton = gtk.ToggleButton(_("Start _Auto Import"))
-        self.startButton.connect("clicked", self.startClicked, "start clicked")
-        hbox.pack_start(self.startButton, expand=False, fill=False)
+        self.startButton = QCheckBox(_("Start Auto Import"))
+        self.startButton.stateChanged.connect(self.startClicked)
+        self.layout().addWidget(self.startButton)
+        self.layout().addWidget(self.textview)
 
-        self.DetectButton = gtk.Button(_("Detect Directories"))
-        self.DetectButton.connect("clicked", self.detect_hh_dirs, "detect")
-        #hbox.pack_start(self.DetectButton, expand=False, fill=False)
-
-
-        lbl2 = gtk.Label()
-        hbox.pack_start(lbl2, expand=True, fill=False)
-
-        hbox = gtk.HBox(False, 0)
-        hbox.show()
-
-        self.mainVBox.pack_start(hbox, expand=True, padding=3)
-
-        scrolledwindow = gtk.ScrolledWindow()
-        scrolledwindow.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-        self.mainVBox.pack_end(scrolledwindow, expand=True)
-        scrolledwindow.add(self.textview)
-
-        self.mainVBox.show_all()
         self.addText(_("Auto Import Ready."))
 
     def addText(self, text):
-        end_iter = self.textbuffer.get_end_iter()
-        self.textbuffer.insert(end_iter, text)
-        self.textview.scroll_to_mark(self.textbuffer.get_insert(), 0)
+        self.textview.moveCursor(QTextCursor.End)
+        self.textview.insertPlainText(text)
 
 
     #end of GuiAutoImport.__init__
-    def browseClicked(self, widget, data):
+    def browseClicked(self):
         """runs when user clicks one of the browse buttons in the auto import tab"""
 #       Browse is not valid while hud is running, so return immediately
         if (self.pipe_to_hud):
             return
-            
-        current_path=data[1].get_text()
+        data = self.sender().hackdata
+        current_path=data[1].text()
 
-        dia_chooser = gtk.FileChooserDialog(title=_("Please choose the path that you want to Auto Import"),
-                action=gtk.FILE_CHOOSER_ACTION_SELECT_FOLDER,
-                buttons=(gtk.STOCK_CANCEL,gtk.RESPONSE_CANCEL,gtk.STOCK_OPEN,gtk.RESPONSE_OK))
-        #dia_chooser.set_current_folder(pathname)
-        dia_chooser.set_filename(current_path)
-        #dia_chooser.set_select_multiple(select_multiple) #not in tv, but want this in bulk import
-        dia_chooser.set_show_hidden(True)
-        dia_chooser.set_destroy_with_parent(True)
-        dia_chooser.set_transient_for(self.parent)
-
-        response = dia_chooser.run()
-        if response == gtk.RESPONSE_OK:
+        newdir = QFileDialog.getExistingDirectory(self, caption=_("Please choose the path that you want to Auto Import"),
+                                        directory=current_path)
+        if newdir:
             #print dia_chooser.get_filename(), 'selected'
-            data[1].set_text(dia_chooser.get_filename())
-            self.input_settings[data[0]][0] = dia_chooser.get_filename()
-        elif response == gtk.RESPONSE_CANCEL:
-            #print 'Closed, no files selected'
-            pass
-        dia_chooser.destroy()
+            data[1].setText(newdir)
+            self.input_settings[data[0]][0] = newdir
     #end def GuiAutoImport.browseClicked
 
     def do_import(self):
         """Callback for timer to do an import iteration."""
         if self.doAutoImportBool:
             self.importer.autoSummaryGrab()
-            self.startButton.set_label(_(u'_Auto Import Running'))
             self.importer.runUpdated()
             self.addText(".")
-            #sys.stdout.write(".")
-            #sys.stdout.flush()
-            gobject.timeout_add(1000, self.reset_startbutton)
             return True
         return False
 
     def reset_startbutton(self):
         if self.pipe_to_hud is not None:
-            self.startButton.set_label(_(u'Stop _Auto Import'))
+            self.startButton.set_label(_(u'Stop Auto Import'))
         else:
-            self.startButton.set_label(_(u'Start _Auto Import'))
+            self.startButton.set_label(_(u'Start Auto Import'))
 
         return False
 
@@ -227,7 +174,7 @@ class GuiAutoImport:
                 print file
         return False
 
-    def startClicked(self, widget, data):
+    def startClicked(self):
         """runs when user clicks start on auto import tab"""
 
         # Check to see if we have an open file handle to the HUD and open one if we do not.
@@ -240,8 +187,7 @@ class GuiAutoImport:
         # results to the same pipe.  This means that self.path should be a a list of dirs
         # to watch.
         
-        if data == "autostart" or (widget == self.startButton and self.startButton.get_active()):
-            self.startButton.set_active(True)
+        if self.startButton.isChecked():
             # - Does the lock acquisition need to be more sophisticated for multiple dirs?
             # (see comment above about what to do if pipe already open)
             # - Ideally we want to release the lock if the auto-import is killed by some
@@ -249,15 +195,15 @@ class GuiAutoImport:
             if self.settings['global_lock'].acquire(wait=False, source="AutoImport"):   # returns false immediately if lock not acquired
                 self.addText("\n" + _("Global lock taken ... Auto Import Started.")+"\n")
                 self.doAutoImportBool = True
-                self.startButton.set_label(_(u'Stop _Auto Import'))
-                self.intervalEntry.set_sensitive(False)
-                while gtk.events_pending(): # change the label NOW don't wait for the pipe to open
-                    gtk.main_iteration(False)
+                self.intervalEntry.setEnabled(False)
                 if self.pipe_to_hud is None:
                     if self.config.install_method == "exe":    # if py2exe, run hud_main.exe
                         path = self.config.pyfpdb_path
                         command = "HUD_main.exe"
                         bs = 0
+                    elif self.config.install_method == "app":
+                        command = os.path.join(sys.path[0], "HUD_main")
+                        bs = 1
                     elif os.name == 'nt':
                         path = sys.path[0].replace('\\','\\\\')
                         if win32console.GetConsoleWindow() == 0:
@@ -290,17 +236,17 @@ class GuiAutoImport:
                             self.importer.addImportDirectory(self.input_settings[(site,type)][0], monitor = True, site=(site,type))
                             self.addText("\n * " + _("Add %s import directory %s") % (site, str(self.input_settings[(site,type)][0])))
                             self.do_import()
-                    interval = int(self.intervalEntry.get_text())
-                    if self.importtimer != 0:
-                        gobject.source_remove(self.importtimer)
-                    self.importtimer = gobject.timeout_add(interval * 1000, self.do_import)
+                    interval = self.intervalEntry.value()
+                    self.importtimer = QTimer()
+                    self.importtimer.timeout.connect(self.do_import)
+                    self.importtimer.start(interval * 1000)
 
             else:
                 self.addText("\n" + _("Auto Import aborted.") + _("Global lock not available."))
         else: # toggled off
             self.doAutoImportBool = False # do_import will return this and stop the gobject callback timer
+            self.importtimer = None
             self.importer.autoSummaryGrab(True)
-            gobject.source_remove(self.importtimer)
             self.settings['global_lock'].release()
             self.addText("\n" + _("Stopping Auto Import.") + _("Global lock released."))
             if self.pipe_to_hud.poll() is not None:
@@ -310,8 +256,7 @@ class GuiAutoImport:
                 #print >>self.pipe_to_hud.stdin, "\n"
                 # self.pipe_to_hud.communicate('\n') # waits for process to terminate
             self.pipe_to_hud = None
-            self.intervalEntry.set_sensitive(True)
-            self.startButton.set_label(_(u'Start _Auto Import'))
+            self.intervalEntry.setEnabled(True)
 
     #end def GuiAutoImport.startClicked
 
@@ -324,44 +269,39 @@ class GuiAutoImport:
     #enabling and disabling sites from this interface not possible
     #expects a box to layout the line horizontally
     def createSiteLine(self, hbox1, hbox2, site, iconpath, type, path, filter_name, active = True):
-        label = gtk.Label(_("%s auto-import:") % site)
-        hbox1.pack_start(label, False, False, 3)
-        label.show()
+        label = QLabel(_("%s auto-import:") % site)
+        hbox1.addWidget(label)
 
-        dirPath=gtk.Entry()
-        dirPath.set_text(path)
-        hbox1.pack_start(dirPath, True, True, 3)
+        dirPath=QLineEdit()
+        dirPath.setText(path)
+        hbox1.addWidget(dirPath)
 #       Anything typed into dirPath was never recognised (only the browse button works)
 #       so just prevent entry to avoid user confusion
-        dirPath.set_editable(False)
-        
-        dirPath.show()
+        dirPath.setReadOnly(True)
 
-        browseButton=gtk.Button(_("Browse..."))
-        browseButton.connect("clicked", self.browseClicked, [(site,type)] + [dirPath])
-        hbox2.pack_start(browseButton, False, False, 3)
-        browseButton.show()
+        browseButton=QPushButton(_("Browse..."))
+        browseButton.hackdata = [(site, type)] + [dirPath]
+        browseButton.clicked.connect(self.browseClicked)#, [(site,type)] + [dirPath])
+        hbox2.addWidget(browseButton)
 
-        label = gtk.Label("filter:")
-        hbox2.pack_start(label, False, False, 3)
-        label.show()
+        label = QLabel("filter:")
+        hbox2.addWidget(label)
 
 #       Anything typed into filter was never recognised
 #       so just grey it out to avoid user confusion
-        filter=gtk.Entry()
-        filter.set_text(filter_name)
-        hbox2.pack_start(filter, True, True, 3)
-        filter.set_sensitive(False)
-        filter.show()
+        filterLine = QLineEdit()
+        filterLine.setText(filter_name)
+        filterLine.setEnabled(False)
+        hbox2.addWidget(filterLine)
 
     def addSites(self, vbox1, vbox2):
         the_sites = self.config.get_supported_sites()
         #log.debug("addSites: the_sites="+str(the_sites))
         for site in the_sites:
-            pathHBox1 = gtk.HBox(False, 0)
-            vbox1.pack_start(pathHBox1, False, True, 0)
-            pathHBox2 = gtk.HBox(False, 0)
-            vbox2.pack_start(pathHBox2, False, True, 0)
+            pathHBox1 = QHBoxLayout()
+            vbox1.addLayout(pathHBox1)
+            pathHBox2 = QHBoxLayout()
+            vbox2.addLayout(pathHBox2)
 
             params = self.config.get_site_parameters(site)
             paths = self.config.get_default_paths(site)
@@ -370,27 +310,15 @@ class GuiAutoImport:
             self.input_settings[(site, 'hh')] = [paths['hud-defaultPath']] + [params['converter']]
             
             if 'hud-defaultTSPath' in paths:
-                pathHBox1 = gtk.HBox(False, 0)
-                vbox1.pack_start(pathHBox1, False, True, 0)
-                pathHBox2 = gtk.HBox(False, 0)
-                vbox2.pack_start(pathHBox2, False, True, 0)
+                pathHBox1 = QHBoxLayout()
+                vbox1.addLayout(pathHBox1)
+                pathHBox2 = QHBoxLayout()
+                vbox2.addLayout(pathHBox2)
                 self.createSiteLine(pathHBox1, pathHBox2, site, False, 'ts', paths['hud-defaultTSPath'], params['summaryImporter'], params['enabled'])
                 self.input_settings[(site, 'ts')] = [paths['hud-defaultTSPath']] + [params['summaryImporter']]
         #log.debug("addSites: input_settings="+str(self.input_settings))
 
 if __name__== "__main__":
-    def destroy(*args):             # call back for terminating the main eventloop
-        gtk.main_quit()
-
-#    settings = {}
-#    settings['db-host'] = "192.168.1.100"
-#    settings['db-user'] = "mythtv"
-#    settings['db-password'] = "mythtv"
-#    settings['db-databaseName'] = "fpdb"
-#    settings['hud-defaultInterval'] = 10
-#    settings['hud-defaultPath'] = 'C:/Program Files/PokerStars/HandHistory/nutOmatic'
-#    settings['callFpdbHud'] = True
-
     parser = OptionParser()
     parser.add_option("-q", "--quiet", action="store_false", dest="gui", default=True, help="don't start gui")
     (options, argv) = parser.parse_args()
@@ -408,11 +336,12 @@ if __name__== "__main__":
     settings['cl_options'] = string.join(sys.argv[1:])
 
     if(options.gui == True):
+        from PyQt5.QtWidgets import QApplication, QMainWindow
+        app = QApplication([])
         i = GuiAutoImport(settings, config, None, None)
-        main_window = gtk.Window()
-        main_window.connect('destroy', destroy)
-        main_window.add(i.mainVBox)
+        main_window = QMainWindow()
+        main_window.setCentralWidget(i)
         main_window.show()
-        gtk.main()
+        app.exec_()
     else:
         i = GuiAutoImport(settings, config, cli = True)

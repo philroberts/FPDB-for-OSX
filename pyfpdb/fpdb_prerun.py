@@ -21,17 +21,12 @@ failure_list = []
 success_list = []
 verbose = False
 
-global_modules_to_test =   ["gobject",
-                            "pygtk",
-                            "gtk",
-                            "pango",
-                            "cairo",
+global_modules_to_test =   ["PyQt5",
                             "matplotlib",
                             "numpy",
                             "pylab",
                             "sqlite3",
-                            "pytz",
-                            "BeautifulSoup"]
+                            "pytz"]
 
 windows_modules_to_test =  ["win32gui",
                             "win32api",
@@ -41,7 +36,7 @@ windows_modules_to_test =  ["win32gui",
                             "win32console",
                             "winpaths"]
 
-linux_modules_to_test = ["wnck"]
+linux_modules_to_test = ["xcffib", "xcffib.xproto"]
 mac_modules_to_test = []
 posix_modules_to_test = []
 
@@ -63,30 +58,19 @@ def try_import(modulename):
         success(module)
     except:
         failure( _('File not found')+ ": " +modulename)
-        if modulename in ["cairo", "gobject", "pygtk"]:            
-            failure(_("Unable to load PyGTK modules required for GUI. Please install PyCairo, PyGObject, and PyGTK from www.pygtk.org."))
         if modulename in ["win32console"]:
             failure (_("We appear to be running in Windows, but the Windows Python Extensions are not loading. Please install the PYWIN32 package from http://sourceforge.net/projects/pywin32/"))
         if modulename in ["pytz"]:
             failure (_("Unable to import PYTZ library. Please install PYTZ from http://pypi.python.org/pypi/pytz/"))
         return False
 
-    if modulename == "pygtk":
-        try:
-            module.require('2.0')
-            success("pygtk 2.0")
-            return True
-        except:
-            failure("pygtk 2.0 " + _('File not found'))
-            return False
-
     if modulename == "matplotlib":
         try:
-            module.use('GTK')
-            success("matplotlib/gtk")
+            module.use('qt5agg')
+            success("matplotlib/qt5agg")
             return False
         except:
-            failure("matplotlib/gtk")
+            failure("matplotlib/qt5agg")
             return False
 
     return True

@@ -158,6 +158,9 @@ class DetectInstalledSites():
         elif self.Config.os_family == "Win7":
             hhp=os.path.expanduser(LOCAL_APPDATA+"\\PokerStars\\HandHistory\\")
             tsp=os.path.expanduser(LOCAL_APPDATA+"\\PokerStars\\TournSummary\\")
+        elif self.Config.os_family == "Mac":
+            hhp=os.path.expanduser("~/Library/Application Support/PokerStars/HandHistory/")
+            tsp=os.path.expanduser("~/Library/Application Support/PokerStars/TournSummary/")
         else:
             return
 

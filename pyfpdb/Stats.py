@@ -58,9 +58,6 @@ import sys
 from decimal import Decimal   # needed by hand_instance in m_ratio
 
 
-#    pyGTK modules
-import pygtk
-import gtk
 import re
 
 #    FreePokerTools modules
@@ -96,7 +93,7 @@ def __stat_override(decimals, stat_vals):
 
 def do_tip(widget, tip):
     _tip = Charset.to_utf8(tip)
-    widget.set_tooltip_text(_tip)
+    widget.setToolTip(_tip)
 
 
 def do_stat(stat_dict, player = 24, stat = 'vpip', hand_instance = None):

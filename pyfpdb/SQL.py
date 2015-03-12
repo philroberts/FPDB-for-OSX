@@ -5180,7 +5180,7 @@ class Sql:
                       AND   ((t.startTime > '<startdate_test>' AND t.startTime < '<enddate_test>')
                                         OR t.startTime is NULL)
                       group by t.tourneyTypeId, s.name, p.name, tt.currency, tt.buyin, tt.fee
-                             , tt.category, tt.limitType
+                             , tt.category, tt.limitType, tt.speed
                       order by t.tourneyTypeId
                               ,p.name
                               ,s.name"""
@@ -6224,6 +6224,14 @@ class Sql:
                  SELECT h.*
                     FROM Hands h
                     WHERE id = %s"""
+
+        ####################################
+        # Query to get run it twice boards for the replayer
+        ####################################
+        self.query['singleHandBoards'] = """
+                 SELECT b.*
+                    FROM Boards b
+                    WHERE handId = %s"""
 
         ####################################
         # Query to get a single player hand for the replayer

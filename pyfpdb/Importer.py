@@ -29,13 +29,14 @@ import re
 
 import logging, traceback
 
-import gtk
+from PyQt5.QtWidgets import QProgressBar, QLabel, QDialog, QVBoxLayout
+from PyQt5.QtCore import QCoreApplication
 
 #    fpdb/FreePokerTools modules
 import Database
 import Configuration
 import IdentifySite
-from Exceptions import FpdbParseError, FpdbHandDuplicate
+from Exceptions import FpdbParseError, FpdbHandDuplicate, FpdbHandPartial
 
 try:
     import xlrd
@@ -285,7 +286,9 @@ class Importer:
         movefailedfiles = False #TODO and this too
         
         #prepare progress popup window
-        ProgressDialog = ProgressBar(len(self.filelist), self.parent)
+        ProgressDialog = ImportProgressDialog(len(self.filelist), self.parent)
+        ProgressDialog.resize(500, 200)
+        ProgressDialog.show()
         
         for f in self.filelist:
             filecount = filecount + 1
@@ -307,7 +310,8 @@ class Importer:
                         shutil.move(file, "c:\\fpdbfailed\\%d-%s" % (fileerrorcount, os.path.basename(file[3:]) ) )
             
             self.logImport('bulk', f, stored, duplicates, partial, errors, ttime, self.filelist[f].fileId)
-            
+
+        ProgressDialog.accept()
         del ProgressDialog
         
         return (totstored, totdups, totpartial, toterrors)
@@ -432,10 +436,12 @@ class Importer:
             self.pos_in_file[file] = hhc.getLastCharacterRead()
             #Tally the results
             partial  = getattr(hhc, 'numPartial')
+            skipped  = getattr(hhc, 'numSkipped')
             errors   = getattr(hhc, 'numErrors')
             stored   = getattr(hhc, 'numHands')
             stored -= errors
             stored -= partial
+            stored -= skipped
             
             if stored > 0:
                 if self.caller: self.progressNotify()
@@ -566,7 +572,7 @@ class Importer:
                     conv = obj(db=self.database, config=self.config, siteName=fpdbfile.site.name, summaryText=summaryText, in_path = fpdbfile.path, header=summaryTexts[0])
                     self.database.resetBulkCache(False)
                     conv.insertOrUpdate(printtest = self.settings['testData'])
-                except Exceptions.FpdbHandPartial, e:
+                except FpdbHandPartial, e:
                     partial += 1
                 except FpdbParseError, e:
                     log.error(_("Summary import parse error in file: %s") % fpdbfile.path)
@@ -580,8 +586,7 @@ class Importer:
 
     def progressNotify(self):
         "A callback to the interface while events are pending"
-        while gtk.events_pending():
-            gtk.main_iteration(False)
+        QCoreApplication.processEvents()
             
     def readFile(self, obj, filename, site):
         if filename.endswith('.xls') or filename.endswith('.xlsx') and xlrd:
@@ -613,7 +618,7 @@ class Importer:
                     log.warn(_("TourneyImport: Removing text < 100 characters from start of file"))
         return summaryTexts 
         
-class ProgressBar:
+class ImportProgressDialog(QDialog):
 
     """
     Popup window to show progress
@@ -629,86 +634,42 @@ class ProgressBar:
             self.progress.destroy()
 
 
-    def progress_update(self, file, handcount):
-
-        if not self.parent:
-            #nothing to do
-            return
+    def progress_update(self, filename, handcount):
             
         self.fraction += 1
-        #update sum if fraction exceeds expected total number of iterations
-        if self.fraction > self.sum: 
-            sum = self.fraction
+        #update total if fraction exceeds expected total number of iterations
+        if self.fraction > self.total:
+            self.total = self.fraction
+            self.pbar.setRange(0,self.total)
         
-        #progress bar total set to 1 plus the number of items,to prevent it
-        #reaching 100% prior to processing fully completing
-
-        progress_percent = float(self.fraction) / (float(self.sum) + 1.0)
-        progress_text = (self.title + " " 
-                            + str(self.fraction) + " / " + str(self.sum))
-
-        self.pbar.set_fraction(progress_percent)
-        self.pbar.set_text(progress_text)
+        self.pbar.setValue(self.fraction)
         
-        self.handcount.set_text(_("Database Statistics") + " - " + _("Number of Hands:") + " " + handcount)
+        self.handcount.setText(_("Database Statistics") + " - " + _("Number of Hands:") + " " + handcount)
         
         now = datetime.datetime.now()
         now_formatted = now.strftime("%H:%M:%S")
-        self.progresstext.set_text(now_formatted + " - "+self.title+ " " +file+"\n")
+        self.progresstext.setText(now_formatted + " - " + _("Importing") + " " +filename+"\n")
 
 
-    def __init__(self, sum, parent):
-
-        self.parent = parent
-        if not self.parent:
-            #no parent is passed, assume this is being run from the 
-            #command line, so return immediately
+    def __init__(self, total, parent):
+        if parent is None:
             return
+        QDialog.__init__(self, parent)
         
         self.fraction = 0
-        self.sum = sum
-        self.title = _("Importing")
-            
-        self.progress = gtk.Window(gtk.WINDOW_TOPLEVEL)
-        self.progress.set_size_request(500,150)
+        self.total = total
+        self.setWindowTitle(_("Importing"))
 
-        self.progress.set_resizable(False)
-        self.progress.set_modal(True)
-        self.progress.set_transient_for(self.parent)
-        self.progress.set_decorated(True)
-        self.progress.set_deletable(False)
-        self.progress.set_title(self.title)
-        
-        vbox = gtk.VBox(False, 5)
-        vbox.set_border_width(10)
-        self.progress.add(vbox)
-        vbox.show()
-  
-        align = gtk.Alignment(0, 0, 0, 0)
-        vbox.pack_start(align, False, True, 2)
-        align.show()
+        self.setLayout(QVBoxLayout())
 
-        self.pbar = gtk.ProgressBar()
-        align.add(self.pbar)
-        self.pbar.show()
+        self.pbar = QProgressBar()
+        self.pbar.setRange(0, total)
+        self.layout().addWidget(self.pbar)
 
-        align = gtk.Alignment(0, 0, 0, 0)
-        vbox.pack_start(align, False, True, 2)
-        align.show()
+        self.handcount = QLabel()
+        self.handcount.setWordWrap(True)
+        self.layout().addWidget(self.handcount)
 
-        self.handcount = gtk.Label()
-        align.add(self.handcount)
-        self.handcount.show()
-        
-        align = gtk.Alignment(0, 0, 0, 0)
-        vbox.pack_start(align, False, True, 0)
-        align.show()
-        
-        self.progresstext = gtk.Label()
-        self.progresstext.set_line_wrap(True)
-        self.progresstext.set_selectable(True)
-        align.add(self.progresstext)
-        self.progresstext.show()
-        
-        self.progress.show()
-
+        self.progresstext = QLabel()
+        self.progresstext.setWordWrap(True)
+        self.layout().addWidget(self.progresstext)
