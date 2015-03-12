@@ -419,12 +419,12 @@ class Hand(object):
             if game[0] == 'hold' and cardlist[0] != '':
                 self.addHoleCards('PREFLOP', row['name'], closed=cardlist[0:game[5][0][1]], shown=False, mucked=mucked, dealt=dealt)
             elif game[0] == 'stud' and cardlist[2] != '':
-                streets = {v : k for k, v in game[3].items()}
+                streets = dict((v, k) for (k, v) in game[3].items())
                 for streetidx, hrange in enumerate(game[5]):
                     # FIXME shown/dealt/mucked might need some tweaking
                     self.addHoleCards(streets[streetidx], row['name'], open=[cardlist[hrange[1] - 1]], closed=cardlist[0:hrange[1]-1], shown=False, mucked=False)
             elif game[0] == 'draw':
-                streets = {v : k for k, v in game[3].items()}
+                streets = dict((v, k) for (k, v) in game[3].items())
                 for streetidx, hrange in enumerate(game[5]):
                     self.addHoleCards(streets[streetidx], row['name'], closed=cardlist[hrange[0]:hrange[1]], shown=False, mucked=mucked, dealt=dealt)
             if row['winnings'] > 0:
