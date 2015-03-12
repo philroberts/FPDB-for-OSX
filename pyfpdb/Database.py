@@ -2119,7 +2119,7 @@ class Database:
         update_WM_SC  = self.sql.query['update_WM_SC'].replace('%s', self.sql.query['placeholder'])
         c = self.get_cursor()
         c.execute("SELECT id, sessionStart, weekId wid, monthId mid FROM SessionsCache")
-        sessions = self.fetchallDict(c)
+        sessions = self.fetchallDict(c,['id','sessionStart','wid', 'mid'])
         for s in sessions:
             utc_start = pytz.utc.localize(s['sessionStart'])
             tz = pytz.timezone(tz_name)
@@ -2711,7 +2711,7 @@ class Database:
                 else:
                     select_SC = select_SC.replace('<TOURSELECT>', '')
                 c.execute(select_SC, (lower, upper))
-                r = self.fetchallDict(c)
+                r = self.fetchallDict(c,['id', 'sessionStart', 'sessionEnd', 'weekStart', 'monthStart', 'weekId', 'monthId'])
                 num = len(r)
                 if (num == 1):
                     start, end  = r[0]['sessionStart'], r[0]['sessionEnd']
@@ -2862,14 +2862,14 @@ class Database:
                     upper = session['endTime']   + THRESHOLD
                     row = [lower, upper] + list(k[:2])
                     c.execute(select_CC, row)
-                    r = self.fetchallDict(c)
+                    r = self.fetchallDict(c, ['id', 'sessionId', 'startTime', 'endTime'] + CACHE_KEYS)
                     num = len(r)
                     d = [0]*num
                     for z in range(num):
                         d[z] = {}
                         d[z]['line'] = [int(r[z][s]) for s in CACHE_KEYS]
                         d[z]['id']   = r[z]['id']
-                        d[z]['startTime'] = r[z]['sessionId']
+                        d[z]['sessionId'] = r[z]['sessionId']
                         d[z]['startTime'] = r[z]['startTime']
                         d[z]['endTime']   = r[z]['endTime']
                     if (num == 1):
@@ -2958,7 +2958,7 @@ class Database:
                     tc['startTime'] = tc['startTime'].replace(tzinfo=None)
                     tc['endTime']   = tc['endTime'].replace(tzinfo=None)
                 c.execute(select_TC, k)
-                r = self.fetchallDict(c)
+                r = self.fetchallDict(c, ['id', 'startTime', 'endTime'])
                 num = len(r)
                 if (num == 1):
                     update = not r[0]['startTime'] or not r[0]['endTime']
@@ -3197,16 +3197,14 @@ class Database:
             #print _("Error aquiring hero ids:"), str(sys.exc_value)
         return hero_ids
     
-    def fetchallDict(self, cursor):
+    def fetchallDict(self, cursor, desc):
         data = cursor.fetchall()
         if not data: return []
-        desc = cursor.description
         results = [0]*len(data)
         for i in range(len(data)):
             results[i] = {}
             for n in range(len(desc)):
-                name = desc[n][0]
-                results[i][name] = data[i][n]
+                results[i][desc[n]] = data[i][n]
         return results
     
     def nextHandId(self):
