@@ -4615,6 +4615,8 @@ class Sql:
                             ,s.name
                             ,min(gt.bigBlind)                                                       AS minbigblind
                             ,max(gt.bigBlind)                                                       AS maxbigblind
+                            ,gt.ante                                                                AS ante
+                            ,gt.currency                                                            AS currency
                             /*,<hcgametypeId>                                                         AS gtid*/
                             ,<position>                                                             AS plposition
                             ,gt.fast                                                                AS fast
@@ -4774,6 +4776,8 @@ class Sql:
                             ,s.name
                             ,min(gt.bigBlind)                                                       AS minbigblind
                             ,max(gt.bigBlind)                                                       AS maxbigblind
+                            ,gt.ante                                                                AS ante
+                            ,gt.currency                                                            AS currency
                             /*,<hcgametypeId>                                                       AS gtid*/
                             ,<position>                                                             AS plposition
                             ,gt.fast                                                                AS fast
@@ -4914,6 +4918,8 @@ class Sql:
                               ,pname
                               ,gt.base
                               ,gt.category
+                              ,gt.ante
+                              ,gt.currency
                               <groupbyseats>
                               ,plposition
                               ,upper(gt.limitType)
@@ -4945,6 +4951,8 @@ class Sql:
                             ,s.name                                                                 AS name
                             ,min(gt.bigBlind)                                                       AS minbigblind
                             ,max(gt.bigBlind)                                                       AS maxbigblind
+                            ,gt.ante                                                                AS ante
+                            ,gt.currency                                                            AS currency
                             /*,<hcgametypeId>                                                       AS gtid*/
                             ,<position>                                                             AS plposition
                             ,gt.fast                                                                AS fast

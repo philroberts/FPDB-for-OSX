@@ -331,16 +331,20 @@ class GuiRingPlayerStats(QSplitter):
                             maxbb = result[sqlrow][colnames.index('maxbigblind')]
                             value = result[sqlrow][colnames.index('limittype')] + ' ' \
                                     + result[sqlrow][colnames.index('category')].title() + ' ' \
-                                    + result[sqlrow][colnames.index('name')] + ' $'
+                                    + result[sqlrow][colnames.index('name')] + ' ' \
+                                    + result[sqlrow][colnames.index('currency')] + ' '
                             if 100 * int(minbb/100.0) != minbb:
                                 value += '%.2f' % (minbb/100.0)
                             else:
                                 value += '%.0f' % (minbb/100.0)
                             if minbb != maxbb:
                                 if 100 * int(maxbb/100.0) != maxbb:
-                                    value += ' - $' + '%.2f' % (maxbb/100.0)
+                                    value += ' - %.2f' % (maxbb/100.0)
                                 else:
-                                    value += ' - $' + '%.0f' % (maxbb/100.0)
+                                    value += ' - %.0f' % (maxbb/100.0)
+                            ante = result[sqlrow][colnames.index('ante')]
+                            if ante > 0:
+                                value += ' ante: %.2f' % (ante/100.0)
                             if result[sqlrow][colnames.index('fast')] == 1:
                                 value += ' ' + fast_names[result[sqlrow][colnames.index('name')]]
                     else:
