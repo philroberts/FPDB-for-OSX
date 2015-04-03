@@ -1101,9 +1101,9 @@ class Database:
     # a constant to the underlying query.
     
     def get_stats_from_hand( self, hand, type   # type is "ring" or "tour"
-                           , hud_params = {'hud_style':'A', 'agg_bb_mult':1000
+                           , hud_params = {'stat_range':'A', 'agg_bb_mult':1000
                                           ,'seats_style':'A', 'seats_cust_nums_low':1, 'seats_cust_nums_high':10 
-                                          ,'h_hud_style':'S', 'h_agg_bb_mult':1000
+                                          ,'h_stat_range':'S', 'h_agg_bb_mult':1000
                                           ,'h_seats_style':'A', 'h_seats_cust_nums_low':1, 'h_seats_cust_nums_high':10 
                                           }
                            , hero_id = -1
