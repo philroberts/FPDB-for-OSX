@@ -178,6 +178,8 @@ class GuiHandViewer(QSplitter):
     def reload_hands(self, handids):
         self.hands = {}
         self.model.removeRows(0, self.model.rowCount())
+        if len(handids) == 0:
+            return
         progress = QProgressDialog("Loading hands", "Abort", 0, len(handids), self)
         progress.setValue(0)
         progress.show()
