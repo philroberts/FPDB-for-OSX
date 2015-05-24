@@ -1504,7 +1504,7 @@
                 <location seat="7" x="11" y="352"/>
                 <location seat="8" x="1" y="277"/>
                 <location seat="9" x="6" y="65"/>
-                <location seat="10" x="159" y="11"/>
+                <location hist_seat="0" seat="10" x="159" y="11"/>
                 <location common="1" x="316" y="237"/>
             </layout>
         </ls>
