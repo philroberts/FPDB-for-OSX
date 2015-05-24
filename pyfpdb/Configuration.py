@@ -31,6 +31,7 @@ from __future__ import with_statement
 import L10n
 _ = L10n.get_translation()
 
+import codecs
 import os
 import sys
 import inspect
@@ -1100,7 +1101,7 @@ class Config:
             except:
                 pass
                 
-        with open(file, 'w') as f:
+        with codecs.open(file, 'w', 'utf-8') as f:
             #self.doc.writexml(f)
             f.write( self.wrap_long_lines( self.doc.toxml() ) )
 
