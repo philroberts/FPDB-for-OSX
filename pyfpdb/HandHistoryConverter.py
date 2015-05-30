@@ -179,12 +179,6 @@ HandHistoryConverter: '%(sitename)s'
     def setAutoPop(self, value):
         self.autoPop = value
                 
-    def progressNotify(self):
-        "A callback to the interface while events are pending"
-        import gtk, pygtk
-        while gtk.events_pending():
-            gtk.main_iteration(False)
-
     def allHandsAsList(self):
         """Return a list of handtexts in the file at self.in_path"""
         #TODO : any need for this to be generator? e.g. stars support can email one huge file of all hands in a year. Better to read bit by bit than all at once.
