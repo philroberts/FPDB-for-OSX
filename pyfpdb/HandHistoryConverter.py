@@ -24,7 +24,6 @@ import traceback
 from optparse import OptionParser
 import os
 import os.path
-import ntpath
 import xml.dom.minidom
 import codecs
 from decimal_wrapper import Decimal
@@ -521,10 +520,10 @@ or None if we fail to get the info """
 
     def getParsedObjectType(self):
         return self.parsedObjectType
-    
+
     def getBasename(self):
-        head, tail = ntpath.split(self.in_path)
-        base = tail or ntpath.basename(head)
+        head, tail = os.path.split(self.in_path)
+        base = tail or os.path.basename(head)
         return base.split('.')[0]
 
     #returns a status (True/False) indicating wether the parsing could be done correctly or not
