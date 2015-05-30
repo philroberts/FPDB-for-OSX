@@ -22,7 +22,8 @@ Mucked cards display for FreePokerTools HUD.
 
 ########################################################################
 
-#    to do
+import L10n
+_ = L10n.init_translation()
 
 #    Standard Library modules
 import logging
@@ -30,8 +31,9 @@ import logging
 log = logging.getLogger("hud")
 
 from PyQt5.QtCore import QObject
-from PyQt5.QtGui import (QPainter, QPixmap)
-from PyQt5.QtWidgets import (QLabel, QVBoxLayout)
+from PyQt5.QtGui import (QPainter, QPixmap, QStandardItem, QStandardItemModel)
+from PyQt5.QtWidgets import (QGridLayout, QLabel, QTableView,
+                             QVBoxLayout, QWidget)
 
 #    FreePokerTools modules
 import Card
@@ -67,14 +69,14 @@ class Stud_mucked(Aux_Base.Aux_Window):
 
     def create(self):
 
-        self.container = gtk.Window() 
-        self.vbox = gtk.VBox()
-        self.container.add(self.vbox)
-        self.container.set_title(self.hud.table.name)
+        self.container = QWidget()
+        self.vbox = QVBoxLayout()
+        self.container.setLayout(self.vbox)
+        self.container.setWindowTitle(self.hud.table.name)
 
         self.mucked_list.create(self.vbox)
         self.mucked_cards.create(self.vbox)
-        self.container.show_all()
+        self.container.show()
 
     def update_data(self, new_hand_id, db_connection):
 #    uncomment next line when action is available in the db
@@ -94,53 +96,14 @@ class Stud_list:
         self.hero    = hero
 
     def create(self, container):
-#       set up a scrolled window to hold the listbox
         self.container  = container
-        self.scrolled_window = gtk.ScrolledWindow()
-        self.scrolled_window.set_policy(gtk.POLICY_NEVER, gtk.POLICY_ALWAYS)
-        self.container.add(self.scrolled_window)
 
-#       create a ListStore to use as the model
-        self.liststore = gtk.ListStore(str, str, str, str)
-        self.treeview = gtk.TreeView(self.liststore)
-        self.tvcolumn0 = gtk.TreeViewColumn('HandID')
-        self.tvcolumn1 = gtk.TreeViewColumn('Cards')
-        self.tvcolumn2 = gtk.TreeViewColumn('Net')
-        self.tvcolumn3 = gtk.TreeViewColumn('Winner')
-
-#       add tvcolumn to treeview
-        self.treeview.append_column(self.tvcolumn0)
-        self.treeview.append_column(self.tvcolumn1)
-        self.treeview.append_column(self.tvcolumn2)
-        self.treeview.append_column(self.tvcolumn3)
-
-#       create a CellRendererText to render the data
-        self.cell = gtk.CellRendererText()
-
-        # add the cell to the tvcolumn and allow it to expand
-        self.tvcolumn0.pack_start(self.cell, True)
-        self.tvcolumn1.pack_start(self.cell, True)
-        self.tvcolumn2.pack_start(self.cell, True)
-        self.tvcolumn3.pack_start(self.cell, True)
-        self.tvcolumn0.add_attribute(self.cell, 'text', 0)
-        self.tvcolumn1.add_attribute(self.cell, 'text', 1)
-        self.tvcolumn2.add_attribute(self.cell, 'text', 2)
-        self.tvcolumn3.add_attribute(self.cell, 'text', 3)
-#        resize the cols if nec
-        self.tvcolumn0.set_resizable(True)
-        self.tvcolumn1.set_resizable(True)
-        self.tvcolumn2.set_resizable(True)
-        self.tvcolumn3.set_resizable(True)
-        self.treeview.connect("row-activated", self.activated_event)
-
-        self.scrolled_window.add_with_viewport(self.treeview)
-
-    def activated_event(self, path, column, data=None):
-        pass
-#        sel = self.treeview.get_selection()
-#        (model, iter)  = sel.get_selected()
-#        self.mucked_cards.update_data(model.get_value(iter, 0))
-#        self.mucked_cards.update_gui(model.get_value(iter, 0))
+        self.treeview = QTableView()
+        self.liststore = QStandardItemModel(0, 4, self.treeview)
+        self.treeview.setModel(self.liststore)
+        self.liststore.setHorizontalHeaderLabels(['HandID', 'Cards', 'Net', 'Winner'])
+        self.treeview.verticalHeader().hide()
+        self.container.addWidget(self.treeview)
         
     def update_data(self, new_hand_id, db_connection):
         """Updates the data needed for the list box."""
@@ -156,16 +119,15 @@ class Stud_list:
             winners = winners + player
         pot_dec = "%.2f" % (float(pot)/100)
 
-        hero_cards = self.get_hero_cards(self.parent.hero, self.parent.hud.cards)
+        hero_cards = self.get_hero_cards(self.parent.hero)
         self.info_row = ((new_hand_id, hero_cards, pot_dec, winners), )
 
-    def get_hero_cards(self, hero, cards):
-        """Formats the hero cards for inclusion in the tree."""
-        trans = ('0', 'A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A')
+    def get_hero_cards(self, hero):
+        """Formats the hero cards for inclusion in the table."""
         if hero == '':
             return "xxxxxx"
         else:
-#    find the hero's seat from the stat_dict
+            # find the hero's seat from the stat_dict
             for stat in self.parent.hud.stat_dict.itervalues():
                 if stat['screen_name'] == hero:
                     return Card.valueSuitFromCard(self.parent.hud.cards[stat['seat']][0]) +\
@@ -174,12 +136,9 @@ class Stud_list:
         return "xxxxxx"
             
     def update_gui(self, new_hand_id):
-        iter = self.liststore.append(self.info_row[0]) 
-        sel = self.treeview.get_selection()
-        #sel.select_iter(iter)
-
-        vadj = self.scrolled_window.get_vadjustment()
-        #vadj.set_value(vadj.upper)
+        self.liststore.appendRow(map(QStandardItem, self.info_row[0]))
+        self.treeview.resizeColumnsToContents()
+        self.treeview.horizontalHeader().setStretchLastSection(True)
 
 class Stud_cards:
     def __init__(self, parent, params, config):
@@ -187,10 +146,8 @@ class Stud_cards:
         self.parent    = parent
         self.params  = params
         self.config  = config
-#        self.db_name = db_name
 
         self.card_images = self.parent.hud.parent.deck.get_all_card_images()
-        self.seen_cards = {}
         self.grid_contents = {}
         self.eb = {}
 
@@ -199,21 +156,20 @@ class Stud_cards:
 
     def create(self, container):
         self.container  = container
-        self.grid = gtk.Table(self.rows, self.cols + 4, homogeneous = False)
+        self.grid = QGridLayout()
 
         for r in range(0, self.rows):
             for c in range(0, self.cols):
                 # Start by creating a box of nothing but card backs
-                self.seen_cards[(c, r)] = gtk.image_new_from_pixbuf(self.card_images[0].copy())
-                self.eb[(c, r)]= gtk.EventBox()
+                self.eb[(c, r)]= QLabel()
+                self.eb[(c, r)].setPixmap(self.card_images[0])
 
 #    set up the contents for the cells
         for r in range(0, self.rows):
-            self.grid_contents[( 0, r)] = gtk.Label("%d" % (r + 1))
-            self.grid_contents[( 1, r)] = gtk.Label("player %d" % (r + 1))
-            self.grid_contents[( 1, r)].set_property("width-chars", 12)
-            self.grid_contents[( 4, r)] = gtk.Label("-")
-            self.grid_contents[( 9, r)] = gtk.Label("-")
+            self.grid_contents[( 0, r)] = QLabel("%d" % (r + 1))
+            self.grid_contents[( 1, r)] = QLabel("player %d" % (r + 1))
+            self.grid_contents[( 4, r)] = QLabel("-")
+            self.grid_contents[( 9, r)] = QLabel("-")
             self.grid_contents[( 2, r)] = self.eb[( 0, r)]
             self.grid_contents[( 3, r)] = self.eb[( 1, r)]
             self.grid_contents[( 5, r)] = self.eb[( 2, r)]
@@ -221,19 +177,18 @@ class Stud_cards:
             self.grid_contents[( 7, r)] = self.eb[( 4, r)]
             self.grid_contents[( 8, r)] = self.eb[( 5, r)]
             self.grid_contents[(10, r)] = self.eb[( 6, r)]
-            for c in range(0, self.cols):
-                self.eb[(c, r)].add(self.seen_cards[(c, r)])
             
 #    add the cell contents to the table
         for c in range(0, self.cols + 4):
             for r in range(0, self.rows):
-                self.grid.attach(self.grid_contents[(c, r)], c, c+1, r, r+1, xpadding = 1, ypadding = 1)
-                
-        self.container.add(self.grid)
+                self.grid.addWidget(self.grid_contents[(c, r)], r, c)
+
+        self.container.addLayout(self.grid)
 
     def update_data(self, new_hand_id, db_connection):
         self.tips = []
         action = db_connection.get_action_from_hand(new_hand_id)
+        print action
         for street in action:
             temp = ''
             for act in street:
@@ -251,16 +206,15 @@ class Stud_cards:
         self.clear()
         for c, cards in self.parent.hud.cards.iteritems():
             if c == 'common': continue
-            self.grid_contents[(1, c - 1)].set_text(self.get_screen_name(c))
+            self.grid_contents[(1, c - 1)].setText(self.get_screen_name(c))
             for i in ((0, cards[0]), (1, cards[1]), (2, cards[2]), (3, cards[3]), 
                       (4, cards[4]), (5, cards[5]), (6, cards[6])):
                 if not i[1] == 0:
                     # Pixmaps are stored in dict with rank+suit keys
                     (_rank, _suit) = Card.valueSuitFromCard(i[1])
                     _rank = Card.card_map[_rank]
-                    px = self.card_images[_suit][_rank].copy()
-                    self.seen_cards[(i[0], c - 1)].set_from_pixbuf(px)
-##    action in tool tips for 3rd street cards
+                    self.eb[(i[0], c - 1)].setPixmap(self.card_images[_suit][_rank])
+        #    action in tool tips for 3rd street cards
         for c in (0, 1, 2):
             for r in range(0, self.rows):
                 #self.eb[(c, r)].set_tooltip_text(self.tips[0])
@@ -281,11 +235,10 @@ class Stud_cards:
 
     def clear(self):
         for r in range(0, self.rows):
-            self.grid_contents[(1, r)].set_text("             ")
+            self.grid_contents[(1, r)].setText("             ")
             for c in range(0, 7):
                 # Start by creating a box of nothing but card backs
-                self.seen_cards[(c, r)].set_from_pixbuf(self.card_images[0].copy())
-                self.eb[(c, r)].set_tooltip_text('')
+                self.eb[(c, r)].setPixmap(self.card_images[0])
 
 class Flop_Mucked(Aux_Base.Aux_Seats, QObject):
     """Aux_Window class for displaying mucked cards for flop games."""
@@ -304,7 +257,7 @@ class Flop_Mucked(Aux_Base.Aux_Seats, QObject):
         self.positions["common"] = self.create_scale_position(x, y)
         w.move(self.positions["common"][0]+ self.hud.table.x,
                 self.positions["common"][1]+ self.hud.table.y)
-        if self.params.has_key('opacity'):
+        if 'opacity' in self.params:
             w.setWindowOpacity(float(self.params['opacity']))
         return w
 
@@ -325,7 +278,7 @@ class Flop_Mucked(Aux_Base.Aux_Seats, QObject):
             hist_seat = self.hud.layout.hh_seats[i]
         else:
             hist_seat = i
-        if not self.hud.cards.has_key(hist_seat): return
+        if hist_seat not in self.hud.cards: return
         
         cards = self.hud.cards[hist_seat]
         # Here we want to know how many cards the given seat showed;
@@ -334,17 +287,17 @@ class Flop_Mucked(Aux_Base.Aux_Seats, QObject):
         # (card_num, card_num, ...)
         n_cards = valid_cards(cards)
         if n_cards > 1:
-#    scratch is a working pixmap, used to assemble the image
+            # scratch is a working pixmap, used to assemble the image
             scratch = QPixmap(int(self.card_width) * n_cards,
                               int(self.card_height))
             painter = QPainter(scratch)
             x = 0 # x coord where the next card starts in scratch
             for card in cards:
-#    concatenate each card image to scratch
+                # concatenate each card image to scratch
                 # flop game never(?) has unknown cards.
                 # FIXME: if "show one and fold" ever becomes an option,
                 # this needs to be changed
-                if card == None or card ==0:
+                if card is None or card == 0:
                     break
 
                 # This gives us the card symbol again
@@ -365,7 +318,6 @@ class Flop_Mucked(Aux_Base.Aux_Seats, QObject):
             self.displayed = True
             if i != "common":
                 id = self.get_id_from_seat(i)
-                # sc: had KeyError here with new table so added id != None test as a guess:
                 if id is not None:
                     self.m_windows[i].setToolTip(self.hud.stat_dict[id]['screen_name'])
                     
@@ -376,7 +328,7 @@ class Flop_Mucked(Aux_Base.Aux_Seats, QObject):
             if i == 'common':
                 new_locs[i] = ((pos[0]), (pos[1]))
             else:
-                #seat positions are owned by the aux controlling the stat block
+                # seat positions are owned by the aux controlling the stat block
                 # we share the locations from that aux, so don't write-back their
                 # locations here
                 pass
@@ -406,21 +358,21 @@ class Flop_Mucked(Aux_Base.Aux_Seats, QObject):
         """Handle button clicks in the event boxes."""
 
         if event.button == 2:   # middle button event, hold display (do not timeout)
-            if self.timer_on == True:  self.timer_on = False
+            if self.timer_on:  self.timer_on = False
             else: self.timer_on = False;  self.hide()
         elif event.button == 1 and i == "common":   # left button event (move)
             # firstly, cancel timer, otherwise block becomes locked if move event
             #   is happening when timer eventually times-out
-            if self.timer_on == True:  self.timer_on = False
-            #only allow move on "common" element - seat block positions are 
+            if self.timer_on:  self.timer_on = False
+            # only allow move on "common" element - seat block positions are
             # determined by aux_hud, not mucked card display
             window = widget.get_parent()
             window.begin_move_drag(event.button, int(event.x_root), int(event.y_root), event.time)
 
     def expose_all(self):
-        for (i, cards) in self.hud.cards.iteritems():
+        for i in self.hud.cards:
             self.m_windows[i].show()
             self.m_windows[i].move(self.positions[i][0] + self.hud.table.x,
-                                self.positions[i][1] + self.hud.table.y)   # here is where I move back
+                                   self.positions[i][1] + self.hud.table.y)
             self.displayed = True
 
