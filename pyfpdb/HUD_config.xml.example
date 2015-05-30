@@ -697,6 +697,14 @@
                 <location seat="2" x="2" y="221"/>
                 <location common="1" x="323" y="232"/>
             </layout>
+            <layout height="547" max="5" width="794">
+                <location seat="1" x="623" y="184"/>
+                <location seat="2" x="675" y="374"/>
+                <location seat="3" x="429" y="424"/>
+                <location seat="4" x="42" y="373"/>
+                <location seat="5" x="23" y="183"/>
+                <location common="1" x="323" y="232"/>
+            </layout>
             <layout height="547" max="6" width="794">
                 <location seat="1" x="623" y="184"/>
                 <location seat="2" x="675" y="374"/>
