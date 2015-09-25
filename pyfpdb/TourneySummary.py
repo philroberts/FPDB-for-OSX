@@ -186,7 +186,7 @@ class TourneySummary(object):
                  (_("SNG"), self.isSng),
                  (_("SATELLITE"), self.isSatellite),
                  (_("DOUBLE OR NOTHING"), self.isDoubleOrNothing),
-                 (_("GUARANTEE"), self.guarantee),
+                 (_("GUARANTEEAMT"), self.guaranteeAmt),
                  (_("ADDED"), self.added),
                  (_("ADDED CURRENCY"), self.addedCurrency),
                  (_("COMMENT"), self.comment),
