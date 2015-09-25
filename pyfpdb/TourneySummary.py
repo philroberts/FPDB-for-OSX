@@ -360,4 +360,3 @@ winnings    (int) the money the player ended the tourney with (can be 0, or -1 i
                 log.warning("TS.readFile: '%s' : '%s'" % (filename, e))
 
         return whole_file
-        
