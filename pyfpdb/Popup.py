@@ -70,7 +70,7 @@ class Popup(QWidget):
             parentview = NSView(c_void_p=parentcvp)
             parentview.window().addChildWindow_ordered_(selfview.window(), NSWindowAbove)
         else:
-            self.windowHandle().setTransientParent(self.parent.windowHandle())
+            self.windowHandle().setTransientParent(self.parent().windowHandle())
         parent.destroyed.connect(self.destroy)
         self.move(QCursor.pos())
 
