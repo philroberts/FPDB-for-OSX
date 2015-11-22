@@ -34,7 +34,10 @@ try:
     calluse = not 'matplotlib' in sys.modules
     import matplotlib
     if calluse:
-        matplotlib.use('qt5agg')
+        try:
+            matplotlib.use('qt5agg')
+        except ValueError, e:
+            print e
     from matplotlib.figure import Figure
     from matplotlib.backends.backend_qt5agg import FigureCanvas
     from matplotlib.font_manager import FontProperties
