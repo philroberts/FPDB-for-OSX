@@ -1895,7 +1895,7 @@ class Database:
                       ,h.seats as seat_num
                       <hc_position>
                       <tourney_select_clause>
-                      ,<styleKey>"""
+                      <styleKey>"""
                           
             group = """h.gametypeId
                         ,hp.playerId
@@ -1908,30 +1908,35 @@ class Database:
             query = query.replace('<select>', select)
             query = query.replace('<group>', group)
             query = query.replace('<sessions_join_clause>', "")
-        
-            query = query.replace('<hc_position>', """,case when hp.position = 'B' then 'B'
-                        when hp.position = 'S' then 'S'
-                        when hp.position = '0' then 'D'
-                        when hp.position = '1' then 'C'
-                        when hp.position = '2' then 'M'
-                        when hp.position = '3' then 'M'
-                        when hp.position = '4' then 'M'
-                        when hp.position = '5' then 'E'
-                        when hp.position = '6' then 'E'
-                        when hp.position = '7' then 'E'
-                        when hp.position = '8' then 'E'
-                        when hp.position = '9' then 'E'
-                        else 'E'
-                   end                                            as hc_position""")
-            if self.backend == self.PGSQL:
-                query = query.replace('<styleKey>', "'d' || to_char(h.startTime, 'YYMMDD')")
-                query = query.replace('<styleKeyGroup>', ",to_char(h.startTime, 'YYMMDD')")
-            elif self.backend == self.SQLITE:
-                query = query.replace('<styleKey>', "'d' || substr(strftime('%Y%m%d', h.startTime),3,7)")
-                query = query.replace('<styleKeyGroup>', ",substr(strftime('%Y%m%d', h.startTime),3,7)")
-            elif self.backend == self.MYSQL_INNODB:
-                query = query.replace('<styleKey>', "date_format(h.startTime, 'd%y%m%d')")
-                query = query.replace('<styleKeyGroup>', ",date_format(h.startTime, 'd%y%m%d')")
+            
+            if self.build_full_hudcache:        
+                query = query.replace('<hc_position>', """,case when hp.position = 'B' then 'B'
+                            when hp.position = 'S' then 'S'
+                            when hp.position = '0' then 'D'
+                            when hp.position = '1' then 'C'
+                            when hp.position = '2' then 'M'
+                            when hp.position = '3' then 'M'
+                            when hp.position = '4' then 'M'
+                            when hp.position = '5' then 'E'
+                            when hp.position = '6' then 'E'
+                            when hp.position = '7' then 'E'
+                            when hp.position = '8' then 'E'
+                            when hp.position = '9' then 'E'
+                            else 'E'
+                       end                                            as hc_position""")
+                if self.backend == self.PGSQL:
+                    query = query.replace('<styleKey>', ",'d' || to_char(h.startTime, 'YYMMDD')")
+                    query = query.replace('<styleKeyGroup>', ",to_char(h.startTime, 'YYMMDD')")
+                elif self.backend == self.SQLITE:
+                    query = query.replace('<styleKey>', ",'d' || substr(strftime('%Y%m%d', h.startTime),3,7)")
+                    query = query.replace('<styleKeyGroup>', ",substr(strftime('%Y%m%d', h.startTime),3,7)")
+                elif self.backend == self.MYSQL_INNODB:
+                    query = query.replace('<styleKey>', ",date_format(h.startTime, 'd%y%m%d')")
+                    query = query.replace('<styleKeyGroup>', ",date_format(h.startTime, 'd%y%m%d')")
+            else:
+                query = query.replace('<hc_position>', ",'0' as hc_position")
+                query = query.replace('<styleKey>', ",'A000000' as styleKey")
+                query = query.replace('<styleKeyGroup>', ',styleKey')
             
             if type == 'tour':
                 query = query.replace('<tourney_insert_clause>', ",tourneyTypeId")
@@ -2550,9 +2555,9 @@ class Database:
                 k =   (gid
                       ,pids[p]
                       ,seats
-                      ,position
+                      ,position if self.build_full_hudcache else '0'
                       ,player_stats['tourneyTypeId']
-                      ,styleKey
+                      ,styleKey if self.build_full_hudcache else 'A000000'
                       )
                 player_stats['hands'] = 1
                 line = [int(player_stats[s]) for s in CACHE_KEYS]
@@ -3480,7 +3485,7 @@ class Database:
                     statement = 'clear%sTourneyType' % t
                     clear  = self.sql.query[statement].replace('%s', self.sql.query['placeholder'])
                     cursor.execute(clear, (ttid,))
-                self.commit()
+                self.commit()                
                 cursor.execute(select, (ttid,))
                 result=cursor.fetchone()
                 if not result:

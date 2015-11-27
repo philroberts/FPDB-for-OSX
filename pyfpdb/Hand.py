@@ -340,23 +340,17 @@ class Hand(object):
         
     def updateSessionsCache(self, db, tz, doinsert = False):
         """ Function to update the SessionsCache"""
-        if self.cacheSessions:
-            heroes = []
-            if self.hero in self.dbid_pids:
-                heroes = [self.dbid_pids[self.hero]]
-            else:
-                heroes = [self.dbid_pids[self.players[0][1]]]
-                
+        if self.hero in self.dbid_pids:
+            heroes = [self.dbid_pids[self.hero]]
             db.storeSessionsCache(self.dbid_hands, self.dbid_pids, self.startTime, self.tourneyId, heroes, tz, doinsert) 
-            db.storeCashCache(self.dbid_hands, self.dbid_pids, self.startTime, self.dbid_gt, self.gametype, self.handsplayers, heroes, self.hero, doinsert)
-            db.storeTourCache(self.dbid_hands, self.dbid_pids, self.startTime, self.tourneyId, self.gametype, self.handsplayers, heroes, self.hero, doinsert)
+            if self.cacheSessions:
+                db.storeCashCache(self.dbid_hands, self.dbid_pids, self.startTime, self.dbid_gt, self.gametype, self.handsplayers, heroes, self.hero, doinsert)
+                db.storeTourCache(self.dbid_hands, self.dbid_pids, self.startTime, self.tourneyId, self.gametype, self.handsplayers, heroes, self.hero, doinsert)
             
     def updateCardsCache(self, db, tz, doinsert = False):
         """ Function to update the CardsCache"""
-        if self.cacheSessions:
-            heroes = []
-            if self.hero in self.dbid_pids: 
-                heroes = [self.dbid_pids[self.hero]]
+        if self.cacheSessions and self.hero in self.dbid_pids:
+            heroes = [self.dbid_pids[self.hero]]
             db.storeCardsCache(self.dbid_hands, self.dbid_pids, self.startTime,
                                self.dbid_gt, self.tourneyTypeId, self.gametype,
                                self.siteId, self.handsplayers, self.handsstove,
@@ -364,10 +358,8 @@ class Hand(object):
                 
     def updatePositionsCache(self, db, tz, doinsert = False):
         """ Function to update the PositionsCache"""
-        if self.cacheSessions:
-            heroes = []
-            if self.hero in self.dbid_pids: 
-                heroes = [self.dbid_pids[self.hero]]
+        if self.cacheSessions and self.hero in self.dbid_pids:
+            heroes = [self.dbid_pids[self.hero]]
             db.storePositionsCache(self.dbid_hands, self.dbid_pids, self.startTime,
                                    self.dbid_gt, self.tourneyTypeId, self.gametype,
                                    self.siteId, self.handsplayers, heroes,
