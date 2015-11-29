@@ -438,6 +438,7 @@ class Sql:
                             importTime DATETIME NOT NULL,
                             seats TINYINT NOT NULL,
                             heroSeat TINYINT NOT NULL,
+                            maxPosition TINYINT NOT NULL,
                             boardcard1 smallint,  /* 0=none, 1-13=2-Ah 14-26=2-Ad 27-39=2-Ac 40-52=2-As */
                             boardcard2 smallint,
                             boardcard3 smallint,
@@ -478,6 +479,7 @@ class Sql:
                             importTime timestamp without time zone NOT NULL,
                             seats SMALLINT NOT NULL,
                             heroSeat SMALLINT NOT NULL,
+                            maxPosition SMALLINT NOT NULL,
                             boardcard1 smallint,  /* 0=none, 1-13=2-Ah 14-26=2-Ad 27-39=2-Ac 40-52=2-As */
                             boardcard2 smallint,
                             boardcard3 smallint,
@@ -517,6 +519,7 @@ class Sql:
                             importTime REAL NOT NULL,
                             seats INT NOT NULL,
                             heroSeat INT NOT NULL,
+                            maxPosition INT NOT NULL,
                             boardcard1 INT,  /* 0=none, 1-13=2-Ah 14-26=2-Ad 27-39=2-Ac 40-52=2-As */
                             boardcard2 INT,
                             boardcard3 INT,
@@ -8969,6 +8972,7 @@ class Sql:
                                             importtime,
                                             seats,
                                             heroSeat,
+                                            maxPosition,
                                             texture,
                                             playersVpi,
                                             boardcard1,
@@ -8998,7 +9002,7 @@ class Sql:
                                               (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
                                                %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
                                                %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
-                                               %s)"""
+                                               %s, %s)"""
 
 
         self.query['store_hands_players'] = """insert into HandsPlayers (

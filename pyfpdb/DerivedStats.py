@@ -163,6 +163,7 @@ class DerivedStats():
         self.hands['startTime']     = hand.startTime          # format this!
         self.hands['importTime']    = None
         self.hands['seats']         = self.countPlayers(hand) 
+        self.hands['maxPosition']   = -1
         #self.hands['maxSeats']      = hand.maxseats
         self.hands['texture']       = None                    # No calculation done for this yet.
         self.hands['tourneyId']     = hand.tourneyId
@@ -680,6 +681,7 @@ class DerivedStats():
         #print "DEBUG: bb: '%s' sb: '%s' bi: '%s' plyrs: '%s'" %(bb, sb, bi, players)
         for i,player in enumerate(reversed(players)):
             self.handsplayers[player]['position'] = i
+            self.hands['maxPosition'] = i
 
     def assembleHudCache(self, hand):
         # No real work to be done - HandsPlayers data already contains the correct info

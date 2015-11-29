@@ -77,7 +77,7 @@ except ImportError:
     use_numpy = False
 
 
-DB_VERSION = 191
+DB_VERSION = 192
 
 # Variance created as sqlite has a bunch of undefined aggregate functions.
 
@@ -2410,6 +2410,7 @@ class Database:
                              datetime.utcnow(), #importtime
                              hdata['seats'],
                              hdata['heroSeat'],
+                             hdata['maxPosition'],
                              hdata['texture'],
                              hdata['playersVpi'],
                              hdata['boardcard1'],
