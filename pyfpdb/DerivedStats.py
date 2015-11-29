@@ -202,14 +202,15 @@ class DerivedStats():
             cards = [Card.encodeCard(c) for c in boardcards[-5:]]
             self.hands['boards'] += [[boardId] + cards]
 
-        #print "DEBUG: self.getStreetTotals = (%s, %s, %s, %s, %s)" %  hand.getStreetTotals()
+        #print "DEBUG: %s self.getStreetTotals = (%s, %s, %s, %s, %s, %s)" %  tuple([hand.handid] + list(hand.getStreetTotals()))
         totals = hand.getStreetTotals()
-        totals = [int(100*i) for i in totals]
-        self.hands['street1Pot']  = totals[0]
-        self.hands['street2Pot']  = totals[1]
-        self.hands['street3Pot']  = totals[2]
-        self.hands['street4Pot']  = totals[3]
-        self.hands['showdownPot'] = totals[4]
+        totals = [int(100*i) for i in totals]        
+        self.hands['street0Pot']  = totals[0]
+        self.hands['street1Pot']  = totals[1]
+        self.hands['street2Pot']  = totals[2]
+        self.hands['street3Pot']  = totals[3]
+        self.hands['street4Pot']  = totals[4]
+        self.hands['finalPot'] = totals[5]
 
         self.vpip(hand) # Gives playersVpi (num of players vpip)
         #print "DEBUG: vpip: %s" %(self.hands['playersVpi'])

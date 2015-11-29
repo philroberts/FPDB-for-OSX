@@ -1001,7 +1001,13 @@ class Hand(object):
         return "%s%s/%s%s" % (self.sym, self.sb, self.sym, self.bb)
 
     def getStreetTotals(self):
-        pass
+        tmp, i = [0, 0, 0, 0, 0, 0], 0
+        for street in self.allStreets:
+            if street != 'BLINDSANTES':
+                tmp[i] = self.pot.getTotalAtStreet(street)
+                i+=1
+        tmp[5] = sum(self.pot.committed.values()) + sum(self.pot.common.values())
+        return tmp
 
     def writeGameLine(self):
         """Return the first HH line for the current hand."""
@@ -1129,19 +1135,6 @@ class HoldemOmahaHand(Hand):
                     self.addHoleCards('PREFLOP', player, open=[], closed=diff, shown=shown, mucked=mucked, dealt=dealt)
         if string is not None:
             self.showdownStrings[player] = string
-
-    def getStreetTotals(self):
-        # street1Pot INT,                  /* pot size at flop/street4 */
-        # street2Pot INT,                  /* pot size at turn/street5 */
-        # street3Pot INT,                  /* pot size at river/street6 */
-        # street4Pot INT,                  /* pot size at sd/street7 */
-        # showdownPot INT,                 /* pot size at sd/street7 */
-        tmp1 = self.pot.getTotalAtStreet('FLOP')
-        tmp2 = self.pot.getTotalAtStreet('TURN')
-        tmp3 = self.pot.getTotalAtStreet('RIVER')
-        tmp4 = 0
-        tmp5 = 0
-        return (tmp1,tmp2,tmp3,tmp4,tmp5)
 
     def join_holecards(self, player, asList=False):
         holeNo = Card.games[self.gametype['category']][5][0][1]
@@ -1344,14 +1337,6 @@ class DrawHand(Hand):
         nc = set(nc)
         oc = set(oc)
         return (nc, oc)
-
-    def getStreetTotals(self):
-        # street1Pot INT,                  /* pot size at flop/street4 */
-        # street2Pot INT,                  /* pot size at turn/street5 */
-        # street3Pot INT,                  /* pot size at river/street6 */
-        # street4Pot INT,                  /* pot size at sd/street7 */
-        # showdownPot INT,                 /* pot size at sd/street7 */
-        return (0,0,0,0,0)
 
     def join_holecards(self, player, asList=False, street=False):
         """With asList = True it returns the set cards for a player including down cards if they aren't know"""
@@ -1582,15 +1567,6 @@ class StudHand(Hand):
             self.actions[street].append(act)
             self.lastBet[street] = bringin
             self.pot.addMoney(player, bringin)
-
-    def getStreetTotals(self):
-        # street1Pot INT,                  /* pot size at flop/street4 */
-        # street2Pot INT,                  /* pot size at turn/street5 */
-        # street3Pot INT,                  /* pot size at river/street6 */
-        # street4Pot INT,                  /* pot size at sd/street7 */
-        # showdownPot INT,                 /* pot size at sd/street7 */
-        return (0,0,0,0,0)
-
 
     def writeHand(self, fh=sys.__stdout__):
         # PokerStars format.

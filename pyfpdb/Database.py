@@ -77,7 +77,7 @@ except ImportError:
     use_numpy = False
 
 
-DB_VERSION = 190
+DB_VERSION = 191
 
 # Variance created as sqlite has a bunch of undefined aggregate functions.
 
@@ -1596,7 +1596,7 @@ class Database:
         c.execute(self.sql.query['addEffStackIndex'])
         c.execute(self.sql.query['addTotalProfitIndex'])
         c.execute(self.sql.query['addWinningsIndex'])
-        c.execute(self.sql.query['addShowdownPotIndex'])
+        c.execute(self.sql.query['addFinalPotIndex'])
         c.execute(self.sql.query['addStreetIndex'])
         c.execute(self.sql.query['addStreetIdIndex'])
         c.execute(self.sql.query['addCashCacheCompundIndex'])
@@ -2428,11 +2428,12 @@ class Database:
                              hdata['street2Raises'],
                              hdata['street3Raises'],
                              hdata['street4Raises'],
+                             hdata['street0Pot'],
                              hdata['street1Pot'],
                              hdata['street2Pot'],
                              hdata['street3Pot'],
                              hdata['street4Pot'],
-                             hdata['showdownPot']
+                             hdata['finalPot']
                              ])
 
         if doinsert:

@@ -456,11 +456,12 @@ class Sql:
                             street2Raises TINYINT NOT NULL, /* num big bets paid to see river/street6 */
                             street3Raises TINYINT NOT NULL, /* num big bets paid to see sd/street7 */
                             street4Raises TINYINT NOT NULL, /* num big bets paid to see showdown */
+                            street0Pot BIGINT,                  /* pot size at pre-flop/street2 */
                             street1Pot BIGINT,                  /* pot size at flop/street4 */
                             street2Pot BIGINT,                  /* pot size at turn/street5 */
                             street3Pot BIGINT,                  /* pot size at river/street6 */
                             street4Pot BIGINT,                  /* pot size at sd/street7 */
-                            showdownPot BIGINT,                 /* pot size at sd/street7 */
+                            finalPot   BIGINT,                  /* final pot size */
                             comment TEXT,
                             commentTs DATETIME)
                         ENGINE=INNODB"""
@@ -495,11 +496,12 @@ class Sql:
                             street2Raises SMALLINT NOT NULL, /* num big bets paid to see river/street6 */
                             street3Raises SMALLINT NOT NULL, /* num big bets paid to see sd/street7 */
                             street4Raises SMALLINT NOT NULL, /* num big bets paid to see showdown */
+                            street0Pot BIGINT,                 /* pot size at preflop/street3 */
                             street1Pot BIGINT,                 /* pot size at flop/street4 */
                             street2Pot BIGINT,                 /* pot size at turn/street5 */
                             street3Pot BIGINT,                 /* pot size at river/street6 */
                             street4Pot BIGINT,                 /* pot size at sd/street7 */
-                            showdownPot BIGINT,                /* pot size at sd/street7 */
+                            finalPot   BIGINT,                 /* final pot size */
                             comment TEXT,
                             commentTs timestamp without time zone)"""
         elif db_server == 'sqlite':
@@ -533,11 +535,12 @@ class Sql:
                             street2Raises INT NOT NULL, /* num big bets paid to see river/street6 */
                             street3Raises INT NOT NULL, /* num big bets paid to see sd/street7 */
                             street4Raises INT NOT NULL, /* num big bets paid to see showdown */
+                            street0Pot INT,                 /* pot size at preflop/street3 */
                             street1Pot INT,                 /* pot size at flop/street4 */
                             street2Pot INT,                 /* pot size at turn/street5 */
                             street3Pot INT,                 /* pot size at river/street6 */
                             street4Pot INT,                 /* pot size at sd/street7 */
-                            showdownPot INT,                /* pot size at sd/street7 */
+                            finalPot INT,                   /* final pot size */
                             comment TEXT,
                             commentTs REAL)"""
                             
@@ -3640,11 +3643,11 @@ class Sql:
             self.query['addWinningsIndex'] = """CREATE INDEX winnings_idx ON HandsPlayers (winnings)"""
             
         if db_server == 'mysql':
-            self.query['addShowdownPotIndex'] = """ALTER TABLE Hands ADD INDEX pot_idx (showdownPot)"""
+            self.query['addFinalPotIndex'] = """ALTER TABLE Hands ADD INDEX pot_idx (finalPot)"""
         elif db_server == 'postgresql':
-            self.query['addShowdownPotIndex'] = """CREATE INDEX pot_idx ON Hands (showdownPot)"""
+            self.query['addFinalPotIndex'] = """CREATE INDEX pot_idx ON Hands (finalPot)"""
         elif db_server == 'sqlite':
-            self.query['addShowdownPotIndex'] = """CREATE INDEX pot_idx ON Hands (showdownPot)"""
+            self.query['addFinalPotIndex'] = """CREATE INDEX pot_idx ON Hands (finalPot)"""
             
         if db_server == 'mysql':
             self.query['addStreetIndex'] = """ALTER TABLE HandsStove ADD INDEX street_idx (streetId, boardId)"""
@@ -8984,16 +8987,18 @@ class Sql:
                                             street2Raises,
                                             street3Raises,
                                             street4Raises,
+                                            street0Pot,
                                             street1Pot,
                                             street2Pot,
                                             street3Pot,
                                             street4Pot,
-                                            showdownPot
+                                            finalPot
                                              )
                                              values
                                               (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
                                                %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
-                                               %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
+                                               %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
+                                               %s)"""
 
 
         self.query['store_hands_players'] = """insert into HandsPlayers (
