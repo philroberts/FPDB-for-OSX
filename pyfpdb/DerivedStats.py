@@ -38,6 +38,8 @@ def _buildStatsInitializer():
     # All stud street4 need this when importing holdem
     init['effStack']    = 0
     init['played']      = 0
+    init['common']      = 0
+    init['committed']   = 0
     init['winnings']    = 0
     init['rake']        = 0
     init['rakeDealt']   = 0
@@ -256,15 +258,14 @@ class DerivedStats():
 
         # Winnings is a non-negative value of money collected from the pot, which already includes the
         # rake taken out. hand.collectees is Decimal, database requires cents
-        num_collectees = len(hand.collectees)
+        num_collectees, i = len(hand.collectees), 0
         for player, winnings in hand.collectees.iteritems():
             collectee_stats = self.handsplayers.get(player)
             collectee_stats['winnings'] = int(100 * winnings)
-            #FIXME: This is pretty dodgy, rake = hand.rake/#collectees
-            # You can really only pay rake when you collect money, but
-            # different sites calculate rake differently.
-            # Should be fine for split-pots, but won't be accurate for multi-way pots
-            collectee_stats['rake'] = int(100 * hand.rake)/num_collectees
+            # Splits evenly on split pots and gives remainder to first player
+            # Gets overwritten when calculating multi-way pots in assembleHandsPots
+            rake = int(100 * hand.rake)/num_collectees
+            collectee_stats['rake'] = rake + ((int(100 * hand.rake) % rake) if (i==0 and rake>0) else 0)
             if collectee_stats['street1Seen'] == True:
                 collectee_stats['wonWhenSeenStreet1'] = True
             if collectee_stats['street2Seen'] == True:
@@ -275,22 +276,34 @@ class DerivedStats():
                 collectee_stats['wonWhenSeenStreet4'] = True
             if collectee_stats['sawShowdown'] == True:
                 collectee_stats['wonAtSD'] = True
+            i+=1
         
-        contributed = []
+        contributed, i, weightedTotal, firstPlayer = [], 0, 0, None
         for player, money_committed in hand.pot.committed.iteritems():
             committed_player_stats = self.handsplayers.get(player)
             paid = (100 * money_committed) + (100*hand.pot.common[player])
+            committed_player_stats['common'] = int(100 * hand.pot.common[player])
+            committed_player_stats['committed'] = int(100 * money_committed) 
             committed_player_stats['totalProfit'] = int(committed_player_stats['winnings'] - paid)
-            committed_player_stats['allInEV'] = committed_player_stats['totalProfit']
-            committed_player_stats['rakeDealt'] = int(100* hand.rake)/len(hand.players)
+            committed_player_stats['allInEV'] = committed_player_stats['totalProfit']            
+            rakeDealt = int(100* hand.rake)/len(hand.players)            
+            committed_player_stats['rakeDealt'] = rakeDealt + ((int(100 * hand.rake) % rakeDealt) if (i==0 and rakeDealt>0) else 0)
             if paid > 0: contributed.append(player)
+            if i==0: firstPlayer = player
             if hand.totalpot>0:
-                committed_player_stats['rakeWeighted'] = int((100* hand.rake) * (paid/(100*hand.totalpot)))
+                rakeWeighted =  int((100* hand.rake) * (paid/(100*hand.totalpot))) 
+                committed_player_stats['rakeWeighted'] = rakeWeighted
+                weightedTotal += rakeWeighted
             else:
-                committed_player_stats['rakeWeighted'] = 0
+                committed_player_stats['rakeWeighted'] = 0;
+            i+=1
             
-        for player in contributed:
-            self.handsplayers[player]['rakeContributed'] = int(100* hand.rake)/len(contributed)
+        if weightedTotal < int(100* hand.rake):
+            self.handsplayers.get(firstPlayer)['rakeWeighted'] += (int(100* hand.rake) - weightedTotal)
+           
+        for i, player in enumerate(contributed):
+            rakeContributed = int(100* hand.rake)/len(contributed)
+            self.handsplayers[player]['rakeContributed'] = rakeContributed + ((int(100 * hand.rake) % rakeContributed) if (i==0 and rakeContributed>0) else 0)            
             
         for player in hand.players:
             player_name = player[1]
@@ -619,6 +632,7 @@ class DerivedStats():
                                     potFound[pname][0] += ppot
                                     data = {'potId': potId, 'boardId': boardId, 'hiLo': hl,'ppot':ppot, 'winners': [m for m in pnames if pname!=n], 'mod': ppot>potSplit}
                                     playersPots[pname][1].append(data)
+                                    self.handsplayers[pname]['rake'] = 0
         
             for p, (total, info) in playersPots.iteritems():
                 if hand.collectees.get(p) and info:
@@ -646,6 +660,7 @@ class DerivedStats():
                         potFound[p][1] -= collected
                         insert = [None, item['potId'], item['boardId'], item['hiLo'][0], hand.dbid_pids[p], int(item['ppot']*100), int(collected*100), int(rake*100)]   
                         self.handspots.append(insert)
+                        self.handsplayers[p]['rake'] += int(rake*100)
 
     def setPositions(self, hand):
         """Sets the position for each player in HandsPlayers

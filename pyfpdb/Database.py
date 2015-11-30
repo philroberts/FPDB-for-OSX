@@ -77,7 +77,7 @@ except ImportError:
     use_numpy = False
 
 
-DB_VERSION = 192
+DB_VERSION = 193
 
 # Variance created as sqlite has a bunch of undefined aggregate functions.
 
@@ -125,6 +125,8 @@ HANDS_PLAYERS_KEYS = [
     'card19',
     'card20',
     'played',
+    'common',
+    'committed',
     'winnings',
     'rake',
     'rakeDealt',

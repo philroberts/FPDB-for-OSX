@@ -821,6 +821,8 @@ class Sql:
                         startCards SMALLINT UNSIGNED, FOREIGN KEY (startCards) REFERENCES StartCards(id),
                         
                         played INT,
+                        common BIGINT NOT NULL,
+                        committed BIGINT NOT NULL,                        
                         winnings BIGINT NOT NULL,
                         rake BIGINT NOT NULL,
                         rakeDealt BIGINT NOT NULL,
@@ -980,6 +982,8 @@ class Sql:
                         startCards smallint, FOREIGN KEY (startCards) REFERENCES StartCards(id),
 
                         played INT,
+                        common BIGINT NOT NULL,
+                        committed BIGINT NOT NULL,
                         winnings BIGINT NOT NULL,
                         rake BIGINT NOT NULL,
                         rakeDealt BIGINT NOT NULL,
@@ -1138,6 +1142,8 @@ class Sql:
                         startCards INT,
                     
                         played INT,
+                        common INT NOT NULL,
+                        committed INT NOT NULL,
                         winnings INT NOT NULL,
                         rake INT NOT NULL,
                         rakeDealt INT NOT NULL,
@@ -9033,6 +9039,8 @@ class Sql:
                 card19,
                 card20,
                 played,
+                common,
+                committed,
                 winnings,
                 rake,
                 rakeDealt,
@@ -9172,7 +9180,7 @@ class Sql:
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
-                    %s, %s
+                    %s, %s, %s, %s
                 )"""
 
         self.query['store_hands_actions'] = """insert into HandsActions (
