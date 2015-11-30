@@ -77,7 +77,7 @@ except ImportError:
     use_numpy = False
 
 
-DB_VERSION = 193
+DB_VERSION = 194
 
 # Variance created as sqlite has a bunch of undefined aggregate functions.
 
@@ -176,6 +176,16 @@ HANDS_PLAYERS_KEYS = [
     'street3Bets',
     'street4Bets',
     'position',
+    'street0InPosition',
+    'street1InPosition',
+    'street2InPosition',
+    'street3InPosition',
+    'street4InPosition',
+    'street0FirstToAct',
+    'street1FirstToAct',
+    'street2FirstToAct',
+    'street3FirstToAct',
+    'street4FirstToAct',
     'tourneysPlayersIds',
     'startCards',
     'street0CalledRaiseChance',
@@ -2388,7 +2398,12 @@ class Database:
         batch_size=20000 #experiment to find optimal batch_size for your data
         while values: # repeat until all records in values have been inserted ''
             batch, values = values[:batch_size], values[batch_size:] #split values into the current batch and the remaining records
-            c.executemany(q, batch ) #insert current batch ''
+            if self.backend == self.PGSQL:
+                q_insert = q.split('values')[0]
+                args_str = ','.join(c.mogrify("(" + ','.join(["%s"] * len(x)) + ")", x) for x in batch)
+                c.execute(q_insert + "values " + args_str) 
+            else:
+                c.executemany(q, batch ) #insert current batch ''
 
     def storeHand(self, hdata, doinsert = False, printdata = False):
         if printdata:
@@ -2606,7 +2621,7 @@ class Database:
                     inserts.append(list(k) + item)
                 
             if inserts:
-                c.executemany(insert_hudcache, inserts)
+                self.executemany(c, insert_hudcache, inserts)
             self.commit()
             
     def storeSessionsCache(self, hid, pids, startTime, tid, heroes, tz_name, doinsert = False):
@@ -2990,7 +3005,7 @@ class Database:
                     inserts.append(row)
                 
             if inserts:
-                c.executemany(insert_TC, inserts)
+                self.executemany(c, insert_TC, inserts)
             self.commit()
     
     def storeCardsCache(self, hid, pids, startTime, gid, ttid, gametype, siteId, pdata, sdata, heroes, tz_name, doinsert):
@@ -3071,7 +3086,7 @@ class Database:
                         inserts.append(insert)
                 
             if inserts:
-                c.executemany(insert_cardscache, inserts)
+                self.executemany(c, insert_cardscache, inserts)
                 self.commit()
             
     def storePositionsCache(self, hid, pids, startTime, gid, ttid, gametype, siteId, pdata, heroes, tz_name, doinsert):
@@ -3150,7 +3165,7 @@ class Database:
                         inserts.append(insert)
                 
             if inserts:
-                c.executemany(insert_positionscache, inserts)
+                self.executemany(c, insert_positionscache, inserts)
                 self.commit()
     
     def appendHandsSessionIds(self):
@@ -3765,7 +3780,7 @@ class Database:
                                         summary.rebuyCounts[player][entryIdx], summary.addOnCounts[player][entryIdx],
                                         summary.koCounts[player][entryIdx]))
         if inserts:
-            cursor.executemany(self.sql.query['insertTourneysPlayer'].replace('%s', self.sql.query['placeholder']),inserts)
+            self.executemany(cursor, self.sql.query['insertTourneysPlayer'].replace('%s', self.sql.query['placeholder']), inserts)
             
     
 #end class Database

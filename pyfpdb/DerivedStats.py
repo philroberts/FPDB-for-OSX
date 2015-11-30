@@ -55,7 +55,7 @@ def _buildStatsInitializer():
     init['wonAtSD']     = False
     init['startCards']  = 170
     init['handString']  = None
-    init['position']    = 2
+    init['position']    = -1
     init['street0CalledRaiseChance'] = 0
     init['street0CalledRaiseDone'] = 0
     init['street0VPIChance']    = True
@@ -93,7 +93,10 @@ def _buildStatsInitializer():
         init['street%dCalls' % i] = 0
         init['street%dBets' % i] = 0
         init['street%dRaises' % i] = 0
-        init['street%dAggr' % i] = False
+        init['street%dAggr' % i] = False        
+        init['street%dInPosition' % i] = False
+        init['street%dFirstToAct' % i] = False
+        
     for i in range(1,5):
         init['street%dCBChance' %i] = False
         init['street%dCBDone' %i] = False
@@ -671,12 +674,13 @@ class DerivedStats():
         actions = hand.actions[hand.holeStreets[0]]
         # Note:  pfbao list may not include big blind if all others folded
         players = self.pfbao(actions)
-
+        
         # set blinds first, then others from pfbao list, avoids problem if bb
         # is missing from pfbao list or if there is no small blind
         sb, bb, bi = False, False, False
         if hand.gametype['base'] == 'stud':
             # Stud position is determined after cards are dealt
+            # TODO: what to do when bi player completes / bets?
             bi = [x[0] for x in hand.actions[hand.actionStreets[1]] if x[1] == 'bringin']
         else:
             bb = [x[0] for x in hand.actions[hand.actionStreets[0]] if x[1] == 'big blind']
@@ -685,18 +689,27 @@ class DerivedStats():
         # if there are > 1 sb or bb only the first is used!
         if bb:
             self.handsplayers[bb[0]]['position'] = 'B'
+            self.handsplayers[bb[0]]['street0InPosition'] = True
             if bb[0] in players:  players.remove(bb[0])
         if sb:
             self.handsplayers[sb[0]]['position'] = 'S'
+            self.handsplayers[sb[0]]['street0FirstToAct'] = True
             if sb[0] in players:  players.remove(sb[0])
         if bi:
             self.handsplayers[bi[0]]['position'] = 'S'
+            self.handsplayers[bi[0]]['street0FirstToAct'] = True
             if bi[0] in players:  players.remove(bi[0])
 
+        #print "DEBUG: actions: '%s'" % actions
         #print "DEBUG: bb: '%s' sb: '%s' bi: '%s' plyrs: '%s'" %(bb, sb, bi, players)
-        for i,player in enumerate(reversed(players)):
+        for i,player in enumerate(reversed(players)): 
             self.handsplayers[player]['position'] = i
             self.hands['maxPosition'] = i
+            if i==0 and hand.gametype['base'] == 'stud':
+                self.handsplayers[player]['street0InPosition'] = True
+            elif (i-1)==len(players):
+                self.handsplayers[player]['street0FirstToAct'] = True
+                
 
     def assembleHudCache(self, hand):
         # No real work to be done - HandsPlayers data already contains the correct info
@@ -788,6 +801,7 @@ class DerivedStats():
         #
                     
         for (i, street) in enumerate(hand.actionStreets):
+
             if (i-1) in (1,2,3,4):
                 # p_in stores players with cards at start of this street,
                 # so can set streetxSeen & playersAtStreetx with this information
@@ -797,15 +811,26 @@ class DerivedStats():
                 self.hands['playersAtStreet%d' % (i-1)] = len(p_in)
                 for player_with_cards in p_in:
                     self.handsplayers[player_with_cards]['street%sSeen' % (i-1)] = True
+
+                players = self.pfbao(hand.actions[street], f=('discards','stands pat'))
+                if len(players)>0:
+                    self.handsplayers[players[0]]['street%dFirstToAct' % (i-1)] = True
+                    self.handsplayers[players[-1]]['street%dInPosition' % (i-1)] = True
             #
             # find out who folded, and eliminate them from p_in
             #
             actions = hand.actions[street]
             p_in = p_in - self.pfba(actions, l=('folds',))
             #
-            # if everyone folded, we are done, so exit this method immediately
+            # if everyone folded, we are done, so exit this method
             #
-            if len(p_in) == 1: return None
+            if len(p_in) == 1: 
+                if (i-1) in (1,2,3,4) and len(players)>0 and list(p_in)[0] not in players:
+                    # corrects which player is "in position"
+                    # if everyone folds before the last player could act
+                    self.handsplayers[players[-1]]['street%dInPosition' % (i-1)] = False
+                    self.handsplayers[list(p_in)[0]]['street%dInPosition' % (i-1)] = True
+                return None
 
         #
         # The remaining players in p_in reached showdown (including all-ins

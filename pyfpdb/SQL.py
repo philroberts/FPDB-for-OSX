@@ -873,6 +873,17 @@ class Sql:
                         street4Seen BOOLEAN,
                         sawShowdown BOOLEAN,
                         showed      BOOLEAN,
+                        
+                        street0InPosition BOOLEAN,
+                        street1InPosition BOOLEAN,
+                        street2InPosition BOOLEAN,
+                        street3InPosition BOOLEAN,
+                        street4InPosition BOOLEAN,
+                        street0FirstToAct BOOLEAN,
+                        street1FirstToAct BOOLEAN,
+                        street2FirstToAct BOOLEAN,
+                        street3FirstToAct BOOLEAN,
+                        street4FirstToAct BOOLEAN,
 
                         street1Aggr BOOLEAN,
                         street2Aggr BOOLEAN,
@@ -1034,6 +1045,17 @@ class Sql:
                         street4Seen BOOLEAN,
                         sawShowdown BOOLEAN,
                         showed      BOOLEAN,
+                        
+                        street0InPosition BOOLEAN,
+                        street1InPosition BOOLEAN,
+                        street2InPosition BOOLEAN,
+                        street3InPosition BOOLEAN,
+                        street4InPosition BOOLEAN,
+                        street0FirstToAct BOOLEAN,
+                        street1FirstToAct BOOLEAN,
+                        street2FirstToAct BOOLEAN,
+                        street3FirstToAct BOOLEAN,
+                        street4FirstToAct BOOLEAN,
 
                         street1Aggr BOOLEAN,
                         street2Aggr BOOLEAN,
@@ -1194,6 +1216,17 @@ class Sql:
                         street4Seen INT,
                         sawShowdown INT,
                         showed      INT,
+                                
+                        street0InPosition INT,
+                        street1InPosition INT,
+                        street2InPosition INT,
+                        street3InPosition INT,
+                        street4InPosition INT,
+                        street0FirstToAct INT,
+                        street1FirstToAct INT,
+                        street2FirstToAct INT,
+                        street3FirstToAct INT,
+                        street4FirstToAct INT,
 
                         street1Aggr INT,
                         street2Aggr INT,
@@ -8733,7 +8766,7 @@ class Sql:
         self.query['insertGameTypes'] = """INSERT INTO Gametypes
                                               (siteId, currency, type, base, category, limitType, hiLo, mix, 
                                                smallBlind, bigBlind, smallBet, bigBet, maxSeats, ante, buyinType, fast, newToGame, homeGame)
-                                           VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
+                                           values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
 
         self.query['isAlreadyInDB'] = """SELECT H.id FROM Hands H
                                          INNER JOIN Gametypes G ON (H.gametypeId = G.id)
@@ -8830,7 +8863,7 @@ class Sql:
                                                    stack, step, stepNo, chance, chanceCount, multiEntry, reEntry, homeGame, newToGame,
                                                    fifty50, time, timeAmt, satellite, doubleOrNothing, cashOut, onDemand, flighted, guarantee, guaranteeAmt
                                                    )
-                                              VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
+                                              values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
                                                       %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
         """
         
@@ -8895,7 +8928,7 @@ class Sql:
                                             (tourneyTypeId, sessionId, siteTourneyNo, entries, prizepool,
                                              startTime, endTime, tourneyName, totalRebuyCount, totalAddOnCount,
                                              comment, commentTs, added, addedCurrency)
-                                        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                                        values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
         """
         
         self.query['updateTourney'] = """UPDATE Tourneys
@@ -9090,6 +9123,16 @@ class Sql:
                 street3Bets,
                 street4Bets,
                 position,
+                street0InPosition,
+                street1InPosition,
+                street2InPosition,
+                street3InPosition,
+                street4InPosition,
+                street0FirstToAct,
+                street1FirstToAct,
+                street2FirstToAct,
+                street3FirstToAct,
+                street4FirstToAct,
                 tourneysPlayersId,
                 startCards,
                 street0CalledRaiseChance,
@@ -9153,6 +9196,8 @@ class Sql:
                 handString
                )
                values (
+                    %s, %s, %s, %s, %s,
+                    %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
