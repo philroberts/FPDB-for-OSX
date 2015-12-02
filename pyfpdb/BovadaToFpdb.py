@@ -25,6 +25,7 @@ _ = L10n.get_translation()
 
 import sys, copy
 from HandHistoryConverter import *
+import Card
 from decimal_wrapper import Decimal
 
 # Bovada HH Format
@@ -576,7 +577,7 @@ class Bovada(HandHistoryConverter):
                 hand.addShownCards(cards, player)
 
     def readCollectPot(self,hand):
-        if self.re_CollectPot2.search(hand.handText):
+        if self.re_CollectPot2.search(hand.handText) and Card.games[hand.gametype['category']][2] == 's':
             re_CollectPot = self.re_CollectPot2
         else:
             re_CollectPot = self.re_CollectPot1

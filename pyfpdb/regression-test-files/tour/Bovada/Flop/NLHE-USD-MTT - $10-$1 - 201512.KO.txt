@@ -1,0 +1,65 @@
+Bovada Hand #3304886256: HOLDEM Tournament #13557351 TBL#18, No Limit- Level 4 (40/80) - 2015-11-25 20:07:05
+Seat 1: UTG (4,920 in chips)
+Seat 2: UTG+1 [ME] (4,920 in chips)
+Seat 3: UTG+2 (5,000 in chips)
+Seat 4: UTG+3 (885 in chips)
+Seat 5: UTG+4 (5,420 in chips)
+Seat 6: UTG+5 (5,995 in chips)
+Seat 7: Dealer (8,860 in chips)
+Seat 8: Small Blind (4,260 in chips)
+Seat 9: Big Blind (4,050 in chips)
+Dealer : Set dealer/Bring in spot [7] 
+Small Blind : Ante/Small blind 40 
+Big Blind : Big blind/Bring in 80 
+*** HOLE CARDS ***
+UTG : Card dealt to a spot [Qc 9s] 
+UTG+1 [ME] : Card dealt to a spot [5h 5s] 
+UTG+2 : Card dealt to a spot [Ad 7c] 
+UTG+3 : Card dealt to a spot [Ks 4h] 
+UTG+4 : Card dealt to a spot [5c 4d] 
+UTG+5 : Card dealt to a spot [9c 5d] 
+Dealer : Card dealt to a spot [Ah Ac] 
+Small Blind : Card dealt to a spot [Js 7s] 
+Big Blind : Card dealt to a spot [Qd 8h] 
+UTG : Folds
+UTG+1 [ME] : Folds
+UTG+2 : Folds
+UTG+3 : Folds
+Small Blind : Re-join
+UTG+4 : Folds
+UTG+5 : Folds
+Dealer : Raises 160 to 160
+Small Blind : Call 120 
+Big Blind : Call 80 
+*** FLOP *** [6h As Jc]
+Small Blind : Checks
+Big Blind : Checks
+Dealer : Bets 160 
+Small Blind : Call 160 
+Big Blind : Folds
+*** TURN *** [6h As Jc] [7d]
+Small Blind : Checks
+Dealer : Bets 291 
+Small Blind : Raises 1111 to 1111
+Dealer : All-in(raise) 8249 to 8540
+Small Blind : All-in 2829 
+Dealer : Return uncalled portion of bet 4600 
+*** RIVER *** [6h As Jc 7d] [Tc]
+Dealer : Showdown [As Ah Ac Jc Tc] (Three of a kind)
+Small Blind : Showdown [Js Jc 7s 7d As] (Two pair)
+Dealer : Hand Result 8680 
+Dealer : BOUNTY PRIZE [$5] 
+Small Blind : Ranking 84 
+Small Blind : Stand
+*** SUMMARY ***
+Total Pot(8680)
+Board [6h As Jc 7d Tc]
+Seat+1: UTG Folded before the FLOP
+Seat+2: UTG+1 Folded before the FLOP
+Seat+3: UTG+2 Folded before the FLOP
+Seat+4: UTG+3 Folded before the FLOP
+Seat+5: UTG+4 Folded before the FLOP
+Seat+6: UTG+5 Folded before the FLOP
+Seat 7:Dealer 8680  with Three of a kind [Ah Ac-As Ah Ac Jc Tc]   BOUNTY awarded:$5
+Seat+8: Small Blind lose with Two pair [Js 7s-Js Jc 7s 7d As]  
+Seat+9: Big Blind Folded on the FLOP
