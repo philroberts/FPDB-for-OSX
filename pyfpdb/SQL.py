@@ -6381,8 +6381,7 @@ class Sql:
             
 
         if db_server == 'mysql':
-            self.query['rebuildCache'] = """
-                INSERT INTO <insert>
+            self.query['rebuildCache'] = """insert into <insert>
                 ,hands
                 ,played
                 ,wonWhenSeenStreet1
@@ -6606,8 +6605,7 @@ class Sql:
                 GROUP BY <group>
 """
         elif db_server == 'postgresql':
-            self.query['rebuildCache'] = """
-                INSERT INTO <insert>
+            self.query['rebuildCache'] = """insert into <insert>
                 ,hands
                 ,played
                 ,wonWhenSeenStreet1
@@ -6831,8 +6829,7 @@ class Sql:
                 GROUP BY <group>
 """
         elif db_server == 'sqlite':
-            self.query['rebuildCache'] = """
-                INSERT INTO <insert>
+            self.query['rebuildCache'] = """insert into <insert>
                 ,hands
                 ,played
                 ,wonWhenSeenStreet1
@@ -7057,8 +7054,7 @@ class Sql:
 """
 
 
-        self.query['insert_hudcache'] = """
-            insert into HudCache (
+        self.query['insert_hudcache'] = """insert into HudCache (
                 gametypeId,
                 playerId,
                 activeSeats,
@@ -7334,8 +7330,7 @@ class Sql:
         # Queries to insert/update cardscache
         ####################################
                                                    
-        self.query['insert_cardscache'] = """
-            insert into CardsCache (
+        self.query['insert_cardscache'] = """insert into CardsCache (
                 weekId,
                 monthId,
                 gametypeId,
@@ -7620,8 +7615,7 @@ class Sql:
         # Queries to insert/update positionscache
         ####################################
                    
-        self.query['insert_positionscache'] = """
-            insert into PositionsCache (
+        self.query['insert_positionscache'] = """insert into PositionsCache (
                 weekId,
                 monthId,
                 gametypeId,
@@ -8100,26 +8094,22 @@ class Sql:
         # insert
         ####################################
         
-        self.query['insert_WC'] = """
-                    insert into WeeksCache (
+        self.query['insert_WC'] = """insert into WeeksCache (
                     weekStart)
                     values (%s)"""
         
-        self.query['insert_MC'] = """
-                    insert into MonthsCache (
+        self.query['insert_MC'] = """insert into MonthsCache (
                     monthStart)
                     values (%s)"""
                             
-        self.query['insert_SC'] = """
-                    insert into SessionsCache (
+        self.query['insert_SC'] = """insert into SessionsCache (
                     weekId,
                     monthId,
                     sessionStart,
                     sessionEnd)
                     values (%s, %s, %s, %s)"""
                             
-        self.query['insert_CC'] = """
-                    insert into CashCache (
+        self.query['insert_CC'] = """insert into CashCache (
                     sessionId,
                     startTime,
                     endTime,
@@ -8256,8 +8246,7 @@ class Sql:
                             %s, %s, %s, %s, %s,
                             %s)"""
                             
-        self.query['insert_TC'] = """
-                    insert into TourCache (
+        self.query['insert_TC'] = """insert into TourCache (
                     sessionId,
                     startTime,
                     endTime,
@@ -8763,8 +8752,7 @@ class Sql:
                                            AND   homeGame=%s
         """ #TODO: seems odd to have limitType variable in this query
 
-        self.query['insertGameTypes'] = """INSERT INTO Gametypes
-                                              (siteId, currency, type, base, category, limitType, hiLo, mix, 
+        self.query['insertGameTypes'] = """insert into Gametypes (siteId, currency, type, base, category, limitType, hiLo, mix, 
                                                smallBlind, bigBlind, smallBet, bigBet, maxSeats, ante, buyinType, fast, newToGame, homeGame)
                                            values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
 
@@ -8857,8 +8845,8 @@ class Sql:
                                             AND guaranteeAmt=%s
         """
 
-        self.query['insertTourneyType'] = """INSERT INTO TourneyTypes
-                                                  (siteId, currency, buyin, fee, category, limitType, maxSeats, sng, knockout, koBounty,
+        self.query['insertTourneyType'] = """insert into TourneyTypes (
+                                                   siteId, currency, buyin, fee, category, limitType, maxSeats, sng, knockout, koBounty,
                                                    rebuy, rebuyCost, addOn, addOnCost, speed, shootout, matrix, fast,
                                                    stack, step, stepNo, chance, chanceCount, multiEntry, reEntry, homeGame, newToGame,
                                                    fifty50, time, timeAmt, satellite, doubleOrNothing, cashOut, onDemand, flighted, guarantee, guaranteeAmt
@@ -8924,8 +8912,8 @@ class Sql:
                                         WHERE s.name=%s AND t.siteTourneyNo=%s AND p.name=%s
         """
         
-        self.query['insertTourney'] = """INSERT INTO Tourneys
-                                            (tourneyTypeId, sessionId, siteTourneyNo, entries, prizepool,
+        self.query['insertTourney'] = """insert into Tourneys (
+                                             tourneyTypeId, sessionId, siteTourneyNo, entries, prizepool,
                                              startTime, endTime, tourneyName, totalRebuyCount, totalAddOnCount,
                                              comment, commentTs, added, addedCurrency)
                                         values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
@@ -8966,7 +8954,7 @@ class Sql:
                                                  WHERE id=%s
         """
 
-        self.query['insertTourneysPlayer'] = """insert into TourneysPlayers(
+        self.query['insertTourneysPlayer'] = """insert into TourneysPlayers (
                                                     tourneyId,
                                                     playerId,
                                                     entryId,

@@ -45,9 +45,12 @@ import Queue
 import codecs
 import math 
 import pytz
+import csv
 import logging
+import random
 
 re_char = re.compile('[^a-zA-Z]')
+re_insert = re.compile("insert\sinto\s(?P<TABLENAME>[A-Za-z]+)\s(?P<COLUMNS>\(.+?\))\s+values", re.DOTALL)
 
 #    FreePokerTools modules
 import SQL
@@ -2395,14 +2398,21 @@ class Database:
         if reconnect: self.do_connect(self.config)
         
     def executemany(self, c, q, values):
-        batch_size=20000 #experiment to find optimal batch_size for your data
-        while values: # repeat until all records in values have been inserted ''
-            batch, values = values[:batch_size], values[batch_size:] #split values into the current batch and the remaining records
-            if self.backend == self.PGSQL:
-                q_insert = q.split('values')[0]
-                args_str = ','.join(c.mogrify("(" + ','.join(["%s"] * len(x)) + ")", x) for x in batch)
-                c.execute(q_insert + "values " + args_str) 
-            else:
+        if self.backend == self.PGSQL and self.import_options['hhBulkPath'] != "":
+            # COPY much faster under postgres. Requires superuser privileges
+            m = re_insert.match(q)
+            rand = ''.join(random.SystemRandom().choice(string.ascii_uppercase + string.digits) for _ in range(5))
+            bulk_file = os.path.join(self.import_options['hhBulkPath'], m.group("TABLENAME") + '_' + rand)
+            with open(bulk_file, 'wb') as csvfile:
+                writer = csv.writer(csvfile, delimiter='\t', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+                writer.writerows(w for w in values)
+            q_insert = "COPY " + m.group("TABLENAME") + m.group("COLUMNS") + " FROM '" + bulk_file + "' DELIMITER '\t' CSV"
+            c.execute(q_insert)
+            os.remove(bulk_file)
+        else:            
+            batch_size=20000 #experiment to find optimal batch_size for your data
+            while values: # repeat until all records in values have been inserted ''
+                batch, values = values[:batch_size], values[batch_size:] #split values into the current batch and the remaining records
                 c.executemany(q, batch ) #insert current batch ''
 
     def storeHand(self, hdata, doinsert = False, printdata = False):
