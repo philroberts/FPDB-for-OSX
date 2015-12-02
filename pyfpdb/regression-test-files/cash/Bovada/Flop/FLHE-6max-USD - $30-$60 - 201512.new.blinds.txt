@@ -1,0 +1,54 @@
+Bovada Hand #3183548059 TBL#10253202 HOLDEM Fixed Limit - 2015-12-01 04:04:36
+Seat 1: UTG+2 [ME] ($2,700 in chips)
+Seat 2: Dealer ($1,077 in chips)
+Seat 3: Small Blind ($2,292.50 in chips)
+Seat 4: Big Blind ($3,150 in chips)
+Seat 5: UTG ($1,692 in chips)
+Seat 6: UTG+1 ($1,846.67 in chips)
+Dealer : Set dealer [2] 
+Small Blind : Small Blind $15 
+Big Blind : Big blind $30 
+*** HOLE CARDS ***
+UTG+2  [ME] : Card dealt to a spot [Js 6s] 
+Dealer : Card dealt to a spot [Kc Kh] 
+Small Blind : Card dealt to a spot [2h 7d] 
+Big Blind : Card dealt to a spot [Kd 8d] 
+UTG : Card dealt to a spot [Ac 6c] 
+UTG+1 : Card dealt to a spot [4h 6d] 
+UTG : Raises $60 to $60
+UTG+1 : Calls $60 
+UTG+2  [ME] : Folds
+Dealer : Raises $90 to $90
+Small Blind : Folds
+Big Blind : Folds
+UTG : Calls $30 
+UTG+1 : Calls $30 
+*** FLOP *** [9d 7h 5h]
+UTG : Checks
+UTG+1 : Checks
+Dealer : Bets $30 
+UTG : Calls $30 
+UTG+1 : Calls $30 
+*** TURN *** [9d 7h 5h] [8s]
+UTG : Bets $60 
+UTG+1 : Calls $60 
+Dealer : Calls $60 
+*** RIVER *** [9d 7h 5h 8s] [Jd]
+UTG : Checks
+UTG+1 : Bets $60 
+Dealer : Calls $60 
+UTG : Calls $60 
+UTG+1 : Showdown [9d 8s 7h 6d 5h] (Straight)
+Dealer : Mucks [Kc Kh] (One pair)
+UTG : Showdown [9d 8s 7h 6c 5h] (Straight)
+UTG : Hand result $381 
+UTG+1 : Hand result $381 
+*** SUMMARY ***
+Total Pot($765)
+Board [9d 7h 5h 8s Jd]
+Seat+1: UTG+2 Folded before the FLOP
+Seat+2: Dealer [Mucked] [Kc Kh]  
+Seat+3: Small Blind Folded before the FLOP
+Seat+4: Big Blind Folded before the FLOP
+Seat+5: UTG $381  with Straight [Ac 6c-9d 8s 7h 6c 5h]  
+Seat+6: UTG+1 $381  with Straight [4h 6d-9d 8s 7h 6d 5h]  
