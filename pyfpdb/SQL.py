@@ -874,6 +874,12 @@ class Sql:
                         sawShowdown BOOLEAN,
                         showed      BOOLEAN,
                         
+                        street0AllIn BOOLEAN,
+                        street1AllIn BOOLEAN,
+                        street2AllIn BOOLEAN,
+                        street3AllIn BOOLEAN,
+                        street4AllIn BOOLEAN,
+                        
                         street0InPosition BOOLEAN,
                         street1InPosition BOOLEAN,
                         street2InPosition BOOLEAN,
@@ -1046,6 +1052,12 @@ class Sql:
                         sawShowdown BOOLEAN,
                         showed      BOOLEAN,
                         
+                        street0AllIn BOOLEAN,
+                        street1AllIn BOOLEAN,
+                        street2AllIn BOOLEAN,
+                        street3AllIn BOOLEAN,
+                        street4AllIn BOOLEAN,
+                        
                         street0InPosition BOOLEAN,
                         street1InPosition BOOLEAN,
                         street2InPosition BOOLEAN,
@@ -1216,7 +1228,13 @@ class Sql:
                         street4Seen INT,
                         sawShowdown INT,
                         showed      INT,
-                                
+                        
+                        street0AllIn INT,
+                        street1AllIn INT,
+                        street2AllIn INT,
+                        street3AllIn INT,
+                        street4AllIn INT,
+                        
                         street0InPosition INT,
                         street1InPosition INT,
                         street2InPosition INT,
@@ -9081,7 +9099,11 @@ class Sql:
                 street4Seen,
                 sawShowdown,
                 showed,
-                wonAtSD,
+                street0AllIn,
+                street1AllIn,
+                street2AllIn,
+                street3AllIn,
+                street4AllIn,
                 street0AggrChance,
                 street0Aggr,
                 street1Aggr,
@@ -9100,6 +9122,7 @@ class Sql:
                 wonWhenSeenStreet2,
                 wonWhenSeenStreet3,
                 wonWhenSeenStreet4,
+                wonAtSD,
                 street0Calls,
                 street1Calls,
                 street2Calls,
@@ -9184,6 +9207,7 @@ class Sql:
                 handString
                )
                values (
+                    %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,

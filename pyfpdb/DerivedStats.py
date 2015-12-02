@@ -48,16 +48,14 @@ def _buildStatsInitializer():
     init['totalProfit'] = 0
     init['allInEV']     = 0
     init['BBwon']       = 0
-    init['street4Aggr'] = False
-    init['wonWhenSeenStreet1'] = False
     init['sawShowdown'] = False
     init['showed']      = False
     init['wonAtSD']     = False
     init['startCards']  = 170
     init['handString']  = None
-    init['position']    = -1
+    init['position']    = 2 #FIXME
     init['street0CalledRaiseChance'] = 0
-    init['street0CalledRaiseDone'] = 0
+    init['street0CalledRaiseDone'] = 0    
     init['street0VPIChance']    = True
     init['street0VPI']          = False
     init['street0AggrChance']   = True
@@ -87,7 +85,8 @@ def _buildStatsInitializer():
     init['street2Seen']         = False
     init['street3Seen']         = False
     init['street4Seen']         = False
-
+    init['otherRaisedStreet0']       = False
+    init['foldToOtherRaisedStreet0'] = False
 
     for i in range(5):
         init['street%dCalls' % i] = 0
@@ -96,27 +95,19 @@ def _buildStatsInitializer():
         init['street%dAggr' % i] = False        
         init['street%dInPosition' % i] = False
         init['street%dFirstToAct' % i] = False
+        init['street%dAllIn' % i] = False
         
     for i in range(1,5):
-        init['street%dCBChance' %i] = False
-        init['street%dCBDone' %i] = False
+        init['street%dCBChance' %i]             = False
+        init['street%dCBDone' %i]               = False
         init['street%dCheckCallRaiseChance' %i] = False
         init['street%dCheckCallDone' %i]        = False
         init['street%dCheckRaiseDone' %i]       = False
         init['otherRaisedStreet%d' %i]          = False
         init['foldToOtherRaisedStreet%d' %i]    = False
-
-    #FIXME - Everything below this point is incomplete.
-    init['other3BStreet0']              = False
-    init['other4BStreet0']              = False
-    init['otherRaisedStreet0']          = False
-    init['foldToOtherRaisedStreet0']    = False
-    for i in range(1,5):
         init['foldToStreet%dCBChance' %i]       = False
         init['foldToStreet%dCBDone' %i]         = False
-    init['wonWhenSeenStreet2'] = False
-    init['wonWhenSeenStreet3'] = False
-    init['wonWhenSeenStreet4'] = False
+        init['wonWhenSeenStreet%d' %i]          = False
     return init
 
 _INIT_STATS = _buildStatsInitializer()
@@ -135,14 +126,11 @@ class DerivedStats():
         
         self.assembleHands(hand)
         self.assembleHandsPlayers(hand)
-
-        if hand.saveActions:
-            self.assembleHandsActions(hand)
+        self.assembleHandsActions(hand)
         
-        if pokereval:
-            if hand.gametype['category'] in Card.games:
-                self.assembleHandsStove(hand)
-                self.assembleHandsPots(hand)
+        if pokereval and hand.gametype['category'] in Card.games:
+            self.assembleHandsStove(hand)
+            self.assembleHandsPots(hand)
 
     def getHands(self):
         return self.hands
@@ -388,6 +376,7 @@ class DerivedStats():
                     self.handsactions[k]['cardsDiscarded'] = act[3]
                 if len(act) > 3 and act[1] not in ('discards'):
                     self.handsactions[k]['allIn'] = act[-1]
+                    if act[-1]: self.handsplayers[act[0]]['street%dAllIn' %(i-1)] = True
     
     def assembleHandsStove(self, hand):
         category = hand.gametype['category']
