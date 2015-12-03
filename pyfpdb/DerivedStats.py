@@ -97,6 +97,9 @@ def _buildStatsInitializer():
         init['street%dFirstToAct' % i] = False
         init['street%dAllIn' % i] = False
         
+    for i in range(1,4):
+        init['street%dDiscards' % i] = 0
+        
     for i in range(1,5):
         init['street%dCBChance' %i]             = False
         init['street%dCBDone' %i]               = False
@@ -372,6 +375,7 @@ class DerivedStats():
                     self.handsactions[k]['amountCalled'] = int(100 * act[4])
                 if act[1] in ('discards'):
                     self.handsactions[k]['numDiscarded'] = int(act[2])
+                    self.handsplayers[act[0]]['street%dDiscards' %(i-1)] = int(act[2])
                 if act[1] in ('discards') and len(act) > 3:
                     self.handsactions[k]['cardsDiscarded'] = act[3]
                 if len(act) > 3 and act[1] not in ('discards'):

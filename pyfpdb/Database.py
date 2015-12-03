@@ -80,7 +80,7 @@ except ImportError:
     use_numpy = False
 
 
-DB_VERSION = 195
+DB_VERSION = 196
 
 # Variance created as sqlite has a bunch of undefined aggregate functions.
 
@@ -173,16 +173,6 @@ HANDS_PLAYERS_KEYS = [
     'wonWhenSeenStreet3',
     'wonWhenSeenStreet4',
     'wonAtSD',
-    'street0Calls',
-    'street1Calls',
-    'street2Calls',
-    'street3Calls',
-    'street4Calls',
-    'street0Bets',
-    'street1Bets',
-    'street2Bets',
-    'street3Bets',
-    'street4Bets',
     'position',
     'street0InPosition',
     'street1InPosition',
@@ -249,11 +239,24 @@ HANDS_PLAYERS_KEYS = [
     'street4CheckCallRaiseChance',
     'street4CheckCallDone',
     'street4CheckRaiseDone',
+    'street0Calls',
+    'street1Calls',
+    'street2Calls',
+    'street3Calls',
+    'street4Calls',
+    'street0Bets',
+    'street1Bets',
+    'street2Bets',
+    'street3Bets',
+    'street4Bets',
     'street0Raises',
     'street1Raises',
     'street2Raises',
     'street3Raises',
     'street4Raises',
+    'street1Discards',
+    'street2Discards',
+    'street3Discards',
     'handString'
 ]
 
@@ -2475,7 +2478,7 @@ class Database:
             q = self.sql.query['store_hand']
             q = q.replace('%s', self.sql.query['placeholder'])
             c = self.get_cursor()
-            self.executemany(c, q, self.hbulk)
+            c.executemany(q, self.hbulk)
             self.commit()
     
     def storeBoards(self, id, boards, doinsert):

@@ -960,6 +960,9 @@ class Sql:
                         street2Raises TINYINT,
                         street3Raises TINYINT,
                         street4Raises TINYINT,
+                        street1Discards TINYINT,
+                        street2Discards TINYINT,
+                        street3Discards TINYINT,
                         
                         handString TEXT,
                         actionString VARCHAR(15))
@@ -1138,6 +1141,9 @@ class Sql:
                         street2Raises SMALLINT,
                         street3Raises SMALLINT,
                         street4Raises SMALLINT,
+                        street1Discards SMALLINT,
+                        street2Discards SMALLINT,
+                        street3Discards SMALLINT,
                         
                         handString TEXT,
                         actionString VARCHAR(15))"""
@@ -1315,6 +1321,9 @@ class Sql:
                         street2Raises INT,
                         street3Raises INT,
                         street4Raises INT,
+                        street1Discards INT,
+                        street2Discards INT,
+                        street3Discards INT,
                         
                         handString TEXT,
                         actionString VARCHAR(15))
@@ -9123,16 +9132,6 @@ class Sql:
                 wonWhenSeenStreet3,
                 wonWhenSeenStreet4,
                 wonAtSD,
-                street0Calls,
-                street1Calls,
-                street2Calls,
-                street3Calls,
-                street4Calls,
-                street0Bets,
-                street1Bets,
-                street2Bets,
-                street3Bets,
-                street4Bets,
                 position,
                 street0InPosition,
                 street1InPosition,
@@ -9199,11 +9198,24 @@ class Sql:
                 street4CheckCallRaiseChance,
                 street4CheckCallDone,
                 street4CheckRaiseDone,
+                street0Calls,
+                street1Calls,
+                street2Calls,
+                street3Calls,
+                street4Calls,
+                street0Bets,
+                street1Bets,
+                street2Bets,
+                street3Bets,
+                street4Bets,
                 street0Raises,
                 street1Raises,
                 street2Raises,
                 street3Raises,
                 street4Raises,
+                street1Discards,
+                street2Discards,
+                street3Discards,
                 handString
                )
                values (
@@ -9237,7 +9249,8 @@ class Sql:
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
-                    %s, %s, %s, %s
+                    %s, %s, %s, %s, %s,
+                    %s, %s
                 )"""
 
         self.query['store_hands_actions'] = """insert into HandsActions (
