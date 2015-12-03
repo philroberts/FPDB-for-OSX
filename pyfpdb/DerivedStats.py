@@ -51,7 +51,7 @@ def _buildStatsInitializer():
     init['wonAtSD']     = False
     init['startCards']  = 170
     init['handString']  = None
-    init['position']    = 2 #FIXME
+    init['position']    = 9 #ANTE ALL IN
     init['street0CalledRaiseChance'] = 0
     init['street0CalledRaiseDone'] = 0    
     init['street0VPIChance']    = True
