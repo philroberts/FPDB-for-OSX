@@ -80,7 +80,7 @@ except ImportError:
     use_numpy = False
 
 
-DB_VERSION = 196
+DB_VERSION = 197
 
 # Variance created as sqlite has a bunch of undefined aggregate functions.
 
@@ -127,7 +127,6 @@ HANDS_PLAYERS_KEYS = [
     'card18',
     'card19',
     'card20',
-    'played',
     'common',
     'committed',
     'winnings',
@@ -135,12 +134,8 @@ HANDS_PLAYERS_KEYS = [
     'rakeDealt',
     'rakeContributed',
     'rakeWeighted',
-    'showdownWinnings',
-    'nonShowdownWinnings',
     'totalProfit',
     'allInEV',
-    'BBwon',
-    'vsHero',
     'street0VPIChance',
     'street0VPI',
     'street1Seen',
@@ -267,7 +262,6 @@ HANDS_PLAYERS_KEYS.reverse()
 
 CACHE_KEYS = [
     'hands',
-    'played',
     'street0VPIChance',
     'street0VPI',
     'street0AggrChance',
@@ -340,11 +334,7 @@ CACHE_KEYS = [
     'rakeDealt',
     'rakeContributed',
     'rakeWeighted',
-    'showdownWinnings',
-    'nonShowdownWinnings',
     'allInEV',
-    'BBwon',
-    'vsHero',
     'street1CheckCallRaiseChance',
     'street1CheckCallDone',
     'street1CheckRaiseDone',

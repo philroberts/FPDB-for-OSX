@@ -820,7 +820,6 @@ class Sql:
                         card20 smallint,
                         startCards SMALLINT UNSIGNED, FOREIGN KEY (startCards) REFERENCES StartCards(id),
                         
-                        played INT,
                         common BIGINT NOT NULL,
                         committed BIGINT NOT NULL,                        
                         winnings BIGINT NOT NULL,
@@ -828,12 +827,8 @@ class Sql:
                         rakeDealt BIGINT NOT NULL,
                         rakeContributed BIGINT NOT NULL,
                         rakeWeighted BIGINT NOT NULL,
-                        showdownWinnings BIGINT,
-                        nonShowdownWinnings BIGINT,
                         totalProfit BIGINT,
                         allInEV BIGINT,
-                        BBwon BIGINT,
-                        vsHero BIGINT,
                         comment text,
                         commentTs DATETIME,
                         tourneysPlayersId BIGINT UNSIGNED, FOREIGN KEY (tourneysPlayersId) REFERENCES TourneysPlayers(id),
@@ -1001,7 +996,6 @@ class Sql:
                         card20 smallint, 
                         startCards smallint, FOREIGN KEY (startCards) REFERENCES StartCards(id),
 
-                        played INT,
                         common BIGINT NOT NULL,
                         committed BIGINT NOT NULL,
                         winnings BIGINT NOT NULL,
@@ -1009,12 +1003,8 @@ class Sql:
                         rakeDealt BIGINT NOT NULL,
                         rakeContributed BIGINT NOT NULL,
                         rakeWeighted BIGINT NOT NULL,
-                        showdownWinnings BIGINT,
-                        nonShowdownWinnings BIGINT,
                         totalProfit BIGINT,
                         allInEV BIGINT,
-                        BBwon BIGINT,
-                        vsHero BIGINT,
                         comment text,
                         commentTs timestamp without time zone,
                         tourneysPlayersId BIGINT, FOREIGN KEY (tourneysPlayersId) REFERENCES TourneysPlayers(id),
@@ -1181,7 +1171,6 @@ class Sql:
                         card20 INT,
                         startCards INT,
                     
-                        played INT,
                         common INT NOT NULL,
                         committed INT NOT NULL,
                         winnings INT NOT NULL,
@@ -1189,12 +1178,8 @@ class Sql:
                         rakeDealt INT NOT NULL,
                         rakeContributed INT NOT NULL,
                         rakeWeighted INT NOT NULL,
-                        showdownWinnings INT,
-                        nonShowdownWinnings INT,
                         totalProfit INT,
                         allInEV INT,
-                        BBwon INT,
-                        vsHero INT,
                         comment TEXT,
                         commentTs REAL,
                         tourneysPlayersId INT,
@@ -1587,7 +1572,6 @@ class Sql:
                         tourneyTypeId SMALLINT UNSIGNED, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
                         styleKey CHAR(7) NOT NULL,  /* 1st char is style (A/T/H/S), other 6 are the key */
                         hands INT NOT NULL,
-                        played INT NOT NULL,
 
                         wonWhenSeenStreet1 INT,
                         wonWhenSeenStreet2 INT,
@@ -1617,7 +1601,6 @@ class Sql:
                         raiseToStealChance INT,
                         raiseToStealDone INT,
                         success_Steal INT,
-
 
                         street1Seen INT,
                         street2Seen INT,
@@ -1671,11 +1654,7 @@ class Sql:
                         rakeDealt BIGINT,
                         rakeContributed BIGINT,
                         rakeWeighted BIGINT,
-                        showdownWinnings BIGINT,
-                        nonShowdownWinnings BIGINT,
                         allInEV BIGINT,
-                        BBwon BIGINT,
-                        vsHero BIGINT,
                         
                         street1CheckCallRaiseChance INT,
                         street1CheckCallDone INT,
@@ -1717,7 +1696,6 @@ class Sql:
                         tourneyTypeId INT, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
                         styleKey CHAR(7) NOT NULL,  /* 1st char is style (A/T/H/S), other 6 are the key */
                         hands INT,
-                        played INT,
 
                         wonWhenSeenStreet1 INT,
                         wonWhenSeenStreet2 INT,
@@ -1799,11 +1777,7 @@ class Sql:
                         rakeDealt BIGINT,
                         rakeContributed BIGINT,
                         rakeWeighted BIGINT,
-                        showdownWinnings BIGINT,
-                        nonShowdownWinnings BIGINT,
                         allInEV BIGINT,
-                        BBwon BIGINT,
-                        vsHero BIGINT,
 
                         street1CheckCallRaiseChance INT,
                         street1CheckCallDone INT,
@@ -1844,7 +1818,6 @@ class Sql:
                         tourneyTypeId INT,
                         styleKey TEXT NOT NULL,  /* 1st char is style (A/T/H/S), other 6 are the key */
                         hands INT,
-                        played INT,
 
                         wonWhenSeenStreet1 INT,
                         wonWhenSeenStreet2 INT,
@@ -1926,11 +1899,7 @@ class Sql:
                         rakeDealt INT,
                         rakeContributed INT,
                         rakeWeighted INT,
-                        showdownWinnings INT,
-                        nonShowdownWinnings INT,
                         allInEV INT,
-                        BBwon INT,
-                        vsHero INT,
 
                         street1CheckCallRaiseChance INT,
                         street1CheckCallDone INT,
@@ -1980,7 +1949,6 @@ class Sql:
                         startCards SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (startCards) REFERENCES StartCards(id),
                         rankId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (rankId) REFERENCES Rank(id),
                         hands INT NOT NULL,
-                        played INT NOT NULL,
 
                         wonWhenSeenStreet1 INT,
                         wonWhenSeenStreet2 INT,
@@ -2063,11 +2031,7 @@ class Sql:
                         rakeDealt BIGINT,
                         rakeContributed BIGINT,
                         rakeWeighted BIGINT,
-                        showdownWinnings BIGINT,
-                        nonShowdownWinnings BIGINT,
                         allInEV BIGINT,
-                        BBwon BIGINT,
-                        vsHero BIGINT,
                         
                         street1CheckCallRaiseChance INT,
                         street1CheckCallDone INT,
@@ -2113,7 +2077,6 @@ class Sql:
                         startCards SMALLINT, FOREIGN KEY (startCards) REFERENCES StartCards(id),
                         rankId SMALLINT NOT NULL, FOREIGN KEY (rankId) REFERENCES Rank(id),
                         hands INT,
-                        played INT,
 
                         wonWhenSeenStreet1 INT,
                         wonWhenSeenStreet2 INT,
@@ -2195,11 +2158,7 @@ class Sql:
                         rakeDealt BIGINT,
                         rakeContributed BIGINT,
                         rakeWeighted BIGINT,
-                        showdownWinnings BIGINT,
-                        nonShowdownWinnings BIGINT,
                         allInEV BIGINT,
-                        BBwon BIGINT,
-                        vsHero BIGINT,
 
                         street1CheckCallRaiseChance INT,
                         street1CheckCallDone INT,
@@ -2244,7 +2203,6 @@ class Sql:
                         startCards INT,
                         rankId INT,
                         hands INT,
-                        played INT,
 
                         wonWhenSeenStreet1 INT,
                         wonWhenSeenStreet2 INT,
@@ -2326,11 +2284,7 @@ class Sql:
                         rakeDealt INT,
                         rakeContributed INT,
                         rakeWeighted INT,
-                        showdownWinnings INT,
-                        nonShowdownWinnings INT,
                         allInEV INT,
-                        BBwon INT,
-                        vsHero INT,
 
                         street1CheckCallRaiseChance INT,
                         street1CheckCallDone INT,
@@ -2377,7 +2331,6 @@ class Sql:
                         activeSeats SMALLINT NOT NULL,
                         position CHAR(1),
                         hands INT NOT NULL,
-                        played INT NOT NULL,
 
                         wonWhenSeenStreet1 INT,
                         wonWhenSeenStreet2 INT,
@@ -2461,11 +2414,7 @@ class Sql:
                         rakeDealt BIGINT,
                         rakeContributed BIGINT,
                         rakeWeighted BIGINT,
-                        showdownWinnings BIGINT,
-                        nonShowdownWinnings BIGINT,
                         allInEV BIGINT,
-                        BBwon BIGINT,
-                        vsHero BIGINT,
                         
                         street1CheckCallRaiseChance INT,
                         street1CheckCallDone INT,
@@ -2508,7 +2457,6 @@ class Sql:
                         activeSeats SMALLINT,
                         position CHAR(1),
                         hands INT,
-                        played INT,
 
                         wonWhenSeenStreet1 INT,
                         wonWhenSeenStreet2 INT,
@@ -2590,11 +2538,7 @@ class Sql:
                         rakeDealt BIGINT,
                         rakeContributed BIGINT,
                         rakeWeighted BIGINT,
-                        showdownWinnings BIGINT,
-                        nonShowdownWinnings BIGINT,
                         allInEV BIGINT,
-                        BBwon BIGINT,
-                        vsHero BIGINT,
 
                         street1CheckCallRaiseChance INT,
                         street1CheckCallDone INT,
@@ -2636,7 +2580,6 @@ class Sql:
                         activeSeats INT,
                         position TEXT,
                         hands INT,
-                        played INT,
 
                         wonWhenSeenStreet1 INT,
                         wonWhenSeenStreet2 INT,
@@ -2718,11 +2661,7 @@ class Sql:
                         rakeDealt INT,
                         rakeContributed INT,
                         rakeWeighted INT,
-                        showdownWinnings INT,
-                        nonShowdownWinnings INT,
                         allInEV INT,
-                        BBwon INT,
-                        vsHero INT,
 
                         street1CheckCallRaiseChance INT,
                         street1CheckCallDone INT,
@@ -2845,7 +2784,6 @@ class Sql:
                         gametypeId SMALLINT UNSIGNED, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
                         playerId INT UNSIGNED NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
                         hands INT NOT NULL,
-                        played INT NOT NULL,
                         
                         wonWhenSeenStreet1 INT,
                         wonWhenSeenStreet2 INT,
@@ -2928,11 +2866,7 @@ class Sql:
                         rakeDealt BIGINT,
                         rakeContributed BIGINT,
                         rakeWeighted BIGINT,
-                        showdownWinnings BIGINT,
-                        nonShowdownWinnings BIGINT,
                         allInEV BIGINT,
-                        BBwon BIGINT,
-                        vsHero BIGINT,
                         
                         street1CheckCallRaiseChance INT,
                         street1CheckCallDone INT,
@@ -2974,7 +2908,6 @@ class Sql:
                         gametypeId INT, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
                         playerId INT, FOREIGN KEY (playerId) REFERENCES Players(id),
                         hands INT,
-                        played INT,
                         
                         wonWhenSeenStreet1 INT,
                         wonWhenSeenStreet2 INT,
@@ -3056,11 +2989,7 @@ class Sql:
                         rakeDealt BIGINT,
                         rakeContributed BIGINT,
                         rakeWeighted BIGINT,
-                        showdownWinnings BIGINT,
-                        nonShowdownWinnings BIGINT,
                         allInEV BIGINT,
-                        BBwon BIGINT,
-                        vsHero BIGINT,
 
                         street1CheckCallRaiseChance INT,
                         street1CheckCallDone INT,
@@ -3101,7 +3030,6 @@ class Sql:
                         gametypeId INT,
                         playerId INT,
                         hands INT,
-                        played INT,
                         
                         wonWhenSeenStreet1 INT,
                         wonWhenSeenStreet2 INT,
@@ -3183,11 +3111,7 @@ class Sql:
                         rakeDealt INT,
                         rakeContributed INT,
                         rakeWeighted INT,
-                        showdownWinnings INT,
-                        nonShowdownWinnings INT,
                         allInEV INT,
-                        BBwon INT,
-                        vsHero INT,
 
                         street1CheckCallRaiseChance INT,
                         street1CheckCallDone INT,
@@ -3232,7 +3156,6 @@ class Sql:
                         tourneyId INT UNSIGNED NOT NULL, FOREIGN KEY (tourneyId) REFERENCES Tourneys(id),
                         playerId INT UNSIGNED NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
                         hands INT NOT NULL,
-                        played INT NOT NULL,
                         
                         wonWhenSeenStreet1 INT,
                         wonWhenSeenStreet2 INT,
@@ -3315,11 +3238,7 @@ class Sql:
                         rakeDealt BIGINT,
                         rakeContributed BIGINT,
                         rakeWeighted BIGINT,
-                        showdownWinnings BIGINT,
-                        nonShowdownWinnings BIGINT,
                         allInEV BIGINT,
-                        BBwon BIGINT,
-                        vsHero BIGINT,
                         
                         street1CheckCallRaiseChance INT,
                         street1CheckCallDone INT,
@@ -3361,7 +3280,6 @@ class Sql:
                         tourneyId INT, FOREIGN KEY (tourneyId) REFERENCES Tourneys(id),
                         playerId INT, FOREIGN KEY (playerId) REFERENCES Players(id),
                         hands INT,
-                        played INT,
                         
                         wonWhenSeenStreet1 INT,
                         wonWhenSeenStreet2 INT,
@@ -3443,11 +3361,7 @@ class Sql:
                         rakeDealt BIGINT,
                         rakeContributed BIGINT,
                         rakeWeighted BIGINT,
-                        showdownWinnings BIGINT,
-                        nonShowdownWinnings BIGINT,
                         allInEV BIGINT,
-                        BBwon BIGINT,
-                        vsHero BIGINT,
 
                         street1CheckCallRaiseChance INT,
                         street1CheckCallDone INT,
@@ -3488,7 +3402,6 @@ class Sql:
                         tourneyId INT,
                         playerId INT,
                         hands INT,
-                        played INT,
                         
                         wonWhenSeenStreet1 INT,
                         wonWhenSeenStreet2 INT,
@@ -3570,11 +3483,7 @@ class Sql:
                         rakeDealt INT,
                         rakeContributed INT,
                         rakeWeighted INT,
-                        showdownWinnings INT,
-                        nonShowdownWinnings INT,
                         allInEV INT,
-                        BBwon INT,
-                        vsHero INT,
 
                         street1CheckCallRaiseChance INT,
                         street1CheckCallDone INT,
@@ -6410,7 +6319,6 @@ class Sql:
         if db_server == 'mysql':
             self.query['rebuildCache'] = """insert into <insert>
                 ,hands
-                ,played
                 ,wonWhenSeenStreet1
                 ,wonWhenSeenStreet2
                 ,wonWhenSeenStreet3
@@ -6483,11 +6391,7 @@ class Sql:
                 ,rakeDealt
                 ,rakeContributed
                 ,rakeWeighted
-                ,showdownWinnings
-                ,nonShowdownWinnings
                 ,allInEV
-                ,BBwon
-                ,vsHero
                 ,street1CheckCallRaiseChance
                 ,street1CheckCallDone
                 ,street1CheckRaiseDone
@@ -6518,7 +6422,6 @@ class Sql:
                 )
                 SELECT <select>
                       ,count(1)
-                      ,sum(played)
                       ,sum(wonWhenSeenStreet1)
                       ,sum(wonWhenSeenStreet2)
                       ,sum(wonWhenSeenStreet3)
@@ -6591,11 +6494,7 @@ class Sql:
                       ,sum(rakeDealt)
                       ,sum(rakeContributed)
                       ,sum(rakeWeighted)
-                      ,sum(showdownWinnings)
-                      ,sum(nonShowdownWinnings)
                       ,sum(allInEV)
-                      ,sum(BBwon)
-                      ,sum(vsHero)
                       ,sum(street1CheckCallRaiseChance)
                       ,sum(street1CheckCallDone)
                       ,sum(street1CheckRaiseDone)
@@ -6634,7 +6533,6 @@ class Sql:
         elif db_server == 'postgresql':
             self.query['rebuildCache'] = """insert into <insert>
                 ,hands
-                ,played
                 ,wonWhenSeenStreet1
                 ,wonWhenSeenStreet2
                 ,wonWhenSeenStreet3
@@ -6707,11 +6605,7 @@ class Sql:
                 ,rakeDealt
                 ,rakeContributed
                 ,rakeWeighted
-                ,showdownWinnings
-                ,nonShowdownWinnings
                 ,allInEV
-                ,BBwon
-                ,vsHero
                 ,street1CheckCallRaiseChance
                 ,street1CheckCallDone
                 ,street1CheckRaiseDone
@@ -6742,7 +6636,6 @@ class Sql:
                 )
                 SELECT <select>
                       ,count(1)
-                      ,sum(CAST(played as integer))
                       ,sum(CAST(wonWhenSeenStreet1 as integer))
                       ,sum(CAST(wonWhenSeenStreet2 as integer))
                       ,sum(CAST(wonWhenSeenStreet3 as integer))
@@ -6815,11 +6708,7 @@ class Sql:
                       ,sum(CAST(rakeDealt as bigint))
                       ,sum(CAST(rakeContributed as bigint))
                       ,sum(CAST(rakeWeighted as bigint))
-                      ,sum(CAST(showdownWinnings as bigint))
-                      ,sum(CAST(nonShowdownWinnings as bigint))
                       ,sum(CAST(allInEV as bigint))
-                      ,sum(CAST(BBwon as bigint))
-                      ,sum(CAST(vsHero as bigint))
                       ,sum(CAST(street1CheckCallRaiseChance as integer))
                       ,sum(CAST(street1CheckCallDone as integer))
                       ,sum(CAST(street1CheckRaiseDone as integer))
@@ -6858,7 +6747,6 @@ class Sql:
         elif db_server == 'sqlite':
             self.query['rebuildCache'] = """insert into <insert>
                 ,hands
-                ,played
                 ,wonWhenSeenStreet1
                 ,wonWhenSeenStreet2
                 ,wonWhenSeenStreet3
@@ -6931,11 +6819,7 @@ class Sql:
                 ,rakeDealt
                 ,rakeContributed
                 ,rakeWeighted
-                ,showdownWinnings
-                ,nonShowdownWinnings
                 ,allInEV
-                ,BBwon
-                ,vsHero
                 ,street1CheckCallRaiseChance
                 ,street1CheckCallDone
                 ,street1CheckRaiseDone
@@ -6966,7 +6850,6 @@ class Sql:
                 )
                 SELECT <select>
                       ,count(1)
-                      ,sum(CAST(played as integer))
                       ,sum(CAST(wonWhenSeenStreet1 as integer))
                       ,sum(CAST(wonWhenSeenStreet2 as integer))
                       ,sum(CAST(wonWhenSeenStreet3 as integer))
@@ -7039,11 +6922,7 @@ class Sql:
                       ,sum(CAST(rakeDealt as integer))
                       ,sum(CAST(rakeContributed as integer))
                       ,sum(CAST(rakeWeighted as integer))
-                      ,sum(CAST(showdownWinnings as integer))
-                      ,sum(CAST(nonShowdownWinnings as integer))
                       ,sum(CAST(allInEV as integer))
-                      ,sum(CAST(BBwon as integer))
-                      ,sum(CAST(vsHero as integer))
                       ,sum(CAST(street1CheckCallRaiseChance as integer))
                       ,sum(CAST(street1CheckCallDone as integer))
                       ,sum(CAST(street1CheckRaiseDone as integer))
@@ -7089,7 +6968,6 @@ class Sql:
                 tourneyTypeId,
                 styleKey,
                 hands,
-                played,
                 street0VPIChance,
                 street0VPI,
                 street0AggrChance,
@@ -7162,11 +7040,7 @@ class Sql:
                 rakeDealt,
                 rakeContributed,
                 rakeWeighted,
-                showdownWinnings,
-                nonShowdownWinnings,
                 allInEV,
-                BBwon,
-                vsHero,
                 street1CheckCallRaiseChance,
                 street1CheckCallDone,
                 street1CheckRaiseDone,
@@ -7215,13 +7089,11 @@ class Sql:
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
-                    %s, %s, %s, %s, %s,
                     %s, %s)"""
 
         self.query['update_hudcache'] = """
             UPDATE HudCache SET
             hands=hands+%s,
-            played=played+%s,
             street0VPIChance=street0VPIChance+%s,
             street0VPI=street0VPI+%s,
             street0AggrChance=street0AggrChance+%s,
@@ -7294,11 +7166,7 @@ class Sql:
             rakeDealt=rakeDealt+%s,
             rakeContributed=rakeContributed+%s,
             rakeWeighted=rakeWeighted+%s,
-            showdownWinnings=showdownWinnings+%s,
-            nonShowdownWinnings=nonShowdownWinnings+%s,
             allInEV=allInEV+%s,
-            BBwon=BBwon+%s,
-            vsHero=vsHero+%s,
             street1CheckCallRaiseChance=street1CheckCallRaiseChance+%s,
             street1CheckCallDone=street1CheckCallDone+%s,
             street1CheckRaiseDone=street1CheckRaiseDone+%s,
@@ -7369,7 +7237,6 @@ class Sql:
                 startCards,
                 rankId,
                 hands,
-                played,
                 street0VPIChance,
                 street0VPI,
                 street0AggrChance,
@@ -7442,11 +7309,7 @@ class Sql:
                 rakeDealt,
                 rakeContributed,
                 rakeWeighted,
-                showdownWinnings,
-                nonShowdownWinnings,
                 allInEV,
-                BBwon,
-                vsHero,
                 street1CheckCallRaiseChance,
                 street1CheckCallDone,
                 street1CheckRaiseDone,
@@ -7503,7 +7366,6 @@ class Sql:
         self.query['update_cardscache'] = """
             UPDATE CardsCache SET
                     hands=hands+%s,
-                    played=played+%s,
                     street0VPIChance=street0VPIChance+%s,
                     street0VPI=street0VPI+%s,
                     street0AggrChance=street0AggrChance+%s,
@@ -7576,11 +7438,7 @@ class Sql:
                     rakeDealt=rakeDealt+%s,
                     rakeContributed=rakeContributed+%s,
                     rakeWeighted=rakeWeighted+%s,
-                    showdownWinnings=showdownWinnings+%s,
-                    nonShowdownWinnings=nonShowdownWinnings+%s,
                     allInEV=allInEV+%s,
-                    BBwon=BBwon+%s,
-                    vsHero=vsHero+%s,
                     street1CheckCallRaiseChance=street1CheckCallRaiseChance+%s,
                     street1CheckCallDone=street1CheckCallDone+%s,
                     street1CheckRaiseDone=street1CheckRaiseDone+%s,
@@ -7651,7 +7509,6 @@ class Sql:
                 activeSeats,
                 position,
                 hands,
-                played,
                 street0VPIChance,
                 street0VPI,
                 street0AggrChance,
@@ -7724,11 +7581,7 @@ class Sql:
                 rakeDealt,
                 rakeContributed,
                 rakeWeighted,
-                showdownWinnings,
-                nonShowdownWinnings,
                 allInEV,
-                BBwon,
-                vsHero,
                 street1CheckCallRaiseChance,
                 street1CheckCallDone,
                 street1CheckRaiseDone,
@@ -7777,14 +7630,12 @@ class Sql:
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
-                    %s, %s, %s, %s, %s,
                     %s, %s, %s
                     )"""
 
         self.query['update_positionscache'] = """
             UPDATE PositionsCache SET
                     hands=hands+%s,
-                    played=played+%s,
                     street0VPIChance=street0VPIChance+%s,
                     street0VPI=street0VPI+%s,
                     street0AggrChance=street0AggrChance+%s,
@@ -7857,11 +7708,7 @@ class Sql:
                     rakeDealt=rakeDealt+%s,
                     rakeContributed=rakeContributed+%s,
                     rakeWeighted=rakeWeighted+%s,
-                    showdownWinnings=showdownWinnings+%s,
-                    nonShowdownWinnings=nonShowdownWinnings+%s,
                     allInEV=allInEV+%s,
-                    BBwon=BBwon+%s,
-                    vsHero=vsHero+%s,
                     street1CheckCallRaiseChance=street1CheckCallRaiseChance+%s,
                     street1CheckCallDone=street1CheckCallDone+%s,
                     street1CheckRaiseDone=street1CheckRaiseDone+%s,
@@ -8000,7 +7847,6 @@ class Sql:
                     startTime,
                     endTime,
                     hands,
-                    played,
                     street0VPIChance,
                     street0VPI,
                     street0AggrChance,
@@ -8073,11 +7919,7 @@ class Sql:
                     rakeDealt,
                     rakeContributed,
                     rakeWeighted,
-                    showdownWinnings,
-                    nonShowdownWinnings,
                     allInEV,
-                    BBwon,
-                    vsHero,
                     street1CheckCallRaiseChance,
                     street1CheckCallDone,
                     street1CheckRaiseDone,
@@ -8143,7 +7985,6 @@ class Sql:
                     gametypeId,
                     playerId,
                     hands,
-                    played,
                     street0VPIChance,
                     street0VPI,
                     street0AggrChance,
@@ -8216,11 +8057,7 @@ class Sql:
                     rakeDealt,
                     rakeContributed,
                     rakeWeighted,
-                    showdownWinnings,
-                    nonShowdownWinnings,
                     allInEV,
-                    BBwon,
-                    vsHero,
                     street1CheckCallRaiseChance,
                     street1CheckCallDone,
                     street1CheckRaiseDone,
@@ -8250,7 +8087,6 @@ class Sql:
                     street4Raises
                     )
                     values (%s, %s, %s, %s, %s,
-                            %s, %s, %s, %s, %s,
                             %s, %s, %s, %s, %s,
                             %s, %s, %s, %s, %s,
                             %s, %s, %s, %s, %s,
@@ -8279,8 +8115,7 @@ class Sql:
                     endTime,
                     tourneyId,
                     playerId,
-                    hands,    
-                    played,
+                    hands,
                     street0VPIChance,
                     street0VPI,
                     street0AggrChance,
@@ -8353,11 +8188,7 @@ class Sql:
                     rakeDealt,
                     rakeContributed,
                     rakeWeighted,
-                    showdownWinnings,
-                    nonShowdownWinnings,
                     allInEV,
-                    BBwon,
-                    vsHero,
                     street1CheckCallRaiseChance,
                     street1CheckCallDone,
                     street1CheckRaiseDone,
@@ -8387,7 +8218,6 @@ class Sql:
                     street4Raises
                     )
                     values (%s, %s, %s, %s, %s,
-                            %s, %s, %s, %s, %s,
                             %s, %s, %s, %s, %s,
                             %s, %s, %s, %s, %s,
                             %s, %s, %s, %s, %s,
@@ -8433,7 +8263,6 @@ class Sql:
                     startTime=%s,
                     endTime=%s,
                     hands=hands+%s,
-                    played=played+%s,
                     street0VPIChance=street0VPIChance+%s,
                     street0VPI=street0VPI+%s,
                     street0AggrChance=street0AggrChance+%s,
@@ -8506,11 +8335,7 @@ class Sql:
                     rakeDealt=rakeDealt+%s,
                     rakeContributed=rakeContributed+%s,
                     rakeWeighted=rakeWeighted+%s,
-                    showdownWinnings=showdownWinnings+%s,
-                    nonShowdownWinnings=nonShowdownWinnings+%s,
                     allInEV=allInEV+%s,
-                    BBwon=BBwon+%s,
-                    vsHero=vsHero+%s,
                     street1CheckCallRaiseChance=street1CheckCallRaiseChance+%s,
                     street1CheckCallDone=street1CheckCallDone+%s,
                     street1CheckRaiseDone=street1CheckRaiseDone+%s,
@@ -8544,7 +8369,6 @@ class Sql:
                     UPDATE TourCache SET
                     <UPDATE>
                     hands=hands+%s,
-                    played=played+%s,
                     street0VPIChance=street0VPIChance+%s,
                     street0VPI=street0VPI+%s,
                     street0AggrChance=street0AggrChance+%s,
@@ -8617,11 +8441,7 @@ class Sql:
                     rakeDealt=rakeDealt+%s,
                     rakeContributed=rakeContributed+%s,
                     rakeWeighted=rakeWeighted+%s,
-                    showdownWinnings=showdownWinnings+%s,
-                    nonShowdownWinnings=nonShowdownWinnings+%s,
                     allInEV=allInEV+%s,
-                    BBwon=BBwon+%s,
-                    vsHero=vsHero+%s,
                     street1CheckCallRaiseChance=street1CheckCallRaiseChance+%s,
                     street1CheckCallDone=street1CheckCallDone+%s,
                     street1CheckRaiseDone=street1CheckRaiseDone+%s,
@@ -9086,7 +8906,6 @@ class Sql:
                 card18,
                 card19,
                 card20,
-                played,
                 common,
                 committed,
                 winnings,
@@ -9094,12 +8913,8 @@ class Sql:
                 rakeDealt,
                 rakeContributed,
                 rakeWeighted,
-                showdownWinnings,
-                nonShowdownWinnings,
                 totalProfit,
                 allInEV,
-                BBwon,
-                vsHero,
                 street0VPIChance,
                 street0VPI,
                 street1Seen,
@@ -9219,7 +9034,6 @@ class Sql:
                 handString
                )
                values (
-                    %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
