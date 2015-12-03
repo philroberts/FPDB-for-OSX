@@ -860,6 +860,8 @@ class Sql:
 
                         raiseToStealChance BOOLEAN,
                         raiseToStealDone BOOLEAN,
+                        stealChance BOOLEAN,
+                        stealDone BOOLEAN,
                         success_Steal BOOLEAN,
 
                         street1Seen BOOLEAN,
@@ -1036,6 +1038,8 @@ class Sql:
 
                         raiseToStealChance BOOLEAN,
                         raiseToStealDone BOOLEAN,
+                        stealChance BOOLEAN,
+                        stealDone BOOLEAN,
                         success_Steal BOOLEAN,
 
                         street1Seen BOOLEAN,
@@ -1211,6 +1215,8 @@ class Sql:
 
                         raiseToStealChance INT,
                         raiseToStealDone INT,
+                        stealChance INT,
+                        stealDone INT,
                         success_Steal INT,
 
                         street1Seen INT,
@@ -1600,6 +1606,8 @@ class Sql:
 
                         raiseToStealChance INT,
                         raiseToStealDone INT,
+                        stealChance INT,
+                        stealDone INT,
                         success_Steal INT,
 
                         street1Seen INT,
@@ -1724,6 +1732,8 @@ class Sql:
 
                         raiseToStealChance INT,
                         raiseToStealDone INT,
+                        stealChance INT,
+                        stealDone INT,
                         success_Steal INT,
 
                         street1Seen INT,
@@ -1846,6 +1856,8 @@ class Sql:
 
                         raiseToStealChance INT,
                         raiseToStealDone INT,
+                        stealChance INT,
+                        stealDone INT,
                         success_Steal INT,
 
                         street1Seen INT,
@@ -1977,6 +1989,8 @@ class Sql:
 
                         raiseToStealChance INT,
                         raiseToStealDone INT,
+                        stealChance INT,
+                        stealDone INT,
                         success_Steal INT,
 
                         street1Seen INT,
@@ -2105,6 +2119,8 @@ class Sql:
 
                         raiseToStealChance INT,
                         raiseToStealDone INT,
+                        stealChance INT,
+                        stealDone INT,
                         success_Steal INT,
 
                         street1Seen INT,
@@ -2231,6 +2247,8 @@ class Sql:
 
                         raiseToStealChance INT,
                         raiseToStealDone INT,
+                        stealChance INT,
+                        stealDone INT,
                         success_Steal INT,
 
                         street1Seen INT,
@@ -2359,8 +2377,9 @@ class Sql:
 
                         raiseToStealChance INT,
                         raiseToStealDone INT,
+                        stealChance INT,
+                        stealDone INT,
                         success_Steal INT,
-
 
                         street1Seen INT,
                         street2Seen INT,
@@ -2485,6 +2504,8 @@ class Sql:
 
                         raiseToStealChance INT,
                         raiseToStealDone INT,
+                        stealChance INT,
+                        stealDone INT,
                         success_Steal INT,
 
                         street1Seen INT,
@@ -2608,6 +2629,8 @@ class Sql:
 
                         raiseToStealChance INT,
                         raiseToStealDone INT,
+                        stealChance INT,
+                        stealDone INT,
                         success_Steal INT,
 
                         street1Seen INT,
@@ -2812,6 +2835,8 @@ class Sql:
 
                         raiseToStealChance INT,
                         raiseToStealDone INT,
+                        stealChance INT,
+                        stealDone INT,
                         success_Steal INT,
 
                         street1Seen INT,
@@ -2936,6 +2961,8 @@ class Sql:
 
                         raiseToStealChance INT,
                         raiseToStealDone INT,
+                        stealChance INT,
+                        stealDone INT,
                         success_Steal INT,
 
                         street1Seen INT,
@@ -3058,6 +3085,8 @@ class Sql:
 
                         raiseToStealChance INT,
                         raiseToStealDone INT,
+                        stealChance INT,
+                        stealDone INT,
                         success_Steal INT,
 
                         street1Seen INT,
@@ -3184,6 +3213,8 @@ class Sql:
 
                         raiseToStealChance INT,
                         raiseToStealDone INT,
+                        stealChance INT,
+                        stealDone INT,
                         success_Steal INT,
 
                         street1Seen INT,
@@ -3308,6 +3339,8 @@ class Sql:
 
                         raiseToStealChance INT,
                         raiseToStealDone INT,
+                        stealChance INT,
+                        stealDone INT,
                         success_Steal INT,
 
                         street1Seen INT,
@@ -3430,6 +3463,8 @@ class Sql:
 
                         raiseToStealChance INT,
                         raiseToStealDone INT,
+                        stealChance INT,
+                        stealDone INT,
                         success_Steal INT,
 
                         street1Seen INT,
@@ -3757,18 +3792,8 @@ class Sql:
                     sum(hc.foldToOtherRaisedStreet4)    AS f_freq_4,
                     sum(hc.wonWhenSeenStreet1)          AS w_w_s_1,
                     sum(hc.wonAtSD)                     AS wmsd,
-                    sum(case hc.position
-                        when 'S' then hc.raiseFirstInChance
-                        when '0' then hc.raiseFirstInChance
-                        when '1' then hc.raiseFirstInChance
-                        else 0
-                       )                                AS steal_opp,
-                    sum(case hc.position
-                        when 'S' then hc.raisedFirstIn
-                        when '0' then hc.raisedFirstIn
-                        when '1' then hc.raisedFirstIn
-                        else 0
-                       )                                AS steal,
+                    sum(hc.stealChance)                 AS steal_opp,
+                    sum(hc.stealDone)                   AS steal,
                     sum(hc.foldSbToStealChance)         AS SBstolen,
                     sum(hc.foldedSbToSteal)             AS SBnotDef,
                     sum(hc.foldBbToStealChance)         AS BBstolen,
@@ -3790,7 +3815,7 @@ class Sql:
                     sum(hc.foldToStreet4CBChance)       AS f_cb_opp_4,
                     sum(hc.foldToStreet4CBDone)         AS f_cb_4,
                     sum(hc.totalProfit)                 AS net,
-                    sum(gt.bigblind * hc.HDs)           AS bigblind,
+                    sum(gt.bigblind * hc.hands)         AS bigblind,
                     sum(hc.street1CheckCallRaiseChance) AS ccr_opp_1,
                     sum(hc.street1CheckCallDone)        AS cc_1,
                     sum(hc.street1CheckRaiseDone)       AS cr_1,
@@ -3889,18 +3914,8 @@ class Sql:
                        sum(hc.foldToOtherRaisedStreet4)    AS f_freq_4,
                        sum(hc.wonWhenSeenStreet1)          AS w_w_s_1,
                        sum(hc.wonAtSD)                     AS wmsd,
-                       sum(case
-                        when hc.position = 'S' then hc.raiseFirstInChance
-                        when hc.position = 'D' then hc.raiseFirstInChance
-                        when hc.position = 'C' then hc.raiseFirstInChance
-                        else 0
-                        end)                               AS steal_opp,
-                       sum(case
-                        when hc.position = 'S' then hc.raisedFirstIn
-                        when hc.position = 'D' then hc.raisedFirstIn
-                        when hc.position = 'C' then hc.raisedFirstIn
-                        else 0
-                        end)                               AS steal,
+                       sum(hc.stealChance)                 AS steal_opp,
+                       sum(hc.stealDone)                   AS steal,
                        sum(hc.foldSbToStealChance)         AS SBstolen,
                        sum(hc.foldedSbToSteal)             AS SBnotDef,
                        sum(hc.foldBbToStealChance)         AS BBstolen,
@@ -4048,18 +4063,8 @@ class Sql:
                            cast(hp2.foldToOtherRaisedStreet4 as <signed>integer)    AS f_freq_4,
                            cast(hp2.wonWhenSeenStreet1 as <signed>integer)          AS w_w_s_1,
                            cast(hp2.wonAtSD as <signed>integer)                     AS wmsd,
-                           case
-                                when hp2.position = 'S' then cast(hp2.raiseFirstInChance as <signed>integer)
-                                when hp2.position = '0' then cast(hp2.raiseFirstInChance as <signed>integer)
-                                when hp2.position = '1' then cast(hp2.raiseFirstInChance as <signed>integer)
-                                else 0
-                           end                                                      AS steal_opp,
-                           case
-                                when hp2.position = 'S' then cast(hp2.raisedFirstIn as <signed>integer)
-                                when hp2.position = '0' then cast(hp2.raisedFirstIn as <signed>integer)
-                                when hp2.position = '1' then cast(hp2.raisedFirstIn as <signed>integer)
-                                else 0
-                           end                                                      AS steal,
+                           cast(hp2.stealChance as <signed>integer)                 AS steal_opp,
+                           cast(hp2.stealDone as <signed>integer)                   AS steal,
                            cast(hp2.foldSbToStealChance as <signed>integer)         AS SBstolen,
                            cast(hp2.foldedSbToSteal as <signed>integer)             AS SBnotDef,
                            cast(hp2.foldBbToStealChance as <signed>integer)         AS BBstolen,
@@ -4183,18 +4188,8 @@ class Sql:
                            cast(hp2.foldToOtherRaisedStreet4 as <signed>integer)    AS f_freq_4,
                            cast(hp2.wonWhenSeenStreet1 as <signed>integer)          AS w_w_s_1,
                            cast(hp2.wonAtSD as <signed>integer)                     AS wmsd,
-                           case
-                                when hp2.position = 'S' then cast(hp2.raiseFirstInChance as <signed>integer)
-                                when hp2.position = '0' then cast(hp2.raiseFirstInChance as <signed>integer)
-                                when hp2.position = '1' then cast(hp2.raiseFirstInChance as <signed>integer)
-                                else 0
-                           end                                                      AS steal_opp,
-                          case
-                                when hp2.position = 'S' then cast(hp2.raisedFirstIn as <signed>integer)
-                                when hp2.position = '0' then cast(hp2.raisedFirstIn as <signed>integer)
-                                when hp2.position = '1' then cast(hp2.raisedFirstIn as <signed>integer)
-                                else 0
-                           end                                                      AS steal,
+                           cast(hp2.stealChance as <signed>integer)                 AS steal_opp,
+                           cast(hp2.stealDone as <signed>integer)                   AS steal,
                            cast(hp2.foldSbToStealChance as <signed>integer)         AS SBstolen,
                            cast(hp2.foldedSbToSteal as <signed>integer)             AS SBnotDef,
                            cast(hp2.foldBbToStealChance as <signed>integer)         AS BBstolen,
@@ -4319,18 +4314,8 @@ class Sql:
                            cast(hp2.foldToOtherRaisedStreet4 as <signed>integer)    AS f_freq_4,
                            cast(hp2.wonWhenSeenStreet1 as <signed>integer)          AS w_w_s_1,
                            cast(hp2.wonAtSD as <signed>integer)                     AS wmsd,
-                           case
-                                when hp2.position = 'S' then cast(hp2.raiseFirstInChance as <signed>integer)
-                                when hp2.position = '0' then cast(hp2.raiseFirstInChance as <signed>integer)
-                                when hp2.position = '1' then cast(hp2.raiseFirstInChance as <signed>integer)
-                                else 0
-                           end                                                      AS steal_opp,
-                          case
-                                when hp2.position = 'S' then cast(hp2.raisedFirstIn as <signed>integer)
-                                when hp2.position = '0' then cast(hp2.raisedFirstIn as <signed>integer)
-                                when hp2.position = '1' then cast(hp2.raisedFirstIn as <signed>integer)
-                                else 0
-                           end                                                      AS steal,
+                           cast(hp2.stealChance as <signed>integer)                 AS steal_opp,
+                           cast(hp2.stealDone as <signed>integer)                   AS steal,
                            cast(hp2.foldSbToStealChance as <signed>integer)         AS SBstolen,
                            cast(hp2.foldedSbToSteal as <signed>integer)             AS SBnotDef,
                            cast(hp2.foldBbToStealChance as <signed>integer)         AS BBstolen,
@@ -4626,40 +4611,13 @@ class Sql:
                                   else 100.0 * sum(cast(hp.raisedFirstIn as <signed>integer)) / 
                                        sum(cast(hp.raiseFirstInChance as <signed>integer))
                              end                                                                    AS rfi
-                            ,case when sum(case hp.position
-                                           when 'S' then cast(hp.raiseFirstInChance as <signed>integer)
-                                           when '0' then cast(hp.raiseFirstInChance as <signed>integer)
-                                           when '1' then cast(hp.raiseFirstInChance as <signed>integer)
-                                           else 0
-                                           end
-                                          ) = 0 then -999
-                                  else 100.0 * 
-                                       sum(case hp.position
-                                           when 'S' then cast(hp.raisedFirstIn as <signed>integer)
-                                           when '0' then cast(hp.raisedFirstIn as <signed>integer)
-                                           when '1' then cast(hp.raisedFirstIn as <signed>integer)
-                                           else 0
-                                           end
-                                          ) / 
-                                       sum(case hp.position
-                                           when 'S' then cast(hp.raiseFirstInChance as <signed>integer)
-                                           when '0' then cast(hp.raiseFirstInChance as <signed>integer)
-                                           when '1' then cast(hp.raiseFirstInChance as <signed>integer)
-                                           else 0
-                                           end
-                                          )
+                            ,case when sum(cast(hp.stealChance as <signed>integer)) = 0 then -999
+                                  else 100.0 * sum(cast(hp.stealDone as <signed>integer)) / 
+                                       sum(cast(hp.stealChance as <signed>integer))
                              end                                                                    AS steals
-                            ,case when sum(cast(hp.success_Steal as <signed>integer)) = 0 then -999
-                                  else 100.0 * 
-                                       sum(cast(hp.success_Steal as <signed>integer))
-                                           / 
-                                       sum(case hp.position
-                                           when 'S' then cast(hp.raisedFirstIn as <signed>integer)
-                                           when '0' then cast(hp.raisedFirstIn as <signed>integer)
-                                           when '1' then cast(hp.raisedFirstIn as <signed>integer)
-                                           else 0
-                                           end
-                                          )
+                            ,case when sum(cast(hp.stealDone as <signed>integer)) = 0 then -999
+                                  else 100.0 * sum(cast(hp.success_Steal as <signed>integer)) / 
+                                       sum(cast(hp.stealDone as <signed>integer))
                              end                                                                    AS suc_steal
                             ,100.0*sum(cast(hp.street1Seen as <signed>integer))/count(1)            AS saw_f
                             ,100.0*sum(cast(hp.sawShowdown as <signed>integer))/count(1)            AS sawsd
@@ -4784,40 +4742,13 @@ class Sql:
                                   else 100.0 * sum(cast(hp.raisedFirstIn as <signed>integer)) / 
                                        sum(cast(hp.raiseFirstInChance as <signed>integer))
                              end                                                                    AS rfi
-                            ,case when sum(case hp.position
-                                           when 'S' then cast(hp.raiseFirstInChance as <signed>integer)
-                                           when '0' then cast(hp.raiseFirstInChance as <signed>integer)
-                                           when '1' then cast(hp.raiseFirstInChance as <signed>integer)
-                                           else 0
-                                           end
-                                          ) = 0 then -999
-                                  else 100.0 * 
-                                       sum(case hp.position
-                                           when 'S' then cast(hp.raisedFirstIn as <signed>integer)
-                                           when '0' then cast(hp.raisedFirstIn as <signed>integer)
-                                           when '1' then cast(hp.raisedFirstIn as <signed>integer)
-                                           else 0
-                                           end
-                                          ) / 
-                                       sum(case hp.position
-                                           when 'S' then cast(hp.raiseFirstInChance as <signed>integer)
-                                           when '0' then cast(hp.raiseFirstInChance as <signed>integer)
-                                           when '1' then cast(hp.raiseFirstInChance as <signed>integer)
-                                           else 0
-                                           end
-                                          )
+                            ,case when sum(cast(hp.stealChance as <signed>integer)) = 0 then -999
+                                  else 100.0 * sum(cast(hp.stealDone as <signed>integer)) / 
+                                       sum(cast(hp.stealChance as <signed>integer))
                              end                                                                    AS steals
-                            ,case when sum(cast(hp.success_Steal as <signed>integer)) = 0 then -999
-                                  else 100.0 * 
-                                       sum(cast(hp.success_Steal as <signed>integer))
-                                           / 
-                                       sum(case hp.position
-                                           when 'S' then cast(hp.raisedFirstIn as <signed>integer)
-                                           when '0' then cast(hp.raisedFirstIn as <signed>integer)
-                                           when '1' then cast(hp.raisedFirstIn as <signed>integer)
-                                           else 0
-                                           end
-                                          )
+                            ,case when sum(cast(hp.stealDone as <signed>integer)) = 0 then -999
+                                  else 100.0 * sum(cast(hp.success_Steal as <signed>integer)) / 
+                                       sum(cast(hp.stealDone as <signed>integer))
                              end                                                                    AS suc_steal
                             ,100.0*sum(cast(hp.street1Seen as <signed>integer))/count(1)            AS saw_f
                             ,100.0*sum(cast(hp.sawShowdown as <signed>integer))/count(1)            AS sawsd
@@ -4955,40 +4886,13 @@ class Sql:
                                   else 100.0 * sum(cast(hp.raisedFirstIn as <signed>integer)) / 
                                        sum(cast(hp.raiseFirstInChance as <signed>integer))
                              end                                                                    AS rfi
-                            ,case when sum(case hp.position
-                                           when 'S' then cast(hp.raiseFirstInChance as <signed>integer)
-                                           when '0' then cast(hp.raiseFirstInChance as <signed>integer)
-                                           when '1' then cast(hp.raiseFirstInChance as <signed>integer)
-                                           else 0
-                                           end
-                                          ) = 0 then -999
-                                  else 100.0 * 
-                                       sum(case hp.position
-                                           when 'S' then cast(hp.raisedFirstIn as <signed>integer)
-                                           when '0' then cast(hp.raisedFirstIn as <signed>integer)
-                                           when '1' then cast(hp.raisedFirstIn as <signed>integer)
-                                           else 0
-                                           end
-                                          ) / 
-                                       sum(case hp.position
-                                           when 'S' then cast(hp.raiseFirstInChance as <signed>integer)
-                                           when '0' then cast(hp.raiseFirstInChance as <signed>integer)
-                                           when '1' then cast(hp.raiseFirstInChance as <signed>integer)
-                                           else 0
-                                           end
-                                          )
+                            ,case when sum(cast(hp.stealChance as <signed>integer)) = 0 then -999
+                                  else 100.0 * sum(cast(hp.stealDone as <signed>integer)) / 
+                                       sum(cast(hp.stealChance as <signed>integer))
                              end                                                                    AS steals
-                            ,case when sum(cast(hp.success_Steal as <signed>integer)) = 0 then -999
-                                  else 100.0 * 
-                                       sum(cast(hp.success_Steal as <signed>integer))
-                                           / 
-                                       sum(case hp.position
-                                           when 'S' then cast(hp.raisedFirstIn as <signed>integer)
-                                           when '0' then cast(hp.raisedFirstIn as <signed>integer)
-                                           when '1' then cast(hp.raisedFirstIn as <signed>integer)
-                                           else 0
-                                           end
-                                          )
+                            ,case when sum(cast(hp.stealDone as <signed>integer)) = 0 then -999
+                                  else 100.0 * sum(cast(hp.success_Steal as <signed>integer)) / 
+                                       sum(cast(hp.stealDone as <signed>integer))
                              end                                                                    AS suc_steal
                             ,100.0*sum(cast(hp.street1Seen as <signed>integer))/count(1)            AS saw_f
                             ,100.0*sum(cast(hp.sawShowdown as <signed>integer))/count(1)            AS sawsd
@@ -6344,6 +6248,8 @@ class Sql:
                 ,street0_SqueezeDone
                 ,raiseToStealChance
                 ,raiseToStealDone
+                ,stealChance
+                ,stealDone
                 ,success_Steal
                 ,street1Seen
                 ,street2Seen
@@ -6447,6 +6353,8 @@ class Sql:
                       ,sum(street0_SqueezeDone)
                       ,sum(raiseToStealChance)
                       ,sum(raiseToStealDone)
+                      ,sum(stealChance)
+                      ,sum(stealDone)
                       ,sum(success_Steal)
                       ,sum(street1Seen)
                       ,sum(street2Seen)
@@ -6558,6 +6466,8 @@ class Sql:
                 ,street0_SqueezeDone
                 ,raiseToStealChance
                 ,raiseToStealDone
+                ,stealChance
+                ,stealDone
                 ,success_Steal
                 ,street1Seen
                 ,street2Seen
@@ -6661,6 +6571,8 @@ class Sql:
                       ,sum(CAST(street0_SqueezeDone as integer))
                       ,sum(CAST(raiseToStealChance as integer))
                       ,sum(CAST(raiseToStealDone as integer))
+                      ,sum(CAST(stealChance as integer))
+                      ,sum(CAST(stealDone as integer))
                       ,sum(CAST(success_Steal as integer))
                       ,sum(CAST(street1Seen as integer))
                       ,sum(CAST(street2Seen as integer))
@@ -6772,6 +6684,8 @@ class Sql:
                 ,street0_SqueezeDone
                 ,raiseToStealChance
                 ,raiseToStealDone
+                ,stealChance
+                ,stealDone
                 ,success_Steal
                 ,street1Seen
                 ,street2Seen
@@ -6875,6 +6789,8 @@ class Sql:
                       ,sum(CAST(street0_SqueezeDone as integer))
                       ,sum(CAST(raiseToStealChance as integer))
                       ,sum(CAST(raiseToStealDone as integer))
+                      ,sum(CAST(stealChance as integer))
+                      ,sum(CAST(stealDone as integer))
                       ,sum(CAST(success_Steal as integer))
                       ,sum(CAST(street1Seen as integer))
                       ,sum(CAST(street2Seen as integer))
@@ -6988,6 +6904,8 @@ class Sql:
                 street0_SqueezeDone,
                 raiseToStealChance,
                 raiseToStealDone,
+                stealChance,
+                stealDone,
                 success_Steal,
                 street1Seen,
                 street2Seen,
@@ -7089,7 +7007,7 @@ class Sql:
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
-                    %s, %s)"""
+                    %s, %s, %s, %s)"""
 
         self.query['update_hudcache'] = """
             UPDATE HudCache SET
@@ -7114,6 +7032,8 @@ class Sql:
             street0_SqueezeDone=street0_SqueezeDone+%s,
             raiseToStealChance=raiseToStealChance+%s,
             raiseToStealDone=raiseToStealDone+%s,
+            stealChance=stealChance+%s,
+            stealDone=stealDone+%s,
             success_Steal=success_Steal+%s,
             street1Seen=street1Seen+%s,
             street2Seen=street2Seen+%s,
@@ -7257,6 +7177,8 @@ class Sql:
                 street0_SqueezeDone,
                 raiseToStealChance,
                 raiseToStealDone,
+                stealChance,
+                stealDone,
                 success_Steal,
                 street1Seen,
                 street2Seen,
@@ -7360,7 +7282,7 @@ class Sql:
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
-                    %s
+                    %s, %s, %s
                     )"""
 
         self.query['update_cardscache'] = """
@@ -7386,6 +7308,8 @@ class Sql:
                     street0_SqueezeDone=street0_SqueezeDone+%s,
                     raiseToStealChance=raiseToStealChance+%s,
                     raiseToStealDone=raiseToStealDone+%s,
+                    stealChance=stealChance+%s,
+                    stealDone=stealDone+%s,
                     success_Steal=success_Steal+%s,
                     street1Seen=street1Seen+%s,
                     street2Seen=street2Seen+%s,
@@ -7529,6 +7453,8 @@ class Sql:
                 street0_SqueezeDone,
                 raiseToStealChance,
                 raiseToStealDone,
+                stealChance,
+                stealDone,
                 success_Steal,
                 street1Seen,
                 street2Seen,
@@ -7630,7 +7556,7 @@ class Sql:
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
-                    %s, %s, %s
+                    %s, %s, %s, %s, %s
                     )"""
 
         self.query['update_positionscache'] = """
@@ -7656,6 +7582,8 @@ class Sql:
                     street0_SqueezeDone=street0_SqueezeDone+%s,
                     raiseToStealChance=raiseToStealChance+%s,
                     raiseToStealDone=raiseToStealDone+%s,
+                    stealChance=stealChance+%s,
+                    stealDone=stealDone+%s,
                     success_Steal=success_Steal+%s,
                     street1Seen=street1Seen+%s,
                     street2Seen=street2Seen+%s,
@@ -7867,6 +7795,8 @@ class Sql:
                     street0_SqueezeDone,
                     raiseToStealChance,
                     raiseToStealDone,
+                    stealChance,
+                    stealDone,
                     success_Steal,
                     street1Seen,
                     street2Seen,
@@ -8005,6 +7935,8 @@ class Sql:
                     street0_SqueezeDone,
                     raiseToStealChance,
                     raiseToStealDone,
+                    stealChance,
+                    stealDone,
                     success_Steal,
                     street1Seen,
                     street2Seen,
@@ -8107,7 +8039,7 @@ class Sql:
                             %s, %s, %s, %s, %s,
                             %s, %s, %s, %s, %s,
                             %s, %s, %s, %s, %s,
-                            %s)"""
+                            %s, %s, %s)"""
                             
         self.query['insert_TC'] = """insert into TourCache (
                     sessionId,
@@ -8136,6 +8068,8 @@ class Sql:
                     street0_SqueezeDone,
                     raiseToStealChance,
                     raiseToStealDone,
+                    stealChance,
+                    stealDone,
                     success_Steal,
                     street1Seen,
                     street2Seen,
@@ -8238,7 +8172,7 @@ class Sql:
                             %s, %s, %s, %s, %s,
                             %s, %s, %s, %s, %s,
                             %s, %s, %s, %s, %s,
-                            %s)"""
+                            %s, %s, %s)"""
                     
         ####################################
         # update
@@ -8283,6 +8217,8 @@ class Sql:
                     street0_SqueezeDone=street0_SqueezeDone+%s,
                     raiseToStealChance=raiseToStealChance+%s,
                     raiseToStealDone=raiseToStealDone+%s,
+                    stealChance=stealChance+%s,
+                    stealDone=stealDone+%s,
                     success_Steal=success_Steal+%s,
                     street1Seen=street1Seen+%s,
                     street2Seen=street2Seen+%s,
@@ -8389,6 +8325,8 @@ class Sql:
                     street0_SqueezeDone=street0_SqueezeDone+%s,
                     raiseToStealChance=raiseToStealChance+%s,
                     raiseToStealDone=raiseToStealDone+%s,
+                    stealChance=stealChance+%s,
+                    stealDone=stealDone+%s,
                     success_Steal=success_Steal+%s,
                     street1Seen=street1Seen+%s,
                     street2Seen=street2Seen+%s,
@@ -8976,6 +8914,8 @@ class Sql:
                 street0_SqueezeDone,
                 raiseToStealChance,
                 raiseToStealDone,
+                stealChance,
+                stealDone,
                 success_Steal,
                 otherRaisedStreet0,
                 otherRaisedStreet1,
@@ -9064,7 +9004,7 @@ class Sql:
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
-                    %s, %s
+                    %s, %s, %s, %s
                 )"""
 
         self.query['store_hands_actions'] = """insert into HandsActions (

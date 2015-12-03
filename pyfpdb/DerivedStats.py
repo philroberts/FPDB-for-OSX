@@ -69,9 +69,11 @@ def _buildStatsInitializer():
     init['street0_FoldTo4BDone']= False
     init['street0_SqueezeChance']= False
     init['street0_SqueezeDone'] = False
+    init['stealChance']         = False
+    init['stealDone']           = False
     init['success_Steal']       = False
     init['raiseToStealChance']  = False
-    init['raiseToStealDone']  = False
+    init['raiseToStealDone']    = False
     init['raiseFirstInChance']  = False
     init['raisedFirstIn']       = False
     init['foldBbToStealChance'] = False
@@ -647,8 +649,9 @@ class DerivedStats():
         sb, bb, bi = False, False, False
         if hand.gametype['base'] == 'stud':
             # Stud position is determined after cards are dealt
-            # TODO: what to do when bi player completes / bets?
-            bi = [x[0] for x in hand.actions[hand.actionStreets[1]] if x[1] == 'bringin']
+            # First player to act is always the bring-in position in stud
+            # even if they decided to bet/completed
+            bi = [hand.actions[hand.actionStreets[1]][0][0]]
         else:
             bb = [x[0] for x in hand.actions[hand.actionStreets[0]] if x[1] == 'big blind']
             sb = [x[0] for x in hand.actions[hand.actionStreets[0]] if x[1] == 'small blind']
@@ -851,16 +854,21 @@ class DerivedStats():
                 player_stats['foldSbToStealChance'] = steal_attempt
                 player_stats['foldedSbToSteal'] = steal_attempt and act == 'folds'
                 player_stats['raiseToStealDone'] = steal_attempt and act == 'raises'
+                if steal_attempt:
+                    self.handsplayers[stealer]['success_Steal'] = act == 'folds' and hand.gametype['base'] == 'stud'
 
             if steal_attempt and act != 'folds':
                 break
 
             if not steal_attempt and not raised and not act in ('bringin'):
                 player_stats['raiseFirstInChance'] = True
+                if posn in steal_positions:
+                    player_stats['stealChance'] = True
                 if act in ('bets', 'raises', 'completes'):
                     player_stats['raisedFirstIn'] = True
                     raised = True
                     if posn in steal_positions:
+                        player_stats['stealDone'] = True
                         steal_attempt = True
                         stealer = pname
                 if act == 'calls':
