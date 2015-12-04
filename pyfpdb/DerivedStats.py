@@ -87,6 +87,7 @@ def _buildStatsInitializer():
     init['street4Seen']         = False
     init['otherRaisedStreet0']       = False
     init['foldToOtherRaisedStreet0'] = False
+    init['wentAllIn'] = False
 
     for i in range(5):
         init['street%dCalls' % i] = 0
@@ -356,7 +357,9 @@ class DerivedStats():
                     self.handsactions[k]['cardsDiscarded'] = act[3]
                 if len(act) > 3 and act[1] not in ('discards'):
                     self.handsactions[k]['allIn'] = act[-1]
-                    if act[-1]: self.handsplayers[act[0]]['street%dAllIn' %(i-1)] = True
+                    if act[-1]: 
+                        self.handsplayers[act[0]]['wentAllIn'] = True
+                        self.handsplayers[act[0]]['street%dAllIn' %(i-1)] = True
     
     def assembleHandsStove(self, hand):
         category = hand.gametype['category']

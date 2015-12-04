@@ -80,7 +80,7 @@ except ImportError:
     use_numpy = False
 
 
-DB_VERSION = 198
+DB_VERSION = 199
 
 # Variance created as sqlite has a bunch of undefined aggregate functions.
 
@@ -149,6 +149,7 @@ HANDS_PLAYERS_KEYS = [
     'street2AllIn',
     'street3AllIn',
     'street4AllIn',
+    'wentAllIn',
     'street0AggrChance',
     'street0Aggr',
     'street1Aggr',
