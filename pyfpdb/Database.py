@@ -2738,18 +2738,18 @@ class Database:
             update_SC_H   = self.sql.query['update_SC_H'].replace('%s', self.sql.query['placeholder'])
             delete_SC     = self.sql.query['delete_SC'].replace('%s', self.sql.query['placeholder'])
             c = self.get_cursor()
-            for i in range(len(self.sc['bk'])):
+            for i in range(len(self.sc['bk'])):                
                 lower = self.sc['bk'][i]['sessionStart'] - THRESHOLD
                 upper = self.sc['bk'][i]['sessionEnd']   + THRESHOLD
                 tourneys = self.sc['bk'][i]['tourneys']
                 if (self.sc['bk'][i]['tourneys']):
                     toursql = 'OR SC.id in (SELECT DISTINCT sessionId FROM Tourneys T WHERE T.id in (%s))' % ', '.join(str(t) for t in tourneys)
-                    select_SC = select_SC.replace('<TOURSELECT>', toursql)
+                    q = select_SC.replace('<TOURSELECT>', toursql)
                 else:
-                    select_SC = select_SC.replace('<TOURSELECT>', '')
-                c.execute(select_SC, (lower, upper))
+                    q = select_SC.replace('<TOURSELECT>', '')
+                c.execute(q, (lower, upper))
                 r = self.fetchallDict(c,['id', 'sessionStart', 'sessionEnd', 'weekStart', 'monthStart', 'weekId', 'monthId'])
-                num = len(r)
+                num = len(r)              
                 if (num == 1):
                     start, end  = r[0]['sessionStart'], r[0]['sessionEnd']
                     week, month = r[0]['weekStart'],    r[0]['monthStart']
