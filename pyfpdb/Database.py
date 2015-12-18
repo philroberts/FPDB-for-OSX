@@ -2581,26 +2581,24 @@ class Database:
             
         for p in pdata:
             player_stats = pdata.get(p)
-            garbageTourneyTypes = player_stats['tourneyTypeId'] in self.ttnew or player_stats['tourneyTypeId'] in self.ttold
-            if not garbageTourneyTypes:
-                position = pos[player_stats['position']]
-                k =   (gid
-                      ,pids[p]
-                      ,seats
-                      ,position if self.build_full_hudcache else '0'
-                      ,player_stats['tourneyTypeId']
-                      ,styleKey if self.build_full_hudcache else 'A000000'
-                      )
-                player_stats['hands'] = 1
-                line = [int(player_stats[s]) for s in CACHE_KEYS]
-                    
-                hud = self.hcbulk.get(k)
-                # Add line to the old line in the hudcache.
-                if hud is not None:
-                    for idx,val in enumerate(line):
-                        hud[idx] += val
-                else:
-                    self.hcbulk[k] = line
+            position = pos[player_stats['position']]
+            k =   (gid
+                  ,pids[p]
+                  ,seats
+                  ,position if self.build_full_hudcache else '0'
+                  ,player_stats['tourneyTypeId']
+                  ,styleKey if self.build_full_hudcache else 'A000000'
+                  )
+            player_stats['hands'] = 1
+            line = [int(player_stats[s]) for s in CACHE_KEYS]
+                
+            hud = self.hcbulk.get(k)
+            # Add line to the old line in the hudcache.
+            if hud is not None:
+                for idx,val in enumerate(line):
+                    hud[idx] += val
+            else:
+                self.hcbulk[k] = line
                 
         if doinsert:
             update_hudcache = self.sql.query['update_hudcache']
@@ -3079,24 +3077,21 @@ class Database:
 
             c = self.get_cursor()
             for k, item in dccache.iteritems():
-                garbageWeekMonths = (k[0], k[1]) in self.wmnew or (k[0], k[1]) in self.wmold
-                garbageTourneyTypes = k[2] in self.ttnew or k[2] in self.ttold
-                if not garbageWeekMonths and not garbageTourneyTypes:
-                    if k[2]:
-                        q = select_cardscache_ring
-                        row = list(k[:3]) + list(k[-6:])
-                    else:
-                        q = select_cardscache_tour
-                        row = list(k[:2]) + list(k[-7:])
-                    c.execute(q, row)
-                    result = c.fetchone()
-                    if result:
-                        id = result[0]
-                        update = item + [id]
-                        c.execute(update_cardscache, update)                 
-                    else:
-                        insert = list(k) + item
-                        inserts.append(insert)
+                if k[2]:
+                    q = select_cardscache_ring
+                    row = list(k[:3]) + list(k[-6:])
+                else:
+                    q = select_cardscache_tour
+                    row = list(k[:2]) + list(k[-7:])
+                c.execute(q, row)
+                result = c.fetchone()
+                if result:
+                    id = result[0]
+                    update = item + [id]
+                    c.execute(update_cardscache, update)                 
+                else:
+                    insert = list(k) + item
+                    inserts.append(insert)
                 
             if inserts:
                 self.executemany(c, insert_cardscache, inserts)
@@ -3157,25 +3152,22 @@ class Database:
             
             c = self.get_cursor()
             for k, item in pccache.iteritems():
-                garbageWeekMonths = (k[0], k[1]) in self.wmnew or (k[0], k[1]) in self.wmold
-                garbageTourneyTypes = k[2] in self.ttnew or k[2] in self.ttold
-                if not garbageWeekMonths and not garbageTourneyTypes:
-                    if k[2]:
-                        q = select_positionscache_ring
-                        row = list(k[:3]) + list(k[-3:])
-                    else:
-                        q = select_positionscache_tour
-                        row = list(k[:2]) + list(k[-4:])
-                    
-                    c.execute(q, row)
-                    result = c.fetchone()
-                    if result:
-                        id = result[0]
-                        update = item + [id]
-                        c.execute(update_positionscache, update)
-                    else:
-                        insert = list(k) + item
-                        inserts.append(insert)
+                if k[2]:
+                    q = select_positionscache_ring
+                    row = list(k[:3]) + list(k[-3:])
+                else:
+                    q = select_positionscache_tour
+                    row = list(k[:2]) + list(k[-4:])
+                
+                c.execute(q, row)
+                result = c.fetchone()
+                if result:
+                    id = result[0]
+                    update = item + [id]
+                    c.execute(update_positionscache, update)
+                else:
+                    insert = list(k) + item
+                    inserts.append(insert)
                 
             if inserts:
                 self.executemany(c, insert_positionscache, inserts)
