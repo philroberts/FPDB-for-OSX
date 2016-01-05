@@ -39,7 +39,7 @@ class PokerStars(HandHistoryConverter):
     siteId   = 2 # Needs to match id entry in Sites database
     sym = {'USD': "\$", 'CAD': "\$", 'T$': "", "EUR": "\xe2\x82\xac", "GBP": "\£", "play": ""}         # ADD Euro, Sterling, etc HERE
     substitutions = {
-                     'LEGAL_ISO' : "USD|EUR|GBP|CAD|FPP",      # legal ISO currency codes
+                     'LEGAL_ISO' : "USD|EUR|GBP|CAD|FPP|SC",      # legal ISO currency codes
                             'LS' : u"\$|\xe2\x82\xac|\u20ac|\£|", # legal currency symbols - Euro(cp1252, utf-8)
                            'PLYR': r'\s?(?P<PNAME>.+?)',
                             'CUR': u"(\$|\xe2\x82\xac|\u20ac||\£|)",
@@ -323,6 +323,8 @@ class PokerStars(HandHistoryConverter):
                             hand.buyinCurrency="EUR"
                         elif info[key].find("FPP")!=-1:
                             hand.buyinCurrency="PSFP"
+                        elif info[key].find("SC")!=-1:
+                            hand.buyinCurrency="PSFP"
                         elif re.match("^[0-9+]*$", info[key]):
                             hand.buyinCurrency="play"
                         else:
@@ -330,7 +332,7 @@ class PokerStars(HandHistoryConverter):
                             log.error(_("PokerStarsToFpdb.readHandInfo: Failed to detect currency.") + " Hand ID: %s: '%s'" % (hand.handid, info[key]))
                             raise FpdbParseError
 
-                        info['BIAMT'] = info['BIAMT'].strip(u'$€£FPP')
+                        info['BIAMT'] = info['BIAMT'].strip(u'$€£FPPSC')
                         
                         if hand.buyinCurrency!="PSFP":
                             if info['BOUNTY'] != None:

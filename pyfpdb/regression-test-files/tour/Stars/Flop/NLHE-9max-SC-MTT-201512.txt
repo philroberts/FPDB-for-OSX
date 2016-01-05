@@ -1,0 +1,53 @@
+PokerStars Hand #145645009921: Tournament #1407056458, 250 SC Hold'em No Limit - Level XI (600/1200) - 2015/12/20 19:25:19 CET [2015/12/20 13:25:19 ET]
+Table '1407056458 6' 9-max Seat #2 is the button
+Seat 1: Player0 (3000 in chips) 
+Seat 2: Player1 (13915 in chips) 
+Seat 4: Player2 (4780 in chips) 
+Seat 5: Player3 (5300 in chips) 
+Seat 6: Player4 (12075 in chips) 
+Seat 7: Player5 (18105 in chips) 
+Seat 8: Player6 (4175 in chips) 
+Seat 9: Player7 (16080 in chips) 
+Player0: posts the ante 100
+Player1: posts the ante 100
+Player2: posts the ante 100
+Player3: posts the ante 100
+Player4: posts the ante 100
+Player5: posts the ante 100
+Player6: posts the ante 100
+Player7: posts the ante 100
+Player2: posts small blind 600
+Player3: posts big blind 1200
+*** HOLE CARDS ***
+Dealt to Player0 [5s 7h]
+Player4: folds 
+Player5: raises 3800 to 5000
+Player6: folds 
+Player7: raises 10980 to 15980 and is all-in
+Player0: folds 
+Player1: folds 
+Player2: calls 4080 and is all-in
+Player3: folds 
+Player5: calls 10980
+*** FLOP *** [Ks 8s Tc]
+*** TURN *** [Ks 8s Tc] [Ad]
+*** RIVER *** [Ks 8s Tc Ad] [Kc]
+*** SHOW DOWN ***
+Player5: shows [Kd Th] (a full house, Kings full of Tens)
+Player7: shows [8h 8d] (a full house, Eights full of Kings)
+Player5 collected 22600 from side pot
+Player2: shows [Qd Jd] (a straight, Ten to Ace)
+Player5 collected 16040 from main pot
+Player2 re-buys and receives 3000 chips for 250 StarsCoin
+Player7 finished the tournament in 53rd place
+*** SUMMARY ***
+Total pot 38640 Main pot 16040. Side pot 22600. | Rake 0 
+Board [Ks 8s Tc Ad Kc]
+Seat 1: Player0 folded before Flop (didn't bet)
+Seat 2: Player1 (button) folded before Flop (didn't bet)
+Seat 4: Player2 (small blind) showed [Qd Jd] and lost with a straight, Ten to Ace
+Seat 5: Player3 (big blind) folded before Flop
+Seat 6: Player4 folded before Flop (didn't bet)
+Seat 7: Player5 showed [Kd Th] and won (38640) with a full house, Kings full of Tens
+Seat 8: Player6 folded before Flop (didn't bet)
+Seat 9: Player7 showed [8h 8d] and lost with a full house, Eights full of Kings
