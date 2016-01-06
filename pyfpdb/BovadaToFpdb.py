@@ -309,7 +309,7 @@ class Bovada(HandHistoryConverter):
             hand.buttonpos = int(m.group('BUTTON'))
 
     def readPlayerStacks(self, hand):
-        self.playersMap = {}
+        self.playersMap, seatNo = {}, 1
         if hand.gametype['base'] in ("stud"):
             m = self.re_PlayerInfoStud.finditer(hand.handText)
         else:
@@ -322,7 +322,8 @@ class Bovada(HandHistoryConverter):
                     self.playersMap[a.group('PNAME')] = 'Hero'
                 else:
                     self.playersMap[a.group('PNAME')] = 'Seat %s' % a.group('SEAT')
-                hand.addPlayer(int(a.group('SEAT')), self.playersMap[a.group('PNAME')], self.clearMoneyString(a.group('CASH')))
+                hand.addPlayer(seatNo, self.playersMap[a.group('PNAME')], self.clearMoneyString(a.group('CASH')))
+            seatNo += 1
         if len(hand.players)==0:
             tmp = hand.handText[0:200]
             log.error(_("BovadaToFpdb.readPlayerStacks: '%s'") % tmp)
