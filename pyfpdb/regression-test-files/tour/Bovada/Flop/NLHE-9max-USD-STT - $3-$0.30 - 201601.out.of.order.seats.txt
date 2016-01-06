@@ -1,0 +1,70 @@
+Bovada Hand #3325954749: HOLDEM Tournament #14303391 TBL#1, No Limit- Level 1 (10/20) - 2016-01-01 01:58:13
+Seat 7: UTG+1 (1,500 in chips)
+Seat 1: UTG+2 (1,500 in chips)
+Seat 9: UTG+3 (1,500 in chips)
+Seat 6: UTG+4 (1,500 in chips)
+Seat 2: UTG+5 (1,500 in chips)
+Seat 8: Dealer (1,500 in chips)
+Seat 4: Small Blind (1,500 in chips)
+Seat 5: Big Blind (1,500 in chips)
+Seat 3: UTG [ME] (1,500 in chips)
+Big Blind : Table enter user
+Dealer : Table enter user
+UTG+4 : Table enter user
+UTG+3 : Table enter user
+UTG+2 : Table enter user
+UTG+1 : Table enter user
+Small Blind : Table enter user
+UTG [ME] : Table enter user
+UTG+5 : Table enter user
+UTG+1 : Draw for dealer [4h] 
+UTG+2 : Draw for dealer [Jd] 
+UTG+3 : Draw for dealer [8d] 
+UTG+4 : Draw for dealer [6c] 
+UTG+5 : Draw for dealer [Jh] 
+Dealer : Draw for dealer [Ks] 
+Small Blind : Draw for dealer [4s] 
+Big Blind : Draw for dealer [Qs] 
+UTG [ME] : Draw for dealer [8h] 
+Dealer : Set dealer [6] 
+Small Blind : Small blind 10 
+Big Blind : Big blind 20 
+*** HOLE CARDS ***
+UTG+1 : Card dealt to a spot [7d Ks] 
+UTG+2 : Card dealt to a spot [Ah Qd] 
+UTG+3 : Card dealt to a spot [4s 7c] 
+UTG+4 : Card dealt to a spot [3h Ac] 
+UTG+5 : Card dealt to a spot [Qh Th] 
+Dealer : Card dealt to a spot [As 6h] 
+Small Blind : Card dealt to a spot [3s 3c] 
+Big Blind : Card dealt to a spot [8h Jc] 
+UTG [ME] : Card dealt to a spot [Qc 9c] 
+UTG [ME] : Folds
+UTG+1 : Call 20 
+UTG+2 : Raises 90 to 90
+UTG+3 : Folds
+UTG+4 : Folds
+UTG+5 : Folds
+Dealer : Folds
+Small Blind : Call 80 
+Big Blind : Folds
+UTG+1 : Folds
+*** FLOP *** [4c 9s 8s]
+Small Blind : Checks
+UTG+2 : Bets 220 
+Small Blind : Folds
+UTG+2 : Return uncalled portion of bet 220 
+UTG+2 : Does not show [Ah Qd] (High Card)
+UTG+2 : Hand Result 220 
+*** SUMMARY ***
+Total Pot(220)
+Board [4c 9s 8s  ]
+Seat+7: UTG+1 Folded before the FLOP
+Seat+1: UTG+2 220 [Does not show]  
+Seat+9: UTG+3 Folded before the FLOP
+Seat+6: UTG+4 Folded before the FLOP
+Seat+2: UTG+5 Folded before the FLOP
+Seat+8: Dealer Folded before the FLOP
+Seat+4: Small Blind Folded on the FLOP
+Seat+5: Big Blind Folded before the FLOP
+Seat+3: UTG Folded before the FLOP
