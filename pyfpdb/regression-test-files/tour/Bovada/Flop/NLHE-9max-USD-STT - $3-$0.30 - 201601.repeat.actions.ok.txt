@@ -1,0 +1,52 @@
+Bovada Hand #3325979755: HOLDEM Tournament #14303391 TBL#1, No Limit- Level 8 (200/400) - 2016-01-01 03:10:55
+Seat 9: UTG (2,819 in chips)
+Seat 2: UTG+1 (165 in chips)
+Seat 4: Dealer (3,497 in chips)
+Seat 3: Big Blind [ME] (7,019 in chips)
+Dealer : Set dealer [7] 
+UTG : Ante chip 40 
+UTG+1 : Ante chip 40 
+Dealer : Ante chip 40 
+Big Blind [ME] : Ante chip 40 
+Big Blind [ME] : Big blind 400 
+*** HOLE CARDS ***
+UTG : Card dealt to a spot [8d 2d] 
+UTG+1 : Card dealt to a spot [8c Kc] 
+Dealer : Card dealt to a spot [6d 7d] 
+Big Blind [ME] : Card dealt to a spot [6s Qh] 
+UTG : Folds
+UTG+1 : All-in 125 
+Dealer : Call 400 
+Big Blind [ME] : Checks
+*** FLOP *** [Ts Kh 6h]
+Big Blind [ME] : Checks
+Dealer : Checks
+*** TURN *** [Ts Kh 6h] [3s]
+Big Blind [ME] : Checks
+Dealer : Checks
+*** RIVER *** [Ts Kh 6h 3s] [6c]
+Big Blind [ME] : Checks
+Dealer : Checks
+Big Blind [ME] : Showdown [6s 6h 6c Kh Qh] (Three of a kind)
+UTG+1 : Mucks [8c Kc] (Two pair)
+Dealer : Mucks [6d 7d] (Three of a kind)
+Big Blind [ME] : Hand Result-Side Pot 550 
+Big Blind [ME] : Hand Result 535 
+UTG+1 : Ranking 4 
+UTG+1 : Stand
+UTG : Ranking 1 
+UTG : Prize Cash [$9] 
+Dealer : Ranking 1 
+Dealer : Prize Cash [$9] 
+Big Blind [ME] : Ranking 1 
+Big Blind [ME] : Prize Cash [$9] 
+UTG : Stand
+Dealer : Stand
+Big Blind [ME] : Stand
+*** SUMMARY ***
+Total Pot(1085)
+Board [Ts Kh 6h 3s 6c]
+Seat+9: UTG Folded before the FLOP
+Seat+2: UTG+1 [Mucked] [8c Kc ]  
+Seat+4: Dealer [Mucked] [6d 7d ]  
+Seat+3: Big Blind 1085  with Three of a kind [6s Qh-6s 6h 6c Kh Qh]  

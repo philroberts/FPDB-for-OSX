@@ -354,7 +354,7 @@ class Bovada(HandHistoryConverter):
         dealtIn = len(hand.players) - allinblind
         streetactions, streetno, players, i, contenders, bets, acts = 0, 1, dealtIn, 0, dealtIn, 0, None
         for action in m:
-            if action.groupdict()!=acts:
+            if action.groupdict()!=acts or streetactions == 0:
                 acts = action.groupdict()
                 #print "DEBUG: %s, %s, %s" % (street, acts['PNAME'], acts['ATYPE']), action.group('BET'), streetactions, players, contenders
                 player = self.playerSeatFromPosition('BovadaToFpdb.markStreets', hand.handid, action.group('PNAME'))
@@ -534,8 +534,8 @@ class Bovada(HandHistoryConverter):
         for action in m:
             if acts!=action.groupdict():
                 acts = action.groupdict()
-                #print "DEBUG: %s, %s, %s" % (street, acts['PNAME'], acts['ATYPE']), action.group('BET')
                 player = self.playerSeatFromPosition('BovadaToFpdb.readAction', hand.handid, action.group('PNAME'))
+                #print "DEBUG: %s, %s, %s, %s, %s" % (street, acts['PNAME'], player, acts['ATYPE'], action.group('BET'))
                 if action.group('ATYPE') not in (' Checks', ' Fold', ' Card dealt to a spot', ' Big blind/Bring in') and not hand.allInBlind:
                     hand.setUncalledBets(False)
                 if action.group('ATYPE') == ' Fold':
