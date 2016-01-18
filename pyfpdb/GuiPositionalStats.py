@@ -336,7 +336,7 @@ class GuiPositionalStats:
         if seats:
             query = query.replace('<seats_test>', 'between ' + str(seats['from']) + ' and ' + str(seats['to']))
             if False: #'show' in seats and seats['show']: should be 'show' in groups but we don't even show groups in filters
-                query = query.replace('<groupbyseats>', ',hc.activeSeats')
+                query = query.replace('<groupbyseats>', ',hc.seats')
                 query = query.replace('<orderbyseats>', ',stats.AvgSeats')
             else:
                 query = query.replace('<groupbyseats>', '')
