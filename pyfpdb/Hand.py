@@ -344,26 +344,20 @@ class Hand(object):
             heroes = [self.dbid_pids.values()[0]]
             db.storeSessions(self.dbid_hands, self.dbid_pids, self.startTime, self.tourneyId, heroes, tz, doinsert) 
             if self.cacheSessions:
-                db.storeSessionsCache(self.dbid_hands, self.dbid_pids, self.startTime, self.dbid_gt, self.gametype, self.handsplayers, heroes, self.hero, doinsert)
-                db.storeTourneysCache(self.dbid_hands, self.dbid_pids, self.startTime, self.tourneyId, self.gametype, self.handsplayers, heroes, self.hero, doinsert)
+                db.storeSessionsCache(self.dbid_hands, self.dbid_pids, self.startTime, self.dbid_gt, self.gametype, self.handsplayers, heroes, doinsert)
+                db.storeTourneysCache(self.dbid_hands, self.dbid_pids, self.startTime, self.tourneyId, self.gametype, self.handsplayers, heroes, doinsert)
             
     def updateCardsCache(self, db, tz, doinsert = False):
         """ Function to update the CardsCache"""
         if self.cacheSessions: # and self.hero in self.dbid_pids:
             heroes = [self.dbid_pids.values()[0]]
-            db.storeCardsCache(self.dbid_hands, self.dbid_pids, self.startTime,
-                               self.dbid_gt, self.tourneyTypeId, self.gametype,
-                               self.siteId, self.handsplayers, self.handsstove,
-                               heroes, tz, doinsert)
+            db.storeCardsCache(self.dbid_hands, self.dbid_pids, self.startTime, self.dbid_gt, self.tourneyTypeId, self.handsplayers, heroes, tz, doinsert)
                 
     def updatePositionsCache(self, db, tz, doinsert = False):
         """ Function to update the PositionsCache"""
         if self.cacheSessions: # and self.hero in self.dbid_pids:
             heroes = [self.dbid_pids.values()[0]]
-            db.storePositionsCache(self.dbid_hands, self.dbid_pids, self.startTime,
-                                   self.dbid_gt, self.tourneyTypeId, self.gametype,
-                                   self.siteId, self.handsplayers, self.hands['maxPosition'], heroes,
-                                   tz, doinsert)
+            db.storePositionsCache(self.dbid_hands, self.dbid_pids, self.startTime, self.dbid_gt, self.tourneyTypeId, self.handsplayers, self.hands, heroes, tz, doinsert)
 
     def select(self, db, handId):
         """ Function to create Hand object from database """

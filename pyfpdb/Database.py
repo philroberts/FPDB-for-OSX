@@ -80,7 +80,7 @@ except ImportError:
     use_numpy = False
 
 
-DB_VERSION = 200
+DB_VERSION = 201
 
 # Variance created as sqlite has a bunch of undefined aggregate functions.
 
@@ -180,7 +180,7 @@ HANDS_PLAYERS_KEYS = [
     'street2FirstToAct',
     'street3FirstToAct',
     'street4FirstToAct',
-    'tourneysPlayersIds',
+    'tourneysPlayersId',
     'startCards',
     'street0CalledRaiseChance',
     'street0CalledRaiseDone',
@@ -334,12 +334,17 @@ CACHE_KEYS = [
     'foldToStreet3CBDone',
     'foldToStreet4CBChance',
     'foldToStreet4CBDone',
-    'totalProfit',
+    'common',
+    'committed',
+    'winnings',
     'rake',
     'rakeDealt',
     'rakeContributed',
     'rakeWeighted',
+    'totalProfit',
     'allInEV',
+    'showdownWinnings',
+    'nonShowdownWinnings',
     'street1CheckCallRaiseChance',
     'street1CheckCallDone',
     'street1CheckRaiseDone',
@@ -367,6 +372,9 @@ CACHE_KEYS = [
     'street2Raises',
     'street3Raises',
     'street4Raises',
+    'street1Discards',
+    'street2Discards',
+    'street3Discards'
     ]
 
 
@@ -2715,13 +2723,13 @@ class Database:
                         self.s[h] = {'id': sid, 'wid': wid, 'mid': mid}
             self.commit()
     
-    def storeSessionsCache(self, hid, pids, startTime, gtid, gametype, pdata, heroes, hero, doinsert = False):
+    def storeSessionsCache(self, hid, pids, startTime, gametypeId, gametype, pdata, heroes, doinsert = False):
         """Update cached cash sessions. If no record exists, do an insert"""      
         THRESHOLD    = timedelta(seconds=int(self.sessionTimeout * 60))
         if pdata: #gametype['type']=='ring' and 
             for p, pid in pids.iteritems():
                 hp = {}
-                k = (gtid, pid)
+                k = (gametypeId, pid)
                 if self.backend == self.SQLITE:
                     hp['startTime'] = datetime.strptime(startTime, '%Y-%m-%d %H:%M:%S')
                 else:
@@ -2834,7 +2842,7 @@ class Database:
                         id = self.get_last_insert_id(c)              
             self.commit()
             
-    def storeTourneysCache(self, hid, pids, startTime, tid, gametype, pdata, heroes, hero, doinsert = False):
+    def storeTourneysCache(self, hid, pids, startTime, tid, gametype, pdata, heroes, doinsert = False):
         """Update cached tour sessions. If no record exists, do an insert"""   
         if gametype['type']=='tour' and pdata:
             for p in pdata:
@@ -2907,14 +2915,9 @@ class Database:
                 self.executemany(c, insert_TC, inserts)
             self.commit()
     
-    def storeCardsCache(self, hid, pids, startTime, gametypeId, tourneyTypeId, gametype, siteId, pdata, sdata, heroes, tz_name, doinsert):
+    def storeCardsCache(self, hid, pids, startTime, gametypeId, tourneyTypeId, pdata, heroes, tz_name, doinsert):
         """Update cached cards statistics. If update fails because no record exists, do an insert."""
-        #tourneyTypeId, gametypeId = None, None
-        #if gametype['type']=='ring':
-        #    gametypeId = gid
-        #else:
-        #    tourneyTypeId = ttid
-            
+
         for p in pdata:
             k =   (hid
                   ,gametypeId
@@ -2979,26 +2982,17 @@ class Database:
                 self.executemany(c, insert_cardscache, inserts)
                 self.commit()
             
-    def storePositionsCache(self, hid, pids, startTime, gametypeId, tourneyTypeId, gametype, siteId, pdata, maxPosition, heroes, tz_name, doinsert):
+    def storePositionsCache(self, hid, pids, startTime, gametypeId, tourneyTypeId, pdata, hdata, heroes, tz_name, doinsert):
         """Update cached position statistics. If update fails because no record exists, do an insert."""
-        #tourneyTypeId, gametypeId = None, None
-        #if gametype['type']=='ring':
-        #    gametypeId = gid
-        #else:
-        #    tourneyTypeId = ttid
-            
+
         for p in pdata:
             position = str(pdata[p]['position'])
-            #if pids[p] in heroes:
-            #    position = str(pdata[p]['position'])[0]
-            #else:
-            #    position = 'N'
             k =   (hid
                   ,gametypeId
                   ,tourneyTypeId
                   ,pids[p]
                   ,len(pids)
-                  ,maxPosition
+                  ,hdata['maxPosition']
                   ,position
                   )
             pdata[p]['n'] = 1

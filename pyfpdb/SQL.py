@@ -1577,14 +1577,7 @@ class Sql:
                         position CHAR(1),
                         tourneyTypeId SMALLINT UNSIGNED, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
                         styleKey CHAR(7) NOT NULL,  /* 1st char is style (A/T/H/S), other 6 are the key */
-                        n INT NOT NULL,
-
-                        wonWhenSeenStreet1 INT,
-                        wonWhenSeenStreet2 INT,
-                        wonWhenSeenStreet3 INT,
-                        wonWhenSeenStreet4 INT,
-                        wonAtSD INT,
-                        
+                        n INT NOT NULL,                        
                         street0VPIChance INT,
                         street0VPI INT,
                         street0AggrChance INT,
@@ -1603,24 +1596,20 @@ class Sql:
                         street0_FoldTo4BDone INT,
                         street0_SqueezeChance INT,
                         street0_SqueezeDone INT,
-
                         raiseToStealChance INT,
                         raiseToStealDone INT,
                         stealChance INT,
                         stealDone INT,
                         success_Steal INT,
-
                         street1Seen INT,
                         street2Seen INT,
                         street3Seen INT,
                         street4Seen INT,
-                        sawShowdown INT,
-                        
+                        sawShowdown INT,                        
                         street1Aggr INT,
                         street2Aggr INT,
                         street3Aggr INT,
                         street4Aggr INT,
-
                         otherRaisedStreet0 INT,
                         otherRaisedStreet1 INT,
                         otherRaisedStreet2 INT,
@@ -1631,14 +1620,17 @@ class Sql:
                         foldToOtherRaisedStreet2 INT,
                         foldToOtherRaisedStreet3 INT,
                         foldToOtherRaisedStreet4 INT,
-                        
+                        wonWhenSeenStreet1 INT,
+                        wonWhenSeenStreet2 INT,
+                        wonWhenSeenStreet3 INT,
+                        wonWhenSeenStreet4 INT,
+                        wonAtSD INT,                        
                         raiseFirstInChance INT,
                         raisedFirstIn INT,
                         foldBbToStealChance INT,
                         foldedBbToSteal INT,
                         foldSbToStealChance INT,
                         foldedSbToSteal INT,
-
                         street1CBChance INT,
                         street1CBDone INT,
                         street2CBChance INT,
@@ -1646,8 +1638,7 @@ class Sql:
                         street3CBChance INT,
                         street3CBDone INT,
                         street4CBChance INT,
-                        street4CBDone INT,
-                        
+                        street4CBDone INT,                        
                         foldToStreet1CBChance INT,
                         foldToStreet1CBDone INT,
                         foldToStreet2CBChance INT,
@@ -1655,15 +1646,18 @@ class Sql:
                         foldToStreet3CBChance INT,
                         foldToStreet3CBDone INT,
                         foldToStreet4CBChance INT,
-                        foldToStreet4CBDone INT,
-                        
-                        totalProfit BIGINT,
+                        foldToStreet4CBDone INT,                        
+                        common BIGINT,
+                        committed BIGINT,
+                        winnings BIGINT,
                         rake BIGINT,
                         rakeDealt BIGINT,
                         rakeContributed BIGINT,
                         rakeWeighted BIGINT,
+                        totalProfit BIGINT,
                         allInEV BIGINT,
-                        
+                        showdownWinnings BIGINT,
+                        nonShowdownWinnings BIGINT,                        
                         street1CheckCallRaiseChance INT,
                         street1CheckCallDone INT,
                         street1CheckRaiseDone INT,
@@ -1676,7 +1670,6 @@ class Sql:
                         street4CheckCallRaiseChance INT,
                         street4CheckCallDone INT,
                         street4CheckRaiseDone INT,
-
                         street0Calls INT,
                         street1Calls INT,
                         street2Calls INT,
@@ -1691,8 +1684,10 @@ class Sql:
                         street1Raises INT,
                         street2Raises INT,
                         street3Raises INT,
-                        street4Raises INT)
-
+                        street4Raises INT,                        
+                        street1Discards INT,
+                        street2Discards INT,
+                        street3Discards INT)
                         ENGINE=INNODB"""
         elif db_server == 'postgresql':
             self.query['createHudCacheTable'] = """CREATE TABLE HudCache (
@@ -1703,14 +1698,7 @@ class Sql:
                         position CHAR(1),
                         tourneyTypeId INT, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
                         styleKey CHAR(7) NOT NULL,  /* 1st char is style (A/T/H/S), other 6 are the key */
-                        n INT,
-
-                        wonWhenSeenStreet1 INT,
-                        wonWhenSeenStreet2 INT,
-                        wonWhenSeenStreet3 INT,
-                        wonWhenSeenStreet4 INT,
-                        wonAtSD INT,
-                        
+                        n INT,                        
                         street0VPIChance INT,
                         street0VPI INT,
                         street0AggrChance INT,
@@ -1729,13 +1717,11 @@ class Sql:
                         street0_FoldTo4BDone INT,
                         street0_SqueezeChance INT,
                         street0_SqueezeDone INT,
-
                         raiseToStealChance INT,
                         raiseToStealDone INT,
                         stealChance INT,
                         stealDone INT,
                         success_Steal INT,
-
                         street1Seen INT,
                         street2Seen INT,
                         street3Seen INT,
@@ -1745,7 +1731,6 @@ class Sql:
                         street2Aggr INT,
                         street3Aggr INT,
                         street4Aggr INT,
-
                         otherRaisedStreet0 INT,
                         otherRaisedStreet1 INT,
                         otherRaisedStreet2 INT,
@@ -1756,14 +1741,17 @@ class Sql:
                         foldToOtherRaisedStreet2 INT,
                         foldToOtherRaisedStreet3 INT,
                         foldToOtherRaisedStreet4 INT,
-
+                        wonWhenSeenStreet1 INT,
+                        wonWhenSeenStreet2 INT,
+                        wonWhenSeenStreet3 INT,
+                        wonWhenSeenStreet4 INT,
+                        wonAtSD INT,
                         raiseFirstInChance INT,
                         raisedFirstIn INT,
                         foldBbToStealChance INT,
                         foldedBbToSteal INT,
                         foldSbToStealChance INT,
                         foldedSbToSteal INT,
-
                         street1CBChance INT,
                         street1CBDone INT,
                         street2CBChance INT,
@@ -1772,7 +1760,6 @@ class Sql:
                         street3CBDone INT,
                         street4CBChance INT,
                         street4CBDone INT,
-
                         foldToStreet1CBChance INT,
                         foldToStreet1CBDone INT,
                         foldToStreet2CBChance INT,
@@ -1781,14 +1768,17 @@ class Sql:
                         foldToStreet3CBDone INT,
                         foldToStreet4CBChance INT,
                         foldToStreet4CBDone INT,
-
-                        totalProfit BIGINT,
+                        common BIGINT,
+                        committed BIGINT,
+                        winnings BIGINT,
                         rake BIGINT,
                         rakeDealt BIGINT,
                         rakeContributed BIGINT,
                         rakeWeighted BIGINT,
+                        totalProfit BIGINT,
                         allInEV BIGINT,
-
+                        showdownWinnings BIGINT,
+                        nonShowdownWinnings BIGINT,
                         street1CheckCallRaiseChance INT,
                         street1CheckCallDone INT,
                         street1CheckRaiseDone INT,
@@ -1801,7 +1791,6 @@ class Sql:
                         street4CheckCallRaiseChance INT,
                         street4CheckCallDone INT,
                         street4CheckRaiseDone INT,
-
                         street0Calls INT,
                         street1Calls INT,
                         street2Calls INT,
@@ -1816,7 +1805,10 @@ class Sql:
                         street1Raises INT,
                         street2Raises INT,
                         street3Raises INT,
-                        street4Raises INT)
+                        street4Raises INT,
+                        street1Discards INT,
+                        street2Discards INT,
+                        street3Discards INT)
                         """
         elif db_server == 'sqlite':
             self.query['createHudCacheTable'] = """CREATE TABLE HudCache (
@@ -1827,14 +1819,7 @@ class Sql:
                         position TEXT,
                         tourneyTypeId INT,
                         styleKey TEXT NOT NULL,  /* 1st char is style (A/T/H/S), other 6 are the key */
-                        n INT,
-
-                        wonWhenSeenStreet1 INT,
-                        wonWhenSeenStreet2 INT,
-                        wonWhenSeenStreet3 INT,
-                        wonWhenSeenStreet4 INT,
-                        wonAtSD INT,
-                        
+                        n INT,                        
                         street0VPIChance INT,
                         street0VPI INT,
                         street0AggrChance INT,
@@ -1853,13 +1838,11 @@ class Sql:
                         street0_FoldTo4BDone INT,
                         street0_SqueezeChance INT,
                         street0_SqueezeDone INT,
-
                         raiseToStealChance INT,
                         raiseToStealDone INT,
                         stealChance INT,
                         stealDone INT,
                         success_Steal INT,
-
                         street1Seen INT,
                         street2Seen INT,
                         street3Seen INT,
@@ -1869,7 +1852,6 @@ class Sql:
                         street2Aggr INT,
                         street3Aggr INT,
                         street4Aggr INT,
-
                         otherRaisedStreet0 INT,
                         otherRaisedStreet1 INT,
                         otherRaisedStreet2 INT,
@@ -1880,14 +1862,17 @@ class Sql:
                         foldToOtherRaisedStreet2 INT,
                         foldToOtherRaisedStreet3 INT,
                         foldToOtherRaisedStreet4 INT,
-
+                        wonWhenSeenStreet1 INT,
+                        wonWhenSeenStreet2 INT,
+                        wonWhenSeenStreet3 INT,
+                        wonWhenSeenStreet4 INT,
+                        wonAtSD INT,
                         raiseFirstInChance INT,
                         raisedFirstIn INT,
                         foldBbToStealChance INT,
                         foldedBbToSteal INT,
                         foldSbToStealChance INT,
                         foldedSbToSteal INT,
-
                         street1CBChance INT,
                         street1CBDone INT,
                         street2CBChance INT,
@@ -1896,7 +1881,6 @@ class Sql:
                         street3CBDone INT,
                         street4CBChance INT,
                         street4CBDone INT,
-
                         foldToStreet1CBChance INT,
                         foldToStreet1CBDone INT,
                         foldToStreet2CBChance INT,
@@ -1905,14 +1889,17 @@ class Sql:
                         foldToStreet3CBDone INT,
                         foldToStreet4CBChance INT,
                         foldToStreet4CBDone INT,
-
-                        totalProfit INT,
+                        common INT,
+                        committed INT,
+                        winnings INT,
                         rake INT,
                         rakeDealt INT,
                         rakeContributed INT,
                         rakeWeighted INT,
+                        totalProfit INT,
                         allInEV INT,
-
+                        showdownWinnings INT,
+                        nonShowdownWinnings INT,
                         street1CheckCallRaiseChance INT,
                         street1CheckCallDone INT,
                         street1CheckRaiseDone INT,
@@ -1925,7 +1912,6 @@ class Sql:
                         street4CheckCallRaiseChance INT,
                         street4CheckCallDone INT,
                         street4CheckRaiseDone INT,
-
                         street0Calls INT,
                         street1Calls INT,
                         street2Calls INT,
@@ -1940,7 +1926,10 @@ class Sql:
                         street1Raises INT,
                         street2Raises INT,
                         street3Raises INT,
-                        street4Raises INT)
+                        street4Raises INT,
+                        street1Discards INT,
+                        street2Discards INT,
+                        street3Discards INT)
                         """
                         
         ################################
@@ -1956,14 +1945,7 @@ class Sql:
                         tourneyTypeId SMALLINT UNSIGNED, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
                         playerId INT UNSIGNED NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
                         startCards SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (startCards) REFERENCES StartCards(id),
-                        n INT NOT NULL,
-
-                        wonWhenSeenStreet1 INT,
-                        wonWhenSeenStreet2 INT,
-                        wonWhenSeenStreet3 INT,
-                        wonWhenSeenStreet4 INT,
-                        wonAtSD INT,
-                        
+                        n INT NOT NULL,                        
                         street0VPIChance INT,
                         street0VPI INT,
                         street0AggrChance INT,
@@ -1982,24 +1964,20 @@ class Sql:
                         street0_FoldTo4BDone INT,
                         street0_SqueezeChance INT,
                         street0_SqueezeDone INT,
-
                         raiseToStealChance INT,
                         raiseToStealDone INT,
                         stealChance INT,
                         stealDone INT,
                         success_Steal INT,
-
                         street1Seen INT,
                         street2Seen INT,
                         street3Seen INT,
                         street4Seen INT,
-                        sawShowdown INT,
-                        
+                        sawShowdown INT,                        
                         street1Aggr INT,
                         street2Aggr INT,
                         street3Aggr INT,
                         street4Aggr INT,
-
                         otherRaisedStreet0 INT,
                         otherRaisedStreet1 INT,
                         otherRaisedStreet2 INT,
@@ -2010,14 +1988,17 @@ class Sql:
                         foldToOtherRaisedStreet2 INT,
                         foldToOtherRaisedStreet3 INT,
                         foldToOtherRaisedStreet4 INT,
-                        
+                        wonWhenSeenStreet1 INT,
+                        wonWhenSeenStreet2 INT,
+                        wonWhenSeenStreet3 INT,
+                        wonWhenSeenStreet4 INT,
+                        wonAtSD INT,                        
                         raiseFirstInChance INT,
                         raisedFirstIn INT,
                         foldBbToStealChance INT,
                         foldedBbToSteal INT,
                         foldSbToStealChance INT,
                         foldedSbToSteal INT,
-
                         street1CBChance INT,
                         street1CBDone INT,
                         street2CBChance INT,
@@ -2025,8 +2006,7 @@ class Sql:
                         street3CBChance INT,
                         street3CBDone INT,
                         street4CBChance INT,
-                        street4CBDone INT,
-                        
+                        street4CBDone INT,                        
                         foldToStreet1CBChance INT,
                         foldToStreet1CBDone INT,
                         foldToStreet2CBChance INT,
@@ -2034,15 +2014,18 @@ class Sql:
                         foldToStreet3CBChance INT,
                         foldToStreet3CBDone INT,
                         foldToStreet4CBChance INT,
-                        foldToStreet4CBDone INT,
-                        
-                        totalProfit BIGINT,
+                        foldToStreet4CBDone INT,                        
+                        common BIGINT,
+                        committed BIGINT,
+                        winnings BIGINT,
                         rake BIGINT,
                         rakeDealt BIGINT,
                         rakeContributed BIGINT,
                         rakeWeighted BIGINT,
+                        totalProfit BIGINT,
                         allInEV BIGINT,
-                        
+                        showdownWinnings BIGINT,
+                        nonShowdownWinnings BIGINT,                        
                         street1CheckCallRaiseChance INT,
                         street1CheckCallDone INT,
                         street1CheckRaiseDone INT,
@@ -2055,7 +2038,6 @@ class Sql:
                         street4CheckCallRaiseChance INT,
                         street4CheckCallDone INT,
                         street4CheckRaiseDone INT,
-
                         street0Calls INT,
                         street1Calls INT,
                         street2Calls INT,
@@ -2070,8 +2052,10 @@ class Sql:
                         street1Raises INT,
                         street2Raises INT,
                         street3Raises INT,
-                        street4Raises INT)
-
+                        street4Raises INT,
+                        street1Discards INT,
+                        street2Discards INT,
+                        street3Discards INT)
                         ENGINE=INNODB"""
         elif db_server == 'postgresql':
             self.query['createCardsCacheTable'] = """CREATE TABLE CardsCache (
@@ -2082,14 +2066,7 @@ class Sql:
                         tourneyTypeId INT, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
                         playerId INT, FOREIGN KEY (playerId) REFERENCES Players(id),
                         startCards SMALLINT, FOREIGN KEY (startCards) REFERENCES StartCards(id),
-                        n INT,
-
-                        wonWhenSeenStreet1 INT,
-                        wonWhenSeenStreet2 INT,
-                        wonWhenSeenStreet3 INT,
-                        wonWhenSeenStreet4 INT,
-                        wonAtSD INT,
-                        
+                        n INT,                        
                         street0VPIChance INT,
                         street0VPI INT,
                         street0AggrChance INT,
@@ -2108,13 +2085,11 @@ class Sql:
                         street0_FoldTo4BDone INT,
                         street0_SqueezeChance INT,
                         street0_SqueezeDone INT,
-
                         raiseToStealChance INT,
                         raiseToStealDone INT,
                         stealChance INT,
                         stealDone INT,
                         success_Steal INT,
-
                         street1Seen INT,
                         street2Seen INT,
                         street3Seen INT,
@@ -2124,7 +2099,6 @@ class Sql:
                         street2Aggr INT,
                         street3Aggr INT,
                         street4Aggr INT,
-
                         otherRaisedStreet0 INT,
                         otherRaisedStreet1 INT,
                         otherRaisedStreet2 INT,
@@ -2135,14 +2109,17 @@ class Sql:
                         foldToOtherRaisedStreet2 INT,
                         foldToOtherRaisedStreet3 INT,
                         foldToOtherRaisedStreet4 INT,
-
+                        wonWhenSeenStreet1 INT,
+                        wonWhenSeenStreet2 INT,
+                        wonWhenSeenStreet3 INT,
+                        wonWhenSeenStreet4 INT,
+                        wonAtSD INT,
                         raiseFirstInChance INT,
                         raisedFirstIn INT,
                         foldBbToStealChance INT,
                         foldedBbToSteal INT,
                         foldSbToStealChance INT,
                         foldedSbToSteal INT,
-
                         street1CBChance INT,
                         street1CBDone INT,
                         street2CBChance INT,
@@ -2151,7 +2128,6 @@ class Sql:
                         street3CBDone INT,
                         street4CBChance INT,
                         street4CBDone INT,
-
                         foldToStreet1CBChance INT,
                         foldToStreet1CBDone INT,
                         foldToStreet2CBChance INT,
@@ -2160,14 +2136,17 @@ class Sql:
                         foldToStreet3CBDone INT,
                         foldToStreet4CBChance INT,
                         foldToStreet4CBDone INT,
-
-                        totalProfit BIGINT,
+                        common BIGINT,
+                        committed BIGINT,
+                        winnings BIGINT,
                         rake BIGINT,
                         rakeDealt BIGINT,
                         rakeContributed BIGINT,
                         rakeWeighted BIGINT,
+                        totalProfit BIGINT,
                         allInEV BIGINT,
-
+                        showdownWinnings BIGINT,
+                        nonShowdownWinnings BIGINT,
                         street1CheckCallRaiseChance INT,
                         street1CheckCallDone INT,
                         street1CheckRaiseDone INT,
@@ -2180,7 +2159,6 @@ class Sql:
                         street4CheckCallRaiseChance INT,
                         street4CheckCallDone INT,
                         street4CheckRaiseDone INT,
-
                         street0Calls INT,
                         street1Calls INT,
                         street2Calls INT,
@@ -2195,7 +2173,10 @@ class Sql:
                         street1Raises INT,
                         street2Raises INT,
                         street3Raises INT,
-                        street4Raises INT)
+                        street4Raises INT,
+                        street1Discards INT,
+                        street2Discards INT,
+                        street3Discards INT)
                         """
         elif db_server == 'sqlite':
             self.query['createCardsCacheTable'] = """CREATE TABLE CardsCache (
@@ -2206,14 +2187,7 @@ class Sql:
                         tourneyTypeId INT,
                         playerId INT,
                         startCards INT,
-                        n INT,
-
-                        wonWhenSeenStreet1 INT,
-                        wonWhenSeenStreet2 INT,
-                        wonWhenSeenStreet3 INT,
-                        wonWhenSeenStreet4 INT,
-                        wonAtSD INT,
-                        
+                        n INT,                        
                         street0VPIChance INT,
                         street0VPI INT,
                         street0AggrChance INT,
@@ -2232,13 +2206,11 @@ class Sql:
                         street0_FoldTo4BDone INT,
                         street0_SqueezeChance INT,
                         street0_SqueezeDone INT,
-
                         raiseToStealChance INT,
                         raiseToStealDone INT,
                         stealChance INT,
                         stealDone INT,
                         success_Steal INT,
-
                         street1Seen INT,
                         street2Seen INT,
                         street3Seen INT,
@@ -2248,7 +2220,6 @@ class Sql:
                         street2Aggr INT,
                         street3Aggr INT,
                         street4Aggr INT,
-
                         otherRaisedStreet0 INT,
                         otherRaisedStreet1 INT,
                         otherRaisedStreet2 INT,
@@ -2259,14 +2230,17 @@ class Sql:
                         foldToOtherRaisedStreet2 INT,
                         foldToOtherRaisedStreet3 INT,
                         foldToOtherRaisedStreet4 INT,
-
+                        wonWhenSeenStreet1 INT,
+                        wonWhenSeenStreet2 INT,
+                        wonWhenSeenStreet3 INT,
+                        wonWhenSeenStreet4 INT,
+                        wonAtSD INT,
                         raiseFirstInChance INT,
                         raisedFirstIn INT,
                         foldBbToStealChance INT,
                         foldedBbToSteal INT,
                         foldSbToStealChance INT,
                         foldedSbToSteal INT,
-
                         street1CBChance INT,
                         street1CBDone INT,
                         street2CBChance INT,
@@ -2275,7 +2249,6 @@ class Sql:
                         street3CBDone INT,
                         street4CBChance INT,
                         street4CBDone INT,
-
                         foldToStreet1CBChance INT,
                         foldToStreet1CBDone INT,
                         foldToStreet2CBChance INT,
@@ -2284,14 +2257,17 @@ class Sql:
                         foldToStreet3CBDone INT,
                         foldToStreet4CBChance INT,
                         foldToStreet4CBDone INT,
-
-                        totalProfit INT,
+                        common INT,
+                        committed INT,
+                        winnings INT,
                         rake INT,
                         rakeDealt INT,
                         rakeContributed INT,
                         rakeWeighted INT,
+                        totalProfit INT,
                         allInEV INT,
-
+                        showdownWinnings INT,
+                        nonShowdownWinnings INT,
                         street1CheckCallRaiseChance INT,
                         street1CheckCallDone INT,
                         street1CheckRaiseDone INT,
@@ -2304,7 +2280,6 @@ class Sql:
                         street4CheckCallRaiseChance INT,
                         street4CheckCallDone INT,
                         street4CheckRaiseDone INT,
-
                         street0Calls INT,
                         street1Calls INT,
                         street2Calls INT,
@@ -2319,7 +2294,10 @@ class Sql:
                         street1Raises INT,
                         street2Raises INT,
                         street3Raises INT,
-                        street4Raises INT)
+                        street4Raises INT,
+                        street1Discards INT,
+                        street2Discards INT,
+                        street3Discards INT)
                         """
                         
         ################################
@@ -2337,14 +2315,7 @@ class Sql:
                         seats SMALLINT NOT NULL,
                         maxPosition TINYINT NOT NULL,
                         position CHAR(1),
-                        n INT NOT NULL,
-
-                        wonWhenSeenStreet1 INT,
-                        wonWhenSeenStreet2 INT,
-                        wonWhenSeenStreet3 INT,
-                        wonWhenSeenStreet4 INT,
-                        wonAtSD INT,
-                        
+                        n INT NOT NULL,                        
                         street0VPIChance INT,
                         street0VPI INT,
                         street0AggrChance INT,
@@ -2363,24 +2334,20 @@ class Sql:
                         street0_FoldTo4BDone INT,
                         street0_SqueezeChance INT,
                         street0_SqueezeDone INT,
-
                         raiseToStealChance INT,
                         raiseToStealDone INT,
                         stealChance INT,
                         stealDone INT,
                         success_Steal INT,
-
                         street1Seen INT,
                         street2Seen INT,
                         street3Seen INT,
                         street4Seen INT,
-                        sawShowdown INT,
-                        
+                        sawShowdown INT,                        
                         street1Aggr INT,
                         street2Aggr INT,
                         street3Aggr INT,
                         street4Aggr INT,
-
                         otherRaisedStreet0 INT,
                         otherRaisedStreet1 INT,
                         otherRaisedStreet2 INT,
@@ -2391,14 +2358,17 @@ class Sql:
                         foldToOtherRaisedStreet2 INT,
                         foldToOtherRaisedStreet3 INT,
                         foldToOtherRaisedStreet4 INT,
-                        
+                        wonWhenSeenStreet1 INT,
+                        wonWhenSeenStreet2 INT,
+                        wonWhenSeenStreet3 INT,
+                        wonWhenSeenStreet4 INT,
+                        wonAtSD INT,                        
                         raiseFirstInChance INT,
                         raisedFirstIn INT,
                         foldBbToStealChance INT,
                         foldedBbToSteal INT,
                         foldSbToStealChance INT,
                         foldedSbToSteal INT,
-
                         street1CBChance INT,
                         street1CBDone INT,
                         street2CBChance INT,
@@ -2406,8 +2376,7 @@ class Sql:
                         street3CBChance INT,
                         street3CBDone INT,
                         street4CBChance INT,
-                        street4CBDone INT,
-                        
+                        street4CBDone INT,                        
                         foldToStreet1CBChance INT,
                         foldToStreet1CBDone INT,
                         foldToStreet2CBChance INT,
@@ -2415,15 +2384,18 @@ class Sql:
                         foldToStreet3CBChance INT,
                         foldToStreet3CBDone INT,
                         foldToStreet4CBChance INT,
-                        foldToStreet4CBDone INT,
-                        
-                        totalProfit BIGINT,
+                        foldToStreet4CBDone INT,                        
+                        common BIGINT,
+                        committed BIGINT,
+                        winnings BIGINT,
                         rake BIGINT,
                         rakeDealt BIGINT,
                         rakeContributed BIGINT,
                         rakeWeighted BIGINT,
+                        totalProfit BIGINT,
                         allInEV BIGINT,
-                        
+                        showdownWinnings BIGINT,
+                        nonShowdownWinnings BIGINT,                        
                         street1CheckCallRaiseChance INT,
                         street1CheckCallDone INT,
                         street1CheckRaiseDone INT,
@@ -2436,7 +2408,6 @@ class Sql:
                         street4CheckCallRaiseChance INT,
                         street4CheckCallDone INT,
                         street4CheckRaiseDone INT,
-
                         street0Calls INT,
                         street1Calls INT,
                         street2Calls INT,
@@ -2451,8 +2422,10 @@ class Sql:
                         street1Raises INT,
                         street2Raises INT,
                         street3Raises INT,
-                        street4Raises INT)
-
+                        street4Raises INT,
+                        street1Discards INT,
+                        street2Discards INT,
+                        street3Discards INT)
                         ENGINE=INNODB"""
         elif db_server == 'postgresql':
             self.query['createPositionsCacheTable'] = """CREATE TABLE PositionsCache (
@@ -2466,13 +2439,6 @@ class Sql:
                         maxPosition SMALLINT NOT NULL,
                         position CHAR(1),
                         n INT,
-
-                        wonWhenSeenStreet1 INT,
-                        wonWhenSeenStreet2 INT,
-                        wonWhenSeenStreet3 INT,
-                        wonWhenSeenStreet4 INT,
-                        wonAtSD INT,
-
                         street0VPIChance INT,
                         street0VPI INT,
                         street0AggrChance INT,
@@ -2491,13 +2457,11 @@ class Sql:
                         street0_FoldTo4BDone INT,
                         street0_SqueezeChance INT,
                         street0_SqueezeDone INT,
-
                         raiseToStealChance INT,
                         raiseToStealDone INT,
                         stealChance INT,
                         stealDone INT,
                         success_Steal INT,
-
                         street1Seen INT,
                         street2Seen INT,
                         street3Seen INT,
@@ -2507,7 +2471,6 @@ class Sql:
                         street2Aggr INT,
                         street3Aggr INT,
                         street4Aggr INT,
-
                         otherRaisedStreet0 INT,
                         otherRaisedStreet1 INT,
                         otherRaisedStreet2 INT,
@@ -2518,14 +2481,17 @@ class Sql:
                         foldToOtherRaisedStreet2 INT,
                         foldToOtherRaisedStreet3 INT,
                         foldToOtherRaisedStreet4 INT,
-
+                        wonWhenSeenStreet1 INT,
+                        wonWhenSeenStreet2 INT,
+                        wonWhenSeenStreet3 INT,
+                        wonWhenSeenStreet4 INT,
+                        wonAtSD INT,
                         raiseFirstInChance INT,
                         raisedFirstIn INT,
                         foldBbToStealChance INT,
                         foldedBbToSteal INT,
                         foldSbToStealChance INT,
                         foldedSbToSteal INT,
-
                         street1CBChance INT,
                         street1CBDone INT,
                         street2CBChance INT,
@@ -2534,7 +2500,6 @@ class Sql:
                         street3CBDone INT,
                         street4CBChance INT,
                         street4CBDone INT,
-
                         foldToStreet1CBChance INT,
                         foldToStreet1CBDone INT,
                         foldToStreet2CBChance INT,
@@ -2543,14 +2508,17 @@ class Sql:
                         foldToStreet3CBDone INT,
                         foldToStreet4CBChance INT,
                         foldToStreet4CBDone INT,
-
-                        totalProfit BIGINT,
+                        common BIGINT,
+                        committed BIGINT,
+                        winnings BIGINT,
                         rake BIGINT,
                         rakeDealt BIGINT,
                         rakeContributed BIGINT,
-                        rakeWeighted BIGINT,
+                        rakeWeighted BIGINT,                        
+                        totalProfit BIGINT,
                         allInEV BIGINT,
-
+                        showdownWinnings BIGINT,
+                        nonShowdownWinnings BIGINT,
                         street1CheckCallRaiseChance INT,
                         street1CheckCallDone INT,
                         street1CheckRaiseDone INT,
@@ -2563,7 +2531,6 @@ class Sql:
                         street4CheckCallRaiseChance INT,
                         street4CheckCallDone INT,
                         street4CheckRaiseDone INT,
-
                         street0Calls INT,
                         street1Calls INT,
                         street2Calls INT,
@@ -2578,7 +2545,10 @@ class Sql:
                         street1Raises INT,
                         street2Raises INT,
                         street3Raises INT,
-                        street4Raises INT)
+                        street4Raises INT,
+                        street1Discards INT,
+                        street2Discards INT,
+                        street3Discards INT)
                         """
         elif db_server == 'sqlite':
             self.query['createPositionsCacheTable'] = """CREATE TABLE PositionsCache (
@@ -2592,13 +2562,6 @@ class Sql:
                         maxPosition INT NOT NULL,
                         position TEXT,
                         n INT,
-
-                        wonWhenSeenStreet1 INT,
-                        wonWhenSeenStreet2 INT,
-                        wonWhenSeenStreet3 INT,
-                        wonWhenSeenStreet4 INT,
-                        wonAtSD INT,
-
                         street0VPIChance INT,
                         street0VPI INT,
                         street0AggrChance INT,
@@ -2617,13 +2580,11 @@ class Sql:
                         street0_FoldTo4BDone INT,
                         street0_SqueezeChance INT,
                         street0_SqueezeDone INT,
-
                         raiseToStealChance INT,
                         raiseToStealDone INT,
                         stealChance INT,
                         stealDone INT,
                         success_Steal INT,
-
                         street1Seen INT,
                         street2Seen INT,
                         street3Seen INT,
@@ -2633,7 +2594,6 @@ class Sql:
                         street2Aggr INT,
                         street3Aggr INT,
                         street4Aggr INT,
-
                         otherRaisedStreet0 INT,
                         otherRaisedStreet1 INT,
                         otherRaisedStreet2 INT,
@@ -2644,14 +2604,17 @@ class Sql:
                         foldToOtherRaisedStreet2 INT,
                         foldToOtherRaisedStreet3 INT,
                         foldToOtherRaisedStreet4 INT,
-
+                        wonWhenSeenStreet1 INT,
+                        wonWhenSeenStreet2 INT,
+                        wonWhenSeenStreet3 INT,
+                        wonWhenSeenStreet4 INT,
+                        wonAtSD INT,
                         raiseFirstInChance INT,
                         raisedFirstIn INT,
                         foldBbToStealChance INT,
                         foldedBbToSteal INT,
                         foldSbToStealChance INT,
                         foldedSbToSteal INT,
-
                         street1CBChance INT,
                         street1CBDone INT,
                         street2CBChance INT,
@@ -2660,7 +2623,6 @@ class Sql:
                         street3CBDone INT,
                         street4CBChance INT,
                         street4CBDone INT,
-
                         foldToStreet1CBChance INT,
                         foldToStreet1CBDone INT,
                         foldToStreet2CBChance INT,
@@ -2669,14 +2631,17 @@ class Sql:
                         foldToStreet3CBDone INT,
                         foldToStreet4CBChance INT,
                         foldToStreet4CBDone INT,
-
-                        totalProfit INT,
+                        common INT,
+                        committed INT,
+                        winnings INT,
                         rake INT,
                         rakeDealt INT,
                         rakeContributed INT,
                         rakeWeighted INT,
+                        totalProfit INT,
                         allInEV INT,
-
+                        showdownWinnings INT,
+                        nonShowdownWinnings INT,
                         street1CheckCallRaiseChance INT,
                         street1CheckCallDone INT,
                         street1CheckRaiseDone INT,
@@ -2689,7 +2654,6 @@ class Sql:
                         street4CheckCallRaiseChance INT,
                         street4CheckCallDone INT,
                         street4CheckRaiseDone INT,
-
                         street0Calls INT,
                         street1Calls INT,
                         street2Calls INT,
@@ -2704,7 +2668,10 @@ class Sql:
                         street1Raises INT,
                         street2Raises INT,
                         street3Raises INT,
-                        street4Raises INT)
+                        street4Raises INT,
+                        street1Discards INT,
+                        street2Discards INT,
+                        street3Discards INT)
                         """
                         
         ################################
@@ -2797,14 +2764,7 @@ class Sql:
                         endTime DATETIME NOT NULL,
                         gametypeId SMALLINT UNSIGNED, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
                         playerId INT UNSIGNED NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
-                        n INT NOT NULL,
-                        
-                        wonWhenSeenStreet1 INT,
-                        wonWhenSeenStreet2 INT,
-                        wonWhenSeenStreet3 INT,
-                        wonWhenSeenStreet4 INT,
-                        wonAtSD INT,
-                        
+                        n INT NOT NULL,                        
                         street0VPIChance INT,
                         street0VPI INT,
                         street0AggrChance INT,
@@ -2823,24 +2783,20 @@ class Sql:
                         street0_FoldTo4BDone INT,
                         street0_SqueezeChance INT,
                         street0_SqueezeDone INT,
-
                         raiseToStealChance INT,
                         raiseToStealDone INT,
                         stealChance INT,
                         stealDone INT,
                         success_Steal INT,
-
                         street1Seen INT,
                         street2Seen INT,
                         street3Seen INT,
                         street4Seen INT,
-                        sawShowdown INT,
-                        
+                        sawShowdown INT,                        
                         street1Aggr INT,
                         street2Aggr INT,
                         street3Aggr INT,
                         street4Aggr INT,
-
                         otherRaisedStreet0 INT,
                         otherRaisedStreet1 INT,
                         otherRaisedStreet2 INT,
@@ -2850,15 +2806,18 @@ class Sql:
                         foldToOtherRaisedStreet1 INT,
                         foldToOtherRaisedStreet2 INT,
                         foldToOtherRaisedStreet3 INT,
-                        foldToOtherRaisedStreet4 INT,
-                        
+                        foldToOtherRaisedStreet4 INT,                        
+                        wonWhenSeenStreet1 INT,
+                        wonWhenSeenStreet2 INT,
+                        wonWhenSeenStreet3 INT,
+                        wonWhenSeenStreet4 INT,
+                        wonAtSD INT,                        
                         raiseFirstInChance INT,
                         raisedFirstIn INT,
                         foldBbToStealChance INT,
                         foldedBbToSteal INT,
                         foldSbToStealChance INT,
                         foldedSbToSteal INT,
-
                         street1CBChance INT,
                         street1CBDone INT,
                         street2CBChance INT,
@@ -2866,8 +2825,7 @@ class Sql:
                         street3CBChance INT,
                         street3CBDone INT,
                         street4CBChance INT,
-                        street4CBDone INT,
-                        
+                        street4CBDone INT,                        
                         foldToStreet1CBChance INT,
                         foldToStreet1CBDone INT,
                         foldToStreet2CBChance INT,
@@ -2875,15 +2833,18 @@ class Sql:
                         foldToStreet3CBChance INT,
                         foldToStreet3CBDone INT,
                         foldToStreet4CBChance INT,
-                        foldToStreet4CBDone INT,
-                        
-                        totalProfit BIGINT,
+                        foldToStreet4CBDone INT,                        
+                        common BIGINT,
+                        committed BIGINT,
+                        winnings BIGINT,
                         rake BIGINT,
                         rakeDealt BIGINT,
                         rakeContributed BIGINT,
                         rakeWeighted BIGINT,
+                        totalProfit BIGINT,
                         allInEV BIGINT,
-                        
+                        showdownWinnings BIGINT,
+                        nonShowdownWinnings BIGINT,                        
                         street1CheckCallRaiseChance INT,
                         street1CheckCallDone INT,
                         street1CheckRaiseDone INT,
@@ -2896,7 +2857,6 @@ class Sql:
                         street4CheckCallRaiseChance INT,
                         street4CheckCallDone INT,
                         street4CheckRaiseDone INT,
-
                         street0Calls INT,
                         street1Calls INT,
                         street2Calls INT,
@@ -2911,7 +2871,10 @@ class Sql:
                         street1Raises INT,
                         street2Raises INT,
                         street3Raises INT,
-                        street4Raises INT)
+                        street4Raises INT,
+                        street1Discards INT,
+                        street2Discards INT,
+                        street3Discards INT)
                         ENGINE=INNODB
                         """
                         
@@ -2923,14 +2886,7 @@ class Sql:
                         endTime timestamp without time zone NOT NULL,
                         gametypeId INT, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
                         playerId INT, FOREIGN KEY (playerId) REFERENCES Players(id),
-                        n INT,
-                        
-                        wonWhenSeenStreet1 INT,
-                        wonWhenSeenStreet2 INT,
-                        wonWhenSeenStreet3 INT,
-                        wonWhenSeenStreet4 INT,
-                        wonAtSD INT,
-                        
+                        n INT,                        
                         street0VPIChance INT,
                         street0VPI INT,
                         street0AggrChance INT,
@@ -2949,13 +2905,11 @@ class Sql:
                         street0_FoldTo4BDone INT,
                         street0_SqueezeChance INT,
                         street0_SqueezeDone INT,
-
                         raiseToStealChance INT,
                         raiseToStealDone INT,
                         stealChance INT,
                         stealDone INT,
                         success_Steal INT,
-
                         street1Seen INT,
                         street2Seen INT,
                         street3Seen INT,
@@ -2965,7 +2919,6 @@ class Sql:
                         street2Aggr INT,
                         street3Aggr INT,
                         street4Aggr INT,
-
                         otherRaisedStreet0 INT,
                         otherRaisedStreet1 INT,
                         otherRaisedStreet2 INT,
@@ -2975,15 +2928,18 @@ class Sql:
                         foldToOtherRaisedStreet1 INT,
                         foldToOtherRaisedStreet2 INT,
                         foldToOtherRaisedStreet3 INT,
-                        foldToOtherRaisedStreet4 INT,
-
+                        foldToOtherRaisedStreet4 INT,                        
+                        wonWhenSeenStreet1 INT,
+                        wonWhenSeenStreet2 INT,
+                        wonWhenSeenStreet3 INT,
+                        wonWhenSeenStreet4 INT,
+                        wonAtSD INT,
                         raiseFirstInChance INT,
                         raisedFirstIn INT,
                         foldBbToStealChance INT,
                         foldedBbToSteal INT,
                         foldSbToStealChance INT,
                         foldedSbToSteal INT,
-
                         street1CBChance INT,
                         street1CBDone INT,
                         street2CBChance INT,
@@ -2992,7 +2948,6 @@ class Sql:
                         street3CBDone INT,
                         street4CBChance INT,
                         street4CBDone INT,
-
                         foldToStreet1CBChance INT,
                         foldToStreet1CBDone INT,
                         foldToStreet2CBChance INT,
@@ -3001,14 +2956,17 @@ class Sql:
                         foldToStreet3CBDone INT,
                         foldToStreet4CBChance INT,
                         foldToStreet4CBDone INT,
-
-                        totalProfit BIGINT,
+                        common BIGINT,
+                        committed BIGINT,
+                        winnings BIGINT,
                         rake BIGINT,
                         rakeDealt BIGINT,
                         rakeContributed BIGINT,
                         rakeWeighted BIGINT,
+                        totalProfit BIGINT,
                         allInEV BIGINT,
-
+                        showdownWinnings BIGINT,
+                        nonShowdownWinnings BIGINT,
                         street1CheckCallRaiseChance INT,
                         street1CheckCallDone INT,
                         street1CheckRaiseDone INT,
@@ -3021,7 +2979,6 @@ class Sql:
                         street4CheckCallRaiseChance INT,
                         street4CheckCallDone INT,
                         street4CheckRaiseDone INT,
-
                         street0Calls INT,
                         street1Calls INT,
                         street2Calls INT,
@@ -3036,7 +2993,10 @@ class Sql:
                         street1Raises INT,
                         street2Raises INT,
                         street3Raises INT,
-                        street4Raises INT)
+                        street4Raises INT,
+                        street1Discards INT,
+                        street2Discards INT,
+                        street3Discards INT)
                         """
                         
         elif db_server == 'sqlite':
@@ -3048,13 +3008,6 @@ class Sql:
                         gametypeId INT,
                         playerId INT,
                         n INT,
-                        
-                        wonWhenSeenStreet1 INT,
-                        wonWhenSeenStreet2 INT,
-                        wonWhenSeenStreet3 INT,
-                        wonWhenSeenStreet4 INT,
-                        wonAtSD INT,
-
                         street0VPIChance INT,
                         street0VPI INT,
                         street0AggrChance INT,
@@ -3073,13 +3026,11 @@ class Sql:
                         street0_FoldTo4BDone INT,
                         street0_SqueezeChance INT,
                         street0_SqueezeDone INT,
-
                         raiseToStealChance INT,
                         raiseToStealDone INT,
                         stealChance INT,
                         stealDone INT,
                         success_Steal INT,
-
                         street1Seen INT,
                         street2Seen INT,
                         street3Seen INT,
@@ -3089,7 +3040,6 @@ class Sql:
                         street2Aggr INT,
                         street3Aggr INT,
                         street4Aggr INT,
-
                         otherRaisedStreet0 INT,
                         otherRaisedStreet1 INT,
                         otherRaisedStreet2 INT,
@@ -3099,15 +3049,18 @@ class Sql:
                         foldToOtherRaisedStreet1 INT,
                         foldToOtherRaisedStreet2 INT,
                         foldToOtherRaisedStreet3 INT,
-                        foldToOtherRaisedStreet4 INT,
-
+                        foldToOtherRaisedStreet4 INT,                        
+                        wonWhenSeenStreet1 INT,
+                        wonWhenSeenStreet2 INT,
+                        wonWhenSeenStreet3 INT,
+                        wonWhenSeenStreet4 INT,
+                        wonAtSD INT,
                         raiseFirstInChance INT,
                         raisedFirstIn INT,
                         foldBbToStealChance INT,
                         foldedBbToSteal INT,
                         foldSbToStealChance INT,
                         foldedSbToSteal INT,
-
                         street1CBChance INT,
                         street1CBDone INT,
                         street2CBChance INT,
@@ -3116,7 +3069,6 @@ class Sql:
                         street3CBDone INT,
                         street4CBChance INT,
                         street4CBDone INT,
-
                         foldToStreet1CBChance INT,
                         foldToStreet1CBDone INT,
                         foldToStreet2CBChance INT,
@@ -3125,14 +3077,17 @@ class Sql:
                         foldToStreet3CBDone INT,
                         foldToStreet4CBChance INT,
                         foldToStreet4CBDone INT,
-
-                        totalProfit INT,
+                        common INT,
+                        committed INT,
+                        winnings INT,
                         rake INT,
                         rakeDealt INT,
                         rakeContributed INT,
                         rakeWeighted INT,
+                        totalProfit INT,
                         allInEV INT,
-
+                        showdownWinnings INT,
+                        nonShowdownWinnings INT,
                         street1CheckCallRaiseChance INT,
                         street1CheckCallDone INT,
                         street1CheckRaiseDone INT,
@@ -3145,7 +3100,6 @@ class Sql:
                         street4CheckCallRaiseChance INT,
                         street4CheckCallDone INT,
                         street4CheckRaiseDone INT,
-
                         street0Calls INT,
                         street1Calls INT,
                         street2Calls INT,
@@ -3160,7 +3114,10 @@ class Sql:
                         street1Raises INT,
                         street2Raises INT,
                         street3Raises INT,
-                        street4Raises INT)
+                        street4Raises INT,
+                        street1Discards INT,
+                        street2Discards INT,
+                        street3Discards INT)
                         """
                         
         ################################
@@ -3175,14 +3132,7 @@ class Sql:
                         endTime DATETIME NOT NULL,
                         tourneyId INT UNSIGNED NOT NULL, FOREIGN KEY (tourneyId) REFERENCES Tourneys(id),
                         playerId INT UNSIGNED NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
-                        n INT NOT NULL,
-                        
-                        wonWhenSeenStreet1 INT,
-                        wonWhenSeenStreet2 INT,
-                        wonWhenSeenStreet3 INT,
-                        wonWhenSeenStreet4 INT,
-                        wonAtSD INT,
-                        
+                        n INT NOT NULL,                        
                         street0VPIChance INT,
                         street0VPI INT,
                         street0AggrChance INT,
@@ -3201,24 +3151,20 @@ class Sql:
                         street0_FoldTo4BDone INT,
                         street0_SqueezeChance INT,
                         street0_SqueezeDone INT,
-
                         raiseToStealChance INT,
                         raiseToStealDone INT,
                         stealChance INT,
                         stealDone INT,
                         success_Steal INT,
-
                         street1Seen INT,
                         street2Seen INT,
                         street3Seen INT,
                         street4Seen INT,
-                        sawShowdown INT,
-                        
+                        sawShowdown INT,                        
                         street1Aggr INT,
                         street2Aggr INT,
                         street3Aggr INT,
                         street4Aggr INT,
-
                         otherRaisedStreet0 INT,
                         otherRaisedStreet1 INT,
                         otherRaisedStreet2 INT,
@@ -3228,15 +3174,18 @@ class Sql:
                         foldToOtherRaisedStreet1 INT,
                         foldToOtherRaisedStreet2 INT,
                         foldToOtherRaisedStreet3 INT,
-                        foldToOtherRaisedStreet4 INT,
-                        
+                        foldToOtherRaisedStreet4 INT,                        
+                        wonWhenSeenStreet1 INT,
+                        wonWhenSeenStreet2 INT,
+                        wonWhenSeenStreet3 INT,
+                        wonWhenSeenStreet4 INT,
+                        wonAtSD INT,                        
                         raiseFirstInChance INT,
                         raisedFirstIn INT,
                         foldBbToStealChance INT,
                         foldedBbToSteal INT,
                         foldSbToStealChance INT,
                         foldedSbToSteal INT,
-
                         street1CBChance INT,
                         street1CBDone INT,
                         street2CBChance INT,
@@ -3244,8 +3193,7 @@ class Sql:
                         street3CBChance INT,
                         street3CBDone INT,
                         street4CBChance INT,
-                        street4CBDone INT,
-                        
+                        street4CBDone INT,                        
                         foldToStreet1CBChance INT,
                         foldToStreet1CBDone INT,
                         foldToStreet2CBChance INT,
@@ -3253,15 +3201,18 @@ class Sql:
                         foldToStreet3CBChance INT,
                         foldToStreet3CBDone INT,
                         foldToStreet4CBChance INT,
-                        foldToStreet4CBDone INT,
-                        
-                        totalProfit BIGINT,
+                        foldToStreet4CBDone INT,                        
+                        common BIGINT,
+                        committed BIGINT,
+                        winnings BIGINT,
                         rake BIGINT,
                         rakeDealt BIGINT,
                         rakeContributed BIGINT,
                         rakeWeighted BIGINT,
+                        totalProfit BIGINT,
                         allInEV BIGINT,
-                        
+                        showdownWinnings BIGINT,
+                        nonShowdownWinnings BIGINT,                        
                         street1CheckCallRaiseChance INT,
                         street1CheckCallDone INT,
                         street1CheckRaiseDone INT,
@@ -3274,7 +3225,6 @@ class Sql:
                         street4CheckCallRaiseChance INT,
                         street4CheckCallDone INT,
                         street4CheckRaiseDone INT,
-
                         street0Calls INT,
                         street1Calls INT,
                         street2Calls INT,
@@ -3289,7 +3239,10 @@ class Sql:
                         street1Raises INT,
                         street2Raises INT,
                         street3Raises INT,
-                        street4Raises INT)
+                        street4Raises INT,
+                        street1Discards INT,
+                        street2Discards INT,
+                        street3Discards INT)
                         ENGINE=INNODB
                         """
                         
@@ -3301,14 +3254,7 @@ class Sql:
                         endTime timestamp without time zone NOT NULL,
                         tourneyId INT, FOREIGN KEY (tourneyId) REFERENCES Tourneys(id),
                         playerId INT, FOREIGN KEY (playerId) REFERENCES Players(id),
-                        n INT,
-                        
-                        wonWhenSeenStreet1 INT,
-                        wonWhenSeenStreet2 INT,
-                        wonWhenSeenStreet3 INT,
-                        wonWhenSeenStreet4 INT,
-                        wonAtSD INT,
-                        
+                        n INT,                        
                         street0VPIChance INT,
                         street0VPI INT,
                         street0AggrChance INT,
@@ -3327,13 +3273,11 @@ class Sql:
                         street0_FoldTo4BDone INT,
                         street0_SqueezeChance INT,
                         street0_SqueezeDone INT,
-
                         raiseToStealChance INT,
                         raiseToStealDone INT,
                         stealChance INT,
                         stealDone INT,
                         success_Steal INT,
-
                         street1Seen INT,
                         street2Seen INT,
                         street3Seen INT,
@@ -3343,7 +3287,6 @@ class Sql:
                         street2Aggr INT,
                         street3Aggr INT,
                         street4Aggr INT,
-
                         otherRaisedStreet0 INT,
                         otherRaisedStreet1 INT,
                         otherRaisedStreet2 INT,
@@ -3353,15 +3296,18 @@ class Sql:
                         foldToOtherRaisedStreet1 INT,
                         foldToOtherRaisedStreet2 INT,
                         foldToOtherRaisedStreet3 INT,
-                        foldToOtherRaisedStreet4 INT,
-
+                        foldToOtherRaisedStreet4 INT,                        
+                        wonWhenSeenStreet1 INT,
+                        wonWhenSeenStreet2 INT,
+                        wonWhenSeenStreet3 INT,
+                        wonWhenSeenStreet4 INT,
+                        wonAtSD INT,
                         raiseFirstInChance INT,
                         raisedFirstIn INT,
                         foldBbToStealChance INT,
                         foldedBbToSteal INT,
                         foldSbToStealChance INT,
                         foldedSbToSteal INT,
-
                         street1CBChance INT,
                         street1CBDone INT,
                         street2CBChance INT,
@@ -3370,7 +3316,6 @@ class Sql:
                         street3CBDone INT,
                         street4CBChance INT,
                         street4CBDone INT,
-
                         foldToStreet1CBChance INT,
                         foldToStreet1CBDone INT,
                         foldToStreet2CBChance INT,
@@ -3379,14 +3324,17 @@ class Sql:
                         foldToStreet3CBDone INT,
                         foldToStreet4CBChance INT,
                         foldToStreet4CBDone INT,
-
-                        totalProfit BIGINT,
+                        common BIGINT,
+                        committed BIGINT,
+                        winnings BIGINT,
                         rake BIGINT,
                         rakeDealt BIGINT,
                         rakeContributed BIGINT,
                         rakeWeighted BIGINT,
+                        totalProfit BIGINT,
                         allInEV BIGINT,
-
+                        showdownWinnings BIGINT,
+                        nonShowdownWinnings BIGINT,
                         street1CheckCallRaiseChance INT,
                         street1CheckCallDone INT,
                         street1CheckRaiseDone INT,
@@ -3399,7 +3347,6 @@ class Sql:
                         street4CheckCallRaiseChance INT,
                         street4CheckCallDone INT,
                         street4CheckRaiseDone INT,
-
                         street0Calls INT,
                         street1Calls INT,
                         street2Calls INT,
@@ -3414,7 +3361,10 @@ class Sql:
                         street1Raises INT,
                         street2Raises INT,
                         street3Raises INT,
-                        street4Raises INT)
+                        street4Raises INT,
+                        street1Discards INT,
+                        street2Discards INT,
+                        street3Discards INT)
                         """
                         
         elif db_server == 'sqlite':
@@ -3426,13 +3376,6 @@ class Sql:
                         tourneyId INT,
                         playerId INT,
                         n INT,
-                        
-                        wonWhenSeenStreet1 INT,
-                        wonWhenSeenStreet2 INT,
-                        wonWhenSeenStreet3 INT,
-                        wonWhenSeenStreet4 INT,
-                        wonAtSD INT,
-
                         street0VPIChance INT,
                         street0VPI INT,
                         street0AggrChance INT,
@@ -3451,13 +3394,11 @@ class Sql:
                         street0_FoldTo4BDone INT,
                         street0_SqueezeChance INT,
                         street0_SqueezeDone INT,
-
                         raiseToStealChance INT,
                         raiseToStealDone INT,
                         stealChance INT,
                         stealDone INT,
                         success_Steal INT,
-
                         street1Seen INT,
                         street2Seen INT,
                         street3Seen INT,
@@ -3467,7 +3408,6 @@ class Sql:
                         street2Aggr INT,
                         street3Aggr INT,
                         street4Aggr INT,
-
                         otherRaisedStreet0 INT,
                         otherRaisedStreet1 INT,
                         otherRaisedStreet2 INT,
@@ -3477,15 +3417,18 @@ class Sql:
                         foldToOtherRaisedStreet1 INT,
                         foldToOtherRaisedStreet2 INT,
                         foldToOtherRaisedStreet3 INT,
-                        foldToOtherRaisedStreet4 INT,
-
+                        foldToOtherRaisedStreet4 INT,                     
+                        wonWhenSeenStreet1 INT,
+                        wonWhenSeenStreet2 INT,
+                        wonWhenSeenStreet3 INT,
+                        wonWhenSeenStreet4 INT,
+                        wonAtSD INT,
                         raiseFirstInChance INT,
                         raisedFirstIn INT,
                         foldBbToStealChance INT,
                         foldedBbToSteal INT,
                         foldSbToStealChance INT,
                         foldedSbToSteal INT,
-
                         street1CBChance INT,
                         street1CBDone INT,
                         street2CBChance INT,
@@ -3494,7 +3437,6 @@ class Sql:
                         street3CBDone INT,
                         street4CBChance INT,
                         street4CBDone INT,
-
                         foldToStreet1CBChance INT,
                         foldToStreet1CBDone INT,
                         foldToStreet2CBChance INT,
@@ -3503,14 +3445,17 @@ class Sql:
                         foldToStreet3CBDone INT,
                         foldToStreet4CBChance INT,
                         foldToStreet4CBDone INT,
-
-                        totalProfit INT,
+                        common INT,
+                        committed INT,
+                        winnings INT,
                         rake INT,
                         rakeDealt INT,
                         rakeContributed INT,
                         rakeWeighted INT,
+                        totalProfit INT,
                         allInEV INT,
-
+                        showdownWinnings INT,
+                        nonShowdownWinnings INT,
                         street1CheckCallRaiseChance INT,
                         street1CheckCallDone INT,
                         street1CheckRaiseDone INT,
@@ -3523,7 +3468,6 @@ class Sql:
                         street4CheckCallRaiseChance INT,
                         street4CheckCallDone INT,
                         street4CheckRaiseDone INT,
-
                         street0Calls INT,
                         street1Calls INT,
                         street2Calls INT,
@@ -3538,7 +3482,10 @@ class Sql:
                         street1Raises INT,
                         street2Raises INT,
                         street3Raises INT,
-                        street4Raises INT)
+                        street4Raises INT,
+                        street1Discards INT,
+                        street2Discards INT,
+                        street3Discards INT)
                         """
             
         if db_server == 'mysql':
@@ -4406,11 +4353,11 @@ class Sql:
 
         self.query['get_cards'] = """
 /*
-	changed to activate mucked card display in draw games
-	in draw games, card6->card20 contain 3 sets of 5 cards at each draw
+    changed to activate mucked card display in draw games
+    in draw games, card6->card20 contain 3 sets of 5 cards at each draw
 
-	CASE code searches from the highest card number (latest draw) and when
-	it finds a non-zero card, it returns that set of data
+    CASE code searches from the highest card number (latest draw) and when
+    it finds a non-zero card, it returns that set of data
 */
             SELECT
                 seatNo AS seat_number,
@@ -6201,11 +6148,6 @@ class Sql:
         if db_server == 'mysql':
             self.query['rebuildCache'] = """insert into <insert>
                 ,n
-                ,wonWhenSeenStreet1
-                ,wonWhenSeenStreet2
-                ,wonWhenSeenStreet3
-                ,wonWhenSeenStreet4
-                ,wonAtSD
                 ,street0VPIChance
                 ,street0VPI
                 ,street0AggrChance
@@ -6248,6 +6190,11 @@ class Sql:
                 ,foldToOtherRaisedStreet2
                 ,foldToOtherRaisedStreet3
                 ,foldToOtherRaisedStreet4
+                ,wonWhenSeenStreet1
+                ,wonWhenSeenStreet2
+                ,wonWhenSeenStreet3
+                ,wonWhenSeenStreet4
+                ,wonAtSD
                 ,raiseFirstInChance
                 ,raisedFirstIn
                 ,foldBbToStealChance
@@ -6270,12 +6217,17 @@ class Sql:
                 ,foldToStreet3CBDone
                 ,foldToStreet4CBChance
                 ,foldToStreet4CBDone
-                ,totalProfit
+                ,common
+                ,committed
+                ,winnings
                 ,rake
                 ,rakeDealt
                 ,rakeContributed
                 ,rakeWeighted
+                ,totalProfit
                 ,allInEV
+                ,showdownWinnings
+                ,nonShowdownWinnings
                 ,street1CheckCallRaiseChance
                 ,street1CheckCallDone
                 ,street1CheckRaiseDone
@@ -6303,14 +6255,12 @@ class Sql:
                 ,street2Raises
                 ,street3Raises
                 ,street4Raises
+                ,street1Discards
+                ,street2Discards
+                ,street3Discards
                 )
                 SELECT <select>
                       ,count(1)
-                      ,sum(wonWhenSeenStreet1)
-                      ,sum(wonWhenSeenStreet2)
-                      ,sum(wonWhenSeenStreet3)
-                      ,sum(wonWhenSeenStreet4)
-                      ,sum(wonAtSD)
                       ,sum(street0VPIChance)
                       ,sum(street0VPI)
                       ,sum(street0AggrChance)
@@ -6353,6 +6303,11 @@ class Sql:
                       ,sum(foldToOtherRaisedStreet2)
                       ,sum(foldToOtherRaisedStreet3)
                       ,sum(foldToOtherRaisedStreet4)
+                      ,sum(wonWhenSeenStreet1)
+                      ,sum(wonWhenSeenStreet2)
+                      ,sum(wonWhenSeenStreet3)
+                      ,sum(wonWhenSeenStreet4)
+                      ,sum(wonAtSD)
                       ,sum(raiseFirstInChance)
                       ,sum(raisedFirstIn)
                       ,sum(foldBbToStealChance)
@@ -6375,12 +6330,17 @@ class Sql:
                       ,sum(foldToStreet3CBDone)
                       ,sum(foldToStreet4CBChance)
                       ,sum(foldToStreet4CBDone)
-                      ,sum(totalProfit)
+                      ,sum(common)
+                      ,sum(committed)
+                      ,sum(winnings)
                       ,sum(rake)
                       ,sum(rakeDealt)
                       ,sum(rakeContributed)
                       ,sum(rakeWeighted)
+                      ,sum(totalProfit)
                       ,sum(allInEV)
+                      ,sum(case when sawShowdown = 1 then totalProfit else 0 end)
+                      ,sum(case when sawShowdown = 0 then totalProfit else 0 end)
                       ,sum(street1CheckCallRaiseChance)
                       ,sum(street1CheckCallDone)
                       ,sum(street1CheckRaiseDone)
@@ -6408,6 +6368,9 @@ class Sql:
                       ,sum(hp.street2Raises)
                       ,sum(hp.street3Raises)
                       ,sum(hp.street4Raises)
+                      ,sum(street1Discards)
+                      ,sum(street2Discards)
+                      ,sum(street3Discards)
                 FROM Hands h
                 INNER JOIN HandsPlayers hp ON (h.id = hp.handId<hero_join>)
                 INNER JOIN Gametypes g ON (h.gametypeId = g.id)
@@ -6419,11 +6382,6 @@ class Sql:
         elif db_server == 'postgresql':
             self.query['rebuildCache'] = """insert into <insert>
                 ,n
-                ,wonWhenSeenStreet1
-                ,wonWhenSeenStreet2
-                ,wonWhenSeenStreet3
-                ,wonWhenSeenStreet4
-                ,wonAtSD
                 ,street0VPIChance
                 ,street0VPI
                 ,street0AggrChance
@@ -6465,7 +6423,12 @@ class Sql:
                 ,foldToOtherRaisedStreet1
                 ,foldToOtherRaisedStreet2
                 ,foldToOtherRaisedStreet3
-                ,foldToOtherRaisedStreet4
+                ,foldToOtherRaisedStreet4                
+                ,wonWhenSeenStreet1
+                ,wonWhenSeenStreet2
+                ,wonWhenSeenStreet3
+                ,wonWhenSeenStreet4
+                ,wonAtSD
                 ,raiseFirstInChance
                 ,raisedFirstIn
                 ,foldBbToStealChance
@@ -6488,12 +6451,17 @@ class Sql:
                 ,foldToStreet3CBDone
                 ,foldToStreet4CBChance
                 ,foldToStreet4CBDone
-                ,totalProfit
+                ,common
+                ,committed
+                ,winnings
                 ,rake
                 ,rakeDealt
                 ,rakeContributed
                 ,rakeWeighted
+                ,totalProfit
                 ,allInEV
+                ,showdownWinnings
+                ,nonShowdownWinnings
                 ,street1CheckCallRaiseChance
                 ,street1CheckCallDone
                 ,street1CheckRaiseDone
@@ -6521,14 +6489,12 @@ class Sql:
                 ,street2Raises
                 ,street3Raises
                 ,street4Raises
+                ,street1Discards
+                ,street2Discards
+                ,street3Discards
                 )
                 SELECT <select>
                       ,count(1)
-                      ,sum(CAST(wonWhenSeenStreet1 as integer))
-                      ,sum(CAST(wonWhenSeenStreet2 as integer))
-                      ,sum(CAST(wonWhenSeenStreet3 as integer))
-                      ,sum(CAST(wonWhenSeenStreet4 as integer))
-                      ,sum(CAST(wonAtSD as integer))
                       ,sum(CAST(street0VPIChance as integer))
                       ,sum(CAST(street0VPI as integer))
                       ,sum(CAST(street0AggrChance as integer))
@@ -6570,7 +6536,12 @@ class Sql:
                       ,sum(CAST(foldToOtherRaisedStreet1 as integer))
                       ,sum(CAST(foldToOtherRaisedStreet2 as integer))
                       ,sum(CAST(foldToOtherRaisedStreet3 as integer))
-                      ,sum(CAST(foldToOtherRaisedStreet4 as integer))
+                      ,sum(CAST(foldToOtherRaisedStreet4 as integer))                      
+                      ,sum(CAST(wonWhenSeenStreet1 as integer))
+                      ,sum(CAST(wonWhenSeenStreet2 as integer))
+                      ,sum(CAST(wonWhenSeenStreet3 as integer))
+                      ,sum(CAST(wonWhenSeenStreet4 as integer))
+                      ,sum(CAST(wonAtSD as integer))
                       ,sum(CAST(raiseFirstInChance as integer))
                       ,sum(CAST(raisedFirstIn as integer))
                       ,sum(CAST(foldBbToStealChance as integer))
@@ -6593,12 +6564,17 @@ class Sql:
                       ,sum(CAST(foldToStreet3CBDone as integer))
                       ,sum(CAST(foldToStreet4CBChance as integer))
                       ,sum(CAST(foldToStreet4CBDone as integer))
-                      ,sum(CAST(totalProfit as bigint))
-                      ,sum(CAST(rake as bigint))
-                      ,sum(CAST(rakeDealt as bigint))
-                      ,sum(CAST(rakeContributed as bigint))
-                      ,sum(CAST(rakeWeighted as bigint))
-                      ,sum(CAST(allInEV as bigint))
+                      ,sum(common)
+                      ,sum(committed)
+                      ,sum(winnings)
+                      ,sum(rake)
+                      ,sum(rakeDealt)
+                      ,sum(rakeContributed)
+                      ,sum(rakeWeighted)
+                      ,sum(totalProfit)
+                      ,sum(allInEV)
+                      ,sum(case when sawShowdown then totalProfit else 0 end)
+                      ,sum(case when sawShowdown then 0 else totalProfit end)
                       ,sum(CAST(street1CheckCallRaiseChance as integer))
                       ,sum(CAST(street1CheckCallDone as integer))
                       ,sum(CAST(street1CheckRaiseDone as integer))
@@ -6626,6 +6602,9 @@ class Sql:
                       ,sum(CAST(hp.street2Raises as integer))
                       ,sum(CAST(hp.street3Raises as integer))
                       ,sum(CAST(hp.street4Raises as integer))
+                      ,sum(CAST(street1Discards as integer))
+                      ,sum(CAST(street2Discards as integer))
+                      ,sum(CAST(street3Discards as integer))
                 FROM Hands h
                 INNER JOIN HandsPlayers hp ON (h.id = hp.handId<hero_join>)
                 INNER JOIN Gametypes g ON (h.gametypeId = g.id)
@@ -6637,11 +6616,6 @@ class Sql:
         elif db_server == 'sqlite':
             self.query['rebuildCache'] = """insert into <insert>
                 ,n
-                ,wonWhenSeenStreet1
-                ,wonWhenSeenStreet2
-                ,wonWhenSeenStreet3
-                ,wonWhenSeenStreet4
-                ,wonAtSD
                 ,street0VPIChance
                 ,street0VPI
                 ,street0AggrChance
@@ -6684,6 +6658,11 @@ class Sql:
                 ,foldToOtherRaisedStreet2
                 ,foldToOtherRaisedStreet3
                 ,foldToOtherRaisedStreet4
+                ,wonWhenSeenStreet1
+                ,wonWhenSeenStreet2
+                ,wonWhenSeenStreet3
+                ,wonWhenSeenStreet4
+                ,wonAtSD
                 ,raiseFirstInChance
                 ,raisedFirstIn
                 ,foldBbToStealChance
@@ -6706,12 +6685,17 @@ class Sql:
                 ,foldToStreet3CBDone
                 ,foldToStreet4CBChance
                 ,foldToStreet4CBDone
-                ,totalProfit
+                ,common
+                ,committed
+                ,winnings
                 ,rake
                 ,rakeDealt
                 ,rakeContributed
                 ,rakeWeighted
+                ,totalProfit
                 ,allInEV
+                ,showdownWinnings
+                ,nonShowdownWinnings
                 ,street1CheckCallRaiseChance
                 ,street1CheckCallDone
                 ,street1CheckRaiseDone
@@ -6739,14 +6723,12 @@ class Sql:
                 ,street2Raises
                 ,street3Raises
                 ,street4Raises
+                ,street1Discards
+                ,street2Discards
+                ,street3Discards
                 )
                 SELECT <select>
                       ,count(1)
-                      ,sum(CAST(wonWhenSeenStreet1 as integer))
-                      ,sum(CAST(wonWhenSeenStreet2 as integer))
-                      ,sum(CAST(wonWhenSeenStreet3 as integer))
-                      ,sum(CAST(wonWhenSeenStreet4 as integer))
-                      ,sum(CAST(wonAtSD as integer))
                       ,sum(CAST(street0VPIChance as integer))
                       ,sum(CAST(street0VPI as integer))
                       ,sum(CAST(street0AggrChance as integer))
@@ -6789,6 +6771,11 @@ class Sql:
                       ,sum(CAST(foldToOtherRaisedStreet2 as integer))
                       ,sum(CAST(foldToOtherRaisedStreet3 as integer))
                       ,sum(CAST(foldToOtherRaisedStreet4 as integer))
+                      ,sum(CAST(wonWhenSeenStreet1 as integer))
+                      ,sum(CAST(wonWhenSeenStreet2 as integer))
+                      ,sum(CAST(wonWhenSeenStreet3 as integer))
+                      ,sum(CAST(wonWhenSeenStreet4 as integer))
+                      ,sum(CAST(wonAtSD as integer))
                       ,sum(CAST(raiseFirstInChance as integer))
                       ,sum(CAST(raisedFirstIn as integer))
                       ,sum(CAST(foldBbToStealChance as integer))
@@ -6811,12 +6798,17 @@ class Sql:
                       ,sum(CAST(foldToStreet3CBDone as integer))
                       ,sum(CAST(foldToStreet4CBChance as integer))
                       ,sum(CAST(foldToStreet4CBDone as integer))
-                      ,sum(CAST(totalProfit as integer))
+                      ,sum(CAST(common as integer))
+                      ,sum(CAST(committed as integer))
+                      ,sum(CAST(winnings as integer))
                       ,sum(CAST(rake as integer))
                       ,sum(CAST(rakeDealt as integer))
                       ,sum(CAST(rakeContributed as integer))
                       ,sum(CAST(rakeWeighted as integer))
+                      ,sum(CAST(totalProfit as integer))
                       ,sum(CAST(allInEV as integer))
+                      ,sum(CAST(case when sawShowdown = 1 then totalProfit else 0 end as integer))
+                      ,sum(CAST(case when sawShowdown = 0 then totalProfit else 0 end as integer))
                       ,sum(CAST(street1CheckCallRaiseChance as integer))
                       ,sum(CAST(street1CheckCallDone as integer))
                       ,sum(CAST(street1CheckRaiseDone as integer))
@@ -6844,6 +6836,9 @@ class Sql:
                       ,sum(CAST(hp.street2Raises as integer))
                       ,sum(CAST(hp.street3Raises as integer))
                       ,sum(CAST(hp.street4Raises as integer))
+                      ,sum(CAST(street1Discards as integer))
+                      ,sum(CAST(street2Discards as integer))
+                      ,sum(CAST(street3Discards as integer))
                 FROM Hands h
                 INNER JOIN HandsPlayers hp ON (h.id = hp.handId<hero_join>)
                 INNER JOIN Gametypes g ON (h.gametypeId = g.id)
@@ -6931,12 +6926,17 @@ class Sql:
                 foldToStreet3CBDone,
                 foldToStreet4CBChance,
                 foldToStreet4CBDone,
-                totalProfit,
+                common,
+                committed,
+                winnings,
                 rake,
                 rakeDealt,
                 rakeContributed,
                 rakeWeighted,
+                totalProfit,
                 allInEV,
+                showdownWinnings,
+                nonShowdownWinnings,
                 street1CheckCallRaiseChance,
                 street1CheckCallDone,
                 street1CheckRaiseDone,
@@ -6963,7 +6963,10 @@ class Sql:
                 street1Raises,
                 street2Raises,
                 street3Raises,
-                street4Raises)
+                street4Raises,
+                street1Discards,
+                street2Discards,
+                street3Discards)
             values (%s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
@@ -6985,7 +6988,9 @@ class Sql:
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
-                    %s, %s, %s, %s)"""
+                    %s, %s, %s, %s, %s,
+                    %s, %s, %s, %s, %s,
+                    %s, %s)"""
 
         self.query['update_hudcache'] = """
             UPDATE HudCache SET
@@ -7059,12 +7064,17 @@ class Sql:
             foldToStreet3CBDone=foldToStreet3CBDone+%s,
             foldToStreet4CBChance=foldToStreet4CBChance+%s,
             foldToStreet4CBDone=foldToStreet4CBDone+%s,
-            totalProfit=totalProfit+%s,
+            common=common+%s,
+            committed=committed+%s,
+            winnings=winnings+%s,
             rake=rake+%s,
             rakeDealt=rakeDealt+%s,
             rakeContributed=rakeContributed+%s,
             rakeWeighted=rakeWeighted+%s,
+            totalProfit=totalProfit+%s,
             allInEV=allInEV+%s,
+            showdownWinnings=showdownWinnings+%s,
+            nonShowdownWinnings=nonShowdownWinnings+%s,
             street1CheckCallRaiseChance=street1CheckCallRaiseChance+%s,
             street1CheckCallDone=street1CheckCallDone+%s,
             street1CheckRaiseDone=street1CheckRaiseDone+%s,
@@ -7091,7 +7101,10 @@ class Sql:
             street1Raises=street1Raises+%s,
             street2Raises=street2Raises+%s,
             street3Raises=street3Raises+%s,
-            street4Raises=street4Raises+%s
+            street4Raises=street4Raises+%s,            
+            street1Discards=street1Discards+%s,
+            street2Discards=street2Discards+%s,
+            street3Discards=street3Discards+%s
         WHERE id=%s"""
             
         self.query['select_hudcache_ring'] = """
@@ -7200,12 +7213,17 @@ class Sql:
                 foldToStreet3CBDone,
                 foldToStreet4CBChance,
                 foldToStreet4CBDone,
-                totalProfit,
+                common,
+                committed,
+                winnings,
                 rake,
                 rakeDealt,
                 rakeContributed,
                 rakeWeighted,
+                totalProfit,
                 allInEV,
+                showdownWinnings,
+                nonShowdownWinnings,
                 street1CheckCallRaiseChance,
                 street1CheckCallDone,
                 street1CheckRaiseDone,
@@ -7232,7 +7250,10 @@ class Sql:
                 street1Raises,
                 street2Raises,
                 street3Raises,
-                street4Raises)
+                street4Raises,
+                street1Discards,
+                street2Discards,
+                street3Discards)
             values (%s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
@@ -7255,7 +7276,9 @@ class Sql:
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
-                    %s, %s, %s, %s
+                    %s, %s, %s, %s, %s,
+                    %s, %s, %s, %s, %s,
+                    %s, %s
                     )"""
 
         self.query['update_cardscache'] = """
@@ -7330,12 +7353,17 @@ class Sql:
                     foldToStreet3CBDone=foldToStreet3CBDone+%s,
                     foldToStreet4CBChance=foldToStreet4CBChance+%s,
                     foldToStreet4CBDone=foldToStreet4CBDone+%s,
-                    totalProfit=totalProfit+%s,
+                    common=common+%s,
+                    committed=committed+%s,
+                    winnings=winnings+%s,
                     rake=rake+%s,
                     rakeDealt=rakeDealt+%s,
                     rakeContributed=rakeContributed+%s,
                     rakeWeighted=rakeWeighted+%s,
+                    totalProfit=totalProfit+%s,
                     allInEV=allInEV+%s,
+                    showdownWinnings=showdownWinnings+%s,
+                    nonShowdownWinnings=nonShowdownWinnings+%s,
                     street1CheckCallRaiseChance=street1CheckCallRaiseChance+%s,
                     street1CheckCallDone=street1CheckCallDone+%s,
                     street1CheckRaiseDone=street1CheckRaiseDone+%s,
@@ -7362,7 +7390,10 @@ class Sql:
                     street1Raises=street1Raises+%s,
                     street2Raises=street2Raises+%s,
                     street3Raises=street3Raises+%s,
-                    street4Raises=street4Raises+%s
+                    street4Raises=street4Raises+%s,
+                    street1Discards=street1Discards+%s,
+                    street2Discards=street2Discards+%s,
+                    street3Discards=street3Discards+%s
         WHERE     id=%s"""
             
         self.query['select_cardscache_ring'] = """
@@ -7468,12 +7499,17 @@ class Sql:
                 foldToStreet3CBDone,
                 foldToStreet4CBChance,
                 foldToStreet4CBDone,
-                totalProfit,
+                common,
+                committed,
+                winnings,
                 rake,
                 rakeDealt,
                 rakeContributed,
                 rakeWeighted,
+                totalProfit,
                 allInEV,
+                showdownWinnings,
+                nonShowdownWinnings,
                 street1CheckCallRaiseChance,
                 street1CheckCallDone,
                 street1CheckRaiseDone,
@@ -7500,7 +7536,10 @@ class Sql:
                 street1Raises,
                 street2Raises,
                 street3Raises,
-                street4Raises)
+                street4Raises,
+                street1Discards,
+                street2Discards,
+                street3Discards)
             values (%s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
@@ -7523,7 +7562,8 @@ class Sql:
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
-                    %s
+                    %s, %s, %s, %s, %s,
+                    %s, %s, %s, %s
                     )"""
 
         self.query['update_positionscache'] = """
@@ -7598,12 +7638,17 @@ class Sql:
                     foldToStreet3CBDone=foldToStreet3CBDone+%s,
                     foldToStreet4CBChance=foldToStreet4CBChance+%s,
                     foldToStreet4CBDone=foldToStreet4CBDone+%s,
-                    totalProfit=totalProfit+%s,
+                    common=common+%s,
+                    committed=committed+%s,
+                    winnings=winnings+%s,
                     rake=rake+%s,
                     rakeDealt=rakeDealt+%s,
                     rakeContributed=rakeContributed+%s,
                     rakeWeighted=rakeWeighted+%s,
+                    totalProfit=totalProfit+%s,
                     allInEV=allInEV+%s,
+                    showdownWinnings=showdownWinnings+%s,
+                    nonShowdownWinnings=nonShowdownWinnings+%s,
                     street1CheckCallRaiseChance=street1CheckCallRaiseChance+%s,
                     street1CheckCallDone=street1CheckCallDone+%s,
                     street1CheckRaiseDone=street1CheckRaiseDone+%s,
@@ -7630,7 +7675,10 @@ class Sql:
                     street1Raises=street1Raises+%s,
                     street2Raises=street2Raises+%s,
                     street3Raises=street3Raises+%s,
-                    street4Raises=street4Raises+%s
+                    street4Raises=street4Raises+%s,
+                    street1Discards=street1Discards+%s,
+                    street2Discards=street2Discards+%s,
+                    street3Discards=street3Discards+%s
         WHERE id=%s"""
             
         self.query['select_positionscache_ring'] = """
@@ -7790,12 +7838,17 @@ class Sql:
                     foldToStreet3CBDone,
                     foldToStreet4CBChance,
                     foldToStreet4CBDone,
-                    totalProfit,
+                    common,
+                    committed,
+                    winnings,
                     rake,
                     rakeDealt,
                     rakeContributed,
                     rakeWeighted,
+                    totalProfit,
                     allInEV,
+                    showdownWinnings,
+                    nonShowdownWinnings,
                     street1CheckCallRaiseChance,
                     street1CheckCallDone,
                     street1CheckRaiseDone,
@@ -7822,7 +7875,10 @@ class Sql:
                     street1Raises,
                     street2Raises,
                     street3Raises,
-                    street4Raises
+                    street4Raises,
+                    street1Discards,
+                    street2Discards,
+                    street3Discards
                     FROM SessionsCache
                     WHERE endTime>=%s
                     AND startTime<=%s
@@ -7930,12 +7986,17 @@ class Sql:
                     foldToStreet3CBDone,
                     foldToStreet4CBChance,
                     foldToStreet4CBDone,
-                    totalProfit,
+                    common,
+                    committed,
+                    winnings,
                     rake,
                     rakeDealt,
                     rakeContributed,
                     rakeWeighted,
+                    totalProfit,
                     allInEV,
+                    showdownWinnings,
+                    nonShowdownWinnings,
                     street1CheckCallRaiseChance,
                     street1CheckCallDone,
                     street1CheckRaiseDone,
@@ -7962,7 +8023,10 @@ class Sql:
                     street1Raises,
                     street2Raises,
                     street3Raises,
-                    street4Raises
+                    street4Raises,
+                    street1Discards,
+                    street2Discards,
+                    street3Discards
                     )
                     values (%s, %s, %s, %s, %s,
                             %s, %s, %s, %s, %s,
@@ -7985,7 +8049,9 @@ class Sql:
                             %s, %s, %s, %s, %s,
                             %s, %s, %s, %s, %s,
                             %s, %s, %s, %s, %s,
-                            %s, %s, %s)"""
+                            %s, %s, %s, %s, %s,
+                            %s, %s, %s, %s, %s,
+                            %s)"""
                             
         self.query['insert_TC'] = """insert into TourneysCache (
                     sessionId,
@@ -8063,12 +8129,17 @@ class Sql:
                     foldToStreet3CBDone,
                     foldToStreet4CBChance,
                     foldToStreet4CBDone,
-                    totalProfit,
+                    common,
+                    committed,
+                    winnings,
                     rake,
                     rakeDealt,
                     rakeContributed,
                     rakeWeighted,
+                    totalProfit,
                     allInEV,
+                    showdownWinnings,
+                    nonShowdownWinnings,
                     street1CheckCallRaiseChance,
                     street1CheckCallDone,
                     street1CheckRaiseDone,
@@ -8095,7 +8166,10 @@ class Sql:
                     street1Raises,
                     street2Raises,
                     street3Raises,
-                    street4Raises
+                    street4Raises,
+                    street1Discards,
+                    street2Discards,
+                    street3Discards
                     )
                     values (%s, %s, %s, %s, %s,
                             %s, %s, %s, %s, %s,
@@ -8118,7 +8192,9 @@ class Sql:
                             %s, %s, %s, %s, %s,
                             %s, %s, %s, %s, %s,
                             %s, %s, %s, %s, %s,
-                            %s, %s, %s)"""
+                            %s, %s, %s, %s, %s,
+                            %s, %s, %s, %s, %s,
+                            %s)"""
                     
         ####################################
         # update
@@ -8212,12 +8288,17 @@ class Sql:
                     foldToStreet3CBDone=foldToStreet3CBDone+%s,
                     foldToStreet4CBChance=foldToStreet4CBChance+%s,
                     foldToStreet4CBDone=foldToStreet4CBDone+%s,
-                    totalProfit=totalProfit+%s,
+                    common=common+%s,
+                    committed=committed+%s,
+                    winnings=winnings+%s,
                     rake=rake+%s,
                     rakeDealt=rakeDealt+%s,
                     rakeContributed=rakeContributed+%s,
                     rakeWeighted=rakeWeighted+%s,
+                    totalProfit=totalProfit+%s,
                     allInEV=allInEV+%s,
+                    showdownWinnings=showdownWinnings+%s,
+                    nonShowdownWinnings=nonShowdownWinnings+%s,
                     street1CheckCallRaiseChance=street1CheckCallRaiseChance+%s,
                     street1CheckCallDone=street1CheckCallDone+%s,
                     street1CheckRaiseDone=street1CheckRaiseDone+%s,
@@ -8244,7 +8325,10 @@ class Sql:
                     street1Raises=street1Raises+%s,
                     street2Raises=street2Raises+%s,
                     street3Raises=street3Raises+%s,
-                    street4Raises=street4Raises+%s
+                    street4Raises=street4Raises+%s,
+                    street1Discards=street1Discards+%s,
+                    street2Discards=street2Discards+%s,
+                    street3Discards=street3Discards+%s
                     WHERE id=%s"""
                     
         self.query['update_TC'] = """
@@ -8320,12 +8404,17 @@ class Sql:
                     foldToStreet3CBDone=foldToStreet3CBDone+%s,
                     foldToStreet4CBChance=foldToStreet4CBChance+%s,
                     foldToStreet4CBDone=foldToStreet4CBDone+%s,
-                    totalProfit=totalProfit+%s,
+                    common=common+%s,
+                    committed=committed+%s,
+                    winnings=winnings+%s,
                     rake=rake+%s,
                     rakeDealt=rakeDealt+%s,
                     rakeContributed=rakeContributed+%s,
                     rakeWeighted=rakeWeighted+%s,
+                    totalProfit=totalProfit+%s,
                     allInEV=allInEV+%s,
+                    showdownWinnings=showdownWinnings+%s,
+                    nonShowdownWinnings=nonShowdownWinnings+%s,
                     street1CheckCallRaiseChance=street1CheckCallRaiseChance+%s,
                     street1CheckCallDone=street1CheckCallDone+%s,
                     street1CheckRaiseDone=street1CheckRaiseDone+%s,
@@ -8352,7 +8441,10 @@ class Sql:
                     street1Raises=street1Raises+%s,
                     street2Raises=street2Raises+%s,
                     street3Raises=street3Raises+%s,
-                    street4Raises=street4Raises+%s
+                    street4Raises=street4Raises+%s,
+                    street1Discards=street1Discards+%s,
+                    street2Discards=street2Discards+%s,
+                    street3Discards=street3Discards+%s
                     WHERE tourneyId=%s
                     AND playerId=%s"""
                     

@@ -46,6 +46,8 @@ def _buildStatsInitializer():
     init['rakeWeighted'] = 0
     init['totalProfit'] = 0
     init['allInEV']     = 0
+    init['showdownWinnings'] = 0
+    init['nonShowdownWinnings'] = 0
     init['sawShowdown'] = False
     init['showed']      = False
     init['wonAtSD']     = False
@@ -232,9 +234,9 @@ class DerivedStats():
                 player_stats['sitout'] = False
             if hand.gametype["type"]=="tour":
                 player_stats['tourneyTypeId']=hand.tourneyTypeId
-                player_stats['tourneysPlayersIds'] = hand.tourneysPlayersIds[player[1]]
+                player_stats['tourneysPlayersId'] = hand.tourneysPlayersIds[player[1]]
             else:
-                player_stats['tourneysPlayersIds'] = None
+                player_stats['tourneysPlayersId'] = None
             if player_name in hand.shown:
                 player_stats['showed'] = True
 
@@ -312,6 +314,10 @@ class DerivedStats():
             #for i, card in enumerate(hcs[:20, 1): #Python 2.6 syntax
             #    self.handsplayers[player[1]]['card%s' % i] = Card.encodeCard(card)
             player_stats = self.handsplayers.get(player_name)
+            if player_stats['sawShowdown']:
+                player_stats['showdownWinnings'] = player_stats['totalProfit']
+            else:
+                player_stats['nonShowdownWinnings'] = player_stats['totalProfit']
             for i, card in enumerate(hcs[:20]):
                 player_stats['card%d' % (i+1)] = encodeCard(card)
             player_stats['startCards'] = calcStartCards(hand, player_name)
