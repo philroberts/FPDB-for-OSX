@@ -611,3 +611,11 @@ class BetOnline(HandHistoryConverter):
                 if hand.gametype['category']=='holdem' and len(cards)>2: continue
                 #print "DEBUG: hand.addShownCards(%s, %s, %s, %s)" %(cards, m.group('PNAME'), shown, mucked)
                 hand.addShownCards(cards=cards, player=pname, shown=shown, mucked=mucked, string=None)
+
+    @staticmethod
+    def getTableTitleRe(type, table_name=None, tournament = None, table_number=None):
+        """Returns string to search in windows titles"""
+        if type == 'tour':
+            return r'\(' + re.escape(str(tournament)) + r'\-' + re.escape(str(table_number)) + r'\)'
+        else:
+            return re.escape(table_name)
