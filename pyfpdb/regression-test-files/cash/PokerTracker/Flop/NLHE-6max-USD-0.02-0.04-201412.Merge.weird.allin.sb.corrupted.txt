@@ -1,0 +1,22 @@
+Merge Game #80257431-64 | Holdem NL ($0.02/$0.04) | 12/05/2014 17:05:06 EST | Version:2
+Table Tropicana - Fast II (80257431), Seats 6
+Seat 1: Player0 ($5.17 in chips) DEALER
+Seat 3: Player1 ($3.74 in chips)
+Seat 4: Hero ($5.11 in chips)
+Seat 5: Player2 ($4.44 in chips)
+Seat 6: Player3 ($1.40 in chips)
+Player1: Post SB $3.74
+Hero: Post BB $0.04
+*** HOLE CARDS ***
+Dealt to Hero [As 2s]
+Player2: Raise $0.08
+Player3: Fold
+Player0: Fold
+Hero: Call $0.04
+*** FLOP *** [Jc 6s 8h]
+Hero: Check
+Player2: Bet $0.08
+Hero: Fold
+*** SUMMARY ***
+Player2: wins $0.16
+Player2: wins $0.08 (uncalled)

@@ -82,6 +82,7 @@ class PokerTracker(HandHistoryConverter):
     sites = {     'EverestPoker Game #' : ('Everest', 16),
                                'GAME #' : ('iPoker', 14),
                          'MERGE_GAME #' : ('Merge', 12),
+                         'Merge Game #' : ('Merge', 12),
                           '** Game ID ' : ('Microgaming', 20),
                            '** Hand # ' : ('Microgaming', 20)
              
@@ -89,20 +90,21 @@ class PokerTracker(HandHistoryConverter):
     currencies = { u'€':'EUR', '$':'USD', '':'T$', u'£':'GBP' }
 
 
-    re_Site = re.compile(u'(?P<SITE>EverestPoker\sGame\s\#|GAME\s\#|MERGE_GAME\s\#|\*{2}\s(Game\sID|Hand\s\#)\s)\d+')
+    re_Site = re.compile(u'(?P<SITE>EverestPoker\sGame\s\#|GAME\s\#|MERGE_GAME\s\#|Merge\sGame\s\#|\*{2}\s(Game\sID|Hand\s\#)\s)\d+')
     # Static regexes
     re_GameInfo1     = re.compile(u"""
-          (?P<SITE>GAME\s\#|MERGE_GAME\s\#)(?P<HID>[0-9\-]+):\s+
+          (?P<SITE>GAME\s\#|MERGE_GAME\s\#|Merge\sGame\s\#)(?P<HID>[0-9\-]+)(:\s+|\s\|\s)
           (?P<GAME>Holdem|Texas\sHold\'em|Omaha|Omaha\sHi|Omaha\sHi/Lo)\s\s?
           ((?P<LIMIT>PL|NL|FL|No\sLimit|Limit|LIMIT|Pot\sLimit)\s\s?)?
           (?P<TOUR>Tournament)?
-          (                            # open paren of the stakes
+          (\(?                            # open paren of the stakes
           (?P<CURRENCY>%(LS)s|)?
           (?P<SB>[%(NUM)s]+)/(%(LS)s)?
           (?P<BB>[%(NUM)s]+)
           (?P<BLAH>\s-\s[%(LS)s\d\.]+\sCap\s-\s)?        # Optional Cap part
           \s?(?P<ISO>%(LEGAL_ISO)s)?
-          )?\s                        # close paren of the stakes
+          \)?
+          )?(\s|\s\|\s)                        # close paren of the stakes
           (?P<DATETIME>.*$)
         """ % substitutions, re.MULTILINE|re.VERBOSE)
     
@@ -150,11 +152,10 @@ class PokerTracker(HandHistoryConverter):
           , re.MULTILINE|re.VERBOSE)
     
     re_HandInfo_Cash     = re.compile("""
-          ^Table\s(?P<TABLE>[^\n]+)
-          (,\sSeats\s(?P<MAX>\d+))?""" % substitutions
+          ^Table\s(?P<TABLE>[^,]+?)(,\sSeats\s(?P<MAX>\d+))?$""" % substitutions
           , re.MULTILINE|re.VERBOSE)
 
-    re_Identify     = re.compile(u'(EverestPoker\sGame\s\#|GAME\s\#|MERGE_GAME\s\#|\*{2}\s(Game\sID|Hand\s\#)\s)\d+')
+    re_Identify     = re.compile(u'(EverestPoker\sGame\s\#|GAME\s\#|MERGE_GAME\s\#|Merge\sGame\s\#|\*{2}\s(Game\sID|Hand\s\#)\s)\d+')
     re_SplitHands   = re.compile('\n\n\n+?')
     re_TailSplitHands   = re.compile('(\n\n\n+)')
     re_Button       = re.compile('The button is in seat #(?P<BUTTON>\d+)', re.MULTILINE)
@@ -299,7 +300,6 @@ class PokerTracker(HandHistoryConverter):
             m2 = self.re_GameInfo3.search(hand.handText)
         if (m is None and self.sitename not in ('Everest', 'Microgaming')) or m2 is None:
             tmp = hand.handText[0:200]
-            print hand.handText
             log.error(_("PokerTrackerToFpdb.readHandInfo: '%s'") % tmp)
             raise FpdbParseError
         
@@ -525,7 +525,10 @@ class PokerTracker(HandHistoryConverter):
         else:
             for a in self.re_PostBoth1.finditer(hand.handText):
                 self.adjustMergeTourneyStack(hand, a.group('PNAME'), a.group('SBBB'))
-                hand.addBlind(a.group('PNAME'), 'both', self.clearMoneyString(a.group('SBBB')))
+                if (Decimal(str(hand.sb)) == Decimal(self.clearMoneyString(a.group('SBBB')))):
+                    hand.addBlind(a.group('PNAME'), 'small blind', self.clearMoneyString(a.group('SBBB')))
+                else:
+                    hand.addBlind(a.group('PNAME'), 'both', self.clearMoneyString(a.group('SBBB')))
             
         # FIXME
         # The following should only trigger when a small blind is missing in a tournament, or the sb/bb is ALL_IN
