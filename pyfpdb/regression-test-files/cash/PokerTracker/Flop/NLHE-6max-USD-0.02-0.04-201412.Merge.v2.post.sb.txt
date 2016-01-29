@@ -1,0 +1,26 @@
+Merge Game #80256693-236 | Holdem NL ($0.02/$0.04) | 12/05/2014 17:08:49 EST | Version:2
+Table Tropicana - Fast V (80256693), Seats 6
+Seat 1: Player0 ($4.10 in chips)
+Seat 2: Hero ($1.30 in chips)
+Seat 3: Player1 ($3.52 in chips) DEALER
+Seat 4: Player2 ($1.36 in chips)
+Seat 5: Player3 ($6.26 in chips)
+Seat 6: Player4 ($5.07 in chips)
+Player2: Post SB $0.02
+Player3: Post BB $0.04
+Hero: Post DB $0.02
+*** HOLE CARDS ***
+Dealt to Player4 [7h 5s]
+Player4: Fold
+Player0: Fold
+Hero: Call $0.02
+Player1: Fold
+Player2: Fold
+Player3: Check
+*** FLOP *** [Ac Qs 3c]
+Player3: Check
+Hero: Bet $0.04
+Player3: Fold
+*** SUMMARY ***
+Hero: wins $0.10
+Hero: wins $0.04 (uncalled)
