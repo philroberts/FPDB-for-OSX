@@ -39,7 +39,7 @@ class PokerStars(HandHistoryConverter):
     siteId   = 2 # Needs to match id entry in Sites database
     sym = {'USD': "\$", 'CAD': "\$", 'T$': "", "EUR": "\xe2\x82\xac", "GBP": "\£", "play": ""}         # ADD Euro, Sterling, etc HERE
     substitutions = {
-                     'LEGAL_ISO' : "USD|EUR|GBP|CAD|FPP",      # legal ISO currency codes
+                     'LEGAL_ISO' : "USD|EUR|GBP|CAD|FPP|SC",      # legal ISO currency codes
                             'LS' : u"\$|\xe2\x82\xac|\u20ac|\£|", # legal currency symbols - Euro(cp1252, utf-8)
                            'PLYR': r'\s?(?P<PNAME>.+?)',
                             'CUR': u"(\$|\xe2\x82\xac|\u20ac||\£|)",
@@ -60,16 +60,20 @@ class PokerStars(HandHistoryConverter):
                        '20.00': ('5.00', '10.00'),       '20': ('5.00', '10.00'),
                        '30.00': ('10.00', '15.00'),      '30': ('10.00', '15.00'),
                        '40.00': ('10.00', '20.00'),      '40': ('10.00', '20.00'),
+                       '50.00': ('10.00', '25.00'),      '50': ('10.00', '25.00'),
                        '60.00': ('15.00', '30.00'),      '60': ('15.00', '30.00'),
                        '80.00': ('20.00', '40.00'),      '80': ('20.00', '40.00'),
                       '100.00': ('25.00', '50.00'),     '100': ('25.00', '50.00'),
                       '150.00': ('50.00', '75.00'),     '150': ('50.00', '75.00'),
                       '200.00': ('50.00', '100.00'),    '200': ('50.00', '100.00'),
                       '400.00': ('100.00', '200.00'),   '400': ('100.00', '200.00'),
+                      '500.00': ('100.00', '250.00'),   '500': ('100.00', '250.00'),
                       '600.00': ('150.00', '300.00'),   '600': ('150.00', '300.00'),
                       '800.00': ('200.00', '400.00'),   '800': ('200.00', '400.00'),
                      '1000.00': ('250.00', '500.00'),  '1000': ('250.00', '500.00'),
                      '2000.00': ('500.00', '1000.00'), '2000': ('500.00', '1000.00'),
+                    '10000.00': ('2500.00', '5000.00'), '10000': ('2500.00', '5000.00'),
+                    '20000.00': ('5000.00', '10000.00'),'20000': ('5000.00', '10000.00'),
                   }
 
     limits = { 'No Limit':'nl', 'NO LIMIT':'nl', 'Pot Limit':'pl', 'POT LIMIT':'pl', 'Limit':'fl', 'LIMIT':'fl' , 'Pot Limit Pre-Flop, No Limit Post-Flop': 'pn'}
@@ -319,6 +323,8 @@ class PokerStars(HandHistoryConverter):
                             hand.buyinCurrency="EUR"
                         elif info[key].find("FPP")!=-1:
                             hand.buyinCurrency="PSFP"
+                        elif info[key].find("SC")!=-1:
+                            hand.buyinCurrency="PSFP"
                         elif re.match("^[0-9+]*$", info[key]):
                             hand.buyinCurrency="play"
                         else:
@@ -326,7 +332,7 @@ class PokerStars(HandHistoryConverter):
                             log.error(_("PokerStarsToFpdb.readHandInfo: Failed to detect currency.") + " Hand ID: %s: '%s'" % (hand.handid, info[key]))
                             raise FpdbParseError
 
-                        info['BIAMT'] = info['BIAMT'].strip(u'$€£FPP')
+                        info['BIAMT'] = info['BIAMT'].strip(u'$€£FPPSC')
                         
                         if hand.buyinCurrency!="PSFP":
                             if info['BOUNTY'] != None:
@@ -423,7 +429,7 @@ class PokerStars(HandHistoryConverter):
                        r"(\*\*\* RIVER \*\*\* \[\S\S \S\S \S\S \S\S] (?P<RIVER>\[\S\S\].+))?"
                        r"(\*\*\* FIRST FLOP \*\*\*(?P<FLOP1> \[\S\S \S\S \S\S\].+(?=\*\*\* FIRST TURN \*\*\*)|.+))?"
                        r"(\*\*\* FIRST TURN \*\*\* \[\S\S \S\S \S\S] (?P<TURN1>\[\S\S\].+(?=\*\*\* FIRST RIVER \*\*\*)|.+))?"
-                       r"(\*\*\* FIRST RIVER \*\*\* \[\S\S \S\S \S\S \S\S] (?P<RIVER1>\[\S\S\].))?"
+                       r"(\*\*\* FIRST RIVER \*\*\* \[\S\S \S\S \S\S \S\S] (?P<RIVER1>\[\S\S\].+?(?=\*\*\* SECOND (FLOP|TURN|RIVER) \*\*\*)|.+))?"
                        r"(\*\*\* SECOND FLOP \*\*\*(?P<FLOP2> \[\S\S \S\S \S\S\].+(?=\*\*\* SECOND TURN \*\*\*)|.+))?"
                        r"(\*\*\* SECOND TURN \*\*\* \[\S\S \S\S \S\S] (?P<TURN2>\[\S\S\].+(?=\*\*\* SECOND RIVER \*\*\*)|.+))?"
                        r"(\*\*\* SECOND RIVER \*\*\* \[\S\S \S\S \S\S \S\S] (?P<RIVER2>\[\S\S\].+))?", hand.handText,re.DOTALL)

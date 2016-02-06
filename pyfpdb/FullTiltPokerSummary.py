@@ -173,7 +173,7 @@ class FullTiltPokerSummary(TourneySummary):
         if 'SNG' in info:
             self.isSng = True
         if 'tournament key' in info:
-            self.tourNo = info['tournament key']
+            self.tourNo = int(float(info['tournament key']))
         if 'tournament name' in info: 
             self.tourneyName = info['tournament name']
             self.readTourneyName(self.tourneyName)

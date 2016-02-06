@@ -293,6 +293,7 @@ class Hand(object):
 
     def getHandId(self, db, id):
         if db.isDuplicate(self.siteId, self.hands['siteHandNo'], self.hands['heroSeat'], self.publicDB):
+            #log.debug(_("Hand.insert(): hid #: %s is a duplicate") % self.hands['siteHandNo'])
             self.is_duplicate = True  # i.e. don't update hudcache
             next = id
             raise FpdbHandDuplicate(self.hands['siteHandNo'])
@@ -338,39 +339,25 @@ class Hand(object):
             db.storeHudCache(self.dbid_gt, self.gametype, self.dbid_pids, self.startTime, self.handsplayers, doinsert)
         
     def updateSessionsCache(self, db, tz, doinsert = False):
-        """ Function to update the SessionsCache"""
-        if self.cacheSessions:
-            heroes = []
-            if self.hero in self.dbid_pids:
-                heroes = [self.dbid_pids[self.hero]]
-            else:
-                heroes = [self.dbid_pids[self.players[0][1]]]
-                
-            db.storeSessionsCache(self.dbid_hands, self.dbid_pids, self.startTime, self.tourneyId, heroes, tz, doinsert) 
-            db.storeCashCache(self.dbid_hands, self.dbid_pids, self.startTime, self.dbid_gt, self.gametype, self.handsplayers, heroes, self.hero, doinsert)
-            db.storeTourCache(self.dbid_hands, self.dbid_pids, self.startTime, self.tourneyId, self.gametype, self.handsplayers, heroes, self.hero, doinsert)
+        """ Function to update the Sessions"""
+        if True: #self.hero in self.dbid_pids:
+            heroes = [self.dbid_pids.values()[0]]
+            db.storeSessions(self.dbid_hands, self.dbid_pids, self.startTime, self.tourneyId, heroes, tz, doinsert) 
+            if self.cacheSessions:
+                db.storeSessionsCache(self.dbid_hands, self.dbid_pids, self.startTime, self.dbid_gt, self.gametype, self.handsplayers, heroes, doinsert)
+                db.storeTourneysCache(self.dbid_hands, self.dbid_pids, self.startTime, self.tourneyId, self.gametype, self.handsplayers, heroes, doinsert)
             
     def updateCardsCache(self, db, tz, doinsert = False):
         """ Function to update the CardsCache"""
-        if self.cacheSessions:
-            heroes = []
-            if self.hero in self.dbid_pids: 
-                heroes = [self.dbid_pids[self.hero]]
-            db.storeCardsCache(self.dbid_hands, self.dbid_pids, self.startTime,
-                               self.dbid_gt, self.tourneyTypeId, self.gametype,
-                               self.siteId, self.handsplayers, self.handsstove,
-                               heroes, tz, doinsert)
+        if self.cacheSessions: # and self.hero in self.dbid_pids:
+            heroes = [self.dbid_pids.values()[0]]
+            db.storeCardsCache(self.dbid_hands, self.dbid_pids, self.startTime, self.dbid_gt, self.tourneyTypeId, self.handsplayers, heroes, tz, doinsert)
                 
     def updatePositionsCache(self, db, tz, doinsert = False):
         """ Function to update the PositionsCache"""
-        if self.cacheSessions:
-            heroes = []
-            if self.hero in self.dbid_pids: 
-                heroes = [self.dbid_pids[self.hero]]
-            db.storePositionsCache(self.dbid_hands, self.dbid_pids, self.startTime,
-                                   self.dbid_gt, self.tourneyTypeId, self.gametype,
-                                   self.siteId, self.handsplayers, heroes,
-                                   tz, doinsert)
+        if self.cacheSessions: # and self.hero in self.dbid_pids:
+            heroes = [self.dbid_pids.values()[0]]
+            db.storePositionsCache(self.dbid_hands, self.dbid_pids, self.startTime, self.dbid_gt, self.tourneyTypeId, self.handsplayers, self.hands, heroes, tz, doinsert)
 
     def select(self, db, handId):
         """ Function to create Hand object from database """
@@ -421,12 +408,12 @@ class Hand(object):
             if game[0] == 'hold' and cardlist[0] != '':
                 self.addHoleCards('PREFLOP', row['name'], closed=cardlist[0:game[5][0][1]], shown=False, mucked=mucked, dealt=dealt)
             elif game[0] == 'stud' and cardlist[2] != '':
-                streets = {v : k for k, v in game[3].items()}
+                streets = dict((v, k) for (k, v) in game[3].items())
                 for streetidx, hrange in enumerate(game[5]):
                     # FIXME shown/dealt/mucked might need some tweaking
                     self.addHoleCards(streets[streetidx], row['name'], open=[cardlist[hrange[1] - 1]], closed=cardlist[0:hrange[1]-1], shown=False, mucked=False)
             elif game[0] == 'draw':
-                streets = {v : k for k, v in game[3].items()}
+                streets = dict((v, k) for (k, v) in game[3].items())
                 for streetidx, hrange in enumerate(game[5]):
                     self.addHoleCards(streets[streetidx], row['name'], closed=cardlist[hrange[0]:hrange[1]], shown=False, mucked=mucked, dealt=dealt)
             if row['winnings'] > 0:
@@ -1011,7 +998,13 @@ class Hand(object):
         return "%s%s/%s%s" % (self.sym, self.sb, self.sym, self.bb)
 
     def getStreetTotals(self):
-        pass
+        tmp, i = [0, 0, 0, 0, 0, 0], 0
+        for street in self.allStreets:
+            if street != 'BLINDSANTES':
+                tmp[i] = self.pot.getTotalAtStreet(street)
+                i+=1
+        tmp[5] = sum(self.pot.committed.values()) + sum(self.pot.common.values())
+        return tmp
 
     def writeGameLine(self):
         """Return the first HH line for the current hand."""
@@ -1139,19 +1132,6 @@ class HoldemOmahaHand(Hand):
                     self.addHoleCards('PREFLOP', player, open=[], closed=diff, shown=shown, mucked=mucked, dealt=dealt)
         if string is not None:
             self.showdownStrings[player] = string
-
-    def getStreetTotals(self):
-        # street1Pot INT,                  /* pot size at flop/street4 */
-        # street2Pot INT,                  /* pot size at turn/street5 */
-        # street3Pot INT,                  /* pot size at river/street6 */
-        # street4Pot INT,                  /* pot size at sd/street7 */
-        # showdownPot INT,                 /* pot size at sd/street7 */
-        tmp1 = self.pot.getTotalAtStreet('FLOP')
-        tmp2 = self.pot.getTotalAtStreet('TURN')
-        tmp3 = self.pot.getTotalAtStreet('RIVER')
-        tmp4 = 0
-        tmp5 = 0
-        return (tmp1,tmp2,tmp3,tmp4,tmp5)
 
     def join_holecards(self, player, asList=False):
         holeNo = Card.games[self.gametype['category']][5][0][1]
@@ -1354,14 +1334,6 @@ class DrawHand(Hand):
         nc = set(nc)
         oc = set(oc)
         return (nc, oc)
-
-    def getStreetTotals(self):
-        # street1Pot INT,                  /* pot size at flop/street4 */
-        # street2Pot INT,                  /* pot size at turn/street5 */
-        # street3Pot INT,                  /* pot size at river/street6 */
-        # street4Pot INT,                  /* pot size at sd/street7 */
-        # showdownPot INT,                 /* pot size at sd/street7 */
-        return (0,0,0,0,0)
 
     def join_holecards(self, player, asList=False, street=False):
         """With asList = True it returns the set cards for a player including down cards if they aren't know"""
@@ -1592,15 +1564,6 @@ class StudHand(Hand):
             self.actions[street].append(act)
             self.lastBet[street] = bringin
             self.pot.addMoney(player, bringin)
-
-    def getStreetTotals(self):
-        # street1Pot INT,                  /* pot size at flop/street4 */
-        # street2Pot INT,                  /* pot size at turn/street5 */
-        # street3Pot INT,                  /* pot size at river/street6 */
-        # street4Pot INT,                  /* pot size at sd/street7 */
-        # showdownPot INT,                 /* pot size at sd/street7 */
-        return (0,0,0,0,0)
-
 
     def writeHand(self, fh=sys.__stdout__):
         # PokerStars format.

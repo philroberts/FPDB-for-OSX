@@ -45,9 +45,12 @@ import Queue
 import codecs
 import math 
 import pytz
+import csv
 import logging
+import random
 
 re_char = re.compile('[^a-zA-Z]')
+re_insert = re.compile("insert\sinto\s(?P<TABLENAME>[A-Za-z]+)\s(?P<COLUMNS>\(.+?\))\s+values", re.DOTALL)
 
 #    FreePokerTools modules
 import SQL
@@ -77,7 +80,7 @@ except ImportError:
     use_numpy = False
 
 
-DB_VERSION = 190
+DB_VERSION = 201
 
 # Variance created as sqlite has a bunch of undefined aggregate functions.
 
@@ -124,18 +127,15 @@ HANDS_PLAYERS_KEYS = [
     'card18',
     'card19',
     'card20',
-    'played',
+    'common',
+    'committed',
     'winnings',
     'rake',
     'rakeDealt',
     'rakeContributed',
     'rakeWeighted',
-    'showdownWinnings',
-    'nonShowdownWinnings',
     'totalProfit',
     'allInEV',
-    'BBwon',
-    'vsHero',
     'street0VPIChance',
     'street0VPI',
     'street1Seen',
@@ -144,7 +144,12 @@ HANDS_PLAYERS_KEYS = [
     'street4Seen',
     'sawShowdown',
     'showed',
-    'wonAtSD',
+    'street0AllIn',
+    'street1AllIn',
+    'street2AllIn',
+    'street3AllIn',
+    'street4AllIn',
+    'wentAllIn',
     'street0AggrChance',
     'street0Aggr',
     'street1Aggr',
@@ -163,18 +168,19 @@ HANDS_PLAYERS_KEYS = [
     'wonWhenSeenStreet2',
     'wonWhenSeenStreet3',
     'wonWhenSeenStreet4',
-    'street0Calls',
-    'street1Calls',
-    'street2Calls',
-    'street3Calls',
-    'street4Calls',
-    'street0Bets',
-    'street1Bets',
-    'street2Bets',
-    'street3Bets',
-    'street4Bets',
+    'wonAtSD',
     'position',
-    'tourneysPlayersIds',
+    'street0InPosition',
+    'street1InPosition',
+    'street2InPosition',
+    'street3InPosition',
+    'street4InPosition',
+    'street0FirstToAct',
+    'street1FirstToAct',
+    'street2FirstToAct',
+    'street3FirstToAct',
+    'street4FirstToAct',
+    'tourneysPlayersId',
     'startCards',
     'street0CalledRaiseChance',
     'street0CalledRaiseDone',
@@ -192,6 +198,8 @@ HANDS_PLAYERS_KEYS = [
     'street0_SqueezeDone',
     'raiseToStealChance',
     'raiseToStealDone',
+    'stealChance',
+    'stealDone',
     'success_Steal',
     'otherRaisedStreet0',
     'otherRaisedStreet1',
@@ -229,11 +237,24 @@ HANDS_PLAYERS_KEYS = [
     'street4CheckCallRaiseChance',
     'street4CheckCallDone',
     'street4CheckRaiseDone',
+    'street0Calls',
+    'street1Calls',
+    'street2Calls',
+    'street3Calls',
+    'street4Calls',
+    'street0Bets',
+    'street1Bets',
+    'street2Bets',
+    'street3Bets',
+    'street4Bets',
     'street0Raises',
     'street1Raises',
     'street2Raises',
     'street3Raises',
     'street4Raises',
+    'street1Discards',
+    'street2Discards',
+    'street3Discards',
     'handString'
 ]
 
@@ -243,8 +264,7 @@ HANDS_PLAYERS_KEYS.reverse()
 
 
 CACHE_KEYS = [
-    'hands',
-    'played',
+    'n',
     'street0VPIChance',
     'street0VPI',
     'street0AggrChance',
@@ -265,6 +285,8 @@ CACHE_KEYS = [
     'street0_SqueezeDone',
     'raiseToStealChance',
     'raiseToStealDone',
+    'stealChance',
+    'stealDone',
     'success_Steal',
     'street1Seen',
     'street2Seen',
@@ -312,16 +334,17 @@ CACHE_KEYS = [
     'foldToStreet3CBDone',
     'foldToStreet4CBChance',
     'foldToStreet4CBDone',
-    'totalProfit',
+    'common',
+    'committed',
+    'winnings',
     'rake',
     'rakeDealt',
     'rakeContributed',
     'rakeWeighted',
+    'totalProfit',
+    'allInEV',
     'showdownWinnings',
     'nonShowdownWinnings',
-    'allInEV',
-    'BBwon',
-    'vsHero',
     'street1CheckCallRaiseChance',
     'street1CheckCallDone',
     'street1CheckRaiseDone',
@@ -349,6 +372,9 @@ CACHE_KEYS = [
     'street2Raises',
     'street3Raises',
     'street4Raises',
+    'street1Discards',
+    'street2Discards',
+    'street3Discards'
     ]
 
 
@@ -403,14 +429,14 @@ class Database:
                 , {'tab':'HudCache',        'col':'gametypeId',        'drop':1}
                 , {'tab':'HudCache',        'col':'playerId',          'drop':0}
                 , {'tab':'HudCache',        'col':'tourneyTypeId',     'drop':0}
-                , {'tab':'SessionsCache',   'col':'weekId',            'drop':1}
-                , {'tab':'SessionsCache',   'col':'monthId',           'drop':1}
-                , {'tab':'CashCache',       'col':'sessionId',         'drop':1}
-                , {'tab':'CashCache',       'col':'gametypeId',        'drop':1}
-                , {'tab':'CashCache',       'col':'playerId',          'drop':0}
-                , {'tab':'TourCache',       'col':'sessionId',         'drop':1}
-                , {'tab':'TourCache',       'col':'tourneyId',         'drop':1}
-                , {'tab':'TourCache',       'col':'playerId',          'drop':0}
+                , {'tab':'Sessions',        'col':'weekId',            'drop':1}
+                , {'tab':'Sessions',        'col':'monthId',           'drop':1}
+                , {'tab':'SessionsCache',   'col':'sessionId',         'drop':1}
+                , {'tab':'SessionsCache',   'col':'gametypeId',        'drop':1}
+                , {'tab':'SessionsCache',   'col':'playerId',          'drop':0}
+                , {'tab':'TourneysCache',   'col':'sessionId',         'drop':1}
+                , {'tab':'TourneysCache',   'col':'tourneyId',         'drop':1}
+                , {'tab':'TourneysCache',   'col':'playerId',          'drop':0}
                 , {'tab':'Players',         'col':'siteId',            'drop':1}
                 #, {'tab':'Players',         'col':'name',              'drop':0}  unique indexes not dropped
                 , {'tab':'Tourneys',        'col':'tourneyTypeId',     'drop':1}
@@ -444,14 +470,14 @@ class Database:
                 , {'tab':'HudCache',        'col':'gametypeId',        'drop':1}
                 , {'tab':'HudCache',        'col':'playerId',          'drop':0}
                 , {'tab':'HudCache',        'col':'tourneyTypeId',     'drop':0}
-                , {'tab':'SessionsCache',   'col':'weekId',            'drop':1}
-                , {'tab':'SessionsCache',   'col':'monthId',           'drop':1}
-                , {'tab':'CashCache',       'col':'sessionId',         'drop':1}
-                , {'tab':'CashCache',       'col':'gametypeId',        'drop':1}
-                , {'tab':'CashCache',       'col':'playerId',          'drop':0}
-                , {'tab':'TourCache',       'col':'sessionId',         'drop':1}
-                , {'tab':'TourCache',       'col':'tourneyId',         'drop':1}
-                , {'tab':'TourCache',       'col':'playerId',          'drop':0}
+                , {'tab':'Sessions',        'col':'weekId',            'drop':1}
+                , {'tab':'Sessions',        'col':'monthId',           'drop':1}
+                , {'tab':'SessionsCache',   'col':'sessionId',         'drop':1}
+                , {'tab':'SessionsCache',   'col':'gametypeId',        'drop':1}
+                , {'tab':'SessionsCache',   'col':'playerId',          'drop':0}
+                , {'tab':'TourneysCache',   'col':'sessionId',         'drop':1}
+                , {'tab':'TourneysCache',   'col':'tourneyId',         'drop':1}
+                , {'tab':'TourneysCache',   'col':'playerId',          'drop':0}
                 , {'tab':'Players',         'col':'siteId',            'drop':1}
                 , {'tab':'Tourneys',        'col':'tourneyTypeId',     'drop':1}
                 , {'tab':'Tourneys',        'col':'sessionId',         'drop':1}
@@ -469,68 +495,68 @@ class Database:
                     [ ] # no db with index 0
                   , [ ] # no db with index 1
                   , [ # foreign keys for mysql (index 2)
-                      {'fktab':'Hands',        'fkcol':'tourneyId',     'rtab':'Tourneys',      'rcol':'id', 'drop':1}
-                    , {'fktab':'Hands',        'fkcol':'gametypeId',    'rtab':'Gametypes',     'rcol':'id', 'drop':1}
-                    , {'fktab':'Hands',        'fkcol':'sessionId',     'rtab':'SessionsCache', 'rcol':'id', 'drop':1}
-                    , {'fktab':'Hands',        'fkcol':'fileId',        'rtab':'Files',         'rcol':'id', 'drop':1}
-                    , {'fktab':'Boards',       'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
-                    , {'fktab':'HandsPlayers', 'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
-                    , {'fktab':'HandsPlayers', 'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':1}
-                    , {'fktab':'HandsPlayers', 'fkcol':'tourneysPlayersId','rtab':'TourneysPlayers','rcol':'id', 'drop':1}
-                    , {'fktab':'HandsPlayers', 'fkcol':'startCards',    'rtab':'StartCards',    'rcol':'id', 'drop':1}
-                    , {'fktab':'HandsActions', 'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
-                    , {'fktab':'HandsActions', 'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':1}
-                    , {'fktab':'HandsActions', 'fkcol':'actionId',      'rtab':'Actions',       'rcol':'id', 'drop':1}
-                    , {'fktab':'HandsStove',   'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
-                    , {'fktab':'HandsStove',   'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':1}
-                    , {'fktab':'HandsStove',   'fkcol':'rankId',        'rtab':'Rank',          'rcol':'id', 'drop':1}
-                    , {'fktab':'HandsPots',    'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
-                    , {'fktab':'HandsPots',    'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':1}
-                    , {'fktab':'HudCache',     'fkcol':'gametypeId',    'rtab':'Gametypes',     'rcol':'id', 'drop':1}
-                    , {'fktab':'HudCache',     'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':0}
-                    , {'fktab':'HudCache',     'fkcol':'tourneyTypeId', 'rtab':'TourneyTypes',  'rcol':'id', 'drop':1}
-                    , {'fktab':'SessionsCache','fkcol':'weekId',        'rtab':'WeeksCache',    'rcol':'id', 'drop':1}
-                    , {'fktab':'SessionsCache','fkcol':'monthId',       'rtab':'MonthsCache',   'rcol':'id', 'drop':1}
-                    , {'fktab':'CashCache',    'fkcol':'sessionId',     'rtab':'SessionsCache', 'rcol':'id', 'drop':1}
-                    , {'fktab':'CashCache',    'fkcol':'gametypeId',    'rtab':'Gametypes',     'rcol':'id', 'drop':1}
-                    , {'fktab':'CashCache',    'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':0}
-                    , {'fktab':'TourCache',    'fkcol':'sessionId',     'rtab':'SessionsCache', 'rcol':'id', 'drop':1}
-                    , {'fktab':'TourCache',    'fkcol':'tourneyId',     'rtab':'Tourneys',      'rcol':'id', 'drop':1}
-                    , {'fktab':'TourCache',    'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':0}
-                    , {'fktab':'Tourneys',     'fkcol':'tourneyTypeId', 'rtab':'TourneyTypes',  'rcol':'id', 'drop':1}
-                    , {'fktab':'Tourneys',     'fkcol':'sessionId',     'rtab':'SessionsCache', 'rcol':'id', 'drop':1}
+                      {'fktab':'Hands',         'fkcol':'tourneyId',     'rtab':'Tourneys',      'rcol':'id', 'drop':1}
+                    , {'fktab':'Hands',         'fkcol':'gametypeId',    'rtab':'Gametypes',     'rcol':'id', 'drop':1}
+                    , {'fktab':'Hands',         'fkcol':'sessionId',     'rtab':'Sessions',      'rcol':'id', 'drop':1}
+                    , {'fktab':'Hands',         'fkcol':'fileId',        'rtab':'Files',         'rcol':'id', 'drop':1}
+                    , {'fktab':'Boards',        'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
+                    , {'fktab':'HandsPlayers',  'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
+                    , {'fktab':'HandsPlayers',  'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':1}
+                    , {'fktab':'HandsPlayers',  'fkcol':'tourneysPlayersId','rtab':'TourneysPlayers','rcol':'id', 'drop':1}
+                    , {'fktab':'HandsPlayers',  'fkcol':'startCards',    'rtab':'StartCards',    'rcol':'id', 'drop':1}
+                    , {'fktab':'HandsActions',  'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
+                    , {'fktab':'HandsActions',  'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':1}
+                    , {'fktab':'HandsActions',  'fkcol':'actionId',      'rtab':'Actions',       'rcol':'id', 'drop':1}
+                    , {'fktab':'HandsStove',    'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
+                    , {'fktab':'HandsStove',    'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':1}
+                    , {'fktab':'HandsStove',    'fkcol':'rankId',        'rtab':'Rank',          'rcol':'id', 'drop':1}
+                    , {'fktab':'HandsPots',     'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
+                    , {'fktab':'HandsPots',     'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':1}
+                    , {'fktab':'HudCache',      'fkcol':'gametypeId',    'rtab':'Gametypes',     'rcol':'id', 'drop':1}
+                    , {'fktab':'HudCache',      'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':0}
+                    , {'fktab':'HudCache',      'fkcol':'tourneyTypeId', 'rtab':'TourneyTypes',  'rcol':'id', 'drop':1}
+                    , {'fktab':'Sessions',      'fkcol':'weekId',        'rtab':'Weeks',         'rcol':'id', 'drop':1}
+                    , {'fktab':'Sessions',      'fkcol':'monthId',       'rtab':'Months',        'rcol':'id', 'drop':1}
+                    , {'fktab':'SessionsCache', 'fkcol':'sessionId',     'rtab':'Sessions',      'rcol':'id', 'drop':1}
+                    , {'fktab':'SessionsCache', 'fkcol':'gametypeId',    'rtab':'Gametypes',     'rcol':'id', 'drop':1}
+                    , {'fktab':'SessionsCache', 'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':0}
+                    , {'fktab':'TourneysCache', 'fkcol':'sessionId',     'rtab':'Sessions',      'rcol':'id', 'drop':1}
+                    , {'fktab':'TourneysCache', 'fkcol':'tourneyId',     'rtab':'Tourneys',      'rcol':'id', 'drop':1}
+                    , {'fktab':'TourneysCache', 'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':0}
+                    , {'fktab':'Tourneys',      'fkcol':'tourneyTypeId', 'rtab':'TourneyTypes',  'rcol':'id', 'drop':1}
+                    , {'fktab':'Tourneys',      'fkcol':'sessionId',     'rtab':'Sessions',      'rcol':'id', 'drop':1}
                     ]
                   , [ # foreign keys for postgres (index 3)
-                      {'fktab':'Hands',        'fkcol':'tourneyId',     'rtab':'Tourneys',      'rcol':'id', 'drop':1}
-                    , {'fktab':'Hands',        'fkcol':'gametypeId',    'rtab':'Gametypes',     'rcol':'id', 'drop':1}
-                    , {'fktab':'Hands',        'fkcol':'sessionId',     'rtab':'SessionsCache', 'rcol':'id', 'drop':1}
-                    , {'fktab':'Hands',        'fkcol':'fileId',        'rtab':'Files',         'rcol':'id', 'drop':1}
-                    , {'fktab':'Boards',       'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
-                    , {'fktab':'HandsPlayers', 'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
-                    , {'fktab':'HandsPlayers', 'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':1}
-                    , {'fktab':'HandsPlayers', 'fkcol':'tourneysPlayersId','rtab':'TourneysPlayers','rcol':'id', 'drop':1}
-                    , {'fktab':'HandsPlayers', 'fkcol':'startCards',    'rtab':'StartCards',    'rcol':'id', 'drop':1}
-                    , {'fktab':'HandsActions', 'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
-                    , {'fktab':'HandsActions', 'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':1}
-                    , {'fktab':'HandsActions', 'fkcol':'actionId',      'rtab':'Actions',       'rcol':'id', 'drop':1}
-                    , {'fktab':'HandsStove',   'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
-                    , {'fktab':'HandsStove',   'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':1}
-                    , {'fktab':'HandsStove',   'fkcol':'rankId',        'rtab':'Rank',          'rcol':'id', 'drop':1}
-                    , {'fktab':'HandsPots',    'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
-                    , {'fktab':'HandsPots',    'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':1}
-                    , {'fktab':'HudCache',     'fkcol':'gametypeId',    'rtab':'Gametypes',     'rcol':'id', 'drop':1}
-                    , {'fktab':'HudCache',     'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':0}
-                    , {'fktab':'HudCache',     'fkcol':'tourneyTypeId', 'rtab':'TourneyTypes',  'rcol':'id', 'drop':1}
-                    , {'fktab':'SessionsCache','fkcol':'weekId',        'rtab':'WeeksCache',    'rcol':'id', 'drop':1}
-                    , {'fktab':'SessionsCache','fkcol':'monthId',       'rtab':'MonthsCache',   'rcol':'id', 'drop':1}
-                    , {'fktab':'CashCache',    'fkcol':'sessionId',     'rtab':'SessionsCache', 'rcol':'id', 'drop':1}
-                    , {'fktab':'CashCache',    'fkcol':'gametypeId',    'rtab':'Gametypes',     'rcol':'id', 'drop':1}
-                    , {'fktab':'CashCache',    'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':0}
-                    , {'fktab':'TourCache',    'fkcol':'sessionId',     'rtab':'SessionsCache', 'rcol':'id', 'drop':1}
-                    , {'fktab':'TourCache',    'fkcol':'tourneyId',     'rtab':'Tourneys',      'rcol':'id', 'drop':1}
-                    , {'fktab':'TourCache',    'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':0}
-                    , {'fktab':'Tourneys',     'fkcol':'tourneyTypeId', 'rtab':'TourneyTypes',  'rcol':'id', 'drop':1}
-                    , {'fktab':'Tourneys',     'fkcol':'sessionId',     'rtab':'SessionsCache', 'rcol':'id', 'drop':1}
+                      {'fktab':'Hands',         'fkcol':'tourneyId',     'rtab':'Tourneys',      'rcol':'id', 'drop':1}
+                    , {'fktab':'Hands',         'fkcol':'gametypeId',    'rtab':'Gametypes',     'rcol':'id', 'drop':1}
+                    , {'fktab':'Hands',         'fkcol':'sessionId',     'rtab':'Sessions',      'rcol':'id', 'drop':1}
+                    , {'fktab':'Hands',         'fkcol':'fileId',        'rtab':'Files',         'rcol':'id', 'drop':1}
+                    , {'fktab':'Boards',        'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
+                    , {'fktab':'HandsPlayers',  'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
+                    , {'fktab':'HandsPlayers',  'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':1}
+                    , {'fktab':'HandsPlayers',  'fkcol':'tourneysPlayersId','rtab':'TourneysPlayers','rcol':'id', 'drop':1}
+                    , {'fktab':'HandsPlayers',  'fkcol':'startCards',    'rtab':'StartCards',    'rcol':'id', 'drop':1}
+                    , {'fktab':'HandsActions',  'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
+                    , {'fktab':'HandsActions',  'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':1}
+                    , {'fktab':'HandsActions',  'fkcol':'actionId',      'rtab':'Actions',       'rcol':'id', 'drop':1}
+                    , {'fktab':'HandsStove',    'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
+                    , {'fktab':'HandsStove',    'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':1}
+                    , {'fktab':'HandsStove',    'fkcol':'rankId',        'rtab':'Rank',          'rcol':'id', 'drop':1}
+                    , {'fktab':'HandsPots',     'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
+                    , {'fktab':'HandsPots',     'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':1}
+                    , {'fktab':'HudCache',      'fkcol':'gametypeId',    'rtab':'Gametypes',     'rcol':'id', 'drop':1}
+                    , {'fktab':'HudCache',      'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':0}
+                    , {'fktab':'HudCache',      'fkcol':'tourneyTypeId', 'rtab':'TourneyTypes',  'rcol':'id', 'drop':1}
+                    , {'fktab':'Sessions',      'fkcol':'weekId',        'rtab':'Weeks',         'rcol':'id', 'drop':1}
+                    , {'fktab':'Sessions',      'fkcol':'monthId',       'rtab':'Months',        'rcol':'id', 'drop':1}
+                    , {'fktab':'SessionsCache', 'fkcol':'sessionId',     'rtab':'Sessions',      'rcol':'id', 'drop':1}
+                    , {'fktab':'SessionsCache', 'fkcol':'gametypeId',    'rtab':'Gametypes',     'rcol':'id', 'drop':1}
+                    , {'fktab':'SessionsCache', 'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':0}
+                    , {'fktab':'TourneysCache', 'fkcol':'sessionId',     'rtab':'Sessions',      'rcol':'id', 'drop':1}
+                    , {'fktab':'TourneysCache', 'fkcol':'tourneyId',     'rtab':'Tourneys',      'rcol':'id', 'drop':1}
+                    , {'fktab':'TourneysCache', 'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':0}
+                    , {'fktab':'Tourneys',      'fkcol':'tourneyTypeId', 'rtab':'TourneyTypes',  'rcol':'id', 'drop':1}
+                    , {'fktab':'Tourneys',      'fkcol':'sessionId',     'rtab':'Sessions',      'rcol':'id', 'drop':1}
                     ]
                   , [ # no foreign keys in sqlite (index 4)
                     ]
@@ -664,7 +690,7 @@ class Database:
 
         tables=self.cursor.execute(self.sql.query['list_tables'])
         tables=self.cursor.fetchall()
-        for table in (u'Actions', u'Autorates', u'Backings', u'Gametypes', u'Hands', u'Boards', u'HandsActions', u'HandsPlayers', u'HandsStove', u'Files', u'HudCache', u'SessionsCache', u'CashCache', u'TourCache',u'Players', u'RawHands', u'RawTourneys', u'Settings', u'Sites', u'TourneyTypes', u'Tourneys', u'TourneysPlayers'):
+        for table in (u'Actions', u'Autorates', u'Backings', u'Gametypes', u'Hands', u'Boards', u'HandsActions', u'HandsPlayers', u'HandsStove', u'Files', u'HudCache', u'Sessions', u'SessionsCache', u'TourneysCache',u'Players', u'RawHands', u'RawTourneys', u'Settings', u'Sites', u'TourneyTypes', u'Tourneys', u'TourneysPlayers'):
             print "table:", table
             result+="###################\nTable "+table+"\n###################\n"
             rows=self.cursor.execute(self.sql.query['get'+table])
@@ -1557,14 +1583,14 @@ class Database:
         c.execute(self.sql.query['createFilesTable'])
         c.execute(self.sql.query['createPlayersTable'])
         c.execute(self.sql.query['createAutoratesTable'])
-        c.execute(self.sql.query['createWeeksCacheTable'])
-        c.execute(self.sql.query['createMonthsCacheTable'])
-        c.execute(self.sql.query['createSessionsCacheTable'])
+        c.execute(self.sql.query['createWeeksTable'])
+        c.execute(self.sql.query['createMonthsTable'])
+        c.execute(self.sql.query['createSessionsTable'])
         c.execute(self.sql.query['createTourneyTypesTable'])
         c.execute(self.sql.query['createTourneysTable'])
         c.execute(self.sql.query['createTourneysPlayersTable'])
-        c.execute(self.sql.query['createCashCacheTable'])
-        c.execute(self.sql.query['createTourCacheTable'])
+        c.execute(self.sql.query['createSessionsCacheTable'])
+        c.execute(self.sql.query['createTourneysCacheTable'])
         c.execute(self.sql.query['createHandsTable'])
         c.execute(self.sql.query['createHandsPlayersTable'])
         c.execute(self.sql.query['createHandsActionsTable'])
@@ -1587,20 +1613,20 @@ class Database:
         c.execute(self.sql.query['addPlayersSeat'])
         c.execute(self.sql.query['addHeroSeat'])
         c.execute(self.sql.query['addStartCardsIndex'])
-        c.execute(self.sql.query['addActiveSeatsIndex'])
+        c.execute(self.sql.query['addSeatsIndex'])
         c.execute(self.sql.query['addPositionIndex'])
         c.execute(self.sql.query['addFilesIndex'])
-        c.execute(self.sql.query['addPlayerCharsIndex'])
+        c.execute(self.sql.query['addTableNameIndex'])
+        c.execute(self.sql.query['addPlayerNameIndex'])
         c.execute(self.sql.query['addPlayerHeroesIndex'])
         c.execute(self.sql.query['addStartCashIndex'])
         c.execute(self.sql.query['addEffStackIndex'])
         c.execute(self.sql.query['addTotalProfitIndex'])
         c.execute(self.sql.query['addWinningsIndex'])
-        c.execute(self.sql.query['addShowdownPotIndex'])
+        c.execute(self.sql.query['addFinalPotIndex'])
         c.execute(self.sql.query['addStreetIndex'])
-        c.execute(self.sql.query['addStreetIdIndex'])
-        c.execute(self.sql.query['addCashCacheCompundIndex'])
-        c.execute(self.sql.query['addTourCacheCompundIndex'])
+        c.execute(self.sql.query['addSessionsCacheCompundIndex'])
+        c.execute(self.sql.query['addTourneysCacheCompundIndex'])
         c.execute(self.sql.query['addHudCacheCompundIndex'])
         c.execute(self.sql.query['addCardsCacheCompundIndex'])
         c.execute(self.sql.query['addPositionsCacheCompundIndex'])
@@ -1762,7 +1788,7 @@ class Database:
             if self.backend == self.MYSQL_INNODB:
                 c.execute("SELECT constraint_name " +
                           "FROM information_schema.KEY_COLUMN_USAGE " +
-                          #"WHERE REFERENCED_TABLE_SCHEMA = 'fpdb'
+                          #"WHERE REFERENCED_TABLE_SHEMA = 'fpdb'
                           "WHERE 1=1 " +
                           "AND table_name = %s AND column_name = %s " +
                           "AND referenced_table_name = %s " +
@@ -1885,7 +1911,7 @@ class Database:
             insert = """HudCache
                 (gametypeId
                 ,playerId
-                ,activeSeats
+                ,seats
                 ,position
                 <tourney_insert_clause>
                 ,styleKey"""
@@ -1895,7 +1921,7 @@ class Database:
                       ,h.seats as seat_num
                       <hc_position>
                       <tourney_select_clause>
-                      ,<styleKey>"""
+                      <styleKey>"""
                           
             group = """h.gametypeId
                         ,hp.playerId
@@ -1908,30 +1934,35 @@ class Database:
             query = query.replace('<select>', select)
             query = query.replace('<group>', group)
             query = query.replace('<sessions_join_clause>', "")
-        
-            query = query.replace('<hc_position>', """,case when hp.position = 'B' then 'B'
-                        when hp.position = 'S' then 'S'
-                        when hp.position = '0' then 'D'
-                        when hp.position = '1' then 'C'
-                        when hp.position = '2' then 'M'
-                        when hp.position = '3' then 'M'
-                        when hp.position = '4' then 'M'
-                        when hp.position = '5' then 'E'
-                        when hp.position = '6' then 'E'
-                        when hp.position = '7' then 'E'
-                        when hp.position = '8' then 'E'
-                        when hp.position = '9' then 'E'
-                        else 'E'
-                   end                                            as hc_position""")
-            if self.backend == self.PGSQL:
-                query = query.replace('<styleKey>', "'d' || to_char(h.startTime, 'YYMMDD')")
-                query = query.replace('<styleKeyGroup>', ",to_char(h.startTime, 'YYMMDD')")
-            elif self.backend == self.SQLITE:
-                query = query.replace('<styleKey>', "'d' || substr(strftime('%Y%m%d', h.startTime),3,7)")
-                query = query.replace('<styleKeyGroup>', ",substr(strftime('%Y%m%d', h.startTime),3,7)")
-            elif self.backend == self.MYSQL_INNODB:
-                query = query.replace('<styleKey>', "date_format(h.startTime, 'd%y%m%d')")
-                query = query.replace('<styleKeyGroup>', ",date_format(h.startTime, 'd%y%m%d')")
+            
+            if self.build_full_hudcache:        
+                query = query.replace('<hc_position>', """,case when hp.position = 'B' then 'B'
+                            when hp.position = 'S' then 'S'
+                            when hp.position = '0' then 'D'
+                            when hp.position = '1' then 'C'
+                            when hp.position = '2' then 'M'
+                            when hp.position = '3' then 'M'
+                            when hp.position = '4' then 'M'
+                            when hp.position = '5' then 'E'
+                            when hp.position = '6' then 'E'
+                            when hp.position = '7' then 'E'
+                            when hp.position = '8' then 'E'
+                            when hp.position = '9' then 'E'
+                            else 'E'
+                       end                                            as hc_position""")
+                if self.backend == self.PGSQL:
+                    query = query.replace('<styleKey>', ",'d' || to_char(h.startTime, 'YYMMDD')")
+                    query = query.replace('<styleKeyGroup>', ",to_char(h.startTime, 'YYMMDD')")
+                elif self.backend == self.SQLITE:
+                    query = query.replace('<styleKey>', ",'d' || substr(strftime('%Y%m%d', h.startTime),3,7)")
+                    query = query.replace('<styleKeyGroup>', ",substr(strftime('%Y%m%d', h.startTime),3,7)")
+                elif self.backend == self.MYSQL_INNODB:
+                    query = query.replace('<styleKey>', ",date_format(h.startTime, 'd%y%m%d')")
+                    query = query.replace('<styleKeyGroup>', ",date_format(h.startTime, 'd%y%m%d')")
+            else:
+                query = query.replace('<hc_position>', ",'0' as hc_position")
+                query = query.replace('<styleKey>', ",'A000000' as styleKey")
+                query = query.replace('<styleKeyGroup>', ',styleKey')
             
             if type == 'tour':
                 query = query.replace('<tourney_insert_clause>', ",tourneyTypeId")
@@ -1949,91 +1980,87 @@ class Database:
             insert = """CardsCache
                 (weekId
                 ,monthId
-                <type_insert_clause>
+                ,gametypeId
+                <tourney_insert_clause>
                 ,playerId
-                ,streetId
-                ,boardId
-                ,hiLo
-                ,startCards
-                ,rankId"""
+                ,startCards"""
     
             select = """s.weekId
                       ,s.monthId 
-                      <type_select_clause>
+                      ,h.gametypeId
+                      <tourney_select_clause>
                       ,hp.playerId
-                      ,hs.streetId
-                      ,hs.boardId
-                      ,hs.hiLo
-                      ,case when hs.streetId = 0 then hp.startCards else 170 end as start_cards
-                      ,hs.rankId"""
+                      ,hp.startCards"""
                           
             group = """s.weekId
                         ,s.monthId 
-                        <type_group_clause>
+                        ,h.gametypeId
+                        <tourney_group_clause>
                         ,hp.playerId
-                        ,hs.streetId
-                        ,hs.boardId
-                        ,hs.hiLo
-                        ,start_cards
-                        ,hs.rankId"""
-                        
-            query = query.replace('<insert>', insert)
-            query = query.replace('<select>', select)
-            query = query.replace('<group>', group)
-            query = query.replace('<hero_join>', ' AND h.heroSeat = hp.seatNo')
-            query = query.replace('<sessions_join_clause>', """INNER JOIN SessionsCache s ON (s.id = h.sessionId)
-                INNER JOIN Players p ON (hp.playerId = p.id)
-                INNER JOIN HandsStove hs ON (hp.playerId = hs.playerId AND hp.handId = hs.handId)""")
-            query = query.replace('<hero_where>', '')
-            if type=='ring':
-                query = query.replace('<type_insert_clause>', ",gametypeId")
-                query = query.replace('<type_select_clause>', ",h.gametypeId")
-                query = query.replace('<type_group_clause>', ",h.gametypeId")
-            else:
-                query = query.replace('<type_insert_clause>', ",tourneyTypeId")
-                query = query.replace('<type_select_clause>', ",t.tourneyTypeId")
-                query = query.replace('<type_group_clause>', ",t.tourneyTypeId") 
-                
-        elif table == 'PositionsCache':
-            insert = """PositionsCache
-                (weekId
-                ,monthId
-                <type_insert_clause>
-                ,playerId
-                ,activeSeats
-                ,position"""
-    
-            select = """s.weekId
-                      ,s.monthId 
-                      <type_select_clause>
-                      ,hp.playerId
-                      ,h.seats as seat_num
-                      <pc_position>"""
-                          
-            group = """s.weekId
-                        ,s.monthId 
-                        <type_group_clause>
-                        ,hp.playerId
-                        ,seat_num
-                        ,pc_position"""
+                        ,hp.startCards"""
                         
             query = query.replace('<insert>', insert)
             query = query.replace('<select>', select)
             query = query.replace('<group>', group)
             query = query.replace('<hero_join>', '')
-            query = query.replace('<sessions_join_clause>', """INNER JOIN SessionsCache s ON (s.id = h.sessionId)
+            query = query.replace('<sessions_join_clause>', """INNER JOIN Sessions s ON (s.id = h.sessionId)
                 INNER JOIN Players p ON (hp.playerId = p.id)""")
-            query = query.replace('<pc_position>', """,case when h.heroSeat = hp.seatNo then hp.position else 'N' end as pc_position""")
+            query = query.replace('<hero_where>', '')
+            
+            if type == 'tour':
+                query = query.replace('<tourney_insert_clause>', ",tourneyTypeId")
+                query = query.replace('<tourney_select_clause>', ",t.tourneyTypeId")
+                query = query.replace('<tourney_group_clause>', ",t.tourneyTypeId")
+            else:
+                query = query.replace('<tourney_insert_clause>', "")
+                query = query.replace('<tourney_select_clause>', "")
+                query = query.replace('<tourney_group_clause>', "")
+                
+        elif table == 'PositionsCache':
+            insert = """PositionsCache
+                (weekId
+                ,monthId
+                ,gametypeId
+                <tourney_insert_clause>
+                ,playerId
+                ,seats
+                ,maxPosition
+                ,position"""
+    
+            select = """s.weekId
+                      ,s.monthId 
+                      ,h.gametypeId
+                      <tourney_select_clause>
+                      ,hp.playerId
+                      ,h.seats
+                      ,h.maxPosition
+                      ,hp.position"""
+                          
+            group = """s.weekId
+                        ,s.monthId 
+                        ,h.gametypeId
+                        <tourney_group_clause>
+                        ,hp.playerId
+                        ,h.seats
+                        ,h.maxPosition
+                        ,hp.position"""
+                        
+            query = query.replace('<insert>', insert)
+            query = query.replace('<select>', select)
+            query = query.replace('<group>', group)
+            query = query.replace('<hero_join>', '')
+            query = query.replace('<sessions_join_clause>', """INNER JOIN Sessions s ON (s.id = h.sessionId)
+                INNER JOIN Players p ON (hp.playerId = p.id)""")
             query = query.replace('<hero_where>', "")
             
-            if type=='ring':
-                query = query.replace('<type_insert_clause>', ",gametypeId")
-                query = query.replace('<type_select_clause>', ",h.gametypeId")
-                query = query.replace('<type_group_clause>', ",h.gametypeId")
+            if type == 'tour':
+                query = query.replace('<tourney_insert_clause>', ",tourneyTypeId")
+                query = query.replace('<tourney_select_clause>', ",t.tourneyTypeId")
+                query = query.replace('<tourney_group_clause>', ",t.tourneyTypeId")
             else:
-                query = query.replace('<type_insert_clause>', ",tourneyTypeId")
-                query = query.replace('<type_select_clause>', ",t.tourneyTypeId")
-                query = query.replace('<type_group_clause>', ",t.tourneyTypeId")
+                query = query.replace('<tourney_insert_clause>', "")
+                query = query.replace('<tourney_select_clause>', "")
+                query = query.replace('<tourney_group_clause>', "")
                 
         return query
 
@@ -2112,14 +2139,14 @@ class Database:
     #end def rebuild_cache
     
     def update_timezone(self, tz_name):
-        select_WC     = self.sql.query['select_WC'].replace('%s', self.sql.query['placeholder'])
-        select_MC     = self.sql.query['select_MC'].replace('%s', self.sql.query['placeholder'])
-        insert_WC     = self.sql.query['insert_WC'].replace('%s', self.sql.query['placeholder'])
-        insert_MC     = self.sql.query['insert_MC'].replace('%s', self.sql.query['placeholder'])
-        update_WM_SC  = self.sql.query['update_WM_SC'].replace('%s', self.sql.query['placeholder'])
+        select_W     = self.sql.query['select_W'].replace('%s', self.sql.query['placeholder'])
+        select_M     = self.sql.query['select_M'].replace('%s', self.sql.query['placeholder'])
+        insert_W     = self.sql.query['insert_W'].replace('%s', self.sql.query['placeholder'])
+        insert_M     = self.sql.query['insert_M'].replace('%s', self.sql.query['placeholder'])
+        update_WM_S  = self.sql.query['update_WM_S'].replace('%s', self.sql.query['placeholder'])
         c = self.get_cursor()
-        c.execute("SELECT id, sessionStart, weekId wid, monthId mid FROM SessionsCache")
-        sessions = self.fetchallDict(c)
+        c.execute("SELECT id, sessionStart, weekId wid, monthId mid FROM Sessions")
+        sessions = self.fetchallDict(c,['id','sessionStart','wid', 'mid'])
         for s in sessions:
             utc_start = pytz.utc.localize(s['sessionStart'])
             tz = pytz.timezone(tz_name)
@@ -2129,125 +2156,15 @@ class Database:
             monthStart = datetime(local.year, local.month, 1)
             weekdate   = datetime(local.year, local.month, local.day) 
             weekStart  = weekdate - timedelta(days=weekdate.weekday())
-            wid = self.insertOrUpdate('weeks', c, (weekStart,), select_WC, insert_WC)
-            mid = self.insertOrUpdate('months', c, (monthStart,), select_MC, insert_MC)
+            wid = self.insertOrUpdate('weeks', c, (weekStart,), select_W, insert_W)
+            mid = self.insertOrUpdate('months', c, (monthStart,), select_M, insert_M)
             if wid != s['wid'] or mid != s['mid']:
                 row = [wid, mid, s['id']]
-                c.execute(update_WM_SC, row)
+                c.execute(update_WM_S, row)
                 self.wmold.add((s['wid'], s['mid']))
                 self.wmnew.add((wid, mid))
         self.commit()
         self.cleanUpWeeksMonths()
-    
-    def rebuild_sessionscache(self, tz_name = None, recreate=False, heroes = []):
-        """clears sessionscache and rebuilds from the individual records"""
-        c = self.get_cursor()
-        if not heroes:
-            c.execute("SELECT id FROM Players WHERE hero=1")
-            herorecords_cash = c.fetchall()
-            for h in herorecords_cash:
-                heroes += h                                
-        rebuildSessionsCache = self.sql.query['rebuildSessionsCache']
-        if len(heroes) == 0:
-            where         = '0'
-            where_summary = '0'
-        elif len(heroes) > 0:
-            where         = str(heroes[0])
-            where_summary = str(heroes[0])
-            if len(heroes) > 1:
-                for i in heroes:
-                    if i != heroes[0]:
-                        where = where + ' OR HandsPlayers.playerId = %s' % str(i)
-        rebuildSessionsCache     = rebuildSessionsCache.replace('<where_clause>', where)
-        rebuildSessionsCacheRing = rebuildSessionsCache.replace('<tourney_join_clause>','')
-        rebuildSessionsCacheRing = rebuildSessionsCacheRing.replace('<tourney_type_clause>','NULL,')
-        rebuildSessionsCacheTour = rebuildSessionsCache.replace('<tourney_join_clause>',"""INNER JOIN Tourneys ON (Tourneys.id = Hands.tourneyId)""")
-        rebuildSessionsCacheTour = rebuildSessionsCacheTour.replace('<tourney_type_clause>','HandsPlayers.tourneysPlayersId,')
-        rebuildSessionsCacheRing = rebuildSessionsCacheRing.replace('%s', self.sql.query['placeholder'])
-        rebuildSessionsCacheTour = rebuildSessionsCacheTour.replace('%s', self.sql.query['placeholder'])
-
-        queries, type = [rebuildSessionsCacheTour, rebuildSessionsCacheRing], ['tour', 'ring']
-        c = self.get_cursor()
-        c.execute("SELECT count(H.id) FROM Hands H")
-        max = c.fetchone()[0]
-        c.execute(self.sql.query['clear_SC_H'])
-        c.execute(self.sql.query['clear_SC_T'])
-        c.execute(self.sql.query['clear_SC_CC'])
-        c.execute(self.sql.query['clear_SC_TC'])
-        c.execute(self.sql.query['clearCashCache'])
-        c.execute(self.sql.query['clearTourCache'])
-        c.execute(self.sql.query['clearSessionsCache'])
-        if not recreate:
-            c.execute(self.sql.query['clearWeeksCache'])
-            c.execute(self.sql.query['clearMonthsCache'])
-        else:
-            if self.backend == self.MYSQL_INNODB:
-                c.execute('SET FOREIGN_KEY_CHECKS=0')
-            c.execute('DROP TABLE IF EXISTS CashCache, TourCache, SessionsCache, WeeksCache, MonthsCache')
-            if self.backend == self.MYSQL_INNODB:
-                c.execute('SET FOREIGN_KEY_CHECKS=1')
-            c.execute(self.sql.query['createWeeksCacheTable'])
-            c.execute(self.sql.query['createMonthsCacheTable'])
-            c.execute(self.sql.query['createSessionsCacheTable'])
-            c.execute(self.sql.query['createCashCacheTable'])
-            c.execute(self.sql.query['createTourCacheTable'])       
-        self.commit()
-        
-        start, end, limit =  0, 5000, 5000
-        print max, 'total hands'
-        while start < max:
-            ttime = time()
-            t, r = 0, 0
-            for k in range(2):
-                hid = {}
-                self.resetBulkCache()
-                c.execute(queries[k], (type[k], start, end))
-                tmp = c.fetchone()
-                if tmp and type[k]=='ring': r += 1
-                if tmp and type[k]=='tour': t += 1
-                while tmp:
-                    pids, game, pdata = {}, {}, {}
-                    pdata['pname'] = {}
-                    id                                    = tmp[0]
-                    startTime                             = tmp[1]
-                    pids['pname']                         = tmp[2]
-                    tid                                   = tmp[3]
-                    gtid                                  = tmp[4]
-                    game['type']                          = tmp[5]
-                    pdata['pname']['tourneysPlayersIds']  = tmp[6]
-                    pdata['pname']['totalProfit']         = tmp[7]
-                    pdata['pname']['rake']                = tmp[8]
-                    pdata['pname']['allInEV']             = tmp[9]
-                    pdata['pname']['street0VPI']          = tmp[10]
-                    pdata['pname']['street1Seen']         = tmp[11]
-                    pdata['pname']['sawShowdown']         = tmp[12]
-                    tmp = c.fetchone()
-                    hid[id] = tid
-                    self.storeSessionsCache (id, pids, startTime, heroes, tz_name, tmp == None)
-                    self.storeCashCache(id, pids, startTime, gtid, game, pdata, heroes, tmp == None)
-                    self.storeTourCache(id, pids, tid, startTime, game, pdata, heroes, tmp == None)
-                    if tmp == None:
-                        for i, id in self.sc.iteritems():
-                            if i!='bk':
-                                sid =  id['id']
-                                if hid[i]: 
-                                    self.tbulk[hid[i]] = sid
-                                    gid = None
-                                else: gid = self.gc[i]['id']
-                                q = self.sql.query['update_RSC_H']
-                                q = q.replace('%s', self.sql.query['placeholder'])
-                                c.execute(q, (sid, gid, i))
-                        self.updateTourneysSessions()
-                        self.commit()
-                        break
-                    if type[k]=='ring': r += 1
-                    if type[k]=='tour': t += 1
-            print 'Hand ids', start, '-', end, '\t', 'total', (r+t), 'ring:', r, 'tour:', t, '\t', int(time() - ttime), 'sec',  int((r+t)/(time() - ttime)), 'hands/sec'
-            start += limit
-            end   += limit
-            self.commit()
-        self.commit()
-       
 
     def get_hero_hudcache_start(self):
         """fetches earliest stylekey from hudcache for one of hero's player ids"""
@@ -2370,18 +2287,30 @@ class Database:
         self.hsbulk      = []         # HandsStove bulk inserts
         self.htbulk      = []         # HandsPots bulk inserts
         self.tbulk       = {}         # Tourneys bulk updates
-        self.sc          = {'bk': []} # SessionsCache bulk updates
-        self.cc          = {}         # CashCache bulk updates
-        self.tc          = {}         # TourCache bulk updates
+        self.s          = {'bk': []} # Sessions bulk updates
+        self.sc          = {}         # SessionsCache bulk updates
+        self.tc          = {}         # TourneysCache bulk updates
         self.hids        = []         # hand ids in order of hand bulk inserts
         #self.tids        = []         # tourney ids in order of hp bulk inserts
         if reconnect: self.do_connect(self.config)
         
     def executemany(self, c, q, values):
-        batch_size=20000 #experiment to find optimal batch_size for your data
-        while values: # repeat until all records in values have been inserted ''
-            batch, values = values[:batch_size], values[batch_size:] #split values into the current batch and the remaining records
-            c.executemany(q, batch ) #insert current batch ''
+        if self.backend == self.PGSQL and self.import_options['hhBulkPath'] != "":
+            # COPY much faster under postgres. Requires superuser privileges
+            m = re_insert.match(q)
+            rand = ''.join(random.SystemRandom().choice(string.ascii_uppercase + string.digits) for _ in range(5))
+            bulk_file = os.path.join(self.import_options['hhBulkPath'], m.group("TABLENAME") + '_' + rand)
+            with open(bulk_file, 'wb') as csvfile:
+                writer = csv.writer(csvfile, delimiter='\t', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+                writer.writerows(w for w in values)
+            q_insert = "COPY " + m.group("TABLENAME") + m.group("COLUMNS") + " FROM '" + bulk_file + "' DELIMITER '\t' CSV"
+            c.execute(q_insert)
+            os.remove(bulk_file)
+        else:            
+            batch_size=20000 #experiment to find optimal batch_size for your data
+            while values: # repeat until all records in values have been inserted ''
+                batch, values = values[:batch_size], values[batch_size:] #split values into the current batch and the remaining records
+                c.executemany(q, batch ) #insert current batch ''
 
     def storeHand(self, hdata, doinsert = False, printdata = False):
         if printdata:
@@ -2405,6 +2334,7 @@ class Database:
                              datetime.utcnow(), #importtime
                              hdata['seats'],
                              hdata['heroSeat'],
+                             hdata['maxPosition'],
                              hdata['texture'],
                              hdata['playersVpi'],
                              hdata['boardcard1'],
@@ -2423,11 +2353,12 @@ class Database:
                              hdata['street2Raises'],
                              hdata['street3Raises'],
                              hdata['street4Raises'],
+                             hdata['street0Pot'],
                              hdata['street1Pot'],
                              hdata['street2Pot'],
                              hdata['street3Pot'],
                              hdata['street4Pot'],
-                             hdata['showdownPot']
+                             hdata['finalPot']
                              ])
 
         if doinsert:
@@ -2436,7 +2367,7 @@ class Database:
             q = self.sql.query['store_hand']
             q = q.replace('%s', self.sql.query['placeholder'])
             c = self.get_cursor()
-            self.executemany(c, q, self.hbulk)
+            c.executemany(q, self.hbulk)
             self.commit()
     
     def storeBoards(self, id, boards, doinsert):
@@ -2545,16 +2476,16 @@ class Database:
         for p in pdata:
             player_stats = pdata.get(p)
             garbageTourneyTypes = player_stats['tourneyTypeId'] in self.ttnew or player_stats['tourneyTypeId'] in self.ttold
-            if not garbageTourneyTypes:
+            if self.import_options['hhBulkPath'] == "" or not garbageTourneyTypes:
                 position = pos[player_stats['position']]
                 k =   (gid
                       ,pids[p]
                       ,seats
-                      ,position
+                      ,position if self.build_full_hudcache else '0'
                       ,player_stats['tourneyTypeId']
-                      ,styleKey
+                      ,styleKey if self.build_full_hudcache else 'A000000'
                       )
-                player_stats['hands'] = 1
+                player_stats['n'] = 1
                 line = [int(player_stats[s]) for s in CACHE_KEYS]
                     
                 hud = self.hcbulk.get(k)
@@ -2597,10 +2528,10 @@ class Database:
                     inserts.append(list(k) + item)
                 
             if inserts:
-                c.executemany(insert_hudcache, inserts)
+                self.executemany(c, insert_hudcache, inserts)
             self.commit()
             
-    def storeSessionsCache(self, hid, pids, startTime, tid, heroes, tz_name, doinsert = False):
+    def storeSessions(self, hid, pids, startTime, tid, heroes, tz_name, doinsert = False):
         """Update cached sessions. If no record exists, do an insert"""
         THRESHOLD     = timedelta(seconds=int(self.sessionTimeout * 60))
         if tz_name in pytz.common_timezones:
@@ -2647,100 +2578,100 @@ class Database:
         if hand:
             lower = hand['startTime']-THRESHOLD
             upper = hand['startTime']+THRESHOLD
-            for i in range(len(self.sc['bk'])):
-                if (((lower  <= self.sc['bk'][i]['sessionEnd'])
-                and  (upper  >= self.sc['bk'][i]['sessionStart']))
-                or   (tid in self.sc['bk'][i]['tourneys'])):
-                    if ((hand['startTime'] <= self.sc['bk'][i]['sessionEnd']) 
-                    and (hand['startTime'] >= self.sc['bk'][i]['sessionStart'])):
+            for i in range(len(self.s['bk'])):
+                if (((lower  <= self.s['bk'][i]['sessionEnd'])
+                and  (upper  >= self.s['bk'][i]['sessionStart']))
+                or   (tid in self.s['bk'][i]['tourneys'])):
+                    if ((hand['startTime'] <= self.s['bk'][i]['sessionEnd']) 
+                    and (hand['startTime'] >= self.s['bk'][i]['sessionStart'])):
                          id.append(i)
-                    elif hand['startTime'] < self.sc['bk'][i]['sessionStart']:
-                         self.sc['bk'][i]['sessionStart'] = hand['startTime']
-                         self.sc['bk'][i]['weekStart']    = hand['weekStart']
-                         self.sc['bk'][i]['monthStart']   = hand['monthStart']
+                    elif hand['startTime'] < self.s['bk'][i]['sessionStart']:
+                         self.s['bk'][i]['sessionStart'] = hand['startTime']
+                         self.s['bk'][i]['weekStart']    = hand['weekStart']
+                         self.s['bk'][i]['monthStart']   = hand['monthStart']
                          id.append(i)
-                    elif hand['startTime'] > self.sc['bk'][i]['sessionEnd']:
-                         self.sc['bk'][i]['sessionEnd'] = hand['startTime']
+                    elif hand['startTime'] > self.s['bk'][i]['sessionEnd']:
+                         self.s['bk'][i]['sessionEnd'] = hand['startTime']
                          id.append(i)
             if len(id) == 1:
                 j = id[0]
-                self.sc['bk'][j]['ids'] += [hid]
-                if tid: self.sc['bk'][j]['tourneys'].add(tid)
+                self.s['bk'][j]['ids'] += [hid]
+                if tid: self.s['bk'][j]['tourneys'].add(tid)
             elif len(id) == 2:
                 j, k = id
-                if  self.sc['bk'][j]['sessionStart'] < self.sc['bk'][k]['sessionStart']:
-                    self.sc['bk'][j]['sessionEnd']   = self.sc['bk'][k]['sessionEnd']
+                if  self.s['bk'][j]['sessionStart'] < self.s['bk'][k]['sessionStart']:
+                    self.s['bk'][j]['sessionEnd']   = self.s['bk'][k]['sessionEnd']
                 else:
-                    self.sc['bk'][j]['sessionStart'] = self.sc['bk'][k]['sessionStart']
-                    self.sc['bk'][j]['weekStart']    = self.sc['bk'][k]['weekStart']
-                    self.sc['bk'][j]['monthStart']   = self.sc['bk'][k]['monthStart']
-                sh = self.sc['bk'].pop(k)
-                self.sc['bk'][j]['ids'] += [hid]
-                self.sc['bk'][j]['ids'] += sh['ids']
-                if tid: self.sc['bk'][j]['tourneys'].add(tid)
-                self.sc['bk'][j]['tourneys'].union(sh['tourneys'])
+                    self.s['bk'][j]['sessionStart'] = self.s['bk'][k]['sessionStart']
+                    self.s['bk'][j]['weekStart']    = self.s['bk'][k]['weekStart']
+                    self.s['bk'][j]['monthStart']   = self.s['bk'][k]['monthStart']
+                sh = self.s['bk'].pop(k)
+                self.s['bk'][j]['ids'] += [hid]
+                self.s['bk'][j]['ids'] += sh['ids']
+                if tid: self.s['bk'][j]['tourneys'].add(tid)
+                self.s['bk'][j]['tourneys'].union(sh['tourneys'])
             elif len(id) == 0:
-                j = len(self.sc['bk'])
+                j = len(self.s['bk'])
                 hand['id'] = None
                 hand['sessionStart'] = hand['startTime']
                 hand['sessionEnd']   = hand['startTime']
                 if tid: hand['tourneys'].add(tid)
-                self.sc['bk'].append(hand)
+                self.s['bk'].append(hand)
         
         if doinsert:
-            select_SC     = self.sql.query['select_SC'].replace('%s', self.sql.query['placeholder'])
-            select_WC     = self.sql.query['select_WC'].replace('%s', self.sql.query['placeholder'])
-            select_MC     = self.sql.query['select_MC'].replace('%s', self.sql.query['placeholder'])
-            update_SC     = self.sql.query['update_SC'].replace('%s', self.sql.query['placeholder'])
-            insert_WC     = self.sql.query['insert_WC'].replace('%s', self.sql.query['placeholder'])
-            insert_MC     = self.sql.query['insert_MC'].replace('%s', self.sql.query['placeholder'])
-            insert_SC     = self.sql.query['insert_SC'].replace('%s', self.sql.query['placeholder'])
-            update_SC_CC  = self.sql.query['update_SC_CC'].replace('%s', self.sql.query['placeholder'])
-            update_SC_TC  = self.sql.query['update_SC_TC'].replace('%s', self.sql.query['placeholder'])
-            update_SC_T   = self.sql.query['update_SC_T'].replace('%s', self.sql.query['placeholder'])
-            update_SC_H   = self.sql.query['update_SC_H'].replace('%s', self.sql.query['placeholder'])
-            delete_SC     = self.sql.query['delete_SC'].replace('%s', self.sql.query['placeholder'])
+            select_S     = self.sql.query['select_S'].replace('%s', self.sql.query['placeholder'])
+            select_W     = self.sql.query['select_W'].replace('%s', self.sql.query['placeholder'])
+            select_M     = self.sql.query['select_M'].replace('%s', self.sql.query['placeholder'])
+            update_S     = self.sql.query['update_S'].replace('%s', self.sql.query['placeholder'])
+            insert_W     = self.sql.query['insert_W'].replace('%s', self.sql.query['placeholder'])
+            insert_M     = self.sql.query['insert_M'].replace('%s', self.sql.query['placeholder'])
+            insert_S     = self.sql.query['insert_S'].replace('%s', self.sql.query['placeholder'])
+            update_S_SC  = self.sql.query['update_S_SC'].replace('%s', self.sql.query['placeholder'])
+            update_S_TC  = self.sql.query['update_S_TC'].replace('%s', self.sql.query['placeholder'])
+            update_S_T   = self.sql.query['update_S_T'].replace('%s', self.sql.query['placeholder'])
+            update_S_H   = self.sql.query['update_S_H'].replace('%s', self.sql.query['placeholder'])
+            delete_S     = self.sql.query['delete_S'].replace('%s', self.sql.query['placeholder'])
             c = self.get_cursor()
-            for i in range(len(self.sc['bk'])):
-                lower = self.sc['bk'][i]['sessionStart'] - THRESHOLD
-                upper = self.sc['bk'][i]['sessionEnd']   + THRESHOLD
-                tourneys = self.sc['bk'][i]['tourneys']
-                if (self.sc['bk'][i]['tourneys']):
+            for i in range(len(self.s['bk'])):                
+                lower = self.s['bk'][i]['sessionStart'] - THRESHOLD
+                upper = self.s['bk'][i]['sessionEnd']   + THRESHOLD
+                tourneys = self.s['bk'][i]['tourneys']
+                if (self.s['bk'][i]['tourneys']):
                     toursql = 'OR SC.id in (SELECT DISTINCT sessionId FROM Tourneys T WHERE T.id in (%s))' % ', '.join(str(t) for t in tourneys)
-                    select_SC = select_SC.replace('<TOURSELECT>', toursql)
+                    q = select_S.replace('<TOURSELECT>', toursql)
                 else:
-                    select_SC = select_SC.replace('<TOURSELECT>', '')
-                c.execute(select_SC, (lower, upper))
-                r = self.fetchallDict(c)
-                num = len(r)
+                    q = select_S.replace('<TOURSELECT>', '')
+                c.execute(q, (lower, upper))
+                r = self.fetchallDict(c,['id', 'sessionStart', 'sessionEnd', 'weekStart', 'monthStart', 'weekId', 'monthId'])
+                num = len(r)              
                 if (num == 1):
                     start, end  = r[0]['sessionStart'], r[0]['sessionEnd']
                     week, month = r[0]['weekStart'],    r[0]['monthStart']
                     wid, mid    = r[0]['weekId'],       r[0]['monthId']
                     update, updateW, updateM = False, False, False
-                    if self.sc['bk'][i]['sessionStart'] < start:
-                        start, update = self.sc['bk'][i]['sessionStart'], True
-                        if self.sc['bk'][i]['weekStart'] != week:
-                            week, updateW = self.sc['bk'][i]['weekStart'], True
-                        if self.sc['bk'][i]['monthStart'] != month:
-                            month, updateM = self.sc['bk'][i]['monthStart'], True
+                    if self.s['bk'][i]['sessionStart'] < start:
+                        start, update = self.s['bk'][i]['sessionStart'], True
+                        if self.s['bk'][i]['weekStart'] != week:
+                            week, updateW = self.s['bk'][i]['weekStart'], True
+                        if self.s['bk'][i]['monthStart'] != month:
+                            month, updateM = self.s['bk'][i]['monthStart'], True
                         if (updateW or updateM):
                             self.wmold.add((wid, mid))
-                    if self.sc['bk'][i]['sessionEnd'] > end:
-                        end, update = self.sc['bk'][i]['sessionEnd'], True
-                    if updateW:  wid = self.insertOrUpdate('weeks', c, (week,), select_WC, insert_WC)
-                    if updateM:  mid = self.insertOrUpdate('months', c, (month,), select_MC, insert_MC)
+                    if self.s['bk'][i]['sessionEnd'] > end:
+                        end, update = self.s['bk'][i]['sessionEnd'], True
+                    if updateW:  wid = self.insertOrUpdate('weeks', c, (week,), select_W, insert_W)
+                    if updateM:  mid = self.insertOrUpdate('months', c, (month,), select_M, insert_M)
                     if (updateW or updateM):
                         self.wmnew.add((wid, mid))
                     if update: 
-                        c.execute(update_SC, [wid, mid, start, end, r[0]['id']])
-                    for h in  self.sc['bk'][i]['ids']:
-                        self.sc[h] = {'id': r[0]['id'], 'wid': wid, 'mid': mid}
+                        c.execute(update_S, [wid, mid, start, end, r[0]['id']])
+                    for h in  self.s['bk'][i]['ids']:
+                        self.s[h] = {'id': r[0]['id'], 'wid': wid, 'mid': mid}
                 elif (num > 1):
                     start, end, wmold, merge = None, None, set(), []
                     for n in r: merge.append(n['id'])
                     merge.sort()
-                    r.append(self.sc['bk'][i])
+                    r.append(self.s['bk'][i])
                     for n in r:
                         if 'weekId' in n:
                             wmold.add((n['weekId'],  n['monthId']))    
@@ -2758,118 +2689,118 @@ class Database:
                                 end = n['sessionEnd']
                         else:
                             end = n['sessionEnd']
-                    wid = self.insertOrUpdate('weeks', c, (week,), select_WC, insert_WC)
-                    mid = self.insertOrUpdate('months', c, (month,), select_MC, insert_MC)
+                    wid = self.insertOrUpdate('weeks', c, (week,), select_W, insert_W)
+                    mid = self.insertOrUpdate('months', c, (month,), select_M, insert_M)
                     wmold.discard((wid, mid))
                     if len(wmold)>0:
                         self.wmold = self.wmold.union(wmold)
                         self.wmnew.add((wid, mid))
                     row = [wid, mid, start, end]
-                    c.execute(insert_SC, row)
+                    c.execute(insert_S, row)
                     sid = self.get_last_insert_id(c)
-                    for h in self.sc['bk'][i]['ids']:
-                        self.sc[h] = {'id': sid, 'wid': wid, 'mid': mid}
+                    for h in self.s['bk'][i]['ids']:
+                        self.s[h] = {'id': sid, 'wid': wid, 'mid': mid}
                     for m in merge:
-                        for h, n in self.sc.iteritems():
+                        for h, n in self.s.iteritems():
                             if h!='bk' and n['id'] == m:
-                                self.sc[h] = {'id': sid, 'wid': wid, 'mid': mid}
-                        c.execute(update_SC_TC,(sid, m))
-                        c.execute(update_SC_CC,(sid, m))
-                        c.execute(update_SC_T, (sid, m))
-                        c.execute(update_SC_H, (sid, m))
-                        c.execute(delete_SC, (m,))
+                                self.s[h] = {'id': sid, 'wid': wid, 'mid': mid}
+                        c.execute(update_S_TC,(sid, m))
+                        c.execute(update_S_SC,(sid, m))
+                        c.execute(update_S_T, (sid, m))
+                        c.execute(update_S_H, (sid, m))
+                        c.execute(delete_S, (m,))
                 elif (num == 0):
-                    start   =  self.sc['bk'][i]['sessionStart']
-                    end     =  self.sc['bk'][i]['sessionEnd']
-                    week    =  self.sc['bk'][i]['weekStart']
-                    month   =  self.sc['bk'][i]['monthStart']
-                    wid = self.insertOrUpdate('weeks', c, (week,), select_WC, insert_WC)
-                    mid = self.insertOrUpdate('months', c, (month,), select_MC, insert_MC)
+                    start   =  self.s['bk'][i]['sessionStart']
+                    end     =  self.s['bk'][i]['sessionEnd']
+                    week    =  self.s['bk'][i]['weekStart']
+                    month   =  self.s['bk'][i]['monthStart']
+                    wid = self.insertOrUpdate('weeks', c, (week,), select_W, insert_W)
+                    mid = self.insertOrUpdate('months', c, (month,), select_M, insert_M)
                     row = [wid, mid, start, end]
-                    c.execute(insert_SC, row)
+                    c.execute(insert_S, row)
                     sid = self.get_last_insert_id(c)
-                    for h in self.sc['bk'][i]['ids']:
-                        self.sc[h] = {'id': sid, 'wid': wid, 'mid': mid}
+                    for h in self.s['bk'][i]['ids']:
+                        self.s[h] = {'id': sid, 'wid': wid, 'mid': mid}
             self.commit()
     
-    def storeCashCache(self, hid, pids, startTime, gtid, gametype, pdata, heroes, hero, doinsert = False):
+    def storeSessionsCache(self, hid, pids, startTime, gametypeId, gametype, pdata, heroes, doinsert = False):
         """Update cached cash sessions. If no record exists, do an insert"""      
         THRESHOLD    = timedelta(seconds=int(self.sessionTimeout * 60))
-        if gametype['type']=='ring' and pdata:
+        if pdata: #gametype['type']=='ring' and 
             for p, pid in pids.iteritems():
                 hp = {}
-                k = (gtid, pid)
+                k = (gametypeId, pid)
                 if self.backend == self.SQLITE:
                     hp['startTime'] = datetime.strptime(startTime, '%Y-%m-%d %H:%M:%S')
                 else:
                     hp['startTime'] = startTime.replace(tzinfo=None)
                 hp['hid']           = hid
                 hp['ids']           = []
-                pdata[p]['hands']   = 1
+                pdata[p]['n']   = 1
                 hp['line'] = [int(pdata[p][s]) for s in CACHE_KEYS]
                 id = []
-                cashplayer = self.cc.get(k)
-                if cashplayer is not None:        
+                sessionplayer = self.sc.get(k)
+                if sessionplayer is not None:        
                     lower = hp['startTime']-THRESHOLD
                     upper = hp['startTime']+THRESHOLD
-                    for i in range(len(cashplayer)):
-                        if lower <= cashplayer[i]['endTime'] and upper >= cashplayer[i]['startTime']:
+                    for i in range(len(sessionplayer)):
+                        if lower <= sessionplayer[i]['endTime'] and upper >= sessionplayer[i]['startTime']:
                             if len(id)==0:
                                 for idx,val in enumerate(hp['line']):
-                                    cashplayer[i]['line'][idx] += val
-                            if ((hp['startTime'] <= cashplayer[i]['endTime']) 
-                            and (hp['startTime'] >= cashplayer[i]['startTime'])):
+                                    sessionplayer[i]['line'][idx] += val
+                            if ((hp['startTime'] <= sessionplayer[i]['endTime']) 
+                            and (hp['startTime'] >= sessionplayer[i]['startTime'])):
                                 id.append(i)
-                            elif hp['startTime']  <  cashplayer[i]['startTime']:
-                                cashplayer[i]['startTime'] = hp['startTime']
+                            elif hp['startTime']  <  sessionplayer[i]['startTime']:
+                                sessionplayer[i]['startTime'] = hp['startTime']
                                 id.append(i)
-                            elif hp['startTime']  >  cashplayer[i]['endTime']:
-                                cashplayer[i]['endTime'] = hp['startTime']
+                            elif hp['startTime']  >  sessionplayer[i]['endTime']:
+                                sessionplayer[i]['endTime'] = hp['startTime']
                                 id.append(i)
                 if len(id) == 1:
                     i = id[0]
                     if pids[p]==heroes[0]:
-                        self.cc[k][i]['ids'].append(hid)
+                        self.sc[k][i]['ids'].append(hid)
                 elif len(id) == 2:
                     i, j = id[0], id[1]
-                    if    cashplayer[i]['startTime'] < cashplayer[j]['startTime']:
-                          cashplayer[i]['endTime']   = cashplayer[j]['endTime']
-                    else: cashplayer[i]['startTime'] = cashplayer[j]['startTime']
-                    for idx,val in enumerate(cashplayer[j]['line']):
-                        cashplayer[i]['line'][idx] += val
-                    g = cashplayer.pop(j)
+                    if    sessionplayer[i]['startTime'] < sessionplayer[j]['startTime']:
+                          sessionplayer[i]['endTime']   = sessionplayer[j]['endTime']
+                    else: sessionplayer[i]['startTime'] = sessionplayer[j]['startTime']
+                    for idx,val in enumerate(sessionplayer[j]['line']):
+                        sessionplayer[i]['line'][idx] += val
+                    g = sessionplayer.pop(j)
                     if pids[p]==heroes[0]:
-                        self.cc[k][i]['ids'].append(hid)
-                        self.cc[k][i]['ids'] += g['ids']
+                        self.sc[k][i]['ids'].append(hid)
+                        self.sc[k][i]['ids'] += g['ids']
                 elif len(id) == 0:
-                    if cashplayer is None:
-                        self.cc[k] = []
+                    if sessionplayer is None:
+                        self.sc[k] = []
                     hp['endTime'] = hp['startTime']
                     if pids[p]==heroes[0]: hp['ids'].append(hid)
-                    self.cc[k].append(hp)
+                    self.sc[k].append(hp)
         
         if doinsert:
-            select_CC    = self.sql.query['select_CC'].replace('%s', self.sql.query['placeholder'])
-            update_CC    = self.sql.query['update_CC'].replace('%s', self.sql.query['placeholder'])
-            insert_CC    = self.sql.query['insert_CC'].replace('%s', self.sql.query['placeholder'])
-            delete_CC    = self.sql.query['delete_CC'].replace('%s', self.sql.query['placeholder'])
+            select_SC    = self.sql.query['select_SC'].replace('%s', self.sql.query['placeholder'])
+            update_SC    = self.sql.query['update_SC'].replace('%s', self.sql.query['placeholder'])
+            insert_SC    = self.sql.query['insert_SC'].replace('%s', self.sql.query['placeholder'])
+            delete_SC    = self.sql.query['delete_SC'].replace('%s', self.sql.query['placeholder'])
             c = self.get_cursor()
-            for k, cashplayer in self.cc.iteritems():
-                for session in cashplayer:
+            for k, sessionplayer in self.sc.iteritems():
+                for session in sessionplayer:
                     hid = session['hid']
-                    sid = self.sc.get(hid)['id']
+                    sid = self.s.get(hid)['id']
                     lower = session['startTime'] - THRESHOLD
                     upper = session['endTime']   + THRESHOLD
                     row = [lower, upper] + list(k[:2])
-                    c.execute(select_CC, row)
-                    r = self.fetchallDict(c)
+                    c.execute(select_SC, row)
+                    r = self.fetchallDict(c, ['id', 'sessionId', 'startTime', 'endTime'] + CACHE_KEYS)
                     num = len(r)
                     d = [0]*num
                     for z in range(num):
                         d[z] = {}
                         d[z]['line'] = [int(r[z][s]) for s in CACHE_KEYS]
                         d[z]['id']   = r[z]['id']
-                        d[z]['startTime'] = r[z]['sessionId']
+                        d[z]['sessionId'] = r[z]['sessionId']
                         d[z]['startTime'] = r[z]['startTime']
                         d[z]['endTime']   = r[z]['endTime']
                     if (num == 1):
@@ -2879,7 +2810,7 @@ class Database:
                         if session['endTime']   > end:
                             end = session['endTime']
                         row = [start, end] + session['line'] + [id]
-                        c.execute(update_CC, row)
+                        c.execute(update_SC, row)
                     elif (num > 1):
                         start, end, merge, line = None, None, [], [0]*len(CACHE_KEYS)
                         for n in r: merge.append(n['id'])
@@ -2898,27 +2829,27 @@ class Database:
                             for idx in range(len(CACHE_KEYS)):
                                 line[idx] += int(n['line'][idx])
                         row = [sid, start, end] + list(k[:2]) + line 
-                        c.execute(insert_CC, row)
+                        c.execute(insert_SC, row)
                         id = self.get_last_insert_id(c)
                         for m in merge:
-                            c.execute(delete_CC, (m,))
+                            c.execute(delete_SC, (m,))
                             self.commit()
                     elif (num == 0):
                         start               = session['startTime']
                         end                 = session['endTime']
                         row = [sid, start, end] + list(k[:2]) + session['line'] 
-                        c.execute(insert_CC, row)
+                        c.execute(insert_SC, row)
                         id = self.get_last_insert_id(c)              
             self.commit()
             
-    def storeTourCache(self, hid, pids, startTime, tid, gametype, pdata, heroes, hero, doinsert = False):
+    def storeTourneysCache(self, hid, pids, startTime, tid, gametype, pdata, heroes, doinsert = False):
         """Update cached tour sessions. If no record exists, do an insert"""   
         if gametype['type']=='tour' and pdata:
             for p in pdata:
                 k = (tid
                     ,pids[p]
                     )
-                pdata[p]['hands'] = 1
+                pdata[p]['n'] = 1
                 line = [int(pdata[p][s]) for s in CACHE_KEYS]
                 tourplayer = self.tc.get(k)
                 # Add line to the old line in the tourcache.
@@ -2950,7 +2881,7 @@ class Database:
             inserts = []
             c = self.get_cursor()
             for k, tc in self.tc.iteritems():
-                sc = self.sc.get(tc['hid'])
+                sc = self.s.get(tc['hid'])
                 if self.backend == self.SQLITE:
                     tc['startTime'] = datetime.strptime(tc['startTime'], '%Y-%m-%d %H:%M:%S')
                     tc['endTime']   = datetime.strptime(tc['endTime'], '%Y-%m-%d %H:%M:%S')
@@ -2958,7 +2889,7 @@ class Database:
                     tc['startTime'] = tc['startTime'].replace(tzinfo=None)
                     tc['endTime']   = tc['endTime'].replace(tzinfo=None)
                 c.execute(select_TC, k)
-                r = self.fetchallDict(c)
+                r = self.fetchallDict(c, ['id', 'startTime', 'endTime'])
                 num = len(r)
                 if (num == 1):
                     update = not r[0]['startTime'] or not r[0]['endTime']
@@ -2981,37 +2912,23 @@ class Database:
                     inserts.append(row)
                 
             if inserts:
-                c.executemany(insert_TC, inserts)
+                self.executemany(c, insert_TC, inserts)
             self.commit()
     
-    def storeCardsCache(self, hid, pids, startTime, gid, ttid, gametype, siteId, pdata, sdata, heroes, tz_name, doinsert):
+    def storeCardsCache(self, hid, pids, startTime, gametypeId, tourneyTypeId, pdata, heroes, tz_name, doinsert):
         """Update cached cards statistics. If update fails because no record exists, do an insert."""
-        tourneyTypeId, gametypeId = None, None
-        if gametype['type']=='ring':
-            gametypeId = gid
-        else:
-            tourneyTypeId = ttid
-        
-        for p in pdata:
-            if pids[p] in heroes:
-                info = [hs for hs in sdata if hs[1]==pids[p]]
-                for hs in info:
-                    (pid, streetId, boardId, hiLo, rankId, start_cards) = (hs[1], hs[2], hs[3], hs[4], hs[5], pdata[p]['startCards'])
-                    if streetId > 0: start_cards = 170
-                    k =   (hid
-                          ,gametypeId
-                          ,tourneyTypeId
-                          ,pids[p]
-                          ,streetId
-                          ,boardId
-                          ,hiLo
-                          ,start_cards
-                          ,rankId
-                          )
-                    pdata[p]['hands'] = 1
-                    line = [int(pdata[p][s]) for s in CACHE_KEYS]
-                    self.dcbulk[k] = line
 
+        for p in pdata:
+            k =   (hid
+                  ,gametypeId
+                  ,tourneyTypeId
+                  ,pids[p]
+                  ,pdata[p]['startCards']
+                  )
+            pdata[p]['n'] = 1
+            line = [int(pdata[p][s]) for s in CACHE_KEYS]
+            self.dcbulk[k] = line
+                
         if doinsert:
             update_cardscache = self.sql.query['update_cardscache']
             update_cardscache = update_cardscache.replace('%s', self.sql.query['placeholder'])
@@ -3022,70 +2939,63 @@ class Database:
             select_cardscache_tour = self.sql.query['select_cardscache_tour']
             select_cardscache_tour = select_cardscache_tour.replace('%s', self.sql.query['placeholder'])
             
-            select_WC     = self.sql.query['select_WC'].replace('%s', self.sql.query['placeholder'])
-            select_MC     = self.sql.query['select_MC'].replace('%s', self.sql.query['placeholder'])
-            insert_WC     = self.sql.query['insert_WC'].replace('%s', self.sql.query['placeholder'])
-            insert_MC     = self.sql.query['insert_MC'].replace('%s', self.sql.query['placeholder'])
+            select_W     = self.sql.query['select_W'].replace('%s', self.sql.query['placeholder'])
+            select_M     = self.sql.query['select_M'].replace('%s', self.sql.query['placeholder'])
+            insert_W     = self.sql.query['insert_W'].replace('%s', self.sql.query['placeholder'])
+            insert_M     = self.sql.query['insert_M'].replace('%s', self.sql.query['placeholder'])
             
             dccache, inserts = {}, []
             for k, l in self.dcbulk.iteritems():
-                sc = self.sc.get(k[0])
-                if sc != None:
-                    n = (sc['wid'], sc['mid'], k[1], k[2], k[3], k[4], k[5], k[6], k[7], k[8])         
-                    startCards = dccache.get(n)
-                    # Add line to the old line in the hudcache.
-                    if startCards is not None:
-                        for idx,val in enumerate(l):
-                            dccache[n][idx] += val
-                    else:
-                        dccache[n] = l
+                sc = self.s.get(k[0])
+                if sc != None:                    
+                    garbageWeekMonths = (sc['wid'], sc['mid']) in self.wmnew or (sc['wid'], sc['mid']) in self.wmold
+                    garbageTourneyTypes = k[2] in self.ttnew or k[2] in self.ttold
+                    if self.import_options['hhBulkPath'] == "" or (not garbageWeekMonths and not garbageTourneyTypes):
+                        n = (sc['wid'], sc['mid'], k[1], k[2], k[3], k[4])
+                        startCards = dccache.get(n)
+                        # Add line to the old line in the hudcache.
+                        if startCards is not None:
+                            for idx,val in enumerate(l):
+                                dccache[n][idx] += val
+                        else:
+                            dccache[n] = l
 
             c = self.get_cursor()
             for k, item in dccache.iteritems():
-                garbageWeekMonths = (k[0], k[1]) in self.wmnew or (k[0], k[1]) in self.wmold
-                garbageTourneyTypes = k[2] in self.ttnew or k[2] in self.ttold
-                if not garbageWeekMonths and not garbageTourneyTypes:
-                    if k[2]:
-                        q = select_cardscache_ring
-                        row = list(k[:3]) + list(k[-6:])
-                    else:
-                        q = select_cardscache_tour
-                        row = list(k[:2]) + list(k[-7:])
-                    c.execute(q, row)
-                    result = c.fetchone()
-                    if result:
-                        id = result[0]
-                        update = item + [id]
-                        c.execute(update_cardscache, update)                 
-                    else:
-                        insert = list(k) + item
-                        inserts.append(insert)
+                if k[3]:
+                    q = select_cardscache_tour
+                    row = list(k)
+                else:
+                    q = select_cardscache_ring
+                    row = list(k[:3]) + list(k[-2:])
+                c.execute(q, row)
+                result = c.fetchone()
+                if result:
+                    id = result[0]
+                    update = item + [id]
+                    c.execute(update_cardscache, update)                 
+                else:
+                    insert = list(k) + item
+                    inserts.append(insert)
                 
             if inserts:
-                c.executemany(insert_cardscache, inserts)
+                self.executemany(c, insert_cardscache, inserts)
                 self.commit()
             
-    def storePositionsCache(self, hid, pids, startTime, gid, ttid, gametype, siteId, pdata, heroes, tz_name, doinsert):
+    def storePositionsCache(self, hid, pids, startTime, gametypeId, tourneyTypeId, pdata, hdata, heroes, tz_name, doinsert):
         """Update cached position statistics. If update fails because no record exists, do an insert."""
-        tourneyTypeId, gametypeId = None, None
-        if gametype['type']=='ring':
-            gametypeId = gid
-        else:
-            tourneyTypeId = ttid
-            
+
         for p in pdata:
-            if pids[p] in heroes:
-                position = str(pdata[p]['position'])[0]
-            else:
-                position = 'N'
+            position = str(pdata[p]['position'])
             k =   (hid
                   ,gametypeId
                   ,tourneyTypeId
                   ,pids[p]
                   ,len(pids)
+                  ,hdata['maxPosition']
                   ,position
                   )
-            pdata[p]['hands'] = 1
+            pdata[p]['n'] = 1
             line = [int(pdata[p][s]) for s in CACHE_KEYS]
             self.pcbulk[k] = line
                 
@@ -3100,55 +3010,55 @@ class Database:
             select_positionscache_tour = self.sql.query['select_positionscache_tour']
             select_positionscache_tour = select_positionscache_tour.replace('%s', self.sql.query['placeholder'])
             
-            select_WC     = self.sql.query['select_WC'].replace('%s', self.sql.query['placeholder'])
-            select_MC     = self.sql.query['select_MC'].replace('%s', self.sql.query['placeholder'])
-            insert_WC     = self.sql.query['insert_WC'].replace('%s', self.sql.query['placeholder'])
-            insert_MC     = self.sql.query['insert_MC'].replace('%s', self.sql.query['placeholder'])
+            select_W     = self.sql.query['select_W'].replace('%s', self.sql.query['placeholder'])
+            select_M     = self.sql.query['select_M'].replace('%s', self.sql.query['placeholder'])
+            insert_W     = self.sql.query['insert_W'].replace('%s', self.sql.query['placeholder'])
+            insert_M     = self.sql.query['insert_M'].replace('%s', self.sql.query['placeholder'])
                 
             pccache, inserts = {}, []
             for k, l in self.pcbulk.iteritems():
-                sc = self.sc.get(k[0])
+                sc = self.s.get(k[0])
                 if sc != None:
-                    n = (sc['wid'], sc['mid'], k[1], k[2], k[3], k[4], k[5])         
-                    positions = pccache.get(n)
-                    # Add line to the old line in the hudcache.
-                    if positions is not None:
-                        for idx,val in enumerate(l):
-                            pccache[n][idx] += val
-                    else:
-                        pccache[n] = l
+                    garbageWeekMonths = (sc['wid'], sc['mid']) in self.wmnew or (sc['wid'], sc['mid']) in self.wmold
+                    garbageTourneyTypes = k[2] in self.ttnew or k[2] in self.ttold
+                    if self.import_options['hhBulkPath'] == "" or (not garbageWeekMonths and not garbageTourneyTypes):
+                        n = (sc['wid'], sc['mid'], k[1], k[2], k[3], k[4], k[5], k[6])         
+                        positions = pccache.get(n)
+                        # Add line to the old line in the hudcache.
+                        if positions is not None:
+                            for idx,val in enumerate(l):
+                                pccache[n][idx] += val
+                        else:
+                            pccache[n] = l
             
             c = self.get_cursor()
             for k, item in pccache.iteritems():
-                garbageWeekMonths = (k[0], k[1]) in self.wmnew or (k[0], k[1]) in self.wmold
-                garbageTourneyTypes = k[2] in self.ttnew or k[2] in self.ttold
-                if not garbageWeekMonths and not garbageTourneyTypes:
-                    if k[2]:
-                        q = select_positionscache_ring
-                        row = list(k[:3]) + list(k[-3:])
-                    else:
-                        q = select_positionscache_tour
-                        row = list(k[:2]) + list(k[-4:])
-                    
-                    c.execute(q, row)
-                    result = c.fetchone()
-                    if result:
-                        id = result[0]
-                        update = item + [id]
-                        c.execute(update_positionscache, update)
-                    else:
-                        insert = list(k) + item
-                        inserts.append(insert)
+                if k[3]:
+                    q = select_positionscache_tour
+                    row = list(k)
+                else:
+                    q = select_positionscache_ring
+                    row = list(k[:3]) + list(k[-4:])
+                
+                c.execute(q, row)
+                result = c.fetchone()
+                if result:
+                    id = result[0]
+                    update = item + [id]
+                    c.execute(update_positionscache, update)
+                else:
+                    insert = list(k) + item
+                    inserts.append(insert)
                 
             if inserts:
-                c.executemany(insert_positionscache, inserts)
+                self.executemany(c, insert_positionscache, inserts)
                 self.commit()
     
     def appendHandsSessionIds(self):
         for i in range(len(self.hbulk)):
             hid  = self.hids[i]
             tid = self.hbulk[i][2]
-            sc = self.sc.get(hid)
+            sc = self.s.get(hid)
             if sc is not None:
                 self.hbulk[i][4] = sc['id']
                 if tid: self.tbulk[tid] = sc['id']
@@ -3197,16 +3107,14 @@ class Database:
             #print _("Error aquiring hero ids:"), str(sys.exc_value)
         return hero_ids
     
-    def fetchallDict(self, cursor):
+    def fetchallDict(self, cursor, desc):
         data = cursor.fetchall()
         if not data: return []
-        desc = cursor.description
         results = [0]*len(data)
         for i in range(len(data)):
             results[i] = {}
             for n in range(len(desc)):
-                name = desc[n][0]
-                results[i][name] = data[i][n]
+                results[i][desc[n]] = data[i][n]
         return results
     
     def nextHandId(self):
@@ -3221,7 +3129,7 @@ class Database:
         q = self.sql.query['isAlreadyInDB'].replace('%s', self.sql.query['placeholder'])
         if publicDB:
             key = (siteHandNo, siteId, heroSeat)
-            q = q.replace('<heroSeat>', ' AND heroSeat=%s')
+            q = q.replace('<heroSeat>', ' AND heroSeat=%s').replace('%s', self.sql.query['placeholder'])
         else:
             key = (siteHandNo, siteId)
             q = q.replace('<heroSeat>', '')
@@ -3482,7 +3390,7 @@ class Database:
                     statement = 'clear%sTourneyType' % t
                     clear  = self.sql.query[statement].replace('%s', self.sql.query['placeholder'])
                     cursor.execute(clear, (ttid,))
-                self.commit()
+                self.commit()                
                 cursor.execute(select, (ttid,))
                 result=cursor.fetchone()
                 if not result:
@@ -3758,7 +3666,7 @@ class Database:
                                         summary.rebuyCounts[player][entryIdx], summary.addOnCounts[player][entryIdx],
                                         summary.koCounts[player][entryIdx]))
         if inserts:
-            cursor.executemany(self.sql.query['insertTourneysPlayer'].replace('%s', self.sql.query['placeholder']),inserts)
+            self.executemany(cursor, self.sql.query['insertTourneysPlayer'].replace('%s', self.sql.query['placeholder']), inserts)
             
     
 #end class Database

@@ -37,7 +37,8 @@ def _buildStatsInitializer():
     #Init vars that may not be used, but still need to be inserted.
     # All stud street4 need this when importing holdem
     init['effStack']    = 0
-    init['played']      = 0
+    init['common']      = 0
+    init['committed']   = 0
     init['winnings']    = 0
     init['rake']        = 0
     init['rakeDealt']   = 0
@@ -45,17 +46,16 @@ def _buildStatsInitializer():
     init['rakeWeighted'] = 0
     init['totalProfit'] = 0
     init['allInEV']     = 0
-    init['BBwon']       = 0
-    init['street4Aggr'] = False
-    init['wonWhenSeenStreet1'] = False
+    init['showdownWinnings'] = 0
+    init['nonShowdownWinnings'] = 0
     init['sawShowdown'] = False
     init['showed']      = False
     init['wonAtSD']     = False
     init['startCards']  = 170
     init['handString']  = None
-    init['position']    = 2
+    init['position']    = 9 #ANTE ALL IN
     init['street0CalledRaiseChance'] = 0
-    init['street0CalledRaiseDone'] = 0
+    init['street0CalledRaiseDone'] = 0    
     init['street0VPIChance']    = True
     init['street0VPI']          = False
     init['street0AggrChance']   = True
@@ -71,9 +71,11 @@ def _buildStatsInitializer():
     init['street0_FoldTo4BDone']= False
     init['street0_SqueezeChance']= False
     init['street0_SqueezeDone'] = False
+    init['stealChance']         = False
+    init['stealDone']           = False
     init['success_Steal']       = False
     init['raiseToStealChance']  = False
-    init['raiseToStealDone']  = False
+    init['raiseToStealDone']    = False
     init['raiseFirstInChance']  = False
     init['raisedFirstIn']       = False
     init['foldBbToStealChance'] = False
@@ -85,33 +87,33 @@ def _buildStatsInitializer():
     init['street2Seen']         = False
     init['street3Seen']         = False
     init['street4Seen']         = False
-
+    init['otherRaisedStreet0']       = False
+    init['foldToOtherRaisedStreet0'] = False
+    init['wentAllIn'] = False
 
     for i in range(5):
         init['street%dCalls' % i] = 0
         init['street%dBets' % i] = 0
         init['street%dRaises' % i] = 0
-        init['street%dAggr' % i] = False
+        init['street%dAggr' % i] = False        
+        init['street%dInPosition' % i] = False
+        init['street%dFirstToAct' % i] = False
+        init['street%dAllIn' % i] = False
+        
+    for i in range(1,4):
+        init['street%dDiscards' % i] = 0
+        
     for i in range(1,5):
-        init['street%dCBChance' %i] = False
-        init['street%dCBDone' %i] = False
+        init['street%dCBChance' %i]             = False
+        init['street%dCBDone' %i]               = False
         init['street%dCheckCallRaiseChance' %i] = False
         init['street%dCheckCallDone' %i]        = False
         init['street%dCheckRaiseDone' %i]       = False
         init['otherRaisedStreet%d' %i]          = False
         init['foldToOtherRaisedStreet%d' %i]    = False
-
-    #FIXME - Everything below this point is incomplete.
-    init['other3BStreet0']              = False
-    init['other4BStreet0']              = False
-    init['otherRaisedStreet0']          = False
-    init['foldToOtherRaisedStreet0']    = False
-    for i in range(1,5):
         init['foldToStreet%dCBChance' %i]       = False
         init['foldToStreet%dCBDone' %i]         = False
-    init['wonWhenSeenStreet2'] = False
-    init['wonWhenSeenStreet3'] = False
-    init['wonWhenSeenStreet4'] = False
+        init['wonWhenSeenStreet%d' %i]          = False
     return init
 
 _INIT_STATS = _buildStatsInitializer()
@@ -130,14 +132,11 @@ class DerivedStats():
         
         self.assembleHands(hand)
         self.assembleHandsPlayers(hand)
-
-        if hand.saveActions:
-            self.assembleHandsActions(hand)
+        self.assembleHandsActions(hand)
         
-        if pokereval:
-            if hand.gametype['category'] in Card.games:
-                self.assembleHandsStove(hand)
-                self.assembleHandsPots(hand)
+        if pokereval and hand.gametype['category'] in Card.games:
+            self.assembleHandsStove(hand)
+            self.assembleHandsPots(hand)
 
     def getHands(self):
         return self.hands
@@ -163,6 +162,7 @@ class DerivedStats():
         self.hands['startTime']     = hand.startTime          # format this!
         self.hands['importTime']    = None
         self.hands['seats']         = self.countPlayers(hand) 
+        self.hands['maxPosition']   = -1
         #self.hands['maxSeats']      = hand.maxseats
         self.hands['texture']       = None                    # No calculation done for this yet.
         self.hands['tourneyId']     = hand.tourneyId
@@ -202,14 +202,15 @@ class DerivedStats():
             cards = [Card.encodeCard(c) for c in boardcards[-5:]]
             self.hands['boards'] += [[boardId] + cards]
 
-        #print "DEBUG: self.getStreetTotals = (%s, %s, %s, %s, %s)" %  hand.getStreetTotals()
+        #print "DEBUG: %s self.getStreetTotals = (%s, %s, %s, %s, %s, %s)" %  tuple([hand.handid] + list(hand.getStreetTotals()))
         totals = hand.getStreetTotals()
-        totals = [int(100*i) for i in totals]
-        self.hands['street1Pot']  = totals[0]
-        self.hands['street2Pot']  = totals[1]
-        self.hands['street3Pot']  = totals[2]
-        self.hands['street4Pot']  = totals[3]
-        self.hands['showdownPot'] = totals[4]
+        totals = [int(100*i) for i in totals]        
+        self.hands['street0Pot']  = totals[0]
+        self.hands['street1Pot']  = totals[1]
+        self.hands['street2Pot']  = totals[2]
+        self.hands['street3Pot']  = totals[3]
+        self.hands['street4Pot']  = totals[4]
+        self.hands['finalPot'] = totals[5]
 
         self.vpip(hand) # Gives playersVpi (num of players vpip)
         #print "DEBUG: vpip: %s" %(self.hands['playersVpi'])
@@ -233,9 +234,9 @@ class DerivedStats():
                 player_stats['sitout'] = False
             if hand.gametype["type"]=="tour":
                 player_stats['tourneyTypeId']=hand.tourneyTypeId
-                player_stats['tourneysPlayersIds'] = hand.tourneysPlayersIds[player[1]]
+                player_stats['tourneysPlayersId'] = hand.tourneysPlayersIds[player[1]]
             else:
-                player_stats['tourneysPlayersIds'] = None
+                player_stats['tourneysPlayersId'] = None
             if player_name in hand.shown:
                 player_stats['showed'] = True
 
@@ -254,15 +255,14 @@ class DerivedStats():
 
         # Winnings is a non-negative value of money collected from the pot, which already includes the
         # rake taken out. hand.collectees is Decimal, database requires cents
-        num_collectees = len(hand.collectees)
+        num_collectees, i = len(hand.collectees), 0
         for player, winnings in hand.collectees.iteritems():
             collectee_stats = self.handsplayers.get(player)
             collectee_stats['winnings'] = int(100 * winnings)
-            #FIXME: This is pretty dodgy, rake = hand.rake/#collectees
-            # You can really only pay rake when you collect money, but
-            # different sites calculate rake differently.
-            # Should be fine for split-pots, but won't be accurate for multi-way pots
-            collectee_stats['rake'] = int(100 * hand.rake)/num_collectees
+            # Splits evenly on split pots and gives remainder to first player
+            # Gets overwritten when calculating multi-way pots in assembleHandsPots
+            rake = int(100 * hand.rake)/num_collectees
+            collectee_stats['rake'] = rake + ((int(100 * hand.rake) % rake) if (i==0 and rake>0) else 0)
             if collectee_stats['street1Seen'] == True:
                 collectee_stats['wonWhenSeenStreet1'] = True
             if collectee_stats['street2Seen'] == True:
@@ -273,46 +273,34 @@ class DerivedStats():
                 collectee_stats['wonWhenSeenStreet4'] = True
             if collectee_stats['sawShowdown'] == True:
                 collectee_stats['wonAtSD'] = True
+            i+=1
         
-        contributed = []
+        contributed, i, weightedTotal, firstPlayer = [], 0, 0, None
         for player, money_committed in hand.pot.committed.iteritems():
             committed_player_stats = self.handsplayers.get(player)
             paid = (100 * money_committed) + (100*hand.pot.common[player])
+            committed_player_stats['common'] = int(100 * hand.pot.common[player])
+            committed_player_stats['committed'] = int(100 * money_committed) 
             committed_player_stats['totalProfit'] = int(committed_player_stats['winnings'] - paid)
-            committed_player_stats['allInEV'] = committed_player_stats['totalProfit']
-            committed_player_stats['rakeDealt'] = int(100* hand.rake)/len(hand.players)
+            committed_player_stats['allInEV'] = committed_player_stats['totalProfit']            
+            rakeDealt = int(100* hand.rake)/len(hand.players)            
+            committed_player_stats['rakeDealt'] = rakeDealt + ((int(100 * hand.rake) % rakeDealt) if (i==0 and rakeDealt>0) else 0)
             if paid > 0: contributed.append(player)
+            if i==0: firstPlayer = player
             if hand.totalpot>0:
-                committed_player_stats['rakeWeighted'] = int((100* hand.rake) * (paid/(100*hand.totalpot)))
+                rakeWeighted =  int((100* hand.rake) * (paid/(100*hand.totalpot))) 
+                committed_player_stats['rakeWeighted'] = rakeWeighted
+                weightedTotal += rakeWeighted
             else:
-                committed_player_stats['rakeWeighted'] = 0
+                committed_player_stats['rakeWeighted'] = 0;
+            i+=1
             
-        for player in contributed:
-            self.handsplayers[player]['rakeContributed'] = int(100* hand.rake)/len(contributed)
-            
-        for player in hand.players:
-            player_name = player[1]
-            player_stats = self.handsplayers.get(player_name)
-            if int(Decimal(hand.gametype['bb']))>0:
-                player_stats['BBwon'] = player_stats['totalProfit'] / int(Decimal(hand.gametype['bb'])*2)
-            if player_stats['street0VPI'] or player_stats['street1Seen']:
-                player_stats['played'] = 1
-            if player_stats['sawShowdown']:
-                player_stats['showdownWinnings'] = player_stats['totalProfit']
-                player_stats['nonShowdownWinnings'] = 0
-            else:
-                player_stats['showdownWinnings']    = 0
-                player_stats['nonShowdownWinnings'] = player_stats['totalProfit']
-            if player_name!=hand.hero and hand.hero:
-                hero_stats = self.handsplayers.get(hand.hero)
-                if player_stats['totalProfit']>0 and 0>hero_stats['totalProfit']:
-                    player_stats['vsHero'] = - int(hero_stats['totalProfit'] * Decimal(player_stats['winnings'])/(hand.totalpot*100))
-                elif hero_stats['totalProfit']>0 and 0>player_stats['totalProfit']:
-                    player_stats['vsHero'] = int(player_stats['totalProfit'] * Decimal(hero_stats['winnings'])/(hand.totalpot*100))
-                else:
-                    player_stats['vsHero'] = 0
-            else:
-                player_stats['vsHero'] = 0
+        if weightedTotal < int(100* hand.rake):
+            self.handsplayers.get(firstPlayer)['rakeWeighted'] += (int(100* hand.rake) - weightedTotal)
+           
+        for i, player in enumerate(contributed):
+            rakeContributed = int(100* hand.rake)/len(contributed)
+            self.handsplayers[player]['rakeContributed'] = rakeContributed + ((int(100 * hand.rake) % rakeContributed) if (i==0 and rakeContributed>0) else 0)
 
         self.calcCBets(hand)
         
@@ -326,6 +314,10 @@ class DerivedStats():
             #for i, card in enumerate(hcs[:20, 1): #Python 2.6 syntax
             #    self.handsplayers[player[1]]['card%s' % i] = Card.encodeCard(card)
             player_stats = self.handsplayers.get(player_name)
+            if player_stats['sawShowdown']:
+                player_stats['showdownWinnings'] = player_stats['totalProfit']
+            else:
+                player_stats['nonShowdownWinnings'] = player_stats['totalProfit']
             for i, card in enumerate(hcs[:20]):
                 player_stats['card%d' % (i+1)] = encodeCard(card)
             player_stats['startCards'] = calcStartCards(hand, player_name)
@@ -366,10 +358,14 @@ class DerivedStats():
                     self.handsactions[k]['amountCalled'] = int(100 * act[4])
                 if act[1] in ('discards'):
                     self.handsactions[k]['numDiscarded'] = int(act[2])
+                    self.handsplayers[act[0]]['street%dDiscards' %(i-1)] = int(act[2])
                 if act[1] in ('discards') and len(act) > 3:
                     self.handsactions[k]['cardsDiscarded'] = act[3]
                 if len(act) > 3 and act[1] not in ('discards'):
                     self.handsactions[k]['allIn'] = act[-1]
+                    if act[-1]: 
+                        self.handsplayers[act[0]]['wentAllIn'] = True
+                        self.handsplayers[act[0]]['street%dAllIn' %(i-1)] = True
     
     def assembleHandsStove(self, hand):
         category = hand.gametype['category']
@@ -617,6 +613,7 @@ class DerivedStats():
                                     potFound[pname][0] += ppot
                                     data = {'potId': potId, 'boardId': boardId, 'hiLo': hl,'ppot':ppot, 'winners': [m for m in pnames if pname!=n], 'mod': ppot>potSplit}
                                     playersPots[pname][1].append(data)
+                                    self.handsplayers[pname]['rake'] = 0
         
             for p, (total, info) in playersPots.iteritems():
                 if hand.collectees.get(p) and info:
@@ -644,6 +641,7 @@ class DerivedStats():
                         potFound[p][1] -= collected
                         insert = [None, item['potId'], item['boardId'], item['hiLo'][0], hand.dbid_pids[p], int(item['ppot']*100), int(collected*100), int(rake*100)]   
                         self.handspots.append(insert)
+                        self.handsplayers[p]['rake'] += int(rake*100)
 
     def setPositions(self, hand):
         """Sets the position for each player in HandsPlayers
@@ -654,13 +652,15 @@ class DerivedStats():
         actions = hand.actions[hand.holeStreets[0]]
         # Note:  pfbao list may not include big blind if all others folded
         players = self.pfbao(actions)
-
+        
         # set blinds first, then others from pfbao list, avoids problem if bb
         # is missing from pfbao list or if there is no small blind
         sb, bb, bi = False, False, False
         if hand.gametype['base'] == 'stud':
             # Stud position is determined after cards are dealt
-            bi = [x[0] for x in hand.actions[hand.actionStreets[1]] if x[1] == 'bringin']
+            # First player to act is always the bring-in position in stud
+            # even if they decided to bet/completed
+            bi = [hand.actions[hand.actionStreets[1]][0][0]]
         else:
             bb = [x[0] for x in hand.actions[hand.actionStreets[0]] if x[1] == 'big blind']
             sb = [x[0] for x in hand.actions[hand.actionStreets[0]] if x[1] == 'small blind']
@@ -668,17 +668,27 @@ class DerivedStats():
         # if there are > 1 sb or bb only the first is used!
         if bb:
             self.handsplayers[bb[0]]['position'] = 'B'
+            self.handsplayers[bb[0]]['street0InPosition'] = True
             if bb[0] in players:  players.remove(bb[0])
         if sb:
             self.handsplayers[sb[0]]['position'] = 'S'
+            self.handsplayers[sb[0]]['street0FirstToAct'] = True
             if sb[0] in players:  players.remove(sb[0])
         if bi:
             self.handsplayers[bi[0]]['position'] = 'S'
+            self.handsplayers[bi[0]]['street0FirstToAct'] = True
             if bi[0] in players:  players.remove(bi[0])
 
+        #print "DEBUG: actions: '%s'" % actions
         #print "DEBUG: bb: '%s' sb: '%s' bi: '%s' plyrs: '%s'" %(bb, sb, bi, players)
-        for i,player in enumerate(reversed(players)):
+        for i,player in enumerate(reversed(players)): 
             self.handsplayers[player]['position'] = i
+            self.hands['maxPosition'] = i
+            if i==0 and hand.gametype['base'] == 'stud':
+                self.handsplayers[player]['street0InPosition'] = True
+            elif (i-1)==len(players):
+                self.handsplayers[player]['street0FirstToAct'] = True
+                
 
     def assembleHudCache(self, hand):
         # No real work to be done - HandsPlayers data already contains the correct info
@@ -770,6 +780,7 @@ class DerivedStats():
         #
                     
         for (i, street) in enumerate(hand.actionStreets):
+
             if (i-1) in (1,2,3,4):
                 # p_in stores players with cards at start of this street,
                 # so can set streetxSeen & playersAtStreetx with this information
@@ -779,15 +790,26 @@ class DerivedStats():
                 self.hands['playersAtStreet%d' % (i-1)] = len(p_in)
                 for player_with_cards in p_in:
                     self.handsplayers[player_with_cards]['street%sSeen' % (i-1)] = True
+
+                players = self.pfbao(hand.actions[street], f=('discards','stands pat'))
+                if len(players)>0:
+                    self.handsplayers[players[0]]['street%dFirstToAct' % (i-1)] = True
+                    self.handsplayers[players[-1]]['street%dInPosition' % (i-1)] = True
             #
             # find out who folded, and eliminate them from p_in
             #
             actions = hand.actions[street]
             p_in = p_in - self.pfba(actions, l=('folds',))
             #
-            # if everyone folded, we are done, so exit this method immediately
+            # if everyone folded, we are done, so exit this method
             #
-            if len(p_in) == 1: return None
+            if len(p_in) == 1: 
+                if (i-1) in (1,2,3,4) and len(players)>0 and list(p_in)[0] not in players:
+                    # corrects which player is "in position"
+                    # if everyone folds before the last player could act
+                    self.handsplayers[players[-1]]['street%dInPosition' % (i-1)] = False
+                    self.handsplayers[list(p_in)[0]]['street%dInPosition' % (i-1)] = True
+                return None
 
         #
         # The remaining players in p_in reached showdown (including all-ins
@@ -841,16 +863,21 @@ class DerivedStats():
                 player_stats['foldSbToStealChance'] = steal_attempt
                 player_stats['foldedSbToSteal'] = steal_attempt and act == 'folds'
                 player_stats['raiseToStealDone'] = steal_attempt and act == 'raises'
+                if steal_attempt:
+                    self.handsplayers[stealer]['success_Steal'] = act == 'folds' and hand.gametype['base'] == 'stud'
 
             if steal_attempt and act != 'folds':
                 break
 
             if not steal_attempt and not raised and not act in ('bringin'):
                 player_stats['raiseFirstInChance'] = True
+                if posn in steal_positions:
+                    player_stats['stealChance'] = True
                 if act in ('bets', 'raises', 'completes'):
                     player_stats['raisedFirstIn'] = True
                     raised = True
                     if posn in steal_positions:
+                        player_stats['stealDone'] = True
                         steal_attempt = True
                         stealer = pname
                 if act == 'calls':
