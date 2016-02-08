@@ -340,12 +340,11 @@ class Hand(object):
         
     def updateSessionsCache(self, db, tz, doinsert = False):
         """ Function to update the Sessions"""
-        if True: #self.hero in self.dbid_pids:
+        if self.cacheSessions:
             heroes = [self.dbid_pids.values()[0]]
             db.storeSessions(self.dbid_hands, self.dbid_pids, self.startTime, self.tourneyId, heroes, tz, doinsert) 
-            if self.cacheSessions:
-                db.storeSessionsCache(self.dbid_hands, self.dbid_pids, self.startTime, self.dbid_gt, self.gametype, self.handsplayers, heroes, doinsert)
-                db.storeTourneysCache(self.dbid_hands, self.dbid_pids, self.startTime, self.tourneyId, self.gametype, self.handsplayers, heroes, doinsert)
+            db.storeSessionsCache(self.dbid_hands, self.dbid_pids, self.startTime, self.dbid_gt, self.gametype, self.handsplayers, heroes, doinsert)
+            db.storeTourneysCache(self.dbid_hands, self.dbid_pids, self.startTime, self.tourneyId, self.gametype, self.handsplayers, heroes, doinsert)
             
     def updateCardsCache(self, db, tz, doinsert = False):
         """ Function to update the CardsCache"""
