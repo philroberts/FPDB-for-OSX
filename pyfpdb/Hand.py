@@ -1334,14 +1334,14 @@ class DrawHand(Hand):
     def join_holecards(self, player, asList=False, street=False):
         """With asList = True it returns the set cards for a player including down cards if they aren't know"""
         handsize = Card.games[self.gametype['category']][5][0][1]
-        holecards = [u'0x']*(4 * handsize)
+        holecards = [u'0x']*20
         
         for i, _street in enumerate(self.holeStreets):
             if player in self.holecards[_street].keys():
                 allhole = self.holecards[_street][player][1] + self.holecards[_street][player][0]
                 allhole = allhole[:handsize]
                 for c in range(len(allhole)):
-                    idx = c + i * handsize
+                    idx = c + i * 5
                     holecards[idx] = allhole[c]
 
         result = []
@@ -1349,13 +1349,13 @@ class DrawHand(Hand):
             result = holecards
         elif street in self.holeStreets:
             if street == 'DEAL':
-                result = holecards[0:handsize]
+                result = holecards[0:5]
             elif street == 'DRAWONE':
-                result = holecards[handsize:2 * handsize]
+                result = holecards[5:10]
             elif street == 'DRAWTWO':
-                result = holecards[2 * handsize:3 * handsize]
+                result = holecards[10:15]
             elif street == 'DRAWTHREE':
-                result = holecards[3 * handsize:4 * handsize]
+                result = holecards[15:20]
         return result if asList else " ".join(result)
 
     def writeHand(self, fh=sys.__stdout__):
