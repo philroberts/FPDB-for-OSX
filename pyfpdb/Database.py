@@ -3482,14 +3482,16 @@ class Database:
         return False
     
     def getSqlTourneyIDs(self, hand):
-        if(self.tcache == None):
-            self.tcache = LambdaDict(lambda  key:self.insertTourney(key[0], key[1], key[2]))
+        #if(self.tcache == None):
+        #    self.tcache = LambdaDict(lambda  key:self.insertTourney(key[0], key[1], key[2]))
 
-        result = self.tcache[(hand.siteId, hand.tourNo, hand.tourneyTypeId)]
+        #result = self.tcache[(hand.siteId, hand.tourNo, hand.tourneyTypeId)]
+        
+        result = self.insertTourney(hand.siteId, hand.tourNo, hand.tourneyTypeId, hand.startTime)
 
         return result
     
-    def insertTourney(self, siteId, tourNo, tourneyTypeId):
+    def insertTourney(self, siteId, tourNo, tourneyTypeId, handTime):
         result = None
         c = self.get_cursor()
         q = self.sql.query['getTourneyByTourneyNo']
@@ -3501,10 +3503,23 @@ class Database:
         if (tmp == None): 
             c.execute (self.sql.query['insertTourney'].replace('%s', self.sql.query['placeholder']),
                         (tourneyTypeId, None, tourNo, None, None,
-                         None, None, None, None, None, None, None, None, None))
+                         handTime, handTime, None, None, None, None, None, None, None))
             result = self.get_last_insert_id(c)
         else:
             result = tmp[0]
+            columnNames = [desc[0] for desc in c.description]
+            resultDict = dict(zip(columnNames, tmp))
+            if self.backend == self.PGSQL:
+                startTime, endTime = resultDict['starttime'], resultDict['endtime']
+            else:
+                startTime, endTime = resultDict['startTime'], resultDict['endTime']
+            if (startTime == None or handTime.replace(tzinfo=None) < startTime):
+                q = self.sql.query['updateTourneyStart'].replace('%s', self.sql.query['placeholder'])
+                c.execute(q, (handTime, result))
+            elif (endTime == None or handTime.replace(tzinfo=None) > endTime):
+                q = self.sql.query['updateTourneyEnd'].replace('%s', self.sql.query['placeholder'])
+                c.execute(q, (handTime, result))
+                
         return result
     
     def createOrUpdateTourney(self, summary):

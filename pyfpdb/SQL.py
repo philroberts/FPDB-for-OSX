@@ -8757,6 +8757,16 @@ class Sql:
                                         WHERE id=%s
         """
         
+        self.query['updateTourneyStart'] = """UPDATE Tourneys
+                                             SET startTime = %s
+                                        WHERE id=%s
+        """
+        
+        self.query['updateTourneyEnd'] = """UPDATE Tourneys
+                                             SET endTime = %s
+                                        WHERE id=%s
+        """
+        
         self.query['getTourneysPlayersByIds'] = """SELECT *
                                                 FROM TourneysPlayers
                                                 WHERE tourneyId=%s AND playerId=%s AND entryId=%s
