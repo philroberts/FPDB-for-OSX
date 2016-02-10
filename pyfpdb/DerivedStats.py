@@ -1120,8 +1120,7 @@ class DerivedStats():
         actions = hand.actions[hand.holeStreets[0]]
         for p in hand.players: 
             if p[1] not in hand.sitout:
-                if int(Decimal(hand.gametype['bb']))>0:
-                    pstacks[p[1]] = int(100 * Decimal(p[2])) / int(Decimal(hand.gametype['bb']))
+                pstacks[p[1]] = int(100 * Decimal(p[2]))
         for action in actions:
             if action[0] in seen: continue
             if action[0] not in pstacks: continue
