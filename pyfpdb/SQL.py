@@ -317,7 +317,7 @@ class Sql:
                         category varchar(9) NOT NULL,
                         limitType char(2) NOT NULL,
                         hiLo char(1) NOT NULL,
-                        mix char(9) NOT NULL,
+                        mix varchar(9) NOT NULL,
                         smallBlind bigint,
                         bigBlind bigint,
                         smallBet bigint NOT NULL,
