@@ -679,7 +679,7 @@ or None if we fail to get the info """
             if money[-4] == '.':
                 money = money[:-4] + ',' + money[-3:]
 
-        return money.replace(',', '')
+        return money.replace(',', '').replace("'", '')
 
 def getTableTitleRe(config, sitename, *args, **kwargs):
     "Returns string to search in windows titles for current site"
