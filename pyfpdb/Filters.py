@@ -381,8 +381,8 @@ class Filters(QWidget):
         if 'cards' in self.callback:
             self.callback['cards'](card)
 
-    def __set_cards(self, w, val):
-        print "DEBUG: val: %s = %s" %(val, w.get_active())
+    def __set_cards(self, checkState):
+        pass
 
     def __set_checkboxes(self, checkState, checkBoxes, setState):
         for checkbox in checkBoxes.values():

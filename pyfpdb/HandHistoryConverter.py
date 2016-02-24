@@ -24,7 +24,6 @@ import traceback
 from optparse import OptionParser
 import os
 import os.path
-import ntpath
 import xml.dom.minidom
 import codecs
 from decimal_wrapper import Decimal
@@ -179,12 +178,6 @@ HandHistoryConverter: '%(sitename)s'
     def setAutoPop(self, value):
         self.autoPop = value
                 
-    def progressNotify(self):
-        "A callback to the interface while events are pending"
-        import gtk, pygtk
-        while gtk.events_pending():
-            gtk.main_iteration(False)
-
     def allHandsAsList(self):
         """Return a list of handtexts in the file at self.in_path"""
         #TODO : any need for this to be generator? e.g. stars support can email one huge file of all hands in a year. Better to read bit by bit than all at once.
@@ -527,10 +520,10 @@ or None if we fail to get the info """
 
     def getParsedObjectType(self):
         return self.parsedObjectType
-    
+
     def getBasename(self):
-        head, tail = ntpath.split(self.in_path)
-        base = tail or ntpath.basename(head)
+        head, tail = os.path.split(self.in_path)
+        base = tail or os.path.basename(head)
         return base.split('.')[0]
 
     #returns a status (True/False) indicating wether the parsing could be done correctly or not
@@ -686,7 +679,7 @@ or None if we fail to get the info """
             if money[-4] == '.':
                 money = money[:-4] + ',' + money[-3:]
 
-        return money.replace(',', '')
+        return money.replace(',', '').replace("'", '')
 
 def getTableTitleRe(config, sitename, *args, **kwargs):
     "Returns string to search in windows titles for current site"

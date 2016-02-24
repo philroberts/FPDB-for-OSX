@@ -186,7 +186,7 @@ class TourneySummary(object):
                  (_("SNG"), self.isSng),
                  (_("SATELLITE"), self.isSatellite),
                  (_("DOUBLE OR NOTHING"), self.isDoubleOrNothing),
-                 (_("GUARANTEE"), self.guarantee),
+                 (_("GUARANTEEAMT"), self.guaranteeAmt),
                  (_("ADDED"), self.added),
                  (_("ADDED CURRENCY"), self.addedCurrency),
                  (_("COMMENT"), self.comment),
@@ -360,4 +360,3 @@ winnings    (int) the money the player ended the tourney with (can be 0, or -1 i
                 log.warning("TS.readFile: '%s' : '%s'" % (filename, e))
 
         return whole_file
-        

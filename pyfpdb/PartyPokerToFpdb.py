@@ -40,7 +40,7 @@ class PartyPoker(HandHistoryConverter):
     substitutions = {
                      'LEGAL_ISO' : "USD|EUR",            # legal ISO currency codes
                             'LS' : u"\$|\u20ac|\xe2\x82\xac|",    # Currency symbols - Euro(cp1252, utf-8)
-                           'NUM' : u".,\d",
+                           'NUM' : u".,'\d",
                     }
     limits = { 'NL':'nl', 'PL':'pl', '':'fl', 'FL':'fl', 'Limit':'fl' }
     games = {                         # base, category

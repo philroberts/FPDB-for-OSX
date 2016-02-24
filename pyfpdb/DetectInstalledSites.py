@@ -42,6 +42,7 @@ Todo:
 """
 import platform
 import os
+import sys
 
 import Configuration
 
@@ -116,12 +117,16 @@ class DetectInstalledSites():
             self.detectMergeNetwork()
 
         if (self.hhpathfound and self.herofound):
-            self.hhpathfound = unicode(self.hhpathfound)
-            self.tspathfound = unicode(self.tspathfound)
-            self.herofound = unicode(self.herofound)
+            encoding = sys.getfilesystemencoding()
+            if type(self.hhpathfound) is not unicode:
+                self.hhpathfound = unicode(self.hhpathfound, encoding)
+            if type(self.tspathfound) is not unicode:
+                self.tspathfound = unicode(self.tspathfound, encoding)
+            if type(self.herofound) is not unicode:
+                self.herofound = unicode(self.herofound, encoding)
             return {"detected":True, "hhpath":self.hhpathfound, "heroname":self.herofound, "tspath":self.tspathfound}
         else:
-            return {"detected":False, "hhpath":"", "heroname":"", "tspath":""}
+            return {"detected":False, "hhpath":u"", "heroname":u"", "tspath":u""}
 
     def detectFullTilt(self):
 

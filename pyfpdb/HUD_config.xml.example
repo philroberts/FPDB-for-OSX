@@ -164,6 +164,7 @@
                 aux_enabled="True" hud_menu_xshift="20" hud_menu_yshift="-20">
             <layout_set game_type="all" ls="fulltilt_default"/>
             <fav fav_seat="1" max="2"/>
+            <fav fav_seat="3" max="5"/>
             <fav fav_seat="3" max="6"/>
             <fav fav_seat="4" max="8"/>
             <fav fav_seat="5" max="9"/>
@@ -695,6 +696,14 @@
             <layout height="546" max="2" width="792">
                 <location seat="1" x="681" y="221"/>
                 <location seat="2" x="2" y="221"/>
+                <location common="1" x="323" y="232"/>
+            </layout>
+            <layout height="547" max="5" width="794">
+                <location seat="1" x="623" y="184"/>
+                <location seat="2" x="675" y="374"/>
+                <location seat="3" x="429" y="424"/>
+                <location seat="4" x="42" y="373"/>
+                <location seat="5" x="23" y="183"/>
                 <location common="1" x="323" y="232"/>
             </layout>
             <layout height="547" max="6" width="794">
@@ -1504,7 +1513,7 @@
                 <location seat="7" x="11" y="352"/>
                 <location seat="8" x="1" y="277"/>
                 <location seat="9" x="6" y="65"/>
-                <location seat="10" x="159" y="11"/>
+                <location hist_seat="0" seat="10" x="159" y="11"/>
                 <location common="1" x="316" y="237"/>
             </layout>
         </ls>

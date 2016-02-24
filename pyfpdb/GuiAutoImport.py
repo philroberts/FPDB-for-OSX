@@ -234,7 +234,7 @@ class GuiAutoImport(QWidget):
                     else:
                         for (site,type) in self.input_settings:
                             self.importer.addImportDirectory(self.input_settings[(site,type)][0], monitor = True, site=(site,type))
-                            self.addText("\n * " + _("Add %s import directory %s") % (site, str(self.input_settings[(site,type)][0])))
+                            self.addText("\n * " + _("Add %s import directory %s") % (site, self.input_settings[(site,type)][0]))
                             self.do_import()
                     interval = self.intervalEntry.value()
                     self.importtimer = QTimer()

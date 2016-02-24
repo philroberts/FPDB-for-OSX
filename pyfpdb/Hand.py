@@ -364,6 +364,9 @@ class Hand(object):
         q = db.sql.query['playerHand']
         q = q.replace('%s', db.sql.query['placeholder'])
 
+        c.execute("select heroseat from Hands where id = {}".format(handId))
+        heroSeat = c.fetchone()[0]
+
         # PlayerStacks
         c.execute(q, (handId,))
         # See NOTE: below on what this does.
@@ -394,7 +397,7 @@ class Hand(object):
             cardlist.append(Card.valueSuitFromCard(row['card19']))
             cardlist.append(Card.valueSuitFromCard(row['card20']))
             # mucked/shown/dealt is not in the database, use mucked for villain and dealt for hero
-            if row['name'] == self.hero:
+            if row['seatno'] == heroSeat:
                 dealt=True
                 mucked=False
             else:
