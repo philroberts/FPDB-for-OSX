@@ -58,7 +58,7 @@ games = {              # base, category
            'studhilo' : ('stud','7stud8', 's', {'THIRD': 0,'FOURTH': 1,'FIFTH': 2,'SIXTH': 3,'SEVENTH': 4}, 'SEVENTH', [(0,3),(0,4),(0,5),(0,6),(0,7)]),
            '27_3draw' : ('draw','lowball27', 'r', {'DEAL':0, 'DRAWONE':1, 'DRAWTWO':2, 'DRAWTHREE':3}, 'DRAWTHREE', [(0,5),(5,10),(10,15),(15,20)]),
            'fivedraw' : ('draw','holdem', 'h', {'DEAL':0, 'DRAWONE':1}, 'DRAWONE', [(0,5),(5,10)]),
-             'badugi' : ('draw', None, 'l', {'DEAL':0, 'DRAWONE':1, 'DRAWTWO':2, 'DRAWTHREE':3}, 'DRAWTHREE', [(0,4),(4,8),(8,12),(12,16)]),
+             'badugi' : ('draw', None, 'l', {'DEAL':0, 'DRAWONE':1, 'DRAWTWO':2, 'DRAWTHREE':3}, 'DRAWTHREE', [(0,4),(5,9),(10,14),(15,19)]),
            '27_1draw' : ('draw','lowball27', 'r', {'DEAL':0, 'DRAWONE':1},'DRAWONE', [(0,5),(5,10)]),
            'a5_3draw' : ('draw', 'lowball', 'l', {'DEAL':0, 'DRAWONE':1, 'DRAWTWO':2, 'DRAWTHREE':3}, 'DRAWTHREE', [(0,5),(5,10),(10,15),(15,20)])
        }
