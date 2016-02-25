@@ -80,7 +80,7 @@ except ImportError:
     use_numpy = False
 
 
-DB_VERSION = 202
+DB_VERSION = 203
 
 # Variance created as sqlite has a bunch of undefined aggregate functions.
 

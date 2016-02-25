@@ -1526,6 +1526,7 @@ class Sql:
                         stored INT,
                         dups INT,
                         partial INT,
+                        skipped INT,
                         errs INT,
                         ttime100 INT,
                         finished BOOLEAN)
@@ -1543,6 +1544,7 @@ class Sql:
                         stored INT,
                         dups INT,
                         partial INT,
+                        skipped INT,
                         errs INT,
                         ttime100 INT,
                         finished BOOLEAN)"""
@@ -1559,6 +1561,7 @@ class Sql:
                         stored INT,
                         dups INT,
                         partial INT,
+                        skipped INT,
                         errs INT,
                         ttime100 INT,
                         finished BOOLEAN
@@ -9146,13 +9149,14 @@ class Sql:
                         stored,
                         dups,
                         partial,
+                        skipped,
                         errs,
                         ttime100,
                         finished)
                values (
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
-                    %s
+                    %s, %s
                 )"""
         
         self.query['update_file'] = """
@@ -9164,6 +9168,7 @@ class Sql:
                     stored=stored+%s,
                     dups=dups+%s,
                     partial=partial+%s,
+                    skipped=skipped+%s,
                     errs=errs+%s,
                     ttime100=ttime100+%s,
                     finished=%s
