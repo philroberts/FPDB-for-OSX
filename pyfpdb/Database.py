@@ -3498,6 +3498,8 @@ class Database:
                 startTime, endTime = resultDict['starttime'], resultDict['endtime']
             else:
                 startTime, endTime = resultDict['startTime'], resultDict['endTime']
+            if (startTime!=None): startTime = handTime.replace(tzinfo=None)
+            if (endTime!=None): endTime = handTime.replace(tzinfo=None)
                 
             if (startTime == None or t < startTime):
                 q = self.sql.query['updateTourneyStart'].replace('%s', self.sql.query['placeholder'])
