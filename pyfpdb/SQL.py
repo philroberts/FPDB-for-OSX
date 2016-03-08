@@ -5962,7 +5962,7 @@ class Sql:
             WHERE pl.id in <player_test>
             AND   pl.siteId in <site_test>
             AND   (t.startTime > '<startdate_test>' AND t.startTime < '<enddate_test>')
-            AND   tt.currency = 'USD'
+                 <currency_test>
             GROUP BY t.startTime, tp.tourneyId, tp.winningsCurrency,
                      tp.winnings, tp.koCount,
                      tp.rebuyCount, tp.addOnCount,
