@@ -383,7 +383,7 @@ class Sql:
                         hero BOOLEAN,
                         chars TEXT,
                         comment TEXT,
-                        commentTs REAL,
+                        commentTs datetime,
                         FOREIGN KEY(siteId) REFERENCES Sites(id) ON DELETE CASCADE)"""
 
 
@@ -417,7 +417,7 @@ class Sql:
                             gametypeId INT,
                             description TEXT,
                             shortDesc TEXT,
-                            ratingTime REAL,
+                            ratingTime datetime,
                             handCount int)"""
 
 
@@ -515,8 +515,8 @@ class Sql:
                             gametypeId INT NOT NULL,
                             sessionId INT,
                             fileId INT NOT NULL,
-                            startTime REAL NOT NULL,
-                            importTime REAL NOT NULL,
+                            startTime datetime NOT NULL,
+                            importTime datetime NOT NULL,
                             seats INT NOT NULL,
                             heroSeat INT NOT NULL,
                             maxPosition INT NOT NULL,
@@ -545,7 +545,7 @@ class Sql:
                             street4Pot INT,                 /* pot size at sd/street7 */
                             finalPot INT,                   /* final pot size */
                             comment TEXT,
-                            commentTs REAL)"""
+                            commentTs datetime)"""
                             
         ################################
         # Create Boards
@@ -772,15 +772,15 @@ class Sql:
                         siteTourneyNo INT,
                         entries INT,
                         prizepool INT,
-                        startTime REAL,
-                        endTime REAL,
+                        startTime datetime,
+                        endTime datetime,
                         tourneyName TEXT,
                         totalRebuyCount INT,
                         totalAddOnCount INT,
                         added INT,
                         addedCurrency VARCHAR(4),
                         comment TEXT,
-                        commentTs REAL)"""
+                        commentTs datetime)"""
                         
         ################################
         # Create HandsPlayers
@@ -1184,7 +1184,7 @@ class Sql:
                         totalProfit INT,
                         allInEV INT,
                         comment TEXT,
-                        commentTs REAL,
+                        commentTs datetime,
                         tourneysPlayersId INT,
 
                         wonWhenSeenStreet1 INT,
