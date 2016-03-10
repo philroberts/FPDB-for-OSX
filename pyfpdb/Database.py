@@ -80,7 +80,7 @@ except ImportError:
     use_numpy = False
 
 
-DB_VERSION = 204
+DB_VERSION = 205
 
 # Variance created as sqlite has a bunch of undefined aggregate functions.
 
@@ -834,7 +834,7 @@ class Database:
             self.db_path = database
             log.info(_("Connecting to SQLite: %s") % self.db_path)
             if os.path.exists(database) or create:
-                self.connection = sqlite3.connect(self.db_path, detect_types=sqlite3.PARSE_DECLTYPES )
+                self.connection = sqlite3.connect(self.db_path, detect_types=sqlite3.PARSE_DECLTYPES|sqlite3.PARSE_COLNAMES )
                 self.__connected = True
                 sqlite3.register_converter("bool", lambda x: bool(int(x)))
                 sqlite3.register_adapter(bool, lambda x: 1 if x else 0)
