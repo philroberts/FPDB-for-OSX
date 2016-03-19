@@ -57,7 +57,7 @@ class Merge(HandHistoryConverter):
                    '5-Draw'  : ('draw','fivedraw'),
                    '7-Stud'  : ('stud','studhi'),
               '7-Stud H/L8'  : ('stud','studhilo'),
-                   '5-Stud'  : ('stud','5studhi'),
+                   '5-Stud'  : ('stud','5_studhi'),
                      'Razz'  : ('stud','razz'),
             }
     
