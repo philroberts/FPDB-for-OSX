@@ -1,0 +1,55 @@
+BetOnline Poker Game #1587454316: Tournament #7212650: Hold'em $10.00/$20.00 - 2016/03/21 16:48:06 Eastern Daylight Time
+Table '7212650-076' 10-Max, Seat #3 is the button
+Seat 9: Player0 (1425.00 in chips)
+Seat 8: Player1 (755.00 in chips)
+Seat 7: Player2 (2642.50 in chips) - Big Blind
+Seat 6: Player3 (1455.00 in chips)
+Seat 5: Player4 (1495.00 in chips) - Small Blind
+Seat 1: Player5 (10172.50 in chips)
+Seat 0: Player6 (765.00 in chips)
+Seat 2: Player7 (775.00 in chips)
+Seat 4: Player8 (800.00 in chips)
+Seat 5: Player9 (1495.00 in chips) - Small Blind
+Player0: ante processed 0.00
+Player1: ante processed 0.00
+Player2: ante processed 0.00
+Player3: ante processed 0.00
+Player4: ante processed 0.00
+Player5: ante processed 0.00
+Player6: ante processed 0.00
+Player7: ante processed 0.00
+Player8: ante processed 0.00
+Player9: ante processed 0.00
+Player8: posts small blind 30.00
+Player4: posts big blind 60.00
+*** HOLE CARDS *** 
+Dealt to Player9 [5h Qs]
+Player3: folds
+Player10 joins the table at seat #3
+Player2: raises 120.00 to 120.00
+Player1: folds
+Player0: folds
+Player6: folds
+Player5: calls 120.00
+Player7: folds
+Player8: folds
+Player4: folds
+*** FLOP *** [3h 4h 2c]
+Player2: bets 2522.50
+Player5: calls 2522.50
+*** SHOW DOWN *** 
+Player2 shows Jc Jd
+Player5 shows 4s 5s
+*** SUMMARY *** 
+Total pot 5375.00
+Board [3h 4h 2c 3s Jh]
+Seat 9: Player0 folded before Flop
+Seat 8: Player1 folded before Flop
+Seat 7: Player2 showed [Jc Jd] and won (5375.00)
+Seat 6: Player3 folded before Flop
+Seat 5: Player4 folded before Flop
+Seat 1: Player5 showed [4s 5s] but did not win
+Seat 0: Player6 folded before Flop
+Seat 2: Player7 folded before Flop
+Seat 4: Player8 folded before Flop
+Seat 5: Player9 folded before Flop
