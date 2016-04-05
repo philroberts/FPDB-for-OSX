@@ -488,7 +488,7 @@ class Winamax(HandHistoryConverter):
         log.info("Winamax.getTableTitleRe: table_name='%s' tournament='%s' table_number='%s'" % (table_name, tournament, table_number))
         regex = "%s /" % (table_name)
         if tournament:
-            regex = "\(%s\)#(%s|%03d)" % (tournament, table_number,int(table_number))
+            regex = "\(%s\)#(%s|%02d|%03d|%04d|%05d)" % (tournament, table_number, int(table_number), int(table_number), int(table_number), int(table_number))
         log.info("Winamax.getTableTitleRe: returns: '%s'" % (regex))
         return regex
 
