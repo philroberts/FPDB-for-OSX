@@ -458,8 +458,9 @@ class BetOnline(HandHistoryConverter):
     def readAntes(self, hand):
         m = self.re_Antes.finditer(hand.handText)
         for player in m:
-            pname = self.unknownPlayer(hand, player.group('PNAME'))
-            hand.addAnte(pname, self.clearMoneyString(player.group('ANTE')))
+            if player.group('ANTE')!='0.00':
+                pname = self.unknownPlayer(hand, player.group('PNAME'))
+                hand.addAnte(pname, self.clearMoneyString(player.group('ANTE')))
     
     def readBringIn(self, hand):
         m = self.re_BringIn.search(hand.handText,re.DOTALL)

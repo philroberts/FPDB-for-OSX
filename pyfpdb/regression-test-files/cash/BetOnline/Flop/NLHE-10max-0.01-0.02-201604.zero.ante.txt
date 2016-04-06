@@ -1,0 +1,52 @@
+BetOnline Poker Game #1593704164: Hold'em No Limit ($0.01/0.02) - 2016/04/05 08:08:59 Eastern Daylight Time
+Table 'Guardians of the Galaxy' 10-Max, Seat #2 is the button
+Seat 8: Player0 (3.40 in chips)
+Seat 7: Player1 (1.10 in chips)
+Seat 6: Player2 (1.24 in chips)
+Seat 4: Player3 (0.08 in chips) - Sitting out
+Seat 3: Player4 (3.93 in chips) - Small Blind
+Seat 1: Player5 (2.57 in chips) - Sitting out
+Seat 5: Hero (1.97 in chips) - Big Blind
+Seat 0: Player6 (1.55 in chips)
+Seat 2: Player7 (2.06 in chips) - The button
+Seat 9: Player8 (2.00 in chips)
+Player0: ante processed 0.00
+Player1: ante processed 0.00
+Player2: ante processed 0.00
+Player3: ante processed 0.00
+Player4: ante processed 0.00
+Player5: ante processed 0.00
+Hero: ante processed 0.00
+Player6: ante processed 0.00
+Player7: ante processed 0.00
+Player8: ante processed 0.00
+Player4: posts small blind 0.01
+Hero: posts big blind 0.02
+*** HOLE CARDS *** 
+Dealt to Hero [Jd 8s]
+Player2: folds
+Player3 has left the table
+Player1: folds
+Player9 joins the table at seat #4
+Player0: folds
+Player6: folds
+Player7: folds
+Player4: calls 0.01
+Hero: checks
+*** FLOP *** [Kc 8d Ad]
+Player4: checks
+Hero: bets 0.03
+Player4: folds
+Uncalled bet (0.03) returned to Hero
+Hero shows Jd 8s
+*** SUMMARY *** 
+Total pot 0.04 | Rake 0.00
+Board [Kc 8d Ad]
+Seat 8: Player0 folded before Flop
+Seat 7: Player1 folded before Flop
+Seat 6: Player2 folded before Flop
+Seat 3: Player4 folded on the Flop
+Seat 5: Hero showed [Jd 8s] and won (0.04)
+Seat 0: Player6 folded before Flop
+Seat 2: Player7 folded before Flop
+Seat 9: Player8 collected (0.00)
