@@ -628,7 +628,7 @@ or None if we fail to get the info """
                         hand.addRaiseTo(street, player, action.group('BET'))
                 elif action.group('ATYPE') == 'BET':
                     hand.addBet(street, player, action.group('BET'))
-                elif action.group('ATYPE') == 'ALL_IN':
+                elif action.group('ATYPE') == 'ALL_IN' and action.group('BET') != None:
                     hand.addAllIn(street, player, action.group('BET'))
                 elif action.group('ATYPE') == 'DRAW':
                     hand.addDiscard(street, player, action.group('TXT'))
