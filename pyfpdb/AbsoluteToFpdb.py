@@ -48,7 +48,7 @@ class Absolute(HandHistoryConverter):
                         '8.00': ('2.00', '4.00'),         '8': ('2.00', '4.00'),
                       # '10.00': ('2.00', '5.00'),        '10': ('2.00', '5.00'),
                        '20.00': ('5.00', '10.00'),       '20': ('5.00', '10.00'),
-                      # '30.00': ('10.00', '15.00'),      '30': ('10.00', '15.00'),
+                       '30.00': ('10.00', '15.00'),      '30': ('10.00', '15.00'),
                        '40.00': ('10.00', '20.00'),      '40': ('10.00', '20.00'),
                        '60.00': ('15.00', '30.00'),      '60': ('15.00', '30.00'),
                        '80.00': ('20.00', '40.00'),      '80': ('20.00', '40.00'),
@@ -309,7 +309,7 @@ class Absolute(HandHistoryConverter):
             hand.addBlind(None, None, None)
         for a in self.re_PostBB.finditer(hand.handText):
             hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
-            hand.setUncalledBets(Decimal(a.group('BB')))
+            hand.setUncalledBets(True)
         for a in self.re_PostBoth.finditer(hand.handText):
             hand.setUncalledBets(None)
             amount = str(Decimal(a.group('BB')) + Decimal(a.group('SB')))
