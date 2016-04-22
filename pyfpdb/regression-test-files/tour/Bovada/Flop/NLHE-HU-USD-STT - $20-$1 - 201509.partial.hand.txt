@@ -1,0 +1,29 @@
+Bovada Hand #3260004104: HOLDEM Tournament #13214704 TBL#1, No Limit- Level 1 (10/20) - 2015-09-09 19:08:41
+Seat 1: Dealer (1,370 in chips)
+Seat 2: Big Blind [ME] (1,630 in chips)
+Dealer : Set dealer/Bring in spot [1] 
+Dealer : Ante/Small blind 10 
+Big Blind [ME] : Big blind/Bring in 20 
+*** HOLE CARDS ***
+Dealer : Card dealt to a spot [Ah 4c] 
+Big Blind [ME] : Card dealt to a spot [9h Qs] 
+Dealer : RaisBovada Hand #3260003105: HOLDEM Tournament #13214704 TBL#1, No Limit- Level 1 (10/20) - 2015-09-09 19:07:11
+Seat 1: Big Blind (1,500 in chips)
+Seat 2: Dealer [ME] (1,500 in chips)
+Dealer [ME] : Table enter user
+Big Blind : Table enter user
+Big Blind : Draw for dealer [5c] 
+Dealer [ME] : Draw for dealer [7s] 
+Dealer [ME] : Set dealer/Bring in spot [2] 
+Dealer [ME] : Ante/Small blind 10 
+Big Blind : Big blind/Bring in 20 
+*** HOLE CARDS ***
+Big Blind : Card dealt to a spot [3c 8d] 
+Dealer [ME] : Card dealt to a spot [2h 7s] 
+Dealer [ME] : Folds
+Big Blind : Does not show [3c 8d] (High Card)
+Big Blind : Hand Result 30 
+*** SUMMARY ***
+Total Pot(30)
+Seat+1: Big Blind 30 [Does not show]  
+Seat+2: Dealer Folded before the FLOP

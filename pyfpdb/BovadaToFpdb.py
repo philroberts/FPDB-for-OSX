@@ -547,8 +547,10 @@ class Bovada(HandHistoryConverter):
                 elif action.group('ATYPE') in (' Raises', ' raises', ' All-in(raise)', ' All-in(raise-timeout)'):
                     if action.group('BETTO'):
                         bet = self.clearMoneyString(action.group('BETTO'))
-                    else:
+                    elif action.group('BET'):
                         bet = self.clearMoneyString(action.group('BET'))
+                    else:
+                        raise FpdbHandPartial("BovadaToFpdb.determineGameType: " + _("Partial hand history"))
                     hand.addRaiseTo( street, player, bet )
                 elif action.group('ATYPE') in (' Bets', ' bets', ' Double bets'):
                     hand.addBet( street, player, self.clearMoneyString(action.group('BET')) )
