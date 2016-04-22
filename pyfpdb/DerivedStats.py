@@ -660,7 +660,11 @@ class DerivedStats():
             # Stud position is determined after cards are dealt
             # First player to act is always the bring-in position in stud
             # even if they decided to bet/completed
-            bi = [hand.actions[hand.actionStreets[1]][0][0]]
+            if len(hand.actions[hand.actionStreets[1]])>0:
+                bi = [hand.actions[hand.actionStreets[1]][0][0]]
+            #else:
+                # TODO fix: if ante all and no actions and no bring in
+            #    bi = [hand.actions[hand.actionStreets[0]][0][0]]
         else:
             bb = [x[0] for x in hand.actions[hand.actionStreets[0]] if x[1] == 'big blind']
             sb = [x[0] for x in hand.actions[hand.actionStreets[0]] if x[1] == 'small blind']
