@@ -1,0 +1,47 @@
+#Game No : 190627712
+***** Cassava Hand History for Game 190627712 *****
+$150/$300 Blinds No Limit Holdem - *** 17 02 2012 00:42:56
+Tournament #36216773 Free - Table #359 (Real Money)
+Seat 5 is the button
+Total number of players : 8
+Seat 1: VN91Calais ( $1,379 )
+Seat 2: gmartin2011 ( $15 )
+Seat 3: llor71 ( $3,130 )
+Seat 4: Boocaine ( $4,152 )
+Seat 6: nikoquimey ( $1,933 )
+Seat 7: alinastanciu ( $4,560 )
+Seat 9: rthill2011 ( $1,750 )
+Seat 10: miron01 ( $1,884 )
+gmartin2011 posts ante [$15]
+rthill2011 posts ante [$30]
+Boocaine posts ante [$30]
+alinastanciu posts ante [$30]
+miron01 posts ante [$30]
+nikoquimey posts ante [$30]
+VN91Calais posts ante [$30]
+llor71 posts ante [$30]
+nikoquimey posts small blind [$150]
+alinastanciu posts big blind [$300]
+** Dealing down cards **
+rthill2011 folds
+miron01 folds
+VN91Calais calls [$300]
+llor71 folds
+Boocaine folds
+nikoquimey raises [$450]
+alinastanciu calls [$300]
+VN91Calais raises [$1,049]
+nikoquimey calls [$749]
+alinastanciu folds
+** Dealing flop ** [ 4d, Qs, 7s ]
+** Dealing turn ** [ 6d ]
+** Dealing river ** [ Ts ]
+** Summary **
+VN91Calais shows [ As, 6c ]
+gmartin2011 shows [ Td, 7h ]
+nikoquimey shows [ Ad, Ac ]
+gmartin2011 collected [ $120 ]
+nikoquimey collected [ $3,403 ]
+
+
+
