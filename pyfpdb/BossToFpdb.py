@@ -95,7 +95,7 @@ class Boss(HandHistoryConverter):
     #'^<ACTION TYPE="(?P<ATYPE>[_A-Z]+)" PLAYER="%s"( VALUE="(?P<BET>[.0-9]+)")?></ACTION>'
     re_Action           = re.compile(r'^<ACTION TYPE="(?P<ATYPE>[_A-Z]+)" PLAYER="%s"( VALUE="(?P<BET>[.0-9]+)")?></ACTION>' %  player_re, re.MULTILINE)
 
-    re_ShowdownAction   = re.compile(r'<RESULT (WINTYPE="WINTYPE_(HILO|LO|HI)" )?PLAYER="%s" WIN="[.\d]+" HAND="(?P<HAND>\(\$STR_G_FOLD\)|[\$\(\)_ A-Z]+)".+?>(?P<CARDS>(\s+<CARD LINK="[0-9]+"></CARD>){2,5})</RESULT>' %  player_re, re.MULTILINE)
+    re_ShowdownAction   = re.compile(r'<RESULT (WINTYPE="WINTYPE_(HILO|LO|HI)" )?PLAYER="%s" WIN="[.\d]+" HAND=".+">(?P<CARDS>(\s+<CARD LINK="[0-9]+"></CARD>){2,5})</RESULT>' %  player_re, re.MULTILINE)
     #<RESULT PLAYER="wig0r" WIN="4.10" HAND="$(STR_G_WIN_TWOPAIR) $(STR_G_CARDS_TENS) $(STR_G_ANDTEXT) $(STR_G_CARDS_EIGHTS)">
     #
     re_CollectPot       = re.compile(r'<RESULT (WINTYPE="WINTYPE_(HILO|LO|HI)" )?PLAYER="%s" WIN="(?P<POT>[.\d]+)" HAND=".+"' %  player_re, re.MULTILINE)
@@ -227,7 +227,10 @@ class Boss(HandHistoryConverter):
         m = self.re_PlayerInfo.finditer(hand.handText)
         players = []
         for a in m:
-            hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), a.group('CASH'))
+            #<ACTION TYPE="HAND_DEAL" PLAYER="Player38">
+            m1 = re.search(r'<ACTION TYPE="HAND_DEAL" PLAYER="%s">' % re.escape(a.group('PNAME')), hand.handText, re.MULTILINE)            
+            if m1: 
+                hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), a.group('CASH'))
 
     def markStreets(self, hand):
         # PREFLOP = ** Dealing down cards **
