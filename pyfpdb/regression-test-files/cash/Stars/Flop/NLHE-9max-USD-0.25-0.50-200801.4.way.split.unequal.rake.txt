@@ -1,0 +1,60 @@
+PokerStars Game #14402833808:  Hold'em No Limit ($0.25/$0.50 USD) - 2008/01/07 22:59:37 ET
+Table 'Juno' 9-max Seat #7 is the button
+Seat 1: Player0 ($58.50 in chips) 
+Seat 2: Player1 ($11.25 in chips) 
+Seat 3: Player2 ($98.60 in chips) 
+Seat 4: Player3 ($103.85 in chips) 
+Seat 5: Player4 ($50 in chips) 
+Seat 6: Player5 ($38.45 in chips) 
+Seat 7: Player6 ($30.40 in chips) 
+Seat 8: Hero ($38.55 in chips) 
+Seat 9: Player7 ($50 in chips) 
+Hero: posts small blind $0.25
+Player7: posts big blind $0.50
+*** HOLE CARDS ***
+Dealt to Hero [Jc 3s]
+Player0: folds 
+Player1: calls $0.50
+Player2: folds 
+Player3: folds 
+Player4: folds 
+Player5: folds 
+Player6: calls $0.50
+Hero: calls $0.25
+Player7: checks 
+*** FLOP *** [2d Ks Ad]
+Hero: checks 
+Player7: checks 
+Player1: checks 
+Player6: checks 
+*** TURN *** [2d Ks Ad] [Kd]
+Hero: checks 
+Player7: checks 
+Player1: checks 
+Player6: checks 
+*** RIVER *** [2d Ks Ad Kd] [2h]
+Hero: checks 
+Player7: checks 
+Player1: checks 
+Player6: checks 
+*** SHOW DOWN ***
+Hero: shows [Jc 3s] (two pair, Kings and Deuces)
+Player7: shows [Th 9d] (two pair, Kings and Deuces)
+Player1: shows [6s 5c] (two pair, Kings and Deuces)
+Player6: shows [9h 5h] (two pair, Kings and Deuces)
+Hero collected $0.50 from pot
+Player7 collected $0.50 from pot
+Player1 collected $0.45 from pot
+Player6 collected $0.45 from pot
+*** SUMMARY ***
+Total pot $2 | Rake $0.10 
+Board [2d Ks Ad Kd 2h]
+Seat 1: Player0 folded before Flop (didn't bet)
+Seat 2: Player1 showed [6s 5c] and won ($0.45) with two pair, Kings and Deuces
+Seat 3: Player2 folded before Flop (didn't bet)
+Seat 4: Player3 folded before Flop (didn't bet)
+Seat 5: Player4 folded before Flop (didn't bet)
+Seat 6: Player5 folded before Flop (didn't bet)
+Seat 7: Player6 (button) showed [9h 5h] and won ($0.45) with two pair, Kings and Deuces
+Seat 8: Hero (small blind) showed [Jc 3s] and won ($0.50) with two pair, Kings and Deuces
+Seat 9: Player7 (big blind) showed [Th 9d] and won ($0.50) with two pair, Kings and Deuces

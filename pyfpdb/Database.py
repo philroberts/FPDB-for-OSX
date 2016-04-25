@@ -80,7 +80,7 @@ except ImportError:
     use_numpy = False
 
 
-DB_VERSION = 205
+DB_VERSION = 206
 
 # Variance created as sqlite has a bunch of undefined aggregate functions.
 
@@ -97,6 +97,13 @@ class VARIANCE:
 class sqlitemath:
     def mod(self, a, b):
         return a%b
+    
+    
+def adapt_decimal(d):
+    return str(d)
+
+def convert_decimal(s):
+    return Decimal(s)
     
     
 # These are for appendStats. Insert new stats at the right place, because
@@ -782,6 +789,7 @@ class Database:
             if use_pool:
                 psycopg2 = pool.manage(psycopg2, pool_size=5)
             psycopg2.extensions.register_type(psycopg2.extensions.UNICODE)
+            psycopg2.extensions.register_adapter(Decimal, psycopg2._psycopg.Decimal)
             # If DB connection is made over TCP, then the variables
             # host, user and password are required
             # For local domain-socket connections, only DB name is
@@ -838,6 +846,8 @@ class Database:
                 self.__connected = True
                 sqlite3.register_converter("bool", lambda x: bool(int(x)))
                 sqlite3.register_adapter(bool, lambda x: 1 if x else 0)
+                sqlite3.register_converter("decimal", convert_decimal)
+                sqlite3.register_adapter(Decimal, adapt_decimal)
                 self.connection.create_function("floor", 1, math.floor)
                 self.connection.create_function("sqrt", 1, math.sqrt)
                 tmp = sqlitemath()
@@ -2486,7 +2496,7 @@ class Database:
                       ,styleKey if self.build_full_hudcache else 'A000000'
                       )
                 player_stats['n'] = 1
-                line = [int(player_stats[s]) for s in CACHE_KEYS]
+                line = [int(player_stats[s]) if isinstance(player_stats[s],bool) else player_stats[s] for s in CACHE_KEYS]
                     
                 hud = self.hcbulk.get(k)
                 # Add line to the old line in the hudcache.
@@ -2726,7 +2736,7 @@ class Database:
                 hp['hid']           = hid
                 hp['ids']           = []
                 pdata[p]['n']   = 1
-                hp['line'] = [int(pdata[p][s]) for s in CACHE_KEYS]
+                hp['line'] = [int(pdata[p][s]) if isinstance(pdata[p][s],bool) else pdata[p][s] for s in CACHE_KEYS]
                 id = []
                 sessionplayer = self.sc.get(k)
                 if sessionplayer is not None:        
@@ -2787,7 +2797,7 @@ class Database:
                     d = [0]*num
                     for z in range(num):
                         d[z] = {}
-                        d[z]['line'] = [int(r[z][s]) for s in CACHE_KEYS]
+                        d[z]['line'] = [int(r[z][s]) if isinstance(r[z][s],bool) else r[z][s] for s in CACHE_KEYS]
                         d[z]['id']   = r[z]['id']
                         d[z]['sessionId'] = r[z]['sessionId']
                         d[z]['startTime'] = r[z]['startTime']
@@ -2816,7 +2826,7 @@ class Database:
                                     end = n['endTime']
                             else:   end = n['endTime']
                             for idx in range(len(CACHE_KEYS)):
-                                line[idx] += int(n['line'][idx])
+                                line[idx] += int(n['line'][idx]) if isinstance(n['line'][idx],bool) else n['line'][idx]
                         row = [sid, start, end] + list(k[:2]) + line 
                         c.execute(insert_SC, row)
                         id = self.get_last_insert_id(c)
@@ -2839,7 +2849,7 @@ class Database:
                     ,pids[p]
                     )
                 pdata[p]['n'] = 1
-                line = [int(pdata[p][s]) for s in CACHE_KEYS]
+                line = [int(pdata[p][s]) if isinstance(pdata[p][s], bool) else pdata[p][s] for s in CACHE_KEYS]
                 tourplayer = self.tc.get(k)
                 # Add line to the old line in the tourcache.
                 if tourplayer is not None:
@@ -2911,7 +2921,7 @@ class Database:
                   ,pdata[p]['startCards']
                   )
             pdata[p]['n'] = 1
-            line = [int(pdata[p][s]) for s in CACHE_KEYS]
+            line = [int(pdata[p][s]) if isinstance(pdata[p][s], bool) else pdata[p][s] for s in CACHE_KEYS]
             self.dcbulk[k] = line
                 
         if doinsert:
@@ -2981,7 +2991,7 @@ class Database:
                   ,position
                   )
             pdata[p]['n'] = 1
-            line = [int(pdata[p][s]) for s in CACHE_KEYS]
+            line = [int(pdata[p][s]) if isinstance(pdata[p][s],bool) else pdata[p][s] for s in CACHE_KEYS]
             self.pcbulk[k] = line
                 
         if doinsert:

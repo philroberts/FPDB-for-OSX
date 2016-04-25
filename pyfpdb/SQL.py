@@ -34,7 +34,7 @@ import re
 
 class Sql:
    
-    def __init__(self, game = 'holdem', db_server = 'mysql'):
+    def __init__(self, game='holdem', db_server='mysql'):
         self.query = {}
 ###############################################################################3
 #    Support for the Free Poker DataBase = fpdb   http://fpdb.sourceforge.net/
@@ -104,7 +104,7 @@ class Sql:
                                         version SMALLINT NOT NULL)
                                 ENGINE=INNODB"""
         elif db_server == 'postgresql':
-            self.query['createSettingsTable'] =  """CREATE TABLE Settings (version SMALLINT NOT NULL)"""
+            self.query['createSettingsTable'] = """CREATE TABLE Settings (version SMALLINT NOT NULL)"""
 
         elif db_server == 'sqlite':
             self.query['createSettingsTable'] = """CREATE TABLE Settings
@@ -130,7 +130,7 @@ class Sql:
                         complain BOOLEAN NOT NULL DEFAULT FALSE)
                         ENGINE=INNODB"""
         elif db_server == 'postgresql':
-            self.query['createRawHands'] =  """CREATE TABLE RawHands (
+            self.query['createRawHands'] = """CREATE TABLE RawHands (
                         id BIGSERIAL, PRIMARY KEY (id),
                         handId BIGINT NOT NULL,
                         rawHand TEXT NOT NULL,
@@ -153,7 +153,7 @@ class Sql:
                         complain BOOLEAN NOT NULL DEFAULT FALSE)
                         ENGINE=INNODB"""
         elif db_server == 'postgresql':
-            self.query['createRawTourneys'] =  """CREATE TABLE RawTourneys (
+            self.query['createRawTourneys'] = """CREATE TABLE RawTourneys (
                         id BIGSERIAL, PRIMARY KEY (id),
                         tourneyId BIGINT NOT NULL,
                         rawTourney TEXT NOT NULL,
@@ -792,7 +792,7 @@ class Sql:
                         handId BIGINT UNSIGNED NOT NULL, FOREIGN KEY (handId) REFERENCES Hands(id),
                         playerId INT UNSIGNED NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
                         startCash BIGINT NOT NULL,
-                        effStack INT NOT NULL,
+                        effStack BIGINT NOT NULL,
                         position CHAR(1),
                         seatNo SMALLINT NOT NULL,
                         sitout BOOLEAN NOT NULL,
@@ -823,11 +823,11 @@ class Sql:
                         committed BIGINT NOT NULL,                        
                         winnings BIGINT NOT NULL,
                         rake BIGINT NOT NULL,
-                        rakeDealt BIGINT NOT NULL,
-                        rakeContributed BIGINT NOT NULL,
-                        rakeWeighted BIGINT NOT NULL,
+                        rakeDealt NUMERIC NOT NULL,
+                        rakeContributed NUMERIC NOT NULL,
+                        rakeWeighted NUMERIC NOT NULL,
                         totalProfit BIGINT,
-                        allInEV BIGINT,
+                        allInEV NUMERIC,
                         comment text,
                         commentTs DATETIME,
                         tourneysPlayersId BIGINT UNSIGNED, FOREIGN KEY (tourneysPlayersId) REFERENCES TourneysPlayers(id),
@@ -970,7 +970,7 @@ class Sql:
                         handId BIGINT NOT NULL, FOREIGN KEY (handId) REFERENCES Hands(id),
                         playerId INT NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
                         startCash BIGINT NOT NULL,
-                        effStack INT NOT NULL,
+                        effStack BIGINT NOT NULL,
                         position CHAR(1),
                         seatNo SMALLINT NOT NULL,
                         sitout BOOLEAN NOT NULL,
@@ -1001,11 +1001,11 @@ class Sql:
                         committed BIGINT NOT NULL,
                         winnings BIGINT NOT NULL,
                         rake BIGINT NOT NULL,
-                        rakeDealt BIGINT NOT NULL,
-                        rakeContributed BIGINT NOT NULL,
-                        rakeWeighted BIGINT NOT NULL,
+                        rakeDealt NUMERIC NOT NULL,
+                        rakeContributed NUMERIC NOT NULL,
+                        rakeWeighted NUMERIC NOT NULL,
                         totalProfit BIGINT,
-                        allInEV BIGINT,
+                        allInEV NUMERIC,
                         comment text,
                         commentTs timestamp without time zone,
                         tourneysPlayersId BIGINT, FOREIGN KEY (tourneysPlayersId) REFERENCES TourneysPlayers(id),
@@ -1178,11 +1178,11 @@ class Sql:
                         committed INT NOT NULL,
                         winnings INT NOT NULL,
                         rake INT NOT NULL,
-                        rakeDealt INT NOT NULL,
-                        rakeContributed INT NOT NULL,
-                        rakeWeighted INT NOT NULL,
+                        rakeDealt decimal NOT NULL,
+                        rakeContributed decimal NOT NULL,
+                        rakeWeighted decimal NOT NULL,
                         totalProfit INT,
-                        allInEV INT,
+                        allInEV decimal,
                         comment TEXT,
                         commentTs timestamp,
                         tourneysPlayersId INT,
@@ -1441,7 +1441,7 @@ class Sql:
                         rankId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (rankId) REFERENCES Rank(id),
                         value BIGINT,
                         cards VARCHAR(5),
-                        ev INT)
+                        ev NUMERIC)
                         ENGINE=INNODB"""
         elif db_server == 'postgresql':
             self.query['createHandsStoveTable'] = """CREATE TABLE HandsStove (
@@ -1454,7 +1454,7 @@ class Sql:
                         rankId SMALLINT NOT NULL, FOREIGN KEY (rankId) REFERENCES Rank(id),
                         value BIGINT,
                         cards VARCHAR(5),
-                        ev INT)"""
+                        ev NUMERIC)"""
         elif db_server == 'sqlite':
             self.query['createHandsStoveTable'] = """CREATE TABLE HandsStove (
                         id INTEGER PRIMARY KEY,
@@ -1466,7 +1466,7 @@ class Sql:
                         rankId INT,
                         value INT,
                         cards TEXT,
-                        ev INT
+                        ev decimal
                         )""" 
                         
         ################################
@@ -1654,11 +1654,11 @@ class Sql:
                         committed BIGINT,
                         winnings BIGINT,
                         rake BIGINT,
-                        rakeDealt BIGINT,
-                        rakeContributed BIGINT,
-                        rakeWeighted BIGINT,
+                        rakeDealt NUMERIC,
+                        rakeContributed NUMERIC,
+                        rakeWeighted NUMERIC,
                         totalProfit BIGINT,
-                        allInEV BIGINT,
+                        allInEV NUMERIC,
                         showdownWinnings BIGINT,
                         nonShowdownWinnings BIGINT,                        
                         street1CheckCallRaiseChance INT,
@@ -1775,11 +1775,11 @@ class Sql:
                         committed BIGINT,
                         winnings BIGINT,
                         rake BIGINT,
-                        rakeDealt BIGINT,
-                        rakeContributed BIGINT,
-                        rakeWeighted BIGINT,
+                        rakeDealt NUMERIC,
+                        rakeContributed NUMERIC,
+                        rakeWeighted NUMERIC,
                         totalProfit BIGINT,
-                        allInEV BIGINT,
+                        allInEV NUMERIC,
                         showdownWinnings BIGINT,
                         nonShowdownWinnings BIGINT,
                         street1CheckCallRaiseChance INT,
@@ -1896,11 +1896,11 @@ class Sql:
                         committed INT,
                         winnings INT,
                         rake INT,
-                        rakeDealt INT,
-                        rakeContributed INT,
-                        rakeWeighted INT,
+                        rakeDealt decimal,
+                        rakeContributed decimal,
+                        rakeWeighted decimal,
                         totalProfit INT,
-                        allInEV INT,
+                        allInEV decimal,
                         showdownWinnings INT,
                         nonShowdownWinnings INT,
                         street1CheckCallRaiseChance INT,
@@ -2022,11 +2022,11 @@ class Sql:
                         committed BIGINT,
                         winnings BIGINT,
                         rake BIGINT,
-                        rakeDealt BIGINT,
-                        rakeContributed BIGINT,
-                        rakeWeighted BIGINT,
+                        rakeDealt NUMERIC,
+                        rakeContributed NUMERIC,
+                        rakeWeighted NUMERIC,
                         totalProfit BIGINT,
-                        allInEV BIGINT,
+                        allInEV NUMERIC,
                         showdownWinnings BIGINT,
                         nonShowdownWinnings BIGINT,                        
                         street1CheckCallRaiseChance INT,
@@ -2143,11 +2143,11 @@ class Sql:
                         committed BIGINT,
                         winnings BIGINT,
                         rake BIGINT,
-                        rakeDealt BIGINT,
-                        rakeContributed BIGINT,
-                        rakeWeighted BIGINT,
+                        rakeDealt NUMERIC,
+                        rakeContributed NUMERIC,
+                        rakeWeighted NUMERIC,
                         totalProfit BIGINT,
-                        allInEV BIGINT,
+                        allInEV NUMERIC,
                         showdownWinnings BIGINT,
                         nonShowdownWinnings BIGINT,
                         street1CheckCallRaiseChance INT,
@@ -2264,11 +2264,11 @@ class Sql:
                         committed INT,
                         winnings INT,
                         rake INT,
-                        rakeDealt INT,
-                        rakeContributed INT,
-                        rakeWeighted INT,
+                        rakeDealt decimal,
+                        rakeContributed decimal,
+                        rakeWeighted decimal,
                         totalProfit INT,
-                        allInEV INT,
+                        allInEV decimal,
                         showdownWinnings INT,
                         nonShowdownWinnings INT,
                         street1CheckCallRaiseChance INT,
@@ -2392,11 +2392,11 @@ class Sql:
                         committed BIGINT,
                         winnings BIGINT,
                         rake BIGINT,
-                        rakeDealt BIGINT,
-                        rakeContributed BIGINT,
-                        rakeWeighted BIGINT,
+                        rakeDealt NUMERIC,
+                        rakeContributed NUMERIC,
+                        rakeWeighted NUMERIC,
                         totalProfit BIGINT,
-                        allInEV BIGINT,
+                        allInEV NUMERIC,
                         showdownWinnings BIGINT,
                         nonShowdownWinnings BIGINT,                        
                         street1CheckCallRaiseChance INT,
@@ -2515,11 +2515,11 @@ class Sql:
                         committed BIGINT,
                         winnings BIGINT,
                         rake BIGINT,
-                        rakeDealt BIGINT,
-                        rakeContributed BIGINT,
-                        rakeWeighted BIGINT,                        
+                        rakeDealt NUMERIC,
+                        rakeContributed NUMERIC,
+                        rakeWeighted NUMERIC,                        
                         totalProfit BIGINT,
-                        allInEV BIGINT,
+                        allInEV NUMERIC,
                         showdownWinnings BIGINT,
                         nonShowdownWinnings BIGINT,
                         street1CheckCallRaiseChance INT,
@@ -2638,11 +2638,11 @@ class Sql:
                         committed INT,
                         winnings INT,
                         rake INT,
-                        rakeDealt INT,
-                        rakeContributed INT,
-                        rakeWeighted INT,
+                        rakeDealt decimal,
+                        rakeContributed decimal,
+                        rakeWeighted decimal,
                         totalProfit INT,
-                        allInEV INT,
+                        allInEV decimal,
                         showdownWinnings INT,
                         nonShowdownWinnings INT,
                         street1CheckCallRaiseChance INT,
@@ -2841,11 +2841,11 @@ class Sql:
                         committed BIGINT,
                         winnings BIGINT,
                         rake BIGINT,
-                        rakeDealt BIGINT,
-                        rakeContributed BIGINT,
-                        rakeWeighted BIGINT,
+                        rakeDealt NUMERIC,
+                        rakeContributed NUMERIC,
+                        rakeWeighted NUMERIC,
                         totalProfit BIGINT,
-                        allInEV BIGINT,
+                        allInEV NUMERIC,
                         showdownWinnings BIGINT,
                         nonShowdownWinnings BIGINT,                        
                         street1CheckCallRaiseChance INT,
@@ -2963,11 +2963,11 @@ class Sql:
                         committed BIGINT,
                         winnings BIGINT,
                         rake BIGINT,
-                        rakeDealt BIGINT,
-                        rakeContributed BIGINT,
-                        rakeWeighted BIGINT,
+                        rakeDealt NUMERIC,
+                        rakeContributed NUMERIC,
+                        rakeWeighted NUMERIC,
                         totalProfit BIGINT,
-                        allInEV BIGINT,
+                        allInEV NUMERIC,
                         showdownWinnings BIGINT,
                         nonShowdownWinnings BIGINT,
                         street1CheckCallRaiseChance INT,
@@ -3084,11 +3084,11 @@ class Sql:
                         committed INT,
                         winnings INT,
                         rake INT,
-                        rakeDealt INT,
-                        rakeContributed INT,
-                        rakeWeighted INT,
+                        rakeDealt decimal,
+                        rakeContributed decimal,
+                        rakeWeighted decimal,
                         totalProfit INT,
-                        allInEV INT,
+                        allInEV decimal,
                         showdownWinnings INT,
                         nonShowdownWinnings INT,
                         street1CheckCallRaiseChance INT,
@@ -3209,11 +3209,11 @@ class Sql:
                         committed BIGINT,
                         winnings BIGINT,
                         rake BIGINT,
-                        rakeDealt BIGINT,
-                        rakeContributed BIGINT,
-                        rakeWeighted BIGINT,
+                        rakeDealt NUMERIC,
+                        rakeContributed NUMERIC,
+                        rakeWeighted NUMERIC,
                         totalProfit BIGINT,
-                        allInEV BIGINT,
+                        allInEV NUMERIC,
                         showdownWinnings BIGINT,
                         nonShowdownWinnings BIGINT,                        
                         street1CheckCallRaiseChance INT,
@@ -3331,11 +3331,11 @@ class Sql:
                         committed BIGINT,
                         winnings BIGINT,
                         rake BIGINT,
-                        rakeDealt BIGINT,
-                        rakeContributed BIGINT,
-                        rakeWeighted BIGINT,
+                        rakeDealt NUMERIC,
+                        rakeContributed NUMERIC,
+                        rakeWeighted NUMERIC,
                         totalProfit BIGINT,
-                        allInEV BIGINT,
+                        allInEV NUMERIC,
                         showdownWinnings BIGINT,
                         nonShowdownWinnings BIGINT,
                         street1CheckCallRaiseChance INT,
@@ -3452,11 +3452,11 @@ class Sql:
                         committed INT,
                         winnings INT,
                         rake INT,
-                        rakeDealt INT,
-                        rakeContributed INT,
-                        rakeWeighted INT,
+                        rakeDealt decimal,
+                        rakeContributed decimal,
+                        rakeWeighted decimal,
                         totalProfit INT,
-                        allInEV INT,
+                        allInEV decimal,
                         showdownWinnings INT,
                         nonShowdownWinnings INT,
                         street1CheckCallRaiseChance INT,
@@ -6817,7 +6817,7 @@ class Sql:
                       ,sum(CAST(rakeContributed as integer))
                       ,sum(CAST(rakeWeighted as integer))
                       ,sum(CAST(totalProfit as integer))
-                      ,sum(CAST(allInEV as integer))
+                      ,sum(allInEV)
                       ,sum(CAST(case when sawShowdown = 1 then totalProfit else 0 end as integer))
                       ,sum(CAST(case when sawShowdown = 0 then totalProfit else 0 end as integer))
                       ,sum(CAST(street1CheckCallRaiseChance as integer))
@@ -7719,18 +7719,18 @@ class Sql:
         # Queries to rebuild/modify sessionscache
         ####################################
 
-        self.query['clear_S_H']  = "UPDATE Hands SET sessionId = NULL"
-        self.query['clear_S_T']  = "UPDATE Tourneys SET sessionId = NULL"
+        self.query['clear_S_H'] = "UPDATE Hands SET sessionId = NULL"
+        self.query['clear_S_T'] = "UPDATE Tourneys SET sessionId = NULL"
         self.query['clear_S_SC'] = "UPDATE SessionsCache SET sessionId = NULL"
         self.query['clear_S_TC'] = "UPDATE TourneysCache SET sessionId = NULL"
         self.query['clear_W_S'] = "UPDATE Sessions SET weekId = NULL"
         self.query['clear_M_S'] = "UPDATE Sessions SET monthId = NULL"
-        self.query['clearSessionsCache']    = "DELETE FROM SessionsCache WHERE 1"
-        self.query['clearTourneysCache']    = "DELETE FROM TourneysCache WHERE 1"
+        self.query['clearSessionsCache'] = "DELETE FROM SessionsCache WHERE 1"
+        self.query['clearTourneysCache'] = "DELETE FROM TourneysCache WHERE 1"
         self.query['clearSessions'] = "DELETE FROM Sessions WHERE 1"
-        self.query['clearWeeks']    = "DELETE FROM Weeks WHERE 1"
-        self.query['clearMonths']   = "DELETE FROM Months WHERE 1"
-        self.query['update_RSC_H']       = "UPDATE Hands SET sessionId = %s WHERE id = %s"
+        self.query['clearWeeks'] = "DELETE FROM Weeks WHERE 1"
+        self.query['clearMonths'] = "DELETE FROM Months WHERE 1"
+        self.query['update_RSC_H'] = "UPDATE Hands SET sessionId = %s WHERE id = %s"
                     
         ####################################
         # select
@@ -9185,7 +9185,7 @@ class Sql:
         # queries for dumpDatabase
         ################################
         for table in (u'Autorates', u'Backings', u'Gametypes', u'Hands', u'HandsActions', u'HandsPlayers', u'HudCache', u'Players', u'RawHands', u'RawTourneys', u'Settings', u'Sites', u'TourneyTypes', u'Tourneys', u'TourneysPlayers'):
-            self.query['get'+table] = u"SELECT * FROM "+table
+            self.query['get' + table] = u"SELECT * FROM " + table
         
         ################################
         # placeholders and substitution stuff
@@ -9200,10 +9200,10 @@ class Sql:
 
         # If using sqlite, use the ? placeholder instead of %s
         if db_server == 'sqlite':
-            for k,q in self.query.iteritems():
-                self.query[k] = re.sub('%s','?',q)
+            for k, q in self.query.iteritems():
+                self.query[k] = re.sub('%s', '?', q)
 
-if __name__== "__main__":
+if __name__ == "__main__":
 #    just print the default queries and exit
     s = Sql()
     for key in s.query:
