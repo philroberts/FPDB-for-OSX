@@ -558,6 +558,10 @@ class Hand(object):
             chips   (string) the chips the player has at the start of the hand (can be None)
             position     (string) indicating the position of the player (S,B, 0-7) (optional, not needed on Hand import from Handhistory).
             If a player has None chips he won't be added."""
+             
+        if len(self.players) > 0 and seat in [p[0] for p in self.players]:
+            raise FpdbHandPartial("addPlayer: " + _("Can't have 2 players in the same seat!") + ": '%s'" % self.handid)
+       
         log.debug("addPlayer: %s %s (%s)", seat, name, chips)
         if chips is not None:
             chips = chips.replace(u',', u'') #some sites have commas

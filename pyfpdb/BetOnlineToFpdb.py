@@ -367,15 +367,10 @@ class BetOnline(HandHistoryConverter):
             log.info('readButton: ' + _('not found'))
 
     def readPlayerStacks(self, hand):
-        seats = []
         m = self.re_PlayerInfo.finditer(hand.handText)
         for a in m:
-            seat = int(a.group('SEAT'))
-            if seat in seats:
-                raise FpdbHandPartial("readPlayerStacks: " + _("Can't have 2 players in the same seat!") + ": '%s'" % hand.handid)
             pname = self.unknownPlayer(hand, a.group('PNAME'))
-            hand.addPlayer(seat, pname, self.clearMoneyString(a.group('CASH')))
-            seats.append(seat)
+            hand.addPlayer(int(a.group('SEAT')), pname, self.clearMoneyString(a.group('CASH')))
 
     def markStreets(self, hand):
 
