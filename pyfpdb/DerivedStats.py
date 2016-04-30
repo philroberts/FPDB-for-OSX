@@ -401,7 +401,7 @@ class DerivedStats():
                             bcards    = [str(b) if Card.encodeCardList.get(b) else '0x' for b in bcards]
                             holecards[pname]['hole'] = cards[hrange[streetIdx][0]:hrange[streetIdx][1]]
                             holecards[pname]['cards'] += [cards]
-                            notnull  = ('0x' not in cards)
+                            notnull  = ('0x' not in cards) and ('0x' not in bcards)
                             postflop = (base=='hold' and len(board['board'][n])>=3)
                             maxcards = (base!='hold' and len(cards)>=5)
                             if notnull and (postflop or maxcards):

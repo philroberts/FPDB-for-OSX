@@ -513,6 +513,10 @@ class PacificPoker(HandHistoryConverter):
         cards = cards.replace(u'p', 's')
         cards = cards.replace(u'e', 'd')
         cards = cards.replace(u'o', 'h')
+        #Dutch
+        cards = cards.replace(u'B', 'J')
+        cards = cards.replace(u'V', 'Q')
+        cards = cards.replace(u'H', 'K')
         
         cards = cards.split(', ')
         return cards

@@ -1,0 +1,34 @@
+#Game No : 305277727
+***** Cassava Hand History for Game 305277727 *****
+$ 10/$ 20 Blinds Pot Limit Omaha - *** 05 05 2014 21:32:10
+Table San Luis (Real Money)
+Seat 7 is the button
+Total number of players : 5
+Seat 1: Player0 ( $ 3.243 )
+Seat 4: Player1 ( $ 4.026 )
+Seat 6: Hero ( $ 3.692 )
+Seat 7: Player2 ( $ 552,72 )
+Seat 9: Player3 ( $ 800 )
+Player3 posts small blind [$ 10]
+Player0 posts big blind [$ 20]
+** Dealing down cards **
+Dealt to Hero [ Hc, 8h, Td, 6h ]
+Player1 folds
+Hero folds
+Player2 raises [$ 40]
+Player3 folds
+Player0 calls [$ 20]
+** Dealing flop ** [ 7c, Hh, Ts ]
+Player0 checks
+Player2 bets [$ 45]
+Player0 calls [$ 45]
+** Dealing turn ** [ Vs ]
+Player0 checks
+Player2 checks
+** Dealing river ** [ 6s ]
+Player0 checks
+Player2 checks
+** Summary **
+Player0 shows [ 4h, 9d, Bh, 3s ]
+Player2 mucks [ 7d, 6c, Hd, Ah ]
+Player0 collected [ $ 176 ]
