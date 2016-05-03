@@ -1,0 +1,25 @@
+#Game No : 385494443
+***** 888poker Hand History for Game 385494443 *****
+$25/$50 Blinds Pot Limit Omaha - *** 21 08 2015 15:17:55
+Table Helmond 6 Max (Real Money)
+Seat 2 is the button
+Total number of players : 6
+Seat 1: Player0 ( $3,000 )
+Seat 2: Player1 ( $6,922 )
+Seat 4: Hero ( $7,703 )
+Seat 6: Player2 ( $12,667.75 )
+Seat 7: Player3 ( $9,006.25 )
+Seat 9: Player4 ( $1,975 )
+Hero posts small blind [$25]
+Player2 posts big blind [$50]
+Player0 posts dead blind [$25 + $0]
+** Dealing down cards **
+Dealt to Hero [ 5s, Ad, 8h, 7c ]
+Player3 folds
+Player4 folds
+Player0 folds
+Player1 folds
+Hero folds
+** Summary **
+Player2 did not show his hand
+Player2 collected [ $100 ]
