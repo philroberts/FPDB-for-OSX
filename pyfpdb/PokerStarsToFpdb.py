@@ -115,7 +115,7 @@ class PokerStars(HandHistoryConverter):
     # Static regexes
     re_GameInfo     = re.compile(u"""
           (PokerStars|POKERSTARS|Hive\sPoker)(?P<TITLE>\sGame|\sHand|\sHome\sGame|\sHome\sGame\sHand|Game|\sZoom\sHand|\sGAME)\s\#(?P<HID>[0-9]+):\s+
-          (\{.*\}\s+)?((?P<TOUR>(Zoom\s)?Tournament)\s\#                # open paren of tournament info
+          (\{.*\}\s+)?((?P<TOUR>(Zoom\s)?(Tournament|TOURNAMENT))\s\#                # open paren of tournament info
           (?P<TOURNO>\d+),\s(Table\s\#(?P<HIVETABLE>\d+),\s)?
           # here's how I plan to use LS
           (?P<BUYIN>(?P<BIAMT>[%(LS)s\d\.]+)?\+?(?P<BIRAKE>[%(LS)s\d\.]+)?\+?(?P<BOUNTY>[%(LS)s\d\.]+)?\s?(?P<TOUR_ISO>%(LEGAL_ISO)s)?|Freeroll)\s+)?
@@ -125,7 +125,7 @@ class PokerStars(HandHistoryConverter):
           (?P<LIMIT>No\sLimit|NO\sLIMIT|Limit|LIMIT|Pot\sLimit|POT\sLIMIT|Pot\sLimit\sPre\-Flop,\sNo\sLimit\sPost\-Flop)\)?,?\s
           (-\s)?
           (?P<SHOOTOUT>Match.*,\s)?
-          (Level\s(?P<LEVEL>[IVXLC\d]+)\s)?
+          ((Level|LEVEL)\s(?P<LEVEL>[IVXLC\d]+)\s)?
           \(?                            # open paren of the stakes
           (?P<CURRENCY>%(LS)s|)?
           (ante\s\d+,\s)?
