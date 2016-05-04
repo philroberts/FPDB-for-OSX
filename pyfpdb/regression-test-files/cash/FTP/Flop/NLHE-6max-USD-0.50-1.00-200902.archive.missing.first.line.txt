@@ -47,7 +47,7 @@ Seat 5: Hero mucked [8d 6h] - King Queen high
 Seat 6: Player4 didn't bet (folded)
 
 
-******************** # 2 *************************
+******************** # 2 *******************
 
 FullTiltPoker Game #10861334619: Table Tree Line (6 max) - $0.50/$1 - No Limit Hold'em - 21:50:51 ET - 2009/02/26
 
@@ -81,7 +81,7 @@ Seat 5: Hero (big blind) folded before the Flop
 Seat 6: Player4 didn't bet (folded)
 
 
-******************** # 3 *************************
+******************** # 3 *******************
 
 FullTiltPoker Game #10861340454: Table Tree Line (6 max) - $0.50/$1 - No Limit Hold'em - 21:51:12 ET - 2009/02/26
 

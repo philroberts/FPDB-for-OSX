@@ -36,7 +36,7 @@ log = logging.getLogger("parser")
 
 re_Divider, re_Head, re_XLS  = {}, {}, {}
 re_Divider['PokerStars'] = re.compile(r'^Hand #(\d+)\s*$', re.MULTILINE)
-re_Divider['Fulltilt'] = re.compile(r'\*{20}\s#\s\d+\s\*{20,25}\s?', re.MULTILINE)
+re_Divider['Fulltilt'] = re.compile(r'\*{20}\s#\s\d+\s\*{19,25}\s?', re.MULTILINE)
 re_Head['Fulltilt'] = re.compile(r'^((BEGIN)?\n)?FullTiltPoker.+\n\nSeat', re.MULTILINE)
 re_XLS['PokerStars'] = re.compile(r'Tournaments\splayed\sby\s\'.+?\'')
 re_XLS['Fulltilt'] = re.compile(r'Player\sTournament\sReport\sfor\s.+?\s\(.*\)')
