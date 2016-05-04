@@ -75,7 +75,7 @@ class Absolute(HandHistoryConverter):
     re_GameInfo = re.compile( ur"""
               ^Stage\s+\#C?(?P<HID>[0-9]+):?\s+
               (?:Tourney\ ID\ (?P<TRNY_ID>\d+)\s+)?
-              (?P<GAME>Holdem|HOLDEM|Seven\ Card\ Hi\/Lo|HORSE|Omaha|OMAHA)\s+
+              (?P<GAME>Holdem|HOLDEM|Seven\ Card\ Hi\/Lo|HORSE|Omaha|Omaha\ Hi\/Lo|OMAHA)\s+
               (?P<TRNY_TYPE>\(1\son\s1\)|\(1\sON\s1\)|Single\ Tournament|SINGLE\ TOURNAMENT|Multi\ Normal\ Tournament|MULTI\ NORMAL\ TOURNAMENT|)\s*
               (?P<LIMIT>No\ Limit|NO\ LIMIT|Pot\ Limit|POT\ LIMIT|Normal|NORMAL|)\s?
               (?P<CURRENCY>\$|\s€|)
@@ -176,6 +176,7 @@ class Absolute(HandHistoryConverter):
                    "Holdem" : ('hold','holdem'),
                    "HOLDEM" : ('hold','holdem'),
                     'Omaha' : ('hold','omahahi'),
+              'Omaha Hi/Lo' : ('hold','omahahilo'),
                     'OMAHA' : ('hold','omahahi'),
                      'Razz' : ('stud','razz'),
          'Seven Card Hi/Lo' : ('stud','studhilo'),
