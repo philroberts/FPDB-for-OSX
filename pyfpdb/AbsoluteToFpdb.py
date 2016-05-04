@@ -44,9 +44,9 @@ class Absolute(HandHistoryConverter):
                         '1.00': ('0.25', '0.50'),         '1': ('0.25', '0.50'),
                         '2.00': ('0.50', '1.00'),         '2': ('0.50', '1.00'),
                         '4.00': ('1.00', '2.00'),         '4': ('1.00', '2.00'),
-                        #'6.00': ('1.00', '3.00'),         '6': ('1.00', '3.00'),
+                        '6.00': ('2.00', '3.00'),         '6': ('2.00', '3.00'),
                         '8.00': ('2.00', '4.00'),         '8': ('2.00', '4.00'),
-                      # '10.00': ('2.00', '5.00'),        '10': ('2.00', '5.00'),
+                       '10.00': ('3.00', '5.00'),        '10': ('3.00', '5.00'),
                        '20.00': ('5.00', '10.00'),       '20': ('5.00', '10.00'),
                        '30.00': ('10.00', '15.00'),      '30': ('10.00', '15.00'),
                        '40.00': ('10.00', '20.00'),      '40': ('10.00', '20.00'),
@@ -54,9 +54,10 @@ class Absolute(HandHistoryConverter):
                        '60.00': ('15.00', '30.00'),      '60': ('15.00', '30.00'),
                        '80.00': ('20.00', '40.00'),      '80': ('20.00', '40.00'),
                       '100.00': ('25.00', '50.00'),     '100': ('25.00', '50.00'),
-                      #'150.00': ('50.00', '75.00'),     '150': ('50.00', '75.00'),
+                      '150.00': ('50.00', '75.00'),     '150': ('50.00', '75.00'),
                       '200.00': ('50.00', '100.00'),    '200': ('50.00', '100.00'),
                       '400.00': ('100.00', '200.00'),   '400': ('100.00', '200.00'),
+                      '600.00': ('150.00', '300.00'),   '600': ('150.00', '300.00'),
                       '800.00': ('200.00', '400.00'),   '800': ('200.00', '400.00'),
                      '1000.00': ('250.00', '500.00'),  '1000': ('250.00', '500.00'),
                      '2000.00': ('500.00', '1000.00'), '2000': ('500.00', '1000.00'),
@@ -103,7 +104,8 @@ class Absolute(HandHistoryConverter):
             re.MULTILINE)
 
     re_Board = re.compile(ur"\[(?P<CARDS>[^\]]*)\]? *$", re.MULTILINE)
-
+    
+    re_Pocket = re.compile(r"\*\*\* POCKET CARDS \*\*\*")
 
     def compilePlayerRegexs(self, hand):
         players = set([player[1] for player in hand.players])
@@ -214,8 +216,9 @@ class Absolute(HandHistoryConverter):
         if info['limitType'] == 'fl' and info['bb'] is not None:
             if info['type'] == 'ring':
                 try:
-                    info['sb'] = self.Lim_Blinds[info['bb']][0]
-                    info['bb'] = self.Lim_Blinds[info['bb']][1]
+                    bb = self.clearMoneyString(info['bb'])
+                    info['sb'] = self.Lim_Blinds[bb][0]
+                    info['bb'] = self.Lim_Blinds[bb][1]
                 except KeyError:
                     tmp = handText[0:200]
                     log.error(_("AbsoluteToFpdb.determineGameType: Lim_Blinds has no lookup for '%s' - '%s'") % (info['bb'], tmp))
@@ -313,20 +316,39 @@ class Absolute(HandHistoryConverter):
             log.warning(_("No bringin found."))
 
     def readBlinds(self, hand):
+        found_small, found_big = False, False
         m = self.re_PostSB.search(hand.handText)
         if m is not None:
             hand.addBlind(m.group('PNAME'), 'small blind', m.group('SB'))
+            found_small = True
         else:
             log.debug(_("No small blind"))
             hand.addBlind(None, None, None)
         for a in self.re_PostBB.finditer(hand.handText):
             hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
             hand.setUncalledBets(True)
+            found_big = True
+        for a in self.re_Post.finditer(hand.handText):
+            hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
+            found_big = True
+        
+        if found_small != found_big:
+            for a in self.re_Action.finditer(self.re_Pocket.split(hand.handText)[0]):
+                acts = a.groupdict()
+                if acts['ATYPE'] == 'All-In ':
+                    if acts['BET'] == None:
+                        # timeout all-in
+                        raise FpdbHandPartial("Partial hand history: %s" % hand.handid)
+                    bet = acts['BET'].replace(',', '')
+                    if found_small:
+                        hand.addBlind(acts['PNAME'], 'big blind', bet)
+                        hand.setUncalledBets(True)
+                    elif found_big:
+                        hand.addBlind(acts['PNAME'], 'small blind', bet)
+                    
         for a in self.re_PostBoth.finditer(hand.handText):
             hand.setUncalledBets(None)
             hand.addBlind(a.group('PNAME'), 'both', a.group('BB'))
-        for a in self.re_Post.finditer(hand.handText):
-            hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
 
     def readButton(self, hand):
         hand.buttonpos = int(self.re_Button.search(hand.handText).group('BUTTON'))
@@ -369,7 +391,7 @@ class Absolute(HandHistoryConverter):
     def readAction(self, hand, street):
         m = self.re_Action.finditer(hand.streets[street])
         for action in m:
-            #print "%s %s" % (action.group('ATYPE'), action.groupdict())
+            #print "%s %s %s" % (street, action.group('ATYPE'), action.groupdict())
             if action.group('ATYPE') == 'Folds':
                 hand.addFold( street, action.group('PNAME'))
             elif action.group('ATYPE') == 'Checks':
