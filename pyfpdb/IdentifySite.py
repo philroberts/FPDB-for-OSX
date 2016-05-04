@@ -175,7 +175,7 @@ class IdentifySite:
         if path not in self.filelist:
             whole_file, kodec = self.read_file(path)
             if whole_file:
-                fobj = self.idSite(path, whole_file[:5000], kodec)
+                fobj = self.idSite(path, whole_file, kodec)
                 if fobj == False: # Site id failed
                     log.debug(_("DEBUG:") + " " + _("siteId Failed for: %s") % path)
                 else:
@@ -203,20 +203,20 @@ class IdentifySite:
         f.kodec = kodec
         for id, site in self.sitelist.iteritems():
             filter_name = site.filter_name
-            m = site.re_Identify.search(whole_file)
+            m = site.re_Identify.search(whole_file[:5000])
             if m and filter_name in ('Fulltilt', 'PokerStars'):
                 m1 = re_Divider[filter_name].search(whole_file.replace('\r\n', '\n'))
                 if m1:
                     f.archive = True
                     f.archiveDivider = True
-                elif re_Head.get(filter_name) and re_Head[filter_name].search(whole_file.replace('\r\n', '\n')):
+                elif re_Head.get(filter_name) and re_Head[filter_name].match(whole_file[:5000].replace('\r\n', '\n')):
                     f.archive = True
-                    f.archiveHead = True     
+                    f.archiveHead = True
             if m:
                 f.site = site
                 f.ftype = "hh"
                 if f.site.re_HeroCards:
-                    h = f.site.re_HeroCards.search(whole_file)
+                    h = f.site.re_HeroCards.search(whole_file[:5000])
                     if h and 'PNAME' in h.groupdict():
                         f.hero = h.group('PNAME')
                 else:
@@ -228,19 +228,19 @@ class IdentifySite:
                 if path.endswith('.xls') or path.endswith('.xlsx'):
                     filter_name = site.filter_name
                     if filter_name in ('Fulltilt', 'PokerStars'):
-                        m2 = re_XLS[filter_name].search(whole_file)
+                        m2 = re_XLS[filter_name].search(whole_file[:5000])
                         if m2:
                             f.site = site
                             f.ftype = "summary"
                             return f
                 else:
-                    m3 = site.re_SumIdentify.search(whole_file)
+                    m3 = site.re_SumIdentify.search(whole_file[:5000])
                     if m3:
                         f.site = site
                         f.ftype = "summary"
                         return f
                 
-        m1 = self.re_Identify_PT.search(whole_file)
+        m1 = self.re_Identify_PT.search(whole_file[:5000])
         m2 = self.re_SumIdentify_PT.search(whole_file[:100])
         if m1 or m2:
             filter = 'PokerTrackerToFpdb'
@@ -261,11 +261,11 @@ class IdentifySite:
                     f.site.line_delimiter = None
                     f.site.spaces = True
                     f.site.re_SplitHands = re.compile(u'GAME\s\#')
-                m3 = f.site.re_HeroCards1.search(whole_file)
+                m3 = f.site.re_HeroCards1.search(whole_file[:5000])
                 if m3:
                     f.hero = m3.group('PNAME')
                 else:
-                     m4 = f.site.re_HeroCards2.search(whole_file)
+                     m4 = f.site.re_HeroCards2.search(whole_file[:5000])
                      if m4:
                          f.hero = m4.group('PNAME')
             else:
