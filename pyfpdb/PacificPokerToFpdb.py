@@ -386,7 +386,10 @@ class PacificPoker(HandHistoryConverter):
         for a in self.re_PostBoth.finditer(hand.handText):
             if a.group('PNAME') in hand.stacks:
                 if Decimal(self.clearMoneyString(a.group('BB')))>0:
-                    hand.addBlind(a.group('PNAME'), 'both', self.clearMoneyString(a.group('BB')))
+                    bb = self.clearMoneyString(a.group('BB'))
+                    sb = self.clearMoneyString(a.group('SB'))
+                    both = str(Decimal(bb) + Decimal(sb))
+                    hand.addBlind(a.group('PNAME'), 'both', both)
                 else:
                     hand.addBlind(a.group('PNAME'), 'secondsb', self.clearMoneyString(a.group('SB')))
                 self.allInBlind(hand, 'PREFLOP', a, 'both')
