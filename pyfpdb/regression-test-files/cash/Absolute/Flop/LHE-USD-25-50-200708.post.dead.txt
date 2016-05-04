@@ -1,0 +1,32 @@
+Stage #736661180: HOLDEM NORMAL $25/$50 - 2007-08-17 06:49:16 (ET)
+Table: BREWERY ST (Real Money) Seat #4 is the dealer
+Seat 4 - LIVELETDIE22 ($2343 in chips)
+Seat 5 - IMMAREALOG ($1861.82 in chips)
+Seat 1 - DWAYNE38157 ($743 in chips)
+Seat 3 - P0KEHER ($475 in chips)
+IMMAREALOG - Posts small blind $15
+DWAYNE38157 - Posts big blind $25
+P0KEHER - Posts dead $40 dead $15
+*** POCKET CARDS ***
+Dealt to LIVELETDIE22 [7h 8c] 
+P0KEHER - Raises $25 to $50
+LIVELETDIE22 - Folds
+IMMAREALOG - Calls $35
+DWAYNE38157 - Calls $25
+*** FLOP *** [Ac Qd Js]
+IMMAREALOG - Checks
+DWAYNE38157 - Checks
+P0KEHER - Bets $25
+IMMAREALOG - Folds
+DWAYNE38157 - Folds
+P0KEHER - returned ($25) : not called
+*** SHOW DOWN ***
+P0KEHER - Does not show
+P0KEHER Collects $162 from main pot
+*** SUMMARY ***
+Total Pot($165) | Rake ($3)
+Board [Ac Qd Js]
+Seat 1: DWAYNE38157 (big blind) Folded on the FLOP
+Seat 3: P0KEHER collected Total ($162) HI:($162) [Does not show] 
+Seat 4: LIVELETDIE22 (dealer) Folded on the POCKET CARDS
+Seat 5: IMMAREALOG (small blind) Folded on the FLOP

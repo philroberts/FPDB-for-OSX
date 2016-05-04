@@ -50,6 +50,7 @@ class Absolute(HandHistoryConverter):
                        '20.00': ('5.00', '10.00'),       '20': ('5.00', '10.00'),
                        '30.00': ('10.00', '15.00'),      '30': ('10.00', '15.00'),
                        '40.00': ('10.00', '20.00'),      '40': ('10.00', '20.00'),
+                       '50.00': ('15.00', '25.00'),      '50': ('15.00', '25.00'),
                        '60.00': ('15.00', '30.00'),      '60': ('15.00', '30.00'),
                        '80.00': ('20.00', '40.00'),      '80': ('20.00', '40.00'),
                       '100.00': ('25.00', '50.00'),     '100': ('25.00', '50.00'),
@@ -73,9 +74,9 @@ class Absolute(HandHistoryConverter):
     re_GameInfo = re.compile( ur"""
               ^Stage\s+\#C?(?P<HID>[0-9]+):?\s+
               (?:Tourney\ ID\ (?P<TRNY_ID>\d+)\s+)?
-              (?P<GAME>Holdem|Seven\ Card\ Hi\/Lo|HORSE|Omaha)\s+
-              (?P<TRNY_TYPE>\(1\son\s1\)|Single\ Tournament|Multi\ Normal\ Tournament|)\s*
-              (?P<LIMIT>No\ Limit|Pot\ Limit|Normal|)\s?
+              (?P<GAME>Holdem|HOLDEM|Seven\ Card\ Hi\/Lo|HORSE|Omaha|OMAHA)\s+
+              (?P<TRNY_TYPE>\(1\son\s1\)|\(1\sON\s1\)|Single\ Tournament|SINGLE\ TOURNAMENT|Multi\ Normal\ Tournament|MULTI\ NORMAL\ TOURNAMENT|)\s*
+              (?P<LIMIT>No\ Limit|NO\ LIMIT|Pot\ Limit|POT\ LIMIT|Normal|NORMAL|)\s?
               (?P<CURRENCY>\$|\s€|)
               (?P<SB>[.,0-9]+)(/(?:\$|\s€|)(?P<BB>[.,0-9]+))?
               (,\s(?:\$|\s€|)(?P<ANTE>[.,0-9]+)\sante)?
@@ -115,7 +116,7 @@ class Absolute(HandHistoryConverter):
             self.re_PostBB          = re.compile(ur"^%s - Posts big blind (?:\$| €|)(?P<BB>[.,0-9]+)" % player_re, re.MULTILINE)
             self.re_Post            = re.compile(ur"^%s - Posts (?:\$| €|)(?P<BB>[.,0-9]+)$" % player_re, re.MULTILINE)
             # TODO: Absolute posting when coming in new: %s - Posts $0.02 .. should that be a new Post line? where do we need to add support for that? *confused*
-            self.re_PostBoth        = re.compile(ur"^%s - Posts (?:\$| €|)(?P<BB>[,.0-9]+) dead (?:\$| €|)(?P<SB>[,.0-9]+)" % player_re, re.MULTILINE)
+            self.re_PostBoth        = re.compile(ur"^%s - Posts (dead )?(?:\$| €|)(?P<BB>[,.0-9]+) (dead )?(?:\$| €|)(?P<SB>[,.0-9]+)" % player_re, re.MULTILINE)
             self.re_Action          = re.compile(ur"^%s - (?P<ATYPE>Bets |Raises |All-In |All-In\(Raise\) |Calls |Folds|Checks)?\$?(?P<BET>[,.0-9]+)?" % player_re, re.MULTILINE)
             self.re_ShowdownAction  = re.compile(ur"^%s - Shows \[(?P<CARDS>.*)\] \((?P<STRING>.+?)\)" % player_re, re.MULTILINE)
             self.re_CollectPot      = re.compile(ur"^Seat [0-9]: %s(?: \(dealer\)|)(?: \(big blind\)| \(small blind\)|) (?:won|collected) Total \((?:\$| €|)(?P<POT>[,.0-9]+)\)" % player_re, re.MULTILINE)
@@ -159,10 +160,21 @@ class Absolute(HandHistoryConverter):
         #print "DEBUG: mg: %s" % mg
 
         # translations from captured groups to our info strings
-        limits = { 'No Limit':'nl', 'Pot Limit':'pl', 'Normal':'fl', 'Limit':'fl'}
+        limits = { 
+                  'No Limit':'nl', 
+                  'NO LIMIT':'nl',
+                  'Pot Limit':'pl', 
+                  'POT LIMIT': 'pl',
+                  'Normal':'fl', 
+                  'NORMAL':'fl', 
+                  'Limit':'fl',
+                  'LIMIT': 'fl'
+        }
         games = {              # base, category
                    "Holdem" : ('hold','holdem'),
+                   "HOLDEM" : ('hold','holdem'),
                     'Omaha' : ('hold','omahahi'),
+                    'OMAHA' : ('hold','omahahi'),
                      'Razz' : ('stud','razz'),
          'Seven Card Hi/Lo' : ('stud','studhilo'),
               '7 Card Stud' : ('stud','studhi')
@@ -312,8 +324,7 @@ class Absolute(HandHistoryConverter):
             hand.setUncalledBets(True)
         for a in self.re_PostBoth.finditer(hand.handText):
             hand.setUncalledBets(None)
-            amount = str(Decimal(a.group('BB')) + Decimal(a.group('SB')))
-            hand.addBlind(a.group('PNAME'), 'both', amount)
+            hand.addBlind(a.group('PNAME'), 'both', a.group('BB'))
         for a in self.re_Post.finditer(hand.handText):
             hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
 
@@ -368,6 +379,9 @@ class Absolute(HandHistoryConverter):
                 hand.setUncalledBets(None)
                 hand.addCall( street, action.group('PNAME'), bet)
             elif action.group('ATYPE') == 'Bets ' or action.group('ATYPE') == 'All-In ':
+                if action.group('BET') == None:
+                    # timeout all-in
+                    raise FpdbHandPartial("Partial hand history: %s" % hand.handid)
                 bet = action.group('BET').replace(',', '')
                 hand.setUncalledBets(None)
                 hand.addBet( street, action.group('PNAME'), bet)
