@@ -1,0 +1,19 @@
+***** Hand History for Game 14981802530 *****
+$100 USD PL Omaha - Tuesday, January 05, 20:50:31 EST 2016
+Table Santiago (Real Money)
+Seat 2 is the button
+Total number of players : 2/2 
+Seat 1: Jack0340 ( $100 USD )
+Seat 2: Player2 ( $391.63 USD )
+Player2 posts small blind [$0.50 USD].
+Jack0340 posts big blind [$1 USD].
+** Dealing down cards **
+Dealt to Jack0340 [  Js Jd Kc 2s ]
+zejnikogoj raises [$1.75 USD]
+Jack0340 calls [$1.25 USD]
+** Dealing Flop ** [ 5c, 7d, Qd ]
+Jack0340 checks
+zejnikogoj bets [$3.22 USD]
+Jack0340 folds
+zejnikogoj does not show cards.
+zejnikogoj wins $7.52 USD
