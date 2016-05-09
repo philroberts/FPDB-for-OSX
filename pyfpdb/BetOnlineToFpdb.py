@@ -492,25 +492,25 @@ class BetOnline(HandHistoryConverter):
             sbbb = self.clearMoneyString(a.group('SBBB'))
             amount = str(Decimal(sbbb) + Decimal(sbbb)/2)
             hand.addBlind(pname, 'both', amount)
-        self.fixActionBlinds(hand)
+        self.fixBlinds(hand)
                 
-    def fixActionBlinds(self, hand):
+    def fixBlinds(self, hand):
         # FIXME
         # The following should only trigger when a small blind is missing in ActionPoker hands, or the sb/bb is ALL_IN
-        # see http://sourceforge.net/apps/mantisbt/fpdb/view.php?id=115
         if self.skin in ('ActionPoker', 'GearPoker'):
-            if hand.gametype['sb'] == None and hand.gametype['bb'] == None:
-                hand.gametype['sb'] = "1"
-                hand.gametype['bb'] = "2"
-            elif hand.gametype['sb'] == None:
-                hand.gametype['sb'] = str(int(Decimal(hand.gametype['bb']))/2)
-            elif hand.gametype['bb'] == None:
-                hand.gametype['bb'] = str(int(Decimal(hand.gametype['sb']))*2)
-            if int(Decimal(hand.gametype['bb']))/2 != int(Decimal(hand.gametype['sb'])):
-                if int(Decimal(hand.gametype['bb']))/2 < int(Decimal(hand.gametype['sb'])):
-                    hand.gametype['bb'] = str(int(Decimal(hand.gametype['sb']))*2)
-                else:
-                    hand.gametype['sb'] = str(int(Decimal(hand.gametype['bb']))/2)
+            if hand.gametype['sb'] == None and hand.gametype['bb'] != None:
+                BB = str(Decimal(hand.gametype['bb']) * 2)
+                if self.Lim_Blinds.get(BB) != None:
+                    hand.gametype['sb'] = self.Lim_Blinds.get(BB)[0]
+            elif hand.gametype['bb'] == None and hand.gametype['sb'] != None:
+                for k, v in self.Lim_Blinds.iteritems():
+                    if hand.gametype['sb'] == v[0]:
+                        hand.gametype['bb'] = v[1]
+            if hand.gametype['sb'] == None or hand.gametype['bb'] == None:
+                log.error(_("BetOnline.fixBlinds: Failed to fix blinds") + " Hand ID: %s" % (hand.handid, ))
+                raise FpdbParseError
+            hand.sb = hand.gametype['sb']
+            hand.bb = hand.gametype['bb']
             
     def unknownPlayer(self, hand, pname):
         if pname == 'Unknown player' or not pname:

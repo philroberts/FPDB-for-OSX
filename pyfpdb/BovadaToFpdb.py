@@ -141,7 +141,7 @@ class Bovada(HandHistoryConverter):
     re_CollectPot1      = re.compile(r"^%(PLYR)s (\s?\[ME\]\s)?: Hand (R|r)esult(\-Side (P|p)ot)? %(CUR)s(?P<POT1>[%(NUM)s]+)" %  substitutions, re.MULTILINE)
     re_Dealt            = re.compile(r"^%(PLYR)s (\s?\[ME\]\s)?: Card dealt to a spot" % substitutions, re.MULTILINE)
     re_Buyin            = re.compile(r"(\s-\s\d+\s-\s(?P<TOURNAME>.+?))?\s-\s(?P<BUYIN>(?P<BIAMT>[%(LS)s\d\.]+)-(?P<BIRAKE>[%(LS)s\d\.]+)?)\s-\s" % substitutions)
-    re_Stakes           = re.compile(r"RING\s-\s(?P<CURRENCY>%(LS)s|)?(?P<SB>[%(NUM)s]+)-(%(LS)s)?(?P<BB>[%(NUM)s]+)" % substitutions)
+    re_Stakes           = re.compile(r"(RING|ZONE)\s-\s(?P<CURRENCY>%(LS)s|)?(?P<SB>[%(NUM)s]+)-(%(LS)s)?(?P<BB>[%(NUM)s]+)" % substitutions)
     re_Summary          = re.compile(r"\*\*\*\sSUMMARY\s\*\*\*")
     re_Hole_Third       = re.compile(r"\*\*\*\s(3RD\sSTREET|HOLE\sCARDS)\s\*\*\*")
     re_ReturnBet        = re.compile(r"Return\suncalled\sportion", re.MULTILINE)
@@ -413,7 +413,7 @@ class Bovada(HandHistoryConverter):
         if m:
             #~ logging.debug("readBringIn: %s for %s" %(m.group('PNAME'),  m.group('BRINGIN')))
             player = self.playerSeatFromPosition('BovadaToFpdb.readBringIn', hand.handid, m.group('PNAME'))
-            hand.addBringIn(player,  self.clearMoneyString(m.group('BRINGIN')))
+            hand.addBringIn(player,  self.clearMoneyString(m.group('BRINGIN')))            
             
         if hand.gametype['sb'] == None and hand.gametype['bb'] == None:
             hand.gametype['sb'] = "1"
@@ -476,19 +476,17 @@ class Bovada(HandHistoryConverter):
         
         
     def fixBlinds(self, hand):
-        # See http://sourceforge.net/apps/mantisbt/fpdb/view.php?id=115
-        if hand.gametype['sb'] == None and hand.gametype['bb'] == None:
-            hand.gametype['sb'] = "1"
-            hand.gametype['bb'] = "2"
-        elif hand.gametype['sb'] == None:
-            hand.gametype['sb'] = str(int(Decimal(hand.gametype['bb']))/2)
-        elif hand.gametype['bb'] == None:
-            hand.gametype['bb'] = str(int(Decimal(hand.gametype['sb']))*2)
-        if int(Decimal(hand.gametype['bb']))/2 != int(Decimal(hand.gametype['sb'])):
-            if int(Decimal(hand.gametype['bb']))/2 < int(Decimal(hand.gametype['sb'])):
-                hand.gametype['bb'] = str(int(Decimal(hand.gametype['sb']))*2)
-            else:
-                hand.gametype['sb'] = str(int(Decimal(hand.gametype['bb']))/2)
+        if hand.gametype['sb'] == None and hand.gametype['bb'] != None:
+            BB = str(Decimal(hand.gametype['bb']) * 2)
+            if self.Lim_Blinds.get(BB) != None:
+                hand.gametype['sb'] = self.Lim_Blinds.get(BB)[0]
+        elif hand.gametype['bb'] == None and hand.gametype['sb'] != None:
+            for k, v in self.Lim_Blinds.iteritems():
+                if hand.gametype['sb'] == v[0]:
+                    hand.gametype['bb'] = v[1]
+        if hand.gametype['sb'] == None or hand.gametype['bb'] == None:
+            log.error(_("BovadaToFpdb.fixBlinds: Failed to fix blinds") + " Hand ID: %s" % (hand.handid, ))
+            raise FpdbParseError
         hand.sb = hand.gametype['sb']
         hand.bb = hand.gametype['bb']
 
