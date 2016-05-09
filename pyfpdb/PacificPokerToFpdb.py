@@ -472,10 +472,12 @@ class PacificPoker(HandHistoryConverter):
             if hand.stacks[action.group('PNAME')]==0:
                 if actiontype=='ante':
                     if action.group('PNAME') in [p for (p,b) in hand.posted]:
-                        hand.setUncalledBets(True)
+                        hand.setUncalledBets(False)
+                        hand.checkForUncalled = True
                         hand.allInBlind = True
                 elif actiontype in ('secondsb', 'big blind', 'both') and not self.re_Antes.search(hand.handText):
-                    hand.setUncalledBets(True)
+                    hand.setUncalledBets(False)
+                    hand.checkForUncalled = True
                     hand.allInBlind = True
 
     def readShowdownActions(self, hand):
