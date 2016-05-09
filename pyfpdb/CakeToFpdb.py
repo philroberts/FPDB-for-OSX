@@ -96,6 +96,7 @@ class Cake(HandHistoryConverter):
           (\s\s\(EUR\s(%(CUR)s)?(?P<EUROVALUE>[%(NUM)s]+)\))?""" % substitutions, 
           re.MULTILINE|re.VERBOSE)
 
+    re_Trim         = re.compile("(Hand\#)")
     re_Identify     = re.compile(u'Hand\#[A-Z0-9]+\s\-\s')
     re_SplitHands   = re.compile('\n\n+')
     re_Button       = re.compile('Dealer: Seat (?P<BUTTON>\d+)', re.MULTILINE)
@@ -195,6 +196,10 @@ class Cake(HandHistoryConverter):
         return info
 
     def readHandInfo(self, hand):
+        #trim off malformatted text from partially written hands
+        if not self.re_Trim.match(hand.handText):
+            hand.handText = "".join(self.re_Trim.split(hand.handText)[1:])
+        
         info = {}
         m = self.re_GameInfo.search(hand.handText)
         if m is None:

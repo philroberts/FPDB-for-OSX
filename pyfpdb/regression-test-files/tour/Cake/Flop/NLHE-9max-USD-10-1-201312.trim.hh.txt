@@ -1,0 +1,54 @@
+Player left the table
+Player5: is all in 3,970
+Player6: folds
+Player7: is all in 746
+Player5: returns uncalled bet 2,984
+Player7: shows [6s 9s]
+Player5: shows [Qd Qs]
+*** FLOP *** [Kh,Ad,3d]
+*** TURN *** [7c]
+*** RIVER *** [Kd]
+***SHOW DOWN***
+Player5 wins 2,372 with Two Pairs Kings and Queens   
+Hand#3552EE73A0000218 - $850 GTD Deepstack Turbo T15627168 -- TICKETCASH -- $10 + $1 -- 9 Max -- Table 11 -- 10/80/160 NL Hold'em -- 2013/12/26 - 12:39:46
+Dealer: Seat 9
+Seat 1: Player0 (4,889 in chips) 
+Seat 2: Player1 (7,100 in chips) 
+Seat 3: Player2 (9,840 in chips) 
+Seat 5: Player3 (4,450 in chips) 
+Seat 7: Hero (6,037 in chips) 
+Seat 8: Player4 (10,066 in chips) 
+Seat 9: Player5 (5,356 in chips) 
+Seat 10: Player6 (13,126 in chips) 
+Player0: posts ante of 10
+Player1: posts ante of 10
+Player2: posts ante of 10
+Player3: posts ante of 10
+Hero: posts ante of 10
+Player4: posts ante of 10
+Player5: posts ante of 10
+Player6: posts ante of 10
+Player6: posts small blind 80
+Player0: posts big blind 160
+Dealt to Hero [3s,5d]
+Player1: folds
+Player2: raises to 399
+Player3: folds
+Hero: folds
+Player4: folds
+Player5: folds
+Player6: folds
+Player0: calls 239
+*** FLOP *** [Kh,Tc,Qd]
+Player0: checks
+Player2: checks
+*** TURN *** [As]
+Player0: bets 479
+Player2: calls 479
+*** RIVER *** [7s]
+Player0: bets 958
+Player2: calls 958
+***SHOW DOWN***
+Player0: shows [Ad Kd] (Two Pairs Aces and Kings  )
+Player2: shows [Ah Ac] (Three of a Kind Aces  )
+Player2 wins 3,832 with Three of a Kind Aces   
