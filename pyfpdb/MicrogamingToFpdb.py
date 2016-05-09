@@ -55,31 +55,17 @@ class Microgaming(HandHistoryConverter):
                                     (totalplayers="\d+"\s)?
                                     (tablesize="(?P<MAX>\d+)"\s)?
                                     """, re.MULTILINE| re.VERBOSE)
-    # playerseat="2" betamount="0" istournament="0" totalplayers="6" tablesize="6" badbeat="false" currencyId="26" 
-    re_Identify     = re.compile(u'<Game\s(hhversion="\d"\s)?id=\"\d+\"\sdate=\"[\d\-\s:]+\"\sunicodetablename')
-    re_SplitHands   = re.compile('\n*----.+.DAT----\n*')
-    #re_Button       = re.compile('<ACTION TYPE="HAND_DEAL" PLAYER="(?P<BUTTON>[^"]+)">\n<CARD LINK="[0-9b]+"></CARD>\n<CARD LINK="[0-9b]+"></CARD></ACTION>\n<ACTION TYPE="ACTION_', re.MULTILINE)
-    re_PlayerInfo   = re.compile('<Seat num="(?P<SEAT>[0-9]+)" alias="(?P<PNAME>.+)" unicodealias=".+" balance="(?P<CASH>[.0-9]+)" endbalance="[.0-9]+"(?P<BUTTON>\sdealer="true")?', re.MULTILINE)
-    re_Card         = re.compile('<Card value="[0-9JQKA]+" suit="[csdh]" id="(?P<CARD>\d+)"\s?/>', re.MULTILINE)
-    re_Board        = re.compile('<Action.+?</Action>', re.DOTALL)
-    #re_BoardLast    = re.compile('^<CARD LINK="(?P<CARD>[0-9]+)"></CARD></ACTION>', re.MULTILINE)
-    re_Table        = re.compile('\[(?P<TOURNO>[0-9]+)\]:Table (?P<TABLENO>\d+)', re.MULTILINE)
     
-
-    #re_PostSB           = re.compile(r'^<ACTION TYPE="HAND_BLINDS" PLAYER="(?P<SEAT>\d+)" KIND="HAND_SB" VALUE="(?P<SB>[.0-9]+)"></ACTION>', re.MULTILINE)
-    #re_PostBB           = re.compile(r'^<ACTION TYPE="HAND_BLINDS" PLAYER="(?P<SEAT>\d+)" KIND="HAND_BB" VALUE="(?P<BB>[.0-9]+)"></ACTION>', re.MULTILINE)
-    re_Antes            = re.compile(r"^(?P<SEAT>\d+): posts the ante \$?(?P<ANTE>[.0-9]+)", re.MULTILINE)
-    re_BringIn          = re.compile(r"^(?P<SEAT>\d+): brings[- ]in( low|) for \$?(?P<BRINGIN>[.0-9]+)", re.MULTILINE)
-    #re_PostBoth         = re.compile(r'^<ACTION TYPE="HAND_BLINDS" PLAYER="(?P<SEAT>\d+)" KIND="HAND_AB" VALUE="(?P<SBBB>[.0-9]+)"></ACTION>', re.MULTILINE)
-    
-    re_HeroCards        = re.compile(r'<Action seq="\d+" type="DealCards" seat="(?P<SEAT>\d+)">\s+?(?P<CARDS>(<Card value="[0-9TJQKA]+" suit="[csdh]" id="(?P<CARD>\d+)"\s?/>\s+)+)', re.MULTILINE)
-
-    re_Action           = re.compile(r'<Action seq="\d+" type="(?P<ATYPE>[a-zA-Z]+)" seat="(?P<SEAT>\d+)"( value="(?P<BET>[.0-9]+)")?\s?/>', re.MULTILINE)
-
-    #re_ShowdownAction   = re.compile(r'<RESULT PLAYER="(?P<SEAT>\d+)" WIN="[.0-9]+" HAND="(?P<HAND>\(\$STR_G_FOLD\)|[\$\(\)_ A-Z]+)">\n(?P<CARDS><CARD LINK="[0-9]+"></CARD>\n<CARD LINK="[0-9]+"></CARD>)</RESULT>', re.MULTILINE)
-    re_CollectPot       = re.compile(r'<Seat num="(?P<SEAT>\d+)" amount="(?P<POT>[.\d]+)" pot=".+" type=".*" lowhandwin="\d+"\s?/>', re.MULTILINE)
-    #re_sitsOut          = re.compile("^(?P<SEAT>\d+) sits out", re.MULTILINE)
-    re_ShownCards       = re.compile(r'<Action seq="\d+" type="(?P<SHOWED>ShowCards|MuckCards)" seat="(?P<SEAT>\d+)">\s+?(?P<CARDS>(<Card value="[0-9TJQKA]+" suit="[csdh]" id="(?P<CARD>\d+)"\s?/>\s+)+)', re.MULTILINE)
+    re_Identify   = re.compile(u'<Game\s(hhversion="\d"\s)?id=\"\d+\"\sdate=\"[\d\-\s:]+\"\sunicodetablename')
+    re_SplitHands = re.compile('\n*----.+.DAT----\n*')
+    re_PlayerInfo = re.compile('<Seat num="(?P<SEAT>[0-9]+)" alias="(?P<PNAME>.+)" unicodealias=".+" balance="(?P<CASH>[.0-9]+)" endbalance="[.0-9]+"(?P<BUTTON>\sdealer="true")?', re.MULTILINE)
+    re_Card       = re.compile('<Card value="[0-9JQKA]+" suit="[csdh]" id="(?P<CARD>\d+)"\s?/>', re.MULTILINE)
+    re_Board      = re.compile('<Action.+?</Action>', re.DOTALL)
+    re_Table      = re.compile('\[(?P<TOURNO>[0-9]+)\]:Table (?P<TABLENO>\d+)', re.MULTILINE)    
+    re_HeroCards  = re.compile(r'<Action seq="\d+" type="DealCards" seat="(?P<SEAT>\d+)">\s+?(?P<CARDS>(<Card value="[0-9TJQKA]+" suit="[csdh]" id="(?P<CARD>\d+)"\s?/>\s+)+)', re.MULTILINE)
+    re_Action     = re.compile(r'<Action seq="\d+" type="(?P<ATYPE>[a-zA-Z]+)" seat="(?P<SEAT>\d+)"( value="(?P<BET>[.0-9]+)")?\s?/>', re.MULTILINE)
+    re_CollectPot = re.compile(r'<Seat num="(?P<SEAT>\d+)" amount="(?P<POT>[.\d]+)" pot=".+" type=".*" lowhandwin="\d+"\s?/>', re.MULTILINE)
+    re_ShownCards = re.compile(r'<Action seq="\d+" type="(?P<SHOWED>ShowCards|MuckCards)" seat="(?P<SEAT>\d+)">\s+?(?P<CARDS>(<Card value="[0-9TJQKA]+" suit="[csdh]" id="(?P<CARD>\d+)"\s?/>\s+)+)', re.MULTILINE)
 
     cid_toval = {
              "0":"As",   "1":"2s",  "2":"3s",  "3":"4s",  "4": "5s", "5":"6s",  "6":"7s",  "7":"8s",  "8":"9s",  "9":"Ts", "10":"Js", "11":"Qs", "12":"Ks",
@@ -151,7 +137,6 @@ class Microgaming(HandHistoryConverter):
                 info['currency'] = 'USD'
         # NB: SB, BB must be interpreted as blinds or bets depending on limit type.
         return info
-
 
     def readHandInfo(self, hand):
         info = {}
@@ -244,17 +229,19 @@ class Microgaming(HandHistoryConverter):
             hand.setCommunityCards(street, boardCards)
 
     def readAntes(self, hand):
-        logging.debug(_("reading antes"))
-        m = self.re_Antes.finditer(hand.handText)
-        for player in m:
+        pass
+        #logging.debug(_("reading antes"))
+        #m = self.re_Antes.finditer(hand.handText)
+        #for player in m:
             #~ logging.debug("hand.addAnte(%s,%s)" %(player.group('PNAME'), player.group('ANTE')))
-            hand.addAnte(player.group('PNAME'), player.group('ANTE'))
+        #    hand.addAnte(player.group('PNAME'), player.group('ANTE'))
     
     def readBringIn(self, hand):
-        m = self.re_BringIn.search(hand.handText,re.DOTALL)
-        if m:
+        pass
+        #m = self.re_BringIn.search(hand.handText,re.DOTALL)
+        #if m:
             #~ logging.debug("readBringIn: %s for %s" %(m.group('PNAME'),  m.group('BRINGIN')))
-            hand.addBringIn(m.group('PNAME'),  m.group('BRINGIN'))
+        #    hand.addBringIn(m.group('PNAME'),  m.group('BRINGIN'))
         
     def readBlinds(self, hand):
         pass # Dealt with in readAction
@@ -356,13 +343,19 @@ class Microgaming(HandHistoryConverter):
                 if hand.version==1:
                     hand.addRaiseTo(street, pname, action.group('BET') )
                 else:
-                    hand.addCallandRaise(street, pname, action.group('BET') )
+                    amount = Decimal(action.group('BET'))
+                    if sum(hand.bets[street][pname]) == 0 and hand.pot.common[pname] > 0:
+                        amount += hand.pot.common[pname]
+                    hand.addCallandRaise(street, pname, str(amount) )
             elif action.group('ATYPE') == 'Bet':
                 if street in ('PREFLOP', 'THIRD', 'DEAL'):
                     if hand.version==1:
                         hand.addRaiseTo(street, pname, action.group('BET'))
                     else:
-                        hand.addCallandRaise(street, pname, action.group('BET'))
+                        amount = Decimal(action.group('BET'))
+                        if sum(hand.bets[street][pname]) == 0 and hand.pot.common[pname] > 0:
+                            amount += hand.pot.common[pname]
+                        hand.addCallandRaise(street, pname, str(amount))
                 else:
                     hand.addBet(street, pname, action.group('BET'))
             elif action.group('ATYPE') == 'AllIn':
