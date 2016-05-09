@@ -597,7 +597,11 @@ class DerivedStats():
                         if '0x' not in holes and '0x' not in board:
                             holecards.append(holes)
                             holeplayers.append(p)
-                    win = pokereval.winners(game = evalgame, pockets = holecards, board = board)
+                    if len(holecards)>1:
+                        win = pokereval.winners(game = evalgame, pockets = holecards, board = board)
+                    else:
+                        win = {}
+                        win[hiLoKey[hilo][0]] = [0]
                     for hl in hiLoKey[hilo]:
                         if hl in win and len(win[hl])>0:
                             potHiLo = Decimal(int(potBoard/len(win)*factor))/factor
