@@ -184,9 +184,9 @@ class Bovada(HandHistoryConverter):
             raise FpdbParseError
         
         m1 = self.re_Dealt.search(handText)
-        m2 = self.re_Summary.search(handText)
+        m2 = self.re_Summary.split(handText)
         m3 = self.re_Hole_Third.split(handText)
-        if not m1 or not m2 or len(m3)>3:
+        if not m1 or len(m2)!=2 or len(m3)>3:
             raise FpdbHandPartial("BovadaToFpdb.determineGameType: " + _("Partial hand history"))
         
         mg = m.groupdict()
