@@ -1,0 +1,63 @@
+----PRIMA.DAT----
+
+<Game hhversion="5" id="5978917745" date="2016-04-08 16:28:18" unicodetablename="SwBlAGwAcwBpACAALQAgAKwgMQBLACAATQBhAHgA" tablename="Kelsi - €1K Max" stakes="5|10" betlimit="PL" tabletype="Cash Game" unicodetabletype="QwBhAHMAaAAgAEcAYQBtAGUA" gametypeid="50" gametype="Omaha" realmoney="true" currencysymbol="rCA=" playerseat="2" betamount="0" istournament="0" totalplayers="6" tablesize="6" badbeat="false" currencyId="26" rake="300">
+   <Seats>
+      <Seat num="1" alias="Player0" unicodealias="UgBzAGUAUgBlAFIAcwBlAEYAbwBsAGQA" balance="1950.50" endbalance="946.50"/>
+      <Seat num="2" alias="Hero" unicodealias="aABvAHQAdABpAGUAOQAyAA==" balance="1846.00" endbalance="1846.00"/>
+      <Seat num="3" alias="Player1" unicodealias="cABhAHMAaQBwAGEAaQBzAHQAaQA=" balance="1004.00" endbalance="2010.00"/>
+      <Seat num="4" alias="Player2" unicodealias="UgBvAGMAawB5AEIAbABvAGMAawB5AA==" balance="1464.75" endbalance="1464.75" dealer="true"/>
+      <Seat num="5" alias="Player3" unicodealias="VABhAHgAYQBNAG8AcgB0AGUAbgA=" balance="300.00" endbalance="300.00"/>
+      <Seat num="6" alias="Player4" unicodealias="SQBMAFMASQBEAE8AUgA3AA==" balance="255.00" endbalance="250.00"/>
+   </Seats>
+   <Gameplay>
+      <Action seq="1" type="SmallBlind" seat="6" value="5.00"/>
+      <Action seq="2" type="BigBlind" seat="1" value="10.00"/>
+      <Action seq="3" type="DealCards" seat="2">
+         <Card value="4" suit="s" id="3"/>
+         <Card value="4" suit="c" id="16"/>
+         <Card value="6" suit="s" id="5"/>
+         <Card value="3" suit="s" id="2"/>
+      </Action>
+      <Action seq="4" type="Fold" seat="2"/>
+      <Action seq="5" type="Raise" seat="3" value="35.00"/>
+      <Action seq="6" type="Fold" seat="4"/>
+      <Action seq="7" type="Fold" seat="6"/>
+      <Action seq="8" type="Call" seat="1" value="25.00"/>
+      <Action seq="9" type="DealFlop">
+         <Card value="2" suit="d" id="27"/>
+         <Card value="7" suit="s" id="6"/>
+         <Card value="K" suit="c" id="25"/>
+      </Action>
+      <Action seq="10" type="Check" seat="1"/>
+      <Action seq="11" type="Bet" seat="3" value="45.00"/>
+      <Action seq="12" type="Raise" seat="1" value="155.00"/>
+      <Action seq="13" type="Call" seat="3" value="110.00"/>
+      <Action seq="14" type="DealTurn">
+         <Card value="Q" suit="d" id="37"/>
+      </Action>
+      <Action seq="15" type="Bet" seat="1" value="320.00"/>
+      <Action seq="16" type="AllIn" seat="3" value="814.00"/>
+      <Action seq="17" type="Call" seat="1" value="494.00"/>
+      <Action seq="18" type="ShowCards" seat="1">
+         <Card value="K" suit="s" id="12"/>
+         <Card value="10" suit="d" id="35"/>
+         <Card value="8" suit="d" id="33"/>
+         <Card value="8" suit="c" id="20"/>
+      </Action>
+      <Action seq="19" type="ShowCards" seat="3">
+         <Card value="7" suit="d" id="32"/>
+         <Card value="5" suit="d" id="30"/>
+         <Card value="6" suit="c" id="18"/>
+         <Card value="7" suit="c" id="19"/>
+      </Action>
+      <Action seq="20" type="DealRiver">
+         <Card value="3" suit="h" id="41"/>
+      </Action>
+      <Action type="Win">
+         <Seat num="3" amount="2010.00" pot="0" type="" lowhandwin="0"/>
+      </Action>
+   </Gameplay>
+</Game>
+
+ExtendedTableName: Kelsi - €1K Max [197866]
+
