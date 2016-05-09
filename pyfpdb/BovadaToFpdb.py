@@ -185,7 +185,8 @@ class Bovada(HandHistoryConverter):
         
         m1 = self.re_Dealt.search(handText)
         m2 = self.re_Summary.search(handText)
-        if not m1 or not m2:
+        m3 = self.re_Hole_Third.split(handText)
+        if not m1 or not m2 or len(m3)>3:
             raise FpdbHandPartial("BovadaToFpdb.determineGameType: " + _("Partial hand history"))
         
         mg = m.groupdict()
