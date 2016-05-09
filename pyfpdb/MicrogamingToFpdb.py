@@ -372,7 +372,7 @@ class Microgaming(HandHistoryConverter):
                 hand.addAllIn(street, pname, action.group('BET'))
                 allIns+=1
             elif action.group('ATYPE') == 'PostedToPlay':
-                if action.group('BET') == hand.gametype['sb']:
+                if Decimal(action.group('BET')) == Decimal(hand.gametype['sb']):
                     hand.addBlind(pname, 'secondsb', action.group('BET'))
                 else:
                     amount = str(Decimal(action.group('BET')) + Decimal(action.group('BET'))/2)
