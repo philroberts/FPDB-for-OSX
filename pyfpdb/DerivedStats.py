@@ -610,7 +610,7 @@ class DerivedStats():
                                 potHiLo+=modHiLo
                             potSplit = Decimal(int(potHiLo/len(win[hl])*factor))/factor
                             modSplit = potHiLo - potSplit*len(win[hl])
-                            pnames = [holeplayers[w] for w in win[hl]]
+                            pnames = players if len(holeplayers)==0 else [holeplayers[w] for w in win[hl]]
                             for n in positions:
                                 if positionDict[n] in pnames:
                                     pname = positionDict[n]
