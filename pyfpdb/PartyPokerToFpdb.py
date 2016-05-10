@@ -191,7 +191,7 @@ class PartyPoker(HandHistoryConverter):
                 r"Dealt to %(PLYR)s \[\s*(?P<NEWCARDS>.+)\s*\]" % subst,
                 re.MULTILINE)
             self.re_Action = re.compile(ur"""
-                %(PLYR)s\s(?P<ATYPE>bets|checks|raises|completes|bring-ins|calls|folds|is\sall-In|double\sbets)
+                (?P<PNAME>.+?)\s(?P<ATYPE>bets|checks|raises|completes|bring-ins|calls|folds|is\sall-In|double\sbets)
                 (?:\s*[%(BRAX)s]?\s?%(CUR_SYM)s?(?P<BET>[.,\d]+)\s*(%(CUR)s)?\s?[%(BRAX)s]?)?
                 (\sto\s[.,\d]+)?
                 \.?\s*$""" %  subst, re.MULTILINE|re.VERBOSE)
@@ -636,6 +636,7 @@ class PartyPoker(HandHistoryConverter):
             acts = action.groupdict()
             #print "DEBUG: acts: %s %s" % (street, acts)
             playerName = action.group('PNAME')
+            if ":" in playerName: continue #captures chat
             if self.playerMap.get(playerName):
                 playerName = self.playerMap.get(playerName)
             amount = self.clearMoneyString(action.group('BET')) if action.group('BET') else None
