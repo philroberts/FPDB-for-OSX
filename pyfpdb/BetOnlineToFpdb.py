@@ -590,7 +590,8 @@ class BetOnline(HandHistoryConverter):
             hand.addShownCards(cards, shows.group('PNAME'))
 
     def readCollectPot(self,hand):
-        hand.adjustCollected = True
+        adjustCutOff = HandHistoryConverter.changeTimezone(datetime.datetime.strptime('2014-01-01 00:00:00','%Y-%m-%d %H:%M:%S'), "ET", "UTC")
+        hand.adjustCollected = hand.startTime < adjustCutOff
         for m in self.re_CollectPot.finditer(hand.handText):
             hand.addCollectPot(player=m.group('PNAME'),pot=m.group('POT'))
         for m in self.re_TotalPot.finditer(hand.handText):
