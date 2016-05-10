@@ -520,8 +520,13 @@ class DerivedStats():
         return boards
     
     def awardPots(self, hand):
+        holeshow = True
+        for pot, players in hand.pot.pots:
+            for p in players:
+                hcs = hand.join_holecards(p, asList=True)
+                if '0x' in hcs: holeshow = False
         base, evalgame, hilo, streets, last, hrange = Card.games[hand.gametype['category']]
-        if pokereval and len(hand.pot.pots)>1 and evalgame:
+        if pokereval and len(hand.pot.pots)>1 and evalgame and holeshow:
             hand.collected = [] #list of ?
             hand.collectees = {} # dict from player names to amounts collected (?)
             rakes, totrake, potId = {}, 0, 0

@@ -488,10 +488,14 @@ class BetOnline(HandHistoryConverter):
             if not hand.gametype['bb'] and self.skin in ('ActionPoker', 'GearPoker'):
                 hand.gametype['bb'] = bb
         for a in self.re_PostBoth.finditer(hand.handText):
-            pname = self.unknownPlayer(hand, a.group('PNAME'))
-            sbbb = self.clearMoneyString(a.group('SBBB'))
-            amount = str(Decimal(sbbb) + Decimal(sbbb)/2)
-            hand.addBlind(pname, 'both', amount)
+            if a.group('SBBB')!='0.00':
+                pname = self.unknownPlayer(hand, a.group('PNAME'))
+                sbbb = self.clearMoneyString(a.group('SBBB'))
+                amount = str(Decimal(sbbb) + Decimal(sbbb)/2)
+                hand.addBlind(pname, 'both', amount)
+            else:
+                pname = self.unknownPlayer(hand, a.group('PNAME'))
+                hand.addBlind(pname, 'secondsb', hand.gametype['sb'])
         self.fixBlinds(hand)
                 
     def fixBlinds(self, hand):
@@ -590,8 +594,7 @@ class BetOnline(HandHistoryConverter):
             hand.addShownCards(cards, shows.group('PNAME'))
 
     def readCollectPot(self,hand):
-        adjustCutOff = HandHistoryConverter.changeTimezone(datetime.datetime.strptime('2014-01-01 00:00:00','%Y-%m-%d %H:%M:%S'), "ET", "UTC")
-        hand.adjustCollected = hand.startTime < adjustCutOff
+        hand.adjustCollected = True
         for m in self.re_CollectPot.finditer(hand.handText):
             hand.addCollectPot(player=m.group('PNAME'),pot=m.group('POT'))
         for m in self.re_TotalPot.finditer(hand.handText):
