@@ -59,7 +59,7 @@ class iPoker(HandHistoryConverter):
 
     substitutions = {
                      'LS'  : u"\$|\xe2\x82\xac|\xe2\u201a\xac|\u20ac|\xc2\xa3|\£|RSD|",
-                     'PLYR': r'(?P<PNAME>[ a-zA-Z0-9_]+)',
+                     'PLYR': r'(?P<PNAME>[ a-zA-Z0-9_\-]+)',
                      'NUM' : r'.,\d',
                     }
     limits = { 'No limit':'nl', 
