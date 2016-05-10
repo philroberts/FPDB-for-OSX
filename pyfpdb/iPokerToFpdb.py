@@ -342,17 +342,8 @@ class iPoker(HandHistoryConverter):
         for a in m:
             ag = a.groupdict()
             plist[a.group('PNAME')] = [int(a.group('SEAT')), self.clearMoneyString(a.group('CASH')), self.clearMoneyString(a.group('WIN')), False]
-            re_sitout = re.compile(r'<action no="[0-9]+" player="' + re.escape(a.group('PNAME')) + '" type="9"')
-            if re_sitout.search(hand.handText):
-                if hand.gametype['type'] == "ring" :
-                    # Remove any listed as sitting out in the summary as start of hand info unreliable
-                    #print "DEBUG: Deleting '%s' from player dict" %(b.group('PNAME'))
-                    del plist[a.group('PNAME')]
-                else:
-                    plist[a.group('PNAME')][2] = True
-            else:
-                if a.group('BUTTONPOS') == '1':
-                    hand.buttonpos = int(a.group('SEAT'))
+            if a.group('BUTTONPOS') == '1':
+                hand.buttonpos = int(a.group('SEAT'))
                     
         if len(plist)<=1:
             # Hand cancelled
@@ -533,7 +524,7 @@ class iPoker(HandHistoryConverter):
             elif atype == '1' or atype == '2' or atype == '8': #sb/bb/no action this hand (joined table)
                 pass
             elif atype == '9': #FIXME: Sitting out
-                pass
+                hand.addFold(street, player)
             else:
                 log.error(_("DEBUG:") + " " + _("Unimplemented %s: '%s' '%s'") % ("readAction", action['PNAME'], action['ATYPE']))
 
