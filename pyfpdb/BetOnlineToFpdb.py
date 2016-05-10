@@ -146,7 +146,7 @@ class BetOnline(HandHistoryConverter):
     re_Button       = re.compile('Seat #(?P<BUTTON>\d+) is the button', re.MULTILINE)
     re_Board1        = re.compile(r"Board \[(?P<FLOP>\S\S\S? \S\S\S? \S\S\S?)?\s?(?P<TURN>\S\S\S?)?\s?(?P<RIVER>\S\S\S?)?\]")
     re_Board2        = re.compile(r"\[(?P<CARDS>.+)\]")
-    
+    re_Hole          = re.compile(r"\*\*\*\sHOLE\sCARDS\s\*\*\*")
 
 
     re_DateTime1     = re.compile("""(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+)(:(?P<S>[0-9]+))?\s(?P<TZ>.*$)""", re.MULTILINE)
@@ -562,10 +562,17 @@ class BetOnline(HandHistoryConverter):
 
 
     def readAction(self, hand, street):
+        if street=='PREFLOP':
+            m0 = self.re_Action.finditer(self.re_Hole.split(hand.handText)[0])
+            for action in m0:
+                pname = self.unknownPlayer(hand, action.group('PNAME'))
+                if action.group('ATYPE') == ' has left the table':
+                    if pname in (p[1] for p in hand.players):
+                        hand.addFold(street, pname)
         m = self.re_Action.finditer(hand.streets[street])
         for action in m:
             acts = action.groupdict()
-            #print "DEBUG: acts: %s" %acts
+            #print "DEBUG: street: %s acts: %s" % (street, acts)
             pname = self.unknownPlayer(hand, action.group('PNAME'))
             if action.group('ATYPE') in (' folds', ' Folds', ' has left the table'):
                 if pname in (p[1] for p in hand.players):
