@@ -1,0 +1,45 @@
+<description type="Holdem" stakes="No Limit ($1/$2)"/>
+<game id="71732021-1470" starttime="20130818164816" numholecards="2" gametype="2" seats="6" realmoney="true" data="20130818|Grand III|71732021|71732021-1470|true">
+	<players dealer="1">
+		<player seat="0" nickname="Player0" balance="$51.76" dealtin="true" />
+		<player seat="1" nickname="Player1" balance="$518.24" dealtin="true" />
+		<player seat="2" nickname="Player2" balance="$282.69" dealtin="true" />
+		<player seat="3" nickname="Player3" balance="$291.74" dealtin="true" />
+		<player seat="4" nickname="Player4" balance="$200.00" dealtin="false" />
+		<player seat="5" nickname="Player5" balance="$205.00" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1376869696875" player="2" amount="1.00"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1376869696875" player="3" amount="2.00"/>
+	</round>
+	<round id="PREFLOP" sequence="2">
+		<event sequence="3" type="FOLD" timestamp="1376869696875" player="5"/>
+		<event sequence="4" type="RAISE" timestamp="1376869696875" player="0" amount="4.00"/>
+		<event sequence="5" type="FOLD" timestamp="1376869696875" player="1"/>
+		<event sequence="6" type="FOLD" timestamp="1376869696875" player="2"/>
+		<event sequence="7" type="CALL" timestamp="1376869696875" player="3" amount="2.00"/>
+	</round>
+	<round id="POSTFLOP" sequence="3">
+		<event sequence="8" type="BET" timestamp="1376869696875" player="3" amount="2.00"/>
+		<event sequence="9" type="CALL" timestamp="1376869696875" player="0" amount="2.00"/>
+		<cards type="COMMUNITY" cards="9c,3h,Ts" hand=""/>
+	</round>
+	<round id="POSTTURN" sequence="4">
+		<event sequence="10" type="BET" timestamp="1376869696875" player="3" amount="6.50"/>
+		<event sequence="11" type="CALL" timestamp="1376869696875" player="0" amount="6.50"/>
+		<cards type="COMMUNITY" cards="9c,3h,Ts,7c" hand=""/>
+	</round>
+	<round id="POSTRIVER" sequence="5">
+		<event sequence="12" type="BET" timestamp="1376869696875" player="3" amount="26.00"/>
+		<event sequence="13" type="CALL" timestamp="1376869696875" player="5" amount="0.05"/>
+		<event sequence="14" type="FOLD" timestamp="1376869696875" player="0"/>
+		<cards type="COMMUNITY" cards="9c,3h,Ts,7c,3d" hand=""/>
+	</round>
+	<round id="END_OF_FOLDED_GAME" sequence="6">
+		<event sequence="15" type="MUCK" timestamp="1376869696875" player="3"/>
+		<winner amount="26.00" uncalled="true" potnumber="2" player="3" hand="" pottype="n"/>
+		<winner amount="24.56" uncalled="false" potnumber="1" player="3" hand="" pottype="n"/>
+	</round>
+	<round id="END_OF_GAME" sequence="7">
+	</round>
+</game>

@@ -614,7 +614,7 @@ or None if we fail to get the info """
         m = self.re_Action.finditer(hand.streets[street])
         for action in m:
             player = self.playerNameFromSeatNo(action.group('PSEAT'), hand)
-            if player in hand.stacks:
+            if player in hand.stacks and player not in hand.folded:
                 if action.group('ATYPE') in ('FOLD', 'SIT_OUT'):
                     hand.addFold(street, player)
                 elif action.group('ATYPE') == 'CHECK':
@@ -647,8 +647,9 @@ or None if we fail to get the info """
         hand.setUncalledBets(True)
         for m in self.re_CollectPot.finditer(hand.handText):
             pname = self.playerNameFromSeatNo(m.group('PSEAT'), hand)
-            pot = m.group('POT')
-            hand.addCollectPot(player=pname, pot=pot)
+            if pname!=None:
+                pot = m.group('POT')
+                hand.addCollectPot(player=pname, pot=pot)
 
     def readShownCards(self, hand):
         for m in self.re_ShownCards.finditer(hand.handText):

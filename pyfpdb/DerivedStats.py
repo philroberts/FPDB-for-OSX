@@ -635,7 +635,7 @@ class DerivedStats():
                     potFound[p][1] = hand.collectees.get(p)
                     for item in info:
                         #print (str(hand.handid)," winners: ",item['winners'])
-                        split = [n for n in item['winners'] if len(playersPots[n][1])==1]
+                        split = [n for n in item['winners'] if len(playersPots[n][1])==1 and hand.collectees.get(n)!=None]
                         if len(info)==1:
                             ppot = item['ppot']
                             rake = ppot - hand.collectees[p]
