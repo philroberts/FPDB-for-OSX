@@ -476,15 +476,17 @@ class PartyPoker(HandHistoryConverter):
                     if i>10: break
                 return startSeat
             
+            re_HoleCards = re.compile(r"\*{2} Dealing down cards \*{2}")
             re_SplitTest = re.compile(r"(joined the table|left the table|is sitting out)")
             re_JoiningPlayers = re.compile(r"(?P<PLAYERNAME>.+?) has joined the table")
             re_BBPostingPlayers = re.compile(r"(?P<PLAYERNAME>.+?) posts big blind", re.MULTILINE)
             re_LeavingPlayers = re.compile(r"(?P<PLAYERNAME>.+?) has left the table")
+            re_PreDeal = re_HoleCards.split(hand.handText)[0]
 
-            match_JoiningPlayers = re_JoiningPlayers.findall(hand.handText)
-            match_LeavingPlayers = re_LeavingPlayers.findall(hand.handText)
+            match_JoiningPlayers = re_JoiningPlayers.findall(re_PreDeal)
+            match_LeavingPlayers = re_LeavingPlayers.findall(re_PreDeal)
             match_BBPostingPlayers = []
-            m = re_BBPostingPlayers.finditer(re_SplitTest.split(hand.handText)[-1])
+            m = re_BBPostingPlayers.finditer(re_SplitTest.split(re_PreDeal)[-1])
             for player in m:
                 match_BBPostingPlayers.append(player.group('PLAYERNAME'))
 
