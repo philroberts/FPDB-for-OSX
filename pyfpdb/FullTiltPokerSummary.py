@@ -100,7 +100,7 @@ class FullTiltPokerSummary(TourneySummary):
                         ((?P<LIMIT>No\sLimit|Limit|LIMIT|Pot\sLimit)\s+)?(\((?P<TABLEATTRIBUTES>.+)\)\s+)?
                         (Buy-In:\s[%(LS)s]?(?P<BUYIN>[%(NUM)s]+)(\sFTP|\sT\$|\sPlay\sChips)?(\s\+\s[%(LS)s]?(?P<FEE>[%(NUM)s]+)(\sFTP|\sT\$|\sPlay\sChips)?)?\s+)?
                         (Knockout\sBounty:\s[%(LS)s](?P<KOBOUNTY>[%(NUM)s]+)\s+)?
-                        ((?P<PNAMEBOUNTIES>.{2,15})\sreceived\s(?P<PBOUNTIES>\d+)\sKnockout\sBounty\sAwards?\s+)?
+                        ((?P<PNAMEBOUNTIES>(.{2,15}|\d+))\sreceived\s(?P<PBOUNTIES>(%%)?\d+)\sKnockout\sBounty\sAwards?\s+)?
                         (Add-On:\s[%(LS)s]?(?P<ADDON>[%(NUM)s]+)(\sFTP|\sT\$|\sPlay\sChips)?\s+)?
                         (Rebuy:\s[%(LS)s]?(?P<REBUYAMT>[%(NUM)s]+)(\sFTP|\sT\$|\sPlay\sChips)?\s+)?
                         ((?P<P1NAME>.{2,15})\sperformed\s(?P<PADDONS>\d+)\sAdd-Ons?\s+)?
@@ -315,7 +315,7 @@ class FullTiltPokerSummary(TourneySummary):
             rebuyCounts[mg['P2NAME']] = int(mg['PREBUYS'])
         if 'PADDONS' in mg and mg['PADDONS'] != None:
             addOnCounts[mg['P1NAME']] = int(mg['PADDONS'])
-        if 'PBOUNTIES' in mg and mg['PBOUNTIES'] != None:
+        if 'PBOUNTIES' in mg and mg['PBOUNTIES'] != None and mg['PBOUNTIES'][0]!='%':
             koCounts[mg['PNAMEBOUNTIES']] = int(mg['PBOUNTIES'])
         if 'SATELLITE' in mg and mg['SATELLITE'] != None:
             self.isSatellite = True
