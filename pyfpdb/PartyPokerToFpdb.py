@@ -123,8 +123,8 @@ class PartyPoker(HandHistoryConverter):
             \*{5}\sHand\sHistory\s(F|f)or\sGame\s(?P<HID>\d+)\s\*{5}\s+
             (?P<LIMIT>(NL|PL|FL|))\s*
             (?P<GAME>(Texas\sHold\'em|Omaha\sHi-Lo|Omaha(\sHi)?|7\sCard\sStud\sHi-Lo|7\sCard\sStud|Double\sHold\'em))\s+
-            (?:(?P<BUYIN>[%(LS)s]?[%(NUM)s]+)\s*(?P<BUYIN_CURRENCY>%(LEGAL_ISO)s)?\s*Buy-in\s+)?
-            (\+\s(?P<FEE>[%(LS)s]?[%(NUM)s]+)\sEntry\sFee\s+)?
+            (?:(?P<BUYIN>[%(LS)s]?\s?[%(NUM)s]+)\s*(?P<BUYIN_CURRENCY>%(LEGAL_ISO)s)?\s*Buy-in\s+)?
+            (\+\s(?P<FEE>[%(LS)s]?\s?[%(NUM)s]+)\sEntry\sFee\s+)?
             Trny:\s?(?P<TOURNO>\d+)\s+
             Level:\s*(?P<LEVEL>\d+)\s+
             ((Blinds|Stakes)(?:-Antes)?)\(
@@ -360,7 +360,7 @@ class PartyPoker(HandHistoryConverter):
                 #Mon Jul 12 13:38:32 EDT 2010
                 timezone = "ET"
                 m2 = re.search(
-                    r"\w+?,?\s*?(?P<M>\w+)\s+(?P<D>\d+),?\s+(?P<H>\d+):(?P<MIN>\d+):(?P<S>\d+)\s+(?P<TZ>[A-Z]+)\s+(?P<Y>\d+)", 
+                    r"\w+?,?\s*?(?P<M>\w+)\s+(?P<D>\d+),?\s+(?P<H>\d+):(?P<MIN>\d+):(?P<S>\d+)\s+((?P<TZ>[A-Z]+)\s+)?(?P<Y>\d+)", 
                     info[key], 
                     re.UNICODE
                 )

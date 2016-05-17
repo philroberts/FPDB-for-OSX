@@ -1,0 +1,37 @@
+#Game No : 13165152578 
+***** Hand History for Game 13165152578 *****
+NL Texas Hold'em $ 530 USD Buy-in Trny:3282980 Level:18  Blinds-Antes(1,250/2,500 -250) - Sunday, July 28, 21:01:39  2013
+Table $100,000 Gtd High Roller (3282980) Table #7 (Real Money)
+Seat 2 is the button
+Total number of players : 8/10 
+Seat 9: Player0 ( 86,425 )
+Seat 7: Player1 ( 191,706 )
+Seat 3: Player2 ( 65,173 )
+Seat 5: Player3 ( 76,467 )
+Seat 10: Player4 ( 51,166 )
+Seat 4: Hero ( 172,173 )
+Seat 8: Player5 ( 169,642 )
+Seat 2: Player6 ( 92,248 )
+Trny:3282980 Level:18 
+Blinds-Antes(1,250/2,500 -250)
+Player6 posts ante [250]
+Player2 posts ante [250]
+Hero posts ante [250]
+Player3 posts ante [250]
+Player1 posts ante [250]
+Player5 posts ante [250]
+Player0 posts ante [250]
+Player4 posts ante [250]
+** Dealing down cards **
+Dealt to Hero [  2h 5s ]
+Player3 folds
+Player1 folds
+Player5 raises [5,000]
+Player0 folds
+Player4 folds
+Player6 folds
+Player2 folds
+Hero folds
+Player5 does not show cards.
+Player5 wins 10,750 chips
+Game #13165157680 starts.
