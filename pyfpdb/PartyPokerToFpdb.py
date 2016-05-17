@@ -486,7 +486,7 @@ class PartyPoker(HandHistoryConverter):
             match_JoiningPlayers = re_JoiningPlayers.findall(re_PreDeal)
             match_LeavingPlayers = re_LeavingPlayers.findall(re_PreDeal)
             match_BBPostingPlayers = []
-            m = re_BBPostingPlayers.finditer(re_SplitTest.split(re_PreDeal)[-1])
+            m = re_BBPostingPlayers.finditer(re_PreDeal)
             for player in m:
                 match_BBPostingPlayers.append(player.group('PLAYERNAME'))
 
