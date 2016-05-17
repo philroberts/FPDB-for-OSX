@@ -629,6 +629,7 @@ class PokerTracker(HandHistoryConverter):
                     hand.addCallandRaise(street, action.group('PNAME'), action.group('BET') )
                 else:
                     hand.addBet( street, action.group('PNAME'), action.group('BET') )
+                curr_pot = Decimal(self.clearMoneyString(action.group('BET')))
             elif action.group('ATYPE') in (' Allin', ' went all-in'):
                 amount = Decimal(self.clearMoneyString(action.group('BET')))
                 hand.addAllIn(street, action.group('PNAME'), action.group('BET'))

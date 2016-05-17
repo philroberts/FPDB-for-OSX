@@ -1,0 +1,76 @@
+** Hand # 5870377181 starting - 2016-01-12 23:00:07
+
+** Jerold - €50 Max [Omaha] (0.25|0.50 PL - Cash Game) Real Money
+
+
+
+Player0 sitting in seat 1 with €110.18
+
+Hero sitting in seat 2 with €65.70
+
+Player1 sitting in seat 3 with €29.64
+
+Player2 sitting in seat 4 with €39.76[Dealer]
+
+Player3 sitting in seat 5 with €48.85
+
+Player4 sitting in seat 6 with €111.28
+
+Player3 posted the small blind - €0.25
+
+Player4 posted the big blind - €0.50
+
+
+
+** Dealing cards to Hero: 6h, 9s, 3h, 4c
+
+Player0 raised to €1.75
+
+Hero folded
+
+Player1 folded
+
+Player2 raised to €6
+
+Player3 folded
+
+Player4 called - €5.50
+
+Player0 raised to €16.75
+
+Player2 called - €12.50
+
+Player4 called - €12.50
+
+
+
+** Dealing the flop: 2h, 5d, Jc
+
+Player4 checked
+
+Player0 bet - €55.75
+
+Player2 went all-in - €21.26
+
+Player4 folded
+
+
+
+Player0 shows: Ah, 3c, As, Kd
+
+Player2 shows: 2d, Qh, Qs, 10h
+
+
+
+** Dealing the turn: 6s
+
+
+
+** Dealing the river: 9d
+
+Player0 wins €96.77 from the main pot
+
+
+
+Rake: €1.50
+
