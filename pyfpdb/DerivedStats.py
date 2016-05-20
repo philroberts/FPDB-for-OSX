@@ -250,6 +250,7 @@ class DerivedStats():
             self.aggr(hand, i)
             self.calls(hand, i)
             self.bets(hand, i)
+            self.raises(hand, i)
             if i>0:
                 self.folds(hand, i)
 
@@ -1080,13 +1081,17 @@ class DerivedStats():
                 player_stats = self.handsplayers.get(act[0])
                 player_stats['street%sCalls' % i] = 1 + player_stats['street%sCalls' % i]
 
-    # CG - I'm sure this stat is wrong
-    # Best guess is that raise = 2 bets
     def bets(self, hand, i):
         for act in hand.actions[hand.actionStreets[i+1]]:
             if act[1] in ('bets'):
                 player_stats = self.handsplayers.get(act[0])
                 player_stats['street%sBets' % i] = 1 + player_stats['street%sBets' % i]
+                
+    def raises(self, hand, i):
+        for act in hand.actions[hand.actionStreets[i+1]]:
+            if act[1] in ('completes', 'raises'):
+                player_stats = self.handsplayers.get(act[0])
+                player_stats['street%sRaises' % i] = 1 + player_stats['street%sRaises' % i]
         
     def folds(self, hand, i):
         for act in hand.actions[hand.actionStreets[i+1]]:
