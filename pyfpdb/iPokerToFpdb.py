@@ -168,7 +168,7 @@ class iPoker(HandHistoryConverter):
     re_PostSB = re.compile(r'<action no="[0-9]+" player="%(PLYR)s"( actiontxt="[^"]+" turntime="[^"]+")? type="1" sum="(%(LS)s)(?P<SB>[%(NUM)s]+)"' % substitutions, re.MULTILINE)
     re_PostBB = re.compile(r'<action no="(?P<ACT>[0-9]+)" player="%(PLYR)s"( actiontxt="[^"]+" turntime="[^"]+")? type="2" sum="(%(LS)s)(?P<BB>[%(NUM)s]+)"' % substitutions, re.MULTILINE)
     re_Hero = re.compile(r'<nickname>(?P<HERO>.+)</nickname>', re.MULTILINE)
-    re_HeroCards = re.compile(r'<cards type="(Pocket|Second\sStreet|Third\sStreet|Fourth\sStreet|Fifth\sStreet|Sixth\sStreet|River)" player="%(PLYR)s">(?P<CARDS>.+?)</cards>', re.MULTILINE)
+    re_HeroCards = re.compile(r'<cards type="(Pocket|Second\sStreet|Third\sStreet|Fourth\sStreet|Fifth\sStreet|Sixth\sStreet|River)" player="%(PLYR)s">(?P<CARDS>.+?)</cards>' % substitutions, re.MULTILINE)
     re_Action = re.compile(r'<action no="(?P<ACT>[0-9]+)" player="%(PLYR)s"( actiontxt="[^"]+" turntime="[^"]+")? type="(?P<ATYPE>\d+)" sum="(%(LS)s)(?P<BET>[%(NUM)s]+)"' % substitutions, re.MULTILINE)
     re_Ante   = re.compile(r'<action no="[0-9]+" player="%(PLYR)s"( actiontxt="[^"]+" turntime="[^"]+")? type="(?P<ATYPE>15)" sum="(%(LS)s)(?P<BET>[%(NUM)s]+)" cards="' % substitutions, re.MULTILINE)
     re_SitsOut = re.compile(r'<event sequence="[0-9]+" type="SIT_OUT" player="(?P<PSEAT>[0-9])"/>', re.MULTILINE)
@@ -465,20 +465,21 @@ class iPoker(HandHistoryConverter):
                     if player == self.hero and cards[0]:
                         hand.hero = player
                     hand.addHoleCards(street, player, closed=cards, shown=True, mucked=False, dealt=True)
-
+        
+        
         for street, text in hand.streets.iteritems():
             if not text or street in ('PREFLOP', 'DEAL'): continue  # already done these
             m = self.re_HeroCards.finditer(hand.streets[street])
             for found in m:
                 player = found.group('PNAME')
                 cards = found.group('CARDS').split(' ')
+                
                 if street == 'SEVENTH' and self.hero != player:
                     newcards = []
                     oldcards = [c[1:].replace('10', 'T') + c[0].lower() for c in cards if c[0].lower()!='x']
                 else:
                     newcards = [c[1:].replace('10', 'T') + c[0].lower() for c in cards if c[0].lower()!='x']
                     oldcards = []
-                
                 if street == 'THIRD' and len(newcards) == 3 and self.hero == player: # hero in stud game
                     hand.hero = player
                     hand.dealt.add(player) # need this for stud??
