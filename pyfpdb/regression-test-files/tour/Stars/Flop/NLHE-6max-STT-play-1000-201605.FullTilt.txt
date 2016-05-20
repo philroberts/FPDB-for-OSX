@@ -1,0 +1,866 @@
+Full Tilt Hand #153580337131: Tournament #1571041343, 870+130 Hold'em No Limit - Level I (10/20) - 2016/05/20 8:25:45 ET
+Table '1571041343 1' 6-max Seat #1 is the button
+Seat 1: Player0 (500 in chips) 
+Seat 2: Player3 (500 in chips) 
+Seat 3: Player4 (500 in chips) 
+Seat 4: Player1 (500 in chips) 
+Seat 5: Hero (500 in chips) 
+Seat 6: Player2 (500 in chips) 
+Player0: posts the ante 2
+Player3: posts the ante 2
+Player4: posts the ante 2
+Player1: posts the ante 2
+Hero: posts the ante 2
+Player2: posts the ante 2
+Player3: posts small blind 10
+Player4: posts big blind 20
+*** HOLE CARDS ***
+Dealt to Hero [4s Th]
+Player1: calls 20
+Hero: folds 
+Player2: folds 
+Player0: raises 20 to 40
+Player3: calls 30
+Player4: calls 20
+Player1: calls 20
+*** FLOP *** [9h 5h Td]
+Player3: checks 
+Player4: checks 
+Player1: checks 
+Player0: bets 458 and is all-in
+Player3: folds 
+Player4: calls 458 and is all-in
+Player1: folds 
+*** TURN *** [9h 5h Td] [Qh]
+*** RIVER *** [9h 5h Td Qh] [2d]
+*** SHOW DOWN ***
+Player4: shows [Jh 5s] (a pair of Fives)
+Player0: shows [Jc 8c] (a straight, Eight to Queen)
+Player0 collected 1088 from pot
+Player4 finished the tournament in 6th place
+*** SUMMARY ***
+Total pot 1088 | Rake 0 
+Board [9h 5h Td Qh 2d]
+Seat 1: Player0 (button) showed [Jc 8c] and won (1088) with a straight, Eight to Queen
+Seat 2: Player3 (small blind) folded on the Flop
+Seat 3: Player4 (big blind) showed [Jh 5s] and lost with a pair of Fives
+Seat 4: Player1 folded on the Flop
+Seat 5: Hero folded before Flop (didn't bet)
+Seat 6: Player2 folded before Flop (didn't bet)
+
+
+
+Full Tilt Hand #153580355526: Tournament #1571041343, 870+130 Hold'em No Limit - Level I (10/20) - 2016/05/20 8:26:21 ET
+Table '1571041343 1' 6-max Seat #2 is the button
+Seat 1: Player0 (1088 in chips) 
+Seat 2: Player3 (458 in chips) 
+Seat 4: Player1 (458 in chips) 
+Seat 5: Hero (498 in chips) is sitting out
+Seat 6: Player2 (498 in chips) 
+Player0: posts the ante 2
+Player3: posts the ante 2
+Player1: posts the ante 2
+Hero: posts the ante 2
+Player2: posts the ante 2
+Player1: posts small blind 10
+Hero: posts big blind 20
+*** HOLE CARDS ***
+Dealt to Hero [2d 6h]
+Player2: folds 
+Player0: folds 
+Player3: calls 20
+Player1: calls 10
+Hero: folds 
+*** FLOP *** [3s 9d 4s]
+Player1: checks 
+Player3: checks 
+*** TURN *** [3s 9d 4s] [6s]
+Player1: bets 20
+Player3: calls 20
+*** RIVER *** [3s 9d 4s 6s] [Jh]
+Player1: bets 100
+Player3: raises 100 to 200
+Player1: calls 100
+*** SHOW DOWN ***
+Player3: shows [3d 9s] (two pair, Nines and Threes)
+Player1: shows [7s Qs] (a flush, Queen high)
+Player1 collected 510 from pot
+*** SUMMARY ***
+Total pot 510 | Rake 0 
+Board [3s 9d 4s 6s Jh]
+Seat 1: Player0 folded before Flop (didn't bet)
+Seat 2: Player3 (button) showed [3d 9s] and lost with two pair, Nines and Threes
+Seat 4: Player1 (small blind) showed [7s Qs] and won (510) with a flush, Queen high
+Seat 5: Hero (big blind) folded before Flop
+Seat 6: Player2 folded before Flop (didn't bet)
+
+
+
+Full Tilt Hand #153580371005: Tournament #1571041343, 870+130 Hold'em No Limit - Level I (10/20) - 2016/05/20 8:26:52 ET
+Table '1571041343 1' 6-max Seat #4 is the button
+Seat 1: Player0 (1086 in chips) 
+Seat 2: Player3 (216 in chips) 
+Seat 4: Player1 (726 in chips) 
+Seat 5: Hero (476 in chips) is sitting out
+Seat 6: Player2 (496 in chips) 
+Player0: posts the ante 2
+Player3: posts the ante 2
+Player1: posts the ante 2
+Hero: posts the ante 2
+Player2: posts the ante 2
+Hero: posts small blind 10
+Player2: posts big blind 20
+*** HOLE CARDS ***
+Dealt to Hero [3h 4c]
+Player0: folds 
+Player3: raises 20 to 40
+Player1: calls 40
+Hero: folds 
+Player2: raises 454 to 494 and is all-in
+Player3: calls 174 and is all-in
+Player1: folds 
+Uncalled bet (280) returned to Player2
+*** FLOP *** [6h Kc 2c]
+*** TURN *** [6h Kc 2c] [Td]
+*** RIVER *** [6h Kc 2c Td] [Kh]
+*** SHOW DOWN ***
+Player2: shows [Jh Jc] (two pair, Kings and Jacks)
+Player3: shows [Qs 9h] (a pair of Kings)
+Player2 collected 488 from pot
+Player3 finished the tournament in 5th place
+*** SUMMARY ***
+Total pot 488 | Rake 0 
+Board [6h Kc 2c Td Kh]
+Seat 1: Player0 folded before Flop (didn't bet)
+Seat 2: Player3 showed [Qs 9h] and lost with a pair of Kings
+Seat 4: Player1 (button) folded before Flop
+Seat 5: Hero (small blind) folded before Flop
+Seat 6: Player2 (big blind) showed [Jh Jc] and won (488) with two pair, Kings and Jacks
+
+
+
+Full Tilt Hand #153580382064: Tournament #1571041343, 870+130 Hold'em No Limit - Level I (10/20) - 2016/05/20 8:27:14 ET
+Table '1571041343 1' 6-max Seat #5 is the button
+Seat 1: Player0 (1084 in chips) 
+Seat 4: Player1 (684 in chips) 
+Seat 5: Hero (464 in chips) is sitting out
+Seat 6: Player2 (768 in chips) 
+Player0: posts the ante 2
+Player1: posts the ante 2
+Hero: posts the ante 2
+Player2: posts the ante 2
+Player2: posts small blind 10
+Player0: posts big blind 20
+*** HOLE CARDS ***
+Dealt to Hero [Kc Ks]
+Player1: calls 20
+Hero: folds 
+Player2: calls 10
+Player0: checks 
+*** FLOP *** [As 4h Tc]
+Player2: checks 
+Player0: checks 
+Player1: checks 
+*** TURN *** [As 4h Tc] [7h]
+Player2: checks 
+Player0: checks 
+Player1: checks 
+*** RIVER *** [As 4h Tc 7h] [Jd]
+Player2: checks 
+Player0: folds 
+Player1: checks 
+*** SHOW DOWN ***
+Player2: shows [3s 2h] (high card Ace)
+Player1: shows [5c Js] (a pair of Jacks)
+Player1 collected 68 from pot
+*** SUMMARY ***
+Total pot 68 | Rake 0 
+Board [As 4h Tc 7h Jd]
+Seat 1: Player0 (big blind) folded on the River
+Seat 4: Player1 showed [5c Js] and won (68) with a pair of Jacks
+Seat 5: Hero (button) folded before Flop (didn't bet)
+Seat 6: Player2 (small blind) showed [3s 2h] and lost with high card Ace
+
+
+
+Full Tilt Hand #153580394519: Tournament #1571041343, 870+130 Hold'em No Limit - Level I (10/20) - 2016/05/20 8:27:38 ET
+Table '1571041343 1' 6-max Seat #6 is the button
+Seat 1: Player0 (1062 in chips) 
+Seat 4: Player1 (730 in chips) 
+Seat 5: Hero (462 in chips) is sitting out
+Seat 6: Player2 (746 in chips) 
+Player0: posts the ante 2
+Player1: posts the ante 2
+Hero: posts the ante 2
+Player2: posts the ante 2
+Player0: posts small blind 10
+Player1: posts big blind 20
+*** HOLE CARDS ***
+Dealt to Hero [Jc 2c]
+Hero: folds 
+Player2: raises 20 to 40
+Player0: folds 
+Player1: calls 20
+*** FLOP *** [3s 5h 9s]
+Player1: checks 
+Player2: bets 60
+Player1: calls 60
+*** TURN *** [3s 5h 9s] [5c]
+Player1: checks 
+Player2: bets 60
+Player1: calls 60
+*** RIVER *** [3s 5h 9s 5c] [8d]
+Player1: checks 
+Player2: checks 
+*** SHOW DOWN ***
+Player1: shows [Jh Kh] (a pair of Fives)
+Player2: shows [As 3c] (two pair, Fives and Threes)
+Player2 collected 338 from pot
+*** SUMMARY ***
+Total pot 338 | Rake 0 
+Board [3s 5h 9s 5c 8d]
+Seat 1: Player0 (small blind) folded before Flop
+Seat 4: Player1 (big blind) showed [Jh Kh] and lost with a pair of Fives
+Seat 5: Hero folded before Flop (didn't bet)
+Seat 6: Player2 (button) showed [As 3c] and won (338) with two pair, Fives and Threes
+
+
+
+Full Tilt Hand #153580410764: Tournament #1571041343, 870+130 Hold'em No Limit - Level II (15/30) - 2016/05/20 8:28:10 ET
+Table '1571041343 1' 6-max Seat #1 is the button
+Seat 1: Player0 (1050 in chips) 
+Seat 4: Player1 (568 in chips) 
+Seat 5: Hero (460 in chips) is sitting out
+Seat 6: Player2 (922 in chips) 
+Player0: posts the ante 3
+Player1: posts the ante 3
+Hero: posts the ante 3
+Player2: posts the ante 3
+Player1: posts small blind 15
+Hero: posts big blind 30
+*** HOLE CARDS ***
+Dealt to Hero [Ah 3h]
+Player2: raises 30 to 60
+Player0: calls 60
+Player1: folds 
+Hero: folds 
+*** FLOP *** [Qc 7c Kh]
+Player2: checks 
+Player0: checks 
+*** TURN *** [Qc 7c Kh] [9c]
+Player2: bets 90
+Player0: folds 
+Uncalled bet (90) returned to Player2
+Player2 collected 177 from pot
+*** SUMMARY ***
+Total pot 177 | Rake 0 
+Board [Qc 7c Kh 9c]
+Seat 1: Player0 (button) folded on the Turn
+Seat 4: Player1 (small blind) folded before Flop
+Seat 5: Hero (big blind) folded before Flop
+Seat 6: Player2 collected (177)
+
+
+
+Full Tilt Hand #153580419042: Tournament #1571041343, 870+130 Hold'em No Limit - Level II (15/30) - 2016/05/20 8:28:26 ET
+Table '1571041343 1' 6-max Seat #4 is the button
+Seat 1: Player0 (987 in chips) 
+Seat 4: Player1 (550 in chips) 
+Seat 5: Hero (427 in chips) is sitting out
+Seat 6: Player2 (1036 in chips) 
+Player0: posts the ante 3
+Player1: posts the ante 3
+Hero: posts the ante 3
+Player2: posts the ante 3
+Hero: posts small blind 15
+Player2: posts big blind 30
+*** HOLE CARDS ***
+Dealt to Hero [8s Ah]
+Player0: folds 
+Player1: calls 30
+Hero: folds 
+Player2: checks 
+*** FLOP *** [7c 8d 6h]
+Player2: checks 
+Player1: checks 
+*** TURN *** [7c 8d 6h] [5c]
+Player2: checks 
+Player1: checks 
+*** RIVER *** [7c 8d 6h 5c] [Kh]
+Player2: bets 30
+Player1: folds 
+Uncalled bet (30) returned to Player2
+Player2 collected 87 from pot
+*** SUMMARY ***
+Total pot 87 | Rake 0 
+Board [7c 8d 6h 5c Kh]
+Seat 1: Player0 folded before Flop (didn't bet)
+Seat 4: Player1 (button) folded on the River
+Seat 5: Hero (small blind) folded before Flop
+Seat 6: Player2 (big blind) collected (87)
+
+
+
+Full Tilt Hand #153580430072: Tournament #1571041343, 870+130 Hold'em No Limit - Level II (15/30) - 2016/05/20 8:28:47 ET
+Table '1571041343 1' 6-max Seat #5 is the button
+Seat 1: Player0 (984 in chips) 
+Seat 4: Player1 (517 in chips) 
+Seat 5: Hero (409 in chips) is sitting out
+Seat 6: Player2 (1090 in chips) 
+Player0: posts the ante 3
+Player1: posts the ante 3
+Hero: posts the ante 3
+Player2: posts the ante 3
+Player2: posts small blind 15
+Player0: posts big blind 30
+*** HOLE CARDS ***
+Dealt to Hero [Ts 6c]
+Player1: calls 30
+Hero: folds 
+Player2: calls 15
+Player0: checks 
+*** FLOP *** [9s 6s Ad]
+Player2: checks 
+Player0: checks 
+Player1: checks 
+*** TURN *** [9s 6s Ad] [9d]
+Player2: checks 
+Player0: checks 
+Player1: checks 
+*** RIVER *** [9s 6s Ad 9d] [Ac]
+Player2: checks 
+Player0: checks 
+Player1: checks 
+*** SHOW DOWN ***
+Player2: shows [4c 8s] (two pair, Aces and Nines)
+Player0: shows [Tc Jd] (two pair, Aces and Nines - Jack kicker)
+Player1: shows [Jh 6h] (two pair, Aces and Nines)
+Player0 collected 51 from pot
+Player1 collected 51 from pot
+*** SUMMARY ***
+Total pot 102 | Rake 0 
+Board [9s 6s Ad 9d Ac]
+Seat 1: Player0 (big blind) showed [Tc Jd] and won (51) with two pair, Aces and Nines
+Seat 4: Player1 showed [Jh 6h] and won (51) with two pair, Aces and Nines
+Seat 5: Hero (button) folded before Flop (didn't bet)
+Seat 6: Player2 (small blind) showed [4c 8s] and lost with two pair, Aces and Nines
+
+
+
+Full Tilt Hand #153580442307: Tournament #1571041343, 870+130 Hold'em No Limit - Level II (15/30) - 2016/05/20 8:29:11 ET
+Table '1571041343 1' 6-max Seat #6 is the button
+Seat 1: Player0 (1002 in chips) 
+Seat 4: Player1 (535 in chips) 
+Seat 5: Hero (406 in chips) is sitting out
+Seat 6: Player2 (1057 in chips) 
+Player0: posts the ante 3
+Player1: posts the ante 3
+Hero: posts the ante 3
+Player2: posts the ante 3
+Player0: posts small blind 15
+Player1: posts big blind 30
+*** HOLE CARDS ***
+Dealt to Hero [Jh Js]
+Hero: folds 
+Player2: raises 30 to 60
+Player0: calls 45
+Player1: calls 30
+*** FLOP *** [8h Th Td]
+Player0: checks 
+Player1: checks 
+Player2: bets 90
+Player0: folds 
+Player1: folds 
+Uncalled bet (90) returned to Player2
+Player2 collected 192 from pot
+*** SUMMARY ***
+Total pot 192 | Rake 0 
+Board [8h Th Td]
+Seat 1: Player0 (small blind) folded on the Flop
+Seat 4: Player1 (big blind) folded on the Flop
+Seat 5: Hero folded before Flop (didn't bet)
+Seat 6: Player2 (button) collected (192)
+
+
+
+Full Tilt Hand #153580452291: Tournament #1571041343, 870+130 Hold'em No Limit - Level II (15/30) - 2016/05/20 8:29:31 ET
+Table '1571041343 1' 6-max Seat #1 is the button
+Seat 1: Player0 (939 in chips) 
+Seat 4: Player1 (472 in chips) 
+Seat 5: Hero (403 in chips) is sitting out
+Seat 6: Player2 (1186 in chips) 
+Player0: posts the ante 3
+Player1: posts the ante 3
+Hero: posts the ante 3
+Player2: posts the ante 3
+Player1: posts small blind 15
+Hero: posts big blind 30
+*** HOLE CARDS ***
+Dealt to Hero [Qc 9c]
+Player2: folds 
+Player0: calls 30
+Player1: calls 15
+Hero: folds 
+*** FLOP *** [3d 4c 2c]
+Player1: checks 
+Player0: checks 
+*** TURN *** [3d 4c 2c] [Qh]
+Player1: checks 
+Player0: checks 
+*** RIVER *** [3d 4c 2c Qh] [Jh]
+Player1: checks 
+Player0: checks 
+*** SHOW DOWN ***
+Player1: shows [Ad 8h] (high card Ace)
+Player0: mucks hand 
+Player1 collected 102 from pot
+*** SUMMARY ***
+Total pot 102 | Rake 0 
+Board [3d 4c 2c Qh Jh]
+Seat 1: Player0 (button) mucked [Td 9h]
+Seat 4: Player1 (small blind) showed [Ad 8h] and won (102) with high card Ace
+Seat 5: Hero (big blind) folded before Flop
+Seat 6: Player2 folded before Flop (didn't bet)
+
+
+
+Full Tilt Hand #153580466094: Tournament #1571041343, 870+130 Hold'em No Limit - Level III (20/40) - 2016/05/20 8:29:58 ET
+Table '1571041343 1' 6-max Seat #4 is the button
+Seat 1: Player0 (906 in chips) 
+Seat 4: Player1 (541 in chips) 
+Seat 5: Hero (370 in chips) is sitting out
+Seat 6: Player2 (1183 in chips) 
+Player0: posts the ante 4
+Player1: posts the ante 4
+Hero: posts the ante 4
+Player2: posts the ante 4
+Hero: posts small blind 20
+Player2: posts big blind 40
+*** HOLE CARDS ***
+Dealt to Hero [Js Kc]
+Player0: calls 40
+Player1: folds 
+Hero: folds 
+Player2: checks 
+*** FLOP *** [Ac Qd 5s]
+Player2: checks 
+Player0: checks 
+*** TURN *** [Ac Qd 5s] [Tc]
+Player2: checks 
+Player0: bets 40
+Player2: folds 
+Uncalled bet (40) returned to Player0
+Player0 collected 116 from pot
+Player0: doesn't show hand 
+*** SUMMARY ***
+Total pot 116 | Rake 0 
+Board [Ac Qd 5s Tc]
+Seat 1: Player0 collected (116)
+Seat 4: Player1 (button) folded before Flop (didn't bet)
+Seat 5: Hero (small blind) folded before Flop
+Seat 6: Player2 (big blind) folded on the Turn
+
+
+
+Full Tilt Hand #153580475746: Tournament #1571041343, 870+130 Hold'em No Limit - Level III (20/40) - 2016/05/20 8:30:15 ET
+Table '1571041343 1' 6-max Seat #5 is the button
+Seat 1: Player0 (978 in chips) 
+Seat 4: Player1 (537 in chips) 
+Seat 5: Hero (346 in chips) is sitting out
+Seat 6: Player2 (1139 in chips) 
+Player0: posts the ante 4
+Player1: posts the ante 4
+Hero: posts the ante 4
+Player2: posts the ante 4
+Player2: posts small blind 20
+Player0: posts big blind 40
+*** HOLE CARDS ***
+Dealt to Hero [Ks 3d]
+Player1: folds 
+Hero: folds 
+Player2: raises 40 to 80
+Player0: calls 40
+*** FLOP *** [Td 8s Jc]
+Player2: bets 80
+Player0: calls 80
+*** TURN *** [Td 8s Jc] [9h]
+Player2: checks 
+Player0: bets 280
+Player2: folds 
+Uncalled bet (280) returned to Player0
+Player0 collected 336 from pot
+Player0: doesn't show hand 
+*** SUMMARY ***
+Total pot 336 | Rake 0 
+Board [Td 8s Jc 9h]
+Seat 1: Player0 (big blind) collected (336)
+Seat 4: Player1 folded before Flop (didn't bet)
+Seat 5: Hero (button) folded before Flop (didn't bet)
+Seat 6: Player2 (small blind) folded on the Turn
+
+
+
+Full Tilt Hand #153580489420: Tournament #1571041343, 870+130 Hold'em No Limit - Level III (20/40) - 2016/05/20 8:30:41 ET
+Table '1571041343 1' 6-max Seat #6 is the button
+Seat 1: Player0 (1150 in chips) 
+Seat 4: Player1 (533 in chips) 
+Seat 5: Hero (342 in chips) is sitting out
+Seat 6: Player2 (975 in chips) 
+Player0: posts the ante 4
+Player1: posts the ante 4
+Hero: posts the ante 4
+Player2: posts the ante 4
+Player0: posts small blind 20
+Player1: posts big blind 40
+*** HOLE CARDS ***
+Dealt to Hero [Kh 7c]
+Hero: folds 
+Player2: folds 
+Player0: calls 20
+Player1: checks 
+*** FLOP *** [Tc Ah Kd]
+Player0: checks 
+Player1: bets 40
+Player0: calls 40
+*** TURN *** [Tc Ah Kd] [4c]
+Player0: checks 
+Player1: bets 40
+Player0: calls 40
+*** RIVER *** [Tc Ah Kd 4c] [8s]
+Player0: checks 
+Player1: bets 40
+Player0: calls 40
+*** SHOW DOWN ***
+Player1: shows [2s Ad] (a pair of Aces)
+Player0: mucks hand 
+Player1 collected 336 from pot
+*** SUMMARY ***
+Total pot 336 | Rake 0 
+Board [Tc Ah Kd 4c 8s]
+Seat 1: Player0 (small blind) mucked [2h 3h]
+Seat 4: Player1 (big blind) showed [2s Ad] and won (336) with a pair of Aces
+Seat 5: Hero folded before Flop (didn't bet)
+Seat 6: Player2 (button) folded before Flop (didn't bet)
+
+
+
+Full Tilt Hand #153580503153: Tournament #1571041343, 870+130 Hold'em No Limit - Level III (20/40) - 2016/05/20 8:31:07 ET
+Table '1571041343 1' 6-max Seat #1 is the button
+Seat 1: Player0 (986 in chips) 
+Seat 4: Player1 (705 in chips) 
+Seat 5: Hero (338 in chips) is sitting out
+Seat 6: Player2 (971 in chips) 
+Player0: posts the ante 4
+Player1: posts the ante 4
+Hero: posts the ante 4
+Player2: posts the ante 4
+Player1: posts small blind 20
+Hero: posts big blind 40
+*** HOLE CARDS ***
+Dealt to Hero [7c 8h]
+Player2: raises 40 to 80
+Player0: calls 80
+Player1: folds 
+Hero: folds 
+*** FLOP *** [Qs Jc Tc]
+Player2: bets 120
+Player0: raises 120 to 240
+Player2: calls 120
+*** TURN *** [Qs Jc Tc] [Jh]
+Player2: checks 
+Player0: checks 
+*** RIVER *** [Qs Jc Tc Jh] [9s]
+Player2: bets 647 and is all-in
+Player0: calls 647
+*** SHOW DOWN ***
+Player2: shows [6c Ah] (a pair of Jacks)
+Player0: shows [7s 8s] (a straight, Eight to Queen)
+Player0 collected 2010 from pot
+Player2 finished the tournament in 4th place
+*** SUMMARY ***
+Total pot 2010 | Rake 0 
+Board [Qs Jc Tc Jh 9s]
+Seat 1: Player0 (button) showed [7s 8s] and won (2010) with a straight, Eight to Queen
+Seat 4: Player1 (small blind) folded before Flop
+Seat 5: Hero (big blind) folded before Flop
+Seat 6: Player2 showed [6c Ah] and lost with a pair of Jacks
+
+
+
+Full Tilt Hand #153580516509: Tournament #1571041343, 870+130 Hold'em No Limit - Level III (20/40) - 2016/05/20 8:31:32 ET
+Table '1571041343 1' 6-max Seat #4 is the button
+Seat 1: Player0 (2025 in chips) 
+Seat 4: Player1 (681 in chips) 
+Seat 5: Hero (294 in chips) is sitting out
+Player0: posts the ante 4
+Player1: posts the ante 4
+Hero: posts the ante 4
+Hero: posts small blind 20
+Player0: posts big blind 40
+*** HOLE CARDS ***
+Dealt to Hero [9s Qd]
+Player1: folds 
+Hero: folds 
+Uncalled bet (20) returned to Player0
+Player0 collected 52 from pot
+Player0: doesn't show hand 
+*** SUMMARY ***
+Total pot 52 | Rake 0 
+Seat 1: Player0 (big blind) collected (52)
+Seat 4: Player1 (button) folded before Flop (didn't bet)
+Seat 5: Hero (small blind) folded before Flop
+
+
+
+Full Tilt Hand #153580519410: Tournament #1571041343, 870+130 Hold'em No Limit - Level III (20/40) - 2016/05/20 8:31:37 ET
+Table '1571041343 1' 6-max Seat #5 is the button
+Seat 1: Player0 (2053 in chips) 
+Seat 4: Player1 (677 in chips) 
+Seat 5: Hero (270 in chips) is sitting out
+Player0: posts the ante 4
+Player1: posts the ante 4
+Hero: posts the ante 4
+Player0: posts small blind 20
+Player1: posts big blind 40
+*** HOLE CARDS ***
+Dealt to Hero [4s 9d]
+Hero: folds 
+Player0: calls 20
+Player1: checks 
+*** FLOP *** [Qh Jh 2d]
+Player0: checks 
+Player1: bets 40
+Player0: folds 
+Uncalled bet (40) returned to Player1
+Player1 collected 92 from pot
+Player1: doesn't show hand 
+*** SUMMARY ***
+Total pot 92 | Rake 0 
+Board [Qh Jh 2d]
+Seat 1: Player0 (small blind) folded on the Flop
+Seat 4: Player1 (big blind) collected (92)
+Seat 5: Hero (button) folded before Flop (didn't bet)
+
+
+
+Full Tilt Hand #153580527996: Tournament #1571041343, 870+130 Hold'em No Limit - Level IV (30/60) - 2016/05/20 8:31:53 ET
+Table '1571041343 1' 6-max Seat #1 is the button
+Seat 1: Player0 (2009 in chips) 
+Seat 4: Player1 (725 in chips) 
+Seat 5: Hero (266 in chips) is sitting out
+Player0: posts the ante 6
+Player1: posts the ante 6
+Hero: posts the ante 6
+Player1: posts small blind 30
+Hero: posts big blind 60
+*** HOLE CARDS ***
+Dealt to Hero [4h Jd]
+Player0: calls 60
+Player1: folds 
+Hero: folds 
+Player0 collected 168 from pot
+Player0: doesn't show hand 
+*** SUMMARY ***
+Total pot 168 | Rake 0 
+Seat 1: Player0 (button) collected (168)
+Seat 4: Player1 (small blind) folded before Flop
+Seat 5: Hero (big blind) folded before Flop
+
+
+
+Full Tilt Hand #153580532761: Tournament #1571041343, 870+130 Hold'em No Limit - Level IV (30/60) - 2016/05/20 8:32:02 ET
+Table '1571041343 1' 6-max Seat #4 is the button
+Seat 1: Player0 (2111 in chips) 
+Seat 4: Player1 (689 in chips) 
+Seat 5: Hero (200 in chips) is sitting out
+Player0: posts the ante 6
+Player1: posts the ante 6
+Hero: posts the ante 6
+Hero: posts small blind 30
+Player0: posts big blind 60
+*** HOLE CARDS ***
+Dealt to Hero [4s 8d]
+Player1: folds 
+Hero: folds 
+Uncalled bet (30) returned to Player0
+Player0 collected 78 from pot
+Player0: doesn't show hand 
+*** SUMMARY ***
+Total pot 78 | Rake 0 
+Seat 1: Player0 (big blind) collected (78)
+Seat 4: Player1 (button) folded before Flop (didn't bet)
+Seat 5: Hero (small blind) folded before Flop
+
+
+
+Full Tilt Hand #153580535393: Tournament #1571041343, 870+130 Hold'em No Limit - Level IV (30/60) - 2016/05/20 8:32:07 ET
+Table '1571041343 1' 6-max Seat #5 is the button
+Seat 1: Player0 (2153 in chips) 
+Seat 4: Player1 (683 in chips) 
+Seat 5: Hero (164 in chips) is sitting out
+Player0: posts the ante 6
+Player1: posts the ante 6
+Hero: posts the ante 6
+Player0: posts small blind 30
+Player1: posts big blind 60
+*** HOLE CARDS ***
+Dealt to Hero [Ad 8s]
+Hero: folds 
+Player0: calls 30
+Player1: checks 
+*** FLOP *** [Qs 6s As]
+Player0: bets 60
+Player1: calls 60
+*** TURN *** [Qs 6s As] [4s]
+Player0: bets 60
+Player1: calls 60
+*** RIVER *** [Qs 6s As 4s] [7d]
+Player0: bets 480
+Player1: folds 
+Uncalled bet (480) returned to Player0
+Player0 collected 378 from pot
+Player0: doesn't show hand 
+*** SUMMARY ***
+Total pot 378 | Rake 0 
+Board [Qs 6s As 4s 7d]
+Seat 1: Player0 (small blind) collected (378)
+Seat 4: Player1 (big blind) folded on the River
+Seat 5: Hero (button) folded before Flop (didn't bet)
+
+
+
+Full Tilt Hand #153580549117: Tournament #1571041343, 870+130 Hold'em No Limit - Level IV (30/60) - 2016/05/20 8:32:33 ET
+Table '1571041343 1' 6-max Seat #1 is the button
+Seat 1: Player0 (2345 in chips) 
+Seat 4: Player1 (497 in chips) 
+Seat 5: Hero (158 in chips) is sitting out
+Player0: posts the ante 6
+Player1: posts the ante 6
+Hero: posts the ante 6
+Player1: posts small blind 30
+Hero: posts big blind 60
+*** HOLE CARDS ***
+Dealt to Hero [9c 5s]
+Player0: raises 60 to 120
+Player1: calls 90
+Hero: folds 
+*** FLOP *** [Ks Ad Tc]
+Player1: checks 
+Player0: bets 60
+Player1: calls 60
+*** TURN *** [Ks Ad Tc] [8s]
+Player1: checks 
+Player0: bets 60
+Player1: calls 60
+*** RIVER *** [Ks Ad Tc 8s] [Ac]
+Player1: checks 
+Player0: bets 60
+Player1: calls 60
+*** SHOW DOWN ***
+Player0: shows [5d 3h] (a pair of Aces)
+Player1: shows [Qd 7s] (a pair of Aces - King+Queen kicker)
+Player1 collected 678 from pot
+*** SUMMARY ***
+Total pot 678 | Rake 0 
+Board [Ks Ad Tc 8s Ac]
+Seat 1: Player0 (button) showed [5d 3h] and lost with a pair of Aces
+Seat 4: Player1 (small blind) showed [Qd 7s] and won (678) with a pair of Aces
+Seat 5: Hero (big blind) folded before Flop
+
+
+
+Full Tilt Hand #153580561589: Tournament #1571041343, 870+130 Hold'em No Limit - Level IV (30/60) - 2016/05/20 8:32:56 ET
+Table '1571041343 1' 6-max Seat #4 is the button
+Seat 1: Player0 (2039 in chips) 
+Seat 4: Player1 (869 in chips) 
+Seat 5: Hero (92 in chips) is sitting out
+Player0: posts the ante 6
+Player1: posts the ante 6
+Hero: posts the ante 6
+Hero: posts small blind 30
+Player0: posts big blind 60
+*** HOLE CARDS ***
+Dealt to Hero [2h 2s]
+Player1: calls 60
+Hero: folds 
+Player0: raises 60 to 120
+Player1: calls 60
+*** FLOP *** [8h 7h Ah]
+Player0: bets 780
+Player1: folds 
+Uncalled bet (780) returned to Player0
+Player0 collected 288 from pot
+Player0: doesn't show hand 
+*** SUMMARY ***
+Total pot 288 | Rake 0 
+Board [8h 7h Ah]
+Seat 1: Player0 (big blind) collected (288)
+Seat 4: Player1 (button) folded on the Flop
+Seat 5: Hero (small blind) folded before Flop
+
+
+
+Full Tilt Hand #153580571914: Tournament #1571041343, 870+130 Hold'em No Limit - Level IV (30/60) - 2016/05/20 8:33:16 ET
+Table '1571041343 1' 6-max Seat #5 is the button
+Seat 1: Player0 (2201 in chips) 
+Seat 4: Player1 (743 in chips) 
+Seat 5: Hero (56 in chips) is sitting out
+Player0: posts the ante 6
+Player1: posts the ante 6
+Hero: posts the ante 6
+Player0: posts small blind 30
+Player1: posts big blind 60
+*** HOLE CARDS ***
+Dealt to Hero [Ks 5s]
+Hero: folds 
+Player0: calls 30
+Player1: checks 
+*** FLOP *** [7h Kh 8d]
+Player0: checks 
+Player1: checks 
+*** TURN *** [7h Kh 8d] [2c]
+Player0: checks 
+Player1: checks 
+*** RIVER *** [7h Kh 8d 2c] [Ad]
+Player0: checks 
+Player1: checks 
+*** SHOW DOWN ***
+Player0: shows [Qs 5c] (high card Ace)
+Player1: shows [Qh 7d] (a pair of Sevens)
+Player1 collected 138 from pot
+*** SUMMARY ***
+Total pot 138 | Rake 0 
+Board [7h Kh 8d 2c Ad]
+Seat 1: Player0 (small blind) showed [Qs 5c] and lost with high card Ace
+Seat 4: Player1 (big blind) showed [Qh 7d] and won (138) with a pair of Sevens
+Seat 5: Hero (button) folded before Flop (didn't bet)
+
+
+
+Full Tilt Hand #153580581770: Tournament #1571041343, 870+130 Hold'em No Limit - Level IV (30/60) - 2016/05/20 8:33:34 ET
+Table '1571041343 1' 6-max Seat #1 is the button
+Seat 1: Player0 (2135 in chips) 
+Seat 4: Player1 (815 in chips) 
+Seat 5: Hero (50 in chips) is sitting out
+Player0: posts the ante 6
+Player1: posts the ante 6
+Hero: posts the ante 6
+Player1: posts small blind 30
+Hero: posts big blind 44 and is all-in
+*** HOLE CARDS ***
+Dealt to Hero [3h 4s]
+Player0: raises 76 to 120
+Player1: folds 
+Hero: folds 
+Uncalled bet (76) returned to Player0
+Player0 collected 136 from pot
+Hero finished the tournament in 3rd place
+Player0: doesn't show hand 
+*** SUMMARY ***
+Total pot 136 | Rake 0 
+Seat 1: Player0 (button) collected (136)
+Seat 4: Player1 (small blind) folded before Flop
+Seat 5: Hero (big blind) folded before Flop
+
+
+

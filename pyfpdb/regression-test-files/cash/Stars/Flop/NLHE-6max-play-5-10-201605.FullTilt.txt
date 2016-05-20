@@ -1,0 +1,59 @@
+Full Tilt Hand #153580143072:  Hold'em No Limit (5/10) - 2016/05/20 8:19:23 ET
+Table 'Isonoe II' 6-max (Play Money) Seat #1 is the button
+Seat 1: Player0 (684 in chips) 
+Seat 2: Player1 (3442 in chips) 
+Seat 3: Player2 (443 in chips) 
+Seat 4: Player3 (1267 in chips) 
+Seat 5: Player4 (241 in chips) 
+Seat 6: Hero (1000 in chips) 
+Player1: posts small blind 5
+Player2: posts big blind 10
+Hero: posts big blind 10
+*** HOLE CARDS ***
+Dealt to Hero [Ah Jc]
+Player3: calls 10
+Player4: calls 10
+Hero: checks 
+Player0: calls 10
+Player1: calls 5
+Player2: checks 
+*** FLOP *** [As 9s 5c]
+Player1: checks 
+Player2: checks 
+Player3: checks 
+Player4: checks 
+Hero: checks 
+Player0: checks 
+*** TURN *** [As 9s 5c] [Td]
+Player1: checks 
+Player2: checks 
+Player3: checks 
+Player4: checks 
+Hero: checks 
+Player0: checks 
+*** RIVER *** [As 9s 5c Td] [Tc]
+Player1: checks 
+Player2: bets 10
+Player3: folds 
+Player4: calls 10
+Hero: calls 10
+Player0: folds 
+Player1: calls 10
+*** SHOW DOWN ***
+Player2: shows [Ts 7h] (three of a kind, Tens)
+Player4: mucks hand 
+Hero: mucks hand 
+Player1: mucks hand 
+Player2 collected 95 from pot
+*** SUMMARY ***
+Total pot 100 | Rake 5 
+Board [As 9s 5c Td Tc]
+Seat 1: Player0 (button) folded on the River
+Seat 2: Player1 (small blind) mucked [Kd 3d]
+Seat 3: Player2 (big blind) showed [Ts 7h] and won (95) with three of a kind, Tens
+Seat 4: Player3 folded on the River
+Seat 5: Player4 mucked [5s 2c]
+Seat 6: Hero mucked [Ah Jc]
+
+
+

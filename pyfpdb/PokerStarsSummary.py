@@ -82,7 +82,7 @@ class PokerStarsSummary(TourneySummary):
                             'LS' : u"\$|\xe2\x82\xac|\u20AC||\£|" # legal currency symbols - Euro(cp1252, utf-8)
                     }
     
-    re_Identify = re.compile(u'(PokerStars\sTournament\s\#\d+|<title>TOURNEYS:)')
+    re_Identify = re.compile(u'((PokerStars|Full\sTilt)\sTournament\s\#\d+|<title>TOURNEYS:)')
     
     re_TourNo = re.compile("\#(?P<TOURNO>[0-9]+),")
 
@@ -93,7 +93,7 @@ class PokerStarsSummary(TourneySummary):
                         (?P<DESC>[ a-zA-Z]+\s+)?
                         (Buy-In:\s(?P<CURRENCY>[%(LS)s]?)(?P<BUYIN>[,.0-9]+)(\s(?P<CURRENCY1>(FPP|SC)))?(\/[%(LS)s]?(?P<FEE>[,.0-9]+))?(\/[%(LS)s]?(?P<BOUNTY>[,.0-9]+))?(?P<CUR>\s(%(LEGAL_ISO)s))?\s+)?
                         (?P<ENTRIES>[0-9]+)\splayers\s+
-                        ([%(LS)s]?(?P<ADDED>[,.\d]+)(\s(%(LEGAL_ISO)s))?\sadded\sto\sthe\sprize\spool\sby\sPokerStars(\.com)?\s+)?
+                        ([%(LS)s]?(?P<ADDED>[,.\d]+)(\s(%(LEGAL_ISO)s))?\sadded\sto\sthe\sprize\spool\sby\s(PokerStars|Full\sTilt)(\.com)?\s+)?
                         (Total\sPrize\sPool:\s[%(LS)s]?(?P<PRIZEPOOL>[,.0-9]+)(\s(%(LEGAL_ISO)s))?\s+)?
                         (?P<SATELLITE>Target\sTournament\s\#(?P<TARGTOURNO>[0-9]+)\s+
                          (Buy-In:\s(?P<TARGCURRENCY>[%(LS)s]?)(?P<TARGBUYIN>[,.0-9]+)(\/[%(LS)s]?(?P<TARGFEE>[,.0-9]+))?(\/[%(LS)s]?(?P<TARGBOUNTY>[,.0-9]+))?(?P<TARGCUR>\s(%(LEGAL_ISO)s))?\s+)?)?
@@ -154,7 +154,7 @@ class PokerStarsSummary(TourneySummary):
 
     @staticmethod
     def getSplitRe(self, head):
-        re_SplitTourneys = re.compile("PokerStars Tournament ")
+        re_SplitTourneys = re.compile("(PokerStars|Full\sTilt) Tournament ")
         re_HTMLSplitTourneys = re.compile("tr id=\"row_\d+")
         m = re.search("<title>TOURNEYS:", head)
         if m != None:
@@ -389,7 +389,7 @@ class PokerStarsSummary(TourneySummary):
         if self.buyin == 0:           self.buyinCurrency="FREE"
         self.currency = self.buyinCurrency
         
-        if 'Zoom' in self.in_path:
+        if 'Zoom' in self.in_path or 'Rush' in self.in_path:
             self.isFast = True
             
         self.lookupStructures(self.startTime)

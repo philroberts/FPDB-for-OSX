@@ -124,8 +124,8 @@ class PokerStars(HandHistoryConverter):
 
     # Static regexes
     re_GameInfo     = re.compile(u"""
-          (PokerStars|POKERSTARS|Hive\sPoker)(?P<TITLE>\sGame|\sHand|\sHome\sGame|\sHome\sGame\sHand|Game|\sZoom\sHand|\sGAME)\s\#(?P<HID>[0-9]+):\s+
-          (\{.*\}\s+)?((?P<TOUR>(Zoom\s)?(Tournament|TOURNAMENT))\s\#                # open paren of tournament info
+          (PokerStars|POKERSTARS|Hive\sPoker|Full\sTilt)(?P<TITLE>\sGame|\sHand|\sHome\sGame|\sHome\sGame\sHand|Game|\s(Zoom|Rush)\sHand|\sGAME)\s\#(?P<HID>[0-9]+):\s+
+          (\{.*\}\s+)?((?P<TOUR>((Zoom|Rush)\s)?(Tournament|TOURNAMENT))\s\#                # open paren of tournament info
           (?P<TOURNO>\d+),\s(Table\s\#(?P<HIVETABLE>\d+),\s)?
           # here's how I plan to use LS
           (?P<BUYIN>(?P<BIAMT>[%(LS)s\d\.]+)?\+?(?P<BIRAKE>[%(LS)s\d\.]+)?\+?(?P<BOUNTY>[%(LS)s\d\.]+)?\s?(?P<TOUR_ISO>%(LEGAL_ISO)s)?|Freeroll)\s+)?
@@ -163,7 +163,7 @@ class PokerStars(HandHistoryConverter):
           (Seat\s\#(?P<BUTTON>\d+)\sis\sthe\sbutton)?""", 
           re.MULTILINE|re.VERBOSE)
 
-    re_Identify     = re.compile(u'(PokerStars|POKERSTARS|Hive\sPoker)(\sGame|\sHand|\sHome\sGame|\sHome\sGame\sHand|Game|\sZoom\sHand|\sGAME)\s\#\d+:')
+    re_Identify     = re.compile(u'(PokerStars|POKERSTARS|Hive\sPoker|Full\sTilt)(\sGame|\sHand|\sHome\sGame|\sHome\sGame\sHand|Game|\s(Zoom|Rush)\sHand|\sGAME)\s\#\d+:')
     re_SplitHands   = re.compile('(?:\s?\n){2,}')
     re_TailSplitHands   = re.compile('(\n\n\n+)')
     re_Button       = re.compile('Seat #(?P<BUTTON>\d+) is the button', re.MULTILINE)
@@ -247,7 +247,7 @@ class PokerStars(HandHistoryConverter):
             info['currency'] = self.currencies[mg['CURRENCY']]
         if 'MIXED' in mg:
             if mg['MIXED'] is not None: info['mix'] = self.mixes[mg['MIXED']]
-        if 'Zoom' in mg['TITLE']:
+        if 'Zoom' in mg['TITLE'] or 'Rush' in mg['TITLE']:
             info['fast'] = True
         else:
             info['fast'] = False
@@ -364,7 +364,7 @@ class PokerStars(HandHistoryConverter):
                         else:
                             hand.buyin = int(Decimal(info['BIAMT']))
                             hand.fee = 0
-                    if 'Zoom' in info['TITLE']:
+                    if 'Zoom' in info['TITLE'] or 'Rush' in info['TITLE']:
                         hand.isFast = True
                     else:
                         hand.isFast = False
@@ -389,7 +389,7 @@ class PokerStars(HandHistoryConverter):
             if key == 'MAX' and info[key] != None:
                 hand.maxseats = int(info[key])
                 
-        if 'Zoom' in self.in_path:
+        if 'Zoom' in self.in_path or 'Rush' in self.in_path:
             (hand.gametype['fast'], hand.isFast) = (True, True)
                 
         if self.re_Cancelled.search(hand.handText):
