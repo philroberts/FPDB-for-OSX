@@ -35,7 +35,7 @@ class PokerStars(HandHistoryConverter):
 
     sitename = "PokerStars"
     filetype = "text"
-    codepage = ("utf8", "cp1252")
+    codepage = ("utf8", "cp1252", "ISO-8859-1")
     siteId   = 2 # Needs to match id entry in Sites database
     sym = {'USD': "\$", 'CAD': "\$", 'T$': "", "EUR": "\xe2\x82\xac", "GBP": "\£", "play": ""}         # ADD Euro, Sterling, etc HERE
     substitutions = {

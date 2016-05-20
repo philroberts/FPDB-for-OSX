@@ -114,7 +114,7 @@ class Site:
 class IdentifySite:
     def __init__(self, config, hhcs = None):
         self.config = config
-        self.codepage = ("utf8", "utf-16", "cp1252")
+        self.codepage = ("utf8", "utf-16", "cp1252", "ISO-8859-1")
         self.sitelist = {}
         self.filelist = {}
         self.generateSiteList(hhcs)
