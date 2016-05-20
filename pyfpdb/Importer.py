@@ -604,20 +604,21 @@ class Importer:
                 return None
             re_Split = obj.getSplitRe(obj,foabs)
             summaryTexts = re.split(re_Split, foabs)
-            
-            # The summary files tend to have a header or footer
-            # Remove the first and/or last entry if it has < 100 characters
-            if not len(summaryTexts[0]):
-                del summaryTexts[0]
-            
-            if len(summaryTexts)>1:
-                if len(summaryTexts[-1]) <= 100:
+            # Summary identified but not split
+            if len(summaryTexts)==1:
+                return summaryTexts
+            else:
+                # The summary files tend to have a header
+                # Remove the first entry if it has < 150 characters
+                if len(summaryTexts) > 1 and len(summaryTexts[0]) <= 150:
+                    del summaryTexts[0]
+                    log.warn(_("TourneyImport: Removing text < 150 characters from start of file"))
+                    
+                # Sometimes the summary files also have a footer
+                # Remove the last entry if it has < 100 characters   
+                if len(summaryTexts) > 1 and len(summaryTexts[-1]) <= 100:
                     summaryTexts.pop()
                     log.warn(_("TourneyImport: Removing text < 100 characters from end of file"))
-    
-                if len(summaryTexts[0]) <= 130:
-                    del summaryTexts[0]
-                    log.warn(_("TourneyImport: Removing text < 100 characters from start of file"))
         return summaryTexts 
         
 class ImportProgressDialog(QDialog):

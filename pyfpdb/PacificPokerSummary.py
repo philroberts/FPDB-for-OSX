@@ -73,7 +73,7 @@ class PacificPokerSummary(TourneySummary):
 
     @staticmethod
     def getSplitRe(self, head):
-        re_SplitTourneys = re.compile(u'\*\*\*\*\* (Cassava|888poker|888.es) Tournament Summary \*\*\*\*\*')
+        re_SplitTourneys = re.compile(u'\*\*\*\*\* (?:Cassava|888poker|888.es) Tournament Summary \*\*\*\*\*')
         return re_SplitTourneys
 
     def parseSummary(self):

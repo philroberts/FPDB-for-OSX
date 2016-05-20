@@ -43,7 +43,7 @@ class WinamaxSummary(TourneySummary):
     
     re_Identify = re.compile(u"Winamax\sPoker\s\-\sTournament\ssummary")
     
-    re_SummaryTourneyInfo = re.compile(u"""Winamax\sPoker\s-\sTournament\ssummary\s:\s
+    re_SummaryTourneyInfo = re.compile(u"""\s:\s
                                            ((?P<LIMIT>No\sLimit|Limit|LIMIT|Pot\sLimit)\s)?
                                            (?P<GAME>.+)?
                                            \((?P<TOURNO>[0-9]+)\)(\s-\sLate\sregistration)?\s+
@@ -83,7 +83,7 @@ class WinamaxSummary(TourneySummary):
 
     @staticmethod
     def getSplitRe(self, head):
-        re_SplitTourneys = re.compile("PokerStars Tournament ")
+        re_SplitTourneys = re.compile("Winamax\sPoker\s-\sTournament\ssummary")
         m = re.search("<!DOCTYPE html PUBLIC", head)
         if m != None:
             self.hhtype = "html"

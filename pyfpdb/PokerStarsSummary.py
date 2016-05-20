@@ -22,10 +22,6 @@ _ = L10n.get_translation()
 
 from decimal_wrapper import Decimal
 import datetime
-try:
-    import xlrd
-except:
-    xlrd = None
 
 from Exceptions import FpdbParseError
 from HandHistoryConverter import *
@@ -154,7 +150,7 @@ class PokerStarsSummary(TourneySummary):
 
     @staticmethod
     def getSplitRe(self, head):
-        re_SplitTourneys = re.compile("(PokerStars|Full\sTilt) Tournament ")
+        re_SplitTourneys = re.compile("(?:PokerStars|Full\sTilt) Tournament ")
         re_HTMLSplitTourneys = re.compile("tr id=\"row_\d+")
         m = re.search("<title>TOURNEYS:", head)
         if m != None:
@@ -333,7 +329,7 @@ class PokerStarsSummary(TourneySummary):
         m = self.re_TourneyInfo.search(self.summaryText)
         if m == None:
             tmp = self.summaryText[0:200]
-            log.error(_("PokerStarsSummary.parseSummary: '%s'") % tmp)
+            log.error(_("PokerStarsSummary.parseSummaryFile: '%s'") % self.summaryText)
             raise FpdbParseError
 
         #print "DEBUG: m.groupdict(): %s" % m.groupdict()
