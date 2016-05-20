@@ -136,6 +136,7 @@ class PacificPoker(HandHistoryConverter):
     re_TailSplitHands   = re.compile('(\n\n\n+)')
     re_Button       = re.compile('Seat (?P<BUTTON>\d+) is the button', re.MULTILINE)
     re_Board        = re.compile(u"\[\s(?P<CARDS>.+)\s\]")
+    re_Spanish_10   = re.compile(u'D([tpeo])')
 
     re_DateTime     = re.compile("""(?P<D>[0-9]{2})\s(?P<M>[0-9]{2})\s(?P<Y>[0-9]{4})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)""", re.MULTILINE)
 
@@ -516,7 +517,7 @@ class PacificPoker(HandHistoryConverter):
         cards = cards.replace(u'\xc2', 'A')
         cards = cards.replace(u'\xc4', 'J')
         #Spanish
-        cards = cards.replace(u'D', 'T')
+        cards = self.re_Spanish_10.sub('T\g<1>', cards)
         cards = cards.replace(u't', 'h')
         cards = cards.replace(u'p', 's')
         cards = cards.replace(u'e', 'd')
@@ -525,7 +526,10 @@ class PacificPoker(HandHistoryConverter):
         cards = cards.replace(u'B', 'J')
         cards = cards.replace(u'V', 'Q')
         cards = cards.replace(u'H', 'K')
-        
+        #Swedish
+        cards = cards.replace(u'Kn', 'J')
+        cards = cards.replace(u'D', 'Q')
+        cards = cards.replace(u'E', 'A')
         cards = cards.split(', ')
         return cards
 
