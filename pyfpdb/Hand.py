@@ -644,7 +644,7 @@ class Hand(object):
             self.actions['BLINDSANTES'].append(act)
             self.pot.addCommonMoney(player, ante)
             self.pot.addAntes(player, ante)
-            if 'ante' not in self.gametype.keys() or self.gametype['ante'] == 0:
+            if 'ante' not in self.gametype.keys() or self.gametype['ante'] < ante:
                 self.gametype['ante'] = ante
 # I think the antes should be common money, don't have enough hand history to check
 
