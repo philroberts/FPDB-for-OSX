@@ -102,16 +102,16 @@ class PokerStarsSummary(TourneySummary):
                         ur'<td align="center">(?P<TOURNO>[0-9]+)</td>' \
                         ur'(<td>(?P<TOURNAME>.*)</td>)?' \
                         ur'<td align="right">' \
-                        ur'(?P<LIMIT>[ a-zA-Z\-]+)\s' \
-                        ur'(?P<GAME>Hold\'em|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sH/L|Omaha|Omaha\sH/L|Badugi|Triple\sDraw\s2\-7(\sLowball)?|Single\sDraw\s2\-7(\sLowball)?|5\sCard\sDraw|5\sCard\sOmaha(\sH/L)?|Courchevel(\sH/L)?|HORSE|Horse|8\-Game|HOSE|Hose|Omaha\sH/L\sMixed|Hold\'em\sMixed|PLH/PLO\sMixed|NLH/PLO\sMixed|Triple\sStud|NLH/NLO\sMixed|Mixed\sNLH/NLO|Mixed\sOmaha\sH/L|Mixed\sHold\'em|Mixed\sPLH/PLO|Mixed\sNLH/PLO)</td>' \
+                            ur'(?P<LIMIT>[ a-zA-Z\-]+)\s' \
+                            ur'(?P<GAME>Hold\'em|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sH/L|Omaha|Omaha\sH/L|Badugi|Triple\sDraw\s2\-7(\sLowball)?|Single\sDraw\s2\-7(\sLowball)?|5\sCard\sDraw|5\sCard\sOmaha(\sH/L)?|Courchevel(\sH/L)?|HORSE|Horse|8\-Game|HOSE|Hose|Omaha\sH/L\sMixed|Hold\'em\sMixed|PLH/PLO\sMixed|NLH/PLO\sMixed|Triple\sStud|NLH/NLO\sMixed|Mixed\sNLH/NLO|Mixed\sOmaha\sH/L|Mixed\sHold\'em|Mixed\sPLH/PLO|Mixed\sNLH/PLO)</td>' \
                         ur'<td.*?>(?P<CURRENCY>(%(LEGAL_ISO)s)?)(&nbsp;)?</td>' \
-                        ur'<td.*?>(?P<BUYIN>([,.0-9]+|Freeroll))(?P<FPPBUYIN>\s(FPP|SC))?</td>' \
+                        ur'<td.*?>(?P<BUYIN>([,.0-9]+|Freeroll))(?P<FPPBUYIN>(\s|&nbsp;)(FPP|SC|StarsCoin))?</td>' \
                         ur'<td align="right".*?>(?P<REBUYADDON>[,.0-9]+)</td>' \
                         ur'<td align="right".*?>(?P<FEE>[,.0-9]+)</td>' \
-                        ur'<td align="right">(?P<RANK>[0-9]+)</td>' \
-                        ur'<td align="right">(?P<ENTRIES>[0-9]+)</td>' \
+                        ur'<(td|TD) align="?right"?>(?P<RANK>[,.0-9]+)</(td|TD)>' \
+                        ur'<td align="right">(?P<ENTRIES>[,.0-9]+)</td>' \
                         ur'(<td align="right".*?>[,.0-9]+</td>)?' \
-                        ur'<td nowrap align="right".*?>(?P<WINNINGS>[,.0-9]+)(?P<FPPWINNINGS>\s\+\s[,.0-9]+\s(FPP|SC))?</td>' \
+                        ur'<td nowrap align="right".*?>(?P<WINNINGS>[,.0-9]+)(?P<FPPWINNINGS>\s\+\s[,.0-9]+(\s|&nbsp;)(FPP|SC|StarsCoin))?</td>' \
                         ur'<td nowrap align="right".*?>(?P<KOS>[,.0-9]+)</td>' \
                         ur'<td.*?>((?P<TARGET>[,.0-9]+)|(&nbsp;))</td>' \
                         ur'<td.*?>((?P<WONTICKET>\*\\\/\*)|(&nbsp;))</td>' 
@@ -124,17 +124,17 @@ class PokerStarsSummary(TourneySummary):
     re_XLSTourneyInfo['Game'] = re.compile(ur'(?P<LIMIT>[ a-zA-Z\-]+)\s' \
                                            ur'(?P<GAME>Hold\'em|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sH/L|Omaha|Omaha\sH/L|Badugi|Triple\sDraw\s2\-7(\sLowball)?|Single\sDraw\s2\-7(\sLowball)?|5\sCard\sDraw|5\sCard\sOmaha(\sH/L)?|Courchevel(\sH/L)?|HORSE|Horse|8\-Game|HOSE|Hose|Omaha\sH/L\sMixed|Hold\'em\sMixed|PLH/PLO\sMixed|NLH/PLO\sMixed|Triple\sStud|NLH/NLO\sMixed|Mixed\sNLH/NLO|Mixed\sOmaha\sH/L|Mixed\sHold\'em|Mixed\sPLH/PLO|Mixed\sNLH/PLO)')
     re_XLSTourneyInfo['Currency'] = re.compile(ur'(?P<CURRENCY>(%(LEGAL_ISO)s)?)' % substitutions)
-    re_XLSTourneyInfo['Buy-In'] = re.compile(ur'(?P<BUYIN>([,.0-9]+|Freeroll))(?P<FPPBUYIN>\s(FPP|SC))?')
+    re_XLSTourneyInfo['Buy-In'] = re.compile(ur'(?P<BUYIN>([,.0-9]+|Freeroll))(?P<FPPBUYIN>\s(FPP|SC|StarsCoin))?')
     re_XLSTourneyInfo['ReBuys'] = re.compile(r'(?P<REBUYADDON>[,.0-9]+)')
     re_XLSTourneyInfo['Rake'] =  re.compile(r'(?P<FEE>[,.0-9]+)')
-    re_XLSTourneyInfo['Place'] = re.compile(r'(?P<RANK>[0-9]+)')
-    re_XLSTourneyInfo['Entries'] = re.compile(r'(?P<ENTRIES>[0-9]+)')
-    re_XLSTourneyInfo['Prize'] = re.compile(ur'(?P<WINNINGS>[,.0-9]+)(?P<FPPWINNINGS>\s\+\s[,.0-9]+\s(FPP|SC))?')
+    re_XLSTourneyInfo['Place'] = re.compile(r'(?P<RANK>[,.0-9]+)')
+    re_XLSTourneyInfo['Entries'] = re.compile(r'(?P<ENTRIES>[,.0-9]+)')
+    re_XLSTourneyInfo['Prize'] = re.compile(ur'(?P<WINNINGS>[,.0-9]+)(?P<FPPWINNINGS>\s\+\s[,.0-9]+\s(FPP|SC|StarsCoin))?')
     re_XLSTourneyInfo['Bounty Awarded'] =  re.compile(r'(?P<KOS>[,.0-9]+)')
     re_XLSTourneyInfo['Target ID'] = re.compile(r'(?P<TARGET>[0-9]+)?')
     re_XLSTourneyInfo['Qualified'] = re.compile(r'(?P<WONTICKET>\*\\\/\*)?')
 
-    re_Player = re.compile(u"""(?P<RANK>[0-9]+):\s(?P<NAME>.+?)\s\(.+?\),(\s)?((?P<CUR>[%(LS)s]?)(?P<WINNINGS>[,.0-9]+)(\s(?P<CUR1>(FPP|SC)))?)?(?P<STILLPLAYING>still\splaying)?((?P<TICKET>Tournament\sTicket)\s\(WSOP\sStep\s(?P<LEVEL>\d)\))?(?P<QUALIFIED>\s\(qualified\sfor\sthe\starget\stournament\))?(\s+)?""" % substitutions)
+    re_Player = re.compile(u"""(?P<RANK>[,.0-9]+):\s(?P<NAME>.+?)\s\(.+?\),(\s)?((?P<CUR>[%(LS)s]?)(?P<WINNINGS>[,.0-9]+)(\s(?P<CUR1>(FPP|SC)))?)?(?P<STILLPLAYING>still\splaying)?((?P<TICKET>Tournament\sTicket)\s\(WSOP\sStep\s(?P<LEVEL>\d)\))?(?P<QUALIFIED>\s\(qualified\sfor\sthe\starget\stournament\))?(\s+)?""" % substitutions)
     re_HTMLPlayer = re.compile(ur"<h2>All\s+(?P<SNG>(Regular|Sit & Go))\s?Tournaments\splayed\sby\s'(<b>)?(?P<NAME>.+?)':?</h2>")
     re_XLSPlayer = re.compile(r'All\s(?P<SNG>(Regular|(Heads\sup\s)?Sit\s&\sGo))\sTournaments\splayed\sby\s\'(?P<NAME>.+?)\'')
     
@@ -219,7 +219,7 @@ class PokerStarsSummary(TourneySummary):
         m2 = self.re_HTMLTourneyInfo.search(self.summaryText)
         if m1 == None or m2==None:
             tmp1 = self.header[0:200]
-            tmp2 = self.summaryText[0:200]
+            tmp2 = self.summaryText
             log.error(_("PokerStarsSummary.parseSummaryHtml: '%s' '%s") % (tmp1, tmp2))
             raise FpdbParseError
         info.update(m1.groupdict())
@@ -256,7 +256,7 @@ class PokerStarsSummary(TourneySummary):
             self.rebuyCost = self.buyin
             self.addOnCost = self.buyin
         if 'ENTRIES'   in info: 
-            self.entries = int(info['ENTRIES'])
+            self.entries = int(self.clearMoneyString(info['ENTRIES']))
         if 'MAX' in info and info['MAX'] != None:
             self.maxseats = int(info['MAX'])    
         if not self.isSng and 'SPEED' in info and info['SPEED'] != None:
@@ -306,7 +306,7 @@ class PokerStarsSummary(TourneySummary):
                     
         if info.get('NAME')!=None and info.get('RANK')!=None: 
             name = info['NAME']
-            rank = int(info['RANK'])
+            rank = int(self.clearMoneyString(info['RANK']))
             winnings = 0
             rebuyCount = 0
             addOnCount = 0
