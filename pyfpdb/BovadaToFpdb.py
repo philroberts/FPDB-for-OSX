@@ -542,6 +542,8 @@ class Bovada(HandHistoryConverter):
                 elif action.group('ATYPE') == ' Checks':
                     hand.addCheck( street, player)
                 elif action.group('ATYPE') == ' Calls' or action.group('ATYPE') == ' Call':
+                    if not action.group('BET'):
+                        raise FpdbHandPartial("BovadaToFpdb.determineGameType: " + _("Partial hand history"))
                     hand.addCall( street, player, self.clearMoneyString(action.group('BET')) )
                 elif action.group('ATYPE') in (' Raises', ' raises', ' All-in(raise)', ' All-in(raise-timeout)'):
                     if action.group('BETTO'):
@@ -552,8 +554,12 @@ class Bovada(HandHistoryConverter):
                         raise FpdbHandPartial("BovadaToFpdb.determineGameType: " + _("Partial hand history"))
                     hand.addRaiseTo( street, player, bet )
                 elif action.group('ATYPE') in (' Bets', ' bets', ' Double bets'):
+                    if not action.group('BET'):
+                        raise FpdbHandPartial("BovadaToFpdb.determineGameType: " + _("Partial hand history"))
                     hand.addBet( street, player, self.clearMoneyString(action.group('BET')) )
                 elif action.group('ATYPE') == ' All-in':
+                    if not action.group('BET'):
+                        raise FpdbHandPartial("BovadaToFpdb.determineGameType: " + _("Partial hand history"))
                     hand.addAllIn( street, player, self.clearMoneyString(action.group('BET')) )
                     self.allInBlind(hand, street, action, action.group('ATYPE'))
                 elif action.group('ATYPE') == ' Bring_in chip':
