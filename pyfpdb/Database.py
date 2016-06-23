@@ -2599,19 +2599,25 @@ class Database:
                 j = id[0]
                 self.s['bk'][j]['ids'] += [hid]
                 if tid: self.s['bk'][j]['tourneys'].add(tid)
-            elif len(id) == 2:
-                j, k = id
-                if  self.s['bk'][j]['sessionStart'] < self.s['bk'][k]['sessionStart']:
-                    self.s['bk'][j]['sessionEnd']   = self.s['bk'][k]['sessionEnd']
-                else:
-                    self.s['bk'][j]['sessionStart'] = self.s['bk'][k]['sessionStart']
-                    self.s['bk'][j]['weekStart']    = self.s['bk'][k]['weekStart']
-                    self.s['bk'][j]['monthStart']   = self.s['bk'][k]['monthStart']
-                sh = self.s['bk'].pop(k)
-                self.s['bk'][j]['ids'] += [hid]
-                self.s['bk'][j]['ids'] += sh['ids']
-                if tid: self.s['bk'][j]['tourneys'].add(tid)
-                self.s['bk'][j]['tourneys'].union(sh['tourneys'])
+            elif len(id) > 1:
+                merged = {}
+                merged['ids'] = [hid]
+                merged['tourneys'] = set()
+                if tid: merged['tourneys'].add(tid) 
+                for n in id:
+                    h = self.s['bk'][n]
+                    if not merged.get('sessionStart') or merged.get('sessionStart') > h['sessionStart']:
+                        merged['sessionStart'] = h['sessionStart']
+                        merged['weekStart'] = h['weekStart']
+                        merged['monthStart'] = h['monthStart']
+                    if not merged.get('sessionEnd') or merged.get('sessionEnd') < h['sessionEnd']:
+                        merged['sessionEnd'] = h['sessionEnd']
+                    merged['ids'] += h['ids']
+                    merged['tourneys'].union(h['tourneys'])
+                    self.s['bk'][n]['delete'] = True
+                    
+                self.s['bk'] = [item for item in self.s['bk'] if not item.get('delete')]
+                self.s['bk'].append(merged)
             elif len(id) == 0:
                 j = len(self.s['bk'])
                 hand['id'] = None
