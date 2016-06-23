@@ -39,6 +39,7 @@ class Bovada(HandHistoryConverter):
     codepage = ("utf8", "cp1252")
     siteId   = 21 # Needs to match id entry in Sites database
     summaryInFile = True
+    copyGameHeader = True
     sym = {'USD': "\$", 'T$': "", "play": ""}         # ADD Euro, Sterling, etc HERE
     substitutions = {
                      'LEGAL_ISO' : "USD",      # legal ISO currency codes
@@ -117,7 +118,8 @@ class Bovada(HandHistoryConverter):
          (?P<HERO>\s\[ME\])?:\s
          (%(LS)s)?(?P<CASH>[%(NUM)s]+)\sin\schips""" % substitutions, 
          re.MULTILINE|re.VERBOSE)
-
+    
+    re_PlayerSeat = re.compile(u"^Seat\+(?P<SEAT>[0-9]+)", re.MULTILINE|re.VERBOSE)
     re_Identify     = re.compile(u'(Bovada|Bodog(\sUK|\sCanada|88)?)\sHand')
     re_SplitHands   = re.compile('\n\n+')
     re_TailSplitHands   = re.compile('(\n\n\n+)')
@@ -174,6 +176,19 @@ class Bovada(HandHistoryConverter):
                 
                 ["tour", "stud", "fl"],
                 ]
+
+    def parseHeader(self, handText, whole_file):
+        gametype = self.determineGameType(handText)
+        if gametype['type'] == 'tour':
+            handlist = re.split(self.re_SplitHands,  whole_file)
+            firstHand = handlist[0]
+            m = self.re_PlayerSeat.finditer(firstHand)
+            maxseats = 0
+            for a in m:
+                if maxseats < int(a.group('SEAT')):
+                    maxseats = int(a.group('SEAT'))
+            gametype['maxSeats'] = maxseats            
+        return gametype
 
     def determineGameType(self, handText):
         info = {}            
@@ -302,7 +317,7 @@ class Bovada(HandHistoryConverter):
                 hand.maxseats = 2
                 
         if not hand.maxseats:
-            hand.maxseats = 9          
+            hand.maxseats = 9
     
     def readButton(self, hand):
         m = self.re_Button.search(hand.handText)
