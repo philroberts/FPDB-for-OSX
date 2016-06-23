@@ -508,7 +508,7 @@ class FullTiltPokerSummary(TourneySummary):
             self.isStep = True
         if n.group('STEPNO')!=None:
             self.stepNo = int(n.group('STEPNO'))
-        if self.isMatrix:
+        if self.isMatrix and self.entries > 0:
             self.buyin = self.prizepool / self.entries
             buyinfee = int(100*Decimal(self.clearMoneyString(n.group('BUYINGUAR'))))
             self.fee = buyinfee - self.buyin
