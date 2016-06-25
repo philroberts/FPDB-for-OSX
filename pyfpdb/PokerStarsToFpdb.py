@@ -366,7 +366,7 @@ class PokerStars(HandHistoryConverter):
                             hand.buyin = int(100*Decimal(info['BIAMT'])) + hand.koBounty
                             hand.fee = int(100*Decimal(info['BIRAKE']))
                         else:
-                            hand.buyin = int(Decimal(info['BIAMT']))
+                            hand.buyin = int(100*Decimal(info['BIAMT']))
                             hand.fee = 0
                     if 'Zoom' in info['TITLE'] or 'Rush' in info['TITLE']:
                         hand.isFast = True
