@@ -105,9 +105,9 @@ class PokerStarsSummary(TourneySummary):
                             ur'(?P<LIMIT>[ a-zA-Z\-]+)\s' \
                             ur'(?P<GAME>Hold\'em|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sH/L|Omaha|Omaha\sH/L|Badugi|Triple\sDraw\s2\-7(\sLowball)?|Single\sDraw\s2\-7(\sLowball)?|5\sCard\sDraw|5\sCard\sOmaha(\sH/L)?|Courchevel(\sH/L)?|HORSE|Horse|8\-Game|HOSE|Hose|Omaha\sH/L\sMixed|Hold\'em\sMixed|PLH/PLO\sMixed|NLH/PLO\sMixed|Triple\sStud|NLH/NLO\sMixed|Mixed\sNLH/NLO|Mixed\sOmaha\sH/L|Mixed\sHold\'em|Mixed\sPLH/PLO|Mixed\sNLH/PLO)</td>' \
                         ur'<td.*?>(?P<CURRENCY>(%(LEGAL_ISO)s)?)(&nbsp;)?</td>' \
-                        ur'<td.*?>(?P<BUYIN>([,.0-9]+|Freeroll))(?P<FPPBUYIN>(\s|&nbsp;)(FPP|SC|StarsCoin))?</td>' \
-                        ur'<td.*?>(?P<REBUYADDON>[,.0-9]+)</td>' \
-                        ur'<td.*?>(?P<FEE>[,.0-9]+)</td>' \
+                        ur'<td.*?>(?P<BUYIN>([,.0-9 ]+|Freeroll))(?P<FPPBUYIN>(\s|&nbsp;)(FPP|SC|StarsCoin))?</td>' \
+                        ur'<td.*?>(?P<REBUYADDON>[,.0-9 ]+)</td>' \
+                        ur'<td.*?>(?P<FEE>[,.0-9 ]+)</td>' \
                         ur'<td align="?right"?>(?P<RANK>[,.0-9]+)</td>' \
                         ur'<td align="right">(?P<ENTRIES>[,.0-9]+)</td>' \
                         ur'(<td align="right".*?>[,.0-9]+</td>)?' \
@@ -246,10 +246,10 @@ class PokerStarsSummary(TourneySummary):
             if info['BUYIN']=='Freeroll':
                 self.buyin = 0
             else:
-                self.buyin = int(100*Decimal(self.clearMoneyString(info['BUYIN'])))
+                self.buyin = int(100*Decimal(self.clearMoneyString(info['BUYIN'].replace(" ", ""))))
         if info['FEE'] != None:
-            self.fee   = int(100*Decimal(self.clearMoneyString(info['FEE'])))
-        if (('REBUYADDON' in info and Decimal(self.clearMoneyString(info['REBUYADDON']))>0) or
+            self.fee   = int(100*Decimal(self.clearMoneyString(info['FEE'].replace(" ", ""))))
+        if (('REBUYADDON' in info and Decimal(self.clearMoneyString(info['REBUYADDON'].replace(" ", "")))>0) or
             ('REBUYADDON1' in info and info['REBUYADDON1'] != None)):
             self.isRebuy   = True
             self.isAddOn   = True
@@ -316,7 +316,7 @@ class PokerStarsSummary(TourneySummary):
                 winnings = int(100*Decimal(self.clearMoneyString(info['WINNINGS'])))
                 
             if self.isRebuy:
-                rebuyAddOnAmt = int(100*Decimal(self.clearMoneyString(info['REBUYADDON'])))
+                rebuyAddOnAmt = int(100*Decimal(self.clearMoneyString(info['REBUYADDON'].replace(" ", ""))))
                 rebuyCount = rebuyAddOnAmt/self.rebuyCost
                 
             if 'KOS' in info and info['KOS'] != None:
