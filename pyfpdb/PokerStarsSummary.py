@@ -110,7 +110,7 @@ class PokerStarsSummary(TourneySummary):
                         ur'<td.*?>(?P<FEE>[,.0-9 ]+)</td>' \
                         ur'<td align="?right"?>(?P<RANK>[,.0-9]+)</td>' \
                         ur'<td align="right">(?P<ENTRIES>[,.0-9]+)</td>' \
-                        ur'(<td align="right".*?>[,.0-9]+</td>)?' \
+                        ur'(<td.*?>[,.0-9]+</td>)?' \
                         ur'<td.*?>(?P<WINNINGS>[,.0-9]+)(?P<FPPWINNINGS>\s\+\s[,.0-9]+(\s|&nbsp;)(FPP|SC|StarsCoin))?</td>' \
                         ur'<td.*?>(?P<KOS>[,.0-9]+)</td>' \
                         ur'<td.*?>((?P<TARGET>[,.0-9]+)|(&nbsp;))</td>' \
@@ -319,7 +319,7 @@ class PokerStarsSummary(TourneySummary):
                 rebuyAddOnAmt = int(100*Decimal(self.clearMoneyString(info['REBUYADDON'].replace(" ", ""))))
                 rebuyCount = rebuyAddOnAmt/self.rebuyCost
                 
-            if 'KOS' in info and info['KOS'] != None:
+            if 'KOS' in info and info['KOS'] != None and info['KOS'] != '0.00':
                 self.koBounty += int(100*Decimal(self.clearMoneyString(info['KOS'])))
                 self.isKO, koCount = True, 1
                     
