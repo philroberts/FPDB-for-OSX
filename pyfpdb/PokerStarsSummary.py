@@ -106,16 +106,16 @@ class PokerStarsSummary(TourneySummary):
                             ur'(?P<GAME>Hold\'em|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sH/L|Omaha|Omaha\sH/L|Badugi|Triple\sDraw\s2\-7(\sLowball)?|Single\sDraw\s2\-7(\sLowball)?|5\sCard\sDraw|5\sCard\sOmaha(\sH/L)?|Courchevel(\sH/L)?|HORSE|Horse|8\-Game|HOSE|Hose|Omaha\sH/L\sMixed|Hold\'em\sMixed|PLH/PLO\sMixed|NLH/PLO\sMixed|Triple\sStud|NLH/NLO\sMixed|Mixed\sNLH/NLO|Mixed\sOmaha\sH/L|Mixed\sHold\'em|Mixed\sPLH/PLO|Mixed\sNLH/PLO)</td>' \
                         ur'<td.*?>(?P<CURRENCY>(%(LEGAL_ISO)s)?)(&nbsp;)?</td>' \
                         ur'<td.*?>(?P<BUYIN>([,.0-9]+|Freeroll))(?P<FPPBUYIN>(\s|&nbsp;)(FPP|SC|StarsCoin))?</td>' \
-                        ur'<td align="right".*?>(?P<REBUYADDON>[,.0-9]+)</td>' \
-                        ur'<td align="right".*?>(?P<FEE>[,.0-9]+)</td>' \
-                        ur'<(td|TD) align="?right"?>(?P<RANK>[,.0-9]+)</(td|TD)>' \
+                        ur'<td.*?>(?P<REBUYADDON>[,.0-9]+)</td>' \
+                        ur'<td.*?>(?P<FEE>[,.0-9]+)</td>' \
+                        ur'<td align="?right"?>(?P<RANK>[,.0-9]+)</td>' \
                         ur'<td align="right">(?P<ENTRIES>[,.0-9]+)</td>' \
                         ur'(<td align="right".*?>[,.0-9]+</td>)?' \
-                        ur'<td nowrap align="right".*?>(?P<WINNINGS>[,.0-9]+)(?P<FPPWINNINGS>\s\+\s[,.0-9]+(\s|&nbsp;)(FPP|SC|StarsCoin))?</td>' \
-                        ur'<td nowrap align="right".*?>(?P<KOS>[,.0-9]+)</td>' \
+                        ur'<td.*?>(?P<WINNINGS>[,.0-9]+)(?P<FPPWINNINGS>\s\+\s[,.0-9]+(\s|&nbsp;)(FPP|SC|StarsCoin))?</td>' \
+                        ur'<td.*?>(?P<KOS>[,.0-9]+)</td>' \
                         ur'<td.*?>((?P<TARGET>[,.0-9]+)|(&nbsp;))</td>' \
                         ur'<td.*?>((?P<WONTICKET>\*\\\/\*)|(&nbsp;))</td>' 
-                        % substitutions)
+                        % substitutions, re.IGNORECASE)
     
     re_XLSTourneyInfo = {}
     re_XLSTourneyInfo['Date/Time'] = re.compile(r'(?P<DATETIME>.*)')
@@ -135,7 +135,7 @@ class PokerStarsSummary(TourneySummary):
     re_XLSTourneyInfo['Qualified'] = re.compile(r'(?P<WONTICKET>\*\\\/\*)?')
 
     re_Player = re.compile(u"""(?P<RANK>[,.0-9]+):\s(?P<NAME>.+?)\s\(.+?\),(\s)?((?P<CUR>[%(LS)s]?)(?P<WINNINGS>[,.0-9]+)(\s(?P<CUR1>(FPP|SC)))?)?(?P<STILLPLAYING>still\splaying)?((?P<TICKET>Tournament\sTicket)\s\(WSOP\sStep\s(?P<LEVEL>\d)\))?(?P<QUALIFIED>\s\(qualified\sfor\sthe\starget\stournament\))?(\s+)?""" % substitutions)
-    re_HTMLPlayer = re.compile(ur"<h2>All\s+(?P<SNG>(Regular|Sit & Go))\s?Tournaments\splayed\sby\s'(<b>)?(?P<NAME>.+?)':?</h2>")
+    re_HTMLPlayer = re.compile(ur"<h2>All\s+(?P<SNG>(Regular|Sit & Go))\s?Tournaments\splayed\sby\s'(<b>)?(?P<NAME>.+?)':?</h2>", re.IGNORECASE)
     re_XLSPlayer = re.compile(r'All\s(?P<SNG>(Regular|(Heads\sup\s)?Sit\s&\sGo))\sTournaments\splayed\sby\s\'(?P<NAME>.+?)\'')
     
     re_DateTime = re.compile("""(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)""", re.MULTILINE)
@@ -218,8 +218,8 @@ class PokerStarsSummary(TourneySummary):
         m1 = self.re_HTMLPlayer.search(self.header)
         m2 = self.re_HTMLTourneyInfo.search(self.summaryText)
         if m1 == None or m2==None:
-            tmp1 = self.header[0:200]
-            tmp2 = self.summaryText
+            tmp1 = self.header[0:200] if m1 == None else 'NA'
+            tmp2 = self.summaryText if m2 == None else 'NA'
             log.error(_("PokerStarsSummary.parseSummaryHtml: '%s' '%s") % (tmp1, tmp2))
             raise FpdbParseError
         info.update(m1.groupdict())
