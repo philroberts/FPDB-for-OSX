@@ -181,7 +181,6 @@ class PokerStars(HandHistoryConverter):
     re_Antes            = re.compile(r"^%(PLYR)s: posts the ante %(CUR)s(?P<ANTE>[.0-9]+)" % substitutions, re.MULTILINE)
     re_BringIn          = re.compile(r"^%(PLYR)s: brings[- ]in( low|) for %(CUR)s(?P<BRINGIN>[.0-9]+)" % substitutions, re.MULTILINE)
     re_PostBoth         = re.compile(r"^%(PLYR)s: posts small \& big blinds %(CUR)s(?P<SBBB>[.0-9]+)" %  substitutions, re.MULTILINE)
-    re_HeroCards        = re.compile(r"^Dealt to %(PLYR)s(?: \[(?P<OLDCARDS>.+?)\])?( \[(?P<NEWCARDS>.+?)\])" % substitutions, re.MULTILINE)
     re_Action           = re.compile(r"""
                         ^%(PLYR)s:(?P<ATYPE>\sbets|\schecks|\sraises|\scalls|\sfolds|\sdiscards|\sstands\spat)
                         (\s%(CUR)s(?P<BET>[,.\d]+))?(\sto\s%(CUR)s(?P<BETTO>[,.\d]+))?  # the number discarded goes in <BET>
@@ -201,7 +200,12 @@ class PokerStars(HandHistoryConverter):
     re_Cancelled        = re.compile('Hand\scancelled', re.MULTILINE)
 
     def compilePlayerRegexs(self,  hand):
-        pass
+        players = set([player[1] for player in hand.players])
+        if not players <= self.compiledPlayers: # x <= y means 'x is subset of y'
+            self.compiledPlayers = players
+            player_re = "(?P<PNAME>" + "|".join(map(re.escape, players)) + ")"
+            subst = {'PLYR': player_re}
+            self.re_HeroCards = re.compile(r"^Dealt to %(PLYR)s(?: \[(?P<OLDCARDS>.+?)\])?( \[(?P<NEWCARDS>.+?)\])" % subst, re.MULTILINE)            
 
     def readSupportedGames(self):
         return [["ring", "hold", "nl"],

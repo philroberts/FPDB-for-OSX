@@ -1,0 +1,83 @@
+PokerStars Hand #49382949075: Tournament #2010090015, $200+$15 USD Razz Limit - Level IV (50/100) - 2010/09/09 18:27:23 ET
+Table '2010090015 98' 8-max
+Seat 1: Player0 (4842 in chips) 
+Seat 2: Player1 (4459 in chips) 
+Seat 3: Hero (5720 in chips) 
+Seat 4: Player2 (5405 in chips) 
+Seat 5: Player3 (2697 in chips) 
+Seat 6: Player4 (5501 in chips) 
+Seat 7: Player5 (5225 in chips) 
+Seat 8: PC [Mittel] (6428 in chips) 
+Player0: posts the ante 10
+Player1: posts the ante 10
+Hero: posts the ante 10
+Player2: posts the ante 10
+Player3: posts the ante 10
+Player4: posts the ante 10
+Player5: posts the ante 10
+PC [Mittel]: posts the ante 10
+*** 3rd STREET ***
+Dealt to Player0 [Jh]
+Dealt to Player1 [3d]
+Dealt to Hero [3c Ac 5s]
+Dealt to Player2 [4h]
+Dealt to Player3 [Tc]
+Dealt to Player4 [Jc]
+Dealt to Player5 [Kd]
+Dealt to PC [Mittel] [5c]
+Player5: brings in for 15
+PC [Mittel]: raises 35 to 50
+Player0: folds 
+Player1: folds 
+Hero: raises 50 to 100
+Player2: raises 50 to 150
+Player3: folds 
+Player4: folds 
+Player5: folds 
+PC [Mittel]: calls 100
+Hero: raises 50 to 200
+Betting is capped
+Player2: calls 50
+PC [Mittel]: calls 50
+*** 4th STREET ***
+Dealt to Hero [3c Ac 5s] [2h]
+Dealt to Player2 [4h] [Qs]
+Dealt to PC [Mittel] [5c] [9s]
+Hero: bets 50
+Player2: calls 50
+PC [Mittel]: calls 50
+*** 5th STREET ***
+Dealt to Hero [3c Ac 5s 2h] [Th]
+Dealt to Player2 [4h Qs] [Ah]
+Dealt to PC [Mittel] [5c 9s] [4s]
+PC [Mittel]: checks 
+Hero: bets 100
+Player2: calls 100
+PC [Mittel]: calls 100
+*** 6th STREET ***
+Dealt to Hero [3c Ac 5s 2h Th] [Js]
+Dealt to Player2 [4h Qs Ah] [Td]
+Dealt to PC [Mittel] [5c 9s 4s] [9d]
+Hero: checks 
+Player2: checks 
+PC [Mittel]: checks 
+*** RIVER ***
+Dealt to Hero [3c Ac 5s 2h Th Js] [5h]
+Hero: checks 
+Player2: checks 
+PC [Mittel]: checks 
+*** SHOW DOWN ***
+Hero: shows [3c Ac 5s 2h Th Js 5h] (Lo: T,5,3,2,A)
+Player2: mucks hand 
+PC [Mittel]: shows [4c 2s 5c 9s 4s 9d As] (Lo: 9,5,4,2,A)
+PC [Mittel] collected 1145 from pot
+*** SUMMARY ***
+Total pot 1145 | Rake 0 
+Seat 1: Player0 folded on the 3rd Street (didn't bet)
+Seat 2: Player1 folded on the 3rd Street (didn't bet)
+Seat 3: Hero showed [3c Ac 5s 2h Th Js 5h] and lost with Lo: T,5,3,2,A
+Seat 4: Player2 mucked [3s 8c 4h Qs Ah Td Qh]
+Seat 5: Player3 folded on the 3rd Street (didn't bet)
+Seat 6: Player4 folded on the 3rd Street (didn't bet)
+Seat 7: Player5 folded on the 3rd Street
+Seat 8: PC [Mittel] showed [4c 2s 5c 9s 4s 9d As] and won (1145) with Lo: 9,5,4,2,A
