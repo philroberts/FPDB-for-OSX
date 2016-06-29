@@ -128,7 +128,8 @@ class PokerStars(HandHistoryConverter):
           (\{.*\}\s+)?((?P<TOUR>((Zoom|Rush)\s)?(Tournament|TOURNAMENT))\s\#                # open paren of tournament info
           (?P<TOURNO>\d+),\s(Table\s\#(?P<HIVETABLE>\d+),\s)?
           # here's how I plan to use LS
-          (?P<BUYIN>(?P<BIAMT>[%(LS)s\d\.]+)?\+?(?P<BIRAKE>[%(LS)s\d\.]+)?\+?(?P<BOUNTY>[%(LS)s\d\.]+)?\s?(?P<TOUR_ISO>%(LEGAL_ISO)s)?|Freeroll)\s+)?
+          (?P<BUYIN>(?P<BIAMT>[%(LS)s\d\.]+)?\+?(?P<BIRAKE>[%(LS)s\d\.]+)?\+?(?P<BOUNTY>[%(LS)s\d\.]+)?\s?(?P<TOUR_ISO>%(LEGAL_ISO)s)?|Freeroll|)(\s+)?
+          )?
           # close paren of tournament info
           (?P<MIXED>HORSE|8\-Game|8\-GAME|HOSE|Mixed\sOmaha\sH/L|Mixed\sHold\'em|Mixed\sPLH/PLO|Mixed\sNLH/PLO|Mixed\sOmaha|Triple\sStud)?\s?\(?
           (?P<GAME>Hold\'em|HOLD\'EM|Razz|RAZZ|7\sCard\sStud|7\sCARD\sSTUD|7\sCard\sStud\sHi/Lo|7\sCARD\sSTUD\sHI/LO|Omaha|OMAHA|Omaha\sHi/Lo|OMAHA\sHI/LO|Badugi|Triple\sDraw\s2\-7\sLowball|Single\sDraw\s2\-7\sLowball|5\sCard\sDraw|5\sCard\sOmaha(\sHi/Lo)?|Courchevel(\sHi/Lo)?)\s
@@ -325,10 +326,14 @@ class PokerStars(HandHistoryConverter):
                     #print "DEBUG: info['BIAMT']: %s" % info['BIAMT']
                     #print "DEBUG: info['BIRAKE']: %s" % info['BIRAKE']
                     #print "DEBUG: info['BOUNTY']: %s" % info['BOUNTY']
-                    if info[key] == 'Freeroll':
+                    if info[key].strip() == 'Freeroll':
                         hand.buyin = 0
                         hand.fee = 0
                         hand.buyinCurrency = "FREE"
+                    elif info[key].strip() == '':
+                        hand.buyin = 0
+                        hand.fee = 0
+                        hand.buyinCurrency = "NA"
                     else:
                         if info[key].find("$")!=-1:
                             hand.buyinCurrency="USD"
@@ -340,7 +345,7 @@ class PokerStars(HandHistoryConverter):
                             hand.buyinCurrency="PSFP"
                         elif info[key].find("SC")!=-1:
                             hand.buyinCurrency="PSFP"
-                        elif re.match("^[0-9+]*$", info[key]):
+                        elif re.match("^[0-9+]*$", info[key].strip()):
                             hand.buyinCurrency="play"
                         else:
                             #FIXME: handle other currencies, play money
