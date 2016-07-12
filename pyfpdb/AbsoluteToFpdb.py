@@ -82,7 +82,8 @@ class Absolute(HandHistoryConverter):
               (?P<SB>[.,0-9]+)(/(?:\$|\s€|)(?P<BB>[.,0-9]+))?
               (,\s(?:\$|\s€|)(?P<ANTE>[.,0-9]+)\sante)?
               \s+
-              ((?P<TTYPE>(Turbo))\s+)?-\s+
+              ((?P<TTYPE>(Turbo))\s+)?
+              (\(7-2\)\s)?-\s+
               ((?P<DATETIME>\d\d\d\d-\d\d-\d\d\ \d\d:\d\d:\d\d)(\.\d+)?)\s+
               (?: \( (?P<TZ>[A-Z]+) \)\s+ )?
               .*?
@@ -121,7 +122,7 @@ class Absolute(HandHistoryConverter):
             self.re_PostBoth        = re.compile(ur"^%s - Posts (dead )?(?:\$| €|)(?P<BB>[,.0-9]+) (dead )?(?:\$| €|)(?P<SB>[,.0-9]+)" % player_re, re.MULTILINE)
             self.re_Action          = re.compile(ur"^%s - (?P<ATYPE>Bets |Raises |All-In |All-In\(Raise\) |Calls |Folds|Checks)?\$?(?P<BET>[,.0-9]+)?" % player_re, re.MULTILINE)
             self.re_ShowdownAction  = re.compile(ur"^%s - Shows \[(?P<CARDS>.*)\] \((?P<STRING>.+?)\)" % player_re, re.MULTILINE)
-            self.re_CollectPot      = re.compile(ur"^Seat [0-9]: %s(?: \(dealer\)|)(?: \(big blind\)| \(small blind\)|) (?:won|collected) Total \((?:\$| €|)(?P<POT>[,.0-9]+)\)" % player_re, re.MULTILINE)
+            self.re_CollectPot      = re.compile(ur"^Seat [0-9]: %s(?: \(dealer\)|)(?: \(big blind\)| \(small blind\)|) (?:won|collected) Total \((?:\$| €|)(?P<POT>[,.0-9]+)\)(.*72 Prop Win \((?:\$| €|)(?P<PROP>[,.0-9]+)\))?" % player_re, re.MULTILINE)
             self.re_Antes           = re.compile(ur"^%s - Ante (?:\$| €|)(?P<ANTE>[,.0-9]+)" % player_re, re.MULTILINE)
             self.re_BringIn         = re.compile(ur"^%s - Bring-In (?:\$| €|)(?P<BRINGIN>[.0-9]+)\." % player_re, re.MULTILINE)
             self.re_HeroCards       = re.compile(ur"^(Dealt to )?%s (- Pocket )?\[(?P<CARDS>.*)\]" % player_re, re.MULTILINE)
@@ -432,6 +433,8 @@ class Absolute(HandHistoryConverter):
     def readCollectPot(self,hand):
         for m in self.re_CollectPot.finditer(hand.handText):
             pot = m.group('POT').replace(',','')
+            if m.group('PROP'):
+                pot = str(Decimal(pot) - Decimal(m.group('PROP').replace(',','')))
             hand.addCollectPot(player=m.group('PNAME'),pot=pot)
 
     def readShownCards(self,hand):
