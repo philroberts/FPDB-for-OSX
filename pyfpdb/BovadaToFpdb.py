@@ -156,7 +156,7 @@ class Bovada(HandHistoryConverter):
             self.compiledPlayers = players
             subst['PLYR'] = "(?P<PNAME>" + "|".join(map(re.escape, players)) + ")"
             self.re_CollectPot2  = re.compile(u"""
-                Seat\+(?P<SEAT>[0-9]+):\s%(PLYR)s
+                Seat[\+ ](?P<SEAT>[0-9]+):\s?%(PLYR)s
                 (\sHI)?\s(%(LS)s)?(?P<POT1>[%(NUM)s]+)?
                 (?P<STRING>[a-zA-Z ]+)
                 (?P<CARDS1>\[[-a-zA-Z0-9 ]+\])
@@ -595,7 +595,7 @@ class Bovada(HandHistoryConverter):
                 hand.addShownCards(cards, player)
 
     def readCollectPot(self,hand):
-        if self.re_CollectPot2.search(hand.handText) and Card.games[hand.gametype['category']][2] == 's':
+        if self.re_CollectPot2.search(hand.handText):
             re_CollectPot = self.re_CollectPot2
         else:
             re_CollectPot = self.re_CollectPot1
