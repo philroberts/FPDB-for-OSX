@@ -108,10 +108,13 @@ class FullTiltPokerSummary(TourneySummary):
                         (Buy-In\sChips:\s(?P<CHIPS>\d+)\s+)?
                         (Add-On\sChips:\s(?P<ADDONCHIPS>\d+)\s+)?
                         (Rebuy\sChips:\s(?P<REBUYCHIPS>\d+)\s+)?
+                        (Cashout\svalue\sof\s\d+\schips:\s[%(LS)s]?\d+(\sFTP|\sT\$|\sPlay\sChips)?\s+)?
                         (?P<ENTRIES>[0-9]+)\sEntries\s+
                         (Total\sAdd-Ons:\s(?P<ADDONS>\d+)\s+)?
                         (Total\sRebuys:\s(?P<REBUYS>\d+)\s*)?
                         (Total\sPrize\sPool:\s[%(LS)s]?(?P<PRIZEPOOL>[%(NUM)s]+)(\sFTP|\sT\$|\sPlay\sChips)?\s+)?
+                        (Total\sCashout\sPool:\s[%(LS)s]?(?P<TOTALCASHOUT>[%(NUM)s]+)(\sFTP|\sT\$|\sPlay\sChips)?\s+)?
+                        (Current\sCashout\sPool:\s[%(LS)s]?(?P<CURRENTCASHOUT>[%(NUM)s]+)(\sFTP|\sT\$|\sPlay\sChips)?\s+)?
                         (?P<SATELLITE>Top\s(\d+\s)?finishers?\sreceives?\s.+\s+)?
                         (Target\sTournament\s.+\s+)?
                         Tournament\sstarted:\s(?P<DATETIME>((?P<Y>[\d]{4})\/(?P<M>[\d]{2})\/(?P<D>[\d]+)\s+(?P<H>[\d]+):(?P<MIN>[\d]+):(?P<S>[\d]+)\s?(?P<TZ>[A-Z]+)\s|\w+,\s(?P<MONTH>\w+)\s(?P<DAY>\d+),\s(?P<YEAR>[\d]{4})\s(?P<HOUR>\d+):(?P<MIN2>\d+)))
