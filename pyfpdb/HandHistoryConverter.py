@@ -221,7 +221,7 @@ HandHistoryConverter: '%(sitename)s'
         if self.isPartial(handText):
             raise FpdbHandPartial(_("Could not identify as a %s hand") % self.sitename)
         if self.copyGameHeader:
-            gametype = self.parseHeader(handText, self.whole_file)
+            gametype = self.parseHeader(handText, self.whole_file.replace('\r\n', '\n'))
         else:
             gametype = self.determineGameType(handText)
         hand = None
