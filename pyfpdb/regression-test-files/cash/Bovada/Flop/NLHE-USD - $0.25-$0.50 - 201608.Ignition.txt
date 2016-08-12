@@ -1,0 +1,21 @@
+Ignition Hand #3340409736 TBL#10916521 HOLDEM No Limit - 2016-08-09 12:41:32
+Seat 1: Small Blind ($50.65 in chips)
+Seat 4: Big Blind [ME] ($50 in chips)
+Seat 6: Dealer ($49.25 in chips)
+Dealer : Set dealer [6] 
+Small Blind : Small Blind $0.25 
+Big Blind  [ME] : Big blind $0.50 
+*** HOLE CARDS ***
+Small Blind : Card dealt to a spot [9c Th] 
+Big Blind  [ME] : Card dealt to a spot [9d 9s] 
+Dealer : Card dealt to a spot [4c Kd] 
+Dealer : Folds
+Small Blind : Folds
+Big Blind  [ME] : Does not show [9d 9s] (High Card)
+Big Blind  [ME] : Hand result $0.75 
+Table enter user
+*** SUMMARY ***
+Total Pot($0.75)
+Seat+1: Small Blind Folded before the FLOP
+Seat+4: Big Blind $0.75 [Does not show]  
+Seat+6: Dealer Folded before the FLOP
