@@ -552,7 +552,7 @@ class Winning(HandHistoryConverter):
         "Returns string to search in windows titles"
         regex = re.escape(str(table_name))
         if type=="tour":
-            regex = re.escape(str(tournament)) + ".* (Table) " + re.escape(str(table_number))
+            regex = ", Table " + re.escape(str(table_number)) + "\s\-.*\s\(" + re.escape(str(tournament)) + "\)"
         log.info("Winning.getTableTitleRe: table_name='%s' tournament='%s' table_number='%s'" % (table_name, tournament, table_number))
         log.info("Winning.getTableTitleRe: returns: '%s'" % (regex))
         return regex
