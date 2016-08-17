@@ -80,7 +80,7 @@ except ImportError:
     use_numpy = False
 
 
-DB_VERSION = 206
+DB_VERSION = 207
 
 # Variance created as sqlite has a bunch of undefined aggregate functions.
 
@@ -1872,6 +1872,7 @@ class Database:
         c.execute("INSERT INTO Sites (id,name,code) VALUES ('21', 'Bovada', 'BV')")
         c.execute("INSERT INTO Sites (id,name,code) VALUES ('22', 'Enet', 'EN')")
         c.execute("INSERT INTO Sites (id,name,code) VALUES ('23', 'SealsWithClubs', 'SW')")
+        c.execute("INSERT INTO Sites (id,name,code) VALUES ('24', 'WinningPoker', 'WP')")
         #Fill Actions
         c.execute("INSERT INTO Actions (id,name,code) VALUES ('1', 'ante', 'A')")
         c.execute("INSERT INTO Actions (id,name,code) VALUES ('2', 'small blind', 'SB')")
@@ -3482,29 +3483,19 @@ class Database:
             return True
         return False
     
-    def getSqlTourneyIDs(self, hand):
-        #if(self.tcache == None):
-        #    self.tcache = LambdaDict(lambda  key:self.insertTourney(key[0], key[1], key[2]))
-
-        #result = self.tcache[(hand.siteId, hand.tourNo, hand.tourneyTypeId)]
-        
-        result = self.insertTourney(hand.siteId, hand.tourNo, hand.tourneyTypeId, hand.startTime)
-
-        return result
-    
-    def insertTourney(self, siteId, tourNo, tourneyTypeId, handTime):
+    def getSqlTourneyIDs(self, hand): 
         result = None
         c = self.get_cursor()
         q = self.sql.query['getTourneyByTourneyNo']
         q = q.replace('%s', self.sql.query['placeholder'])
-        t = handTime.replace(tzinfo=None)
-        c.execute (q, (siteId, tourNo))
+        t = hand.startTime.replace(tzinfo=None)
+        c.execute (q, (hand.siteId, hand.tourNo))
 
         tmp = c.fetchone()
         if (tmp == None): 
             c.execute (self.sql.query['insertTourney'].replace('%s', self.sql.query['placeholder']),
-                        (tourneyTypeId, None, tourNo, None, None,
-                         t, t, None, None, None, None, None, None, None))
+                        (hand.tourneyTypeId, None, hand.tourNo, None, None,
+                         t, t, hand.tourneyName, None, None, None, None, None, None))
             result = self.get_last_insert_id(c)
         else:
             result = tmp[0]

@@ -77,6 +77,7 @@ class Hand(object):
         # tourney stuff
         self.tourNo = None
         self.tourneyId = None
+        self.tourneyName = None
         self.tourneyTypeId = None
         self.buyin = None
         self.buyinCurrency = None
