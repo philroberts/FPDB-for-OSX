@@ -463,7 +463,8 @@ class Winning(HandHistoryConverter):
                 for found in m:
                     hand.hero = found.group('PNAME')
                     newcards.append(found.group('CARD').replace("10", "T"))
-                hand.addHoleCards(street, hand.hero, closed=newcards, shown=False, mucked=False, dealt=True)
+                if hand.hero:
+                    hand.addHoleCards(street, hand.hero, closed=newcards, shown=False, mucked=False, dealt=True)
 
         for street, text in hand.streets.iteritems():
             if not text or street in ('PREFLOP', 'DEAL'): continue  # already done these
