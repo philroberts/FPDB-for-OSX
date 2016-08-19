@@ -188,7 +188,7 @@ class Winning(HandHistoryConverter):
     re_HeroCards    = re.compile(r"^Player %(PLYR)s received card: \[(?P<CARD>.+)\]" %  substitutions, re.MULTILINE)
     
     re_Action       = re.compile(r"""
-        ^Player\s%(PLYR)s\s(?P<ATYPE>bets|checks|raises|calls|folds|allin|straddle|caps)
+        ^Player\s(%(PLYR)s)?\s(?P<ATYPE>bets|checks|raises|calls|folds|allin|straddle|caps)
         (\s\((?P<BET>[%(NUM)s]+)\))?
         $""" %  substitutions, 
         re.MULTILINE|re.VERBOSE
@@ -497,7 +497,9 @@ class Winning(HandHistoryConverter):
         m = self.re_Action.finditer(hand.streets[street])
         for action in m:
             acts = action.groupdict()
-            #print "DEBUG: acts: %s" %acts
+            if action.group('PNAME') == None:                
+                raise FpdbHandPartial(_("Unknown player acts"))
+                
             if action.group('ATYPE') == 'folds':
                 hand.addFold( street, action.group('PNAME'))
             elif action.group('ATYPE') == 'checks':
