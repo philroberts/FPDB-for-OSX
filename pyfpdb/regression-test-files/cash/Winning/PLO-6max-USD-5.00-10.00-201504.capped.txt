@@ -1,0 +1,59 @@
+Game started at: 2015/4/28 1:1:3
+Game ID: 406051551 5/10 Mauilite (PRR) - CAP - 6-Max - 3 (Omaha)
+Seat 6 is the button
+Seat 1: Player0 (1442.50).
+Seat 2: Player1 (1356.75).
+Seat 3: Player2 (1079.75).
+Seat 4: Player3 (1001.25).
+Seat 5: Player4 (1000).
+Seat 6: Hero (975).
+Player Player0 has small blind (5)
+Player Player1 has big blind (10)
+Player Player0 received a card.
+Player Player0 received a card.
+Player Player0 received a card.
+Player Player0 received a card.
+Player Player1 received a card.
+Player Player1 received a card.
+Player Player1 received a card.
+Player Player1 received a card.
+Player Player2 received a card.
+Player Player2 received a card.
+Player Player2 received a card.
+Player Player2 received a card.
+Player Player3 received a card.
+Player Player3 received a card.
+Player Player3 received a card.
+Player Player3 received a card.
+Player Player4 received a card.
+Player Player4 received a card.
+Player Player4 received a card.
+Player Player4 received a card.
+Player Hero received card: [8d]
+Player Hero received card: [4s]
+Player Hero received card: [10c]
+Player Hero received card: [6c]
+Player Player2 folds
+Player Player3 folds
+Player Player4 raises (20)
+Player Hero calls (20)
+Player Player0 folds
+Player Player1 folds
+*** FLOP ***: [9s 7c 7h]
+Player Player4 bets (26.12)
+Player Hero raises (90)
+Player Player4 caps (253.88)
+Player Hero calls (190)
+*** TURN ***: [9s 7c 7h] [Kh]
+*** RIVER ***: [9s 7c 7h Kh] [2h]
+Player Hero mucks cards
+------ Summary ------
+Pot: 612. Rake 2.76. JP fee 0.24
+Board: [9s 7c 7h Kh 2h]
+Player Player0 does not show cards.Bets: 5. Collects: 0. Loses: 5.
+Player Player1 does not show cards.Bets: 10. Collects: 0. Loses: 10.
+Player Player2 does not show cards.Bets: 0. Collects: 0. Wins: 0.
+Player Player3 does not show cards.Bets: 0. Collects: 0. Wins: 0.
+*Player Player4 shows: Three Of Kind of 7s [Jd 7d Ad 5s]. Bets: 300. Collects: 612. Wins: 312.
+Player Hero mucks (does not show: [8d 4s 10c 6c]). Bets: 300. Collects: 0. Loses: 300.
+Game ended at: 2015/4/28 1:2:23

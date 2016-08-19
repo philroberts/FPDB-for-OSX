@@ -188,7 +188,7 @@ class Winning(HandHistoryConverter):
     re_HeroCards    = re.compile(r"^Player %(PLYR)s received card: \[(?P<CARD>.+)\]" %  substitutions, re.MULTILINE)
     
     re_Action       = re.compile(r"""
-        ^Player\s%(PLYR)s\s(?P<ATYPE>bets|checks|raises|calls|folds|allin|straddle)
+        ^Player\s%(PLYR)s\s(?P<ATYPE>bets|checks|raises|calls|folds|allin|straddle|caps)
         (\s\((?P<BET>[%(NUM)s]+)\))?
         $""" %  substitutions, 
         re.MULTILINE|re.VERBOSE
@@ -504,7 +504,7 @@ class Winning(HandHistoryConverter):
                 hand.addCheck( street, action.group('PNAME'))
             elif action.group('ATYPE') == 'calls':
                 hand.addCall( street, action.group('PNAME'), self.clearMoneyString(action.group('BET')) )
-            elif action.group('ATYPE') == 'raises' or action.group('ATYPE') == 'straddle':
+            elif action.group('ATYPE') in ('raises', 'straddle', 'caps'):
                 hand.addCallandRaise( street, action.group('PNAME'), self.clearMoneyString(action.group('BET')) )
             elif action.group('ATYPE') ==  'bets':
                 hand.addBet( street, action.group('PNAME'), self.clearMoneyString(action.group('BET')) )
