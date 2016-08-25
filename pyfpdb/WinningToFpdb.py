@@ -528,7 +528,8 @@ class Winning(HandHistoryConverter):
 
     def readCollectPot(self,hand):
         for m in self.re_CollectPot.finditer(hand.handText):
-            hand.addCollectPot(player=m.group('PNAME'),pot=m.group('POT'))
+            if Decimal(self.clearMoneyString(m.group('POT'))) > 0:
+                hand.addCollectPot(player=m.group('PNAME'),pot=m.group('POT'))
             
     def readShowdownActions(self, hand):
         # TODO: pick up mucks also??
