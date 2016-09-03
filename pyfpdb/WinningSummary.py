@@ -211,7 +211,7 @@ class WinningSummary(TourneySummary):
             
         if self.isRebuy:
             rebuyAmt = int(100*Decimal(self.clearMoneyString(info['REBUYS'].replace(" ", ""))))
-            rebuyCount = rebuyAddOnAmt/self.rebuyCost
+            rebuyCount = rebuyAmt/self.rebuyCost
             
         if self.isAddOn:
             addOnAmt = int(100*Decimal(self.clearMoneyString(info['ADDONS'].replace(" ", ""))))
