@@ -241,7 +241,7 @@ class TourneySummary(object):
         # Note: If the TourneyNo could be a unique id .... this would really be a relief to deal with matrix matches ==> Ask on the IRC / Ask Fulltilt ??
         self.db.set_printdata(printtest)
         
-        self.playerIds = self.db.getSqlPlayerIDs(self.players.keys(), self.siteId, None)
+        self.playerIds = self.db.getSqlPlayerIDs(self.players.keys(), self.siteId, self.hero)
         #for player in self.players:
         #    id=self.db.get_player_id(self.config, self.siteName, player)
         #    if not id:

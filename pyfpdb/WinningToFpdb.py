@@ -160,7 +160,7 @@ class Winning(HandHistoryConverter):
     #$5 Regular 9-Max, Table 1 (Hold'em)
         
     re_Table = re.compile(u"""
-        (?P<CURRENCY>[%(LS)s]|)?(?P<BUYIN>[%(NUM)s]+)\s
+        ^(?P<CURRENCY>[%(LS)s]|)?(?P<BUYIN>[%(NUM)s]+)\s
         ((?P<GAME>Holdem|PLO|PLO8|Omaha\sHi/Lo|Omaha|PL\sOmaha|PL\sOmaha\sHi/Lo|PLO\sHi/Lo)\s?)?
         ((?P<SPECIAL>(GTD|Freeroll|FREEBUY|Freebuy))\s?)?
         ((?P<SPEED>(Turbo|Hyper\sTurbo|Regular))\s?)?
@@ -168,7 +168,7 @@ class Winning(HandHistoryConverter):
         (?P<OTHER>.*?)
         ,\sTable\s(?P<TABLENO>\d+)
         """ % substitutions,  
-        re.VERBOSE
+        re.VERBOSE|re.MULTILINE
     )
     
     re_TourneyName = re.compile(u"(?P<TOURNAME>.*),\sTable\s\d+")    
@@ -179,6 +179,7 @@ class Winning(HandHistoryConverter):
     re_Button       = re.compile('Seat (?P<BUTTON>\d+) is the button')
     re_Board        = re.compile(r"\[(?P<CARDS>.+)\]")    
     re_TourNo       = re.compile("\sT(?P<TOURNO>\d+)\-")
+    re_File         = re.compile("HH\d{8}\s(T\d+\-)?G\d+")
     
     re_PostSB       = re.compile(r"^Player %(PLYR)s has small blind \((?P<SB>[%(NUM)s]+)\)" %  substitutions, re.MULTILINE)
     re_PostBB       = re.compile(r"^Player %(PLYR)s has big blind \((?P<BB>[%(NUM)s]+)\)" %  substitutions, re.MULTILINE)
@@ -241,6 +242,11 @@ class Winning(HandHistoryConverter):
 
     def determineGameType(self, handText):
         info = {}
+        if not self.re_File.search(self.in_path):
+            tmp = "Invalid filename: %s" % self.in_path
+            log.debug(_("WinningToFpdb.determineGameType: '%s'") % tmp)
+            raise FpdbHandPartial
+            
         m = self.re_GameInfo.search(handText)
         if not m:
             tmp = handText[0:200]
@@ -361,14 +367,13 @@ class Winning(HandHistoryConverter):
                             hand.maxseats = int(n)
                     
                     if 'SPEED' in tableinfo and tableinfo['SPEED'] != None:
-                        hand.speed = self.speeds[tableinfo['SPEED']]
-                        
-                    if hand.maxseats==2 and hand.buyin in self.HUSnG_Fee and self.HUSnG_Fee[hand.buyin].get(hand.speed) is not None:
-                        hand.fee = self.HUSnG_Fee[hand.buyin][hand.speed]
-                        hand.isSng = True
-                    if hand.maxseats!=2 and hand.buyin in self.SnG_Fee and self.SnG_Fee[hand.buyin].get(hand.speed) is not None:
-                        hand.fee = self.SnG_Fee[hand.buyin][hand.speed]
-                        hand.isSng = True
+                        hand.speed = self.speeds[tableinfo['SPEED']]                            
+                        if hand.maxseats==2 and hand.buyin in self.HUSnG_Fee:
+                            hand.fee = self.HUSnG_Fee[hand.buyin][hand.speed]
+                            hand.isSng = True
+                        if hand.maxseats!=2 and hand.buyin in self.SnG_Fee:
+                            hand.fee = self.SnG_Fee[hand.buyin][hand.speed]
+                            hand.isSng = True
                         
                     hand.tablename = int(m3.group('TABLENO'))
 

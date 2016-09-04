@@ -90,14 +90,14 @@ class WinningSummary(TourneySummary):
     )
 
     re_HTMLTourneyExtraInfo = re.compile(u"""
-        (?P<CURRENCY>[%(LS)s]|)?(?P<BUYIN>[%(NUM)s]+)\s
+        ^([%(LS)s]|)?(?P<GUAR>[%(NUM)s]+)\s
         ((?P<GAMEEXTRA>Holdem|PLO|PLO8|Omaha\sHi/Lo|Omaha|PL\sOmaha|PL\sOmaha\sHi/Lo|PLO\sHi/Lo)\s?)?
         ((?P<SPECIAL>(GTD|Freeroll|FREEBUY|Freebuy))\s?)?
         ((?P<SPEED>(Turbo|Hyper\sTurbo|Regular))\s?)?
         ((?P<MAX>(\d+\-Max|Heads\-up|Heads\-Up))\s?)?
         (?P<OTHER>.*?)
         """ % substitutions,  
-        re.VERBOSE
+        re.VERBOSE|re.MULTILINE
     )
     
     re_HTMLDateTime = re.compile("(?P<M>[0-9]+)\/(?P<D>[0-9]+)\/(?P<Y>[0-9]{4})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+) (?P<AMPM>(AM|PM))", re.MULTILINE)
@@ -121,6 +121,7 @@ class WinningSummary(TourneySummary):
                 raise FpdbParseError
             else:
                 raise FpdbHandPartial   
+        #print m2.groupdict()
         info.update(m1.groupdict())
         info.update(m2.groupdict())
         self.parseSummaryArchive(info)
@@ -132,7 +133,6 @@ class WinningSummary(TourneySummary):
         if 'TOURNAME' in info and info['TOURNAME'] != None:
             self.tourneyName = info['TOURNAME']
             m3 = self.re_HTMLTourneyExtraInfo.search(self.tourneyName)
-            print self.tourneyName
             if m3 != None:
                 info.update(m3.groupdict())
                 
@@ -145,6 +145,12 @@ class WinningSummary(TourneySummary):
             self.gametype['limitType'] = 'pl'
         else:
             self.gametype['limitType'] = 'fl'
+            
+        self.buyinCurrency="USD"
+        if 'SPECIAL' in info and info['SPECIAL'] != None:
+            if info['SPECIAL'] in ('Freeroll', 'FREEBUY', 'Freebuy'):
+                self.buyinCurrency="FREE"
+            self.guaranteeAmt = int(100*Decimal(self.clearMoneyString(info['GUAR'])))
         
         if 'TOURNO'    in info: 
             self.tourNo = info['TOURNO']
@@ -200,7 +206,7 @@ class WinningSummary(TourneySummary):
             self.endTime = datetime.datetime.strptime(datetimestr, "%Y/%m/%d %I:%M:%S %p") # also timezone at end, e.g. " ET"
             self.endTime = HandHistoryConverter.changeTimezone(self.endTime, self.import_parameters['timezone'], "UTC")
         
-        self.buyinCurrency="USD"
+        
         self.currency="USD"        
         winnings = 0
         rebuyCount = 0
@@ -211,13 +217,15 @@ class WinningSummary(TourneySummary):
         if 'WINNINGS' in info and info['WINNINGS'] != None:
             winnings = int(100*Decimal(self.clearMoneyString(info['WINNINGS'])))
             
-        if self.isRebuy:
+        if self.isRebuy and self.rebuyCost > 0:
             rebuyAmt = int(100*Decimal(self.clearMoneyString(info['REBUYS'].replace(" ", ""))))
             rebuyCount = rebuyAmt/self.rebuyCost
             
-        if self.isAddOn:
+        if self.isAddOn and self.addOnCost > 0:
             addOnAmt = int(100*Decimal(self.clearMoneyString(info['ADDONS'].replace(" ", ""))))
             addOnCount = addOnAmt/self.addOnCost
-                
+            
+        self.hero = info['PNAME']
+            
         self.addPlayer(9999, info['PNAME'], winnings, self.currency, rebuyCount, addOnCount, koCount)
         
