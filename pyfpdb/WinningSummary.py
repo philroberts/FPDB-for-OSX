@@ -183,6 +183,8 @@ class WinningSummary(TourneySummary):
         if "R/A" in self.tourneyName:
             self.isRebuy = True
             self.isAddOn = True
+            self.addOnCost = self.buyin
+            self.rebuyCost = self.buyin
             
         if 'TOURNEYSTART'  in info: m4 = self.re_HTMLDateTime.finditer(info['TOURNEYSTART'])
         datetimestr = None  # default used if time not found
