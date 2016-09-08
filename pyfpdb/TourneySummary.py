@@ -279,8 +279,11 @@ winnings    (int) the money the player ended the tourney with (can be 0, or -1 i
 """
         log.debug("addPlayer: rank:%s - name : '%s' - Winnings (%s)" % (rank, name, winnings))
         if self.players.get(name) != None:
-            entries = self.players[name][-1]
-            self.players[name].append(entries + 1)
+            if entryId in self.players[name]:
+                entries = self.players[name][-1]
+                self.players[name].append(entries + 1)
+            else:
+                self.players[name].append(entryId)
             if rank:
                 self.ranks[name].append(rank)
                 self.winnings[name].append(winnings)
