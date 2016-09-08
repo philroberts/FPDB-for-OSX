@@ -35,6 +35,7 @@ class Microgaming(HandHistoryConverter):
     siteId   = 20
 
     # Static regexes
+    
     re_GameInfo     = re.compile("""(hhversion="(?P<VERSION>\d)"\s)?
                                     id="(?P<HID>[0-9]+)"\s
                                     date="(?P<DATETIME>[-:\d\s]+)"\s
@@ -45,7 +46,7 @@ class Microgaming(HandHistoryConverter):
                                     tabletype="(Cash\sGame|MTT)"\s
                                     (unicodetabletype="\w+"\s)?
                                     gametypeid="\d+"\s
-                                    gametype="(?P<GAME>[a-zA-Z\&; /]+)"\s
+                                    gametype="(?P<GAME>[a-zA-Z\&; /']+)"\s
                                     realmoney="true"\s
                                     currencysymbol="(?P<CURRENCY>\S+?|)"\s
                                     (rake="\d+"\s)?
@@ -112,6 +113,7 @@ class Microgaming(HandHistoryConverter):
                  "Hold &apos;em" : ('hold','holdem'), 
       "Multi Table Hold&apos;em" : ('hold','holdem'),
      "Multi Table Hold &apos;em" : ('hold','holdem'),
+                       "Hold'em" : ('hold','holdem'),
                          "Omaha" : ('hold','omahahi'),
                      "Omaha H/L" : ('hold','omahahilo')
                 }
