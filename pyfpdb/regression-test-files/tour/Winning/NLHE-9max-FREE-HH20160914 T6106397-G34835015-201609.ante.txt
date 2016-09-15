@@ -1,0 +1,66 @@
+Game started at: 2016/9/14 18:14:38
+Game ID: 727816656 50/100 $10 Freeroll - On Demand, Table 18 (Hold'em)
+Seat 8 is the button
+Seat 1: Hero (1410).
+Seat 2: Player0 (1156).
+Seat 3: Player1 (5745).
+Seat 4: Player2 (4854).
+Seat 5: Player3 (1500).
+Seat 6: Player4 (1500).
+Seat 7: Player5 (3120).
+Seat 8: Player6 (940).
+Seat 9: Player7 (3388).
+Player Player7 posts ante (10)
+Player Hero posts ante (10)
+Player Player0 posts ante (10)
+Player Player1 posts ante (10)
+Player Player2 posts ante (10)
+Player Player3 posts ante (10)
+Player Player4 posts ante (10)
+Player Player5 posts ante (10)
+Player Player6 posts ante (10)
+Player Player7 has small blind (50)
+Player Hero has big blind (100)
+Player Player7 received a card.
+Player Player7 received a card.
+Player Hero received card: [10d]
+Player Hero received card: [9d]
+Player Player0 received a card.
+Player Player0 received a card.
+Player Player1 received a card.
+Player Player1 received a card.
+Player Player2 received a card.
+Player Player2 received a card.
+Player Player3 received a card.
+Player Player3 received a card.
+Player Player4 received a card.
+Player Player4 received a card.
+Player Player5 received a card.
+Player Player5 received a card.
+Player Player6 received a card.
+Player Player6 received a card.
+Player Player0 folds
+Player Player1 folds
+Player Player2 calls (100)
+Player Player3 folds
+Player Player4 calls (100)
+Player Player5 folds
+Player Player6 folds
+Player Player7 raises (1250)
+Player Hero folds
+Player Player2 folds
+Player Player4 folds
+Uncalled bet (1200) returned to Player7
+Player Player7 mucks cards
+------ Summary ------
+Pot: 490
+Player Hero does not show cards. Bets: 110. Collects: 0. Loses: 110.
+Player Player0 does not show cards. Bets: 10. Collects: 0. Loses: 10.
+Player Player1 does not show cards. Bets: 10. Collects: 0. Loses: 10.
+Player Player2 does not show cards. Bets: 110. Collects: 0. Loses: 110.
+Player Player3 does not show cards. Bets: 10. Collects: 0. Loses: 10.
+Player Player4 does not show cards. Bets: 110. Collects: 0. Loses: 110.
+Player Player5 does not show cards. Bets: 10. Collects: 0. Loses: 10.
+Player Player6 does not show cards. Bets: 10. Collects: 0. Loses: 10.
+*Player Player7 mucks (does not show cards). Bets: 110. Collects: 490. Wins: 380.
+Game ended at: 2016/9/14 18:15:37

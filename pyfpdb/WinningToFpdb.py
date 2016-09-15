@@ -184,7 +184,7 @@ class Winning(HandHistoryConverter):
     re_PostSB       = re.compile(r"^Player %(PLYR)s has small blind \((?P<SB>[%(NUM)s]+)\)" %  substitutions, re.MULTILINE)
     re_PostBB       = re.compile(r"^Player %(PLYR)s has big blind \((?P<BB>[%(NUM)s]+)\)" %  substitutions, re.MULTILINE)
     re_Posts        = re.compile(r"^Player %(PLYR)s posts \((?P<SBBB>[%(NUM)s]+)\)" %  substitutions, re.MULTILINE)
-    re_Antes        = re.compile(r"^Player %(PLYR)s ante \((?P<ANTE>[%(NUM)s]+)\)" % substitutions, re.MULTILINE)
+    re_Antes        = re.compile(r"^Player %(PLYR)s posts ante \((?P<ANTE>[%(NUM)s]+)\)" % substitutions, re.MULTILINE)
     re_BringIn      = re.compile(r"^Player %(PLYR)s bring in \((?P<BRINGIN>[%(NUM)s]+)\)" % substitutions, re.MULTILINE)
     re_HeroCards    = re.compile(r"^Player %(PLYR)s received card: \[(?P<CARD>.+)\]" %  substitutions, re.MULTILINE)
     
@@ -414,7 +414,7 @@ class Winning(HandHistoryConverter):
             m =  re.search(r"(?P<PREFLOP>.+(?=\*\*\* FLOP \*\*\*:)|.+)"
                        r"(\*\*\* FLOP \*\*\*:(?P<FLOP> (\[\S\S\S?] )?\[\S\S\S? ?\S\S\S? \S\S\S?].+(?=\*\*\* TURN \*\*\*:)|.+))?"
                        r"(\*\*\* TURN \*\*\*: \[\S\S\S? \S\S\S? \S\S\S?] (?P<TURN>\[\S\S\].+(?=\*\*\* RIVER \*\*\*:)|.+))?"
-                       r"(\*\*\* RIVER \*\*\*: \[\S\S\S? \S\S\S? \S\S\S? \S\S\S?] (?P<RIVER>\[\S\S\S?\].+))?", hand.handText,re.DOTALL)
+                       r"(\*\*\* RIVER \*\*\*: \[\S\S\S? \S\S\S? \S\S\S? \S\S\S?] ?(?P<RIVER>\[\S\S\S?\].+))?", hand.handText,re.DOTALL)
         elif hand.gametype['base'] in ("stud"):
             m =  re.search(r"(?P<THIRD>.+(?=\*\*\* Third street \*\*\*)|.+)"
                            r"(\*\*\* Third street \*\*\*(?P<FOURTH>.+(?=\*\*\* Fourth street \*\*\*)|.+))?"
