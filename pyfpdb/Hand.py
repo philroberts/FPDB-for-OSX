@@ -1706,11 +1706,6 @@ class StudHand(Hand):
                 if ((self.gametype['category'] == '5_studhi' and street == 'SECOND') or
                     (self.gametype['category'] != '5_studhi' and street == 'THIRD')):
                     holecards = holecards + self.holecards[street][player][1] + self.holecards[street][player][0]
-                elif street == 'SEVENTH':
-                    if player == self.hero:
-                        holecards = holecards + self.holecards[street][player][0]
-                    else:
-                        holecards = holecards + self.holecards[street][player][1]
                 else:
                     holecards = holecards + self.holecards[street][player][0]
 
