@@ -1,0 +1,64 @@
+Game started at: 2016/8/28 20:23:32
+Game ID: 714490456 2500/5000 OSS #27 - $300,000 GTD Sunday Special, Table 8 (Hold'em)
+Seat 1 is the button
+Seat 1: Player0 (152027).
+Seat 2: Player1 (262880).
+Seat 3: Player2 (121802).
+Seat 4: Hero (315517).
+Seat 5: Player3 (283140).
+Seat 6: Player4 (74231).
+Seat 7: Player5 (103987).
+Seat 8: Player6 (289070).
+Seat 9: Player7 (212912).
+Player Player1 ante (500)
+Player Player2 ante (500)
+Player Hero ante (500)
+Player Player3 ante (500)
+Player Player4 ante (500)
+Player Player5 ante (500)
+Player Player6 ante (500)
+Player Player7 ante (500)
+Player Player0 ante (500)
+Player Player1 has small blind (2500)
+Player Player2 has big blind (5000)
+Player Player1 received a card.
+Player Player1 received a card.
+Player Player2 received a card.
+Player Player2 received a card.
+Player Hero received card: [4s]
+Player Hero received card: [4h]
+Player Player3 received a card.
+Player Player3 received a card.
+Player Player4 received a card.
+Player Player4 received a card.
+Player Player5 received a card.
+Player Player5 received a card.
+Player Player6 received a card.
+Player Player6 received a card.
+Player Player7 received a card.
+Player Player7 received a card.
+Player Player0 received a card.
+Player Player0 received a card.
+Player Hero raises (10000)
+Player Player3 folds
+Player Player4 folds
+Player Player5 folds
+Player Player6 folds
+Player Player7 folds
+Player Player0 folds
+Player Player1 folds
+Player Player2 folds
+Uncalled bet (5000) returned to Hero
+Player Hero mucks cards
+------ Summary ------
+Pot: 17000
+Player Player0 does not show cards.Bets: 500. Collects: 0. Loses: 500.
+Player Player1 does not show cards.Bets: 3000. Collects: 0. Loses: 3000.
+Player Player2 does not show cards.Bets: 5500. Collects: 0. Loses: 5500.
+*Player Hero mucks (does not show cards). Bets: 5500. Collects: 17000. Wins: 11500.
+Player Player3 does not show cards.Bets: 500. Collects: 0. Loses: 500.
+Player Player4 does not show cards.Bets: 500. Collects: 0. Loses: 500.
+Player Player5 does not show cards.Bets: 500. Collects: 0. Loses: 500.
+Player Player6 does not show cards.Bets: 500. Collects: 0. Loses: 500.
+Player Player7 does not show cards.Bets: 500. Collects: 0. Loses: 500.
+Game ended at: 2016/8/28 20:23:54
