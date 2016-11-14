@@ -184,7 +184,7 @@ class Winning(HandHistoryConverter):
     re_PostSB       = re.compile(r"^Player %(PLYR)s has small blind \((?P<SB>[%(NUM)s]+)\)" %  substitutions, re.MULTILINE)
     re_PostBB       = re.compile(r"^Player %(PLYR)s has big blind \((?P<BB>[%(NUM)s]+)\)" %  substitutions, re.MULTILINE)
     re_Posts        = re.compile(r"^Player %(PLYR)s posts \((?P<SBBB>[%(NUM)s]+)\)" %  substitutions, re.MULTILINE)
-    re_Antes        = re.compile(r"^Player %(PLYR)s posts ante \((?P<ANTE>[%(NUM)s]+)\)" % substitutions, re.MULTILINE)
+    re_Antes        = re.compile(r"^Player %(PLYR)s (posts )?ante \((?P<ANTE>[%(NUM)s]+)\)" % substitutions, re.MULTILINE)
     re_BringIn      = re.compile(r"^Player %(PLYR)s bring in \((?P<BRINGIN>[%(NUM)s]+)\)" % substitutions, re.MULTILINE)
     re_HeroCards    = re.compile(r"^Player %(PLYR)s received card: \[(?P<CARD>.+)\]" %  substitutions, re.MULTILINE)
     
