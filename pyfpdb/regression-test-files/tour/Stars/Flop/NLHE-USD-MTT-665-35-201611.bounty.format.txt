@@ -1,0 +1,47 @@
+PokerStars Hand #161353453648: Tournament #1716600424, $332.50+$332.50+$35.00 USD Hold'em No Limit - Level IX (300/600) - 2016/11/13 12:03:34 PT [2016/11/13 15:03:34 ET]
+Table '1716600424 37' 9-max Seat #4 is the button
+Seat 1: Player0 (36806 in chips, $332.50 bounty) 
+Seat 2: Player1 (27552 in chips, $332.50 bounty) 
+Seat 3: Player2 (36589 in chips, $498.75 bounty) 
+Seat 4: Player3 (42482 in chips, $332.50 bounty) 
+Seat 5: Player4 (29650 in chips, $332.50 bounty) 
+Seat 6: Player5 (37630 in chips, $332.50 bounty) 
+Seat 7: Player6 (58760 in chips, $665 bounty) 
+Seat 8: Player7 (12312 in chips, $332.50 bounty) 
+Seat 9: Player8 (25000 in chips, $332.50 bounty) 
+Player0: posts the ante 60
+Player1: posts the ante 60
+Player2: posts the ante 60
+Player3: posts the ante 60
+Player4: posts the ante 60
+Player5: posts the ante 60
+Player6: posts the ante 60
+Player7: posts the ante 60
+Player8: posts the ante 60
+Player4: posts small blind 300
+Player5: posts big blind 600
+*** HOLE CARDS ***
+Dealt to Player8 [5h 8c]
+Player6: folds 
+Player7: folds 
+Player8: folds 
+Player0: raises 600 to 1200
+Player1: folds 
+Player2: folds 
+Player3: folds 
+Player4: folds 
+Player5: folds 
+Uncalled bet (600) returned to Player0
+Player0 collected 2040 from pot
+Player0: doesn't show hand 
+*** SUMMARY ***
+Total pot 2040 | Rake 0 
+Seat 1: Player0 collected (2040)
+Seat 2: Player1 folded before Flop (didn't bet)
+Seat 3: Player2 folded before Flop (didn't bet)
+Seat 4: Player3 (button) folded before Flop (didn't bet)
+Seat 5: Player4 (small blind) folded before Flop
+Seat 6: Player5 (big blind) folded before Flop
+Seat 7: Player6 folded before Flop (didn't bet)
+Seat 8: Player7 folded before Flop (didn't bet)
+Seat 9: Player8 folded before Flop (didn't bet)
