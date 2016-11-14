@@ -183,10 +183,13 @@ class IdentifySite:
 
     def read_file(self, in_path):
         if in_path.endswith('.xls') or in_path.endswith('.xlsx') and xlrd:
-            wb = xlrd.open_workbook(in_path)
-            sh = wb.sheet_by_index(0)
-            header = sh.cell(0,0).value
-            return header, 'utf-8'
+            try:
+                wb = xlrd.open_workbook(in_path)
+                sh = wb.sheet_by_index(0)
+                header = sh.cell(0,0).value
+                return header, 'utf-8'
+            except xlrd.XLRDError:
+                return None, None
         for kodec in self.codepage:
             try:
                 infile = codecs.open(in_path, 'r', kodec)
