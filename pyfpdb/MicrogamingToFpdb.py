@@ -136,7 +136,7 @@ class Microgaming(HandHistoryConverter):
                 info['type'] = 'ring'
             else:
                 info['type'] = 'tour'
-                info['currency'] = 'USD'
+                info['currency'] = 'T$'
         # NB: SB, BB must be interpreted as blinds or bets depending on limit type.
         return info
 
