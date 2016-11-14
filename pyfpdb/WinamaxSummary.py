@@ -32,8 +32,11 @@ class WinamaxSummary(TourneySummary):
     
     limits = { 'No Limit':'nl', 'Pot Limit':'pl', 'Limit':'fl', 'LIMIT':'fl' }
     games = {                          # base, category
-                              "Hold'em" : ('hold','holdem'), 
-                                'Omaha' : ('hold','omahahi')
+                               "Hold'em" : ('hold','holdem'), 
+                                 'Omaha' : ('hold','omahahi'),
+                           "5 Card Omaha": ('hold','5_omahahi'),
+                     "5 Card Omaha Hi/Lo": ('hold','5_omaha8'),
+                            "Omaha Hi/Lo": ('hold','omahahilo'),
                }
 
     substitutions = {

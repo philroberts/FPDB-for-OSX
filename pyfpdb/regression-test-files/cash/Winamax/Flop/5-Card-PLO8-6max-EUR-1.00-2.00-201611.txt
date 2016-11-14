@@ -1,0 +1,28 @@
+Winamax Poker - CashGame - HandId: #9247976-232-1478874498 - 5 Card Omaha Hi/Lo pot limit (1€/2€) - 2016/11/11 14:28:18 UTC
+Table: 'Göttingen 04' 6-max (real money) Seat #1 is the button
+Seat 1: Player0 (78€)
+Seat 2: Hero (207.96€)
+*** ANTE/BLINDS ***
+Player0 posts small blind 1€
+Hero posts big blind 2€
+Dealt to Hero [3h Ah Jc Ts 9s]
+*** PRE-FLOP *** 
+Player0 raises 4€ to 6€
+Hero raises 12€ to 18€
+Player0 raises 36€ to 54€
+Hero calls 36€
+*** FLOP *** [Kh 4c 9c]
+Hero bets 108€
+Player0 calls 24€ and is all-in
+*** TURN *** [Kh 4c 9c][3c]
+*** RIVER *** [Kh 4c 9c 3c][5s]
+*** SHOW DOWN ***
+Player0 shows [Th Ac Tc Td As] (Flush Ace high)
+Hero shows [3h Ah Jc Ts 9s] (Two pairs : 9 and 3)
+Hero collected 84€ from side pot 1
+Player0 collected 154.50€ from main pot
+*** SUMMARY ***
+Total pot 238.50€ | Rake 1.50€
+Board: [Kh 4c 9c 3c 5s]
+Seat 1: Player0 (small blind) (button) showed [Th Ac Tc Td As] and won 154.50€ with Flush Ace high
+Seat 2: Hero (big blind) showed [3h Ah Jc Ts 9s] and won 84€ with Two pairs : 9 and 3

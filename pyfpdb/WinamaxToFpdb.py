@@ -58,6 +58,9 @@ class Winamax(HandHistoryConverter):
     games = {                          # base, category
                                 "Holdem" : ('hold','holdem'),
                                  'Omaha' : ('hold','omahahi'),
+                           "5 Card Omaha": ('hold','5_omahahi'),
+                     "5 Card Omaha Hi/Lo": ('hold','5_omaha8'),
+                            "Omaha Hi/Lo": ('hold','omahahilo'),
                 # It appears French law prevents any other games from being spread.
                }
 
@@ -78,8 +81,8 @@ class Winamax(HandHistoryConverter):
             buyIn:\s(?P<BUYIN>(?P<BIAMT>[%(LS)s\d\,.]+)?(\s\+?\s|-)(?P<BIRAKE>[%(LS)s\d\,.]+)?\+?(?P<BOUNTY>[%(LS)s\d\.]+)?\s?(?P<TOUR_ISO>%(LEGAL_ISO)s)?|(?P<FREETICKET>[\sa-zA-Z]+))?\s
             (level:\s(?P<LEVEL>\d+))?
             .*)?
-            \s-\sHandId:\s\#(?P<HID1>\d+)-(?P<HID2>\d+)-(?P<HID3>\d+).*\s  # REB says: HID3 is the correct hand number
-            (?P<GAME>Holdem|Omaha)\s
+            \s-\sHandId:\s\#(?P<HID1>\d+)-(?P<HID2>\d+)-(?P<HID3>\d+)\s-\s  # REB says: HID3 is the correct hand number
+            (?P<GAME>Holdem|Omaha|5\sCard\sOmaha|5\sCard\sOmaha\sHi/Lo|Omaha\sHi/Lo)\s
             (?P<LIMIT>fixed\slimit|no\slimit|pot\slimit)\s
             \(
             (((%(LS)s)?(?P<ANTE>[.0-9]+)(%(LS)s)?)/)?
@@ -140,7 +143,7 @@ class Winamax(HandHistoryConverter):
             self.re_ShowdownAction = re.compile('(?P<PNAME>[^\(\)\n]*) (\((small blind|big blind|button)\) )?shows \[(?P<CARDS>.+)\]')
 
             self.re_CollectPot = re.compile('\s*(?P<PNAME>.*)\scollected\s(%(CUR)s)?(?P<POT>[\.\d]+)(%(CUR)s)?.*' % subst)
-            self.re_ShownCards = re.compile("^Seat (?P<SEAT>[0-9]+): %(PLYR)s showed \[(?P<CARDS>.*)\].*" % subst, re.MULTILINE)
+            self.re_ShownCards = re.compile("^Seat (?P<SEAT>[0-9]+): %(PLYR)s (\((small blind|big blind|button)\) )?showed \[(?P<CARDS>.*)\].*" % subst, re.MULTILINE)
 
     def readSupportedGames(self):
         return [
@@ -167,13 +170,14 @@ class Winamax(HandHistoryConverter):
 
         if mg.get('TOUR'):
             info['type'] = 'tour'
+            info['currency'] = 'T$'
         elif mg.get('RING'):
             info['type'] = 'ring'
-        
-        if mg.get('MONEY'):
-            info['currency'] = 'EUR'
-        else:
-            info['currency'] = 'play'
+            
+            if mg.get('MONEY'):
+                info['currency'] = 'EUR'
+            else:
+                info['currency'] = 'play'
 
         if 'LIMIT' in mg:
             if mg['LIMIT'] in self.limits:
@@ -432,10 +436,10 @@ class Winamax(HandHistoryConverter):
 
     def readShowdownActions(self, hand):
         for shows in self.re_ShowdownAction.finditer(hand.handText):
-            #log.debug(_("add show actions %s") % shows)
+            log.debug(_("add show actions %s") % shows)
             cards = shows.group('CARDS')
             cards = cards.split(' ')
-#            print "DEBUG: addShownCards(%s, %s)" %(cards, shows.group('PNAME'))
+            #print "DEBUG: addShownCards(%s, %s)" %(cards, shows.group('PNAME'))
             hand.addShownCards(cards, shows.group('PNAME'))
 
     def readCollectPot(self,hand):
@@ -451,6 +455,7 @@ class Winamax(HandHistoryConverter):
             (shown, mucked) = (False, False)
             if m.group('CARDS') is not None:
                 shown = True
+                #print m.group('PNAME'), cards, shown, mucked
                 hand.addShownCards(cards=cards, player=m.group('PNAME'), shown=shown, mucked=mucked)
 
     @staticmethod
