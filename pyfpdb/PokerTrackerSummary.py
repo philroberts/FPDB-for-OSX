@@ -78,6 +78,14 @@ class PokerTrackerSummary(TourneySummary):
     re_DateTime = re.compile("""(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)""", re.MULTILINE)
 
     codepage = ["utf-8", "cp1252"]
+    
+    siteNameMap = {
+        'Pacific Poker': 'PacificPoker',
+        'MicroGaming': 'Microgaming',
+        'PokerStars': 'PokerStars',
+        'Full Tilt': 'Fulltilt',
+        'Party Poker': 'PartyPoker'
+    }
 
     @staticmethod
     def getSplitRe(self, head):
@@ -95,9 +103,10 @@ class PokerTrackerSummary(TourneySummary):
 
         mg = m.groupdict()
         if 'SITE'    in mg:
-            self.siteName = mg['SITE'].replace('MicroGaming', 'Microgaming').replace('Full Tilt', 'Fulltilt')
-            self.siteId   = self.SITEIDS.get(self.siteName)
-            if self.siteId is None:
+            if self.siteNameMap.get(mg['SITE']) != None:
+                self.siteName = self.siteNameMap.get(mg['SITE'])
+                self.siteId   = self.SITEIDS.get(self.siteName)
+            else:
                 tmp = self.summaryText[0:200]
                 log.error(_("PokerTrackerSummary.parseSummary: Unsupported site summary '%s'") % tmp)
                 raise FpdbParseError
