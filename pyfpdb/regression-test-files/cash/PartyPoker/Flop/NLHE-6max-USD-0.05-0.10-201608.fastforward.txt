@@ -1,0 +1,33 @@
+#Game No : 4950573552
+***** Hand History for Game 15492724092 *****
+$10 USD fastforward NL Texas Hold'em - Wednesday,August 31, 01:41:34 MESZ 2016
+Table Bolt  ( Real Money )
+Seat 1 is the button
+Total number of players : 6/6
+seat 1: Player0 ( $11.84 USD )
+seat 2: Player1 ( $10.05 USD )
+seat 3: Hero ( $10 USD )
+seat 4: Player2 ( $40.75 USD )
+seat 5: Player3 ( $10.72 USD )
+seat 6: Player4 ( $10 USD )
+Player1 posts small blind [$0.05 USD].
+Hero posts big blind [$0.10 USD].
+** Dealing down cards **
+Dealt to Hero [ 7h, 6h ]
+Player2 folds
+Player3 folds
+Player4 raises [ $0.20 USD ]
+Player0 folds
+Player1 folds
+Hero calls [ $0.10 USD ]
+** Dealing Flop ** [ 2h, Ts, Qh ]
+Hero checks
+Player4 checks
+** Dealing Turn ** [ 4s ]
+Hero checks
+Player4 checks
+** Dealing River ** [ 6c ]
+Hero bets [ $0.14 USD ]
+Player4 folds
+Hero does not show cards.
+Hero wins $0.57 USD
