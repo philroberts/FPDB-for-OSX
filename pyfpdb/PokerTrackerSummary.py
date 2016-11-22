@@ -56,6 +56,7 @@ class PokerTrackerSummary(TourneySummary):
                         Started:\s(?P<DATETIME>.+?)\s+
                         Finished:\s(?P<DATETIME1>.+?)\s+
                         Buyin:\s(?P<CURRENCY>[%(LS)s]?)(?P<BUYIN>[,.0-9]+)\s+
+                        (Bounty:\s[%(LS)s]?(?P<BOUNTY>[,.0-9]+)\s+)?
                         Fee:\s[%(LS)s]?(?P<FEE>[,.0-9]+)\s+
                         (Prize\sPool:\s[%(LS)s]?(?P<PRIZEPOOL>[,.0-9]+)\s+)?
                         (Rebuy:\s[%(LS)s]?(?P<REBUYAMT>[,.0-9]+)\s+)?
@@ -65,7 +66,15 @@ class PokerTrackerSummary(TourneySummary):
                         Players:\s(?P<ENTRIES>\d+)\s+
                         """ % substitutions ,re.VERBOSE|re.MULTILINE)
 
-    re_Player = re.compile(u"""Place:\s(?P<RANK>[0-9]+),\sPlayer:\s(?P<NAME>.*),\sWon:\s(?P<CUR>[%(LS)s]?)(?P<WINNINGS>[,.0-9]+),( Rebuys: (?P<REBUYS>\d+),)?( Addons: (?P<ADDONS>\d+),)?""" % substitutions)
+    re_Player = re.compile(u"""
+        Place:\s(?P<RANK>[0-9]+),\s
+        Player:\s(?P<NAME>.*),\s
+        Won:\s(?P<CUR>[%(LS)s]?)(?P<WINNINGS>[,.0-9]+),
+        (\sBounties:\s(?P<KOS>\d+),)?
+        (\sRebuys:\s(?P<REBUYS>\d+),)?
+        (\sAddons:\s(?P<ADDONS>\d+),)?
+        """ % substitutions, re.VERBOSE)
+    
     re_DateTime = re.compile("""(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)""", re.MULTILINE)
 
     codepage = ["utf-8", "cp1252"]
@@ -86,7 +95,7 @@ class PokerTrackerSummary(TourneySummary):
 
         mg = m.groupdict()
         if 'SITE'    in mg:
-            self.siteName = mg['SITE'].replace('MicroGaming', 'Microgaming')
+            self.siteName = mg['SITE'].replace('MicroGaming', 'Microgaming').replace('Full Tilt', 'Fulltilt')
             self.siteId   = self.SITEIDS.get(self.siteName)
             if self.siteId is None:
                 tmp = self.summaryText[0:200]
@@ -111,6 +120,9 @@ class PokerTrackerSummary(TourneySummary):
         if 'ADDON' in mg and mg['ADDON'] != None:
             self.isAddOn = True
             self.addOnCost = int(100*Decimal(self.clearMoneyString(mg['ADDON'])))
+        if 'BOUNTY' in mg and mg['BOUNTY'] != None:
+            self.koBounty = int(100*Decimal(self.clearMoneyString(mg['BOUNTY'])))
+            self.isKO = True
         if 'ENTRIES'   in mg:
             self.entries = mg['ENTRIES']            
         if 'DATETIME'  in mg: 
@@ -150,6 +162,9 @@ class PokerTrackerSummary(TourneySummary):
                 
             if 'ADDONS' in mg and mg['ADDONS']!=None:
                 addOnCount = int(mg['ADDONS'])
+            
+            if 'KOS' in mg and mg['KOS']!=None:
+                koCount = int(mg['KOS'])
                 
             if 'CUR' in mg and mg['CUR'] != None:
                 if mg['CUR'] == "$":     self.currency="USD"

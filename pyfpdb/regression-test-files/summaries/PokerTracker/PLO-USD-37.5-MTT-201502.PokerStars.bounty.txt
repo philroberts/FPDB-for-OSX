@@ -1,0 +1,21 @@
+PokerTracker 4 Tournament Summary
+Site: PokerStars
+Game: Omaha Hi
+Tournament #: 1126502790
+Started: 2015/02/15 21:32:49
+Finished: 2015/02/15 21:54:39
+Buyin: $37.50
+Bounty: $37.50
+Fee: $7.00
+Table Type: MTT (6 max) BOUNTY
+Tourney Type: Pot Limit
+Players: 351
+
+Place: 0, Player: Santiniii, Won: $0.00,
+Place: 0, Player: ocbguy1, Won: $0.00, Bounties: 1,
+Place: 0, Player: ILIKEMONEY86, Won: $0.00,
+Place: 0, Player: TheDrunkLife, Won: $0.00,
+Place: 0, Player: poKerfAce99J, Won: $0.00,
+Place: 273, Player: theASHMAN103, Won: $0.00,
+Place: 350, Player: vag-storm, Won: $0.00,
+Place: 351, Player: bonito1982, Won: $0.00,
