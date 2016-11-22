@@ -57,6 +57,7 @@ class PokerTrackerSummary(TourneySummary):
                         Finished:\s(?P<DATETIME1>.+?)\s+
                         Buyin:\s(?P<CURRENCY>[%(LS)s]?)(?P<BUYIN>[,.0-9]+)\s+
                         Fee:\s[%(LS)s]?(?P<FEE>[,.0-9]+)\s+
+                        (Prize\sPool:\s[%(LS)s]?(?P<PRIZEPOOL>[,.0-9]+)\s+)?
                         (Rebuy:\s[%(LS)s]?(?P<REBUYAMT>[,.0-9]+)\s+)?
                         (Addon:\s[%(LS)s]?(?P<ADDON>[,.0-9]+)\s+)?
                         Table\sType:\s(?P<TYPE>.+?)\s+
@@ -67,7 +68,7 @@ class PokerTrackerSummary(TourneySummary):
     re_Player = re.compile(u"""Place:\s(?P<RANK>[0-9]+),\sPlayer:\s(?P<NAME>.*),\sWon:\s(?P<CUR>[%(LS)s]?)(?P<WINNINGS>[,.0-9]+),( Rebuys: (?P<REBUYS>\d+),)?( Addons: (?P<ADDONS>\d+),)?""" % substitutions)
     re_DateTime = re.compile("""(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)""", re.MULTILINE)
 
-    codepage = ["utf-8"]
+    codepage = ["utf-8", "cp1252"]
 
     @staticmethod
     def getSplitRe(self, head):
@@ -102,15 +103,16 @@ class PokerTrackerSummary(TourneySummary):
             self.buyin = int(100*Decimal(self.clearMoneyString(mg['BUYIN'])))
         if mg['FEE'] != None:
             self.fee   = int(100*Decimal(self.clearMoneyString(mg['FEE'])))
-        if 'REBUYAMT'in mg and mg['REBUYAMT'] != None:
+        if 'REBUYAMT' in mg and mg['REBUYAMT'] != None:
             self.isRebuy   = True
             self.rebuyCost = int(100*Decimal(self.clearMoneyString(mg['REBUYAMT'])))
+        if 'PRIZEPOOL' in mg and mg['PRIZEPOOL'] != None:
+            self.prizepool = int(100*Decimal(self.clearMoneyString(mg['PRIZEPOOL'])))
         if 'ADDON' in mg and mg['ADDON'] != None:
             self.isAddOn = True
             self.addOnCost = int(100*Decimal(self.clearMoneyString(mg['ADDON'])))
         if 'ENTRIES'   in mg:
-            self.entries = mg['ENTRIES']
-            self.prizepool = int(Decimal(self.clearMoneyString(mg['BUYIN']))) * int(self.entries)
+            self.entries = mg['ENTRIES']            
         if 'DATETIME'  in mg: 
             m1 = self.re_DateTime.finditer(mg['DATETIME'])
             for a in m1:
@@ -125,6 +127,9 @@ class PokerTrackerSummary(TourneySummary):
         elif not mg['CURRENCY']:      self.buyinCurrency="play"
         if self.buyin == 0:           self.buyinCurrency="FREE"
         self.currency = self.buyinCurrency
+        
+        if self.buyinCurrency not in ('FREE', 'PSFP') and 'ENTRIES' in mg and self.prizepool == 0:
+            self.prizepool = int(Decimal(self.clearMoneyString(mg['BUYIN']))) * int(self.entries)
 
         m = self.re_Player.finditer(self.summaryText)
         for a in m:
