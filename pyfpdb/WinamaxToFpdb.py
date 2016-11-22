@@ -139,7 +139,7 @@ class Winamax(HandHistoryConverter):
             self.re_PostSecondSB = re.compile('%(PLYR)s posts small blind (%(CUR)s)?(?P<SB>[\.0-9]+)(%(CUR)s)? out of position' % subst, re.MULTILINE)
             self.re_HeroCards = re.compile('Dealt\sto\s%(PLYR)s\s\[(?P<CARDS>.*)\]' % subst)
 
-            self.re_Action = re.compile('(, )?(?P<PNAME>.*?)(?P<ATYPE> bets| checks| raises| calls| folds)( (%(CUR)s)?(?P<BET>[\d\.]+)(%(CUR)s)?)?( and is all-in)?' % subst)
+            self.re_Action = re.compile('(, )?(?P<PNAME>.*?)(?P<ATYPE> bets| checks| raises| calls| folds)( (%(CUR)s)?(?P<BET>[\d\.]+)(%(CUR)s)?)?( to (%(CUR)s)?(?P<BETTO>[\d\.]+)(%(CUR)s)?)?( and is all-in)?' % subst)
             self.re_ShowdownAction = re.compile('(?P<PNAME>[^\(\)\n]*) (\((small blind|big blind|button)\) )?shows \[(?P<CARDS>.+)\]')
 
             self.re_CollectPot = re.compile('\s*(?P<PNAME>.*)\scollected\s(%(CUR)s)?(?P<POT>[\.\d]+)(%(CUR)s)?.*' % subst)
@@ -374,10 +374,11 @@ class Winamax(HandHistoryConverter):
             #print "DEBUG: Found dead blind: addBlind(%s, 'secondsb', %s)" %(a.group('PNAME'), a.group('DEAD'))
             hand.addBlind(a.group('PNAME'), 'secondsb', a.group('DEAD'))
         for a in self.re_PostSecondSB.finditer(hand.handText):
-            #print "DEBUG: Found dead blind: addBlind(%s, 'secondsb', %s)" %(a.group('PNAME'), a.group('DEAD'))
-            hand.addBlind(a.group('PNAME'), 'secondsb', a.group('SB'))
-        for a in self.re_PostBoth.finditer(hand.handText):
-            hand.addBlind(a.group('PNAME'), 'small & big blinds', a.group('SBBB'))
+            #print "DEBUG: Found dead blind: addBlind(%s, 'secondsb/both', %s, %s)" %(a.group('PNAME'), a.group('SB'), hand.sb)
+            if Decimal(a.group('SB')) > Decimal(hand.sb):
+                hand.addBlind(a.group('PNAME'), 'both', a.group('SB'))
+            else:
+                hand.addBlind(a.group('PNAME'), 'secondsb', a.group('SB'))
 
     def readAntes(self, hand):
         log.debug(_("reading antes"))
@@ -419,7 +420,7 @@ class Winamax(HandHistoryConverter):
             elif action.group('ATYPE') == ' calls':
                 hand.addCall( street, action.group('PNAME'), action.group('BET') )
             elif action.group('ATYPE') == ' raises':
-                hand.addRaiseBy( street, action.group('PNAME'), action.group('BET') )
+                hand.addRaiseTo( street, action.group('PNAME'), action.group('BETTO') )
             elif action.group('ATYPE') == ' bets':
                 if street in ('PREFLOP', 'DEAL', 'BLINDSANTES'):
                     hand.addRaiseBy( street, action.group('PNAME'), action.group('BET') )
