@@ -155,33 +155,35 @@ class PokerTrackerSummary(TourneySummary):
             rebuyCount = 0
             addOnCount = 0
             koCount = 0
-
-            if 'WINNINGS' in mg and mg['WINNINGS'] != None:
-                winnings = int(100*Decimal(self.clearMoneyString(mg['WINNINGS'])))
+            if len(name)>0:
+                if 'WINNINGS' in mg and mg['WINNINGS'] != None:
+                    winnings = int(100*Decimal(self.clearMoneyString(mg['WINNINGS'])))
+                    
+                if 'REBUYS' in mg and mg['REBUYS']!=None:
+                    rebuyCount = int(mg['REBUYS'])
+                    
+                if 'ADDONS' in mg and mg['ADDONS']!=None:
+                    addOnCount = int(mg['ADDONS'])
                 
-            if 'REBUYS' in mg and mg['REBUYS']!=None:
-                rebuyCount = int(mg['REBUYS'])
-                
-            if 'ADDONS' in mg and mg['ADDONS']!=None:
-                addOnCount = int(mg['ADDONS'])
-            
-            if 'KOS' in mg and mg['KOS']!=None:
-                koCount = int(mg['KOS'])
-                
-            if 'CUR' in mg and mg['CUR'] != None:
-                if mg['CUR'] == "$":     self.currency="USD"
-                elif mg['CUR'] == u"€":  self.currency="EUR"
-                elif mg['CUR'] == "FPP": self.currency="PSFP"
-
-            if rank==0:
-                #print "stillplaying"
-                rank=None
-                winnings=None
-
-            #TODO: currency, ko/addon/rebuy count -> need examples!
-            #print "DEBUG: addPlayer(%s, %s, %s, %s, None, None, None)" %(rank, name, winnings, self.currency)
-            #print "DEBUG: self.buyin: %s self.fee %s" %(self.buyin, self.fee)
-            self.addPlayer(rank, name, winnings, self.currency, rebuyCount, addOnCount, koCount)
+                if 'KOS' in mg and mg['KOS']!=None:
+                    koCount = int(mg['KOS'])
+                    
+                if 'CUR' in mg and mg['CUR'] != None:
+                    if mg['CUR'] == "$":     self.currency="USD"
+                    elif mg['CUR'] == u"€":  self.currency="EUR"
+                    elif mg['CUR'] == "FPP": self.currency="PSFP"
+    
+                if rank==0:
+                    #print "stillplaying"
+                    rank=None
+                    winnings=None
+                    
+                if len(name)==0:
+                    print "DEBUG: a.groupdict(): %d %s" % (i, mg)
+    
+                #print "DEBUG: addPlayer(%s, %s, %s, %s, None, None, None)" %(rank, name, winnings, self.currency)
+                #print "DEBUG: self.buyin: %s self.fee %s" %(self.buyin, self.fee)
+                self.addPlayer(rank, name, winnings, self.currency, rebuyCount, addOnCount, koCount)
 
         #print self
 
