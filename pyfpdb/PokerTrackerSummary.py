@@ -62,7 +62,7 @@ class PokerTrackerSummary(TourneySummary):
                         (Rebuy:\s[%(LS)s]?(?P<REBUYAMT>[,.0-9]+)\s+)?
                         (Addon:\s[%(LS)s]?(?P<ADDON>[,.0-9]+)\s+)?
                         Table\sType:\s(?P<TYPE>.+?)\s+
-                        Tourney\sType:\s(?P<LIMIT>No\sLimit|Limit|LIMIT|Pot\sLimit)\s+
+                        Tourney\sType:\s(?P<LIMIT>No\sLimit|Limit|LIMIT|Pot\sLimit|N/A)\s+
                         Players:\s(?P<ENTRIES>\d+)\s+
                         """ % substitutions ,re.VERBOSE|re.MULTILINE)
 
@@ -102,12 +102,14 @@ class PokerTrackerSummary(TourneySummary):
                 log.error(_("PokerTrackerSummary.parseSummary: Unsupported site summary '%s'") % tmp)
                 raise FpdbParseError
         if 'TOURNO'    in mg: self.tourNo = mg['TOURNO']
-        if 'LIMIT'     in mg and mg['LIMIT'] is not None:
-            self.gametype['limitType'] = self.limits[mg['LIMIT']]
-        else:
-            self.gametype['limitType'] = 'fl'
-        if 'TYPE'      in mg: self.tourneyName = mg['TYPE']
         if 'GAME'      in mg: self.gametype['category']  = self.games[mg['GAME']][1]
+        if mg['LIMIT'] in self.limits:
+            self.gametype['limitType'] = self.limits[mg['LIMIT']]
+        elif self.gametype['category'] == 'holdem':
+            self.gametype['limitType'] = 'nl'
+        else:
+            self.gametype['limitType'] = 'pl'
+        if 'TYPE'      in mg: self.tourneyName = mg['TYPE']
         if mg['BUYIN'] != None:
             self.buyin = int(100*Decimal(self.clearMoneyString(mg['BUYIN'])))
         if mg['FEE'] != None:

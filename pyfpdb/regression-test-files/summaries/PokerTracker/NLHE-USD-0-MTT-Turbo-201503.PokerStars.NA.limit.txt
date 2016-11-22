@@ -1,0 +1,22 @@
+PokerTracker 4 Tournament Summary
+Site: PokerStars
+Game: Holdem
+Tournament #: 1168370016
+Started: 2015/03/29 17:11:17
+Finished: 2015/03/29 17:11:17
+Buyin: $0.00
+Fee: $0.00
+Table Type: MTT Turbo 
+Tourney Type: N/A
+Players: 1933
+
+Place: 0, Player: Tagir, Won: $0.00,
+Place: 0, Player: jliberta146, Won: $0.00,
+Place: 0, Player: Alonnnnnn, Won: $0.00,
+Place: 0, Player: 7201210, Won: $0.00,
+Place: 0, Player: andypandy92, Won: $0.00,
+Place: 0, Player: _6ap6akapy_, Won: $0.00,
+Place: 0, Player: theASHMAN103, Won: $0.00,
+Place: 0, Player: arturuz77, Won: $0.00,
+Place: 0, Player: moertelmu, Won: $0.00,
+Place: 1933, Player: intelcore999, Won: $0.00,
