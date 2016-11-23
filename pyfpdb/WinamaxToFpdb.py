@@ -523,7 +523,6 @@ class Winamax(HandHistoryConverter):
             if m.group('CARDS') is not None:
                 shown = True
                 string = m.group('STRING')
-                print cards, string
                 #print m.group('PNAME'), cards, shown, mucked
                 hand.addShownCards(cards=cards, player=m.group('PNAME'), shown=shown, mucked=mucked, string=string)
 
