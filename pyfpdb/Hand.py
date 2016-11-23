@@ -1326,12 +1326,13 @@ class DrawHand(Hand):
             self.maxseats = 10
 
     def addShownCards(self, cards, player, shown=True, mucked=False, dealt=False, string=None):
-        if player == self.hero: # we have hero's cards just update shown/mucked
-            if shown:  self.shown.add(player)
-            if mucked: self.mucked.add(player)
-        else:
-# TODO: Probably better to find the last street with action and add the hole cards to that street
-            self.addHoleCards(self.actionStreets[-1], player, open=[], closed=cards, shown=shown, mucked=mucked, dealt=dealt)
+        #if player == self.hero: # we have hero's cards just update shown/mucked
+        #    if shown:  self.shown.add(player)
+        #    if mucked: self.mucked.add(player)
+        #else:
+        #    pass
+        # TODO: Probably better to find the last street with action and add the hole cards to that street
+        self.addHoleCards(self.actionStreets[-1], player, open=[], closed=cards, shown=shown, mucked=mucked, dealt=dealt)
         if string is not None:
             self.showdownStrings[player] = string
 

@@ -1,0 +1,37 @@
+Winamax Poker - CashGame - HandId: #9250793-388-1478989461 - 2-7 Triple Draw fixed limit (25€/50€) - 2016/11/12 22:24:21 UTC
+Table: 'Pampelune' 6-max (real money) Seat #4 is the button
+Seat 1: Hero (2047.50€)
+Seat 4: Player0 (217.78€)
+*** ANTE/BLINDS ***
+Player0 posts small blind 12.50€
+Hero posts big blind 25€
+*** FIRST-BET ***
+Dealt to Player0 [X X X X X]
+Dealt to Hero [2h Td 8c 7c 8s]
+Player0 raises 25€ to 50€
+Hero calls 25€
+*** FIRST-DRAW ***
+Hero stands pat [2h Td 8c 7c 8s]
+Player0 stands pat [X X X X X]
+*** SECOND-BET ***
+Hero checks
+Player0 bets 25€
+Hero calls 25€
+*** SECOND-DRAW ***
+Hero stands pat [2h Td 8c 7c 8s]
+Player0 stands pat [X X X X X]
+*** THIRD-BET ***
+Hero checks
+Player0 bets 50€
+Hero calls 50€
+*** THIRD-DRAW ***
+Hero stands pat [2h Td 8c 7c 8s]
+Player0 stands pat [X X X X X]
+*** FOURTH-BET ***
+Hero checks
+Player0 bets 50€
+Hero folds
+Player0 collected 298€ from pot
+*** SUMMARY ***
+Total pot 298€ | Rake 2€
+Seat 4: Player0 (small blind) (button) won 298€

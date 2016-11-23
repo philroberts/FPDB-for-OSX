@@ -1,0 +1,32 @@
+Winamax Poker - CashGame - HandId: #9250793-444-1478990340 - Razz fixed limit (5€/25€/50€) - 2016/11/12 22:39:00 UTC
+Table: 'Pampelune' 6-max (real money) 
+Seat 1: Hero (1546.72€)
+Seat 4: Player0 (664.56€)
+*** ANTE/BLINDS ***
+Hero posts ante 5€
+Player0 posts ante 5€
+*** 3rd STREET ***
+Dealt to Hero [4s Ad Td]
+Dealt to Player0 [X X 8h]
+Hero brings in 10€
+Player0 raises 25€ to 25€
+Hero calls 15€
+*** 4th STREET ***
+Dealt to Player0 [X X 8h] [4h]
+Dealt to Hero [4s Ad Td] [Qh]
+Player0 bets 25€
+Hero calls 25€
+*** 5th STREET ***
+Dealt to Player0 [X X 8h 4h] [5h]
+Dealt to Hero [4s Ad Td Qh] [3s]
+Player0 bets 50€
+Hero calls 50€
+*** 6th STREET ***
+Dealt to Player0 [X X 8h 4h 5h] [4d]
+Dealt to Hero [4s Ad Td Qh 3s] [Qd]
+Player0 bets 50€
+Hero folds
+Player0 collected 258€ from pot
+*** SUMMARY ***
+Total pot 258€ | Rake 2€
+Seat 4: Player0 won 258€

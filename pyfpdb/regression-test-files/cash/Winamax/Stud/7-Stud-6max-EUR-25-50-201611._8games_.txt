@@ -1,0 +1,42 @@
+Winamax Poker - CashGame - HandId: #9250793-470-1478990787 - 7-Card Stud fixed limit (5€/25€/50€) - 2016/11/12 22:46:27 UTC
+Table: 'Pampelune' 6-max (real money) 
+Seat 1: Hero (1749.22€)
+Seat 4: Player0 (426.06€)
+*** ANTE/BLINDS ***
+Hero posts ante 5€
+Player0 posts ante 5€
+*** 3rd STREET ***
+Dealt to Hero [4h Ac Qd]
+Dealt to Player0 [X X 9h]
+Player0 brings in 10€
+Hero raises 25€ to 25€
+Player0 calls 15€
+*** 4th STREET ***
+Dealt to Hero [4h Ac Qd] [3h]
+Dealt to Player0 [X X 9h] [Kh]
+Player0 checks
+Hero checks
+*** 5th STREET ***
+Dealt to Player0 [X X 9h Kh] [Kd]
+Dealt to Hero [4h Ac Qd 3h] [Qh]
+Player0 bets 50€
+Hero calls 50€
+*** 6th STREET ***
+Dealt to Player0 [X X 9h Kh Kd] [Qc]
+Dealt to Hero [4h Ac Qd 3h Qh] [5h]
+Player0 bets 50€
+Hero calls 50€
+*** 7th STREET ***
+Dealt to Player0 [X X 9h Kh Kd Qc] [X]
+Dealt to Hero [4h Ac Qd 3h Qh 5h] [Th]
+Player0 bets 50€
+Hero raises 50€ to 100€
+Player0 calls 50€
+*** SHOW DOWN ***
+Player0 shows [8c Td 9h Kh Kd Qc Jc] (Straight King high)
+Hero shows [4h Ac Qd 3h Qh 5h Th] (Flush Queen high)
+Hero collected 458€ from pot
+*** SUMMARY ***
+Total pot 458€ | Rake 2€
+Seat 1: Hero showed [4h Ac Qd 3h Qh 5h Th] and won 458€ with Flush Queen high
+Seat 4: Player0 showed [8c Td 9h Kh Kd Qc Jc] and lost with Straight King high
