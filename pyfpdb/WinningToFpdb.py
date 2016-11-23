@@ -245,7 +245,7 @@ class Winning(HandHistoryConverter):
         if not self.re_File.search(self.in_path):
             tmp = "Invalid filename: %s" % self.in_path
             log.debug(_("WinningToFpdb.determineGameType: '%s'") % tmp)
-            raise FpdbHandPartial
+            raise FpdbHandPartial(tmp)
             
         m = self.re_GameInfo.search(handText)
         if not m:
