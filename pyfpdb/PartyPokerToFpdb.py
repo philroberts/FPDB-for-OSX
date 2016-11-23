@@ -96,8 +96,8 @@ class PartyPoker(HandHistoryConverter):
             (.+?\sfinished\sin\s\d+\splace\.\s+)*
             ((?P<CURRENCY>[%(LS)s]))?\s*
             (
-             ([%(LS)s]?(?P<SB>[%(NUM)s]+)/[%(LS)s]?(?P<BB>[%(NUM)s]+)\s*(?:%(LEGAL_ISO)s)?\s+((?P<LIMIT3>NL|PL|FL|)\s+)?)|
-             ((?P<CASHBI>[%(NUM)s]+)\s*(?:%(LEGAL_ISO)s)?\s*)(?P<FAST>fastforward\s)?(?P<LIMIT2>(NL|PL|FL|))?\s*
+             ([%(LS)s]?(?P<SB>[%(NUM)s]+)/[%(LS)s]?(?P<BB>[%(NUM)s]+)\s*(?:%(LEGAL_ISO)s)?\s+(?P<FAST3>fastforward\s)?((?P<LIMIT3>NL|PL|FL|)\s+)?)|
+             ((?P<CASHBI>[%(NUM)s]+)\s*(?:%(LEGAL_ISO)s)?\s*)(?P<FAST2>fastforward\s)?(?P<LIMIT2>(NL|PL|FL|))?\s*
             )
             (Tourney\s*)?
             (?P<GAME>(Texas\sHold\'em|Omaha\sHi-Lo|Omaha(\sHi)?|7\sCard\sStud\sHi-Lo|7\sCard\sStud|Double\sHold\'em))\s*
@@ -266,7 +266,9 @@ class PartyPoker(HandHistoryConverter):
             info['limitType'] = self.limits[mg['LIMIT2']]
         if 'LIMIT3' in mg and mg['LIMIT3'] != None:
             info['limitType'] = self.limits[mg['LIMIT3']]
-        if 'FAST' in mg and mg['FAST'] != None:
+        if 'FAST2' in mg and mg['FAST2'] != None:
+            info['fast'] = True
+        elif 'FAST3' in mg and mg['FAST3'] != None:
             info['fast'] = True
         else:
             info['fast'] = False
