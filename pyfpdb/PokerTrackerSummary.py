@@ -40,7 +40,7 @@ class PokerTrackerSummary(TourneySummary):
 
     substitutions = {
                      'LEGAL_ISO' : "USD|EUR|GBP|CAD|FPP",      # legal ISO currency codes
-                            'LS' : u"\$|\xe2\x82\xac|\u20ac|\£|", # legal currency symbols - Euro(cp1252, utf-8)
+                            'LS' : u"\$|\xe2\x82\xac|\u20ac|\£|P|", # legal currency symbols - Euro(cp1252, utf-8)
                            'PLYR': r'(?P<PNAME>.+?)',
                            'NUM' : u".,\d",
                             'CUR': u"(\$|\xe2\x82\xac|\u20ac||\£|)",
@@ -84,7 +84,8 @@ class PokerTrackerSummary(TourneySummary):
         'MicroGaming': 'Microgaming',
         'PokerStars': 'PokerStars',
         'Full Tilt': 'Fulltilt',
-        'Party Poker': 'PartyPoker'
+        'Party Poker': 'PartyPoker',
+        'Merge': 'Merge'
     }
 
     @staticmethod
@@ -147,6 +148,7 @@ class PokerTrackerSummary(TourneySummary):
 
         if mg['CURRENCY'] == "$":     self.buyinCurrency="USD"
         elif mg['CURRENCY'] == u"€":  self.buyinCurrency="EUR"
+        elif mg['CURRENCY'] == "P":   self.buyinCurrency="PSFP"
         elif not mg['CURRENCY']:      self.buyinCurrency="play"
         if self.buyin == 0:           self.buyinCurrency="FREE"
         self.currency = self.buyinCurrency
@@ -180,7 +182,7 @@ class PokerTrackerSummary(TourneySummary):
                 if 'CUR' in mg and mg['CUR'] != None:
                     if mg['CUR'] == "$":     self.currency="USD"
                     elif mg['CUR'] == u"€":  self.currency="EUR"
-                    elif mg['CUR'] == "FPP": self.currency="PSFP"
+                    elif mg['CUR'] == "P":   self.currency="PSFP"
     
                 if rank==0:
                     #print "stillplaying"
