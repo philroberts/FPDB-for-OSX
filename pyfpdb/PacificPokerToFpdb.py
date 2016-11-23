@@ -76,15 +76,7 @@ class PacificPoker(HandHistoryConverter):
                                'Holdem' : ('hold','holdem'),
                                 'Omaha' : ('hold','omahahi'),
                           'Omaha Hi/Lo' : ('hold','omahahilo'),
-                              'OmahaHL' : ('hold','omahahilo'),
-                                 'Razz' : ('stud','razz'), 
-                                 'RAZZ' : ('stud','razz'),
-                          '7 Card Stud' : ('stud','studhi'),
-                    '7 Card Stud Hi/Lo' : ('stud','studhilo'),
-                               'Badugi' : ('draw','badugi'),
-              'Triple Draw 2-7 Lowball' : ('draw','27_3draw'),
-              'Single Draw 2-7 Lowball' : ('draw','27_1draw'),
-                          '5 Card Draw' : ('draw','fivedraw')
+                              'OmahaHL' : ('hold','omahahilo')
                }
 
     currencies = { u'€':'EUR', '$':'USD', '':'T$' }
@@ -95,7 +87,8 @@ class PacificPoker(HandHistoryConverter):
           \*\*\*\*\*\s(Cassava|888poker|888\.es)\s(?P<FAST>Snap\sPoker\s)?Hand\sHistory\sfor\sGame\s(?P<HID>[0-9]+)\s\*\*\*\*\*\\n
           (?P<CURRENCY1>%(LS)s)?\s?(?P<SB>[%(NUM)s]+)\s?(?P<CURRENCY2>%(LS)s)?/(%(LS)s)?\s?(?P<BB>[%(NUM)s]+)\s?(%(LS)s)?\sBlinds\s
           (?P<LIMIT>No\sLimit|Fix\sLimit|Pot\sLimit)\s
-          (?P<GAME>Holdem|Omaha|OmahaHL|Hold\'em|Omaha\sHi/Lo|OmahaHL|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Badugi|Triple\sDraw\s2\-7\sLowball|Single\sDraw\s2\-7\sLowball|5\sCard\sDraw)
+          (?P<GAME>Holdem|Omaha|OmahaHL|Hold\'em|Omaha\sHi/Lo|OmahaHL)
+          (\sJackpot\stable)?
           \s-\s\*\*\*\s
           (?P<DATETIME>.*$)\s
           (Tournament\s\#(?P<TOURNO>\d+))?
@@ -168,21 +161,9 @@ class PacificPoker(HandHistoryConverter):
                 ["ring", "hold", "pl"],
                 ["ring", "hold", "fl"],
 
-                ["ring", "stud", "fl"],
-
-                ["ring", "draw", "fl"],
-                ["ring", "draw", "pl"],
-                ["ring", "draw", "nl"],
-
                 ["tour", "hold", "nl"],
                 ["tour", "hold", "pl"],
                 ["tour", "hold", "fl"],
-
-                ["tour", "stud", "fl"],
-                
-                ["tour", "draw", "fl"],
-                ["tour", "draw", "pl"],
-                ["tour", "draw", "nl"],
                 ]
 
     def determineGameType(self, handText):
