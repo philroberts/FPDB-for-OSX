@@ -516,8 +516,12 @@ class Winning(HandHistoryConverter):
             elif action.group('ATYPE') ==  'bets':
                 hand.addBet( street, action.group('PNAME'), self.clearMoneyString(action.group('BET')) )
             elif action.group('ATYPE') ==  'allin':
-                amount = self.clearMoneyString(action.group('BET')).replace(u',', u'') #some sites have commas
                 player = action.group('PNAME')
+                # disconnected all in
+                if action.group('BET') == None:
+                    amount = str(hand.stacks[player])
+                else:
+                    amount = self.clearMoneyString(action.group('BET')).replace(u',', u'') #some sites have commas
                 Ai = Decimal(amount)
                 Bp = hand.lastBet[street]
                 Bc = sum(hand.bets[street][player])

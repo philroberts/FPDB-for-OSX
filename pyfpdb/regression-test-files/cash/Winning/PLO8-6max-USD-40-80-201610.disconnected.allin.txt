@@ -1,0 +1,68 @@
+Game started at: 2016/10/2 21:0:42
+Game ID: 741631166 40/80 (PRR) Xana (Omaha HiLow)
+Seat 4 is the button
+Seat 1: Hero (2872.50).
+Seat 2: Player0 (1017).
+Seat 3: Player1 (4091.38).
+Seat 4: Player2 (2713.75).
+Seat 5: Player3 (2534.50).
+Seat 6: Player4 (1945.50).
+Player Player3 has small blind (20)
+Player Player4 has big blind (40)
+Player Player3 received a card.
+Player Player3 received a card.
+Player Player3 received a card.
+Player Player3 received a card.
+Player Player4 received a card.
+Player Player4 received a card.
+Player Player4 received a card.
+Player Player4 received a card.
+Player Hero received card: [2d]
+Player Hero received card: [5h]
+Player Hero received card: [3c]
+Player Hero received card: [Kc]
+Player Player0 received a card.
+Player Player0 received a card.
+Player Player0 received a card.
+Player Player0 received a card.
+Player Player1 received a card.
+Player Player1 received a card.
+Player Player1 received a card.
+Player Player1 received a card.
+Player Player2 received a card.
+Player Player2 received a card.
+Player Player2 received a card.
+Player Player2 received a card.
+Player Hero folds
+Player Player0 calls (40)
+Player Player1 raises (80)
+Player Player2 calls (80)
+Player Player3 calls (60)
+Player Player4 calls (40)
+Player Player0 calls (40)
+*** FLOP ***: [6d 7h 3h]
+Player Player3 checks
+Player Player4 checks
+Player Player0 checks
+Player Player1 bets (40)
+Player Player2 folds
+Player Player3 folds
+Player Player4 calls (40)
+Player Player0 is disconnected and ALL IN.
+Player Player0 allin
+*** TURN ***: [6d 7h 3h] [2c]
+Player Player4 checks
+Player Player1 checks
+*** RIVER ***: [6d 7h 3h 2c] [2h]
+Player Player4 checks
+Player Player1 checks
+------ Summary ------
+Pot: 477. Rake 2.76. JP fee 0.24
+Board: [6d 7h 3h 2c 2h]
+Player Hero does not show cards.Bets: 0. Collects: 0. Wins: 0.
+*Player Player0 shows: Flush, 7 high [4h 4s Ks 6h]. Bets: 80. Collects: 198.50. Wins: 118.50.
+*Player Player1 shows: Two pairs. 7s and 2s [Ac 8c Kh 7s] Low hand (A A 2 3 6 7 ).Bets: 120. Collects: 238.50. Wins: 118.50.
+Player Player2 does not show cards.Bets: 80. Collects: 0. Loses: 80.
+Player Player3 does not show cards.Bets: 80. Collects: 0. Loses: 80.
+*Player Player4 shows: Two pairs. 9s and 2s [10s 4c 9c 9h]. Bets: 120. Collects: 40. Loses: 80.
+Game ended at: 2016/10/2 21:4:9
