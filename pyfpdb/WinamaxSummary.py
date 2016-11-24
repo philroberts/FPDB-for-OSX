@@ -37,6 +37,10 @@ class WinamaxSummary(TourneySummary):
                            "5 Card Omaha": ('hold','5_omahahi'),
                      "5 Card Omaha Hi/Lo": ('hold','5_omaha8'),
                             "Omaha Hi/Lo": ('hold','omahahilo'),
+                            "7-Card Stud": ('stud','studhi'),
+                      "7-Card Stud Hi/Lo": ('stud','studhilo'),
+                                   "Razz": ('stud','razz'),
+                        "2-7 Triple Draw": ('draw','27_3draw')
                }
 
     substitutions = {
