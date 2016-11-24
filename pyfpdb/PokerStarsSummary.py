@@ -135,7 +135,8 @@ class PokerStarsSummary(TourneySummary):
     re_XLSTourneyInfo['Qualified'] = re.compile(r'(?P<WONTICKET>\*\\\/\*)?')
 
     re_Player = re.compile(u"""(?P<RANK>[,.0-9]+):\s(?P<NAME>.+?)(\s\[(?P<ENTRYID>\d+)\])?\s\(.+?\),(\s)?((?P<CUR>[%(LS)s]?)(?P<WINNINGS>[,.0-9]+)(\s(?P<CUR1>(FPP|SC)))?)?(?P<STILLPLAYING>still\splaying)?((?P<TICKET>Tournament\sTicket)\s\(WSOP\sStep\s(?P<LEVEL>\d)\))?(?P<QUALIFIED>\s\(qualified\sfor\sthe\starget\stournament\))?(\s+)?""" % substitutions)
-    re_HTMLPlayer = re.compile(ur"<h2>All\s+(?P<SNG>(Regular|Sit & Go))\s?Tournaments\splayed\sby\s'(<b>)?(?P<NAME>.+?)':?</h2>", re.IGNORECASE)
+    re_HTMLPlayer1 = re.compile(ur"<h2>All\s+(?P<SNG>(Regular|Sit & Go))\s?Tournaments\splayed\sby\s'(<b>)?(?P<NAME>.+?)':?</h2>", re.IGNORECASE)
+    re_HTMLPlayer2 = re.compile(ur"<title>TOURNEYS:\s&lt;(?P<NAME>.+?)&gt;</title>", re.IGNORECASE)
     re_XLSPlayer = re.compile(r'All\s(?P<SNG>(Regular|(Heads\sup\s)?Sit\s&\sGo))\sTournaments\splayed\sby\s\'(?P<NAME>.+?)\'')
     
     re_DateTime = re.compile("""(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)""", re.MULTILINE)
@@ -215,7 +216,9 @@ class PokerStarsSummary(TourneySummary):
 
     def parseSummaryHtml(self):
         info = {}
-        m1 = self.re_HTMLPlayer.search(self.header)
+        m1 = self.re_HTMLPlayer1.search(self.header)
+        if m1 == None:
+            m1 = self.re_HTMLPlayer2.search(self.header)
         m2 = self.re_HTMLTourneyInfo.search(self.summaryText)
         if m1 == None or m2==None:
             tmp1 = self.header[0:200] if m1 == None else 'NA'
