@@ -352,11 +352,11 @@ class PokerStarsSummary(TourneySummary):
             self.buyin = int(100*Decimal(self.clearMoneyString(mg['BUYIN']))) + self.koBounty
         if mg['FEE'] != None:
             self.fee   = int(100*Decimal(self.clearMoneyString(mg['FEE'])))
-        if 'PRIZEPOOL' in mg:
+        if 'PRIZEPOOL' in mg and mg['PRIZEPOOL'] != None:
             if 'Sunday Million' in mg['PRIZEPOOL']:
                 self.isSatellite = True
                 targetBuyin, targetCurrency = 21500, "USD"                
-            elif mg['PRIZEPOOL'] != None:
+            else:
                 self.prizepool = int(Decimal(self.clearMoneyString(mg['PRIZEPOOL'])))
         if 'ENTRIES'   in mg: self.entries               = int(mg['ENTRIES'])
         if 'SATELLITE' in mg and mg['SATELLITE'] != None:
