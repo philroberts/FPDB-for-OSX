@@ -464,7 +464,7 @@
             <fav max="10" fav_seat="0"/>
         </site>
 
-        <site site_name="Winning"
+        <site site_name="WinningPoker"
                 enabled="False"
                 screen_name="Hero" 
                 site_path="C:/AmericasCardroom/"
