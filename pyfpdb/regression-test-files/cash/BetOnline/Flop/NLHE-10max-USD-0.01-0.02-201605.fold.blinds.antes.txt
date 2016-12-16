@@ -1,0 +1,51 @@
+BetOnline Poker Game #1605730318: Hold'em No Limit ($0.01/0.02) - 2016/05/03 10:17:31 Eastern Daylight Time
+Table 'Dark Blue' 10-Max, Seat #9 is the button
+Seat 9: Player8 (1.99 in chips) - The button
+Seat 8: Player0 (2.00 in chips)
+Seat 7: Player1 (2.34 in chips) - Sitting out
+Seat 5: Player2 (0.62 in chips)
+Seat 4: Player3 (1.10 in chips)
+Seat 3: Player4 (1.53 in chips) - Sitting out
+Seat 2: Player5 (1.66 in chips)
+Seat 1: Player6 (2.09 in chips) - Big Blind
+Seat 0: Player7 (2.54 in chips) - Small Blind
+Seat 6: Hero (2.00 in chips)
+Player8: ante processed 0.00
+Player0: ante processed 0.00
+Player1: ante processed 0.00
+Player2: ante processed 0.00
+Player3: ante processed 0.00
+Player4: ante processed 0.00
+Player5: ante processed 0.00
+Player6: ante processed 0.00
+Player7: ante processed 0.00
+Hero: ante processed 0.00
+Player7: posts small blind 0.01
+Player6: posts big blind 0.02
+Player7 has left the table
+Player2: post now 0.02
+Player0: post now 0.02
+*** HOLE CARDS *** 
+Dealt to Hero []
+Player5: folds
+Player3: folds
+Player2: checks
+Player0: checks
+abunaiguy joins the table at seat #0
+Player8: folds
+Player6: checks
+*** FLOP *** [As 3s 6d]
+Player6: bets 0.04
+Player2: folds
+Player0: folds
+Uncalled bet (0.04) returned to Player6
+*** SUMMARY *** 
+Total pot 0.07 | Rake 0.00
+Board [As 3s 6d]
+Seat 9: Player8 folded before Flop
+Seat 8: Player0 folded on the Flop
+Seat 5: Player2 folded on the Flop
+Seat 4: Player3 folded before Flop
+Seat 2: Player5 folded before Flop
+Seat 1: Player6 collected (0.07)
+Seat 6: Hero collected (0.00)

@@ -1,0 +1,33 @@
+#Game No : 13291512580 
+***** Hand History for Game 13291512580 *****
+$0.10/$0.25 USD NL Texas Hold'em - Sunday, September 22, 08:21:48 EDT 2013
+Table Podgorica (Real Money)
+Seat 3 is the button
+Total number of players : 4/6 
+Seat 1: Player0 ( $25.35 USD )
+Seat 4: Player1 ( $26.50 USD )
+Seat 2: Hero ( $25.40 USD )
+Seat 3: Player2 ( $24 USD )
+Player3 has joined the table.
+Player1 posts small blind [$0.10 USD].
+Player3 posts big blind [$0.25 USD].
+** Dealing down cards **
+Dealt to Hero [  6d 7d ]
+Player4 has joined the table.
+Player0 folds
+Hero folds
+Player2 raises [$0.50 USD]
+Player1 calls [$0.40 USD]
+Player3 calls [$0.25 USD]
+** Dealing Flop ** [ 6h, 2c, 3c ]
+Player1 checks
+Player3 checks
+Player2 bets [$0.71 USD]
+Player1 calls [$0.71 USD]
+Player3 folds
+** Dealing Turn ** [ 9d ]
+Player1 bets [$2.08 USD]
+Player2 folds
+Player1 does not show cards.
+Player1 wins $4.86 USD
+Game #13291514710 starts.

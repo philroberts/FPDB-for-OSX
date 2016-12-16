@@ -1,0 +1,42 @@
+<description type="Holdem" stakes="No Limit ($1/$2)"/>
+<game id="71748131-1802" starttime="20130818125834" numholecards="2" gametype="2" seats="6" realmoney="true" data="20130818|Grand VI|71748131|71748131-1802|true">
+	<players dealer="4">
+		<player seat="1" nickname="Player0" balance="$129.81" dealtin="true" />
+		<player seat="2" nickname="Player1" balance="$140.87" dealtin="true" />
+		<player seat="3" nickname="Player2" balance="$0.00" dealtin="false" />
+		<player seat="4" nickname="Player3" balance="$80.92" dealtin="true" />
+		<player seat="5" nickname="Player4" balance="$45.62" dealtin="false" />
+		<player seat="7" nickname="Player5" balance="$0.00" dealtin="false" />
+		<player seat="8" nickname="Player6" balance="$0.00" dealtin="false" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" timestamp="1376855914281" player="1" amount="1.00"/>
+		<event sequence="2" type="BIG_BLIND" timestamp="1376855914281" player="2" amount="2.00"/>
+	</round>
+	<round id="PREFLOP" sequence="2">
+		<event sequence="3" type="RAISE" timestamp="1376855914281" player="4" amount="6.00"/>
+		<event sequence="4" type="CALL" timestamp="1376855914281" player="1" amount="5.00"/>
+		<event sequence="5" type="RAISE" timestamp="1376855914281" player="2" amount="19.50"/>
+		<event sequence="6" type="ALL_IN" timestamp="1376855914281" player="4" amount="74.92"/>
+		<event sequence="7" type="FOLD" timestamp="1376855914281" player="1"/>
+		<event sequence="8" type="CALL" timestamp="1376855914281" player="2" amount="61.42"/>
+		<event sequence="9" type="SHOW" timestamp="1376855914281" player="2"/>
+		<event sequence="10" type="SHOW" timestamp="1376855914281" player="4"/>
+		<cards type="SHOWN" cards="Jc,Ac" player="2"/>
+		<cards type="SHOWN" cards="As,Kh" player="4"/>
+	</round>
+	<round id="POSTFLOP" sequence="3">
+		<cards type="COMMUNITY" cards="Ks,Tc,3c" hand=""/>
+	</round>
+	<round id="POSTTURN" sequence="4">
+		<event sequence="11" type="ALL_IN" timestamp="1376855914281" player="4"/>
+		<cards type="COMMUNITY" cards="Ks,Tc,3c,Qd" hand=""/>
+	</round>
+	<round id="POSTRIVER" sequence="5">
+		<event sequence="12" type="CHECK" timestamp="1376855914281" player="3"/>
+		<cards type="COMMUNITY" cards="Ks,Tc,3c,Qd,Th" hand=""/>
+	</round>
+	<round id="END_OF_GAME" sequence="6">
+		<winner amount="165.84" uncalled="false" potnumber="1" player="2" hand="" pottype="n"/>
+	</round>
+</game>

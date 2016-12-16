@@ -1,0 +1,23 @@
+Stage #1828549717: Omaha Hi/Lo (1 on 1)  Normal $30/$60 - 2009-12-31 18:23:36.005 (ET) [ 2009-12-31 18:23:36 ]
+Table: Linden Ct (Real Money) Seat #6 is the dealer
+Seat 6 - Player0 ($1,195.50 in chips)
+Seat 4 - Hero ($1,000 in chips)
+Player0 - Posts small blind $15
+Hero - Posts big blind $30
+*** POCKET CARDS ***
+Dealt to Hero [9h Qc 2d 3h]
+Player0 - Raises $45 to $60
+Hero - Calls $30
+*** FLOP *** [Jc 5h 2c]
+Hero - Checks
+Player0 - Bets $30
+Hero - Folds
+Player0 - returned ($30) : not called
+*** SHOW DOWN ***
+Player0 - Does not show
+Player0 Collects $119.25 from main pot
+*** SUMMARY ***
+Total Pot($120) | Rake ($0.75)
+Board [Jc 5h 2c]
+Seat 4: Hero (big blind) Folded on the FLOP
+Seat 6: Player0 (dealer) (small blind) collected Total ($119.25) HI:($119.25)  [Does not show] 

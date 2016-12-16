@@ -1,0 +1,53 @@
+----PRIMA.DAT----
+
+<Game hhversion="5" id="5905509634" date="2016-02-10 23:46:40" unicodetablename="SwBlAHYAYQBuACAALQAgAKwgMQBLACAATQBhAHgA" tablename="Kevan - €1K Max" stakes="5|10" betlimit="PL" tabletype="Cash Game" unicodetabletype="QwBhAHMAaAAgAEcAYQBtAGUA" gametypeid="50" gametype="Omaha" realmoney="true" currencysymbol="rCA=" playerseat="0" betamount="0" istournament="0" totalplayers="5" tablesize="6" badbeat="false" currencyId="26" rake="300">
+<Seats>
+<Seat num="1" alias="Player0" unicodealias="SwB1AGgAYQAtAEgAZQBsAHAAcABpAA==" balance="990.00" endbalance="2017.00" />
+<Seat num="3" alias="Player1" unicodealias="VABoAGUARgBpAG4AYQBsAFMAcQB1AGUAegB6AHoAegBlAA==" balance="1000.00" endbalance="1000.00" />
+<Seat num="4" alias="Player2" unicodealias="awBpAG4AZwAxADkAMQAwAA==" balance="1420.00" endbalance="1385.00" dealer="true" />
+<Seat num="5" alias="Player3" unicodealias="SQBtAHAAbwB0AGUAbgBjAGkAbwA=" balance="1147.00" endbalance="1142.00" />
+<Seat num="6" alias="Player4" unicodealias="cwB0AGEAcgBmAGkAcgBlAA==" balance="1037.00" endbalance="47.00" />
+</Seats>
+<Gameplay>
+<Action seq="1" type="SmallBlind" seat="5" value="5.00" />
+<Action seq="2" type="BigBlind" seat="6" value="10.00" />
+<Action seq="3" type="PostedToPlay" seat="1" value="5.00" />
+<Action seq="4" type="Raise" seat="1" value="30.00" />
+<Action seq="5" type="Call" seat="4" value="35.00" />
+<Action seq="6" type="Fold" seat="5" />
+<Action seq="7" type="Call" seat="6" value="25.00" />
+<Action seq="8" type="DealFlop">
+<Card value="7" suit="c" id="19" />
+<Card value="2" suit="s" id="1" />
+<Card value="10" suit="h" id="48" />
+</Action>
+<Action seq="9" type="Bet" seat="6" value="40.00" />
+<Action seq="10" type="Raise" seat="1" value="152.00" />
+<Action seq="11" type="Fold" seat="4" />
+<Action seq="12" type="Raise" seat="6" value="320.00" />
+<Action seq="13" type="AllIn" seat="1" value="803.00" />
+<Action seq="14" type="Call" seat="6" value="595.00" />
+<Action seq="15" type="ShowCards" seat="1">
+<Card value="A" suit="h" id="39" />
+<Card value="7" suit="d" id="32" />
+<Card value="10" suit="d" id="35" />
+<Card value="2" suit="h" id="40" />
+</Action>
+<Action seq="16" type="ShowCards" seat="6">
+<Card value="10" suit="s" id="9" />
+<Card value="J" suit="h" id="49" />
+<Card value="2" suit="d" id="27" />
+<Card value="A" suit="d" id="26" />
+</Action>
+<Action seq="17" type="DealTurn">
+<Card value="4" suit="h" id="42" />
+</Action>
+<Action seq="18" type="DealRiver">
+<Card value="8" suit="h" id="46" />
+</Action>
+<Action type="Win">
+<Seat num="1" amount="2017.00" pot="0" type="" lowhandwin="0" />
+</Action>
+</Gameplay>
+</Game>
+ExtendedTableName: Kevan - €1K Max

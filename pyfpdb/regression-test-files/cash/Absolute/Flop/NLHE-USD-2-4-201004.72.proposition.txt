@@ -1,0 +1,33 @@
+Stage #1981698003: Holdem  No Limit $4 (7-2) - 2010-04-01 17:48:42 (ET)
+Table: LAREDO (Real Money) Seat #3 is the dealer
+Seat 3 - PLAYER0 ($462 in chips)
+Seat 4 - PLAYER1 ($444.50 in chips)
+Seat 5 - PLAYER2 ($376 in chips)
+Seat 6 - HERO ($495.40 in chips)
+Seat 2 - PLAYER3 ($547 in chips)
+PLAYER1 - Posts small blind $2
+PLAYER2 - Posts big blind $4
+*** POCKET CARDS ***
+Dealt to HERO [10h Kd] 
+HERO - Folds
+PLAYER3 - Folds
+PLAYER0 - Raises $12 to $12
+PLAYER1 - Folds
+PLAYER2 - Calls $8
+*** FLOP *** [Jc As 10s]
+PLAYER2 - Checks
+PLAYER0 - Bets $20
+PLAYER2 - Folds
+PLAYER0 - returned ($20) : not called
+*** SHOW DOWN ***
+PLAYER0 - Shows [2c 7c] (ace high) 
+PLAYER0 Collects $40 from 72 proposition pot
+PLAYER0 Collects $24.20 from main pot
+*** SUMMARY ***
+Total Pot($26) | Rake ($1.30) | Jackpot Rake ($0.50) | 72 Proposition Pot ($40)
+Board [Jc As 10s]
+Seat 2: PLAYER3 Folded on the POCKET CARDS
+Seat 3: PLAYER0 (dealer) collected Total ($64.20) HI:($24.20) with ace high [2c 7c - B:As,B:Jc,B:10s,P:7c,P:2c] 72 Prop Win ($40) with [2c 7c]
+Seat 4: PLAYER1 (small blind) Folded on the POCKET CARDS
+Seat 5: PLAYER2 (big blind) Folded on the FLOP
+Seat 6: HERO Folded on the POCKET CARDS

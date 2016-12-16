@@ -1,0 +1,32 @@
+PokerStars Hand #151933331674:  Courchevel Pot Limit ($0.50/$1.00 USD) - 2016/04/14 23:31:38 ET
+Table 'Aldhafera' 6-max Seat #6 is the button
+Seat 3: Hero ($162.66 in chips) 
+Seat 6: Player0 ($107.06 in chips) 
+Player0: posts small blind $0.50
+Hero: posts big blind $1
+*** HOLE CARDS ***
+Dealt to Hero [4c Jd 9c Qh Qc]
+*** HOLE CARDS *** [2s]*** HOLE CARDSPRE-FLOP *** [2s]
+Player0: raises $2 to $3
+Hero: calls $2
+*** FLOP *** [2s] [2s3d 3c]
+Hero: checks 
+Player0: bets $2.90
+Hero: calls $2.90
+*** TURN *** [2s 3d 3c] [8d]
+Hero: checks 
+Player0: checks 
+*** RIVER *** [2s 3d 3c 8d] [6s]
+Hero: checks 
+Player0: bets $9
+Hero: raises $23.95 to $32.95
+Player0: calls $23.95
+*** SHOW DOWN ***
+Hero: shows [4c Jd 9c Qh Qc] (two pair, Queens and Threes)
+Player0: shows [5c 4s 9d Ks 8c] (a straight, Deuce to Six)
+Player0 collected $76.70 from pot
+*** SUMMARY ***
+Total pot $77.70 | Rake $1 
+Board [2s 3d 3c 8d 6s]
+Seat 3: Hero (big blind) showed [4c Jd 9c Qh Qc] and lost with two pair, Queens and Threes
+Seat 6: Player0 (button) (small blind) showed [5c 4s 9d Ks 8c] and won ($76.70) with a straight, Deuce to Six

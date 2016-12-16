@@ -1,0 +1,61 @@
+BetOnline Poker Game #1587461647: Tournament #7212650: Hold'em $40.00/$80.00 - 2016/03/21 17:09:38 Eastern Daylight Time
+Table '7212650-102' 10-Max, Seat #8 is the button
+Seat 9: Player0 (4941.25 in chips) - Small Blind
+Seat 8: Player1 (2390.84 in chips) - The button
+Seat 7: Player2 (6430.28 in chips)
+Seat 6: Player3 (395.00 in chips)
+Seat 5: Player4 (3280.00 in chips)
+Seat 4: Player5 (1755.00 in chips)
+Seat 3: Player6 (495.00 in chips)
+Seat 2: Player7 (4261.25 in chips)
+Seat 1: Player8 (1875.00 in chips)
+Seat 0: Player9 (1380.00 in chips) - Big Blind
+Player0: ante processed 10.00
+Player1: ante processed 10.00
+Player2: ante processed 10.00
+Player3: ante processed 10.00
+Player4: ante processed 10.00
+Player5: ante processed 10.00
+Player6: ante processed 10.00
+Player7: ante processed 10.00
+Player8: ante processed 10.00
+Player9: ante processed 10.00
+Player0: posts small blind 50.00
+Player9: posts big blind 100.00
+*** HOLE CARDS *** 
+Dealt to Player8 [Jh 9s]
+Player8: folds
+Player7: folds
+Player6: folds
+Player5: folds
+Player4: folds
+Player3: folds
+Player2: folds
+Player1: calls 100.00
+Player0: raises 250.00 to 300.00
+Player9: folds
+Player1: calls 200.00
+*** FLOP *** [Qh 2h 3s]
+Player0: checks
+Player1: checks
+*** TURN *** [Qh 2h 3s][7h]
+Player0: bets 200.00
+Player1: calls 200.00
+*** RIVER *** [Qh 2h 3s 7h][4h]
+Player0: checks
+Player1: bets 400.00
+Player0: folds
+Uncalled bet (400.00) returned to Player1
+*** SUMMARY *** 
+Total pot 1200.00
+Board [Qh 2h 3s 7h 4h]
+Seat 9: Player0 folded on the River
+Seat 8: Player1 collected (1200.00)
+Seat 7: Player2 folded before Flop
+Seat 6: Player3 folded before Flop
+Seat 5: Player4 folded before Flop
+Seat 4: Player5 folded before Flop
+Seat 3: Player6 folded before Flop
+Seat 2: Player7 folded before Flop
+Seat 1: Player8 folded before Flop
+Seat 0: Player9 folded before Flop

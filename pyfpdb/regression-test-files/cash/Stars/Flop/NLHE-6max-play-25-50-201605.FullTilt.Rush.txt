@@ -1,0 +1,35 @@
+Full Tilt Rush Hand #153580762880:  Hold'em No Limit (25/50) - 2016/05/20 8:39:15 ET
+Table 'NLHE 25/50 6 max' 6-max Seat #1 is the button
+Seat 1: Player0 (3516 in chips) 
+Seat 2: Player1 (8123 in chips) 
+Seat 3: Hero (5000 in chips) 
+Seat 4: Player2 (5716 in chips) 
+Seat 5: Player3 (5651 in chips) 
+Seat 6: Player4 (6946 in chips) 
+Player1: posts small blind 25
+Hero: posts big blind 50
+*** HOLE CARDS ***
+Dealt to Hero [4h Kd]
+Player2: folds 
+Player3: calls 50
+Player4: folds 
+Player0: folds 
+Player1: folds 
+Hero: checks 
+*** FLOP *** [9d 9c As]
+Hero: checks 
+Player3: bets 119
+Hero: folds 
+Uncalled bet (119) returned to Player3
+Player3 collected 119 from pot
+Player3: doesn't show hand 
+*** SUMMARY ***
+Total pot 125 | Rake 6 
+Board [9d 9c As]
+Seat 1: Player0 (button) folded before Flop (didn't bet)
+Seat 2: Player1 (small blind) folded before Flop
+Seat 3: Hero (big blind) folded on the Flop
+Seat 4: Player2 folded before Flop (didn't bet)
+Seat 5: Player3 collected (119)
+Seat 6: Player4 folded before Flop (didn't bet)
+

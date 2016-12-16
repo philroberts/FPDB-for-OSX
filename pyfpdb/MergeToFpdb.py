@@ -57,7 +57,7 @@ class Merge(HandHistoryConverter):
                    '5-Draw'  : ('draw','fivedraw'),
                    '7-Stud'  : ('stud','studhi'),
               '7-Stud H/L8'  : ('stud','studhilo'),
-                   '5-Stud'  : ('stud','5studhi'),
+                   '5-Stud'  : ('stud','5_studhi'),
                      'Razz'  : ('stud','razz'),
             }
     
@@ -614,7 +614,7 @@ or None if we fail to get the info """
         m = self.re_Action.finditer(hand.streets[street])
         for action in m:
             player = self.playerNameFromSeatNo(action.group('PSEAT'), hand)
-            if player in hand.stacks:
+            if player in hand.stacks and player not in hand.folded:
                 if action.group('ATYPE') in ('FOLD', 'SIT_OUT'):
                     hand.addFold(street, player)
                 elif action.group('ATYPE') == 'CHECK':
@@ -628,7 +628,7 @@ or None if we fail to get the info """
                         hand.addRaiseTo(street, player, action.group('BET'))
                 elif action.group('ATYPE') == 'BET':
                     hand.addBet(street, player, action.group('BET'))
-                elif action.group('ATYPE') == 'ALL_IN':
+                elif action.group('ATYPE') == 'ALL_IN' and action.group('BET') != None:
                     hand.addAllIn(street, player, action.group('BET'))
                 elif action.group('ATYPE') == 'DRAW':
                     hand.addDiscard(street, player, action.group('TXT'))
@@ -647,8 +647,9 @@ or None if we fail to get the info """
         hand.setUncalledBets(True)
         for m in self.re_CollectPot.finditer(hand.handText):
             pname = self.playerNameFromSeatNo(m.group('PSEAT'), hand)
-            pot = m.group('POT')
-            hand.addCollectPot(player=pname, pot=pot)
+            if pname!=None:
+                pot = m.group('POT')
+                hand.addCollectPot(player=pname, pot=pot)
 
     def readShownCards(self, hand):
         for m in self.re_ShownCards.finditer(hand.handText):

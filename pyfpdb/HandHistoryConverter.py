@@ -221,7 +221,7 @@ HandHistoryConverter: '%(sitename)s'
         if self.isPartial(handText):
             raise FpdbHandPartial(_("Could not identify as a %s hand") % self.sitename)
         if self.copyGameHeader:
-            gametype = self.parseHeader(handText, self.whole_file)
+            gametype = self.parseHeader(handText, self.whole_file.replace('\r\n', '\n'))
         else:
             gametype = self.determineGameType(handText)
         hand = None
@@ -623,6 +623,8 @@ or None if we fail to get the info """
             givenTZ = timezone('Pacific/Auckland')
         elif givenTimezone == 'UTC': # Universal time co-ordinated
             givenTZ = pytz.UTC
+        elif givenTimezone in pytz.all_timezones:
+            givenTZ = timezone(givenTimezone)
 
         if givenTZ is None:
             # do not crash if timezone not in list, just return UTC localized time

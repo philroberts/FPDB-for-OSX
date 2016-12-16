@@ -40,7 +40,7 @@ class PokerTrackerSummary(TourneySummary):
 
     substitutions = {
                      'LEGAL_ISO' : "USD|EUR|GBP|CAD|FPP",      # legal ISO currency codes
-                            'LS' : u"\$|\xe2\x82\xac|\u20ac|\£|", # legal currency symbols - Euro(cp1252, utf-8)
+                            'LS' : u"\$|\xe2\x82\xac|\u20ac|\£|P|SC|", # legal currency symbols - Euro(cp1252, utf-8)
                            'PLYR': r'(?P<PNAME>.+?)',
                            'NUM' : u".,\d",
                             'CUR': u"(\$|\xe2\x82\xac|\u20ac||\£|)",
@@ -56,18 +56,37 @@ class PokerTrackerSummary(TourneySummary):
                         Started:\s(?P<DATETIME>.+?)\s+
                         Finished:\s(?P<DATETIME1>.+?)\s+
                         Buyin:\s(?P<CURRENCY>[%(LS)s]?)(?P<BUYIN>[,.0-9]+)\s+
+                        (Bounty:\s[%(LS)s]?(?P<BOUNTY>[,.0-9]+)\s+)?
                         Fee:\s[%(LS)s]?(?P<FEE>[,.0-9]+)\s+
+                        (Prize\sPool:\s[%(LS)s]?(?P<PRIZEPOOL>[,.0-9]+)\s+)?
                         (Rebuy:\s[%(LS)s]?(?P<REBUYAMT>[,.0-9]+)\s+)?
                         (Addon:\s[%(LS)s]?(?P<ADDON>[,.0-9]+)\s+)?
                         Table\sType:\s(?P<TYPE>.+?)\s+
-                        Tourney\sType:\s(?P<LIMIT>No\sLimit|Limit|LIMIT|Pot\sLimit)\s+
+                        Tourney\sType:\s(?P<LIMIT>No\sLimit|Limit|LIMIT|Pot\sLimit|N/A)\s+
                         Players:\s(?P<ENTRIES>\d+)\s+
                         """ % substitutions ,re.VERBOSE|re.MULTILINE)
 
-    re_Player = re.compile(u"""Place:\s(?P<RANK>[0-9]+),\sPlayer:\s(?P<NAME>.*),\sWon:\s(?P<CUR>[%(LS)s]?)(?P<WINNINGS>[,.0-9]+),( Rebuys: (?P<REBUYS>\d+),)?( Addons: (?P<ADDONS>\d+),)?""" % substitutions)
+    re_Player = re.compile(u"""
+        Place:\s(?P<RANK>[0-9]+),\s
+        Player:\s(?P<NAME>.*),\s
+        Won:\s(?P<CUR>[%(LS)s]?)(?P<WINNINGS>[,.0-9]+),
+        (\sBounties:\s(?P<KOS>\d+),)?
+        (\sRebuys:\s(?P<REBUYS>\d+),)?
+        (\sAddons:\s(?P<ADDONS>\d+),)?
+        """ % substitutions, re.VERBOSE)
+    
     re_DateTime = re.compile("""(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)""", re.MULTILINE)
 
-    codepage = ["utf-8"]
+    codepage = ["utf-8", "cp1252"]
+    
+    siteNameMap = {
+        'Pacific Poker': 'PacificPoker',
+        'MicroGaming': 'Microgaming',
+        'PokerStars': 'PokerStars',
+        'Full Tilt': 'Fulltilt',
+        'Party Poker': 'PartyPoker',
+        'Merge': 'Merge'
+    }
 
     @staticmethod
     def getSplitRe(self, head):
@@ -85,32 +104,39 @@ class PokerTrackerSummary(TourneySummary):
 
         mg = m.groupdict()
         if 'SITE'    in mg:
-            self.siteName = mg['SITE'].replace('MicroGaming', 'Microgaming')
-            self.siteId   = self.SITEIDS.get(self.siteName)
-            if self.siteId is None:
+            if self.siteNameMap.get(mg['SITE']) != None:
+                self.siteName = self.siteNameMap.get(mg['SITE'])
+                self.siteId   = self.SITEIDS.get(self.siteName)
+            else:
                 tmp = self.summaryText[0:200]
                 log.error(_("PokerTrackerSummary.parseSummary: Unsupported site summary '%s'") % tmp)
                 raise FpdbParseError
         if 'TOURNO'    in mg: self.tourNo = mg['TOURNO']
-        if 'LIMIT'     in mg and mg['LIMIT'] is not None:
-            self.gametype['limitType'] = self.limits[mg['LIMIT']]
-        else:
-            self.gametype['limitType'] = 'fl'
-        if 'TYPE'      in mg: self.tourneyName = mg['TYPE']
         if 'GAME'      in mg: self.gametype['category']  = self.games[mg['GAME']][1]
+        if mg['LIMIT'] in self.limits:
+            self.gametype['limitType'] = self.limits[mg['LIMIT']]
+        elif self.gametype['category'] == 'holdem':
+            self.gametype['limitType'] = 'nl'
+        else:
+            self.gametype['limitType'] = 'pl'
+        if 'TYPE'      in mg: self.tourneyName = mg['TYPE']
         if mg['BUYIN'] != None:
             self.buyin = int(100*Decimal(self.clearMoneyString(mg['BUYIN'])))
         if mg['FEE'] != None:
             self.fee   = int(100*Decimal(self.clearMoneyString(mg['FEE'])))
-        if 'REBUYAMT'in mg and mg['REBUYAMT'] != None:
+        if 'REBUYAMT' in mg and mg['REBUYAMT'] != None:
             self.isRebuy   = True
             self.rebuyCost = int(100*Decimal(self.clearMoneyString(mg['REBUYAMT'])))
+        if 'PRIZEPOOL' in mg and mg['PRIZEPOOL'] != None:
+            self.prizepool = int(100*Decimal(self.clearMoneyString(mg['PRIZEPOOL'])))
         if 'ADDON' in mg and mg['ADDON'] != None:
             self.isAddOn = True
             self.addOnCost = int(100*Decimal(self.clearMoneyString(mg['ADDON'])))
+        if 'BOUNTY' in mg and mg['BOUNTY'] != None:
+            self.koBounty = int(100*Decimal(self.clearMoneyString(mg['BOUNTY'])))
+            self.isKO = True
         if 'ENTRIES'   in mg:
-            self.entries = mg['ENTRIES']
-            self.prizepool = int(Decimal(self.clearMoneyString(mg['BUYIN']))) * int(self.entries)
+            self.entries = mg['ENTRIES']            
         if 'DATETIME'  in mg: 
             m1 = self.re_DateTime.finditer(mg['DATETIME'])
             for a in m1:
@@ -122,9 +148,13 @@ class PokerTrackerSummary(TourneySummary):
 
         if mg['CURRENCY'] == "$":     self.buyinCurrency="USD"
         elif mg['CURRENCY'] == u"€":  self.buyinCurrency="EUR"
+        elif mg['CURRENCY'] in ("SC","P"): self.buyinCurrency="PSFP"
         elif not mg['CURRENCY']:      self.buyinCurrency="play"
         if self.buyin == 0:           self.buyinCurrency="FREE"
         self.currency = self.buyinCurrency
+        
+        if self.buyinCurrency not in ('FREE', 'PSFP') and 'ENTRIES' in mg and self.prizepool == 0:
+            self.prizepool = int(Decimal(self.clearMoneyString(mg['BUYIN']))) * int(self.entries)
 
         m = self.re_Player.finditer(self.summaryText)
         for a in m:
@@ -136,30 +166,35 @@ class PokerTrackerSummary(TourneySummary):
             rebuyCount = 0
             addOnCount = 0
             koCount = 0
-
-            if 'WINNINGS' in mg and mg['WINNINGS'] != None:
-                winnings = int(100*Decimal(self.clearMoneyString(mg['WINNINGS'])))
+            if len(name)>0:
+                if 'WINNINGS' in mg and mg['WINNINGS'] != None:
+                    winnings = int(100*Decimal(self.clearMoneyString(mg['WINNINGS'])))
+                    
+                if 'REBUYS' in mg and mg['REBUYS']!=None:
+                    rebuyCount = int(mg['REBUYS'])
+                    
+                if 'ADDONS' in mg and mg['ADDONS']!=None:
+                    addOnCount = int(mg['ADDONS'])
                 
-            if 'REBUYS' in mg and mg['REBUYS']!=None:
-                rebuyCount = int(mg['REBUYS'])
-                
-            if 'ADDONS' in mg and mg['ADDONS']!=None:
-                addOnCount = int(mg['ADDONS'])
-                
-            if 'CUR' in mg and mg['CUR'] != None:
-                if mg['CUR'] == "$":     self.currency="USD"
-                elif mg['CUR'] == u"€":  self.currency="EUR"
-                elif mg['CUR'] == "FPP": self.currency="PSFP"
-
-            if rank==0:
-                #print "stillplaying"
-                rank=None
-                winnings=None
-
-            #TODO: currency, ko/addon/rebuy count -> need examples!
-            #print "DEBUG: addPlayer(%s, %s, %s, %s, None, None, None)" %(rank, name, winnings, self.currency)
-            #print "DEBUG: self.buyin: %s self.fee %s" %(self.buyin, self.fee)
-            self.addPlayer(rank, name, winnings, self.currency, rebuyCount, addOnCount, koCount)
+                if 'KOS' in mg and mg['KOS']!=None:
+                    koCount = int(mg['KOS'])
+                    
+                if 'CUR' in mg and mg['CUR'] != None:
+                    if mg['CUR'] == "$":     self.currency="USD"
+                    elif mg['CUR'] == u"€":  self.currency="EUR"
+                    elif mg['CUR'] in ("P","SC"):   self.currency="PSFP"
+    
+                if rank==0:
+                    #print "stillplaying"
+                    rank=None
+                    winnings=None
+                    
+                if len(name)==0:
+                    print "DEBUG: a.groupdict(): %d %s" % (i, mg)
+    
+                #print "DEBUG: addPlayer(%s, %s, %s, %s, None, None, None)" %(rank, name, winnings, self.currency)
+                #print "DEBUG: self.buyin: %s self.fee %s" %(self.buyin, self.fee)
+                self.addPlayer(rank, name, winnings, self.currency, rebuyCount, addOnCount, koCount)
 
         #print self
 

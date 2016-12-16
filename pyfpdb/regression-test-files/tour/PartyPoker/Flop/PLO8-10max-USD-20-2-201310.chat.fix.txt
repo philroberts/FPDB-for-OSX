@@ -1,0 +1,51 @@
+#Game No : 13387439135 
+***** Hand History for Game 13387439135 *****
+PL Omaha Hi-Lo $22 USD Buy-in Trny: 105411156 Level: 2  Blinds(20/40) - Thursday, October 31, 16:04:15 EDT 2013
+Table $1,000 Gtd (105411156) Table #2 (Real Money)
+Seat 6 is the button
+Total number of players : 9/10 
+Seat 2: Player0 ( 2,910 )
+Seat 4: Player1 ( 2,330 )
+Seat 5: Player2 ( 8,422 )
+Seat 1: Player3 ( 4,249 )
+Seat 3: Player4 ( 2,910 )
+Seat 7: Player5 ( 3,050 )
+Seat 8: Player6 ( 1,967 )
+Seat 6: Hero ( 4,445 )
+Seat 9: Player7 ( 2,840 )
+Trny: 105411156 Level: 2 
+Blinds(20/40)
+Player5 posts small blind [20].
+Player6 posts big blind [40].
+** Dealing down cards **
+Dealt to Hero [  Ac 2c 5d 5c ]
+Player7 folds
+Player3 folds
+Player0 folds
+Player4 folds
+Player1 folds
+Player2 raises [80]
+Hero calls [80]
+Player5 calls [60]
+Player6: u r getting boring with ur min raises
+Player6 calls [40]
+** Dealing Flop ** [ Qc, 3s, Ks ]
+Player5 checks
+Player6 checks
+Player2 bets [160]
+Hero folds
+Player5 folds
+Player6 calls [160]
+** Dealing Turn ** [ 5s ]
+Player6 checks
+Player2 checks
+** Dealing River ** [ 6h ]
+Player6 checks
+Player2 bets [320]
+Player6 calls [320]
+Player2 shows [ 2d, Jd, Qs, Ah ]a pair of Queens.
+Player2 shows6,5,3,2,A  for low.
+Player6 shows [ 9s, Kh, 4h, Ts ]a flush, King high.
+Player6 wins 640 chips from the main pot with a flush, King high.
+Player2 wins Lo (640 chips) from the main pot with 6,5,3,2,A.
+Game #13387444948 starts.

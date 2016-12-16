@@ -80,7 +80,7 @@ except ImportError:
     use_numpy = False
 
 
-DB_VERSION = 201
+DB_VERSION = 207
 
 # Variance created as sqlite has a bunch of undefined aggregate functions.
 
@@ -97,6 +97,13 @@ class VARIANCE:
 class sqlitemath:
     def mod(self, a, b):
         return a%b
+    
+    
+def adapt_decimal(d):
+    return str(d)
+
+def convert_decimal(s):
+    return Decimal(s)
     
     
 # These are for appendStats. Insert new stats at the right place, because
@@ -782,6 +789,7 @@ class Database:
             if use_pool:
                 psycopg2 = pool.manage(psycopg2, pool_size=5)
             psycopg2.extensions.register_type(psycopg2.extensions.UNICODE)
+            psycopg2.extensions.register_adapter(Decimal, psycopg2._psycopg.Decimal)
             # If DB connection is made over TCP, then the variables
             # host, user and password are required
             # For local domain-socket connections, only DB name is
@@ -834,10 +842,12 @@ class Database:
             self.db_path = database
             log.info(_("Connecting to SQLite: %s") % self.db_path)
             if os.path.exists(database) or create:
-                self.connection = sqlite3.connect(self.db_path, detect_types=sqlite3.PARSE_DECLTYPES )
+                self.connection = sqlite3.connect(self.db_path, detect_types=sqlite3.PARSE_DECLTYPES|sqlite3.PARSE_COLNAMES )
                 self.__connected = True
                 sqlite3.register_converter("bool", lambda x: bool(int(x)))
                 sqlite3.register_adapter(bool, lambda x: 1 if x else 0)
+                sqlite3.register_converter("decimal", convert_decimal)
+                sqlite3.register_adapter(Decimal, adapt_decimal)
                 self.connection.create_function("floor", 1, math.floor)
                 self.connection.create_function("sqrt", 1, math.sqrt)
                 tmp = sqlitemath()
@@ -1862,6 +1872,7 @@ class Database:
         c.execute("INSERT INTO Sites (id,name,code) VALUES ('21', 'Bovada', 'BV')")
         c.execute("INSERT INTO Sites (id,name,code) VALUES ('22', 'Enet', 'EN')")
         c.execute("INSERT INTO Sites (id,name,code) VALUES ('23', 'SealsWithClubs', 'SW')")
+        c.execute("INSERT INTO Sites (id,name,code) VALUES ('24', 'WinningPoker', 'WP')")
         #Fill Actions
         c.execute("INSERT INTO Actions (id,name,code) VALUES ('1', 'ante', 'A')")
         c.execute("INSERT INTO Actions (id,name,code) VALUES ('2', 'small blind', 'SB')")
@@ -2330,8 +2341,8 @@ class Database:
                              hdata['gametypeId'],
                              hdata['sessionId'],
                              hdata['fileId'],
-                             hdata['startTime'],                
-                             datetime.utcnow(), #importtime
+                             hdata['startTime'].replace(tzinfo=None),
+                             datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S'), #importtime
                              hdata['seats'],
                              hdata['heroSeat'],
                              hdata['maxPosition'],
@@ -2486,7 +2497,7 @@ class Database:
                       ,styleKey if self.build_full_hudcache else 'A000000'
                       )
                 player_stats['n'] = 1
-                line = [int(player_stats[s]) for s in CACHE_KEYS]
+                line = [int(player_stats[s]) if isinstance(player_stats[s],bool) else player_stats[s] for s in CACHE_KEYS]
                     
                 hud = self.hcbulk.get(k)
                 # Add line to the old line in the hudcache.
@@ -2535,10 +2546,7 @@ class Database:
         """Update cached sessions. If no record exists, do an insert"""
         THRESHOLD     = timedelta(seconds=int(self.sessionTimeout * 60))
         if tz_name in pytz.common_timezones:
-            if self.backend == self.SQLITE:
-                naive = datetime.strptime(startTime, '%Y-%m-%d %H:%M:%S')
-            else:
-                naive = startTime.replace(tzinfo=None)
+            naive = startTime.replace(tzinfo=None)
             utc_start = pytz.utc.localize(naive)
             tz = pytz.timezone(tz_name)
             loc_tz = utc_start.astimezone(tz).strftime('%z')
@@ -2563,14 +2571,9 @@ class Database:
         j, hand = None, {}
         for p, id in pids.iteritems():
             if id in heroes:
-                if self.backend == self.SQLITE:
-                    hand['startTime']  = datetime.strptime(startTime, '%Y-%m-%d %H:%M:%S')
-                    hand['weekStart']  = datetime.strptime(weekStart, '%Y-%m-%d %H:%M:%S')
-                    hand['monthStart'] = datetime.strptime(monthStart, '%Y-%m-%d %H:%M:%S')
-                else:
-                    hand['startTime']  = startTime.replace(tzinfo=None)
-                    hand['weekStart']  = weekStart
-                    hand['monthStart'] = monthStart
+                hand['startTime']  = startTime.replace(tzinfo=None)
+                hand['weekStart']  = weekStart
+                hand['monthStart'] = monthStart
                 hand['ids'] = [hid]
                 hand['tourneys'] = set()
         
@@ -2597,19 +2600,25 @@ class Database:
                 j = id[0]
                 self.s['bk'][j]['ids'] += [hid]
                 if tid: self.s['bk'][j]['tourneys'].add(tid)
-            elif len(id) == 2:
-                j, k = id
-                if  self.s['bk'][j]['sessionStart'] < self.s['bk'][k]['sessionStart']:
-                    self.s['bk'][j]['sessionEnd']   = self.s['bk'][k]['sessionEnd']
-                else:
-                    self.s['bk'][j]['sessionStart'] = self.s['bk'][k]['sessionStart']
-                    self.s['bk'][j]['weekStart']    = self.s['bk'][k]['weekStart']
-                    self.s['bk'][j]['monthStart']   = self.s['bk'][k]['monthStart']
-                sh = self.s['bk'].pop(k)
-                self.s['bk'][j]['ids'] += [hid]
-                self.s['bk'][j]['ids'] += sh['ids']
-                if tid: self.s['bk'][j]['tourneys'].add(tid)
-                self.s['bk'][j]['tourneys'].union(sh['tourneys'])
+            elif len(id) > 1:
+                merged = {}
+                merged['ids'] = [hid]
+                merged['tourneys'] = set()
+                if tid: merged['tourneys'].add(tid) 
+                for n in id:
+                    h = self.s['bk'][n]
+                    if not merged.get('sessionStart') or merged.get('sessionStart') > h['sessionStart']:
+                        merged['sessionStart'] = h['sessionStart']
+                        merged['weekStart'] = h['weekStart']
+                        merged['monthStart'] = h['monthStart']
+                    if not merged.get('sessionEnd') or merged.get('sessionEnd') < h['sessionEnd']:
+                        merged['sessionEnd'] = h['sessionEnd']
+                    merged['ids'] += h['ids']
+                    merged['tourneys'].union(h['tourneys'])
+                    self.s['bk'][n]['delete'] = True
+                    
+                self.s['bk'] = [item for item in self.s['bk'] if not item.get('delete')]
+                self.s['bk'].append(merged)
             elif len(id) == 0:
                 j = len(self.s['bk'])
                 hand['id'] = None
@@ -2730,14 +2739,11 @@ class Database:
             for p, pid in pids.iteritems():
                 hp = {}
                 k = (gametypeId, pid)
-                if self.backend == self.SQLITE:
-                    hp['startTime'] = datetime.strptime(startTime, '%Y-%m-%d %H:%M:%S')
-                else:
-                    hp['startTime'] = startTime.replace(tzinfo=None)
+                hp['startTime'] = startTime.replace(tzinfo=None)
                 hp['hid']           = hid
                 hp['ids']           = []
                 pdata[p]['n']   = 1
-                hp['line'] = [int(pdata[p][s]) for s in CACHE_KEYS]
+                hp['line'] = [int(pdata[p][s]) if isinstance(pdata[p][s],bool) else pdata[p][s] for s in CACHE_KEYS]
                 id = []
                 sessionplayer = self.sc.get(k)
                 if sessionplayer is not None:        
@@ -2798,7 +2804,7 @@ class Database:
                     d = [0]*num
                     for z in range(num):
                         d[z] = {}
-                        d[z]['line'] = [int(r[z][s]) for s in CACHE_KEYS]
+                        d[z]['line'] = [int(r[z][s]) if isinstance(r[z][s],bool) else r[z][s] for s in CACHE_KEYS]
                         d[z]['id']   = r[z]['id']
                         d[z]['sessionId'] = r[z]['sessionId']
                         d[z]['startTime'] = r[z]['startTime']
@@ -2827,7 +2833,7 @@ class Database:
                                     end = n['endTime']
                             else:   end = n['endTime']
                             for idx in range(len(CACHE_KEYS)):
-                                line[idx] += int(n['line'][idx])
+                                line[idx] += int(n['line'][idx]) if isinstance(n['line'][idx],bool) else n['line'][idx]
                         row = [sid, start, end] + list(k[:2]) + line 
                         c.execute(insert_SC, row)
                         id = self.get_last_insert_id(c)
@@ -2850,7 +2856,7 @@ class Database:
                     ,pids[p]
                     )
                 pdata[p]['n'] = 1
-                line = [int(pdata[p][s]) for s in CACHE_KEYS]
+                line = [int(pdata[p][s]) if isinstance(pdata[p][s], bool) else pdata[p][s] for s in CACHE_KEYS]
                 tourplayer = self.tc.get(k)
                 # Add line to the old line in the tourcache.
                 if tourplayer is not None:
@@ -2882,12 +2888,8 @@ class Database:
             c = self.get_cursor()
             for k, tc in self.tc.iteritems():
                 sc = self.s.get(tc['hid'])
-                if self.backend == self.SQLITE:
-                    tc['startTime'] = datetime.strptime(tc['startTime'], '%Y-%m-%d %H:%M:%S')
-                    tc['endTime']   = datetime.strptime(tc['endTime'], '%Y-%m-%d %H:%M:%S')
-                else:
-                    tc['startTime'] = tc['startTime'].replace(tzinfo=None)
-                    tc['endTime']   = tc['endTime'].replace(tzinfo=None)
+                tc['startTime'] = tc['startTime'].replace(tzinfo=None)
+                tc['endTime']   = tc['endTime'].replace(tzinfo=None)
                 c.execute(select_TC, k)
                 r = self.fetchallDict(c, ['id', 'startTime', 'endTime'])
                 num = len(r)
@@ -2926,7 +2928,7 @@ class Database:
                   ,pdata[p]['startCards']
                   )
             pdata[p]['n'] = 1
-            line = [int(pdata[p][s]) for s in CACHE_KEYS]
+            line = [int(pdata[p][s]) if isinstance(pdata[p][s], bool) else pdata[p][s] for s in CACHE_KEYS]
             self.dcbulk[k] = line
                 
         if doinsert:
@@ -2996,7 +2998,7 @@ class Database:
                   ,position
                   )
             pdata[p]['n'] = 1
-            line = [int(pdata[p][s]) for s in CACHE_KEYS]
+            line = [int(pdata[p][s]) if isinstance(pdata[p][s],bool) else pdata[p][s] for s in CACHE_KEYS]
             self.pcbulk[k] = line
                 
         if doinsert:
@@ -3481,30 +3483,35 @@ class Database:
             return True
         return False
     
-    def getSqlTourneyIDs(self, hand):
-        if(self.tcache == None):
-            self.tcache = LambdaDict(lambda  key:self.insertTourney(key[0], key[1], key[2]))
-
-        result = self.tcache[(hand.siteId, hand.tourNo, hand.tourneyTypeId)]
-
-        return result
-    
-    def insertTourney(self, siteId, tourNo, tourneyTypeId):
+    def getSqlTourneyIDs(self, hand): 
         result = None
         c = self.get_cursor()
         q = self.sql.query['getTourneyByTourneyNo']
         q = q.replace('%s', self.sql.query['placeholder'])
-
-        c.execute (q, (siteId, tourNo))
+        t = hand.startTime.replace(tzinfo=None)
+        c.execute (q, (hand.siteId, hand.tourNo))
 
         tmp = c.fetchone()
         if (tmp == None): 
             c.execute (self.sql.query['insertTourney'].replace('%s', self.sql.query['placeholder']),
-                        (tourneyTypeId, None, tourNo, None, None,
-                         None, None, None, None, None, None, None, None, None))
+                        (hand.tourneyTypeId, None, hand.tourNo, None, None,
+                         t, t, hand.tourneyName, None, None, None, None, None, None))
             result = self.get_last_insert_id(c)
         else:
             result = tmp[0]
+            columnNames = [desc[0] for desc in c.description]
+            resultDict = dict(zip(columnNames, tmp))
+            if self.backend == self.PGSQL:
+                startTime, endTime = resultDict['starttime'], resultDict['endtime']
+            else:
+                startTime, endTime = resultDict['startTime'], resultDict['endTime']
+                
+            if (startTime == None or t < startTime):
+                q = self.sql.query['updateTourneyStart'].replace('%s', self.sql.query['placeholder'])
+                c.execute(q, (t, result))
+            elif (endTime == None or t > endTime):
+                q = self.sql.query['updateTourneyEnd'].replace('%s', self.sql.query['placeholder'])
+                c.execute(q, (t, result))                
         return result
     
     def createOrUpdateTourney(self, summary):
@@ -3540,14 +3547,17 @@ class Database:
                 #        summary.startTime=resultDict[ev]
             if updateDb:
                 q = self.sql.query['updateTourney'].replace('%s', self.sql.query['placeholder'])
-                row = (summary.entries, summary.prizepool, summary.startTime, summary.endTime, summary.tourneyName,
+                row = (summary.entries, summary.prizepool, summary.startTime.replace(tzinfo=None), summary.endTime.replace(tzinfo=None), summary.tourneyName,
                        summary.totalRebuyCount, summary.totalAddOnCount, summary.comment, summary.commentTs, 
                        summary.added, summary.addedCurrency, tourneyId
                       )
                 cursor.execute(q, row)
         else:
-            row = (summary.tourneyTypeId, None, summary.tourNo, summary.entries, summary.prizepool, summary.startTime,
-                   summary.endTime, summary.tourneyName, summary.totalRebuyCount, summary.totalAddOnCount,
+            startTime, endTime = None, None
+            if (summary.startTime!=None): startTime = summary.startTime.replace(tzinfo=None)
+            if (summary.endTime!=None): endTime = summary.endTime.replace(tzinfo=None)
+            row = (summary.tourneyTypeId, None, summary.tourNo, summary.entries, summary.prizepool, startTime,
+                   endTime, summary.tourneyName, summary.totalRebuyCount, summary.totalAddOnCount,
                    summary.comment, summary.commentTs, summary.added, summary.addedCurrency)
             if self.printdata:
                 print ("######## Tourneys ##########")

@@ -265,7 +265,7 @@ def compare(leaf, importer, errors, site):
             importer.clearFileList()
             return False
                 
-        (stored, dups, partial, errs, ttime) = importer.runImport()
+        (stored, dups, partial, skipped, errs, ttime) = importer.runImport()
         
         if errs > 0 or partial > 0:
             errors.error_report(filename, (stored, dups, partial, errs), "Parse", False, False, False)

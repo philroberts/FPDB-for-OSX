@@ -76,15 +76,7 @@ class PacificPoker(HandHistoryConverter):
                                'Holdem' : ('hold','holdem'),
                                 'Omaha' : ('hold','omahahi'),
                           'Omaha Hi/Lo' : ('hold','omahahilo'),
-                              'OmahaHL' : ('hold','omahahilo'),
-                                 'Razz' : ('stud','razz'), 
-                                 'RAZZ' : ('stud','razz'),
-                          '7 Card Stud' : ('stud','studhi'),
-                    '7 Card Stud Hi/Lo' : ('stud','studhilo'),
-                               'Badugi' : ('draw','badugi'),
-              'Triple Draw 2-7 Lowball' : ('draw','27_3draw'),
-              'Single Draw 2-7 Lowball' : ('draw','27_1draw'),
-                          '5 Card Draw' : ('draw','fivedraw')
+                              'OmahaHL' : ('hold','omahahilo')
                }
 
     currencies = { u'€':'EUR', '$':'USD', '':'T$' }
@@ -95,7 +87,8 @@ class PacificPoker(HandHistoryConverter):
           \*\*\*\*\*\s(Cassava|888poker|888\.es)\s(?P<FAST>Snap\sPoker\s)?Hand\sHistory\sfor\sGame\s(?P<HID>[0-9]+)\s\*\*\*\*\*\\n
           (?P<CURRENCY1>%(LS)s)?\s?(?P<SB>[%(NUM)s]+)\s?(?P<CURRENCY2>%(LS)s)?/(%(LS)s)?\s?(?P<BB>[%(NUM)s]+)\s?(%(LS)s)?\sBlinds\s
           (?P<LIMIT>No\sLimit|Fix\sLimit|Pot\sLimit)\s
-          (?P<GAME>Holdem|Omaha|OmahaHL|Hold\'em|Omaha\sHi/Lo|OmahaHL|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Badugi|Triple\sDraw\s2\-7\sLowball|Single\sDraw\s2\-7\sLowball|5\sCard\sDraw)
+          (?P<GAME>Holdem|Omaha|OmahaHL|Hold\'em|Omaha\sHi/Lo|OmahaHL)
+          (\sJackpot\stable)?
           \s-\s\*\*\*\s
           (?P<DATETIME>.*$)\s
           (Tournament\s\#(?P<TOURNO>\d+))?
@@ -136,6 +129,7 @@ class PacificPoker(HandHistoryConverter):
     re_TailSplitHands   = re.compile('(\n\n\n+)')
     re_Button       = re.compile('Seat (?P<BUTTON>\d+) is the button', re.MULTILINE)
     re_Board        = re.compile(u"\[\s(?P<CARDS>.+)\s\]")
+    re_Spanish_10   = re.compile(u'D([tpeo])')
 
     re_DateTime     = re.compile("""(?P<D>[0-9]{2})\s(?P<M>[0-9]{2})\s(?P<Y>[0-9]{4})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)""", re.MULTILINE)
 
@@ -145,7 +139,7 @@ class PacificPoker(HandHistoryConverter):
     re_Antes            = re.compile(r"^%(PLYR)s posts (the\s)?ante \[(%(CUR)s)?\s?(?P<ANTE>[%(NUM)s]+)\s?(%(CUR)s)?\]" % substitutions, re.MULTILINE)
     # TODO: unknown in available hand histories for pacificpoker:
     re_BringIn          = re.compile(r"^%(PLYR)s: brings[- ]in( low|) for (%(CUR)s)?\s?(?P<BRINGIN>[%(NUM)s]+)\s?(%(CUR)s)?" % substitutions, re.MULTILINE)
-    re_PostBoth         = re.compile(r"^%(PLYR)s posts dead blind \[(%(CUR)s)?\s?(?P<SBBB>[%(NUM)s]+)\s?(%(CUR)s)?\s\+\s(%(CUR)s)?\s?[%(NUM)s]+\s?(%(CUR)s)?\]" %  substitutions, re.MULTILINE)
+    re_PostBoth         = re.compile(r"^%(PLYR)s posts dead blind \[(%(CUR)s)?\s?(?P<SB>[%(NUM)s]+)\s?(%(CUR)s)?\s\+\s(%(CUR)s)?\s?(?P<BB>[%(NUM)s]+)\s?(%(CUR)s)?\]" %  substitutions, re.MULTILINE)
     re_HeroCards        = re.compile(r"^Dealt to %(PLYR)s( \[\s(?P<NEWCARDS>.+?)\s\])" % substitutions, re.MULTILINE)
     re_Action           = re.compile(r"""
                         ^%(PLYR)s(?P<ATYPE>\sbets|\schecks|\sraises|\scalls|\sfolds|\sdiscards|\sstands\spat)
@@ -167,21 +161,9 @@ class PacificPoker(HandHistoryConverter):
                 ["ring", "hold", "pl"],
                 ["ring", "hold", "fl"],
 
-                ["ring", "stud", "fl"],
-
-                ["ring", "draw", "fl"],
-                ["ring", "draw", "pl"],
-                ["ring", "draw", "nl"],
-
                 ["tour", "hold", "nl"],
                 ["tour", "hold", "pl"],
                 ["tour", "hold", "fl"],
-
-                ["tour", "stud", "fl"],
-                
-                ["tour", "draw", "fl"],
-                ["tour", "draw", "pl"],
-                ["tour", "draw", "nl"],
                 ]
 
     def determineGameType(self, handText):
@@ -385,7 +367,13 @@ class PacificPoker(HandHistoryConverter):
                 raise FpdbHandPartial("Partial hand history: %s" % hand.handid)
         for a in self.re_PostBoth.finditer(hand.handText):
             if a.group('PNAME') in hand.stacks:
-                hand.addBlind(a.group('PNAME'), 'both', self.clearMoneyString(a.group('SBBB')))
+                if Decimal(self.clearMoneyString(a.group('BB')))>0:
+                    bb = self.clearMoneyString(a.group('BB'))
+                    sb = self.clearMoneyString(a.group('SB'))
+                    both = str(Decimal(bb) + Decimal(sb))
+                    hand.addBlind(a.group('PNAME'), 'both', both)
+                else:
+                    hand.addBlind(a.group('PNAME'), 'secondsb', self.clearMoneyString(a.group('SB')))
                 self.allInBlind(hand, 'PREFLOP', a, 'both')
             else:
                 raise FpdbHandPartial("Partial hand history: %s" % hand.handid)
@@ -466,10 +454,12 @@ class PacificPoker(HandHistoryConverter):
             if hand.stacks[action.group('PNAME')]==0:
                 if actiontype=='ante':
                     if action.group('PNAME') in [p for (p,b) in hand.posted]:
-                        hand.setUncalledBets(True)
+                        hand.setUncalledBets(False)
+                        hand.checkForUncalled = True
                         hand.allInBlind = True
                 elif actiontype in ('secondsb', 'big blind', 'both') and not self.re_Antes.search(hand.handText):
-                    hand.setUncalledBets(True)
+                    hand.setUncalledBets(False)
+                    hand.checkForUncalled = True
                     hand.allInBlind = True
 
     def readShowdownActions(self, hand):
@@ -508,12 +498,19 @@ class PacificPoker(HandHistoryConverter):
         cards = cards.replace(u'\xc2', 'A')
         cards = cards.replace(u'\xc4', 'J')
         #Spanish
-        cards = cards.replace(u'D', 'T')
+        cards = self.re_Spanish_10.sub('T\g<1>', cards)
         cards = cards.replace(u't', 'h')
         cards = cards.replace(u'p', 's')
         cards = cards.replace(u'e', 'd')
         cards = cards.replace(u'o', 'h')
-        
+        #Dutch
+        cards = cards.replace(u'B', 'J')
+        cards = cards.replace(u'V', 'Q')
+        cards = cards.replace(u'H', 'K')
+        #Swedish
+        cards = cards.replace(u'Kn', 'J')
+        cards = cards.replace(u'D', 'Q')
+        cards = cards.replace(u'E', 'A')
         cards = cards.split(', ')
         return cards
 

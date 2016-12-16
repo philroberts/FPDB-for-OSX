@@ -59,12 +59,14 @@ class TourneySummary(object):
     SITEIDS = {'Fulltilt':1, 'Full Tilt Poker':1, 'PokerStars':2, 'Everleaf':3, 'Boss':4, 'OnGame':5,
                'UltimateBet':6, 'Betfair':7, 'Absolute':8, 'PartyPoker':9, 'PacificPoker':10,
                'Partouche':11, 'Merge':12, 'PKR':13, 'iPoker':14, 'Winamax':15, 'Everest':16,
-               'Cake':17, 'Entraction':18, 'BetOnline':19, 'Microgaming':20, 'Bovada':21, 'Enet':22}
+               'Cake':17, 'Entraction':18, 'BetOnline':19, 'Microgaming':20, 'Bovada':21, 'Enet':22,
+               'SealsWithClubs': 23, 'WinningPoker': 24}
 
 
     def __init__(self, db, config, siteName, summaryText, in_path='-', builtFrom="HHC", header=""):
         self.db = db
         self.config = config
+        self.import_parameters = self.config.get_import_parameters()
         self.siteName = siteName
         self.siteId = None
         if siteName in self.SITEIDS:
@@ -239,7 +241,7 @@ class TourneySummary(object):
         # Note: If the TourneyNo could be a unique id .... this would really be a relief to deal with matrix matches ==> Ask on the IRC / Ask Fulltilt ??
         self.db.set_printdata(printtest)
         
-        self.playerIds = self.db.getSqlPlayerIDs(self.players.keys(), self.siteId, None)
+        self.playerIds = self.db.getSqlPlayerIDs(self.players.keys(), self.siteId, self.hero)
         #for player in self.players:
         #    id=self.db.get_player_id(self.config, self.siteName, player)
         #    if not id:
@@ -277,8 +279,11 @@ winnings    (int) the money the player ended the tourney with (can be 0, or -1 i
 """
         log.debug("addPlayer: rank:%s - name : '%s' - Winnings (%s)" % (rank, name, winnings))
         if self.players.get(name) != None:
-            entries = self.players[name][-1]
-            self.players[name].append(entries + 1)
+            if entryId in self.players[name]:
+                entries = self.players[name][-1]
+                self.players[name].append(entries + 1)
+            else:
+                self.players[name].append(entryId)
             if rank:
                 self.ranks[name].append(rank)
                 self.winnings[name].append(winnings)

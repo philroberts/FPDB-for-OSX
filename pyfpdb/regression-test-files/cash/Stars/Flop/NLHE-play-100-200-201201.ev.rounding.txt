@@ -1,0 +1,71 @@
+PokerStars Hand #74151663721:  Hold'em No Limit (100/200) - 2012/01/19 22:07:55 ET
+Table 'Zamenhof VII' 9-max (Play Money) Seat #4 is the button
+Seat 1: Player0 (18200 in chips) 
+Seat 2: Player1 (36700 in chips) 
+Seat 3: Hero (16000 in chips) 
+Seat 4: Player2 (20200 in chips) 
+Seat 5: Player3 (15700 in chips) 
+Seat 6: player4 (27100 in chips) 
+Seat 7: Player5 (9700 in chips) 
+Seat 8: Player6 (33000 in chips) 
+Seat 9: Player7 (61900 in chips) 
+Player3: posts small blind 100
+player4: posts big blind 200
+Hero: posts big blind 200
+*** HOLE CARDS ***
+Dealt to Hero [Th 5c]
+Player5: calls 200
+Player2 said, "nh's"
+Player7 said, "vnhs"
+Player6: calls 200
+Player5 said, "ty"
+Player7: calls 200
+Player0: calls 200
+Player1: folds 
+Hero: checks 
+Player2: calls 200
+Player3: calls 100
+player4: raises 800 to 1000
+Player5: calls 800
+Player6: calls 800
+Player7: calls 800
+Player0: calls 800
+Hero: folds 
+Player2: calls 800
+Player3: folds 
+*** FLOP *** [Ad 7d 4h]
+player4: bets 400
+Player5: calls 400
+Player6: calls 400
+Player7: raises 600 to 1000
+Player0: calls 1000
+Player2: folds 
+player4: calls 600
+Player5: calls 600
+Player6: folds 
+*** TURN *** [Ad 7d 4h] [Ts]
+player4: bets 400
+Player5: calls 400
+Player7: raises 600 to 1000
+Player0: calls 1000
+player4: raises 24100 to 25100 and is all-in
+Player5: folds 
+Player7: calls 24100
+Player0: folds 
+*** RIVER *** [Ad 7d 4h Ts] [3h]
+*** SHOW DOWN ***
+player4: shows [4d Td] (two pair, Tens and Fours)
+Player7: shows [2s Ac] (a pair of Aces)
+player4 collected 62400 from pot
+*** SUMMARY ***
+Total pot 62400 | Rake 0 
+Board [Ad 7d 4h Ts 3h]
+Seat 1: Player0 folded on the Turn
+Seat 2: Player1 folded before Flop (didn't bet)
+Seat 3: Hero folded before Flop
+Seat 4: Player2 (button) folded on the Flop
+Seat 5: Player3 (small blind) folded before Flop
+Seat 6: player4 (big blind) showed [4d Td] and won (62400) with two pair, Tens and Fours
+Seat 7: Player5 folded on the Turn
+Seat 8: Player6 folded on the Flop
+Seat 9: Player7 showed [2s Ac] and lost with a pair of Aces

@@ -1,0 +1,21 @@
+PokerTracker 4 Tournament Summary
+Site: Full Tilt
+Game: Holdem
+Tournament #: 20946193
+Started: 2007/06/23 16:54:12
+Finished: 2007/06/23 17:19:46
+Buyin: $22.00
+Fee: $2.00
+Table Type: STT Turbo SNG
+Tourney Type: No Limit
+Players: 9
+
+Place: 0, Player: MeMe1668, Won: $0.00,
+Place: 0, Player: Galo_PB, Won: $0.00,
+Place: 0, Player: jak0413, Won: $0.00,
+Place: 4, Player: theASHMAN103, Won: $0.00,
+Place: 5, Player: ScrapperAce, Won: $0.00,
+Place: 6, Player: trousers_81, Won: $0.00,
+Place: 7, Player: pokerplyrcab, Won: $0.00,
+Place: 8, Player: fairy06, Won: $0.00,
+Place: 9, Player: docvee, Won: $0.00,

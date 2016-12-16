@@ -1,0 +1,31 @@
+Full Tilt Poker Game #31349767778: $200 Heads-Up Sit & Go (243603038), Table 1 - 40/80 Ante 7 - Limit Razz - 19:53:37 ET - 2012/11/08
+Seat 1: Hero (994)
+Seat 2: Player0 (6)
+Hero antes 7
+Player0 antes 6, and is all in
+Uncalled bet of 1 returned to Hero
+*** 3RD STREET *** (Total Pot: 12, 2 Players, 1 All-In)
+Dealt to Hero [6c 7c] [7d]
+Dealt to Player0 [2c]
+Hero is high with [7d]
+Hero shows [6c 7c 7d]
+Player0 shows [9d 9s 2c]
+*** 4TH STREET *** (Total Pot: 12, 2 Players, 1 All-In)
+Dealt to Hero [6c 7c 7d] [7s]
+Dealt to Player0 [9d 9s 2c] [Ks]
+*** 5TH STREET *** (Total Pot: 12, 2 Players, 1 All-In)
+Dealt to Hero [6c 7c 7d 7s] [3s]
+Dealt to Player0 [9d 9s 2c Ks] [Td]
+*** 6TH STREET *** (Total Pot: 12, 2 Players, 1 All-In)
+Dealt to Hero [6c 7c 7d 7s 3s] [Jd]
+Dealt to Player0 [9d 9s 2c Ks Td] [Jh]
+*** 7TH STREET *** (Total Pot: 12, 2 Players, 1 All-In)
+Dealt to Hero [6c 7c 7d 7s 3s Jd] [Jc]
+Dealt to Player0 [9d 9s 2c Ks Td Jh] [2s]
+Hero shows [6c 7c 7d 7s 3s Jd Jc] a pair of Sevens
+Player0 shows [9d 9s 2c Ks Td Jh 2s] K,J,T,9,2
+Player0 wins the pot (12) with K,J,T,9,2
+*** SUMMARY ***
+Total pot 12 | Rake 0
+Seat 1: Hero showed [6c 7c 7d 7s 3s Jd Jc] and lost with a pair of Sevens
+Seat 2: Player0 showed [9d 9s 2c Ks Td Jh 2s] and won (12) with K,J,T,9,2

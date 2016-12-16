@@ -1,0 +1,28 @@
+PokerStars Hand #3126037878: Omaha Pot Limit ($5/$10) - 2015/09/01 23:34:07
+Table '#9986279' 6-max Seat #3 is the button
+Seat 1: PLR_7314207FM ($799 in chips)
+Seat 2: PLR_2307705HT ($270.53 in chips)
+Seat 3: PLR_7755822SI ($597 in chips)
+Seat 4: PLR_8634721NK ($3,351.78 in chips)
+Seat 5: PLR_7233719GD ($1,907.87 in chips)
+Seat 6: bodogJS ($2,787.20 in chips)
+PLR_8634721NK: posts small blind $5
+PLR_7233719GD: posts big blind $10
+*** HOLE CARDS ***
+Dealt to bodogJS [2h 5c 8s Kc]
+bodogJS: folds
+PLR_7314207FM: folds
+PLR_2307705HT: folds
+PLR_7755822SI: folds
+PLR_8634721NK: folds
+PLR_7233719GD: shows [Qd 6h 6s 7d]
+PLR_7233719GD collected $15 from pot
+*** SUMMARY ***
+Total pot $15 | Rake $0.00
+Seat 1: PLR_7314207FM mucked [Ts 4h Ad 6c]
+Seat 2: PLR_2307705HT mucked [5h 6d Qh Th]
+Seat 3: PLR_7755822SI (button) mucked [8h As 4d 3d]
+Seat 4: PLR_8634721NK (small blind) mucked [Qs 2d 7c 3h]
+Seat 5: PLR_7233719GD (big blind) showed [Qd 6h 6s 7d] and won ($15)
+Seat 6: bodogJS mucked [2h 5c 8s Kc]
+

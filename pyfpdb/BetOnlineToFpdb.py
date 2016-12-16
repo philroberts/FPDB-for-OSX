@@ -146,7 +146,7 @@ class BetOnline(HandHistoryConverter):
     re_Button       = re.compile('Seat #(?P<BUTTON>\d+) is the button', re.MULTILINE)
     re_Board1        = re.compile(r"Board \[(?P<FLOP>\S\S\S? \S\S\S? \S\S\S?)?\s?(?P<TURN>\S\S\S?)?\s?(?P<RIVER>\S\S\S?)?\]")
     re_Board2        = re.compile(r"\[(?P<CARDS>.+)\]")
-    
+    re_Hole          = re.compile(r"\*\*\*\sHOLE\sCARDS\s\*\*\*")
 
 
     re_DateTime1     = re.compile("""(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+)(:(?P<S>[0-9]+))?\s(?P<TZ>.*$)""", re.MULTILINE)
@@ -154,7 +154,7 @@ class BetOnline(HandHistoryConverter):
 
     re_PostSB           = re.compile(r"^%(PLYR)s: [Pp]osts small blind (%(LS)s)?(?P<SB>[%(NUM)s]+)" %  substitutions, re.MULTILINE)
     re_PostBB           = re.compile(r"^%(PLYR)s: ([Pp]osts big blind|[Pp]osts? [Nn]ow)( (%(LS)s)?(?P<BB>[%(NUM)s]+))?" %  substitutions, re.MULTILINE)
-    re_Antes            = re.compile(r"^%(PLYR)s: [Pp]osts the ante (%(LS)s)?(?P<ANTE>[%(NUM)s]+)" % substitutions, re.MULTILINE)
+    re_Antes            = re.compile(r"^%(PLYR)s: ante processed (%(LS)s)?(?P<ANTE>[%(NUM)s]+)" % substitutions, re.MULTILINE)
     re_BringIn          = re.compile(r"^%(PLYR)s: brings[- ]in( low|) for (%(LS)s)?(?P<BRINGIN>[%(NUM)s]+)" % substitutions, re.MULTILINE)
     re_PostBoth         = re.compile(r"^%(PLYR)s: [Pp]ost dead (%(LS)s)?(?P<SBBB>[%(NUM)s]+)" %  substitutions, re.MULTILINE)
     re_HeroCards        = re.compile(r"^Dealt [Tt]o %(PLYR)s(?: \[(?P<OLDCARDS>.+?)\])?( \[(?P<NEWCARDS>.+?)\])" % substitutions, re.MULTILINE)
@@ -453,8 +453,9 @@ class BetOnline(HandHistoryConverter):
     def readAntes(self, hand):
         m = self.re_Antes.finditer(hand.handText)
         for player in m:
-            pname = self.unknownPlayer(hand, a.group('PNAME'))
-            hand.addAnte(pname, self.clearMoneyString(player.group('ANTE')))
+            if player.group('ANTE')!='0.00':
+                pname = self.unknownPlayer(hand, player.group('PNAME'))
+                hand.addAnte(pname, self.clearMoneyString(player.group('ANTE')))
     
     def readBringIn(self, hand):
         m = self.re_BringIn.search(hand.handText,re.DOTALL)
@@ -487,29 +488,33 @@ class BetOnline(HandHistoryConverter):
             if not hand.gametype['bb'] and self.skin in ('ActionPoker', 'GearPoker'):
                 hand.gametype['bb'] = bb
         for a in self.re_PostBoth.finditer(hand.handText):
-            pname = self.unknownPlayer(hand, a.group('PNAME'))
-            sbbb = self.clearMoneyString(a.group('SBBB'))
-            amount = str(Decimal(sbbb) + Decimal(sbbb)/2)
-            hand.addBlind(pname, 'both', amount)
-        self.fixActionBlinds(hand)
+            if a.group('SBBB')!='0.00':
+                pname = self.unknownPlayer(hand, a.group('PNAME'))
+                sbbb = self.clearMoneyString(a.group('SBBB'))
+                amount = str(Decimal(sbbb) + Decimal(sbbb)/2)
+                hand.addBlind(pname, 'both', amount)
+            else:
+                pname = self.unknownPlayer(hand, a.group('PNAME'))
+                hand.addBlind(pname, 'secondsb', hand.gametype['sb'])
+        self.fixBlinds(hand)
                 
-    def fixActionBlinds(self, hand):
+    def fixBlinds(self, hand):
         # FIXME
         # The following should only trigger when a small blind is missing in ActionPoker hands, or the sb/bb is ALL_IN
-        # see http://sourceforge.net/apps/mantisbt/fpdb/view.php?id=115
         if self.skin in ('ActionPoker', 'GearPoker'):
-            if hand.gametype['sb'] == None and hand.gametype['bb'] == None:
-                hand.gametype['sb'] = "1"
-                hand.gametype['bb'] = "2"
-            elif hand.gametype['sb'] == None:
-                hand.gametype['sb'] = str(int(Decimal(hand.gametype['bb']))/2)
-            elif hand.gametype['bb'] == None:
-                hand.gametype['bb'] = str(int(Decimal(hand.gametype['sb']))*2)
-            if int(Decimal(hand.gametype['bb']))/2 != int(Decimal(hand.gametype['sb'])):
-                if int(Decimal(hand.gametype['bb']))/2 < int(Decimal(hand.gametype['sb'])):
-                    hand.gametype['bb'] = str(int(Decimal(hand.gametype['sb']))*2)
-                else:
-                    hand.gametype['sb'] = str(int(Decimal(hand.gametype['bb']))/2)
+            if hand.gametype['sb'] == None and hand.gametype['bb'] != None:
+                BB = str(Decimal(hand.gametype['bb']) * 2)
+                if self.Lim_Blinds.get(BB) != None:
+                    hand.gametype['sb'] = self.Lim_Blinds.get(BB)[0]
+            elif hand.gametype['bb'] == None and hand.gametype['sb'] != None:
+                for k, v in self.Lim_Blinds.iteritems():
+                    if hand.gametype['sb'] == v[0]:
+                        hand.gametype['bb'] = v[1]
+            if hand.gametype['sb'] == None or hand.gametype['bb'] == None:
+                log.error(_("BetOnline.fixBlinds: Failed to fix blinds") + " Hand ID: %s" % (hand.handid, ))
+                raise FpdbParseError
+            hand.sb = hand.gametype['sb']
+            hand.bb = hand.gametype['bb']
             
     def unknownPlayer(self, hand, pname):
         if pname == 'Unknown player' or not pname:
@@ -557,10 +562,17 @@ class BetOnline(HandHistoryConverter):
 
 
     def readAction(self, hand, street):
+        if street=='PREFLOP':
+            m0 = self.re_Action.finditer(self.re_Hole.split(hand.handText)[0])
+            for action in m0:
+                pname = self.unknownPlayer(hand, action.group('PNAME'))
+                if action.group('ATYPE') == ' has left the table':
+                    if pname in (p[1] for p in hand.players):
+                        hand.addFold(street, pname)
         m = self.re_Action.finditer(hand.streets[street])
         for action in m:
             acts = action.groupdict()
-            #print "DEBUG: acts: %s" %acts
+            #print "DEBUG: street: %s acts: %s" % (street, acts)
             pname = self.unknownPlayer(hand, action.group('PNAME'))
             if action.group('ATYPE') in (' folds', ' Folds', ' has left the table'):
                 if pname in (p[1] for p in hand.players):

@@ -1,0 +1,127 @@
+﻿FullTiltPoker Game #10861314621: Table Tree Line (6 max) - $0.50/$1 - No Limit Hold'em - 21:49:39 ET - 2009/02/26
+
+Seat 1: Player0 ($110.90)
+Seat 2: Player1 ($31.95)
+Seat 3: Player2 ($116.10)
+Seat 4: Player3 ($102.70)
+Seat 5: Hero ($100)
+Seat 6: Player4 ($62.90)
+Player1 posts the small blind of $0.50
+Player3 posts the big blind of $1
+Hero posts $1
+The button is in seat #1
+*** HOLE CARDS ***
+Dealt to Hero [8d 6h]
+Hero checks
+Player4 folds
+Player0 folds
+Player1 calls $0.50
+Player3 checks
+*** FLOP *** [Kc Ts 5d]
+Player1 checks
+Player3 checks
+Hero checks
+*** TURN *** [Kc Ts 5d] [Qh]
+Player1 has 15 seconds left to act
+Player1 checks
+Player3 checks
+Hero checks
+*** RIVER *** [Kc Ts 5d Qh] [7s]
+Player1 checks
+Player3 checks
+Hero checks
+*** SHOW DOWN ***
+Player1 shows [2c As] Ace King high
+Player3 mucks
+Hero mucks
+Player1 wins the pot ($2.85) with Ace King high
+*** SUMMARY ***
+Duration 71s
+Total pot $3 | Rake $0.15
+Board: [Kc Ts 5d Qh 7s]
+Seat 1: Player0 (button) didn't bet (folded)
+Seat 2: Player1 (small blind) showed [2c As] and won ($2.85) with Ace King high
+Seat 3: Player2 is sitting out
+Seat 4: Player3 (big blind) mucked [6d 9d] - King Queen high
+Seat 5: Hero mucked [8d 6h] - King Queen high
+Seat 6: Player4 didn't bet (folded)
+
+
+******************** # 2 *******************
+
+FullTiltPoker Game #10861334619: Table Tree Line (6 max) - $0.50/$1 - No Limit Hold'em - 21:50:51 ET - 2009/02/26
+
+Seat 1: Player0 ($110.90)
+Seat 2: Player1 ($33.80)
+Seat 3: Player5 ($20)
+Seat 4: Player3 ($101.70)
+Seat 5: Hero ($99)
+Seat 6: Player4 ($62.90)
+Player3 posts the small blind of $0.50
+Hero posts the big blind of $1
+The button is in seat #2
+*** HOLE CARDS ***
+Dealt to Hero [6c Tc]
+Player4 folds
+Player0 folds
+Player1 folds
+Player3 raises to $3
+Hero folds
+Uncalled bet of $2 returned to Player3
+Player3 mucks
+Player3 wins the pot ($2)
+*** SUMMARY ***
+Duration 20s
+Total pot $2 | Rake $0
+Seat 1: Player0 didn't bet (folded)
+Seat 2: Player1 (button) didn't bet (folded)
+Seat 3: Player5 is sitting out
+Seat 4: Player3 (small blind) collected ($2)
+Seat 5: Hero (big blind) folded before the Flop
+Seat 6: Player4 didn't bet (folded)
+
+
+******************** # 3 *******************
+
+FullTiltPoker Game #10861340454: Table Tree Line (6 max) - $0.50/$1 - No Limit Hold'em - 21:51:12 ET - 2009/02/26
+
+Seat 1: Player0 ($110.90)
+Seat 2: Player1 ($33.80)
+Seat 3: Player5 ($20)
+Seat 4: Player3 ($102.70)
+Seat 5: Hero ($98)
+Hero has 5 seconds left to act
+Hero posts the small blind of $0.50
+Player0 posts the big blind of $1
+The button is in seat #4
+*** HOLE CARDS ***
+Dealt to Hero [7c 2s]
+Player1 calls $1
+Player3 folds
+Hero folds
+Player0 raises to $4
+Player1 calls $3
+*** FLOP *** [8s Ks 9c]
+Player0 checks
+Player1 checks
+*** TURN *** [8s Ks 9c] [3s]
+Player0 checks
+Player1 bets $5
+Player0 calls $5
+*** RIVER *** [8s Ks 9c 3s] [Tc]
+Player0 checks
+Player1 checks
+*** SHOW DOWN ***
+Player1 shows [6h Th] a pair of Tens
+Player0 shows [Ad As] a pair of Aces
+Player0 wins the pot ($17.60) with a pair of Aces
+*** SUMMARY ***
+Duration 50s
+Total pot $18.50 | Rake $0.90
+Board: [8s Ks 9c 3s Tc]
+Seat 1: Player0 (big blind) showed [Ad As] and won ($17.60) with a pair of Aces
+Seat 2: Player1 showed [6h Th] and lost with a pair of Tens
+Seat 3: Player5 is sitting out
+Seat 4: Player3 (button) didn't bet (folded)
+Seat 5: Hero (small blind) folded before the Flop
+

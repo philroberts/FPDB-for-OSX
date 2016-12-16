@@ -58,8 +58,19 @@ class Winamax(HandHistoryConverter):
     games = {                          # base, category
                                 "Holdem" : ('hold','holdem'),
                                  'Omaha' : ('hold','omahahi'),
-                # It appears French law prevents any other games from being spread.
+                           "5 Card Omaha": ('hold','5_omahahi'),
+                     "5 Card Omaha Hi/Lo": ('hold','5_omaha8'),
+                            "Omaha Hi/Lo": ('hold','omahahilo'),
+                            "7-Card Stud": ('stud','studhi'),
+                      "7-Card Stud Hi/Lo": ('stud','studhilo'),
+                                   "Razz": ('stud','razz'),
+                        "2-7 Triple Draw": ('draw','27_3draw')
                }
+    mixes = { 
+               '8games' : '8game',
+              '10games' : '10game',
+                'horse' : 'horse',
+        }
 
     # Static regexes
     # ***** End of hand R5-75443872-57 *****
@@ -78,8 +89,8 @@ class Winamax(HandHistoryConverter):
             buyIn:\s(?P<BUYIN>(?P<BIAMT>[%(LS)s\d\,.]+)?(\s\+?\s|-)(?P<BIRAKE>[%(LS)s\d\,.]+)?\+?(?P<BOUNTY>[%(LS)s\d\.]+)?\s?(?P<TOUR_ISO>%(LEGAL_ISO)s)?|(?P<FREETICKET>[\sa-zA-Z]+))?\s
             (level:\s(?P<LEVEL>\d+))?
             .*)?
-            \s-\sHandId:\s\#(?P<HID1>\d+)-(?P<HID2>\d+)-(?P<HID3>\d+).*\s  # REB says: HID3 is the correct hand number
-            (?P<GAME>Holdem|Omaha)\s
+            \s-\sHandId:\s\#(?P<HID1>\d+)-(?P<HID2>\d+)-(?P<HID3>\d+)\s-\s  # REB says: HID3 is the correct hand number
+            (?P<GAME>Holdem|Omaha|5\sCard\sOmaha|5\sCard\sOmaha\sHi/Lo|Omaha\sHi/Lo|7\-Card\sStud|7\-Card\sStud\sHi/Lo|Razz|2\-7\sTriple\sDraw)\s
             (?P<LIMIT>fixed\slimit|no\slimit|pot\slimit)\s
             \(
             (((%(LS)s)?(?P<ANTE>[.0-9]+)(%(LS)s)?)/)?
@@ -98,6 +109,7 @@ class Winamax(HandHistoryConverter):
     re_Button       = re.compile(r'Seat\s#(?P<BUTTON>\d+)\sis\sthe\sbutton')
     re_Board        = re.compile(r"\[(?P<CARDS>.+)\]")
     re_Total        = re.compile(r"Total pot (?P<TOTAL>[\.\d]+).*(No rake|Rake (?P<RAKE>[\.\d]+))" % substitutions)
+    re_Mixed        = re.compile(r'_(?P<MIXED>10games|8games|horse)_')
 
     # 2010/09/21 03:10:51 UTC
     re_DateTime = re.compile("""
@@ -126,29 +138,44 @@ class Winamax(HandHistoryConverter):
             #helander2222 posts blind ($0.25), lopllopl posts blind ($0.50).
             player_re = "(?P<PNAME>" + "|".join(map(re.escape, players)) + ")"
             subst = {'PLYR': player_re, 'CUR': self.sym[hand.gametype['currency']]}
-            self.re_PostSB    = re.compile('%(PLYR)s posts small blind (%(CUR)s)?(?P<SB>[\.0-9]+)(%(CUR)s)?' % subst, re.MULTILINE)
+            self.re_PostSB    = re.compile('%(PLYR)s posts small blind (%(CUR)s)?(?P<SB>[\.0-9]+)(%(CUR)s)?(?! out of position)' % subst, re.MULTILINE)
             self.re_PostBB    = re.compile('%(PLYR)s posts big blind (%(CUR)s)?(?P<BB>[\.0-9]+)(%(CUR)s)?' % subst, re.MULTILINE)
             self.re_DenySB    = re.compile('(?P<PNAME>.*) deny SB' % subst, re.MULTILINE)
             self.re_Antes     = re.compile(r"^%(PLYR)s posts ante (%(CUR)s)?(?P<ANTE>[\.0-9]+)(%(CUR)s)?" % subst, re.MULTILINE)
-            self.re_BringIn   = re.compile(r"^%(PLYR)s brings[- ]in( low|) for (%(CUR)s)?(?P<BRINGIN>[\.0-9]+(%(CUR)s)?)" % subst, re.MULTILINE)
+            self.re_BringIn   = re.compile(r"^%(PLYR)s brings in (%(CUR)s)?(?P<BRINGIN>[\.0-9]+)(%(CUR)s)?" % subst, re.MULTILINE)
             self.re_PostBoth  = re.compile('(?P<PNAME>.*): posts small \& big blind \( (%(CUR)s)?(?P<SBBB>[\.0-9]+)(%(CUR)s)?\)' % subst)
             self.re_PostDead  = re.compile('(?P<PNAME>.*) posts dead blind \((%(CUR)s)?(?P<DEAD>[\.0-9]+)(%(CUR)s)?\)' % subst, re.MULTILINE)
-            self.re_HeroCards = re.compile('Dealt\sto\s%(PLYR)s\s\[(?P<CARDS>.*)\]' % subst)
+            self.re_PostSecondSB = re.compile('%(PLYR)s posts small blind (%(CUR)s)?(?P<SB>[\.0-9]+)(%(CUR)s)? out of position' % subst, re.MULTILINE)
+            self.re_HeroCards = re.compile('Dealt\sto\s%(PLYR)s(?: \[(?P<OLDCARDS>.+?)\])?( \[(?P<NEWCARDS>.+?)\])' % subst)
 
-            self.re_Action = re.compile('(, )?(?P<PNAME>.*?)(?P<ATYPE> bets| checks| raises| calls| folds)( (%(CUR)s)?(?P<BET>[\d\.]+)(%(CUR)s)?)?( and is all-in)?' % subst)
+            # no discards action observed yet
+            self.re_Action = re.compile('(, )?(?P<PNAME>.*?)(?P<ATYPE> bets| checks| raises| calls| folds| stands\spat)( (%(CUR)s)?(?P<BET>[\d\.]+)(%(CUR)s)?)?( to (%(CUR)s)?(?P<BETTO>[\d\.]+)(%(CUR)s)?)?( and is all-in)?' % subst)
             self.re_ShowdownAction = re.compile('(?P<PNAME>[^\(\)\n]*) (\((small blind|big blind|button)\) )?shows \[(?P<CARDS>.+)\]')
 
             self.re_CollectPot = re.compile('\s*(?P<PNAME>.*)\scollected\s(%(CUR)s)?(?P<POT>[\.\d]+)(%(CUR)s)?.*' % subst)
-            self.re_ShownCards = re.compile("^Seat (?P<SEAT>[0-9]+): %(PLYR)s showed \[(?P<CARDS>.*)\].*" % subst, re.MULTILINE)
+            self.re_ShownCards = re.compile("^Seat (?P<SEAT>[0-9]+): %(PLYR)s (\((small blind|big blind|button)\) )?showed \[(?P<CARDS>.*)\].+? with (?P<STRING>.*)" % subst, re.MULTILINE)
 
     def readSupportedGames(self):
         return [
                 ["ring", "hold", "fl"],
                 ["ring", "hold", "nl"],
                 ["ring", "hold", "pl"],
+
+                ["ring", "stud", "fl"],
+
+                ["ring", "draw", "fl"],
+                ["ring", "draw", "pl"],
+                ["ring", "draw", "nl"],
+                
                 ["tour", "hold", "fl"],
                 ["tour", "hold", "nl"],
-                ["tour", "hold", "pl"],
+                ["tour", "hold", "pl"],   
+                             
+                ["tour", "stud", "fl"],
+                
+                ["tour", "draw", "fl"],
+                ["tour", "draw", "pl"],
+                ["tour", "draw", "nl"],
                ]
 
     def determineGameType(self, handText):
@@ -166,13 +193,14 @@ class Winamax(HandHistoryConverter):
 
         if mg.get('TOUR'):
             info['type'] = 'tour'
+            info['currency'] = 'T$'
         elif mg.get('RING'):
             info['type'] = 'ring'
-        
-        if mg.get('MONEY'):
-            info['currency'] = 'EUR'
-        else:
-            info['currency'] = 'play'
+            
+            if mg.get('MONEY'):
+                info['currency'] = 'EUR'
+            else:
+                info['currency'] = 'play'
 
         if 'LIMIT' in mg:
             if mg['LIMIT'] in self.limits:
@@ -183,6 +211,8 @@ class Winamax(HandHistoryConverter):
                 raise FpdbParseError
         if 'GAME' in mg:
             (info['base'], info['category']) = self.games[mg['GAME']]
+        m = self.re_Mixed.search(self.in_path)
+        if m: info['mix'] = self.mixes[m.groupdict()['MIXED']]
         if 'SB' in mg:
             info['sb'] = mg['SB']
         if 'BB' in mg:
@@ -317,10 +347,24 @@ class Winamax(HandHistoryConverter):
                 plist[a.group('PNAME')] = [int(a.group('SEAT')), a.group('CASH')]
 
     def markStreets(self, hand):
-        m =  re.search(r"\*\*\* ANTE\/BLINDS \*\*\*(?P<PREFLOP>.+(?=\*\*\* FLOP \*\*\*)|.+)"
-                       r"(\*\*\* FLOP \*\*\*(?P<FLOP> \[\S\S \S\S \S\S\].+(?=\*\*\* TURN \*\*\*)|.+))?"
-                       r"(\*\*\* TURN \*\*\* \[\S\S \S\S \S\S](?P<TURN>\[\S\S\].+(?=\*\*\* RIVER \*\*\*)|.+))?"
-                       r"(\*\*\* RIVER \*\*\* \[\S\S \S\S \S\S \S\S](?P<RIVER>\[\S\S\].+))?", hand.handText,re.DOTALL)
+        if hand.gametype['base'] == "hold":
+            m =  re.search(r"\*\*\* ANTE/BLINDS \*\*\*(?P<PREFLOP>.+(?=\*\*\* FLOP \*\*\*)|.+)"
+                           r"(\*\*\* FLOP \*\*\*(?P<FLOP> \[\S\S \S\S \S\S\].+(?=\*\*\* TURN \*\*\*)|.+))?"
+                           r"(\*\*\* TURN \*\*\* \[\S\S \S\S \S\S](?P<TURN>\[\S\S\].+(?=\*\*\* RIVER \*\*\*)|.+))?"
+                           r"(\*\*\* RIVER \*\*\* \[\S\S \S\S \S\S \S\S](?P<RIVER>\[\S\S\].+))?", hand.handText,re.DOTALL)
+        elif hand.gametype['base'] == "stud":
+            m =  re.search(r"\*\*\* ANTE/BLINDS \*\*\*(?P<ANTES>.+(?=\*\*\* 3rd STREET \*\*\*)|.+)"
+                           r"(\*\*\* 3rd STREET \*\*\*(?P<THIRD>.+(?=\*\*\* 4th STREET \*\*\*)|.+))?"
+                           r"(\*\*\* 4th STREET \*\*\*(?P<FOURTH>.+(?=\*\*\* 5th STREET \*\*\*)|.+))?"
+                           r"(\*\*\* 5th STREET \*\*\*(?P<FIFTH>.+(?=\*\*\* 6th STREET \*\*\*)|.+))?"
+                           r"(\*\*\* 6th STREET \*\*\*(?P<SIXTH>.+(?=\*\*\* 7th STREET \*\*\*)|.+))?"
+                           r"(\*\*\* 7th STREET \*\*\*(?P<SEVENTH>.+))?", hand.handText,re.DOTALL)
+        else:
+            m =  re.search(r"\*\*\* ANTE/BLINDS \*\*\*(?P<PREDEAL>.+(?=\*\*\* FIRST\-BET \*\*\*)|.+)"
+                       r"(\*\*\* FIRST\-BET \*\*\*(?P<DEAL>.+(?=\*\*\* FIRST\-DRAW \*\*\*)|.+))?"
+                       r"(\*\*\* FIRST\-DRAW \*\*\*(?P<DRAWONE>.+(?=\*\*\* SECOND\-DRAW \*\*\*)|.+))?"
+                       r"(\*\*\* SECOND\-DRAW \*\*\*(?P<DRAWTWO>.+(?=\*\*\* THIRD\-DRAW \*\*\*)|.+))?"
+                       r"(\*\*\* THIRD\-DRAW \*\*\*(?P<DRAWTHREE>.+))?", hand.handText,re.DOTALL)
 
         try:
             hand.addStreets(m)
@@ -368,14 +412,18 @@ class Winamax(HandHistoryConverter):
         for a in self.re_PostDead.finditer(hand.handText):
             #print "DEBUG: Found dead blind: addBlind(%s, 'secondsb', %s)" %(a.group('PNAME'), a.group('DEAD'))
             hand.addBlind(a.group('PNAME'), 'secondsb', a.group('DEAD'))
-        for a in self.re_PostBoth.finditer(hand.handText):
-            hand.addBlind(a.group('PNAME'), 'small & big blinds', a.group('SBBB'))
+        for a in self.re_PostSecondSB.finditer(hand.handText):
+            #print "DEBUG: Found dead blind: addBlind(%s, 'secondsb/both', %s, %s)" %(a.group('PNAME'), a.group('SB'), hand.sb)
+            if Decimal(a.group('SB')) > Decimal(hand.sb):
+                hand.addBlind(a.group('PNAME'), 'both', a.group('SB'))
+            else:
+                hand.addBlind(a.group('PNAME'), 'secondsb', a.group('SB'))
 
     def readAntes(self, hand):
         log.debug(_("reading antes"))
         m = self.re_Antes.finditer(hand.handText)
         for player in m:
-            #~ logging.debug("hand.addAnte(%s,%s)" %(player.group('PNAME'), player.group('ANTE')))
+            #logging.debug("hand.addAnte(%s,%s)" %(player.group('PNAME'), player.group('ANTE')))
             hand.addAnte(player.group('PNAME'), player.group('ANTE'))
 
     def readBringIn(self, hand):
@@ -390,14 +438,35 @@ class Winamax(HandHistoryConverter):
         for street in ('PREFLOP', 'DEAL', 'BLINDSANTES'):
             if street in hand.streets.keys():
                 m = self.re_HeroCards.finditer(hand.streets[street])
-            if m == []:
-                log.debug(_("No hole cards found for %s") % street)
+                for found in m:
+                    newcards = [c for c in found.group('NEWCARDS').split(' ') if c != 'X']
+                    if len(newcards)>0:
+                        hand.hero = found.group('PNAME')
+                        
+        #                print "DEBUG: %s addHoleCards(%s, %s, %s)" %(hand.handid, street, hand.hero, newcards)
+                        hand.addHoleCards(street, hand.hero, closed=newcards, shown=False, mucked=False, dealt=True)
+                        log.debug(_("Hero cards %s: %s") % (hand.hero, newcards))
+                    
+        for street, text in hand.streets.iteritems():
+            if not text or street in ('PREFLOP', 'DEAL', 'BLINDSANTES'): continue  # already done these
+            m = self.re_HeroCards.finditer(hand.streets[street])
             for found in m:
-                hand.hero = found.group('PNAME')
-                newcards = found.group('CARDS').split(' ')
-#                print "DEBUG: %s addHoleCards(%s, %s, %s)" %(hand.handid, street, hand.hero, newcards)
-                hand.addHoleCards(street, hand.hero, closed=newcards, shown=False, mucked=False, dealt=True)
-                log.debug(_("Hero cards %s: %s") % (hand.hero, newcards))
+                player = found.group('PNAME')
+                if found.group('NEWCARDS') is None:
+                    newcards = []
+                else:
+                    newcards = [c for c in found.group('NEWCARDS').split(' ') if c != 'X']
+                if found.group('OLDCARDS') is None:
+                    oldcards = []
+                else:
+                    oldcards = [c for c in found.group('OLDCARDS').split(' ') if c != 'X']
+
+                if street == 'THIRD' and len(newcards) == 3: # hero in stud game
+                    hand.hero = player
+                    hand.dealt.add(player) # need this for stud??
+                    hand.addHoleCards(street, player, closed=newcards[0:2], open=[newcards[2]], shown=False, mucked=False, dealt=False)
+                else:
+                    hand.addHoleCards(street, player, open=newcards, closed=oldcards, shown=False, mucked=False, dealt=False)
 
     def readAction(self, hand, street):
         m = self.re_Action.finditer(hand.streets[street])
@@ -411,9 +480,15 @@ class Winamax(HandHistoryConverter):
             elif action.group('ATYPE') == ' calls':
                 hand.addCall( street, action.group('PNAME'), action.group('BET') )
             elif action.group('ATYPE') == ' raises':
-                hand.addRaiseBy( street, action.group('PNAME'), action.group('BET') )
+                # fixes bug in bring-in line where raise to forgets there's a bring-in
+                bringin = [act[2] for act in hand.actions[street] if act[0] == action.group('PNAME') and act[1] == 'bringin']
+                if len(bringin)>0:
+                    betto = str(Decimal(action.group('BETTO')) + bringin[0])
+                else:
+                    betto = action.group('BETTO')
+                hand.addRaiseTo( street, action.group('PNAME'), betto )
             elif action.group('ATYPE') == ' bets':
-                if street in ('PREFLOP', 'DEAL', 'BLINDSANTES'):
+                if street in ('PREFLOP', 'DEAL', 'THIRD', 'BLINDSANTES'):
                     hand.addRaiseBy( street, action.group('PNAME'), action.group('BET') )
                 else:
                     hand.addBet( street, action.group('PNAME'), action.group('BET') )
@@ -428,10 +503,10 @@ class Winamax(HandHistoryConverter):
 
     def readShowdownActions(self, hand):
         for shows in self.re_ShowdownAction.finditer(hand.handText):
-            #log.debug(_("add show actions %s") % shows)
+            log.debug(_("add show actions %s") % shows)
             cards = shows.group('CARDS')
             cards = cards.split(' ')
-#            print "DEBUG: addShownCards(%s, %s)" %(cards, shows.group('PNAME'))
+            #print "DEBUG: addShownCards(%s, %s)" %(cards, shows.group('PNAME'))
             hand.addShownCards(cards, shows.group('PNAME'))
 
     def readCollectPot(self,hand):
@@ -447,7 +522,9 @@ class Winamax(HandHistoryConverter):
             (shown, mucked) = (False, False)
             if m.group('CARDS') is not None:
                 shown = True
-                hand.addShownCards(cards=cards, player=m.group('PNAME'), shown=shown, mucked=mucked)
+                string = m.group('STRING')
+                #print m.group('PNAME'), cards, shown, mucked
+                hand.addShownCards(cards=cards, player=m.group('PNAME'), shown=shown, mucked=mucked, string=string)
 
     @staticmethod
     def getTableTitleRe(type, table_name=None, tournament = None, table_number=None):

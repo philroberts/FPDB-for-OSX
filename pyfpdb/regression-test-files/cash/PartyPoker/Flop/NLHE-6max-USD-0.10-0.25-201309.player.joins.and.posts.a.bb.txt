@@ -1,0 +1,31 @@
+#Game No : 13290328324 
+***** Hand History for Game 13290328324 *****
+$0.10/$0.25 USD NL Texas Hold'em - Saturday, September 21, 16:06:03 EDT 2013
+Table Le Mans (Real Money)
+Seat 5 is the button
+Total number of players : 5/6 
+Seat 2: Player0 ( $41.38 USD )
+Seat 3: Player1 ( $25 USD )
+Seat 1: Hero ( $57.18 USD )
+Seat 6: Player2 ( $0 USD )
+Seat 5: Player3 ( $96.40 USD )
+Hero posts small blind [$0.10 USD].
+Player0 posts big blind [$0.25 USD].
+Player2 has left the table.
+Player4 has joined the table.
+Player1 is sitting out
+Player4 posts big blind [$0.25 USD].
+** Dealing down cards **
+Dealt to Hero [  Qd Ad ]
+Player4 checks
+Player3 folds
+Hero raises [$0.90 USD]
+Player0 calls [$0.75 USD]
+Player4 folds
+** Dealing Flop ** [ Ts, 3h, 5c ]
+Hero bets [$1.25 USD]
+Player0 folds
+Hero does not show cards.
+Hero wins $3.39 USD
+poolspeedxxx has joined the table.
+Game #13290331825 starts.

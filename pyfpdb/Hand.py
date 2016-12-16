@@ -77,6 +77,7 @@ class Hand(object):
         # tourney stuff
         self.tourNo = None
         self.tourneyId = None
+        self.tourneyName = None
         self.tourneyTypeId = None
         self.buyin = None
         self.buyinCurrency = None
@@ -262,7 +263,10 @@ class Hand(object):
         # Players, Gametypes, TourneyTypes are all shared functions that are needed for additional tables
         # These functions are intended for prep insert eventually
         #####
-        self.gametype['maxSeats'] = self.maxseats #TODO: move up to individual parsers
+        if self.gametype.get('maxSeats') == None:
+            self.gametype['maxSeats'] = self.maxseats #TODO: move up to individual parsers
+        else:
+            self.maxseats = self.gametype['maxSeats']
         self.dbid_pids = db.getSqlPlayerIDs([p[1] for p in self.players], self.siteId, self.hero)
         self.dbid_gt = db.getSqlGameTypeId(self.siteId, self.gametype, printdata = printtest)
         
@@ -340,12 +344,11 @@ class Hand(object):
         
     def updateSessionsCache(self, db, tz, doinsert = False):
         """ Function to update the Sessions"""
-        if True: #self.hero in self.dbid_pids:
+        if self.cacheSessions:
             heroes = [self.dbid_pids.values()[0]]
             db.storeSessions(self.dbid_hands, self.dbid_pids, self.startTime, self.tourneyId, heroes, tz, doinsert) 
-            if self.cacheSessions:
-                db.storeSessionsCache(self.dbid_hands, self.dbid_pids, self.startTime, self.dbid_gt, self.gametype, self.handsplayers, heroes, doinsert)
-                db.storeTourneysCache(self.dbid_hands, self.dbid_pids, self.startTime, self.tourneyId, self.gametype, self.handsplayers, heroes, doinsert)
+            db.storeSessionsCache(self.dbid_hands, self.dbid_pids, self.startTime, self.dbid_gt, self.gametype, self.handsplayers, heroes, doinsert)
+            db.storeTourneysCache(self.dbid_hands, self.dbid_pids, self.startTime, self.tourneyId, self.gametype, self.handsplayers, heroes, doinsert)
             
     def updateCardsCache(self, db, tz, doinsert = False):
         """ Function to update the CardsCache"""
@@ -559,6 +562,10 @@ class Hand(object):
             chips   (string) the chips the player has at the start of the hand (can be None)
             position     (string) indicating the position of the player (S,B, 0-7) (optional, not needed on Hand import from Handhistory).
             If a player has None chips he won't be added."""
+             
+        if len(self.players) > 0 and seat in [p[0] for p in self.players]:
+            raise FpdbHandPartial("addPlayer: " + _("Can't have 2 players in the same seat!") + ": '%s'" % self.handid)
+       
         log.debug("addPlayer: %s %s (%s)", seat, name, chips)
         if chips is not None:
             chips = chips.replace(u',', u'') #some sites have commas
@@ -641,7 +648,7 @@ class Hand(object):
             self.actions['BLINDSANTES'].append(act)
             self.pot.addCommonMoney(player, ante)
             self.pot.addAntes(player, ante)
-            if 'ante' not in self.gametype.keys() or self.gametype['ante'] == 0:
+            if 'ante' not in self.gametype.keys() or self.gametype['ante'] < ante:
                 self.gametype['ante'] = ante
 # I think the antes should be common money, don't have enough hand history to check
 
@@ -1147,7 +1154,7 @@ class HoldemOmahaHand(Hand):
                         hcs[i] = self.holecards[street][player][1][i]
                         hcs[i] = upper(hcs[i][0:1])+hcs[i][1:2]
                 except IndexError:
-                    log.error("Why did we get an indexerror?")
+                    log.debug("Why did we get an indexerror?")
 
         if asList:
             return hcs
@@ -1319,12 +1326,13 @@ class DrawHand(Hand):
             self.maxseats = 10
 
     def addShownCards(self, cards, player, shown=True, mucked=False, dealt=False, string=None):
-        if player == self.hero: # we have hero's cards just update shown/mucked
-            if shown:  self.shown.add(player)
-            if mucked: self.mucked.add(player)
-        else:
-# TODO: Probably better to find the last street with action and add the hole cards to that street
-            self.addHoleCards(self.actionStreets[-1], player, open=[], closed=cards, shown=shown, mucked=mucked, dealt=dealt)
+        #if player == self.hero: # we have hero's cards just update shown/mucked
+        #    if shown:  self.shown.add(player)
+        #    if mucked: self.mucked.add(player)
+        #else:
+        #    pass
+        # TODO: Probably better to find the last street with action and add the hole cards to that street
+        self.addHoleCards(self.actionStreets[-1], player, open=[], closed=cards, shown=shown, mucked=mucked, dealt=dealt)
         if string is not None:
             self.showdownStrings[player] = string
 
@@ -1338,14 +1346,14 @@ class DrawHand(Hand):
     def join_holecards(self, player, asList=False, street=False):
         """With asList = True it returns the set cards for a player including down cards if they aren't know"""
         handsize = Card.games[self.gametype['category']][5][0][1]
-        holecards = [u'0x']*(4 * handsize)
+        holecards = [u'0x']*20
         
         for i, _street in enumerate(self.holeStreets):
             if player in self.holecards[_street].keys():
                 allhole = self.holecards[_street][player][1] + self.holecards[_street][player][0]
                 allhole = allhole[:handsize]
                 for c in range(len(allhole)):
-                    idx = c + i * handsize
+                    idx = c + i * 5
                     holecards[idx] = allhole[c]
 
         result = []
@@ -1353,13 +1361,13 @@ class DrawHand(Hand):
             result = holecards
         elif street in self.holeStreets:
             if street == 'DEAL':
-                result = holecards[0:handsize]
+                result = holecards[0:5]
             elif street == 'DRAWONE':
-                result = holecards[handsize:2 * handsize]
+                result = holecards[5:10]
             elif street == 'DRAWTWO':
-                result = holecards[2 * handsize:3 * handsize]
+                result = holecards[10:15]
             elif street == 'DRAWTHREE':
-                result = holecards[3 * handsize:4 * handsize]
+                result = holecards[15:20]
         return result if asList else " ".join(result)
 
     def writeHand(self, fh=sys.__stdout__):

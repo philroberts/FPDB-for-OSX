@@ -100,7 +100,7 @@ class FullTiltPokerSummary(TourneySummary):
                         ((?P<LIMIT>No\sLimit|Limit|LIMIT|Pot\sLimit)\s+)?(\((?P<TABLEATTRIBUTES>.+)\)\s+)?
                         (Buy-In:\s[%(LS)s]?(?P<BUYIN>[%(NUM)s]+)(\sFTP|\sT\$|\sPlay\sChips)?(\s\+\s[%(LS)s]?(?P<FEE>[%(NUM)s]+)(\sFTP|\sT\$|\sPlay\sChips)?)?\s+)?
                         (Knockout\sBounty:\s[%(LS)s](?P<KOBOUNTY>[%(NUM)s]+)\s+)?
-                        ((?P<PNAMEBOUNTIES>.{2,15})\sreceived\s(?P<PBOUNTIES>\d+)\sKnockout\sBounty\sAwards?\s+)?
+                        ((?P<PNAMEBOUNTIES>(.{2,15}|\d+))\sreceived\s(?P<PBOUNTIES>(%%)?\d+)\sKnockout\sBounty\sAwards?\s+)?
                         (Add-On:\s[%(LS)s]?(?P<ADDON>[%(NUM)s]+)(\sFTP|\sT\$|\sPlay\sChips)?\s+)?
                         (Rebuy:\s[%(LS)s]?(?P<REBUYAMT>[%(NUM)s]+)(\sFTP|\sT\$|\sPlay\sChips)?\s+)?
                         ((?P<P1NAME>.{2,15})\sperformed\s(?P<PADDONS>\d+)\sAdd-Ons?\s+)?
@@ -108,10 +108,13 @@ class FullTiltPokerSummary(TourneySummary):
                         (Buy-In\sChips:\s(?P<CHIPS>\d+)\s+)?
                         (Add-On\sChips:\s(?P<ADDONCHIPS>\d+)\s+)?
                         (Rebuy\sChips:\s(?P<REBUYCHIPS>\d+)\s+)?
+                        (Cashout\svalue\sof\s\d+\schips:\s[%(LS)s]?\d+(\sFTP|\sT\$|\sPlay\sChips)?\s+)?
                         (?P<ENTRIES>[0-9]+)\sEntries\s+
                         (Total\sAdd-Ons:\s(?P<ADDONS>\d+)\s+)?
                         (Total\sRebuys:\s(?P<REBUYS>\d+)\s*)?
                         (Total\sPrize\sPool:\s[%(LS)s]?(?P<PRIZEPOOL>[%(NUM)s]+)(\sFTP|\sT\$|\sPlay\sChips)?\s+)?
+                        (Total\sCashout\sPool:\s[%(LS)s]?(?P<TOTALCASHOUT>[%(NUM)s]+)(\sFTP|\sT\$|\sPlay\sChips)?\s+)?
+                        (Current\sCashout\sPool:\s[%(LS)s]?(?P<CURRENTCASHOUT>[%(NUM)s]+)(\sFTP|\sT\$|\sPlay\sChips)?\s+)?
                         (?P<SATELLITE>Top\s(\d+\s)?finishers?\sreceives?\s.+\s+)?
                         (Target\sTournament\s.+\s+)?
                         Tournament\sstarted:\s(?P<DATETIME>((?P<Y>[\d]{4})\/(?P<M>[\d]{2})\/(?P<D>[\d]+)\s+(?P<H>[\d]+):(?P<MIN>[\d]+):(?P<S>[\d]+)\s?(?P<TZ>[A-Z]+)\s|\w+,\s(?P<MONTH>\w+)\s(?P<DAY>\d+),\s(?P<YEAR>[\d]{4})\s(?P<HOUR>\d+):(?P<MIN2>\d+)))
@@ -315,7 +318,7 @@ class FullTiltPokerSummary(TourneySummary):
             rebuyCounts[mg['P2NAME']] = int(mg['PREBUYS'])
         if 'PADDONS' in mg and mg['PADDONS'] != None:
             addOnCounts[mg['P1NAME']] = int(mg['PADDONS'])
-        if 'PBOUNTIES' in mg and mg['PBOUNTIES'] != None:
+        if 'PBOUNTIES' in mg and mg['PBOUNTIES'] != None and mg['PBOUNTIES'][0]!='%':
             koCounts[mg['PNAMEBOUNTIES']] = int(mg['PBOUNTIES'])
         if 'SATELLITE' in mg and mg['SATELLITE'] != None:
             self.isSatellite = True
@@ -508,7 +511,7 @@ class FullTiltPokerSummary(TourneySummary):
             self.isStep = True
         if n.group('STEPNO')!=None:
             self.stepNo = int(n.group('STEPNO'))
-        if self.isMatrix:
+        if self.isMatrix and self.entries > 0:
             self.buyin = self.prizepool / self.entries
             buyinfee = int(100*Decimal(self.clearMoneyString(n.group('BUYINGUAR'))))
             self.fee = buyinfee - self.buyin

@@ -1,0 +1,65 @@
+Winamax Poker - CashGame - HandId: #6417287-1303-1406683540 - Omaha pot limit (1€/2€) - 2014/07/30 01:25:40 UTC
+Table: 'Port Elizabeth' 5-max (real money) Seat #1 is the button
+Seat 1: Player0 (407.25€)
+Seat 2: Player1 (377.85€)
+Seat 3: Hero (261€)
+Seat 4: Player2 (404.39€)
+Seat 5: Player3 (121.25€)
+*** ANTE/BLINDS ***
+Player3 raises 1€ to 3€
+Player3 posts small blind 1€
+Hero posts big blind 2€
+Dealt to Hero [2h Tc 5d 5c]
+*** PRE-FLOP *** 
+Player2 calls 2€
+Player3 checks
+Player0 calls 2€
+Player1 folds
+Hero checks
+*** FLOP *** [4s 9c 2s]
+Hero checks
+Player2 checks
+Player3 checks
+Player0 checks
+*** TURN *** [4s 9c 2s][Qs]
+Hero checks
+Player2 checks
+Player3 checks
+Player0 checks
+*** RIVER *** [4s 9c 2s Qs][3s]
+Hero checks
+Player2 bets 7€
+Player3 folds
+Player0 folds
+Hero folds
+Player2 collected 16.35€ from pot
+*** SUMMARY ***
+Total pot 16.35€ | Rake 0.65€
+Board: [4s 9c 2s Qs 3s]
+Seat 4: Player2 won 16.35€
+
+
+Winamax Poker - CashGame - HandId: #6417287-1322-1406684365 - Omaha pot limit (1€/2€) - 2014/07/30 01:39:25 UTC
+Table: 'Port Elizabeth' 5-max (real money) Seat #1 is the button
+Seat 1: Player0 (474.25€)
+Seat 2: Player1 (209.81€)
+Seat 3: Hero (424.29€)
+Seat 4: Player2 (410.99€)
+Seat 5: Player3 (79.72€)
+*** ANTE/BLINDS ***
+Player3 raises 1€ to 3€
+Player3 posts small blind 1€
+Hero posts big blind 2€
+Dealt to Hero [Ac Qs Jd Kc]
+*** PRE-FLOP *** 
+Player2 folds
+Player3 checks
+Player0 folds
+Player1 folds
+Hero raises 5€ to 8€
+Player3 folds
+Hero collected 12€ from pot
+*** SUMMARY ***
+Total pot 12€ | No rake
+Seat 3: Hero (big blind) won 12€
+

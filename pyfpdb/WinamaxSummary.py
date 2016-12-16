@@ -32,8 +32,15 @@ class WinamaxSummary(TourneySummary):
     
     limits = { 'No Limit':'nl', 'Pot Limit':'pl', 'Limit':'fl', 'LIMIT':'fl' }
     games = {                          # base, category
-                              "Hold'em" : ('hold','holdem'), 
-                                'Omaha' : ('hold','omahahi')
+                               "Hold'em" : ('hold','holdem'), 
+                                 'Omaha' : ('hold','omahahi'),
+                           "5 Card Omaha": ('hold','5_omahahi'),
+                     "5 Card Omaha Hi/Lo": ('hold','5_omaha8'),
+                            "Omaha Hi/Lo": ('hold','omahahilo'),
+                            "7-Card Stud": ('stud','studhi'),
+                      "7-Card Stud Hi/Lo": ('stud','studhilo'),
+                                   "Razz": ('stud','razz'),
+                        "2-7 Triple Draw": ('draw','27_3draw')
                }
 
     substitutions = {
@@ -43,7 +50,7 @@ class WinamaxSummary(TourneySummary):
     
     re_Identify = re.compile(u"Winamax\sPoker\s\-\sTournament\ssummary")
     
-    re_SummaryTourneyInfo = re.compile(u"""Winamax\sPoker\s-\sTournament\ssummary\s:\s
+    re_SummaryTourneyInfo = re.compile(u"""\s:\s
                                            ((?P<LIMIT>No\sLimit|Limit|LIMIT|Pot\sLimit)\s)?
                                            (?P<GAME>.+)?
                                            \((?P<TOURNO>[0-9]+)\)(\s-\sLate\sregistration)?\s+
@@ -83,7 +90,7 @@ class WinamaxSummary(TourneySummary):
 
     @staticmethod
     def getSplitRe(self, head):
-        re_SplitTourneys = re.compile("PokerStars Tournament ")
+        re_SplitTourneys = re.compile("Winamax\sPoker\s-\sTournament\ssummary")
         m = re.search("<!DOCTYPE html PUBLIC", head)
         if m != None:
             self.hhtype = "html"

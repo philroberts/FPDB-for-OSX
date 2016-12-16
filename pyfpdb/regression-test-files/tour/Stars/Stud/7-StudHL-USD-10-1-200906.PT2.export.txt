@@ -1,0 +1,83 @@
+PokerStars Game #29356803849: TOURNAMENT #169962475, $10+$1 7 CARD STUD HI/LO LIMIT - LEVEL I (25/50) - 2009/06/14 11:45:00 ET
+Table '169962475 2' 8-max
+Seat 1: Player0 (2500 in chips) 
+Seat 2: Player1 (2500 in chips) 
+Seat 3: Player2 (2500 in chips) 
+Seat 4: Player3 (2500 in chips) 
+Seat 5: Player4 (2500 in chips) 
+Seat 6: Player5 (2500 in chips) 
+Seat 7: Player6 (2500 in chips) is sitting out
+Seat 8: Hero (2500 in chips) 
+Player0: posts the ante 5
+Player1: posts the ante 5
+Player2: posts the ante 5
+Player3: posts the ante 5
+Player4: posts the ante 5
+Player5: posts the ante 5
+Player6: posts the ante 5
+Hero: posts the ante 5
+*** 3rd STREET ***
+Dealt to Player0 [Kc]
+Dealt to Player1 [6c]
+Dealt to Player2 [Ah]
+Dealt to Player3 [Td]
+Dealt to Player4 [9h]
+Dealt to Player5 [2h]
+Dealt to Player6 [Ac]
+Dealt to Hero [9s 5d 5s]
+Player5: brings in for 10
+Player6: folds 
+Hero: folds 
+Player0: folds 
+Player1: calls 10
+Player2: calls 10
+Player3: calls 10
+Player4: calls 10
+*** 4th STREET ***
+Dealt to Player1 [6c] [Qd]
+Dealt to Player2 [Ah] [6h]
+Dealt to Player3 [Td] [4h]
+Dealt to Player4 [9h] [Jh]
+Dealt to Player5 [2h] [2d]
+Player5: bets 25
+Player1: calls 25
+Player2: calls 25
+Player3: folds 
+Player4: calls 25
+*** 5th STREET ***
+Dealt to Player1 [6c Qd] [4c]
+Dealt to Player2 [Ah 6h] [Ks]
+Dealt to Player4 [9h Jh] [8c]
+Dealt to Player5 [2h 2d] [Tc]
+Player5: checks 
+Player1: checks 
+Player2: checks 
+Player4: checks 
+*** 6th STREET ***
+Dealt to Player1 [6c Qd 4c] [Js]
+Dealt to Player2 [Ah 6h Ks] [7h]
+Dealt to Player4 [9h Jh 8c] [8s]
+Dealt to Player5 [2h 2d Tc] [5h]
+Player4: bets 50
+Player5: calls 50
+Player1: folds 
+Player2: calls 50
+*** RIVER ***
+Player4: bets 50
+Player5: folds 
+Player2: calls 50
+*** SHOW DOWN ***
+Player4: shows [9c 3d 9h Jh 8c 8s As] (HI: two pair, Nines and Eights)
+Player2: shows [3s Jc Ah 6h Ks 7h 5c] (HI: high card Ace; LO: 7,6,5,3,A)
+Player4 collected 220 from pot
+Player2 collected 220 from pot
+*** SUMMARY ***
+Total pot 440 | Rake 0 
+Seat 1: Player0 folded on the 3rd Street (didn't bet)
+Seat 2: Player1 folded on the 6th Street
+Seat 3: Player2 showed [3s Jc Ah 6h Ks 7h 5c] and won (220) with HI: high card Ace; LO: 7,6,5,3,A
+Seat 4: Player3 folded on the 4th Street
+Seat 5: Player4 showed [9c 3d 9h Jh 8c 8s As] and won (220) with HI: two pair, Nines and Eights
+Seat 6: Player5 folded on the River
+Seat 7: Player6 folded on the 3rd Street (didn't bet)
+Seat 8: Hero folded on the 3rd Street (didn't bet)

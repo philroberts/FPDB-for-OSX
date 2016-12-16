@@ -1,0 +1,45 @@
+PokerStars Hand #142579689317:  Omaha Pot Limit ($200/$400 USD) - 2015/10/22 0:24:41 CET [2015/10/21 18:24:41 ET]
+Table 'Owa III' 6-max Seat #2 is the button
+Seat 2: Ben86 ($40000 in chips) 
+Ben86: posts small blind $200
+cumicon: is sitting out 
+Hand cancelled
+*** SUMMARY ***
+Seat 2: Ben86 (button) collected ($0)
+
+
+PokerStars Hand #142624277978:  Omaha Pot Limit ($200/$400 USD) - 2015/10/22 21:48:01 CET [2015/10/22 15:48:01 ET]
+Table 'Owa III
+
+PokerStars Hand #142624161503:  Omaha Pot Limit ($200/$400 USD) - 2015/10/22 21:46:10 CET [2015/10/22 15:46:10 ET]
+Table 'Owa III' 6-max Seat #2 is the button
+Seat 2: Isildur1 ($40000 in chips) 
+Seat 5: cumicon ($40000 in chips) 
+Isildur1: posts small blind $200
+cumicon: posts big blind $400
+Isildur1: posts the ante $80
+cumicon: posts the ante $80
+*** HOLE CARDS ***
+Isildur1: raises $960 to $1360
+cumicon: calls $960
+*** FLOP *** [As 9d Kh]
+cumicon: checks 
+Isildur1: bets $2878
+cumicon: calls $2878
+*** TURN *** [As 9d Kh] [Ac]
+cumicon: checks 
+Isildur1: checks 
+*** RIVER *** [As 9d Kh Ac] [2h]
+cumicon: checks 
+Isildur1: checks 
+*** SHOW DOWN ***
+cumicon: shows [3s Ks 2s 8c] (two pair, Aces and Kings)
+Isildur1: mucks hand 
+cumicon collected $8634 from pot
+*** SUMMARY ***
+Total pot $8636 | Rake $2 
+Board [As 9d Kh Ac 2h]
+Seat 2: Isildur1 (button) (small blind) mucked
+Seat 5: cumicon (big blind) showed [3s Ks 2s 8c] and won ($8634) with two pair, Aces and Kings
+
+

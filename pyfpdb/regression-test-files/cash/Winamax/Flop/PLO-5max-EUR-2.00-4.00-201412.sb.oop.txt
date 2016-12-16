@@ -1,0 +1,23 @@
+Winamax Poker - CashGame - HandId: #6935619-5785-1419437602 - Omaha pot limit (2€/4€) - 2014/12/24 16:13:22 UTC
+Table: 'Wloclawek' 5-max (real money) Seat #3 is the button
+Seat 1: Incognito 1 (789€)
+Seat 2: Incognito 2 (160€)
+Seat 3: Incognito 3 (1268.38€)
+Seat 4: Incognito 4 (679€)
+Seat 5: Hero (474.50€)
+*** ANTE/BLINDS ***
+Incognito 4 posts small blind 2€
+Hero posts big blind 4€
+Incognito 2 posts small blind 2€ out of position
+Dealt to Hero [4c Qc 4h Qd]
+*** PRE-FLOP *** 
+Incognito 1 folds
+Incognito 2 folds
+Incognito 3 raises 8€ to 12€
+Incognito 4 folds
+Hero raises 28€ to 40€
+Incognito 3 folds
+Hero collected 56€ from pot
+*** SUMMARY ***
+Total pot 56€ | No rake
+Seat 5: Hero (big blind) won 56€

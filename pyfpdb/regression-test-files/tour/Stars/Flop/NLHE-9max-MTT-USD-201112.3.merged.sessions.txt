@@ -1,0 +1,202 @@
+PokerStars Game #72047901202: Tournament #551010441, $100+$9 USD Hold'em No Limit - Level V (30/60) - 2011/12/12 10:45:40 PT [2011/12/12 13:45:40 ET]
+Table '551010441 59' 9-max Seat #6 is the button
+Seat 1: Player0 (7061 in chips) 
+Seat 2: Player1 (1001 in chips) 
+Seat 3: Player2 (1392 in chips) 
+Seat 4: Player3 (3195 in chips) 
+Seat 5: Player4 (5304 in chips) 
+Seat 6: Player5 (5075 in chips) 
+Seat 7: Hero (1753 in chips) 
+Seat 8: Player6 (4155 in chips) 
+Seat 9: Player7 (2431 in chips) 
+Player0: posts the ante 5
+Player1: posts the ante 5
+Player2: posts the ante 5
+Player3: posts the ante 5
+Player4: posts the ante 5
+Player5: posts the ante 5
+Hero: posts the ante 5
+Player6: posts the ante 5
+Player7: posts the ante 5
+Hero: posts small blind 30
+Player6: posts big blind 60
+*** HOLE CARDS ***
+Dealt to Hero [Ts Td]
+Player7: folds 
+Player0: folds 
+Player1: folds 
+Player2: raises 100 to 160
+Player3: calls 160
+Player4: raises 320 to 480
+Player5: folds 
+Hero: raises 1268 to 1748 and is all-in
+Player6: folds 
+Player2: folds 
+Player3: folds 
+Player4: calls 1268
+*** FLOP *** [Ks 6d As]
+*** TURN *** [Ks 6d As] [Qs]
+*** RIVER *** [Ks 6d As Qs] [Qc]
+*** SHOW DOWN ***
+Hero: shows [Ts Td] (two pair, Queens and Tens)
+Player4: shows [Jc Jd] (two pair, Queens and Jacks)
+Player4 collected 3921 from pot
+Hero finished the tournament in 708th place
+*** SUMMARY ***
+Total pot 3921 | Rake 0 
+Board [Ks 6d As Qs Qc]
+Seat 1: Player0 folded before Flop (didn't bet)
+Seat 2: Player1 folded before Flop (didn't bet)
+Seat 3: Player2 folded before Flop
+Seat 4: Player3 folded before Flop
+Seat 5: Player4 showed [Jc Jd] and won (3921) with two pair, Queens and Jacks
+Seat 6: Player5 (button) folded before Flop (didn't bet)
+Seat 7: Hero (small blind) showed [Ts Td] and lost with two pair, Queens and Tens
+Seat 8: Player6 (big blind) folded before Flop
+Seat 9: Player7 folded before Flop (didn't bet)
+
+
+PokerStars Game #72051489423: Tournament #551010491, $10+$1 USD Hold'em No Limit - Level V (30/60) - 2011/12/12 11:41:10 PT [2011/12/12 14:41:10 ET]
+Table '551010491 35' 9-max Seat #3 is the button
+Seat 1: Hero (3000 in chips) 
+Seat 2: Player8 (2860 in chips) 
+Seat 3: Player9 (18705 in chips) 
+Seat 4: Player10 (5135 in chips) 
+Seat 5: Player11 (3325 in chips) 
+Seat 6: Player12 (5693 in chips) 
+Seat 7: Player13 (1891 in chips) 
+Seat 8: Player14 (1051 in chips) 
+Seat 9: Player15 (2895 in chips) 
+Hero: posts the ante 5
+Player8: posts the ante 5
+Player9: posts the ante 5
+Player10: posts the ante 5
+Player11: posts the ante 5
+Player12: posts the ante 5
+Player13: posts the ante 5
+Player14: posts the ante 5
+Player15: posts the ante 5
+Player10: posts small blind 30
+Player11: posts big blind 60
+*** HOLE CARDS ***
+Dealt to Hero [Js Ad]
+Player12: folds 
+Player13: folds 
+Player14: folds 
+Player15: folds 
+Hero: raises 60 to 120
+Player8: folds 
+Player9: calls 120
+Player10: calls 90
+Player11: folds 
+*** FLOP *** [Ks Td Jc]
+Player10: checks 
+Hero: checks 
+Player9: checks 
+*** TURN *** [Ks Td Jc] [8d]
+Player10: checks 
+Hero: checks 
+Player9: checks 
+*** RIVER *** [Ks Td Jc 8d] [Kd]
+Player10: checks 
+Hero: checks 
+Player9: checks 
+*** SHOW DOWN ***
+Player10: shows [2c Ah] (a pair of Kings)
+Hero: shows [Js Ad] (two pair, Kings and Jacks)
+Player9: mucks hand 
+Hero collected 465 from pot
+*** SUMMARY ***
+Total pot 465 | Rake 0 
+Board [Ks Td Jc 8d Kd]
+Seat 1: Hero showed [Js Ad] and won (465) with two pair, Kings and Jacks
+Seat 2: Player8 folded before Flop (didn't bet)
+Seat 3: Player9 (button) mucked [7d As]
+Seat 4: Player10 (small blind) showed [2c Ah] and lost with a pair of Kings
+Seat 5: Player11 (big blind) folded before Flop
+Seat 6: Player12 folded before Flop (didn't bet)
+Seat 7: Player13 folded before Flop (didn't bet)
+Seat 8: Player14 folded before Flop (didn't bet)
+Seat 9: Player15 folded before Flop (didn't bet)
+
+
+PokerStars Game #72053479894: Tournament #551010531, $20+$2 USD Hold'em No Limit - Level IV (50/100) - 2011/12/12 12:12:10 PT [2011/12/12 15:12:10 ET]
+Table '551010531 25' 9-max Seat #3 is the button
+Seat 1: Player16 (6350 in chips) 
+Seat 2: Player17 (4025 in chips) 
+Seat 3: Player18 (10648 in chips) 
+Seat 4: Player19 (4383 in chips) 
+Seat 5: Player20 (2809 in chips) 
+Seat 6: Hero (8110 in chips) 
+Seat 7: Player21 (12150 in chips) 
+Seat 8: Player22 (8055 in chips) 
+Seat 9: Player23 (6000 in chips) 
+Player19: posts small blind 50
+Player20: posts big blind 100
+*** HOLE CARDS ***
+Dealt to Hero [7s Kc]
+Hero: folds 
+Player21: folds 
+Player22: folds 
+Player23: folds 
+Player16: folds 
+Player17: folds 
+Player18: folds 
+Player19: folds 
+Uncalled bet (50) returned to Player20
+Player20 collected 100 from pot
+*** SUMMARY ***
+Total pot 100 | Rake 0 
+Seat 1: Player16 folded before Flop (didn't bet)
+Seat 2: Player17 folded before Flop (didn't bet)
+Seat 3: Player18 (button) folded before Flop (didn't bet)
+Seat 4: Player19 (small blind) folded before Flop
+Seat 5: Player20 (big blind) collected (100)
+Seat 6: Hero folded before Flop (didn't bet)
+Seat 7: Player21 folded before Flop (didn't bet)
+Seat 8: Player22 folded before Flop (didn't bet)
+Seat 9: Player23 folded before Flop (didn't bet)
+
+
+PokerStars Game #72049767821: Tournament #551010531, $20+$2 USD Hold'em No Limit - Level I (10/20) - 2011/12/12 11:15:39 PT [2011/12/12 14:15:39 ET]
+Table '551010531 25' 9-max Seat #2 is the button
+Seat 1: Player24 (3000 in chips) 
+Seat 2: Player17 (5990 in chips) 
+Seat 3: Player25 (5980 in chips) 
+Seat 4: Player26 (3000 in chips) 
+Seat 5: Player27 (6000 in chips) 
+Seat 6: Hero (6030 in chips) 
+Seat 7: Player28 (6000 in chips) 
+Seat 8: Player22 (6000 in chips) 
+Seat 9: Player29 (3000 in chips) 
+Player25: posts small blind 10
+Player26: posts big blind 20
+*** HOLE CARDS ***
+Dealt to Hero [4c 7h]
+Player27: folds 
+Hero: folds 
+Player28: folds 
+Player22: folds 
+Player29: raises 40 to 60
+Player24: folds 
+Player17: folds 
+Player25: folds 
+Player26: calls 40
+*** FLOP *** [3h 2s Jd]
+Player26: bets 100
+Player29: folds 
+Uncalled bet (100) returned to Player26
+Player26 collected 130 from pot
+Player26: doesn't show hand 
+*** SUMMARY ***
+Total pot 130 | Rake 0 
+Board [3h 2s Jd]
+Seat 1: Player24 folded before Flop (didn't bet)
+Seat 2: Player17 (button) folded before Flop (didn't bet)
+Seat 3: Player25 (small blind) folded before Flop
+Seat 4: Player26 (big blind) collected (130)
+Seat 5: Player27 folded before Flop (didn't bet)
+Seat 6: Hero folded before Flop (didn't bet)
+Seat 7: Player28 folded before Flop (didn't bet)
+Seat 8: Player22 folded before Flop (didn't bet)
+Seat 9: Player29 folded on the Flop

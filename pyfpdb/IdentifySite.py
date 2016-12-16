@@ -34,9 +34,10 @@ except:
 # logging has been set up in fpdb.py or HUD_main.py, use their settings:
 log = logging.getLogger("parser")
 
-re_SplitArchive, re_XLS  = {}, {}
-re_SplitArchive['PokerStars'] = re.compile(r'(?P<DIVIDER>^Hand #(\d+)\s*$)', re.MULTILINE)
-re_SplitArchive['Fulltilt'] = re.compile(r'(?P<DIVIDER>(\*{20}\s#\s\d+\s\*{20,25}\s?))|((?P<HEAD>(BEGIN)?\n)?FullTiltPoker.+\n\nSeat)', re.MULTILINE)
+re_Divider, re_Head, re_XLS  = {}, {}, {}
+re_Divider['PokerStars'] = re.compile(r'^Hand #(\d+)\s*$', re.MULTILINE)
+re_Divider['Fulltilt'] = re.compile(r'\*{20}\s#\s\d+\s\*{15,25}\s?', re.MULTILINE)
+re_Head['Fulltilt'] = re.compile(r'^((BEGIN)?\n)?FullTiltPoker.+\n\nSeat', re.MULTILINE)
 re_XLS['PokerStars'] = re.compile(r'Tournaments\splayed\sby\s\'.+?\'')
 re_XLS['Fulltilt'] = re.compile(r'Player\sTournament\sReport\sfor\s.+?\s\(.*\)')
 
@@ -113,7 +114,7 @@ class Site:
 class IdentifySite:
     def __init__(self, config, hhcs = None):
         self.config = config
-        self.codepage = ("utf8", "utf-16", "cp1252")
+        self.codepage = ("utf8", "utf-16", "cp1252", "ISO-8859-1")
         self.sitelist = {}
         self.filelist = {}
         self.generateSiteList(hhcs)
@@ -150,7 +151,7 @@ class IdentifySite:
             try:
                 self.sitelist[obj.siteId] = Site(site, filter, filter_name, summary, obj)
             except Exception as e:
-                log.warning("Failed to load HH importer: %s.  %s" % (filter_name, e))
+                log.error("Failed to load HH importer: %s.  %s" % (filter_name, e))
         self.re_Identify_PT = getattr(__import__("PokerTrackerToFpdb"), "PokerTracker", None).re_Identify
         self.re_SumIdentify_PT = getattr(__import__("PokerTrackerSummary"), "PokerTrackerSummary", None).re_Identify
 
@@ -174,7 +175,7 @@ class IdentifySite:
         if path not in self.filelist:
             whole_file, kodec = self.read_file(path)
             if whole_file:
-                fobj = self.idSite(path, whole_file[:5000], kodec)
+                fobj = self.idSite(path, whole_file, kodec)
                 if fobj == False: # Site id failed
                     log.debug(_("DEBUG:") + " " + _("siteId Failed for: %s") % path)
                 else:
@@ -182,10 +183,13 @@ class IdentifySite:
 
     def read_file(self, in_path):
         if in_path.endswith('.xls') or in_path.endswith('.xlsx') and xlrd:
-            wb = xlrd.open_workbook(in_path)
-            sh = wb.sheet_by_index(0)
-            header = sh.cell(0,0).value
-            return header, 'utf-8'
+            try:
+                wb = xlrd.open_workbook(in_path)
+                sh = wb.sheet_by_index(0)
+                header = sh.cell(0,0).value
+                return header, 'utf-8'
+            except xlrd.XLRDError:
+                return None, None
         for kodec in self.codepage:
             try:
                 infile = codecs.open(in_path, 'r', kodec)
@@ -202,20 +206,20 @@ class IdentifySite:
         f.kodec = kodec
         for id, site in self.sitelist.iteritems():
             filter_name = site.filter_name
-            m = site.re_Identify.search(whole_file)
+            m = site.re_Identify.search(whole_file[:5000])
             if m and filter_name in ('Fulltilt', 'PokerStars'):
-                m1 = re_SplitArchive[filter_name].search(whole_file.replace('\r\n', '\n'))
+                m1 = re_Divider[filter_name].search(whole_file.replace('\r\n', '\n'))
                 if m1:
                     f.archive = True
-                    if 'DIVIDER' in m1.groupdict() and m1.group('DIVIDER'):
-                        f.archiveDivider = True  
-                    if 'HEAD' in m1.groupdict() and m1.group('HEAD'):
-                        f.archiveHead = True   
+                    f.archiveDivider = True
+                elif re_Head.get(filter_name) and re_Head[filter_name].match(whole_file[:5000].replace('\r\n', '\n')):
+                    f.archive = True
+                    f.archiveHead = True
             if m:
                 f.site = site
                 f.ftype = "hh"
                 if f.site.re_HeroCards:
-                    h = f.site.re_HeroCards.search(whole_file)
+                    h = f.site.re_HeroCards.search(whole_file[:5000])
                     if h and 'PNAME' in h.groupdict():
                         f.hero = h.group('PNAME')
                 else:
@@ -227,19 +231,19 @@ class IdentifySite:
                 if path.endswith('.xls') or path.endswith('.xlsx'):
                     filter_name = site.filter_name
                     if filter_name in ('Fulltilt', 'PokerStars'):
-                        m2 = re_XLS[filter_name].search(whole_file)
+                        m2 = re_XLS[filter_name].search(whole_file[:5000])
                         if m2:
                             f.site = site
                             f.ftype = "summary"
                             return f
                 else:
-                    m3 = site.re_SumIdentify.search(whole_file)
+                    m3 = site.re_SumIdentify.search(whole_file[:5000])
                     if m3:
                         f.site = site
                         f.ftype = "summary"
                         return f
                 
-        m1 = self.re_Identify_PT.search(whole_file)
+        m1 = self.re_Identify_PT.search(whole_file[:5000])
         m2 = self.re_SumIdentify_PT.search(whole_file[:100])
         if m1 or m2:
             filter = 'PokerTrackerToFpdb'
@@ -260,11 +264,11 @@ class IdentifySite:
                     f.site.line_delimiter = None
                     f.site.spaces = True
                     f.site.re_SplitHands = re.compile(u'GAME\s\#')
-                m3 = f.site.re_HeroCards1.search(whole_file)
+                m3 = f.site.re_HeroCards1.search(whole_file[:5000])
                 if m3:
                     f.hero = m3.group('PNAME')
                 else:
-                     m4 = f.site.re_HeroCards2.search(whole_file)
+                     m4 = f.site.re_HeroCards2.search(whole_file[:5000])
                      if m4:
                          f.hero = m4.group('PNAME')
             else:

@@ -1,0 +1,26 @@
+----PRIMA.DAT----
+
+<Game hhversion="5" id="5905016440" date="2016-02-10 17:37:42" unicodetablename="SwBlAGwAcwBpACAALQAgAKwgMQBLACAATQBhAHgA" tablename="Kelsi - €1K Max" stakes="5|10" betlimit="PL" tabletype="Cash Game" unicodetabletype="QwBhAHMAaAAgAEcAYQBtAGUA" gametypeid="50" gametype="Omaha" realmoney="true" currencysymbol="rCA=" playerseat="0" betamount="0" istournament="0" totalplayers="6" tablesize="6" badbeat="false" currencyId="26" rake="0">
+<Seats>
+<Seat num="1" alias="Player0" unicodealias="SgB1AGwAawBsAGEAcABwAGUAbgA=" balance="1265.00" endbalance="1280.00" />
+<Seat num="2" alias="Player1" unicodealias="VgBlAGcAYQBzAEEAcAByAGkAbAA=" balance="2443.75" endbalance="2443.75" dealer="true" />
+<Seat num="3" alias="Player2" unicodealias="WABTAGEAcwBoAGEARwByAGUAagBYAA==" balance="1102.00" endbalance="1097.00" />
+<Seat num="4" alias="Player3" unicodealias="SABVAE8AVgBJAEwAQQBOAEoATwBQAEUA" balance="1473.00" endbalance="1473.00" sittingout="true" />
+<Seat num="5" alias="Player4" unicodealias="SgBlAG4AaQBmAGYAZQByADEAMgAzAA==" balance="893.50" endbalance="893.50" sittingout="true" />
+<Seat num="6" alias="Player5" unicodealias="RAByAGEAdwBpAG4AZwB0AGgAaQBuAGwAaQB2AGUA" balance="1155.75" endbalance="1145.75" />
+</Seats>
+<Gameplay>
+<Action seq="1" type="SmallBlind" seat="3" value="5.00" />
+<Action seq="2" type="BigBlind" seat="6" value="10.00" />
+<Action seq="3" type="PostedToPlay" seat="1" value="10.00" />
+<Action seq="4" type="Bet" seat="1" value="25.00" />
+<Action seq="5" type="Fold" seat="2" />
+<Action seq="6" type="Fold" seat="3" />
+<Action seq="7" type="Fold" seat="6" />
+<Action seq="8" type="MuckCards" seat="1" />
+<Action type="Win">
+<Seat num="1" amount="50.00" pot="0" type="" lowhandwin="0" />
+</Action>
+</Gameplay>
+</Game>
+ExtendedTableName: Kelsi - €1K Max

@@ -1,0 +1,15 @@
+PokerTracker 4 Tournament Summary
+Site: PokerStars
+Game: Holdem
+Tournament #: 1673283090
+Started: 2016/09/18 09:48:12
+Finished: 2016/09/18 09:58:34
+Buyin: P870.00
+Fee: P130.00
+Prize Pool: P0.00
+Table Type: MTT (2 max) Turbo REBUY SATELLITE
+Tourney Type: No Limit
+Players: 2
+
+Place: 1, Player: PippoBond007, Won: P1,740.00, Satellite: true,
+Place: 2, Player: markvor, Won: P0.00,

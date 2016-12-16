@@ -47,6 +47,7 @@ class GuiBulkImport(QWidget):
         stored = None
         dups = None
         partial = None
+        skipped = None
         errs = None
         ttime = None
         # Does the lock acquisition need to be more sophisticated for multiple dirs?
@@ -66,14 +67,14 @@ class GuiBulkImport(QWidget):
                 
                 starttime = time()
 
-                (stored, dups, partial, errs, ttime) = self.importer.runImport()
+                (stored, dups, partial, skipped, errs, ttime) = self.importer.runImport()
 
                 ttime = time() - starttime
                 if ttime == 0:
                     ttime = 1
                     
-                completionMessage = _('Bulk import done: Stored: %d, Duplicates: %d, Partial: %d, Errors: %d, Time: %s seconds, Stored/second: %.0f')\
-                    % (stored, dups, partial, errs, ttime, (stored+0.0) / ttime)
+                completionMessage = _('Bulk import done: Stored: %d, Duplicates: %d, Partial: %d, Skipped: %d, Errors: %d, Time: %s seconds, Stored/second: %.0f')\
+                    % (stored, dups, partial, skipped, errs, ttime, (stored+0.0) / ttime)
                 print completionMessage
                 log.info(completionMessage)
 

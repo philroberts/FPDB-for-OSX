@@ -1,0 +1,17 @@
+***** Hand History for Game 14978808642 *****
+$200 USD PL Omaha Hi-Lo - Monday, January 04, 13:33:15 EST 2016
+Table Cairo (Real Money)
+Seat 5 is the button
+Total number of players : 3/6 
+Seat 4: Jack0340 ( $60 USD )
+Seat 3: Player3 ( $657.64 USD )
+Seat 5: Player5 ( $259.22 USD )
+Player3 posts small blind [$1 USD].
+Jack0340 posts big blind [$2 USD].
+** Dealing down cards **
+Dealt to Jack0340 [  5h Td Ac Qs ]
+holdem_AA folds
+playclever99 folds
+Jack0340 does not show cards.
+Jack0340 wins $3 USD
+

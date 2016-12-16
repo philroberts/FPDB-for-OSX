@@ -37,7 +37,7 @@ class BovadaSummary(TourneySummary):
                         }
     codepage = ("utf8", "cp1252")
     
-    re_Identify = re.compile(u'(Bovada|Bodog(\sUK|\sCanada|88)?)\sHand')
+    re_Identify = re.compile(u'(Ignition|Bovada|Bodog(\sUK|\sCanada|88)?)\sHand')
     re_AddOn = re.compile(r"^%(PLYR)s  ?\[ME\] : Addon (?P<ADDON>[%(NUM)s]+)" % substitutions, re.MULTILINE)
     re_Rebuyin = re.compile(r"%(PLYR)s  ?\[ME\] : Rebuyin (?P<REBUY>[%(NUM)s]+)" % substitutions, re.MULTILINE)
     re_Ranking = re.compile(r"%(PLYR)s  ?\[ME\] : Ranking (?P<RANK>[%(NUM)s]+)" % substitutions, re.MULTILINE)

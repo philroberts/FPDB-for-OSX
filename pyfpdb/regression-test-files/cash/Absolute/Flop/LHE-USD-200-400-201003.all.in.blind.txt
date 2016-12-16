@@ -1,0 +1,28 @@
+Stage #1968055293: Holdem  Normal $200/$400 - 2010-03-24 00:50:15 (ET)
+Table: JAPAN HWY (Real Money) Seat #3 is the dealer
+Seat 3 - Hero ($17,202 in chips)
+Seat 4 - Player0 ($40,442 in chips)
+Seat 1 - Player1 ($191.27 in chips)
+Seat 2 - Player2 ($10,016 in chips)
+Player0 - Posts small blind $100
+Player1 - All-In $191.27
+*** POCKET CARDS ***
+Dealt to Hero [Qh 7d] 
+Player2 - Raises $400 to $400
+Hero - Folds
+Player0 - Folds
+Player2 - returned ($208.73) : not called
+*** FLOP *** [5d 3c 9d]
+*** TURN *** [5d 3c 9d] [8d]
+*** RIVER *** [5d 3c 9d 8d] [7s]
+*** SHOW DOWN ***
+Player1 - Shows [9h 6d] (Straight, five to nine) 
+Player2 - Shows [7h Kc] (One pair, sevens) 
+Player1 Collects $478.54 from main pot
+*** SUMMARY ***
+Total Pot($482.54) | Rake ($4)
+Board [5d 3c 9d 8d 7s]
+Seat 1: Player1 (big blind) won Total ($478.54) All-In HI:($478.54) with Straight, five to nine [9h 6d - P:9h,B:8d,B:7s,P:6d,B:5d] 
+Seat 2: Player2 HI:lost with One pair, sevens [7h Kc - B:7s,P:7h,P:Kc,B:9d,B:8d] 
+Seat 3: Hero (dealer) Folded on the POCKET CARDS
+Seat 4: Player0 (small blind) Folded on the POCKET CARDS

@@ -1,0 +1,53 @@
+#Game No : 873818904
+***** 888poker Hand History for Game 873818904 *****
+25 $/50 $ Blinds Pot Limit Omaha - *** 21 04 2016 16:34:37
+Table Kumanovo 6 Max (Real Money)
+Seat 4 is the button
+Total number of players : 2
+Seat 4: Player0 ( 5 000 $ )
+Seat 9: Hero ( 6 497 $ )
+Player0 posts small blind [25 $]
+Hero posts big blind [50 $]
+** Dealing down cards **
+Dealt to Hero [ Tc, Knh, 9h, 9c ]
+Player0 raises [125 $]
+Hero raises [400 $]
+Player0 calls [300 $]
+** Dealing flop ** [ 3s, 9d, Ts ]
+Hero checks
+Player0 checks
+** Dealing turn ** [ Dd ]
+Hero bets [675 $]
+Player0 calls [675 $]
+** Dealing river ** [ 3c ]
+Hero bets [2 250 $]
+Player0 calls [2 250 $]
+** Summary **
+Hero shows [ Tc, Knh, 9h, 9c ]
+Player0 mucks [ Ec, Knd, 4c, Kh ]
+Hero collected [ 6 749 $ ]
+
+
+
+#Game No : 873819368
+***** 888poker Hand History for Game 873819368 *****
+25 $/50 $ Blinds Pot Limit Omaha - *** 21 04 2016 16:35:46
+Table Kumanovo 6 Max (Real Money)
+Seat 9 is the button
+Total number of players : 2
+Seat 4: Player0 ( 1 625 $ )
+Seat 9: Hero ( 9 871 $ )
+Hero posts small blind [25 $]
+Player0 posts big blind [50 $]
+** Dealing down cards **
+Dealt to Hero [ Dd, Eh, 4d, 8h ]
+Hero raises [125 $]
+Player0 raises [400 $]
+Hero calls [300 $]
+** Dealing flop ** [ 6h, Kns, 7s ]
+Player0 bets [900 $]
+Hero folds
+** Summary **
+Player0 did not show his hand
+Player0 collected [ 899 $ ]
+

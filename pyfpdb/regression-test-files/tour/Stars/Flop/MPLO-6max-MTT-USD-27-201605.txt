@@ -1,0 +1,62 @@
+PokerStars Hand #153368666353: Zoom Tournament #1537004521, $24.55+$2.45 USD Mixed Omaha (5 Card Omaha Pot Limit) - Level II (15/30) - 2016/05/16 0:09:38 EET [2016/05/15 17:09:38 ET]
+Table '1537004521 159' 6-max Seat #1 is the button
+Seat 1: Player0 (3782 in chips) 
+Seat 2: Hero (10060 in chips) 
+Seat 3: Player1 (9340 in chips) 
+Seat 4: Player2 (12028 in chips) 
+Seat 5: Player3 (8958 in chips) 
+Seat 6: Player4 (9513 in chips) 
+Hero: posts small blind 15
+Player1: posts big blind 30
+*** HOLE CARDS ***
+Dealt to Hero [7d 5c Ah Js 6s]
+Player2: folds 
+Player3: folds 
+Player4: folds 
+Player0: raises 75 to 105
+Hero: folds 
+Player1: folds 
+Uncalled bet (75) returned to Player0
+Player0 collected 75 from pot
+Player0: doesn't show hand 
+*** SUMMARY ***
+Total pot 75 | Rake 0 
+Seat 1: Player0 (button) collected (75)
+Seat 2: Hero (small blind) folded before Flop
+Seat 3: Player1 (big blind) folded before Flop
+Seat 4: Player2 folded before Flop (didn't bet)
+Seat 5: Player3 folded before Flop (didn't bet)
+Seat 6: Player4 folded before Flop (didn't bet)
+
+
+
+PokerStars Hand #153368694602: Zoom Tournament #1537004521, $24.55+$2.45 USD Mixed Omaha (Omaha Pot Limit) - Level III (20/40) - 2016/05/16 0:10:07 EET [2016/05/15 17:10:07 ET]
+Table '1537004521 55' 6-max Seat #1 is the button
+Seat 1: Hero (10045 in chips) 
+Seat 2: Player5 (9833 in chips) 
+Seat 3: Player6 (1725 in chips) 
+Seat 4: Player7 (14090 in chips) 
+Seat 5: Player8 (8310 in chips) 
+Seat 6: Player9 (10594 in chips) 
+Player5: posts small blind 20
+Player6: posts big blind 40
+*** HOLE CARDS ***
+Dealt to Hero [6h As Qd Qc]
+Player7: folds 
+Player8: folds 
+Player9: folds 
+Hero: raises 80 to 120
+Player5: folds 
+Player6: folds 
+Uncalled bet (80) returned to Hero
+Hero collected 100 from pot
+Hero: doesn't show hand 
+*** SUMMARY ***
+Total pot 100 | Rake 0 
+Seat 1: Hero (button) collected (100)
+Seat 2: Player5 (small blind) folded before Flop
+Seat 3: Player6 (big blind) folded before Flop
+Seat 4: Player7 folded before Flop (didn't bet)
+Seat 5: Player8 folded before Flop (didn't bet)
+Seat 6: Player9 folded before Flop (didn't bet)
+

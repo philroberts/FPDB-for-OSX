@@ -1,0 +1,67 @@
+Bovada Hand #3178646516 TBL#10189567 HOLDEM No Limit - 2015-11-23 17:24:20
+Seat 1: Dealer [ME] ($985 in chips)
+Seat 2: Small Blind ($1,808.75 in chips)
+Seat 3: Big Blind ($1,025 in chips)
+Seat 4: UTG ($1,222 in chips)
+Seat 5: UTG+1 ($1,467.05 in chips)
+Seat 6: UTG+2 ($837 in chips)
+Dealer  [ME] : Set dealer/Bring in spot [1] 
+Small Blind : Ante/Small Blind $5 
+Big Blind : Big blind/Bring in $10 
+*** HOLE CARDS ***
+Dealer  [ME] : Card dealt to a spot [7d Ad] 
+Small Blind : Card dealt to a spot [Ts Ks] 
+Big Blind : Card dealt to a spot [6s 6c] 
+UTG : Card dealt to a spot [9d Kh] 
+UTG+1 : Card dealt to a spot [3h 9h] 
+UTG+2 : Card dealt to a spot [8s 3d] 
+UTG : Folds
+UTG+1 : Folds
+UTG+2 : Folds
+Dealer  [ME] : Raises $20 to $20
+UTG+2 : Table deposit $86.20 
+Small Blind : Raises $55 to $60
+Big Blind : Folds
+Dealer  [ME] : Calls $40 
+*** FLOP *** [Js 5s 8d]
+Small Blind : Bets $100 
+Dealer  [ME] : Folds
+Small Blind : Return uncalled portion of bet $100 
+Small Blind : Does not show [Ts Ks] (High Card)
+Small Blind : Hand result $127 
+*** SUMMARY ***
+Total Pot($130)
+Board [Js 5s 8d  ]
+Seat+1: Dealer Folded on the FLOP
+Seat+2: Small Blind $127 [75 in chips)
+Seat 4: UTG+1 ($1,222 in chips)
+Seat 5: Dealer ($1,437.05 in chips)
+Seat 6: Small Blind ($913.20 in chips)
+Dealer : Set dealer/Bring in spot [5] 
+Small Blind : Ante/Small Blind $5 
+Big Blind  [ME] : Big blind/Bring in $10 
+*** HOLE CARDS ***
+Big Blind  [ME] : Card dealt to a spot [3s Jd] 
+UTG : Card dealt to a spot [4d 3c] 
+UTG+1 : Card dealt to a spot [6c 8s] 
+Dealer : Card dealt to a spot [2c Ah] 
+Small Blind : Card dealt to a spot [4s Ac] 
+UTG : Folds
+UTG+1 : Raises $30 to $30
+UTG : Seat stand
+UTG : Table leave user
+Dealer : Folds
+Small Blind : Raises $105 to $110
+Table enter user
+Big Blind  [ME] : Folds
+UTG+1 : Folds
+Small Blind : Return uncalled portion of bet $80 
+Small Blind : Does not show [4s Ac] (High Card)
+Small Blind : Hand result $70 
+*** SUMMARY ***
+Total Pot($70)
+Seat+1: Big Blind Folded before the FLOP
+Seat+2: UTG Folded before the FLOP
+Seat+4: UTG+1 Folded before the FLOP
+Seat+5: Dealer Folded before the FLOP
+Seat+6: Small Blind $70 [Does not show]  

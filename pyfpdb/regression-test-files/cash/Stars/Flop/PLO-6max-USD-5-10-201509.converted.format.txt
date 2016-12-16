@@ -1,0 +1,43 @@
+PokerStars Hand #3115869696: Omaha Pot Limit ($5/$10) - 2015/08/16 11:30:49
+Table '#69924717' 6-max Seat #3 is the button
+Seat 1: PLR_8776433RL ($989.74 in chips)
+Seat 2: PLR_6438005HF ($1,492.66 in chips)
+Seat 3: PLR_4409555EF ($1,024.50 in chips)
+Seat 4: bodogJS ($1,077.20 in chips)
+Seat 5: PLR_4509439ZS ($528.42 in chips)
+bodogJS: posts small blind $5
+PLR_4509439ZS: posts big blind $10
+*** HOLE CARDS ***
+Dealt to bodogJS [6d 3c 5s 3d]
+PLR_8776433RL: folds
+Table leave user
+PLR_6438005HF: folds
+PLR_4409555EF: raises $30 to $30
+bodogJS: calls $25 
+PLR_4509439ZS: calls $20 
+*** FLOP *** [8h 7h 4d]
+bodogJS: checks
+PLR_4509439ZS: bets $90 
+PLR_4409555EF: folds
+bodogJS: calls $90 
+*** TURN *** [8h 7h 4d] [As]
+bodogJS: checks
+PLR_4509439ZS: bets $135 
+bodogJS: raises $675 to $675
+PLR_4509439ZS: calls $273.42 and is all-in
+*** RIVER *** [8h 7h 4d As] [9d]
+*** SHOW DOWN ***
+bodogJS: shows [6d 3c 5s 3d] (a straight, Nine to Six)
+PLR_4509439ZS: shows [7s 6h Td 9c] (a straight, Nine to Six)
+Uncalled bet ($266.58) returned to bodogJS
+PLR_4509439ZS collected $1084.84 from pot
+*** SUMMARY ***
+Total pot $1086.84 | Rake $2.00
+Board [8h 7h 4d As 9d]
+Seat 1: PLR_8776433RL mucked [Kh Jh 5d 7d]
+Seat 2: PLR_6438005HF mucked [Jd Ks 3s 7c]
+Seat 3: PLR_4409555EF (button) mucked [Qc Kc 9h Ac]
+Seat 4: bodogJS (small blind) showed [6d 3c 5s 3d] and lost with a straight, Nine to Six
+Seat 5: PLR_4509439ZS (big blind) showed [7s 6h Td 9c] and won ($1084.84) with a straight, Nine to Six
+
+

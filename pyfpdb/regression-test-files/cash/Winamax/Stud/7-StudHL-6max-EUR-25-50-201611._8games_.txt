@@ -1,0 +1,40 @@
+Winamax Poker - CashGame - HandId: #9250793-554-1478991850 - 7-Card Stud Hi/Lo fixed limit (5€/25€/50€) - 2016/11/12 23:04:10 UTC
+Table: 'Pampelune' 6-max (real money) 
+Seat 1: Hero (2026.03€)
+Seat 2: Player0 (572€)
+*** ANTE/BLINDS ***
+Hero posts ante 5€
+Player0 posts ante 5€
+*** 3rd STREET ***
+Dealt to Hero [8c Tc 7c]
+Dealt to Player0 [X X 8h]
+Hero brings in 10€
+Player0 calls 10€
+*** 4th STREET ***
+Dealt to Player0 [X X 8h] [Ks]
+Dealt to Hero [8c Tc 7c] [2d]
+Player0 checks
+Hero bets 25€
+Player0 calls 25€
+*** 5th STREET ***
+Dealt to Player0 [X X 8h Ks] [As]
+Dealt to Hero [8c Tc 7c 2d] [Kc]
+Player0 checks
+Hero bets 50€
+Player0 calls 50€
+*** 6th STREET ***
+Dealt to Player0 [X X 8h Ks As] [5h]
+Dealt to Hero [8c Tc 7c 2d Kc] [Qh]
+Player0 checks
+Hero checks
+*** 7th STREET ***
+Dealt to Player0 [X X 8h Ks As 5h] [X]
+Dealt to Hero [8c Tc 7c 2d Kc Qh] [3h]
+Player0 bets 50€
+Hero folds
+Player0 collected 114€ from pot(HI)
+Player0 collected 114€ from pot(LO)
+*** SUMMARY ***
+Total pot 228€ | Rake 2€
+Seat 2: Player0 won 114€
+Seat 2: Player0 won 114€

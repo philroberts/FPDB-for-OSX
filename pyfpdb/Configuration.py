@@ -603,6 +603,10 @@ class Import:
             self.importFilters = node.getAttribute("importFilters").split(",")
         else:
             self.importFilters = []
+        if node.getAttribute("timezone"):
+            self.timezone = node.getAttribute("timezone")
+        else:
+            self.timezone = "America/New_York"
 
     def __str__(self):
         return "    interval = %s\n    callFpdbHud = %s\n    saveActions = %s\n   cacheSessions = %s\n    publicDB = %s\n    sessionTimeout = %s\n    fastStoreHudCache = %s\n    ResultsDirectory = %s" \
@@ -1466,7 +1470,13 @@ class Config:
         try:    imp['importFilters'] = self.imp.importFilters
         except:  imp['importFilters'] = []
 
+        try:    imp['timezone'] = self.imp.timezone
+        except:  imp['timezone'] = "America/New_York"
+
         return imp
+    
+    def set_timezone(self, timezone):
+        self.imp.timezone = timezone
 
     def get_default_paths(self, site = None):
         if site is None: site = self.getDefaultSite()

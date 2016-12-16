@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<session sessioncode="6578643322">
+ <general>
+  <mode>real</mode>
+  <gametype>Omaha PL €0.10/€0.20</gametype>
+  <tablename>Besenzone, 817754657</tablename>
+  <tablecurrency>EUR</tablecurrency>
+  <duration>00:23:43</duration>
+  <gamecount>25</gamecount>
+  <startdate>2016-04-25 01:37:39</startdate>
+  <currency>CAD</currency>
+  <nickname>Hero</nickname>
+  <bets>€60.90</bets>
+  <wins>€91.25</wins>
+  <chipsin>€19.80</chipsin>
+  <chipsout>€51.35</chipsout>
+  <statuspoints>0.53</statuspoints>
+  <awardpoints>0.53</awardpoints>
+  <ipoints>0.53</ipoints>
+ </general>
+ <game gamecode="7044721647">
+  <general>
+   <startdate>2016-04-25 01:52:09</startdate>
+   <players>
+    <player dealer="0" bet="€0" seat="1" win="€0" name="Player0" chips="€21.27"/>
+    <player dealer="0" bet="€0" seat="3" win="€0" name="Player1" chips="€55.38"/>
+    <player dealer="1" bet="€16.90" seat="6" win="€25.76" name="Hero" chips="€37.13"/>
+    <player dealer="0" bet="€0.70" seat="8" win="€0" name="Player2" chips="€17.58"/>
+    <player dealer="0" bet="€9.10" seat="10" win="€0" name="Player3" chips="€34.31"/>
+   </players>
+  </general>
+  <round no="0">
+   <action no="1" type="1" sum="€0.10" player="Player2" cards=""/>
+   <action no="2" type="2" sum="€0.20" player="Player3" cards=""/>
+  </round>
+  <round no="1">
+   <cards type="Pocket" player="Player0">X X X X</cards>
+   <action no="3" type="0" sum="€0" player="Player0" cards=""/>
+   <cards type="Pocket" player="Player1">X X X X</cards>
+   <action no="4" type="0" sum="€0" player="Player1" cards=""/>
+   <cards type="Pocket" player="Hero">S8 HK C6 C8</cards>
+   <action no="5" type="23" sum="€0.70" player="Hero" cards=""/>
+   <cards type="Pocket" player="Player2">X X X X</cards>
+   <action no="6" type="3" sum="€0.60" player="Player2" cards=""/>
+   <cards type="Pocket" player="Player3">X X X X</cards>
+   <action no="7" type="3" sum="€0.50" player="Player3" cards=""/>
+  </round>
+  <round no="2">
+   <cards type="Flop" player="">C7 D10 S4 </cards>
+   <action no="8" type="4" sum="€0" player="Player2" cards=""/>
+   <action no="9" type="4" sum="€0" player="Player3" cards=""/>
+   <action no="10" type="4" sum="€0" player="Hero" cards=""/>
+  </round>
+  <round no="3">
+   <cards type="Turn" player="">C5</cards>
+   <action no="11" type="4" sum="€0" player="Player2" cards=""/>
+   <action no="12" type="5" sum="€2.10" player="Player3" cards=""/>
+   <action no="13" type="23" sum="€8.40" player="Hero" cards=""/>
+   <action no="14" type="0" sum="€0" player="Player2" cards=""/>
+   <action no="15" type="3" sum="€6.30" player="Player3" cards=""/>
+  </round>
+  <round no="4">
+   <cards type="River" player="">DA</cards>
+   <action no="16" type="4" sum="€0" player="Player3" cards=""/>
+   <action no="17" type="5" sum="€7.80" player="Hero" cards=""/>
+   <action no="18" type="0" sum="€0" player="Player3" cards=""/>
+  </round>
+ </game>

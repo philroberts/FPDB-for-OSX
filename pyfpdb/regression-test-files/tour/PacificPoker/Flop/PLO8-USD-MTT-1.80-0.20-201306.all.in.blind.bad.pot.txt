@@ -1,0 +1,39 @@
+#Game No : 489318468
+***** Cassava Hand History for Game 489318468 *****
+$125/$250 Blinds Pot Limit OmahaHL - *** 16 06 2013 13:52:20
+Tournament #48749889 $1.80 + $0.20 - Table #19 (Real Money)
+Seat 8 is the button
+Total number of players : 6
+Seat 1: Player0 ( $58 )
+Seat 3: Player1 ( $2,000 )
+Seat 5: Player2 ( $2,600 )
+Seat 6: Player3 ( $2,000 )
+Seat 7: Player4 ( $4,000 )
+Seat 8: Player5 ( $2,000 )
+Player0 posts small blind [$58]
+Player1 posts big blind [$250]
+** Dealing down cards **
+Player2 folds
+Player3 folds
+Player4 calls [$250]
+Player5 calls [$250]
+Player1 checks
+** Dealing flop ** [ 7s, 3h, Kh ]
+Player1 checks
+Player4 checks
+Player5 checks
+** Dealing turn ** [ Ah ]
+Player1 checks
+Player4 bets [$500]
+Player5 folds
+Player1 folds
+** Dealing river ** [ 5c ]
+** Summary **
+Player0 shows [ 8c, 2d, 2s, 4h ]
+(Hi: 2s, 3h, 4h, 5c, Ah)
+(Lo: 2s, 3h, 4h, 5c, Ah)
+Player4 shows [ 8d, Js, Kd, As ]
+Player0 collected [ $116 ]
+Player0 collected [ $116 ]
+Player4 collected [ $38 ]
+Player4 collected [ $38 ]

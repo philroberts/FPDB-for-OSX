@@ -1,0 +1,61 @@
+BetOnline Poker Game #1606125823: Hold'em No Limit ($0.01/0.02) - 2016/05/04 10:36:39 Eastern Daylight Time
+Table '24' 10-Max, Seat #4 is the button
+Seat 4: Player0 (0.63 in chips) - The button
+Seat 2: Player1 (4.33 in chips)
+Seat 0: Hero (2.16 in chips)
+Seat 1: Player2 (1.78 in chips)
+Seat 3: Player3 (1.63 in chips)
+Seat 6: Player4 (1.93 in chips) - Big Blind
+Seat 9: Player5 (1.52 in chips)
+Seat 7: Player6 (0.85 in chips)
+Seat 8: Player7 (1.72 in chips) - Sitting out
+Seat 5: Player8 (0.60 in chips) - Small Blind
+Player0: ante processed 0.00
+Player1: ante processed 0.00
+Hero: ante processed 0.00
+Player2: ante processed 0.00
+Player3: ante processed 0.00
+Player4: ante processed 0.00
+Player5: ante processed 0.00
+Player6: ante processed 0.00
+Player7: ante processed 0.00
+Player8: ante processed 0.00
+Player8: posts small blind 0.01
+Player4: posts big blind 0.02
+*** HOLE CARDS *** 
+Dealt to Hero [7h 10c]
+Player6: raises 0.04 to 0.04
+Player5: calls 0.04
+Hero: folds
+Player2: folds
+Player1: calls 0.04
+Player3: folds
+Player0: folds
+Player8: calls 0.03
+Player4: calls 0.02
+*** FLOP *** [5d Ad 4h]
+Player8: checks
+Player4: checks
+Player6: bets 0.81
+Player5: raises 1.48 to 1.48 and is all in
+Player1: calls 1.48
+Player8: folds
+Player4: folds
+Total pot 1.26 | Rake 0.22
+*** SHOW DOWN *** 
+Player5 shows Qh Ac
+Player6 shows 9d 8d
+Player1 shows 5s 4s
+*** SUMMARY *** 
+Total pot 2.49 | Rake 0.22
+Board [5d Ad 4h 5c 9s]
+Seat 4: Player0 folded before Flop
+Seat 2: Player1 showed [5s 4s] and won (2.49)
+Seat 0: Hero folded before Flop
+Seat 1: Player2 folded before Flop
+Seat 3: Player3 folded before Flop
+Seat 6: Player4 folded on the Flop
+Seat 9: Player5 showed [Qh Ac] but did not win
+Seat 7: Player6 showed [9d 8d] but did not win
+Seat 5: Player8 folded on the Flop
+

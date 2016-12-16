@@ -1,0 +1,70 @@
+Table #57217175 - Tournament #31130710 Table #3
+Starting Hand #2682823569
+Start time of hand: 04 Jan 2015 18:00:35
+Last Hand n/a
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: TOURNAMENT
+Money Type: Tournament chips
+Blinds are now 0 / 0
+Button is at seat 1
+Seat 1: Hero - 10
+Seat 2: Player0 - 10
+Shuffling Deck
+Moving Button to seat 1
+Hero posts ante of 10 (all-in)
+Player0 posts ante of 10 (all-in)
+Pot sizes: 20
+Dealing Cards
+Dealing [K c][Q d] to Hero
+Pot sizes: 20
+Hero shows [K c][Q d]
+Player0 shows [A h][5 s]
+Dealing Flop [2 d][4 s][Q c]
+Pot sizes: 20
+Dealing Turn [J d]
+Pot sizes: 20
+Dealing River [T s]
+Pot sizes: 20
+Player0 has High Card: Ace
+Hero has One Pair: Queens
+Hero wins 20 with: One Pair: Queens
+Seat 1: Hero - 20
+Seat 2: Player0 - 0
+End of Hand #2682823569
+
+Table #57217175 - Tournament #31130710 Table #3
+Starting Hand #2682824016
+Start time of hand: 04 Jan 2015 18:01:15
+Last Hand #2682823569
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: TOURNAMENT
+Money Type: Tournament chips
+Blinds are now 0 / 0
+Button is at seat 1
+Seat 1: Hero - 20
+Seat 2: Player1 - 20
+Shuffling Deck
+Moving Button to seat 2
+Hero posts ante of 20 (all-in)
+Player1 posts ante of 20 (all-in)
+Pot sizes: 40
+Dealing Cards
+Dealing [7 s][8 h] to Hero
+Pot sizes: 40
+Hero shows [7 s][8 h]
+Player1 shows [9 h][9 s]
+Dealing Flop [6 s][6 d][3 d]
+Pot sizes: 40
+Dealing Turn [3 c]
+Pot sizes: 40
+Dealing River [5 s]
+Pot sizes: 40
+Hero has Two Pairs: 6s, 3s
+Player1 has Two Pairs: 9s, 6s
+Player1 wins 40 with: Two Pairs: 9s, 6s
+Seat 1: Hero - 0
+Seat 2: Player1 - 40
+End of Hand #2682824016
+

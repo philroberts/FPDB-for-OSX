@@ -110,7 +110,7 @@ class Pkr(HandHistoryConverter):
             self.re_Post      = re.compile(r"^%(PLYR)s posts %(CUR)s(?P<BB>[%(NUM)s]+)$" %  subst, re.MULTILINE)
             self.re_HeroCards = re.compile(r"^Dealing( (?P<OLDCARDS>\[.+\]))?( (?P<NEWCARDS>\[.+\])) to %(PLYR)s" % subst, re.MULTILINE)
             self.re_Action    = re.compile(r"""
-                        ^%(PLYR)s(?P<ATYPE>\sbets|\schecks|\sraises|\scalls|\sfolds)(\sto)?
+                        ^%(PLYR)s(?P<ATYPE>\sbets|\schecks|\sraises|\scalls|\sfolds)(\sand\sshows\s\[.+\])?(\sto)?
                         (\s(%(CUR)s)?(?P<BET>[%(NUM)s]+))?(\s\(all\-in\))?\s*$
                         """ %  subst, re.MULTILINE|re.VERBOSE)
             self.re_ShowdownAction   = re.compile(r"^%(PLYR)s shows (?P<CARDS>\[.+\])" % subst, re.MULTILINE)

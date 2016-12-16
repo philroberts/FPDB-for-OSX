@@ -96,8 +96,8 @@ class PartyPoker(HandHistoryConverter):
             (.+?\sfinished\sin\s\d+\splace\.\s+)*
             ((?P<CURRENCY>[%(LS)s]))?\s*
             (
-             ([%(LS)s]?(?P<SB>[%(NUM)s]+)/[%(LS)s]?(?P<BB>[%(NUM)s]+)\s*(?:%(LEGAL_ISO)s)?\s+((?P<LIMIT3>NL|PL|FL|)\s+)?)|
-             ((?P<CASHBI>[%(NUM)s]+)\s*(?:%(LEGAL_ISO)s)?\s*)(?P<LIMIT2>(NL|PL|FL|))?\s*
+             ([%(LS)s]?(?P<SB>[%(NUM)s]+)/[%(LS)s]?(?P<BB>[%(NUM)s]+)\s*(?:%(LEGAL_ISO)s)?\s+(?P<FAST3>fastforward\s)?((?P<LIMIT3>NL|PL|FL|)\s+)?)|
+             ((?P<CASHBI>[%(NUM)s]+)\s*(?:%(LEGAL_ISO)s)?\s*)(?P<FAST2>fastforward\s)?(?P<LIMIT2>(NL|PL|FL|))?\s*
             )
             (Tourney\s*)?
             (?P<GAME>(Texas\sHold\'em|Omaha\sHi-Lo|Omaha(\sHi)?|7\sCard\sStud\sHi-Lo|7\sCard\sStud|Double\sHold\'em))\s*
@@ -123,8 +123,8 @@ class PartyPoker(HandHistoryConverter):
             \*{5}\sHand\sHistory\s(F|f)or\sGame\s(?P<HID>\d+)\s\*{5}\s+
             (?P<LIMIT>(NL|PL|FL|))\s*
             (?P<GAME>(Texas\sHold\'em|Omaha\sHi-Lo|Omaha(\sHi)?|7\sCard\sStud\sHi-Lo|7\sCard\sStud|Double\sHold\'em))\s+
-            (?:(?P<BUYIN>[%(LS)s]?[%(NUM)s]+)\s*(?P<BUYIN_CURRENCY>%(LEGAL_ISO)s)?\s*Buy-in\s+)?
-            (\+\s(?P<FEE>[%(LS)s]?[%(NUM)s]+)\sEntry\sFee\s+)?
+            (?:(?P<BUYIN>[%(LS)s]?\s?[%(NUM)s]+)\s*(?P<BUYIN_CURRENCY>%(LEGAL_ISO)s)?\s*Buy-in\s+)?
+            (\+\s(?P<FEE>[%(LS)s]?\s?[%(NUM)s]+)\sEntry\sFee\s+)?
             Trny:\s?(?P<TOURNO>\d+)\s+
             Level:\s*(?P<LEVEL>\d+)\s+
             ((Blinds|Stakes)(?:-Antes)?)\(
@@ -190,7 +190,7 @@ class PartyPoker(HandHistoryConverter):
             self.re_HeroCards = re.compile(
                 r"Dealt to %(PLYR)s \[\s*(?P<NEWCARDS>.+)\s*\]" % subst,
                 re.MULTILINE)
-            self.re_Action = re.compile(u"""
+            self.re_Action = re.compile(ur"""
                 (?P<PNAME>.+?)\s(?P<ATYPE>bets|checks|raises|completes|bring-ins|calls|folds|is\sall-In|double\sbets)
                 (?:\s*[%(BRAX)s]?\s?%(CUR_SYM)s?(?P<BET>[.,\d]+)\s*(%(CUR)s)?\s?[%(BRAX)s]?)?
                 (\sto\s[.,\d]+)?
@@ -266,6 +266,12 @@ class PartyPoker(HandHistoryConverter):
             info['limitType'] = self.limits[mg['LIMIT2']]
         if 'LIMIT3' in mg and mg['LIMIT3'] != None:
             info['limitType'] = self.limits[mg['LIMIT3']]
+        if 'FAST2' in mg and mg['FAST2'] != None:
+            info['fast'] = True
+        elif 'FAST3' in mg and mg['FAST3'] != None:
+            info['fast'] = True
+        else:
+            info['fast'] = False
         if mg['LIMIT'] == None and mg['LIMIT2'] == None and mg['LIMIT3'] == None:
             info['limitType'] = 'fl'
         if 'GAME' in mg:
@@ -360,7 +366,7 @@ class PartyPoker(HandHistoryConverter):
                 #Mon Jul 12 13:38:32 EDT 2010
                 timezone = "ET"
                 m2 = re.search(
-                    r"\w+?,?\s*?(?P<M>\w+)\s+(?P<D>\d+),?\s+(?P<H>\d+):(?P<MIN>\d+):(?P<S>\d+)\s+(?P<TZ>[A-Z]+)\s+(?P<Y>\d+)", 
+                    r"\w+?,?\s*?(?P<M>\w+)\s+(?P<D>\d+),?\s+(?P<H>\d+):(?P<MIN>\d+):(?P<S>\d+)\s+((?P<TZ>[A-Z]+)\s+)?(?P<Y>\d+)", 
                     info[key], 
                     re.UNICODE
                 )
@@ -476,15 +482,17 @@ class PartyPoker(HandHistoryConverter):
                     if i>10: break
                 return startSeat
             
+            re_HoleCards = re.compile(r"\*{2} Dealing down cards \*{2}")
             re_SplitTest = re.compile(r"(joined the table|left the table|is sitting out)")
             re_JoiningPlayers = re.compile(r"(?P<PLAYERNAME>.+?) has joined the table")
             re_BBPostingPlayers = re.compile(r"(?P<PLAYERNAME>.+?) posts big blind", re.MULTILINE)
             re_LeavingPlayers = re.compile(r"(?P<PLAYERNAME>.+?) has left the table")
+            re_PreDeal = re_HoleCards.split(hand.handText)[0]
 
-            match_JoiningPlayers = re_JoiningPlayers.findall(hand.handText)
-            match_LeavingPlayers = re_LeavingPlayers.findall(hand.handText)
+            match_JoiningPlayers = re_JoiningPlayers.findall(re_PreDeal)
+            match_LeavingPlayers = re_LeavingPlayers.findall(re_PreDeal)
             match_BBPostingPlayers = []
-            m = re_BBPostingPlayers.finditer(re_SplitTest.split(hand.handText)[-1])
+            m = re_BBPostingPlayers.finditer(re_PreDeal)
             for player in m:
                 match_BBPostingPlayers.append(player.group('PLAYERNAME'))
 
@@ -636,6 +644,7 @@ class PartyPoker(HandHistoryConverter):
             acts = action.groupdict()
             #print "DEBUG: acts: %s %s" % (street, acts)
             playerName = action.group('PNAME')
+            if ":" in playerName: continue #captures chat
             if self.playerMap.get(playerName):
                 playerName = self.playerMap.get(playerName)
             amount = self.clearMoneyString(action.group('BET')) if action.group('BET') else None

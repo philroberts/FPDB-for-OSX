@@ -250,19 +250,32 @@ class DerivedStats():
             self.aggr(hand, i)
             self.calls(hand, i)
             self.bets(hand, i)
+            self.raises(hand, i)
             if i>0:
                 self.folds(hand, i)
 
         # Winnings is a non-negative value of money collected from the pot, which already includes the
         # rake taken out. hand.collectees is Decimal, database requires cents
         num_collectees, i = len(hand.collectees), 0
+        even_split = hand.totalpot / num_collectees if num_collectees > 0 else 0
+        unraked = [c for c in hand.collectees.values() if even_split == c]
         for player, winnings in hand.collectees.iteritems():
             collectee_stats = self.handsplayers.get(player)
             collectee_stats['winnings'] = int(100 * winnings)
             # Splits evenly on split pots and gives remainder to first player
             # Gets overwritten when calculating multi-way pots in assembleHandsPots
-            rake = int(100 * hand.rake)/num_collectees
-            collectee_stats['rake'] = rake + ((int(100 * hand.rake) % rake) if (i==0 and rake>0) else 0)
+            if num_collectees == 0:
+                collectee_stats['rake'] = 0
+            elif len(unraked)==0:
+                rake = int(100 * hand.rake)/num_collectees
+                remainder_1, remainder_2 = 0, 0
+                if rake > 0 and i==0:
+                    leftover = int(100 * hand.rake) - (rake * num_collectees)
+                    remainder_1 = int(100 * hand.rake) % rake
+                    remainder_2 = leftover if remainder_1 == 0 else 0
+                collectee_stats['rake'] = rake + remainder_1 + remainder_2
+            else:
+                collectee_stats['rake'] = int(100 *(even_split - winnings))
             if collectee_stats['street1Seen'] == True:
                 collectee_stats['wonWhenSeenStreet1'] = True
             if collectee_stats['street2Seen'] == True:
@@ -275,32 +288,21 @@ class DerivedStats():
                 collectee_stats['wonAtSD'] = True
             i+=1
         
-        contributed, i, weightedTotal, firstPlayer = [], 0, 0, None
+        contributed, i = [], 0
         for player, money_committed in hand.pot.committed.iteritems():
             committed_player_stats = self.handsplayers.get(player)
             paid = (100 * money_committed) + (100*hand.pot.common[player])
             committed_player_stats['common'] = int(100 * hand.pot.common[player])
             committed_player_stats['committed'] = int(100 * money_committed) 
             committed_player_stats['totalProfit'] = int(committed_player_stats['winnings'] - paid)
-            committed_player_stats['allInEV'] = committed_player_stats['totalProfit']            
-            rakeDealt = int(100* hand.rake)/len(hand.players)            
-            committed_player_stats['rakeDealt'] = rakeDealt + ((int(100 * hand.rake) % rakeDealt) if (i==0 and rakeDealt>0) else 0)
+            committed_player_stats['allInEV'] = committed_player_stats['totalProfit']
+            committed_player_stats['rakeDealt'] = 100 * hand.rake/len(hand.players)
+            committed_player_stats['rakeWeighted'] = 100 * hand.rake * paid/(100*hand.totalpot) if hand.rake>0 else 0
             if paid > 0: contributed.append(player)
-            if i==0: firstPlayer = player
-            if hand.totalpot>0:
-                rakeWeighted =  int((100* hand.rake) * (paid/(100*hand.totalpot))) 
-                committed_player_stats['rakeWeighted'] = rakeWeighted
-                weightedTotal += rakeWeighted
-            else:
-                committed_player_stats['rakeWeighted'] = 0;
             i+=1
-            
-        if weightedTotal < int(100* hand.rake):
-            self.handsplayers.get(firstPlayer)['rakeWeighted'] += (int(100* hand.rake) - weightedTotal)
            
         for i, player in enumerate(contributed):
-            rakeContributed = int(100* hand.rake)/len(contributed)
-            self.handsplayers[player]['rakeContributed'] = rakeContributed + ((int(100 * hand.rake) % rakeContributed) if (i==0 and rakeContributed>0) else 0)
+            self.handsplayers[player]['rakeContributed'] = 100 * hand.rake/len(contributed)
 
         self.calcCBets(hand)
         
@@ -391,16 +393,16 @@ class DerivedStats():
                     if ((pname==hand.hero and streetSeen) or (hp['showed'] and streetSeen) or hp['sawShowdown']):
                         boardId, hl, rankId, value, _cards = 0, 'n', 1, 0, None
                         for n in range(len(board['board'])):
-                            boardId   = (n + 1) if (len(board['board']) > 1) else n
                             streetIdx = -1 if base=='hold' else streetId
-                            cards     = hcs[hrange[streetIdx][0]:hrange[streetIdx][1]]
+                            cards = hcs[hrange[streetIdx][0]:hrange[streetIdx][1]]
+                            boardId   = (n + 1) if (len(board['board']) > 1) else n
                             cards    += board['board'][n] if (board['board'][n] and 'omaha' not in evalgame) else []
                             bcards    = board['board'][n] if (board['board'][n] and 'omaha' in evalgame) else []
                             cards     = [str(c) if Card.encodeCardList.get(c) else '0x' for c in cards]
                             bcards    = [str(b) if Card.encodeCardList.get(b) else '0x' for b in bcards]
                             holecards[pname]['hole'] = cards[hrange[streetIdx][0]:hrange[streetIdx][1]]
                             holecards[pname]['cards'] += [cards]
-                            notnull  = ('0x' not in cards)
+                            notnull  = ('0x' not in cards) and ('0x' not in bcards)
                             postflop = (base=='hold' and len(board['board'][n])>=3)
                             maxcards = (base!='hold' and len(cards)>=5)
                             if notnull and (postflop or maxcards):
@@ -429,7 +431,6 @@ class DerivedStats():
         for pot, players in hand.pot.pots:
             if potId ==0: pot += sum(hand.pot.common.values())
             potId+=1
-            players = [p for p in players]
             for street in allInStreets:
                 board = boards[street]
                 streetId = streets[street]
@@ -437,25 +438,31 @@ class DerivedStats():
                     if len(board['board']) > 1: 
                         boardId = n + 1
                     else: boardId = n
-                    holeshow = [holecards[p]['hole'] for p in players if self.handsplayers[p]['sawShowdown'] and u'0x' not in holecards[p]['cards'][n]]
-                    if len(holeshow) > 0 and (board['allin'] or hand.publicDB):
+                    valid = [p for p in players if self.handsplayers[p]['sawShowdown'] and u'0x' not in holecards[p]['cards'][n]]
+                    if len(players) == len(valid) and (board['allin'] or hand.publicDB):
                         if board['allin'] and not startstreet: startstreet = street
-                        bcards = [str(b) for b in board['board'][n]]
-                        b = bcards + (5 - len(board['board'][n])) * ['__']
-                        if len(holeshow)> 1:
-                            evs = pokereval.poker_eval(game = evalgame, iterations = Card.iter[streetId] ,pockets = holeshow ,dead = [], board = b)
+                        if len(valid) > 1:
+                            evs = pokereval.poker_eval(
+                                game = evalgame, 
+                                iterations = Card.iter[streetId],
+                                pockets = [holecards[p]['hole'] for p in valid],
+                                dead = [], 
+                                board = [str(b) for b in board['board'][n]] + (5 - len(board['board'][n])) * ['__']
+                            )
                             equities = [e['ev'] for e in evs['eval']]
                         else:
                             equities = [1000]
+                        remainder = (1000 - sum(equities)) / Decimal(len(equities))
                         for i in range(len(equities)):
-                            p = players[i]
+                            equities[i] += remainder
+                            p = valid[i]
                             pid = hand.dbid_pids[p]
                             if street == startstreet:
-                                rake = (hand.rake * (pot/hand.totalpot))
-                                holecards[p]['eq'] += int(((100*pot - 100*rake) * Decimal(equities[i])/1000))
-                                holecards[p]['committed'] = int(((100*hand.pot.committed[p]) + (100*hand.pot.common[p])))
+                                rake = (hand.rake * (Decimal(pot)/Decimal(hand.totalpot)))
+                                holecards[p]['eq'] += ((pot - rake) * equities[i])/Decimal(10)
+                                holecards[p]['committed'] = 100*hand.pot.committed[p] + 100*hand.pot.common[p]
                             for j in self.handsstove:
-                                if [pid, streetId, boardId] == j[1:4] and len(players) == len(hand.pot.contenders):
+                                if [pid, streetId, boardId] == j[1:4] and len(valid) == len(hand.pot.contenders):
                                     j[-1] = equities[i]
         for p in holeplayers:
             if holecards[p]['committed'] != 0: 
@@ -514,8 +521,13 @@ class DerivedStats():
         return boards
     
     def awardPots(self, hand):
+        holeshow = True
+        for pot, players in hand.pot.pots:
+            for p in players:
+                hcs = hand.join_holecards(p, asList=True)
+                if '0x' in hcs: holeshow = False
         base, evalgame, hilo, streets, last, hrange = Card.games[hand.gametype['category']]
-        if pokereval and len(hand.pot.pots)>1 and evalgame:
+        if pokereval and len(hand.pot.pots)>1 and evalgame and holeshow:
             hand.collected = [] #list of ?
             hand.collectees = {} # dict from player names to amounts collected (?)
             rakes, totrake, potId = {}, 0, 0
@@ -591,7 +603,11 @@ class DerivedStats():
                         if '0x' not in holes and '0x' not in board:
                             holecards.append(holes)
                             holeplayers.append(p)
-                    win = pokereval.winners(game = evalgame, pockets = holecards, board = board)
+                    if len(holecards)>1:
+                        win = pokereval.winners(game = evalgame, pockets = holecards, board = board)
+                    else:
+                        win = {}
+                        win[hiLoKey[hilo][0]] = [0]
                     for hl in hiLoKey[hilo]:
                         if hl in win and len(win[hl])>0:
                             potHiLo = Decimal(int(potBoard/len(win)*factor))/factor
@@ -600,7 +616,7 @@ class DerivedStats():
                                 potHiLo+=modHiLo
                             potSplit = Decimal(int(potHiLo/len(win[hl])*factor))/factor
                             modSplit = potHiLo - potSplit*len(win[hl])
-                            pnames = [holeplayers[w] for w in win[hl]]
+                            pnames = players if len(holeplayers)==0 else [holeplayers[w] for w in win[hl]]
                             for n in positions:
                                 if positionDict[n] in pnames:
                                     pname = positionDict[n]
@@ -620,7 +636,7 @@ class DerivedStats():
                     potFound[p][1] = hand.collectees.get(p)
                     for item in info:
                         #print (str(hand.handid)," winners: ",item['winners'])
-                        split = [n for n in item['winners'] if len(playersPots[n][1])==1]
+                        split = [n for n in item['winners'] if len(playersPots[n][1])==1 and hand.collectees.get(n)!=None]
                         if len(info)==1:
                             ppot = item['ppot']
                             rake = ppot - hand.collectees[p]
@@ -660,7 +676,11 @@ class DerivedStats():
             # Stud position is determined after cards are dealt
             # First player to act is always the bring-in position in stud
             # even if they decided to bet/completed
-            bi = [hand.actions[hand.actionStreets[1]][0][0]]
+            if len(hand.actions[hand.actionStreets[1]])>0:
+                bi = [hand.actions[hand.actionStreets[1]][0][0]]
+            #else:
+                # TODO fix: if ante all and no actions and no bring in
+            #    bi = [hand.actions[hand.actionStreets[0]][0][0]]
         else:
             bb = [x[0] for x in hand.actions[hand.actionStreets[0]] if x[1] == 'big blind']
             sb = [x[0] for x in hand.actions[hand.actionStreets[0]] if x[1] == 'small blind']
@@ -1061,13 +1081,17 @@ class DerivedStats():
                 player_stats = self.handsplayers.get(act[0])
                 player_stats['street%sCalls' % i] = 1 + player_stats['street%sCalls' % i]
 
-    # CG - I'm sure this stat is wrong
-    # Best guess is that raise = 2 bets
     def bets(self, hand, i):
         for act in hand.actions[hand.actionStreets[i+1]]:
             if act[1] in ('bets'):
                 player_stats = self.handsplayers.get(act[0])
                 player_stats['street%sBets' % i] = 1 + player_stats['street%sBets' % i]
+                
+    def raises(self, hand, i):
+        for act in hand.actions[hand.actionStreets[i+1]]:
+            if act[1] in ('completes', 'raises'):
+                player_stats = self.handsplayers.get(act[0])
+                player_stats['street%sRaises' % i] = 1 + player_stats['street%sRaises' % i]
         
     def folds(self, hand, i):
         for act in hand.actions[hand.actionStreets[i+1]]:
@@ -1120,8 +1144,7 @@ class DerivedStats():
         actions = hand.actions[hand.holeStreets[0]]
         for p in hand.players: 
             if p[1] not in hand.sitout:
-                if int(Decimal(hand.gametype['bb']))>0:
-                    pstacks[p[1]] = int(100 * Decimal(p[2])) / int(Decimal(hand.gametype['bb']))
+                pstacks[p[1]] = int(100 * Decimal(p[2]))
         for action in actions:
             if action[0] in seen: continue
             if action[0] not in pstacks: continue

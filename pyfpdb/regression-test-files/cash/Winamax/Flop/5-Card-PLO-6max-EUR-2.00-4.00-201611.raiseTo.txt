@@ -1,0 +1,37 @@
+Winamax Poker - CashGame - HandId: #9273404-970-1479780841 - 5 Card Omaha Hi/Lo pot limit (2€/4€) - 2016/11/22 02:14:01 UTC
+Table: 'Karlsruhe' 6-max (real money) Seat #5 is the button
+Seat 1: Player0 (400€)
+Seat 2: Player1 (535.53€)
+Seat 3: Hero (415.55€)
+Seat 4: Player2 (337.22€)
+Seat 5: Player3 (233.24€)
+Seat 6: Player4 (888.40€)
+*** ANTE/BLINDS ***
+Player4 posts small blind 2€
+Player0 posts big blind 4€
+Player2 posts small blind 2€ out of position
+Dealt to Hero [8h 5d 2h 7h 4c]
+*** PRE-FLOP *** 
+Player1 folds
+Hero folds
+Player2 calls 4€
+Player3 raises 14€ to 20€
+Player4 folds
+Player0 raises 48€ to 68€
+Player2 folds
+Player3 calls 48€
+*** FLOP *** [Ts 8d Td]
+Player0 bets 144€
+Player3 raises 21.24€ to 165.24€ and is all-in
+Player0 calls 21.24€
+*** TURN *** [Ts 8d Td][Kd]
+*** RIVER *** [Ts 8d Td Kd][Jh]
+*** SHOW DOWN ***
+Player0 shows [Ac Qh 3d 6c Ah] (Straight Ace high)
+Player3 shows [Kh Ks Ad 4d Jc] (Full of Kings and Tens)
+Player3 collected 471.48€ from pot
+*** SUMMARY ***
+Total pot 471.48€ | Rake 3€
+Board: [Ts 8d Td Kd Jh]
+Seat 1: Player0 (big blind) showed [Ac Qh 3d 6c Ah] and lost with Straight Ace high
+Seat 5: Player3 (button) showed [Kh Ks Ad 4d Jc] and won 471.48€ with Full of Kings and Tens

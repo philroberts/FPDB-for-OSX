@@ -1,0 +1,38 @@
+Stage #736583015: HOLDEM NORMAL $25/$50 - 2007-08-17 03:11:57 (ET)
+Table: PORTUGAL HWY (Real Money) Seat #2 is the dealer
+Seat 2 - CHK_RAZE ($807 in chips)
+Seat 3 - STEVE89 ($2467.56 in chips)
+Seat 4 - LIVELETDIE22 ($2960 in chips)
+Seat 5 - BLUECUPID ($1462 in chips)
+Seat 6 - BCM184 ($500 in chips)
+Seat 1 - HOLDINGQUADS ($2782.46 in chips)
+STEVE89 - Posts small blind $15
+LIVELETDIE22 - Posts big blind $25
+BCM184 - sitout (wait for BB)
+*** POCKET CARDS ***
+Dealt to LIVELETDIE22 [9s 2h] 
+BLUECUPID - Folds
+HOLDINGQUADS - Raises $50 to $50
+CHK_RAZE - Folds
+STEVE89 - Calls $35
+LIVELETDIE22 - Folds
+*** FLOP *** [8s Ks Qs]
+STEVE89 - Checks
+HOLDINGQUADS - Checks (Timeout)
+*** TURN *** [8s Ks Qs] [Jd]
+STEVE89 - Bets $50
+HOLDINGQUADS - All-In (Timeout)
+STEVE89 - returned ($50) : not called
+*** RIVER *** [8s Ks Qs Jd] [As]
+*** SHOW DOWN ***
+HOLDINGQUADS - Shows [9c 9h] (One pair, nines) 
+STEVE89 - Shows [Kc 5s] (Flush, ace high) 
+STEVE89 Collects $122 from main pot
+*** SUMMARY ***
+Total Pot($125) | Rake ($3)
+Board [8s Ks Qs Jd As]
+Seat 1: HOLDINGQUADS HI:lost with One pair, nines [9c 9h - P:9h,P:9c,B:As,B:Ks,B:Qs] 
+Seat 2: CHK_RAZE (dealer) Folded on the POCKET CARDS
+Seat 3: STEVE89 (small blind) won Total ($122) HI:($122) with Flush, ace high [Kc 5s - B:As,B:Ks,B:Qs,B:8s,P:5s] 
+Seat 4: LIVELETDIE22 (big blind) Folded on the POCKET CARDS
+Seat 5: BLUECUPID Folded on the POCKET CARDS

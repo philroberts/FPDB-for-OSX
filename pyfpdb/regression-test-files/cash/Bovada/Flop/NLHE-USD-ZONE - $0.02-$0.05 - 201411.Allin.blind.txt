@@ -1,0 +1,46 @@
+﻿Bovada Hand #2949203894  Zone Poker ID#289 HOLDEMZonePoker No Limit - 2014-11-05 19:19:58
+Seat 1: UTG ($6.85 in chips)
+Seat 2: UTG+1 ($4.93 in chips)
+Seat 3: UTG+2 ($2.94 in chips)
+Seat 4: Dealer [ME] ($12.73 in chips)
+Seat 5: Small Blind ($5.84 in chips)
+Seat 6: Big Blind ($0.05 in chips)
+Dealer  [ME] : Set dealer/Bring in spot [4] 
+Small Blind : Ante/Small Blind $0.02 
+Big Blind : All-in $0.05 
+*** HOLE CARDS ***
+UTG : Card dealt to a spot [Td 7s] 
+UTG+1 : Card dealt to a spot [3s 7d] 
+UTG+2 : Card dealt to a spot [Ah 3c] 
+Dealer  [ME] : Card dealt to a spot [4d Kh] 
+Small Blind : Card dealt to a spot [6d 9h] 
+Big Blind : Card dealt to a spot [Ac Jh] 
+UTG+1 : Leave(Auto)
+UTG+2 : Leave(Auto)
+Dealer  [ME] : Leave(Auto)
+UTG : Folds
+UTG : Leave(Auto)
+UTG+1 : Folds
+UTG+2 : Folds
+Dealer  [ME] : Folds
+Small Blind : Folds
+Small Blind : Leave(Auto)
+Big Blind : Return uncalled portion of bet $0.03 
+Big Blind : Does not show [Ac Jh] (High Card)
+Big Blind : Hand result $0.04 
+Big Blind : Leave(Auto)
+Enter(Auto)
+Enter(Auto)
+Enter(Auto)
+Enter(Auto)
+Enter(Auto)
+Enter(Auto)
+*** SUMMARY ***
+Total Pot($0.04)
+Seat+1: UTG Folded before the FLOP
+Seat+2: UTG+1 lost with High Card [3s 7d]  
+Seat+3: UTG+2 lost with High Card [Ah 3c]  
+Seat+4: Dealer lost with High Card [4d Kh]  
+Seat+5: Small Blind Folded before the FLOP
+Seat+6: Big Blind $0.04 [Does not show]  
+
