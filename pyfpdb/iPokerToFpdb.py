@@ -162,15 +162,12 @@ class iPoker(HandHistoryConverter):
     re_Buyin = re.compile(r"""(?P<BUYIN>[%(NUM)s]+)""" % substitutions, re.MULTILINE|re.VERBOSE)
     re_TotalBuyin  = re.compile(r"""(?P<BUYIN>(?P<BIAMT>[%(LS)s%(NUM)s]+)\s\+\s?(?P<BIRAKE>[%(LS)s%(NUM)s]+)?)""" % substitutions, re.MULTILINE|re.VERBOSE)
     re_HandInfo = re.compile(r'code="(?P<HID>[0-9]+)">\s*?<general>\s*?<startdate>(?P<DATETIME>[a-zA-Z-/: 0-9]+)</startdate>', re.MULTILINE)
-    re_PlayerInfo = re.compile(r'<player seat="(?P<SEAT>[0-9]+)" name="%(PLYR)s" chips="(%(LS)s)(?P<CASH>[%(NUM)s]+)" dealer="(?P<BUTTONPOS>(0|1))" win="(%(LS)s)(?P<WIN>[%(NUM)s]+)" (bet="(%(LS)s)(?P<BET>[^"]+))?' % substitutions, re.MULTILINE)
-    re_Board = re.compile(r'<cards type="(?P<STREET>Flop|Turn|River)"( player="")?>(?P<CARDS>.+?)</cards>', re.MULTILINE)
+    re_PlayerInfo = re.compile(r'<player( (seat="(?P<SEAT>[0-9]+)"|name="%(PLYR)s"|chips="(%(LS)s)(?P<CASH>[%(NUM)s]+)"|dealer="(?P<BUTTONPOS>(0|1))"|win="(%(LS)s)(?P<WIN>[%(NUM)s]+)"|bet="(%(LS)s)(?P<BET>[^"]+)"|addon="\d*"|rebuy="\d*"|merge="\d*"|reg_code="[\d-]*"))+\s*/>' % substitutions, re.MULTILINE)
+    re_Board = re.compile(r'<cards( (type="(?P<STREET>Flop|Turn|River)"|player=""))+>(?P<CARDS>.+?)</cards>', re.MULTILINE)
     re_EndOfHand = re.compile(r'<round id="END_OF_GAME"', re.MULTILINE)
-    re_PostSB = re.compile(r'<action no="[0-9]+" player="%(PLYR)s"( actiontxt="[^"]+" turntime="[^"]+")? type="1" sum="(%(LS)s)(?P<SB>[%(NUM)s]+)"' % substitutions, re.MULTILINE)
-    re_PostBB = re.compile(r'<action no="(?P<ACT>[0-9]+)" player="%(PLYR)s"( actiontxt="[^"]+" turntime="[^"]+")? type="2" sum="(%(LS)s)(?P<BB>[%(NUM)s]+)"' % substitutions, re.MULTILINE)
     re_Hero = re.compile(r'<nickname>(?P<HERO>.+)</nickname>', re.MULTILINE)
     re_HeroCards = re.compile(r'<cards type="(Pocket|Second\sStreet|Third\sStreet|Fourth\sStreet|Fifth\sStreet|Sixth\sStreet|River)" player="%(PLYR)s">(?P<CARDS>.+?)</cards>' % substitutions, re.MULTILINE)
-    re_Action = re.compile(r'<action no="(?P<ACT>[0-9]+)" player="%(PLYR)s"( actiontxt="[^"]+" turntime="[^"]+")? type="(?P<ATYPE>\d+)" sum="(%(LS)s)(?P<BET>[%(NUM)s]+)"' % substitutions, re.MULTILINE)
-    re_Ante   = re.compile(r'<action no="[0-9]+" player="%(PLYR)s"( actiontxt="[^"]+" turntime="[^"]+")? type="(?P<ATYPE>15)" sum="(%(LS)s)(?P<BET>[%(NUM)s]+)" cards="' % substitutions, re.MULTILINE)
+    re_Action = re.compile(r'<action ((no="(?P<ACT>[0-9]+)"|player="%(PLYR)s"|(actiontxt="[^"]+" turntime="[^"]+")|type="(?P<ATYPE>\d+)"|sum="(%(LS)s)(?P<BET>[%(NUM)s]+)"|cards="[^"]*") ?)*/>' % substitutions, re.MULTILINE)
     re_SitsOut = re.compile(r'<event sequence="[0-9]+" type="SIT_OUT" player="(?P<PSEAT>[0-9])"/>', re.MULTILINE)
     re_DateTime1 = re.compile("""(?P<D>[0-9]{2})\-(?P<M>[a-zA-Z]{3})\-(?P<Y>[0-9]{4})\s+(?P<H>[0-9]+):(?P<MIN>[0-9]+)(:(?P<S>[0-9]+))?""", re.MULTILINE)
     re_DateTime2 = re.compile("""(?P<D>[0-9]{2})\/(?P<M>[0-9]{2})\/(?P<Y>[0-9]{4})\s+(?P<H>[0-9]+):(?P<MIN>[0-9]+)(:(?P<S>[0-9]+))?""", re.MULTILINE)
@@ -391,16 +388,17 @@ class iPoker(HandHistoryConverter):
         cards = []
         m = self.re_Board.search(hand.streets[street])
         if m:
-            cards = m.group('CARDS').split(' ')
+            cards = m.group('CARDS').strip().split(' ')
             cards = [c[1:].replace('10', 'T') + c[0].lower() for c in cards]
             hand.setCommunityCards(street, cards)
         else:
             raise FpdbHandPartial(hid=hand.handid)
 
     def readAntes(self, hand):
-        m = self.re_Ante.finditer(hand.handText)
+        m = self.re_Action.finditer(hand.handText)
         for a in m:
-            hand.addAnte(a.group('PNAME'), self.clearMoneyString(a.group('BET')))
+            if a.group('ATYPE') == '15':
+                hand.addAnte(a.group('PNAME'), self.clearMoneyString(a.group('BET')))
 
     def readBringIn(self, hand):
         if hand.gametype['sb'] == None and hand.gametype['bb'] == None:
@@ -408,25 +406,27 @@ class iPoker(HandHistoryConverter):
             hand.gametype['bb'] = "2"
 
     def readBlinds(self, hand):
-        for a in self.re_PostSB.finditer(hand.streets['PREFLOP']):
-            hand.addBlind(a.group('PNAME'), 'small blind', self.clearMoneyString(a.group('SB')))
-            if not hand.gametype['sb']:
-                hand.gametype['sb'] = self.clearMoneyString(a.group('SB'))
-        m = self.re_PostBB.finditer(hand.streets['PREFLOP'])
+        for a in self.re_Action.finditer(hand.streets['PREFLOP']):
+            if a.group('ATYPE') == '1':
+                hand.addBlind(a.group('PNAME'), 'small blind', self.clearMoneyString(a.group('BET')))
+                if not hand.gametype['sb']:
+                    hand.gametype['sb'] = self.clearMoneyString(a.group('BET'))
+        m = self.re_Action.finditer(hand.streets['PREFLOP'])
         blinds = {}
         for a in m:
-            blinds[int(a.group('ACT'))] = a.groupdict()
+            if a.group('ATYPE') == '2':
+                blinds[int(a.group('ACT'))] = a.groupdict()
         for b in sorted(blinds.iterkeys()):
             type = 'big blind'
             blind = blinds[b]
             if not hand.gametype['bb']:
-                hand.gametype['bb'] = self.clearMoneyString(blind['BB'])
+                hand.gametype['bb'] = self.clearMoneyString(blind['BET'])
             elif hand.gametype['sb']:
                 bb = Decimal(hand.gametype['bb'])
-                amount = Decimal(self.clearMoneyString(blind['BB']))
+                amount = Decimal(self.clearMoneyString(blind['BET']))
                 if amount > bb:
                     type = 'both'
-            hand.addBlind(blind['PNAME'], type, self.clearMoneyString(blind['BB']))
+            hand.addBlind(blind['PNAME'], type, self.clearMoneyString(blind['BET']))
         self.fixTourBlinds(hand)
 
     def fixTourBlinds(self, hand):
