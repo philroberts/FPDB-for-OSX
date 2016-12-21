@@ -344,7 +344,8 @@ class iPoker(HandHistoryConverter):
                     
         if len(plist)<=1:
             # Hand cancelled
-            raise FpdbHandPartial(hid=hand.handid)
+            log.error(_("iPokerToFpdb.readPlayerStacks: '%s'") % hand.handid)
+            raise FpdbParseError
                                 
         # Add remaining players
         for pname in plist:
@@ -392,7 +393,8 @@ class iPoker(HandHistoryConverter):
             cards = [c[1:].replace('10', 'T') + c[0].lower() for c in cards]
             hand.setCommunityCards(street, cards)
         else:
-            raise FpdbHandPartial(hid=hand.handid)
+            log.error(_("iPokerToFpdb.readCommunityCards: '%s'") % hand.handid)
+            raise FpdbParseError
 
     def readAntes(self, hand):
         m = self.re_Action.finditer(hand.handText)
