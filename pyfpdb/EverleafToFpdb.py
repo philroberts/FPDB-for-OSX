@@ -267,7 +267,7 @@ or None if we fail to get the info """
     def readButton(self, hand):
         hand.buttonpos = int(self.re_Button.search(hand.handText).group('BUTTON'))
 
-    def readHeroCards(self, hand):
+    def readHoleCards(self, hand):
         m = self.re_HeroCards.search(hand.handText)
         if m:
             hand.hero = m.group('PNAME')

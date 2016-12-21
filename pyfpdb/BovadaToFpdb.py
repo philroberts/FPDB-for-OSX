@@ -501,7 +501,7 @@ class Bovada(HandHistoryConverter):
         hand.sb = hand.gametype['sb']
         hand.bb = hand.gametype['bb']
 
-    def readHeroCards(self, hand):
+    def readHoleCards(self, hand):
 #    streets PREFLOP, PREDRAW, and THIRD are special cases beacause
 #    we need to grab hero's cards
         for street in ('PREFLOP', 'DEAL'):
@@ -522,7 +522,7 @@ class Bovada(HandHistoryConverter):
             for found in m:
                 if foundDict!=found.groupdict():
                     foundDict = found.groupdict()
-                    player = self.playerSeatFromPosition('BovadaToFpdb.readHeroCards', hand.handid, found.group('PNAME'))
+                    player = self.playerSeatFromPosition('BovadaToFpdb.readHoleCards', hand.handid, found.group('PNAME'))
                     if street != 'SEVENTH' or found.group('HERO'):
                         newcards = found.group('CARDS').split(' ')
                         oldcards = []

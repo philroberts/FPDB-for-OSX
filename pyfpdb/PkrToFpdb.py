@@ -288,7 +288,7 @@ class Pkr(HandHistoryConverter):
             else:
                 hand.addBlind(a.group('PNAME'), 'both', str(bb + bb/2))
 
-    def readHeroCards(self, hand):
+    def readHoleCards(self, hand):
 #    streets PREFLOP, PREDRAW, and THIRD are special cases beacause
 #    we need to grab hero's cards
         for street in ('PREFLOP', 'DEAL'):

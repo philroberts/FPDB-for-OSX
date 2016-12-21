@@ -378,7 +378,7 @@ class PacificPoker(HandHistoryConverter):
             else:
                 raise FpdbHandPartial("Partial hand history: %s" % hand.handid)
 
-    def readHeroCards(self, hand):
+    def readHoleCards(self, hand):
 #    streets PREFLOP, PREDRAW, and THIRD are special cases beacause
 #    we need to grab hero's cards
         for street in ('PREFLOP', 'DEAL'):

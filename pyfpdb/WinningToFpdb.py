@@ -458,7 +458,7 @@ class Winning(HandHistoryConverter):
             else:
                 hand.addBlind(a.group('PNAME'), 'secondsb', a.group('SBBB'))
 
-    def readHeroCards(self, hand):
+    def readHoleCards(self, hand):
 #    streets PREFLOP, PREDRAW, and THIRD are special cases beacause
 #    we need to grab hero's cards
         for street in ('PREFLOP', 'DEAL'):

@@ -451,7 +451,7 @@ class iPoker(HandHistoryConverter):
         # Found in re_Player
         pass
 
-    def readHeroCards(self, hand):
+    def readHoleCards(self, hand):
 #    streets PREFLOP, PREDRAW, and THIRD are special cases beacause
 #    we need to grab hero's cards
 

@@ -515,7 +515,7 @@ class PokerStars(HandHistoryConverter):
         for a in self.re_PostBoth.finditer(hand.handText):
             hand.addBlind(a.group('PNAME'), 'both', a.group('SBBB'))
 
-    def readHeroCards(self, hand):
+    def readHoleCards(self, hand):
 #    streets PREFLOP, PREDRAW, and THIRD are special cases beacause
 #    we need to grab hero's cards
         for street in ('PREFLOP', 'DEAL'):
