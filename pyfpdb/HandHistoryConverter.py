@@ -398,8 +398,7 @@ or None if we fail to get the info """
     """Function for reading the antes from the hand history and passing the hand.addAnte"""
     def readBringIn(self, hand): abstract
     def readButton(self, hand): abstract
-    def readHeroCards(self, hand): abstract
-    def readPlayerCards(self, hand, street): abstract
+    def readHoleCards(self, hand): abstract
     def readAction(self, hand, street): abstract
     def readCollectPot(self, hand): abstract
     def readShownCards(self, hand): abstract

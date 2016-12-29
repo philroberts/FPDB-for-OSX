@@ -1098,7 +1098,7 @@ class HoldemOmahaHand(Hand):
 
             hhc.readAntes(self)
             hhc.readButton(self)
-            hhc.readHeroCards(self)
+            hhc.readHoleCards(self)
             hhc.readShowdownActions(self)
             # Read actions in street order
             for street, text in self.streets.iteritems():
@@ -1304,7 +1304,7 @@ class DrawHand(Hand):
             hhc.readBlinds(self)
             hhc.readAntes(self)
             hhc.readButton(self)
-            hhc.readHeroCards(self)
+            hhc.readHoleCards(self)
             hhc.readShowdownActions(self)
             # Read actions in street order
             for street in self.streetList:
@@ -1484,7 +1484,7 @@ class StudHand(Hand):
             hhc.markStreets(self)
             hhc.readAntes(self)
             hhc.readBringIn(self)
-            hhc.readHeroCards(self)
+            hhc.readHoleCards(self)
             hhc.readShowdownActions(self)
             # Read actions in street order
             for street in self.actionStreets:

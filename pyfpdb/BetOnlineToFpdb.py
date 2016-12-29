@@ -523,7 +523,7 @@ class BetOnline(HandHistoryConverter):
                 hand.addPlayer(-1, pname, '0')
         return pname
 
-    def readHeroCards(self, hand):
+    def readHoleCards(self, hand):
 #    streets PREFLOP, PREDRAW, and THIRD are special cases beacause
 #    we need to grab hero's cards
         for street in ('PREFLOP', 'DEAL'):

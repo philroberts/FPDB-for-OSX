@@ -331,7 +331,7 @@ class Cake(HandHistoryConverter):
             sbbb = sb + bb
             hand.addBlind(a.group('PNAME'), 'both', str(sbbb))
 
-    def readHeroCards(self, hand):
+    def readHoleCards(self, hand):
         for street in ('PREFLOP', 'DEAL'):
             if street in hand.streets.keys():
                 m = self.re_HeroCards.finditer(hand.streets[street])

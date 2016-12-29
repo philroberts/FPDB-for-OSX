@@ -609,7 +609,7 @@ class PartyPoker(HandHistoryConverter):
         #    #~ logging.debug("readBringIn: %s for %s" %(m.group('PNAME'),  m.group('BRINGIN')))
         #    hand.addBringIn(m.group('PNAME'),  m.group('BRINGIN'))
 
-    def readHeroCards(self, hand):
+    def readHoleCards(self, hand):
         # we need to grab hero's cards
         for street in ('PREFLOP',):
             if street in hand.streets.keys():

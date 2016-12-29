@@ -547,7 +547,7 @@ class PokerTracker(HandHistoryConverter):
                 else:
                     hand.gametype['sb'] = str(int(Decimal(hand.gametype['bb']))/2)
 
-    def readHeroCards(self, hand):
+    def readHoleCards(self, hand):
 #    streets PREFLOP, PREDRAW, and THIRD are special cases beacause
 #    we need to grab hero's cards
         if self.sitename != 'Microgaming':

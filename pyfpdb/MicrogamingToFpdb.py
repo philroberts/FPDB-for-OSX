@@ -248,7 +248,7 @@ class Microgaming(HandHistoryConverter):
     def readBlinds(self, hand):
         pass # Dealt with in readAction
 
-    def readHeroCards(self, hand):
+    def readHoleCards(self, hand):
 #    streets PREFLOP, PREDRAW, and THIRD are special cases beacause
 #    we need to grab hero's cards
         for street in ('PREFLOP', 'DEAL'):

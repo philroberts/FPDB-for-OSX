@@ -291,7 +291,7 @@ class Entraction(HandHistoryConverter):
             blind = self.clearMoneyString(a.group('SB'))
             hand.addBlind(name, 'big blind', blind)
 
-    def readHeroCards(self, hand):
+    def readHoleCards(self, hand):
 #    streets PREFLOP, PREDRAW, and THIRD are special cases beacause
 #    we need to grab hero's cards
         for street in ('PREFLOP', 'DEAL'):

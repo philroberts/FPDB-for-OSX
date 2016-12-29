@@ -252,7 +252,7 @@ class Everest(HandHistoryConverter):
     def readButton(self, hand):
         hand.buttonpos = int(self.re_Button.search(hand.handText).group('BUTTON'))
 
-    def readHeroCards(self, hand):
+    def readHoleCards(self, hand):
         cards = []
         for m in self.re_HeroCards.finditer(hand.handText):
             hand.hero = self.playerNameFromSeatNo(m.group('PSEAT'), hand)

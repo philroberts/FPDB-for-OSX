@@ -432,7 +432,7 @@ class Winamax(HandHistoryConverter):
             #~ logging.debug("readBringIn: %s for %s" %(m.group('PNAME'),  m.group('BRINGIN')))
             hand.addBringIn(m.group('PNAME'),  m.group('BRINGIN'))
 
-    def readHeroCards(self, hand):
+    def readHoleCards(self, hand):
         # streets PREFLOP, PREDRAW, and THIRD are special cases beacause
         # we need to grab hero's cards
         for street in ('PREFLOP', 'DEAL', 'BLINDSANTES'):
