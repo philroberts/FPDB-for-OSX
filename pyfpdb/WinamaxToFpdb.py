@@ -59,7 +59,7 @@ class Winamax(HandHistoryConverter):
                                 "Holdem" : ('hold','holdem'),
                                  'Omaha' : ('hold','omahahi'),
                            "5 Card Omaha": ('hold','5_omahahi'),
-                     "5 Card Omaha Hi/Lo": ('hold','5_omaha8'),
+                     "5 Card Omaha Hi/Lo": ('hold','5_omahahi'), #incorrect in file
                             "Omaha Hi/Lo": ('hold','omahahilo'),
                             "7-Card Stud": ('stud','studhi'),
                       "7-Card Stud Hi/Lo": ('stud','studhilo'),
