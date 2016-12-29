@@ -502,8 +502,9 @@ class Winning(HandHistoryConverter):
         m = self.re_Action.finditer(hand.streets[street])
         for action in m:
             acts = action.groupdict()
-            if action.group('PNAME') == None:                
-                raise FpdbHandPartial(_("Unknown player acts"))
+            if action.group('PNAME') == None:    
+                log.error("WinningToFpdb.readAction: Unknown player acts %s" % hand.handid)    
+                raise FpdbParseError
                 
             if action.group('ATYPE') == 'folds':
                 hand.addFold( street, action.group('PNAME'))

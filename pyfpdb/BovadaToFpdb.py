@@ -553,7 +553,8 @@ class Bovada(HandHistoryConverter):
                     hand.addCheck( street, player)
                 elif action.group('ATYPE') == ' Calls' or action.group('ATYPE') == ' Call':
                     if not action.group('BET'):
-                        raise FpdbHandPartial("BovadaToFpdb.determineGameType: " + _("Partial hand history"))
+                        log.error("BovadaToFpdb.readAction: Amount not found in Call %s" % hand.handid)
+                        raise FpdbParseError
                     hand.addCall( street, player, self.clearMoneyString(action.group('BET')) )
                 elif action.group('ATYPE') in (' Raises', ' raises', ' All-in(raise)', ' All-in(raise-timeout)'):
                     if action.group('BETTO'):
@@ -561,15 +562,18 @@ class Bovada(HandHistoryConverter):
                     elif action.group('BET'):
                         bet = self.clearMoneyString(action.group('BET'))
                     else:
-                        raise FpdbHandPartial("BovadaToFpdb.determineGameType: " + _("Partial hand history"))
+                        log.error("BovadaToFpdb.readAction: Amount not found in Raise %s" % hand.handid)
+                        raise FpdbParseError
                     hand.addRaiseTo( street, player, bet )
                 elif action.group('ATYPE') in (' Bets', ' bets', ' Double bets'):
                     if not action.group('BET'):
-                        raise FpdbHandPartial("BovadaToFpdb.determineGameType: " + _("Partial hand history"))
+                        log.error("BovadaToFpdb.readAction: Amount not found in Bet %s" % hand.handid)
+                        raise FpdbParseError
                     hand.addBet( street, player, self.clearMoneyString(action.group('BET')) )
                 elif action.group('ATYPE') == ' All-in':
                     if not action.group('BET'):
-                        raise FpdbHandPartial("BovadaToFpdb.determineGameType: " + _("Partial hand history"))
+                        log.error("BovadaToFpdb.readAction: Amount not found in All-in %s" % hand.handid)
+                        raise FpdbParseError
                     hand.addAllIn( street, player, self.clearMoneyString(action.group('BET')) )
                     self.allInBlind(hand, street, action, action.group('ATYPE'))
                 elif action.group('ATYPE') == ' Bring_in chip':

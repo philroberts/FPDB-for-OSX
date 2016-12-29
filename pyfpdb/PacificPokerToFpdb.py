@@ -296,7 +296,8 @@ class PacificPoker(HandHistoryConverter):
         m = self.re_PlayerInfo.finditer(hand.handText)
         for a in m:
             if (len(a.group('PNAME'))==0):
-                raise FpdbHandPartial("Partial hand history: %s" % hand.handid)
+                log.error("PacificPokerToFpdb.readPlayerStacks: Player name empty %s" % hand.handid)
+                raise FpdbParseError
             hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), self.clearMoneyString(a.group('CASH')))
 
     def markStreets(self, hand):
@@ -309,8 +310,8 @@ class PacificPoker(HandHistoryConverter):
                        r"(\*\* Dealing river \*\* (?P<RIVER>\[ \S\S \].+?(?=\*\* Summary \*\*)|.+))?"
                        , hand.handText,re.DOTALL)
         if m is None:
-            #log.error(_("PacificPokerToFpdb.markStreets: Unable to recognise streets"))
-            raise FpdbHandPartial
+            log.error(_("PacificPokerToFpdb.markStreets: Unable to recognise streets %s" % hand.handid))
+            raise FpdbParseError
         else:
             #print "DEBUG: Matched markStreets"
             mg = m.groupdict()
@@ -358,13 +359,15 @@ class PacificPoker(HandHistoryConverter):
                     hand.addBlind(a.group('PNAME'), 'secondsb', self.clearMoneyString(a.group('SB')))
                 self.allInBlind(hand, 'PREFLOP', a, 'secondsb')
             else:
-                raise FpdbHandPartial("Partial hand history: %s" % hand.handid)
+                log.error("PacificPokerToFpdb.readBlinds (SB): '%s', '%s' not in hand.stacks" % (hand.handid, a.group('PNAME')))
+                raise FpdbParseError
         for a in self.re_PostBB.finditer(hand.handText):
             if a.group('PNAME') in hand.stacks:
                 hand.addBlind(a.group('PNAME'), 'big blind', self.clearMoneyString(a.group('BB')))
                 self.allInBlind(hand, 'PREFLOP', a, 'big blind')
             else:
-                raise FpdbHandPartial("Partial hand history: %s" % hand.handid)
+                log.error("PacificPokerToFpdb.readBlinds (BB): '%s', '%s' not in hand.stacks" % (hand.handid, a.group('PNAME')))
+                raise FpdbParseError
         for a in self.re_PostBoth.finditer(hand.handText):
             if a.group('PNAME') in hand.stacks:
                 if Decimal(self.clearMoneyString(a.group('BB')))>0:
@@ -376,7 +379,8 @@ class PacificPoker(HandHistoryConverter):
                     hand.addBlind(a.group('PNAME'), 'secondsb', self.clearMoneyString(a.group('SB')))
                 self.allInBlind(hand, 'PREFLOP', a, 'both')
             else:
-                raise FpdbHandPartial("Partial hand history: %s" % hand.handid)
+                log.error("PacificPokerToFpdb.readBlinds (Both): '%s', '%s' not in hand.stacks" % (hand.handid, a.group('PNAME')))
+                raise FpdbParseError
 
     def readHoleCards(self, hand):
 #    streets PREFLOP, PREDRAW, and THIRD are special cases beacause
@@ -447,7 +451,8 @@ class PacificPoker(HandHistoryConverter):
                         if (hand.stacks[action.group('PNAME')]==0 and action.group('ATYPE') ==' raises' ):
                             hand.checkForUncalled = True
             else:
-                raise FpdbHandPartial("Partial hand history: '%s', '%s' not in hand.stacks" % (hand.handid, action.group('PNAME')))
+                log.error("PacificPokerToFpdb.readAction: '%s', '%s' not in hand.stacks" % (hand.handid, action.group('PNAME')))
+                raise FpdbParseError
             
     def allInBlind(self, hand, street, action, actiontype):
         if street in ('PREFLOP', 'DEAL'):
