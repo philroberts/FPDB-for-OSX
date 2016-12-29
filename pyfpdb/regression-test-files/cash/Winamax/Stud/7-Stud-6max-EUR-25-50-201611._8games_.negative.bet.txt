@@ -1,0 +1,38 @@
+Winamax Poker - CashGame - HandId: #9250793-1578-1479092164 - 7-Card Stud fixed limit (5€/25€/50€) - 2016/11/14 02:56:04 UTC
+Table: 'Pampelune' 6-max (real money) 
+Seat 2: Player0 (33.90€)
+Seat 3: Player1 (2417.80€)
+Seat 5: Hero (802.07€)
+*** ANTE/BLINDS ***
+Player0 posts ante 5€
+Player1 posts ante 5€
+Hero posts ante 5€
+*** 3rd STREET ***
+Dealt to Player0 [X X 8h]
+Dealt to Player1 [X X Kc]
+Dealt to Hero [Kd 3s 9h]
+Player0 brings in 10€
+Player1 raises 25€ to 25€
+Hero folds
+Player0 raises -6.10€ to 18.90€
+Player1 calls 3.90€
+*** 4th STREET ***
+Dealt to Player1 [X X Kc] [6d]
+Dealt to Player0 [X X 8h] [5c]
+*** 5th STREET ***
+Dealt to Player1 [X X Kc 6d] [7d]
+Dealt to Player0 [X X 8h 5c] [Js]
+*** 6th STREET ***
+Dealt to Player1 [X X Kc 6d 7d] [2d]
+Dealt to Player0 [X X 8h 5c Js] [Ad]
+*** 7th STREET ***
+Dealt to Player1 [X X Kc 6d 7d 2d] [X]
+Dealt to Player0 [X X 8h 5c Js Ad] [X]
+*** SHOW DOWN ***
+Player1 shows [Jh 6h Kc 6d 7d 2d 9s] (One pair : 6)
+Player0 shows [4d Ac 8h 5c Js Ad Ts] (One pair : Aces)
+Player0 collected 70.30€ from pot
+*** SUMMARY ***
+Total pot 70.30€ | Rake 2.50€
+Seat 2: Player0 showed [4d Ac 8h 5c Js Ad Ts] and won 70.30€ with One pair : Aces
+Seat 3: Player1 showed [Jh 6h Kc 6d 7d 2d 9s] and lost with One pair : 6

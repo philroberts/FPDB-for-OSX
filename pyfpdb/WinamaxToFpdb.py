@@ -149,7 +149,7 @@ class Winamax(HandHistoryConverter):
             self.re_HeroCards = re.compile('Dealt\sto\s%(PLYR)s(?: \[(?P<OLDCARDS>.+?)\])?( \[(?P<NEWCARDS>.+?)\])' % subst)
 
             # no discards action observed yet
-            self.re_Action = re.compile('(, )?(?P<PNAME>.*?)(?P<ATYPE> bets| checks| raises| calls| folds| stands\spat)( (%(CUR)s)?(?P<BET>[\d\.]+)(%(CUR)s)?)?( to (%(CUR)s)?(?P<BETTO>[\d\.]+)(%(CUR)s)?)?( and is all-in)?' % subst)
+            self.re_Action = re.compile('(, )?(?P<PNAME>.*?)(?P<ATYPE> bets| checks| raises| calls| folds| stands\spat)( \-?(%(CUR)s)?(?P<BET>[\d\.]+)(%(CUR)s)?)?( to (%(CUR)s)?(?P<BETTO>[\d\.]+)(%(CUR)s)?)?( and is all-in)?' % subst)
             self.re_ShowdownAction = re.compile('(?P<PNAME>[^\(\)\n]*) (\((small blind|big blind|button)\) )?shows \[(?P<CARDS>.+)\]')
 
             self.re_CollectPot = re.compile('\s*(?P<PNAME>.*)\scollected\s(%(CUR)s)?(?P<POT>[\.\d]+)(%(CUR)s)?.*' % subst)
