@@ -422,14 +422,14 @@ class OnGame(HandHistoryConverter):
                 m = self.re_HeroCards.finditer(hand.streets[street])
                 for found in m:
                     player = found.group('PNAME')
-                    newcards = found.group('CARDS').split(', ')
+                    newcards = [c for c in found.group('CARDS').split(', ') if c != u'-']
     
                     if street == 'THIRD' and len(newcards) == 3: # hero in stud game
                         hand.hero = player
                         hand.dealt.add(player) # need this for stud??
                         hand.addHoleCards(street, player, closed=newcards[0:2], open=[newcards[2]], shown=False, mucked=False, dealt=False)
                     else:
-                        hand.addHoleCards(street, player, closed=newcards, shown=False, mucked=False, dealt=False)
+                        hand.addHoleCards(street, player, open=newcards, shown=False, mucked=False, dealt=False)
 
     def readAction(self, hand, street):
         m = self.re_Action.finditer(hand.streets[street])
