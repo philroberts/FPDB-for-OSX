@@ -1033,6 +1033,7 @@ class DerivedStats():
         for i, street in enumerate(hand.actionStreets[2:]):
             actions = hand.actions[street]
             checkers = set()
+            acted = set()
             initial_raiser = None
             for action in actions:
                 pname, act = action[0], action[1]
@@ -1040,11 +1041,12 @@ class DerivedStats():
                     initial_raiser = pname
                 elif act == 'checks' and initial_raiser is None:
                     checkers.add(pname)
-                elif initial_raiser is not None and pname in checkers:
+                elif initial_raiser is not None and pname in checkers and pname not in acted:
                     player_stats = self.handsplayers.get(pname)
                     player_stats['street%dCheckCallRaiseChance' % (i+1)] = True
                     player_stats['street%dCheckCallDone' % (i+1)] = act=='calls'
                     player_stats['street%dCheckRaiseDone' % (i+1)] = act=='raises'
+                    acted.add(pname)
 
     def aggr(self, hand, i):
         aggrers = set()

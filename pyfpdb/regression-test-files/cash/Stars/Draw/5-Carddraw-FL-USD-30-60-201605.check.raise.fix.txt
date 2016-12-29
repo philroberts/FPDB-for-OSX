@@ -1,0 +1,26 @@
+PokerStars Hand #153148513639:  5 Card Draw Limit ($30/$60 USD) - 2016/05/11 10:23:37 EET [2016/05/11 3:23:37 ET]
+Table 'Euanthe II' 6-max Seat #4 is the button
+Seat 1: Player0 ($3316 in chips) 
+Seat 4: Hero ($803 in chips) 
+Hero: posts small blind $15
+Player0: posts big blind $30
+*** DEALING HANDS ***
+Dealt to Hero [Ad Jd 7d Ah 5c]
+Hero: raises $30 to $60
+Player0: calls $30
+Player0: discards 3 cards
+Hero: discards 3 cards [Jd 7d 5c]
+Dealt to Hero [Ad Ah] [3s 8s As]
+Player0: checks 
+Hero: bets $60
+Player0: raises $60 to $120
+Hero: raises $60 to $180
+Player0: calls $60
+*** SHOW DOWN ***
+Hero: shows [Ad 3s 8s Ah As] (three of a kind, Aces)
+Player0: mucks hand 
+Hero collected $479 from pot
+*** SUMMARY ***
+Total pot $480 | Rake $1 
+Seat 1: Player0 (big blind) mucked [6d 4d 4s 6h 2s]
+Seat 4: Hero (button) (small blind) showed [Ad 3s 8s Ah As] and won ($479) with three of a kind, Aces
