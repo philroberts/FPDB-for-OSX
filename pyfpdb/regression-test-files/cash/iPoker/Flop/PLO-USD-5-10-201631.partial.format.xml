@@ -1,0 +1,505 @@
+<?xml version="1.0" encoding="utf-8"?>
+<session sessioncode="6650768870">
+ <general>
+  <mode>real</mode>
+  <gametype>Omaha PL €5/€10</gametype>
+  <tablename>Belbeuf, 823983569</tablename>
+  <tablecurrency>EUR</tablecurrency>
+  <currency>EUR</currency>
+  <nickname>Hero</nickname>
+ </general>
+ <game gamecode="7372093672">
+  <general>
+   <players>
+    <player chips="€1,214.15" seat="3" name="Player0" dealer="0"/>
+    <player chips="€1,538.25" seat="6" name="Player1" dealer="1"/>
+    <player chips="€1,054" seat="1" name="Player2" dealer="0"/>
+    <player chips="€1,198" seat="5" name="Player3" dealer="0"/>
+    <player chips="€782" seat="10" name="Player4" dealer="0"/>
+    <player chips="€400" seat="8" name="Player5" dealer="0"/>
+   </players>
+  </general>
+  <round no="0">
+   <action player="Player4" sum="€5" type="1" no="1"/>
+   <action player="Player2" sum="€10" type="2" no="2"/>
+  </round>
+ </game>
+ <game gamecode="7372093766">
+  <general>
+   <players>
+    <player chips="€1,214.15" seat="3" name="Player0" dealer="0"/>
+    <player chips="€1,528.25" seat="6" name="Player1" dealer="0"/>
+    <player chips="€1,072.50" seat="1" name="Player2" dealer="0"/>
+    <player chips="€1,198" seat="5" name="Player3" dealer="0"/>
+    <player chips="€772" seat="10" name="Player4" dealer="1"/>
+    <player chips="€400" seat="8" name="Player5" dealer="0"/>
+   </players>
+  </general>
+  <round no="0">
+   <action player="Player2" sum="€5" type="1" no="1"/>
+   <action player="Player0" sum="€10" type="2" no="2"/>
+  </round>
+ </game>
+ <game gamecode="7372093819">
+  <general>
+   <players>
+    <player chips="€1,204.15" seat="3" name="Player0" dealer="0"/>
+    <player chips="€1,528.25" seat="6" name="Player1" dealer="0"/>
+    <player chips="€1,067.50" seat="1" name="Player2" dealer="1"/>
+    <player chips="€1,198" seat="5" name="Player3" dealer="0"/>
+    <player chips="€787" seat="10" name="Player4" dealer="0"/>
+    <player chips="€400" seat="8" name="Player5" dealer="0"/>
+   </players>
+  </general>
+  <round no="0">
+   <action player="Player0" sum="€5" type="1" no="1"/>
+   <action player="Player1" sum="€10" type="2" no="2"/>
+  </round>
+ </game>
+ <game gamecode="7372093875">
+  <general>
+   <players>
+    <player chips="€1,199.15" seat="3" name="Player0" dealer="1"/>
+    <player chips="€1,533.25" seat="6" name="Player1" dealer="0"/>
+    <player chips="€1,067.50" seat="1" name="Player2" dealer="0"/>
+    <player chips="€1,198" seat="5" name="Player3" dealer="0"/>
+    <player chips="€787" seat="10" name="Player4" dealer="0"/>
+    <player chips="€400" seat="8" name="Player5" dealer="0"/>
+   </players>
+  </general>
+  <round no="0">
+   <action player="Player1" sum="€5" type="1" no="1"/>
+   <action player="Player5" sum="€10" type="2" no="2"/>
+  </round>
+ </game>
+ <game gamecode="7372093994">
+  <general>
+   <players>
+    <player chips="€1,199.15" seat="3" name="Player0" dealer="0"/>
+    <player chips="€1,639.25" seat="6" name="Player1" dealer="1"/>
+    <player chips="€1,067.50" seat="1" name="Player2" dealer="0"/>
+    <player chips="€1,198" seat="5" name="Player3" dealer="0"/>
+    <player chips="€707" seat="10" name="Player4" dealer="0"/>
+    <player chips="€370" seat="8" name="Player5" dealer="0"/>
+   </players>
+  </general>
+  <round no="0">
+   <action player="Player5" sum="€5" type="1" no="1"/>
+   <action player="Player4" sum="€10" type="2" no="2"/>
+  </round>
+ </game>
+ <game gamecode="7372094075">
+  <general>
+   <players>
+    <player chips="€1,199.15" seat="3" name="Player0" dealer="0"/>
+    <player chips="€1,569.25" seat="6" name="Player1" dealer="0"/>
+    <player chips="€1,067.50" seat="1" name="Player2" dealer="0"/>
+    <player chips="€1,198" seat="5" name="Player3" dealer="0"/>
+    <player chips="€637" seat="10" name="Player4" dealer="0"/>
+    <player chips="€506" seat="8" name="Player5" dealer="1"/>
+   </players>
+  </general>
+  <round no="0">
+   <action player="Player4" sum="€5" type="1" no="1"/>
+   <action player="Player2" sum="€10" type="2" no="2"/>
+  </round>
+ </game>
+ <game gamecode="7372094556">
+  <general>
+   <players>
+    <player chips="€1,199.15" seat="3" name="Player0" dealer="0"/>
+    <player chips="€2,212.25" seat="6" name="Player1" dealer="0"/>
+    <player chips="€1,057.50" seat="1" name="Player2" dealer="0"/>
+    <player chips="€1,198" seat="5" name="Player3" dealer="0"/>
+    <player chips="€1,000" seat="10" name="Player4" dealer="1"/>
+    <player chips="€506" seat="8" name="Player5" dealer="0"/>
+   </players>
+  </general>
+  <round no="0">
+   <action player="Player2" sum="€5" type="1" no="1"/>
+   <action player="Player0" sum="€10" type="2" no="2"/>
+  </round>
+ </game>
+ <game gamecode="7372094665">
+  <general>
+   <players>
+    <player chips="€1,189.15" seat="3" name="Player0" dealer="0"/>
+    <player chips="€2,212.25" seat="6" name="Player1" dealer="0"/>
+    <player chips="€1,052.50" seat="1" name="Player2" dealer="1"/>
+    <player chips="€1,198" seat="5" name="Player3" dealer="0"/>
+    <player chips="€970" seat="10" name="Player4" dealer="0"/>
+    <player chips="€547.25" seat="8" name="Player5" dealer="0"/>
+   </players>
+  </general>
+  <round no="0">
+   <action player="Player0" sum="€5" type="1" no="1"/>
+   <action player="Player1" sum="€10" type="2" no="2"/>
+  </round>
+ </game>
+ <game gamecode="7372094954">
+  <general>
+   <players>
+    <player chips="€1,184.15" seat="3" name="Player0" dealer="1"/>
+    <player chips="€2,202.25" seat="6" name="Player1" dealer="0"/>
+    <player chips="€1,067.50" seat="1" name="Player2" dealer="0"/>
+    <player chips="€1,198" seat="5" name="Player3" dealer="0"/>
+    <player chips="€970" seat="10" name="Player4" dealer="0"/>
+    <player chips="€547.25" seat="8" name="Player5" dealer="0"/>
+   </players>
+  </general>
+  <round no="0">
+   <action player="Player1" sum="€5" type="1" no="1"/>
+   <action player="Player5" sum="€10" type="2" no="2"/>
+  </round>
+ </game>
+ <game gamecode="7372095245">
+  <general>
+   <players>
+    <player chips="€1,184.15" seat="3" name="Player0" dealer="0"/>
+    <player chips="€2,167.25" seat="6" name="Player1" dealer="1"/>
+    <player chips="€1,235.50" seat="1" name="Player2" dealer="0"/>
+    <player chips="€1,198" seat="5" name="Player3" dealer="0"/>
+    <player chips="€843" seat="10" name="Player4" dealer="0"/>
+    <player chips="€537.25" seat="8" name="Player5" dealer="0"/>
+   </players>
+  </general>
+  <round no="0">
+   <action player="Player5" sum="€5" type="1" no="1"/>
+   <action player="Player4" sum="€10" type="2" no="2"/>
+  </round>
+ </game>
+ <game gamecode="7372095353">
+  <general>
+   <players>
+    <player chips="€1,240.15" seat="3" name="Player0" dealer="0"/>
+    <player chips="€2,167.25" seat="6" name="Player1" dealer="0"/>
+    <player chips="€1,190.50" seat="1" name="Player2" dealer="0"/>
+    <player chips="€1,198" seat="5" name="Player3" dealer="0"/>
+    <player chips="€833" seat="10" name="Player4" dealer="0"/>
+    <player chips="€532.25" seat="8" name="Player5" dealer="1"/>
+   </players>
+  </general>
+  <round no="0">
+   <action player="Player4" sum="€5" type="1" no="1"/>
+   <action player="Player2" sum="€10" type="2" no="2"/>
+  </round>
+ </game>
+ <game gamecode="7372096964">
+  <general>
+   <players>
+    <player chips="€1,240.15" seat="3" name="Player0" dealer="0"/>
+    <player chips="€2,167.25" seat="6" name="Player1" dealer="0"/>
+    <player chips="€1,160.50" seat="1" name="Player2" dealer="0"/>
+    <player chips="€860" seat="10" name="Player4" dealer="1"/>
+    <player chips="€532.25" seat="8" name="Player5" dealer="0"/>
+   </players>
+  </general>
+  <round no="0">
+   <action player="Player2" sum="€5" type="1" no="1"/>
+   <action player="Player0" sum="€10" type="2" no="2"/>
+  </round>
+ </game>
+ <game gamecode="7372097018">
+  <general>
+   <players>
+    <player chips="€1,230.15" seat="3" name="Player0" dealer="0"/>
+    <player chips="€2,167.25" seat="6" name="Player1" dealer="0"/>
+    <player chips="€1,155.50" seat="1" name="Player2" dealer="1"/>
+    <player chips="€875" seat="10" name="Player4" dealer="0"/>
+    <player chips="€532.25" seat="8" name="Player5" dealer="0"/>
+   </players>
+  </general>
+  <round no="0">
+   <action player="Player0" sum="€5" type="1" no="1"/>
+   <action player="Player1" sum="€10" type="2" no="2"/>
+  </round>
+ </game>
+ <game gamecode="7372097116">
+  <general>
+   <players>
+    <player chips="€1,225.15" seat="3" name="Player0" dealer="1"/>
+    <player chips="€2,157.25" seat="6" name="Player1" dealer="0"/>
+    <player chips="€1,155.50" seat="1" name="Player2" dealer="0"/>
+    <player chips="€1,000" seat="5" name="Hero" dealer="0"/>
+    <player chips="€875" seat="10" name="Player4" dealer="0"/>
+    <player chips="€547.25" seat="8" name="Player5" dealer="0"/>
+   </players>
+  </general>
+  <round no="0">
+   <action player="Player5" sum="€5" type="1" no="1"/>
+   <action player="Player4" sum="€10" type="2" no="2"/>
+  </round>
+ </game>
+ <game gamecode="7372097179">
+  <general>
+   <players>
+    <player chips="€1,130.15" seat="3" name="Player0" dealer="0"/>
+    <player chips="€2,157.25" seat="6" name="Player1" dealer="0"/>
+    <player chips="€1,155.50" seat="1" name="Player2" dealer="0"/>
+    <player chips="€1,000" seat="5" name="Hero" dealer="0"/>
+    <player chips="€971" seat="10" name="Player4" dealer="0"/>
+    <player chips="€542.25" seat="8" name="Player5" dealer="1"/>
+   </players>
+  </general>
+  <round no="0">
+   <action player="Player4" sum="€5" type="1" no="1"/>
+   <action player="Player2" sum="€10" type="2" no="2"/>
+  </round>
+ </game>
+ <game gamecode="7372097258">
+  <general>
+   <players>
+    <player chips="€1,130.15" seat="3" name="Player0" dealer="0"/>
+    <player chips="€2,157.25" seat="6" name="Player1" dealer="0"/>
+    <player chips="€1,174" seat="1" name="Player2" dealer="0"/>
+    <player chips="€1,000" seat="5" name="Hero" dealer="0"/>
+    <player chips="€961" seat="10" name="Player4" dealer="1"/>
+    <player chips="€532.25" seat="8" name="Player5" dealer="0"/>
+   </players>
+  </general>
+  <round no="0">
+   <action player="Player2" sum="€5" type="1" no="1"/>
+   <action player="Hero" sum="€10" type="2" no="2"/>
+  </round>
+ </game>
+ <game gamecode="7372097504">
+  <general>
+   <players>
+    <player chips="€1,130.15" seat="3" name="Player0" dealer="0"/>
+    <player chips="€2,157.25" seat="6" name="Player1" dealer="0"/>
+    <player chips="€1,169" seat="1" name="Player2" dealer="1"/>
+    <player chips="€1,031.75" seat="5" name="Hero" dealer="0"/>
+    <player chips="€931" seat="10" name="Player4" dealer="0"/>
+    <player chips="€532.25" seat="8" name="Player5" dealer="0"/>
+   </players>
+  </general>
+  <round no="0">
+   <action player="Hero" sum="€5" type="1" no="1"/>
+   <action player="Player1" sum="€10" type="2" no="2"/>
+  </round>
+ </game>
+ <game gamecode="7372097705">
+  <general>
+   <players>
+    <player chips="€1,130.15" seat="3" name="Player0" dealer="0"/>
+    <player chips="€2,147.25" seat="6" name="Player1" dealer="0"/>
+    <player chips="€1,169" seat="1" name="Player2" dealer="0"/>
+    <player chips="€1,026.75" seat="5" name="Hero" dealer="1"/>
+    <player chips="€946" seat="10" name="Player4" dealer="0"/>
+    <player chips="€532.25" seat="8" name="Player5" dealer="0"/>
+   </players>
+  </general>
+  <round no="0">
+   <action player="Player1" sum="€5" type="1" no="1"/>
+   <action player="Player5" sum="€10" type="2" no="2"/>
+  </round>
+ </game>
+ <game gamecode="7372097865">
+  <general>
+   <players>
+    <player chips="€1,130.15" seat="3" name="Player0" dealer="0"/>
+    <player chips="€2,142.25" seat="6" name="Player1" dealer="1"/>
+    <player chips="€1,169" seat="1" name="Player2" dealer="0"/>
+    <player chips="€1,058.50" seat="5" name="Hero" dealer="0"/>
+    <player chips="€946" seat="10" name="Player4" dealer="0"/>
+    <player chips="€502.25" seat="8" name="Player5" dealer="0"/>
+   </players>
+  </general>
+  <round no="0">
+   <action player="Player5" sum="€5" type="1" no="1"/>
+   <action player="Player4" sum="€10" type="2" no="2"/>
+  </round>
+ </game>
+ <game gamecode="7372098137">
+  <general>
+   <players>
+    <player chips="€1,130.15" seat="3" name="Player0" dealer="0"/>
+    <player chips="€2,112.25" seat="6" name="Player1" dealer="0"/>
+    <player chips="€1,169" seat="1" name="Player2" dealer="0"/>
+    <player chips="€1,028.50" seat="5" name="Hero" dealer="0"/>
+    <player chips="€936" seat="10" name="Player4" dealer="0"/>
+    <player chips="€572.25" seat="8" name="Player5" dealer="1"/>
+   </players>
+  </general>
+  <round no="0">
+   <action player="Player4" sum="€5" type="1" no="1"/>
+   <action player="Player2" sum="€10" type="2" no="2"/>
+  </round>
+ </game>
+ <game gamecode="7372098336">
+  <general>
+   <players>
+    <player chips="€1,130.15" seat="3" name="Player0" dealer="0"/>
+    <player chips="€2,112.25" seat="6" name="Player1" dealer="0"/>
+    <player chips="€1,383.50" seat="1" name="Player2" dealer="0"/>
+    <player chips="€1,028.50" seat="5" name="Hero" dealer="0"/>
+    <player chips="€931" seat="10" name="Player4" dealer="1"/>
+    <player chips="€358.75" seat="8" name="Player5" dealer="0"/>
+   </players>
+  </general>
+  <round no="0">
+   <action player="Player2" sum="€5" type="1" no="1"/>
+   <action player="Player0" sum="€10" type="2" no="2"/>
+  </round>
+ </game>
+ <game gamecode="7372100120">
+  <general>
+   <players>
+    <player chips="€1,085.15" seat="3" name="Player0" dealer="0"/>
+    <player chips="€2,010.75" seat="6" name="Player1" dealer="0"/>
+    <player chips="€1,378.50" seat="1" name="Player2" dealer="1"/>
+    <player chips="€1,028.50" seat="5" name="Hero" dealer="0"/>
+    <player chips="€931" seat="10" name="Player4" dealer="0"/>
+    <player chips="€506.25" seat="8" name="Player5" dealer="0"/>
+   </players>
+  </general>
+  <round no="0">
+   <action player="Player0" sum="€5" type="1" no="1"/>
+   <action player="Hero" sum="€10" type="2" no="2"/>
+  </round>
+ </game>
+ <game gamecode="7372100547">
+  <general>
+   <players>
+    <player chips="€1,080.15" seat="3" name="Player0" dealer="1"/>
+    <player chips="€2,010.75" seat="6" name="Player1" dealer="0"/>
+    <player chips="€1,455" seat="1" name="Player2" dealer="0"/>
+    <player chips="€953" seat="5" name="Hero" dealer="0"/>
+    <player chips="€931" seat="10" name="Player4" dealer="0"/>
+    <player chips="€506.25" seat="8" name="Player5" dealer="0"/>
+   </players>
+  </general>
+  <round no="0">
+   <action player="Hero" sum="€5" type="1" no="1"/>
+   <action player="Player1" sum="€10" type="2" no="2"/>
+  </round>
+ </game>
+ <game gamecode="7372100619">
+  <general>
+   <players>
+    <player chips="€1,080.15" seat="3" name="Player0" dealer="0"/>
+    <player chips="€2,000.75" seat="6" name="Player1" dealer="0"/>
+    <player chips="€1,455" seat="1" name="Player2" dealer="0"/>
+    <player chips="€948" seat="5" name="Hero" dealer="1"/>
+    <player chips="€931" seat="10" name="Player4" dealer="0"/>
+    <player chips="€521.25" seat="8" name="Player5" dealer="0"/>
+   </players>
+  </general>
+  <round no="0">
+   <action player="Player1" sum="€5" type="1" no="1"/>
+   <action player="Player5" sum="€10" type="2" no="2"/>
+  </round>
+ </game>
+ <game gamecode="7372101544">
+  <general>
+   <players>
+    <player chips="€1,080.15" seat="3" name="Player0" dealer="0"/>
+    <player chips="€1,995.75" seat="6" name="Player1" dealer="1"/>
+    <player chips="€1,491.25" seat="1" name="Player2" dealer="0"/>
+    <player chips="€948" seat="5" name="Hero" dealer="0"/>
+    <player chips="€931" seat="10" name="Player4" dealer="0"/>
+    <player chips="€486.25" seat="8" name="Player5" dealer="0"/>
+   </players>
+  </general>
+  <round no="0">
+   <action player="Player5" sum="€5" type="1" no="1"/>
+   <action player="Player4" sum="€10" type="2" no="2"/>
+  </round>
+ </game>
+ <game gamecode="7372101618">
+  <general>
+   <players>
+    <player chips="€1,080.15" seat="3" name="Player0" dealer="0"/>
+    <player chips="€1,995.75" seat="6" name="Player1" dealer="0"/>
+    <player chips="€1,491.25" seat="1" name="Player2" dealer="0"/>
+    <player chips="€948" seat="5" name="Hero" dealer="0"/>
+    <player chips="€921" seat="10" name="Player4" dealer="0"/>
+    <player chips="€495.25" seat="8" name="Player5" dealer="1"/>
+   </players>
+  </general>
+  <round no="0">
+   <action player="Player4" sum="€5" type="1" no="1"/>
+   <action player="Player2" sum="€10" type="2" no="2"/>
+  </round>
+ </game>
+ <game gamecode="7372101725">
+  <general>
+   <players>
+    <player chips="€1,095.15" seat="3" name="Player0" dealer="0"/>
+    <player chips="€1,995.75" seat="6" name="Player1" dealer="0"/>
+    <player chips="€1,481.25" seat="1" name="Player2" dealer="0"/>
+    <player chips="€948" seat="5" name="Hero" dealer="0"/>
+    <player chips="€916" seat="10" name="Player4" dealer="1"/>
+    <player chips="€495.25" seat="8" name="Player5" dealer="0"/>
+   </players>
+  </general>
+  <round no="0">
+   <action player="Player2" sum="€5" type="1" no="1"/>
+   <action player="Player0" sum="€10" type="2" no="2"/>
+  </round>
+ </game>
+ <game gamecode="7372102211">
+  <general>
+   <players>
+    <player chips="€913.15" seat="3" name="Player0" dealer="0"/>
+    <player chips="€1,995.75" seat="6" name="Player1" dealer="0"/>
+    <player chips="€1,659.25" seat="1" name="Player2" dealer="1"/>
+    <player chips="€948" seat="5" name="Hero" dealer="0"/>
+    <player chips="€916" seat="10" name="Player4" dealer="0"/>
+    <player chips="€495.25" seat="8" name="Player5" dealer="0"/>
+   </players>
+  </general>
+  <round no="0">
+   <action player="Player0" sum="€5" type="1" no="1"/>
+   <action player="Hero" sum="€10" type="2" no="2"/>
+  </round>
+ </game>
+ <game gamecode="7372102442">
+  <general>
+   <players>
+    <player chips="€908.15" seat="3" name="Player0" dealer="1"/>
+    <player chips="€1,995.75" seat="6" name="Player1" dealer="0"/>
+    <player chips="€1,659.25" seat="1" name="Player2" dealer="0"/>
+    <player chips="€913" seat="5" name="Hero" dealer="0"/>
+    <player chips="€952.25" seat="10" name="Player4" dealer="0"/>
+    <player chips="€495.25" seat="8" name="Player5" dealer="0"/>
+   </players>
+  </general>
+  <round no="0">
+   <action player="Hero" sum="€5" type="1" no="1"/>
+   <action player="Player1" sum="€10" type="2" no="2"/>
+  </round>
+ </game>
+ <game gamecode="7372102705">
+  <general>
+   <players>
+    <player chips="€923.15" seat="3" name="Player0" dealer="0"/>
+    <player chips="€1,985.75" seat="6" name="Player1" dealer="0"/>
+    <player chips="€1,659.25" seat="1" name="Player2" dealer="0"/>
+    <player chips="€908" seat="5" name="Hero" dealer="1"/>
+    <player chips="€952.25" seat="10" name="Player4" dealer="0"/>
+    <player chips="€495.25" seat="8" name="Player5" dealer="0"/>
+   </players>
+  </general>
+  <round no="0">
+   <action player="Player1" sum="€5" type="1" no="1"/>
+   <action player="Player5" sum="€10" type="2" no="2"/>
+  </round>
+ </game>
+ <game gamecode="7372103238">
+  <general>
+   <players>
+    <player chips="€1,069.15" seat="3" name="Player0" dealer="0"/>
+    <player chips="€1,910.75" seat="6" name="Player1" dealer="1"/>
+    <player chips="€1,659.25" seat="1" name="Player2" dealer="0"/>
+    <player chips="€908" seat="5" name="Hero" dealer="0"/>
+    <player chips="€952.25" seat="10" name="Player4" dealer="0"/>
+    <player chips="€420.25" seat="8" name="Player5" dealer="0"/>
+   </players>
+  </general>
+  <round no="0">
+   <action player="Player5" sum="€5" type="1" no="1"/>
+   <action player="Player4" sum="€10" type="2" no="2"/>
+  </round>
+ </game>
+</session>

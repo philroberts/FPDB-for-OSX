@@ -174,6 +174,7 @@ class iPoker(HandHistoryConverter):
     re_MaxSeats = re.compile(r'(?P<SEATS>[0-9]+) Max', re.MULTILINE)
     re_TourNo = re.compile(r'\(\#(?P<TOURNO>\d+)\)', re.MULTILINE)
     re_non_decimal = re.compile(r'[^\d.,]+')
+    re_Partial = re.compile('<startdate>', re.MULTILINE)
     re_FPP = re.compile(r'Pts\s')
     
     def compilePlayerRegexs(self, hand):
@@ -203,9 +204,13 @@ class iPoker(HandHistoryConverter):
         if gametype is None:
             gametype = self.determineGameType(whole_file)
             if gametype is None:
-                tmp = handText[0:200]
-                log.error(_("iPokerToFpdb.determineGameType: '%s'") % tmp)
-                raise FpdbParseError
+                # catch iPoker hands lacking actions / starttime and funnel them to partial
+                if self.re_Partial.search(whole_file):
+                    tmp = handText[0:200]
+                    log.error(_("iPokerToFpdb.determineGameType: '%s'") % tmp)
+                    raise FpdbParseError
+                else:
+                    raise FpdbHandPartial
         return gametype
 
     def determineGameType(self, handText):
