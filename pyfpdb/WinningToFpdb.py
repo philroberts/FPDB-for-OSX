@@ -503,7 +503,7 @@ class Winning(HandHistoryConverter):
         for action in m:
             acts = action.groupdict()
             if action.group('PNAME') == None:    
-                log.error("WinningToFpdb.readAction: Unknown player acts %s" % hand.handid)    
+                log.error("WinningToFpdb.readAction: Unknown player %s %s" % (action.group('ATYPE'), hand.handid))   
                 raise FpdbParseError
                 
             if action.group('ATYPE') == 'folds':

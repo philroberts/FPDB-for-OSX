@@ -1,0 +1,101 @@
+Game started at: 2016/6/21 21:6:22
+Game ID: 665312038 1/2 (PRR) Longana (Short) - 2 (Hold'em)
+Seat 1 is the button
+Seat 1: Player0 (100).
+Seat 2: Player1 (123.94).
+Seat 3: Player2 (100).
+Seat 5: Player3 (61.43).
+Seat 6: Player4 (150.73).
+Seat 7: Hero (100).
+Seat 8: Player5 (37).
+Seat 9: Player6 (111.58).
+Seat 4: Player7 (203.19).
+Player Player1 has small blind (1)
+Player Player2 sitting out
+Player  has big blind (2)
+Player Player1 received a card.
+Player Player1 received a card.
+Player Player3 received a card.
+Player Player3 received a card.
+Player Player4 received a card.
+Player Player4 received a card.
+Player Hero received card: [Ac]
+Player Hero received card: [Kh]
+Player Player5 received a card.
+Player Player5 received a card.
+Player Player6 received a card.
+Player Player6 received a card.
+Player Player0 received a card.
+Player Player0 received a card.
+Player Player3 raises (6)
+Player Player4 folds
+Player Hero raises (18)
+Player Player5 folds
+Player Player6 folds
+Player Player0 folds
+Player Player1 folds
+Player  folds
+Player Player3 calls (12)
+*** FLOP ***: [4s 4c 3h]
+Player Player3 checks
+Player Hero checks
+*** TURN ***: [4s 4c 3h] [5h]
+Player Player3 bets (24.70)
+Player Hero folds
+Uncalled bet (24.70) returned to Player3
+Player Player3 mucks cards
+------ Summary ------
+Pot: 37.05. Rake 1.71. JP fee 0.24
+Board: [4s 4c 3h 5h]
+Player Player0 does not show cards.Bets: 0. Collects: 0. Wins: 0.
+Player Player1 does not show cards.Bets: 1. Collects: 0. Loses: 1.
+Player Player2 does not show cards.Bets: 0. Collects: 0. Wins: 0.
+*Player Player3 mucks (does not show cards). Bets: 18. Collects: 37.05. Wins: 19.05.
+Player Player4 does not show cards.Bets: 0. Collects: 0. Wins: 0.
+Player Hero does not show cards.Bets: 18. Collects: 0. Loses: 18.
+Player Player5 does not show cards.Bets: 0. Collects: 0. Wins: 0.
+Player Player6 does not show cards.Bets: 0. Collects: 0. Wins: 0.
+Player  does not show cards.Bets: 2. Collects: 0. Loses: 2.
+Game ended at: 2016/6/21 21:8:21
+
+Game started at: 2016/6/21 20:58:46
+Game ID: 665307190 1/2 (PRR) Longana (Short) - 2 (Hold'em)
+Seat 9 is the button
+Seat 3: Player2 (100).
+Seat 4: Player7 (203.19).
+Seat 7: Hero (103).
+Seat 9: Player6 (106.23).
+Seat 5: Player3 (50.28).
+Player Player2 has small blind (1)
+Player Player7 sitting out
+Player  has big blind (2)
+Player Player2 received a card.
+Player Player2 received a card.
+Player Hero received card: [Qs]
+Player Hero received card: [Ad]
+Player Player6 received a card.
+Player Player6 received a card.
+Player Hero raises (5)
+Player Player6 folds
+Player Player2 folds
+Player  calls (3)
+*** FLOP ***: [5s Jc Kc]
+Player  checks
+Player Hero checks
+*** TURN ***: [5s Jc Kc] [2s]
+Player  bets (5.22)
+Player Hero calls (5.22)
+*** RIVER ***: [5s Jc Kc 2s] [7s]
+Player  bets (10.18)
+Player Hero folds
+Uncalled bet (10.18) returned to 
+Player  mucks cards
+------ Summary ------
+Pot: 20.37. Rake 0.83. JP fee 0.24
+Board: [5s Jc Kc 2s 7s]
+Player Player2 does not show cards.Bets: 1. Collects: 0. Loses: 1.
+Player Player7 does not show cards.Bets: 0. Collects: 0. Wins: 0.
+Player Hero does not show cards.Bets: 10.22. Collects: 0. Loses: 10.22.
+Player Player6 does not show cards.Bets: 0. Collects: 0. Wins: 0.
+*Player  mucks (does not show cards). Bets: 10.22. Collects: 20.37. Wins: 10.15.
+Game ended at: 2016/6/21 21:0:22
