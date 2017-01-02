@@ -209,10 +209,10 @@ class WinningSummary(TourneySummary):
         
         self.currency="USD"        
         winnings = 0
-        rebuyCount = 0
-        addOnCount = 0
-        koCount = 0
-        rank = 0 #fix with lookups
+        rebuyCount = None
+        addOnCount = None
+        koCount = None
+        rank = 9999 #fix with lookups
         
         if 'WINNINGS' in info and info['WINNINGS'] != None:
             winnings = int(100*Decimal(self.clearMoneyString(info['WINNINGS'])))
@@ -227,5 +227,5 @@ class WinningSummary(TourneySummary):
             
         self.hero = info['PNAME']
             
-        self.addPlayer(9999, info['PNAME'], winnings, self.currency, rebuyCount, addOnCount, koCount)
+        self.addPlayer(rank, info['PNAME'], winnings, self.currency, rebuyCount, addOnCount, koCount)
         

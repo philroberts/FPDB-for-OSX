@@ -242,7 +242,7 @@ class MergeSummary(TourneySummary):
                             if rank <= payouts:
                                 winnings = int(100*structure['payouts'][rank-1])
                             i += 1
-                        self.addPlayer(rank, players[n], winnings, self.currency, 0, 0, 0)
+                        self.addPlayer(rank, players[n], winnings, self.currency, None, None, None)
             self.insertOrUpdate()
                 
     def resetInfo(self):
@@ -384,9 +384,9 @@ class MergeSummary(TourneySummary):
                     self.entries += 1
                     #print "DEBUG: rank: %s pname: %s won: %s" %(m.group('RANK'), m.group('PNAME'), m.group('WINNINGS'))
                     winnings = 0
-                    rebuyCount = 0
-                    addOnCount = 0
-                    koCount = 0
+                    rebuyCount = None
+                    addOnCount = None
+                    koCount = None
                     
                     rank = int(m.group('RANK'))
                     name = m.group('PNAME')

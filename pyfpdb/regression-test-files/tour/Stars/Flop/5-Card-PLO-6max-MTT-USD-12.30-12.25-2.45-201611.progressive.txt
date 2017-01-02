@@ -1,0 +1,41 @@
+PokerStars Hand #161996304356: Tournament #1731156709, $12.30+$12.25+$2.45 USD 5 Card Omaha Pot Limit - Level I (15/30) - 2016/11/26 19:08:48 CET [2016/11/26 13:08:48 ET]
+Table '1731156709 5' 6-max Seat #1 is the button
+Seat 1: DaddyCa$h (6292 in chips, $18.37 bounty) 
+Seat 2: Patty98 (1799 in chips, $12.25 bounty) 
+Seat 4: Vedda (2775 in chips, $12.25 bounty) 
+Seat 5: LeaD25 (2816 in chips, $12.25 bounty) 
+Seat 6: Hero (3000 in chips, $12.25 bounty) 
+Patty98: posts small blind 15
+Vedda: posts big blind 30
+*** HOLE CARDS ***
+Dealt to Hero [Qs Td As Qc 4c]
+LeaD25: raises 60 to 90
+Hero: calls 90
+DaddyCa$h: calls 90
+Patty98: calls 75
+Vedda: calls 60
+*** FLOP *** [5d 7d Ts]
+Patty98: checks 
+Vedda: checks 
+LeaD25: checks 
+Hero: checks 
+DaddyCa$h: checks 
+*** TURN *** [5d 7d Ts] [Jc]
+Patty98: bets 90
+Vedda: calls 90
+LeaD25: raises 720 to 810
+Hero: folds 
+DaddyCa$h: folds 
+Patty98: folds 
+Vedda: folds 
+Uncalled bet (720) returned to LeaD25
+LeaD25 collected 720 from pot
+LeaD25: doesn't show hand 
+*** SUMMARY ***
+Total pot 720 | Rake 0 
+Board [5d 7d Ts Jc]
+Seat 1: DaddyCa$h (button) folded on the Turn
+Seat 2: Patty98 (small blind) folded on the Turn
+Seat 4: Vedda (big blind) folded on the Turn
+Seat 5: LeaD25 collected (720)
+Seat 6: Hero folded on the Turn

@@ -232,9 +232,6 @@ class FullTiltPokerSummary(TourneySummary):
                 name = info['NAME']
                 rank = int(Decimal(entry['position']))
                 winnings = 0
-                rebuyCount = 0
-                addOnCount = 0
-                koCount = 0
                 entryId += 1
 
                 if 'payout amount' in entry and entry['payout amount']:
@@ -249,6 +246,8 @@ class FullTiltPokerSummary(TourneySummary):
                     for a6 in m6:
                         addOnAmt += int(100*Decimal(self.clearMoneyString(a6.group('WINNINGS'))))
                     addOnCount = addOnAmt/self.addOnCost
+                else:
+                    addOnCount = None
                     
                 if self.isRebuy:
                     rebuyAmt = 0
@@ -256,6 +255,8 @@ class FullTiltPokerSummary(TourneySummary):
                     for a7 in m7:
                         rebuyAmt += int(100*Decimal(self.clearMoneyString(a7.group('WINNINGS'))))
                     rebuyCount = rebuyAmt/self.rebuyCost
+                else:
+                    rebuyCount = None
                     
                 if 'total bounty amount' in entry and entry['total bounty amount']:
                     m8 = self.re_WinningsXLS.search(entry['total bounty amount'])
@@ -272,6 +273,8 @@ class FullTiltPokerSummary(TourneySummary):
                 if self.koBounty and not self.isKO:
                     self.isKO = True
                     koCount = 1
+                else:
+                    koCount = None
                       
                 self.addPlayer(rank, name, winnings, self.currency, rebuyCount, addOnCount, koCount, entryId)            
 
@@ -407,9 +410,9 @@ class FullTiltPokerSummary(TourneySummary):
                 name = mg['NAME']
                 rank = int(mg['RANK'])
                 winnings = 0
-                rebuyCount = 0
-                addOnCount = 0
-                koCount = 0
+                rebuyCount = None
+                addOnCount = None
+                koCount = None
     
                 if 'WINNINGS' in mg and mg['WINNINGS'] != None:
                     winnings = int(100*Decimal(self.clearMoneyString(mg['WINNINGS'])))
@@ -442,7 +445,7 @@ class FullTiltPokerSummary(TourneySummary):
                                     '6' :  '64000', # Step 6 -  $640.00 USD
                                     '7' : '210000', # Step 7 - $2100.00 USD
                                   }
-                    winnings = step_values[mg['LEVEL']]    
+                    winnings = int(step_values[mg['LEVEL']])
                     
                 self.addPlayer(rank, name, winnings, self.currency, rebuyCount, addOnCount, koCount, entryId)
     
@@ -456,8 +459,8 @@ class FullTiltPokerSummary(TourneySummary):
             for a in m:
                 winnings = 0
                 name = a.group('NAME')
-                rank = a.group('RANK')
-                self.addPlayer(rank, name, winnings, self.currency, 0, 0, 0)
+                rank = int(a.group('RANK'))
+                self.addPlayer(rank, name, winnings, self.currency, None, None, None)
                 
     def setCurrency(self, m, currency=None):
         if m.group('CURRENCY1') == "$":     currency="USD"

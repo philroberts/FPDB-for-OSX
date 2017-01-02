@@ -128,7 +128,7 @@ class BovadaSummary(TourneySummary):
                             self.rebuyCost = self.buyin
                             self.addOnCost = self.buyin
             
-            rank, winnings, rebuys, addons = None, None, 0, 0
+            rank, winnings, rebuys, addons = None, None, None, None
             
             m = self.re_Ranking.search(self.summaryText)
             if m and m.group('RANK') is not None: 
@@ -144,10 +144,16 @@ class BovadaSummary(TourneySummary):
                 winnings = int(100*Decimal(self.clearMoneyString(m.group('WINNINGS'))))
                 
             m = self.re_Rebuyin.finditer(self.summaryText)
-            for a in m: rebuys += 1
+            for a in m: 
+                if rebuys == None: 
+                    rebuys = 0
+                rebuys += 1
                 
             m = self.re_AddOn.finditer(self.summaryText)
-            for a in m: addons += 1
+            for a in m: 
+                if addons == None:
+                    addons = 0
+                addons += 1
                             
-            self.addPlayer(rank, 'Hero', winnings, self.currency, rebuys, addons, 0)
+            self.addPlayer(rank, 'Hero', winnings, self.currency, rebuys, addons, None)
         

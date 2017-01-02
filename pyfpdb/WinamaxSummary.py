@@ -274,9 +274,9 @@ class WinamaxSummary(TourneySummary):
             if rank!='...':
                 rank = int(mg['RANK'])
                 winnings = 0
-                rebuyCount = 0
-                addOnCount = 0
-                koCount = 0
+                rebuyCount = None
+                addOnCount = None
+                koCount = None
     
                 if 'WINNINGS' in mg and mg['WINNINGS'] != None:
                     if mg['WINNINGS'].find(u"€")!=-1:

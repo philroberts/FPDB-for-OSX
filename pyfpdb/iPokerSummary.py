@@ -175,7 +175,7 @@ class iPokerSummary(TourneySummary):
                 if self.buyin == 0:
                     self.buyinCurrency = 'FREE'
                 hero = mg['HERO']
-                self.addPlayer(rank, hero, winnings, self.currency, 0, 0, 0)
+                self.addPlayer(rank, hero, winnings, self.currency, None, None, None)
             else:
                 raise FpdbHandPartial(hid=self.tourNo)
         else:

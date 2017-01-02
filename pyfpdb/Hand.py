@@ -93,6 +93,7 @@ class Hand(object):
         self.addOnCost = 0
         self.isKO = False
         self.koBounty = 0
+        self.isProgressive = False
         self.isMatrix = False
         self.isShootout = False
         self.isFast = False
@@ -151,6 +152,8 @@ class Hand(object):
         self.stacks = {}
         self.collected = [] #list of ?
         self.collectees = {} # dict from player names to amounts collected (?)
+        self.koCounts = {}
+        self.endBounty = {}
 
         # Sets of players
         self.folded = set()
@@ -336,6 +339,10 @@ class Hand(object):
         if self.handsstove:
             for hs in self.handsstove: hs[0] = self.dbid_hands
         db.storeHandsStove(self.handsstove, doinsert)
+        
+    def updateTourneyResults(self, db):
+        """ Function to update Tourney Bounties if any"""
+        db.updateTourneyPlayerBounties(self)
 
     def updateHudCache(self, db, doinsert = False):
         """ Function to update the HudCache"""
@@ -555,7 +562,7 @@ class Hand(object):
         self.totalPot()
         self.rake = self.totalpot - self.totalcollected
 
-    def addPlayer(self, seat, name, chips, position=None, sitout=False):
+    def addPlayer(self, seat, name, chips, position=None, sitout=False, bounty=None):
         """ Adds a player to the hand, and initialises data structures indexed by player.
             seat    (int) indicating the seat
             name    (string) player name
@@ -569,7 +576,7 @@ class Hand(object):
         log.debug("addPlayer: %s %s (%s)", seat, name, chips)
         if chips is not None:
             chips = chips.replace(u',', u'') #some sites have commas
-            self.players.append([seat, name, chips, position])
+            self.players.append([seat, name, chips, position, bounty])
             self.stacks[name] = Decimal(chips)
             self.pot.addPlayer(name)
             for street in self.actionStreets:
@@ -1116,6 +1123,7 @@ class HoldemOmahaHand(Hand):
             if self.maxseats is None:
                 self.maxseats = hhc.guessMaxSeats(self)
             self.sittingOut()
+            hhc.readTourneyResults(self)
             hhc.readOther(self)
         elif builtFrom == "DB":
             # Creator expected to call hhc.select(hid) to fill out object
@@ -1319,6 +1327,7 @@ class DrawHand(Hand):
             if self.maxseats is None:
                 self.maxseats = hhc.guessMaxSeats(self)
             self.sittingOut()
+            hhc.readTourneyResults(self)
             hhc.readOther(self)
             
         elif builtFrom == "DB":
@@ -1501,6 +1510,7 @@ class StudHand(Hand):
             if self.maxseats is None:
                 self.maxseats = hhc.guessMaxSeats(self)
             self.sittingOut()
+            hhc.readTourneyResults(self)
             hhc.readOther(self)
             
         elif builtFrom == "DB":

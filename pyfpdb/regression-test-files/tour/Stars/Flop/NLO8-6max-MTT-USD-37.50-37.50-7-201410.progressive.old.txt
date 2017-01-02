@@ -1,0 +1,49 @@
+PokerStars Hand #123520812521: Tournament #986831247, $37.50+$37.50+$7.00 USD Omaha Hi/Lo No Limit - Level III (20/40) - 2014/10/19 13:35:54 ET
+Table '986831247 40' 6-max Seat #6 is the button
+Seat 1: Player0 (3375 in chips) 
+Seat 2: Hero (4116 in chips) 
+Seat 3: Player1 (2714 in chips) 
+Seat 4: Player2 (3404 in chips) 
+Seat 5: Player3 (2391 in chips) 
+Seat 6: Player4 (2000 in chips) 
+Player0: posts small blind 20
+Hero: posts big blind 40
+*** HOLE CARDS ***
+Dealt to Hero [5c 9d 4s Td]
+Player1: raises 60 to 100
+Player2: folds 
+Player3: raises 140 to 240
+Player4: calls 240
+Player0: folds 
+Hero: folds 
+Player1: calls 140
+*** FLOP *** [8d Jd 8h]
+Player1: checks 
+Player3: checks 
+Player4: checks 
+*** TURN *** [8d Jd 8h] [6c]
+Player1: checks 
+Player3: checks 
+Player4: bets 400
+Player1: folds 
+Player3: calls 400
+*** RIVER *** [8d Jd 8h 6c] [Jh]
+Player3: checks 
+Player4: bets 1360 and is all-in
+Player3: calls 1360
+*** SHOW DOWN ***
+Player4: shows [Ad Kd 6d 3s] (HI: two pair, Jacks and Sixes)
+Player3: shows [5s Jc As 2c] (HI: three of a kind, Jacks)
+Player3 collected 4300 from pot
+No low hand qualified
+Player3 wins $18.75 for eliminating Player4 and their own bounty increases by $18.75 to $56.25
+Player4 finished the tournament in 316th place
+*** SUMMARY ***
+Total pot 4300 | Rake 0 
+Board [8d Jd 8h 6c Jh]
+Seat 1: Player0 (small blind) folded before Flop
+Seat 2: Hero (big blind) folded before Flop
+Seat 3: Player1 folded on the Turn
+Seat 4: Player2 folded before Flop (didn't bet)
+Seat 5: Player3 showed [5s Jc As 2c] and won (4300) with HI: three of a kind, Jacks
+Seat 6: Player4 (button) showed [Ad Kd 6d 3s] and lost with HI: two pair, Jacks and Sixes

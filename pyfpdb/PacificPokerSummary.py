@@ -133,9 +133,9 @@ class PacificPokerSummary(TourneySummary):
         player = mg['PNAME']
         rank = int(mg['RANK'])
         winnings = 0
-        rebuyCount = 0
-        addOnCount = 0
-        koCount = 0
+        rebuyCount = None
+        addOnCount = None
+        koCount = None
         
         if 'WINNINGS' in mg and mg['WINNINGS'] != None:
             winnings = int(100*self.convert_to_decimal(mg['WINNINGS']))

@@ -37,6 +37,8 @@ def _buildStatsInitializer():
     #Init vars that may not be used, but still need to be inserted.
     # All stud street4 need this when importing holdem
     init['effStack']    = 0
+    init['startBounty'] = None
+    init['endBounty']   = None
     init['common']      = 0
     init['committed']   = 0
     init['winnings']    = 0
@@ -228,6 +230,11 @@ class DerivedStats():
             player_stats = self.handsplayers.get(player_name)
             player_stats['seatNo'] = player[0]
             player_stats['startCash'] = int(100 * Decimal(player[2]))
+            if player[4] != None:
+                player_stats['startBounty'] = int(100 * Decimal(player[4]))
+                player_stats['endBounty'] = int(100 * Decimal(player[4]))
+            if player_name in hand.endBounty:
+                player_stats['endBounty'] = int(hand.endBounty.get(player_name))
             if player_name in hand.sitout:
                 player_stats['sitout'] = True
             else:

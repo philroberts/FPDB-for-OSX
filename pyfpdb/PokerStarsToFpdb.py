@@ -200,6 +200,18 @@ class PokerStars(HandHistoryConverter):
     re_WinningRankOther = re.compile(u"^%(PLYR)s finished the tournament in (?P<RANK>[0-9]+)(st|nd|rd|th) place and received %(CUR)s(?P<AMT>[.0-9]+)\.$" %  substitutions, re.MULTILINE)
     re_RankOther        = re.compile(u"^%(PLYR)s finished the tournament in (?P<RANK>[0-9]+)(st|nd|rd|th) place$" %  substitutions, re.MULTILINE)
     re_Cancelled        = re.compile('Hand\scancelled', re.MULTILINE)
+    #APTEM-89 wins the $0.27 bounty for eliminating Hero
+    #ChazDazzle wins the 22000 bounty for eliminating berkovich609
+    #JKuzja, vecenta split the $50 bounty for eliminating ODYSSES
+    re_Bounty           = re.compile(u"^%(PLYR)s (?P<SPLIT>split|wins) the %(CUR)s(?P<AMT>[\.0-9]+) bounty for eliminating (?P<ELIMINATED>.+?)$" %  substitutions, re.MULTILINE)
+    #Amsterdam71 wins $19.90 for eliminating MuKoJla and their own bounty increases by $19.89 to $155.32
+    #Amsterdam71 wins $4.60 for splitting the elimination of Frimble11 and their own bounty increases by $4.59 to $41.32    
+    #Amsterdam71 wins the tournament and receives $230.36 - congratulations!
+    re_Progressive      = re.compile(u"""
+                        ^%(PLYR)s\swins\s%(CUR)s(?P<AMT>[\.0-9]+)\s
+                        for\s(splitting\sthe\selimination\sof|eliminating)\s(?P<ELIMINATED>.+?)\s
+                        and\stheir\sown\sbounty\sincreases\sby\s%(CUR)s(?P<INCREASE>[\.0-9]+)\sto\s%(CUR)s(?P<ENDAMT>[\.0-9]+)$"""
+                         %  substitutions, re.MULTILINE|re.VERBOSE)
 
     def compilePlayerRegexs(self,  hand):
         players = set([player[1] for player in hand.players])
@@ -421,7 +433,14 @@ class PokerStars(HandHistoryConverter):
         pre, post = hand.handText.split('*** SUMMARY ***')
         m = self.re_PlayerInfo.finditer(pre)
         for a in m:
-            hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), self.clearMoneyString(a.group('CASH')), None, a.group('SITOUT'))
+            hand.addPlayer(
+                int(a.group('SEAT')), 
+                a.group('PNAME'), 
+                self.clearMoneyString(a.group('CASH')), 
+                None, 
+                a.group('SITOUT'),
+                self.clearMoneyString(a.group('BOUNTY'))
+            )
 
     def markStreets(self, hand):
 
@@ -581,18 +600,41 @@ class PokerStars(HandHistoryConverter):
             hand.addShownCards(cards, shows.group('PNAME'))
 
     def readTourneyResults(self, hand):
-        """This function is not called. A recent patch broke the ability for the Stars parser to fetch
-            tourney results from hh's. As the current Stars client supports writing tourney results files
-            directly to the client machine i'm removing the ability to parse tourney results from hh files
-            until we merge/resolve IdentifySite into the parsing despatch sequence"""
-        for winningrankone in self.re_WinningRankOne.finditer(hand.handText):
-            hand.addPlayerRank (winningrankone.group('PNAME'),int(100*Decimal(winningrankone.group('AMT'))),1)
-
-        for winningrankothers in self.re_WinningRankOther.finditer(hand.handText):
-            hand.addPlayerRank (winningrankothers.group('PNAME'),int(100*Decimal(winningrankothers.group('AMT'))),winningrankothers.group('RANK'))
-
-        for rankothers in self.re_RankOther.finditer(hand.handText):
-            hand.addPlayerRank (rankothers.group('PNAME'),0,rankothers.group('RANK'))
+        """Reads knockout bounties and add them to the koCounts dict"""
+        if self.re_Bounty.search(hand.handText) == None:
+            koAmounts = {}
+            winner = None
+            #%(PLYR)s wins %(CUR)s(?P<AMT>[\.0-9]+) for eliminating (?P<ELIMINATED>.+?) and their own bounty increases by %(CUR)s(?P<INCREASE>[\.0-9]+) to %(CUR)s(?P<ENDAMT>[\.0-9]+)
+            #re_WinningRankOne   = re.compile(u"^%(PLYR)s wins the tournament and receives %(CUR)s(?P<AMT>[\.0-9]+) - congratulations!$" %  substitutions, re.MULTILINE)
+            for a in self.re_Progressive.finditer(hand.handText):
+                if a.group('PNAME') not in koAmounts:
+                    koAmounts[a.group('PNAME')] = 0
+                koAmounts[a.group('PNAME')] += 100*Decimal(a.group('AMT'))
+                hand.endBounty[a.group('PNAME')] = 100*Decimal(a.group('ENDAMT'))
+                hand.isProgressive = True
+                
+            m = self.re_WinningRankOne.search(hand.handText)
+            if m: winner = m.group('PNAME')
+            
+            for pname, amount in koAmounts.iteritems():
+                if pname == winner:
+                    end = (amount + hand.endBounty[pname])
+                    hand.koCounts[pname] = (amount + hand.endBounty[pname]) / Decimal(hand.koBounty)
+                else:
+                    end = 0
+                    hand.koCounts[pname] = amount / Decimal(hand.koBounty)
+        else:
+            for a in self.re_Bounty.finditer(hand.handText):
+                if a.group('SPLIT') == 'split':
+                    pnames = a.group('PNAME').split(', ')
+                    for pname in pnames:
+                        if pname not in hand.koCounts:
+                            hand.koCounts[pname] = 0
+                        hand.koCounts[pname] += (1 / Decimal(len(pnames)))
+                else:
+                    if a.group('PNAME') not in hand.koCounts:
+                        hand.koCounts[a.group('PNAME')] = 0
+                    hand.koCounts[a.group('PNAME')] += 1        
 
     def readCollectPot(self,hand):
         i=0

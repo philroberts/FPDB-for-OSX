@@ -610,6 +610,7 @@ class Sql:
                         addOnChips BIGINT,
                         knockout BOOLEAN,
                         koBounty BIGINT,
+                        progressive BOOLEAN,
                         step BOOLEAN,
                         stepNo INT,
                         chance BOOLEAN,
@@ -656,6 +657,7 @@ class Sql:
                         addOnChips BIGINT,
                         knockout BOOLEAN,
                         koBounty BIGINT,
+                        progressive BOOLEAN,
                         step BOOLEAN,
                         stepNo INT,
                         chance BOOLEAN,
@@ -701,6 +703,7 @@ class Sql:
                         addOnChips INT,
                         knockout BOOLEAN,
                         koBounty INT,
+                        progressive BOOLEAN,
                         step BOOLEAN,
                         stepNo INT,
                         chance BOOLEAN,
@@ -793,6 +796,8 @@ class Sql:
                         playerId INT UNSIGNED NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
                         startCash BIGINT NOT NULL,
                         effStack BIGINT NOT NULL,
+                        startBounty BIGINT,
+                        endBounty BIGINT,
                         position CHAR(1),
                         seatNo SMALLINT NOT NULL,
                         sitout BOOLEAN NOT NULL,
@@ -971,6 +976,8 @@ class Sql:
                         playerId INT NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
                         startCash BIGINT NOT NULL,
                         effStack BIGINT NOT NULL,
+                        startBounty BIGINT,
+                        endBounty BIGINT,
                         position CHAR(1),
                         seatNo SMALLINT NOT NULL,
                         sitout BOOLEAN NOT NULL,
@@ -1148,6 +1155,8 @@ class Sql:
                         playerId INT NOT NULL,
                         startCash INT NOT NULL,
                         effStack INT NOT NULL,
+                        startBounty INT,
+                        endBounty INT,
                         position TEXT,
                         seatNo INT NOT NULL,
                         sitout BOOLEAN NOT NULL,
@@ -1336,7 +1345,7 @@ class Sql:
                         winningsCurrency VARCHAR(4),
                         rebuyCount INT,
                         addOnCount INT,
-                        koCount INT,
+                        koCount NUMERIC,
                         comment TEXT,
                         commentTs DATETIME)
                         ENGINE=INNODB"""
@@ -1351,7 +1360,7 @@ class Sql:
                         winningsCurrency VARCHAR(4),
                         rebuyCount INT,
                         addOnCount INT,
-                        koCount INT,
+                        koCount NUMERIC,
                         comment TEXT,
                         commentTs timestamp without time zone)"""
         elif db_server == 'sqlite':
@@ -1365,7 +1374,7 @@ class Sql:
                         winningsCurrency VARCHAR(4),
                         rebuyCount INT,
                         addOnCount INT,
-                        koCount INT,
+                        koCount decimal,
                         comment TEXT,
                         commentTs timestamp,
                         FOREIGN KEY (tourneyId) REFERENCES Tourneys(id),
@@ -8605,6 +8614,7 @@ class Sql:
                                                               tt.sng,
                                                               tt.knockout,
                                                               tt.koBounty,
+                                                              tt.progressive,
                                                               tt.rebuy,
                                                               tt.rebuyCost,
                                                               tt.addOn,
@@ -8649,6 +8659,7 @@ class Sql:
                                             AND sng=%s
                                             AND knockout=%s
                                             AND koBounty=%s
+                                            AND progressive=%s
                                             AND rebuy=%s
                                             AND rebuyCost=%s
                                             AND addOn=%s
@@ -8679,12 +8690,12 @@ class Sql:
         """
 
         self.query['insertTourneyType'] = """insert into TourneyTypes (
-                                                   siteId, currency, buyin, fee, category, limitType, maxSeats, sng, knockout, koBounty,
+                                                   siteId, currency, buyin, fee, category, limitType, maxSeats, sng, knockout, koBounty, progressive,
                                                    rebuy, rebuyCost, addOn, addOnCost, speed, shootout, matrix, fast,
                                                    stack, step, stepNo, chance, chanceCount, multiEntry, reEntry, homeGame, newToGame,
                                                    fifty50, time, timeAmt, satellite, doubleOrNothing, cashOut, onDemand, flighted, guarantee, guaranteeAmt
                                                    )
-                                              values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
+                                              values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
                                                       %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
         """
         
@@ -8797,6 +8808,11 @@ class Sql:
                                                  WHERE id=%s
         """
 
+        self.query['updateTourneysPlayerBounties'] = """UPDATE TourneysPlayers
+                                                 SET koCount = case when koCount is null then %s else koCount+%s end
+                                                 WHERE id=%s
+        """
+
         self.query['insertTourneysPlayer'] = """insert into TourneysPlayers (
                                                     tourneyId,
                                                     playerId,
@@ -8880,6 +8896,8 @@ class Sql:
                 playerId,
                 startCash,
                 effStack,
+                startBounty,
+                endBounty,
                 seatNo,
                 sitout,
                 card1,
@@ -9063,7 +9081,8 @@ class Sql:
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
-                    %s, %s, %s, %s, %s
+                    %s, %s, %s, %s, %s,
+                    %s, %s
                 )"""
 
         self.query['store_hands_actions'] = """insert into HandsActions (

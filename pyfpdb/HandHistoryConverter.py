@@ -402,8 +402,9 @@ or None if we fail to get the info """
     def readAction(self, hand, street): abstract
     def readCollectPot(self, hand): abstract
     def readShownCards(self, hand): abstract
-    def readTourneyResults(self, hand): abstract
-    """This function is for future use in parsing tourney results directly from a hand"""
+    def readTourneyResults(self, hand): 
+        """This function is for future use in parsing tourney results directly from a hand"""
+        pass
     
     # EDIT: readOther is depreciated
     # Some sites do odd stuff that doesn't fall in to the normal HH parsing.

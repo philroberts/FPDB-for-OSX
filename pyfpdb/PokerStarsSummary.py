@@ -311,9 +311,9 @@ class PokerStarsSummary(TourneySummary):
             name = info['NAME']
             rank = int(self.clearMoneyString(info['RANK']))
             winnings = 0
-            rebuyCount = 0
-            addOnCount = 0
-            koCount = 0
+            rebuyCount = None
+            addOnCount = None
+            koCount = None
             
             if 'WINNINGS' in info and info['WINNINGS'] != None:
                 winnings = int(100*Decimal(self.clearMoneyString(info['WINNINGS'])))
@@ -322,9 +322,9 @@ class PokerStarsSummary(TourneySummary):
                 rebuyAddOnAmt = int(100*Decimal(self.clearMoneyString(info['REBUYADDON'].replace(" ", ""))))
                 rebuyCount = rebuyAddOnAmt/self.rebuyCost
                 
+            # KOs should be exclusively handled in the PokerStars hand history files
             if 'KOS' in info and info['KOS'] != None and info['KOS'] != '0.00':
-                self.koBounty += int(100*Decimal(self.clearMoneyString(info['KOS'])))
-                self.isKO, koCount = True, 1
+                self.isKO = True
                     
             self.addPlayer(rank, name, winnings, self.currency, rebuyCount, addOnCount, koCount)
 
@@ -404,9 +404,9 @@ class PokerStarsSummary(TourneySummary):
             name = mg['NAME']
             rank = int(mg['RANK'])
             winnings = 0
-            rebuyCount = 0
-            addOnCount = 0
-            koCount = 0
+            rebuyCount = None
+            addOnCount = None
+            koCount = None
             entryId = 1
 
             if 'WINNINGS' in mg and mg['WINNINGS'] != None:
@@ -434,7 +434,7 @@ class PokerStarsSummary(TourneySummary):
                                 '5' :  '70000', # Step 5 -  $700.00 USD
                                 '6' : '210000', # Step 6 - $2100.00 USD
                               }
-                winnings = step_values[mg['LEVEL']]
+                winnings = int(step_values[mg['LEVEL']])
             
             if 'QUALIFIED' in mg and mg['QUALIFIED'] != None and self.isSatellite:
                 winnings = targetBuyin

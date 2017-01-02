@@ -95,6 +95,7 @@ class TourneySummary(object):
         self.isRebuy = False
         self.isAddOn = False
         self.isKO = False
+        self.isProgressive = False
         self.isMatrix = False
         self.isShootout = False
         self.isFast = False
@@ -290,11 +291,11 @@ winnings    (int) the money the player ended the tourney with (can be 0, or -1 i
                 self.winningsCurrency[name].append(winningsCurrency)
             else:
                 self.ranks[name].append(None)
-                self.winnings[name].append(0)
+                self.winnings[name].append(None)
                 self.winningsCurrency[name].append(None)
-            self.rebuyCounts[name].append(0)
-            self.addOnCounts[name].append(0)
-            self.koCounts[name].append(0)
+            self.rebuyCounts[name].append(None)
+            self.addOnCounts[name].append(None)
+            self.koCounts[name].append(None)
         else:
             self.players[name] = [entryId]
             if rank:
@@ -303,22 +304,11 @@ winnings    (int) the money the player ended the tourney with (can be 0, or -1 i
                 self.winningsCurrency.update({ name : [winningsCurrency] })
             else:
                 self.ranks.update({ name : [None] })
-                self.winnings.update({ name : [0] })
-                self.winningsCurrency.update({ name : [None] })
-            if rebuyCount:
-                self.rebuyCounts.update({name: [rebuyCount] })
-            else:
-                self.rebuyCounts.update({name: [0] })
-            
-            if addOnCount:
-                self.addOnCounts.update({name: [addOnCount] })
-            else:
-                self.addOnCounts.update({name: [0] })
-            
-            if koCount:
-                self.koCounts.update({name : [koCount] })
-            else:
-                self.koCounts.update({name: [0] })
+                self.winnings.update({ name : [None] })
+                self.winningsCurrency.update({ name : [None] })                
+            self.rebuyCounts.update({name: [rebuyCount] })
+            self.addOnCounts.update({name: [addOnCount] })
+            self.koCounts.update({name : [koCount] })
     #end def addPlayer
 
     def writeSummary(self, fh=sys.__stdout__):

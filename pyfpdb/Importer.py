@@ -467,27 +467,17 @@ class Importer:
                 ####Lock Placeholder####
                 backtrack = False
                 id = self.database.nextHandId()
-                sctimer, ihtimer, cctimer, pctimer, hctimer = 0,0,0,0,0
                 for i in range(len(phands)):
                     doinsert = len(phands)==i+1
                     hand = phands[i]
                     try:
                         id = hand.getHandId(self.database, id)
-                        stime = time()
                         hand.updateSessionsCache(self.database, None, doinsert)
-                        sctimer += time() - stime
-                        stime = time()
                         hand.insertHands(self.database, fpdbfile.fileId, doinsert, self.settings['testData'])
-                        ihtimer = time() - stime
-                        stime = time()
                         hand.updateCardsCache(self.database, None, doinsert)
-                        cctimer = time() - stime
-                        stime = time()
                         hand.updatePositionsCache(self.database, None, doinsert) 
-                        pctimer = time() - stime
-                        stime = time()
                         hand.updateHudCache(self.database, doinsert)
-                        hctimer = time() - stime
+                        hand.updateTourneyResults(self.database)
                         ihands.append(hand)
                         to_hud.append(hand.dbid_hands)
                     except FpdbHandDuplicate:

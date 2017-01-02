@@ -163,9 +163,9 @@ class PokerTrackerSummary(TourneySummary):
             name = mg['NAME']
             rank = int(mg['RANK'])
             winnings = 0
-            rebuyCount = 0
-            addOnCount = 0
-            koCount = 0
+            rebuyCount = None
+            addOnCount = None
+            koCount = None
             if len(name)>0:
                 if 'WINNINGS' in mg and mg['WINNINGS'] != None:
                     winnings = int(100*Decimal(self.clearMoneyString(mg['WINNINGS'])))

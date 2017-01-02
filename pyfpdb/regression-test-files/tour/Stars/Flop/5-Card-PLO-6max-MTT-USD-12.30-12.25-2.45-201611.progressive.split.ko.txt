@@ -1,0 +1,46 @@
+PokerStars Hand #162003347744: Tournament #1731156709, $12.30+$12.25+$2.45 USD 5 Card Omaha Pot Limit - Level XIII (250/500) - 2016/11/26 21:17:57 CET [2016/11/26 15:17:57 ET]
+Table '1731156709 11' 6-max Seat #1 is the button
+Seat 1: DaddyCa$h (20080 in chips, $30.61 bounty) 
+Seat 2: MuKoJla (15975 in chips, $33.67 bounty) 
+Seat 3: Hero (18113 in chips, $36.73 bounty) 
+Seat 4: Frimble11 (344 in chips, $18.37 bounty) 
+MuKoJla: posts small blind 250
+Hero: posts big blind 500
+*** HOLE CARDS ***
+Dealt to Hero [Kc 2s Ac 5h 6s]
+Frimble11: calls 344 and is all-in
+DaddyCa$h: calls 500
+MuKoJla: calls 250
+Hero: checks 
+*** FLOP *** [Ah Kh Jh]
+MuKoJla: checks 
+Hero: checks 
+DaddyCa$h: checks 
+*** TURN *** [Ah Kh Jh] [Ad]
+MuKoJla: checks 
+Hero: bets 1641
+DaddyCa$h: calls 1641
+MuKoJla: folds 
+*** RIVER *** [Ah Kh Jh Ad] [3h]
+Hero: bets 4562
+DaddyCa$h: raises 13377 to 17939 and is all-in
+Hero: calls 11410 and is all-in
+Uncalled bet (1967) returned to DaddyCa$h
+*** SHOW DOWN ***
+DaddyCa$h: shows [9h As 4s 5c Kd] (a full house, Aces full of Kings)
+Hero: shows [Kc 2s Ac 5h 6s] (a full house, Aces full of Kings)
+Hero collected 17847 from side pot
+DaddyCa$h collected 17847 from side pot
+Frimble11: shows [7s Jc 4d 8d Tc] (two pair, Aces and Jacks)
+Hero collected 688 from main pot
+DaddyCa$h collected 688 from main pot
+Hero wins $4.60 for splitting the elimination of Frimble11 and their own bounty increases by $4.59 to $41.32
+DaddyCa$h wins $4.59 for splitting the elimination of Frimble11 and their own bounty increases by $4.59 to $35.20
+Frimble11 finished the tournament in 8th place
+*** SUMMARY ***
+Total pot 37070 Main pot 1376. Side pot 35694. | Rake 0 
+Board [Ah Kh Jh Ad 3h]
+Seat 1: DaddyCa$h (button) showed [9h As 4s 5c Kd] and won (18535) with a full house, Aces full of Kings
+Seat 2: MuKoJla (small blind) folded on the Turn
+Seat 3: Hero (big blind) showed [Kc 2s Ac 5h 6s] and won (18535) with a full house, Aces full of Kings
+Seat 4: Frimble11 showed [7s Jc 4d 8d Tc] and lost with two pair, Aces and Jacks

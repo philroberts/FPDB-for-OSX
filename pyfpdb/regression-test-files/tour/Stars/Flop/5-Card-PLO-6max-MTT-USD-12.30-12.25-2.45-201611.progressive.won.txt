@@ -1,0 +1,29 @@
+PokerStars Hand #162008223790: Tournament #1731156709, $12.30+$12.25+$2.45 USD 5 Card Omaha Pot Limit - Level XXI (900/1800) - 2016/11/26 22:47:57 CET [2016/11/26 16:47:57 ET]
+Table '1731156709 2' 6-max Seat #3 is the button
+Seat 3: MuKoJla (42344 in chips, $39.79 bounty) 
+Seat 4: Hero (104656 in chips, $135.43 bounty) 
+MuKoJla: posts small blind 900
+Hero: posts big blind 1800
+*** HOLE CARDS ***
+Dealt to Hero [Ah 4s 6c Ac 3d]
+MuKoJla: calls 900
+Hero: raises 3600 to 5400
+MuKoJla: calls 3600
+*** FLOP *** [3s 6h Js]
+Hero: bets 10800
+MuKoJla: raises 26144 to 36944 and is all-in
+Hero: calls 26144
+*** TURN *** [3s 6h Js] [6d]
+*** RIVER *** [3s 6h Js 6d] [5h]
+*** SHOW DOWN ***
+Hero: shows [Ah 4s 6c Ac 3d] (a full house, Sixes full of Threes)
+MuKoJla: shows [6s 7c Ks Qd Th] (three of a kind, Sixes)
+Hero collected 84688 from pot
+Hero wins $19.90 for eliminating MuKoJla and their own bounty increases by $19.89 to $155.32
+MuKoJla finished the tournament in 2nd place and received $141.51.
+Hero wins the tournament and receives $230.36 - congratulations!
+*** SUMMARY ***
+Total pot 84688 | Rake 0 
+Board [3s 6h Js 6d 5h]
+Seat 3: MuKoJla (button) (small blind) showed [6s 7c Ks Qd Th] and lost with three of a kind, Sixes
+Seat 4: Hero (big blind) showed [Ah 4s 6c Ac 3d] and won (84688) with a full house, Sixes full of Threes

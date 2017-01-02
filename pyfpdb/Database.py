@@ -80,7 +80,7 @@ except ImportError:
     use_numpy = False
 
 
-DB_VERSION = 207
+DB_VERSION = 208
 
 # Variance created as sqlite has a bunch of undefined aggregate functions.
 
@@ -112,6 +112,8 @@ def convert_decimal(s):
 HANDS_PLAYERS_KEYS = [
     'startCash',
     'effStack',
+    'startBounty',
+    'endBounty',
     'seatNo',
     'sitout',
     'card1',
@@ -3283,7 +3285,7 @@ class Database:
         #    self.ttcache = LambdaDict(lambda  key:self.insertTourneyType(key[0], key[1], key[2]))
             
         #tourneydata =   (hand.siteId, hand.buyinCurrency, hand.buyin, hand.fee, hand.gametype['category'],
-        #                 hand.gametype['limitType'], hand.maxseats, hand.isSng, hand.isKO, hand.koBounty,
+        #                 hand.gametype['limitType'], hand.maxseats, hand.isSng, hand.isKO, hand.koBounty, hand.isProgressive,
         #                 hand.isRebuy, hand.rebuyCost, hand.isAddOn, hand.addOnCost, hand.speed, hand.isShootout, hand.isMatrix)
         
         result = self.createOrUpdateTourneyType(hand) #self.ttcache[(hand.tourNo, hand.siteId, tourneydata)]
@@ -3302,17 +3304,6 @@ class Database:
             return True
         return False
     
-    def updateObjectValue(self, obj, dbVal, objVal, objField):
-        if (objField=='koBounty' and objVal>dbVal and dbVal!=0):
-            if objVal%dbVal==0:
-                setattr(obj, objField, dbVal)
-                koCounts = getattr(obj, 'koCounts')
-                for pname, kos in koCounts.iteritems():
-                    koCount = objVal/dbVal
-                    obj.koCounts.update( {pname : [koCount] } )
-        else:
-            setattr(obj, objField, dbVal)
-    
     def createOrUpdateTourneyType(self, obj):
         ttid, _ttid, updateDb = None, None, False
         setattr(obj, 'limitType', obj.gametype['limitType'])
@@ -3324,7 +3315,7 @@ class Database:
         if result != None:
             columnNames=[desc[0].lower() for desc in cursor.description]
             expectedValues = (('buyin', 'buyin'), ('fee', 'fee'), ('buyinCurrency', 'currency'), ('limitType', 'limittype'), ('isSng', 'sng'), ('maxseats', 'maxseats')
-                             , ('isKO', 'knockout'), ('koBounty', 'kobounty'), ('isRebuy', 'rebuy'), ('rebuyCost', 'rebuycost')
+                             , ('isKO', 'knockout'), ('koBounty', 'kobounty'), ('isProgressive', 'progressive'), ('isRebuy', 'rebuy'), ('rebuyCost', 'rebuycost')
                              , ('isAddOn', 'addon'), ('addOnCost','addoncost'), ('speed', 'speed'), ('isShootout', 'shootout')
                              , ('isMatrix', 'matrix'), ('isFast', 'fast'), ('stack', 'stack'), ('isStep', 'step'), ('stepNo', 'stepno')
                              , ('isChance', 'chance'), ('chanceCount', 'chancecount'), ('isMultiEntry', 'multientry'), ('isReEntry', 'reentry')
@@ -3337,7 +3328,7 @@ class Database:
                 objField, dbField = ev
                 objVal, dbVal = getattr(obj, objField), resultDict[dbField]
                 if self.defaultTourneyTypeValue(objVal, dbVal, objField) and dbVal:#DB has this value but object doesnt, so update object
-                    self.updateObjectValue(obj, dbVal, objVal, objField)
+                    setattr(obj, objField, dbVal)
                 elif self.defaultTourneyTypeValue(dbVal, objVal, objField) and objVal:#object has this value but DB doesnt, so update DB
                     updateDb=True
                     oldttid = ttid
@@ -3349,7 +3340,7 @@ class Database:
             else:
                 category, limitType = obj.gametype['category'], obj.gametype['limitType']
             row = (obj.siteId, obj.buyinCurrency, obj.buyin, obj.fee, category,
-                   limitType, obj.maxseats, obj.isSng, obj.isKO, obj.koBounty,
+                   limitType, obj.maxseats, obj.isSng, obj.isKO, obj.koBounty, obj.isProgressive,
                    obj.isRebuy, obj.rebuyCost, obj.isAddOn, obj.addOnCost, obj.speed, obj.isShootout, 
                    obj.isMatrix, obj.isFast, obj.stack, obj.isStep, obj.stepNo, obj.isChance, obj.chanceCount,
                    obj.isMultiEntry, obj.isReEntry, obj.isHomeGame, obj.isNewToGame, obj.isFifty50, obj.isTime,
@@ -3613,6 +3604,20 @@ class Database:
             result = tmp[0]
         return result
     
+    def updateTourneyPlayerBounties(self, hand):
+        updateDb = False
+        cursor = self.get_cursor()
+        q = self.sql.query['updateTourneysPlayerBounties'].replace('%s', self.sql.query['placeholder'])
+        for player, tourneysPlayersId in hand.tourneysPlayersIds.iteritems():
+            if player in hand.koCounts:
+                cursor.execute(q, (
+                    hand.koCounts[player],
+                    hand.koCounts[player],
+                    tourneysPlayersId
+                ))
+                updateDb = True
+        if updateDb: self.commit()
+    
     def createOrUpdateTourneysPlayers(self, summary):
         tourneysPlayersIds, tplayers, inserts = {}, [], []
         cursor = self.get_cursor()
@@ -3665,16 +3670,17 @@ class Database:
                         #pp.pprint(inputs)
                         cursor.execute(q, inputs)
                 else:
-                    #print "all values: tourneyId",summary.tourneyId, "playerId",playerId, "rank",summary.ranks[player], "winnings",summary.winnings[player], "winCurr",summary.winningsCurrency[player], summary.rebuyCounts[player], summary.addOnCounts[player], summary.koCounts[player]
-                    if summary.ranks[player][entryIdx]:
-                        inserts.append((summary.tourneyId, playerId, entryId, int(summary.ranks[player][entryIdx]), 
-                                        int(summary.winnings[player][entryIdx]), summary.winningsCurrency[player][entryIdx],
-                                        summary.rebuyCounts[player][entryIdx], summary.addOnCounts[player][entryIdx], 
-                                        summary.koCounts[player][entryIdx]))
-                    else:
-                        inserts.append((summary.tourneyId, playerId, entryId, None, None, None,
-                                        summary.rebuyCounts[player][entryIdx], summary.addOnCounts[player][entryIdx],
-                                        summary.koCounts[player][entryIdx]))
+                    inserts.append((
+                        summary.tourneyId, 
+                        playerId,
+                        entryId, 
+                        summary.ranks[player][entryIdx], 
+                        summary.winnings[player][entryIdx], 
+                        summary.winningsCurrency[player][entryIdx],
+                        summary.rebuyCounts[player][entryIdx],
+                        summary.addOnCounts[player][entryIdx],
+                        summary.koCounts[player][entryIdx]
+                    ))
         if inserts:
             self.executemany(cursor, self.sql.query['insertTourneysPlayer'].replace('%s', self.sql.query['placeholder']), inserts)
             
