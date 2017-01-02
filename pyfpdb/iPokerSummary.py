@@ -78,6 +78,7 @@ class iPokerSummary(TourneySummary):
                 <win>(?P<CURRENCY>%(LS)s)?(?P<WIN>([%(NUM)s]+)|.+?)</win>
             """ % substitutions, re.MULTILINE|re.VERBOSE)
     re_Buyin = re.compile(r"""(?P<BUYIN>[%(NUM)s]+)""" % substitutions, re.MULTILINE|re.VERBOSE)
+    re_TourNo = re.compile(r'\(\#(?P<TOURNO>\d+)\)', re.MULTILINE)
     re_TotalBuyin = re.compile(r"""(?P<BUYIN>(?P<BIAMT>[%(LS)s%(NUM)s]+)\s\+\s?(?P<BIRAKE>[%(LS)s%(NUM)s]+)?)""" % substitutions, re.MULTILINE|re.VERBOSE)
     re_DateTime1 = re.compile("""(?P<D>[0-9]{2})\-(?P<M>[a-zA-Z]{3})\-(?P<Y>[0-9]{4})\s+(?P<H>[0-9]+):(?P<MIN>[0-9]+)(:(?P<S>[0-9]+))?""", re.MULTILINE)
     re_DateTime2 = re.compile("""(?P<D>[0-9]{2})\/(?P<M>[0-9]{2})\/(?P<Y>[0-9]{4})\s+(?P<H>[0-9]+):(?P<MIN>[0-9]+)(:(?P<S>[0-9]+))?""", re.MULTILINE)
@@ -104,7 +105,7 @@ class iPokerSummary(TourneySummary):
 
         if 'SB' in mg and mg['SB'] != None:
             tmp = self.summaryText[0:200]
-            log.error(_("iPokerSummary.determineGameType: Text does not appear to be a tournament '%s'") % tmp)
+            log.error(_("iPokerSummary.parseSummary: Text does not appear to be a tournament '%s'") % tmp)
             raise FpdbParseError
         else:
             tourney = True
@@ -137,7 +138,17 @@ class iPokerSummary(TourneySummary):
         else:
             self.buyinCurrency = mg['CURRENCY']
         self.currency = self.buyinCurrency
-        self.tourNo = mg['TABLE'].split(',')[-1].strip().split(' ')[0]
+        
+        mt = self.re_TourNo.search(mg['TABLE'])
+        if mt:
+            self.tourNo = mt.group('TOURNO')
+        else:
+            tourNo = mg['TABLE'].split(',')[-1].strip().split(' ')[0]
+            if tourNo.isdigit():
+                self.tourNo = tourNo
+            else:
+                log.error(_("iPokerSummary.parseSummary: Could Not Parse tourNo"))
+                raise FpdbParseError
 
         if tourney:
             m2 = self.re_GameInfoTrny.search(self.summaryText)

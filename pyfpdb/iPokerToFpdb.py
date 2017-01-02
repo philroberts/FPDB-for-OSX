@@ -172,6 +172,7 @@ class iPoker(HandHistoryConverter):
     re_DateTime1 = re.compile("""(?P<D>[0-9]{2})\-(?P<M>[a-zA-Z]{3})\-(?P<Y>[0-9]{4})\s+(?P<H>[0-9]+):(?P<MIN>[0-9]+)(:(?P<S>[0-9]+))?""", re.MULTILINE)
     re_DateTime2 = re.compile("""(?P<D>[0-9]{2})\/(?P<M>[0-9]{2})\/(?P<Y>[0-9]{4})\s+(?P<H>[0-9]+):(?P<MIN>[0-9]+)(:(?P<S>[0-9]+))?""", re.MULTILINE)
     re_MaxSeats = re.compile(r'(?P<SEATS>[0-9]+) Max', re.MULTILINE)
+    re_TourNo = re.compile(r'\(\#(?P<TOURNO>\d+)\)', re.MULTILINE)
     re_non_decimal = re.compile(r'[^\d.,]+')
     re_FPP = re.compile(r'Pts\s')
     
@@ -239,7 +240,17 @@ class iPoker(HandHistoryConverter):
             self.tinfo = {} # FIXME?: Full tourney info is only at the top of the file. After the
                             #         first hand in a file, there is no way for auto-import to
                             #         gather the info unless it reads the entire file every time.
-            self.tinfo['tourNo'] = mg['TABLE'].split(',')[-1].strip().split(' ')[0]
+            mt = self.re_TourNo.search(mg['TABLE'])
+            if mt:
+                self.tinfo['tourNo'] = mt.group('TOURNO')
+            else:
+                tourNo = mg['TABLE'].split(',')[-1].strip().split(' ')[0]
+                if tourNo.isdigit():
+                    self.tinfo['tourNo'] = tourNo
+                else:
+                    log.error(_("iPokerToFpdb.determineGameType: Could Not Parse tourNo"))
+                    raise FpdbParseError
+                
             self.tablename = '1'
             if not mg['CURRENCY'] or mg['CURRENCY']=='fun':
                 self.tinfo['buyinCurrency'] = 'play'
