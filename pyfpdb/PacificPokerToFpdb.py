@@ -301,10 +301,10 @@ class PacificPoker(HandHistoryConverter):
             hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), self.clearMoneyString(a.group('CASH')))
 
     def markStreets(self, hand):
-        # PREFLOP = ** Dealing down cards **
+        # PREFLOP = ** Dealing down cards ** (observed hands don't have this line)
         # This re fails if,  say, river is missing; then we don't get the ** that starts the river.
         if hand.gametype['base'] in ("hold"):
-            m =  re.search(r"\*\* Dealing down cards \*\*(?P<PREFLOP>.+(?=\*\* Dealing flop \*\*)|.+)"
+            m =  re.search(r"(?P<PREFLOP>.+(?=\*\* Dealing flop \*\*)|.+)"
                        r"(\*\* Dealing flop \*\* (?P<FLOP>\[ \S\S, \S\S, \S\S \].+(?=\*\* Dealing turn \*\*)|.+))?"
                        r"(\*\* Dealing turn \*\* (?P<TURN>\[ \S\S \].+(?=\*\* Dealing river \*\*)|.+))?"
                        r"(\*\* Dealing river \*\* (?P<RIVER>\[ \S\S \].+?(?=\*\* Summary \*\*)|.+))?"
