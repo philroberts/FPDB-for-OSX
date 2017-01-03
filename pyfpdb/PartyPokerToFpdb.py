@@ -119,7 +119,7 @@ class PartyPoker(HandHistoryConverter):
             \s+Total\s+number\s+of\s+players\s+\:\s+(?P<PLYRS>\d+)/?(?P<MAX>\d+)?
             """, re.VERBOSE|re.MULTILINE|re.DOTALL)
 
-    re_GameInfoTrny     = re.compile(u"""
+    re_GameInfoTrny1     = re.compile(u"""
             \*{5}\sHand\sHistory\s(F|f)or\sGame\s(?P<HID>\d+)\s\*{5}\s+
             (?P<LIMIT>(NL|PL|FL|))\s*
             (?P<GAME>(Texas\sHold\'em|Omaha\sHi-Lo|Omaha(\sHi)?|7\sCard\sStud\sHi-Lo|7\sCard\sStud|Double\sHold\'em))\s+
@@ -135,6 +135,28 @@ class PartyPoker(HandHistoryConverter):
             \s*\-\s*
             (?P<DATETIME>.+)
             """ % substitutions, re.VERBOSE | re.UNICODE)
+    
+    re_GameInfoTrny2     = re.compile(u"""
+            \*{5}\sHand\sHistory\s(F|f)or\sGame\s(?P<HID>\d+)\s\*{5}\s+
+            (?P<LIMIT>(NL|PL|FL|))\s*
+            (?P<GAME>(Texas\sHold\'em|Omaha\sHi-Lo|Omaha(\sHi)?|7\sCard\sStud\sHi-Lo|7\sCard\sStud|Double\sHold\'em))\s+
+            (?:(?P<BUYIN>[%(LS)s]?\s?[%(NUM)s]+)\s*(?P<BUYIN_CURRENCY>%(LEGAL_ISO)s)?\s*Buy-in\s+)?
+            (\+\s(?P<FEE>[%(LS)s]?\s?[%(NUM)s]+)\sEntry\sFee\s+)?
+            \s*\-\s*
+            (?P<DATETIME>.+)
+            """ % substitutions, re.VERBOSE | re.UNICODE)
+    
+    re_Blinds = re.compile("""
+            ^((Blinds|Stakes)(?:-Antes)?)\(
+                (?P<SB>[%(NUM)s ]+)\s*
+                /(?P<BB>[%(NUM)s ]+)
+                (?:\s*-\s*(?P<ANTE>[%(NUM)s ]+)\$?)?
+            \)$""" % substitutions, re.VERBOSE | re.MULTILINE)
+    
+    re_TourNoLevel = re.compile("""
+            Trny:\s?(?P<TOURNO>\d+)\s+
+            Level:\s*(?P<LEVEL>\d+)
+        """, re.VERBOSE)
 
     re_PlayerInfo   = re.compile(u"""
           (S|s)eat\s?(?P<SEAT>\d+):\s
@@ -157,7 +179,6 @@ class PartyPoker(HandHistoryConverter):
     re_Cancelled     = re.compile('Table\sClosed\s?', re.MULTILINE)
     re_Disconnected  = re.compile('Connection\sLost\sdue\sto\ssome\sreason\s?', re.MULTILINE)
     re_GameStartLine = re.compile('Game\s\#\d+\sstarts', re.MULTILINE)
-    re_PreliminaryHand = re.compile(r"Buy-in  - ")
     re_emailedHand = re.compile(r'\*\*\sSummary\s\*\*')
 
     def allHandsAsList(self):
@@ -232,10 +253,19 @@ class PartyPoker(HandHistoryConverter):
 
     def determineGameType(self, handText):
         handText = handText.replace(u'\x00', u'')
-        info = {}
+        info, extra = {}, {}
         m = self.re_GameInfo.search(handText)
         if not m:
-            m = self.re_GameInfoTrny.search(handText)
+            m = self.re_GameInfoTrny1.search(handText)
+        if not m:
+            m = self.re_GameInfoTrny2.search(handText)
+            m2 = self.re_TourNoLevel.search(handText)
+            m3 = self.re_Blinds.search(handText)
+            if m2 and m3:
+                extra.update(m2.groupdict())
+                extra.update(m3.groupdict())
+            else:
+                m = None
         if not m:
             m = self.re_Disconnected.search(handText)
             if m:
@@ -249,15 +279,12 @@ class PartyPoker(HandHistoryConverter):
             if m and len(handText)<50:
                 message = _("Game start line")
                 raise FpdbHandPartial("Partial hand history: %s" % message)
-            m = self.re_PreliminaryHand.search(handText)
-            if m:
-                message = _("Preliminary hand")
-                raise FpdbHandPartial("Partial hand history: %s" % message)
             tmp = handText[0:200]
             log.error(_("PartyPokerToFpdb.determineGameType: '%s'") % tmp)
             raise FpdbParseError
 
         mg = m.groupdict()
+        mg.update(extra)
         #print "DEBUG: mg: %s" % mg
 
         if 'LIMIT' in mg and mg['LIMIT'] != None:
@@ -340,7 +367,7 @@ class PartyPoker(HandHistoryConverter):
 
 
     def readHandInfo(self, hand):
-        info, m2 = {}, None
+        info, m2, extra = {}, None, {}
         hand.handText = hand.handText.replace(u'\x00', u'')
         if self.re_emailedHand.search(hand.handText):
             hand.emailedHand = True
@@ -350,13 +377,23 @@ class PartyPoker(HandHistoryConverter):
         if hand.gametype['type'] == 'ring' or hand.emailedHand:
             m2 = self.re_GameInfo.search(hand.handText)
         else:
-            m2 = self.re_GameInfoTrny.search(hand.handText)
+            m2 = self.re_GameInfoTrny1.search(hand.handText)
+            if not m2:
+                m2 = self.re_GameInfoTrny2.search(hand.handText)
+                m3 = self.re_TourNoLevel.search(hand.handText)
+                m4 = self.re_Blinds.search(hand.handText)
+                if m3 and m4:
+                    extra.update(m3.groupdict())
+                    extra.update(m4.groupdict())
+                else:
+                    m2 = None
         if m is None or m2 is None:
             tmp = hand.handText[0:200]
             log.error(_("PartyPokerToFpdb.readHandInfo: '%s'") % tmp)
             raise FpdbParseError
         info.update(m.groupdict())
         info.update(m2.groupdict())
+        info.update(extra)
 
         for key in info:
             if key == 'DATETIME':
