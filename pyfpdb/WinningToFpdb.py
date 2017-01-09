@@ -140,7 +140,7 @@ class Winning(HandHistoryConverter):
         Game\sID:\s(?P<HID>\d+)\s
         [%(NUM)s]+/[%(NUM)s]+\s
         (?P<TABLE>.+?)\s
-        \(.+?\)$    
+        \(Hold\'em|Omaha|Omaha\sHiLow|Seven\sCards\sStud|Seven\sCards\sStud\sHiLow\)$    
         """ % substitutions,  
         re.MULTILINE|re.VERBOSE
     )    
@@ -394,7 +394,7 @@ class Winning(HandHistoryConverter):
                 hand.tablename = info['TABLE']
                 buyin_type = self.re_buyinType.search(info['TABLE'])
                 if buyin_type:
-                    hand.gametype['buyinType'] = buyin[buyin_type.group('BUYINTYPE')]
+                    hand.gametype['buyinType'] = self.buyin[buyin_type.group('BUYINTYPE')]
     
     def readButton(self, hand):
         m = self.re_Button.search(hand.handText)
