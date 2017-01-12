@@ -149,7 +149,7 @@ class Simple_Stat_Window(Aux_Base.Seat_Window):
                 pop = self.aw.config.popup_windows[widget.aw_popup],
                 hand_instance = self.aw.hud.hand_instance,
                 config = self.aw.config)
-            pu.setStyleSheet("background:%s;color:%s;" % (self.aw.bgcolor, self.aw.fgcolor))
+            pu.setStyleSheet("QWidget{background:%s;color:%s;}QToolTip{}" % (self.aw.bgcolor, self.aw.fgcolor))
                     
     def create_contents(self, i):
         self.setStyleSheet("QWidget{background:%s;color:%s;}QToolTip{}" % (self.aw.bgcolor, self.aw.fgcolor))
