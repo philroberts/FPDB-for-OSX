@@ -222,7 +222,6 @@ class Table_Window(object):
         if result is not False and result != self.table:
             self.table = result
             if hud is not None:
-                hud.parent.main_window.emit("table_changed", hud)
                 return True
         return False
 

@@ -297,6 +297,7 @@ class HUD_main(QObject):
                     #table has been renamed; the idle_kill method will housekeep hud_dict
                     # We will skip this hand, to give time for the idle function
                     # to complete its' work.  Normal service will be resumed on the next hand
+                    self.table_is_stale(self.hud_dict[temp_key])
                     return # abort processing this hand
             else:
                 #check if the tournament number is in the hud_dict under a different table
