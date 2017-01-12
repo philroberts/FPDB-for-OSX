@@ -752,7 +752,7 @@ class PartyPoker(HandHistoryConverter):
                 #   table_number = 7 digit table number
                 # screen string is normally Turbo|Speed|(etc) #table_number
                 #
-                regex = "#?%s" % (table_number)
+                regex = "%s.*%s" % (tournament, table_number)
         log.info("Party.getTableTitleRe: returns: '%s'" % (regex))
         return regex
 
