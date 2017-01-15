@@ -258,6 +258,8 @@ class GuiHandViewer(QSplitter):
 
     def contextMenu(self, event):
         index = self.view.currentIndex()
+        if index.row() < 0:
+            return
         hand = self.hands[int(index.sibling(index.row(), self.colnum['HandId']).data())]
         m = QMenu()
         copyAction = m.addAction('Copy to clipboard')
