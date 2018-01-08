@@ -1532,7 +1532,7 @@ class Sql:
                         lastUpdate DATETIME NOT NULL,
                         endTime DATETIME,
                         hands INT,
-                        stored INT,
+                        `stored` INT,
                         dups INT,
                         partial INT,
                         skipped INT,
