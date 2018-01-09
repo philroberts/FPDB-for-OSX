@@ -4942,7 +4942,7 @@ class Sql:
                             ,p.name                                                                 AS playerName
                             ,COUNT(1)                                                               AS tourneyCount
                             ,SUM(CASE WHEN tp.rank > 0 THEN 0 ELSE 1 END)                           AS unknownRank
-                            ,(CAST(SUM(CASE WHEN winnings > 0 THEN 1 ELSE 0 END) AS SIGNED BIGINT)/CAST(COUNT(1) AS SIGNED BIGINT))*100                 AS itm
+                            ,(CAST(SUM(CASE WHEN winnings > 0 THEN 1 ELSE 0 END) AS SIGNED)/CAST(COUNT(1) AS SIGNED))*100                 AS itm
                             ,SUM(CASE WHEN rank = 1 THEN 1 ELSE 0 END)                              AS _1st
                             ,SUM(CASE WHEN rank = 2 THEN 1 ELSE 0 END)                              AS _2nd
                             ,SUM(CASE WHEN rank = 3 THEN 1 ELSE 0 END)                              AS _3rd
@@ -4952,8 +4952,8 @@ class Sql:
                                    ELSE (tt.buyIn+tt.fee)/100.0
                                  END)                                                               AS spent
                             ,ROUND(
-                                (CAST(SUM(tp.winnings - tt.buyin - tt.fee) AS SIGNED BIGINT)/
-                                CAST(SUM(tt.buyin+tt.fee) AS SIGNED BIGINT))* 100.0
+                                (CAST(SUM(tp.winnings - tt.buyin - tt.fee) AS SIGNED)/
+                                CAST(SUM(tt.buyin+tt.fee) AS SIGNED))* 100.0
                              ,2)                                                                    AS roi
                             ,SUM(tp.winnings-(tt.buyin+tt.fee))/100.0/(COUNT(1)-SUM(CASE WHEN tp.rank > 0 THEN 0 ELSE 1 END)) AS profitPerTourney
                       from TourneysPlayers tp
